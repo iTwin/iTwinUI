@@ -3,93 +3,101 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { SvgDocument, SvgUpload } from '../utils';
+import { SvgUpload } from '../utils';
 import { FileUploadCardAction } from './FileUploadCardAction';
 import cx from 'classnames';
 import { FileUploadCardText } from './FileUploadCardText';
 import { FileUploadCardLabel } from './FileUploadCardLabel';
 import { FileUploadCardDescription } from './FileUploadCardDescription';
 import { FileUploadCardInput } from './FileUploadCardInput';
-
-const toBytes = (bytes: number) => {
-  const units = ['bytes', 'KB', 'MB', 'GB', 'TB'];
-  let i = 0;
-
-  while (bytes >= 1024 && ++i) {
-    bytes = bytes / 1024;
-  }
-
-  return bytes.toFixed(bytes < 10 && i > 0 ? 2 : 0) + units[i];
-};
-
-const toDate = (dateNumber: number) => {
-  const date = new Date(dateNumber);
-  return date.toDateString() + ' ' + date.toLocaleTimeString();
-};
+import { FileUploadCardIcon } from './FileUploadCardIcon';
 
 export type FileUploadCardProps = {
   /**
-   * Svg icon for uploaded file output.
-   * @default: SvgDocument
+   * List of files to pass (only needed when passing a custom action)
    */
-  icon?: JSX.Element;
+  files?: File[];
   /**
-   * Callback fired when a file is selected from the device.
+   * Callback fired when files have changed (only needed passing  custom action)
    */
-  onFileChange?: React.ChangeEventHandler<HTMLInputElement>;
+  onFilesChange?: (files: File[]) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
-
+/**
+ * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
+ * @example
+ * <FileUploadCard />
+ * <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)}>
+ *   <FileUploadCard.Icon>
+ *     <SvgSmileyHappyVery />
+ *   </FileUploadCard.Icon>
+ *   <FileUploadCard.Text>
+ *     <FileUploadCard.Label>Custom File Name</FileUploadCard.Label>
+ *     <FileUploadCard.Description>
+ *       Custom File Description
+ *     </FileUploadCard.Description>
+ *   </FileUploadCard.Text>
+ *   <FileUploadCard.Action>
+ *     <Button
+ *       onClick={() => {
+ *         setFiles([]);
+ *       }}
+ *     />
+ *     <FileUploadCard.Input name={fileInputId} ref={inputRef} />
+ *   </FileUploadCard.Action>
+ * </FileUploadCard>
+ */
 export const FileUploadCard = Object.assign(
   React.forwardRef<HTMLDivElement, FileUploadCardProps>(
     (props, ref: React.RefObject<HTMLDivElement>) => {
-      const { onFileChange, className, children, ...rest } = props;
+      const {
+        className,
+        children,
+        files: filesProp,
+        onFilesChange,
+        ...rest
+      } = props;
 
-      const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (onFileChange) {
-          onFileChange(e);
-        }
-        setFiles(Array.from(e.target.files || []));
-      };
+      const [internalFiles, setInternalFiles] = React.useState<File[]>();
+      const files = filesProp ?? internalFiles ?? [];
 
-      const [files, setFiles] = React.useState<Array<File>>([]);
-
-      return files.length ? (
-        <div
-          className={cx('iui-file-uploaded-template', className)}
-          ref={ref}
-          {...rest}
+      return (
+        <FileUploadCardContext.Provider
+          value={{ files, onFilesChange, setInternalFiles }}
         >
-          {children ?? (
+          {files?.length ? (
+            <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
+              {children ?? (
+                <>
+                  <FileUploadCard.Icon />
+                  <FileUploadCard.Text>
+                    <FileUploadCard.Label />
+                    <FileUploadCard.Description />
+                  </FileUploadCard.Text>
+                  <FileUploadCard.Action>
+                    <FileUploadCard.Input />
+                    {'Replace'}
+                  </FileUploadCard.Action>
+                </>
+              )}
+            </div>
+          ) : (
             <>
-              {<SvgDocument />}
-              <FileUploadCard.Text>
-                <FileUploadCard.Label>{files[0].name}</FileUploadCard.Label>
-                <FileUploadCard.Description>
-                  {toBytes(files[0].size) + ' ' + toDate(files[0].lastModified)}
-                </FileUploadCard.Description>
-              </FileUploadCard.Text>
-              <FileUploadCard.Action>
-                <FileUploadCard.Input onChange={onChange} />
-                {'Replace'}
-              </FileUploadCard.Action>
+              <SvgUpload className='iui-icon' aria-hidden />
+              <div className='iui-template-text'>
+                <label className='iui-anchor'>
+                  <FileUploadCard.Input />
+                  {'Choose a file'}
+                </label>
+                <div>{'or drag & drop it here.'}</div>
+              </div>
             </>
           )}
-        </div>
-      ) : (
-        <>
-          <SvgUpload className='iui-icon' aria-hidden />
-          <div className='iui-template-text'>
-            <label className='iui-anchor'>
-              <FileUploadCard.Input onChange={onChange} />
-              {'Choose a file'}
-            </label>
-            <div>{'or drag & drop it here.'}</div>
-          </div>
-        </>
+        </FileUploadCardContext.Provider>
       );
     },
   ),
   {
+    Icon: FileUploadCardIcon,
     Text: FileUploadCardText,
     Label: FileUploadCardLabel,
     Description: FileUploadCardDescription,
@@ -98,3 +106,21 @@ export const FileUploadCard = Object.assign(
   },
 );
 export default FileUploadCard;
+
+export const FileUploadCardContext = React.createContext<
+  | {
+      /**
+       * List of files to pass
+       */
+      files: File[];
+      /**
+       * Callback fired when files have changed
+       */
+      onFilesChange?: (files: File[]) => void;
+      /**
+       * Sets the state of the files within FileUploadCard
+       */
+      setInternalFiles: (files: File[]) => void;
+    }
+  | undefined
+>(undefined);

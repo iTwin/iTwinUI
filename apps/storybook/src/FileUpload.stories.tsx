@@ -12,8 +12,9 @@ import {
   FileUploadProps,
   FileUploadTemplate,
   LabeledInput,
+  IconButton,
 } from '@itwin/itwinui-react';
-import { SvgAirplane } from '@itwin/itwinui-icons-react';
+import { SvgClose, SvgSmileyHappyVery } from '@itwin/itwinui-icons-react';
 
 export default {
   component: FileUpload,
@@ -85,18 +86,43 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
         action(`${files.length} files uploaded`)();
       }}
     >
-      {' '}
-      <FileUploadCard>
-        <SvgAirplane />
+      <FileUploadCard />
+    </FileUpload>
+  );
+};
+
+export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [files, setFiles] = React.useState<File[]>([]);
+  const fileInputId = React.useId();
+
+  return (
+    <FileUpload
+      {...args}
+      onFileDropped={(files) => {
+        action(`${files.length} files uploaded`)();
+      }}
+    >
+      <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)}>
+        <FileUploadCard.Icon>
+          <SvgSmileyHappyVery />
+        </FileUploadCard.Icon>
         <FileUploadCard.Text>
-          <FileUploadCard.Label>{'Test Label'}</FileUploadCard.Label>
+          <FileUploadCard.Label>Custom File Name</FileUploadCard.Label>
           <FileUploadCard.Description>
-            {'Test Description'}
+            Custom File Description
           </FileUploadCard.Description>
         </FileUploadCard.Text>
         <FileUploadCard.Action>
-          <FileUploadCard.Input />
-          {'Replace'}
+          <IconButton
+            onClick={() => {
+              setFiles([]);
+            }}
+            styleType={'borderless'}
+          >
+            <SvgClose />
+          </IconButton>
+          <FileUploadCard.Input name={fileInputId} ref={inputRef} />
         </FileUploadCard.Action>
       </FileUploadCard>
     </FileUpload>

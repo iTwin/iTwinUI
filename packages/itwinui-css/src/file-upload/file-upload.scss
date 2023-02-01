@@ -8,6 +8,7 @@
   font-weight: var(--iui-font-weight-normal);
   position: relative;
   display: flex;
+  line-height: normal;
 
   > .iui-content {
     visibility: hidden;
@@ -36,7 +37,7 @@
 
     > svg,
     .iui-template-icon {
-      @include iui-icon-style(3xl);
+      @include iui-icon-style(xl);
       @include iui-icon-color;
       margin-top: var(--iui-size-s);
       margin-bottom: var(--iui-size-s);
@@ -75,7 +76,7 @@
   }
 }
 
-@mixin iui-file-uploaded-template {
+@mixin iui-file-card {
   width: 100%;
   height: 100%;
   line-height: normal;
@@ -84,7 +85,7 @@
   align-items: center;
 
   > svg,
-  .iui-file-uploaded-template-icon {
+  .iui-file-card-icon {
     @include iui-icon-style(xl);
     @include iui-icon-color;
     margin-top: var(--iui-size-s);
@@ -100,14 +101,14 @@
     position: absolute;
   }
 
-  .iui-file-uploaded-template-action {
+  .iui-file-card-action {
     margin-left: auto;
     margin-right: var(--iui-size-xs);
     font-weight: var(--iui-font-weight-bold);
   }
 }
 
-@mixin iui-file-uploaded-template-text {
+@mixin iui-file-card-text {
   margin: 0 var(--iui-size-s);
   display: flex;
   flex-direction: column;
@@ -115,14 +116,14 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 
-  .iui-file-uploaded-template-label,
-  .iui-file-uploaded-template-description {
+  .iui-file-card-label,
+  .iui-file-card-description {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
 
-  .iui-file-uploaded-template-description {
+  .iui-file-card-description {
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
   }

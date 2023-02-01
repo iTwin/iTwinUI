@@ -14,11 +14,7 @@ export const FileUploadCardAction = React.forwardRef<
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
-    <div
-      className={cx('iui-file-uploaded-template-action', className)}
-      ref={ref}
-      {...rest}
-    >
+    <div className={cx('iui-file-card-action', className)} ref={ref} {...rest}>
       <label className='iui-anchor'>{children}</label>
     </div>
   );

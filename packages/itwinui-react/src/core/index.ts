@@ -102,6 +102,7 @@ export type {
   FileUploadProps,
   FileUploadTemplateProps,
   FileUploadCardProps,
+  FileUploadCardIconProps,
   FileUploadCardTextProps,
   FileUploadCardLabelProps,
   FileUploadCardDescriptionProps,

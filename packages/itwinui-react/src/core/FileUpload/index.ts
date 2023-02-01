@@ -12,6 +12,9 @@ export type { FileUploadTemplateProps } from './FileUploadTemplate';
 export { FileUploadCard } from './FileUploadCard';
 export type { FileUploadCardProps } from './FileUploadCard';
 
+export { FileUploadCardIcon } from './FileUploadCardIcon';
+export type { FileUploadCardIconProps } from './FileUploadCardIcon';
+
 export { FileUploadCardText } from './FileUploadCardText';
 export type { FileUploadCardTextProps } from './FileUploadCardText';
 

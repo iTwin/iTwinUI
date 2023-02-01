@@ -14,11 +14,7 @@ export const FileUploadCardText = React.forwardRef<
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
-    <span
-      className={cx('iui-file-uploaded-template-text', className)}
-      ref={ref}
-      {...rest}
-    >
+    <span className={cx('iui-file-card-text', className)} ref={ref} {...rest}>
       {children}
     </span>
   );

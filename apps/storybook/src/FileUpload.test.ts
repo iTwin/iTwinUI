@@ -4,14 +4,22 @@
  *--------------------------------------------------------------------------------------------*/
 describe('FileUpload', () => {
   const storyPath = 'Core/FileUpload';
-  const tests = ['Default', 'Wrapping Input', 'Single File Upload'];
+  const tests = [
+    'Default',
+    'Wrapping Input',
+    'Single File Upload',
+    'Single File Upload Custom',
+  ];
 
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(testName);
-      if (testName === 'Single File Upload') {
+      if (
+        testName === 'Single File Upload' ||
+        testName === 'Single File Upload Custom'
+      ) {
         cy.get('.iui-browse-input').selectFile({
           contents: Cypress.Buffer.from('file contents'),
           fileName: 'file.txt',
