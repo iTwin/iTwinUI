@@ -118,6 +118,7 @@
 
       <ul
         class="iui-menu iui-scroll"
+        role="menu"
         id="demo-scrollable"
       >
         <li
@@ -747,6 +748,7 @@
       </header>
       <ul
         class="iui-menu"
+        role="menu"
         style="width: 370px;"
         id="demo-header-imodel-menu"
       >
@@ -897,6 +899,7 @@
       </header>
       <ul
         class="iui-menu"
+        role="menu"
         style="width: 370px;"
         id="demo-header-slim-imodel-menu"
       >
@@ -990,6 +993,7 @@
       >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
           aria-checked="true"
           tabindex="0"
         >
@@ -1008,6 +1012,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1025,6 +1030,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1059,6 +1065,7 @@
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1093,6 +1100,7 @@
       >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
           aria-checked="true"
           tabindex="0"
         >
@@ -1111,6 +1119,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1128,6 +1137,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1162,6 +1172,7 @@
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1196,6 +1207,7 @@
       >
         <li
           class="iui-menu-item iui-large iui-active"
+          role="menuitem"
           aria-checked="true"
           tabindex="0"
         >
@@ -1214,6 +1226,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1231,6 +1244,7 @@
         </li>
         <li
           class="iui-menu-item iui-large"
+          role="menuitem"
           tabindex="0"
         >
           <svg-placeholder
@@ -1265,6 +1279,7 @@
         ></li>
         <li
           class="iui-menu-item"
+          role="menuitem"
           tabindex="0"
         >
           <span class="iui-content">
@@ -1908,7 +1923,6 @@
           class="iui-menu-item"
           role="menuitem"
           tabindex="0"
-          id="test-multilevel"
         >
           <span class="iui-content">Option 1</span>
           <span class="iui-content iui-multilevel-selected">Option 1B</span>
@@ -1921,7 +1935,6 @@
           class="iui-menu-item"
           role="menuitem"
           tabindex="0"
-          id="test-multilevel"
         >
           <span class="iui-content">Option 2</span>
           <span class="iui-content iui-multilevel-selected">Option 2F, Option 2N</span>
@@ -1934,7 +1947,6 @@
           class="iui-menu-item iui-disabled"
           role="menuitem"
           tabindex="0"
-          id="test-multilevel"
         >
           <span class="iui-content">Option 3</span>
           <svg-caret-right-small
@@ -1950,11 +1962,12 @@
 
       <div
         class="iui-multilevel"
-        role="menuitem"
-        tabindex="0"
-        id="test-multilevel"
+        role="button-previous"
       >
-        <div class="iui-multilevel-header">
+        <div
+          class="iui-multilevel-header"
+          tabindex="0"
+        >
           <svg-caret-left-small
             class="iui-icon"
             aria-hidden="true"
@@ -2011,11 +2024,12 @@
 
       <div
         class="iui-multilevel"
-        role="menuitem"
-        tabindex="0"
-        id="test-multilevel"
+        role="button-previous"
       >
-        <div class="iui-multilevel-header">
+        <div
+          class="iui-multilevel-header"
+          tabindex="0"
+        >
           <svg-caret-left-small
             class="iui-icon"
             aria-hidden="true"
@@ -2030,7 +2044,6 @@
             class="iui-menu-item"
             role="menuitem"
             tabindex="0"
-            id="test-multilevel"
           >
             <span class="iui-content">Option 2A</span>
             <svg-caret-right-small
@@ -2042,7 +2055,6 @@
             class="iui-menu-item"
             role="menuitem"
             tabindex="0"
-            id="test-multilevel"
           >
             <span class="iui-content">Option 2B</span>
             <svg-caret-right-small
@@ -2054,7 +2066,6 @@
             class="iui-menu-item"
             role="menuitem"
             tabindex="0"
-            id="test-multilevel"
           >
             <span class="iui-content">Option 2C</span>
             <span class="iui-content iui-multilevel-selected">Option 2C-4</span>
@@ -2168,26 +2179,12 @@
         role="menu"
       >
         <li
-          class="iui-menu-item"
-          role="menuitem"
-          tabindex="0"
-          id="test-multilevel"
-        >
-          <span class="iui-content">Option 1</span>
-          <span class="iui-content iui-multilevel-selected">Option 1A</span>
-          <svg-caret-right-small
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-caret-right-small>
-        </li>
-        <li
           class="iui-menu-item iui-large"
           role="menuitem"
           tabindex="0"
-          id="test-multilevel"
         >
           <span class="iui-content">
-            <div class="iui-menu-label">Option 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            <div class="iui-menu-label">Option 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
               ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -2209,7 +2206,32 @@
           class="iui-menu-item iui-large"
           role="menuitem"
           tabindex="0"
-          id="test-multilevel"
+        >
+          <span class="iui-content">
+            <div class="iui-menu-label">Option 2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          </span>
+          <span class="iui-content iui-multilevel-selected">Option 2A, Option 2B, Option 2C, Option 2D, Option 2E,
+            Option 2F, Option 2G, Option 2H, Option 2I, Option 2J, Option 2K, Option 2L, Option 2M, Option 2N, Option
+            2O, Option 2P</span>
+          <svg-caret-right-small
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-caret-right-small>
+        </li>
+        <li
+          class="iui-menu-item iui-large"
+          role="menuitem"
+          tabindex="0"
         >
           <span class="iui-content">
             <span class="iui-menu-label">Option 3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -2235,16 +2257,29 @@
 
       <div
         class="iui-multilevel iui-flat"
-        role="menuitem"
-        tabindex="0"
-        id="test-multilevel"
+        role="button-previous"
       >
-        <div class="iui-multilevel-header">
+        <div
+          class="iui-multilevel-header iui-large"
+          tabindex="0"
+        >
           <svg-caret-left-small
             class="iui-icon"
             aria-hidden="true"
           ></svg-caret-left-small>
-          <span class="iui-content">Option 1</span>
+          <span class="iui-content">
+            <div class="iui-menu-label">Option 1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div class="iui-menu-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
+              voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+          </span>
         </div>
         <ul
           class="iui-menu"
@@ -2303,7 +2338,8 @@
         // Clicking on menu-item should toggle selection
         document.querySelectorAll('.iui-menu-item:not(.iui-menu-item-skeleton)').forEach((item) => {
           item.addEventListener('click', () => {
-            if (!item.classList.contains('iui-disabled') && !(item.id === 'test-multilevel')) {
+            const isTopLevelMenu = !!item.getElementsByTagName('svg-caret-right-small').length;
+            if (!item.classList.contains('iui-disabled') && !isTopLevelMenu) {
               if (item.classList.contains('iui-active')) {
                 item.lastElementChild.remove();
               } else {
