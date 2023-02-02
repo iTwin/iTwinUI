@@ -47,26 +47,12 @@
   }
 }
 
-@mixin iui-surface-footer-modifiers {
-  .iui-button {
-    flex-grow: 1;
-    border-radius: 0;
-    @media (forced-colors: active) {
-      border: none;
-    }
+@mixin iui-surface-header {
+  @include iui-surface-header-footer(header);
+}
 
-    + .iui-button {
-      border-left: 1px solid var(--iui-surface-border-color);
-    }
-
-    &:first-of-type {
-      border-bottom-left-radius: var(--iui-surface-border-radius);
-    }
-
-    &:last-of-type {
-      border-bottom-right-radius: var(--iui-surface-border-radius);
-    }
-  }
+@mixin iui-surface-footer {
+  @include iui-surface-header-footer(footer);
 }
 
 @mixin iui-surface-content {
@@ -75,9 +61,4 @@
   padding: var(--iui-surface-content-padding);
   overflow-y: auto;
   overflow-y: overlay;
-}
-
-@mixin iui-surface-content-empty {
-  align-items: center;
-  justify-content: center;
 }

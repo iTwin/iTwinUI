@@ -7,18 +7,13 @@
 }
 
 .iui-surface-header {
-  @include iui-surface-header-footer(header);
+  @include iui-surface-header;
 }
 
 .iui-surface-footer {
-  @include iui-surface-header-footer(footer);
-  @include iui-surface-footer-modifiers;
+  @include iui-surface-footer;
 }
 
 .iui-surface-content {
   @include iui-surface-content;
-
-  &[data-iui-empty='true'] {
-    @include iui-surface-content-empty;
-  }
 }
