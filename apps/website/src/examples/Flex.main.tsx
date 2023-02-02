@@ -2,13 +2,19 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export * from './Popover';
-export * from './Resizer';
-export * from './FocusTrap';
-export * from './InputContainer';
-export * from './WithCSSTransition';
-export * from './MiddleTextTruncation';
-export * from './VirtualScroll';
-export * from './VisuallyHidden';
-export * from './Icon';
-export * from './Flex';
+import * as React from 'react';
+import { Flex } from '@itwin/itwinui-react';
+
+export default () => {
+  return (
+    <Flex>
+      <MyItem>1</MyItem>
+      <MyItem>2</MyItem>
+      <MyItem>3</MyItem>
+    </Flex>
+  );
+};
+
+const MyItem = ({ children = '' }) => (
+  <div style={{ padding: '1rem', border: '1px solid' }}>{children}</div>
+);
