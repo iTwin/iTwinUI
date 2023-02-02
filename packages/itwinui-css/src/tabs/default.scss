@@ -33,43 +33,39 @@
     }
   }
 
-  @at-root {
-    .iui-horizontal & {
-      .iui-tab.iui-active {
-        border-bottom-color: transparent;
-      }
+  .iui-horizontal & {
+    .iui-tab.iui-active {
+      border-bottom-color: transparent;
+    }
 
-      :not(:first-child) .iui-tab {
-        border-left: none;
-      }
+    :not(:first-child) .iui-tab {
+      border-left: none;
+    }
 
-      ~ .iui-tabs-content {
-        margin-top: -1px;
-      }
+    ~ .iui-tabs-content {
+      margin-top: -1px;
+    }
 
-      :where(.iui-button) {
-        height: 100%;
-      }
+    :where(.iui-button) {
+      height: 100%;
     }
   }
 
-  @at-root {
-    .iui-vertical & {
-      .iui-tab.iui-active {
-        border-right-color: transparent;
-      }
+  .iui-vertical & {
+    .iui-tab.iui-active {
+      border-right-color: transparent;
+    }
 
-      :not(:first-child) .iui-tab {
-        border-top: none;
-      }
+    :not(:first-child) .iui-tab {
+      border-top: none;
+    }
 
-      ~ .iui-tabs-content {
-        margin-left: -1px;
-      }
+    ~ .iui-tabs-content {
+      margin-left: -1px;
+    }
 
-      :where(.iui-button) {
-        width: 100%;
-      }
+    :where(.iui-button) {
+      width: 100%;
     }
   }
 

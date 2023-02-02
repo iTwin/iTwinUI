@@ -101,7 +101,7 @@
   display: inline-flex;
   align-items: center;
 
-  @at-root .iui-select-button[data-iui-size='small'] & {
+  .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
     line-height: calc(var(--iui-size-s) * 1.5);
   }
@@ -117,7 +117,7 @@
   height: 100%;
   aspect-ratio: 1 / 1;
 
-  @at-root .iui-select-button[data-iui-size='small'] & {
+  .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
     line-height: calc(var(--iui-size-s) * 1.5);
   }
@@ -127,7 +127,7 @@
   @include iui-button-icon;
   flex-shrink: 0;
 
-  @at-root .iui-select-button[data-iui-size='small'] & svg {
+  .iui-select-button[data-iui-size='small'] & svg {
     @include iui-icon-style('s');
   }
 }
