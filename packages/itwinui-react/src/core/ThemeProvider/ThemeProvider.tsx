@@ -22,7 +22,7 @@ import '@itwin/itwinui-variables/index.css';
 export type ThemeProviderProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, ThemeProviderOwnProps>;
 
-type RootWithThemeProps = {
+type RootProps = {
   /**
    * Theme to be applied. Can be 'light' or 'dark' or 'os'.
    *
@@ -32,7 +32,7 @@ type RootWithThemeProps = {
    *
    * @default 'light'
    */
-  theme?: ThemeType;
+  theme?: ThemeType | 'inherit';
   themeOptions?: Pick<ThemeOptions, 'highContrast'> & {
     /**
      * Whether or not the element should apply the recommended `background-color` on itself.
@@ -47,10 +47,10 @@ type RootWithThemeProps = {
   };
 };
 
-type ThemeProviderOwnProps = Pick<RootWithThemeProps, 'theme'> &
+type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
-        themeOptions?: RootWithThemeProps['themeOptions'];
+        themeOptions?: RootProps['themeOptions'];
         children: Required<React.ReactNode>;
       }
     | { themeOptions?: ThemeOptions; children?: undefined }
@@ -83,7 +83,7 @@ type ThemeProviderOwnProps = Pick<RootWithThemeProps, 'theme'> &
  * </ThemeProvider>
  */
 export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme, children, themeOptions, ...rest } = props;
+  const { theme: themeProp, children, themeOptions, ...rest } = props;
 
   const rootRef = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(rootRef, ref);
@@ -91,8 +91,11 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const hasChildren = React.Children.count(children) > 0;
   const parentContext = React.useContext(ThemeContext);
 
+  const theme =
+    themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
+
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef }),
+    () => ({ theme: theme, themeOptions, rootRef }),
     [theme, themeOptions],
   );
 
@@ -100,7 +103,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   if (!hasChildren) {
     return (
       <ThemeLogicWrapper
-        theme={theme ?? parentContext?.theme}
+        theme={theme}
         themeOptions={themeOptions ?? parentContext?.themeOptions}
       />
     );
@@ -108,16 +111,11 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   // now that we know there are children, we can render the root and provide the context value
   return (
-    <RootWithTheme
-      theme={theme}
-      themeOptions={themeOptions}
-      ref={mergedRefs}
-      {...rest}
-    >
+    <Root theme={theme} themeOptions={themeOptions} ref={mergedRefs} {...rest}>
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
-    </RootWithTheme>
+    </Root>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 
@@ -132,8 +130,15 @@ export const ThemeContext = React.createContext<
   | undefined
 >(undefined);
 
-const RootWithTheme = React.forwardRef((props, forwardedRef) => {
-  const { theme, children, themeOptions, ...rest } = props;
+const Root = React.forwardRef((props, forwardedRef) => {
+  const {
+    as: Element = 'div',
+    theme,
+    children,
+    themeOptions,
+    className,
+    ...rest
+  } = props;
 
   const ref = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(ref, forwardedRef);
@@ -146,54 +151,27 @@ const RootWithTheme = React.forwardRef((props, forwardedRef) => {
     themeOptions?.applyBackground ?? !isThemeAlreadySet.current;
 
   return (
-    <Root
-      withBackground={shouldApplyBackground}
+    <Element
+      className={cx(
+        'iui-root',
+        { 'iui-root-background': shouldApplyBackground },
+        className,
+      )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
       ref={mergedRefs}
       {...rest}
     >
       {children}
-    </Root>
-  );
-}) as PolymorphicForwardRefComponent<'div', RootWithThemeProps>;
-
-const ThemeLogicWrapper = ({ theme, themeOptions }: ThemeProviderOwnProps) => {
-  useTheme(theme, themeOptions);
-  return <></>;
-};
-
-/**
- * Root component that should wrap all iTwinUI components, preventing styles from leaking out of the tree.
- *
- * This is only needed when it's not possible to use ThemeProvider. For example, when building a package
- * using iTwinUI v2, the package should have no opinion on the app theme, but the components in the package
- * should probably still be scoped, to prevent potential conflicts with the rest of the page where it's used.
- *
- * @example
- * <Root>
- *  // UI built using iTwinUI v2
- * </Root>
- */
-export const Root = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, withBackground, ...rest } = props;
-  return (
-    <Element
-      className={cx(
-        'iui-root',
-        { 'iui-root-background': withBackground },
-        className,
-      )}
-      ref={ref}
-      {...rest}
-    />
+    </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
-export type RootProps = {
-  /**
-   * Whether or not the root should have the recommended `background-color`.
-   * This is usually only relevant for the topmost root on the page.
-   */
-  withBackground?: boolean;
-} & React.ComponentProps<'div'>;
+const ThemeLogicWrapper = (props: {
+  theme?: ThemeType;
+  themeOptions?: ThemeOptions;
+}) => {
+  const { theme, themeOptions } = props;
+  useTheme(theme, themeOptions);
+  return <></>;
+};
