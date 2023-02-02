@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-added focus to alert button outline for correct specificity order
+Alert: close button's focus color now matches the status color.
