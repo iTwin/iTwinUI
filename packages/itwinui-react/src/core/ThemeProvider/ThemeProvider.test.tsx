@@ -6,7 +6,7 @@ import React from 'react';
 import { act, render } from '@testing-library/react';
 import * as UseMediaQuery from '../utils/hooks/useMediaQuery';
 
-import { ThemeProvider } from './ThemeProvider';
+import { Root, ThemeProvider } from './ThemeProvider';
 
 describe('When rendering an element (with children)', () => {
   let useMediaSpy: jest.SpyInstance;
@@ -319,5 +319,21 @@ describe('Fallback (without children)', () => {
     expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
     expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
     expect(document.body.dataset.iuiTheme).toEqual('dark');
+  });
+
+  it('should use the <Root> component if there is one', () => {
+    render(
+      <Root data-id='my-root'>
+        <ThemeProvider theme='dark' />
+      </Root>,
+    );
+
+    const element = document.querySelector('[data-id=my-root]');
+    expect(element).toHaveAttribute('data-iui-theme', 'dark');
+    expect(element).toHaveAttribute('data-iui-contrast', 'default');
+
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.classList).not.toContain('iui-root');
   });
 });

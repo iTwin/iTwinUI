@@ -256,8 +256,8 @@ export type { MeridiemType, TimePickerProps } from './TimePicker';
 export { default as toaster } from './Toast';
 export type { ToastOptions } from './Toast';
 
-export { ThemeProvider } from './ThemeProvider';
-export type { ThemeProviderProps } from './ThemeProvider';
+export { ThemeProvider, Root } from './ThemeProvider';
+export type { ThemeProviderProps, RootProps } from './ThemeProvider';
 
 export { ToggleSwitch } from './ToggleSwitch';
 export type { ToggleSwitchProps } from './ToggleSwitch';
