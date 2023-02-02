@@ -40,13 +40,10 @@
 
   @if ($type == 'header') {
     border-bottom: 1px solid var(--iui-surface-border-color);
-    padding-block: calc(var(--iui-surface-padding-inline) * 0.5);
-    padding-inline: var(--iui-surface-padding-inline);
+    padding: calc(var(--iui-surface-padding-inline) * 0.5) var(--iui-surface-padding-inline);
   }
 
   @if ($type == 'footer') {
-    display: flex;
-    flex-shrink: 0;
     border-top: 1px solid var(--iui-surface-border-color);
   }
 }
@@ -55,17 +52,20 @@
   .iui-button {
     flex-grow: 1;
     border-radius: 0;
+    @media (forced-colors: active) {
+      border: none;
+    }
 
     + .iui-button {
-      border-left: 1px solid var(--iui-color-border);
+      border-left: 1px solid var(--iui-surface-border-color);
     }
 
     &:first-of-type {
-      border-bottom-left-radius: var(--iui-border-radius-1);
+      border-bottom-left-radius: var(--iui-surface-border-radius);
     }
 
     &:last-of-type {
-      border-bottom-right-radius: var(--iui-border-radius-1);
+      border-bottom-right-radius: var(--iui-surface-border-radius);
     }
   }
 }
