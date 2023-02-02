@@ -52,6 +52,22 @@ describe('When rendering an element (with children)', () => {
     },
   );
 
+  it('should inherit parent theme when using theme=inherit', () => {
+    const { container } = render(
+      <ThemeProvider theme='dark'>
+        outer
+        <ThemeProvider theme='inherit' data-test='outer'>
+          inner
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    const innerRoot = container.querySelector('[data-test="inner"]');
+    expect(innerRoot).toHaveClass('iui-root');
+    expect(innerRoot).toHaveAttribute('data-iui-theme', 'dark');
+    expect(innerRoot).toHaveAttribute('data-iui-contrast', 'default');
+  });
+
   it('should respect OS preferences', () => {
     useMediaSpy.mockReturnValue(true);
     const { container } = render(
