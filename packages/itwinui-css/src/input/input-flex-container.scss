@@ -26,7 +26,6 @@
   right: unset;
   display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   padding: 0;
   margin: 0;
@@ -67,12 +66,19 @@
   }
 }
 
-@mixin iui-searchbox {
-  width: fit-content;
+@mixin iui-expandable-searchbox {
+  width: var(--iui-component-height);
+  transition: width var(--iui-duration-3) ease;
+  overflow: hidden;
+
+  &.iui-animate-left {
+    justify-content: flex-end;
+  }
 
   > input {
     width: 0;
     padding: 0;
+    transition: width var(--iui-duration-3) ease;
   }
 
   &[aria-expanded='true'] {

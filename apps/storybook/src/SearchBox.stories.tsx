@@ -4,13 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import {
-  IconButton,
-  SearchBox,
-  SearchBoxProps,
-  Icon,
-} from '@itwin/itwinui-react';
-import { SvgSearch } from '@itwin/itwinui-icons-react';
+import { SearchBox, SearchBoxProps, IconButton } from '@itwin/itwinui-react';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
 
 export default {
   component: SearchBox,
@@ -22,26 +17,27 @@ export default {
 } as Meta<SearchBoxProps>;
 
 export const Basic: Story<SearchBoxProps> = (args) => {
-  const [isExpanded, setIsExpanded] = React.useState(false);
   return (
-    <SearchBox expandable={true} isExpanded={isExpanded} {...args}>
-      <IconButton
-        styleType='borderless'
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        <SvgSearch />
-      </IconButton>
-      <input type='search' placeholder='Search...' />
-    </SearchBox>
+    <>
+      <SearchBox expandable {...args}>
+        <input type='search' placeholder='Search...' />
+        <IconButton styleType='borderless'>
+          <SvgCaretUpSmall />
+        </IconButton>
+        <IconButton styleType='borderless'>
+          <SvgCaretDownSmall />
+        </IconButton>
+      </SearchBox>
+      <SearchBox expandable animateTo='left' {...args}>
+        <input type='search' placeholder='Search...' />
+      </SearchBox>
+    </>
   );
 };
 
 export const Small: Story<SearchBoxProps> = (args) => {
   return (
     <SearchBox {...args} size='small'>
-      <Icon>
-        <SvgSearch />
-      </Icon>
       <input type='search' placeholder='Search...' />
     </SearchBox>
   );

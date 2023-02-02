@@ -5,15 +5,19 @@
 import React from 'react';
 import cx from 'classnames';
 import { InputProps } from '../Input';
-import { InputFlexContainer, useTheme } from '../utils';
+import { Icon, InputFlexContainer, useTheme } from '../utils';
+import { IconButton } from '../Buttons';
+import { SvgSearch, SvgCloseSmall } from '@itwin/itwinui-icons-react';
 
-export type SearchBoxProps = {
-  /**
-   *
-   */
-  isExpanded?: boolean;
-  expandable?: boolean;
-} & InputProps;
+export type SearchBoxProps =
+  | ({
+      /**
+       *
+       */
+      expandable?: false;
+      animateTo?: undefined;
+    } & InputProps)
+  | ({ expandable: true; animateTo?: 'left' | 'right' } & InputProps);
 
 /**
  * // TODO:
@@ -25,24 +29,65 @@ export type SearchBoxProps = {
 export const SearchBox = (props: SearchBoxProps) => {
   const {
     size,
-    isExpanded = false,
     expandable = false,
+    animateTo = 'right',
     children,
     ...rest
   } = props;
 
   useTheme();
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  const searchIcon = () => {
+    return isExpanded ? <SvgCloseSmall /> : <SvgSearch />;
+  };
+
+  const animatedVersion = () => {
+    return (
+      <>
+        {animateTo === 'right' && (
+          <IconButton
+            styleType='borderless'
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {searchIcon()}
+          </IconButton>
+        )}
+        {isExpanded && children}
+        {animateTo === 'left' && (
+          <IconButton
+            styleType='borderless'
+            onClick={() => setIsExpanded(!isExpanded)}
+          >
+            {searchIcon()}
+          </IconButton>
+        )}
+      </>
+    );
+  };
+
+  const staticVersion = () => {
+    return (
+      <>
+        <Icon>
+          <SvgSearch />
+        </Icon>
+        {children}
+      </>
+    );
+  };
 
   return (
     <InputFlexContainer
       className={cx({
-        'iui-searchbox': expandable,
+        'iui-expandable-searchbox': expandable,
+        'iui-animate-left': expandable && animateTo === 'left',
       })}
       aria-expanded={isExpanded}
       data-iui-size={size}
       {...rest}
     >
-      {children}
+      {expandable ? animatedVersion() : staticVersion()}
     </InputFlexContainer>
   );
 };
