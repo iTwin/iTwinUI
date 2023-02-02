@@ -29,7 +29,6 @@
   display: flex;
   flex-direction: column;
   height: var(--iui-surface-content-height);
-  width: 100%; // Copying line 16 of `fluid-grid.scss` in iTwinUI-layouts, unsure if needed
 }
 
 @mixin iui-surface-header-footer($type) {
