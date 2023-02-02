@@ -56,7 +56,7 @@ describe('When rendering an element (with children)', () => {
     const { container } = render(
       <ThemeProvider theme='dark'>
         outer
-        <ThemeProvider theme='inherit' data-test='outer'>
+        <ThemeProvider theme='inherit' data-test='inner'>
           inner
         </ThemeProvider>
       </ThemeProvider>,
