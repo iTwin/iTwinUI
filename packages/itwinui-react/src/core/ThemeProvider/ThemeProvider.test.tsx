@@ -139,9 +139,9 @@ describe('Fallback (without children)', () => {
   };
 
   afterEach(() => {
-    document.body?.classList.remove('iui-root');
-    document.documentElement?.removeAttribute('data-iui-theme');
-    document.documentElement?.removeAttribute('data-iui-contrast');
+    document.body.classList.remove('iui-root');
+    document.documentElement.removeAttribute('data-iui-theme');
+    document.documentElement.removeAttribute('data-iui-contrast');
     window.matchMedia = originalMatchMedia;
   });
 

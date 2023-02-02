@@ -95,7 +95,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
-    () => ({ theme: theme, themeOptions, rootRef }),
+    () => ({ theme, themeOptions, rootRef }),
     [theme, themeOptions],
   );
 
@@ -132,10 +132,10 @@ export const ThemeContext = React.createContext<
 
 const Root = React.forwardRef((props, forwardedRef) => {
   const {
-    as: Element = 'div',
     theme,
     children,
     themeOptions,
+    as: Element = 'div',
     className,
     ...rest
   } = props;
