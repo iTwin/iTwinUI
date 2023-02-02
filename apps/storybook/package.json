@@ -33,7 +33,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006 --no-open",
-    "build": "dotenv -v NODE_OPTIONS=--openssl-legacy-provider -- build-storybook",
+    "build": "build-storybook",
     "dev": "yarn storybook --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
