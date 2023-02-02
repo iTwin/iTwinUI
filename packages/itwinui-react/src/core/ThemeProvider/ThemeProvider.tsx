@@ -30,6 +30,9 @@ type RootProps = {
    * in SSR environments because it is not possible detect system preference on the server.
    * This can cause a flash of incorrect theme on first render.
    *
+   * The 'inherit' option is intended to be used by packages, to enable incremental adoption
+   * of iTwinUI v2 in app that might be using v1 in other places.
+   *
    * @default 'light'
    */
   theme?: ThemeType | 'inherit';
