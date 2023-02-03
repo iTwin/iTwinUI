@@ -3,7 +3,7 @@
 @import '../utils/index';
 
 $iui-dialog-width: 380px;
-$iui-dialogue-resizable-min-height: 130px;
+$iui-dialogue-resizable-min-height: 7.75rem;
 
 @mixin iui-dialog-wrapper {
   position: fixed;
