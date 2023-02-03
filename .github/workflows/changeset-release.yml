@@ -18,10 +18,10 @@ jobs:
         with:
           token: ${{ secrets.ITWINUI_CHANGESETS }}
 
-      - name: Use Node 16.X
+      - name: Use Node 18.X
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: 18.x
 
       - run: yarn
 
