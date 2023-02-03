@@ -10,10 +10,11 @@ const allThumbnails = await Astro.glob('../icons/thumbnails/*.astro');
 const thumbnail = allThumbnails.find(({ file }) => file.endsWith(`${icon}Thumbnail.astro`));
 ---
 
-<thumbnail.default class='component-thumbnail' />
+{icon ? <thumbnail.default class='component-thumbnail' /> : <svg />}
 
 <style lang='scss'>
-  .component-thumbnail {
+  .component-thumbnail,
+  svg {
     height: calc(var(--space-6) * 6);
     width: 100%;
 

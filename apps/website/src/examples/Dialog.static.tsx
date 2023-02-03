@@ -3,17 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, ModalContent, ModalButtonBar, Dialog } from '@itwin/itwinui-react';
+import { Dialog, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(true);
-  const closeModal = () => setIsModalOpen(false);
+  const [isDialogOpen, setIsDialogOpen] = React.useState(true);
+  const closeDialog = () => setIsDialogOpen(false);
 
   return (
     <>
       <Dialog.Main
-        isOpen={isModalOpen}
-        onClose={() => closeModal()}
+        isOpen={isDialogOpen}
+        onClose={() => closeDialog()}
         style={{
           position: 'static',
           transform: 'none',
@@ -21,19 +21,20 @@ export default () => {
           minWidth: 0,
         }}
         trapFocus={false}
+        setFocus={false}
       >
-        <Dialog.TitleBar isDismissible>Dialog</Dialog.TitleBar>
-        <ModalContent>
+        <Dialog.TitleBar titleText='Dialog' />
+        <Dialog.Content>
           A dialog informs users about a task and can contain critical information, require
           decisions, or involve multiple tasks. Dialogs appear in front of app content to provide
           critical information or ask for a decision.
-        </ModalContent>
-        <ModalButtonBar>
-          <Button styleType='high-visibility' onClick={() => closeModal()}>
+        </Dialog.Content>
+        <Dialog.ButtonBar>
+          <Button styleType='high-visibility' onClick={() => closeDialog()}>
             Primary
           </Button>
-          <Button onClick={() => closeModal()}>Secondary</Button>
-        </ModalButtonBar>
+          <Button onClick={() => closeDialog()}>Secondary</Button>
+        </Dialog.ButtonBar>
       </Dialog.Main>
     </>
   );
