@@ -13,10 +13,10 @@ function assertBaseElements(size = 'small', backgroundColor = 'white') {
   expect(avatarContainer.className).toEqual(
     `iui-avatar${size !== 'medium' ? ` iui-${size}` : ''}`,
   );
+  expect(avatarContainer.style.backgroundColor).toEqual(backgroundColor);
 
   const abbreviation = screen.getByText('TR');
   expect(abbreviation.className).toEqual('iui-initials');
-  expect(abbreviation.style.backgroundColor).toEqual(backgroundColor);
 }
 
 it('should render with given abbreviation', () => {
@@ -88,7 +88,7 @@ it('renders with image', () => {
   const avatarContainer = screen.getByTitle('Terry Rivers');
   expect(avatarContainer.className).toEqual('iui-avatar iui-small');
   const abbreviation = container.querySelector('.iui-initials');
-  expect(abbreviation).toHaveTextContent(''); // Abbreviation is empty when image or child is passed
+  expect(abbreviation).toBeFalsy();
   const img = container.querySelector('img');
   expect(img).toBeTruthy();
 });
