@@ -102,15 +102,11 @@ export const Avatar = (props: AvatarProps) => {
         className,
       )}
       title={title}
-      style={style}
+      style={{ backgroundColor, ...style }}
       {...rest}
     >
-      {image ? (
-        <div className='iui-initials' style={{ backgroundColor }} />
-      ) : (
-        <abbr className='iui-initials' style={{ backgroundColor }}>
-          {abbreviation?.substring(0, 2)}
-        </abbr>
+      {!image && (
+        <abbr className='iui-initials'>{abbreviation?.substring(0, 2)}</abbr>
       )}
       {image}
       <span className='iui-stroke' />

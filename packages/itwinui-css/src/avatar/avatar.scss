@@ -12,6 +12,8 @@
   user-select: none;
   width: var(--_iui-avatar-size);
   height: var(--_iui-avatar-size);
+  background-color: hsl(72, 51%, 56%);
+  border-radius: 50%;
 
   > .iui-stroke {
     display: block;
@@ -41,7 +43,6 @@
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    background-color: hsl(72, 51%, 56%);
     overflow: hidden;
     color: var(--iui-color-white);
     line-height: var(--_iui-avatar-size);
