@@ -3,7 +3,7 @@
 @import '../utils/index';
 
 $iui-dialog-width: 380px;
-$iui-dialogue-resizable-min-height: 130px;
+$iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
 
 @mixin iui-dialog-wrapper {
   position: fixed;
@@ -115,11 +115,11 @@ $iui-dialogue-resizable-min-height: 130px;
   }
 }
 
-@mixin iui-dialog-draggable($min-height: $iui-dialogue-resizable-min-height) {
+@mixin iui-dialog-draggable {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
-  min-height: $min-height;
+  min-height: $iui-dialogue-resizable-min-height;
 }
 
 @mixin iui-dialog-animation {
