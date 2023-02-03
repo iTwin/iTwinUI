@@ -10,7 +10,7 @@ export default () => {
     <div
       style={{
         border: '1px solid pink',
-        maxWidth: 450,
+        maxWidth: 425,
         padding: 8,
       }}
     >
