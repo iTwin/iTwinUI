@@ -10,6 +10,7 @@ import {
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
+  useOverflow,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
@@ -95,6 +96,48 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
+  /**
+   * If specified, this prop will be used to show a custom button when overflow happens,
+   * i.e. when there is not enough space to fit all the tabs.
+   *
+   * Expects a function that takes the number of items that are visible
+   * and returns the `ReactNode` to render.
+   *
+   * @example <caption>Uses the overflow button to add a dropdown that contains hidden tabs</caption>
+   *  const [index, setIndex] = React.useState(0);
+   *  <Tabs
+   *    overflowButton={(visibleCount) => (
+   *      <DropdownMenu
+   *        menuItems={(close) =>
+   *          Array(items.length - visibleCount)
+   *            .fill(null)
+   *            .map((_, _index) => {
+   *              const index = visibleCount + _index + 1;
+   *              const onClick = () => {
+   *                // click on "index" tab
+   *                setIndex(index - 1);
+   *                close();
+   *              };
+   *              return (
+   *                <MenuItem key={index} onClick={onClick}>
+   *                  Item {index}
+   *                </MenuItem>
+   *              );
+   *            })
+   *        }
+   *      >
+   *        <IconButton style={{ paddingTop: '12px', margin: '4px', height: 'auto' }} styleType='borderless'>
+   *          <SvgMoreSmall />
+   *        </IconButton>
+   *      </DropdownMenu>
+   *    )}
+   *    onTabSelected={setIndex}
+   *    activeIndex={index}
+   *  >
+   *    {tabs}
+   *  </Tabs>
+   */
+  overflowButton?: (visibleCount: number) => React.ReactNode;
 } & TabsOrientationProps &
   TabsTypeProps;
 
@@ -158,6 +201,7 @@ export const Tabs = (props: TabsProps) => {
     contentClassName,
     wrapperClassName,
     children,
+    overflowButton,
     ...rest
   } = props;
 
@@ -165,7 +209,8 @@ export const Tabs = (props: TabsProps) => {
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
-  const refs = useMergedRefs(tablistRef, tablistSizeRef);
+  const [overflowRef, visibleCount] = useOverflow(labels);
+  const refs = useMergedRefs(tablistRef, tablistSizeRef, overflowRef);
 
   const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>
     activeIndex != null
@@ -216,12 +261,15 @@ export const Tabs = (props: TabsProps) => {
     );
   }, [type]);
 
-  const onTabClick = (index: number) => {
-    if (onTabSelected) {
-      onTabSelected(index);
-    }
-    setCurrentActiveIndex(index);
-  };
+  const onTabClick = React.useCallback(
+    (index: number) => {
+      if (onTabSelected) {
+        onTabSelected(index);
+      }
+      setCurrentActiveIndex(index);
+    },
+    [onTabSelected],
+  );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     // alt + arrow keys are used by browser / assistive technologies
@@ -288,6 +336,56 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
+  const displayTabs = React.useMemo(() => {
+    console.log('count' + visibleCount);
+    const visibleLabels = overflowButton
+      ? labels.slice(0, visibleCount)
+      : labels;
+
+    const visibleTabs = visibleLabels.map((label, index) => {
+      const onClick = () => {
+        setFocusedIndex(index);
+        onTabClick(index);
+      };
+      return (
+        <li key={index}>
+          {!React.isValidElement(label) ? (
+            <Tab
+              label={label}
+              className={cx({
+                'iui-active': index === currentActiveIndex,
+              })}
+              tabIndex={index === currentActiveIndex ? 0 : -1}
+              onClick={onClick}
+              aria-selected={index === currentActiveIndex}
+            />
+          ) : (
+            React.cloneElement(label, {
+              className: cx(label.props.className, {
+                'iui-active': index === currentActiveIndex,
+              }),
+              'aria-selected': index === currentActiveIndex,
+              tabIndex: index === currentActiveIndex ? 0 : -1,
+              onClick: (args: unknown) => {
+                onClick();
+                label.props.onClick?.(args);
+              },
+            })
+          )}
+        </li>
+      );
+    });
+
+    if (overflowButton && labels.length - visibleCount > 0) {
+      const overflowButtonElement = (
+        <li key={visibleTabs.length + 1}>{overflowButton(visibleCount)}</li>
+      );
+      visibleTabs.push(overflowButtonElement);
+    }
+
+    return visibleTabs;
+  }, [currentActiveIndex, labels, onTabClick, visibleCount, overflowButton]);
+
   return (
     <div
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
@@ -309,7 +407,8 @@ export const Tabs = (props: TabsProps) => {
         onKeyDown={onKeyDown}
         {...rest}
       >
-        {labels.map((label, index) => {
+        {displayTabs}
+        {/* {labels.map((label, index) => {
           const onClick = () => {
             setFocusedIndex(index);
             onTabClick(index);
@@ -341,7 +440,10 @@ export const Tabs = (props: TabsProps) => {
               )}
             </li>
           );
-        })}
+        })} */}
+        {/* {labels.length - visibleCount > 0 &&
+          overflowButton &&
+          overflowButton(visibleCount)} */}
       </ul>
 
       {actions && (

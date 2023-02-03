@@ -4,9 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
-import { Button, Tab } from '@itwin/itwinui-react';
+import {
+  Button,
+  Tab,
+  IconButton,
+  DropdownMenu,
+  MenuItem,
+} from '@itwin/itwinui-react';
 import { Tabs, TabsProps } from '@itwin/itwinui-react/esm/core/Tabs/Tabs';
+import { SvgMoreSmall } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Tabs',
@@ -185,6 +193,92 @@ SublabelsAndIcons.args = {
       />
     )),
   type: 'borderless',
+};
+
+export const Overflow: Story<Partial<TabsProps>> = (args) => {
+  const [index, setIndex] = React.useState(0);
+  const getContent = () => {
+    switch (index) {
+      case 0:
+        return 'Tab Content One';
+      case 1:
+        return 'Tab Content Two';
+      case 2:
+        return 'Tab Content Three';
+      case 3:
+        return 'Tab Content Four';
+      case 4:
+        return 'Tab Content Five';
+      case 5:
+        return 'Tab Content Six';
+      default:
+        return 'Tab Content Seven';
+    }
+  };
+  const labels = [
+    <Tab key={1} label='Item 1' />,
+    <Tab key={2} label='Item 2' />,
+    <Tab key={3} label='Item 3' />,
+    <Tab key={4} label='Item 4' />,
+    <Tab key={5} label='Item 5' />,
+    <Tab key={6} label='Item 6' />,
+    <Tab key={7} label='Item 7' />,
+  ];
+
+  return (
+    <div style={{ maxWidth: '25%', border: '1px solid lightpink', padding: 8 }}>
+      <Tabs
+        labels={labels}
+        overflowButton={(visibleCount: number) => (
+          <DropdownMenu
+            menuItems={(close: () => void) =>
+              Array(labels.length - visibleCount)
+                .fill(null)
+                .map((_, _index) => {
+                  const index = visibleCount + _index + 1;
+                  const onClick = () => {
+                    action(`Visit tab ${index}`)();
+                    setIndex(index - 1);
+                    close();
+                  };
+                  return (
+                    <MenuItem key={index} onClick={onClick}>
+                      Item {index}
+                    </MenuItem>
+                  );
+                })
+            }
+          >
+            <IconButton
+              style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
+              styleType='borderless'
+              onClick={() => action('Clicked on overflow icon')()}
+            >
+              <SvgMoreSmall />
+            </IconButton>
+          </DropdownMenu>
+        )}
+        {...args}
+        onTabSelected={setIndex}
+        activeIndex={index}
+      >
+        {getContent()}
+      </Tabs>
+    </div>
+  );
+};
+Overflow.args = {
+  type: 'default',
+  actions: [],
+  labels: [
+    <Tab key={1} label='Item 1' />,
+    <Tab key={2} label='Item 2' />,
+    <Tab key={3} label='Item 3' />,
+    <Tab key={4} label='Item 4' />,
+    <Tab key={5} label='Item 5' />,
+    <Tab key={6} label='Item 6' />,
+    <Tab key={7} label='Item 7' />,
+  ],
 };
 
 export const Vertical: Story<Partial<TabsProps>> = (args) => {
