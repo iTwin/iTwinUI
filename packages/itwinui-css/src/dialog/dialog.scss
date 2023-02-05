@@ -21,7 +21,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
     position: absolute;
   }
 }
-//something
+
 @mixin iui-dialog {
   z-index: 999;
   isolation: isolate;
