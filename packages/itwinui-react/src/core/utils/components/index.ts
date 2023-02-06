@@ -11,5 +11,6 @@ export * from './WithCSSTransition';
 export * from './MiddleTextTruncation';
 export * from './VirtualScroll';
 export * from './VisuallyHidden';
+export * from './VerticalDivider';
 export * from './Icon';
 export * from './Flex';

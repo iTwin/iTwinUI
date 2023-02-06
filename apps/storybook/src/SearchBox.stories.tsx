@@ -9,7 +9,9 @@ import {
   SearchBox,
   SearchBoxProps,
   IconButton,
+  Text,
   Icon,
+  VerticalDivider,
 } from '@itwin/itwinui-react';
 import {
   SvgAirplane,
@@ -65,8 +67,17 @@ export const Small: Story<SearchBoxProps> = (args) => {
 
 export const WithCustomAction: Story<SearchBoxProps> = (args) => {
   return (
-    <SearchBox expandable {...args}>
+    <SearchBox expandable animateTo='left' {...args}>
       <input type='search' placeholder='Search...' />
+      <Text
+        isMuted
+        variant='body'
+        as='p'
+        style={{ paddingRight: 'var(--iui-size-s)' }}
+      >
+        0/3
+      </Text>
+      <VerticalDivider />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />
       </IconButton>

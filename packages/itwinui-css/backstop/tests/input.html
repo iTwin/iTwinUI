@@ -510,25 +510,10 @@
 
     <h2>Search box</h2>
     <section id="demo-search-box">
-
-      <h3>Current method</h3>
-      <div class="iui-input-container iui-inline-icon">
-        <input
-          placeholder="Placeholder…"
-          type="search"
-          class="iui-input"
-          id="search-1"
-        />
-        <svg-search aria-hidden="true" />
-      </div>
-
-      <h3>Flex box</h3>
       <div
         class="iui-input-flex-container"
         data-iui-size="small"
       >
-        <span>
-          <svg-search aria-hidden="true" /></span>
         <input
           placeholder="Placeholder…"
           type="search"
@@ -537,9 +522,14 @@
         />
         <button
           class="iui-button"
-          data-iui-size="small"
           data-iui-variant="borderless"
-        ><svg-close-small aria-hidden="true" /></button>
+          data-iui-size="small"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
       </div>
       <div
         class="iui-input-flex-container"
