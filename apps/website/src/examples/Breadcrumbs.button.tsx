@@ -9,8 +9,10 @@ export default () => {
   return (
     <Breadcrumbs>
       <Button>Root</Button>
-      <Button>Item 1</Button>
-      <Button>Item 2</Button>
+      <Button>My files</Button>
+      <Button>Documents</Button>
+      <Button>Status reports</Button>
+      <Button>December</Button>
     </Breadcrumbs>
   );
 };
