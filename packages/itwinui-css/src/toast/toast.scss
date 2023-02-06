@@ -44,9 +44,8 @@
   }
 
   &-anchor {
+    @include iui-anchor;
     @include iui-anchor-underline('on-initial');
-    border-radius: var(--iui-border-radius-1);
-    cursor: pointer;
     font-size: var(--iui-font-size-0);
     margin-right: var(--iui-size-m);
     user-select: none;

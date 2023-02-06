@@ -23,6 +23,20 @@
   [data-iui-contrast='high'] & {
     @include iui-anchor-underline('on-initial');
   }
+
+  [data-iui-highlight-links='true'] & {
+    text-decoration: underline !important;
+  }
+
+  [data-iui-highlight-links='true'][data-iui-theme='light'] & {
+    background-color: black !important;
+    color: yellow !important;
+  }
+
+  [data-iui-highlight-links='true'][data-iui-theme='dark'] & {
+    background-color: white !important;
+    color: blue !important;
+  }
 }
 
 @mixin iui-anchor-external {

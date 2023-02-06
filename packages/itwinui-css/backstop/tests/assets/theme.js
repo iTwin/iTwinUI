@@ -26,6 +26,9 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background</span></label>
             <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background backdrop</span></label>
           </fieldset>
+
+          <label tabindex="-1"><input type="checkbox" name="highlight" value="highlight" /><span>Highlight links</span></label>
+
         </article>
       </div>
     `;
@@ -164,6 +167,14 @@ class ThemeButton extends HTMLElement {
     }
   };
 
+  highlightLinks = ({ target: { checked: _isChecked } }) => {
+    if (_isChecked) {
+      document.documentElement.setAttribute('data-iui-highlight-links', 'true');
+    } else {
+      document.documentElement.removeAttribute('data-iui-highlight-links');
+    }
+  };
+
   connectedCallback() {
     this.shadowRoot.querySelectorAll('input[name="theme"]').forEach((radio) => {
       radio.addEventListener('change', this.changeTheme);
@@ -172,6 +183,8 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
       radio.addEventListener('change', this.changeBackground);
     });
+
+    this.shadowRoot.querySelector('input[name="highlight"]').addEventListener('change', this.highlightLinks);
   }
 
   disconnectedCallback() {
@@ -182,6 +195,8 @@ class ThemeButton extends HTMLElement {
     this.shadowRoot.querySelectorAll('input[name="background"]').forEach((radio) => {
       radio.removeEventListener('change', this.changeBackground);
     });
+
+    this.shadowRoot.querySelector('input[name="highlight"]').removeEventListener('change', this.highlightLinks);
   }
 }
 customElements.define('theme-button', ThemeButton);
