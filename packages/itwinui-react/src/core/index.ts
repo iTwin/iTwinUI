@@ -321,7 +321,6 @@ export {
   Icon,
   Flex,
   VerticalDivider,
-  InputFlexContainer,
 } from './utils';
 export type {
   ThemeType,
@@ -330,7 +329,6 @@ export type {
   FlexProps,
   FlexItemProps,
   FlexSpacerProps,
-  InputFlexContainerProps,
   VerticalDividerProps,
 } from './utils';
 
