@@ -5,42 +5,88 @@
 import React from 'react';
 import cx from 'classnames';
 import { InputProps } from '../Input';
-import { Icon, InputFlexContainer, useTheme } from '../utils';
+import {
+  Icon,
+  InputFlexContainer,
+  useTheme,
+  SvgSearch,
+  SvgCloseSmall,
+} from '../utils';
 import { IconButton } from '../Buttons';
-import { SvgSearch, SvgCloseSmall } from '@itwin/itwinui-icons-react';
-
-export type SearchBoxProps =
-  | ({
-      /**
-       *
-       */
+type SearchBoxOwnProps =
+  | {
       expandable?: false;
+      isExpanded?: undefined;
+      onToggle?: undefined;
       animateTo?: undefined;
-    } & InputProps)
-  | ({ expandable: true; animateTo?: 'left' | 'right' } & InputProps);
+      searchIcon?: React.ReactNode;
+    }
+  | {
+      /**
+       * Whether the searchbox is animated to expand.
+       * @default false
+       */
+      expandable: true;
+      /**
+       * Animation direction.
+       * @default 'right'
+       */
+      animateTo?: 'left' | 'right';
+      /**
+       * Whether or not to show the search input.
+       * @default false
+       */
+      isExpanded?: boolean;
+      /**
+       * Callback function for toggling an expansion state.
+       */
+      onToggle?: (isExpanding: boolean) => void;
+      /**
+       * Initial icon for searchbox.
+       * default: `search` when searchbox is closed, `close` when searchbox is expanded.
+       */
+      searchIcon?: React.ReactNode;
+    };
+
+export type SearchBoxProps = SearchBoxOwnProps & InputProps;
+
+const defaultSearchIcon = (isExpanded: boolean) => {
+  return isExpanded ? <SvgCloseSmall /> : <SvgSearch />;
+};
 
 /**
- * // TODO:
  * Searchbox component.
  * Used for searches :)
  * @example
- * Example usages go here!
+ *  <SearchBox>
+ *    <input type='search' placeholder='Search...' />
+ *  </SearchBox>
+ *
+ *  <SearchBox>
+ *    <input type='search' placeholder='Search...' />
+ *    <IconButton styleType='borderless'>
+ *     <SvgCaretUpSmall />
+ *   </IconButton>
+ *   <IconButton styleType='borderless'>
+ *      <SvgCaretDownSmall />
+ *     </IconButton>
+ *  </SearchBox>
  */
 export const SearchBox = (props: SearchBoxProps) => {
+  useTheme();
+
+  const [localIsExpanded, setLocalIsExpanded] = React.useState(false);
+
   const {
     size,
     expandable = false,
     animateTo = 'right',
+    isExpanded = localIsExpanded,
+    onToggle = setLocalIsExpanded,
+    searchIcon = defaultSearchIcon(isExpanded),
     children,
     ...rest
   } = props;
-
-  useTheme();
-  const [isExpanded, setIsExpanded] = React.useState(false);
-
-  const searchIcon = () => {
-    return isExpanded ? <SvgCloseSmall /> : <SvgSearch />;
-  };
 
   const animatedVersion = () => {
     return (
@@ -48,18 +94,18 @@ export const SearchBox = (props: SearchBoxProps) => {
         {animateTo === 'right' && (
           <IconButton
             styleType='borderless'
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => onToggle(!isExpanded)}
           >
-            {searchIcon()}
+            {searchIcon}
           </IconButton>
         )}
         {isExpanded && children}
         {animateTo === 'left' && (
           <IconButton
             styleType='borderless'
-            onClick={() => setIsExpanded(!isExpanded)}
+            onClick={() => onToggle(!isExpanded)}
           >
-            {searchIcon()}
+            {searchIcon}
           </IconButton>
         )}
       </>
@@ -69,9 +115,7 @@ export const SearchBox = (props: SearchBoxProps) => {
   const staticVersion = () => {
     return (
       <>
-        <Icon>
-          <SvgSearch />
-        </Icon>
+        <Icon>{searchIcon ?? <SvgSearch />}</Icon>
         {children}
       </>
     );
