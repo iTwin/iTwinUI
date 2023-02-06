@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       package:
-        description: "Which package to publish?"
+        description: 'Which package to publish?'
         required: true
         type: choice
         default: itwinui-css
@@ -13,7 +13,7 @@ on:
           - itwinui-variables
           - itwinui-react
       tag:
-        description: "Which npm tag to publish to?"
+        description: 'Which npm tag to publish to?'
         required: true
         type: choice
         default: latest
@@ -43,10 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Use Node 16.X
+      - name: Use Node 18.X
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
           registry-url: https://registry.npmjs.org/
 
       - run: yarn install
