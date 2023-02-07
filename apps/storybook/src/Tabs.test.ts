@@ -10,6 +10,7 @@ describe('Tabs', () => {
     'Pill Tabs',
     'Sublabels And Icons',
     'Vertical',
+    'Overflow',
   ];
 
   tests.forEach((testName) => {
