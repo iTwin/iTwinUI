@@ -32,9 +32,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [fd2e5239]
-- Updated dependencies [06476ada]
-- Updated dependencies [a1a8c74d]
+- Updated dependencies
   - @itwin/itwinui-css@1.5.0
 
 ## 2.3.0
