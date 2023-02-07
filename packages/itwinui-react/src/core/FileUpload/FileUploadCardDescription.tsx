@@ -19,12 +19,8 @@ const toDate = (dateNumber: number) => {
   return date.toDateString() + ' ' + date.toLocaleTimeString();
 };
 
-export type FileUploadCardDescriptionProps = {
-  /**
-   * Children for FileUploadCardLabel.
-   */
-  children?: React.ReactNode;
-} & React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardDescriptionProps =
+  React.ComponentPropsWithRef<'span'>;
 
 export const FileUploadCardDescription = React.forwardRef<
   HTMLSpanElement,

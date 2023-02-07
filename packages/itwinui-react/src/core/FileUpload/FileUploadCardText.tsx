@@ -1,12 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-export type FileUploadCardTextProps = {
-  /**
-   * Buttons in the dialog bar.
-   */
-  children: React.ReactNode;
-} & React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardTextProps = React.ComponentPropsWithRef<'span'>;
 
 export const FileUploadCardText = React.forwardRef<
   HTMLSpanElement,

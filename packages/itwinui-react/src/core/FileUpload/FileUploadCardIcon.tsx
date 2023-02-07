@@ -2,12 +2,7 @@ import React from 'react';
 import cx from 'classnames';
 import { SvgDocument } from '../utils';
 
-export type FileUploadCardIconProps = {
-  /**
-   * Children for FileUploadCardLabel.
-   */
-  children?: JSX.Element;
-} & React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardIconProps = React.ComponentPropsWithRef<'span'>;
 
 export const FileUploadCardIcon = React.forwardRef<
   HTMLSpanElement,

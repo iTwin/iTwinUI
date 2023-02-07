@@ -1,12 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 
-export type FileUploadCardActionProps = {
-  /**
-   * Buttons in the dialog bar.
-   */
-  children: React.ReactNode;
-} & React.ComponentPropsWithRef<'div'>;
+export type FileUploadCardActionProps = React.ComponentPropsWithRef<'div'>;
 
 export const FileUploadCardAction = React.forwardRef<
   HTMLDivElement,

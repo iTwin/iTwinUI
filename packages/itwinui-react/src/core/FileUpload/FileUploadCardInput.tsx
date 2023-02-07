@@ -3,12 +3,7 @@ import cx from 'classnames';
 import { useMergedRefs, useSafeContext } from '../utils';
 import { FileUploadCardContext } from './FileUploadCard';
 
-export type FileUploadCardInputProps = {
-  /**
-   * Children for FileUploadCardLabel.
-   */
-  children?: React.ReactNode;
-} & React.ComponentPropsWithRef<'input'>;
+export type FileUploadCardInputProps = React.ComponentPropsWithRef<'input'>;
 
 export const FileUploadCardInput = React.forwardRef<
   HTMLInputElement,

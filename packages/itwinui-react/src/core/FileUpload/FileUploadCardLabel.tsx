@@ -3,12 +3,7 @@ import cx from 'classnames';
 import { FileUploadCardContext } from './FileUploadCard';
 import { useSafeContext } from '../utils';
 
-export type FileUploadCardLabelProps = {
-  /**
-   * Children for FileUploadCardLabel.
-   */
-  children?: React.ReactNode;
-} & React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardLabelProps = React.ComponentPropsWithRef<'span'>;
 
 export const FileUploadCardLabel = React.forwardRef<
   HTMLSpanElement,
