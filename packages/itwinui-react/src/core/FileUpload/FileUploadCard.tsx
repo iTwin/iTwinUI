@@ -3,15 +3,190 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { SvgUpload } from '../utils';
+import {
+  SvgDocument,
+  SvgUpload,
+  useMergedRefs,
+  useSafeContext,
+} from '../utils';
 import cx from 'classnames';
-import { FileUploadCardAction } from './FileUploadCardAction';
-import { FileUploadCardText } from './FileUploadCardText';
-import { FileUploadCardLabel } from './FileUploadCardLabel';
-import { FileUploadCardDescription } from './FileUploadCardDescription';
-import { FileUploadCardInput } from './FileUploadCardInput';
-import { FileUploadCardIcon } from './FileUploadCardIcon';
-import { FileUploadCardAnchor } from './FileUploadCardAnchor';
+
+const toBytes = (bytes: number) => {
+  const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
+  let i = 0;
+
+  while (bytes >= 1024 && ++i) {
+    bytes = bytes / 1024;
+  }
+
+  return bytes.toFixed(bytes < 10 && i > 0 ? 2 : 0) + units[i];
+};
+
+const toDate = (dateNumber: number) => {
+  const date = new Date(dateNumber);
+  return date.toDateString() + ' ' + date.toLocaleTimeString();
+};
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Icon component
+export type FileUploadCardIconProps = React.ComponentPropsWithRef<'span'>;
+
+const FileUploadCardIcon = React.forwardRef<
+  HTMLSpanElement,
+  FileUploadCardIconProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <span className={cx('iui-file-card-icon', className)} ref={ref} {...rest}>
+      {children ?? <SvgDocument />}
+    </span>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Text component
+
+export type FileUploadCardTextProps = React.ComponentPropsWithRef<'span'>;
+
+const FileUploadCardText = React.forwardRef<
+  HTMLSpanElement,
+  FileUploadCardTextProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <span className={cx('iui-file-card-text', className)} ref={ref} {...rest}>
+      {children}
+    </span>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Label component
+
+export type FileUploadCardLabelProps = React.ComponentPropsWithRef<'span'>;
+
+const FileUploadCardLabel = React.forwardRef<
+  HTMLSpanElement,
+  FileUploadCardLabelProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  const { data } = useSafeContext(FileUploadCardContext);
+  return (
+    <span className={cx('iui-file-card-label', className)} ref={ref} {...rest}>
+      {children ?? (data ? data.name : '')}
+    </span>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Description component
+
+export type FileUploadCardDescriptionProps =
+  React.ComponentPropsWithRef<'span'>;
+
+const FileUploadCardDescription = React.forwardRef<
+  HTMLSpanElement,
+  FileUploadCardDescriptionProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  const { data } = useSafeContext(FileUploadCardContext);
+  return (
+    <span
+      className={cx('iui-file-card-description', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children ??
+        (data ? toBytes(data.size) + ' ' + toDate(data.lastModified) : '')}
+    </span>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Action component
+
+export type FileUploadCardActionProps = React.ComponentPropsWithRef<'div'>;
+
+const FileUploadCardAction = React.forwardRef<
+  HTMLDivElement,
+  FileUploadCardActionProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <div className={cx('iui-file-card-action', className)} ref={ref} {...rest}>
+      <label className='iui-anchor'>{children}</label>
+    </div>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Anchor component
+
+export type FileUploadCardAnchorProps = React.ComponentPropsWithRef<'label'>;
+
+const FileUploadCardAnchor = React.forwardRef<
+  HTMLLabelElement,
+  FileUploadCardAnchorProps
+>((props, ref) => {
+  const { children, className, ...rest } = props;
+  return (
+    <label className={cx('iui-anchor', className)} ref={ref} {...rest}>
+      {children}
+    </label>
+  );
+});
+
+// ----------------------------------------------------------------------------
+// FileUploadCard.Input component
+
+export type FileUploadCardInputProps = React.ComponentPropsWithRef<'input'>;
+
+const FileUploadCardInput = React.forwardRef<
+  HTMLInputElement,
+  FileUploadCardInputProps
+>((props, ref) => {
+  const { children, className, onChange, ...rest } = props;
+  const { data, onDataChange, setInternalData } = useSafeContext(
+    FileUploadCardContext,
+  );
+
+  const setNativeFilesRef = React.useCallback(
+    (node: HTMLInputElement | null) => {
+      if (!node || !data) {
+        return;
+      }
+
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.clear();
+      dataTransfer.items.add(data);
+
+      node.files = dataTransfer.files;
+    },
+    [data],
+  );
+
+  const refs = useMergedRefs(ref, setNativeFilesRef);
+
+  return (
+    <>
+      <input
+        className={cx('iui-file-card-input', className)}
+        type='file'
+        onChange={(e) => {
+          onChange?.(e);
+          if (!e.isDefaultPrevented()) {
+            const _files = Array.from(e.currentTarget.files || []);
+            onDataChange?.(_files[0]);
+            setInternalData(_files[0]);
+          }
+        }}
+        ref={refs}
+        {...rest}
+      />
+      {children}
+    </>
+  );
+});
 
 export type FileUploadCardProps = {
   /**
