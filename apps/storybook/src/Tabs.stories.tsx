@@ -211,8 +211,20 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
         return 'Tab Content Five';
       case 5:
         return 'Tab Content Six';
-      default:
+      case 6:
         return 'Tab Content Seven';
+      case 7:
+        return 'Tab Content Eight';
+      case 8:
+        return 'Tab Content Nine';
+      case 9:
+        return 'Tab Content Ten';
+      case 10:
+        return 'Tab Content Eleven';
+      case 11:
+        return 'Tab Content Twelve';
+      default:
+        return 'Tab Content Thirteen';
     }
   };
   const labels = [
@@ -223,6 +235,12 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
     <Tab key={5} label='Item 5' />,
     <Tab key={6} label='Item 6' />,
     <Tab key={7} label='Item 7' />,
+    <Tab key={8} label='Item 8' />,
+    <Tab key={9} label='Item 9' />,
+    <Tab key={10} label='Item 10' />,
+    <Tab key={11} label='Item 11' />,
+    <Tab key={12} label='Item 12' />,
+    <Tab key={13} label='Item 13' />,
   ];
 
   return (
@@ -278,6 +296,12 @@ Overflow.args = {
     <Tab key={5} label='Item 5' />,
     <Tab key={6} label='Item 6' />,
     <Tab key={7} label='Item 7' />,
+    <Tab key={8} label='Item 8' />,
+    <Tab key={9} label='Item 9' />,
+    <Tab key={10} label='Item 10' />,
+    <Tab key={11} label='Item 11' />,
+    <Tab key={12} label='Item 12' />,
+    <Tab key={13} label='Item 13' />,
   ],
 };
 

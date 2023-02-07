@@ -73,9 +73,7 @@ export const useOverflow = <T extends HTMLElement>(
     const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
 
     const availableSize = containerRef.current[`offset${dimension}`];
-    console.log('availableSize ' + availableSize);
     const requiredSize = containerRef.current[`scroll${dimension}`];
-    console.log('requiredSize ' + requiredSize);
 
     if (availableSize < requiredSize) {
       const avgItemSize = requiredSize / visibleCount;

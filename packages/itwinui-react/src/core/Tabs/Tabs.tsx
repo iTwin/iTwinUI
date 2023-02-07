@@ -337,7 +337,6 @@ export const Tabs = (props: TabsProps) => {
   };
 
   const displayTabs = React.useMemo(() => {
-    console.log('count' + visibleCount);
     const visibleLabels = overflowButton
       ? labels.slice(0, visibleCount)
       : labels;
@@ -399,6 +398,7 @@ export const Tabs = (props: TabsProps) => {
             'iui-green': color === 'green',
             'iui-animated': type !== 'default',
             'iui-large': hasSublabel,
+            'iui-overflow': overflowButton,
           },
           tabsClassName,
         )}
@@ -408,42 +408,6 @@ export const Tabs = (props: TabsProps) => {
         {...rest}
       >
         {displayTabs}
-        {/* {labels.map((label, index) => {
-          const onClick = () => {
-            setFocusedIndex(index);
-            onTabClick(index);
-          };
-          return (
-            <li key={index}>
-              {!React.isValidElement(label) ? (
-                <Tab
-                  label={label}
-                  className={cx({
-                    'iui-active': index === currentActiveIndex,
-                  })}
-                  tabIndex={index === currentActiveIndex ? 0 : -1}
-                  onClick={onClick}
-                  aria-selected={index === currentActiveIndex}
-                />
-              ) : (
-                React.cloneElement(label, {
-                  className: cx(label.props.className, {
-                    'iui-active': index === currentActiveIndex,
-                  }),
-                  'aria-selected': index === currentActiveIndex,
-                  tabIndex: index === currentActiveIndex ? 0 : -1,
-                  onClick: (args: unknown) => {
-                    onClick();
-                    label.props.onClick?.(args);
-                  },
-                })
-              )}
-            </li>
-          );
-        })} */}
-        {/* {labels.length - visibleCount > 0 &&
-          overflowButton &&
-          overflowButton(visibleCount)} */}
       </ul>
 
       {actions && (

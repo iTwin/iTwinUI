@@ -99,6 +99,14 @@ $borderless-horizontal-tab-min-height: calc(
     }
   }
 
+  &.iui-overflow {
+    overflow: auto;
+
+    .iui-tab {
+      white-space: nowrap;
+    }
+  }
+
   ~ .iui-tabs-content {
     padding-top: var(--iui-size-s);
     padding-bottom: var(--iui-size-s);
