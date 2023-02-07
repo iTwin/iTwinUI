@@ -10,10 +10,10 @@ export const FileUploadCardLabel = React.forwardRef<
   FileUploadCardLabelProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
-  const { files } = useSafeContext(FileUploadCardContext);
+  const { data } = useSafeContext(FileUploadCardContext);
   return (
     <span className={cx('iui-file-card-label', className)} ref={ref} {...rest}>
-      {children ?? files[0].name}
+      {children ?? (data ? data.name : '')}
     </span>
   );
 });

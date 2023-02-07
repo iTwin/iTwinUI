@@ -10,23 +10,23 @@ export const FileUploadCardInput = React.forwardRef<
   FileUploadCardInputProps
 >((props, ref) => {
   const { children, className, onChange, ...rest } = props;
-  const { files, onFilesChange, setInternalFiles } = useSafeContext(
+  const { data, onDataChange, setInternalData } = useSafeContext(
     FileUploadCardContext,
   );
 
   const setNativeFilesRef = React.useCallback(
     (node: HTMLInputElement | null) => {
-      if (!node) {
+      if (!node || !data) {
         return;
       }
 
       const dataTransfer = new DataTransfer();
       dataTransfer.items.clear();
-      files.forEach((file) => dataTransfer.items.add(file));
+      dataTransfer.items.add(data);
 
       node.files = dataTransfer.files;
     },
-    [files],
+    [data],
   );
 
   const refs = useMergedRefs(ref, setNativeFilesRef);
@@ -40,8 +40,8 @@ export const FileUploadCardInput = React.forwardRef<
           onChange?.(e);
           if (!e.isDefaultPrevented()) {
             const _files = Array.from(e.currentTarget.files || []);
-            onFilesChange?.(_files);
-            setInternalFiles(_files);
+            onDataChange?.(_files[0]);
+            setInternalData(_files[0]);
           }
         }}
         ref={refs}

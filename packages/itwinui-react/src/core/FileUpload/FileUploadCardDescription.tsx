@@ -27,14 +27,15 @@ export const FileUploadCardDescription = React.forwardRef<
   FileUploadCardDescriptionProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
-  const { files } = useSafeContext(FileUploadCardContext);
+  const { data } = useSafeContext(FileUploadCardContext);
   return (
     <span
       className={cx('iui-file-card-description', className)}
       ref={ref}
       {...rest}
     >
-      {children ?? toBytes(files[0].size) + ' ' + toDate(files[0].lastModified)}
+      {children ??
+        (data ? toBytes(data.size) + ' ' + toDate(data.lastModified) : '')}
     </span>
   );
 });

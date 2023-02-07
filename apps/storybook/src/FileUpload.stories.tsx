@@ -103,7 +103,10 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)}>
+      <FileUploadCard
+        data={files[0]}
+        onDataChange={(file) => setFiles(new Array(file))}
+      >
         <FileUploadCard.Icon>
           <SvgSmileyHappyVery />
         </FileUploadCard.Icon>

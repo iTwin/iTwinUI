@@ -15,19 +15,19 @@ import { FileUploadCardAnchor } from './FileUploadCardAnchor';
 
 export type FileUploadCardProps = {
   /**
-   * List of files to pass (only needed when passing a custom action)
+   * File to pass (only needed when passing a custom action)
    */
-  files?: File[];
+  data?: File;
   /**
-   * Callback fired when files have changed (only needed passing  custom action)
+   * Callback fired when data has changed (only needed passing custom action)
    */
-  onFilesChange?: (files: File[]) => void;
+  onDataChange?: (data: File) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 /**
  * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
  * @example
  * <FileUploadCard />
- * <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)}>
+ * <FileUploadCard data={data} onDataChange={(data) => setData(data)}>
  *   <FileUploadCard.Icon>
  *     <SvgSmileyHappyVery />
  *   </FileUploadCard.Icon>
@@ -40,7 +40,7 @@ export type FileUploadCardProps = {
  *   <FileUploadCard.Action>
  *     <Button
  *       onClick={() => {
- *         setFiles([]);
+ *         setData([]);
  *       }}
  *     />
  *     <FileUploadCard.Input name={fileInputId} ref={inputRef} />
@@ -53,19 +53,19 @@ export const FileUploadCard = Object.assign(
       const {
         className,
         children,
-        files: filesProp,
-        onFilesChange,
+        data: dataProps,
+        onDataChange,
         ...rest
       } = props;
 
-      const [internalFiles, setInternalFiles] = React.useState<File[]>();
-      const files = filesProp ?? internalFiles ?? [];
+      const [internalData, setInternalData] = React.useState<File>();
+      const data = dataProps ?? internalData ?? undefined;
 
       return (
         <FileUploadCardContext.Provider
-          value={{ files, onFilesChange, setInternalFiles }}
+          value={{ data, onDataChange, setInternalData }}
         >
-          {files?.length ? (
+          {data ? (
             <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
               {children ?? (
                 <>
@@ -114,17 +114,17 @@ export default FileUploadCard;
 export const FileUploadCardContext = React.createContext<
   | {
       /**
-       * List of files to pass
+       * Data to pass
        */
-      files: File[];
+      data?: File;
       /**
-       * Callback fired when files have changed
+       * Callback fired when data has changed
        */
-      onFilesChange?: (files: File[]) => void;
+      onDataChange?: (data: File) => void;
       /**
-       * Sets the state of the files within FileUploadCard
+       * Sets the state of the data within FileUploadCard
        */
-      setInternalFiles: (files: File[]) => void;
+      setInternalData: (data: File) => void;
     }
   | undefined
 >(undefined);

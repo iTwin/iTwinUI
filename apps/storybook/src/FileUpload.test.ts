@@ -22,12 +22,15 @@ describe('FileUpload', () => {
         testName === 'Single File Upload' ||
         testName === 'Single File Upload Custom'
       ) {
-        cy.get('.iui-file-card-input').selectFile({
-          contents: Cypress.Buffer.from('file contents'),
-          fileName: 'file.txt',
-          mimeType: 'text/plain',
-          lastModified: new Date(2023).valueOf(),
-        });
+        cy.get('.iui-file-card-input').selectFile(
+          {
+            contents: Cypress.Buffer.from('file contents'),
+            fileName: 'file.txt',
+            mimeType: 'text/plain',
+            lastModified: new Date(2023).valueOf(),
+          },
+          { force: true },
+        );
         cy.compareSnapshot(`${testName} (Uploaded)`);
       }
     });
