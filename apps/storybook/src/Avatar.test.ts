@@ -9,6 +9,7 @@ describe('Avatar', () => {
     'Sizes',
     'Statuses',
     'With Image',
+    'With Icon',
     'Custom Status Translation',
   ];
 
