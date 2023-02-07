@@ -107,6 +107,7 @@ export type {
   FileUploadCardLabelProps,
   FileUploadCardDescriptionProps,
   FileUploadCardActionProps,
+  FileUploadCardAnchorProps,
   FileUploadCardInputProps,
 } from './FileUpload';
 

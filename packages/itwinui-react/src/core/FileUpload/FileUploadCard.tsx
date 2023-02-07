@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { SvgUpload } from '../utils';
-import { FileUploadCardAction } from './FileUploadCardAction';
 import cx from 'classnames';
+import { FileUploadCardAction } from './FileUploadCardAction';
 import { FileUploadCardText } from './FileUploadCardText';
 import { FileUploadCardLabel } from './FileUploadCardLabel';
 import { FileUploadCardDescription } from './FileUploadCardDescription';
 import { FileUploadCardInput } from './FileUploadCardInput';
 import { FileUploadCardIcon } from './FileUploadCardIcon';
+import { FileUploadCardAnchor } from './FileUploadCardAnchor';
 
 export type FileUploadCardProps = {
   /**
@@ -74,8 +75,10 @@ export const FileUploadCard = Object.assign(
                     <FileUploadCard.Description />
                   </FileUploadCard.Text>
                   <FileUploadCard.Action>
-                    <FileUploadCard.Input />
-                    {'Replace'}
+                    <FileUploadCard.Anchor>
+                      <FileUploadCard.Input />
+                      {'Replace'}{' '}
+                    </FileUploadCard.Anchor>
                   </FileUploadCard.Action>
                 </>
               )}
@@ -102,6 +105,7 @@ export const FileUploadCard = Object.assign(
     Label: FileUploadCardLabel,
     Description: FileUploadCardDescription,
     Action: FileUploadCardAction,
+    Anchor: FileUploadCardAnchor,
     Input: FileUploadCardInput,
   },
 );

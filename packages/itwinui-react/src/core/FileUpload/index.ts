@@ -27,5 +27,8 @@ export type { FileUploadCardDescriptionProps } from './FileUploadCardDescription
 export { FileUploadCardAction } from './FileUploadCardAction';
 export type { FileUploadCardActionProps } from './FileUploadCardAction';
 
+export { FileUploadCardAnchor } from './FileUploadCardAnchor';
+export type { FileUploadCardAnchorProps } from './FileUploadCardAnchor';
+
 export { FileUploadCardInput } from './FileUploadCardInput';
 export type { FileUploadCardInputProps } from './FileUploadCardInput';
