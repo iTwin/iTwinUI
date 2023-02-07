@@ -45,7 +45,17 @@ export default () => {
     </MenuItem>,
   ];
   return (
-    <div style={{ height: '70%', width: '50%', display: 'flex', alignItems: 'flex-start' }}>
+    <div
+      style={{
+        height: '70%',
+        width: '50%',
+        display: 'flex',
+        alignItems: 'flex-start',
+        position: 'absolute',
+        left: '38%',
+        top: '18%',
+      }}
+    >
       <ButtonGroup>
         <IconButton disabled>
           <SvgPlaceholder />

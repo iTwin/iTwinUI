@@ -289,6 +289,7 @@ export {
   Text,
 } from './Typography';
 export type {
+  AnchorProps,
   BodyProps,
   HeadlineProps,
   LeadingProps,
@@ -317,5 +318,14 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  Icon,
+  Flex,
 } from './utils';
-export type { ThemeType, MiddleTextTruncationProps } from './utils';
+export type {
+  ThemeType,
+  MiddleTextTruncationProps,
+  IconProps,
+  FlexProps,
+  FlexItemProps,
+  FlexSpacerProps,
+} from './utils';

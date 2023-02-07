@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Anchor', () => {
   const storyPath = 'Typography/Anchor';
-  const tests = ['Basic'];
+  const tests = ['Basic', 'As Button'];
 
   tests.forEach((testName) => {
     it(testName, function () {

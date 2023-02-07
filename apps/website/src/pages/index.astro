@@ -11,6 +11,7 @@ import ConsistentIcon from '~/icons/ConsistentIcon.astro';
 import RightArrowIcon from '~/icons/RightArrowIcon.astro';
 import NorthernLights from '~/components/NorthernLights.astro';
 import CopyCommandButton from '~/components/CopyCommandButton.astro';
+import Footer from '~/components/utils/Footer.astro';
 import AlertDemo from '~/demos/Alert.demo';
 import DialogDemo from '~/demos/Dialog.demo';
 import ComboBoxDemo from '~/demos/ComboBox.demo';
@@ -26,7 +27,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   <main>
     <div class='title-box'>
       <div class='hero-box'>
-        <div class='hero-text'>
+        <div class='hero-text move-on-visible' data-move-on-visible-direction='right'>
           <h1>For a <span class='highlight-text'>unified</span> experience</h1>
           <h2 class='subheading'>
             iTwinUI delivers common UI components and UI layouts bundled with accessibility best
@@ -37,12 +38,12 @@ const currentPage = new URL(Astro.request.url).pathname;
             <CopyCommandButton command='npm i @itwin/itwinui-react' />
           </div>
         </div>
-        <div class='animated-logo-wrapper'>
+        <div class='animated-logo-wrapper move-on-visible' data-move-on-visible-direction='left'>
           <ITwinUILogo client:idle />
         </div>
       </div>
 
-      <div class='demo-carousel-list'>
+      <div class='demo-carousel-list move-on-visible' data-move-on-visible-direction='up'>
         <div class='demo-wrapper'>
           <div class='demo-box'><AlertDemo client:only='react' /></div>
           <h3>Alert</h3>
@@ -82,7 +83,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       </div>
     </div>
 
-    <div class='centered-content'>
+    <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Why iTwinUI?</h2>
       <div class='column-content'>
         <div class='text-with-icon'>
@@ -128,12 +129,12 @@ const currentPage = new URL(Astro.request.url).pathname;
         </div>
       </div>
     </div>
-    <div class='centered-content'>
+    <div class='centered-content move-on-visible' data-move-on-visible-direction='up'>
       <h2 class='highlight-text'>Our library</h2>
       <ul class='library-list'>
         <li class='library-item'>
           <h3>
-            <a href='/docs'>Components</a>
+            <a href='/docs/components'>Components</a>
           </h3>
           <p>
             See our extensive library of pre-coded components. You can view live demos of how they
@@ -148,7 +149,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         </li>
         <li class='library-item'>
           <h3>
-            <a href='/https://itwin.github.io/iTwinUI-icons/'>Icons</a>
+            <a href='https://itwin.github.io/iTwinUI-icons/'>Icons</a>
           </h3>
           <p>
             Hundreds of flexible, flat-styled icons in SVG format, allowing for infinite scalability
@@ -159,7 +160,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     </div>
   </main>
 
-  <footer>© 2022 Bentley Systems, Inc</footer>
+  <Footer />
 
   <style lang='scss'>
     body {
@@ -248,6 +249,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       color-scheme: dark !important;
       width: 350px;
       height: 350px;
+      border-radius: var(--border-radius-1);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -432,12 +434,6 @@ const currentPage = new URL(Astro.request.url).pathname;
           inset: 0;
         }
       }
-    }
-
-    footer {
-      color: var(--color-subtext);
-      margin-inline: auto;
-      padding: var(--space-4);
     }
   </style>
 </Global>

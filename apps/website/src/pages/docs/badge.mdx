@@ -3,7 +3,9 @@ title: Badge
 description: Badges are easily scannable visual identifiers that help categorize items of a same nature on a page.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Badge/Badge.d.ts'
-exampleCodeFile1: Badge.main.tsx
+exampleCodeMain: Badge.main.tsx
+exampleCodeSoft: Badge.soft.tsx
+exampleCodeStatuses: Badge.statuses.tsx
 thumbnail: Badge
 group: core
 ---
@@ -13,15 +15,23 @@ import LiveExample from '~/components/LiveExample.astro';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src={frontmatter.exampleCodeMain} />
 
-Badges are visual identifiers that use data-visualization colors and a label to categorize certain components, such as project tiles. They are similar to tags in shape but they are not interchangeable, as they fulfill different roles. Unlike tags which are user-generated, badges are provided by the system.
+Badges are small visual identifiers with a label to categorize certain things, such as tiles or table rows. Badges are similar to [tags](tag) in shape but they are not interchangeable, as they fulfill different roles. Unlike tags which are user-generated, badges are provided by the system.
 
-## Appearance
+## Variants
 
-Badges are colorful rectangles with rounded corners, with a label in white, all caps font on top. They are available in one size only; the length is flexible to accommodate different labels, but the height or font size cannot be increased. The font type and color remains the same no matter what.
+### Soft backgrounds
 
-For the background color, prioritize data-visualization colors.
+Soft background badge colors do not carry any meaning and are used solely for identification at a quick glance.
+
+<LiveExample src={frontmatter.exampleCodeSoft} />
+
+### Statuses
+
+Status badge colors do carry a meaning and are used to quickly identify potential issues.
+
+<LiveExample src={frontmatter.exampleCodeStatuses} />
 
 ## Usage
 
@@ -38,10 +48,6 @@ Badge labels should be kept short. They are meant to be easily scannable by the 
 ### Numerical labels
 
 It is possible for badges to bear numerical labels instead of words. It’s the case for badges on video tiles; they are used to display the media’s duration, so the user knows what to expect before playing it.
-
-### Background
-
-Background color should not be used haphazardly. It is contextual and not just for aesthetics; when using several badges with different colors on the same page, make it so each color has a meaning and belongs to a specific category or context. For example, use color for representing a status, or context-sensitive information.
 
 ## Interactivity
 

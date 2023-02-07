@@ -1,5 +1,85 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- 054bc3ba: `<Avatar>`'s `image` now supports passing `<svg>` too
+
+  ```tsx
+  <Avatar image={<SvgUser />} />
+  ```
+
+- 06476ada: Added new `Flex` utility component and optional `Flex.Spacer`/`Flex.Item` subcomponents to make it easier to work with CSS flexbox and use iTwinUI design tokens for gap.
+
+  ```jsx
+  <Flex gap='xl' justifyContent='center'>
+    <div>...</div>
+    <div>...</div>
+  </Flex>
+  ```
+
+  ```jsx
+  <Flex>
+    <Flex.Item>...</Flex.Item>
+    <Flex.Spacer />
+    <Flex.Item>...</Flex.Item>
+    <Flex.Item>...</Flex.Item>
+  </Flex>
+  ```
+
+- 44446e50: `DropdownButton` now exposes `dropdownMenuProps` to allow control over all popover props, such as `placement`.
+
+### Patch Changes
+
+- Updated dependencies
+  - @itwin/itwinui-css@1.5.0
+
+## 2.3.0
+
+### Minor Changes
+
+- c06caffe: Added `actions` prop to `Tabs` to add right/bottom content to the horizontal/vertical tabs.
+
+  ```tsx
+  <Tabs
+    // ...
+    actions={[
+      <Button key={'Small'} size={'small'}>
+        Small size button
+      </Button>,
+      <Button key={'Normal'}>Normal size button</Button>,
+    ]}
+  >
+    // ...
+  </Tabs>
+  ```
+
+- ec26b72d: `Anchor` can now be rendered as a button using `as` prop.
+
+  ```jsx
+  <Anchor as='button' onClick={() => {}}>
+    ...
+  </Anchor>
+  ```
+
+- dd13257f: Added new Icon component for displaying svgs
+
+  - Supports `size` and `fill` props
+
+  ```tsx
+  <Icon size='medium' fill='positive'>
+    <svg>...</svg>
+  </Icon>
+  ```
+
+### Patch Changes
+
+- 8e319bea: Removes transitions for `Toast` component when `prefer-reduced-motion` is active
+- 24a0cf94: Fixed an issue where Table's `onBottomReached` callback was not being invoked when using strict mode with react 18.
+- Updated dependencies
+  - @itwin/itwinui-css@1.4.0
+
 ## 2.2.1
 
 ### Patch Changes
