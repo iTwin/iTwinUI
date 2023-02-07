@@ -8,12 +8,17 @@ import { SvgUser } from '@itwin/itwinui-icons-react';
 
 import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
 
-function assertBaseElements(size = 'small', backgroundColor = 'white') {
+function assertBaseElements(size = 'small', backgroundColor?: string) {
   const avatarContainer = screen.getByTitle('Terry Rivers');
   expect(avatarContainer.className).toEqual(
     `iui-avatar${size !== 'medium' ? ` iui-${size}` : ''}`,
   );
-  expect(avatarContainer.style.backgroundColor).toEqual(backgroundColor);
+
+  if (backgroundColor) {
+    expect(avatarContainer.style.backgroundColor).toEqual(backgroundColor);
+  } else {
+    expect(avatarContainer.style.backgroundColor).toBeFalsy();
+  }
 
   const abbreviation = screen.getByText('TR');
   expect(abbreviation.className).toEqual('iui-initials');
