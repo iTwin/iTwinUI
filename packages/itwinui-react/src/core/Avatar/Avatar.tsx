@@ -39,8 +39,7 @@ export type AvatarProps = {
    */
   image?: JSX.Element;
   /**
-   * Color of the icon. You can use `getUserColor` function to generate color from user name or email.
-   * @default 'white'
+   * Color of the icon. You can use `getUserColor` function to generate color from user name or email. If not provided, default background color from CSS styling will be used (hsl(72, 51%, 56%) / olive green).
    */
   backgroundColor?: string;
   /**
@@ -82,7 +81,7 @@ export const Avatar = (props: AvatarProps) => {
     status,
     abbreviation,
     image,
-    backgroundColor = 'white',
+    backgroundColor,
     title,
     translatedStatusTitles,
     className,
