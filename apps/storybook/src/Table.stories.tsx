@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
 import type {
-  ActionType,
   CellProps,
   CellRendererProps,
   Column,
@@ -12,7 +11,6 @@ import type {
   TableInstance,
   TableState,
 } from 'react-table';
-import { actions } from 'react-table';
 import {
   Checkbox,
   Code,
@@ -125,7 +123,11 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -178,6 +180,7 @@ export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
+              as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 action(props.row.original.name)();
@@ -253,6 +256,7 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
+              as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
                 action(props.row.original.name)();
@@ -328,7 +332,11 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -590,7 +598,11 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -881,7 +893,11 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -961,7 +977,11 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -992,6 +1012,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
       <div>
         Open{' '}
         <Anchor
+          as='button'
           onClick={() =>
             (
               parent.document.querySelector(
@@ -1057,7 +1078,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
             ) : (
-              <Anchor onClick={action(props.row.original.name)}>
+              <Anchor as='button' onClick={action(props.row.original.name)}>
                 Click me!
               </Anchor>
             )}
@@ -1243,8 +1264,16 @@ InitialState.argTypes = {
 };
 
 export const ControlledState: Story<Partial<TableProps>> = (args) => {
-  const [selectedRows, setSelectedRows] = useState<Record<string, boolean>>({});
-  const [expandedRows, setExpandedRows] = useState<Record<string, boolean>>({});
+  type DemoData = {
+    id: string;
+    name: string;
+    description: string;
+    subRows: DemoData[];
+  };
+
+  const tableInstance = React.useRef<TableInstance>();
+  const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
+  const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
   const columns = useMemo(
     () => [
@@ -1262,44 +1291,66 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const data = useMemo(
+  const data: DemoData[] = useMemo(
     () => [
       {
+        id: '1',
         name: 'Row 1',
         description: 'Description 1',
         subRows: [
-          { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
           {
+            id: '1.1',
+            name: 'Row 1.1',
+            description: 'Description 1.1',
+            subRows: [],
+          },
+          {
+            id: '1.2',
             name: 'Row 1.2',
             description: 'Description 1.2',
             subRows: [
               {
+                id: '1.2.1',
                 name: 'Row 1.2.1',
                 description: 'Description 1.2.1',
                 subRows: [],
               },
               {
+                id: '1.2.2',
                 name: 'Row 1.2.2',
                 description: 'Description 1.2.2',
                 subRows: [],
               },
               {
+                id: '1.2.3',
                 name: 'Row 1.2.3',
                 description: 'Description 1.2.3',
                 subRows: [],
               },
               {
+                id: '1.2.4',
                 name: 'Row 1.2.4',
                 description: 'Description 1.2.4',
                 subRows: [],
               },
             ],
           },
-          { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
-          { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+          {
+            id: '1.3',
+            name: 'Row 1.3',
+            description: 'Description 1.3',
+            subRows: [],
+          },
+          {
+            id: '1.4',
+            name: 'Row 1.4',
+            description: 'Description 1.4',
+            subRows: [],
+          },
         ],
       },
       {
+        id: '2',
         name: 'Row 2',
         description: 'Description 2',
         subRows: [
@@ -1308,77 +1359,10 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
         ],
       },
-      { name: 'Row 3', description: 'Description 3', subRows: [] },
+      { id: '3', name: 'Row 3', description: 'Description 3', subRows: [] },
     ],
     [],
   );
-
-  const controlledState = useCallback(
-    (state) => {
-      return {
-        ...state,
-        selectedRowIds: { ...selectedRows },
-        expanded: { ...expandedRows },
-      };
-    },
-    [selectedRows, expandedRows],
-  );
-
-  // When using `useControlledState` we are fully responsible for the state part we are modifying.
-  // Therefore we want to keep our outside state (`selectedRows`) in sync with inside table state (`state.selectedRowIds`).
-  const tableStateReducer = (
-    newState: TableState,
-    action: ActionType,
-    previousState: TableState,
-    instance?: TableInstance,
-  ): TableState => {
-    switch (action.type) {
-      case actions.toggleRowSelected: {
-        const newSelectedRows = {
-          ...selectedRows,
-        };
-        if (action.value) {
-          newSelectedRows[action.id] = true;
-        } else {
-          delete newSelectedRows[action.id];
-        }
-        setSelectedRows(newSelectedRows);
-        newState.selectedRowIds = newSelectedRows;
-        break;
-      }
-      case actions.toggleAllRowsSelected: {
-        if (!instance?.rowsById) {
-          break;
-        }
-        const newSelectedRows = {} as Record<string, boolean>;
-        if (action.value) {
-          Object.keys(instance.rowsById).forEach(
-            (id) => (newSelectedRows[id] = true),
-          );
-        }
-        setSelectedRows(newSelectedRows);
-        newState.selectedRowIds = newSelectedRows;
-        break;
-      }
-      case actions.toggleRowExpanded: {
-        const newExpandedRows = {
-          ...expandedRows,
-        };
-        if (newState.expanded[action.id]) {
-          newExpandedRows[action.id] = true;
-        } else {
-          delete newExpandedRows[action.id];
-        }
-        setExpandedRows(newExpandedRows);
-        newState.expanded = newExpandedRows;
-        break;
-      }
-
-      default:
-        break;
-    }
-    return newState;
-  };
 
   return (
     <>
@@ -1387,17 +1371,12 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           <Checkbox
             key={index}
             label={data.name}
-            checked={selectedRows[index]}
+            checked={selectedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              setSelectedRows((rowIds) => {
-                const selectedRowIds = { ...rowIds };
-                if (e.target.checked) {
-                  selectedRowIds[index] = true;
-                } else {
-                  delete selectedRowIds[index];
-                }
-                return selectedRowIds;
-              });
+              tableInstance.current?.toggleRowSelected(
+                data.id,
+                e.target.checked,
+              );
             }}
           />
         ))}
@@ -1407,17 +1386,12 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
           <Checkbox
             key={index}
             label={data.name}
-            checked={expandedRows[index]}
+            checked={expandedRows.some((row) => row.name === data.name)}
             onChange={(e) => {
-              setExpandedRows((rowIds) => {
-                const expandedRowIds = { ...rowIds };
-                if (e.target.checked) {
-                  expandedRowIds[index] = true;
-                } else {
-                  delete expandedRowIds[index];
-                }
-                return expandedRowIds;
-              });
+              tableInstance.current?.toggleRowExpanded(
+                [data.id],
+                e.target.checked,
+              );
             }}
           />
         ))}
@@ -1425,9 +1399,18 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        useControlledState={controlledState}
-        stateReducer={tableStateReducer}
+        stateReducer={useCallback((newState, action, prevState, instance) => {
+          tableInstance.current = instance;
+          return newState;
+        }, [])}
         isSelectable
+        onSelect={useCallback((selected) => {
+          setSelectedRows(selected ?? []);
+        }, [])}
+        onExpand={useCallback((expanded) => {
+          setExpandedRows(expanded);
+        }, [])}
+        getRowId={useCallback((rowData) => rowData.id, [])}
         {...args}
         data={data}
       />
@@ -1878,7 +1861,11 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -2665,7 +2652,11 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
@@ -2732,7 +2723,11 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
         width: 100,
         Cell: (props: CellProps<TableStoryDataType>) => {
           const onClick = () => onClickHandler(props);
-          return <Anchor onClick={onClick}>Click me!</Anchor>;
+          return (
+            <Anchor as='button' onClick={onClick}>
+              Click me!
+            </Anchor>
+          );
         },
       },
     ],
