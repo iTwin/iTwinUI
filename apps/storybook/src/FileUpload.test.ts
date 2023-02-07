@@ -22,7 +22,7 @@ describe('FileUpload', () => {
         testName === 'Single File Upload' ||
         testName === 'Single File Upload Custom'
       ) {
-        cy.get('.iui-browse-input').selectFile({
+        cy.get('.iui-file-card-input').selectFile({
           contents: Cypress.Buffer.from('file contents'),
           fileName: 'file.txt',
           mimeType: 'text/plain',

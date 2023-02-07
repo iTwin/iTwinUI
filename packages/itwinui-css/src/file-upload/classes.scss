@@ -10,6 +10,26 @@
   @include iui-file-card;
 }
 
+.iui-file-card-icon {
+  @include iui-file-card-icon;
+}
+
 .iui-file-card-text {
   @include iui-file-card-text;
+}
+
+.iui-file-card-label {
+  @include iui-file-card-label;
+}
+
+.iui-file-card-description {
+  @include iui-file-card-description;
+}
+
+.iui-file-card-action {
+  @include iui-file-card-action;
+}
+
+.iui-file-card-input {
+  @include iui-file-card-input;
 }

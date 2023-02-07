@@ -14,7 +14,7 @@ it('should render FileUploadTemplate', () => {
   );
 
   const input = container.querySelector(
-    '.iui-browse-input',
+    '.iui-file-card-input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   fireEvent.change(input);
@@ -50,7 +50,7 @@ it('should accept input props', () => {
   );
 
   const input = container.querySelector(
-    '.iui-browse-input',
+    '.iui-file-card-input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   expect(input.multiple).toBeFalsy();

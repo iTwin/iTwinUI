@@ -34,7 +34,7 @@ export const FileUploadCardInput = React.forwardRef<
   return (
     <>
       <input
-        className={cx('iui-browse-input', className)}
+        className={cx('iui-file-card-input', className)}
         type='file'
         onChange={(e) => {
           onChange?.(e);
