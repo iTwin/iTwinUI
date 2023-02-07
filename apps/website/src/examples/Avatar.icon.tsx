@@ -4,16 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Avatar, getUserColor } from '@itwin/itwinui-react';
-import { SvgBentleySystems } from '@itwin/itwinui-icons-react';
+import { SvgUser } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <Avatar
-      abbreviation='BS'
-      backgroundColor={getUserColor('Bentley Systems')}
-      image={<SvgBentleySystems className='iui-icon' aria-hidden='true' />}
+      abbreviation='AU'
+      backgroundColor={getUserColor('Anonymous user')}
+      image={<SvgUser aria-hidden='true' />}
       size='x-large'
-      title='Bentley Systems'
+      title='Anonymous user'
     />
   );
 };

@@ -23,10 +23,10 @@ export default () => {
         status='online'
       />
       <Avatar
-        abbreviation='US'
-        backgroundColor={getUserColor('Unknown user')}
-        image={<SvgUser className='iui-icon' aria-hidden='true' />}
-        title='Unknown user'
+        abbreviation='AU'
+        backgroundColor={getUserColor('Anonymous user')}
+        image={<SvgUser aria-hidden='true' />}
+        title='Anonymous user'
         size='x-large'
         status='away'
       />
