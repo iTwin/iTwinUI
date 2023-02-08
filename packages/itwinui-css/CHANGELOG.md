@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.5.0
+
+### Minor Changes
+
+- 06476ada: Added new `Flex` utility component and optional `Flex.Spacer`/`Flex.Item` subcomponents to make it easier to work with CSS flexbox and use iTwinUI design tokens for gap.
+
+  ```jsx
+  <Flex gap='xl' justifyContent='center'>
+    <div>...</div>
+    <div>...</div>
+  </Flex>
+  ```
+
+  ```jsx
+  <Flex>
+    <Flex.Item>...</Flex.Item>
+    <Flex.Spacer />
+    <Flex.Item>...</Flex.Item>
+    <Flex.Item>...</Flex.Item>
+  </Flex>
+  ```
+
+### Patch Changes
+
+- fd2e5239: Alert: close button's focus color now matches the status color.
+- a1a8c74d: Resizable dialog now has a min height set so that it always includes the button bar.
+
 ## 1.4.0
 
 ### Minor Changes
