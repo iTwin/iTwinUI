@@ -15,9 +15,7 @@ describe('FileUpload', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
-      if (testName !== 'Single File Upload Custom') {
-        cy.compareSnapshot(testName);
-      }
+      cy.compareSnapshot(testName);
       if (
         testName === 'Single File Upload' ||
         testName === 'Single File Upload Custom'
