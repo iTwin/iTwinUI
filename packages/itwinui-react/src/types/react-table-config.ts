@@ -96,7 +96,17 @@ declare module 'react-table' {
     /**
      * List of columns.
      */
-    columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    columns:
+      | Array<Column<D>>
+      | [
+          {
+            /**
+             * @deprecated The `Header` property will be ignored, it is only kept around for backwards compatibility.
+             */
+            Header: string;
+            columns: Array<Omit<Column<any>, 'columns'>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+          },
+        ];
     /**
      * Table data list.
      * Must be memoized.

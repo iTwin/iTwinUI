@@ -584,7 +584,7 @@ export const Table = <
   const {
     getTableProps,
     rows,
-    headerGroups,
+    headerGroups: _headerGroups,
     getTableBodyProps,
     prepareRow,
     state,
@@ -597,6 +597,12 @@ export const Table = <
     visibleColumns,
     setGlobalFilter,
   } = instance;
+
+  const headerGroups =
+    columns.length === 1 && 'columns' in columns[0]
+      ? _headerGroups.slice(1)
+      : _headerGroups;
+
   const ariaDataAttributes = Object.entries(rest).reduce(
     (result, [key, value]) => {
       if (key.startsWith('data-') || key.startsWith('aria-')) {
@@ -685,7 +691,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns;
+    lastPassedColumns.current = columns; // as Column<T>[];
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
