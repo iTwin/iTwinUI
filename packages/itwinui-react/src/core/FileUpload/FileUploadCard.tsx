@@ -73,7 +73,7 @@ const FileUploadCardLabel = React.forwardRef<
   const { data } = useSafeContext(FileUploadCardContext);
   return (
     <span className={cx('iui-file-card-label', className)} ref={ref} {...rest}>
-      {children ?? (data ? data.name : '')}
+      {children ?? data[0].name}
     </span>
   );
 });
@@ -96,8 +96,7 @@ const FileUploadCardDescription = React.forwardRef<
       ref={ref}
       {...rest}
     >
-      {children ??
-        (data ? toBytes(data.size) + ' ' + toDate(data.lastModified) : '')}
+      {children ?? toBytes(data[0].size) + ' ' + toDate(data[0].lastModified)}
     </span>
   );
 });
@@ -152,14 +151,13 @@ const FileUploadCardInput = React.forwardRef<
 
   const setNativeFilesRef = React.useCallback(
     (node: HTMLInputElement | null) => {
-      if (!node || !data) {
+      if (!node) {
         return;
       }
 
       const dataTransfer = new DataTransfer();
       dataTransfer.items.clear();
-      dataTransfer.items.add(data);
-
+      data.forEach((file) => dataTransfer.items.add(file));
       node.files = dataTransfer.files;
     },
     [data],
@@ -174,10 +172,12 @@ const FileUploadCardInput = React.forwardRef<
         type='file'
         onChange={(e) => {
           onChange?.(e);
+          console.log('e.currentTarget.files', e.currentTarget.files);
           if (!e.isDefaultPrevented()) {
             const _files = Array.from(e.currentTarget.files || []);
-            onDataChange?.(_files[0]);
-            setInternalData(_files[0]);
+            console.log('_files', _files);
+            onDataChange?.(_files);
+            setInternalData(_files);
           }
         }}
         ref={refs}
@@ -192,11 +192,11 @@ export type FileUploadCardProps = {
   /**
    * File to pass (only needed when passing a custom action)
    */
-  data?: File;
+  data?: File[];
   /**
    * Callback fired when data has changed (only needed passing custom action)
    */
-  onDataChange?: (data: File) => void;
+  onDataChange?: (data: File[]) => void;
 } & React.ComponentPropsWithoutRef<'div'>;
 /**
  * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
@@ -233,14 +233,14 @@ export const FileUploadCard = Object.assign(
         ...rest
       } = props;
 
-      const [internalData, setInternalData] = React.useState<File>();
-      const data = dataProps ?? internalData ?? undefined;
+      const [internalData, setInternalData] = React.useState<File[]>();
+      const data = dataProps ?? internalData ?? [];
 
       return (
         <FileUploadCardContext.Provider
           value={{ data, onDataChange, setInternalData }}
         >
-          {data ? (
+          {data?.length ? (
             <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
               {children ?? (
                 <>
@@ -252,7 +252,7 @@ export const FileUploadCard = Object.assign(
                   <FileUploadCard.Action>
                     <FileUploadCard.Anchor>
                       <FileUploadCard.Input />
-                      {'Replace'}{' '}
+                      {'Replace'}
                     </FileUploadCard.Anchor>
                   </FileUploadCard.Action>
                 </>
@@ -291,15 +291,15 @@ export const FileUploadCardContext = React.createContext<
       /**
        * Data to pass
        */
-      data?: File;
+      data: File[];
       /**
        * Callback fired when data has changed
        */
-      onDataChange?: (data: File) => void;
+      onDataChange?: (data: File[]) => void;
       /**
        * Sets the state of the data within FileUploadCard
        */
-      setInternalData: (data: File) => void;
+      setInternalData: (data: File[]) => void;
     }
   | undefined
 >(undefined);
