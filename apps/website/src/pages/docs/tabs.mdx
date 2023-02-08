@@ -3,7 +3,8 @@ title: Tabs
 description: Tabs make it easy to explore and switch between different views or functional aspects of an app, or to browse categorized data sets.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Tabs/Tabs.d.ts'
-exampleCodeFile1: Tabs.main.tsx
+exampleCodeMain: Tabs.main.tsx
+exampleCodeOverflow: Tabs.overflow.tsx
 thumbnail: Tabs
 group: core
 ---
@@ -13,7 +14,15 @@ import LiveExample from '~/components/LiveExample.astro';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src={frontmatter.exampleCodeMain} />
+
+## Usage
+
+### Overflow
+
+If the available space does not allow all the tabs to be displayed, add an overflow button to allow access to all tabs.
+
+<LiveExample src={frontmatter.exampleCodeOverflow} />
 
 ## Props
 

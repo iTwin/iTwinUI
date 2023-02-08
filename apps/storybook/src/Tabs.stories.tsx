@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
+import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
 import { Meta, Story } from '@storybook/react/';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
@@ -14,7 +15,6 @@ import {
   MenuItem,
 } from '@itwin/itwinui-react';
 import { Tabs, TabsProps } from '@itwin/itwinui-react/esm/core/Tabs/Tabs';
-import { SvgMoreSmall } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Tabs',
