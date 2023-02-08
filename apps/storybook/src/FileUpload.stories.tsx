@@ -9,12 +9,17 @@ import React from 'react';
 import {
   FileUpload,
   FileUploadCard,
+  FileEmptyCard,
   FileUploadProps,
   FileUploadTemplate,
   LabeledInput,
   IconButton,
 } from '@itwin/itwinui-react';
-import { SvgClose, SvgSmileyHappyVery } from '@itwin/itwinui-icons-react';
+import {
+  SvgClose,
+  SvgSmileyHappyVery,
+  SvgSmileySadVery,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   component: FileUpload,
@@ -96,6 +101,21 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
   const [files, setFiles] = React.useState<File[]>([]);
   const fileInputId = React.useId();
 
+  const emptyCard = (
+    <FileEmptyCard>
+      <FileEmptyCard.Icon>
+        <SvgSmileySadVery />
+      </FileEmptyCard.Icon>
+      <FileEmptyCard.Text>
+        <FileEmptyCard.Anchor label='Custom Label Text'>
+          <FileUploadCard.Input name={fileInputId} ref={inputRef} />
+        </FileEmptyCard.Anchor>
+        <FileEmptyCard.Description>
+          Custom Description Text
+        </FileEmptyCard.Description>
+      </FileEmptyCard.Text>
+    </FileEmptyCard>
+  );
   return (
     <FileUpload
       {...args}
@@ -103,7 +123,11 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadCard data={files} onDataChange={(files) => setFiles(files)}>
+      <FileUploadCard
+        data={files}
+        onDataChange={(files) => setFiles(files)}
+        emptyCard={emptyCard}
+      >
         <FileUploadCard.Icon>
           <SvgSmileyHappyVery />
         </FileUploadCard.Icon>

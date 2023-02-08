@@ -3,13 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import {
-  SvgDocument,
-  SvgUpload,
-  useMergedRefs,
-  useSafeContext,
-} from '../utils';
+import { SvgDocument, useMergedRefs, useSafeContext } from '../utils';
 import cx from 'classnames';
+import FileEmptyCard from './FileEmptyCard';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -172,10 +168,8 @@ const FileUploadCardInput = React.forwardRef<
         type='file'
         onChange={(e) => {
           onChange?.(e);
-          console.log('e.currentTarget.files', e.currentTarget.files);
           if (!e.isDefaultPrevented()) {
             const _files = Array.from(e.currentTarget.files || []);
-            console.log('_files', _files);
             onDataChange?.(_files);
             setInternalData(_files);
           }
@@ -197,6 +191,12 @@ export type FileUploadCardProps = {
    * Callback fired when data has changed (only needed passing custom action)
    */
   onDataChange?: (data: File[]) => void;
+  /**
+   * Node that is shown when there is no file uploaded
+   * Either pass `FileEmptyCard` (for default state) or a different component to show
+   * @default <FileEmptyCard />
+   */
+  emptyCard?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'div'>;
 /**
  * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
@@ -230,6 +230,7 @@ export const FileUploadCard = Object.assign(
         children,
         data: dataProps,
         onDataChange,
+        emptyCard = <FileEmptyCard />,
         ...rest
       } = props;
 
@@ -259,16 +260,7 @@ export const FileUploadCard = Object.assign(
               )}
             </div>
           ) : (
-            <>
-              <SvgUpload className='iui-icon' aria-hidden />
-              <div className='iui-template-text'>
-                <label className='iui-anchor'>
-                  <FileUploadCard.Input />
-                  {'Choose a file'}
-                </label>
-                <div>{'or drag & drop it here.'}</div>
-              </div>
-            </>
+            emptyCard
           )}
         </FileUploadCardContext.Provider>
       );

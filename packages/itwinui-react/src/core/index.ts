@@ -97,7 +97,12 @@ export type { ExpandableBlockProps } from './ExpandableBlock';
 export { Fieldset } from './Fieldset';
 export type { FieldsetProps } from './Fieldset';
 
-export { FileUpload, FileUploadTemplate, FileUploadCard } from './FileUpload';
+export {
+  FileUpload,
+  FileUploadTemplate,
+  FileUploadCard,
+  FileEmptyCard,
+} from './FileUpload';
 export type {
   FileUploadProps,
   FileUploadTemplateProps,
@@ -109,6 +114,11 @@ export type {
   FileUploadCardActionProps,
   FileUploadCardAnchorProps,
   FileUploadCardInputProps,
+  FileEmptyCardProps,
+  FileEmptyCardIconProps,
+  FileEmptyCardTextProps,
+  FileEmptyCardAnchorProps,
+  FileEmptyCardDescriptionProps,
 } from './FileUpload';
 
 export { Footer, defaultFooterElements } from './Footer';

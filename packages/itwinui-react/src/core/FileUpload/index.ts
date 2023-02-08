@@ -20,3 +20,12 @@ export type {
   FileUploadCardAnchorProps,
   FileUploadCardInputProps,
 } from './FileUploadCard';
+
+export { FileEmptyCard } from './FileEmptyCard';
+export type {
+  FileEmptyCardProps,
+  FileEmptyCardIconProps,
+  FileEmptyCardTextProps,
+  FileEmptyCardAnchorProps,
+  FileEmptyCardDescriptionProps,
+} from './FileEmptyCard';
