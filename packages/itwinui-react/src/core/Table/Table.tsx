@@ -292,15 +292,11 @@ export type TableProps<
 } & Omit<CommonProps, 'title'>;
 
 // Original type for some reason is missing sub-columns
-type ColumnType<T extends Record<string, unknown> = Record<string, unknown>> =
-  Column<T> & {
-    columns: ColumnType[];
-  };
-const flattenColumns = (columns: ColumnType[]): ColumnType[] => {
-  const flatColumns: ColumnType[] = [];
+const flattenColumns = (columns: Column[]): Column[] => {
+  const flatColumns: Column[] = [];
   columns.forEach((column) => {
     flatColumns.push(column);
-    if (column.columns) {
+    if ('columns' in column) {
       flatColumns.push(...flattenColumns(column.columns));
     }
   });
@@ -412,7 +408,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const flatColumns = flattenColumns(columns as ColumnType[]);
+    const flatColumns = flattenColumns(columns as Column[]);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
 
@@ -691,7 +687,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns; // as Column<T>[];
+    lastPassedColumns.current = columns as Column<T>[];
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(

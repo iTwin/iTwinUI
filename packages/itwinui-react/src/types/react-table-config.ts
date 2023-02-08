@@ -80,6 +80,14 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
+  type ItwinuiColumn<X extends object = any> = // eslint-disable-line @typescript-eslint/no-explicit-any
+    Omit<Column<X>, 'columns'> & {
+      /** @deprecated This is not officially supported, don't use this. */
+      // columns?: unknown;
+      // [k: string]: unknown;
+      Cell?: (props: CellProps<X>) => JSX.Element;
+    };
+
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
     extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
@@ -97,14 +105,14 @@ declare module 'react-table' {
      * List of columns.
      */
     columns:
-      | Array<Column<D>>
+      | Array<Omit<Column<any>, 'columns'>> // eslint-disable-line @typescript-eslint/no-explicit-any
       | [
           {
             /**
              * @deprecated The `Header` property will be ignored, it is only kept around for backwards compatibility.
              */
             Header: string;
-            columns: Array<Omit<Column<any>, 'columns'>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+            columns: Column<D>;
           },
         ];
     /**
