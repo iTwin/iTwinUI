@@ -268,6 +268,7 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
             }
           >
             <IconButton
+              role='button'
               style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
               styleType='borderless'
               onClick={() => action('Clicked on overflow icon')()}

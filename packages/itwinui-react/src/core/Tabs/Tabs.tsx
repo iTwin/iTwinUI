@@ -55,6 +55,76 @@ type TabsTypeProps =
       type: 'pill';
     };
 
+type TabsOverflowProps =
+  | {
+      /**
+       * If specified, this prop will be used to show a custom button when overflow happens,
+       * i.e. when there is not enough space to fit all the tabs.
+       *
+       * Expects a function that takes the number of items that are visible
+       * and returns the `ReactNode` to render.
+       *
+       * Not applicable to `type: 'pill'` or `orientation: 'vertical'`.
+       *
+       * @example <caption>Uses the overflow button to add a dropdown that contains hidden tabs</caption>
+       *  const [index, setIndex] = React.useState(0);
+       *  return (
+       *    <Tabs
+       *      overflowButton={(visibleCount) => (
+       *        <DropdownMenu
+       *          menuItems={(close) =>
+       *            Array(items.length - visibleCount)
+       *              .fill(null)
+       *              .map((_, _index) => {
+       *                const index = visibleCount + _index + 1;
+       *                const onClick = () => {
+       *                  // click on "index" tab
+       *                  setIndex(index - 1);
+       *                  close();
+       *                };
+       *                return (
+       *                  <MenuItem key={index} onClick={onClick}>
+       *                    Item {index}
+       *                  </MenuItem>
+       *                );
+       *              })
+       *          }
+       *        >
+       *          <IconButton style={{ paddingTop: '12px', margin: '4px', height: 'auto' }} styleType='borderless'>
+       *            <SvgMoreSmall />
+       *          </IconButton>
+       *        </DropdownMenu>
+       *      )}
+       *      onTabSelected={setIndex}
+       *      activeIndex={index}
+       *    >
+       *      {tabs}
+       *    </Tabs>
+       *  );
+       */
+      overflowButton?: (visibleCount: number) => React.ReactNode;
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal';
+      /**
+       * Type of the tabs.
+       *
+       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default' | 'borderless';
+    }
+  | {
+      orientation: 'vertical';
+      type?: 'default' | 'borderless';
+    }
+  | {
+      type: 'pill';
+      orientation?: 'horizontal';
+    };
+
 export type TabsProps = {
   /**
    * Elements shown for each tab.
@@ -96,52 +166,9 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
-  /**
-   * If specified, this prop will be used to show a custom button when overflow happens,
-   * i.e. when there is not enough space to fit all the tabs.
-   *
-   * Expects a function that takes the number of items that are visible
-   * and returns the `ReactNode` to render.
-   *
-   * @example <caption>Uses the overflow button to add a dropdown that contains hidden tabs</caption>
-   *  const [index, setIndex] = React.useState(0);
-   *  return (
-   *    <Tabs
-   *      overflowButton={(visibleCount) => (
-   *        <DropdownMenu
-   *          menuItems={(close) =>
-   *            Array(items.length - visibleCount)
-   *              .fill(null)
-   *              .map((_, _index) => {
-   *                const index = visibleCount + _index + 1;
-   *                const onClick = () => {
-   *                  // click on "index" tab
-   *                  setIndex(index - 1);
-   *                  close();
-   *                };
-   *                return (
-   *                  <MenuItem key={index} onClick={onClick}>
-   *                    Item {index}
-   *                  </MenuItem>
-   *                );
-   *              })
-   *          }
-   *        >
-   *          <IconButton style={{ paddingTop: '12px', margin: '4px', height: 'auto' }} styleType='borderless'>
-   *            <SvgMoreSmall />
-   *          </IconButton>
-   *        </DropdownMenu>
-   *      )}
-   *      onTabSelected={setIndex}
-   *      activeIndex={index}
-   *    >
-   *      {tabs}
-   *    </Tabs>
-   *  );
-   */
-  overflowButton?: (visibleCount: number) => React.ReactNode;
 } & TabsOrientationProps &
-  TabsTypeProps;
+  TabsTypeProps &
+  TabsOverflowProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
@@ -190,6 +217,17 @@ export const Tabs = (props: TabsProps) => {
     props = { ...props };
     delete props.actions;
   }
+  // Separate overflowButton from props to avoid adding it to the DOM (using {...rest})
+  let overflowButton: ((visibleCount: number) => React.ReactNode) | undefined;
+  if (
+    props.type !== 'pill' &&
+    props.orientation !== 'vertical' &&
+    props.overflowButton
+  ) {
+    overflowButton = props.overflowButton;
+    props = { ...props };
+    delete props.overflowButton;
+  }
 
   const {
     labels,
@@ -203,7 +241,6 @@ export const Tabs = (props: TabsProps) => {
     contentClassName,
     wrapperClassName,
     children,
-    overflowButton,
     ...rest
   } = props;
 
