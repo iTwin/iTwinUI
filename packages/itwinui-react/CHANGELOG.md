@@ -1,5 +1,46 @@
 # Changelog
 
+## 2.4.1
+
+### Patch Changes
+
+- d6d4d76e: Fixed an issue where TablePaginator buttons were causing postbacks when used inside a form.
+
+## 2.4.0
+
+### Minor Changes
+
+- 054bc3ba: `<Avatar>`'s `image` now supports passing `<svg>` too
+
+  ```tsx
+  <Avatar image={<SvgUser />} />
+  ```
+
+- 06476ada: Added new `Flex` utility component and optional `Flex.Spacer`/`Flex.Item` subcomponents to make it easier to work with CSS flexbox and use iTwinUI design tokens for gap.
+
+  ```jsx
+  <Flex gap='xl' justifyContent='center'>
+    <div>...</div>
+    <div>...</div>
+  </Flex>
+  ```
+
+  ```jsx
+  <Flex>
+    <Flex.Item>...</Flex.Item>
+    <Flex.Spacer />
+    <Flex.Item>...</Flex.Item>
+    <Flex.Item>...</Flex.Item>
+  </Flex>
+  ```
+
+- 44446e50: `DropdownButton` now exposes `dropdownMenuProps` to allow control over all popover props, such as `placement`.
+
+### Patch Changes
+
+- Updated dependencies
+  - @itwin/itwinui-css@1.5.0
+
 ## 2.3.0
 
 ### Minor Changes
