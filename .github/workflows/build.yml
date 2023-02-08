@@ -244,6 +244,7 @@ jobs:
 
       - name: Publish test results artifact
         if: failure()
+        continue-on-error: true
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
@@ -263,6 +264,7 @@ jobs:
 
       - name: Post test results link under Checks
         if: github.ref != 'refs/heads/main' && always()
+        continue-on-error: true
         uses: actions/github-script@v6
         with:
           script: |
@@ -304,6 +306,7 @@ jobs:
 
       - name: Publish test results artifact
         if: failure()
+        continue-on-error: true
         uses: actions/upload-artifact@v3.0.0
         with:
           name: 'cypress-visual-screenshots'
