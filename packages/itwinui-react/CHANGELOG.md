@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.1
+
+### Patch Changes
+
+- d6d4d76e: Fixed an issue where TablePaginator buttons were causing postbacks when used inside a form.
+
 ## 2.4.0
 
 ### Minor Changes
