@@ -172,6 +172,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
       <button
         key={index}
+        type='button'
         className={cx('iui-table-paginator-page-button', {
           'iui-table-paginator-page-button-small': buttonSize === 'small',
         })}

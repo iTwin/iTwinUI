@@ -16,7 +16,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.ITWINUI_CHANGESETS }}
+          token: ${{ secrets.IMJS_ADMIN_GH_TOKEN }}
 
       - name: Use Node 18.X
         uses: actions/setup-node@v3
@@ -32,7 +32,7 @@ jobs:
           title: Release packages
           commit: Release packages
         env:
-          GITHUB_TOKEN: ${{ secrets.ITWINUI_CHANGESETS }}
+          GITHUB_TOKEN: ${{ secrets.IMJS_ADMIN_GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
           GIT_AUTHOR_NAME: github-actions[bot]
           GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
