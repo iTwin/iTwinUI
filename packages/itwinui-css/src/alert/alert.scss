@@ -72,7 +72,7 @@
     @include iui-anchor-status($statusColor);
   }
 
-  #{$rootSelector}-button {
+  #{$rootSelector}-button:focus {
     outline-color: var(--iui-color-text-#{$statusColor});
   }
 }
