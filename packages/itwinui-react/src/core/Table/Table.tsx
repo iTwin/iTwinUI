@@ -219,7 +219,7 @@ export type TableProps<
    * Modify the density of the table (adjusts the row height).
    * @default 'default'
    */
-  density?: 'default' | 'condensed' | 'extra-condensed' | 'mega-condensed';
+  density?: 'default' | 'condensed' | 'extra-condensed';
   /**
    * Flag whether to select a row when clicked anywhere inside of it.
    * @default true
