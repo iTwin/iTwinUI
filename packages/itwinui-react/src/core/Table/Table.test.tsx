@@ -4582,9 +4582,10 @@ it('should navigate through table filtering with the keyboard', async () => {
 });
 
 it('should ignore top-level Header if one is passed', async () => {
+  const data = mockedData();
   const { container } = render(
     <Table
-      data={mockedData()}
+      data={data}
       emptyTableContent='nothing to see here'
       columns={[
         {
@@ -4608,5 +4609,13 @@ it('should ignore top-level Header if one is passed', async () => {
 
   expect(screen.queryByText('Header name')).toBeFalsy();
   const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-  await assertRowsData(rows);
+
+  expect(rows.length).toBe(data.length);
+  rows.forEach((row, i) => {
+    const { name, description } = data[i];
+    const cells = row.querySelectorAll('.iui-table-cell');
+    expect(cells.length).toBe(2);
+    expect(cells[0].textContent).toEqual(name);
+    expect(cells[1].textContent).toEqual(description);
+  });
 });
