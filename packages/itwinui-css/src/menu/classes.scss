@@ -4,6 +4,10 @@
 
 .iui-menu {
   @include iui-list-menu;
+
+  &:where([role='listbox']) {
+    @include iui-menu-listbox;
+  }
 }
 
 .iui-menu-item {

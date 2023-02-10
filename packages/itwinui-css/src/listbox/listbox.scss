@@ -1,0 +1,22 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+@mixin iui-listbox-wrapper {
+  --iui-menu-listbox-height: calc((var(--iui-component-height) - 1px) * 4.5);
+
+  display: flex;
+  gap: var(--iui-size-xs);
+
+  > :where(:first-child, :last-child) {
+    flex: 1;
+  }
+}
+
+@mixin iui-listbox-toolbar {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--iui-size-2xs);
+  padding-block: calc(var(--iui-size-l) + var(--iui-size-2xs));
+}

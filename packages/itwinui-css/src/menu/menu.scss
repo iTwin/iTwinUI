@@ -193,3 +193,10 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     margin-left: var(--iui-size-xs);
   }
 }
+
+@mixin iui-menu-listbox {
+  box-shadow: none;
+  overflow-y: auto;
+  overflow-y: overlay;
+  height: var(--iui-menu-listbox-height);
+}
