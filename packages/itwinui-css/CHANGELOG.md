@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.1
+
+### Patch Changes
+
+- d3844a07: Dialog content won't overflow off smaller screen sizes when the content is too big
+
 ## 1.5.0
 
 ### Minor Changes
