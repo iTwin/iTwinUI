@@ -65,6 +65,9 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
+const isDev = process.env.NODE_ENV && process.env.NODE_ENV !== 'production';
+let didLogWarning = false;
+
 export type TablePaginatorRendererProps = {
   /**
    * The zero-based index of the current page.
@@ -594,10 +597,17 @@ export const Table = <
     setGlobalFilter,
   } = instance;
 
-  const headerGroups =
-    columns.length === 1 && 'columns' in columns[0]
-      ? _headerGroups.slice(1)
-      : _headerGroups;
+  let headerGroups = _headerGroups;
+
+  if (columns.length === 1 && 'columns' in columns[0]) {
+    headerGroups = _headerGroups.slice(1);
+    if (isDev && !didLogWarning) {
+      console.warn(
+        `Table's \`columns\` prop should not have a top-level Header or sub-columns. It is only kept for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+      );
+      didLogWarning = true;
+    }
+  }
 
   const ariaDataAttributes = Object.entries(rest).reduce(
     (result, [key, value]) => {

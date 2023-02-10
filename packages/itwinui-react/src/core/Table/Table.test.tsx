@@ -4580,3 +4580,33 @@ it('should navigate through table filtering with the keyboard', async () => {
     ]),
   );
 });
+
+it('should ignore top-level Header if one is passed', async () => {
+  const { container } = render(
+    <Table
+      data={mockedData()}
+      emptyTableContent='nothing to see here'
+      columns={[
+        {
+          Header: 'Header name',
+          columns: [
+            {
+              id: 'name',
+              Header: 'Name',
+              accessor: 'name',
+            },
+            {
+              id: 'description',
+              Header: 'Description',
+              accessor: 'description',
+            },
+          ],
+        },
+      ]}
+    />,
+  );
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  await assertRowsData(rows);
+});

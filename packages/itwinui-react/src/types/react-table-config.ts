@@ -80,14 +80,6 @@ declare module 'react-table' {
     isDisabled?: (rowData: D) => boolean;
   };
 
-  type ItwinuiColumn<X extends object = any> = // eslint-disable-line @typescript-eslint/no-explicit-any
-    Omit<Column<X>, 'columns'> & {
-      /** @deprecated This is not officially supported, don't use this. */
-      // columns?: unknown;
-      // [k: string]: unknown;
-      Cell?: (props: CellProps<X>) => JSX.Element;
-    };
-
   // take this file as-is, or comment out the sections that don't apply to your plugin configuration
   export interface TableOptions<D extends object = {}>
     extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
@@ -103,18 +95,11 @@ declare module 'react-table' {
       UseSortByOptions<D> {
     /**
      * List of columns.
+     *
+     * Should not have a top-level `Header` or a `columns` sub-property. They are allowed to be passed for backwards compatibility but are not officially supported.
+     * See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`
      */
-    columns:
-      | Array<Omit<Column<any>, 'columns'>> // eslint-disable-line @typescript-eslint/no-explicit-any
-      | [
-          {
-            /**
-             * @deprecated The `Header` property will be ignored, it is only kept around for backwards compatibility.
-             */
-            Header: string;
-            columns: Column<D>;
-          },
-        ];
+    columns: Array<Column<D>>; // eslint-disable-line @typescript-eslint/no-explicit-any
     /**
      * Table data list.
      * Must be memoized.
