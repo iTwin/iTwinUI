@@ -57,6 +57,7 @@ import {
   UseSortByState,
   UseTableOptions,
 } from 'react-table';
+import { TableFilterProps } from '../core';
 
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;
@@ -190,7 +191,7 @@ declare module 'react-table' {
     /**
      * Filter component used as a column filter. Should use filters from `tableFilters`.
      */
-    Filter?: Renderer<FilterProps<D>>;
+    Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
     /**
      * String value or custom function to use for filtering.
      * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
