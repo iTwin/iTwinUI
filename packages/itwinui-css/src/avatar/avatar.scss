@@ -12,6 +12,8 @@
   user-select: none;
   width: var(--_iui-avatar-size);
   height: var(--_iui-avatar-size);
+  background-color: hsl(72, 51%, 56%);
+  border-radius: 50%;
 
   > .iui-stroke {
     display: block;
@@ -41,19 +43,21 @@
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-    background-color: hsl(72, 51%, 56%);
     overflow: hidden;
     color: var(--iui-color-white);
     line-height: var(--_iui-avatar-size);
     font-size: var(--_iui-avatar-font-size);
   }
 
-  > .iui-icon {
+  svg {
     display: inline-flex;
     width: 50%;
     height: 50%;
     position: absolute;
     fill: var(--iui-color-white);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   > img {
