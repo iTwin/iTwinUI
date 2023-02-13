@@ -244,7 +244,15 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
   ];
 
   return (
-    <div style={{ maxWidth: '25%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 1000,
+        minWidth: 250,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Tabs
         labels={labels}
         overflowButton={(visibleCount: number) => (

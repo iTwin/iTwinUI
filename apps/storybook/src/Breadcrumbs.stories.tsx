@@ -115,7 +115,15 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
     ));
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 725,
+        minWidth: 150,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Breadcrumbs
         overflowButton={(visibleCount: number) => {
           const previousBreadcrumb =
@@ -153,7 +161,15 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
     ));
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 725,
+        minWidth: 150,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Breadcrumbs
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
