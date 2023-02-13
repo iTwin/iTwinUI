@@ -99,7 +99,7 @@ declare module 'react-table' {
      * Should not have a top-level `Header` or a `columns` sub-property. They are allowed to be passed for backwards compatibility but are not officially supported.
      * See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`
      */
-    columns: Array<Column<D>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    columns: Array<Column<D>>;
     /**
      * Table data list.
      * Must be memoized.
