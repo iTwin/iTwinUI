@@ -143,18 +143,6 @@
   }
 }
 
-// Hide borders and hover/focus effects, eg. input
-@mixin iui-invisible-borders {
-  border: none;
-  background: none;
-
-  &:focus,
-  &:hover {
-    outline: none;
-    border: none;
-  }
-}
-
 // Vertical divider for content, eg. input, combobox
 @mixin iui-vertical-divider {
   width: 1px;

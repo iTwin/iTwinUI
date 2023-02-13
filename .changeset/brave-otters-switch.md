@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-react': minor
 ---
 
 

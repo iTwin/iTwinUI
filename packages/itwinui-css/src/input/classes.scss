@@ -28,10 +28,7 @@
 
 .iui-input-flex-container {
   @include iui-input-flex-container;
-
-  > input {
-    @include iui-invisible-borders;
-  }
+  @include iui-input-size();
 
   > input[type='search'] {
     @include iui-search-box;
