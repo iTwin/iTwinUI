@@ -20,7 +20,7 @@ import {
 import {
   SvgChevronRightDouble,
   SvgFolder,
-  SvgMoreSmall,
+  SvgMore,
 } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -123,12 +123,11 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
-                style={{ paddingTop: '8px' }}
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
                 }}
               >
-                <SvgMoreSmall />
+                <SvgMore />
               </IconButton>
             </Tooltip>
           );
@@ -175,11 +174,8 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
                 })
             }
           >
-            <IconButton
-              style={{ paddingTop: '8px' }}
-              onClick={() => action('Clicked on overflow icon')()}
-            >
-              <SvgMoreSmall />
+            <IconButton onClick={() => action('Clicked on overflow icon')()}>
+              <SvgMore />
             </IconButton>
           </DropdownMenu>
         )}

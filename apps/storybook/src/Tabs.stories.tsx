@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
+import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import { Meta, Story } from '@storybook/react/';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
@@ -269,11 +269,11 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
           >
             <IconButton
               role='button'
-              style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
+              style={{ margin: '4px', height: 'auto' }}
               styleType='borderless'
               onClick={() => action('Clicked on overflow icon')()}
             >
-              <SvgMoreSmall />
+              <SvgMore />
             </IconButton>
           </DropdownMenu>
         )}
