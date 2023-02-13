@@ -96,7 +96,7 @@ declare module 'react-table' {
     /**
      * List of columns.
      *
-     * Should not have a top-level `Header` or a `columns` sub-property. They are allowed to be passed for backwards compatibility but are not officially supported.
+     * Should not have a top-level `Header` or a `columns` sub-property. They are only allowed to be passed for backwards compatibility.
      * See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`
      */
     columns: Array<Column<D>>;

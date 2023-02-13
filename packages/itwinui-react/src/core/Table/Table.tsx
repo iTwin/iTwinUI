@@ -603,7 +603,7 @@ export const Table = <
     headerGroups = _headerGroups.slice(1);
     if (isDev && !didLogWarning) {
       console.warn(
-        `Table's \`columns\` prop should not have a top-level Header or sub-columns. It is only kept for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
       );
       didLogWarning = true;
     }
