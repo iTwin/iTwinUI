@@ -2,49 +2,54 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { mergeConfig } = require('vite');
+import { mergeConfig } from 'vite';
 
-/**
- * @type {import('@storybook/builder-vite').StorybookViteConfig}
- */
-module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
-  staticDirs: ['./public'],
-  addons: [
-    {
-      name: '@storybook/addon-essentials',
-      options: { measure: false, outline: false },
+export const stories = [
+  '../src/**/*.mdx',
+  '../src/**/*.stories.@(js|jsx|ts|tsx)',
+];
+export const staticDirs = ['./public'];
+export const addons = [
+  {
+    name: '@storybook/addon-essentials',
+    options: {
+      measure: false,
+      outline: false,
     },
-    'storybook-dark-mode/register',
-    {
-      name: '@storybook/addon-storysource',
-      options: {
-        rule: {
-          test: /\.stories\.tsx?$/,
-        },
-        loaderOptions: {
-          parser: 'typescript',
-        },
+  },
+  'storybook-dark-mode',
+  {
+    name: '@storybook/addon-storysource',
+    options: {
+      rule: {
+        test: /\.stories\.tsx?$/,
+      },
+      loaderOptions: {
+        parser: 'typescript',
+        injectStoryParameters: false,
       },
     },
-    './hcThemeAddon/register.js',
-    '@storybook/addon-a11y',
-  ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-vite',
   },
-  async viteFinal(config, { configType }) {
-    return mergeConfig(config, {
-      base: configType === 'PRODUCTION' ? './' : '/',
-      server: {
-        watch: {
-          ignored: ['cypress-visual-report', 'cypress-visual-report/**'],
-        },
+  './hcThemeAddon/register.js',
+  '@storybook/addon-a11y',
+];
+export const framework = {
+  name: '@storybook/react-vite',
+  options: {},
+};
+export async function viteFinal(config, { configType }) {
+  return mergeConfig(config, {
+    base: configType === 'PRODUCTION' ? './' : '/',
+    server: {
+      watch: {
+        ignored: ['cypress-visual-report', 'cypress-visual-report/**'],
       },
-      build: {
-        sourcemap: configType === 'DEVELOPMENT',
-      },
-    });
-  },
+    },
+    build: {
+      sourcemap: configType === 'DEVELOPMENT',
+    },
+  });
+}
+export const docs = {
+  autodocs: true,
 };

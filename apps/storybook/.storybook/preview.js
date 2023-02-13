@@ -2,8 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import addons from '@storybook/addons';
-import { addParameters } from '@storybook/react';
+import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import React from 'react';
 import { lightTheme, darkTheme } from './itwinTheme';
@@ -17,7 +16,10 @@ channel.on('DARK_MODE', (isDark) => updateTheme(isDark));
 // get user's OS color scheme
 const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 
-addParameters({
+const updateTheme = (isDark) => {
+  document.documentElement.dataset.iuiTheme = isDark ? 'dark' : 'light';
+};
+export const parameters = {
   darkMode: {
     dark: { ...themes.dark, ...darkTheme },
     light: { ...themes.light, ...lightTheme },
@@ -28,12 +30,6 @@ addParameters({
       : { ...themes.light, ...lightTheme },
   },
   options: { showPanel: true },
-});
-
-const updateTheme = (isDark) => {
-  document.documentElement.dataset.iuiTheme = isDark ? 'dark' : 'light';
-};
-export const parameters = {
   controls: { sort: 'requiredFirst' },
   backgrounds: {
     grid: { disable: true },

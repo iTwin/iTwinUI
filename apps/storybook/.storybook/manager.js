@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import addons from '@storybook/addons';
+import { addons } from '@storybook/addons';
 
 // Rename "Story" tab to "Code"
 setTimeout(() => {
