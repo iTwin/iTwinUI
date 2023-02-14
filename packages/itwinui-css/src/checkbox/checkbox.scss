@@ -22,9 +22,6 @@
 
   > .iui-checkbox-label,
   > .iui-radio-label {
-    display: flex;
-    align-items: center;
-
     svg {
       @include iui-icon-style('m');
       vertical-align: middle;
