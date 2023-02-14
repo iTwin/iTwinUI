@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.3
+
+### Patch Changes
+
+- a987bc92: Fixed issue with `Table` autoscroll not completely showing a given row.
+
 ## 2.4.2
 
 ### Patch Changes
