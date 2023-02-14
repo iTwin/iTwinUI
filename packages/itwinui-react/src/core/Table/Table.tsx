@@ -65,7 +65,7 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
-const isDev = process.env.NODE_ENV && process.env.NODE_ENV !== 'production';
+const isDev = process?.env?.NODE_ENV && process.env.NODE_ENV !== 'production';
 let didLogWarning = false;
 
 export type TablePaginatorRendererProps = {
