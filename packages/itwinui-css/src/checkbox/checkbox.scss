@@ -2,59 +2,59 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
 
-@mixin iui-checkbox {
-  &-wrapper {
-    @include iui-reset;
+@mixin iui-checkbox-wrapper {
+  @include iui-reset;
+  display: flex;
+  align-items: center;
+  font-size: var(--iui-font-size-1);
+  width: fit-content;
+  user-select: none;
+  position: relative;
+  cursor: pointer;
+  color: var(--iui-color-text);
+  gap: var(--iui-size-xs);
+
+  &.iui-loading {
+    cursor: progress;
+    font-style: italic;
+    color: var(--iui-color-text-disabled);
+  }
+
+  > .iui-checkbox-label,
+  > .iui-radio-label {
     display: flex;
     align-items: center;
-    font-size: var(--iui-font-size-1);
-    width: fit-content;
-    user-select: none;
-    position: relative;
-    cursor: pointer;
-    color: var(--iui-color-text);
-    gap: var(--iui-size-xs);
 
-    &.iui-loading {
-      cursor: progress;
-      font-style: italic;
-      color: var(--iui-color-text-disabled);
-    }
-
-    > .iui-checkbox-label,
-    > .iui-radio-label {
-      display: flex;
-      align-items: center;
-
-      svg {
-        @include iui-icon-style('m');
-        vertical-align: middle;
-        fill: var(--iui-color-icon);
-      }
-    }
-
-    &.iui-disabled {
-      cursor: not-allowed;
-      color: var(--iui-color-text-disabled);
-
-      svg {
-        fill: var(--iui-color-icon-disabled);
-      }
-    }
-
-    &.iui-positive {
-      color: var(--iui-color-text-positive);
-    }
-
-    &.iui-warning {
-      color: var(--iui-color-text-warning);
-    }
-
-    &.iui-negative {
-      color: var(--iui-color-text-negative);
+    svg {
+      @include iui-icon-style('m');
+      vertical-align: middle;
+      fill: var(--iui-color-icon);
     }
   }
 
+  &.iui-disabled {
+    cursor: not-allowed;
+    color: var(--iui-color-text-disabled);
+
+    svg {
+      fill: var(--iui-color-icon-disabled);
+    }
+  }
+
+  &.iui-positive {
+    color: var(--iui-color-text-positive);
+  }
+
+  &.iui-warning {
+    color: var(--iui-color-text-warning);
+  }
+
+  &.iui-negative {
+    color: var(--iui-color-text-negative);
+  }
+}
+
+@mixin iui-checkbox {
   --_iui-checkbox-checkmark-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m6.5 12.5-4.5-4.5 1.5-1.5 3 3 6-6 1.5 1.5z" /></svg>');
   --_iui-checkbox-indeterminate-svg: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m2.75 6.875h10.5v2.25h-10.5z" /></svg>');
   --_iui-checkbox-unchecked-svg: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16"></svg>');
