@@ -3762,7 +3762,7 @@ it('should add selection column manually', () => {
   const onSelect = jest.fn();
   const isDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
-    SelectionColumn({ isDisabled }),
+    SelectionColumn('default', { isDisabled }),
     {
       id: 'name',
       Header: 'Name',

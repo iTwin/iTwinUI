@@ -22,6 +22,7 @@ export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';
  * ], [isCheckboxDisabled]);
  */
 export const SelectionColumn = <T extends Record<string, unknown>>(
+  density: 'default' | 'condensed' | 'extra-condensed' | undefined,
   props: {
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
@@ -33,9 +34,12 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
     disableResizing: true,
     disableGroupBy: true,
     disableReordering: true,
-    minWidth: 48,
-    width: 48,
-    maxWidth: 48,
+    minWidth:
+      density === 'condensed' ? 36 : density === 'extra-condensed' ? 24 : 48,
+    width:
+      density === 'condensed' ? 36 : density === 'extra-condensed' ? 24 : 48,
+    maxWidth:
+      density === 'condensed' ? 36 : density === 'extra-condensed' ? 24 : 48,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
     Header: ({

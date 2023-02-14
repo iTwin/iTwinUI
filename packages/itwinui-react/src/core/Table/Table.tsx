@@ -575,7 +575,7 @@ export const Table = <
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
-    useSelectionCell(isSelectable, selectionMode, isRowDisabled),
+    useSelectionCell(density, isSelectable, selectionMode, isRowDisabled),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
     useStickyColumns,

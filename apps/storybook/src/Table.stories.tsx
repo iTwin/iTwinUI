@@ -1676,7 +1676,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
         },
       },
       {
-        ...ActionColumn({ columnManager: true }),
+        ...ActionColumn(Condensed.args?.density, { columnManager: true }),
         Cell: (props: CellProps<TableStoryDataType>) => (
           <DropdownMenu menuItems={menuItems}>
             <IconButton
@@ -3092,7 +3092,9 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
 
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
-      SelectionColumn({ isDisabled: isCheckboxDisabled }),
+      SelectionColumn(Condensed.args?.density, {
+        isDisabled: isCheckboxDisabled,
+      }),
       ExpanderColumn({ subComponent, isDisabled: isExpanderDisabled }),
       {
         id: 'name',
@@ -3227,7 +3229,7 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
         Header: 'Location',
         accessor: 'location',
       },
-      ActionColumn({
+      ActionColumn(Condensed.args?.density, {
         columnManager: true,
       }),
     ],
@@ -3514,7 +3516,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         },
       },
       {
-        ...ActionColumn({ columnManager: true }),
+        ...ActionColumn(Condensed.args?.density, { columnManager: true }),
         Cell: () => (
           <DropdownMenu menuItems={menuItems}>
             <IconButton

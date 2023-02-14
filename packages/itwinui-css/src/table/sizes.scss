@@ -9,8 +9,9 @@
     --_iui-table-header-size: calc(var(--iui-size-s) * 4);
     --_iui-table-row-size: calc(var(--iui-size-s) * 4 + 2px);
 
-    .iui-table-cell {
+    .iui-table-cell:not(:first-child) {
       padding-left: calc(var(--iui-size-xs));
+      padding-right: calc(var(--iui-size-xs));
     }
   }
 
@@ -22,8 +23,9 @@
       padding-block: calc(var(--iui-size-s) * 0.25);
     }
 
-    .iui-table-cell {
+    .iui-table-cell:not(:first-child) {
       padding-left: calc(var(--iui-size-2xs));
+      padding-right: calc(var(--iui-size-2xs));
     }
   }
 
