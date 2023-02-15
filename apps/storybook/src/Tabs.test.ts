@@ -18,6 +18,11 @@ describe('Tabs', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.wait(1000); // wait for resize observer to be done
+
+      if (testName === 'Overflow') {
+        cy.get('.iui-button').click();
+      }
+
       cy.compareSnapshot(testName);
     });
   });

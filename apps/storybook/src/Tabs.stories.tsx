@@ -254,6 +254,7 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
       }}
     >
       <Tabs
+        type='default'
         labels={labels}
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
@@ -297,6 +298,7 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
         {...args}
         onTabSelected={setActiveIndex}
         activeIndex={activeIndex}
+        actions={undefined}
       >
         {getContent()}
       </Tabs>
@@ -304,8 +306,8 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
   );
 };
 Overflow.args = {
+  //add more overflow args
   type: 'default',
-  actions: [],
   labels: [
     <Tab key={1} label='Item 1' />,
     <Tab key={2} label='Item 2' />,
@@ -321,6 +323,11 @@ Overflow.args = {
     <Tab key={12} label='Item 12' />,
     <Tab key={13} label='Item 13' />,
   ],
+};
+Overflow.argTypes = {
+  type: { options: ['default', 'borderless'] },
+  orientation: { control: { disable: true } },
+  actions: { control: { disable: true } },
 };
 
 export const Vertical: Story<Partial<TabsProps>> = (args) => {

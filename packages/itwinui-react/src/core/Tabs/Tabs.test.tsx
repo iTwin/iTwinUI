@@ -6,6 +6,9 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import { Tab } from './Tab';
 import { Tabs, TabsProps } from './Tabs';
+import * as UseOverflow from '../utils/hooks/useOverflow';
+import { IconButton } from '../Buttons/IconButton';
+import { SvgMore } from '../utils';
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
@@ -22,6 +25,13 @@ const renderComponent = (
   const children = initialChildren ?? 'Test content';
   return render(<Tabs {...props}>{children}</Tabs>);
 };
+
+const useOverflowMock = jest
+  .spyOn(UseOverflow, 'useOverflow')
+  .mockImplementation((items) => [jest.fn(), items.length]);
+beforeEach(() => {
+  useOverflowMock.mockImplementation((items) => [jest.fn(), items.length]);
+});
 
 it('should render tabs', () => {
   const { container } = renderComponent();
@@ -76,6 +86,36 @@ it('should render vertical tabs', () => {
   expect(queryByText('Test content')).toHaveClass('iui-tabs-content');
 });
 
+it('should handle overflow when overflowButton is specified', () => {
+  const onClick = jest.fn();
+  useOverflowMock.mockReturnValue([jest.fn(), 2]);
+  const { container } = renderComponent({
+    overflowButton: (visibleCount) => (
+      <IconButton onClick={onClick(visibleCount)}>
+        <SvgMore />
+      </IconButton>
+    ),
+  });
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveClass('iui-overflow');
+
+  const tabs = container.querySelectorAll('.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0].textContent).toBe('Label 1');
+  expect(tabs[1].textContent).toBe('Label 2');
+  screen.getByText('Test content');
+
+  const overflowButton = container.querySelector(
+    '.iui-button',
+  ) as HTMLButtonElement;
+  expect(overflowButton).toBeTruthy();
+  fireEvent.click(overflowButton);
+  expect(onClick).toHaveBeenCalledTimes(1);
+  expect(onClick).toHaveBeenCalledWith(2);
+});
+
 it('should render green tabs', () => {
   const { container } = renderComponent({ color: 'green' });
 
@@ -112,6 +152,29 @@ it('should not fail with invalid active tab and set the closest one', () => {
   expect(tabs[0].className).not.toContain('iui-tab iui-active');
   expect(tabs[1].className).not.toContain('iui-tab iui-active');
   expect(tabs[2].className).toContain('iui-tab iui-active'); // 2 is closest to 100
+});
+
+it('should replace last tab with active tab if not visible when overflowButton is specified', () => {
+  const onClick = jest.fn();
+  useOverflowMock.mockReturnValue([jest.fn(), 2]);
+  const { container } = renderComponent({
+    overflowButton: (visibleCount) => (
+      <IconButton onClick={onClick(visibleCount)}>
+        <SvgMore />
+      </IconButton>
+    ),
+    activeIndex: 2,
+  });
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveClass('iui-overflow');
+
+  const tabs = container.querySelectorAll('.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0].textContent).toBe('Label 1');
+  expect(tabs[1].textContent).toBe('Label 3');
+  screen.getByText('Test content');
 });
 
 it('should render strings in child component', () => {
