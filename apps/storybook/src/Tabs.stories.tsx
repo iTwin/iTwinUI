@@ -196,7 +196,7 @@ SublabelsAndIcons.args = {
 };
 
 export const Overflow: Story<Partial<TabsProps>> = (args) => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = React.useState(10);
   const getContent = () => {
     switch (activeIndex) {
       case 0:
@@ -324,7 +324,7 @@ Overflow.args = {
 };
 
 export const Vertical: Story<Partial<TabsProps>> = (args) => {
-  const [index, setIndex] = React.useState(10);
+  const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
       case 0:
