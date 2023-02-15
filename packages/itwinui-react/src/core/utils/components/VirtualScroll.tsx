@@ -362,6 +362,19 @@ export const useVirtualization = (props: VirtualScrollProps) => {
               indexDiff * childHeight.current.middle
             : scrollToIndex * childHeight.current.middle,
       });
+
+      // update visible index
+      const start = getNumberOfNodesInHeight(
+        childHeight.current.middle,
+        Math.round(scrollableContainer.scrollTop),
+      );
+      const visibleNodes = getVisibleNodeCount(
+        childHeight.current.middle,
+        start,
+        itemsLength,
+        scrollableContainer,
+      );
+      visibleIndex.current = { start: start, end: start + visibleNodes };
     }
 
     // if `scrollToIndex` is the first visible node
