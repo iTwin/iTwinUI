@@ -149,6 +149,7 @@
   height: calc(100% - #{var(--iui-size-s)});
   margin: 1px auto;
   background-color: var(--iui-color-border);
+  align-self: center;
 
   @media (forced-colors: active) {
     background-color: CanvasText;

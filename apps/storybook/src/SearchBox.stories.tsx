@@ -11,7 +11,11 @@ import {
   Text,
   VerticalDivider,
 } from '@itwin/itwinui-react';
-import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
+import {
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  SvgCloseSmall,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   component: SearchBox,
@@ -24,7 +28,7 @@ export default {
 
 export const Basic: Story<SearchBoxProps> = (args) => {
   return (
-    <SearchBox expandable {...args}>
+    <SearchBox {...args}>
       <input type='search' placeholder='Search...' />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />
@@ -36,9 +40,9 @@ export const Basic: Story<SearchBoxProps> = (args) => {
   );
 };
 
-export const Static: Story<SearchBoxProps> = (args) => {
+export const Expandable: Story<SearchBoxProps> = (args) => {
   return (
-    <SearchBox {...args}>
+    <SearchBox expandable {...args}>
       <input type='search' placeholder='Search...' />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />
@@ -65,14 +69,24 @@ export const Small: Story<SearchBoxProps> = (args) => {
 };
 
 export const WithCustomAction: Story<SearchBoxProps> = (args) => {
+  const [expanded, setExpanded] = React.useState(false);
+
   return (
-    <SearchBox expandable {...args}>
+    <SearchBox
+      expandable
+      isExpanded={expanded}
+      onToggle={(_expanded: boolean) => setExpanded(_expanded)}
+      {...args}
+    >
+      <IconButton styleType='borderless'>
+        <SvgCloseSmall />
+      </IconButton>
       <input type='search' placeholder='Search...' />
       <Text
         isMuted
         variant='body'
         as='p'
-        style={{ paddingRight: 'var(--iui-size-s)' }}
+        style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
       >
         0/3
       </Text>

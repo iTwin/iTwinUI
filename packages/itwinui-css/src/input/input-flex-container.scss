@@ -19,7 +19,12 @@
   > input {
     all: unset;
     width: 100%;
-    padding-inline: var(--iui-size-s) 0;
+    padding-inline-start: var(--iui-size-s);
+  }
+
+  > button {
+    height: 100%;
+    border-radius: 0;
   }
 }
 
@@ -27,6 +32,10 @@
   transition: width var(--iui-duration-3) ease;
   width: var(--_iui-input-min-height);
   overflow: hidden;
+
+  > input {
+    padding-inline: 0;
+  }
 
   &::before {
     content: '';
@@ -53,17 +62,19 @@
     width: 1rem;
     height: 1rem;
     pointer-events: none;
+    cursor: pointer;
     z-index: 2;
   }
 
+  &:focus,
   &:focus-within,
   &[data-iui-expanded='true'] {
     cursor: unset;
     width: 100%;
     border-color: var(--_iui-input-border-color);
+    padding-left: var(--_iui-input-min-height);
 
-    &::before,
-    &::after {
+    &::before {
       content: unset;
     }
   }

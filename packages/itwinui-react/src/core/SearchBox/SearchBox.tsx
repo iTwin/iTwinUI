@@ -18,6 +18,7 @@ type SearchBoxOwnProps = {
    * @default false
    */
   isExpanded?: boolean;
+  onToggle?: (isExpanding: boolean) => void;
 };
 
 export type SearchBoxProps = SearchBoxOwnProps & InputProps;
@@ -46,7 +47,8 @@ export const SearchBox = (props: SearchBoxProps) => {
   const {
     size,
     expandable = false,
-    isExpanded = false,
+    onToggle,
+    isExpanded,
     children,
     ...rest
   } = props;
@@ -56,8 +58,9 @@ export const SearchBox = (props: SearchBoxProps) => {
       className={cx({
         'iui-expandable-searchbox': expandable,
       })}
-      data-iui-expanded={isExpanded}
       data-iui-size={size}
+      data-iui-expanded={isExpanded}
+      onClick={() => onToggle?.(!isExpanded)}
       {...rest}
     >
       {children}

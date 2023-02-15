@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('SearchBox', () => {
   const storyPath = 'Input/SearchBox';
-  const tests = ['Basic', 'Static', 'With Custom Action', 'Small'];
+  const tests = ['Basic', 'Expandable', 'With Custom Action', 'Small'];
 
   tests.forEach((testName) => {
     it(testName, function () {
