@@ -196,9 +196,9 @@ SublabelsAndIcons.args = {
 };
 
 export const Overflow: Story<Partial<TabsProps>> = (args) => {
-  const [index, setIndex] = React.useState(0);
+  const [activeIndex, setActiveIndex] = React.useState(0);
   const getContent = () => {
-    switch (index) {
+    switch (activeIndex) {
       case 0:
         return 'Tab Content One';
       case 1:
@@ -257,23 +257,32 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
         labels={labels}
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
-            menuItems={(close: () => void) =>
-              Array(labels.length - visibleCount)
+            menuItems={(close: () => void) => {
+              let indexArray: number[] = [];
+              for (let i = visibleCount; i < labels.length; i++) {
+                indexArray.push(i);
+              }
+              if (indexArray.findIndex((j) => j === activeIndex) > -1) {
+                indexArray = indexArray.filter((j) => j !== activeIndex);
+                indexArray.splice(0, 0, visibleCount - 1);
+              }
+
+              return Array(indexArray.length)
                 .fill(null)
                 .map((_, _index) => {
-                  const index = visibleCount + _index + 1;
+                  const itemNumber: number = indexArray[_index] + 1;
                   const onClick = () => {
-                    action(`Visit tab ${index}`)();
-                    setIndex(index - 1);
+                    action(`Visit tab ${itemNumber}`)();
+                    setActiveIndex(itemNumber - 1);
                     close();
                   };
                   return (
-                    <MenuItem key={index} onClick={onClick}>
-                      Item {index}
+                    <MenuItem key={itemNumber} onClick={onClick}>
+                      Item {itemNumber}
                     </MenuItem>
                   );
-                })
-            }
+                });
+            }}
           >
             <IconButton
               role='button'
@@ -286,8 +295,8 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
           </DropdownMenu>
         )}
         {...args}
-        onTabSelected={setIndex}
-        activeIndex={index}
+        onTabSelected={setActiveIndex}
+        activeIndex={activeIndex}
       >
         {getContent()}
       </Tabs>
@@ -315,7 +324,7 @@ Overflow.args = {
 };
 
 export const Vertical: Story<Partial<TabsProps>> = (args) => {
-  const [index, setIndex] = React.useState(0);
+  const [index, setIndex] = React.useState(10);
   const getContent = () => {
     switch (index) {
       case 0:

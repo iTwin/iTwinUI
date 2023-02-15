@@ -59,7 +59,8 @@ type TabsOverflowProps =
   | {
       /**
        * If specified, this prop will be used to show a custom button when overflow happens,
-       * i.e. when there is not enough space to fit all the tabs.
+       * i.e. when there is not enough space to fit all the tabs. When using overflowButton,
+       * the last visible tab will be replaced by the active tab if it's not otherwise visible.
        *
        * Expects a function that takes the number of items that are visible
        * and returns the `ReactNode` to render.
@@ -375,12 +376,8 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
-  const displayTabs = React.useMemo(() => {
-    const visibleLabels = overflowButton
-      ? labels.slice(0, visibleCount)
-      : labels;
-
-    const visibleTabs = visibleLabels.map((label, index) => {
+  const createTab = React.useCallback(
+    (label: React.ReactNode, index: number) => {
       const onClick = () => {
         setFocusedIndex(index);
         onTabClick(index);
@@ -412,17 +409,39 @@ export const Tabs = (props: TabsProps) => {
           )}
         </li>
       );
+    },
+    [currentActiveIndex, onTabClick],
+  );
+
+  const displayTabs = React.useMemo(() => {
+    const visibleLabels = labels.slice(0, visibleCount - 1);
+    const visibleIndices: number[] = [];
+
+    const visibleTabs = visibleLabels.map((label, index) => {
+      visibleIndices.push(index);
+
+      return createTab(label, index);
     });
+
+    const isActiveTabVisible =
+      visibleIndices.findIndex((tab) => tab === currentActiveIndex) > -1;
+    if (isActiveTabVisible) {
+      visibleTabs.push(createTab(labels[visibleCount - 1], visibleCount - 1));
+    } else {
+      visibleTabs.push(
+        createTab(labels[currentActiveIndex], currentActiveIndex),
+      );
+    }
 
     if (overflowButton && labels.length - visibleCount > 0) {
       const overflowButtonElement = (
-        <li key={visibleTabs.length + 1}>{overflowButton(visibleCount)}</li>
+        <li key={'overflow'}>{overflowButton(visibleCount)}</li>
       );
       visibleTabs.push(overflowButtonElement);
     }
 
     return visibleTabs;
-  }, [currentActiveIndex, labels, onTabClick, visibleCount, overflowButton]);
+  }, [labels, visibleCount, overflowButton, createTab, currentActiveIndex]);
 
   return (
     <div
@@ -446,7 +465,9 @@ export const Tabs = (props: TabsProps) => {
         onKeyDown={onKeyDown}
         {...rest}
       >
-        {displayTabs}
+        {overflowButton
+          ? displayTabs
+          : labels.map((label, index) => createTab(label, index))}
       </ul>
 
       {actions && (
