@@ -1,8 +1,15 @@
-.container {
-  padding: 0 32px;
+* {
+  box-sizing: border-box;
 }
 
-.theme-button {
-  display: flex;
-  justify-content: flex-end;
+body {
+  margin: 0;
+}
+
+html, body, #root, .theme-provider {
+  height: 100%;
+}
+
+.theme-provider {
+  padding: 2rem 1rem;
 }
