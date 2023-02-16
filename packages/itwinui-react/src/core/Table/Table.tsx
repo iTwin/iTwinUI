@@ -299,7 +299,6 @@ export type TableProps<
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
-// Original type for some reason is missing sub-columns
 const flattenColumns = (columns: Column[]): Column[] => {
   const flatColumns: Column[] = [];
   columns.forEach((column) => {
