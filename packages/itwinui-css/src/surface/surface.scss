@@ -18,49 +18,40 @@
   border-radius: var(--iui-surface-border-radius);
   box-shadow: var(--iui-surface-elevation);
   color: var(--iui-color-text);
+
+  &:where([data-iui-layout='true']) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
-// Public facing surface component.
-@mixin iui-surface-component {
-  --_iui-surface-padding-inline: var(--iui-size-s);
+$surface-padding: var(--iui-size-2xs);
 
-  @include iui-surface;
-  display: flex;
-  flex-direction: column;
-  height: var(--iui-surface-height);
-}
-
-@mixin iui-surface-header-footer($type) {
+@mixin iui-surface-header {
   display: flex;
   flex-shrink: 0;
   align-items: center;
   overflow: hidden;
-
-  @if ($type == 'header') {
-    border-bottom: 1px solid var(--iui-surface-border-color);
-    padding: calc(var(--_iui-surface-padding-inline) * 0.5) var(--_iui-surface-padding-inline);
-  }
-
-  @if ($type == 'footer') {
-    border-top: 1px solid var(--iui-surface-border-color);
-  }
-}
-
-@mixin iui-surface-header {
-  @include iui-surface-header-footer(header);
-}
-
-@mixin iui-surface-footer {
-  @include iui-surface-header-footer(footer);
+  border-bottom: 1px solid var(--iui-surface-border-color);
+  padding: $surface-padding;
+  scrollbar-gutter: stable both-edges;
 }
 
 @mixin iui-surface-body {
   display: flex;
   flex-grow: 1;
   overflow-y: auto;
-  overflow-y: overlay;
+
+  [data-iui-padded='false'] & {
+    overflow-y: overlay;
+  }
 
   :where([data-iui-padded='true'] &) {
-    padding: var(--iui-surface-body-padding, var(--_iui-surface-padding-inline));
+    scrollbar-gutter: stable both-edges;
+    padding: $surface-padding;
+  }
+
+  &:where(:not(:last-child)) {
+    border-bottom: 1px solid var(--iui-surface-border-color);
   }
 }

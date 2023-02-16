@@ -3,15 +3,11 @@
 @import './index';
 
 .iui-surface {
-  @include iui-surface-component;
+  @include iui-surface;
 }
 
 .iui-surface-header {
   @include iui-surface-header;
-}
-
-.iui-surface-footer {
-  @include iui-surface-footer;
 }
 
 .iui-surface-body {

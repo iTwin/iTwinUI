@@ -35,9 +35,8 @@
           auto-fill,
           minmax(Min(100%, 512px), 1fr)
         );
+        grid-auto-rows: calc(var(--iui-size-l) * 10);
         gap: var(--iui-size-l);
-
-        --iui-surface-height: 246px;
       }
 
       #demo-elevations {
@@ -55,6 +54,9 @@
       @media (max-width: 600px) {
         #demo-elevations { flex-direction: column; }
       }
+      /* [data-iui-layout='true'] {
+        height: calc(var(--iui-size-l) * 10);
+      } */
       .demo-surface-list {
         all: unset;
         display: flex;
@@ -62,8 +64,7 @@
         flex: 1;
       }
       .demo-surface-list li {
-        padding-block: var(--iui-size-s);
-        padding-inline: var(--_iui-surface-padding-inline);
+        padding: var(--iui-size-s);
         position: relative;
       }
       .demo-surface-list li:not(:first-of-type) {
@@ -98,6 +99,7 @@
 
       <div
         class="iui-surface"
+        data-iui-layout="true"
         data-iui-padded="true"
       >
         <div class="iui-surface-header">
@@ -125,6 +127,7 @@
 
       <div
         class="iui-surface"
+        data-iui-layout="true"
         data-iui-padded="true"
       >
         <div class="iui-surface-header">
@@ -141,18 +144,20 @@
             esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
             qui officia deserunt mollit anim id est laborum.</p>
         </div>
-        <div class="iui-surface-footer">
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            style="flex-grow: 1;"
-          >
-            <span>View all</span>
-          </button>
-        </div>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          style="align-self: stretch;"
+        >
+          <span>View all</span>
+        </button>
       </div>
 
-      <div class="iui-surface">
+      <div
+        class="iui-surface"
+        data-iui-layout="true"
+        data-iui-padded="false"
+      >
         <div class="iui-surface-header">
           <h2 class="iui-text-subheading">Surface with overflow & no body padding</h2>
         </div>
@@ -200,6 +205,7 @@
 
       <div
         class="iui-surface"
+        data-iui-layout="true"
         data-iui-padded="true"
       >
         <div class="iui-surface-header">
