@@ -14,7 +14,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "dev": "cross-env PORT=1704 BROWSER=none react-scripts start"
+    "dev": "cross-env PORT=1704 BROWSER=none react-scripts start",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf build"
   },
   "eslintConfig": {
     "extends": [
