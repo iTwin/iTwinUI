@@ -22,8 +22,7 @@
 
 // Public facing surface component.
 @mixin iui-surface-component {
-  --iui-surface-padding-inline: var(--iui-size-s);
-  --iui-surface-body-padding: var(--iui-surface-padding-inline);
+  --_iui-surface-padding-inline: var(--iui-size-s);
 
   @include iui-surface;
   display: flex;
@@ -39,7 +38,7 @@
 
   @if ($type == 'header') {
     border-bottom: 1px solid var(--iui-surface-border-color);
-    padding: calc(var(--iui-surface-padding-inline) * 0.5) var(--iui-surface-padding-inline);
+    padding: calc(var(--_iui-surface-padding-inline) * 0.5) var(--_iui-surface-padding-inline);
   }
 
   @if ($type == 'footer') {
@@ -58,7 +57,10 @@
 @mixin iui-surface-body {
   display: flex;
   flex-grow: 1;
-  padding: var(--iui-surface-body-padding);
   overflow-y: auto;
   overflow-y: overlay;
+
+  :where([data-iui-padded='true'] &) {
+    padding: var(--iui-surface-body-padding, var(--_iui-surface-padding-inline));
+  }
 }

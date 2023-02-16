@@ -63,7 +63,7 @@
       }
       .demo-surface-list li {
         padding-block: var(--iui-size-s);
-        padding-inline: var(--iui-surface-padding-inline);
+        padding-inline: var(--_iui-surface-padding-inline);
         position: relative;
       }
       .demo-surface-list li:not(:first-of-type) {
@@ -96,7 +96,10 @@
 
     <section id="demo-default">
 
-      <div class="iui-surface">
+      <div
+        class="iui-surface"
+        data-iui-padded="true"
+      >
         <div class="iui-surface-header">
           <div class="demo-flex-component">
             <h2 class="iui-text-subheading">Default surface</h2>
@@ -120,7 +123,10 @@
         </div>
       </div>
 
-      <div class="iui-surface">
+      <div
+        class="iui-surface"
+        data-iui-padded="true"
+      >
         <div class="iui-surface-header">
           <h2 class="iui-text-subheading">Surface with overflow & button footer</h2>
         </div>
@@ -146,10 +152,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-surface"
-        style="--iui-surface-body-padding: 0;"
-      >
+      <div class="iui-surface">
         <div class="iui-surface-header">
           <h2 class="iui-text-subheading">Surface with overflow & no body padding</h2>
         </div>
@@ -195,7 +198,10 @@
         </div>
       </div>
 
-      <div class="iui-surface">
+      <div
+        class="iui-surface"
+        data-iui-padded="true"
+      >
         <div class="iui-surface-header">
           <h2 class="iui-text-subheading">Surface with empty state</h2>
         </div>
