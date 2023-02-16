@@ -3,11 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import * as ReactDOM from 'react-dom';
 import {
   mergeRefs,
   useResizeObserver,
   useIsomorphicLayoutEffect,
 } from '../hooks';
+
+const unstable_batchedUpdates =
+  ReactDOM.unstable_batchedUpdates ?? ((cb: () => void) => void cb());
 
 const getScrollableParent = (
   element: HTMLElement | null,
@@ -224,9 +228,10 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       if (height > 0) {
         setIsMounted(true);
       }
-      setScrollContainerHeight(height);
-
-      updateChildHeight();
+      unstable_batchedUpdates(() => {
+        setScrollContainerHeight(height);
+        updateChildHeight();
+      });
     },
     [updateChildHeight],
   );
@@ -357,6 +362,19 @@ export const useVirtualization = (props: VirtualScrollProps) => {
               indexDiff * childHeight.current.middle
             : scrollToIndex * childHeight.current.middle,
       });
+
+      // update visible index
+      const start = getNumberOfNodesInHeight(
+        childHeight.current.middle,
+        Math.round(scrollableContainer.scrollTop),
+      );
+      const visibleNodes = getVisibleNodeCount(
+        childHeight.current.middle,
+        start,
+        itemsLength,
+        scrollableContainer,
+      );
+      visibleIndex.current = { start: start, end: start + visibleNodes };
     }
 
     // if `scrollToIndex` is the first visible node
