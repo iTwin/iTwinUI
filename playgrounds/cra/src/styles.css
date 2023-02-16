@@ -1,0 +1,8 @@
+.container {
+  padding: 0 32px;
+}
+
+.theme-button {
+  display: flex;
+  justify-content: flex-end;
+}
