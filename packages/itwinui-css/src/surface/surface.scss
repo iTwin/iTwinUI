@@ -46,7 +46,7 @@ $surface-padding: var(--iui-size-2xs);
     overflow-y: overlay;
   }
 
-  :where([data-iui-padded='true'] &) {
+  [data-iui-padded='true'] & {
     scrollbar-gutter: stable both-edges;
     padding: $surface-padding;
   }
