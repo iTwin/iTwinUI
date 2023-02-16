@@ -575,7 +575,7 @@ export const Table = <
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
-    useSelectionCell(density, isSelectable, selectionMode, isRowDisabled),
+    useSelectionCell(isSelectable, selectionMode, isRowDisabled, density),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
     useStickyColumns,
@@ -782,6 +782,7 @@ export const Table = <
           expanderCell={expanderCell}
           bodyRef={bodyRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+          density={density}
         />
       );
     },
@@ -799,6 +800,7 @@ export const Table = <
       expanderCell,
       enableVirtualization,
       tableRowRef,
+      density,
     ],
   );
 

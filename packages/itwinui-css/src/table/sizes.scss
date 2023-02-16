@@ -9,9 +9,8 @@
     --_iui-table-header-size: calc(var(--iui-size-s) * 4);
     --_iui-table-row-size: calc(var(--iui-size-s) * 4 + 2px);
 
-    .iui-table-cell:not(:first-child) {
+    .iui-table-cell {
       padding-left: calc(var(--iui-size-xs));
-      padding-right: calc(var(--iui-size-xs));
     }
   }
 
@@ -23,21 +22,10 @@
       padding-block: calc(var(--iui-size-s) * 0.25);
     }
 
-    .iui-table-cell:not(:first-child) {
-      padding-left: calc(var(--iui-size-2xs));
-      padding-right: calc(var(--iui-size-2xs));
+    .iui-table-cell {
+      padding-left: calc(var(--iui-size-3xs) * 3);
     }
   }
-
-  //will probably remove this in the final edit because the assignment was to adjust horizontal spacing, not vertical
-  // &[data-iui-size='mega-condensed'] {
-  //   --_iui-table-header-size: calc(var(--iui-size-s) * 2);
-  //   --_iui-table-row-size: calc(var(--iui-size-s) * 2 + 2px);
-
-  //   .iui-table-header .iui-table-cell {
-  //     padding-block: calc(var(--iui-size-s) * 0.125);
-  //   }
-  // }
 
   .iui-table-header,
   .iui-table-paginator {

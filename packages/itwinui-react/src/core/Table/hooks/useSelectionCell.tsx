@@ -7,10 +7,10 @@ import { SelectionColumn, SELECTION_CELL_ID } from '../columns';
 
 export const useSelectionCell =
   <T extends Record<string, unknown>>(
-    density: 'default' | 'condensed' | 'extra-condensed' | undefined,
     isSelectable: boolean,
     selectionMode: 'multi' | 'single',
     isRowDisabled?: (rowData: T) => boolean,
+    density: 'default' | 'condensed' | 'extra-condensed' = 'default',
   ) =>
   (hooks: Hooks<T>) => {
     if (!isSelectable) {
@@ -21,6 +21,9 @@ export const useSelectionCell =
       selectionMode === 'single' ||
       columns.find((c) => c.id === SELECTION_CELL_ID)
         ? columns
-        : [SelectionColumn(density, { isDisabled: isRowDisabled }), ...columns],
+        : [
+            SelectionColumn({ isDisabled: isRowDisabled, density: density }),
+            ...columns,
+          ],
     );
   };

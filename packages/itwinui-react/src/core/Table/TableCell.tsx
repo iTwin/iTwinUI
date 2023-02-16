@@ -17,6 +17,7 @@ export type TableCellProps<T extends Record<string, unknown>> = {
   tableHasSubRows: boolean;
   tableInstance: TableInstance<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
+  density?: 'default' | 'condensed' | 'extra-condensed';
 };
 
 export const TableCell = <T extends Record<string, unknown>>(
@@ -29,6 +30,7 @@ export const TableCell = <T extends Record<string, unknown>>(
     tableHasSubRows,
     tableInstance,
     expanderCell,
+    density,
   } = props;
 
   const hasSubRowExpander =
@@ -41,9 +43,17 @@ export const TableCell = <T extends Record<string, unknown>>(
     }
     // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
     // 16 = initial_cell_padding, 35 = 27 + 8 = expander_width + margin
-    return {
-      paddingLeft: 16 + (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * 35,
+    const densityToPadding = {
+      condensed: 12,
+      'extra-condensed': 8,
     };
+
+    const densityPadding =
+      densityToPadding[density as keyof typeof densityToPadding] ?? 16;
+    const paddingLeft =
+      densityPadding + (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * 35;
+
+    return { paddingLeft };
   };
 
   const cellElementProps = cell.getCellProps({
