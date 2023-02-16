@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.3
+
+### Patch Changes
+
+- 27c23b31: Tooltip's background now has a blur filter to make text more readable.
+
 ## 1.5.2
 
 ### Patch Changes
