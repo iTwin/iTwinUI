@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.4
+
+### Patch Changes
+
+- 8313002f: Fixed bug which gave an unexpected column order once columns were hidden, reordered, and then shown
+
 ## 2.4.3
 
 ### Patch Changes
