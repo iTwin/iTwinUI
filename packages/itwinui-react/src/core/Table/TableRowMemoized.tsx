@@ -187,5 +187,6 @@ export const TableRowMemoized = React.memo(
     prevProp.state.sticky.isScrolledToLeft ===
       nextProp.state.sticky.isScrolledToLeft &&
     prevProp.state.sticky.isScrolledToRight ===
-      nextProp.state.sticky.isScrolledToRight,
+      nextProp.state.sticky.isScrolledToRight &&
+    prevProp.density === nextProp.density,
 ) as typeof TableRow;
