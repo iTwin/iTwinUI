@@ -38,6 +38,7 @@ it('should render in its most basic form', () => {
   const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(20);
   expect(pages[0]).toHaveAttribute('data-iui-active', 'true');
+  expect(pages[0]).toHaveAttribute('type', 'button');
 
   const previousPageButton = screen.getByLabelText(
     'Previous page',

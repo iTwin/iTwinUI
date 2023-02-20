@@ -252,11 +252,10 @@
   @media (prefers-reduced-motion: no-preference) {
     transition: transform var(--iui-duration-2) ease;
   }
-  @at-root {
-    div#{&} {
-      background-position: center;
-      background-size: cover;
-    }
+
+  &:is(div) {
+    background-position: center;
+    background-size: cover;
   }
 
   ~ .iui-thumbnail-icon {
@@ -291,7 +290,7 @@
     --_iui-button-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
   }
 
-  @at-root .iui-tile-thumbnail-picture ~ & {
+  .iui-tile-thumbnail-picture ~ & {
     @include iui-blur($opacity: 5);
     --_iui-button-icon-fill: var(--iui-color-white);
 
@@ -371,7 +370,7 @@
     box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-border-#{$status});
   }
 
-  @at-root &.iui-folder .iui-tile-thumbnail {
+  &.iui-folder .iui-tile-thumbnail {
     box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-border-#{$status});
   }
 }

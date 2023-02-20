@@ -3,6 +3,7 @@
 @import '../utils/index';
 
 $iui-dialog-width: 380px;
+$iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
 
 @mixin iui-dialog-wrapper {
   position: fixed;
@@ -49,7 +50,7 @@ $iui-dialog-width: 380px;
 
 @mixin iui-dialog-default {
   max-width: Max(50%, $iui-dialog-width);
-  min-width: $iui-dialog-width;
+  min-width: Min(100%, $iui-dialog-width);
   max-height: 100vh;
 }
 
@@ -118,6 +119,7 @@ $iui-dialog-width: 380px;
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
+  min-height: $iui-dialogue-resizable-min-height;
 }
 
 @mixin iui-dialog-animation {
@@ -169,6 +171,7 @@ $iui-dialog-width: 380px;
   padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
+  max-height: calc(100vh - 6.75rem); // 6.75rem = 108px = button height + paddings + bottom bar
 }
 
 @mixin iui-dialog-button-bar {

@@ -35,12 +35,11 @@ export type AvatarProps = {
    */
   abbreviation?: string;
   /**
-   * User image to be displayed. MUST be an `<img>` element!
+   * User image to be displayed. Can be `<img>` or `<svg>` or anything else.
    */
   image?: JSX.Element;
   /**
-   * Color of the icon. You can use `getUserColor` function to generate color from user name or email.
-   * @default 'white'
+   * Color of the icon. You can use `getUserColor` function to generate color from user name or email. If not provided, default background color from CSS styling will be used (hsl(72, 51%, 56%) / olive green).
    */
   backgroundColor?: string;
   /**
@@ -82,7 +81,7 @@ export const Avatar = (props: AvatarProps) => {
     status,
     abbreviation,
     image,
-    backgroundColor = 'white',
+    backgroundColor,
     title,
     translatedStatusTitles,
     className,
@@ -102,14 +101,13 @@ export const Avatar = (props: AvatarProps) => {
         className,
       )}
       title={title}
-      style={style}
+      style={{ backgroundColor, ...style }}
       {...rest}
     >
-      {image ?? (
-        <abbr className='iui-initials' style={{ backgroundColor }}>
-          {abbreviation?.substring(0, 2)}
-        </abbr>
+      {!image && (
+        <abbr className='iui-initials'>{abbreviation?.substring(0, 2)}</abbr>
       )}
+      {image}
       <span className='iui-stroke' />
       {status && (
         <span

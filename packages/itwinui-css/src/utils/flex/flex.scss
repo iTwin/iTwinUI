@@ -1,0 +1,60 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+@mixin iui-flex {
+  --iui-flex-display: flex;
+  --iui-flex-direction: row;
+  --iui-flex-gap: var(--iui-size-xs);
+  --iui-flex-justify: flex-start;
+  --iui-flex-align: center;
+  --iui-flex-wrap: nowrap;
+
+  display: var(--iui-flex-display);
+  flex-direction: var(--iui-flex-direction);
+  gap: var(--iui-flex-gap);
+  justify-content: var(--iui-flex-justify);
+  align-items: var(--iui-flex-align);
+  flex-wrap: var(--iui-flex-wrap);
+}
+
+@mixin iui-flex-spacer {
+  --iui-flex-spacer-flex: 999;
+  flex: var(--iui-flex-spacer-flex);
+}
+
+@mixin iui-flex-item {
+  --iui-flex-item-flex: auto;
+  --iui-flex-item-align: auto;
+
+  flex: var(--iui-flex-item-flex);
+  align-self: var(--iui-flex-item-align);
+
+  // calculate individual margins to counteract gap set on parent
+  // e.g.: If parent flex gap is 24px and we want this item to instead have 8px between
+  //  itself and the previous item, then we need to set margin-start = 8 - 24 = -16px
+  $margin-start: calc(var(--iui-flex-item-gap-before) - var(--iui-flex-gap));
+  $margin-end: calc(var(--iui-flex-item-gap-after) - var(--iui-flex-gap));
+
+  @include space-toggle-states;
+  --iui-flex-item-gap-before-toggle: var(--iui-off);
+  --iui-flex-item-gap-after-toggle: var(--iui-off);
+
+  margin-inline-start: var(--iui-flex-item-gap-before-toggle, $margin-start);
+  margin-inline-end: var(--iui-flex-item-gap-after-toggle, $margin-end);
+}
+
+// setup for toggling values at runtime using the css var space toggle technique
+// https://lea.verou.me/2020/10/the-var-space-hack-to-toggle-multiple-values-with-one-custom-property
+//
+// Usage:
+//
+// @include space-toggle-states;
+// --is-red: var(--iui-off);
+// background: var(--is-red, red);
+//
+// // later:
+// --is-red: var(--iui-on);
+@mixin space-toggle-states {
+  --iui-off: /* whitespace means "off" */ ; /* stylelint-disable-line */
+  --iui-on: initial;
+}
