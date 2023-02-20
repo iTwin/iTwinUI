@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.5.3
+
+### Patch Changes
+
+- 27c23b31: Tooltip's background now has a blur filter to make text more readable.
+
+## 1.5.2
+
+### Patch Changes
+
+- 2845b4f4: Fixed a bug where inline elements (e.g. links) were getting disrupted when using inside a checkbox label.
+
 ## 1.5.1
 
 ### Patch Changes
