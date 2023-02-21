@@ -131,7 +131,7 @@
 
     .iui-table-sort {
       opacity: 1;
-      fill: var(--iui-color-icon);
+      --_iui-table-cell-icon-fill: var(--iui-color-icon);
     }
   }
 }
