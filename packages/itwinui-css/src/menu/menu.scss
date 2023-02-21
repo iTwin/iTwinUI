@@ -50,19 +50,6 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     margin-top: -1px;
   }
 
-  position: relative;
-
-  a {
-    text-decoration: none;
-    color: inherit;
-
-    &::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-    }
-  }
-
   .iui-content,
   .iui-menu-label,
   .iui-menu-description {
