@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import cx from 'classnames';
 
 type TileActionOwnProps<T extends React.ElementType = 'button'> = {
   /**
@@ -29,7 +30,11 @@ export const TileAction = <T extends React.ElementType = 'button'>(
 ) => {
   const { as: Element = 'button', className, children, ...rest } = props;
   return (
-    <Element tabIndex={-1} className={className} {...rest}>
+    <Element
+      tabIndex={-1}
+      className={cx('iui-tile-action', className)}
+      {...rest}
+    >
       {children}
     </Element>
   );

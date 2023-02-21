@@ -8,6 +8,7 @@ describe('Tile', () => {
     'Basic',
     'All Props',
     'Actionable',
+    'Anchor Link',
     'Condensed',
     'Folder',
     'With Avatar',

@@ -76,19 +76,15 @@
 
     position: relative;
 
-    a {
-      text-decoration: none;
-      color: inherit;
-
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-      }
+    .iui-tile-content {
+      position: unset;
     }
 
-    button {
+    .iui-tile-action {
       all: unset;
+      text-decoration: none;
+      color: inherit;
+      user-select: text;
 
       &::after {
         content: '';
@@ -167,6 +163,7 @@
 
 @mixin iui-tile-content {
   padding: var(--iui-size-s) var(--iui-size-s);
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 2;
