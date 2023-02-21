@@ -30,7 +30,7 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
 ) => {
   const { isDisabled, density } = props;
   const densityWidth =
-    density === 'condensed' ? 36 : density === 'extra-condensed' ? 24 : 48;
+    density === 'condensed' ? 38 : density === 'extra-condensed' ? 28 : 48;
   return {
     id: SELECTION_CELL_ID,
     disableResizing: true,

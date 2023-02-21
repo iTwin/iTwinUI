@@ -10,7 +10,11 @@
     --_iui-table-row-size: calc(var(--iui-size-s) * 4 + 2px);
 
     .iui-table-cell {
-      padding-left: calc(var(--iui-size-xs));
+      padding-left: calc(var(--iui-size-s));
+    }
+
+    .iui-table-cell:last-child {
+      padding-right: calc(var(--iui-size-s));
     }
   }
 
@@ -23,7 +27,11 @@
     }
 
     .iui-table-cell {
-      padding-left: calc(var(--iui-size-3xs) * 3);
+      padding-left: calc(var(--iui-size-2xs) * 2 + 2px);
+    }
+
+    .iui-table-cell:last-child {
+      padding-right: calc(var(--iui-size-2xs) * 2 + 2px);
     }
   }
 
