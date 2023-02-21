@@ -7,6 +7,7 @@ exampleCodeMain: Slider.main.tsx
 exampleCodeSlider: Slider.slider.tsx
 exampleCodeRange: Slider.range.tsx
 exampleCodeRangeMultiple: Slider.rangemultiple.tsx
+exampleCodeVertical: Slider.vertical.tsx
 thumbnail: Slider
 group: inputs
 ---
@@ -22,7 +23,9 @@ Sliders allow the user to graphically select a specific input value, or a range,
 
 ## Variants
 
-### Default
+### With labels & steps
+
+You can display tick labels underneath the slider. You can also have the value jump by a certain amount of steps - in this example it jumps by 10.
 
 <LiveExample src={frontmatter.exampleCodeSlider} />
 
@@ -36,6 +39,12 @@ You can have multiple ranges and can also have the range wrap.
 
 <LiveExample src={frontmatter.exampleCodeRangeMultiple} />
 
-## Props
+### Vertical
+
+The slider can be displayed horizontally (default) or vertically. All of the above examples could be displayed in either orientation.
+
+<LiveExample src={frontmatter.exampleCodeVertical} />
+
+## Properties
 
 <PropsTable path={frontmatter.propsPath} />
