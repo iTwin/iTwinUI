@@ -12,7 +12,7 @@ type TileActionOwnProps<T extends React.ElementType = 'button'> = {
    */
   as?: T;
   /**
-   *
+   * Content in the action element.
    */
   children?: React.ReactNode;
 };
@@ -23,7 +23,14 @@ export type TileActionProps<T extends React.ElementType = 'button'> =
     Omit<React.ComponentPropsWithoutRef<T>, keyof TileActionOwnProps<T>>;
 
 /**
-
+ * Polymorphic action component for actionable Tiles. Should be used in name.
+ * It is `button` by default. Can also be rendered as anchor link.
+ *
+ * @example
+ * <Tile
+ *   isActionable={isActionable}
+ *   name={<Tile.Action onClick={() => doOnClick()}>Tile name</Tile.Action>}
+ * />
  */
 export const TileAction = <T extends React.ElementType = 'button'>(
   props: TileActionProps<T>,
