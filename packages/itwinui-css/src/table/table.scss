@@ -122,7 +122,7 @@
   // Sort icon
   .iui-table-sort {
     opacity: 0;
-    fill: var(--iui-color-icon-muted);
+    --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
   }
 
   // Sorted column
