@@ -452,10 +452,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    fill: var(--_iui-table-cell-icon-fill);
 
-    &,
     svg:not(.iui-radial) {
-      fill: var(--_iui-table-cell-icon-fill);
       @include iui-icon-style('m');
     }
   }
@@ -469,6 +468,11 @@
     height: var(--iui-size-l);
     margin-right: var(--iui-size-s);
     margin-left: auto;
+
+    &,
+    svg:not(.iui-radial) {
+      fill: var(--_iui-table-cell-icon-fill);
+    }
   }
 }
 
