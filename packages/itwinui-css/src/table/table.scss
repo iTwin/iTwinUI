@@ -469,7 +469,6 @@
     margin-right: var(--iui-size-s);
     margin-left: auto;
 
-    &,
     :where(svg:not(.iui-radial)) {
       fill: var(--_iui-table-cell-icon-fill);
     }
