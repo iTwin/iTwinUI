@@ -79,12 +79,22 @@
     a {
       text-decoration: none;
       color: inherit;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
     }
 
-    a::after {
-      content: '';
-      position: absolute;
-      inset: 0;
+    button {
+      all: unset;
+
+      &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
     }
   }
 

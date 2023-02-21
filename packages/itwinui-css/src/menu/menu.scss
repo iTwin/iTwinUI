@@ -55,12 +55,12 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
   a {
     text-decoration: none;
     color: inherit;
-  }
 
-  a::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
   }
 
   .iui-content,

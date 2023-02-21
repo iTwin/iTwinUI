@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-// import cx from 'classnames';
 
 type TileActionOwnProps<T extends React.ElementType = 'button'> = {
   /**
@@ -12,7 +11,7 @@ type TileActionOwnProps<T extends React.ElementType = 'button'> = {
    */
   as?: T;
   /**
-   * Dialog title bar content. If passed, then `title` prop is ignored.
+   *
    */
   children?: React.ReactNode;
 };
@@ -30,7 +29,7 @@ export const TileAction = <T extends React.ElementType = 'button'>(
 ) => {
   const { as: Element = 'button', className, children, ...rest } = props;
   return (
-    <Element className={className} {...rest}>
+    <Element tabIndex={-1} className={className} {...rest}>
       {children}
     </Element>
   );
