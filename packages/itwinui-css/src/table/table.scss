@@ -470,7 +470,7 @@
     margin-left: auto;
 
     &,
-    svg:not(.iui-radial) {
+    :where(svg:not(.iui-radial)) {
       fill: var(--_iui-table-cell-icon-fill);
     }
   }
