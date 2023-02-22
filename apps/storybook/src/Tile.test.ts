@@ -26,7 +26,8 @@ describe('Tile', () => {
       if (
         testName === 'Basic' ||
         testName === 'All Props' ||
-        testName === 'Actionable'
+        testName === 'Actionable' ||
+        testName === 'Anchor Link'
       ) {
         cy.get('.iui-tile-thumbnail-picture').hide();
       }
