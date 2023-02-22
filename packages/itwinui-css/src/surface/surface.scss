@@ -50,8 +50,4 @@ $surface-padding: var(--iui-size-2xs);
     scrollbar-gutter: stable both-edges;
     padding: $surface-padding;
   }
-
-  &:where(:not(:last-child)) {
-    border-bottom: 1px solid var(--iui-surface-border-color);
-  }
 }
