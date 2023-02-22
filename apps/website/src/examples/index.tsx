@@ -3,6 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { default as AlertMainExample } from './Alert.main';
+export { default as AlertInlineExample } from './Alert.inline';
+export { default as AlertInformationalExample } from './Alert.informational';
+export { default as AlertPositiveExample } from './Alert.positive';
+export { default as AlertNegativeExample } from './Alert.negative';
+export { default as AlertStickyExample } from './Alert.sticky';
+export { default as AlertWarningExample } from './Alert.warning';
+
 export { default as AvatarMainExample } from './Avatar.main';
 export { default as AnchorMainExample } from './Anchor.main';
 export { default as BadgeMainExample } from './Badge.main';
