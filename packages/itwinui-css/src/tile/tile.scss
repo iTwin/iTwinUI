@@ -76,22 +76,9 @@
 
     position: relative;
 
-    .iui-tile-content {
-      position: unset;
-    }
-
-    .iui-tile-action {
-      all: unset;
-      text-decoration: none;
-      color: inherit;
-      user-select: text;
-
-      &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-      }
-    }
+    // .iui-tile-content {
+    //   position: unset;
+    // }
   }
 
   &.iui-folder {

@@ -15,7 +15,7 @@ import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
-import TileAction from './TileAction';
+import { PolymorphicAction } from '../utils';
 
 export type TileProps = {
   /**
@@ -281,8 +281,22 @@ export const Tile = Object.assign(
       </div>
     );
   },
-  { Action: TileAction },
+  {
+    /**
+     * Polymorphic action component for actionable Tiles. Should be used in name.
+     * It is `button` by default. Can also be rendered as anchor link.
+     *
+     * @example
+     * <Tile
+     *   isActionable={isActionable}
+     *   name={<Tile.Action onClick={() => doOnClick()}>Tile name</Tile.Action>}
+     * />
+     */
+    Action: PolymorphicAction,
+  },
 );
+
+Tile.Action.displayName = 'TileAction';
 
 type TitleIconProps = {
   isLoading?: boolean;
