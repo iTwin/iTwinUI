@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.5.4
+
+### Patch Changes
+
+- e1efed3b: Fix Table status icon fill not overriding svg's fill attribute.
+
 ## 1.5.3
 
 ### Patch Changes
