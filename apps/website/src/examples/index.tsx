@@ -27,6 +27,13 @@ export { default as BadgeMainExample } from './Badge.main';
 export { default as BadgeSoftExample } from './Badge.soft';
 export { default as BadgeStatusesExample } from './Badge.statuses';
 
+export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
+export { default as BreadcrumbsLinkExample } from './Breadcrumbs.link';
+export { default as BreadcrumbsButtonExample } from './Breadcrumbs.button';
+export { default as BreadcrumbsFolderExample } from './Breadcrumbs.folder';
+export { default as BreadcrumbsTruncationExample } from './Breadcrumbs.truncation';
+export { default as BreadcrumbsExtremeTruncationExample } from './Breadcrumbs.extremeTruncation';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
@@ -35,7 +42,6 @@ export { default as DropdownButtonMainExample } from './DropdownButton.main';
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';
 export { default as SplitButtonMainExample } from './SplitButton.main';
 export { default as IdeasButtonMainExample } from './IdeasButton.main';
-export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
 export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CarouselMainExample } from './Carousel.main';
 export { default as ColorPickerMainExample } from './ColorPicker.main';
