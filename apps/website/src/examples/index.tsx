@@ -11,8 +11,13 @@ export { default as AlertStickyExample } from './Alert.sticky';
 export { default as AlertWarningExample } from './Alert.warning';
 
 export { default as AvatarMainExample } from './Avatar.main';
+
 export { default as AnchorMainExample } from './Anchor.main';
+
 export { default as BadgeMainExample } from './Badge.main';
+export { default as BadgeSoftExample } from './Badge.soft';
+export { default as BadgeStatusesExample } from './Badge.statuses';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
