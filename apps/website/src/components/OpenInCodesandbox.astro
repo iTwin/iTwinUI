@@ -1,0 +1,105 @@
+---
+import outdent from 'outdent';
+import { getParameters } from 'codesandbox/lib/api/define';
+
+type Props = { code: string } & astroHTML.JSX.AnchorHTMLAttributes;
+const { code = 'export default () => "hello"', ...rest } = Astro.props;
+
+const parameters = getParameters({
+  files: {
+    'package.json': {
+      isBinary: false,
+      content: {
+        main: 'src/index.tsx',
+        dependencies: {
+          '@itwin/itwinui-react': '2',
+          '@itwin/itwinui-icons-react': '2',
+          react: '18',
+          'react-dom': '18',
+        },
+        devDependencies: {
+          'react-scripts': '5',
+          typescript: '4',
+        },
+        scripts: {
+          start: 'react-scripts start',
+        },
+      } as any,
+    },
+    'public/index.html': {
+      isBinary: false,
+      content: outdent`
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width" />
+            <title>iTwinUI example</title>
+          </head>
+          <body>
+            <div id="root"></div>
+          </body>
+        </html>
+      `,
+    },
+    'src/index.tsx': {
+      isBinary: false,
+      content: outdent`import React from 'react';
+        import { createRoot } from 'react-dom/client';
+        import './styles.css';
+        import App from './App';
+        import { ThemeProvider } from '@itwin/itwinui-react';
+
+        const rootElement = document.getElementById('root');
+        const root = createRoot(rootElement!);
+
+        const theme = matchMedia?.('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+
+        root.render(
+          <React.StrictMode>
+            <ThemeProvider className='app-wrapper' theme={theme}>
+              <App />
+            </ThemeProvider>
+          </React.StrictMode>,
+        );
+      `,
+    },
+    'src/styles.css': {
+      isBinary: false,
+      content: outdent`
+        * {
+          box-sizing: border-box;
+        }
+        body {
+          margin: 0;
+        }
+        html, body, #root, .app-wrapper {
+          height: 100%;
+        }
+        .app-wrapper {
+          padding: 1rem;
+        }
+      `,
+    },
+    'src/App.tsx': {
+      isBinary: false,
+      content: code,
+    },
+  },
+});
+
+const url = `https://codesandbox.io/api/v1/sandboxes/define?parameters=${parameters}&query=file=/src/App.tsx`;
+---
+
+<a href={url} target='_blank' rel='noopener noreferrer' {...rest}>
+  <span class='visually-hidden'>Open CodeSandbox in new tab</span>
+  <svg viewBox='0 0 16 16' width='1rem' height='1rem' fill='none' stroke='currentColor' aria-hidden>
+    <path
+      d='M6.66665 3.33337H4.33331C3.78103 3.33337 3.33331 3.78109 3.33331 4.33337V11.6667C3.33331 12.219 3.78103 12.6667 4.33331 12.6667H11.6666C12.2189 12.6667 12.6666 12.219 12.6666 11.6667V9.33337'
+      stroke-linecap='round'></path>
+    <path
+      d='M10 3.33337H12.5667C12.6219 3.33337 12.6667 3.37815 12.6667 3.43337V6.00004'
+      stroke-linecap='round'></path>
+    <path d='M7.33331 8.66668L12.5333 3.46667' stroke-linecap='round'></path>
+  </svg>
+</a>
