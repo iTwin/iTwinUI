@@ -36,6 +36,8 @@ export { default as BreadcrumbsExtremeTruncationExample } from './Breadcrumbs.ex
 
 export { default as ColorPickerMainExample } from './ColorPicker.main';
 
+export { default as ComboBoxMainExample } from './ComboBox.main';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
@@ -46,7 +48,6 @@ export { default as SplitButtonMainExample } from './SplitButton.main';
 export { default as IdeasButtonMainExample } from './IdeasButton.main';
 export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CarouselMainExample } from './Carousel.main';
-export { default as ComboBoxMainExample } from './ComboBox.main';
 export { default as CodeMainExample } from './Code.main';
 export { default as DatePickerMainExample } from './DatePicker.main';
 export { default as DialogStaticExample } from './Dialog.static';
