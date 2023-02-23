@@ -1,5 +1,23 @@
 # Changelog
 
+## 2.4.4
+
+### Patch Changes
+
+- 8313002f: Fixed bug which gave an unexpected column order once columns were hidden, reordered, and then shown
+
+## 2.4.3
+
+### Patch Changes
+
+- a987bc92: Fixed issue with `Table` autoscroll not completely showing a given row.
+
+## 2.4.2
+
+### Patch Changes
+
+- cbcd97a4: Fixed an issue in ComboBox where the height of empty state content was not getting updated when using `enableVirtualization`.
+
 ## 2.4.1
 
 ### Patch Changes
