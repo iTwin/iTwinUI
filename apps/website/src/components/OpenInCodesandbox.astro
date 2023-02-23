@@ -1,6 +1,6 @@
 ---
 import outdent from 'outdent';
-import { getParameters } from 'codesandbox/lib/api/define';
+import { getParameters } from 'codesandbox-import-utils/lib/api/define';
 
 type Props = { code: string } & astroHTML.JSX.AnchorHTMLAttributes;
 const { code = 'export default () => "hello"', ...rest } = Astro.props;
