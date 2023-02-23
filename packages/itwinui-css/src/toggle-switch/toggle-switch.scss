@@ -3,6 +3,10 @@
 @import '../utils/index';
 
 @mixin iui-toggle-switch-wrapper {
+  --_iui-toggle-switch-handle-size: var(--iui-size-m);
+  --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+  --_iui-toggle-switch-border-thickness: 1px;
+
   @include iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
@@ -36,25 +40,25 @@
 }
 
 @mixin iui-toggle-switch {
-  $iui-toggle-switch-handle-size: var(--iui-size-m);
-  $iui-toggle-switch-handle-offset: var(--iui-size-2xs);
-  $iui-toggle-switch-border-thickness: 1px;
-
   @include iui-reset;
-  @include iui-focus($thickness: $iui-toggle-switch-border-thickness, $offset: $iui-toggle-switch-border-thickness);
+  @include iui-focus(
+    $thickness: var(--_iui-toggle-switch-border-thickness),
+    $offset: var(--_iui-toggle-switch-border-thickness)
+  );
   grid-area: toggle;
   display: flex;
   position: relative;
   cursor: pointer;
   appearance: none;
-  width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
+  width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
   height: calc(
-    $iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2) + ($iui-toggle-switch-border-thickness * 2)
+    var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
+    (var(--_iui-toggle-switch-border-thickness) * 2)
   );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background);
-  border: $iui-toggle-switch-border-thickness solid var(--iui-color-border-foreground);
+  border: var(--_iui-toggle-switch-border-thickness) solid var(--iui-color-border-foreground);
 
   &-label {
     grid-area: label;
@@ -62,9 +66,9 @@
 
   &::after {
     content: '';
-    height: $iui-toggle-switch-handle-size;
-    width: $iui-toggle-switch-handle-size;
-    margin: $iui-toggle-switch-handle-offset;
+    height: var(--_iui-toggle-switch-handle-size);
+    width: var(--_iui-toggle-switch-handle-size);
+    margin: var(--_iui-toggle-switch-handle-offset);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
     transition: background-color var(--iui-duration-1) ease-out;
@@ -120,7 +124,7 @@
     }
 
     &::after {
-      transform: translateX(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset));
+      transform: translateX(calc(var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset)));
       background-color: var(--iui-color-white);
       @media (forced-colors: active) {
         background-color: HighlightText;
@@ -181,10 +185,10 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size;
-    height: $iui-toggle-switch-handle-size;
-    padding: calc($iui-toggle-switch-handle-size * 0.125);
-    margin: calc($iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness);
+    width: var(--_iui-toggle-switch-handle-size);
+    height: var(--_iui-toggle-switch-handle-size);
+    padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
+    margin: calc(var(--_iui-toggle-switch-handle-offset) + var(--_iui-toggle-switch-border-thickness));
     display: flex;
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
