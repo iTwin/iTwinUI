@@ -5,7 +5,6 @@
 @mixin iui-toggle-switch-wrapper {
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
-  --_iui-toggle-switch-border-thickness: 1px;
 
   @include iui-reset;
   display: grid;
@@ -37,14 +36,22 @@
   &.iui-label-on-right {
     grid-template-areas: 'toggle label';
   }
+
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+
+    .iui-toggle-switch-icon {
+      display: none;
+    }
+  }
 }
 
 @mixin iui-toggle-switch {
+  $iui-toggle-switch-border-thickness: 1px;
+
   @include iui-reset;
-  @include iui-focus(
-    $thickness: var(--_iui-toggle-switch-border-thickness),
-    $offset: var(--_iui-toggle-switch-border-thickness)
-  );
+  @include iui-focus($thickness: $iui-toggle-switch-border-thickness, $offset: $iui-toggle-switch-border-thickness);
   grid-area: toggle;
   display: flex;
   position: relative;
@@ -53,12 +60,12 @@
   width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
   height: calc(
     var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
-    (var(--_iui-toggle-switch-border-thickness) * 2)
+    ($iui-toggle-switch-border-thickness * 2)
   );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background);
-  border: var(--_iui-toggle-switch-border-thickness) solid var(--iui-color-border-foreground);
+  border: $iui-toggle-switch-border-thickness solid var(--iui-color-border-foreground);
 
   &-label {
     grid-area: label;
@@ -188,7 +195,7 @@
     width: var(--_iui-toggle-switch-handle-size);
     height: var(--_iui-toggle-switch-handle-size);
     padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
-    margin: calc(var(--_iui-toggle-switch-handle-offset) + var(--_iui-toggle-switch-border-thickness));
+    margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
     display: flex;
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
