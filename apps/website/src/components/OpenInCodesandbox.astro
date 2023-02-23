@@ -1,9 +1,18 @@
 ---
 import outdent from 'outdent';
-import { getParameters } from 'codesandbox-import-utils/lib/api/define';
+import LZString from 'lz-string';
 
 type Props = { code: string } & astroHTML.JSX.AnchorHTMLAttributes;
 const { code = 'export default () => "hello"', ...rest } = Astro.props;
+
+// see https://codesandbox.io/docs/learn/getting-started/your-first-sandbox#get-request
+function getParameters(parameters) {
+  const input = JSON.stringify(parameters);
+  return LZString.compressToBase64(input)
+    .replace(/\+/g, '-') // Convert '+' to '-'
+    .replace(/\//g, '_') // Convert '/' to '_'
+    .replace(/=+$/, ''); // Remove ending '='
+}
 
 const parameters = getParameters({
   files: {
@@ -24,7 +33,7 @@ const parameters = getParameters({
         scripts: {
           start: 'react-scripts start',
         },
-      } as any,
+      },
     },
     'public/index.html': {
       isBinary: false,

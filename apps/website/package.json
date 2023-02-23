@@ -21,7 +21,7 @@
     "@tippyjs/react": "4.2.6",
     "@types/react": "^18.0.0",
     "astro": "^2.0.13",
-    "codesandbox-import-utils": "^2.2.3",
+    "lz-string": "^1.4.4",
     "nanostores": "^0.7.0",
     "outdent": "^0.8.0",
     "postcss-preset-env": "^7.8.2",
