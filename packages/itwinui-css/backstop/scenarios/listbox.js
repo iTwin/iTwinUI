@@ -8,5 +8,6 @@ module.exports = [
   // Types
   scenario('Type default', {
     selectors: ['#demo-default'],
+    viewports: [{ width: 800, height: 600 }],
   }),
 ];
