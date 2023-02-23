@@ -2092,43 +2092,98 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
       translatedLabels?: FilterButtonBarTranslation;
     };
 
-  // const generateData = (start: number, end: number) => {
-  //   return Array(end - start)
-  //     .fill(null)
-  //     .map((_, index) => ({
-  //       name: `Name${start + index}`,
-  //       description: `Description${start + index}`,
-  //     }));
-  // };
-
-  const generateData = (start: number, end: number, filter?: string) => {
-    let dataNumber = 0;
-    const dataArray = Array(end - start)
-      .fill(null)
-      .map(() => {
-        let newData = { name: '', description: '' };
-        do {
-          newData = {
-            name: `Name${start + dataNumber}`,
-            description: `Description${start + dataNumber}`,
-          };
-          dataNumber++;
-        } while (
-          filter &&
-          !newData.name.includes(filter) &&
-          !newData.description.includes(filter)
-        );
-        return newData;
-      });
-    return dataArray;
+  type RowData = {
+    name: string;
+    description: string;
   };
 
   const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const maxRowsCount = useMemo(() => 60000, []);
   const [data, setData] = useState(() => generateData(0, 25));
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(pageSizeList[0]);
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState({
+    name: '',
+    description: '',
+  } as RowData);
+  const [filteredData, setFilteredData] = useState(
+    undefined as unknown as RowData[],
+  ); //useState([] as RowData[]);
+  const [totalRowsCount, setTotalRowsCount] = useState(maxRowsCount);
+
+  const generateData = (start: number, end: number) => {
+    return Array(end - start)
+      .fill(null)
+      .map((_, index) => {
+        if (filteredData !== undefined) {
+          return filteredData[index];
+        } else {
+          return {
+            name: `Name${start + index}`,
+            description: `Description${start + index}`,
+          };
+        }
+      });
+  };
+
+  // const generateData = (start: number, end: number, filter?: string) => {
+  //   let dataNumber = 0;
+  //   const dataArray = Array(end - start)
+  //     .fill(null)
+  //     .map(() => {
+  //       let newData = { name: '', description: '' };
+  //       do {
+  //         newData = {
+  //           name: `Name${start + dataNumber}`,
+  //           description: `Description${start + dataNumber}`,
+  //         };
+  //         dataNumber++;
+  //       } while (
+  //         filter &&
+  //         !newData.name.includes(filter) &&
+  //         !newData.description.includes(filter)
+  //       );
+  //       return newData;
+  //     });
+  //   return dataArray;
+  // };
+
+  const isPassFilter = (dataRow: RowData, filter: RowData) => {
+    let isPassName = false;
+    let isPassDescription = false;
+    // check that the name passes a filter, if there is one
+    if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+      isPassName = true;
+    }
+    // check that the description passes a filter, if there is one
+    if (
+      !filter.description ||
+      (filter.description && dataRow.description.includes(filter.description))
+    ) {
+      isPassDescription = true;
+    }
+    return isPassName && isPassDescription;
+  };
+
+  const generateFilteredData = (filter: RowData) => {
+    let dataNumber = 0;
+    const dataArray = [];
+    let newData = { name: '', description: '' };
+    do {
+      do {
+        newData = {
+          name: `Name${dataNumber}`,
+          description: `Description${dataNumber}`,
+        };
+        dataNumber++;
+      } while (!isPassFilter(newData, filter));
+      dataArray.push(newData);
+    } while (dataNumber < maxRowsCount);
+
+    setFilteredData(dataArray);
+    return dataArray;
+  };
 
   const ManualTextFilter = <T extends Record<string, unknown>>(
     props: TextFilterProps<T>,
@@ -2147,7 +2202,6 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
           generateData(
             currentPage * currentPageSize,
             (currentPage + 1) * currentPageSize,
-            filter,
           ),
         );
       }
@@ -2156,19 +2210,26 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
     return (
       <BaseFilter>
         <Input
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
+          value={column.id === 'name' ? filter.name : filter.description}
+          onChange={(e) =>
+            setFilter({
+              name: column.id === 'name' ? e.target.value : filter.name,
+              description:
+                column.id === 'name' ? e.target.value : filter.description,
+            })
+          }
           onKeyDown={onKeyDown}
           setFocus
         />
         <FilterButtonBar
           setFilter={() => {
             // simulating a request for filtered data
+            generateFilteredData(filter);
+            setTotalRowsCount(filteredData.length);
             setData(
               generateData(
                 currentPage * currentPageSize,
                 (currentPage + 1) * currentPageSize,
-                filter,
               ),
             );
             // setFilter(text);
@@ -2202,7 +2263,7 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
         Header: 'Description',
         accessor: 'description',
         maxWidth: 200,
-        Filter: tableFilters.TextFilter(),
+        Filter: ManualTextFilter,
       },
     ],
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -2234,10 +2295,11 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
         currentPage={currentPage}
         isLoading={false}
         // Imagining we know the total count of data items
-        totalRowsCount={60000}
+        totalRowsCount={totalRowsCount}
       />
     ),
-    [currentPage, pageSizeList],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentPage, pageSizeList, totalRowsCount],
   );
 
   return (
