@@ -54,9 +54,6 @@
       @media (max-width: 600px) {
         #demo-elevations { flex-direction: column; }
       }
-      /* [data-iui-layout='true'] {
-        height: calc(var(--iui-size-l) * 10);
-      } */
       .demo-surface-list {
         all: unset;
         display: flex;
@@ -212,7 +209,10 @@
         <div class="iui-surface-header">
           <h2 class="iui-text-subheading">Surface with empty state</h2>
         </div>
-        <div class="iui-surface-body">
+        <div
+          class="iui-surface-body"
+          style="display: flex;"
+        >
           <div class="demo-flex-component-2">
             <svg-activity
               class="iui-svg-icon"
