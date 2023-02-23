@@ -23,6 +23,19 @@ export const Basic: Story<ToggleSwitchProps> = (args) => {
   return <ToggleSwitch defaultChecked {...args} />;
 };
 
+export const Small: Story<ToggleSwitchProps> = (args) => {
+  const { switchSize = 'small', ...rest } = args;
+  return (
+    <div>
+      <ToggleSwitch defaultChecked switchSize={switchSize} {...rest} />
+    </div>
+  );
+};
+
+Small.args = {
+  switchSize: 'small',
+};
+
 export const DisabledChecked: Story<ToggleSwitchProps> = (args) => {
   const { disabled = true, ...rest } = args;
   return <ToggleSwitch defaultChecked disabled={disabled} {...rest} />;
