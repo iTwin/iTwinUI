@@ -8,6 +8,9 @@ module.exports = [
   scenario('Type Default', {
     selectors: ['#demo-default'],
   }),
+  scenario('Type Small', {
+    selectors: ['#demo-small'],
+  }),
   scenario('Type label left', {
     selectors: ['#demo-toggle-right'],
   }),
