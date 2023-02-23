@@ -43,15 +43,26 @@ export const TableCell = <T extends Record<string, unknown>>(
     }
     // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
     // 16 = initial_cell_padding, 35 = 27 + 8 = expander_width + margin
+
     const densityToPadding = {
       condensed: 12,
       'extra-condensed': 8,
     };
 
+    const multiplier = {
+      condensed: 32,
+      'extra-condensed': 28,
+    };
+
     const densityPadding =
       densityToPadding[density as keyof typeof densityToPadding] ?? 16;
+
+    const densityMultiplier =
+      multiplier[density as keyof typeof multiplier] ?? 35;
+
     const paddingLeft =
-      densityPadding + (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * 35;
+      densityPadding +
+      (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * densityMultiplier;
 
     return { paddingLeft };
   };
