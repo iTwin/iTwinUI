@@ -38,7 +38,6 @@ $surface-padding: var(--iui-size-2xs);
 }
 
 @mixin iui-surface-body {
-  display: flex;
   flex-grow: 1;
   overflow-x: hidden;
   overflow-y: auto;
