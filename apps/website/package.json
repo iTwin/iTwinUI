@@ -1,6 +1,7 @@
 {
   "name": "website",
   "version": "0.0.1",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development astro dev",
@@ -10,18 +11,18 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.13.0",
-    "@astrojs/react": "^1.2.2",
-    "@astrojs/sitemap": "^1.0.0",
-    "@codesandbox/sandpack-react": "^1.17.0",
-    "@codesandbox/sandpack-themes": "^1.17.0",
+    "@astrojs/mdx": "^0.17.0",
+    "@astrojs/react": "^2.0.2",
+    "@astrojs/sitemap": "^1.0.1",
+    "@codesandbox/sandpack-react": "^2.0.1",
+    "@codesandbox/sandpack-themes": "^2.0.1",
     "@fontsource/noto-sans": "^4.5.11",
     "@fontsource/noto-sans-mono": "^4.5.11",
     "@itwin/itwinui-react": "*",
     "@jsdevtools/rehype-toc": "3.0.2",
     "@tippyjs/react": "4.2.6",
     "@types/react": "^18.0.0",
-    "astro": "~1.7.2",
+    "astro": "^2.0.13",
     "nanostores": "^0.7.0",
     "postcss-preset-env": "^7.8.2",
     "react": "^18.0.0",
