@@ -3,7 +3,7 @@
 
 @mixin iui-divider {
   background-color: var(--iui-color-border-subtle);
-  flex-shrink: 0;
+  flex: none;
   @media (forced-colors: active) {
     background-color: CanvasText;
   }
