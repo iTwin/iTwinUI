@@ -2,8 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  transpilePackages: ['@itwin/itwinui-react'],
 };
 
-const withTM = require('next-transpile-modules')(['@itwin/itwinui-react']);
-
-module.exports = withTM(nextConfig);
+module.exports = nextConfig;

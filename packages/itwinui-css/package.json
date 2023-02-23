@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.5.1",
+  "version": "1.5.4",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -44,7 +44,7 @@
     "serve": "^14.0.1",
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "vite": "^3.0.0"
+    "vite": "^4.1.1"
   },
   "scripts": {
     "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",
