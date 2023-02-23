@@ -68,7 +68,8 @@
     "postcss": "8.4.20",
     "prettier": "2.8.0",
     "nanoid": "3.3.4",
-    "loader-utils": "2.0.4"
+    "loader-utils": "2.0.4",
+    "@svgr/webpack": "6.5.1"
   },
   "engines": {
     "npm": ">=7.0.0",
