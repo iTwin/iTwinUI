@@ -16,6 +16,7 @@ import {
   Tile,
   TileProps,
   Avatar,
+  ActionOverlay,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
 import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
@@ -212,7 +213,9 @@ export const AnchorLink: Story<TileProps> = (props) => {
   return (
     <Tile
       name={
-        <Tile.Action onClick={() => console.log('clicked')}>{name}</Tile.Action>
+        <ActionOverlay href='/?path=/docs/core-tile--anchor-link'>
+          {name}
+        </ActionOverlay>
       }
       description={description}
       metadata={metadata}

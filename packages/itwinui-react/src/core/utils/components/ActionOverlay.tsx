@@ -18,7 +18,7 @@ export type PolymorphicActionProps = PolymorphicComponentProps<
  * Polymorphic action component.
  * It is rendered as `a` by default.
  */
-export const PolymorphicAction = React.forwardRef((props, ref) => {
+export const ActionOverlay = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
   return (
     <Element
@@ -29,6 +29,6 @@ export const PolymorphicAction = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
 
-PolymorphicAction.displayName = 'PolymorphicAction';
+ActionOverlay.displayName = 'ActionOverlay';
 
-export default PolymorphicAction;
+export default ActionOverlay;

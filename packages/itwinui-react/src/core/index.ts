@@ -318,6 +318,7 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  ActionOverlay,
   Icon,
   Flex,
 } from './utils';
