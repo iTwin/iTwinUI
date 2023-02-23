@@ -7,37 +7,27 @@ import cx from 'classnames';
 import {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-} from '../index';
-
-type PolymorphicActionOwnProps = {
-  /**
-   * Content in the action element.
-   */
-  children?: React.ReactNode;
-};
+} from '../props';
 
 export type PolymorphicActionProps = PolymorphicComponentProps<
   'a',
-  PolymorphicActionOwnProps
+  { children?: React.ReactNode }
 >;
 
 /**
  * Polymorphic action component.
  * It is rendered as `a` by default.
- *
  */
 export const PolymorphicAction = React.forwardRef((props, ref) => {
-  const { as: Element = 'a', className, children, ...rest } = props;
+  const { as: Element = 'a', className, ...rest } = props;
   return (
     <Element
       ref={ref}
       className={cx('iui-component-action', className)}
       {...rest}
-    >
-      {children}
-    </Element>
+    />
   );
-}) as PolymorphicForwardRefComponent<'a', PolymorphicActionOwnProps>;
+}) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
 
 PolymorphicAction.displayName = 'PolymorphicAction';
 
