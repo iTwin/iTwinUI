@@ -83,29 +83,10 @@ if (code.includes('Copyright (c) Bentley Systems')) {
   }
 
   .sandbox-link {
-    display: grid;
-    place-items: center;
-    min-width: 2rem;
-    min-height: 2rem;
     position: absolute;
     bottom: 0.25rem;
     right: 0.25rem;
     z-index: 1;
-    background: transparent;
-    border-radius: 9e9px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    padding: 0.25rem;
-    color: var(--color-text);
-
-    &:hover {
-      background: hsl(0 0% 0% / 0.2);
-    }
-
-    > :global(svg) {
-      width: 1.25rem;
-      height: 1.25rem;
-    }
   }
 
   demo-code {
@@ -185,7 +166,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
       }
 
       &:hover {
-        border-color: var(--color-line-1);
+        border-color: currentColor;
       }
     }
 
