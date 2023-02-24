@@ -3,17 +3,19 @@ title: DatePicker
 description: Used for selecting dates on a calendar to set timeframes, deadlines, and more.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/DatePicker/DatePicker.d.ts'
-exampleCodeFile1: DatePicker.main.tsx
 thumbnail: DatePicker
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='DatePicker.main.tsx' truncate={false}>
+  <AllExamples.DatePickerMainExample client:load />
+</LiveExample>
 
 When a user needs to schedule deadlines, timeframes, or for age verification purposes, we provide them with a date picker. It behaves much like a select menu. We currently have three different types of date pickers.
 
