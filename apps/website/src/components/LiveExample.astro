@@ -3,6 +3,8 @@ import * as AllExamples from '~/examples';
 import LiveExample from './LiveExample';
 import fs from 'node:fs';
 import { getSandpackCssText } from '@codesandbox/sandpack-react';
+import baseUrl from '__dirname';
+import path from 'path';
 
 export type Props = {
   /** name of the file to read code example from, should be located in ~/examples folder */
@@ -11,12 +13,7 @@ export type Props = {
 
 const { src } = Astro.props;
 
-// baseUrl refers to project root
-const baseUrl = import.meta.env.PROD
-  ? new URL('..', import.meta.url).href
-  : new URL('../../', import.meta.url);
-
-const codePath = new URL(`./src/examples/${src}`, baseUrl);
+const codePath = path.join(baseUrl, `./src/examples/${src}`);
 let code = await fs.promises.readFile(codePath, 'utf8');
 
 // strip copyright header (first 4 lines)

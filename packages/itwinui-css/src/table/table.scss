@@ -122,7 +122,7 @@
   // Sort icon
   .iui-table-sort {
     opacity: 0;
-    fill: var(--iui-color-icon-muted);
+    --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
   }
 
   // Sorted column
@@ -131,7 +131,7 @@
 
     .iui-table-sort {
       opacity: 1;
-      fill: var(--iui-color-icon);
+      --_iui-table-cell-icon-fill: var(--iui-color-icon);
     }
   }
 }
@@ -201,6 +201,7 @@
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
       border-bottom: 1px solid var(--iui-color-border);
+      flex-shrink: 0;
       @include iui-transition-group;
     }
 
@@ -468,6 +469,10 @@
     height: var(--iui-size-l);
     margin-right: var(--iui-size-s);
     margin-left: auto;
+
+    :where(svg:not(.iui-radial)) {
+      fill: var(--_iui-table-cell-icon-fill);
+    }
   }
 }
 

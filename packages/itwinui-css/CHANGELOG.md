@@ -1,5 +1,62 @@
 # Changelog
 
+## 1.5.5
+
+### Patch Changes
+
+- b2831ddb: Fix expandable rows not displaying when height is set on table and `overflow-y` is present.
+
+## 1.5.4
+
+### Patch Changes
+
+- e1efed3b: Fix Table status icon fill not overriding svg's fill attribute.
+
+## 1.5.3
+
+### Patch Changes
+
+- 27c23b31: Tooltip's background now has a blur filter to make text more readable.
+
+## 1.5.2
+
+### Patch Changes
+
+- 2845b4f4: Fixed a bug where inline elements (e.g. links) were getting disrupted when using inside a checkbox label.
+
+## 1.5.1
+
+### Patch Changes
+
+- d3844a07: Dialog content won't overflow off smaller screen sizes when the content is too big
+
+## 1.5.0
+
+### Minor Changes
+
+- 06476ada: Added new `Flex` utility component and optional `Flex.Spacer`/`Flex.Item` subcomponents to make it easier to work with CSS flexbox and use iTwinUI design tokens for gap.
+
+  ```jsx
+  <Flex gap='xl' justifyContent='center'>
+    <div>...</div>
+    <div>...</div>
+  </Flex>
+  ```
+
+  ```jsx
+  <Flex>
+    <Flex.Item>...</Flex.Item>
+    <Flex.Spacer />
+    <Flex.Item>...</Flex.Item>
+    <Flex.Item>...</Flex.Item>
+  </Flex>
+  ```
+
+### Patch Changes
+
+- fd2e5239: Alert: close button's focus color now matches the status color.
+- a1a8c74d: Resizable dialog now has a min height set so that it always includes the button bar.
+
 ## 1.4.0
 
 ### Minor Changes
