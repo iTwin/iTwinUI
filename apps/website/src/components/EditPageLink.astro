@@ -18,7 +18,8 @@ if (page === 'components') {
 const repoUrl = 'https://github.com/iTwin/iTwinUI';
 const githubEditUrl = `${repoUrl}/edit/main/apps/website/src/pages/docs/${fileName}`;
 ---
-<a href={githubEditUrl} {...rest}>
+
+<a href={githubEditUrl} target='_blank' {...rest}>
   <EditIcon aria-hidden='true' />Edit this page on GitHub
 </a>
 
