@@ -44,10 +44,17 @@ type RootProps = {
      * if it is the topmost `ThemeProvider` in the tree. Nested `ThemeProvider`s will
      * be detected using React Context and will not apply a background-color.
      *
+     * Additionally, if theme is set to `'inherit'`, then this will default to false.
+     *
      * When set to true or false, it will override the default behavior.
      */
     applyBackground?: boolean;
   };
+  /**
+   * Whether theme was set to `'inherit'`.
+   * This will be used to determine if applyBackground will default to false.
+   */
+  isInheritingTheme?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
@@ -114,7 +121,13 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   // now that we know there are children, we can render the root and provide the context value
   return (
-    <Root theme={theme} themeOptions={themeOptions} ref={mergedRefs} {...rest}>
+    <Root
+      theme={theme}
+      isInheritingTheme={themeProp === 'inherit'}
+      themeOptions={themeOptions}
+      ref={mergedRefs}
+      {...rest}
+    >
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
@@ -140,6 +153,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
     themeOptions,
     as: Element = 'div',
     className,
+    isInheritingTheme,
     ...rest
   } = props;
 
@@ -151,7 +165,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const isThemeAlreadySet = useIsThemeAlreadySet(ref.current?.ownerDocument);
   const shouldApplyBackground =
-    themeOptions?.applyBackground ?? !isThemeAlreadySet.current;
+    themeOptions?.applyBackground ??
+    (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
   return (
     <Element

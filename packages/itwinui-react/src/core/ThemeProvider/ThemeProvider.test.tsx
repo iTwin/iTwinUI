@@ -141,6 +141,22 @@ describe('When rendering an element (with children)', () => {
     const innerRoot = container.querySelector('[data-test="inner"]');
     expect(innerRoot).not.toHaveClass('iui-root-background');
   });
+
+  it('should default applyBackground to false when inheriting theme', () => {
+    const { container, rerender } = render(
+      <ThemeProvider theme='inherit'>Hello</ThemeProvider>,
+    );
+    const element = container.querySelector('.iui-root');
+    expect(element).not.toHaveClass('iui-root-background');
+
+    // should prefer value passed by user
+    rerender(
+      <ThemeProvider theme='inherit' themeOptions={{ applyBackground: true }}>
+        Hello
+      </ThemeProvider>,
+    );
+    expect(element).toHaveClass('iui-root-background');
+  });
 });
 
 describe('Fallback (without children)', () => {
