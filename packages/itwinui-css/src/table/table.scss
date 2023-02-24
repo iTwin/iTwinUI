@@ -201,6 +201,7 @@
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
       border-bottom: 1px solid var(--iui-color-border);
+      flex-shrink: 0;
       @include iui-transition-group;
     }
 
