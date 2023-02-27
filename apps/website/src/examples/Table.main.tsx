@@ -7,17 +7,17 @@ import { Table, DefaultCell } from '@itwin/itwinui-react';
 import type { CellProps, CellRendererProps, Column } from 'react-table';
 
 export default () => {
-  type TableStoryDataType = {
+  type TableDataType = {
     product: string;
     price: number;
     quantity: number;
     rating: number;
     status: 'positive' | 'negative' | 'warning' | undefined;
-    subRows: TableStoryDataType[];
+    subRows: TableDataType[];
   };
 
   const generateItem = React.useCallback(
-    (index: number, parentRow = '', depth = 0): TableStoryDataType => {
+    (index: number, parentRow = '', depth = 0): TableDataType => {
       const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
       const rating = Math.round(Math.random() * 5);
       return {
@@ -46,7 +46,7 @@ export default () => {
   );
 
   const columns = React.useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): Column<TableDataType>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -57,7 +57,7 @@ export default () => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableDataType>) => {
           return <>${props.value}</>;
         },
       },
@@ -65,7 +65,7 @@ export default () => {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
-        cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
+        cellRenderer: (props: CellRendererProps<TableDataType>) => {
           return (
             <DefaultCell {...props} status={props.cellProps.row.original.status}>
               {props.cellProps.row.original.rating}/5
@@ -84,12 +84,11 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ minWidth: 350 }}>
       <Table
         columns={columns}
         emptyTableContent='No data.'
         data={data}
-        style={{ height: '100%' }}
         rowProps={rowProps}
         density='condensed'
       />

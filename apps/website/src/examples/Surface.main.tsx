@@ -7,18 +7,8 @@ import { Surface } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Surface
-      elevation={4}
-      style={{
-        height: '50%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      <span style={{ padding: '12px' }}>
-        Change the elevation property of the component to adjust the shadow level.
-      </span>
+    <Surface elevation={4} style={{ height: 200, padding: 12 }}>
+      <p>Change the elevation prop to adjust the shadow level.</p>
     </Surface>
   );
 };

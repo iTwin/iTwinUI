@@ -3,7 +3,6 @@ title: Surface
 description: The Surface container allows content to appear elevated through the use of a drop shadow.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Surface/Surface.d.ts'
-exampleCodeFile1: Surface.main.tsx
 thumbnail: Surface
 group: core
 ---
@@ -14,7 +13,9 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Surface.main.tsx' truncate={false}>
+  <AllExamples.SurfaceMainExample client:load />
+</LiveExample>
 
 ## Props
 

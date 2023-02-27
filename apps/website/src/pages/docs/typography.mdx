@@ -3,9 +3,7 @@ title: Typography
 description:
 layout: ./_layout.astro
 propsPathText: '@itwin/itwinui-react/esm/core/Typography/Text/Text.d.ts'
-exampleCodeFileText: Text.main.tsx
 propsPathLabel: '@itwin/itwinui-react/esm/core/Label/Label.d.ts'
-exampleCodeFileLabel: Label.main.tsx
 thumbnail: Typography
 group: typography
 ---
@@ -18,7 +16,9 @@ import * as AllExamples from '~/examples';
 
 ## Text
 
-<LiveExample src={frontmatter.exampleCodeFileText} />
+<LiveExample src='Text.main.tsx' truncate={false}>
+  <AllExamples.TextMainExample client:load />
+</LiveExample>
 
 ### Props
 
@@ -26,7 +26,9 @@ import * as AllExamples from '~/examples';
 
 ## Label
 
-<LiveExample src={frontmatter.exampleCodeFileLabel} />
+<LiveExample src='Label.main.tsx' truncate={false}>
+  <AllExamples.LabelMainExample client:load />
+</LiveExample>
 
 ### Props
 

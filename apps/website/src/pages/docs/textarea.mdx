@@ -3,7 +3,6 @@ title: Textarea
 description: A multiline text box.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/LabeledTextarea/LabeledTextarea.tsx'
-exampleCodeFile1: Textarea.main.tsx
 thumbnail: TextArea
 group: inputs
 ---
@@ -14,7 +13,9 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Textarea.main.tsx' truncate={false}>
+  <AllExamples.TextareaMainExample client:load />
+</LiveExample>
 
 Text areas (or multi-line fields) are larger text fields that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
 

@@ -3,7 +3,6 @@ title: Toggle Switch
 description: The toggle switch is a high contrast component used for toggling settings that only have two states.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/ToggleSwitch/ToggleSwitch.tsx'
-exampleCodeFile1: ToggleSwitch.main.tsx
 thumbnail: ToggleSwitch
 group: inputs
 ---
@@ -14,7 +13,9 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ToggleSwitch.main.tsx' truncate={false}>
+  <AllExamples.ToggleSwitchMainExample client:load />
+</LiveExample>
 
 Toggle switches are instant action components used to toggle an option instantly with a single click
 or tap. They are more common in mobile layouts, but are also present in desktop environments. For example,

@@ -3,7 +3,6 @@ title: Code
 description:
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Typography/Code/Code.tsx'
-exampleCodeFile1: Code.main.tsx
 thumbnail: Code
 group: typography
 ---
@@ -14,7 +13,9 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Code.main.tsx' truncate={false}>
+  <AllExamples.CodeMainExample client:load />
+</LiveExample>
 
 ## Props
 

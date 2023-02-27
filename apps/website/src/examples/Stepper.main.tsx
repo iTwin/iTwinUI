@@ -3,40 +3,49 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Stepper } from '@itwin/itwinui-react';
+import { Button, Flex, Stepper } from '@itwin/itwinui-react';
+
+const steps = [
+  { name: 'First Step' },
+  { name: 'Second Step' },
+  { name: 'Third Step' },
+  { name: 'Last Step' },
+];
 
 export default () => {
   const [currentStep, setCurrentStep] = React.useState(2);
-  const steps = [
-    { name: 'First Step' },
-    { name: 'Completed Step' },
-    { name: 'Current Step' },
-    { name: 'Next Step' },
-    { name: 'Last Step' },
-  ];
-
-  const onStepClick = (index: number) => {
-    setCurrentStep(index);
-  };
-
-  const previousStepHandler = () => {
-    if (currentStep !== 0) setCurrentStep(currentStep - 1);
-  };
-  const nextStepHandler = () => {
-    if (currentStep !== steps.length) setCurrentStep(currentStep + 1);
-  };
 
   return (
-    <div style={{ width: '90%' }}>
-      <Stepper currentStep={currentStep} steps={steps} onStepClick={onStepClick} />
-      <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginTop: '24px' }}>
-        <Button size='small' onClick={previousStepHandler}>
+    <Flex flexDirection='column' gap='m' style={{ minWidth: 400 }}>
+      <Flex.Item alignSelf='stretch'>
+        <Stepper
+          currentStep={currentStep}
+          steps={steps}
+          onStepClick={(index: number) => {
+            setCurrentStep(index);
+          }}
+        />
+      </Flex.Item>
+
+      <Flex>
+        <Button
+          disabled={currentStep === 0}
+          onClick={() => {
+            if (currentStep !== 0) setCurrentStep(currentStep - 1);
+          }}
+        >
           Previous
         </Button>
-        <Button styleType='cta' size='small' onClick={nextStepHandler}>
+        <Button
+          styleType='cta'
+          disabled={currentStep === steps.length - 1}
+          onClick={() => {
+            if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+          }}
+        >
           Next
         </Button>
-      </div>
-    </div>
+      </Flex>
+    </Flex>
   );
 };

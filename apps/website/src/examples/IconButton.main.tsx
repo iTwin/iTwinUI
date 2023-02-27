@@ -8,10 +8,8 @@ import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <div>
-      <IconButton onClick={() => {}}>
-        <SvgAdd />
-      </IconButton>
-    </div>
+    <IconButton onClick={() => {}}>
+      <SvgAdd />
+    </IconButton>
   );
 };

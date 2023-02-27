@@ -7,8 +7,9 @@ import { Radio } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div>
-      <Radio label='Radio button' />
-    </div>
+    <>
+      <Radio label='Apple' value='apple' name='fruit' />
+      <Radio label='Orange' value='orange' name='fruit' />
+    </>
   );
 };

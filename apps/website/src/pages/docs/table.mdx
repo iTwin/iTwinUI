@@ -3,7 +3,6 @@ title: Table
 description: Data tables display sets of data.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Table/Table.d.ts'
-exampleCodeFile1: Table.main.tsx
 thumbnail: Table
 group: core
 ---
@@ -14,7 +13,9 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Table.main.tsx'>
+  <AllExamples.TableMainExample client:load />
+</LiveExample>
 
 Tables are an important element in most web-based applications. We’ve presented a set of flexible standards to allow for a variety of table styles. As always, the specifics of how you style your table should be determined by the desired user experience and the goals of the application.
 
