@@ -65,6 +65,9 @@ export { default as InformationPanelMainExample } from './InformationPanel.main'
 
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 
+export { default as ProgressLinearMainExample } from './ProgressLinear.main';
+export { default as ProgressRadialMainExample } from './ProgressRadial.main';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
@@ -78,8 +81,6 @@ export { default as CodeMainExample } from './Code.main';
 export { default as KeyboardMainExample } from './Keyboard.main';
 export { default as InputMainExample } from './Input.main';
 export { default as LabelMainExample } from './Label.main';
-export { default as ProgressLinearMainExample } from './ProgressLinear.main';
-export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 export { default as RadioMainExample } from './Radio.main';
 export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as SelectMainExample } from './Select.main';
