@@ -20,7 +20,7 @@
     @include iui-anchor-underline('on-initial');
   }
 
-  [data-iui-contrast='high'] & {
+  :is([data-iui-contrast='high'] &) {
     @include iui-anchor-underline('on-initial');
   }
 }

@@ -7,12 +7,12 @@ module.exports = async (page, scenario, vp) => {
   await require('./overrideCss')(page, scenario);
 
   if (scenario.label.endsWith('_light')) {
-    await page.evaluate(() => (document.documentElement.dataset.iuiTheme = 'light'));
+    await page.evaluate(() => (document.body.dataset.iuiTheme = 'light'));
   } else if (scenario.label.endsWith('_dark')) {
-    await page.evaluate(() => (document.documentElement.dataset.iuiTheme = 'dark'));
+    await page.evaluate(() => (document.body.dataset.iuiTheme = 'dark'));
   }
   if (scenario.label.endsWith('_hc_light') || scenario.label.endsWith('_hc_dark')) {
-    await page.evaluate(() => (document.documentElement.dataset.iuiContrast = 'high'));
+    await page.evaluate(() => (document.body.dataset.iuiContrast = 'high'));
   }
   await require('./browserActionsHelper')(page, scenario);
 
