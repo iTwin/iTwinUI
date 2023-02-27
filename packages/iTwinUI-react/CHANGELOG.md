@@ -2,6 +2,7 @@
 
 ### 1.48.2
 
+- Wrapped all styles in a `@layer` to make it easier to override them. This makes it possible for iTwinUI v2 to unset all conflicting styles from v1, thereby enabling incremental adoption.
 - Fixed an issue where Table's `onBottomReached` callback was not being invoked when using strict mode with react 18.
 
 ### [1.48.1](https://www.github.com/iTwin/iTwinUI-react/compare/v1.48.0...v1.48.1) (2022-10-24)
