@@ -36,8 +36,7 @@
 
 ### Patch Changes
 
-- Updated dependencies [2397ee0c]
-- Updated dependencies [2397ee0c]
+- Updated dependencies
   - @itwin/itwinui-variables@2.0.0
   - @itwin/itwinui-css@1.6.0
 
