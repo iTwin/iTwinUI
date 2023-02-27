@@ -72,8 +72,6 @@
   border-radius: var(--iui-border-radius-1);
   background-color: var(--_iui-checkbox-background-color);
   cursor: pointer;
-  transition: border-color var(--iui-duration-1) ease-out;
-  border: solid 1px var(--_iui-checkbox-border-color);
   transition: outline-color var(--iui-duration-1) ease-out;
   outline: solid 1px var(--_iui-checkbox-border-color);
   outline-offset: -1px;
