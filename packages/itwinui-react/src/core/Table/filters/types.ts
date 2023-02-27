@@ -23,7 +23,7 @@ export interface TableFilterValue<T extends Record<string, unknown>> {
   filterType: FilterType<T>;
 }
 
-export type TableFilterProps<T extends Record<string, unknown>> =
+export type TableFilterProps<T extends Record<string, unknown> | object> =
   FilterProps<T> & {
     /**
      * Data of column on which filter is opened. It is provided by the table it self.
