@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.5.5
+
+### Patch Changes
+
+- b2831ddb: Fix expandable rows not displaying when height is set on table and `overflow-y` is present.
+
+## 1.5.4
+
+### Patch Changes
+
+- e1efed3b: Fix Table status icon fill not overriding svg's fill attribute.
+
 ## 1.5.3
 
 ### Patch Changes
