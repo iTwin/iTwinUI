@@ -52,6 +52,22 @@ describe('When rendering an element (with children)', () => {
     },
   );
 
+  it('should inherit parent theme when using theme=inherit', () => {
+    const { container } = render(
+      <ThemeProvider theme='dark'>
+        outer
+        <ThemeProvider theme='inherit' data-test='inner'>
+          inner
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    const innerRoot = container.querySelector('[data-test="inner"]');
+    expect(innerRoot).toHaveClass('iui-root');
+    expect(innerRoot).toHaveAttribute('data-iui-theme', 'dark');
+    expect(innerRoot).toHaveAttribute('data-iui-contrast', 'default');
+  });
+
   it('should respect OS preferences', () => {
     useMediaSpy.mockReturnValue(true);
     const { container } = render(
@@ -124,6 +140,22 @@ describe('When rendering an element (with children)', () => {
 
     const innerRoot = container.querySelector('[data-test="inner"]');
     expect(innerRoot).not.toHaveClass('iui-root-background');
+  });
+
+  it('should default applyBackground to false when inheriting theme', () => {
+    const { container, rerender } = render(
+      <ThemeProvider theme='inherit'>Hello</ThemeProvider>,
+    );
+    const element = container.querySelector('.iui-root');
+    expect(element).not.toHaveClass('iui-root-background');
+
+    // should prefer value passed by user
+    rerender(
+      <ThemeProvider theme='inherit' themeOptions={{ applyBackground: true }}>
+        Hello
+      </ThemeProvider>,
+    );
+    expect(element).toHaveClass('iui-root-background');
   });
 });
 

@@ -57,6 +57,7 @@ import {
   UseSortByState,
   UseTableOptions,
 } from 'react-table';
+import { TableFilterProps } from '../core';
 
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;
@@ -95,8 +96,11 @@ declare module 'react-table' {
       UseSortByOptions<D> {
     /**
      * List of columns.
+     *
+     * Should not have a top-level `Header` or a `columns` sub-property. They are only allowed to be passed for backwards compatibility.
+     * See [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes).
      */
-    columns: Array<Column<any>>; // eslint-disable-line @typescript-eslint/no-explicit-any
+    columns: Array<Column<D>>;
     /**
      * Table data list.
      * Must be memoized.
@@ -187,7 +191,7 @@ declare module 'react-table' {
     /**
      * Filter component used as a column filter. Should use filters from `tableFilters`.
      */
-    Filter?: Renderer<FilterProps<D>>;
+    Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
     /**
      * String value or custom function to use for filtering.
      * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.

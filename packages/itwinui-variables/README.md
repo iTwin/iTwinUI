@@ -30,6 +30,13 @@ import '@itwin/itwinui-variables';
 > @import '@itwin/itwinui-variables/index.css';
 > ```
 
+Add the `iui-root` class to the top of your app.
+```html
+<body class="iui-root">
+  <!-- your application code -->
+</body>
+```
+
 Now you can start using the variables:
 
 ```css
@@ -43,7 +50,7 @@ button {
 By default, the variables use light theme. You can switch to dark theme using `data-iui-theme` in your HTML.
 
 ```html
-<body data-iui-theme="dark">
+<body class="iui-root" data-iui-theme="dark">
   <!-- your application code -->
 </body>
 ```
@@ -51,12 +58,12 @@ By default, the variables use light theme. You can switch to dark theme using `d
 You can also specify `data-iui-contrast` to switch to a high contrast theme.
 
 ```html
-<body data-iui-theme="dark" data-iui-contrast="high">
+<body class="iui-root" data-iui-theme="dark" data-iui-contrast="high">
   <!-- your application code -->
 </body>
 ```
 
-If you want the variables to automatically respect the user preferences (color-scheme and contrast), then import `os.css`:
+If you want the variables to automatically respect the user preferences (color-scheme and contrast), then additionally import `os.css`:
 
 ```css
 @import '@itwin/itwinui-variables/os.css';
