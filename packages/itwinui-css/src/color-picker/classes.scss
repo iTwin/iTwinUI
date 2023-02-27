@@ -2,42 +2,44 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-color-picker {
-  @include iui-color-picker;
-}
+@layer itwinui-v1 {
+  .iui-color-picker {
+    @include iui-color-picker;
+  }
 
-.iui-color-palette {
-  @include iui-color-palette;
-}
+  .iui-color-palette {
+    @include iui-color-palette;
+  }
 
-.iui-color-input {
-  @include iui-color-input;
-}
+  .iui-color-input {
+    @include iui-color-input;
+  }
 
-.iui-color-swatch {
-  @include iui-color-swatch;
-}
+  .iui-color-swatch {
+    @include iui-color-swatch;
+  }
 
-.iui-color-picker-section-label {
-  @include iui-color-picker-section-label;
-}
+  .iui-color-picker-section-label {
+    @include iui-color-picker-section-label;
+  }
 
-.iui-color-selection-wrapper {
-  @include iui-color-selection-wrapper;
-}
+  .iui-color-selection-wrapper {
+    @include iui-color-selection-wrapper;
+  }
 
-.iui-color-field {
-  @include iui-color-field;
-}
+  .iui-color-field {
+    @include iui-color-field;
+  }
 
-.iui-hue-slider {
-  @include iui-hue-slider;
-}
+  .iui-hue-slider {
+    @include iui-hue-slider;
+  }
 
-.iui-opacity-slider {
-  @include iui-opacity-slider;
-}
+  .iui-opacity-slider {
+    @include iui-opacity-slider;
+  }
 
-.iui-color-dot {
-  @include iui-color-dot;
+  .iui-color-dot {
+    @include iui-color-dot;
+  }
 }

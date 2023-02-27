@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.63.2
+
+- All styles are now wrapped in `@layer`. This makes it possible to easily override and prevent conflicts with the next major version. ([#1037](https://www.github.com/iTwin/iTwinUI/pull/1037))
+
 ### [0.63.1](https://www.github.com/iTwin/iTwinUI/compare/v0.63.0...v0.63.1) (2022-08-11)
 
 ### Fixes

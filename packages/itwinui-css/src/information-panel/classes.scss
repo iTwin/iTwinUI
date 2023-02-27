@@ -2,26 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-information-panel-wrapper {
-  @include iui-information-panel-wrapper;
-}
-
-.iui-information-panel {
-  @include iui-information-panel;
-
-  &.iui-right {
-    @include iui-information-panel-right;
+@layer itwinui-v1 {
+  .iui-information-panel-wrapper {
+    @include iui-information-panel-wrapper;
   }
 
-  &.iui-bottom {
-    @include iui-information-panel-bottom;
+  .iui-information-panel {
+    @include iui-information-panel;
+
+    &.iui-right {
+      @include iui-information-panel-right;
+    }
+
+    &.iui-bottom {
+      @include iui-information-panel-bottom;
+    }
+
+    &.iui-visible {
+      @include iui-information-panel-visible;
+    }
   }
 
-  &.iui-visible {
-    @include iui-information-panel-visible;
+  .iui-information-body-content {
+    @include iui-information-body-content;
   }
-}
-
-.iui-information-body-content {
-  @include iui-information-body-content;
 }

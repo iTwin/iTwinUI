@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-file-upload {
-  @include iui-file-upload;
+@layer itwinui-v1 {
+  .iui-file-upload {
+    @include iui-file-upload;
+  }
 }

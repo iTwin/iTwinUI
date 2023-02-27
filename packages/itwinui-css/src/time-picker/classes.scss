@@ -2,15 +2,17 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-time-picker {
-  @include iui-time-picker;
-}
+@layer itwinui-v1 {
+  .iui-time-picker {
+    @include iui-time-picker;
+  }
 
-.iui-time {
-  @include iui-time-picker-list;
-}
+  .iui-time {
+    @include iui-time-picker-list;
+  }
 
-.iui-period {
-  @include iui-time-picker-list;
-  @include iui-time-picker-period;
+  .iui-period {
+    @include iui-time-picker-list;
+    @include iui-time-picker-period;
+  }
 }

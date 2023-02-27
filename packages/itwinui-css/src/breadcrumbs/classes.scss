@@ -2,30 +2,32 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-breadcrumbs {
-  @include iui-breadcrumbs;
-}
+@layer itwinui-v1 {
+  .iui-breadcrumbs {
+    @include iui-breadcrumbs;
+  }
 
-.iui-breadcrumbs-list {
-  @include iui-breadcrumbs-list;
-}
+  .iui-breadcrumbs-list {
+    @include iui-breadcrumbs-list;
+  }
 
-.iui-breadcrumbs-item {
-  @include iui-breadcrumbs-item;
-}
+  .iui-breadcrumbs-item {
+    @include iui-breadcrumbs-item;
+  }
 
-.iui-breadcrumbs-item-overrides {
-  @include iui-breadcrumbs-item-overrides;
-}
+  .iui-breadcrumbs-item-overrides {
+    @include iui-breadcrumbs-item-overrides;
+  }
 
-.iui-breadcrumbs-text {
-  @include iui-breadcrumbs-text;
-}
+  .iui-breadcrumbs-text {
+    @include iui-breadcrumbs-text;
+  }
 
-.iui-breadcrumbs-button {
-  @include iui-breadcrumbs-button;
-}
+  .iui-breadcrumbs-button {
+    @include iui-breadcrumbs-button;
+  }
 
-.iui-breadcrumbs-separator {
-  @include iui-breadcrumbs-separator;
+  .iui-breadcrumbs-separator {
+    @include iui-breadcrumbs-separator;
+  }
 }

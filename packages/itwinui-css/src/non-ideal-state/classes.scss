@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-non-ideal-state {
-  @include iui-non-ideal-state;
+@layer itwinui-v1 {
+  .iui-non-ideal-state {
+    @include iui-non-ideal-state;
+  }
 }

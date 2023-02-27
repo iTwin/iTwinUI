@@ -2,12 +2,14 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-alert {
-  @include iui-alert;
+@layer itwinui-v1 {
+  .iui-alert {
+    @include iui-alert;
 
-  @each $status in positive, negative, warning, informational {
-    &.iui-#{$status} {
-      @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
+    @each $status in positive, negative, warning, informational {
+      &.iui-#{$status} {
+        @include iui-alert-category($statusColor: if($status == informational, 'primary', $status));
+      }
     }
   }
 }

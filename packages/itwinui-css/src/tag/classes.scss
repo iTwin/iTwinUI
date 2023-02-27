@@ -3,27 +3,29 @@
 @import './tag';
 @import '../anchor/index';
 
-.iui-tag {
-  @include iui-tag;
-}
+@layer itwinui-v1 {
+  .iui-tag {
+    @include iui-tag;
+  }
 
-.iui-tag-basic {
-  @include iui-tag-basic;
-}
+  .iui-tag-basic {
+    @include iui-tag-basic;
+  }
 
-.iui-tag-label {
-  @include iui-tag-label;
-}
+  .iui-tag-label {
+    @include iui-tag-label;
+  }
 
-.iui-tag-button {
-  @include iui-tag-button;
-}
+  .iui-tag-button {
+    @include iui-tag-button;
+  }
 
-a.iui-tag-basic {
-  @include iui-anchor;
-  @include iui-focus($offset: 1px);
-}
+  a.iui-tag-basic {
+    @include iui-anchor;
+    @include iui-focus($offset: 1px);
+  }
 
-.iui-tag-container {
-  @include iui-tag-container;
+  .iui-tag-container {
+    @include iui-tag-container;
+  }
 }

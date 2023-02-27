@@ -2,50 +2,52 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-tile {
-  @include iui-tile;
+@layer itwinui-v1 {
+  .iui-tile {
+    @include iui-tile;
 
-  &.iui-positive {
-    @include iui-tile-status(positive);
+    &.iui-positive {
+      @include iui-tile-status(positive);
+    }
+
+    &.iui-warning {
+      @include iui-tile-status(warning);
+    }
+
+    &.iui-negative {
+      @include iui-tile-status(negative);
+    }
   }
 
-  &.iui-warning {
-    @include iui-tile-status(warning);
+  .iui-tile-thumbnail-type-indicator {
+    @include iui-tile-thumbnail-type-indicator;
   }
 
-  &.iui-negative {
-    @include iui-tile-status(negative);
+  .iui-tile-thumbnail-quick-action {
+    @include iui-tile-thumbnail-quick-action;
   }
-}
 
-.iui-tile-thumbnail-type-indicator {
-  @include iui-tile-thumbnail-type-indicator;
-}
+  .iui-tile-thumbnail-badge-container {
+    @include iui-tile-thumbnail-badge;
+  }
 
-.iui-tile-thumbnail-quick-action {
-  @include iui-tile-thumbnail-quick-action;
-}
+  .iui-tile-buttons {
+    @include iui-tile-buttons;
+  }
 
-.iui-tile-thumbnail-badge-container {
-  @include iui-tile-thumbnail-badge;
-}
+  .iui-tile-thumbnail {
+    @include iui-tile-thumbnail;
+  }
 
-.iui-tile-buttons {
-  @include iui-tile-buttons;
-}
+  .iui-tile-thumbnail-picture {
+    @include iui-tile-thumbnail-picture;
+  }
 
-.iui-tile-thumbnail {
-  @include iui-tile-thumbnail;
-}
+  .iui-tile-content {
+    @include iui-tile-content;
+  }
 
-.iui-tile-thumbnail-picture {
-  @include iui-tile-thumbnail-picture;
-}
-
-.iui-tile-content {
-  @include iui-tile-content;
-}
-
-.iui-tile-more-options {
-  @include iui-tile-more-options;
+  .iui-tile-more-options {
+    @include iui-tile-more-options;
+  }
 }

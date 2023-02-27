@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-backdrop {
-  @include iui-backdrop;
+@layer itwinui-v1 {
+  .iui-backdrop {
+    @include iui-backdrop;
+  }
 }

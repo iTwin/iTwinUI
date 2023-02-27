@@ -2,26 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-icons-default {
-  @include iui-icons-default;
-}
+@layer itwinui-v1 {
+  .iui-icons-default {
+    @include iui-icons-default;
+  }
 
-.iui-icons-small {
-  @include iui-icons-small;
-}
+  .iui-icons-small {
+    @include iui-icons-small;
+  }
 
-.iui-icons-large {
-  @include iui-icons-large;
-}
+  .iui-icons-large {
+    @include iui-icons-large;
+  }
 
-.iui-icons-xl {
-  @include iui-icons-xl;
-}
+  .iui-icons-xl {
+    @include iui-icons-xl;
+  }
 
-.iui-icons-xxl {
-  @include iui-icons-xxl;
-}
+  .iui-icons-xxl {
+    @include iui-icons-xxl;
+  }
 
-.iui-icons-3xl {
-  @include iui-icons-3xl;
+  .iui-icons-3xl {
+    @include iui-icons-3xl;
+  }
 }

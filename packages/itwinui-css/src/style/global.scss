@@ -3,68 +3,70 @@
 @import './index';
 @import './anchor';
 
-html {
-  @include theme-variables(light);
-
-  @media (prefers-color-scheme: dark) {
-    @include theme-variables(dark);
-  }
-
-  @media (prefers-color-scheme: light) and (prefers-contrast: more) {
-    @include theme-variables(light-hc);
-  }
-
-  @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
-    @include theme-variables(dark-hc);
-  }
-
-  &.iui-theme-light {
+@layer itwinui-v1 {
+  html {
     @include theme-variables(light);
+
+    @media (prefers-color-scheme: dark) {
+      @include theme-variables(dark);
+    }
+
+    @media (prefers-color-scheme: light) and (prefers-contrast: more) {
+      @include theme-variables(light-hc);
+    }
+
+    @media (prefers-color-scheme: dark) and (prefers-contrast: more) {
+      @include theme-variables(dark-hc);
+    }
+
+    &.iui-theme-light {
+      @include theme-variables(light);
+    }
+
+    &.iui-theme-dark {
+      @include theme-variables(dark);
+    }
+
+    &.iui-theme-light-hc {
+      @include theme-variables(light-hc);
+    }
+
+    &.iui-theme-dark-hc {
+      @include theme-variables(dark-hc);
+    }
   }
 
-  &.iui-theme-dark {
-    @include theme-variables(dark);
+  .iui-body {
+    @include themed {
+      background-color: t(iui-color-background-2);
+      color: t(iui-text-color);
+    }
+
+    font-size: $iui-font-size;
+    line-height: $iui-line-height;
+
+    @include iui-scrollbar;
+    @include iui-font-family;
+
+    &.iui-no-webfonts {
+      font-family: $iui-sans-fallback;
+    }
   }
 
-  &.iui-theme-light-hc {
-    @include theme-variables(light-hc);
+  .iui-anchor {
+    @include iui-anchor;
   }
 
-  &.iui-theme-dark-hc {
-    @include theme-variables(dark-hc);
-  }
-}
-
-.iui-body {
-  @include themed {
-    background-color: t(iui-color-background-2);
-    color: t(iui-text-color);
+  .iui-visually-hidden {
+    @include visually-hidden;
   }
 
-  font-size: $iui-font-size;
-  line-height: $iui-line-height;
+  [class*='iui-'],
+  [class*='iui-'] * {
+    // Text highlight
+    @include iui-text-selection;
 
-  @include iui-scrollbar;
-  @include iui-font-family;
-
-  &.iui-no-webfonts {
-    font-family: $iui-sans-fallback;
+    // Scrollbar
+    @include iui-scrollbar;
   }
-}
-
-.iui-anchor {
-  @include iui-anchor;
-}
-
-.iui-visually-hidden {
-  @include visually-hidden;
-}
-
-[class*='iui-'],
-[class*='iui-'] * {
-  // Text highlight
-  @include iui-text-selection;
-
-  // Scrollbar
-  @include iui-scrollbar;
 }
