@@ -30,7 +30,11 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 ---
 
 <div class='demo-box'>
-  <ThemeProvider theme='dark' themeOptions={{ applyBackground: false }}>
+  <ThemeProvider
+    className='demo-iui-wrapper'
+    theme='dark'
+    themeOptions={{ applyBackground: false }}
+  >
     <slot />
   </ThemeProvider>
   <OpenInCodesandbox class='sandbox-link' code={code} />
@@ -79,12 +83,23 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     position: relative;
     min-height: 300px;
     max-height: 400px;
-    padding: 1rem;
     display: grid;
-    place-content: center;
+    align-content: center;
+    justify-items: center;
+    overflow: hidden;
+    padding: 1rem;
     background: var(--color-sandbox-gradient);
     isolation: isolate;
     border-radius: var(--border-radius-1);
+  }
+
+  .demo-iui-wrapper {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    display: grid;
+    align-content: center;
+    justify-items: center;
   }
 
   .sandbox-link {

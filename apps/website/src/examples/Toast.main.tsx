@@ -6,14 +6,13 @@ import * as React from 'react';
 import { toaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  toaster.setSettings({
-    placement: 'bottom-end',
-    order: 'ascending',
-  });
-
   return (
     <Button
       onClick={() => {
+        toaster.setSettings({
+          placement: 'bottom-end',
+          order: 'ascending',
+        });
         toaster.positive('Job processing completed.', {
           hasCloseButton: true,
           link: {

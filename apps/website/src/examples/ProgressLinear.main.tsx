@@ -7,7 +7,7 @@ import { ProgressLinear } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ width: 200 }}>
+    <div style={{ width: 'min(100%, 200px)' }}>
       <ProgressLinear indeterminate />
     </div>
   );

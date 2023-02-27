@@ -84,7 +84,7 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ minWidth: 350 }}>
+    <div style={{ minWidth: 'min(100%, 350px)' }}>
       <Table
         columns={columns}
         emptyTableContent='No data.'

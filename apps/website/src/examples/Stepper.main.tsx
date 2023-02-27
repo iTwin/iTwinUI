@@ -16,7 +16,7 @@ export default () => {
   const [currentStep, setCurrentStep] = React.useState(2);
 
   return (
-    <Flex flexDirection='column' gap='m' style={{ minWidth: 400 }}>
+    <Flex flexDirection='column' gap='m' style={{ minWidth: 'min(100%, 400px)' }}>
       <Flex.Item alignSelf='stretch'>
         <Stepper
           currentStep={currentStep}
