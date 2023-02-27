@@ -40,6 +40,8 @@ export { default as ComboBoxMainExample } from './ComboBox.main';
 
 export { default as DatePickerMainExample } from './DatePicker.main';
 
+export { default as DropdownMenuMainExample } from './DropdownMenu.main';
+
 export { default as DialogMainExample } from './Dialog.main';
 export { default as DialogDismissibleExample } from './Dialog.dismissible';
 export { default as DialogDraggableExample } from './Dialog.draggable';
@@ -58,7 +60,6 @@ export { default as IdeasButtonMainExample } from './IdeasButton.main';
 export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CarouselMainExample } from './Carousel.main';
 export { default as CodeMainExample } from './Code.main';
-export { default as DropdownMenuMainExample } from './DropdownMenu.main';
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
 export { default as FieldsetMainExample } from './Fieldset.main';
