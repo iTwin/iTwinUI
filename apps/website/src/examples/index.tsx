@@ -57,6 +57,10 @@ export { default as FieldsetMainExample } from './Fieldset.main';
 
 export { default as FileUploadMainExample } from './FileUpload.main';
 
+export { default as FooterMainExample } from './Footer.main';
+
+export { default as HeaderMainExample } from './Header.main';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
@@ -68,8 +72,6 @@ export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CarouselMainExample } from './Carousel.main';
 export { default as CodeMainExample } from './Code.main';
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
-export { default as FooterMainExample } from './Footer.main';
-export { default as HeaderMainExample } from './Header.main';
 export { default as InformationPanelMainExample } from './InformationPanel.main';
 export { default as KeyboardMainExample } from './Keyboard.main';
 export { default as InputMainExample } from './Input.main';
