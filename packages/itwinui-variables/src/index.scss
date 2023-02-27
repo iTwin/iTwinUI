@@ -8,7 +8,8 @@
 @use './colors';
 
 // global vars shared between all themes
-:root {
+.iui-root,
+[data-iui-theme] {
   @include spacing;
   @include component-heights;
   @include border-radii;
@@ -19,7 +20,7 @@
   @include colors.unthemed;
 }
 
-:root, // default to light theme on :root if data attribute not set
+.iui-root, // default to light theme on root if data attribute not set
 [data-iui-theme='light'] {
   @include themes.light-theme;
 
