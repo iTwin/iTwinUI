@@ -68,6 +68,8 @@ export { default as NonIdealStateMainExample } from './NonIdealState.main';
 export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 
+export { default as SideNavigationMainExample } from './SideNavigation.main';
+
 export { default as BlockquoteMainExample } from './Blockquote.main';
 export { default as ButtonMainExample } from './Button.main';
 export { default as ButtonDefaultExample } from './Button.default';
@@ -85,7 +87,6 @@ export { default as RadioMainExample } from './Radio.main';
 export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as SelectMainExample } from './Select.main';
 export { default as InputGroupMainExample } from './InputGroup.main';
-export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SliderMainExample } from './Slider.main';
 export { default as SurfaceMainExample } from './Surface.main';
 export { default as ToastStaticExample } from './Toast.static';
