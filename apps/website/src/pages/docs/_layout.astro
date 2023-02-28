@@ -4,6 +4,7 @@ import Header from '~/components/Header.astro';
 import LeftSidebar from '~/components/LeftSidebar.astro';
 import EditPageLink from '~/components/EditPageLink.astro';
 import FeedbackLink from '~/components/FeedbackLink.astro';
+import Placeholder from '~/components/Placeholder.astro';
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
@@ -13,6 +14,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   <Header class='header' />
   <LeftSidebar class='sidebar' />
   <div class='content-wrapper' id='article'>
+    <Placeholder class='placeholder' />
     <h1 id='overview'>{content.title}</h1>
     <slot />
     <div class='bottom-links'>
@@ -48,6 +50,11 @@ const currentPage = new URL(Astro.request.url).pathname;
     }
   }
 
+  .placeholder {
+    grid-area: beforemain;
+    display: grid;
+  }
+
   .bottom-links {
     grid-area: aftermain;
     display: grid;
@@ -75,6 +82,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     padding: var(--space-7);
     padding-block-end: calc(2 * var(--space-7));
     grid-template:
+      'beforemain' auto
       'h1' auto
       'toc' auto
       'main' 1fr
@@ -82,6 +90,7 @@ const currentPage = new URL(Astro.request.url).pathname;
 
     @media (min-width: 1300px) {
       grid-template:
+        '. beforemain . toc' auto
         '. h1 . toc' auto
         '. main . toc' 1fr
         '. aftermain . toc' / 1fr var(--_content-width) 1fr auto;
