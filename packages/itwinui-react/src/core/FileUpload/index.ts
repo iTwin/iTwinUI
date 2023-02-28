@@ -13,11 +13,11 @@ export { FileUploadCard } from './FileUploadCard';
 export type {
   FileUploadCardProps,
   FileUploadCardIconProps,
-  FileUploadCardTextProps,
-  FileUploadCardLabelProps,
+  FileUploadCardInfoProps,
+  FileUploadCardTitleProps,
   FileUploadCardDescriptionProps,
   FileUploadCardActionProps,
-  FileUploadCardAnchorProps,
+  FileUploadCardInputLabelProps,
   FileUploadCardInputProps,
 } from './FileUploadCard';
 
@@ -26,6 +26,6 @@ export type {
   FileEmptyCardProps,
   FileEmptyCardIconProps,
   FileEmptyCardTextProps,
-  FileEmptyCardAnchorProps,
+  FileEmptyCardInputLabelProps,
   FileEmptyCardDescriptionProps,
 } from './FileEmptyCard';

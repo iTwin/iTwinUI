@@ -17,7 +17,11 @@ const FileEmptyCardIcon = React.forwardRef<
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
-    <span className={cx('iui-template-icon', className)} ref={ref} {...rest}>
+    <span
+      className={cx('iui-file-card-empty-icon', className)}
+      ref={ref}
+      {...rest}
+    >
       {children ?? <SvgUpload className='iui-icon' aria-hidden />}
     </span>
   );
@@ -34,16 +38,20 @@ const FileEmptyCardText = React.forwardRef<
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
-    <span className={cx('iui-template-text', className)} ref={ref} {...rest}>
+    <span
+      className={cx('iui-file-card-empty-action', className)}
+      ref={ref}
+      {...rest}
+    >
       {children}
     </span>
   );
 });
 
 // ----------------------------------------------------------------------------
-// FileEmptyCard.Anchor component
+// FileEmptyCard.InputLabel component
 
-export type FileEmptyCardAnchorProps = {
+export type FileEmptyCardInputLabelProps = {
   /**
    * Anchor label
    * @default 'Choose a file'
@@ -51,9 +59,9 @@ export type FileEmptyCardAnchorProps = {
   label?: string;
 } & React.ComponentPropsWithRef<'label'>;
 
-const FileEmptyCardAnchor = React.forwardRef<
+const FileEmptyCardInputLabel = React.forwardRef<
   HTMLLabelElement,
-  FileEmptyCardAnchorProps
+  FileEmptyCardInputLabelProps
 >((props, ref) => {
   const { children, className, label = 'Choose a file', ...rest } = props;
   return (
@@ -91,9 +99,9 @@ export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
  *     <SvgSmileySadVery />
  *   </FileEmptyCard.Icon>
  *   <FileEmptyCard.Text>
- *     <FileEmptyCard.Anchor label='Custom Label Text'>
+ *     <FileEmptyCard.InputLabel label='Custom Label Text'>
  *       <FileEmptyCard.Input name={fileInputId} ref={inputRef} />
- *     </FileEmptyCard.Anchor>
+ *     </FileEmptyCard.InputLabel>
  *     <FileEmptyCard.Description>
  *       Custom Description Text
  *     </FileEmptyCard.Description>
@@ -101,30 +109,36 @@ export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
  * </FileEmptyCard>
  */
 export const FileEmptyCard = Object.assign(
-  (props: FileEmptyCardProps) => {
-    const { children } = props;
+  React.forwardRef<HTMLDivElement, FileEmptyCardProps>(
+    (props, ref: React.RefObject<HTMLDivElement>) => {
+      const { children, className, ...rest } = props;
 
-    return (
-      <>
-        {children ?? (
-          <>
-            <FileEmptyCard.Icon />
-            <FileEmptyCard.Text>
-              <FileEmptyCard.Anchor>
-                <FileUploadCard.Input />
-              </FileEmptyCard.Anchor>
-              <FileEmptyCard.Description />
-            </FileEmptyCard.Text>
-          </>
-        )}
-      </>
-    );
-  },
+      return (
+        <div
+          className={cx('iui-file-card-empty', className)}
+          ref={ref}
+          {...rest}
+        >
+          {children ?? (
+            <>
+              <FileEmptyCard.Icon />
+              <FileEmptyCard.Text>
+                <FileEmptyCard.InputLabel>
+                  <FileUploadCard.Input />
+                </FileEmptyCard.InputLabel>
+                <FileEmptyCard.Description />
+              </FileEmptyCard.Text>
+            </>
+          )}
+        </div>
+      );
+    },
+  ),
   {
     Icon: FileEmptyCardIcon,
     Text: FileEmptyCardText,
     Description: FileEmptyCardDescription,
-    Anchor: FileEmptyCardAnchor,
+    InputLabel: FileEmptyCardInputLabel,
   },
 );
 export default FileEmptyCard;

@@ -40,13 +40,13 @@ const FileUploadCardIcon = React.forwardRef<
 });
 
 // ----------------------------------------------------------------------------
-// FileUploadCard.Text component
+// FileUploadCard.Info component
 
-export type FileUploadCardTextProps = React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardInfoProps = React.ComponentPropsWithRef<'span'>;
 
-const FileUploadCardText = React.forwardRef<
+const FileUploadCardInfo = React.forwardRef<
   HTMLSpanElement,
-  FileUploadCardTextProps
+  FileUploadCardInfoProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
@@ -57,18 +57,18 @@ const FileUploadCardText = React.forwardRef<
 });
 
 // ----------------------------------------------------------------------------
-// FileUploadCard.Label component
+// FileUploadCard.Title component
 
-export type FileUploadCardLabelProps = React.ComponentPropsWithRef<'span'>;
+export type FileUploadCardTitleProps = React.ComponentPropsWithRef<'span'>;
 
-const FileUploadCardLabel = React.forwardRef<
+const FileUploadCardTitle = React.forwardRef<
   HTMLSpanElement,
-  FileUploadCardLabelProps
+  FileUploadCardTitleProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
   const { data } = useSafeContext(FileUploadCardContext);
   return (
-    <span className={cx('iui-file-card-label', className)} ref={ref} {...rest}>
+    <span className={cx('iui-file-card-title', className)} ref={ref} {...rest}>
       {children ?? data[0].name}
     </span>
   );
@@ -109,19 +109,20 @@ const FileUploadCardAction = React.forwardRef<
   const { children, className, ...rest } = props;
   return (
     <div className={cx('iui-file-card-action', className)} ref={ref} {...rest}>
-      <label className='iui-anchor'>{children}</label>
+      {children}
     </div>
   );
 });
 
 // ----------------------------------------------------------------------------
-// FileUploadCard.Anchor component
+// FileUploadCard.InputLabel component
 
-export type FileUploadCardAnchorProps = React.ComponentPropsWithRef<'label'>;
+export type FileUploadCardInputLabelProps =
+  React.ComponentPropsWithRef<'label'>;
 
-const FileUploadCardAnchor = React.forwardRef<
+const FileUploadCardInputLabel = React.forwardRef<
   HTMLLabelElement,
-  FileUploadCardAnchorProps
+  FileUploadCardInputLabelProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
   return (
@@ -206,12 +207,12 @@ export type FileUploadCardProps = {
  *   <FileUploadCard.Icon>
  *     <SvgSmileyHappyVery />
  *   </FileUploadCard.Icon>
- *   <FileUploadCard.Text>
- *     <FileUploadCard.Label>Custom File Name</FileUploadCard.Label>
+ *   <FileUploadCard.Info>
+ *     <FileUploadCard.Title>Custom File Name</FileUploadCard.Title>
  *     <FileUploadCard.Description>
  *       Custom File Description
  *     </FileUploadCard.Description>
- *   </FileUploadCard.Text>
+ *   </FileUploadCard.Info>
  *   <FileUploadCard.Action>
  *     <Button
  *       onClick={() => {
@@ -246,15 +247,15 @@ export const FileUploadCard = Object.assign(
               {children ?? (
                 <>
                   <FileUploadCard.Icon />
-                  <FileUploadCard.Text>
-                    <FileUploadCard.Label />
+                  <FileUploadCard.Info>
+                    <FileUploadCard.Title />
                     <FileUploadCard.Description />
-                  </FileUploadCard.Text>
+                  </FileUploadCard.Info>
                   <FileUploadCard.Action>
-                    <FileUploadCard.Anchor>
+                    <FileUploadCard.InputLabel>
                       <FileUploadCard.Input />
                       {'Replace'}
-                    </FileUploadCard.Anchor>
+                    </FileUploadCard.InputLabel>
                   </FileUploadCard.Action>
                 </>
               )}
@@ -268,11 +269,11 @@ export const FileUploadCard = Object.assign(
   ),
   {
     Icon: FileUploadCardIcon,
-    Text: FileUploadCardText,
-    Label: FileUploadCardLabel,
+    Info: FileUploadCardInfo,
+    Title: FileUploadCardTitle,
     Description: FileUploadCardDescription,
     Action: FileUploadCardAction,
-    Anchor: FileUploadCardAnchor,
+    InputLabel: FileUploadCardInputLabel,
     Input: FileUploadCardInput,
   },
 );

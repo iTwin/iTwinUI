@@ -18,17 +18,17 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
 
   return (
     <FileUploadCard
-      files={files}
-      onFilesChange={(files) => setFiles(files)}
+      data={files}
+      onDataChange={(files) => setFiles(files)}
       {...props}
     >
       <FileUploadCard.Icon>
         <SvgCheckmark />
       </FileUploadCard.Icon>
-      <FileUploadCard.Text>
-        <FileUploadCard.Label>TestLabel</FileUploadCard.Label>
+      <FileUploadCard.Info>
+        <FileUploadCard.Title>TestLabel</FileUploadCard.Title>
         <FileUploadCard.Description>TestDescription</FileUploadCard.Description>
-      </FileUploadCard.Text>
+      </FileUploadCard.Info>
       <FileUploadCard.Action>
         <Button
           onClick={() => {
@@ -69,7 +69,7 @@ it('should render FileUploadCard after a file is uploaded', () => {
     new File(['mock-file'], 'test.txt', { type: 'text/plain' }),
   );
 
-  const { container } = render(<FileUploadCard files={files} />);
+  const { container } = render(<FileUploadCard data={files} />);
 
   const { container: documentIcon } = render(
     <SvgDocument aria-hidden className='iui-icon' />,
@@ -78,7 +78,7 @@ it('should render FileUploadCard after a file is uploaded', () => {
   expect(svg).toBeTruthy();
   expect(svg).toEqual(documentIcon.firstChild);
 
-  const label = container.querySelector('.iui-file-card-label') as HTMLElement;
+  const label = container.querySelector('.iui-file-card-title') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toEqual('test.txt');
 
@@ -109,7 +109,7 @@ it('should render FileUploadCard with custom props', () => {
   expect(svg).toBeTruthy();
   expect(svg).toEqual(checkmarkIcon.firstChild);
 
-  const label = container.querySelector('.iui-file-card-label') as HTMLElement;
+  const label = container.querySelector('.iui-file-card-title') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toEqual('TestLabel');
 

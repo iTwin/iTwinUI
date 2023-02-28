@@ -107,9 +107,9 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         <SvgSmileySadVery />
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
-        <FileEmptyCard.Anchor label='Custom Label Text'>
+        <FileEmptyCard.InputLabel label='Custom Label Text'>
           <FileUploadCard.Input name={fileInputId} ref={inputRef} />
-        </FileEmptyCard.Anchor>
+        </FileEmptyCard.InputLabel>
         <FileEmptyCard.Description>
           Custom Description Text
         </FileEmptyCard.Description>
@@ -131,12 +131,12 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         <FileUploadCard.Icon>
           <SvgSmileyHappyVery />
         </FileUploadCard.Icon>
-        <FileUploadCard.Text>
-          <FileUploadCard.Label>Custom File Name</FileUploadCard.Label>
+        <FileUploadCard.Info>
+          <FileUploadCard.Title>Custom File Name</FileUploadCard.Title>
           <FileUploadCard.Description>
             Custom File Description
           </FileUploadCard.Description>
-        </FileUploadCard.Text>
+        </FileUploadCard.Info>
         <FileUploadCard.Action>
           <IconButton
             onClick={() => {

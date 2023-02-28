@@ -18,8 +18,8 @@
   @include iui-file-card-text;
 }
 
-.iui-file-card-label {
-  @include iui-file-card-label;
+.iui-file-card-title {
+  @include iui-file-card-title;
 }
 
 .iui-file-card-description {
@@ -32,4 +32,16 @@
 
 .iui-file-card-input {
   @include iui-file-card-input;
+}
+
+.iui-file-card-empty {
+  @include iui-file-card-empty;
+}
+
+.iui-file-card-empty-icon {
+  @include iui-file-card-empty-icon;
+}
+
+.iui-file-card-empty-action {
+  @include iui-file-card-empty-action;
 }
