@@ -1837,7 +1837,6 @@ Localized.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-//TODO: add subrow to this table to have react visual test for padding
 export const Condensed: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
