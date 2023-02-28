@@ -4580,3 +4580,51 @@ it('should navigate through table filtering with the keyboard', async () => {
     ]),
   );
 });
+
+it('should ignore top-level Header if one is passed', async () => {
+  const data = mockedData();
+  const { container } = render(
+    <Table
+      data={data}
+      emptyTableContent='nothing to see here'
+      columns={[
+        {
+          Header: 'Header name',
+          columns: [
+            {
+              id: 'name',
+              Header: 'Name',
+              accessor: 'name',
+            },
+            {
+              id: 'description',
+              Header: 'Description',
+              accessor: 'description',
+            },
+          ],
+        },
+      ]}
+    />,
+  );
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+
+  const headerRows = container.querySelectorAll(
+    '.iui-table-header .iui-table-row',
+  );
+  expect(headerRows).toHaveLength(1);
+  const headerCells = headerRows[0]?.querySelectorAll('.iui-table-cell');
+  expect(headerCells).toHaveLength(2);
+  expect(headerCells[0].textContent).toEqual('Name');
+  expect(headerCells[1].textContent).toEqual('Description');
+
+  const bodyRows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(bodyRows).toHaveLength(data.length);
+  bodyRows.forEach((row, i) => {
+    const { name, description } = data[i];
+    const cells = row.querySelectorAll('.iui-table-cell');
+    expect(cells).toHaveLength(2);
+    expect(cells[0].textContent).toEqual(name);
+    expect(cells[1].textContent).toEqual(description);
+  });
+});
