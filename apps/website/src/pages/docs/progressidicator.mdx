@@ -4,20 +4,21 @@ description: Progress indicators express an unspecified wait time or display the
 layout: ./_layout.astro
 propsPath1: '@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressLinear/ProgressLinear.d.ts'
 propsPath2: '@itwin/itwinui-react/esm/core/ProgressIndicators/ProgressRadial/ProgressRadial.d.ts'
-exampleCodeFile1: ProgressLinear.main.tsx
-exampleCodeFile2: ProgressRadial.main.tsx
 thumbnail: ProgressIndicator
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
 ## Progress linear
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ProgressLinear.main.tsx' truncate={false}>
+  <AllExamples.ProgressLinearMainExample client:load />
+</LiveExample>
 
 ### Props
 
@@ -25,7 +26,9 @@ import LiveExample from '~/components/LiveExample.astro';
 
 ## Progress radial
 
-<LiveExample src={frontmatter.exampleCodeFile2} />
+<LiveExample src='ProgressRadial.main.tsx' truncate={false}>
+  <AllExamples.ProgressRadialMainExample client:load />
+</LiveExample>
 
 ### Props
 

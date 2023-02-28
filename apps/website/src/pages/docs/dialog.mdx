@@ -3,22 +3,19 @@ title: Dialog
 description: Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Modal/Modal.d.ts'
-exampleCodeMain: Dialog.main.tsx
-exampleCodeDismissible: Dialog.dismissible.tsx
-exampleCodeNonDismissible: Dialog.nondismissible.tsx
-exampleCodeDraggable: Dialog.draggable.tsx
-exampleCodeFullpage: Dialog.fullpage.tsx
-exampleCodeModal: Dialog.modal.tsx
 thumbnail: Dialog
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeMain} />
+<LiveExample src='Dialog.main.tsx'>
+  <AllExamples.DialogMainExample client:load />
+</LiveExample>
 
 A dialog informs users about a task and can contain critical information, require decisions, or involve multiple tasks. Dialogs appear in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
@@ -31,7 +28,9 @@ The terms dialog and modal are often used interchangeably. Within iTwinUI we dif
 - Non-modal dialog: a non-modal dialog is the box of content that appears above the rest of the page content. The user can still interact with the page content.
 - Modal dialog: a modal dialog is the combination of a dialog with a backdrop that appears above the rest of the page content. This backdrop disables interaction with the page content until the dialog is dismissed.
 
-<LiveExample src={frontmatter.exampleCodeModal} />
+<LiveExample src='Dialog.modal.tsx'>
+  <AllExamples.DialogModalExample client:load />
+</LiveExample>
 
 ## Variants
 
@@ -39,7 +38,9 @@ The terms dialog and modal are often used interchangeably. Within iTwinUI we dif
 
 A dismissible dialog contains information that is not required to complete before being able to proceed.
 
-<LiveExample src={frontmatter.exampleCodeDismissible} />
+<LiveExample src='Dialog.dismissible.tsx'>
+  <AllExamples.DialogDismissibleExample client:load />
+</LiveExample>
 
 The dialog can be dismissed multiple different ways:
 
@@ -54,19 +55,25 @@ The “X” icon bears the borderless button style which appears on cursor hover
 
 A non dismissible dialog contains important information that must be completed. The only way to dismiss a non dismissible dialog is by completing the action.
 
-<LiveExample src={frontmatter.exampleCodeNonDismissible} />
+<LiveExample src='Dialog.nondismissible.tsx'>
+  <AllExamples.DialogNonDismissibleExample client:load />
+</LiveExample>
 
 ### Draggable
 
 These dialogs have a defined header that can be clicked and moved around the screen at the user’s leisure, just like a browser window. This dialog can also be resized.
 
-<LiveExample src={frontmatter.exampleCodeDraggable} />
+<LiveExample src='Dialog.draggable.tsx'>
+  <AllExamples.DialogDraggableExample client:load />
+</LiveExample>
 
 ### Full page
 
 A full page dialog appears on top of the content and occupy the entire page’s space. It is used primarily for pages where users will customize settings.
 
-<LiveExample src={frontmatter.exampleCodeFullpage} />
+<LiveExample src='Dialog.fullpage.tsx'>
+  <AllExamples.DialogFullPageExample client:load />
+</LiveExample>
 
 The two buttons at the bottom right are always pinned in that same area, regardless of content. If there is more content than there is available space in the content area, a scrollbar can be included to make the content area scrollable.
 

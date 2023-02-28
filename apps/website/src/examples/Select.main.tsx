@@ -7,7 +7,7 @@ import { LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div>
+    <>
       <LabeledSelect
         label='Select label'
         message='Help message'
@@ -18,6 +18,6 @@ export default () => {
           { value: 3, label: 'Item #3' },
         ]}
       />
-    </div>
+    </>
   );
 };
