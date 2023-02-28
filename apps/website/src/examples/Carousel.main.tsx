@@ -20,7 +20,7 @@ export default () => {
   ];
 
   return (
-    <Carousel>
+    <Carousel style={{ maxWidth: '100%' }}>
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -28,7 +28,6 @@ export default () => {
               style={{
                 background: `linear-gradient(to right, ${from}, ${to})`,
                 height: '200px',
-                width: '100%',
                 display: 'grid',
                 placeItems: 'center',
               }}

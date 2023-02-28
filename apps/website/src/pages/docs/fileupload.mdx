@@ -3,17 +3,19 @@ title: File upload
 description: Keep the user informed of their file upload progress.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/FileUpload/FileUpload.d.ts'
-exampleCodeFile1: FileUpload.main.tsx
 thumbnail: FileUpload
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='FileUpload.main.tsx'>
+  <AllExamples.FileUploadMainExample client:load />
+</LiveExample>
 
 File uploading is a common interaction most users do multiple times per day. File uploading may happen in various different ways depending on the context. While the overall design may differ from UI to UI, the basics always stay the same: let the user know they can upload content, display upload status progress, and confirm that the upload’s status upon completion.
 
