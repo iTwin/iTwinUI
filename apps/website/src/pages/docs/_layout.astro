@@ -10,21 +10,24 @@ const currentPage = new URL(Astro.request.url).pathname;
 ---
 
 <Global content={content} currentPage={currentPage}>
-  <Header class='header' />
-  <LeftSidebar class='sidebar' />
-  <div class='content-wrapper' id='article'>
-    <h1 id='overview'>{content.title}</h1>
-    <slot />
-    <div class='bottom-links'>
-      <hr />
-      <EditPageLink page={currentPage} />
-      <FeedbackLink page={currentPage} />
+  <div class='root'>
+    <Header class='header' />
+    <LeftSidebar class='sidebar' />
+    <div class='content-wrapper' id='article'>
+      <h1 id='overview'>{content.title}</h1>
+      <slot />
+      <div class='bottom-links'>
+        <hr />
+        <EditPageLink page={currentPage} />
+        <FeedbackLink page={currentPage} />
+      </div>
     </div>
   </div>
 </Global>
 
 <style lang='scss'>
-  body {
+  .root {
+    height: 100%;
     display: grid;
     grid-template: 'header header' auto 'sidebar content' 1fr / auto 1fr;
 
@@ -65,7 +68,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     grid-area: content;
     isolation: isolate;
     overflow: auto;
-    overflow: overlay;
+    overflow-x: clip;
     scrollbar-gutter: stable;
     display: grid;
     gap: var(--space-2);
@@ -117,6 +120,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       isolation: isolate;
       position: relative;
       border-left: 1px solid var(--color-line-2);
+      min-width: 150px;
 
       & :global(ol) {
         list-style-type: none;
@@ -214,10 +218,8 @@ const currentPage = new URL(Astro.request.url).pathname;
                   h2,
                   h3,
                   h4,
-                  .live-example,
-                  .live-example *,
-                  .sp-wrapper,
-                  .sp-wrapper *,
+                  .demo-iui-wrapper,
+                  .demo-iui-wrapper *,
                   table,
                   table *,
                   [data-iui-theme] *
@@ -228,7 +230,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         font-size: var(--type-1);
       }
 
-      :global(:where(code:not(pre code))) {
+      :global(:where(code:not(pre code, .demo-iui-wrapper *))) {
         background-color: hsl(0deg 0% 50% / 0.2);
         padding: 0.15rem 0.5rem;
         border-radius: 0.25rem;
@@ -243,7 +245,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         padding: 0.25rem;
       }
 
-      :global(:where(ul)) {
+      :global(:where(ul:not(.demo-iui-wrapper *))) {
         display: grid;
         gap: var(--space-1);
       }

@@ -3,17 +3,19 @@ title: Tabs
 description: Tabs make it easy to explore and switch between different views or functional aspects of an app, or to browse categorized data sets.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Tabs/Tabs.d.ts'
-exampleCodeFile1: Tabs.main.tsx
 thumbnail: Tabs
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Tabs.main.tsx'>
+  <AllExamples.TabsMainExample client:load />
+</LiveExample>
 
 ## Props
 

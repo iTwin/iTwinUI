@@ -7,11 +7,11 @@ import { NodeData, Tree, TreeNode } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  type StoryData = {
+  type TreeData = {
     id: string;
     label: string;
     sublabel: string;
-    subItems: StoryData[];
+    subItems: TreeData[];
   };
 
   const [expandedNodes, setExpandedNodes] = React.useState<Record<string, boolean>>({
@@ -29,7 +29,7 @@ export default () => {
       }));
     }
   }, []);
-  const generateItem = React.useCallback((index: number, parentNode = '', depth = 0): StoryData => {
+  const generateItem = React.useCallback((index: number, parentNode = '', depth = 0): TreeData => {
     const keyValue = parentNode ? `${parentNode}-${index}` : `${index}`;
     return {
       id: `Node-${keyValue}`,
@@ -53,7 +53,7 @@ export default () => {
   );
 
   const getNode = React.useCallback(
-    (node: StoryData): NodeData<StoryData> => {
+    (node: TreeData): NodeData<TreeData> => {
       return {
         subNodes: node.subItems,
         nodeId: node.id,
@@ -66,8 +66,8 @@ export default () => {
   );
 
   return (
-    <Tree<StoryData>
-      style={{ width: '260px' }}
+    <Tree<TreeData>
+      style={{ width: 'min(100%, 260px)' }}
       data={data}
       getNode={getNode}
       nodeRenderer={React.useCallback(

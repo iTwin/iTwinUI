@@ -11,7 +11,6 @@ export default () => {
 
   return (
     <SideNavigation
-      style={{ height: '90%' }}
       items={[
         <SidenavButton
           startIcon={<SvgHome />}
