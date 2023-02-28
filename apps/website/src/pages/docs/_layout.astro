@@ -65,7 +65,7 @@ const currentPage = new URL(Astro.request.url).pathname;
     grid-area: content;
     isolation: isolate;
     overflow: auto;
-    overflow: overlay;
+    overflow-x: clip;
     scrollbar-gutter: stable;
     display: grid;
     gap: var(--space-2);
