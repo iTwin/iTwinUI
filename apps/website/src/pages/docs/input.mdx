@@ -3,17 +3,19 @@ title: Input
 description: Input let users enter and edit data.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/LabeledInput/LabeledInput.tsx'
-exampleCodeFile1: Input.main.tsx
 thumbnail: Input
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Input.main.tsx' truncate={false}>
+  <AllExamples.InputMainExample client:load />
+</LiveExample>
 
 ## Props
 

@@ -7,7 +7,7 @@ import { Slider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: 'min(100%, 300px)' }}>
       <Slider values={[50]} min={0} max={100} />
     </div>
   );

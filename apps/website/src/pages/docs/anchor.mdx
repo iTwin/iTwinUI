@@ -3,17 +3,19 @@ title: Anchor
 description:
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Typography/Body/Body.tsx'
-exampleCodeFile1: Anchor.main.tsx
 group: typography
 thumbnail: Anchor
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Anchor.main.tsx' truncate={false}>
+  <AllExamples.AnchorMainExample client:load />
+</LiveExample>
 
 ## Props
 

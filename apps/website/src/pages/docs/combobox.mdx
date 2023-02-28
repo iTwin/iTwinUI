@@ -3,17 +3,19 @@ title: ComboBox
 description:
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/ComboBox/ComboBox.d.ts'
-exampleCodeFile1: ComboBox.main.tsx
 thumbnail: ComboBox
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ComboBox.main.tsx'>
+  <AllExamples.ComboBoxMainExample client:load />
+</LiveExample>
 
 ComboBox component that allows typing a value to filter the options in dropdown list.
 
