@@ -10,21 +10,24 @@ const currentPage = new URL(Astro.request.url).pathname;
 ---
 
 <Global content={content} currentPage={currentPage}>
-  <Header class='header' />
-  <LeftSidebar class='sidebar' />
-  <div class='content-wrapper' id='article'>
-    <h1 id='overview'>{content.title}</h1>
-    <slot />
-    <div class='bottom-links'>
-      <hr />
-      <EditPageLink page={currentPage} />
-      <FeedbackLink page={currentPage} />
+  <div class='root'>
+    <Header class='header' />
+    <LeftSidebar class='sidebar' />
+    <div class='content-wrapper' id='article'>
+      <h1 id='overview'>{content.title}</h1>
+      <slot />
+      <div class='bottom-links'>
+        <hr />
+        <EditPageLink page={currentPage} />
+        <FeedbackLink page={currentPage} />
+      </div>
     </div>
   </div>
 </Global>
 
 <style lang='scss'>
-  body {
+  .root {
+    height: 100%;
     display: grid;
     grid-template: 'header header' auto 'sidebar content' 1fr / auto 1fr;
 
@@ -117,6 +120,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       isolation: isolate;
       position: relative;
       border-left: 1px solid var(--color-line-2);
+      min-width: 150px;
 
       & :global(ol) {
         list-style-type: none;
