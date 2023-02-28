@@ -3,17 +3,19 @@ title: Flex
 description: A utility component to work with CSS flexbox and iTwinUI design tokens.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/utils/components/Flex.d.ts'
-exampleCodeMain: Flex.main.tsx
 thumbnail: #TODO
 group: utilities
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeMain} />
+<LiveExample src='Flex.main.tsx'>
+  <AllExamples.FlexMainExample client:load />
+</LiveExample>
 
 A utility component that makes it easier to work with CSS flexbox and iTwinUI design tokens. Supports all flex properties. Can be used with or without `Flex.Item` and `Flex.Spacer` subcomponents.
 
