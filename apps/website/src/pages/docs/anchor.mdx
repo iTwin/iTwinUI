@@ -1,6 +1,6 @@
 ---
 title: Anchor
-description: The anchor component works like a simple hyperlink, targeting a specific URL. Additionally, it can also target a named location within a page. For example, you might want to target a content area that appears below the fold so the user does not have to scroll to discover it.
+description: The anchor component works like a simple hyperlink, targeting a specific URL or named anchor within a page.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Typography/Body/Body.tsx'
 exampleCodeFile1: Anchor.main.tsx
@@ -14,6 +14,8 @@ import LiveExample from '~/components/LiveExample.astro';
 <p>{frontmatter.description}</p>
 
 <LiveExample src={frontmatter.exampleCodeFile1} />
+
+Consider using a named anchor when you want the user to land not only on a specific page, but to actually arrive at a content area that may be below the fold so the user does not have to scroll to discover it.
 
 ## Props
 
