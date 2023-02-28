@@ -218,10 +218,8 @@ const currentPage = new URL(Astro.request.url).pathname;
                   h2,
                   h3,
                   h4,
-                  .live-example,
-                  .live-example *,
-                  .sp-wrapper,
-                  .sp-wrapper *,
+                  .demo-iui-wrapper,
+                  .demo-iui-wrapper *,
                   table,
                   table *,
                   [data-iui-theme] *
@@ -232,7 +230,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         font-size: var(--type-1);
       }
 
-      :global(:where(code:not(pre code))) {
+      :global(:where(code:not(pre code, .demo-iui-wrapper *))) {
         background-color: hsl(0deg 0% 50% / 0.2);
         padding: 0.15rem 0.5rem;
         border-radius: 0.25rem;
@@ -247,7 +245,7 @@ const currentPage = new URL(Astro.request.url).pathname;
         padding: 0.25rem;
       }
 
-      :global(:where(ul)) {
+      :global(:where(ul:not(.demo-iui-wrapper *))) {
         display: grid;
         gap: var(--space-1);
       }
