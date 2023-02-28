@@ -17,7 +17,7 @@ import * as AllExamples from '~/examples';
   <AllExamples.AvatarMainExample client:load />
 </LiveExample>
 
-The avatar is an essential UI component, making it easier to identify a person or organization by their photo, icon, or initials. A user’s photo helps put a face to the name and makes it more personal. Any time an app requires a user profile, an avatar should be included.
+The avatar is an essential UI component, making it easier to identify a person or organization by their photo, icon, or initials. A user’s photo helps put a face to the name and makes it more personal. Any time an app requires a user profile, an avatar should be included. It also makes it very obvious to the user that they are logged in, as the non-logged in state displays differently.
 
 ## Appearance
 
@@ -75,7 +75,7 @@ You may want to indicate the online status of a user. Status indicators display 
 
 ## Avatar group
 
-Avatars can be displayed in a list to represent a group of people. This visual treatment reinforces the fact that these people work together and/or share similar permissions to access/view/edit a file or a project.
+Avatars can be displayed in a list to represent a group of people. This visual treatment reinforces the fact that these people work together and/or share similar permissions to access/view/edit a file or a project. For example, you might display the list of people who previously edited an item, are all collaborating on a specific activity, etc. To save space, consider the "Stacked" option below.
 
 <LiveExample src='Avatar.group.tsx'>
   <AllExamples.AvatarGroupExample client:load />
@@ -99,7 +99,7 @@ You can also have the stacked group animate to unstacked on hover. When doing th
 
 ### Overflow
 
-A maximum of six avatars can be shown within a group. Any additional avatars will not be shown and instead the last avatar will display a count of how many avatars are not shown. To display all of the hidden users, we recommend the user interact with the numbered avatar. You could display a [tooltip](tooltip) on hover, a [dialog](dialog) on click, or take the user to a new page on click.
+A maximum of six avatars can be shown within a group. Additional avatars are hidden; however, the number of hidden items should be displayed in the last avatar circle as shown below. Additionally, you could display a [tooltip](tooltip) on hover, a [dialog](dialog) on click, or perhaps a [dropdown menu](dropdownmenu) of the hidden users. Implementation of these options depends on the purpose of the page and the use case.
 
 <LiveExample src='Avatar.groupoverflow.tsx'>
   <AllExamples.AvatarGroupOverflowExample client:load />
