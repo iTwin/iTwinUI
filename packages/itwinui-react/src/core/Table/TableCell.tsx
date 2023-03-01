@@ -42,24 +42,24 @@ export const TableCell = <T extends Record<string, unknown>>(
       return undefined;
     }
     // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
-    // 16 = initial_cell_padding, 34 = 26 + 8 = expander_width + margin
+    const dynamicMargin = cell.row.depth + (cell.row.canExpand ? 0 : 1);
 
-    const densityToPadding = {
-      condensed: 12,
-      'extra-condensed': 8,
+    let cellPadding = 16;
+    let expanderMargin = 8;
+
+    if (density === 'condensed') {
+      cellPadding = 12;
+      expanderMargin = 8;
+    } else if (density === 'extra-condensed') {
+      cellPadding = 8;
+      expanderMargin = 8;
+    }
+
+    const multiplier = 27 + expanderMargin;
+
+    return {
+      paddingLeft: cellPadding + dynamicMargin * multiplier,
     };
-
-    const densityPadding =
-      densityToPadding[density as keyof typeof densityToPadding] ?? 16;
-
-    const densityMultiplier = density === 'default' ? 34 : 30;
-
-    const paddingLeft =
-      densityPadding +
-      (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * densityMultiplier;
-
-    return { paddingLeft };
-  };
 
   const cellElementProps = cell.getCellProps({
     className: cx('iui-table-cell', cell.column.cellClassName, {
