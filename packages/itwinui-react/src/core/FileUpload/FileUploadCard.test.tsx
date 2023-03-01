@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { SvgDocument, SvgUpload, SvgCheckmark } from '../utils';
+import { SvgDocument, SvgUpload, SvgCheckmark, SvgSmileyHappy } from '../utils';
 import { FileUploadCard, FileUploadCardProps } from './FileUploadCard';
 import { Button } from '../Buttons';
+import { FileEmptyCard } from './FileEmptyCard';
 
 const CustomFileUploadCard = (props: FileUploadCardProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -16,14 +17,31 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
     ),
   );
 
+  const emptyCard = (
+    <FileEmptyCard>
+      <FileEmptyCard.Icon>
+        <SvgSmileyHappy aria-hidden className='iui-icon' />,
+      </FileEmptyCard.Icon>
+      <FileEmptyCard.Text>
+        <FileEmptyCard.InputLabel label='Custom Title Text'>
+          <FileUploadCard.Input ref={inputRef} />
+        </FileEmptyCard.InputLabel>
+        <FileEmptyCard.Description>
+          Custom Description Text
+        </FileEmptyCard.Description>
+      </FileEmptyCard.Text>
+    </FileEmptyCard>
+  );
+
   return (
     <FileUploadCard
       data={files}
       onDataChange={(files) => setFiles(files)}
+      emptyCard={emptyCard}
       {...props}
     >
       <FileUploadCard.Icon>
-        <SvgCheckmark />
+        <SvgCheckmark aria-hidden className='iui-icon' />,
       </FileUploadCard.Icon>
       <FileUploadCard.Info>
         <FileUploadCard.Title>TestLabel</FileUploadCard.Title>
@@ -58,7 +76,7 @@ it('should render empty FileUploadCard before a file is uploaded', () => {
   expect(anchor.textContent).toEqual('Choose a file');
 
   const description = container.querySelector(
-    '.iui-template-text div',
+    '.iui-file-card-empty-action div',
   ) as HTMLElement;
   expect(description).toBeTruthy();
   expect(description.textContent).toEqual('or drag & drop it here.');
@@ -101,8 +119,8 @@ it('should render FileUploadCard with custom props', () => {
     <SvgCheckmark aria-hidden className='iui-icon' />,
   );
 
-  const { container: uploadIcon } = render(
-    <SvgUpload aria-hidden className='iui-icon' />,
+  const { container: smileyIcon } = render(
+    <SvgSmileyHappy aria-hidden className='iui-icon' />,
   );
 
   let svg = container.querySelector('.iui-icon') as SVGSVGElement;
@@ -120,7 +138,7 @@ it('should render FileUploadCard with custom props', () => {
   expect(description.textContent).toEqual('TestDescription');
 
   const action = container.querySelector(
-    '.iui-file-card-action',
+    '.iui-file-card-action .iui-button',
   ) as HTMLElement;
   expect(action).toBeTruthy();
   expect(action.textContent).toEqual('Clear');
@@ -130,15 +148,15 @@ it('should render FileUploadCard with custom props', () => {
 
   svg = container.querySelector('.iui-icon') as SVGSVGElement;
   expect(svg).toBeTruthy();
-  expect(svg).toEqual(uploadIcon.firstChild);
+  expect(svg).toEqual(smileyIcon.firstChild);
 
   const anchor = container.querySelector('.iui-anchor') as HTMLElement;
   expect(anchor).toBeTruthy();
-  expect(anchor.textContent).toEqual('Choose a file');
+  expect(anchor.textContent).toEqual('Custom Title Text');
 
   description = container.querySelector(
-    '.iui-template-text div',
+    '.iui-file-card-empty-action div',
   ) as HTMLElement;
   expect(description).toBeTruthy();
-  expect(description.textContent).toEqual('or drag & drop it here.');
+  expect(description.textContent).toEqual('Custom Description Text');
 });

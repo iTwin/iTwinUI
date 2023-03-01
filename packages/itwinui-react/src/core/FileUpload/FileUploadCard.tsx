@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { SvgDocument, useMergedRefs, useSafeContext } from '../utils';
+import {
+  getWindow,
+  SvgDocument,
+  useMergedRefs,
+  useSafeContext,
+} from '../utils';
 import cx from 'classnames';
 import FileEmptyCard from './FileEmptyCard';
 
@@ -34,7 +39,7 @@ const FileUploadCardIcon = React.forwardRef<
   const { children, className, ...rest } = props;
   return (
     <span className={cx('iui-file-card-icon', className)} ref={ref} {...rest}>
-      {children ?? <SvgDocument />}
+      {children ?? <SvgDocument className='iui-icon' aria-hidden />}
     </span>
   );
 });
@@ -148,7 +153,7 @@ const FileUploadCardInput = React.forwardRef<
 
   const setNativeFilesRef = React.useCallback(
     (node: HTMLInputElement | null) => {
-      if (!node) {
+      if (!node || !getWindow()?.DataTransfer) {
         return;
       }
 
