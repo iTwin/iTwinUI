@@ -3,17 +3,19 @@ title: Input group
 description: Input let users enter and edit data.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/InputGroup/InputGroup.d.ts'
-exampleCodeFile1: InputGroup.main.tsx
 thumbnail: InputGroup
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='InputGroup.main.tsx'>
+  <AllExamples.InputGroupMainExample client:load />
+</LiveExample>
 
 ## Props
 

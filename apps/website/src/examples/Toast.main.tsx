@@ -6,26 +6,23 @@ import * as React from 'react';
 import { toaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
-  const displayPositiveToast = () => {
-    toaster.setSettings({
-      placement: 'top',
-      order: 'descending',
-    });
-    toaster.positive('Job processing completed.', {
-      hasCloseButton: true,
-      link: {
-        onClick: () => {
-          alert('Link callback');
-        },
-        title: 'View the report',
-      },
-      type: 'temporary',
-    });
-  };
-
   return (
-    <Button styleType='high-visibility' onClick={displayPositiveToast}>
-      Click to open toast
+    <Button
+      onClick={() => {
+        toaster.setSettings({
+          placement: 'bottom-end',
+          order: 'ascending',
+        });
+        toaster.positive('Job processing completed.', {
+          hasCloseButton: true,
+          link: {
+            onClick: () => {},
+            title: 'View the report',
+          },
+        });
+      }}
+    >
+      Open toast
     </Button>
   );
 };

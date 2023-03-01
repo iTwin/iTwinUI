@@ -15,7 +15,7 @@ export default () => {
   };
 
   return (
-    <ThemeProvider theme='dark' style={{ position: 'relative', width: '100%', height: '100%' }}>
+    <ThemeProvider theme='dark'>
       <Dialog
         relativeTo='container'
         isOpen={isModalOpen}
