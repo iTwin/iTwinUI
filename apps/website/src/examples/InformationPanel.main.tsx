@@ -15,49 +15,27 @@ import {
   Text,
 } from '@itwin/itwinui-react';
 import * as React from 'react';
-import { CellProps } from 'react-table';
 
 export default () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>(1);
 
-  const columns = React.useMemo(
-    () => [
-      { id: 'name', Header: 'Name', accessor: 'name' },
-      {
-        Header: 'Details',
-        Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
-          <Button
-            onClick={() => {
-              setOpenRowIndex(index);
-            }}
-          >
-            Details
-          </Button>
-        ),
-      },
-    ],
-    []
-  );
-
-  const data = React.useMemo(
-    () => [...Array(3).fill(null)].map((_, index) => ({ name: `Row${index}` })),
-    []
-  );
-
   return (
     <InformationPanelWrapper>
       <Table
-        columns={columns}
-        data={data}
+        columns={[
+          { id: 'name', Header: 'Name', accessor: 'name' },
+          {
+            Header: 'Details',
+            Cell: ({ row }) => <Button onClick={() => setOpenRowIndex(row.index)}>Details</Button>,
+          },
+        ]}
+        data={[...Array(3).fill(null)].map((_, index) => ({ name: `Row${index}` }))}
         emptyTableContent='No data.'
         style={{ minWidth: '450px' }}
       />
+
       <InformationPanel isOpen={openRowIndex != undefined && openRowIndex !== -1}>
-        <InformationPanelHeader
-          onClose={() => {
-            setOpenRowIndex(-1);
-          }}
-        >
+        <InformationPanelHeader onClose={() => setOpenRowIndex(-1)}>
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
         </InformationPanelHeader>
         <InformationPanelBody>
