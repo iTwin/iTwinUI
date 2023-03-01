@@ -49,30 +49,6 @@ const FileEmptyCardText = React.forwardRef<
 });
 
 // ----------------------------------------------------------------------------
-// FileEmptyCard.InputLabel component
-
-export type FileEmptyCardInputLabelProps = {
-  /**
-   * Anchor label
-   * @default 'Choose a file'
-   */
-  label?: string;
-} & React.ComponentPropsWithRef<'label'>;
-
-const FileEmptyCardInputLabel = React.forwardRef<
-  HTMLLabelElement,
-  FileEmptyCardInputLabelProps
->((props, ref) => {
-  const { children, className, label = 'Choose a file', ...rest } = props;
-  return (
-    <label className={cx('iui-anchor', className)} ref={ref} {...rest}>
-      {children}
-      {label}
-    </label>
-  );
-});
-
-// ----------------------------------------------------------------------------
 // FileEmptyCard.Description component
 
 export type FileEmptyCardDescriptionProps = React.ComponentPropsWithRef<'div'>;
@@ -84,7 +60,7 @@ const FileEmptyCardDescription = React.forwardRef<
   const { children, className, ...rest } = props;
   return (
     <div className={className} ref={ref} {...rest}>
-      {children ?? 'or drag & drop it here.'}
+      {children}
     </div>
   );
 });
@@ -99,9 +75,9 @@ export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
  *     <SvgSmileySadVery />
  *   </FileEmptyCard.Icon>
  *   <FileEmptyCard.Text>
- *     <FileEmptyCard.InputLabel label='Custom Label Text'>
- *       <FileEmptyCard.Input name={fileInputId} ref={inputRef} />
- *     </FileEmptyCard.InputLabel>
+ *     <FileUploadCard.InputLabel>
+ *       Custom Label Text
+ *     </FileUploadCard.InputLabel>
  *     <FileEmptyCard.Description>
  *       Custom Description Text
  *     </FileEmptyCard.Description>
@@ -123,10 +99,12 @@ export const FileEmptyCard = Object.assign(
             <>
               <FileEmptyCard.Icon />
               <FileEmptyCard.Text>
-                <FileEmptyCard.InputLabel>
-                  <FileUploadCard.Input />
-                </FileEmptyCard.InputLabel>
-                <FileEmptyCard.Description />
+                <FileUploadCard.InputLabel>
+                  Choose a file
+                </FileUploadCard.InputLabel>
+                <FileEmptyCard.Description>
+                  or drag & drop it here.
+                </FileEmptyCard.Description>
               </FileEmptyCard.Text>
             </>
           )}
@@ -138,7 +116,17 @@ export const FileEmptyCard = Object.assign(
     Icon: FileEmptyCardIcon,
     Text: FileEmptyCardText,
     Description: FileEmptyCardDescription,
-    InputLabel: FileEmptyCardInputLabel,
   },
 );
+
+export const FileEmptyCardContext = React.createContext<
+  | {
+      /**
+       * Id to pass to input
+       */
+      inputId: string;
+    }
+  | undefined
+>(undefined);
+
 export default FileEmptyCard;

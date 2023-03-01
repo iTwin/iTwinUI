@@ -23,9 +23,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
         <SvgSmileyHappy aria-hidden className='iui-icon' />,
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
-        <FileEmptyCard.InputLabel label='Custom Title Text'>
-          <FileUploadCard.Input ref={inputRef} />
-        </FileEmptyCard.InputLabel>
+        <FileUploadCard.InputLabel>Custom Title Text</FileUploadCard.InputLabel>
         <FileEmptyCard.Description>
           Custom Description Text
         </FileEmptyCard.Description>
@@ -38,6 +36,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
       data={files}
       onDataChange={(files) => setFiles(files)}
       emptyCard={emptyCard}
+      input={<FileUploadCard.Input ref={inputRef} />}
       {...props}
     >
       <FileUploadCard.Icon>

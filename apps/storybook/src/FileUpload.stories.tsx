@@ -99,7 +99,6 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
 export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [files, setFiles] = React.useState<File[]>([]);
-  const fileInputId = React.useId();
 
   const emptyCard = (
     <FileEmptyCard>
@@ -107,9 +106,7 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         <SvgSmileySadVery />
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
-        <FileEmptyCard.InputLabel label='Custom Label Text'>
-          <FileUploadCard.Input name={fileInputId} ref={inputRef} />
-        </FileEmptyCard.InputLabel>
+        <FileUploadCard.InputLabel>Custom Label Text</FileUploadCard.InputLabel>
         <FileEmptyCard.Description>
           Custom Description Text
         </FileEmptyCard.Description>
@@ -127,6 +124,7 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
         data={files}
         onDataChange={(files) => setFiles(files)}
         emptyCard={emptyCard}
+        input={<FileUploadCard.Input name={'my-file'} ref={inputRef} />}
       >
         <FileUploadCard.Icon>
           <SvgSmileyHappyVery />
@@ -146,7 +144,6 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
           >
             <SvgClose />
           </IconButton>
-          <FileUploadCard.Input name={fileInputId} ref={inputRef} />
         </FileUploadCard.Action>
       </FileUploadCard>
     </FileUpload>

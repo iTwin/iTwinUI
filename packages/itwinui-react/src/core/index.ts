@@ -117,7 +117,6 @@ export type {
   FileEmptyCardProps,
   FileEmptyCardIconProps,
   FileEmptyCardTextProps,
-  FileEmptyCardInputLabelProps,
   FileEmptyCardDescriptionProps,
 } from './FileUpload';
 

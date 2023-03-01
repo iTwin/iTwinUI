@@ -10,7 +10,7 @@ import {
   useSafeContext,
 } from '../utils';
 import cx from 'classnames';
-import FileEmptyCard from './FileEmptyCard';
+import { FileEmptyCard, FileEmptyCardContext } from './FileEmptyCard';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -130,8 +130,14 @@ const FileUploadCardInputLabel = React.forwardRef<
   FileUploadCardInputLabelProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
+  const { inputId } = useSafeContext(FileUploadCardContext);
   return (
-    <label className={cx('iui-anchor', className)} ref={ref} {...rest}>
+    <label
+      className={cx('iui-anchor', className)}
+      ref={ref}
+      htmlFor={inputId}
+      {...rest}
+    >
       {children}
     </label>
   );
@@ -147,7 +153,7 @@ const FileUploadCardInput = React.forwardRef<
   FileUploadCardInputProps
 >((props, ref) => {
   const { children, className, onChange, ...rest } = props;
-  const { data, onDataChange, setInternalData } = useSafeContext(
+  const { data, onDataChange, setInternalData, inputId } = useSafeContext(
     FileUploadCardContext,
   );
 
@@ -181,6 +187,7 @@ const FileUploadCardInput = React.forwardRef<
           }
         }}
         ref={refs}
+        id={inputId}
         {...rest}
       />
       {children}
@@ -203,6 +210,11 @@ export type FileUploadCardProps = {
    * @default <FileEmptyCard />
    */
   emptyCard?: React.ReactNode;
+  /**
+   * Input node
+   * @default <FileUploadCard.Input />
+   */
+  input?: React.ReactNode;
 } & React.ComponentPropsWithoutRef<'div'>;
 /**
  * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
@@ -237,15 +249,17 @@ export const FileUploadCard = Object.assign(
         data: dataProps,
         onDataChange,
         emptyCard = <FileEmptyCard />,
+        input,
         ...rest
       } = props;
 
       const [internalData, setInternalData] = React.useState<File[]>();
       const data = dataProps ?? internalData ?? [];
+      const inputId = React.useId();
 
       return (
         <FileUploadCardContext.Provider
-          value={{ data, onDataChange, setInternalData }}
+          value={{ data, onDataChange, setInternalData, inputId }}
         >
           {data?.length ? (
             <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
@@ -258,16 +272,18 @@ export const FileUploadCard = Object.assign(
                   </FileUploadCard.Info>
                   <FileUploadCard.Action>
                     <FileUploadCard.InputLabel>
-                      <FileUploadCard.Input />
-                      {'Replace'}
+                      Replace
                     </FileUploadCard.InputLabel>
                   </FileUploadCard.Action>
                 </>
               )}
             </div>
           ) : (
-            emptyCard
+            <FileEmptyCardContext.Provider value={{ inputId }}>
+              {emptyCard}
+            </FileEmptyCardContext.Provider>
           )}
+          {input ?? <FileUploadCard.Input id={inputId} />}
         </FileUploadCardContext.Provider>
       );
     },
@@ -298,6 +314,10 @@ export const FileUploadCardContext = React.createContext<
        * Sets the state of the data within FileUploadCard
        */
       setInternalData: (data: File[]) => void;
+      /**
+       * Id to pass to input
+       */
+      inputId: string;
     }
   | undefined
 >(undefined);
