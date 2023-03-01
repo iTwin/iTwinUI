@@ -49,10 +49,10 @@ export const TableCell = <T extends Record<string, unknown>>(
 
     if (density === 'condensed') {
       cellPadding = 12;
-      expanderMargin = 8;
+      expanderMargin = 4;
     } else if (density === 'extra-condensed') {
       cellPadding = 8;
-      expanderMargin = 8;
+      expanderMargin = 4;
     }
 
     const multiplier = 26 + expanderMargin; // 26 = expander width
