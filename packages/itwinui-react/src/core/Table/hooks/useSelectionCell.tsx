@@ -10,6 +10,7 @@ export const useSelectionCell =
     isSelectable: boolean,
     selectionMode: 'multi' | 'single',
     isRowDisabled?: (rowData: T) => boolean,
+    density: 'default' | 'condensed' | 'extra-condensed' = 'default',
   ) =>
   (hooks: Hooks<T>) => {
     if (!isSelectable) {
@@ -20,6 +21,9 @@ export const useSelectionCell =
       selectionMode === 'single' ||
       columns.find((c) => c.id === SELECTION_CELL_ID)
         ? columns
-        : [SelectionColumn({ isDisabled: isRowDisabled }), ...columns],
+        : [
+            SelectionColumn({ isDisabled: isRowDisabled, density: density }),
+            ...columns,
+          ],
     );
   };

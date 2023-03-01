@@ -76,7 +76,7 @@ export const Basic: Story<TreeProps<unknown>> = () => {
 
   const data = React.useMemo(
     () =>
-      Array(50)
+      Array(8)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -196,7 +196,7 @@ export const Full: Story<TreeProps<unknown>> = () => {
 
   const data = React.useMemo(
     () =>
-      Array(50)
+      Array(8)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],
@@ -258,7 +258,7 @@ export const AsyncLoading: Story<TreeProps<unknown>> = () => {
   }, []);
 
   const [data, setData] = React.useState(() =>
-    Array(50)
+    Array(8)
       .fill(null)
       .map((_, index) => generateItem(index)),
   );
@@ -460,7 +460,7 @@ export const CustomizedExpander: Story<TreeProps<unknown>> = () => {
 
   const data = React.useMemo(
     () =>
-      Array(50)
+      Array(8)
         .fill(null)
         .map((_, index) => generateItem(index)),
     [generateItem],

@@ -12,12 +12,13 @@ export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
   isDisabled: boolean;
   cellProps: CellProps<T>;
+  density?: 'default' | 'condensed' | 'extra-condensed';
 };
 
 export const SubRowExpander = <T extends Record<string, unknown>>(
   props: SubRowExpanderProps<T>,
 ) => {
-  const { cell, isDisabled, cellProps, expanderCell } = props;
+  const { cell, isDisabled, cellProps, expanderCell, density } = props;
 
   return (
     <>
@@ -25,7 +26,9 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
         expanderCell(cellProps)
       ) : (
         <IconButton
-          style={{ marginRight: 8 }}
+          style={{
+            marginRight: density === 'default' || density === undefined ? 8 : 4,
+          }}
           className='iui-table-row-expander'
           styleType='borderless'
           size='small'
