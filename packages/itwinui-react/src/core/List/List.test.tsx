@@ -17,6 +17,10 @@ it('should render in its most basic state', () => {
     </List>,
   );
   expect(screen.getByRole('list')).toHaveClass('iui-list');
-  expect(screen.getByRole('listitem')).toHaveClass('iui-list-item');
-  expect(container.querySelectorAll('.iui-list-item')).toHaveLength(3);
+  const items = container.querySelectorAll('.iui-list-item');
+  expect(items).toHaveLength(3);
+  items.forEach((item, index) => {
+    expect(item).toHaveAttribute('role', 'listitem');
+    expect(item).toHaveTextContent(`item ${index + 1}`);
+  });
 });
