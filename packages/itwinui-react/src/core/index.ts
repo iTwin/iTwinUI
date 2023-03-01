@@ -111,6 +111,9 @@ export type {
   HeaderLogoProps,
 } from './Header';
 
+export { List, ListItem } from './List';
+export type { ListProps, ListItemProps } from './List';
+
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs';
 export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
 
