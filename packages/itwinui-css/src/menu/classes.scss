@@ -5,7 +5,7 @@
 .iui-menu {
   @include iui-list-menu;
 
-  &:where([role='listbox']) {
+  .iui-listbox-wrapper & {
     @include iui-menu-listbox;
   }
 }
