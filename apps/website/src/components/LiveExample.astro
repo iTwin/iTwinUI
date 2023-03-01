@@ -1,17 +1,24 @@
 ---
-import * as AllExamples from '~/examples';
-import LiveExample from './LiveExample';
-import fs from 'node:fs';
-import { getSandpackCssText } from '@codesandbox/sandpack-react';
 import baseUrl from '__dirname';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
+import OpenInCodesandbox from './OpenInCodesandbox.astro';
+import Code from 'astro/components/Code.astro';
+import nightOwl from '../../nightOwl.mjs';
+import { ThemeProvider } from '@itwin/itwinui-react';
 
 export type Props = {
   /** name of the file to read code example from, should be located in ~/examples folder */
   src: string;
+
+  /**
+   * whether the first code snippet will truncate and turn into an expandable disclosure.
+   * @default true
+   */
+  truncate?: boolean;
 };
 
-const { src } = Astro.props;
+const { src, truncate = true } = Astro.props;
 
 const codePath = path.join(baseUrl, `./src/examples/${src}`);
 let code = await fs.promises.readFile(codePath, 'utf8');
@@ -20,86 +27,174 @@ let code = await fs.promises.readFile(codePath, 'utf8');
 if (code.includes('Copyright (c) Bentley Systems')) {
   code = code.split('\n').slice(4).join('\n');
 }
-
-const componentName = src.split('.')[0];
-const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
-
-// TODO: temporarily removing these until we can figure out how to SSR correctly
-const StaticComponent = AllExamples[`${capitalize(componentName)}StaticExample`];
-const MainComponent = AllExamples[`${capitalize(componentName)}MainExample`];
 ---
 
-<LiveExample code={code} client:visible />
+<div class='demo-box'>
+  <ThemeProvider
+    className='demo-iui-wrapper'
+    theme='dark'
+    themeOptions={{ applyBackground: false }}
+  >
+    <slot />
+  </ThemeProvider>
+  <OpenInCodesandbox class='sandbox-link' code={code} />
+</div>
+<demo-code>
+  {truncate && <button aria-expanded='false'>Toggle full code</button>}
+  <button data-copied='false'><span class='visually-hidden'>Copy to clipboard</span></button>
+  <Code code={code} lang='tsx' theme={nightOwl} />
+</demo-code>
 
-<style set:html={getSandpackCssText()}></style>
+<script>
+  customElements.define(
+    'demo-code',
+    class extends HTMLElement {
+      connectedCallback() {
+        const expandButton = this.querySelector('button[aria-expanded]') as HTMLElement;
+        const copyButton = this.querySelector('button[data-copied]') as HTMLElement;
+        const code = this.querySelector('pre');
 
-<style lang='scss' is:global>
-  .live-example {
+        expandButton?.addEventListener('click', () => {
+          const shouldExpand = expandButton.getAttribute('aria-expanded') === 'false';
+          expandButton.setAttribute('aria-expanded', String(shouldExpand));
+          code.inert = !shouldExpand;
+        });
+
+        copyButton?.addEventListener('click', async () => {
+          try {
+            await navigator.clipboard.writeText(code.innerText);
+            copyButton.dataset.copied = 'true';
+            copyButton.setAttribute('aria-description', 'Copied');
+
+            await new Promise((resolve) => setTimeout(resolve, 4000));
+            copyButton.dataset.copied = 'false';
+            copyButton.removeAttribute('aria-description');
+          } catch {
+            console.error('unable to copy :(');
+          }
+        });
+      }
+    }
+  );
+</script>
+
+<style lang='scss'>
+  .demo-box {
     position: relative;
-  }
-  .live-example.iui-body {
-    background-color: transparent;
+    min-height: 300px;
+    max-height: 400px;
+    display: grid;
+    justify-items: center;
+    padding: 1rem;
+    background: var(--color-sandbox-gradient);
+    isolation: isolate;
+    border-radius: var(--border-radius-1);
   }
 
-  .sp-wrapper {
-    color-scheme: dark !important;
-    display: grid !important;
-    gap: 0.5rem !important;
-  }
-
-  .sp-stack {
-    height: 350px;
+  .demo-iui-wrapper {
+    height: 100%;
+    width: 100%;
     overflow: auto;
-    border-radius: 0.5rem;
+    display: grid;
+    align-content: center;
+    justify-items: center;
   }
 
-  .sp-preview-container {
-    background: transparent !important;
+  .sandbox-link {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    z-index: 1;
+  }
 
-    &-collapsed {
-      height: 350px;
-      border-radius: 0.5rem;
+  demo-code {
+    isolation: isolate;
+    position: relative;
+    display: grid;
+    border-radius: var(--border-radius-1);
+    outline: 1px solid var(--color-line-2);
+    outline-offset: 1px;
+
+    > :global(pre) {
+      padding: 1rem;
+      font-size: var(--type--1);
+      border-radius: var(--border-radius-1);
+    }
+
+    > :global([aria-expanded='false'] ~ pre) {
+      max-height: 200px;
+      overflow: hidden !important;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        background: linear-gradient(to bottom, transparent, var(--color-background-2));
+      }
+    }
+
+    > :global([aria-expanded='true'] ~ pre) {
+      padding-block-end: 2.5rem;
+    }
+
+    button {
+      font: inherit;
+      cursor: pointer;
+      background: var(--color-background-1);
+      padding: 0.5rem 1.25rem;
+      position: absolute;
+      border: 1px solid;
+      border-radius: var(--border-radius-1);
+      z-index: 2;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    button[aria-expanded] {
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &:not(:hover, :focus-visible) {
+        color: var(--color-text);
+        border-color: var(--color-line-1);
+      }
+    }
+
+    button[data-copied] {
+      top: 0.5rem;
+      right: 0.5rem;
+      padding: 0.5rem;
+      border-color: var(--color-line-2);
       display: grid;
       place-items: center;
-      background: var(--color-sandbox-gradient) !important;
-    }
-  }
 
-  .sp-preview-actions {
-    left: var(--sp-space-2);
-  }
+      --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z'></path></svg>");
 
-  .sp-cube-wrapper {
-    left: calc(var(--sp-space-2) + var(--sp-space-1));
-  }
+      &[data-copied='true'] {
+        --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 20 20'><path d='m7.032 13.907l-3.471-3.905a.75.75 0 0 0-1.122.996l4 4.5a.75.75 0 0 0 1.091.032l10.5-10.5a.75.75 0 0 0-1.06-1.06l-9.938 9.937Z'></path></svg>");
+      }
 
-  .sp-code-editor {
-    font-size: 0.8rem;
-  }
+      &::before {
+        content: '';
+        -webkit-mask: var(--_svg) no-repeat center / contain;
+        mask: var(--_svg) no-repeat center / contain;
+        width: 1rem;
+        height: 1rem;
+        background-color: currentColor;
+      }
 
-  .cm-scroller {
-    scrollbar-gutter: stable;
-  }
-
-  .show-code-button {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    z-index: 1;
-    background: transparent;
-    border-radius: var(--border-radius-1);
-    border: 1px solid transparent;
-    cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    color: var(--color-text);
-
-    &:hover {
-      background: hsl(0 0% 0% / 0.2);
+      &:hover {
+        border-color: currentColor;
+      }
     }
 
-    .sp-preview-actions & {
-      bottom: 0;
-      right: 0;
+    &:not(:hover, :focus-within) button[data-copied] {
+      clip-path: inset(50%);
+      overflow: hidden;
+      width: 1px;
+      height: 1px;
+      white-space: nowrap;
     }
   }
 </style>
