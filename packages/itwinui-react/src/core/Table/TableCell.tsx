@@ -60,6 +60,7 @@ export const TableCell = <T extends Record<string, unknown>>(
     return {
       paddingLeft: cellPadding + dynamicMargin * multiplier,
     };
+  };
 
   const cellElementProps = cell.getCellProps({
     className: cx('iui-table-cell', cell.column.cellClassName, {
