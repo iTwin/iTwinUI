@@ -12,7 +12,7 @@ export default () => {
       onClose={() => console.log('CLOSED')}
       clickableText='Learn more'
       clickableTextProps={{ onClick: () => console.log('Clicked more info!') }}
-      style={{ minWidth: 350 }}
+      style={{ minWidth: 'min(100%, 350px)' }}
     >
       This is a warning alert
     </Alert>

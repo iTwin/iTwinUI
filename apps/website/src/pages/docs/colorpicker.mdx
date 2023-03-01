@@ -3,17 +3,19 @@ title: Color picker
 description: A panel containing swatches for selecting colors.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/ColorPicker/ColorPicker.d.ts'
-exampleCodeFile1: ColorPicker.main.tsx
 thumbnail: ColorPicker
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ColorPicker.main.tsx'>
+  <AllExamples.ColorPickerMainExample client:load />
+</LiveExample>
 
 The color picker is extremely flexible. Bits and pieces can be used based on product requirements. If certain parts are not required for your context, they can be left out.
 

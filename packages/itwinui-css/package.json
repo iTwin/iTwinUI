@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.5.5",
+  "version": "1.6.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -38,6 +38,8 @@
     "chokidar": "^3.5.3",
     "html-minifier": "^4.0.0",
     "lightningcss": "^1.16.1",
+    "postcss": "^8.4.21",
+    "postcss-scoper": "^1.0.11",
     "npm-run-all": "^4.1.5",
     "sass": "^1.54.4",
     "sass-embedded": "^1.49.9",

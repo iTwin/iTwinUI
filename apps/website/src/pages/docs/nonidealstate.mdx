@@ -3,17 +3,19 @@ title: Non ideal state
 description: A full page error layout.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/NonIdealState/NonIdealState.d.ts'
-exampleCodeFile1: NonIdealState.main.tsx
 thumbnail: NonIdealState
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='NonIdealState.main.tsx' truncate={false}>
+  <AllExamples.NonIdealStateMainExample client:load />
+</LiveExample>
 
 Error pages are part of an everyday online experience. There are many types of error pages, but for most, their goal is to communicate to the user that their query was unsuccessful and there are no results to display. A well-designed error pages can potentially soothe some of the frustration that may result from the error. A well-known error page is the 404, that is triggered when the path the user followed led to a dead-end, with a page holding no content. However, if the user is ending up with a page that is displaying nothing, they might be confused and ignore what comes next. It’s why it’s important to put thoughts and time into designing good error pages.
 
