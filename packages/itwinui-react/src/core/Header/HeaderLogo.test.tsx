@@ -57,7 +57,7 @@ it('renders with as prop correctly', () => {
       hello
     </HeaderLogo>,
   );
-  const link = container.querySelector('h1');
+  const link = container.querySelector('a');
   expect(link).toHaveClass('iui-header-brand');
   expect(link).toHaveAttribute('href', 'https://www.example.com/');
   link?.click();
