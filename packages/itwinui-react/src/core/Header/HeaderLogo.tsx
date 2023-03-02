@@ -6,10 +6,14 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme, PolymorphicForwardRefComponent } from '../utils';
+import { useTheme } from '../utils';
+import type {
+  PolymorphicForwardRefComponent,
+  PolymorphicComponentProps,
+} from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 
-export type HeaderLogoProps = {
+type HeaderLogoOwnProps = {
   /**
    * Logo shown before the main content.
    */
@@ -20,6 +24,11 @@ export type HeaderLogoProps = {
    */
   onClick?: (e: unknown) => void;
 };
+
+export type HeaderLogoProps = PolymorphicComponentProps<
+  'div',
+  HeaderLogoOwnProps
+>;
 
 /**
  * Header Title section
@@ -58,6 +67,6 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
       {children && <span className='iui-header-brand-label'>{children}</span>}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'div', HeaderLogoProps>;
+}) as PolymorphicForwardRefComponent<'div', HeaderLogoOwnProps>;
 
 export default HeaderLogo;
