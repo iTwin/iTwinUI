@@ -31,7 +31,7 @@ export type ToggleSwitchProps = {
    *  @default 'default'
    */
   size?: 'default' | 'small';
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'>;
 
 /**
  * A switch for turning on and off.
