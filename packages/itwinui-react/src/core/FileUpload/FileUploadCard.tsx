@@ -11,6 +11,7 @@ import {
 } from '../utils';
 import cx from 'classnames';
 import { FileEmptyCard, FileEmptyCardContext } from './FileEmptyCard';
+import { useId } from '../utils';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -255,7 +256,7 @@ export const FileUploadCard = Object.assign(
 
       const [internalData, setInternalData] = React.useState<File[]>();
       const data = dataProps ?? internalData ?? [];
-      const inputId = React.useId();
+      const inputId = useId();
 
       return (
         <FileUploadCardContext.Provider
