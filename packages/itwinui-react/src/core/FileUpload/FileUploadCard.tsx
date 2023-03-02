@@ -250,7 +250,7 @@ export const FileUploadCard = Object.assign(
       const {
         className,
         children,
-        data: dataProps,
+        data: dataProp,
         onDataChange,
         emptyCard = <FileEmptyCard />,
         input,
@@ -258,7 +258,7 @@ export const FileUploadCard = Object.assign(
       } = props;
 
       const [internalData, setInternalData] = React.useState<File[]>();
-      const data = dataProps ?? internalData ?? [];
+      const data = dataProp ?? internalData ?? [];
       const inputId = useId();
 
       return (
