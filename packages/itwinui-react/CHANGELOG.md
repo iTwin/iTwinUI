@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.1
+
+### Patch Changes
+
+- 9ad85ff2: The different density settings for table will now also affect horizontal spacing.
+
 ## 2.5.0
 
 ### Minor Changes
