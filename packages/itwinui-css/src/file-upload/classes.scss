@@ -31,7 +31,7 @@
 }
 
 .iui-file-card-input {
-  @include iui-file-card-input;
+  @include visually-hidden;
 }
 
 .iui-file-card-empty {

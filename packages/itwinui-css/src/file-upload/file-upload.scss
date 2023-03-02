@@ -146,10 +146,6 @@
   font-weight: var(--iui-font-weight-bold);
 }
 
-@mixin iui-file-card-input {
-  @include visually-hidden;
-}
-
 @mixin iui-file-card-empty {
   @include iui-reset;
   width: 100%;
