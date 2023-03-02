@@ -165,7 +165,7 @@ const FileUploadCardInput = React.forwardRef<
 
       const dataTransfer = new DataTransfer();
       dataTransfer.items.clear();
-      data.forEach((file) => dataTransfer.items.add(file));
+      Array.from(data).forEach((file) => dataTransfer.items.add(file));
       node.files = dataTransfer.files;
     },
     [data],

@@ -84,14 +84,16 @@ WrappingInput.args = {
 };
 
 export const SingleFileUpload: Story<FileUploadProps> = (args) => {
+  const [files, setFiles] = useState<Array<File>>([]);
   return (
     <FileUpload
       {...args}
       onFileDropped={(files) => {
+        setFiles(files);
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadCard />
+      <FileUploadCard data={files} />
     </FileUpload>
   );
 };
@@ -117,6 +119,7 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
     <FileUpload
       {...args}
       onFileDropped={(files) => {
+        setFiles(files);
         action(`${files.length} files uploaded`)();
       }}
     >
