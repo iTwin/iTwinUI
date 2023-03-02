@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-menu {
+:is(.iui-list, .iui-menu) {
   @include iui-list-menu;
 
   .iui-listbox-wrapper & {
@@ -10,8 +10,20 @@
   }
 }
 
-.iui-menu-item {
+.iui-menu {
+  @include header-menu-styles;
+}
+
+:is(.iui-list-item, .iui-menu-item) {
   @include iui-menu-item;
+}
+
+.iui-menu-item {
+  @include menu-item-content;
+}
+
+.iui-menu-item-skeleton {
+  @include iui-menu-item-skeleton;
 }
 
 .iui-menu-content {

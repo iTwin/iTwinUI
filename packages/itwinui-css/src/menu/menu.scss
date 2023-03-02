@@ -3,19 +3,24 @@
 @import '../utils/index';
 @import '../surface/index';
 
-$iui-active-outline: thin solid var(--iui-color-border-accent);
+$iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 @mixin iui-list-menu {
   @include iui-reset;
   @include iui-surface;
   list-style-type: none;
-  user-select: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
   max-height: var(--iui-menu-max-height);
   border-radius: var(--iui-border-radius-1);
+  isolation: isolate;
 
+  &.iui-scroll {
+    overflow-y: auto;
+    overflow-y: overlay;
+    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
+  }
+}
+
+@mixin header-menu-styles {
   .iui-header-menu-icon {
     margin: 0 var(--iui-size-2xs);
   }
@@ -25,12 +30,6 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
     margin: 0;
     border-radius: var(--iui-border-radius-1);
     box-shadow: inset 0 0 0 2px hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
-  }
-
-  &.iui-scroll {
-    overflow-y: auto;
-    overflow-y: overlay;
-    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
 }
 
@@ -45,11 +44,94 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
   line-height: normal;
   color: var(--iui-color-text);
   border-radius: var(--iui-border-radius-1);
+  list-style-type: none;
+  position: relative;
 
   + #{&} {
     margin-top: -1px;
   }
 
+  &:where(:hover) {
+    background-color: var(--iui-color-background-hover);
+  }
+
+  &:where(:focus-visible, .iui-focused, :has(:focus-visible)) {
+    outline: $iui-active-outline;
+    outline-offset: -1px;
+    z-index: 1;
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+      z-index: 1;
+    }
+  }
+
+  &.iui-large {
+    min-height: var(--iui-component-height-large);
+
+    .iui-menu-description {
+      display: block;
+    }
+  }
+
+  &.iui-active {
+    background-color: var(--iui-color-background-accent-muted);
+    color: var(--iui-color-text-accent);
+    outline: $iui-active-outline;
+    outline-offset: -1px;
+
+    .iui-menu-description {
+      color: inherit;
+    }
+
+    > .iui-icon {
+      fill: currentColor;
+    }
+
+    &:where(:focus-visible, .iui-focused, :has(:focus-visible)) {
+      outline-width: var(--iui-size-3xs);
+      outline-offset: -2px;
+    }
+
+    @supports not selector(:has(+ *)) {
+      &:where(:focus-within) {
+        outline-width: var(--iui-size-3xs);
+        outline-offset: -2px;
+      }
+    }
+  }
+
+  &.iui-disabled {
+    z-index: -1;
+    cursor: not-allowed;
+    outline: none;
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-text-disabled);
+
+    > .iui-icon {
+      fill: var(--iui-color-icon-disabled);
+    }
+  }
+
+  // nested links should have no styling and should have the same click area as the list item
+  :where(a) {
+    all: unset;
+    color: inherit;
+    text-decoration: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+}
+
+// TODO: improve these classes
+@mixin menu-item-content {
   .iui-content,
   .iui-menu-label,
   .iui-menu-description {
@@ -76,96 +158,31 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
   > .iui-icon {
     @include iui-menu-icon;
   }
+}
+
+@mixin iui-menu-item-skeleton {
+  --iui-menu-item-content-skeleton-max-width: 30%;
+  cursor: auto;
+
+  .iui-content {
+    max-width: var(--iui-menu-item-content-skeleton-max-width);
+  }
+
+  .iui-menu-label {
+    width: 100%;
+    height: var(--iui-font-size-1);
+    vertical-align: middle;
+  }
+
+  .iui-menu-description {
+    width: 70%;
+    height: var(--iui-font-size-0);
+    vertical-align: middle;
+    margin-top: var(--iui-size-2xs);
+  }
 
   &:hover {
-    background-color: var(--iui-color-background-hover);
-  }
-
-  &:focus,
-  &.iui-focused {
-    outline: $iui-active-outline;
-    outline-offset: -1px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  &.iui-large {
-    min-height: var(--iui-component-height-large);
-
-    .iui-menu-description {
-      display: block;
-    }
-  }
-
-  &.iui-active {
-    &,
-    &:hover {
-      background-color: var(--iui-color-background-accent-muted);
-      color: var(--iui-color-text-accent);
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
-
-    .iui-menu-description {
-      color: inherit;
-    }
-
-    > .iui-icon {
-      fill: currentColor;
-    }
-
-    &:focus,
-    &.iui-focused {
-      outline-width: var(--iui-size-3xs);
-      outline-offset: -2px;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
-  }
-
-  &.iui-disabled {
-    &,
-    &:hover {
-      cursor: not-allowed;
-      outline: none;
-      background-color: var(--iui-color-background);
-      color: var(--iui-color-text-disabled);
-
-      > .iui-icon {
-        fill: var(--iui-color-icon-disabled);
-      }
-    }
-  }
-
-  &-skeleton {
-    --iui-menu-item-content-skeleton-max-width: 30%;
-    cursor: auto;
-
-    .iui-content {
-      max-width: var(--iui-menu-item-content-skeleton-max-width);
-    }
-
-    .iui-menu-label {
-      width: 100%;
-      height: var(--iui-font-size-1);
-      vertical-align: middle;
-    }
-
-    .iui-menu-description {
-      width: 70%;
-      height: var(--iui-font-size-0);
-      vertical-align: middle;
-      margin-top: var(--iui-size-2xs);
-    }
-
-    &:hover {
-      background-color: unset;
-    }
+    background-color: unset;
   }
 }
 
