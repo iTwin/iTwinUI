@@ -196,6 +196,9 @@ const FileUploadCardInput = React.forwardRef<
   );
 });
 
+// ----------------------------------------------------------------------------
+// FileUploadCard component
+
 export type FileUploadCardProps = {
   /**
    * File to pass (only needed when passing a custom action)

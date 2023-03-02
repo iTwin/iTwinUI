@@ -65,6 +65,9 @@ const FileEmptyCardDescription = React.forwardRef<
   );
 });
 
+// ----------------------------------------------------------------------------
+// FileEmptyCard component
+
 export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
 /**
  * Empty file card to be used with the `FileUploadCard` component when no file has been uploaded.
