@@ -21,6 +21,7 @@
       import "@itwin/itwinui-icons-elements/chevron-up";
       import "@itwin/itwinui-icons-elements/chevron-down";
       import "@itwin/itwinui-icons-elements/checkmark";
+      import "@itwin/itwinui-icons-elements/search";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -29,6 +30,7 @@
       section[id^='demo'] {
         --_iui-listbox-menu-height: 200px;
         width: auto;
+        margin-bottom: 24px;
       }
     </style>
   </head>
@@ -40,64 +42,86 @@
     <section id="demo-default">
 
       <div class="iui-listbox-wrapper">
-        <div class="iui-input-container iui-with-message">
-          <div
-            class="iui-label"
-            id="options"
-          >Options</div>
+
+        <div class="iui-listbox-label">Options</div>
+
+        <div></div>
+
+        <div class="iui-listbox-label">Applied</div>
+
+        <div class="iui-listbox-area">
+          <div class="iui-input-container iui-inline-icon">
+            <input
+              placeholder="Search…"
+              class="iui-input"
+            />
+            <svg-search
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-search>
+          </div>
+
           <ul
-            class="iui-menu"
+            class="iui-list"
             role="listbox"
             aria-multiselectable="true"
             aria-labelledby="options"
           >
             <li
-              class="iui-menu-item"
+              class="iui-list-item"
               role="option"
               aria-checked="false"
               tabindex="0"
             >
               <span class="iui-content">
-                <span class="iui-menu-label">Option 1</span>
+                <span class="iui-list-label">Option 1</span>
               </span>
             </li>
             <li
-              class="iui-menu-item"
+              class="iui-list-item"
               role="option"
               aria-checked="false"
               tabindex="0"
             >
               <span class="iui-content">
-                <span class="iui-menu-label">Option 2</span>
+                <span class="iui-list-label">Option 2</span>
               </span>
             </li>
-            <li class="iui-menu-item iui-disabled">
+            <li class="iui-list-item iui-disabled">
               <span class="iui-content">
-                <span class="iui-menu-label">Option 3</span>
-              </span>
-            </li>
-            <li
-              class="iui-menu-item"
-              role="option"
-              aria-checked="false"
-              tabindex="0"
-            >
-              <span class="iui-content">
-                <span class="iui-menu-label">Option 4</span>
+                <span class="iui-list-label">Option 3</span>
               </span>
             </li>
             <li
-              class="iui-menu-item"
+              class="iui-list-item"
               role="option"
               aria-checked="false"
               tabindex="0"
             >
               <span class="iui-content">
-                <span class="iui-menu-label">Option 5</span>
+                <span class="iui-list-label">Option 4</span>
+              </span>
+            </li>
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 5</span>
               </span>
             </li>
           </ul>
-          <div class="iui-message">All available options.</div>
+
+          <label class="iui-checkbox-wrapper">
+            <input
+              class="iui-checkbox"
+              type="checkbox"
+              checked
+            />
+            <span class="iui-checkbox-label">Models above will be grouped automatically.</span>
+          </label>
         </div>
 
         <div
@@ -143,29 +167,35 @@
           </button>
         </div>
 
-        <div class="iui-input-container iui-with-message">
-          <div
-            class="iui-label"
-            id="applied"
-          >Applied</div>
+        <div class="iui-listbox-area">
+          <div class="iui-input-container iui-inline-icon">
+            <input
+              placeholder="Search…"
+              class="iui-input"
+            />
+            <svg-search
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-search>
+          </div>
+
           <ul
-            class="iui-menu"
+            class="iui-list"
             role="listbox"
             aria-multiselectable="true"
             aria-labelledby="applied"
           >
             <li
-              class="iui-menu-item"
+              class="iui-list-item"
               role="option"
               aria-checked="false"
               tabindex="0"
             >
               <span class="iui-content">
-                <span class="iui-menu-label">Option 7</span>
+                <span class="iui-list-label">Option 7</span>
               </span>
             </li>
           </ul>
-          <div class="iui-message">Options that are applied.</div>
         </div>
       </div>
 
@@ -174,7 +204,7 @@
     <script>
       window.onload = () => {
         // Clicking on menu-item should toggle selection
-        document.querySelectorAll('.iui-menu-item:not(.iui-disabled)').forEach((item) => {
+        document.querySelectorAll('.iui-list-item:not(.iui-disabled)').forEach((item) => {
           item.addEventListener('click', () => {
             if (item.classList.contains('iui-active')) {
               item.lastElementChild.remove();

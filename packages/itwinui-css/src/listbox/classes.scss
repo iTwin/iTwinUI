@@ -6,6 +6,14 @@
   @include iui-listbox-wrapper;
 }
 
+.iui-listbox-label {
+  @include iui-listbox-label;
+}
+
+.iui-listbox-area {
+  @include iui-listbox;
+}
+
 .iui-listbox-toolbar {
-  @include iui-listbox-toolbar;
+  @include iui-listbox('toolbar');
 }

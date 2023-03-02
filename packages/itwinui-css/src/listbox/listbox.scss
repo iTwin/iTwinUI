@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../utils/input-container/input-container.scss';
 
 @mixin iui-listbox-wrapper {
   --iui-menu-listbox-height: calc((var(--iui-component-height) - 1px) * 4.5);
@@ -9,11 +10,17 @@
   column-gap: var(--iui-size-xs);
 }
 
-@mixin iui-listbox-toolbar {
+@mixin iui-listbox-label {
+  @include iui-input-label-styling;
+}
+
+@mixin iui-listbox($area: null) {
   display: flex;
-  flex-shrink: 0;
   flex-direction: column;
-  justify-content: center;
+  flex: 1;
   gap: var(--iui-size-2xs);
-  padding-block: calc(var(--iui-size-l) + var(--iui-size-2xs));
+
+  @if ($area == 'toolbar') {
+    justify-content: center;
+  }
 }
