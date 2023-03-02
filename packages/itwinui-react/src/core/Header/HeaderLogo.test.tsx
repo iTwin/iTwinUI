@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { SvgMore as SvgPlaceholder } from '../utils';
 
 import HeaderLogo from './HeaderLogo';
@@ -13,9 +13,9 @@ it('renders default correctly', () => {
     <HeaderLogo logo={<SvgPlaceholder />}>Application</HeaderLogo>,
   );
 
-  const root = container.querySelector('.iui-header-brand') as HTMLDivElement;
+  const root = container.querySelector('div') as HTMLDivElement;
   expect(root).toBeTruthy();
-  expect(root.getAttribute('role')).toBeNull();
+  expect(root).toHaveClass('iui-header-brand');
 
   const {
     container: { firstChild: placeholderIcon },
@@ -38,34 +38,30 @@ it('renders with onClick correctly', () => {
     </HeaderLogo>,
   );
 
-  const root = container.querySelector('.iui-header-brand') as HTMLDivElement;
-  expect(root).toBeTruthy();
-  expect(root.getAttribute('role')).toBe('button');
+  const root = container.querySelector('button') as HTMLButtonElement;
+  expect(root).toHaveClass('iui-header-brand');
   root.click();
 
   expect(onClickMock).toHaveBeenCalled();
 });
 
-it('handles keypress with onClick correctly', () => {
+it('renders with as prop correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
-    <HeaderLogo logo={<SvgPlaceholder />} onClick={onClickMock}>
-      Application
+    <HeaderLogo
+      as='a'
+      logo={<SvgPlaceholder />}
+      href='https://www.example.com/'
+      onClick={onClickMock}
+    >
+      hello
     </HeaderLogo>,
   );
-
-  const root = container.querySelector('.iui-header-brand') as HTMLDivElement;
-  expect(root).toBeTruthy();
-  expect(root.getAttribute('role')).toBe('button');
-
-  fireEvent.keyDown(root, { key: 'Enter' });
-  expect(onClickMock).toHaveBeenCalledTimes(1);
-
-  fireEvent.keyDown(root, { key: ' ' });
-  expect(onClickMock).toHaveBeenCalledTimes(2);
-
-  fireEvent.keyDown(root, { key: 'a' });
-  expect(onClickMock).toHaveBeenCalledTimes(2);
+  const link = container.querySelector('h1');
+  expect(link).toHaveClass('iui-header-brand');
+  expect(link).toHaveAttribute('href', 'https://www.example.com/');
+  link?.click();
+  expect(onClickMock).toHaveBeenCalled();
 });
 
 it('renders with no children correctly', () => {
