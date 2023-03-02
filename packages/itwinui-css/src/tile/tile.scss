@@ -5,6 +5,8 @@
 @import '../surface/index';
 @import '../utils/index';
 
+$thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
+
 @mixin iui-tile {
   --_iui-tile-title-text-color: var(--iui-color-text);
   --_iui-tile-body-text-color: var(--iui-color-text-muted);
@@ -63,13 +65,13 @@
     transition: box-shadow var(--iui-duration-1) ease-in-out;
 
     &:hover {
-      box-shadow: var(--iui-shadow-3);
+      box-shadow: var(--iui-shadow-4);
     }
 
-    &:hover,
-    &:focus-within,
-    &.iui-selected {
-      .iui-tile-thumbnail-picture {
+    &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
+      transform: rotate(4deg);
+
+      &:is(div, img) {
         transform: translateZ(0) scale(1.1);
       }
     }
@@ -115,8 +117,7 @@
     --_iui-tile-title-text-color: var(--iui-color-text-disabled);
     --_iui-tile-body-text-color: var(--iui-color-text-disabled);
 
-    .iui-thumbnail-icon,
-    .iui-tile-thumbnail-picture {
+    #{$thumbnail-selector} {
       filter: grayscale(100%);
     }
 
@@ -125,8 +126,7 @@
       color: inherit;
     }
 
-    &:hover .iui-tile-thumbnail-picture,
-    &:focus-within .iui-tile-thumbnail-picture {
+    &:is(:hover, :focus-within) #{$thumbnail-selector} {
       transform: none;
     }
   }
@@ -228,6 +228,7 @@
   .iui-thumbnail-icon {
     @include iui-icon-style(3xl);
     @include iui-icon-color;
+    transition: transform var(--iui-duration-2) ease;
   }
 }
 
