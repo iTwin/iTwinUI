@@ -7,21 +7,19 @@ import { Blockquote } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ padding: '0 48px' }}>
-      <Blockquote
-        cite={'https://www.bentley.com/en'}
-        footer={
-          <>
-            — Greg Bentley, <cite>NasdaqListed</cite>
-          </>
-        }
-      >
-        <p>
-          For 36 years we have served engineers with our software, passionately 35 believing that
-          better performing and more resilient infrastructure is 36 essential to improve the quality
-          of life for people everywhere, sustain 37 our environment, and grow our economies.
-        </p>
-      </Blockquote>
-    </div>
+    <Blockquote
+      cite={'https://www.bentley.com/en'}
+      footer={
+        <>
+          — Greg Bentley, <cite>NasdaqListed</cite>
+        </>
+      }
+    >
+      <p>
+        For 36 years we have served engineers with our software, passionately 35 believing that
+        better performing and more resilient infrastructure is 36 essential to improve the quality
+        of life for people everywhere, sustain 37 our environment, and grow our economies.
+      </p>
+    </Blockquote>
   );
 };

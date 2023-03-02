@@ -8,7 +8,7 @@ import { SvgNetwork, SvgWindows } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <RadioTileGroup style={{ width: '350px' }}>
+    <RadioTileGroup style={{ width: 'min(100%, 350px)' }}>
       <RadioTile
         label='Web'
         description='Dimensions in px'

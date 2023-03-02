@@ -3,28 +3,21 @@ title: Avatar
 description: A circular identifier that displays the user’s custom set photo or the user’s first and last name initials.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Avatar/Avatar.d.ts'
-exampleCodeMain: Avatar.main.tsx
-exampleCodeSizes: Avatar.sizes.tsx
-exampleCodeInitials: Avatar.initials.tsx
-exampleCodeIcon: Avatar.icon.tsx
-exampleCodePicture: Avatar.picture.tsx
-exampleCodeStatuses: Avatar.statuses.tsx
-exampleCodeGroup: Avatar.group.tsx
-exampleCodeGroupStacked: Avatar.groupstacked.tsx
-exampleCodeGroupAnimated: Avatar.groupanimated.tsx
-exampleCodeGroupOverflow: Avatar.groupoverflow.tsx
 group: core
 thumbnail: Avatar
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeMain} />
+<LiveExample src='Avatar.main.tsx'>
+  <AllExamples.AvatarMainExample client:load />
+</LiveExample>
 
-The avatar is an essential UI component, making it easier to identify a person or organization by their photo, icon, or initials. A user’s photo helps put a face to the name and makes it more personal. Any time an app requires a user profile, an avatar should be included.
+The avatar is an essential UI component, making it easier to identify a person or organization by their photo, icon, or initials. A user’s photo helps put a face to the name and makes it more personal. Any time an app requires a user profile, an avatar should be included. It also makes it very obvious to the user that they are logged in, as the non-logged in state displays differently.
 
 ## Appearance
 
@@ -32,7 +25,9 @@ The avatar is an essential UI component, making it easier to identify a person o
 
 There are four sizes of avatars:
 
-<LiveExample src={frontmatter.exampleCodeSizes} />
+<LiveExample src='Avatar.sizes.tsx'>
+  <AllExamples.AvatarSizesExample client:load />
+</LiveExample>
 
 - `small`
 - `medium`
@@ -45,19 +40,25 @@ Which size to use is at your discretion. Determine which size is best for your c
 
 If a user does not upload a photo, the user’s first & last initials are displayed. You can display a maximum of 2 letters and a minimum of 1 letter. In the off chance there are user accounts without any name associated, you can display the first letter of the user’s email address.
 
-<LiveExample src={frontmatter.exampleCodeInitials} />
+<LiveExample src='Avatar.initials.tsx'>
+  <AllExamples.AvatarInitialsExample client:load />
+</LiveExample>
 
 ### Icon
 
 An icon may be display instead of initials, typically used by organizations instead of a person.
 
-<LiveExample src={frontmatter.exampleCodeIcon} />
+<LiveExample src='Avatar.icon.tsx'>
+  <AllExamples.AvatarIconExample client:load />
+</LiveExample>
 
 ### Picture
 
 If a user uploads a photo we display their photo instead of their initials.
 
-<LiveExample src={frontmatter.exampleCodePicture} />
+<LiveExample src='Avatar.picture.tsx'>
+  <AllExamples.AvatarPictureExample client:load />
+</LiveExample>
 
 ### Status indicators
 
@@ -68,31 +69,41 @@ You may want to indicate the online status of a user. Status indicators display 
 - `busy`
 - `offline`
 
-<LiveExample src={frontmatter.exampleCodeStatuses} />
+<LiveExample src='Avatar.statuses.tsx'>
+  <AllExamples.AvatarStatusesExample client:load />
+</LiveExample>
 
 ## Avatar group
 
-Avatars can be displayed in a list to represent a group of people. This visual treatment reinforces the fact that these people work together and/or share similar permissions to access/view/edit a file or a project.
+Avatars can be displayed in a list to represent a group of people. This visual treatment reinforces the fact that these people work together and/or share similar permissions to access/view/edit a file or a project. For example, you might display the list of people who previously edited an item, are all collaborating on a specific activity, etc. To save space, consider the "Stacked" option below.
 
-<LiveExample src={frontmatter.exampleCodeGroup} />
+<LiveExample src='Avatar.group.tsx'>
+  <AllExamples.AvatarGroupExample client:load />
+</LiveExample>
 
 ### Stacked
 
 To save on space, the avatars can overlay each other. Note that when using the stacked group that you can not display [status indicators](#status-indicators).
 
-<LiveExample src={frontmatter.exampleCodeGroupStacked} />
+<LiveExample src='Avatar.groupstacked.tsx'>
+  <AllExamples.AvatarGroupStackedExample client:load />
+</LiveExample>
 
 ### Animated stack
 
 You can also have the stacked group animate to unstacked on hover. When doing this, be sure to pay close attention to unintentionally shifting other content on the page.
 
-<LiveExample src={frontmatter.exampleCodeGroupAnimated} />
+<LiveExample src='Avatar.groupanimated.tsx'>
+  <AllExamples.AvatarGroupAnimatedExample client:load />
+</LiveExample>
 
 ### Overflow
 
-A maximum of six avatars can be shown within a group. Any additional avatars will not be shown and instead the last avatar will display a count of how many avatars are not shown. To display all of the hidden users, we recommend the user interact with the numbered avatar. You could display a [tooltip](tooltip) on hover, a [dialog](dialog) on click, or take the user to a new page on click.
+A maximum of six avatars can be shown within a group. Additional avatars are hidden; however, the number of hidden items should be displayed in the last avatar circle as shown below. Additionally, you could display a [tooltip](tooltip) on hover, a [dialog](dialog) on click, or perhaps a [dropdown menu](dropdownmenu) of the hidden users. Implementation of these options depends on the purpose of the page and the use case.
 
-<LiveExample src={frontmatter.exampleCodeGroupOverflow} />
+<LiveExample src='Avatar.groupoverflow.tsx'>
+  <AllExamples.AvatarGroupOverflowExample client:load />
+</LiveExample>
 
 ## Props
 

@@ -13,6 +13,9 @@ export default () => {
       { label: 'Apple', value: 'apple' },
       { label: 'Banana', value: 'banana' },
       { label: 'Grapefruit', value: 'grapefruit' },
+      { label: 'Lychee', value: 'lychee' },
+      { label: 'Kiwi', value: 'kiwi' },
+      { label: 'Orange', value: 'orange' },
     ],
     []
   );

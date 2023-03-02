@@ -3,22 +3,19 @@ title: Breadcrumbs
 description: Navigate a folder hierarchy quickly with a table and breadcrumbs.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Breadcrumbs/Breadcrumbs.tsx'
-exampleCodeMain: Breadcrumbs.main.tsx
-exampleCodeLink: Breadcrumbs.link.tsx
-exampleCodeButton: Breadcrumbs.button.tsx
-exampleCodeFolder: Breadcrumbs.folder.tsx
-exampleCodeTruncation: Breadcrumbs.truncation.tsx
-exampleCodeExtremeTruncation: Breadcrumbs.extremeTruncation.tsx
 thumbnail: Breadcrumbs
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeMain} />
+<LiveExample src='Breadcrumbs.main.tsx' truncate={false}>
+  <AllExamples.BreadcrumbsMainExample client:load />
+</LiveExample>
 
 Breadcrumbs are a way of navigating a folder structure. Breadcrumbs should be used in conjunction with [tables](table), [tiles](tile), and website navigation. Once you start drilling in levels, the breadcrumbs are updated to navigate quickly between opened levels.
 
@@ -30,13 +27,17 @@ There are two styles of breadcrumbs supported:
 
 The breadcrumb items can be displayed as clickable [anchor](anchor) links that the user can interact with to navigate back and forth. If clicking a breadcrumb item changes the URL, then using the link style is preferred.
 
-<LiveExample src={frontmatter.exampleCodeLink} />
+<LiveExample src='Breadcrumbs.link.tsx'>
+  <AllExamples.BreadcrumbsLinkExample client:load />
+</LiveExample>
 
 ### Buttons
 
 The breadcrumb items can be displayed as [buttons](button). If clicking a breadcrumb item keeps the user on the same URL, but loads different content within the page, then using the button style is preferred.
 
-<LiveExample src={frontmatter.exampleCodeButton} />
+<LiveExample src='Breadcrumbs.button.tsx'>
+  <AllExamples.BreadcrumbsButtonExample client:load />
+</LiveExample>
 
 ## Usage
 
@@ -47,17 +48,23 @@ When navigating a directory, there are additional options to enhance the user's 
 1. Place a dropdown button at the front of the breadcrumbs that displays the full path within a [dropdown menu](dropdownmenu).
 2. When clicking on the current location, the breadcrumb can be replaced with an [input](input) displaying the full path. This allows for quick navigation or sharing the path with another user.
 
-<LiveExample src={frontmatter.exampleCodeFolder} />
+<LiveExample src='Breadcrumbs.folder.tsx'>
+  <AllExamples.BreadcrumbsFolderExample client:load />
+</LiveExample>
 
 ### Truncation
 
 Show as many previously accessed folders as possible so that users can quickly go back to an upper level. If all breadcrumb items can be shown without horizontal scrolling, show them all. Try to keep the first level - the root folder - always accessible. When you start truncating, start with the secondly accessed folder and work your way from there.
 
-<LiveExample src={frontmatter.exampleCodeTruncation} />
+<LiveExample src='Breadcrumbs.truncation.tsx'>
+  <AllExamples.BreadcrumbsTruncationExample client:load />
+</LiveExample>
 
 If the available space does not allow to display both the previous folder and current folder, start truncating text.
 
-<LiveExample src={frontmatter.exampleCodeExtremeTruncation} />
+<LiveExample src='Breadcrumbs.extremeTruncation.tsx'>
+  <AllExamples.BreadcrumbsExtremeTruncationExample client:load />
+</LiveExample>
 
 ## Props
 
