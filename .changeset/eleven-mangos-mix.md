@@ -3,4 +3,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Add small size toggle switch option using `size` prop as follow: `<ToggleSwitch size='small' />`
+Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
