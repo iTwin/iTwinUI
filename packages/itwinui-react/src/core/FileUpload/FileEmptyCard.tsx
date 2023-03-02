@@ -119,14 +119,4 @@ export const FileEmptyCard = Object.assign(
   },
 );
 
-export const FileEmptyCardContext = React.createContext<
-  | {
-      /**
-       * Id to pass to input
-       */
-      inputId: string;
-    }
-  | undefined
->(undefined);
-
 export default FileEmptyCard;

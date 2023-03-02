@@ -10,7 +10,7 @@ import {
   useSafeContext,
 } from '../utils';
 import cx from 'classnames';
-import { FileEmptyCard, FileEmptyCardContext } from './FileEmptyCard';
+import { FileEmptyCard } from './FileEmptyCard';
 import { useId } from '../utils';
 
 const toBytes = (bytes: number) => {
@@ -280,9 +280,7 @@ export const FileUploadCard = Object.assign(
               )}
             </div>
           ) : (
-            <FileEmptyCardContext.Provider value={{ inputId }}>
-              {emptyCard}
-            </FileEmptyCardContext.Provider>
+            emptyCard
           )}
           {input ?? <FileUploadCard.Input id={inputId} />}
         </FileUploadCardContext.Provider>
