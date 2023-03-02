@@ -93,7 +93,7 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadCard data={files} />
+      <FileUploadCard data={files} onDataChange={(files) => setFiles(files)} />
     </FileUpload>
   );
 };

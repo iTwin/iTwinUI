@@ -63,17 +63,22 @@
     }
   }
 
-  &.iui-drag > .iui-content {
-    background-color: var(--iui-color-background-accent-muted);
-    border-color: var(--iui-color-border-accent);
-    color: var(--iui-color-text-accent);
-    visibility: visible;
-
-    > svg,
-    .iui-template-icon,
-    .iui-file-card-icon,
-    .iui-file-card-empty-icon {
+  &.iui-drag {
+    .iui-file-card-icon > svg,
+    .iui-file-card-empty-icon > svg {
       fill: var(--iui-color-icon-accent);
+    }
+
+    > .iui-content {
+      background-color: var(--iui-color-background-accent-muted);
+      border-color: var(--iui-color-border-accent);
+      color: var(--iui-color-text-accent);
+      visibility: visible;
+
+      > svg,
+      .iui-template-icon {
+        fill: var(--iui-color-icon-accent);
+      }
     }
   }
 }
@@ -103,11 +108,13 @@
 }
 
 @mixin iui-file-card-icon {
-  @include iui-icon-style('xl');
-  @include iui-icon-color;
-  margin-top: var(--iui-size-s);
-  margin-bottom: var(--iui-size-s);
-  margin-left: var(--iui-size-xs);
+  > svg {
+    @include iui-icon-style('xl');
+    @include iui-icon-color;
+    margin-top: var(--iui-size-s);
+    margin-bottom: var(--iui-size-s);
+    margin-left: var(--iui-size-xs);
+  }
 }
 
 @mixin iui-file-card-text {
@@ -174,10 +181,12 @@
 }
 
 @mixin iui-file-card-empty-icon {
-  @include iui-icon-style('xl');
-  @include iui-icon-color;
-  margin-top: var(--iui-size-s);
-  margin-bottom: var(--iui-size-s);
+  > svg {
+    @include iui-icon-color;
+    @include iui-icon-style('xl');
+    margin-top: var(--iui-size-s);
+    margin-bottom: var(--iui-size-s);
+  }
 }
 
 @mixin iui-file-card-empty-action {
