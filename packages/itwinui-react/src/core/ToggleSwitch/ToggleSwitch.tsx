@@ -30,7 +30,7 @@ export type ToggleSwitchProps = {
    * Size of the toggle switch.
    *  @default 'default'
    */
-  switchSize?: 'default' | 'small';
+  size?: 'default' | 'small';
 } & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
 
 /**
@@ -61,7 +61,7 @@ export const ToggleSwitch = React.forwardRef(
       setFocus = false,
       className,
       style,
-      switchSize = 'default',
+      size = 'default',
       ...rest
     } = props;
 
@@ -87,7 +87,7 @@ export const ToggleSwitch = React.forwardRef(
           },
           className,
         )}
-        data-iui-size={switchSize}
+        data-iui-size={size}
         style={style}
       >
         <input

@@ -32,7 +32,7 @@ it('should render correctly in its most basic state', () => {
 });
 
 it('should render toggle with small size', () => {
-  const { container } = render(<ToggleSwitch switchSize='small' />);
+  const { container } = render(<ToggleSwitch size='small' />);
 
   assertBaseElements(container);
   expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
