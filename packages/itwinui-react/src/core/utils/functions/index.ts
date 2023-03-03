@@ -7,4 +7,3 @@ export * from './colors';
 export * from './numbers';
 export * from './focusable';
 export * from './styles';
-export * from './id';

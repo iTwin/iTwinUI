@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import React from 'react';
-import { getRandomValue } from './numbers';
+import { getRandomValue } from '../functions/numbers';
 
 /**
  * Return custom useId function as a fallback for React.useId

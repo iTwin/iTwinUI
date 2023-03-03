@@ -177,7 +177,7 @@ const FileUploadCardInput = React.forwardRef<
   return (
     <>
       <input
-        className={cx('iui-file-card-input', className)}
+        className={cx('iui-visually-hidden', className)}
         type='file'
         onChange={(e) => {
           onChange?.(e);

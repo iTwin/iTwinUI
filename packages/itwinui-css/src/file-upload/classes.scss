@@ -30,10 +30,6 @@
   @include iui-file-card-action;
 }
 
-.iui-file-card-input {
-  @include visually-hidden;
-}
-
 .iui-file-card-empty {
   @include iui-file-card-empty;
 }
