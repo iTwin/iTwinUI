@@ -31,6 +31,18 @@ it('should render correctly in its most basic state', () => {
   expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
 });
 
+it('should render toggle with small size', () => {
+  const { container } = render(<ToggleSwitch size='small' />);
+
+  assertBaseElements(container);
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
+  expect(
+    container
+      .querySelector('.iui-toggle-switch-wrapper')
+      ?.getAttribute('data-iui-size'),
+  ).toBe('small');
+});
+
 it('should render checked toggle', () => {
   const { container } = render(<ToggleSwitch defaultChecked />);
 

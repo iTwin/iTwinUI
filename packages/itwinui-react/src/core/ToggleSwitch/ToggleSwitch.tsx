@@ -26,7 +26,12 @@ export type ToggleSwitchProps = {
    * Icon inside the toggle switch. Shown only when toggle is checked.
    */
   icon?: JSX.Element;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+  /**
+   * Size of the toggle switch.
+   *  @default 'default'
+   */
+  size?: 'default' | 'small';
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'>;
 
 /**
  * A switch for turning on and off.
@@ -56,6 +61,7 @@ export const ToggleSwitch = React.forwardRef(
       setFocus = false,
       className,
       style,
+      size = 'default',
       ...rest
     } = props;
 
@@ -70,7 +76,6 @@ export const ToggleSwitch = React.forwardRef(
         inputElementRef.current.focus();
       }
     }, [setFocus]);
-
     return (
       <WrapperComponent
         className={cx(
@@ -82,6 +87,7 @@ export const ToggleSwitch = React.forwardRef(
           },
           className,
         )}
+        data-iui-size={size}
         style={style}
       >
         <input
