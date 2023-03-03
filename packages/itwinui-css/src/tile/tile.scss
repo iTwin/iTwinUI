@@ -73,12 +73,6 @@
         transform: translateZ(0) scale(1.1);
       }
     }
-
-    position: relative;
-
-    // .iui-tile-content {
-    //   position: unset;
-    // }
   }
 
   &.iui-folder {
@@ -161,7 +155,6 @@
     flex-shrink: 0;
     align-items: center;
     font-size: var(--iui-font-size-2);
-    user-select: all;
     margin-bottom: calc(var(--iui-size-s) * 0.5);
     color: var(--_iui-tile-title-text-color);
   }

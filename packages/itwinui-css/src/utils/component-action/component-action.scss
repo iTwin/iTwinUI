@@ -1,11 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-@mixin component-action {
+@mixin iui-link-overlay {
+  position: relative;
+  width: fit-content;
+
+  .iui-tile-content {
+    position: unset;
+  }
+}
+
+@mixin iui-link-box {
   all: unset;
   text-decoration: none;
   color: inherit;
-  user-select: text;
 
   &::after {
     content: '';

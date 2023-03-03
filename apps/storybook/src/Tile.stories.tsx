@@ -16,7 +16,8 @@ import {
   Tile,
   TileProps,
   Avatar,
-  ActionOverlay,
+  LinkBox,
+  LinkOverlay,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
 import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
@@ -207,24 +208,26 @@ export const AnchorLink: Story<TileProps> = (props) => {
     thumbnail,
     isNew,
     isActionable = true,
+    moreOptions,
     ...rest
   } = props;
 
   return (
-    <Tile
-      name={
-        <ActionOverlay href='/?path=/docs/core-tile--anchor-link'>
-          {name}
-        </ActionOverlay>
-      }
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
-      isNew={isNew}
-      isActionable={isActionable}
-      {...rest}
-    />
+    <LinkOverlay>
+      <Tile
+        name={
+          <LinkBox href='/?path=/docs/core-tile--anchor-link'>{name}</LinkBox>
+        }
+        description={description}
+        metadata={metadata}
+        badge={badge}
+        thumbnail={thumbnail}
+        isNew={isNew}
+        isActionable={isActionable}
+        moreOptions={moreOptions}
+        {...rest}
+      />
+    </LinkOverlay>
   );
 };
 AnchorLink.argTypes = { ...Basic.argTypes };
@@ -233,7 +236,6 @@ AnchorLink.args = {
   description:
     'If you click on this stadium, it is going to open another page.',
   isActionable: true,
-  moreOptions: undefined,
 };
 export const Condensed: Story<TileProps> = (props) => {
   const { name, thumbnail, moreOptions, ...rest } = props;

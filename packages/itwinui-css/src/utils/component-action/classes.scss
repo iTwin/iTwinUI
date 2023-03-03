@@ -2,6 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './component-action';
 
-.iui-component-action {
-  @include component-action;
+.iui-link-box {
+  @include iui-link-box;
+}
+
+.iui-link-overlay {
+  @include iui-link-overlay;
 }

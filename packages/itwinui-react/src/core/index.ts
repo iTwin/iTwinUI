@@ -318,7 +318,8 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
-  ActionOverlay,
+  LinkBox,
+  LinkOverlay,
   Icon,
   Flex,
 } from './utils';
