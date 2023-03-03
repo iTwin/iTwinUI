@@ -21,7 +21,12 @@ export type PolymorphicActionProps = PolymorphicComponentProps<
 export const LinkBox = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
   return (
-    <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
+    <Element
+      ref={ref}
+      className={cx('iui-link-box', className)}
+      tabIndex={-1}
+      {...rest}
+    />
   );
 }) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
 

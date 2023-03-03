@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@import '../mixins';
 
 @mixin iui-link-overlay {
   position: relative;
@@ -7,10 +8,6 @@
 
   .iui-tile-content {
     position: unset;
-  }
-
-  &:focus-within {
-    text-decoration: none;
   }
 }
 
@@ -23,9 +20,5 @@
     content: '';
     position: absolute;
     inset: 0;
-  }
-
-  a:focus {
-    text-decoration: none;
   }
 }
