@@ -208,6 +208,11 @@ export const Tabs = (props: TabsProps) => {
     }
   }, [focusedIndex]);
 
+  const [isAnimated, setIsAnimated] = React.useState(false);
+  React.useEffect(() => {
+    setIsAnimated(true);
+  }, []);
+
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
   useIsomorphicLayoutEffect(() => {
     setHasSublabel(
@@ -299,7 +304,8 @@ export const Tabs = (props: TabsProps) => {
           `iui-${type}`,
           {
             'iui-green': color === 'green',
-            'iui-animated': type !== 'default',
+            [isAnimated ? 'iui-animated' : 'iui-not-animated']:
+              type !== 'default',
             'iui-large': hasSublabel,
           },
           tabsClassName,
