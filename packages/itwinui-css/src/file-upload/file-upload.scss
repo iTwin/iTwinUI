@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
+@import '../surface/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
@@ -70,10 +71,14 @@
     }
 
     > .iui-content {
+      visibility: visible;
+    }
+
+    > .iui-content,
+    .iui-file-card {
       background-color: var(--iui-color-background-accent-muted);
       border-color: var(--iui-color-border-accent);
       color: var(--iui-color-text-accent);
-      visibility: visible;
 
       > svg,
       .iui-template-icon {
@@ -85,6 +90,7 @@
 
 @mixin iui-file-card {
   @include iui-reset;
+  @include iui-surface;
   width: 100%;
   line-height: normal;
   display: flex;
