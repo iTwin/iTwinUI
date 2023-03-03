@@ -171,6 +171,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
+  //TODO: change this to svh, but first test the current one to see the failures
   max-height: calc(100vh - 6.75rem); // 6.75rem = 108px = button height + paddings + bottom bar
 }
 
