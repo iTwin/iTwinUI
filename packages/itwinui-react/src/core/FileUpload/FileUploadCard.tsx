@@ -259,7 +259,15 @@ export const FileUploadCard = Object.assign(
 
       const [internalData, setInternalData] = React.useState<File[]>();
       const data = dataProp ?? internalData ?? [];
-      const inputId = useId();
+      let inputId = useId();
+      if (
+        input &&
+        typeof input === 'object' &&
+        'props' in input &&
+        'id' in input.props
+      ) {
+        inputId = input.props.id as string;
+      }
 
       return (
         <FileUploadCardContext.Provider
