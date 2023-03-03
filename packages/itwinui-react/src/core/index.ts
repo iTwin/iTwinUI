@@ -117,7 +117,6 @@ export type {
   FileEmptyCardProps,
   FileEmptyCardIconProps,
   FileEmptyCardTextProps,
-  FileEmptyCardDescriptionProps,
 } from './FileUpload';
 
 export { Footer, defaultFooterElements } from './Footer';

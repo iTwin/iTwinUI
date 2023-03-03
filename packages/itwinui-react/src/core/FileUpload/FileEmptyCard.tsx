@@ -49,23 +49,6 @@ const FileEmptyCardText = React.forwardRef<
 });
 
 // ----------------------------------------------------------------------------
-// FileEmptyCard.Description component
-
-export type FileEmptyCardDescriptionProps = React.ComponentPropsWithRef<'div'>;
-
-const FileEmptyCardDescription = React.forwardRef<
-  HTMLDivElement,
-  FileEmptyCardDescriptionProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <div className={className} ref={ref} {...rest}>
-      {children}
-    </div>
-  );
-});
-
-// ----------------------------------------------------------------------------
 // FileEmptyCard component
 
 export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
@@ -81,9 +64,7 @@ export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
  *     <FileUploadCard.InputLabel>
  *       Custom Label Text
  *     </FileUploadCard.InputLabel>
- *     <FileEmptyCard.Description>
- *       Custom Description Text
- *     </FileEmptyCard.Description>
+ *     <div>Custom Description Text</div>
  *   </FileEmptyCard.Text>
  * </FileEmptyCard>
  */
@@ -105,9 +86,7 @@ export const FileEmptyCard = Object.assign(
                 <FileUploadCard.InputLabel>
                   Choose a file
                 </FileUploadCard.InputLabel>
-                <FileEmptyCard.Description>
-                  or drag & drop it here.
-                </FileEmptyCard.Description>
+                <div>to upload.</div>
               </FileEmptyCard.Text>
             </>
           )}
@@ -118,7 +97,6 @@ export const FileEmptyCard = Object.assign(
   {
     Icon: FileEmptyCardIcon,
     Text: FileEmptyCardText,
-    Description: FileEmptyCardDescription,
   },
 );
 

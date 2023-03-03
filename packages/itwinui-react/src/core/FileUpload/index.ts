@@ -26,5 +26,4 @@ export type {
   FileEmptyCardProps,
   FileEmptyCardIconProps,
   FileEmptyCardTextProps,
-  FileEmptyCardDescriptionProps,
 } from './FileEmptyCard';

@@ -109,9 +109,7 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
         <FileUploadCard.InputLabel>Custom Label Text</FileUploadCard.InputLabel>
-        <FileEmptyCard.Description>
-          Custom Description Text
-        </FileEmptyCard.Description>
+        <div>Custom Description Text</div>
       </FileEmptyCard.Text>
     </FileEmptyCard>
   );

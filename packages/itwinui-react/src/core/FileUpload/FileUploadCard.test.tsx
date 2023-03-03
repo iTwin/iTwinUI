@@ -24,9 +24,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
         <FileUploadCard.InputLabel>Custom Title Text</FileUploadCard.InputLabel>
-        <FileEmptyCard.Description>
-          Custom Description Text
-        </FileEmptyCard.Description>
+        <div>Custom Description Text</div>
       </FileEmptyCard.Text>
     </FileEmptyCard>
   );
@@ -78,7 +76,7 @@ it('should render empty FileUploadCard before a file is uploaded', () => {
     '.iui-file-card-empty-action div',
   ) as HTMLElement;
   expect(description).toBeTruthy();
-  expect(description.textContent).toEqual('or drag & drop it here.');
+  expect(description.textContent).toEqual('to upload.');
 });
 
 it('should render FileUploadCard after a file is uploaded', () => {
