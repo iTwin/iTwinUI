@@ -62,10 +62,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   &.iui-actionable {
     @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
-    transition: box-shadow var(--iui-duration-1) ease-in-out;
+    transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
 
     &:hover {
       box-shadow: var(--iui-shadow-4);
+      transform: translateY(-4px);
     }
 
     &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
