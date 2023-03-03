@@ -45,6 +45,10 @@ describe('Table', () => {
           cy.get('.iui-slot .iui-button').click();
           break;
         }
+        case 'Condensed': {
+          cy.get('.iui-table-row-expander').first().click();
+          break;
+        }
         case 'Customized Columns': {
           cy.get('.iui-table-row-expander').last().click();
           break;
