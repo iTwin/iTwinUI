@@ -18,6 +18,7 @@ import {
   Avatar,
   LinkBox,
   LinkOverlay,
+  Surface,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
 import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
@@ -213,21 +214,28 @@ export const AnchorLink: Story<TileProps> = (props) => {
   } = props;
 
   return (
-    <LinkOverlay>
-      <Tile
-        name={
+    <div style={{ display: 'flex', gap: 12 }}>
+      <LinkOverlay>
+        <Tile
+          name={
+            <LinkBox href='/?path=/docs/core-tile--anchor-link'>{name}</LinkBox>
+          }
+          description={description}
+          metadata={metadata}
+          badge={badge}
+          thumbnail={thumbnail}
+          isNew={isNew}
+          isActionable={isActionable}
+          moreOptions={moreOptions}
+          {...rest}
+        />
+      </LinkOverlay>
+      <LinkOverlay>
+        <Surface>
           <LinkBox href='/?path=/docs/core-tile--anchor-link'>{name}</LinkBox>
-        }
-        description={description}
-        metadata={metadata}
-        badge={badge}
-        thumbnail={thumbnail}
-        isNew={isNew}
-        isActionable={isActionable}
-        moreOptions={moreOptions}
-        {...rest}
-      />
-    </LinkOverlay>
+        </Surface>
+      </LinkOverlay>
+    </div>
   );
 };
 AnchorLink.argTypes = { ...Basic.argTypes };

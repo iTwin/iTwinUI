@@ -5,9 +5,14 @@
 @mixin iui-link-overlay {
   position: relative;
   width: fit-content;
+  height: fit-content;
 
   .iui-tile-content {
     position: unset;
+  }
+
+  &:is(:focus-within) {
+    border: 2px solid var(--iui-color-border-accent);
   }
 }
 
@@ -20,5 +25,10 @@
     content: '';
     position: absolute;
     inset: 0;
+  }
+
+  &:focus,
+  &:focus-visible {
+    text-decoration: dashed;
   }
 }
