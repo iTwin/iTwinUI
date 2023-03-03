@@ -91,17 +91,27 @@
 @mixin iui-file-card {
   @include iui-reset;
   @include iui-surface;
-  width: 100%;
   line-height: normal;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
   border-radius: var(--iui-border-radius-1);
+  margin: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
     outline-offset: -2px;
+  }
+
+  .iui-content & {
+    width: 100%;
+    margin: 0;
+
+    &:focus-within {
+      outline: 0;
+      outline-offset: 0;
+    }
   }
 
   > svg {
@@ -154,11 +164,11 @@
 
 @mixin iui-file-card-empty {
   @include iui-reset;
-  width: 100%;
   line-height: normal;
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
 
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
@@ -172,6 +182,16 @@
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
     outline-offset: -2px;
+  }
+
+  .iui-content & {
+    width: 100%;
+    margin: 0;
+
+    &:focus-within {
+      outline: 0;
+      outline-offset: 0;
+    }
   }
 }
 
