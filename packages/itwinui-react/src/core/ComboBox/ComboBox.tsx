@@ -230,9 +230,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           (option) => option.value === value,
         );
         if (indexToAdd > -1) {
-          indexArray.push(
-            options.findIndex((option) => option.value === value),
-          );
+          indexArray.push(indexToAdd);
         }
       });
       return indexArray;
