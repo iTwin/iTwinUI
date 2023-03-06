@@ -83,7 +83,7 @@ WrappingInput.args = {
   dragContent: 'Drop file to upload',
 };
 
-export const SingleFileUpload: Story<FileUploadProps> = (args) => {
+export const DefaultFileUploadCard: Story<FileUploadProps> = (args) => {
   const [files, setFiles] = useState<Array<File>>([]);
   return (
     <FileUpload
@@ -101,7 +101,7 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
   );
 };
 
-export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
+export const CustomFileUploadCard: Story<FileUploadProps> = (args) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [files, setFiles] = React.useState<File[]>([]);
 

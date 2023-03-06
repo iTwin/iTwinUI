@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { SvgDocument, SvgUpload, SvgCheckmark, SvgSmileyHappy } from '../utils';
 import { FileUploadCard, FileUploadCardProps } from './FileUploadCard';
 import { Button } from '../Buttons';
@@ -34,7 +34,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
       files={files}
       onFilesChange={(files) => setFiles(files)}
       emptyCard={emptyCard}
-      input={<FileUploadCard.Input ref={inputRef} />}
+      input={<FileUploadCard.Input ref={inputRef} id={'testId'} />}
       {...props}
     >
       <FileUploadCard.Icon>
@@ -52,7 +52,6 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
         >
           Clear
         </Button>
-        <FileUploadCard.Input ref={inputRef} />
       </FileUploadCard.Action>
     </FileUploadCard>
   );
@@ -156,4 +155,23 @@ it('should render FileUploadCard with custom props', () => {
   ) as HTMLElement;
   expect(description).toBeTruthy();
   expect(description.textContent).toEqual('Custom Description Text');
+});
+
+it('should render FileUploadCard with custom id', () => {
+  const { container } = render(
+    <FileUploadCard input={<FileUploadCard.Input id={'testId'} />} />,
+  );
+
+  const anchor = container.querySelector('.iui-anchor') as HTMLElement;
+  expect(anchor).toBeTruthy();
+  expect(anchor.textContent).toEqual('Choose a file');
+
+  const input = container.querySelector('.iui-visually-hidden') as HTMLElement;
+  expect(input).toBeTruthy();
+  expect(input.id).toEqual('testId');
+
+  const inputLabel = screen.getByLabelText('Choose a file', {
+    selector: 'input',
+  });
+  expect(inputLabel).toBeTruthy();
 });

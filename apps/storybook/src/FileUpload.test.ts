@@ -7,8 +7,8 @@ describe('FileUpload', () => {
   const tests = [
     'Default',
     'Wrapping Input',
-    'Single File Upload',
-    'Single File Upload Custom',
+    'Default File Upload Card',
+    'Custom File Upload Card',
   ];
 
   tests.forEach((testName) => {
@@ -17,8 +17,8 @@ describe('FileUpload', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(testName);
       if (
-        testName === 'Single File Upload' ||
-        testName === 'Single File Upload Custom'
+        testName === 'Default File Upload Card' ||
+        testName === 'Custom File Upload Card'
       ) {
         cy.get('.iui-visually-hidden').selectFile(
           {

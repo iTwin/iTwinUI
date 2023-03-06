@@ -165,10 +165,9 @@ const FileUploadCardInput = React.forwardRef<
   HTMLInputElement,
   FileUploadCardInputProps
 >((props, ref) => {
-  const { children, className, onChange, ...rest } = props;
-  const { files, onFilesChange, setInternalFiles, inputId } = useSafeContext(
-    FileUploadCardContext,
-  );
+  const { children, className, onChange, id, ...rest } = props;
+  const { files, onFilesChange, setInternalFiles, inputId, setInputId } =
+    useSafeContext(FileUploadCardContext);
 
   const setNativeFilesRef = React.useCallback(
     (node: HTMLInputElement | null) => {
@@ -185,6 +184,10 @@ const FileUploadCardInput = React.forwardRef<
   );
 
   const refs = useMergedRefs(ref, setNativeFilesRef);
+
+  if (id) {
+    setInputId(id);
+  }
 
   return (
     <>
@@ -270,20 +273,18 @@ export const FileUploadCard = Object.assign(
       } = props;
 
       const [internalFiles, setInternalFiles] = React.useState<File[]>();
+      const [inputId, setInputId] = React.useState(useId());
       const files = filesProp ?? internalFiles ?? [];
-      let inputId = useId();
-      if (
-        input &&
-        typeof input === 'object' &&
-        'props' in input &&
-        'id' in input.props
-      ) {
-        inputId = input.props.id as string;
-      }
 
       return (
         <FileUploadCardContext.Provider
-          value={{ files, onFilesChange, setInternalFiles, inputId }}
+          value={{
+            files,
+            onFilesChange,
+            setInternalFiles,
+            inputId,
+            setInputId,
+          }}
         >
           {files?.length ? (
             <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
@@ -305,7 +306,7 @@ export const FileUploadCard = Object.assign(
           ) : (
             emptyCard
           )}
-          {input ?? <FileUploadCard.Input id={inputId} />}
+          {input ?? <FileUploadCard.Input />}
         </FileUploadCardContext.Provider>
       );
     },
@@ -339,7 +340,9 @@ export const FileUploadCardContext = React.createContext<
       /**
        * Id to pass to input
        */
-      inputId: string;
+      inputId?: string;
+
+      setInputId: (inputId: string) => void;
     }
   | undefined
 >(undefined);
