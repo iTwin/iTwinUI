@@ -18,10 +18,9 @@
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    align-content: center;
+    place-items: center;
     gap: var(--iui-size-xs);
     user-select: none;
     background-color: var(--iui-color-background-backdrop);
@@ -29,11 +28,7 @@
     border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
-      width: 0.1px;
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
+      @include visually-hidden;
     }
 
     > svg,
@@ -45,7 +40,6 @@
     &:only-child {
       visibility: visible;
       position: relative;
-      flex-direction: row;
 
       &:focus-within {
         outline: 2px solid var(--iui-color-text-accent);
@@ -65,22 +59,16 @@
   }
 
   &.iui-drag {
-    .iui-file-card-icon > svg,
-    .iui-file-card-empty-icon > svg {
-      fill: var(--iui-color-icon-accent);
-    }
-
     > .iui-content {
       visibility: visible;
     }
 
-    > .iui-content,
-    .iui-file-card {
+    > .iui-content {
       background-color: var(--iui-color-background-accent-muted);
       border-color: var(--iui-color-border-accent);
       color: var(--iui-color-text-accent);
 
-      > svg,
+      svg,
       .iui-template-icon {
         fill: var(--iui-color-icon-accent);
       }
@@ -104,20 +92,11 @@
   gap: var(--iui-size-s);
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
+  width: 100%;
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
     outline-offset: -2px;
-  }
-
-  .iui-content & {
-    width: 100%;
-    margin: 0;
-
-    &:focus-within {
-      outline: 0;
-      outline-offset: 0;
-    }
   }
 }
 
@@ -163,20 +142,11 @@
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
   border: 1px solid var(--iui-color-border);
+  width: 100%;
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
     outline-offset: -2px;
-  }
-
-  .iui-content & {
-    width: 100%;
-    margin: 0;
-
-    &:focus-within {
-      outline: 0;
-      outline-offset: 0;
-    }
   }
 }
 
