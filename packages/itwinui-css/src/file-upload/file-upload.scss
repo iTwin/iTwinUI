@@ -9,7 +9,7 @@
   font-weight: var(--iui-font-weight-normal);
   position: relative;
   display: flex;
-  line-height: normal;
+  line-height: 1;
 
   > .iui-content {
     visibility: hidden;
@@ -22,8 +22,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: var(--iui-size-xs);
     user-select: none;
-    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
     background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
@@ -40,8 +40,6 @@
     .iui-template-icon {
       @include iui-icon-style('xl');
       @include iui-icon-color;
-      margin-top: var(--iui-size-s);
-      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {
@@ -57,6 +55,8 @@
 
     .iui-template-text {
       margin-left: var(--iui-size-l);
+      display: grid;
+      gap: var(--iui-size-2xs);
 
       > label {
         font-weight: var(--iui-font-weight-bold);
@@ -88,16 +88,22 @@
   }
 }
 
+@mixin iui-file-upload-template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--iui-size-m);
+}
+
 @mixin iui-file-card {
   @include iui-reset;
   @include iui-surface;
-  line-height: normal;
+  line-height: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
+  gap: var(--iui-size-s);
+  padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
-  margin: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
@@ -113,33 +119,19 @@
       outline-offset: 0;
     }
   }
-
-  > svg {
-    @include iui-icon-style('xl');
-    @include iui-icon-color;
-    margin-top: var(--iui-size-s);
-    margin-bottom: var(--iui-size-s);
-    margin-left: var(--iui-size-xs);
-  }
 }
 
 @mixin iui-file-card-icon {
-  > svg {
+  &,
+  svg {
     @include iui-icon-style('xl');
     @include iui-icon-color;
-    margin-top: var(--iui-size-s);
-    margin-bottom: var(--iui-size-s);
-    margin-left: var(--iui-size-xs);
   }
 }
 
 @mixin iui-file-card-text {
-  margin: 0 var(--iui-size-s);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  display: grid;
+  gap: var(--iui-size-2xs);
 }
 
 @mixin iui-file-card-title {
@@ -158,26 +150,19 @@
 
 @mixin iui-file-card-action {
   margin-left: auto;
-  margin-right: var(--iui-size-xs);
   font-weight: var(--iui-font-weight-bold);
 }
 
 @mixin iui-file-card-empty {
   @include iui-reset;
-  line-height: normal;
+  line-height: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
-  margin: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
-
-  font-size: var(--iui-font-size-1);
-  font-weight: var(--iui-font-weight-normal);
-  position: relative;
-
   justify-content: center;
-  user-select: none;
-  padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
+  gap: var(--iui-size-l);
+  padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
+  border: 1px solid var(--iui-color-border);
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
@@ -196,18 +181,18 @@
 }
 
 @mixin iui-file-card-empty-icon {
-  > svg {
+  &,
+  svg {
     @include iui-icon-color;
     @include iui-icon-style('xl');
-    margin-top: var(--iui-size-s);
-    margin-bottom: var(--iui-size-s);
   }
 }
 
 @mixin iui-file-card-empty-action {
-  margin-left: var(--iui-size-l);
+  display: grid;
+  gap: var(--iui-size-2xs);
 
-  > label {
+  label {
     font-weight: var(--iui-font-weight-bold);
   }
 }

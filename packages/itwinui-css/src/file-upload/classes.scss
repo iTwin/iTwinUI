@@ -6,6 +6,10 @@
   @include iui-file-upload;
 }
 
+.iui-file-upload-template {
+  @include iui-file-upload-template;
+}
+
 .iui-file-card {
   @include iui-file-card;
 }
