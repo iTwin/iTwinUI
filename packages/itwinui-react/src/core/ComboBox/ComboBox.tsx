@@ -226,7 +226,12 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     if (isMultipleEnabled(valueProp, multiple)) {
       const indexArray: number[] = [];
       valueProp?.forEach((value) => {
-        indexArray.push(options.findIndex((option) => option.value === value));
+        const indexToAdd = options.findIndex(
+          (option) => option.value === value,
+        );
+        if (indexToAdd > -1) {
+          indexArray.push(indexToAdd);
+        }
       });
       return indexArray;
     } else {
