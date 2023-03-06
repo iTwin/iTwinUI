@@ -40,7 +40,7 @@ const FileUploadCardIcon = React.forwardRef<
   const { children, className, ...rest } = props;
   return (
     <span className={cx('iui-file-card-icon', className)} ref={ref} {...rest}>
-      {children ?? <SvgDocument className='iui-icon' aria-hidden />}
+      {children ?? <SvgDocument />}
     </span>
   );
 });

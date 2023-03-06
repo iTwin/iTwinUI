@@ -22,7 +22,7 @@ const FileEmptyCardIcon = React.forwardRef<
       ref={ref}
       {...rest}
     >
-      {children ?? <SvgUpload className='iui-icon' aria-hidden />}
+      {children ?? <SvgUpload />}
     </span>
   );
 });

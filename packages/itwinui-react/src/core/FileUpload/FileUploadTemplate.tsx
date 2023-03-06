@@ -60,7 +60,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
 
   return (
     <div className={cx('iui-file-upload-template', className)} {...rest}>
-      <SvgUpload className='iui-icon' aria-hidden />
+      <SvgUpload className='iui-template-icon' aria-hidden />
       <div className='iui-template-text'>
         <label className='iui-anchor'>
           <input

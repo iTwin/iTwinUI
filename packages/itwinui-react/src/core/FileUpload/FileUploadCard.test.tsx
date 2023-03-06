@@ -20,7 +20,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
   const emptyCard = (
     <FileEmptyCard>
       <FileEmptyCard.Icon>
-        <SvgSmileyHappy aria-hidden className='iui-icon' />,
+        <SvgSmileyHappy />,
       </FileEmptyCard.Icon>
       <FileEmptyCard.Text>
         <FileUploadCard.InputLabel>Custom Title Text</FileUploadCard.InputLabel>
@@ -38,7 +38,7 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
       {...props}
     >
       <FileUploadCard.Icon>
-        <SvgCheckmark aria-hidden className='iui-icon' />,
+        <SvgCheckmark />,
       </FileUploadCard.Icon>
       <FileUploadCard.Info>
         <FileUploadCard.Title>TestLabel</FileUploadCard.Title>
@@ -60,12 +60,12 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
 it('should render empty FileUploadCard before a file is uploaded', () => {
   const { container } = render(<FileUploadCard />);
 
-  const { container: uploadIcon } = render(
-    <SvgUpload aria-hidden className='iui-icon' />,
-  );
-  const svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  const { container: uploadIcon } = render(<SvgUpload />);
+  const svg = container.querySelector(
+    '.iui-file-card-empty-icon',
+  ) as HTMLElement;
   expect(svg).toBeTruthy();
-  expect(svg).toEqual(uploadIcon.firstChild);
+  expect(svg.firstChild).toEqual(uploadIcon.firstChild);
 
   const anchor = container.querySelector('.iui-anchor') as HTMLElement;
   expect(anchor).toBeTruthy();
@@ -85,12 +85,10 @@ it('should render FileUploadCard after a file is uploaded', () => {
 
   const { container } = render(<FileUploadCard files={files} />);
 
-  const { container: documentIcon } = render(
-    <SvgDocument aria-hidden className='iui-icon' />,
-  );
-  const svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  const { container: documentIcon } = render(<SvgDocument />);
+  const svg = container.querySelector('.iui-file-card-icon') as HTMLElement;
   expect(svg).toBeTruthy();
-  expect(svg).toEqual(documentIcon.firstChild);
+  expect(svg.firstChild).toEqual(documentIcon.firstChild);
 
   const label = container.querySelector('.iui-file-card-title') as HTMLElement;
   expect(label).toBeTruthy();
@@ -111,17 +109,13 @@ it('should render FileUploadCard after a file is uploaded', () => {
 it('should render FileUploadCard with custom props', () => {
   const { container } = render(<CustomFileUploadCard />);
 
-  const { container: checkmarkIcon } = render(
-    <SvgCheckmark aria-hidden className='iui-icon' />,
-  );
+  const { container: checkmarkIcon } = render(<SvgCheckmark />);
 
-  const { container: smileyIcon } = render(
-    <SvgSmileyHappy aria-hidden className='iui-icon' />,
-  );
+  const { container: smileyIcon } = render(<SvgSmileyHappy />);
 
-  let svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  let svg = container.querySelector('.iui-file-card-icon') as HTMLElement;
   expect(svg).toBeTruthy();
-  expect(svg).toEqual(checkmarkIcon.firstChild);
+  expect(svg.firstChild).toEqual(checkmarkIcon.firstChild);
 
   const label = container.querySelector('.iui-file-card-title') as HTMLElement;
   expect(label).toBeTruthy();
@@ -142,9 +136,9 @@ it('should render FileUploadCard with custom props', () => {
   // Firing this event should close the file card and return an empty FileUploadCard
   fireEvent.click(action);
 
-  svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  svg = container.querySelector('.iui-file-card-empty-icon') as HTMLElement;
   expect(svg).toBeTruthy();
-  expect(svg).toEqual(smileyIcon.firstChild);
+  expect(svg.firstChild).toEqual(smileyIcon.firstChild);
 
   const anchor = container.querySelector('.iui-anchor') as HTMLElement;
   expect(anchor).toBeTruthy();

@@ -14,7 +14,10 @@ module.exports = [
   scenario('Type not wrapping anything', {
     selectors: ['#demo-no-wrap'],
   }),
-  scenario('File uploaded', {
-    selectors: ['#demo-file-uploaded'],
+  scenario('File card', {
+    selectors: ['#demo-file-card'],
+  }),
+  scenario('File card with iui-file-upload', {
+    selectors: ['#demo-file-card-with-file-upload'],
   }),
 ];
