@@ -147,7 +147,7 @@
 @mixin iui-tile-content {
   padding: var(--iui-size-s);
   display: grid;
-  place-items: start;
+  grid-template-rows: auto 1fr auto;
   flex-grow: 2;
   min-width: 0;
 
