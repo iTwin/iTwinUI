@@ -10,6 +10,7 @@ import {
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
+  useIsClient,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
@@ -162,6 +163,7 @@ export const Tabs = (props: TabsProps) => {
   } = props;
 
   useTheme();
+  const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
@@ -207,11 +209,6 @@ export const Tabs = (props: TabsProps) => {
       (tab as HTMLElement)?.focus();
     }
   }, [focusedIndex]);
-
-  const [isAnimated, setIsAnimated] = React.useState(false);
-  React.useEffect(() => {
-    setIsAnimated(true);
-  }, []);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
   useIsomorphicLayoutEffect(() => {
@@ -304,8 +301,8 @@ export const Tabs = (props: TabsProps) => {
           `iui-${type}`,
           {
             'iui-green': color === 'green',
-            [isAnimated ? 'iui-animated' : 'iui-not-animated']:
-              type !== 'default',
+            'iui-animated': type !== 'default' && isClient,
+            'iui-not-animated': type !== 'default' && !isClient,
             'iui-large': hasSublabel,
           },
           tabsClassName,
