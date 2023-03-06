@@ -242,6 +242,7 @@
 @mixin iui-tile-thumbnail-picture {
   @media (prefers-reduced-motion: no-preference) {
     transition: transform var(--iui-duration-2) ease;
+    will-change: transform;
   }
 
   &:is(div) {
