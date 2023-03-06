@@ -185,7 +185,7 @@ const FileUploadCardInput = React.forwardRef<
 
   const refs = useMergedRefs(ref, setNativeFilesRef);
 
-  if (id) {
+  if (id && id !== inputId) {
     setInputId(id);
   }
 
@@ -203,7 +203,7 @@ const FileUploadCardInput = React.forwardRef<
           }
         }}
         ref={refs}
-        id={inputId}
+        id={id ?? inputId}
         {...rest}
       />
       {children}
