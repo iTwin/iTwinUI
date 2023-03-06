@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import { SvgDocument, SvgUpload, SvgCheckmark, SvgSmileyHappy } from '../utils';
 import { FileUploadCard, FileUploadCardProps } from './FileUploadCard';
 import { Button } from '../Buttons';
@@ -162,16 +162,10 @@ it('should render FileUploadCard with custom id', () => {
     <FileUploadCard input={<FileUploadCard.Input id={'testId'} />} />,
   );
 
-  const anchor = container.querySelector('.iui-anchor') as HTMLElement;
-  expect(anchor).toBeTruthy();
-  expect(anchor.textContent).toEqual('Choose a file');
+  const input = container.querySelector('input') as HTMLInputElement;
+  expect(input).toHaveAttribute('id', 'testId');
 
-  const input = container.querySelector('.iui-visually-hidden') as HTMLElement;
-  expect(input).toBeTruthy();
-  expect(input.id).toEqual('testId');
-
-  const inputLabel = screen.getByLabelText('Choose a file', {
-    selector: 'input',
-  });
-  expect(inputLabel).toBeTruthy();
+  const label = container.querySelector('label') as HTMLLabelElement;
+  expect(label).toHaveTextContent('Choose a file');
+  expect(label).toHaveAttribute('for', 'testId');
 });
