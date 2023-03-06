@@ -31,8 +31,8 @@ const CustomFileUploadCard = (props: FileUploadCardProps) => {
 
   return (
     <FileUploadCard
-      data={files}
-      onDataChange={(files) => setFiles(files)}
+      files={files}
+      onFilesChange={(files) => setFiles(files)}
       emptyCard={emptyCard}
       input={<FileUploadCard.Input ref={inputRef} />}
       {...props}
@@ -84,7 +84,7 @@ it('should render FileUploadCard after a file is uploaded', () => {
     new File(['mock-file'], 'test.txt', { type: 'text/plain' }),
   );
 
-  const { container } = render(<FileUploadCard data={files} />);
+  const { container } = render(<FileUploadCard files={files} />);
 
   const { container: documentIcon } = render(
     <SvgDocument aria-hidden className='iui-icon' />,

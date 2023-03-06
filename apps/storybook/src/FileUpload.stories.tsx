@@ -93,7 +93,10 @@ export const SingleFileUpload: Story<FileUploadProps> = (args) => {
         action(`${files.length} files uploaded`)();
       }}
     >
-      <FileUploadCard data={files} onDataChange={(files) => setFiles(files)} />
+      <FileUploadCard
+        files={files}
+        onFilesChange={(files) => setFiles(files)}
+      />
     </FileUpload>
   );
 };
@@ -122,8 +125,8 @@ export const SingleFileUploadCustom: Story<FileUploadProps> = (args) => {
       }}
     >
       <FileUploadCard
-        data={files}
-        onDataChange={(files) => setFiles(files)}
+        files={files}
+        onFilesChange={(files) => setFiles(files)}
         emptyCard={emptyCard}
         input={<FileUploadCard.Input name={'my-file'} ref={inputRef} />}
       >
