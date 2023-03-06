@@ -215,6 +215,7 @@
 }
 
 @mixin iui-tile-thumbnail {
+  box-sizing: content-box;
   height: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
   overflow: hidden;
