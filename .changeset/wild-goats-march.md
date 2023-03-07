@@ -13,8 +13,10 @@ Added a new FileUploadCard component which serves as a default UI for when a sin
 const [files, setFiles] = React.useState<File[]>([]);
 
 <FileUpload
-  onFileDropped={console.log()}
+  onFileDropped={(files) => {
+    setFiles(files);
+  }}
 >
-  <FileUploadCard data={files} onDataChange={(files) => setFiles(files)} />
+  <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
 </FileUpload>
 ```
