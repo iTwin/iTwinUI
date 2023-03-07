@@ -215,10 +215,12 @@ export const AnchorLink: Story<TileProps> = (props) => {
 
   return (
     <div style={{ display: 'flex', gap: 12 }}>
-      <LinkOverlay>
+      <LinkBox>
         <Tile
           name={
-            <LinkBox href='/?path=/docs/core-tile--anchor-link'>{name}</LinkBox>
+            <LinkOverlay href='/?path=/docs/core-tile--anchor-link'>
+              {name}
+            </LinkOverlay>
           }
           description={description}
           metadata={metadata}
@@ -229,12 +231,14 @@ export const AnchorLink: Story<TileProps> = (props) => {
           moreOptions={moreOptions}
           {...rest}
         />
-      </LinkOverlay>
-      <LinkOverlay>
-        <Surface>
-          <LinkBox href='/?path=/docs/core-tile--anchor-link'>{name}</LinkBox>
+      </LinkBox>
+      <LinkBox>
+        <Surface style={{ padding: 12 }}>
+          <LinkOverlay href='/?path=/docs/core-tile--anchor-link'>
+            {name}
+          </LinkOverlay>
         </Surface>
-      </LinkOverlay>
+      </LinkBox>
     </div>
   );
 };
