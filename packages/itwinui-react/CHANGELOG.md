@@ -27,9 +27,7 @@
 
 - d2ffe2f2: `ComboBox` will not crash when user provided value is not in Options list.
 - 56f9d524: HeaderLogo now supports `as` prop to allow rendering as a link. It will default to a `button` if `onClick` is passed, and `div` if not.
-- Updated dependencies [85af52c6]
-- Updated dependencies [62c4a6da]
-- Updated dependencies [1b541699]
+- Updated dependencies
   - @itwin/itwinui-css@1.7.0
 
 ## 2.5.1
