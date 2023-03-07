@@ -1,5 +1,37 @@
 # Changelog
 
+## 2.6.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- d2ffe2f2: `ComboBox` will not crash when user provided value is not in Options list.
+- 56f9d524: HeaderLogo now supports `as` prop to allow rendering as a link. It will default to a `button` if `onClick` is passed, and `div` if not.
+- Updated dependencies [85af52c6]
+- Updated dependencies [62c4a6da]
+- Updated dependencies [1b541699]
+  - @itwin/itwinui-css@1.7.0
+
 ## 2.5.1
 
 ### Patch Changes
