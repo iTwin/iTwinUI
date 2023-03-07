@@ -7,6 +7,22 @@ import cx from 'classnames';
 import { useMergedRefs, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/toggle-switch.css';
 
+type ToggleSwitchSizeProps =
+  | {
+      /**
+       * Size of the toggle switch.
+       *  @default 'default'
+       */
+      size?: 'default';
+      /**
+       * Icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+       */
+      icon?: JSX.Element;
+    }
+  | {
+      size: 'small';
+    };
+
 export type ToggleSwitchProps = {
   /**
    * Label for the toggle switch.
@@ -22,16 +38,8 @@ export type ToggleSwitchProps = {
    * @default false
    */
   setFocus?: boolean;
-  /**
-   * Icon inside the toggle switch. Shown only when toggle is checked.
-   */
-  icon?: JSX.Element;
-  /**
-   * Size of the toggle switch.
-   *  @default 'default'
-   */
-  size?: 'default' | 'small';
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'>;
+} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> &
+  ToggleSwitchSizeProps;
 
 /**
  * A switch for turning on and off.
@@ -53,10 +61,15 @@ export type ToggleSwitchProps = {
  */
 export const ToggleSwitch = React.forwardRef(
   (props: ToggleSwitchProps, ref: React.RefObject<HTMLInputElement>) => {
+    let icon: JSX.Element | undefined;
+    if (props.size !== 'small') {
+      icon = props.icon;
+      props = { ...props };
+      delete props.icon;
+    }
     const {
       disabled = false,
       labelPosition = 'right',
-      icon,
       label,
       setFocus = false,
       className,
