@@ -172,7 +172,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   overflow-y: auto;
   overflow-y: overlay;
   max-height: calc(100vh - 6.75rem); //6.75rem = 108px = button height + paddings + bottom bar
-  max-height: calc(100svh - 6.75rem);
+  max-height: calc(100dvh - 6.75rem);
 }
 
 @mixin iui-dialog-button-bar {
