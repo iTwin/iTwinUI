@@ -1,39 +1,37 @@
 ---
-import { SvgInfoCircular } from '@itwin/itwinui-icons-react';
+import InformationIcon from '~/icons/InformationIcon.astro';
 
 export type Props = {
   /** ending of the url for a specific storybook page */
   componentPageName: string;
 };
 
-const { componentPageName } = Astro.props;
+const { componentPageName, ...rest } = Astro.props;
+
+const storyUrl = `https://itwin.github.io/iTwinUI/react/?path=/story/${componentPageName}`;
 ---
 
-<div class='alert' data-iui-status='informational'>
-  <SvgInfoCircular className='iui-alert-icon' aria-hidden='true' />
-  <span class='iui-alert-message'
-    >This page has not yet been finished and is being worked on. In the meantime, visit <a
-      class='iui-alert-link'
-      href=`https://itwin.github.io/iTwinUI/react/?path=/story/${componentPageName}`>storybook</a
-    > to see more examples.
-  </span>
+<div {...rest}>
+  <InformationIcon aria-hidden='true' />
+  <p>
+    This page has not yet been finished and is being worked on. In the meantime, please visit
+    <a href={storyUrl}>storybook</a> to see more examples.
+  </p>
 </div>
 
 <style lang='scss'>
-  .alert {
-    border-radius: var(--border-radius-1);
-    box-shadow: 0 0 8px 1px #adb7f5;
+  div {
     display: flex;
     align-items: center;
-    margin: 10px 0;
-    background-color: rgba(173, 183, 245, 0.15);
+    gap: var(--space-3);
+    padding: var(--space-3);
+    border: solid 1px #adb7f5;
+    border-radius: var(--border-radius-1);
 
-    .iui-alert-icon {
-      fill: #adb7f5;
-    }
-
-    .iui-alert-link {
-      margin-left: 0;
+    svg {
+      color: #adb7f5;
+      height: var(--space-8);
+      width: var(--space-8);
     }
   }
 </style>
