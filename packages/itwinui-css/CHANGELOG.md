@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.7.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- 62c4a6da: Fixed issue where checkbox / radio border appeared above `:focus` outline.
+
 ## 1.6.0
 
 ### Minor Changes
