@@ -2,23 +2,19 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../mixins';
 
-@mixin iui-link-overlay {
+@mixin iui-link-box {
   position: relative;
   width: fit-content;
   height: fit-content;
+  cursor: pointer;
 
-  .iui-tile-content {
-    position: unset;
-  }
-
-  &:is(:focus-within) {
-    border: 2px solid var(--iui-color-border-accent);
+  &:focus-within {
+    @include iui-focus;
   }
 }
 
-@mixin iui-link-box {
+@mixin iui-link-overlay {
   all: unset;
-  text-decoration: none;
   color: inherit;
 
   &::after {
@@ -29,6 +25,6 @@
 
   &:focus,
   &:focus-visible {
-    text-decoration: dashed;
+    @include iui-focus;
   }
 }

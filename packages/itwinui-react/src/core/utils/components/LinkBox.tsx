@@ -18,17 +18,8 @@ export type PolymorphicActionProps = PolymorphicComponentProps<
  * Polymorphic action component.
  * It is rendered as `a` by default.
  */
-export const LinkBox = React.forwardRef((props, ref) => {
-  const { as: Element = 'a', className, ...rest } = props;
-  return (
-    <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
-  );
-}) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
-
-LinkBox.displayName = 'LinkBox';
-
 export const LinkOverlay = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
+  const { as: Element = 'a', className, ...rest } = props;
   return (
     <Element
       ref={ref}
@@ -36,6 +27,15 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', { children?: React.ReactNode }>;
+}) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
 
 LinkOverlay.displayName = 'LinkOverlay';
+
+export const LinkBox = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, ...rest } = props;
+  return (
+    <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
+  );
+}) as PolymorphicForwardRefComponent<'div', { children?: React.ReactNode }>;
+
+LinkBox.displayName = 'LinkBox';
