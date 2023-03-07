@@ -84,13 +84,15 @@
 
 @mixin iui-file-card {
   @include iui-reset;
-  @include iui-surface;
   line-height: 1;
   display: flex;
   align-items: center;
   gap: var(--iui-size-s);
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--iui-color-border-subtle);
+  color: var(--iui-color-text);
   width: 100%;
 
   &:focus-within {
