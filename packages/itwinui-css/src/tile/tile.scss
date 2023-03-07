@@ -87,9 +87,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       }
     }
 
-    &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
+    &:is(:hover, :focus-within) #{$thumbnail-selector} {
       transform: rotate(-4deg);
+    }
 
+    &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
       &:is(div, img) {
         transform: translateZ(0) scale(1.1);
       }
