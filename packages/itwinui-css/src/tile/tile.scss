@@ -18,6 +18,15 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
   isolation: isolate;
+  position: relative;
+  will-change: transform;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
   &:where(:not(.iui-folder)) {
     > :where(:first-child) {
@@ -68,7 +77,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
     &:hover {
       box-shadow: var(--iui-shadow-4);
-      transform: translateY(-4px);
+
+      $y: 4px;
+      transform: translateY(-$y);
+
+      // prevent doom flicker when hovering near the bottom edge
+      &::before {
+        transform: translateY($y);
+      }
     }
 
     &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
