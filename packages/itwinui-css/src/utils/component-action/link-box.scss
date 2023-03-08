@@ -7,10 +7,6 @@
   width: fit-content;
   height: fit-content;
   cursor: pointer;
-
-  &:focus-within {
-    @include iui-focus;
-  }
 }
 
 @mixin iui-link-overlay {
