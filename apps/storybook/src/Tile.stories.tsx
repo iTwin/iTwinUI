@@ -177,18 +177,23 @@ export const Actionable: Story<TileProps> = (props) => {
   const [selected, setSelected] = React.useState(false);
 
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
-      isSelected={selected}
-      isNew={isNew}
-      isActionable={isActionable}
-      {...rest}
-      onClick={() => setSelected((prev) => !prev)}
-    />
+    <LinkBox>
+      <Tile
+        name={
+          <LinkOverlay as='button' onClick={() => setSelected((prev) => !prev)}>
+            {name}
+          </LinkOverlay>
+        }
+        description={description}
+        metadata={metadata}
+        badge={badge}
+        thumbnail={thumbnail}
+        isSelected={selected}
+        isNew={isNew}
+        isActionable={isActionable}
+        {...rest}
+      />
+    </LinkBox>
   );
 };
 Actionable.argTypes = { ...Basic.argTypes };

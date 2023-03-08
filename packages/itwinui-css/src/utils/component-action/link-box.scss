@@ -7,6 +7,11 @@
   width: fit-content;
   height: fit-content;
   cursor: pointer;
+
+  &:where(:focus-within) {
+    outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    border-radius: var(--iui-border-radius-1);
+  }
 }
 
 @mixin iui-link-overlay {
@@ -17,10 +22,5 @@
     content: '';
     position: absolute;
     inset: 0;
-  }
-
-  &:focus,
-  &:focus-visible {
-    @include iui-focus;
   }
 }

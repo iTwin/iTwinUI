@@ -181,7 +181,6 @@ export const Tile = (props: TileProps) => {
         className,
       )}
       aria-disabled={isDisabled}
-      tabIndex={isActionable && !isDisabled ? 0 : undefined}
       {...rest}
     >
       {thumbnail && (
