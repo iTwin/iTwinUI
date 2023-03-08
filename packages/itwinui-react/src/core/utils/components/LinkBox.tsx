@@ -11,7 +11,8 @@ import {
 
 export type PolymorphicActionProps = PolymorphicComponentProps<
   'a',
-  { children?: React.ReactNode }
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  {}
 >;
 
 /**
@@ -27,7 +28,8 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'a', { children?: React.ReactNode }>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+}) as PolymorphicForwardRefComponent<'a', {}>;
 
 LinkOverlay.displayName = 'LinkOverlay';
 
@@ -36,6 +38,7 @@ export const LinkBox = React.forwardRef((props, ref) => {
   return (
     <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
   );
-}) as PolymorphicForwardRefComponent<'div', { children?: React.ReactNode }>;
+  // eslint-disable-next-line @typescript-eslint/ban-types
+}) as PolymorphicForwardRefComponent<'div', {}>;
 
 LinkBox.displayName = 'LinkBox';
