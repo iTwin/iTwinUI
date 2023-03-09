@@ -40,7 +40,7 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn test`
 
-_Before running this command, make sure Docker is running. See [Testing](#unit-testing-react) section below for more details._
+_Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
 
 ### To lint and fix autofixable errors
 
