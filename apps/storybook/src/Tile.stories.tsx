@@ -177,23 +177,22 @@ export const Actionable: Story<TileProps> = (props) => {
   const [selected, setSelected] = React.useState(false);
 
   return (
-    <LinkBox>
-      <Tile
-        name={
-          <LinkOverlay as='button' onClick={() => setSelected((prev) => !prev)}>
-            {name}
-          </LinkOverlay>
-        }
-        description={description}
-        metadata={metadata}
-        badge={badge}
-        thumbnail={thumbnail}
-        isSelected={selected}
-        isNew={isNew}
-        isActionable={isActionable}
-        {...rest}
-      />
-    </LinkBox>
+    <LinkBox
+      as={Tile}
+      name={
+        <LinkOverlay as='button' onClick={() => setSelected((prev) => !prev)}>
+          {name}
+        </LinkOverlay>
+      }
+      description={description}
+      metadata={metadata}
+      badge={badge}
+      thumbnail={thumbnail}
+      isSelected={selected}
+      isNew={isNew}
+      isActionable={isActionable}
+      {...rest}
+    />
   );
 };
 Actionable.argTypes = { ...Basic.argTypes };
@@ -218,23 +217,22 @@ export const AnchorLink: Story<TileProps> = (props) => {
   } = props;
 
   return (
-    <LinkBox>
-      <Tile
-        name={
-          <LinkOverlay href='/?path=/docs/core-tile--anchor-link'>
-            {name}
-          </LinkOverlay>
-        }
-        description={description}
-        metadata={metadata}
-        badge={badge}
-        thumbnail={thumbnail}
-        isNew={isNew}
-        isActionable={isActionable}
-        moreOptions={moreOptions}
-        {...rest}
-      />
-    </LinkBox>
+    <LinkBox
+      as={Tile}
+      name={
+        <LinkOverlay href='/?path=/docs/core-tile--anchor-link'>
+          {name}
+        </LinkOverlay>
+      }
+      description={description}
+      metadata={metadata}
+      badge={badge}
+      thumbnail={thumbnail}
+      isNew={isNew}
+      isActionable={isActionable}
+      moreOptions={moreOptions}
+      {...rest}
+    />
   );
 };
 AnchorLink.argTypes = { ...Basic.argTypes };
