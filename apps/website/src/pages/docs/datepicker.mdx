@@ -9,9 +9,12 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
+
+<Placeholder componentPageName='core-datepicker' />
 
 <LiveExample src='DatePicker.main.tsx' truncate={false}>
   <AllExamples.DatePickerMainExample client:load />

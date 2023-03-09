@@ -9,9 +9,12 @@ group: inputs
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
+
+<Placeholder componentPageName='input-textarea' />
 
 <LiveExample src='Textarea.main.tsx' truncate={false}>
   <AllExamples.TextareaMainExample client:load />

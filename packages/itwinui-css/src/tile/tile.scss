@@ -5,6 +5,8 @@
 @import '../surface/index';
 @import '../utils/index';
 
+$thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
+
 @mixin iui-tile {
   --_iui-tile-title-text-color: var(--iui-color-text);
   --_iui-tile-body-text-color: var(--iui-color-text-muted);
@@ -16,6 +18,15 @@
   width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
   isolation: isolate;
+  position: relative;
+  will-change: transform;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
   &:where(:not(.iui-folder)) {
     > :where(:first-child) {
@@ -66,16 +77,26 @@
   &.iui-actionable {
     @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
     cursor: pointer;
-    transition: box-shadow var(--iui-duration-1) ease-in-out;
+    transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
 
     &:hover {
-      box-shadow: var(--iui-shadow-3);
+      box-shadow: var(--iui-shadow-4);
+
+      $y: 4px;
+      transform: translateY(-$y);
+
+      // prevent doom flicker when hovering near the bottom edge
+      &::before {
+        transform: translateY($y);
+      }
     }
 
-    &:hover,
-    &:focus-within,
-    &.iui-selected {
-      .iui-tile-thumbnail-picture {
+    &:is(:hover, :focus-within) #{$thumbnail-selector} {
+      transform: rotate(-4deg);
+    }
+
+    &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
+      &:is(div, img) {
         transform: translateZ(0) scale(1.1);
       }
     }
@@ -121,8 +142,7 @@
     --_iui-tile-title-text-color: var(--iui-color-text-disabled);
     --_iui-tile-body-text-color: var(--iui-color-text-disabled);
 
-    .iui-thumbnail-icon,
-    .iui-tile-thumbnail-picture {
+    #{$thumbnail-selector} {
       filter: grayscale(100%);
     }
 
@@ -131,8 +151,7 @@
       color: inherit;
     }
 
-    &:hover .iui-tile-thumbnail-picture,
-    &:focus-within .iui-tile-thumbnail-picture {
+    &:is(:hover, :focus-within) #{$thumbnail-selector} {
       transform: none;
     }
   }
