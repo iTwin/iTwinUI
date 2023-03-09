@@ -112,6 +112,7 @@ export const ToggleSwitch = React.forwardRef(
           {...rest}
         />
         {icon &&
+          size !== 'small' &&
           React.cloneElement(icon, {
             className: cx('iui-toggle-switch-icon', icon.props.className),
             'aria-hidden': true,
