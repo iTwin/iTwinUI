@@ -4,19 +4,22 @@
 
 @mixin iui-link-box {
   position: relative;
-  width: fit-content;
-  height: fit-content;
-  cursor: pointer;
 
-  &:where(:focus-within) {
+  &:has(.iui-link-overlay:focus-visible) {
     outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
-    border-radius: var(--iui-border-radius-1);
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    }
   }
 }
 
 @mixin iui-link-overlay {
   all: unset;
   color: inherit;
+  cursor: pointer;
 
   &::after {
     content: '';
