@@ -118,10 +118,16 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       flex: 1;
       border-bottom: none;
       border-right: 1px solid var(--iui-color-border);
+      margin: 0;
     }
 
     .iui-tile-content {
       flex: 2;
+      padding: var(--iui-size-s);
+
+      > * {
+        padding: 0;
+      }
     }
 
     .iui-tile-description {
@@ -164,7 +170,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-content {
-  padding: var(--iui-size-s);
+  padding-bottom: var(--iui-size-s);
   display: grid;
   grid-template-rows: auto 1fr auto;
   flex-grow: 2;
@@ -172,6 +178,8 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   > * {
     max-width: 100%;
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    padding-inline: var(--iui-size-s);
   }
 }
 
@@ -181,9 +189,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   align-items: center;
   font-size: var(--iui-font-size-2);
   user-select: all;
-  margin-bottom: calc(var(--iui-size-s) * 0.5);
   color: var(--_iui-tile-title-text-color);
   overflow: hidden;
+  padding-inline: var(--iui-size-s);
+  margin-bottom: calc(var(--iui-size-s) * 0.5);
 }
 
 @mixin iui-tile-status-icon {
@@ -217,6 +226,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   display: flex;
   align-items: center;
   margin-top: auto;
+  margin-bottom: 0;
   color: var(--_iui-tile-body-text-color);
 
   > svg,
@@ -234,6 +244,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-thumbnail {
+  order: -1;
   box-sizing: content-box;
   height: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
@@ -241,6 +252,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   display: grid;
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
+  margin-bottom: var(--iui-size-s);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -365,6 +377,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   grid-area: 1 / 1 / -1 / -1;
   place-self: end;
   position: absolute;
+  margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
   margin-right: calc(-1 * var(--iui-size-2xs));
