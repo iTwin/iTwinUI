@@ -7,22 +7,6 @@ import cx from 'classnames';
 import { useMergedRefs, useTheme } from '../utils';
 import '@itwin/itwinui-css/css/toggle-switch.css';
 
-type ToggleSwitchSizeProps =
-  | {
-      /**
-       * Size of the toggle switch.
-       *  @default 'default'
-       */
-      size?: 'default';
-      /**
-       * Icon inside the toggle switch. Shown only when toggle is checked and size is not small.
-       */
-      icon?: JSX.Element;
-    }
-  | {
-      size: 'small';
-    };
-
 export type ToggleSwitchProps = {
   /**
    * Label for the toggle switch.
@@ -38,8 +22,24 @@ export type ToggleSwitchProps = {
    * @default false
    */
   setFocus?: boolean;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> &
-  ToggleSwitchSizeProps;
+} & (
+  | {
+      /**
+       * Size of the toggle switch.
+       *  @default 'default'
+       */
+      size?: 'default';
+      /**
+       * Icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+       */
+      icon?: JSX.Element;
+    }
+  | {
+      size: 'small';
+      icon?: never;
+    }
+) &
+  Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'>;
 
 /**
  * A switch for turning on and off.
