@@ -29,7 +29,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   &:where(:not(.iui-folder)) {
-    > :where(:first-child) {
+    > :where(.iui-tile-thumbnail) {
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
     }
