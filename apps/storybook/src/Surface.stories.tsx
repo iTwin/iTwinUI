@@ -52,9 +52,14 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
 Basic.args = { elevation: 1 };
 
 export const Custom: Story<SurfaceProps> = (args) => {
-  const { elevation, layout, padded } = args;
+  const { elevation, useLayout, isPadded } = args;
   return (
-    <Surface elevation={elevation} layout={layout} padded={padded} {...args}>
+    <Surface
+      elevation={elevation}
+      useLayout={useLayout}
+      isPadded={isPadded}
+      {...args}
+    >
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>
@@ -80,10 +85,10 @@ export const Custom: Story<SurfaceProps> = (args) => {
   );
 };
 
-Custom.args = { elevation: 1, layout: true, padded: true };
+Custom.args = { elevation: 1, useLayout: true, isPadded: true };
 
 export const Overflow: Story<SurfaceProps> = (args) => {
-  const { elevation, layout, padded } = args;
+  const { elevation, useLayout, isPadded } = args;
   const cardStyle = {
     maxHeight: '300px',
   };
@@ -91,8 +96,8 @@ export const Overflow: Story<SurfaceProps> = (args) => {
     <Surface
       elevation={elevation}
       style={cardStyle}
-      layout={layout}
-      padded={padded}
+      useLayout={useLayout}
+      isPadded={isPadded}
     >
       <Surface.Header>
         <Text variant='subheading' as='h2'>
@@ -136,10 +141,10 @@ export const Overflow: Story<SurfaceProps> = (args) => {
   );
 };
 
-Overflow.args = { elevation: 1, layout: true, padded: true };
+Overflow.args = { elevation: 1, useLayout: true, isPadded: true };
 
 export const NoPadding: Story<SurfaceProps> = (args) => {
-  const { elevation, layout, padded } = args;
+  const { elevation, useLayout, isPadded } = args;
 
   const cardStyle = {
     maxHeight: '300px',
@@ -148,8 +153,8 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
     <Surface
       elevation={elevation}
       style={cardStyle}
-      layout={layout}
-      padded={padded}
+      useLayout={useLayout}
+      isPadded={isPadded}
     >
       <style>
         {`ul { all: unset; display: flex; flex-direction: column; flex: 1; list-style-type: none; }`}
@@ -188,10 +193,10 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
   );
 };
 
-NoPadding.args = { elevation: 1, layout: true, padded: false };
+NoPadding.args = { elevation: 1, useLayout: true, isPadded: false };
 
 export const EmptyState: Story<SurfaceProps> = (args) => {
-  const { elevation, layout, padded } = args;
+  const { elevation, useLayout, isPadded } = args;
 
   const cardStyle = {
     height: '300px',
@@ -201,8 +206,8 @@ export const EmptyState: Story<SurfaceProps> = (args) => {
     <Surface
       elevation={elevation}
       style={cardStyle}
-      layout={layout}
-      padded={padded}
+      useLayout={useLayout}
+      isPadded={isPadded}
     >
       <Surface.Header>
         <Text variant='subheading' as='h2'>
@@ -226,4 +231,4 @@ export const EmptyState: Story<SurfaceProps> = (args) => {
   );
 };
 
-EmptyState.args = { elevation: 1, layout: true, padded: true };
+EmptyState.args = { elevation: 1, useLayout: true, isPadded: true };
