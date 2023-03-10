@@ -63,7 +63,7 @@ const SurfaceBody = React.forwardRef<HTMLDivElement, SurfaceBodyProps>(
 
 export type SurfaceProps = {
   /**
-   * TODO: Not sure how to describe this prop
+   * Places children vertically when set to true
    */
   useLayout?: boolean;
   /**
