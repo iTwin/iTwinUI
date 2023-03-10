@@ -29,7 +29,47 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
   }
 };
 
+// ----------------------------------------------------------------------------
+// Surface.Header component
+
+export type SurfaceHeaderProps = React.ComponentPropsWithRef<'div'>;
+
+const SurfaceHeader = React.forwardRef<HTMLDivElement, SurfaceHeaderProps>(
+  (props, ref) => {
+    const { children, className, ...rest } = props;
+    return (
+      <div className={cx('iui-surface-header', className)} ref={ref} {...rest}>
+        {children}
+      </div>
+    );
+  },
+);
+
+// ----------------------------------------------------------------------------
+// Surface.Body component
+
+export type SurfaceBodyProps = React.ComponentPropsWithRef<'div'>;
+
+const SurfaceBody = React.forwardRef<HTMLDivElement, SurfaceBodyProps>(
+  (props, ref) => {
+    const { children, className, ...rest } = props;
+    return (
+      <div className={cx('iui-surface-body', className)} ref={ref} {...rest}>
+        {children}
+      </div>
+    );
+  },
+);
+
 export type SurfaceProps = {
+  /**
+   * TODO: Not sure how to describe this prop
+   */
+  layout?: boolean;
+  /**
+   * Gives padding to the surface body
+   */
+  padded?: boolean;
   /**
    * Sets the elevation of the surface
    */
@@ -46,25 +86,34 @@ export type SurfaceProps = {
  * <Surface>Surface Content</Surface>
  * <Surface elevation={2}>Surface Content</Surface>
  */
-export const Surface = React.forwardRef(
-  (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-    const { elevation, className, style, children, ...rest } = props;
-    useTheme();
+export const Surface = Object.assign(
+  React.forwardRef(
+    (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
+      const { elevation, className, style, children, layout, padded, ...rest } =
+        props;
+      useTheme();
 
-    const _style = {
-      '--iui-surface-elevation': getSurfaceElevationValue(elevation),
-      ...style,
-    };
-    return (
-      <div
-        className={cx('iui-surface', className)}
-        style={_style}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
+      const _style = {
+        '--iui-surface-elevation': getSurfaceElevationValue(elevation),
+        ...style,
+      };
+      return (
+        <div
+          className={cx('iui-surface', className)}
+          style={_style}
+          ref={ref}
+          data-iui-layout={layout ? 'true' : undefined}
+          data-iui-padded={padded ? 'true' : undefined}
+          {...rest}
+        >
+          {children}
+        </div>
+      );
+    },
+  ),
+  {
+    Header: SurfaceHeader,
+    Body: SurfaceBody,
   },
 );
 

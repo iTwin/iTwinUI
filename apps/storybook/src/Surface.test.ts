@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Surface', () => {
   const storyPath = 'Core/Surface';
-  const tests = ['Basic'];
+  const tests = ['Basic', 'Custom', 'Overflow', 'No Padding', 'Empty State'];
 
   tests.forEach((testName) => {
     it(testName, function () {

@@ -4,7 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Surface, SurfaceProps, Code } from '@itwin/itwinui-react';
+import {
+  Surface,
+  SurfaceProps,
+  Code,
+  Text,
+  Divider,
+  Button,
+  Anchor,
+  Flex,
+  IconButton,
+} from '@itwin/itwinui-react';
+import { SvgActivity, SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default {
   component: Surface,
@@ -39,3 +50,180 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
 };
 
 Basic.args = { elevation: 1 };
+
+export const Custom: Story<SurfaceProps> = (args) => {
+  const { elevation, layout, padded } = args;
+  return (
+    <Surface elevation={elevation} layout={layout} padded={padded} {...args}>
+      <Surface.Header>
+        <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
+          <Text variant='subheading' as='h2'>
+            Custom surface
+          </Text>
+          <IconButton styleType='borderless'>
+            <SvgSettings />
+          </IconButton>
+        </Flex>
+      </Surface.Header>
+      <Surface.Body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+      </Surface.Body>
+    </Surface>
+  );
+};
+
+Custom.args = { elevation: 1, layout: true, padded: true };
+
+export const Overflow: Story<SurfaceProps> = (args) => {
+  const { elevation, layout, padded } = args;
+  const cardStyle = {
+    maxHeight: '300px',
+  };
+  return (
+    <Surface
+      elevation={elevation}
+      style={cardStyle}
+      layout={layout}
+      padded={padded}
+    >
+      <Surface.Header>
+        <Text variant='subheading' as='h2'>
+          Surface with overflow & button footer
+        </Text>
+      </Surface.Header>
+      <Surface.Body>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
+          dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
+          occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur
+          adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+          ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+          irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+          fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+          sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem
+          ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+          ea commodo consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+          sint occaecat cupidatat non proident, sunt in culpa qui officia
+          deserunt mollit anim id est laborum.
+        </p>
+      </Surface.Body>
+      <Divider />
+      <Button styleType='borderless'>View All</Button>
+    </Surface>
+  );
+};
+
+Overflow.args = { elevation: 1, layout: true, padded: true };
+
+export const NoPadding: Story<SurfaceProps> = (args) => {
+  const { elevation, layout, padded } = args;
+
+  const cardStyle = {
+    maxHeight: '300px',
+  };
+  return (
+    <Surface
+      elevation={elevation}
+      style={cardStyle}
+      layout={layout}
+      padded={padded}
+    >
+      <style>
+        {`ul { all: unset; display: flex; flex-direction: column; flex: 1; list-style-type: none; }`}
+        {`ul li { padding: var(--iui-size-s); position: relative; }`}
+        {`ul li:not(:first-of-type) { border-top: 1px solid var(--iui-surface-border-color); }`}
+        {`ul li a::after {content: ''; position: absolute; inset: 0; }`}
+      </style>
+      <Surface.Header>
+        <Text variant='subheading' as='h2'>
+          Surface with overflow & no body padding
+        </Text>
+      </Surface.Header>
+      <Surface.Body>
+        <ul>
+          <li>
+            <Anchor>Daily log</Anchor>
+          </li>
+          <li>
+            <Anchor>Inspections</Anchor>
+          </li>
+          <li>
+            <Anchor>Issues</Anchor>
+          </li>
+          <li>
+            <Anchor>Observations</Anchor>
+          </li>
+          <li>
+            <Anchor>RFIs</Anchor>
+          </li>
+          <li>
+            <Anchor>Weather delay notices</Anchor>
+          </li>
+        </ul>
+      </Surface.Body>
+    </Surface>
+  );
+};
+
+NoPadding.args = { elevation: 1, layout: true, padded: false };
+
+export const EmptyState: Story<SurfaceProps> = (args) => {
+  const { elevation, layout, padded } = args;
+
+  const cardStyle = {
+    height: '300px',
+  };
+
+  return (
+    <Surface
+      elevation={elevation}
+      style={cardStyle}
+      layout={layout}
+      padded={padded}
+    >
+      <Surface.Header>
+        <Text variant='subheading' as='h2'>
+          Surface with empty state
+        </Text>
+      </Surface.Header>
+      <Surface.Body style={{ display: 'flex' }}>
+        <Flex
+          justifyContent={'center'}
+          alignItems={'center'}
+          flexDirection={'column'}
+          style={{ flexGrow: '1', textAlign: 'center' }}
+        >
+          <SvgActivity />
+          <Text variant='body' isMuted={true}>
+            No new activity
+          </Text>
+        </Flex>
+      </Surface.Body>
+    </Surface>
+  );
+};
+
+EmptyState.args = { elevation: 1, layout: true, padded: true };
