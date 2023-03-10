@@ -8,3 +8,22 @@ export default './FileUpload';
 
 export { FileUploadTemplate } from './FileUploadTemplate';
 export type { FileUploadTemplateProps } from './FileUploadTemplate';
+
+export { FileUploadCard } from './FileUploadCard';
+export type {
+  FileUploadCardProps,
+  FileUploadCardIconProps,
+  FileUploadCardInfoProps,
+  FileUploadCardTitleProps,
+  FileUploadCardDescriptionProps,
+  FileUploadCardActionProps,
+  FileUploadCardInputLabelProps,
+  FileUploadCardInputProps,
+} from './FileUploadCard';
+
+export { FileEmptyCard } from './FileEmptyCard';
+export type {
+  FileEmptyCardProps,
+  FileEmptyCardIconProps,
+  FileEmptyCardTextProps,
+} from './FileEmptyCard';

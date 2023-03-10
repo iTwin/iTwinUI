@@ -3,17 +3,22 @@ title: Expandable block
 description: A pattern for progressive disclosure of information.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
-exampleCodeFile1: ExpandableBlock.main.tsx
 thumbnail: ExpandableBlock
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='core-expandableblock' />
+
+<LiveExample src='ExpandableBlock.main.tsx'>
+  <AllExamples.ExpandableBlockMainExample client:load />
+</LiveExample>
 
 Expandable blocks, called expandable rows when inside a table, are used to progressively disclose information. Read this article to learn more about progressive disclosure. Expandable blocks and rows should not be used with flattened hierarchy or information panels. This type of navigation allows the user to see content inside a parent row or block.
 

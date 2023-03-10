@@ -14,3 +14,5 @@ export * from './useSafeContext';
 export * from './useLatestRef';
 export * from './useIsomorphicLayoutEffect';
 export * from './useIsThemeAlreadySet';
+export * from './useIsClient';
+export * from './useId';

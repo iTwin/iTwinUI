@@ -1,5 +1,71 @@
 # Changelog
 
+## 1.7.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- 62c4a6da: Fixed issue where checkbox / radio border appeared above `:focus` outline.
+
+## 1.6.0
+
+### Minor Changes
+
+- 2397ee0c: All styles will now be scoped and always take preference over previous major versions (`@itwin/itwinui-react`@`1.x`).
+
+  This enables incremental adoption of `@itwin/itwinui-react`@`2.x` for some parts of the app, while still using `1.x` for the rest of the app.
+
+  To use this feature, make sure that all parts that use v1 are updated to `@itwin/itwinui-css@0.63.2`, and then wrap the v2 parts in `ThemeProvider`:
+
+  ```html
+  <body>
+    <!-- rest of your app (v1) -->
+
+    <ThemeProvider>
+      <!-- new UI built using v2 -->
+    </ThemeProvider>
+  </body>
+  ```
+
+  For packages, there is a new theme `'inherit'`. Setting this enables scoping without forcing the default light theme. When the app eventually updates to v2, it can use its own `ThemeProvider` with any theme, and the components inside your package will inherit the app's theme.
+
+  ```html
+  <body>
+    <!-- rest of the app (maybe v1) -->
+
+    <!-- inside your package ⬇️ -->
+    <ThemeProvider theme='inherit'>
+      <!-- v2 components inside package -->
+    </ThemeProvider>
+  </bod
+  ```
+
+## 1.5.5
+
+### Patch Changes
+
+- b2831ddb: Fix expandable rows not displaying when height is set on table and `overflow-y` is present.
+
 ## 1.5.4
 
 ### Patch Changes

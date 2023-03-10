@@ -25,17 +25,20 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
   props: {
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
+    density?: 'default' | 'condensed' | 'extra-condensed';
   } = {},
 ) => {
-  const { isDisabled } = props;
+  const { isDisabled, density } = props;
+  const densityWidth =
+    density === 'condensed' ? 42 : density === 'extra-condensed' ? 34 : 48;
   return {
     id: SELECTION_CELL_ID,
     disableResizing: true,
     disableGroupBy: true,
     disableReordering: true,
-    minWidth: 48,
-    width: 48,
-    maxWidth: 48,
+    minWidth: densityWidth,
+    width: densityWidth,
+    maxWidth: densityWidth,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
     Header: ({

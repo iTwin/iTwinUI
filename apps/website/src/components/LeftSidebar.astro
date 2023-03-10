@@ -63,11 +63,12 @@ import LeftSidebarContent from './LeftSidebarContent.astro';
 
   aside {
     height: 100%;
-    max-width: 80%;
     background-color: var(--color-background-2);
     border-right: 1px solid var(--color-line-2);
     overflow-y: auto;
-    overflow: hidden overlay; // need "hidden" on x for safari
+    overflow-y: overlay;
+    overflow-x: hidden;
+    overflow-x: clip;
     --scrollbar-right-offset: 5px;
 
     &:not(:hover, :focus-within) {
@@ -77,6 +78,7 @@ import LeftSidebarContent from './LeftSidebarContent.astro';
 
     @media (max-width: 50em) {
       border-right: none;
+      max-width: 80%;
 
       // collapsed by default
       transform: translateX(-100%);

@@ -6,24 +6,29 @@
 import cx from 'classnames';
 import React from 'react';
 
-import { useTheme, CommonProps } from '../utils';
+import { useTheme } from '../utils';
+import type {
+  PolymorphicForwardRefComponent,
+  PolymorphicComponentProps,
+} from '../utils';
 import '@itwin/itwinui-css/css/header.css';
 
-export type HeaderLogoProps = {
+type HeaderLogoOwnProps = {
   /**
    * Logo shown before the main content.
    */
   logo: JSX.Element;
   /**
    * Click event handler.
-   * Will update the Logo to have mouse and keyboard interaction if provided.
+   * If passed, the component will be rendered as a `<button>` rather than `<div>`.
    */
-  onClick?: () => void;
-  /**
-   * Expects the app name, is put on the right of the logo.
-   */
-  children?: React.ReactNode;
-} & CommonProps;
+  onClick?: (e: unknown) => void;
+};
+
+export type HeaderLogoProps = PolymorphicComponentProps<
+  'div',
+  HeaderLogoOwnProps
+>;
 
 /**
  * Header Title section
@@ -33,25 +38,25 @@ export type HeaderLogoProps = {
  * <HeaderLogo logo={<img src='image.png' />} />
  * <HeaderLogo logo={<img src='data:image/png;base64,...' />}>Downloaded Image</HeaderLogo>
  */
-export const HeaderLogo = (props: HeaderLogoProps) => {
-  const { className, children, logo, onClick, ...rest } = props;
-  const keyDownHandler = (e: React.KeyboardEvent<HTMLDivElement>) => {
-    if (
-      onClick &&
-      (e.key === 'Enter' || e.key === ' ' || e.key === 'Spacebar')
-    ) {
-      e.preventDefault();
-      onClick();
-    }
-  };
+export const HeaderLogo = React.forwardRef((props, ref) => {
+  const {
+    className,
+    children,
+    logo,
+    onClick,
+    as: Element = !!onClick ? 'button' : 'div',
+    ...rest
+  } = props;
+
   useTheme();
+
   return (
-    <div
+    <Element
       className={cx('iui-header-brand', className)}
-      role={onClick && 'button'}
-      tabIndex={onClick && 0}
-      onKeyDown={keyDownHandler}
       onClick={onClick}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- TS complains here but it's ok; it is an implementation detail
+      // @ts-ignore
+      ref={ref}
       {...rest}
     >
       {React.isValidElement<{ className: string }>(logo)
@@ -60,8 +65,8 @@ export const HeaderLogo = (props: HeaderLogoProps) => {
           })
         : undefined}
       {children && <span className='iui-header-brand-label'>{children}</span>}
-    </div>
+    </Element>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', HeaderLogoOwnProps>;
 
 export default HeaderLogo;

@@ -3,17 +3,22 @@ title: Radio
 description: Allows the user to choose only one of a predefined set of mutually exclusive options.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Radio/Radio.tsx'
-exampleCodeFile1: Radio.main.tsx
 thumbnail: Radio
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='input-radio' />
+
+<LiveExample src='Radio.main.tsx' truncate={false}>
+  <AllExamples.RadioMainExample client:load />
+</LiveExample>
 
 A radio button is a control element allowing the selection of a single option amongst a predefined set of choices. They are similar to checkboxes, however the latter allows the selection of several options at once, or even none at all. Within a set of options accompanied by radio buttons, there will always be a single one that is selected at once.
 
