@@ -46,13 +46,15 @@ it('should add className and style correctly', () => {
 
 it('should render custom surface', () => {
   const { container } = render(
-    <Surface>
+    <Surface padded={true} layout={true}>
       <Surface.Header>TestHeader</Surface.Header>
       <Surface.Body>TestBody</Surface.Body>
     </Surface>,
   );
   const surface = container.querySelector('.iui-surface') as HTMLElement;
   expect(surface).toBeTruthy();
+  expect(surface.getAttribute('data-iui-padded')).toBeTruthy();
+  expect(surface.getAttribute('data-iui-layout')).toBeTruthy();
 
   const surfaceHeader = container.querySelector(
     '.iui-surface-header',
