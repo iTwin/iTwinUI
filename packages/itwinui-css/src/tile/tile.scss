@@ -29,7 +29,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   &:where(:not(.iui-folder)) {
-    > :where(:first-child) {
+    > :where(.iui-tile-thumbnail) {
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
     }
@@ -122,10 +122,16 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       flex: 1;
       border-bottom: none;
       border-right: 1px solid var(--iui-color-border);
+      margin: 0;
     }
 
     .iui-tile-content {
       flex: 2;
+      padding: var(--iui-size-s);
+
+      > * {
+        padding: 0;
+      }
     }
 
     .iui-tile-description {
@@ -168,7 +174,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-content {
-  padding: var(--iui-size-s);
+  padding-bottom: var(--iui-size-s);
   display: grid;
   grid-template-rows: auto 1fr auto;
   flex-grow: 2;
@@ -176,67 +182,73 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   > * {
     max-width: 100%;
-  }
-
-  .iui-tile-name {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    font-size: var(--iui-font-size-2);
     margin-bottom: calc(var(--iui-size-s) * 0.5);
-    color: var(--_iui-tile-title-text-color);
-    overflow: hidden;
+    padding-inline: var(--iui-size-s);
   }
+}
 
-  .iui-tile-status-icon {
+@mixin iui-tile-name {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  font-size: var(--iui-font-size-2);
+  user-select: all;
+  color: var(--_iui-tile-title-text-color);
+  overflow: hidden;
+  padding-inline: var(--iui-size-s);
+  margin-bottom: calc(var(--iui-size-s) * 0.5);
+}
+
+@mixin iui-tile-status-icon {
+  @include iui-icon-style('m');
+  margin-right: var(--iui-size-xs);
+  fill: var(--_iui-tile-status-icon-fill);
+}
+
+@mixin iui-tile-name-label {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin iui-tile-description {
+  margin-bottom: var(--iui-size-s);
+  font-size: var(--iui-font-size-1);
+  height: 100%;
+  max-height: calc(var(--iui-size-s) * 6);
+  @include iui-line-clamp(3);
+  color: var(--_iui-tile-body-text-color);
+}
+
+@mixin iui-tile-metadata {
+  font-size: var(--iui-font-size-0);
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: var(--iui-size-l);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  color: var(--_iui-tile-body-text-color);
+
+  > svg,
+  .iui-tile-metadata-icon {
     @include iui-icon-style('m');
+    fill: var(--iui-color-icon-muted);
     margin-right: var(--iui-size-xs);
-    fill: var(--_iui-tile-status-icon-fill);
   }
 
-  .iui-tile-name-label {
-    overflow: hidden;
+  > * {
     white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .iui-tile-description {
-    margin-bottom: var(--iui-size-s);
-    font-size: var(--iui-font-size-1);
-    height: 100%;
-    max-height: calc(var(--iui-size-s) * 6);
-    @include iui-line-clamp(3);
-    color: var(--_iui-tile-body-text-color);
-  }
-
-  .iui-tile-metadata {
-    font-size: var(--iui-font-size-0);
-    flex-shrink: 0;
     overflow: hidden;
     text-overflow: ellipsis;
-    height: var(--iui-size-l);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-top: auto;
-    color: var(--_iui-tile-body-text-color);
-
-    > svg,
-    .iui-tile-metadata-icon {
-      @include iui-icon-style('m');
-      fill: var(--iui-color-icon-muted);
-      margin-right: var(--iui-size-xs);
-    }
-
-    > * {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
   }
 }
 
 @mixin iui-tile-thumbnail {
+  order: -1;
   box-sizing: content-box;
   height: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
@@ -244,6 +256,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   display: grid;
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
+  margin-bottom: var(--iui-size-s);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -368,6 +381,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   grid-area: 1 / 1 / -1 / -1;
   place-self: end;
   position: absolute;
+  margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
   margin-right: calc(-1 * var(--iui-size-2xs));
