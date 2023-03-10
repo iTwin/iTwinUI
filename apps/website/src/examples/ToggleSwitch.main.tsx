@@ -8,8 +8,13 @@ import { SvgCheckmark } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <div>
-      <ToggleSwitch onChange={() => {}} label='Toggle feature No.1' icon={<SvgCheckmark />} />
-    </div>
+    <>
+      <ToggleSwitch
+        onChange={() => {}}
+        label='Toggle feature 1'
+        icon={<SvgCheckmark />}
+        defaultChecked={true}
+      />
+    </>
   );
 };

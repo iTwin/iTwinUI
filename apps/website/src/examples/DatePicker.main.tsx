@@ -6,9 +6,14 @@ import * as React from 'react';
 import { DatePicker } from '@itwin/itwinui-react';
 
 export default () => {
-  const [currentDate, setCurrentDate] = React.useState(new Date(2022, 4, 11, 14, 55, 22));
-  const onChange = (date: Date) => {
-    setCurrentDate(date);
-  };
-  return <DatePicker showYearSelection date={currentDate} onChange={onChange} />;
+  const [currentDate, setCurrentDate] = React.useState(new Date());
+  return (
+    <DatePicker
+      showYearSelection
+      date={currentDate}
+      onChange={(date: Date) => {
+        setCurrentDate(date);
+      }}
+    />
+  );
 };

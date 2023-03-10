@@ -3,17 +3,22 @@ title: Keyboard keys
 description:
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Typography/Kbd/Kbd.d.ts'
-exampleCodeFile1: Keyboard.main.tsx
 thumbnail: Keyboard
 group: typography
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='typography-keyboard-key' />
+
+<LiveExample src='Keyboard.main.tsx' truncate={false}>
+  <AllExamples.KeyboardMainExample client:load />
+</LiveExample>
 
 ## Props
 

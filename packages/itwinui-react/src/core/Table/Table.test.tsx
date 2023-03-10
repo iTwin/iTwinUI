@@ -1974,6 +1974,68 @@ it.each(['condensed', 'extra-condensed'] as const)(
   },
 );
 
+it('should render sub-rows with padding-left of 12+30*(row depth) for condensed table', async () => {
+  const onExpand = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onExpand,
+    density: 'condensed',
+  });
+
+  await expandAll(container);
+
+  const tableRows = container.querySelectorAll(
+    '.iui-table-body .iui-table-row',
+  );
+
+  // First row has a row depth of zero, so padding-left is 12 + 30*0 = 12
+  expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 12px',
+  );
+
+  // Expanded sub-row has a row depth of two, so padding-left is 12 + 30*2 = 72
+  expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 72px',
+  );
+
+  // Second row has a row depth of one, so padding-left is 12 + 30*1 = 42
+  expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 42px',
+  );
+});
+
+it('should render sub-rows with padding-left of 8+30*(row depth) for extra-condensed table', async () => {
+  const onExpand = jest.fn();
+  const data = mockedSubRowsData();
+  const { container } = renderComponent({
+    data,
+    onExpand,
+    density: 'extra-condensed',
+  });
+
+  await expandAll(container);
+
+  const tableRows = container.querySelectorAll(
+    '.iui-table-body .iui-table-row',
+  );
+
+  // First row has a row depth of zero, so padding-left is 8 + 30*0 = 8
+  expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 8px',
+  );
+
+  // Expanded sub-row has a row depth of two, so padding-left is 8 + 30*2 = 68
+  expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 68px',
+  );
+
+  // Second row has a row depth of one, so padding-left is 8 + 30*1 = 38
+  expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
+    'padding-left: 38px',
+  );
+});
+
 it('should render sub-rows and handle expansions', async () => {
   const onExpand = jest.fn();
   const data = mockedSubRowsData();
@@ -4579,4 +4641,52 @@ it('should navigate through table filtering with the keyboard', async () => {
       }),
     ]),
   );
+});
+
+it('should ignore top-level Header if one is passed', async () => {
+  const data = mockedData();
+  const { container } = render(
+    <Table
+      data={data}
+      emptyTableContent='nothing to see here'
+      columns={[
+        {
+          Header: 'Header name',
+          columns: [
+            {
+              id: 'name',
+              Header: 'Name',
+              accessor: 'name',
+            },
+            {
+              id: 'description',
+              Header: 'Description',
+              accessor: 'description',
+            },
+          ],
+        },
+      ]}
+    />,
+  );
+
+  expect(screen.queryByText('Header name')).toBeFalsy();
+
+  const headerRows = container.querySelectorAll(
+    '.iui-table-header .iui-table-row',
+  );
+  expect(headerRows).toHaveLength(1);
+  const headerCells = headerRows[0]?.querySelectorAll('.iui-table-cell');
+  expect(headerCells).toHaveLength(2);
+  expect(headerCells[0].textContent).toEqual('Name');
+  expect(headerCells[1].textContent).toEqual('Description');
+
+  const bodyRows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(bodyRows).toHaveLength(data.length);
+  bodyRows.forEach((row, i) => {
+    const { name, description } = data[i];
+    const cells = row.querySelectorAll('.iui-table-cell');
+    expect(cells).toHaveLength(2);
+    expect(cells[0].textContent).toEqual(name);
+    expect(cells[1].textContent).toEqual(description);
+  });
 });

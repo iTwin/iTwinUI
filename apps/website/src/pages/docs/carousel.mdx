@@ -3,17 +3,22 @@ title: Carousel
 description: A slideshow component for cycling through elements.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Carousel/Carousel.d.ts'
-exampleCodeFile1: Carousel.main.tsx
 thumbnail: Carousel
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='core-carousel' />
+
+<LiveExample src='Carousel.main.tsx'>
+  <AllExamples.CarouselMainExample client:load />
+</LiveExample>
 
 The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is
 located below the slides, consisting of "dots" and "previous"/"next" buttons, used for changing slides.
