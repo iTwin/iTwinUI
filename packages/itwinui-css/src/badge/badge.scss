@@ -9,7 +9,8 @@ $iui-badge-background-warning: hsl(34, 87%, 82%); // foreground-warning--dark
 $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
 
 @mixin iui-badge {
-  --iui-badge-background-color: hsl(210, 10%, 80%); // background-5--light
+  --iui-badge-background-color: hsl(210, 10%, 80%);
+  --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: hsl(0 0% 0% / 0.6);
 
   @include iui-reset;
@@ -17,6 +18,7 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   font-size: var(--iui-font-size-0);
   padding: 0 $iui-badge-horizontal-padding;
   margin: calc(var(--iui-size-s) * 0.5) 0;
+  border: 1px solid var(--_iui-badge-border-color);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);
@@ -27,15 +29,10 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: var(--iui-font-weight-semibold);
-
-  &[data-iui-status] {
-    outline: 1px solid;
-    outline-offset: -1px;
-  }
 }
 
 @mixin iui-badge-status($status) {
-  background-color: var(--iui-color-background-#{$status}-muted);
-  outline-color: var(--iui-color-border-#{$status});
-  color: var(--iui-color-text-#{$status});
+  --iui-badge-background-color: var(--iui-color-background-#{$status}-muted);
+  --_iui-badge-border-color: var(--iui-color-border-#{$status});
+  --_iui-badge-text-color: var(--iui-color-text-#{$status});
 }
