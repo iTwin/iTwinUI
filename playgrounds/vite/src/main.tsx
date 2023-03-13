@@ -1,7 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from '@emotion/styled';
-// import { ThemeProvider } from '@itwin/itwinui-react';
+import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App';
 import { css, Global } from '@emotion/react';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
@@ -21,19 +21,19 @@ const Shell = () => {
           }
         `}
       />
-      {/* <ThemeProvider theme={theme}> */}
-      <Main>
-        {/* <ThemeButton
+      <ThemeProvider theme={theme}>
+        <Main>
+          <ThemeButton
             aria-label='Toggle theme'
             onClick={() =>
               setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
             }
           >
             {theme === 'dark' ? <SvgMoon /> : <SvgSun />}
-          </ThemeButton> */}
-        <App />
-      </Main>
-      {/* </ThemeProvider> */}
+          </ThemeButton>
+          <App />
+        </Main>
+      </ThemeProvider>
     </>
   );
 };
