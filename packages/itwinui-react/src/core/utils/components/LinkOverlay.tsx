@@ -9,14 +9,21 @@ import {
   PolymorphicForwardRefComponent,
 } from '../props';
 
-export type PolymorphicActionProps = PolymorphicComponentProps<
+type LinkOverlayOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+export type PolymorphicLinkOverlayProps = PolymorphicComponentProps<
   'a',
-  // eslint-disable-next-line @typescript-eslint/ban-types
-  {}
+  LinkOverlayOwnProps
+>;
+
+export type PolymorphicLinkBoxProps = PolymorphicComponentProps<
+  'div',
+  LinkBoxOwnProps
 >;
 
 /**
- * Polymorphic action component.
+ * Polymorphic link overlay component.
  * It is rendered as `a` by default.
  */
 export const LinkOverlay = React.forwardRef((props, ref) => {
@@ -29,7 +36,7 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
     />
   );
   // eslint-disable-next-line @typescript-eslint/ban-types
-}) as PolymorphicForwardRefComponent<'a', {}>;
+}) as PolymorphicForwardRefComponent<'a', LinkOverlayOwnProps>;
 
 LinkOverlay.displayName = 'LinkOverlay';
 
@@ -39,6 +46,6 @@ export const LinkBox = React.forwardRef((props, ref) => {
     <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
   );
   // eslint-disable-next-line @typescript-eslint/ban-types
-}) as PolymorphicForwardRefComponent<'div', {}>;
+}) as PolymorphicForwardRefComponent<'div', LinkBoxOwnProps>;
 
 LinkBox.displayName = 'LinkBox';
