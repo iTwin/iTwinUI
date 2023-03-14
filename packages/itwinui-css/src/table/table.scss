@@ -24,10 +24,10 @@
 }
 
 @mixin iui-table-header {
-  display: flex;
+  // display: flex;
   user-select: none;
   min-width: 100%;
-  flex-shrink: 0;
+  // flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-bottom: 1px solid var(--iui-color-border);
 
@@ -319,6 +319,7 @@
 @mixin iui-table-body {
   overflow-y: scroll;
   overflow: overlay;
+  // overflow-x: hidden;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -385,12 +386,12 @@
     flex-basis: calc(var(--iui-size-l) * 2);
   }
 
-  &.iui-table-cell-sticky {
-    position: sticky;
-    z-index: 1;
-    left: var(--iui-table-sticky-left, initial);
-    right: var(--iui-table-sticky-right, initial);
-  }
+  // &.iui-table-cell-sticky {
+  //   position: sticky;
+  //   z-index: 1;
+  //   left: var(--iui-table-sticky-left, initial);
+  //   right: var(--iui-table-sticky-right, initial);
+  // }
 
   &:not(.iui-slot):last-child {
     padding-right: var(--iui-size-m);
