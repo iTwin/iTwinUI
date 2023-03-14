@@ -171,7 +171,8 @@ describe('Fallback (without children)', () => {
   };
 
   afterEach(() => {
-    document.body.classList.remove('iui-root');
+    document.documentElement.className = '';
+    document.body.className = '';
     document.documentElement.removeAttribute('data-iui-theme');
     document.documentElement.removeAttribute('data-iui-contrast');
     window.matchMedia = originalMatchMedia;
@@ -336,6 +337,22 @@ describe('Fallback (without children)', () => {
     expect(element).toHaveAttribute('data-iui-theme', 'dark');
     expect(element).toHaveAttribute('data-iui-contrast', 'default');
 
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.classList).not.toContain('iui-root');
+  });
+
+  it('should not modify root or <body> if page uses v1 (iui-body)', () => {
+    document.body.classList.add('iui-body');
+    render(<ThemeProvider />);
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.classList).not.toContain('iui-root');
+  });
+
+  it('should not modify root or <body> if page uses v1 (iui-theme-)', () => {
+    document.documentElement.classList.add('iui-theme-light');
+    render(<ThemeProvider />);
     expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
     expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
     expect(document.body.classList).not.toContain('iui-root');
