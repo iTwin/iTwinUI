@@ -349,4 +349,6 @@ export type {
   FlexProps,
   FlexItemProps,
   FlexSpacerProps,
+  LinkBoxProps,
+  LinkOverlayProps,
 } from './utils';

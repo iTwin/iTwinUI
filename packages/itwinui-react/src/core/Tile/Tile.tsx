@@ -139,8 +139,7 @@ export const TileAction = (
   const tileContext = useSafeContext(TileContext);
 
   React.useEffect(() => {
-    console.log('action useefect');
-    !tileContext.isDisabled ? tileContext.setActionable(true) : null;
+    tileContext.setActionable(true);
   }, [tileContext]);
 
   return <LinkOverlay {...props} />;
@@ -180,7 +179,7 @@ export const Tile = Object.assign(
       moreOptions,
       variant = 'default',
       children,
-      isActionable,
+      isActionable: isActionableProp,
       status,
       isLoading = false,
       isDisabled = false,
@@ -193,12 +192,10 @@ export const Tile = Object.assign(
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
     const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
     const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
-    const [localActionable, setLocalActionable] = React.useState(isActionable);
+    const [localActionable, setLocalActionable] =
+      React.useState(isActionableProp);
 
-    React.useEffect(() => {
-      console.log('tile useeffect');
-      setLocalActionable(isActionable);
-    }, [isActionable]);
+    const isActionable = isActionableProp ?? localActionable;
 
     const tileName = (
       <div className='iui-tile-name'>
@@ -211,9 +208,7 @@ export const Tile = Object.assign(
 
         <span className='iui-tile-name-label'>
           {isActionable && onClick ? (
-            <LinkOverlay as='div' onClick={onClick}>
-              {name}
-            </LinkOverlay>
+            <LinkOverlay as='button'>{name}</LinkOverlay>
           ) : (
             name
           )}
@@ -232,13 +227,14 @@ export const Tile = Object.assign(
               'iui-folder': variant === 'folder',
               'iui-new': isNew,
               'iui-selected': isSelected,
-              'iui-actionable': localActionable,
+              'iui-actionable': isActionable,
               [`iui-${status}`]: !!status,
               'iui-loading': isLoading,
             },
             className,
           )}
           aria-disabled={isDisabled}
+          onClick={onClick}
           {...rest}
         >
           {variant !== 'folder' ? tileName : null}

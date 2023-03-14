@@ -213,7 +213,7 @@ export const AnchorLink: Story<TileProps> = (props) => {
   return (
     <Tile
       name={
-        <Tile.Action as='button' href='/?path=/docs/core-tile--anchor-link'>
+        <Tile.Action href='/?path=/docs/core-tile--anchor-link'>
           {name}
         </Tile.Action>
       }

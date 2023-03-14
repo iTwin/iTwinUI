@@ -12,15 +12,12 @@ import {
 type LinkOverlayOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-export type PolymorphicLinkOverlayProps = PolymorphicComponentProps<
+export type LinkOverlayProps = PolymorphicComponentProps<
   'a',
   LinkOverlayOwnProps
 >;
 
-export type PolymorphicLinkBoxProps = PolymorphicComponentProps<
-  'div',
-  LinkBoxOwnProps
->;
+export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
 
 /**
  * Polymorphic link overlay component.
@@ -40,6 +37,9 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
 
 LinkOverlay.displayName = 'LinkOverlay';
 
+/**
+ *
+ */
 export const LinkBox = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, ...rest } = props;
   return (
