@@ -110,6 +110,7 @@ export { default as SurfaceMainExample } from './Surface.main';
 export { default as TableMainExample } from './Table.main';
 
 export { default as TabsMainExample } from './Tabs.main';
+export { default as TabsOverflowExample } from './Tabs.overflow';
 
 export { default as TagMainExample } from './Tag.main';
 
