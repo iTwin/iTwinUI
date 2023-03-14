@@ -320,3 +320,65 @@ Range.args = {
   startDate: new Date(2022, 6, 13, 14, 55, 22),
   endDate: new Date(2022, 6, 27, 14, 55, 22),
 };
+
+export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
+  const {
+    setFocus = true,
+    localizedNames,
+    startDate = new Date(2022, 6, 13, 14, 55, 22),
+    endDate = new Date(2022, 6, 27, 14, 55, 22),
+    ...rest
+  } = args;
+  const [opened, setOpened] = React.useState(false);
+  const [currentStartDate, setCurrentStartDate] = React.useState(startDate);
+  const [currentEndDate, setCurrentEndDate] = React.useState(endDate);
+
+  // only allow selecting dates in July
+  const isDateDisabled = (date: Date) => {
+    return date.getMonth() !== 6;
+  };
+
+  const onChange = (startDate: Date, endDate?: Date) => {
+    setCurrentStartDate(startDate);
+    endDate && setCurrentEndDate(endDate);
+  };
+
+  // sync with story controls
+  React.useEffect(() => {
+    setCurrentStartDate(new Date(startDate));
+    setCurrentEndDate(new Date(endDate));
+  }, [startDate, endDate]);
+
+  return (
+    <>
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <SvgCalendar />
+      </IconButton>
+      <span style={{ marginLeft: 16 }}>
+        Start Date: {currentStartDate.toLocaleDateString()}
+      </span>
+      <span style={{ marginLeft: 16 }}>
+        End Date: {currentEndDate.toLocaleDateString()}
+      </span>
+      {opened && (
+        <div style={{ marginTop: 4 }}>
+          <DatePicker
+            {...rest}
+            enableRangeSelect
+            startDate={currentStartDate}
+            endDate={currentEndDate}
+            onChange={onChange}
+            localizedNames={localizedNames}
+            setFocus={setFocus}
+            isDateDisabled={isDateDisabled}
+          />
+        </div>
+      )}
+    </>
+  );
+};
+
+SomeDatesDisabled.args = {
+  startDate: new Date(2022, 6, 13, 14, 55, 22),
+  endDate: new Date(2022, 6, 27, 14, 55, 22),
+};

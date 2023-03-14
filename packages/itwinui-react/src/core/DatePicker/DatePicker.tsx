@@ -202,6 +202,11 @@ export type DatePickerProps = {
    * @default false
    */
   showYearSelection?: boolean;
+  /**
+   * Will disable dates for which this function returns true.
+   * Disabled dates cannot be selected.
+   */
+  isDateDisabled?: (date: Date) => boolean;
 } & DateRangePickerProps &
   Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
@@ -234,6 +239,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     enableRangeSelect = false,
     startDate,
     endDate,
+    isDateDisabled,
     ...rest
   } = props;
 
@@ -488,7 +494,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'Enter':
       case ' ':
       case 'Spacebar':
-        onDayClick(focusedDay);
+        if (!isDateDisabled?.(focusedDay)) {
+          onDayClick(focusedDay);
+        }
         event.preventDefault();
         break;
     }
@@ -595,13 +603,15 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
+                  const isDisabled = isDateDisabled?.(weekDay);
                   return (
                     <div
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
                       className={getDayClass(weekDay)}
-                      onClick={() => onDayClick(weekDay)}
+                      onClick={() => !isDisabled && onDayClick(weekDay)}
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
+                      aria-disabled={isDisabled ? 'true' : undefined}
                       ref={(element) =>
                         isSameDay(weekDay, focusedDay) &&
                         needFocus.current &&
