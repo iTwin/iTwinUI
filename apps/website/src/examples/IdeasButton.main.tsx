@@ -7,7 +7,8 @@ import { IdeasButton } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div>
+    /** Creating a container only for demo purposes. Normally this will be fixed to viewport. */
+    <div style={{ position: 'absolute', inset: '1rem', transform: 'translateX(0)' }}>
       <IdeasButton onClick={() => {}} />
     </div>
   );

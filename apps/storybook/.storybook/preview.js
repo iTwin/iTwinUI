@@ -31,7 +31,7 @@ addParameters({
 });
 
 const updateTheme = (isDark) => {
-  document.documentElement.dataset.iuiTheme = isDark ? 'dark' : 'light';
+  document.body.dataset.iuiTheme = isDark ? 'dark' : 'light';
 };
 export const parameters = {
   controls: { sort: 'requiredFirst' },
@@ -55,9 +55,8 @@ export const decorators = [
     } = context;
 
     React.useEffect(() => {
-      document.documentElement.dataset.iuiContrast = highContrast
-        ? 'high'
-        : 'default';
+      document.body.classList.toggle('iui-root', true);
+      document.body.dataset.iuiContrast = highContrast ? 'high' : 'default';
     }, [highContrast]);
 
     return Story(); // builder-vite does not allow JSX here so we call Story as a function

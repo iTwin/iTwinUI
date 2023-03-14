@@ -6,6 +6,7 @@ describe('ToggleSwitch', () => {
   const storyPath = 'Input/ToggleSwitch';
   const tests = [
     'Basic',
+    'Small',
     'Disabled Checked',
     'Disabled Unchecked',
     'Label Left',

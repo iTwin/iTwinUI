@@ -166,6 +166,19 @@ export const Tile = (props: TileProps) => {
   const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
   const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
 
+  const tileName = (
+    <div className='iui-tile-name'>
+      <TitleIcon
+        isLoading={isLoading}
+        isSelected={isSelected}
+        isNew={isNew}
+        status={status}
+      />
+
+      <span className='iui-tile-name-label'>{name}</span>
+    </div>
+  );
+
   return (
     <div
       className={cx(
@@ -184,6 +197,8 @@ export const Tile = (props: TileProps) => {
       tabIndex={isActionable && !isDisabled ? 0 : undefined}
       {...rest}
     >
+      {variant !== 'folder' ? tileName : null}
+
       {thumbnail && (
         <div className='iui-tile-thumbnail'>
           {typeof thumbnail === 'string' ? (
@@ -222,16 +237,7 @@ export const Tile = (props: TileProps) => {
       )}
 
       <div className='iui-tile-content'>
-        <div className='iui-tile-name'>
-          <TitleIcon
-            isLoading={isLoading}
-            isSelected={isSelected}
-            isNew={isNew}
-            status={status}
-          />
-
-          <span className='iui-tile-name-label'>{name}</span>
-        </div>
+        {variant === 'folder' ? tileName : null}
 
         {description != undefined && (
           <div className='iui-tile-description'>{description}</div>

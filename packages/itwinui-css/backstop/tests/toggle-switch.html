@@ -26,14 +26,9 @@
       section[id^='demo'] {
         display: flex;
         flex-direction: column;
-        gap: 12px;
-        padding: 2px;
-      }
-
-      #demo-toggle-left,
-      #demo-toggle-right,
-      #demo-toggle-no-label {
-        margin: 6px 0 22px;
+        gap: var(--iui-size-s);
+        padding: var(--iui-size-3xs);
+        margin: var(--iui-size-xs) 0 var(--iui-size-l);
       }
     </style>
   </head>
@@ -141,6 +136,63 @@
               class="iui-toggle-switch-icon"
               aria-hidden="true"
             ></svg-placeholder>
+            <span class="iui-toggle-switch-label">Option 4</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <h2>Small</h2>
+    <section id="demo-small">
+      <div class="iui-input-container">
+        <div class="iui-label iui-required">Toggle switch group label</div>
+        <div class="iui-input-group">
+          <label
+            class="iui-toggle-switch-wrapper iui-label-on-right"
+            data-iui-size="small"
+          >
+            <input
+              class="iui-toggle-switch"
+              type="checkbox"
+              role="switch"
+              checked
+            />
+            <span class="iui-toggle-switch-label">Option 1</span>
+          </label>
+          <label
+            class="iui-toggle-switch-wrapper iui-label-on-right"
+            data-iui-size="small"
+          >
+            <input
+              class="iui-toggle-switch"
+              type="checkbox"
+              role="switch"
+            />
+            <span class="iui-toggle-switch-label">Option 2</span>
+          </label>
+          <label
+            class="iui-toggle-switch-wrapper iui-label-on-right iui-disabled"
+            data-iui-size="small"
+          >
+            <input
+              class="iui-toggle-switch"
+              type="checkbox"
+              role="switch"
+              checked
+              disabled
+            />
+            <span class="iui-toggle-switch-label">Option 3</span>
+          </label>
+          <label
+            class="iui-toggle-switch-wrapper iui-label-on-right iui-disabled"
+            data-iui-size="small"
+          >
+            <input
+              class="iui-toggle-switch"
+              type="checkbox"
+              role="switch"
+              disabled
+            />
             <span class="iui-toggle-switch-label">Option 4</span>
           </label>
         </div>

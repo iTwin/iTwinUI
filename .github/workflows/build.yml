@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - gh-readonly-queue/main/*
   pull_request:
   merge_group:
 
@@ -94,6 +93,7 @@ jobs:
     name: Push static files to github pages
     needs: install
     runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
@@ -241,7 +241,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test --filter=@itwin/itwinui-css
+      - name: yarn test --filter=itwinui-css
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 2
+          retry_on: timeout
+          command: yarn test --filter=itwinui-css
 
       - name: Publish test results artifact
         if: failure()

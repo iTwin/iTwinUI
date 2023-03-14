@@ -3,17 +3,22 @@ title: Footer
 description: Legally required links that stick to the bottom of entry pages.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Footer/Footer.d.ts'
-exampleCodeFile1: Footer.main.tsx
 thumbnail: Footer
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='core-footer' />
+
+<LiveExample src='Footer.main.tsx' truncate={false}>
+  <AllExamples.FooterMainExample client:load />
+</LiveExample>
 
 The footer is fixed to the bottom of a web page, and contains your typical legally required links. The legal footer is only required to be displayed on pages that are considered a “main entry point into your application”. This means that the sign in and home page of any hub / app are good places to display the footer. You do not need to display the footer within an App UI widget, or deeper pages within an app. You can not include the footer on a page with infinite scrolling because you can not reach the bottom of the page.
 

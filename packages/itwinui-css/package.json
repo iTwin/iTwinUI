@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -38,13 +38,15 @@
     "chokidar": "^3.5.3",
     "html-minifier": "^4.0.0",
     "lightningcss": "^1.16.1",
+    "postcss": "^8.4.21",
+    "postcss-scoper": "^1.0.11",
     "npm-run-all": "^4.1.5",
     "sass": "^1.54.4",
     "sass-embedded": "^1.49.9",
     "serve": "^14.0.1",
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "vite": "^3.0.0"
+    "vite": "^4.1.1"
   },
   "scripts": {
     "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",

@@ -98,7 +98,7 @@ const defaultGetDragAndDropProps =
       event.preventDefault();
       setOnDragColumnStyle(event);
 
-      const columnIds = instance.flatHeaders.map((x) => x.id);
+      const columnIds = instance.allColumns.map((x) => x.id);
       const srcIndex = instance.state.columnReorderStartIndex;
       const dstIndex = columnIds.findIndex((x) => x === header.id);
 

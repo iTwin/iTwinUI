@@ -6,5 +6,9 @@ import * as React from 'react';
 import { Code } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Code>This is code block</Code>;
+  return (
+    <>
+      This is some <Code>inline code</Code>.
+    </>
+  );
 };

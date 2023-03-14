@@ -35,14 +35,6 @@
   flex-direction: column;
   @include iui-text(small);
   color: var(--_iui-stepper-step-text-color);
-
-  &:first-of-type {
-    --_iui-stepper-step-track-before-color: transparent;
-  }
-
-  &:last-of-type {
-    --_iui-stepper-step-track-after-color: transparent;
-  }
 }
 
 @mixin iui-stepper-step-modifiers {
@@ -72,6 +64,14 @@
   // Clickable steps
   &.iui-clickable:focus {
     outline: 0;
+  }
+
+  &:first-of-type {
+    --_iui-stepper-step-track-before-color: transparent;
+  }
+
+  &:last-of-type {
+    --_iui-stepper-step-track-after-color: transparent;
   }
 }
 
