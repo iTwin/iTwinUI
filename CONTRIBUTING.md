@@ -40,7 +40,7 @@ Install the recommended [plugins](./.vscode/extensions.json) for linter warnings
 
 `yarn test`
 
-_Before running this command, make sure Docker is running. See [Testing](#Testing) section below for more details._
+_Before running this command, make sure Docker is running. See [Visual testing](#visual-testing-css) (CSS and React) sections below for more details._
 
 ### To lint and fix autofixable errors
 
@@ -78,6 +78,7 @@ By default, a portal will be opened containing links to all the different dev se
   - vite playground: `http://localhost:1701`
   - next playground: `http://localhost:1702`
   - astro playground: `http://localhost:1703`
+  - cra playground: `http://localhost:1704`
   - storybook: `http://localhost:6006` (storybook default)
   - html test pages: `http://localhost:5173` (vite default)
 

@@ -241,7 +241,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test --filter=@itwin/itwinui-css
+      - name: yarn test --filter=itwinui-css
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 2
+          retry_on: timeout
+          command: yarn test --filter=itwinui-css
 
       - name: Publish test results artifact
         if: failure()

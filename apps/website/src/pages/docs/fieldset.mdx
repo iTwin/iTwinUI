@@ -3,17 +3,22 @@ title: Fieldset
 description: A fieldset is a container grouping interactive components together.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Fieldset/Fieldset.tsx'
-exampleCodeFile1: Fieldset.main.tsx
 thumbnail: Fieldset
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='input-fieldset' />
+
+<LiveExample src='Fieldset.main.tsx'>
+  <AllExamples.FieldsetMainExample client:load />
+</LiveExample>
 
 The fieldset is a container meant to group components that apply to a common target. They are also useful in forms where interactive elements require to be split into categories.
 Fieldsets are flexible and can contain a wide variety of components.

@@ -3,7 +3,7 @@
 @use './themes/index' as themes;
 @use './colors';
 
-:root {
+.iui-root {
   @media (prefers-color-scheme: dark) {
     @include themes.dark-theme;
   }

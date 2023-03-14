@@ -46,6 +46,26 @@
   @include iui-tile-content;
 }
 
+.iui-tile-name {
+  @include iui-tile-name;
+}
+
+.iui-tile-name-label {
+  @include iui-tile-name-label;
+}
+
+.iui-tile-description {
+  @include iui-tile-description;
+}
+
+.iui-tile-metadata {
+  @include iui-tile-metadata;
+}
+
+.iui-tile-status-icon {
+  @include iui-tile-status-icon;
+}
+
 .iui-tile-more-options {
   @include iui-tile-more-options;
 }

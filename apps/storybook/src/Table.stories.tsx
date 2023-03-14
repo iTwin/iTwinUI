@@ -1842,12 +1842,23 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
+  const onExpand = useCallback(
+    (rows, state) =>
+      action(
+        `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
+          state,
+        )}`,
+      )(),
+    [],
+  );
+
   const columns = useMemo(
     () => [
       {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
+        Filter: tableFilters.TextFilter(),
       },
       {
         id: 'description',
@@ -1872,31 +1883,115 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const data = useMemo(
-    () => [
-      { name: 'Name1', description: 'Description1' },
-      { name: 'Name2', description: 'Description2' },
-      { name: 'Name3', description: 'Description3' },
-    ],
-    [],
-  );
+  const data = [
+    {
+      name: 'Row 1',
+      description: 'Description 1',
+      subRows: [
+        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+        {
+          name: 'Row 1.2',
+          description: 'Description 1.2',
+          subRows: [
+            {
+              name: 'Row 1.2.1',
+              description: 'Description 1.2.1',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.2',
+              description: 'Description 1.2.2',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.3',
+              description: 'Description 1.2.3',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.4',
+              description: 'Description 1.2.4',
+              subRows: [],
+            },
+          ],
+        },
+        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+      ],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description 2',
+      subRows: [
+        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+      ],
+    },
+    { name: 'Row 3', description: 'Description 3', subRows: [] },
+  ];
 
   return (
     <Table
+      isSelectable
+      isSortable
       columns={columns}
       data={data}
       emptyTableContent='No data.'
       density='condensed'
       {...args}
+      onExpand={onExpand}
     />
   );
 };
 Condensed.args = {
   density: 'condensed',
   data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
+    {
+      name: 'Row 1',
+      description: 'Description 1',
+      subRows: [
+        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+        {
+          name: 'Row 1.2',
+          description: 'Description 1.2',
+          subRows: [
+            {
+              name: 'Row 1.2.1',
+              description: 'Description 1.2.1',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.2',
+              description: 'Description 1.2.2',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.3',
+              description: 'Description 1.2.3',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.4',
+              description: 'Description 1.2.4',
+              subRows: [],
+            },
+          ],
+        },
+        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+      ],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description 2',
+      subRows: [
+        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+      ],
+    },
+    { name: 'Row 3', description: 'Description 3', subRows: [] },
   ],
 };
 
@@ -3092,7 +3187,9 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
 
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
-      SelectionColumn({ isDisabled: isCheckboxDisabled }),
+      SelectionColumn({
+        isDisabled: isCheckboxDisabled,
+      }),
       ExpanderColumn({ subComponent, isDisabled: isExpanderDisabled }),
       {
         id: 'name',

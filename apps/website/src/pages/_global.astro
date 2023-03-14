@@ -69,34 +69,37 @@ const { content = {} } = Astro.props;
         font-family: var(--font-mono);
       }
 
-      @media (pointer: fine) {
-        :root {
-          --scrollbar-left-padding: 7px;
-          --scrollbar-right-offset: 7px;
-          --scrollbar-thumb-size: 10px;
-        }
+      @media (pointer: fine) and (hover: hover) {
+        // bump specificity to counteract iui scrollbars
+        :not(#\#) {
+          :root {
+            --scrollbar-left-padding: 7px;
+            --scrollbar-right-offset: 7px;
+            --scrollbar-thumb-size: 10px;
+          }
 
-        ::-webkit-scrollbar {
-          // total = 24px = 7px (left padding) + 10px (thumb) + 7px (right offset)
-          --_scrollbar-size: calc(
-            var(--scrollbar-left-padding) + var(--scrollbar-thumb-size) +
-              var(--scrollbar-right-offset)
-          );
-          width: var(--_scrollbar-size);
-          height: var(--_scrollbar-size);
-        }
+          ::-webkit-scrollbar {
+            // total = 24px = 7px (left padding) + 10px (thumb) + 7px (right offset)
+            --_scrollbar-size: calc(
+              var(--scrollbar-left-padding) + var(--scrollbar-thumb-size) +
+                var(--scrollbar-right-offset)
+            );
+            width: var(--_scrollbar-size);
+            height: var(--_scrollbar-size);
+          }
 
-        ::-webkit-scrollbar-thumb {
-          background-color: var(--scrollbar-color, hsl(0 0% 65% / 0.7));
-          border-radius: 9e9px;
-          border: 4px solid transparent;
-          border-width: var(--scrollbar-left-padding) var(--scrollbar-right-offset)
-            var(--scrollbar-right-offset) var(--scrollbar-left-padding);
-          background-clip: content-box;
-        }
+          ::-webkit-scrollbar-thumb {
+            background-color: var(--scrollbar-color, hsl(0 0% 65% / 0.7));
+            border-radius: 9e9px;
+            border: 4px solid transparent;
+            border-width: var(--scrollbar-left-padding) var(--scrollbar-right-offset)
+              var(--scrollbar-right-offset) var(--scrollbar-left-padding);
+            background-clip: content-box;
+          }
 
-        ::-webkit-scrollbar-thumb:hover {
-          background-color: var(--scrollbar-hover-color, hsl(0 0% 65% / 0.85));
+          ::-webkit-scrollbar-thumb:hover {
+            background-color: var(--scrollbar-hover-color, hsl(0 0% 65% / 0.85));
+          }
         }
       }
     </style>
@@ -117,15 +120,11 @@ const { content = {} } = Astro.props;
         --color-text--dark: hsl(210deg 6% 85%);
         --color-subtext--dark: hsl(221deg 16% 68%);
         --color-mutedtext--dark: hsl(221deg, 6%, 52%);
-        --color-demo-gradient--dark: linear-gradient(
-          135deg,
-          hsl(232deg 12% 40%),
-          hsl(232deg 22% 25%)
-        );
-        --color-sandbox-gradient--dark: linear-gradient(
-          135deg,
-          hsl(221deg 12% 40%),
-          hsl(221deg 22% 25%)
+        --color-demo-gradient--dark: conic-gradient(
+          from -0.5turn at bottom right,
+          hsl(232deg 16% 24%),
+          hsl(212deg 32% 17%),
+          hsl(224deg 22% 22%)
         );
         --color-active--dark: hsl(221deg 12% 27% / 40%);
         --color-line-1--dark: hsl(205deg 13% 54%);
@@ -159,7 +158,7 @@ const { content = {} } = Astro.props;
         --color-subtext: var(--color-subtext--dark);
         --color-mutedtext: var(--color-mutedtext--dark);
         --color-demo-gradient: var(--color-demo-gradient--dark);
-        --color-sandbox-gradient: var(--color-sandbox-gradient--dark);
+        --color-sandbox-gradient: var(--color-demo-gradient--dark);
         --color-highlight-gradient: var(--color-highlight-gradient-1);
         --color-active: var(--color-active--dark);
         --color-line-1: var(--color-line-1--dark);
@@ -219,7 +218,7 @@ const { content = {} } = Astro.props;
     </style>
   </head>
 
-  <body data-iui-theme='dark'>
+  <body class='iui-root' data-iui-theme='dark'>
     <slot />
 
     <!-- Util classes/styles and scripts -->
@@ -229,10 +228,10 @@ const { content = {} } = Astro.props;
       Scrollable a11y code helper.
       TODO: remove the need for this script by creating a CodeBlock component.
     -->
-    <script is:inline>
+    <!-- <script is:inline>
       Array.from(document.getElementsByTagName('pre')).forEach((element) => {
         element.setAttribute('tabindex', '0');
       });
-    </script>
+    </script> -->
   </body>
 </html>

@@ -3,17 +3,22 @@ title: Header
 description: An overview of the CONNECT Portal headers
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Header/Header.d.ts'
-exampleCodeFile1: Header.main.tsx
 thumbnail: Header
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='core-header' />
+
+<LiveExample src='Header.main.tsx'>
+  <AllExamples.HeaderMainExample client:load />
+</LiveExample>
 
 The headers seen when in our CONNECT Portal environment. A header sits at the top of a page and is part of a consistent user experience.
 

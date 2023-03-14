@@ -52,6 +52,22 @@ describe('When rendering an element (with children)', () => {
     },
   );
 
+  it('should inherit parent theme when using theme=inherit', () => {
+    const { container } = render(
+      <ThemeProvider theme='dark'>
+        outer
+        <ThemeProvider theme='inherit' data-test='inner'>
+          inner
+        </ThemeProvider>
+      </ThemeProvider>,
+    );
+
+    const innerRoot = container.querySelector('[data-test="inner"]');
+    expect(innerRoot).toHaveClass('iui-root');
+    expect(innerRoot).toHaveAttribute('data-iui-theme', 'dark');
+    expect(innerRoot).toHaveAttribute('data-iui-contrast', 'default');
+  });
+
   it('should respect OS preferences', () => {
     useMediaSpy.mockReturnValue(true);
     const { container } = render(
@@ -125,6 +141,22 @@ describe('When rendering an element (with children)', () => {
     const innerRoot = container.querySelector('[data-test="inner"]');
     expect(innerRoot).not.toHaveClass('iui-root-background');
   });
+
+  it('should default applyBackground to false when inheriting theme', () => {
+    const { container, rerender } = render(
+      <ThemeProvider theme='inherit'>Hello</ThemeProvider>,
+    );
+    const element = container.querySelector('.iui-root');
+    expect(element).not.toHaveClass('iui-root-background');
+
+    // should prefer value passed by user
+    rerender(
+      <ThemeProvider theme='inherit' themeOptions={{ applyBackground: true }}>
+        Hello
+      </ThemeProvider>,
+    );
+    expect(element).toHaveClass('iui-root-background');
+  });
 });
 
 describe('Fallback (without children)', () => {
@@ -139,7 +171,8 @@ describe('Fallback (without children)', () => {
   };
 
   afterEach(() => {
-    document.body.classList.remove('iui-root');
+    document.documentElement.className = '';
+    document.body.className = '';
     document.documentElement.removeAttribute('data-iui-theme');
     document.documentElement.removeAttribute('data-iui-contrast');
     window.matchMedia = originalMatchMedia;
@@ -304,6 +337,22 @@ describe('Fallback (without children)', () => {
     expect(element).toHaveAttribute('data-iui-theme', 'dark');
     expect(element).toHaveAttribute('data-iui-contrast', 'default');
 
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.classList).not.toContain('iui-root');
+  });
+
+  it('should not modify root or <body> if page uses v1 (iui-body)', () => {
+    document.body.classList.add('iui-body');
+    render(<ThemeProvider />);
+    expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
+    expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
+    expect(document.body.classList).not.toContain('iui-root');
+  });
+
+  it('should not modify root or <body> if page uses v1 (iui-theme-)', () => {
+    document.documentElement.classList.add('iui-theme-light');
+    render(<ThemeProvider />);
     expect(document.documentElement.dataset.iuiTheme).toBeUndefined();
     expect(document.documentElement.dataset.iuiContrast).toBeUndefined();
     expect(document.body.classList).not.toContain('iui-root');

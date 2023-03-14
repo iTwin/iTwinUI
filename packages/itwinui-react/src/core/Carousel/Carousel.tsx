@@ -98,8 +98,9 @@ export const Carousel = Object.assign(
         return;
       }
 
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        setKeysPressed((old) => ({ ...old, [event.key]: true }));
+      const key = event.key;
+      if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        setKeysPressed((old) => ({ ...old, [key]: true }));
       }
     };
 

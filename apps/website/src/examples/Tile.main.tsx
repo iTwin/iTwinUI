@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tile, TagContainer, Tag, MenuItem, IconButton } from '@itwin/itwinui-react';
-import { SvgStar, SvgInfo, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { Tile, TagContainer, Tag, IconButton } from '@itwin/itwinui-react';
+import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
@@ -17,8 +17,7 @@ export default () => {
           <Tag variant='basic'>Tag 2</Tag>
         </TagContainer>
       }
-      thumbnail={<SvgPlaceholder />}
-      moreOptions={[<MenuItem>Item 1</MenuItem>, <MenuItem>Item 2</MenuItem>]}
+      thumbnail='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png'
       leftIcon={
         <IconButton styleType='borderless'>
           <SvgInfo />
@@ -29,7 +28,7 @@ export default () => {
           <SvgStar />
         </IconButton>
       }
-      isSelected={true}
+      isSelected={false}
       isNew={false}
     />
   );
