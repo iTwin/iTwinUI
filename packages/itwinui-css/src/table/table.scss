@@ -386,12 +386,12 @@
     flex-basis: calc(var(--iui-size-l) * 2);
   }
 
-  // &.iui-table-cell-sticky {
-  //   position: sticky;
-  //   z-index: 1;
-  //   left: var(--iui-table-sticky-left, initial);
-  //   right: var(--iui-table-sticky-right, initial);
-  // }
+  &.iui-table-cell-sticky {
+    position: sticky;
+    z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
+  }
 
   &:not(.iui-slot):last-child {
     padding-right: var(--iui-size-m);
