@@ -120,7 +120,7 @@
     </p>
 
     <section id="demo-everything-turned-on">
-      <!-- Newly uploaded file, text overflow, no thumbnail, lots of labels -->
+      <!-- Newly uploaded file, text overflow, no thumbnail -->
       <div
         class="iui-tile iui-new"
         id="test-tile-1"
@@ -159,26 +159,6 @@
               aria-hidden="true"
             ></svg-star>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
-            >
-              Label
-            </div>
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(72, 51%, 66%);"
-            >
-              Label
-            </div>
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(2, 90%, 83%);"
-            >
-              Label
-            </div>
-          </div>
           <svg-placeholder
             class="iui-thumbnail-icon"
             aria-hidden="true"
@@ -285,14 +265,6 @@
               aria-hidden="true"
             ></svg-star>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
-            >
-              Label
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
@@ -329,6 +301,90 @@
           </button>
         </div>
       </div>
+
+      <!-- Lots of badges -->
+      <div
+        class="iui-tile iui-actionable"
+        tabindex="0"
+        id="test-tile-6"
+      >
+        <div class="iui-tile-name">
+          <span class="iui-tile-name-label">Lots of badges</span>
+        </div>
+
+        <div class="iui-tile-thumbnail">
+          <button
+            aria-label="Type indicator"
+            type="button"
+            class="iui-button iui-tile-thumbnail-type-indicator"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <svg-placeholder
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-placeholder>
+          </button>
+          <button
+            aria-label="Add to favorites"
+            type="button"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <svg-star-hollow
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-star-hollow>
+          </button>
+          <div class="iui-tile-thumbnail-badge-container">
+            <div
+              class="iui-badge"
+              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
+            >
+              Badge
+            </div>
+            <div
+              class="iui-badge"
+              style="--iui-badge-background-color: hsl(72, 51%, 66%);"
+            >
+              Badge
+            </div>
+            <div
+              class="iui-badge"
+              style="--iui-badge-background-color: hsl(2, 90%, 83%);"
+            >
+              Badge
+            </div>
+          </div>
+          <svg-placeholder
+            class="iui-thumbnail-icon"
+            aria-hidden="true"
+          ></svg-placeholder>
+        </div>
+
+        <div class="iui-tile-content">
+          <div class="iui-tile-description">
+            This tile uses many tiles.
+          </div>
+
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+              id="test-button"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
 
     <hr />
@@ -358,14 +414,6 @@
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(2, 90%, 83%);"
-            >
-              Draft
-            </div>
-          </div>
           <svg-imodel-hollow
             class="iui-thumbnail-icon"
             aria-hidden="true"
@@ -433,14 +481,6 @@
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(2, 90%, 83%);"
-            >
-              Draft
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
@@ -507,14 +547,6 @@
               aria-hidden="true"
             ></svg-info>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(2, 90%, 83%);"
-            >
-              Draft
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content">
@@ -666,14 +698,6 @@
               </svg>
             </span>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(305, 19%, 75%);"
-            >
-              External
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
@@ -742,14 +766,6 @@
               </svg>
             </span>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(305, 19%, 75%);"
-            >
-              External
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
@@ -815,14 +831,6 @@
               aria-hidden="true"
             ></svg-star-hollow>
           </button>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
-            >
-              10:23
-            </div>
-          </div>
           <svg-play-circular
             class="iui-thumbnail-icon"
             aria-hidden="true"
@@ -888,14 +896,6 @@
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-play-circular>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
-            >
-              10:23
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
@@ -962,14 +962,6 @@
             class="iui-thumbnail-icon"
             aria-hidden="true"
           ></svg-play-circular>
-          <div class="iui-tile-thumbnail-badge-container">
-            <div
-              class="iui-badge"
-              style="--iui-badge-background-color: hsl(197, 71%, 83%);"
-            >
-              10:23
-            </div>
-          </div>
         </div>
 
         <div class="iui-tile-content ">
