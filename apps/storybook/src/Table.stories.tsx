@@ -35,10 +35,6 @@ import {
   Input,
   Radio,
   ProgressRadial,
-  useTheme,
-  TableFilterProps,
-  BaseFilter,
-  FilterButtonBar,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -51,7 +47,6 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
-import { FilterButtonBarTranslation } from '@itwin/itwinui-react/cjs/core/Table/filters/FilterButtonBar';
 
 export default {
   title: 'Core/Table',
@@ -2181,12 +2176,9 @@ WithPaginator.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
-  type TextFilterProps<T extends Record<string, unknown>> =
-    TableFilterProps<T> & {
-      translatedLabels?: FilterButtonBarTranslation;
-    };
-
+export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
+  args,
+) => {
   type RowData = {
     name: string;
     description: string;
@@ -2194,7 +2186,6 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
 
   const pageSizeList = useMemo(() => [10, 25, 50], []);
   const maxRowsCount = useMemo(() => 60000, []);
-  const [data, setData] = useState(() => generateData(0, 25));
   const [isLoading, setIsLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(0);
   const [currentPageSize, setCurrentPageSize] = useState(pageSizeList[0]);
@@ -2204,14 +2195,18 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
   } as RowData);
   const [filteredData, setFilteredData] = useState(
     undefined as unknown as RowData[],
-  ); //useState([] as RowData[]);
+  );
   const [totalRowsCount, setTotalRowsCount] = useState(maxRowsCount);
 
   const generateData = (start: number, end: number) => {
     return Array(end - start)
       .fill(null)
       .map((_, index) => {
-        if (filteredData !== undefined) {
+        if (
+          filteredData !== undefined &&
+          filter.name !== '' &&
+          filter.description !== ''
+        ) {
           return filteredData[index];
         } else {
           return {
@@ -2222,148 +2217,90 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
       });
   };
 
-  // const generateData = (start: number, end: number, filter?: string) => {
-  //   let dataNumber = 0;
-  //   const dataArray = Array(end - start)
-  //     .fill(null)
-  //     .map(() => {
-  //       let newData = { name: '', description: '' };
-  //       do {
-  //         newData = {
-  //           name: `Name${start + dataNumber}`,
-  //           description: `Description${start + dataNumber}`,
-  //         };
-  //         dataNumber++;
-  //       } while (
-  //         filter &&
-  //         !newData.name.includes(filter) &&
-  //         !newData.description.includes(filter)
-  //       );
-  //       return newData;
-  //     });
-  //   return dataArray;
-  // };
+  const [data, setData] = useState(() => generateData(0, 25));
 
-  const isPassFilter = (dataRow: RowData, filter: RowData) => {
-    let isPassName = false;
-    let isPassDescription = false;
-    // check that the name passes a filter, if there is one
-    if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
-      isPassName = true;
-    }
-    // check that the description passes a filter, if there is one
-    if (
-      !filter.description ||
-      (filter.description && dataRow.description.includes(filter.description))
-    ) {
-      isPassDescription = true;
-    }
-    return isPassName && isPassDescription;
-  };
-
-  const generateFilteredData = (filter: RowData) => {
-    let dataNumber = 0;
-    const dataArray = [];
-    let newData = { name: '', description: '' };
-    do {
-      do {
-        newData = {
-          name: `Name${dataNumber}`,
-          description: `Description${dataNumber}`,
-        };
-        dataNumber++;
-      } while (!isPassFilter(newData, filter));
-      dataArray.push(newData);
-    } while (dataNumber < maxRowsCount);
-
-    setFilteredData(dataArray);
-    return dataArray;
-  };
-
-  const ManualTextFilter = <T extends Record<string, unknown>>(
-    props: TextFilterProps<T>,
-  ) => {
-    const { column, translatedLabels } = props; //, setFilter, clearFilter } = props;
-
-    useTheme();
-
-    // const [text, setText] = useState(column.filterValue ?? '');
-    setFilter(column.filterValue ?? '');
-
-    const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === 'Enter') {
-        // setFilter(text);
-        setData(
-          generateData(
-            currentPage * currentPageSize,
-            (currentPage + 1) * currentPageSize,
-          ),
-        );
+  const isPassFilter = React.useCallback(
+    (dataRow: RowData, filter: RowData) => {
+      let isPassName = false;
+      let isPassDescription = false;
+      // check that the name passes a filter, if there is one
+      if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+        isPassName = true;
       }
-    };
-
-    return (
-      <BaseFilter>
-        <Input
-          value={column.id === 'name' ? filter.name : filter.description}
-          onChange={(e) =>
-            setFilter({
-              name: column.id === 'name' ? e.target.value : filter.name,
-              description:
-                column.id === 'name' ? e.target.value : filter.description,
-            })
-          }
-          onKeyDown={onKeyDown}
-          setFocus
-        />
-        <FilterButtonBar
-          setFilter={() => {
-            // simulating a request for filtered data
-            generateFilteredData(filter);
-            setTotalRowsCount(filteredData.length);
-            setData(
-              generateData(
-                currentPage * currentPageSize,
-                (currentPage + 1) * currentPageSize,
-              ),
-            );
-            // setFilter(text);
-          }}
-          clearFilter={() => {
-            // simulating a request for unfiltered data
-            setData(
-              generateData(
-                currentPage * currentPageSize,
-                (currentPage + 1) * currentPageSize,
-              ),
-            );
-            // clearFilter();
-          }}
-          translatedLabels={translatedLabels}
-        />
-      </BaseFilter>
-    );
-  };
-
-  const columns = useMemo(
-    () => [
-      {
-        id: 'name',
-        Header: 'Name',
-        accessor: 'name',
-        Filter: ManualTextFilter,
-      },
-      {
-        id: 'description',
-        Header: 'Description',
-        accessor: 'description',
-        maxWidth: 200,
-        Filter: ManualTextFilter,
-      },
-    ],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      // check that the description passes a filter, if there is one
+      if (
+        !filter.description ||
+        (filter.description && dataRow.description.includes(filter.description))
+      ) {
+        isPassDescription = true;
+      }
+      return isPassName && isPassDescription;
+    },
     [],
   );
+
+  const generateFilteredData = React.useCallback(
+    (filter: RowData) => {
+      let dataNumber = 0;
+      const dataArray = [];
+      let newData = { name: '', description: '' };
+      do {
+        do {
+          newData = {
+            name: `Name${dataNumber}`,
+            description: `Description${dataNumber}`,
+          };
+          dataNumber++;
+        } while (!isPassFilter(newData, filter) && dataNumber < maxRowsCount);
+        if (isPassFilter(newData, filter)) {
+          dataArray.push(newData);
+        }
+      } while (dataNumber < maxRowsCount);
+
+      setFilteredData(dataArray);
+      return dataArray;
+    },
+    [isPassFilter, maxRowsCount],
+  );
+
+  const onFilter = React.useCallback(
+    (filters: TableFilterValue<Record<string, unknown>>[]) => {
+      setFilter({
+        name: filters.find((f) => f.id == 'name')?.value ?? '',
+        description: filters.find((f) => f.id == 'description')?.value ?? '',
+      } as RowData);
+      setIsLoading(true);
+      setData([]);
+      setCurrentPage(0);
+      // simulate a filtered request
+      setTimeout(() => {
+        setIsLoading(false);
+        const filteredData = generateFilteredData({
+          name: filters.find((f) => f.id === 'name')?.value ?? '',
+          description: filters.find((f) => f.id === 'description')?.value ?? '',
+        } as RowData);
+        setData(filteredData.slice(0, currentPageSize));
+        setTotalRowsCount(filteredData.length);
+      }, 500);
+    },
+    [currentPageSize, generateFilteredData],
+  );
+
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      maxWidth: 200,
+      Filter: tableFilters.TextFilter(),
+    },
+  ];
 
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
@@ -2376,13 +2313,39 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
           // Simulating a request
           setTimeout(() => {
             setIsLoading(false);
-            setData(
-              generateData(page * props.pageSize, (page + 1) * props.pageSize),
-            );
+            if (
+              filteredData !== undefined &&
+              filter.name !== '' &&
+              filter.description !== ''
+            ) {
+              setData(
+                filteredData.slice(
+                  page * props.pageSize,
+                  (page + 1) * props.pageSize,
+                ),
+              );
+            } else {
+              setData(
+                generateData(
+                  page * props.pageSize,
+                  (page + 1) * props.pageSize,
+                ),
+              );
+            }
           }, 500);
         }}
         onPageSizeChange={(size) => {
-          setData(generateData(currentPage * size, (currentPage + 1) * size));
+          if (
+            filteredData !== undefined &&
+            filter.name !== '' &&
+            filter.description !== ''
+          ) {
+            setData(
+              filteredData.slice(currentPage * size, (currentPage + 1) * size),
+            );
+          } else {
+            setData(generateData(currentPage * size, (currentPage + 1) * size));
+          }
           setCurrentPageSize(size);
           props.onPageSizeChange(size);
         }}
@@ -2409,12 +2372,14 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
         paginatorRenderer={paginator}
         style={{ height: '100%' }}
         manualPagination
+        onFilter={onFilter}
+        manualFilters={true}
       />
     </>
   );
 };
 
-WithManualPaginator.decorators = [
+WithManualPaginatorAndFilter.decorators = [
   (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
@@ -2422,10 +2387,10 @@ WithManualPaginator.decorators = [
   ),
 ];
 
-WithManualPaginator.argTypes = {
+WithManualPaginatorAndFilter.argTypes = {
   data: { control: { disable: true } },
 };
-WithManualPaginator.parameters = {
+WithManualPaginatorAndFilter.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
