@@ -39,38 +39,40 @@ export default () => {
     <Tab key={8} label='History' />,
   ];
 
+  const overflowButton = (visibleCount: number) => (
+    <DropdownMenu
+      menuItems={(close: () => void) =>
+        Array(labels.length - visibleCount)
+          .fill(null)
+          .map((_, _index) => {
+            const index = visibleCount + _index + 1;
+            const onClick = () => {
+              setIndex(index - 1);
+              close();
+            };
+            return (
+              <MenuItem key={index} onClick={onClick}>
+                Item {index}
+              </MenuItem>
+            );
+          })
+      }
+    >
+      <IconButton
+        role='button'
+        style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
+        styleType='borderless'
+      >
+        <SvgMoreSmall />
+      </IconButton>
+    </DropdownMenu>
+  );
+
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
       <Tabs
         labels={labels}
-        overflowButton={(visibleCount: number) => (
-          <DropdownMenu
-            menuItems={(close: () => void) =>
-              Array(labels.length - visibleCount)
-                .fill(null)
-                .map((_, _index) => {
-                  const index = visibleCount + _index + 1;
-                  const onClick = () => {
-                    setIndex(index - 1);
-                    close();
-                  };
-                  return (
-                    <MenuItem key={index} onClick={onClick}>
-                      Item {index}
-                    </MenuItem>
-                  );
-                })
-            }
-          >
-            <IconButton
-              role='button'
-              style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
-              styleType='borderless'
-            >
-              <SvgMoreSmall />
-            </IconButton>
-          </DropdownMenu>
-        )}
+        overflowButton={overflowButton}
         onTabSelected={setIndex}
         activeIndex={index}
       >
