@@ -38,7 +38,6 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-  // eslint-disable-next-line @typescript-eslint/ban-types
 }) as PolymorphicForwardRefComponent<'a', LinkOverlayOwnProps>;
 
 LinkOverlay.displayName = 'LinkOverlay';
@@ -59,7 +58,6 @@ export const LinkBox = React.forwardRef((props, ref) => {
   return (
     <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
   );
-  // eslint-disable-next-line @typescript-eslint/ban-types
 }) as PolymorphicForwardRefComponent<'div', LinkBoxOwnProps>;
 
 LinkBox.displayName = 'LinkBox';
