@@ -151,6 +151,13 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       margin-bottom: 0;
       -webkit-line-clamp: 2;
     }
+
+    .iui-tile-more-options {
+      position: absolute;
+      margin: 0;
+      bottom: var(--iui-size-s);
+      right: var(--iui-size-xs);
+    }
   }
 
   //#region Statuses
@@ -192,6 +199,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   min-width: 0;
 
   > * {
+    grid-column: 1;
     max-width: 100%;
     margin-bottom: calc(var(--iui-size-s) * 0.5);
     padding-inline: var(--iui-size-s);
@@ -243,6 +251,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   margin-top: auto;
   margin-bottom: 0;
   color: var(--_iui-tile-body-text-color);
+  grid-row: -1;
 
   > svg,
   .iui-tile-metadata-icon {
@@ -313,10 +322,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-thumbnail-button($variant) {
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
-  position: absolute;
   border-radius: 50%;
   margin-top: calc(var(--iui-size-s) * 0.5);
   margin-inline: var(--iui-size-xs);
+  place-self: start;
 
   @if $variant == quick-action {
     justify-self: end;
@@ -389,9 +398,9 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-more-options {
-  grid-area: 1 / 1 / -1 / -1;
+  grid-row: -1;
   place-self: end;
-  position: absolute;
+  display: grid;
   margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
