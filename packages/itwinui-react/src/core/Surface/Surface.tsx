@@ -48,13 +48,23 @@ const SurfaceHeader = React.forwardRef<HTMLDivElement, SurfaceHeaderProps>(
 // ----------------------------------------------------------------------------
 // Surface.Body component
 
-export type SurfaceBodyProps = React.ComponentPropsWithRef<'div'>;
+export type SurfaceBodyProps = {
+  /**
+   * Gives padding to the surface body
+   */
+  isPadded?: boolean;
+} & React.ComponentPropsWithRef<'div'>;
 
 const SurfaceBody = React.forwardRef<HTMLDivElement, SurfaceBodyProps>(
   (props, ref) => {
-    const { children, className, ...rest } = props;
+    const { children, className, isPadded, ...rest } = props;
     return (
-      <div className={cx('iui-surface-body', className)} ref={ref} {...rest}>
+      <div
+        className={cx('iui-surface-body', className)}
+        ref={ref}
+        data-iui-padded={isPadded ? 'true' : undefined}
+        {...rest}
+      >
         {children}
       </div>
     );
@@ -66,10 +76,6 @@ export type SurfaceProps = {
    * Places children vertically when set to true
    */
   useLayout?: boolean;
-  /**
-   * Gives padding to the surface body
-   */
-  isPadded?: boolean;
   /**
    * Sets the elevation of the surface
    */
@@ -89,15 +95,8 @@ export type SurfaceProps = {
 export const Surface = Object.assign(
   React.forwardRef(
     (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-      const {
-        elevation,
-        className,
-        style,
-        children,
-        useLayout,
-        isPadded,
-        ...rest
-      } = props;
+      const { elevation, className, style, children, useLayout, ...rest } =
+        props;
       useTheme();
 
       const _style = {
@@ -110,7 +109,6 @@ export const Surface = Object.assign(
           style={_style}
           ref={ref}
           data-iui-layout={useLayout ? 'true' : undefined}
-          data-iui-padded={isPadded ? 'true' : undefined}
           {...rest}
         >
           {children}

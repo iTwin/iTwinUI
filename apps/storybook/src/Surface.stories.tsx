@@ -54,12 +54,7 @@ Basic.args = { elevation: 1 };
 export const Custom: Story<SurfaceProps> = (args) => {
   const { elevation, useLayout, isPadded } = args;
   return (
-    <Surface
-      elevation={elevation}
-      useLayout={useLayout}
-      isPadded={isPadded}
-      {...args}
-    >
+    <Surface elevation={elevation} useLayout={useLayout} {...args}>
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>
@@ -70,7 +65,7 @@ export const Custom: Story<SurfaceProps> = (args) => {
           </IconButton>
         </Flex>
       </Surface.Header>
-      <Surface.Body>
+      <Surface.Body isPadded={isPadded}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -93,18 +88,13 @@ export const Overflow: Story<SurfaceProps> = (args) => {
     maxHeight: '300px',
   };
   return (
-    <Surface
-      elevation={elevation}
-      style={cardStyle}
-      useLayout={useLayout}
-      isPadded={isPadded}
-    >
+    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & button footer
         </Text>
       </Surface.Header>
-      <Surface.Body>
+      <Surface.Body isPadded={isPadded}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -150,12 +140,7 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
     maxHeight: '300px',
   };
   return (
-    <Surface
-      elevation={elevation}
-      style={cardStyle}
-      useLayout={useLayout}
-      isPadded={isPadded}
-    >
+    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
       <style>
         {`ul { all: unset; display: flex; flex-direction: column; flex: 1; list-style-type: none; }`}
         {`ul li { padding: var(--iui-size-s); position: relative; }`}
@@ -167,7 +152,7 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
           Surface with overflow & no body padding
         </Text>
       </Surface.Header>
-      <Surface.Body>
+      <Surface.Body isPadded={isPadded}>
         <ul>
           <li>
             <Anchor>Daily log</Anchor>
@@ -203,18 +188,13 @@ export const EmptyState: Story<SurfaceProps> = (args) => {
   };
 
   return (
-    <Surface
-      elevation={elevation}
-      style={cardStyle}
-      useLayout={useLayout}
-      isPadded={isPadded}
-    >
+    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with empty state
         </Text>
       </Surface.Header>
-      <Surface.Body style={{ display: 'flex' }}>
+      <Surface.Body style={{ display: 'flex' }} isPadded={isPadded}>
         <Flex
           justifyContent={'center'}
           alignItems={'center'}
