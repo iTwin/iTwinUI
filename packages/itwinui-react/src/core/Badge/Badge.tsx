@@ -13,28 +13,6 @@ import {
 import type { AnyString } from '../utils';
 import '@itwin/itwinui-css/css/badge.css';
 
-/**
- * Helper function that returns one of the preset badge color values.
- */
-const getBadgeColorValue = (color: BadgeProps['backgroundColor']) => {
-  if (!color) {
-    return '';
-  }
-
-  switch (color) {
-    case 'primary':
-      return '#A5D7F5';
-    case 'positive':
-      return '#C3E1AF';
-    case 'negative':
-      return '#EFA9A9';
-    case 'warning':
-      return '#F9D7AB';
-    default:
-      return isSoftBackground(color) ? SoftBackgrounds[color] : color;
-  }
-};
-
 export type BadgeProps = {
   /**
    * Background color of the badge.
@@ -45,6 +23,7 @@ export type BadgeProps = {
    */
   backgroundColor?:
     | 'primary'
+    | 'informational'
     | 'positive'
     | 'negative'
     | 'warning'
@@ -69,15 +48,34 @@ export const Badge = (props: BadgeProps) => {
 
   useTheme();
 
-  const _style = backgroundColor
-    ? {
-        '--iui-badge-background-color': getBadgeColorValue(backgroundColor),
-        ...style,
-      }
-    : { ...style };
+  // choosing 'primary' status should result in data-iui-status equaling 'informational'
+  const reducedBackgroundColor =
+    backgroundColor === 'primary' ? 'informational' : backgroundColor;
+
+  const statuses = ['informational', 'positive', 'negative', 'warning'];
+
+  const isStatus =
+    reducedBackgroundColor && statuses.includes(reducedBackgroundColor);
+
+  const _style =
+    reducedBackgroundColor && !isStatus
+      ? {
+          '--iui-badge-background-color': isSoftBackground(
+            reducedBackgroundColor,
+          )
+            ? SoftBackgrounds[reducedBackgroundColor]
+            : reducedBackgroundColor,
+          ...style,
+        }
+      : { ...style };
 
   return (
-    <span className={cx('iui-badge', className)} style={_style} {...rest}>
+    <span
+      className={cx('iui-badge', className)}
+      style={_style}
+      data-iui-status={isStatus ? reducedBackgroundColor : undefined}
+      {...rest}
+    >
       {children}
     </span>
   );
