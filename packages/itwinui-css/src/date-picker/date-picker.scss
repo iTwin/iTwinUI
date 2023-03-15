@@ -145,7 +145,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 
   &[aria-disabled='true'] {
-    color: var(--iui-color-text-muted);
+    color: var(--iui-color-text-disabled);
     background-color: transparent;
     font-weight: var(--iui-font-weight-normal);
     cursor: not-allowed;
