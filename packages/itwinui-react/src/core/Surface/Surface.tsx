@@ -75,7 +75,7 @@ export type SurfaceProps = {
   /**
    * Places children vertically when set to true
    */
-  useLayout?: boolean;
+  hasLayout?: boolean;
   /**
    * Sets the elevation of the surface
    */
@@ -95,7 +95,7 @@ export type SurfaceProps = {
 export const Surface = Object.assign(
   React.forwardRef(
     (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-      const { elevation, className, style, children, useLayout, ...rest } =
+      const { elevation, className, style, children, hasLayout, ...rest } =
         props;
       useTheme();
 
@@ -108,7 +108,7 @@ export const Surface = Object.assign(
           className={cx('iui-surface', className)}
           style={_style}
           ref={ref}
-          data-iui-layout={useLayout ? 'true' : undefined}
+          data-iui-layout={hasLayout ? 'true' : undefined}
           {...rest}
         >
           {children}

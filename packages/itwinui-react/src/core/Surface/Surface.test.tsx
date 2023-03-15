@@ -46,7 +46,7 @@ it('should add className and style correctly', () => {
 
 it('should render custom surface', () => {
   const { container } = render(
-    <Surface useLayout={true}>
+    <Surface hasLayout={true}>
       <Surface.Header>TestHeader</Surface.Header>
       <Surface.Body isPadded={true}>TestBody</Surface.Body>
     </Surface>,

@@ -52,9 +52,9 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
 Basic.args = { elevation: 1 };
 
 export const Custom: Story<SurfaceProps> = (args) => {
-  const { elevation, useLayout, isPadded } = args;
+  const { elevation, hasLayout, isPadded } = args;
   return (
-    <Surface elevation={elevation} useLayout={useLayout} {...args}>
+    <Surface elevation={elevation} hasLayout={hasLayout} {...args}>
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>
@@ -80,15 +80,15 @@ export const Custom: Story<SurfaceProps> = (args) => {
   );
 };
 
-Custom.args = { elevation: 1, useLayout: true, isPadded: true };
+Custom.args = { elevation: 1, hasLayout: true, isPadded: true };
 
 export const Overflow: Story<SurfaceProps> = (args) => {
-  const { elevation, useLayout, isPadded } = args;
+  const { elevation, hasLayout, isPadded } = args;
   const cardStyle = {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
+    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & button footer
@@ -131,16 +131,16 @@ export const Overflow: Story<SurfaceProps> = (args) => {
   );
 };
 
-Overflow.args = { elevation: 1, useLayout: true, isPadded: true };
+Overflow.args = { elevation: 1, hasLayout: true, isPadded: true };
 
 export const NoPadding: Story<SurfaceProps> = (args) => {
-  const { elevation, useLayout, isPadded } = args;
+  const { elevation, hasLayout, isPadded } = args;
 
   const cardStyle = {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
+    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
       <style>
         {`ul { all: unset; display: flex; flex-direction: column; flex: 1; list-style-type: none; }`}
         {`ul li { padding: var(--iui-size-s); position: relative; }`}
@@ -178,17 +178,17 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
   );
 };
 
-NoPadding.args = { elevation: 1, useLayout: true, isPadded: false };
+NoPadding.args = { elevation: 1, hasLayout: true, isPadded: false };
 
 export const EmptyState: Story<SurfaceProps> = (args) => {
-  const { elevation, useLayout, isPadded } = args;
+  const { elevation, hasLayout, isPadded } = args;
 
   const cardStyle = {
     height: '300px',
   };
 
   return (
-    <Surface elevation={elevation} style={cardStyle} useLayout={useLayout}>
+    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with empty state
@@ -211,4 +211,4 @@ export const EmptyState: Story<SurfaceProps> = (args) => {
   );
 };
 
-EmptyState.args = { elevation: 1, useLayout: true, isPadded: true };
+EmptyState.args = { elevation: 1, hasLayout: true, isPadded: true };
