@@ -338,6 +338,7 @@
       <!-- No thumbnail -->
       <div
         class="iui-tile iui-actionable"
+        tabindex="0"
         id="test-tile-4"
       >
         <div class="iui-tile-name">
@@ -411,6 +412,7 @@
       <!-- With thumbnail -->
       <div
         class="iui-tile iui-actionable"
+        tabindex="0"
         id="test-tile-5"
       >
         <div class="iui-tile-name">
@@ -442,6 +444,76 @@
         </div>
 
         <div class="iui-tile-content ">
+
+          <div class="iui-tile-description">
+            Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure.
+          </div>
+          <div class="iui-tile-metadata">
+            <svg-tag
+              class="iui-tile-metadata-icon"
+              aria-hidden="true"
+            ></svg-tag>
+            <div class="iui-tag-container">
+              <span class="iui-tag-basic">tags</span>
+              <span class="iui-tag-basic">go</span>
+              <span class="iui-tag-basic">here</span>
+            </div>
+          </div>
+
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- With thumbnail & anchor link -->
+      <div class="iui-tile">
+        <div class="iui-tile-name">
+          <span class="iui-tile-name-label"><a
+              class="iui-link-overlay"
+              href="/tile.html"
+            >Tile name</a></span>
+        </div>
+
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
+          <button
+            aria-label="Info"
+            type="button"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <svg-info
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-info>
+          </button>
+          <div class="iui-tile-thumbnail-badge-container">
+            <div
+              class="iui-badge"
+              style="background-color: hsl(2, 90%, 83%);"
+            >
+              Link
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-tile-content">
 
           <div class="iui-tile-description">
             Bentley Systems, Incorporated, is an American-based software
@@ -513,6 +585,7 @@
               Draft
             </div>
           </div>
+        </div>
 
         <div class="iui-tile-content">
 
@@ -533,77 +606,20 @@
               <span class="iui-tag-basic">here</span>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- With thumbnail & selected -->
-      <div class="iui-link-box">
-        <div class="iui-tile iui-actionable iui-selected">
-          <div class="iui-tile-thumbnail">
-            <div class="iui-tile-thumbnail-picture demo-photo"></div>
+          <div class="iui-tile-more-options">
             <button
-              aria-label="Info"
+              aria-label="More options"
               type="button"
-              class="iui-button iui-tile-thumbnail-quick-action"
+              class="iui-button"
               data-iui-variant="borderless"
               data-iui-size="small"
             >
-              <svg-info
+              <svg-more
                 class="iui-button-icon"
                 aria-hidden="true"
-              ></svg-info>
+              ></svg-more>
             </button>
-            <div class="iui-tile-thumbnail-badge-container">
-              <div
-                class="iui-badge"
-                style="background-color: hsl(2, 90%, 83%);"
-              >
-                Draft
-              </div>
-            </div>
-          </div>
-
-
-          <div class="iui-tile-content">
-            <div class="iui-tile-name">
-              <svg-checkmark
-                class="iui-tile-status-icon"
-                aria-hidden="true"
-              ></svg-checkmark>
-              <span class="iui-tile-name-label"><button class="iui-link-overlay">Tile name</button></span>
-            </div>
-            <div class="iui-tile-description">
-              Bentley Systems, Incorporated, is an American-based software
-              development company that develops, manufactures, licenses, sells and
-              supports computer software and services for the design,
-              construction, and operation of infrastructure.
-            </div>
-            <div class="iui-tile-metadata">
-              <svg-tag
-                class="iui-tile-metadata-icon"
-                aria-hidden="true"
-              ></svg-tag>
-              <div class="iui-tag-container">
-                <span class="iui-tag-basic">tags</span>
-                <span class="iui-tag-basic">go</span>
-                <span class="iui-tag-basic">here</span>
-              </div>
-            </div>
-
-            <div class="iui-tile-more-options">
-              <button
-                aria-label="More options"
-                type="button"
-                class="iui-button"
-                data-iui-variant="borderless"
-                data-iui-size="small"
-              >
-                <svg-more
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-more>
-              </button>
-            </div>
           </div>
         </div>
       </div>
@@ -987,6 +1003,7 @@
       <!-- With thumbnail -->
       <div
         class="iui-tile iui-actionable iui-selected"
+        tabindex="0"
         id="test-tile-3"
       >
         <div class="iui-tile-name">
@@ -1063,7 +1080,10 @@
     <h2>Folder</h2>
     <section id="demo-folder">
       <!-- No thumbnail & new -->
-      <div class="iui-tile iui-folder iui-actionable iui-new">
+      <div
+        class="iui-tile iui-folder iui-actionable iui-new"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1101,7 +1121,10 @@
       </div>
 
       <!-- No thumbnail -->
-      <div class="iui-tile iui-folder iui-actionable">
+      <div
+        class="iui-tile iui-folder iui-actionable"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1134,7 +1157,10 @@
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile iui-folder iui-actionable">
+      <div
+        class="iui-tile iui-folder iui-actionable"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
@@ -1164,7 +1190,10 @@
       </div>
 
       <!-- With thumbnail -->
-      <div class="iui-tile iui-folder iui-actionable iui-selected">
+      <div
+        class="iui-tile iui-folder iui-actionable iui-selected"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
@@ -1530,7 +1559,10 @@
 
     <section id="demo-action-states-folders">
 
-      <div class="iui-tile iui-folder iui-actionable iui-positive">
+      <div
+        class="iui-tile iui-folder iui-actionable iui-positive"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1568,7 +1600,10 @@
         </div>
       </div>
 
-      <div class="iui-tile iui-folder iui-actionable iui-warning">
+      <div
+        class="iui-tile iui-folder iui-actionable iui-warning"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1608,7 +1643,10 @@
         </div>
       </div>
 
-      <div class="iui-tile iui-folder iui-actionable iui-negative">
+      <div
+        class="iui-tile iui-folder iui-actionable iui-negative"
+        tabindex="0"
+      >
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"

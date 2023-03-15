@@ -22,10 +22,34 @@ import { ProgressRadial } from '../ProgressIndicators';
 export const TileContext = React.createContext<
   | {
       setActionable: React.Dispatch<React.SetStateAction<boolean>>;
-      isDisabled: boolean;
     }
   | undefined
 >(undefined);
+
+type TileActionOwnProps = {}; // eslint-disable-line
+
+/**
+ * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+ * Renders `a` element by default.
+ * @example
+ * <Tile
+ *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+ * />
+ */
+export const TileAction = (
+  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
+) => {
+  const tileContext = useSafeContext(TileContext);
+  const supportsHas = CSS.supports('selector(:has(+ *))');
+
+  React.useEffect(() => {
+    if (!supportsHas) {
+      tileContext.setActionable(true);
+    }
+  }, [supportsHas, tileContext]);
+
+  return <LinkOverlay {...props} />;
+};
 
 export type TileProps = {
   /**
@@ -131,20 +155,6 @@ export type TileProps = {
   isDisabled?: boolean;
 } & React.ComponentPropsWithoutRef<'div'>;
 
-type TileActionOwnProps = {}; // eslint-disable-line
-
-export const TileAction = (
-  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
-) => {
-  const tileContext = useSafeContext(TileContext);
-
-  React.useEffect(() => {
-    tileContext.setActionable(true);
-  }, [tileContext]);
-
-  return <LinkOverlay {...props} />;
-};
-
 /**
  * Tile component that displays content and actions in a card-like format.
  * @example
@@ -217,9 +227,7 @@ export const Tile = Object.assign(
     );
 
     return (
-      <TileContext.Provider
-        value={{ setActionable: setLocalActionable, isDisabled }}
-      >
+      <TileContext.Provider value={{ setActionable: setLocalActionable }}>
         <div
           className={cx(
             'iui-tile',
@@ -331,7 +339,17 @@ export const Tile = Object.assign(
       </TileContext.Provider>
     );
   },
-  { Action: TileAction },
+  {
+    /**
+     * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+     * Renders `a` element by default.
+     * @example
+     * <Tile
+     *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+     * />
+     */
+    Action: TileAction,
+  },
 );
 
 type TitleIconProps = {

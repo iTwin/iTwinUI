@@ -205,7 +205,6 @@ export const AnchorLink: Story<TileProps> = (props) => {
     badge,
     thumbnail,
     isNew,
-    isActionable = true,
     moreOptions,
     ...rest
   } = props;
@@ -222,7 +221,6 @@ export const AnchorLink: Story<TileProps> = (props) => {
       badge={badge}
       thumbnail={thumbnail}
       isNew={isNew}
-      isActionable={isActionable}
       moreOptions={moreOptions}
       {...rest}
     />
@@ -233,7 +231,6 @@ AnchorLink.args = {
   ...Basic.args,
   description:
     'If you click on this stadium, it is going to open another page.',
-  isActionable: true,
 };
 export const Condensed: Story<TileProps> = (props) => {
   const { name, thumbnail, moreOptions, ...rest } = props;

@@ -22,6 +22,12 @@ export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
 /**
  * Polymorphic link overlay component.
  * It is rendered as `a` by default.
+ * @example
+ * <LinkBox>
+ *   <Surface>
+ *     <LinkOverlay href='/new-page'>Whole card is clickable</LinkOverlay>
+ *   </Surface>
+ * </LinkBox>
  */
 export const LinkOverlay = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
@@ -38,7 +44,15 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
 LinkOverlay.displayName = 'LinkOverlay';
 
 /**
- *
+ * Polymorphic link box component.
+ * Used to wrap around your component to use LinkOverlay.
+ * Rendered as `div` by default
+ * @example
+ * <LinkBox>
+ *   <Surface>
+ *     <LinkOverlay href='/new-page'>Whole card is clickable</LinkOverlay>
+ *   </Surface>
+ * </LinkBox>
  */
 export const LinkBox = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, ...rest } = props;
