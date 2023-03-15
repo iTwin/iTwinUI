@@ -100,6 +100,26 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
   }
 
   &.iui-active {
+    @supports (selector(.iui-active:has(+ .iui-active))) {
+      // Styles active items between the first & last
+      + .iui-active {
+        border-radius: 0;
+      }
+
+      // Styles first active item with an active item following it
+      &:has(+ .iui-active) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      // Styles last active item
+      &:has(+ :not(.iui-active)),
+      &:last-child {
+        border-bottom-left-radius: var(--iui-border-radius-1);
+        border-bottom-right-radius: var(--iui-border-radius-1);
+      }
+    }
+
     &,
     &:hover {
       background-color: var(--iui-color-background-accent-muted);
