@@ -142,3 +142,9 @@
     @content;
   }
 }
+
+@mixin safari-only {
+  @supports (-apple-pay-button-style: inherit) {
+    @content;
+  }
+}
