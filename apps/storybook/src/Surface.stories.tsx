@@ -136,43 +136,55 @@ Overflow.args = { elevation: 1, hasLayout: true, isPadded: true };
 export const NoPadding: Story<SurfaceProps> = (args) => {
   const { elevation, hasLayout, isPadded } = args;
 
+  const listStyle = {
+    padding: 'var(--iui-size-s)',
+    position: 'relative',
+  } as React.CSSProperties;
   const cardStyle = {
     maxHeight: '300px',
   };
   return (
     <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
-      <style>
-        {`ul { all: unset; display: flex; flex-direction: column; flex: 1; list-style-type: none; }`}
-        {`ul li { padding: var(--iui-size-s); position: relative; }`}
-        {`ul li:not(:first-of-type) { border-top: 1px solid var(--iui-surface-border-color); }`}
-        {`ul li a::after {content: ''; position: absolute; inset: 0; }`}
-      </style>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & no body padding
         </Text>
       </Surface.Header>
       <Surface.Body isPadded={isPadded}>
-        <ul>
-          <li>
-            <Anchor>Daily log</Anchor>
-          </li>
-          <li>
-            <Anchor>Inspections</Anchor>
-          </li>
-          <li>
-            <Anchor>Issues</Anchor>
-          </li>
-          <li>
-            <Anchor>Observations</Anchor>
-          </li>
-          <li>
-            <Anchor>RFIs</Anchor>
-          </li>
-          <li>
-            <Anchor>Weather delay notices</Anchor>
-          </li>
-        </ul>
+        <Flex flexDirection='column' style={{ flex: '1' }}>
+          <ul
+            style={{
+              width: '100%',
+              listStyle: 'none',
+              margin: '0',
+              padding: '0',
+            }}
+          >
+            <li style={listStyle}>
+              <Anchor>Daily log</Anchor>
+            </li>
+            <Divider />
+            <li style={listStyle}>
+              <Anchor>Inspections</Anchor>
+            </li>
+            <Divider />
+            <li style={listStyle}>
+              <Anchor>Issues</Anchor>
+            </li>
+            <Divider />
+            <li style={listStyle}>
+              <Anchor>Observations</Anchor>
+            </li>
+            <Divider />
+            <li style={listStyle}>
+              <Anchor>RFIs</Anchor>
+            </li>
+            <Divider />
+            <li style={listStyle}>
+              <Anchor>Weather delay notices</Anchor>
+            </li>
+          </ul>
+        </Flex>
       </Surface.Body>
     </Surface>
   );
