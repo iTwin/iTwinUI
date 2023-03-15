@@ -42,11 +42,11 @@ $surface-padding: var(--iui-size-2xs);
   overflow-x: hidden;
   overflow-y: auto;
 
-  [data-iui-padded='false'] & {
+  &[data-iui-padded='false'] {
     overflow-y: overlay;
   }
 
-  [data-iui-padded='true'] & {
+  &[data-iui-padded='true'] {
     scrollbar-gutter: stable both-edges;
     padding: $surface-padding;
   }
