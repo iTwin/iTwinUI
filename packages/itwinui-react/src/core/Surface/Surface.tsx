@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps, useTheme } from '../utils';
+import {
+  CommonProps,
+  PolymorphicForwardRefComponent,
+  useTheme,
+} from '../utils';
 import '@itwin/itwinui-css/css/surface.css';
 
 /**
@@ -43,7 +47,7 @@ const SurfaceHeader = React.forwardRef<HTMLDivElement, SurfaceHeaderProps>(
       </div>
     );
   },
-);
+) as PolymorphicForwardRefComponent<'div', SurfaceHeaderProps>;
 
 // ----------------------------------------------------------------------------
 // Surface.Body component
@@ -69,7 +73,7 @@ const SurfaceBody = React.forwardRef<HTMLDivElement, SurfaceBodyProps>(
       </div>
     );
   },
-);
+) as PolymorphicForwardRefComponent<'div', SurfaceBodyProps>;
 
 export type SurfaceProps = {
   /**
