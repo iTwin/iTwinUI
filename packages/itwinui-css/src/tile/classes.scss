@@ -5,6 +5,19 @@
 .iui-tile {
   @include iui-tile;
 
+  &.iui-actionable,
+  &:where(:has(.iui-link-action)) {
+    @include iui-actionable;
+  }
+
+  &.iui-selected {
+    @include iui-selected;
+  }
+
+  &.iui-folder {
+    @include iui-folder;
+  }
+
   &.iui-positive {
     @include iui-tile-status(positive);
   }
