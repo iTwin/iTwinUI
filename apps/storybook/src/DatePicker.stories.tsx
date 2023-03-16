@@ -326,19 +326,26 @@ export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
     setFocus = true,
     localizedNames,
     startDate = new Date(2022, 6, 13, 14, 55, 22),
-    endDate = new Date(2022, 6, 27, 14, 55, 22),
+    endDate = new Date(2022, 6, 17, 14, 55, 22),
     ...rest
   } = args;
   const [opened, setOpened] = React.useState(false);
   const [currentStartDate, setCurrentStartDate] = React.useState(startDate);
   const [currentEndDate, setCurrentEndDate] = React.useState(endDate);
 
-  // only allow selecting dates in July
+  // only allow selecting dates in July 11-22
   const isDateDisabled = (date: Date) => {
-    return date.getMonth() !== 6;
+    if (date.getMonth() !== 6) {
+      return true;
+    }
+    if (date.getDate() < 11 || date.getDate() > 22) {
+      return true;
+    }
+    return false;
   };
 
   const onChange = (startDate: Date, endDate?: Date) => {
+    action('yo')();
     setCurrentStartDate(startDate);
     endDate && setCurrentEndDate(endDate);
   };
@@ -380,5 +387,5 @@ export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
 
 SomeDatesDisabled.args = {
   startDate: new Date(2022, 6, 13, 14, 55, 22),
-  endDate: new Date(2022, 6, 27, 14, 55, 22),
+  endDate: new Date(2022, 6, 17, 14, 55, 22),
 };
