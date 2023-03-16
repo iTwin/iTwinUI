@@ -212,7 +212,7 @@ export const AnchorLink: Story<TileProps> = (props) => {
   return (
     <Tile
       name={
-        <Tile.Action href='/?path=/docs/core-tile--anchor-link'>
+        <Tile.Action href='https://inclusive-components.design/cards/'>
           {name}
         </Tile.Action>
       }
