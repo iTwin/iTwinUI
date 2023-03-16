@@ -225,6 +225,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   &,
   > .iui-link-action {
     width: 100%;
+    z-index: 1;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -277,6 +278,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
   margin-bottom: var(--iui-size-s);
+  isolation: isolate;
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
