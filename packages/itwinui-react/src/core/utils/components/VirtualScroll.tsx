@@ -417,13 +417,8 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   return {
     outerProps: {
       style: {
-        minHeight:
-          itemsLength > 1
-            ? Math.max(itemsLength - 2, 0) * childHeight.current.middle +
-              childHeight.current.first +
-              childHeight.current.last
-            : childHeight.current.middle,
-        minWidth: '100%',
+        minHeight: scrollContainerHeight,
+        minWidth: '99%',
         ...style,
       },
       ...rest,
