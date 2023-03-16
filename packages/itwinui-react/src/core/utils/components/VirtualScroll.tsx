@@ -418,7 +418,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     outerProps: {
       style: {
         minHeight: scrollContainerHeight,
-        minWidth: '99%',
+        minWidth: '100%',
         ...style,
       },
       ...rest,
