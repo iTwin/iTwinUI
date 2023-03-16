@@ -345,7 +345,6 @@ export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
   };
 
   const onChange = (startDate: Date, endDate?: Date) => {
-    action('yo')();
     setCurrentStartDate(startDate);
     endDate && setCurrentEndDate(endDate);
   };
