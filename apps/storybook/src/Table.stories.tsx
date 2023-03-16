@@ -2204,8 +2204,7 @@ export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
       .map((_, index) => {
         if (
           filteredData !== undefined &&
-          filter.name !== '' &&
-          filter.description !== ''
+          !(filter.name === '' && filter.description === '')
         ) {
           return filteredData[index];
         } else {
@@ -2315,8 +2314,7 @@ export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
             setIsLoading(false);
             if (
               filteredData !== undefined &&
-              filter.name !== '' &&
-              filter.description !== ''
+              !(filter.name === '' && filter.description === '')
             ) {
               setData(
                 filteredData.slice(
@@ -2337,8 +2335,7 @@ export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
         onPageSizeChange={(size) => {
           if (
             filteredData !== undefined &&
-            filter.name !== '' &&
-            filter.description !== ''
+            !(filter.name === '' && filter.description === '')
           ) {
             setData(
               filteredData.slice(currentPage * size, (currentPage + 1) * size),
