@@ -104,6 +104,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-actionable {
   &:has(.iui-link-action:focus-visible) {
     outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    outline-offset: var(--iui-size-3xs);
 
     &.iui-selected {
       outline-width: var(--iui-size-2xs);
@@ -113,6 +114,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
       outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+      outline-offset: var(--iui-size-3xs);
 
       &.iui-selected {
         outline-width: var(--iui-size-2xs);
