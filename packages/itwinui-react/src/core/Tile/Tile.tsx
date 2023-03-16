@@ -20,7 +20,7 @@ import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
 
-export const TileContext = React.createContext<
+const TileContext = React.createContext<
   | {
       setActionable: React.Dispatch<React.SetStateAction<boolean>>;
     }
@@ -220,7 +220,11 @@ export const Tile = Object.assign(
 
         <span className='iui-tile-name-label'>
           {isActionable && onClick ? (
-            <LinkAction as='button' onClick={onClick}>
+            <LinkAction
+              as='button'
+              onClick={onClick}
+              aria-disabled={isDisabled}
+            >
               {name}
             </LinkAction>
           ) : (
