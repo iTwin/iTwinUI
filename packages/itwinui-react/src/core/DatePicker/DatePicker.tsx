@@ -455,6 +455,14 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     new Date(displayedYear, displayedMonthIndex + 1, 1),
   );
 
+  const isPreviousYearDisabled = isDateDisabled?.(
+    new Date(displayedYear - 1, 11, 31),
+  );
+
+  const isNextYearDisabled = isDateDisabled?.(
+    new Date(displayedYear + 1, 0, 1),
+  );
+
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -567,6 +575,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               onClick={handleMoveToPreviousYear}
               aria-label='Previous year'
               size='small'
+              disabled={isPreviousYearDisabled}
             >
               <SvgChevronLeftDouble />
             </IconButton>
@@ -604,6 +613,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               onClick={handleMoveToNextYear}
               aria-label='Next year'
               size='small'
+              disabled={isNextYearDisabled}
             >
               <SvgChevronRightDouble />
             </IconButton>
