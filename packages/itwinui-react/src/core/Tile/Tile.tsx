@@ -10,7 +10,7 @@ import {
   SvgMore,
   SvgNew,
   SvgCheckmark,
-  LinkOverlay,
+  LinkAction,
   PolymorphicComponentProps,
   useSafeContext,
   getWindow,
@@ -49,7 +49,7 @@ export const TileAction = (
     }
   }, [supportsHas, tileContext]);
 
-  return <LinkOverlay {...props} />;
+  return <LinkAction {...props} />;
 };
 
 export type TileProps = {
@@ -219,7 +219,7 @@ export const Tile = Object.assign(
 
         <span className='iui-tile-name-label'>
           {isActionable && onClick ? (
-            <LinkOverlay as='button'>{name}</LinkOverlay>
+            <LinkAction as='button'>{name}</LinkAction>
           ) : (
             name
           )}

@@ -4,44 +4,43 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
+import { LinkBox, LinkAction } from './LinkAction';
 
-import { LinkBox, LinkOverlay } from './LinkOverlay';
-
-it('should render LinkBox and LinkOverlay in its most basic state', () => {
+it('should render LinkBox and LinkAction in its most basic state', () => {
   const { container } = render(
     <LinkBox data-testid='link-box'>
-      <LinkOverlay data-testid='link-overlay'>Content</LinkOverlay>
+      <LinkAction data-testid='link-overlay'>Content</LinkAction>
     </LinkBox>,
   );
 
   const linkBox = container.querySelector('div') as HTMLElement;
-  const linkOverlay = container.querySelector('a') as HTMLElement;
+  const LinkAction = container.querySelector('a') as HTMLElement;
 
   expect(linkBox).toBeTruthy();
   expect(linkBox).toHaveClass('iui-link-box');
   expect(linkBox).toHaveAttribute('data-testid', 'link-box');
 
-  expect(linkOverlay).toBeTruthy();
-  expect(linkOverlay).toHaveClass('iui-link-overlay');
-  expect(linkOverlay).toHaveAttribute('data-testid', 'link-overlay');
+  expect(LinkAction).toBeTruthy();
+  expect(LinkAction).toHaveClass('iui-link-overlay');
+  expect(LinkAction).toHaveAttribute('data-testid', 'link-overlay');
 });
 
-it('should render LinkOverlay as a button', () => {
+it('should render LinkAction as a button', () => {
   const { container } = render(
     <LinkBox data-test-id='link-box'>
-      <LinkOverlay as='button' data-test-id='link-overlay'>
+      <LinkAction as='button' data-test-id='link-overlay'>
         Content
-      </LinkOverlay>
+      </LinkAction>
     </LinkBox>,
   );
   expect(container.querySelector('div')).toHaveClass('iui-link-box');
   expect(container.querySelector('button')).toHaveClass('iui-link-overlay');
 });
 
-it('should render LinkOverlay as a paragraph', () => {
+it('should render LinkAction as a paragraph', () => {
   const { container } = render(
     <LinkBox as='p' data-test-id='link-box'>
-      <LinkOverlay data-test-id='link-overlay'>Content</LinkOverlay>
+      <LinkAction data-test-id='link-overlay'>Content</LinkAction>
     </LinkBox>,
   );
   expect(container.querySelector('p')).toHaveClass('iui-link-box');

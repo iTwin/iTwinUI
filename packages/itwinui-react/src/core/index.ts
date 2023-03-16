@@ -338,7 +338,7 @@ export {
   ColorValue,
   MiddleTextTruncation,
   LinkBox,
-  LinkOverlay,
+  LinkAction,
   Icon,
   Flex,
 } from './utils';
@@ -350,5 +350,5 @@ export type {
   FlexItemProps,
   FlexSpacerProps,
   LinkBoxProps,
-  LinkOverlayProps,
+  LinkActionProps,
 } from './utils';

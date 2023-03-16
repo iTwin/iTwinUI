@@ -9,27 +9,27 @@ import {
   PolymorphicForwardRefComponent,
 } from '../props';
 
-type LinkOverlayOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type LinkActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-export type LinkOverlayProps = PolymorphicComponentProps<
+export type LinkActionProps = PolymorphicComponentProps<
   'a',
-  LinkOverlayOwnProps
+  LinkActionOwnProps
 >;
 
 export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
 
 /**
- * Polymorphic link overlay component.
+ * Polymorphic link action component.
  * It is rendered as `a` by default.
  * @example
  * <LinkBox>
  *   <Surface>
- *     <LinkOverlay href='/new-page'>Whole card is clickable</LinkOverlay>
+ *     <LinkAction href='/new-page'>Whole card is clickable</LinkAction>
  *   </Surface>
  * </LinkBox>
  */
-export const LinkOverlay = React.forwardRef((props, ref) => {
+export const LinkAction = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
   return (
     <Element
@@ -38,18 +38,18 @@ export const LinkOverlay = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'a', LinkOverlayOwnProps>;
+}) as PolymorphicForwardRefComponent<'a', LinkActionOwnProps>;
 
-LinkOverlay.displayName = 'LinkOverlay';
+LinkAction.displayName = 'LinkAction';
 
 /**
  * Polymorphic link box component.
- * Used to wrap around your component to use LinkOverlay.
+ * Used to wrap around your component to use LinkAction.
  * Rendered as `div` by default
  * @example
  * <LinkBox>
  *   <Surface>
- *     <LinkOverlay href='/new-page'>Whole card is clickable</LinkOverlay>
+ *     <LinkAction href='/new-page'>Whole card is clickable</LinkAction>
  *   </Surface>
  * </LinkBox>
  */
