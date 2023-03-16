@@ -5,7 +5,7 @@
 @mixin iui-link-box {
   position: relative;
 
-  &:has(.iui-link-overlay:focus-visible) {
+  &:has(.iui-link-action:focus-visible) {
     outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
   }
 
@@ -16,7 +16,7 @@
   }
 }
 
-@mixin iui-link-overlay {
+@mixin iui-link-action {
   all: unset;
   color: inherit;
   cursor: pointer;

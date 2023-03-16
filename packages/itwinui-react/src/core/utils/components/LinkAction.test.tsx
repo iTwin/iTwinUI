@@ -21,7 +21,7 @@ it('should render LinkBox and LinkAction in its most basic state', () => {
   expect(linkBox).toHaveAttribute('data-testid', 'link-box');
 
   expect(LinkAction).toBeTruthy();
-  expect(LinkAction).toHaveClass('iui-link-overlay');
+  expect(LinkAction).toHaveClass('iui-link-action');
   expect(LinkAction).toHaveAttribute('data-testid', 'link-overlay');
 });
 
@@ -34,7 +34,7 @@ it('should render LinkAction as a button', () => {
     </LinkBox>,
   );
   expect(container.querySelector('div')).toHaveClass('iui-link-box');
-  expect(container.querySelector('button')).toHaveClass('iui-link-overlay');
+  expect(container.querySelector('button')).toHaveClass('iui-link-action');
 });
 
 it('should render LinkAction as a paragraph', () => {
@@ -44,5 +44,5 @@ it('should render LinkAction as a paragraph', () => {
     </LinkBox>,
   );
   expect(container.querySelector('p')).toHaveClass('iui-link-box');
-  expect(container.querySelector('a')).toHaveClass('iui-link-overlay');
+  expect(container.querySelector('a')).toHaveClass('iui-link-action');
 });

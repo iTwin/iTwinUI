@@ -104,7 +104,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-actionable {
   @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
 
-  &:has(.iui-link-overlay:focus-visible) {
+  &:has(.iui-link-action:focus-visible) {
     outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
 
     &.iui-selected {
@@ -219,7 +219,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 @mixin iui-tile-name-label {
   &,
-  > .iui-link-overlay {
+  > .iui-link-action {
     width: 100%;
     overflow: hidden;
     white-space: nowrap;

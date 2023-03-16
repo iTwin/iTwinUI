@@ -32,11 +32,7 @@ export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
 export const LinkAction = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
   return (
-    <Element
-      ref={ref}
-      className={cx('iui-link-overlay', className)}
-      {...rest}
-    />
+    <Element ref={ref} className={cx('iui-link-action', className)} {...rest} />
   );
 }) as PolymorphicForwardRefComponent<'a', LinkActionOwnProps>;
 

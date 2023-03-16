@@ -6,7 +6,7 @@
   @include iui-tile;
 
   &.iui-actionable,
-  &:where(:has(.iui-link-overlay)) {
+  &:where(:has(.iui-link-action)) {
     @include iui-actionable;
   }
 
