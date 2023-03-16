@@ -85,11 +85,11 @@ module.exports = [
   // Focus states
   //// Tile
   scenario('State focus', {
-    actions: [focus('#test-tile-4')],
+    actions: [focus('#test-tile-4-name')],
     selectors: ['#test-tile-4'],
   }),
   scenario('State focus with thumbnail', {
-    actions: [focus('#test-tile-5')],
+    actions: [focus('#test-tile-5-name')],
     selectors: ['#test-tile-5'],
   }),
 
