@@ -62,82 +62,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     }
   }
 
-  &.iui-selected {
-    @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
-    --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
-
-    outline: solid 2px var(--iui-color-border-accent);
-    background-color: var(--iui-color-background-accent-muted);
-  }
-
-  &.iui-actionable {
-    @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
-    cursor: pointer;
-    transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
-
-    &:hover {
-      box-shadow: var(--iui-shadow-4);
-
-      $y: 4px;
-      transform: translateY(-$y);
-
-      // prevent doom flicker when hovering near the bottom edge
-      &::before {
-        transform: translateY($y);
-      }
-    }
-
-    &:is(:hover, :focus-within) #{$thumbnail-selector} {
-      transform: rotate(-4deg);
-    }
-
-    &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
-      &:is(div, img) {
-        transform: translateZ(0) scale(1.1);
-      }
-    }
-  }
-
-  &.iui-folder {
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    > :where(:first-child) {
-      border-top-left-radius: inherit;
-      border-bottom-left-radius: inherit;
-    }
-
-    > :where(:last-child) {
-      border-top-right-radius: inherit;
-      border-bottom-right-radius: inherit;
-    }
-
-    .iui-tile-thumbnail {
-      height: calc(var(--iui-size-s) * 10);
-      flex: 1;
-      border-bottom: none;
-      border-right: 1px solid var(--iui-color-border);
-      margin: 0;
-    }
-
-    .iui-tile-content {
-      flex: 2;
-      padding: var(--iui-size-s);
-
-      > * {
-        padding: 0;
-      }
-    }
-
-    .iui-tile-description {
-      height: 100%;
-      max-height: calc(var(--iui-size-s) * 4);
-      margin-bottom: 0;
-      -webkit-line-clamp: 2;
-    }
-  }
-
   //#region Statuses
   &.iui-loading,
   &[aria-disabled='true'] {
@@ -169,6 +93,101 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   //#endregion Statuses
 }
 
+@mixin iui-selected {
+  @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
+  --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
+
+  outline: solid 2px var(--iui-color-border-accent);
+  background-color: var(--iui-color-background-accent-muted);
+}
+
+@mixin iui-actionable {
+  &:has(.iui-link-action:focus-visible) {
+    outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    outline-offset: var(--iui-size-3xs);
+
+    &.iui-selected {
+      outline-width: var(--iui-size-2xs);
+    }
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+      outline-offset: var(--iui-size-3xs);
+
+      &.iui-selected {
+        outline-width: var(--iui-size-2xs);
+      }
+    }
+  }
+
+  cursor: pointer;
+  transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
+
+  &:hover {
+    box-shadow: var(--iui-shadow-4);
+
+    $y: 4px;
+    transform: translateY(-$y);
+
+    // prevent doom flicker when hovering near the bottom edge
+    &::before {
+      transform: translateY($y);
+    }
+  }
+
+  &:is(:hover, :focus-within) #{$thumbnail-selector} {
+    transform: rotate(-4deg);
+  }
+
+  &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
+    &:is(div, img) {
+      transform: translateZ(0) scale(1.1);
+    }
+  }
+}
+
+@mixin iui-folder {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  > :where(:first-child) {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+
+  > :where(:last-child) {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  .iui-tile-thumbnail {
+    height: calc(var(--iui-size-s) * 10);
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--iui-color-border);
+    margin: 0;
+  }
+
+  .iui-tile-content {
+    flex: 2;
+    padding: var(--iui-size-s);
+
+    > * {
+      padding: 0;
+    }
+  }
+
+  .iui-tile-description {
+    height: 100%;
+    max-height: calc(var(--iui-size-s) * 4);
+    margin-bottom: 0;
+    -webkit-line-clamp: 2;
+  }
+}
+
 @mixin iui-tile-content {
   padding-bottom: var(--iui-size-s);
   display: grid;
@@ -177,6 +196,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   min-width: 0;
 
   > * {
+    grid-column: 1;
     max-width: 100%;
     margin-bottom: calc(var(--iui-size-s) * 0.5);
     padding-inline: var(--iui-size-s);
@@ -202,9 +222,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-name-label {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  &,
+  > .iui-link-action {
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 @mixin iui-tile-description {
@@ -253,6 +278,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
   margin-bottom: var(--iui-size-s);
+  isolation: isolate;
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -298,10 +324,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-thumbnail-button($variant) {
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
-  position: absolute;
   border-radius: 50%;
   margin-top: calc(var(--iui-size-s) * 0.5);
   margin-inline: var(--iui-size-xs);
+  place-self: start;
 
   @if $variant == quick-action {
     justify-self: end;
@@ -375,12 +401,28 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 @mixin iui-tile-more-options {
   grid-area: 1 / 1 / -1 / -1;
-  place-self: end;
   position: absolute;
+  place-self: end;
+  display: grid;
   margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
   margin-right: calc(-1 * var(--iui-size-2xs));
+
+  // safari doesn't support grid + position:absolute, so we will hardcode the values
+  @include safari-only {
+    bottom: var(--iui-size-s);
+    right: 0;
+    margin: 0;
+
+    :where(.iui-tile.iui-folder) & {
+      right: var(--iui-size-xs);
+    }
+
+    :where(.iui-tile:has(.iui-tile-buttons)) & {
+      bottom: 3.25rem;
+    }
+  }
 }
 
 @mixin iui-tile-status($status) {
