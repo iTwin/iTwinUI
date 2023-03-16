@@ -154,7 +154,8 @@ export type TileProps = {
    * @default false
    */
   isDisabled?: boolean;
-} & React.ComponentPropsWithoutRef<'div'>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, 'onClick'>;
 
 /**
  * Tile component that displays content and actions in a card-like format.
@@ -219,7 +220,9 @@ export const Tile = Object.assign(
 
         <span className='iui-tile-name-label'>
           {isActionable && onClick ? (
-            <LinkAction as='button'>{name}</LinkAction>
+            <LinkAction as='button' onClick={onClick}>
+              {name}
+            </LinkAction>
           ) : (
             name
           )}
@@ -243,7 +246,6 @@ export const Tile = Object.assign(
             className,
           )}
           aria-disabled={isDisabled}
-          onClick={onClick}
           {...rest}
         >
           {variant !== 'folder' ? tileName : null}
