@@ -14,15 +14,15 @@ it('should render LinkBox and LinkAction in its most basic state', () => {
   );
 
   const linkBox = container.querySelector('div') as HTMLElement;
-  const LinkAction = container.querySelector('a') as HTMLElement;
+  const linkAction = container.querySelector('a') as HTMLElement;
 
   expect(linkBox).toBeTruthy();
   expect(linkBox).toHaveClass('iui-link-box');
   expect(linkBox).toHaveAttribute('data-testid', 'link-box');
 
-  expect(LinkAction).toBeTruthy();
-  expect(LinkAction).toHaveClass('iui-link-action');
-  expect(LinkAction).toHaveAttribute('data-testid', 'link-overlay');
+  expect(linkAction).toBeTruthy();
+  expect(linkAction).toHaveClass('iui-link-action');
+  expect(linkAction).toHaveAttribute('data-testid', 'link-overlay');
 });
 
 it('should render LinkAction as a button', () => {
