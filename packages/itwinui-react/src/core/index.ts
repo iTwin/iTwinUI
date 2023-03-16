@@ -341,6 +341,7 @@ export {
   LinkAction,
   Icon,
   Flex,
+  VisuallyHidden,
 } from './utils';
 export type {
   ThemeType,
@@ -351,4 +352,5 @@ export type {
   FlexSpacerProps,
   LinkBoxProps,
   LinkActionProps,
+  VisuallyHiddenProps,
 } from './utils';
