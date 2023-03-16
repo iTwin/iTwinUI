@@ -447,6 +447,14 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     }
   };
 
+  const isPreviousMonthDisabled = isDateDisabled?.(
+    new Date(displayedYear, displayedMonthIndex, 0),
+  );
+
+  const isNextMonthDisabled = isDateDisabled?.(
+    new Date(displayedYear, displayedMonthIndex + 1, 1),
+  );
+
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -458,6 +466,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowDown':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isNextMonthDisabled) {
+            return;
+          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -467,6 +478,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowUp':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isPreviousMonthDisabled) {
+            return;
+          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -476,6 +490,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowLeft':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isPreviousMonthDisabled) {
+            return;
+          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -485,6 +502,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowRight':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isNextMonthDisabled) {
+            return;
+          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -556,6 +576,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToPreviousMonth}
             aria-label='Previous month'
             size='small'
+            disabled={isPreviousMonthDisabled}
           >
             <SvgChevronLeft />
           </IconButton>
@@ -573,6 +594,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToNextMonth}
             aria-label='Next month'
             size='small'
+            disabled={isNextMonthDisabled}
           >
             <SvgChevronRight />
           </IconButton>
