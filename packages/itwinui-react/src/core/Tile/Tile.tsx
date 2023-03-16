@@ -222,7 +222,7 @@ export const Tile = Object.assign(
           {isActionable && onClick ? (
             <LinkAction
               as='button'
-              onClick={onClick}
+              onClick={!isDisabled ? onClick : undefined}
               aria-disabled={isDisabled}
             >
               {name}
