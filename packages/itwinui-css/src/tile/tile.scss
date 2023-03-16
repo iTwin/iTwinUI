@@ -182,13 +182,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     margin-bottom: 0;
     -webkit-line-clamp: 2;
   }
-
-  .iui-tile-more-options {
-    position: absolute;
-    margin: 0;
-    bottom: var(--iui-size-s);
-    right: var(--iui-size-xs);
-  }
 }
 
 @mixin iui-tile-content {
@@ -251,7 +244,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   margin-top: auto;
   margin-bottom: 0;
   color: var(--_iui-tile-body-text-color);
-  grid-row: -1;
 
   > svg,
   .iui-tile-metadata-icon {
@@ -398,13 +390,29 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-more-options {
-  grid-row: -1;
+  grid-area: 1 / 1 / -1 / -1;
+  position: absolute;
   place-self: end;
   display: grid;
   margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
   margin-right: calc(-1 * var(--iui-size-2xs));
+
+  // safari doesn't support grid + position:absolute, so we will hardcode the values
+  @include safari-only {
+    bottom: var(--iui-size-s);
+    right: 0;
+    margin: 0;
+
+    :where(.iui-tile.iui-folder) & {
+      right: var(--iui-size-xs);
+    }
+
+    :where(.iui-tile:has(.iui-tile-buttons)) & {
+      bottom: 3.25rem;
+    }
+  }
 }
 
 @mixin iui-tile-status($status) {
