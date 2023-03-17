@@ -6,6 +6,7 @@ import React from 'react';
 import cx from 'classnames';
 import {
   CommonProps,
+  PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
   useTheme,
 } from '../utils';
@@ -36,44 +37,50 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
 // ----------------------------------------------------------------------------
 // Surface.Header component
 
-export type SurfaceHeaderProps = React.ComponentPropsWithRef<'div'>;
+type SurfaceHeaderOwnProps = Record<never, never>;
 
-const SurfaceHeader = React.forwardRef<HTMLDivElement, SurfaceHeaderProps>(
-  (props, ref) => {
-    const { children, className, ...rest } = props;
-    return (
-      <div className={cx('iui-surface-header', className)} ref={ref} {...rest}>
-        {children}
-      </div>
-    );
-  },
-) as PolymorphicForwardRefComponent<'div', SurfaceHeaderProps>;
+export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, SurfaceHeaderOwnProps>;
+
+const SurfaceHeader = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', children, className, ...rest } = props;
+  return (
+    <Element
+      className={cx('iui-surface-header', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', SurfaceHeaderOwnProps>;
 
 // ----------------------------------------------------------------------------
 // Surface.Body component
 
-export type SurfaceBodyProps = {
+type SurfaceBodyOwnProps = {
   /**
    * Gives padding to the surface body
    */
   isPadded?: boolean;
-} & React.ComponentPropsWithRef<'div'>;
+};
 
-const SurfaceBody = React.forwardRef<HTMLDivElement, SurfaceBodyProps>(
-  (props, ref) => {
-    const { children, className, isPadded, ...rest } = props;
-    return (
-      <div
-        className={cx('iui-surface-body', className)}
-        ref={ref}
-        data-iui-padded={isPadded ? 'true' : undefined}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
-  },
-) as PolymorphicForwardRefComponent<'div', SurfaceBodyProps>;
+export type SurfaceBodyProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, SurfaceBodyOwnProps>;
+
+const SurfaceBody = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', children, className, isPadded, ...rest } = props;
+  return (
+    <Element
+      className={cx('iui-surface-body', className)}
+      ref={ref}
+      data-iui-padded={isPadded ? 'true' : undefined}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', SurfaceBodyOwnProps>;
 
 export type SurfaceProps = {
   /**

@@ -68,3 +68,14 @@ it('should render custom surface', () => {
   expect(surfaceBody.getAttribute('data-iui-padded')).toBeTruthy();
   expect(surfaceBody.textContent).toBe('TestBody');
 });
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <Surface>
+      <Surface.Header as='h1'>TestHeader</Surface.Header>
+      <Surface.Body as='h2'>TestBody</Surface.Body>
+    </Surface>,
+  );
+
+  expect(container.querySelector('h1')).toHaveClass('iui-surface-header');
+  expect(container.querySelector('h2')).toHaveClass('iui-surface-body');
+});
