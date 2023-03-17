@@ -197,6 +197,41 @@ Actionable.args = {
   moreOptions: undefined,
 };
 
+export const AnchorLink: Story<TileProps> = (props) => {
+  const {
+    name,
+    description = 'If you click on this stadium, it is going to be selected.',
+    metadata,
+    badge,
+    thumbnail,
+    isNew,
+    moreOptions,
+    ...rest
+  } = props;
+
+  return (
+    <Tile
+      name={
+        <Tile.Action href='https://inclusive-components.design/cards/'>
+          {name}
+        </Tile.Action>
+      }
+      description={description}
+      metadata={metadata}
+      badge={badge}
+      thumbnail={thumbnail}
+      isNew={isNew}
+      moreOptions={moreOptions}
+      {...rest}
+    />
+  );
+};
+AnchorLink.argTypes = { ...Basic.argTypes };
+AnchorLink.args = {
+  ...Basic.args,
+  description:
+    'If you click on this stadium, it is going to open another page.',
+};
 export const Condensed: Story<TileProps> = (props) => {
   const { name, thumbnail, moreOptions, ...rest } = props;
   return (

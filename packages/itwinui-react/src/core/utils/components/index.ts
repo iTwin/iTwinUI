@@ -12,3 +12,4 @@ export * from './VirtualScroll';
 export * from './VisuallyHidden';
 export * from './Icon';
 export * from './Flex';
+export * from './LinkAction';
