@@ -99,7 +99,7 @@ it('should handle overflow when overflowButton is specified', () => {
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer).toHaveClass('iui-overflow');
+  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(2);
@@ -168,7 +168,7 @@ it('should replace last tab with active tab if not visible when overflowButton i
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer).toHaveClass('iui-overflow');
+  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(2);

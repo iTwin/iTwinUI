@@ -99,7 +99,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
   }
 
-  &.iui-overflow {
+  &[data-iui-overflow='true'] {
     overflow: auto;
 
     .iui-tab {

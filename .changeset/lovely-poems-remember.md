@@ -3,7 +3,7 @@
 '@itwin/itwinui-css': minor
 ---
 
-- Added class 'iui-overflow' - adds styling for overflow tabs
+- Added data attribute 'data-iui-overflow' - when true it adds styling for overflow tabs
 - Added property 'overflowButton' - enables tabs to be truncated and an overflow button to be shown; expects a function that takes the number of items that are visible and returns the 'ReactNode' to render
 
 ```typescript

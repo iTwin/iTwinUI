@@ -459,10 +459,10 @@ export const Tabs = (props: TabsProps) => {
             'iui-animated': type !== 'default' && isClient,
             'iui-not-animated': type !== 'default' && !isClient,
             'iui-large': hasSublabel,
-            'iui-overflow': overflowButton,
           },
           tabsClassName,
         )}
+        data-iui-overflow={overflowButton !== undefined}
         role='tablist'
         ref={refs}
         onKeyDown={onKeyDown}
