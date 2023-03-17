@@ -99,13 +99,15 @@ You can also have the stacked group animate to unstacked on hover. When doing th
 
 ### Overflow
 
-By default a maximum of five avatars will be shown within a group. Additional avatars are hidden; however, the number of hidden items will be displayed in the last avatar circle as shown below.
+It is strongly suggested that you display a maximum of five avatars within a group. Additional avatars are hidden; however, the number of hidden items will be displayed in the last avatar circle as shown below.
 
 <LiveExample src='Avatar.groupoverflow.tsx'>
   <AllExamples.AvatarGroupOverflowExample client:load />
 </LiveExample>
 
 Additionally, you could display a [tooltip](tooltip) on hover, a [dialog](dialog) on click, or perhaps a [dropdown menu](dropdownmenu) of the hidden users. Implementation of these options depends on the purpose of the page and the use case.
+
+The example below displays a tooltip of all hidden avatars. It also uses the property `maxIcons` to limit the number of visible avatars to three.
 
 <LiveExample src='Avatar.groupoverflowtooltip.tsx'>
   <AllExamples.AvatarGroupOverflowTooltipExample client:load />
