@@ -37,7 +37,7 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
 // ----------------------------------------------------------------------------
 // Surface.Header component
 
-type SurfaceHeaderOwnProps = Record<never, never>;
+type SurfaceHeaderOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, SurfaceHeaderOwnProps>;
