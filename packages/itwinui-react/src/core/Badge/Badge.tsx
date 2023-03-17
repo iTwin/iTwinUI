@@ -17,17 +17,11 @@ import '@itwin/itwinui-css/css/badge.css';
  * Helper function that returns one of the preset badge color values.
  */
 const getBadgeColorValue = (color: BadgeProps['backgroundColor']) => {
-  const statuses = ['positive', 'negative', 'warning', 'informational'];
-
   if (!color) {
     return '';
-  } else if (statuses.includes(color)) {
-    return `var(--iui-color-background-$(color)-muted)`;
-  } else if (isSoftBackground(color)) {
-    return SoftBackgrounds[color];
-  } else {
-    return color;
   }
+
+  return isSoftBackground(color) ? SoftBackgrounds[color] : color;
 };
 
 /**
@@ -78,20 +72,23 @@ export const Badge = (props: BadgeProps) => {
   const reducedBackgroundColor =
     backgroundColor === 'primary' ? 'informational' : backgroundColor;
 
-  const _style = reducedBackgroundColor
-    ? {
-        '--iui-badge-background-color': getBadgeColorValue(
-          reducedBackgroundColor,
-        ),
-        ...style,
-      }
-    : { ...style };
+  const statusValue = getStatusValue(reducedBackgroundColor);
+
+  const _style =
+    reducedBackgroundColor && !statusValue
+      ? {
+          '--iui-badge-background-color': getBadgeColorValue(
+            reducedBackgroundColor,
+          ),
+          ...style,
+        }
+      : { ...style };
 
   return (
     <span
       className={cx('iui-badge', className)}
       style={_style}
-      data-iui-status={getStatusValue(reducedBackgroundColor)}
+      data-iui-status={statusValue}
       {...rest}
     >
       {children}
