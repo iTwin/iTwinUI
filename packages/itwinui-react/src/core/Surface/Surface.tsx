@@ -95,6 +95,11 @@ export type SurfaceProps = {
  * @example
  * <Surface>Surface Content</Surface>
  * <Surface elevation={2}>Surface Content</Surface>
+ * <Surface hasLayout={true}>Surface Content</Surface>
+ * <Surface hasLayout={true}>
+ *   <Surface.Header>Surface Header Content</Surface.Header>
+ *   <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
+ * </Surface>
  */
 export const Surface = Object.assign(
   React.forwardRef(
@@ -121,7 +126,13 @@ export const Surface = Object.assign(
     },
   ),
   {
+    /**
+     * 	Surface header subcomponent
+     */
     Header: SurfaceHeader,
+    /**
+     * 	Surface Body subcomponent. Additional padding can be added to the body through the 'isPadded' prop
+     */
     Body: SurfaceBody,
   },
 );
