@@ -138,7 +138,7 @@ export const Surface = Object.assign(
      */
     Header: SurfaceHeader,
     /**
-     * 	Surface Body subcomponent. Additional padding can be added to the body through the 'isPadded' prop
+     * 	Surface body subcomponent. Additional padding can be added to the body through the 'isPadded' prop
      */
     Body: SurfaceBody,
   },
