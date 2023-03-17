@@ -13,6 +13,32 @@ import {
 import type { AnyString } from '../utils';
 import '@itwin/itwinui-css/css/badge.css';
 
+/**
+ * Helper function that returns one of the preset badge color values.
+ */
+const getBadgeColorValue = (color: BadgeProps['backgroundColor']) => {
+  const statuses = ['positive', 'negative', 'warning', 'informational'];
+
+  if (!color) {
+    return '';
+  } else if (statuses.includes(color)) {
+    return `var(--iui-color-background-$(color)-muted)`;
+  } else if (isSoftBackground(color)) {
+    return SoftBackgrounds[color];
+  } else {
+    return color;
+  }
+};
+
+/**
+ * Helper function that returns one of the preset badge status values.
+ */
+const getStatusValue = (color: BadgeProps['backgroundColor']) => {
+  const statuses = ['positive', 'negative', 'warning', 'informational'];
+
+  return color && statuses.includes(color) ? color : undefined;
+};
+
 export type BadgeProps = {
   /**
    * Background color of the badge.
@@ -52,28 +78,20 @@ export const Badge = (props: BadgeProps) => {
   const reducedBackgroundColor =
     backgroundColor === 'primary' ? 'informational' : backgroundColor;
 
-  const statuses = ['informational', 'positive', 'negative', 'warning'];
-
-  const isStatus =
-    reducedBackgroundColor && statuses.includes(reducedBackgroundColor);
-
-  const _style =
-    reducedBackgroundColor && !isStatus
-      ? {
-          '--iui-badge-background-color': isSoftBackground(
-            reducedBackgroundColor,
-          )
-            ? SoftBackgrounds[reducedBackgroundColor]
-            : reducedBackgroundColor,
-          ...style,
-        }
-      : { ...style };
+  const _style = reducedBackgroundColor
+    ? {
+        '--iui-badge-background-color': getBadgeColorValue(
+          reducedBackgroundColor,
+        ),
+        ...style,
+      }
+    : { ...style };
 
   return (
     <span
       className={cx('iui-badge', className)}
       style={_style}
-      data-iui-status={isStatus ? reducedBackgroundColor : undefined}
+      data-iui-status={getStatusValue(reducedBackgroundColor)}
       {...rest}
     >
       {children}
