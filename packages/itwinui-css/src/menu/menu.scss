@@ -100,7 +100,7 @@ $iui-active-outline: thin solid var(--iui-color-border-accent);
   }
 
   &.iui-active {
-    @supports (selector(.iui-active:has(+ .iui-active))) {
+    @supports selector(:has(+ *)) {
       // Styles active items between the first & last
       + .iui-active {
         border-radius: 0;
