@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Adding a data attribute for badge status
+Updated the visuals for status colors in Badge.
