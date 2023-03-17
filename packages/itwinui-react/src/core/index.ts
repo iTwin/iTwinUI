@@ -337,6 +337,8 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  LinkBox,
+  LinkAction,
   Icon,
   Flex,
 } from './utils';
@@ -347,4 +349,6 @@ export type {
   FlexProps,
   FlexItemProps,
   FlexSpacerProps,
+  LinkBoxProps,
+  LinkActionProps,
 } from './utils';

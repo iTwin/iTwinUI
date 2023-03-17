@@ -393,11 +393,13 @@
       <!-- No thumbnail -->
       <div
         class="iui-tile iui-actionable"
-        tabindex="0"
         id="test-tile-4"
       >
         <div class="iui-tile-name">
-          <span class="iui-tile-name-label">Tile name</span>
+          <span class="iui-tile-name-label"><button
+              class="iui-link-action"
+              id="test-tile-4-name"
+            >Tile name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -459,11 +461,13 @@
       <!-- With thumbnail -->
       <div
         class="iui-tile iui-actionable"
-        tabindex="0"
         id="test-tile-5"
       >
         <div class="iui-tile-name">
-          <span class="iui-tile-name-label">Tile name</span>
+          <span class="iui-tile-name-label"><button
+              class="iui-link-action"
+              id="test-tile-5-name"
+            >Tile name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -519,17 +523,84 @@
         </div>
       </div>
 
+      <!-- With thumbnail & anchor link -->
+      <div class="iui-tile">
+        <div class="iui-tile-name">
+          <span class="iui-tile-name-label"><a
+              class="iui-link-action"
+              href="https://inclusive-components.design/cards/"
+            >Tile name</a></span>
+        </div>
+
+        <div class="iui-tile-thumbnail">
+          <div class="iui-tile-thumbnail-picture demo-photo"></div>
+          <button
+            aria-label="Info"
+            type="button"
+            class="iui-button iui-tile-thumbnail-quick-action"
+            data-iui-variant="borderless"
+            data-iui-size="small"
+          >
+            <svg-info
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-info>
+          </button>
+          <div class="iui-tile-thumbnail-badge-container">
+            <div
+              class="iui-badge"
+              style="background-color: hsl(2, 90%, 83%);"
+            >
+              Link
+            </div>
+          </div>
+        </div>
+
+        <div class="iui-tile-content">
+
+          <div class="iui-tile-description">
+            Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure.
+          </div>
+          <div class="iui-tile-metadata">
+            <svg-tag
+              class="iui-tile-metadata-icon"
+              aria-hidden="true"
+            ></svg-tag>
+            <div class="iui-tag-container">
+              <span class="iui-tag-basic">tags</span>
+              <span class="iui-tag-basic">go</span>
+              <span class="iui-tag-basic">here</span>
+            </div>
+          </div>
+
+          <div class="iui-tile-more-options">
+            <button
+              aria-label="More options"
+              type="button"
+              class="iui-button"
+              data-iui-variant="borderless"
+              data-iui-size="small"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- With thumbnail & selected -->
-      <div
-        class="iui-tile iui-actionable iui-selected"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable iui-selected">
         <div class="iui-tile-name">
           <svg-checkmark
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-checkmark>
-          <span class="iui-tile-name-label">Tile name</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Tile name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -590,12 +661,9 @@
 
     <h2>User</h2>
     <section id="demo-user">
-      <div
-        class="iui-tile iui-actionable"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable">
         <div class="iui-tile-name">
-          <span class="iui-tile-name-label">Terry Rivers</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Terry Rivers</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -628,16 +696,13 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-actionable iui-selected"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable iui-selected">
         <div class="iui-tile-name">
           <svg-checkmark
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-checkmark>
-          <span class="iui-tile-name-label">Terry Rivers</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Terry Rivers</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -809,12 +874,9 @@
     <h2>Video</h2>
     <section id="demo-video">
       <!-- No thumbnail -->
-      <div
-        class="iui-tile iui-actionable"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable">
         <div class="iui-tile-name">
-          <span class="iui-tile-name-label">Video name</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Video name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -869,12 +931,9 @@
       </div>
 
       <!-- With thumbnail -->
-      <div
-        class="iui-tile iui-actionable"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable">
         <div class="iui-tile-name">
-          <span class="iui-tile-name-label">Video name</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Video name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -932,7 +991,6 @@
       <!-- With thumbnail -->
       <div
         class="iui-tile iui-actionable iui-selected"
-        tabindex="0"
         id="test-tile-3"
       >
         <div class="iui-tile-name">
@@ -940,7 +998,7 @@
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-checkmark>
-          <span class="iui-tile-name-label">Video name</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">Video name</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -1001,10 +1059,7 @@
     <h2>Folder</h2>
     <section id="demo-folder">
       <!-- No thumbnail & new -->
-      <div
-        class="iui-tile iui-folder iui-actionable iui-new"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable iui-new">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1019,7 +1074,7 @@
               aria-hidden="true"
             ></svg-new>
 
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
@@ -1042,10 +1097,7 @@
       </div>
 
       <!-- No thumbnail -->
-      <div
-        class="iui-tile iui-folder iui-actionable"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1055,7 +1107,7 @@
 
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
@@ -1078,17 +1130,14 @@
       </div>
 
       <!-- With thumbnail -->
-      <div
-        class="iui-tile iui-folder iui-actionable"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable">
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
 
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
@@ -1111,10 +1160,7 @@
       </div>
 
       <!-- With thumbnail -->
-      <div
-        class="iui-tile iui-folder iui-actionable iui-selected"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable iui-selected">
         <div class="iui-tile-thumbnail">
           <div class="iui-tile-thumbnail-picture demo-photo"></div>
         </div>
@@ -1125,7 +1171,7 @@
               class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-checkmark>
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
@@ -1154,16 +1200,13 @@
 
     <section id="demo-action-states">
 
-      <div
-        class="iui-tile iui-actionable iui-positive"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable iui-positive">
         <div class="iui-tile-name">
           <svg-status-success
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-status-success>
-          <span class="iui-tile-name-label">charlie.pdf</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">charlie.pdf</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -1211,17 +1254,14 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-actionable iui-warning"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable iui-warning">
         <div class="iui-tile-name">
           <svg-filetype-image aria-hidden="true"></svg-filetype-image>
           <svg-status-warning
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-status-warning>
-          <span class="iui-tile-name-label">delta.jpg</span>
+          <span class="iui-tile-name-label"><button class="iui-link-action">delta.jpg</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -1269,17 +1309,14 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-actionable iui-negative"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-actionable iui-negative">
         <div class="iui-tile-name">
           <svg-status-error
             class="iui-tile-status-icon"
             aria-hidden="true"
           ></svg-status-error>
-          <span
-            class="iui-tile-name-label">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</span>
+          <span class="iui-tile-name-label"><button
+              class="iui-link-action">MyFileWithAReallyLongNameThatWillBeSplitIntoMultipleLinesAfterSoLong_FinalVersion_V2.svg</button></span>
         </div>
 
         <div class="iui-tile-thumbnail">
@@ -1480,10 +1517,7 @@
 
     <section id="demo-action-states-folders">
 
-      <div
-        class="iui-tile iui-folder iui-actionable iui-positive"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable iui-positive">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1497,7 +1531,7 @@
               class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-status-success>
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
 
           <div class="iui-tile-description">
@@ -1521,10 +1555,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-folder iui-actionable iui-warning"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable iui-warning">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1539,7 +1570,7 @@
               class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-status-warning>
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
 
           <div class="iui-tile-description">
@@ -1564,10 +1595,7 @@
         </div>
       </div>
 
-      <div
-        class="iui-tile iui-folder iui-actionable iui-negative"
-        tabindex="0"
-      >
+      <div class="iui-tile iui-folder iui-actionable iui-negative">
         <div class="iui-tile-thumbnail">
           <svg-folder
             class="iui-thumbnail-icon"
@@ -1581,7 +1609,7 @@
               class="iui-tile-status-icon"
               aria-hidden="true"
             ></svg-status-error>
-            <span class="iui-tile-name-label">Folder name</span>
+            <span class="iui-tile-name-label"><button class="iui-link-action">Folder name</button></span>
           </div>
           <div class="iui-tile-description">
             A collection of all Bentley Systems 2D and 3D marketing assets.
