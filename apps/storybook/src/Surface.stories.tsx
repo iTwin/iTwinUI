@@ -7,6 +7,7 @@ import React from 'react';
 import {
   Surface,
   SurfaceProps,
+  SurfaceBodyProps,
   Code,
   Text,
   Divider,
@@ -51,7 +52,7 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
 
 Basic.args = { elevation: 1 };
 
-export const Custom: Story<SurfaceProps> = (args) => {
+export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   const { elevation, hasLayout, isPadded } = args;
   return (
     <Surface elevation={elevation} hasLayout={hasLayout} {...args}>
@@ -82,7 +83,9 @@ export const Custom: Story<SurfaceProps> = (args) => {
 
 Custom.args = { elevation: 1, hasLayout: true, isPadded: true };
 
-export const Overflow: Story<SurfaceProps> = (args) => {
+export const OverflowWithButtonFooter: Story<
+  SurfaceProps & SurfaceBodyProps
+> = (args) => {
   const { elevation, hasLayout, isPadded } = args;
   const cardStyle = {
     maxHeight: '300px',
@@ -131,9 +134,13 @@ export const Overflow: Story<SurfaceProps> = (args) => {
   );
 };
 
-Overflow.args = { elevation: 1, hasLayout: true, isPadded: true };
+OverflowWithButtonFooter.args = {
+  elevation: 1,
+  hasLayout: true,
+  isPadded: true,
+};
 
-export const NoPadding: Story<SurfaceProps> = (args) => {
+export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   const { elevation, hasLayout, isPadded } = args;
 
   const listStyle = {
@@ -192,7 +199,7 @@ export const NoPadding: Story<SurfaceProps> = (args) => {
 
 NoPadding.args = { elevation: 1, hasLayout: true, isPadded: false };
 
-export const EmptyState: Story<SurfaceProps> = (args) => {
+export const EmptyState: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   const { elevation, hasLayout, isPadded } = args;
 
   const cardStyle = {
