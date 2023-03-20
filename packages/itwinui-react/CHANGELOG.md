@@ -1,5 +1,61 @@
 # Changelog
 
+## 2.7.0
+
+### Minor Changes
+
+- bea577e2: Updated the visuals for status colors in Badge.
+- c581e9ed: Added `LinkBox` and `LinkAction`components to improve components with action accessibility.
+
+  Usage:
+
+  ```js
+  <LinkBox>
+    <LinkAction href='/new-page'>Link to click</LinkAction>
+  </LinkBox>
+  ```
+
+- c581e9ed: Added `Tile.Action` to take advantage of these new a11y components in Tile.
+
+  Usage:
+
+  ```js
+  <Tile
+    name={
+      <Tile.Action
+        as='button'
+        onClick={() => {
+          /* Do things */
+        }}
+      >
+        Tile name that is also a button
+      </Tile.Action>
+    }
+  />
+  ```
+
+- 61f44293: Added new `isDateDisabled` prop to DatePicker. Accepts a function which takes a date and returns a boolean to indicate whether that date is not selectable.
+
+### Patch Changes
+
+- 198d6a95: Remove the ability to set icon prop for ToggleSwitch when size is set to small
+- c5cfa4c6: Fixed an issue with incremental migration where adding a close button to v2 Toaster was breaking v1 styles for the whole page.
+- a1f235d0: Fixed Carousel showing warnings in React 16 when using arrow keys.
+- c9dee6f5: Fixed an issue where Slider's tooltip was still visible after unmounting the component.
+- 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 341449ca: Fixes an issue where stripe width for borderless and pill tabs was rendering an incorrect length upon first visiting the page.
+- Updated dependencies [01d29fc1]
+- Updated dependencies [e2f547e1]
+- Updated dependencies [028d4cd7]
+- Updated dependencies [61f44293]
+- Updated dependencies [775933e3]
+- Updated dependencies [91486634]
+- Updated dependencies [8bfd4fe9]
+- Updated dependencies [6f99039c]
+- Updated dependencies [17d4fffb]
+- Updated dependencies [c581e9ed]
+  - @itwin/itwinui-css@1.8.0
+
 ## 2.6.0
 
 ### Minor Changes
