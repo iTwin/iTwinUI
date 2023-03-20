@@ -46,5 +46,6 @@
     "*.astro": "${capture}.tsx, ${capture).css",
     "*.tsx": "${capture}.ts, ${capture}.css",
     "*.stories.tsx": "${capture}.test.ts"
-  }
+  },
+  "cSpell.words": ["Tbgr"]
 }
