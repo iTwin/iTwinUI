@@ -29,7 +29,7 @@ describe('Table', () => {
     'Selectable Single',
     'Sortable',
     'Sticky Columns',
-    'With Manual Paginator',
+    'With Manual Paginator And Filter',
     'With Paginator',
     'Zebra Striped Rows',
     'Status And Cell Icons',
