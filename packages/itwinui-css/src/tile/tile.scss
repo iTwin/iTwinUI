@@ -225,7 +225,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   &,
   > .iui-link-action {
     width: 100%;
-    z-index: 1;
+    z-index: 0;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -278,7 +278,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
   margin-bottom: var(--iui-size-s);
-  isolation: isolate;
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -324,6 +323,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-thumbnail-button($variant) {
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
+  z-index: 1;
   border-radius: 50%;
   margin-top: calc(var(--iui-size-s) * 0.5);
   margin-inline: var(--iui-size-xs);
@@ -364,10 +364,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   justify-content: flex-end;
   overflow: hidden;
   gap: var(--iui-size-2xs);
-  z-index: 1;
+  position: relative;
 }
 
 @mixin iui-tile-buttons {
+  z-index: 1;
   display: flex;
   flex-shrink: 0;
   user-select: none;
@@ -400,6 +401,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-more-options {
+  z-index: 1;
   grid-area: 1 / 1 / -1 / -1;
   position: absolute;
   place-self: end;
