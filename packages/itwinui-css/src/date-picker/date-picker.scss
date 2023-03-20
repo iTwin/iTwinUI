@@ -131,6 +131,17 @@ $iui-date-picker-today-circle-size: 32px;
     border-color: rgba(255, 255, 255, var(--iui-opacity-4));
   }
 }
+
+@mixin disabled-date-styling {
+  color: var(--iui-color-text-disabled);
+  background-color: transparent;
+  font-weight: var(--iui-font-weight-normal);
+  cursor: not-allowed;
+
+  @media (forced-colors: active) {
+    color: GrayText;
+  }
+}
 //#endregion Helper mixins
 
 @mixin iui-calendar-day {
@@ -138,6 +149,10 @@ $iui-date-picker-today-circle-size: 32px;
   &-today {
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
+
+    &[aria-disabled='true'] {
+      @include disabled-date-styling;
+    }
   }
 
   &-today {
@@ -225,6 +240,10 @@ $iui-date-picker-today-circle-size: 32px;
     @include iui-calendar-day-base;
     @include iui-calendar-day-base-hover;
     color: var(--iui-color-text-muted);
+
+    &[aria-disabled='true'] {
+      @include disabled-date-styling;
+    }
   }
 
   &-today {

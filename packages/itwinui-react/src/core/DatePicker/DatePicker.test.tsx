@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { DatePicker } from './DatePicker';
@@ -441,4 +441,59 @@ it('should update endDate when selecting a startDate value that is after endDate
   expect(selectedStartDay).toBeNull();
   expect(selectedRange).toHaveLength(0);
   expect(selectedEndDay).toBeNull();
+});
+
+it('should prevent selecting disabled dates', async () => {
+  const onClick = jest.fn();
+  const { container, getByText } = render(
+    <DatePicker
+      date={new Date(2020, 5, 5)}
+      onChange={onClick}
+      showYearSelection
+      isDateDisabled={(date) => {
+        // disable June 12th onwards
+        if (
+          date.getFullYear() > 2020 ||
+          (date.getFullYear() === 2020 &&
+            (date.getMonth() > 5 ||
+              (date.getMonth() === 5 && date.getDate() >= 12)))
+        ) {
+          return true;
+        }
+        return false;
+      }}
+    />,
+  );
+
+  // click 12
+  const day12 = getByText('12');
+  await userEvent.click(day12);
+  expect(onClick).not.toHaveBeenCalled();
+
+  // click 13
+  const day13 = getByText('13');
+  await userEvent.click(day13);
+  expect(onClick).not.toHaveBeenCalled();
+
+  expect(container.querySelector(selectedDaySelector)).toHaveTextContent('5');
+
+  // navigate to 12, then press Enter
+  await userEvent.keyboard('{ArrowDown}');
+  expect(document.activeElement).toEqual(day12);
+  expect(day12).toHaveAttribute('aria-disabled', 'true');
+  await userEvent.keyboard('{Enter}');
+  expect(onClick).not.toHaveBeenCalled();
+
+  // navigate to 13, then press Enter
+  await userEvent.keyboard('{ArrowRight}');
+  expect(document.activeElement).toEqual(day13);
+  expect(day13).toHaveAttribute('aria-disabled', 'true');
+  await userEvent.keyboard('{Enter}');
+  expect(onClick).not.toHaveBeenCalled();
+
+  // next month/year button should be disabled
+  expect(screen.getByLabelText('Previous year')).not.toBeDisabled();
+  expect(screen.getByLabelText('Previous month')).not.toBeDisabled();
+  expect(screen.getByLabelText('Next month')).toBeDisabled();
+  expect(screen.getByLabelText('Next year')).toBeDisabled();
 });

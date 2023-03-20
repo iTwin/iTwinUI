@@ -21,6 +21,9 @@ module.exports = [
   scenario('Type Date Range', {
     selectors: ['#demo-date-range'],
   }),
+  scenario('Type Some dates disabled', {
+    selectors: ['#demo-dates-disabled'],
+  }),
 
   // Hover states
   //// Date
