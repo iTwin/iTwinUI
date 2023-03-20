@@ -22,12 +22,7 @@
   ```js
   <Tile
     name={
-      <Tile.Action
-        as='button'
-        onClick={() => {
-          /* Do things */
-        }}
-      >
+      <Tile.Action as='button' onClick={() => {/* Do things */}>
         Tile name that is also a button
       </Tile.Action>
     }
@@ -43,17 +38,9 @@
 - a1f235d0: Fixed Carousel showing warnings in React 16 when using arrow keys.
 - c9dee6f5: Fixed an issue where Slider's tooltip was still visible after unmounting the component.
 - 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 028d4cd7: Updated actionable tile to have a more prominent hover effect.
 - 341449ca: Fixes an issue where stripe width for borderless and pill tabs was rendering an incorrect length upon first visiting the page.
-- Updated dependencies [01d29fc1]
-- Updated dependencies [e2f547e1]
-- Updated dependencies [028d4cd7]
-- Updated dependencies [61f44293]
-- Updated dependencies [775933e3]
-- Updated dependencies [91486634]
-- Updated dependencies [8bfd4fe9]
-- Updated dependencies [6f99039c]
-- Updated dependencies [17d4fffb]
-- Updated dependencies [c581e9ed]
+- Updated dependencies
   - @itwin/itwinui-css@1.8.0
 
 ## 2.6.0

@@ -17,8 +17,6 @@
   </div>
   ```
 
-  s
-
 ### Patch Changes
 
 - 01d29fc1: Fixed an issue in Firefox where the right edge of the `Table` header was misaligned with the table body.
