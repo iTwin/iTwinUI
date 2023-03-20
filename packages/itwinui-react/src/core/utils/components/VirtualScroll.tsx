@@ -221,6 +221,25 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     };
   }, [visibleChildren.length]);
 
+  const totalHeight = React.useCallback(
+    (parentRef: React.RefObject<HTMLElement>): number => {
+      let totalHeight = 0;
+      const children = parentRef.current?.children;
+
+      if (children) {
+        for (let i = 0; i < children.length; i++) {
+          const child = children.item(i) as HTMLElement;
+          totalHeight += Number(
+            getElementHeightWithMargins(child)?.toFixed(2) ?? 0,
+          );
+        }
+      }
+
+      return totalHeight - 1;
+    },
+    [],
+  );
+
   const onResize = React.useCallback(
     ({ height }: DOMRectReadOnly) => {
       // Initial value returned by resize observer is 0
@@ -417,8 +436,8 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   return {
     outerProps: {
       style: {
-        minHeight: scrollContainerHeight,
-        minWidth: '100%',
+        minHeight: totalHeight(parentRef),
+        minWidth: '99%',
         ...style,
       },
       ...rest,
