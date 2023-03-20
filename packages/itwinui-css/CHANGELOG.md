@@ -1,5 +1,32 @@
 # Changelog
 
+## 1.8.0
+
+### Minor Changes
+
+- 61f44293: Added new `isDateDisabled` prop to DatePicker. Accepts a function which takes a date and returns a boolean to indicate whether that date is not selectable.
+- 8bfd4fe9: Add predefined status variants for badge.
+- c581e9ed: Added a utils components `iui-link-box` and `iui-link-action` to provide better accessibility experience with actions on elements.
+  Updated Tile focus state when `iui-link-action` is present.
+
+  Usage example:
+
+  ```html
+  <div class="iui-link-box">
+    <a class="iui-link-action" href="/new-page">Test content</a>
+  </div>
+  ```
+
+### Patch Changes
+
+- 01d29fc1: Fixed an issue in Firefox where the right edge of the `Table` header was misaligned with the table body.
+- e2f547e1: Fixed a visual glitch in Tile thumbnail when hovering.
+- 028d4cd7: Updated actionable tile to have a more prominent hover effect.
+- 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 91486634: Modals and dialogs will have improved overflow behavior on smaller screen sizes with a lot of text.
+- 6f99039c: Fixed an issue with stepper when the last item is active.
+- 17d4fffb: Omit `border-radius` on adjacent active menu items.
+
 ## 1.7.0
 
 ### Minor Changes
