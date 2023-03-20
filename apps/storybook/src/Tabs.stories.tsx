@@ -233,10 +233,10 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
     <Tab key={3} label='Item 3' />,
     <Tab key={4} label='Item 4' />,
     <Tab key={5} label='Item 5' />,
-    <Tab key={6} label='Item 6' />,
+    <Tab key={6} label='Item 6' disabled />,
     <Tab key={7} label='Item 7' />,
     <Tab key={8} label='Item 8' />,
-    <Tab key={9} label='Item 9' />,
+    <Tab key={9} label='Item 9' disabled />,
     <Tab key={10} label='Item 10' />,
     <Tab key={11} label='Item 11' />,
     <Tab key={12} label='Item 12' />,
@@ -278,7 +278,11 @@ export const Overflow: Story<Partial<TabsProps>> = (args) => {
                     close();
                   };
                   return (
-                    <MenuItem key={itemNumber} onClick={onClick}>
+                    <MenuItem
+                      key={itemNumber}
+                      onClick={onClick}
+                      disabled={itemNumber === 6 || itemNumber === 9}
+                    >
                       {itemNumber === 13
                         ? 'Very long item number thirteen'
                         : `Item ${itemNumber}`}
@@ -316,10 +320,10 @@ Overflow.args = {
     <Tab key={3} label='Item 3' />,
     <Tab key={4} label='Item 4' />,
     <Tab key={5} label='Item 5' />,
-    <Tab key={6} label='Item 6' />,
+    <Tab key={6} label='Item 6' disabled />,
     <Tab key={7} label='Item 7' />,
     <Tab key={8} label='Item 8' />,
-    <Tab key={9} label='Item 9' />,
+    <Tab key={9} label='Item 9' disabled />,
     <Tab key={10} label='Item 10' />,
     <Tab key={11} label='Item 11' />,
     <Tab key={12} label='Item 12' />,

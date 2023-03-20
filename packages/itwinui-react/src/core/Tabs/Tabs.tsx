@@ -290,10 +290,17 @@ export const Tabs = (props: TabsProps) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
+      let tab;
+      const isOverflow = labels.length - visibleCount > 0;
+      const isLastVisibleTab = focusedIndex > visibleCount - 1;
+      if (isOverflow && isLastVisibleTab) {
+        tab = tablistRef.current.querySelectorAll('.iui-tab')[visibleCount - 1];
+      } else {
+        tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
+      }
       (tab as HTMLElement)?.focus();
     }
-  }, [focusedIndex]);
+  }, [focusedIndex, labels.length, visibleCount]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
   useIsomorphicLayoutEffect(() => {
@@ -367,9 +374,15 @@ export const Tabs = (props: TabsProps) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        event.preventDefault();
-        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
-          onTabClick(focusedIndex);
+        if (
+          !(event.target as HTMLTextAreaElement).className.includes(
+            'iui-button',
+          )
+        ) {
+          event.preventDefault();
+          if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
+            onTabClick(focusedIndex);
+          }
         }
         break;
       }
