@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import cx from 'classnames';
 import { CommonProps, useTheme, getContainer, getDocument } from '../utils';
 import '@itwin/itwinui-css/css/dialog.css';
 import { Dialog, DialogMainProps } from '../Dialog';
@@ -87,7 +86,6 @@ export const Modal = (props: ModalProps) => {
     children,
     modalRootId = 'iui-react-portal-container',
     ownerDocument = getDocument(),
-    styleType,
     ...rest
   } = props;
 
@@ -112,12 +110,6 @@ export const Modal = (props: ModalProps) => {
         setFocus
       >
         <Dialog.Backdrop />
-        <div
-          className={cx('iui-dialog', {
-            'iui-dialog-full-page': styleType === 'fullPage',
-            'iui-dialog-visible': isOpen,
-          })}
-        />
         <Dialog.Main aria-modal {...rest}>
           <Dialog.TitleBar titleText={title} />
           {children}
