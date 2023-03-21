@@ -6,8 +6,10 @@ import React from 'react';
 import cx from 'classnames';
 import {
   CommonProps,
+  getWindow,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
+  useSafeContext,
   useTheme,
 } from '../utils';
 import '@itwin/itwinui-css/css/surface.css';
@@ -44,6 +46,10 @@ export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
 
 const SurfaceHeader = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, ...rest } = props;
+  const { setLayout } = useSafeContext(SurfaceContext);
+
+  setLayout(true);
+
   return (
     <Element
       className={cx('iui-surface-header', className)}
@@ -70,6 +76,10 @@ export type SurfaceBodyProps<T extends React.ElementType = 'div'> =
 
 const SurfaceBody = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, isPadded, ...rest } = props;
+  const { setLayout } = useSafeContext(SurfaceContext);
+
+  setLayout(true);
+
   return (
     <Element
       className={cx('iui-surface-body', className)}
@@ -83,10 +93,6 @@ const SurfaceBody = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', SurfaceBodyOwnProps>;
 
 export type SurfaceProps = {
-  /**
-   * Places children vertically when set to true
-   */
-  hasLayout?: boolean;
   /**
    * Sets the elevation of the surface
    */
@@ -111,9 +117,11 @@ export type SurfaceProps = {
 export const Surface = Object.assign(
   React.forwardRef(
     (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-      const { elevation, className, style, children, hasLayout, ...rest } =
-        props;
+      const { elevation, className, style, children, ...rest } = props;
       useTheme();
+      const supportsHas = getWindow()?.CSS?.supports?.('selector(:has(+ *))');
+
+      const [layout, setLayout] = React.useState(false);
 
       const _style = {
         '--iui-surface-elevation': getSurfaceElevationValue(elevation),
@@ -124,10 +132,12 @@ export const Surface = Object.assign(
           className={cx('iui-surface', className)}
           style={_style}
           ref={ref}
-          data-iui-layout={hasLayout ? 'true' : undefined}
+          data-iui-layout={layout && !supportsHas ? 'true' : undefined}
           {...rest}
         >
-          {children}
+          <SurfaceContext.Provider value={{ setLayout }}>
+            {children}
+          </SurfaceContext.Provider>
         </div>
       );
     },
@@ -143,5 +153,15 @@ export const Surface = Object.assign(
     Body: SurfaceBody,
   },
 );
+
+export const SurfaceContext = React.createContext<
+  | {
+      /**
+       * Callback fired when layout has changed
+       */
+      setLayout: (layout: boolean) => void;
+    }
+  | undefined
+>(undefined);
 
 export default Surface;

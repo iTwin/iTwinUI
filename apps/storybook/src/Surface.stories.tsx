@@ -53,9 +53,9 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
 Basic.args = { elevation: 1 };
 
 export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, hasLayout, isPadded } = args;
+  const { elevation, isPadded } = args;
   return (
-    <Surface elevation={elevation} hasLayout={hasLayout} {...args}>
+    <Surface elevation={elevation} {...args}>
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>
@@ -81,17 +81,17 @@ export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   );
 };
 
-Custom.args = { elevation: 1, hasLayout: true, isPadded: true };
+Custom.args = { elevation: 1, isPadded: true };
 
 export const OverflowWithButtonFooter: Story<
   SurfaceProps & SurfaceBodyProps
 > = (args) => {
-  const { elevation, hasLayout, isPadded } = args;
+  const { elevation, isPadded } = args;
   const cardStyle = {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
+    <Surface elevation={elevation} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & button footer
@@ -136,12 +136,11 @@ export const OverflowWithButtonFooter: Story<
 
 OverflowWithButtonFooter.args = {
   elevation: 1,
-  hasLayout: true,
   isPadded: true,
 };
 
 export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, hasLayout, isPadded } = args;
+  const { elevation, isPadded } = args;
 
   const listStyle = {
     padding: 'var(--iui-size-s)',
@@ -151,7 +150,7 @@ export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
+    <Surface elevation={elevation} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & no body padding
@@ -197,17 +196,17 @@ export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   );
 };
 
-NoPadding.args = { elevation: 1, hasLayout: true, isPadded: false };
+NoPadding.args = { elevation: 1, isPadded: false };
 
 export const EmptyState: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, hasLayout, isPadded } = args;
+  const { elevation, isPadded } = args;
 
   const cardStyle = {
     height: '300px',
   };
 
   return (
-    <Surface elevation={elevation} style={cardStyle} hasLayout={hasLayout}>
+    <Surface elevation={elevation} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with empty state
@@ -230,4 +229,4 @@ export const EmptyState: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   );
 };
 
-EmptyState.args = { elevation: 1, hasLayout: true, isPadded: true };
+EmptyState.args = { elevation: 1, isPadded: true };
