@@ -8,7 +8,7 @@ import { SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Surface elevation={4} hasLayout={true}>
+    <Surface elevation={4}>
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>

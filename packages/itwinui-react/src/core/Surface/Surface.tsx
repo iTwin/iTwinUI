@@ -6,11 +6,11 @@ import React from 'react';
 import cx from 'classnames';
 import {
   CommonProps,
-  getWindow,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
   useSafeContext,
   useTheme,
+  supportsHas,
 } from '../utils';
 import '@itwin/itwinui-css/css/surface.css';
 
@@ -46,9 +46,13 @@ export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
 
 const SurfaceHeader = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, ...rest } = props;
-  const { setLayout } = useSafeContext(SurfaceContext);
+  const { setHasLayout } = useSafeContext(SurfaceContext);
 
-  setLayout(true);
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setHasLayout(true);
+    }
+  }, [setHasLayout]);
 
   return (
     <Element
@@ -76,10 +80,13 @@ export type SurfaceBodyProps<T extends React.ElementType = 'div'> =
 
 const SurfaceBody = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, isPadded, ...rest } = props;
-  const { setLayout } = useSafeContext(SurfaceContext);
+  const { setHasLayout } = useSafeContext(SurfaceContext);
 
-  setLayout(true);
-
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setHasLayout(true);
+    }
+  }, [setHasLayout]);
   return (
     <Element
       className={cx('iui-surface-body', className)}
@@ -108,8 +115,7 @@ export type SurfaceProps = {
  * @example
  * <Surface>Surface Content</Surface>
  * <Surface elevation={2}>Surface Content</Surface>
- * <Surface hasLayout={true}>Surface Content</Surface>
- * <Surface hasLayout={true}>
+ * <Surface>
  *   <Surface.Header>Surface Header Content</Surface.Header>
  *   <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
  * </Surface>
@@ -119,9 +125,8 @@ export const Surface = Object.assign(
     (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
       const { elevation, className, style, children, ...rest } = props;
       useTheme();
-      const supportsHas = getWindow()?.CSS?.supports?.('selector(:has(+ *))');
 
-      const [layout, setLayout] = React.useState(false);
+      const [hasLayout, setHasLayout] = React.useState(false);
 
       const _style = {
         '--iui-surface-elevation': getSurfaceElevationValue(elevation),
@@ -132,10 +137,10 @@ export const Surface = Object.assign(
           className={cx('iui-surface', className)}
           style={_style}
           ref={ref}
-          data-iui-layout={layout && !supportsHas ? 'true' : undefined}
+          data-iui-layout={hasLayout ? 'true' : undefined}
           {...rest}
         >
-          <SurfaceContext.Provider value={{ setLayout }}>
+          <SurfaceContext.Provider value={{ setHasLayout }}>
             {children}
           </SurfaceContext.Provider>
         </div>
@@ -154,12 +159,13 @@ export const Surface = Object.assign(
   },
 );
 
-export const SurfaceContext = React.createContext<
+const SurfaceContext = React.createContext<
   | {
       /**
-       * Callback fired when layout has changed
+       * Callback to be fired when :has selector is not supported.
+       * Used for setting data-iui-layout attribute
        */
-      setLayout: (layout: boolean) => void;
+      setHasLayout: (layout: boolean) => void;
     }
   | undefined
 >(undefined);
