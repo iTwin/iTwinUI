@@ -19,9 +19,17 @@
   box-shadow: var(--iui-surface-elevation);
   color: var(--iui-color-text);
 
-  &:where([data-iui-layout='true']) {
+  &:has(.iui-surface-header),
+  &:has(.iui-surface-body) {
     display: flex;
     flex-direction: column;
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where([data-iui-layout='true']) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 }
 
