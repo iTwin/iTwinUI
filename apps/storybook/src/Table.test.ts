@@ -29,7 +29,7 @@ describe('Table', () => {
     'Selectable Single',
     'Sortable',
     'Sticky Columns',
-    'With Manual Paginator',
+    'With Manual Paginator And Filter',
     'With Paginator',
     'Zebra Striped Rows',
     'Status And Cell Icons',
@@ -43,6 +43,10 @@ describe('Table', () => {
       switch (testName) {
         case 'Column Manager': {
           cy.get('.iui-slot .iui-button').click();
+          break;
+        }
+        case 'Condensed': {
+          cy.get('.iui-table-row-expander').first().click();
           break;
         }
         case 'Customized Columns': {

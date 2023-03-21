@@ -1,5 +1,104 @@
 # Changelog
 
+## 1.8.0
+
+### Minor Changes
+
+- 61f44293: Added new `isDateDisabled` prop to DatePicker. Accepts a function which takes a date and returns a boolean to indicate whether that date is not selectable.
+- 8bfd4fe9: Add predefined status variants for badge.
+- c581e9ed: Added a utils components `iui-link-box` and `iui-link-action` to provide better accessibility experience with actions on elements.
+  Updated Tile focus state when `iui-link-action` is present.
+
+  Usage example:
+
+  ```html
+  <div class="iui-link-box">
+    <a class="iui-link-action" href="/new-page">Test content</a>
+  </div>
+  ```
+
+### Patch Changes
+
+- 01d29fc1: Fixed an issue in Firefox where the right edge of the `Table` header was misaligned with the table body.
+- e2f547e1: Fixed a visual glitch in Tile thumbnail when hovering.
+- 028d4cd7: Updated actionable tile to have a more prominent hover effect.
+- 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 91486634: Modals and dialogs will have improved overflow behavior on smaller screen sizes with a lot of text.
+- 6f99039c: Fixed an issue with stepper when the last item is active.
+- 17d4fffb: Omit `border-radius` on adjacent active menu items.
+
+## 1.7.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- 62c4a6da: Fixed issue where checkbox / radio border appeared above `:focus` outline.
+
+## 1.6.0
+
+### Minor Changes
+
+- 2397ee0c: All styles will now be scoped and always take preference over previous major versions (`@itwin/itwinui-react`@`1.x`).
+
+  This enables incremental adoption of `@itwin/itwinui-react`@`2.x` for some parts of the app, while still using `1.x` for the rest of the app.
+
+  To use this feature, make sure that all parts that use v1 are updated to `@itwin/itwinui-css@0.63.2`, and then wrap the v2 parts in `ThemeProvider`:
+
+  ```html
+  <body>
+    <!-- rest of your app (v1) -->
+
+    <ThemeProvider>
+      <!-- new UI built using v2 -->
+    </ThemeProvider>
+  </body>
+  ```
+
+  For packages, there is a new theme `'inherit'`. Setting this enables scoping without forcing the default light theme. When the app eventually updates to v2, it can use its own `ThemeProvider` with any theme, and the components inside your package will inherit the app's theme.
+
+  ```html
+  <body>
+    <!-- rest of the app (maybe v1) -->
+
+    <!-- inside your package ⬇️ -->
+    <ThemeProvider theme='inherit'>
+      <!-- v2 components inside package -->
+    </ThemeProvider>
+  </bod
+  ```
+
+## 1.5.5
+
+### Patch Changes
+
+- b2831ddb: Fix expandable rows not displaying when height is set on table and `overflow-y` is present.
+
+## 1.5.4
+
+### Patch Changes
+
+- e1efed3b: Fix Table status icon fill not overriding svg's fill attribute.
+
 ## 1.5.3
 
 ### Patch Changes

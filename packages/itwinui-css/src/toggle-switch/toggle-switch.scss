@@ -3,6 +3,9 @@
 @import '../utils/index';
 
 @mixin iui-toggle-switch-wrapper {
+  --_iui-toggle-switch-handle-size: var(--iui-size-m);
+  --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
+
   @include iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
@@ -33,11 +36,18 @@
   &.iui-label-on-right {
     grid-template-areas: 'toggle label';
   }
+
+  &:where([data-iui-size='small']) {
+    --_iui-toggle-switch-handle-size: var(--iui-size-s);
+    --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
+
+    .iui-toggle-switch-icon {
+      display: none;
+    }
+  }
 }
 
 @mixin iui-toggle-switch {
-  $iui-toggle-switch-handle-size: var(--iui-size-m);
-  $iui-toggle-switch-handle-offset: var(--iui-size-2xs);
   $iui-toggle-switch-border-thickness: 1px;
 
   @include iui-reset;
@@ -47,9 +57,10 @@
   position: relative;
   cursor: pointer;
   appearance: none;
-  width: calc(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset * 2) * 2);
+  width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
   height: calc(
-    $iui-toggle-switch-handle-size + ($iui-toggle-switch-handle-offset * 2) + ($iui-toggle-switch-border-thickness * 2)
+    var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
+    ($iui-toggle-switch-border-thickness * 2)
   );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
@@ -62,11 +73,11 @@
 
   &::after {
     content: '';
-    height: $iui-toggle-switch-handle-size;
-    width: $iui-toggle-switch-handle-size;
-    margin: $iui-toggle-switch-handle-offset;
+    height: var(--_iui-toggle-switch-handle-size);
+    width: var(--_iui-toggle-switch-handle-size);
+    margin: var(--_iui-toggle-switch-handle-offset);
     aspect-ratio: 1 / 1;
-    border-radius: 50%;
+    border-radius: var(--iui-border-radius-round);
     transition: background-color var(--iui-duration-1) ease-out;
     z-index: 2;
     @media (prefers-reduced-motion: no-preference) {
@@ -120,7 +131,7 @@
     }
 
     &::after {
-      transform: translateX(calc($iui-toggle-switch-handle-size + $iui-toggle-switch-handle-offset));
+      transform: translateX(calc(var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset)));
       background-color: var(--iui-color-white);
       @media (forced-colors: active) {
         background-color: HighlightText;
@@ -181,10 +192,10 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: $iui-toggle-switch-handle-size;
-    height: $iui-toggle-switch-handle-size;
-    padding: calc($iui-toggle-switch-handle-size * 0.125);
-    margin: calc($iui-toggle-switch-handle-offset + $iui-toggle-switch-border-thickness);
+    width: var(--_iui-toggle-switch-handle-size);
+    height: var(--_iui-toggle-switch-handle-size);
+    padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
+    margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
     display: flex;
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;

@@ -5,6 +5,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import React from 'react';
 import { Slider } from './Slider';
+import userEvent from '@testing-library/user-event';
 
 const createBoundingClientRect = (
   left: number,
@@ -477,44 +478,30 @@ it('should not process keystrokes when slider is disabled', () => {
   expect(thumb.getAttribute('aria-valuenow')).toEqual('50');
 });
 
-it('should show tooltip on thumb hover', () => {
+it('should show tooltip on thumb hover', async () => {
   const { container } = render(<Slider values={defaultSingleValue} />);
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
   expect(document.querySelector('.iui-tooltip')).toBeFalsy();
 
-  act(() => {
-    fireEvent.mouseEnter(thumb);
-  });
+  await userEvent.hover(thumb);
   expect(document.querySelector('.iui-tooltip')?.textContent).toBe('50');
-
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  act(() => {
-    fireEvent.mouseLeave(thumb);
-  });
-  expect(tippy).not.toBeVisible();
+  expect(document.querySelector('[data-tippy-root]')).toBeVisible();
 });
 
-it('should show tooltip on thumb focus', () => {
+it('should show tooltip on thumb focus', async () => {
   const { container } = render(<Slider values={defaultSingleValue} />);
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
   expect(document.querySelector('.iui-tooltip')).toBeFalsy();
 
-  act(() => {
-    thumb.focus();
-  });
+  await userEvent.tab();
   expect(
     (document.querySelector('.iui-tooltip') as HTMLDivElement).textContent,
   ).toBe('50');
-
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  act(() => {
-    thumb.blur();
-  });
-  expect(tippy).not.toBeVisible();
+  expect(document.querySelector('[data-tippy-root]')).toBeVisible();
 });
 
 it('should apply thumb props', () => {

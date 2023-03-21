@@ -9,7 +9,7 @@ export default () => {
   return (
     <div>
       <p style={{ marginBottom: 12 }}>Page content before alert.</p>
-      <Alert style={{ minWidth: 350 }}>This is a inline alert.</Alert>
+      <Alert style={{ minWidth: 'min(100%, 280px)' }}>This is a inline alert.</Alert>
       <p style={{ marginTop: 12 }}>Page content after alert.</p>
     </div>
   );
