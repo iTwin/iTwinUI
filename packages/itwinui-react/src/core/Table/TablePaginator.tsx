@@ -202,7 +202,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser/assistive technologies
-    if (event.altKey) {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
       return;
     }
 
