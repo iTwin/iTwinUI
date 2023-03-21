@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as React from 'react';
 import { getDocument, getWindow } from '../functions';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { useIsThemeAlreadySet } from './useIsThemeAlreadySet';
@@ -53,6 +54,8 @@ export const useTheme = (
 ) => {
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
   const isThemeAlreadySet = useIsThemeAlreadySet(ownerDocument);
+
+  useCorrectRootFontSize();
 
   useIsomorphicLayoutEffect(() => {
     if (!ownerDocument || isThemeAlreadySet.current) {
@@ -132,4 +135,27 @@ const handleTheme = (
     prefersDarkQuery?.removeEventListener?.('change', changeHandler);
     prefersHCQuery?.removeEventListener?.('change', changeHandler);
   };
+};
+
+let didLogWarning = false;
+let isDev = false;
+
+// wrapping in try-catch because process might be undefined
+try {
+  isDev = process.env.NODE_ENV !== 'production';
+} catch {}
+
+/** Shows console warning if the page changes the font size */
+const useCorrectRootFontSize = () => {
+  React.useEffect(() => {
+    if (isDev && !didLogWarning) {
+      const rootFontSize = parseInt(
+        getComputedStyle(document.documentElement).fontSize,
+      );
+      if (rootFontSize < 16) {
+        console.error('Please dont fuck with the root font size');
+        didLogWarning = true;
+      }
+    }
+  }, []);
 };
