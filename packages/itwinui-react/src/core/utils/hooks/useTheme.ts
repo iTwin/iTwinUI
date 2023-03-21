@@ -145,7 +145,7 @@ try {
   isDev = process.env.NODE_ENV !== 'production';
 } catch {}
 
-/** Shows console warning if the page changes the font size */
+/** Shows console error if the page changes the root font size */
 const useCorrectRootFontSize = () => {
   React.useEffect(() => {
     if (isDev && !didLogWarning) {
@@ -153,7 +153,9 @@ const useCorrectRootFontSize = () => {
         getComputedStyle(document.documentElement).fontSize,
       );
       if (rootFontSize < 16) {
-        console.error('Please dont fuck with the root font size');
+        console.error(
+          'Root font size must not be overridden. \nSee https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#relative-font-size',
+        );
         didLogWarning = true;
       }
     }
