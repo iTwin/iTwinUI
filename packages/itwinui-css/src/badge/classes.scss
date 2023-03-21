@@ -4,4 +4,10 @@
 
 .iui-badge {
   @include iui-badge;
+
+  @each $status in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$status}']) {
+      @include iui-badge-status($status);
+    }
+  }
 }

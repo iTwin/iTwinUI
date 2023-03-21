@@ -202,6 +202,11 @@ export type DatePickerProps = {
    * @default false
    */
   showYearSelection?: boolean;
+  /**
+   * Will disable dates for which this function returns true.
+   * Disabled dates cannot be selected.
+   */
+  isDateDisabled?: (date: Date) => boolean;
 } & DateRangePickerProps &
   Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
@@ -234,6 +239,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     enableRangeSelect = false,
     startDate,
     endDate,
+    isDateDisabled,
     ...rest
   } = props;
 
@@ -441,6 +447,22 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     }
   };
 
+  const isPreviousMonthDisabled = isDateDisabled?.(
+    new Date(displayedYear, displayedMonthIndex, 0),
+  );
+
+  const isNextMonthDisabled = isDateDisabled?.(
+    new Date(displayedYear, displayedMonthIndex + 1, 1),
+  );
+
+  const isPreviousYearDisabled = isDateDisabled?.(
+    new Date(displayedYear - 1, 11, 31),
+  );
+
+  const isNextYearDisabled = isDateDisabled?.(
+    new Date(displayedYear + 1, 0, 1),
+  );
+
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -452,6 +474,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowDown':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isNextMonthDisabled) {
+            return;
+          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -461,6 +486,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowUp':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isPreviousMonthDisabled) {
+            return;
+          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -470,6 +498,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowLeft':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isPreviousMonthDisabled) {
+            return;
+          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -479,6 +510,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowRight':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
+          if (isNextMonthDisabled) {
+            return;
+          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -488,7 +522,9 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'Enter':
       case ' ':
       case 'Spacebar':
-        onDayClick(focusedDay);
+        if (!isDateDisabled?.(focusedDay)) {
+          onDayClick(focusedDay);
+        }
         event.preventDefault();
         break;
     }
@@ -539,6 +575,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               onClick={handleMoveToPreviousYear}
               aria-label='Previous year'
               size='small'
+              disabled={isPreviousYearDisabled}
             >
               <SvgChevronLeftDouble />
             </IconButton>
@@ -548,6 +585,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToPreviousMonth}
             aria-label='Previous month'
             size='small'
+            disabled={isPreviousMonthDisabled}
           >
             <SvgChevronLeft />
           </IconButton>
@@ -565,6 +603,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToNextMonth}
             aria-label='Next month'
             size='small'
+            disabled={isNextMonthDisabled}
           >
             <SvgChevronRight />
           </IconButton>
@@ -574,6 +613,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               onClick={handleMoveToNextYear}
               aria-label='Next year'
               size='small'
+              disabled={isNextYearDisabled}
             >
               <SvgChevronRightDouble />
             </IconButton>
@@ -595,13 +635,15 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
+                  const isDisabled = isDateDisabled?.(weekDay);
                   return (
                     <div
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
                       className={getDayClass(weekDay)}
-                      onClick={() => onDayClick(weekDay)}
+                      onClick={() => !isDisabled && onDayClick(weekDay)}
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
+                      aria-disabled={isDisabled ? 'true' : undefined}
                       ref={(element) =>
                         isSameDay(weekDay, focusedDay) &&
                         needFocus.current &&

@@ -14,6 +14,7 @@ export { default as AvatarMainExample } from './Avatar.main';
 export { default as AvatarGroupExample } from './Avatar.group';
 export { default as AvatarGroupAnimatedExample } from './Avatar.groupanimated';
 export { default as AvatarGroupOverflowExample } from './Avatar.groupoverflow';
+export { default as AvatarGroupOverflowTooltipExample } from './Avatar.groupoverflowtooltip';
 export { default as AvatarGroupStackedExample } from './Avatar.groupstacked';
 export { default as AvatarIconExample } from './Avatar.icon';
 export { default as AvatarInitialsExample } from './Avatar.initials';
