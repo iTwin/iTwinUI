@@ -119,30 +119,29 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 }
 
-// TODO: improve these classes
-@mixin menu-item-content {
-  .iui-content,
-  .iui-menu-label,
-  .iui-menu-description {
+@mixin iui-menu-item-content {
+  display: grid;
+  flex: 1 1 auto;
+
+  &,
+  > * {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
 
-  .iui-content {
-    flex: 1 1 auto;
-  }
-
-  .iui-menu-description {
-    font-size: var(--iui-font-size-0);
-    color: var(--iui-color-text-muted);
-  }
+@mixin iui-menu-item-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--iui-font-size-0);
+  color: var(--iui-color-text-muted);
 }
 
 @mixin iui-menu-item-skeleton {
   --iui-menu-item-content-skeleton-max-width: 30%;
   cursor: auto;
-  gap: var(--iui-size-2xs);
 
   .iui-content {
     max-inline-size: var(--iui-menu-item-content-skeleton-max-width);
@@ -158,6 +157,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     inline-size: 70%;
     block-size: var(--iui-font-size-0);
     vertical-align: middle;
+    margin-block-start: var(--iui-size-2xs);
   }
 
   &:hover {

@@ -14,10 +14,6 @@
   @include iui-menu-item;
 }
 
-.iui-menu-item {
-  @include menu-item-content;
-}
-
 :is(.iui-menu-item > .iui-icon) {
   @include iui-menu-icon;
 }
@@ -28,6 +24,14 @@
 
 .iui-menu-content {
   @include iui-menu-content;
+}
+
+:is(.iui-menu-item > .iui-content, .iui-list-item-content) {
+  @include iui-menu-item-content;
+}
+
+:is(.iui-menu-description, .iui-list-item-description) {
+  @include iui-menu-item-description;
 }
 
 .iui-menu-divider {
