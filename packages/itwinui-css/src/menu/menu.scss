@@ -20,12 +20,10 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 }
 
-@mixin header-menu-styles {
-  .iui-header-menu-icon {
-    margin: 0 var(--iui-size-2xs);
-  }
+@mixin iui-header-menu-icon {
+  margin: 0 var(--iui-size-2xs);
 
-  div.iui-header-menu-icon {
+  &:is(div) {
     @include iui-icon-style('l');
     margin: 0;
     border-radius: var(--iui-border-radius-1);

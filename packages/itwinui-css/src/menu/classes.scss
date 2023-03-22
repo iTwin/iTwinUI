@@ -4,10 +4,10 @@
 
 :is(.iui-list, .iui-menu) {
   @include iui-list-menu;
-}
 
-.iui-menu {
-  @include header-menu-styles;
+  .iui-header-menu-icon {
+    @include iui-header-menu-icon;
+  }
 }
 
 :is(.iui-list-item, .iui-menu-item) {
