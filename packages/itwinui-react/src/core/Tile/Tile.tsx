@@ -13,7 +13,7 @@ import {
   LinkAction,
   PolymorphicComponentProps,
   useSafeContext,
-  getWindow,
+  supportsHas,
 } from '../utils';
 import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
@@ -41,13 +41,11 @@ export const TileAction = (
   props: PolymorphicComponentProps<'a', TileActionOwnProps>,
 ) => {
   const tileContext = useSafeContext(TileContext);
-  const supportsHas = getWindow()?.CSS?.supports?.('selector(:has(+ *))');
-
   React.useEffect(() => {
-    if (!supportsHas) {
+    if (!supportsHas()) {
       tileContext.setActionable(true);
     }
-  }, [supportsHas, tileContext]);
+  }, [tileContext]);
 
   return <LinkAction {...props} />;
 };

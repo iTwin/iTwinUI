@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Surface', () => {
   const storyPath = 'Core/Surface';
-  const tests = ['Basic'];
+  const tests = [
+    'Basic',
+    'Custom',
+    'Overflow With Button Footer',
+    'No Padding',
+    'Empty State',
+  ];
 
   tests.forEach((testName) => {
     it(testName, function () {
