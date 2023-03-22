@@ -125,19 +125,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
       fill: var(--iui-color-icon-disabled);
     }
   }
-
-  // nested links should have no styling and should have the same click area as the list item
-  :where(a) {
-    all: unset;
-    color: inherit;
-    text-decoration: none;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-    }
-  }
 }
 
 // TODO: improve these classes
