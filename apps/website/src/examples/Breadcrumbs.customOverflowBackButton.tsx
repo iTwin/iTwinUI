@@ -12,7 +12,7 @@ export default () => {
     .map((_, index) => <Button key={index}>Item {index}</Button>);
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
       <Breadcrumbs
         overflowButton={(visibleCount: number) => {
           const previousBreadcrumb =
@@ -20,6 +20,7 @@ export default () => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
+                aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
                   // open previous breadcrumb
                 }}

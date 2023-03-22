@@ -12,7 +12,7 @@ export default () => {
     .map((_, index) => <Button key={index}>Item {index}</Button>);
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
       <Breadcrumbs
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
@@ -33,7 +33,7 @@ export default () => {
                 })
             }
           >
-            <IconButton>
+            <IconButton aria-label='Dropdown with more breadcrumbs'>
               <SvgMore />
             </IconButton>
           </DropdownMenu>
