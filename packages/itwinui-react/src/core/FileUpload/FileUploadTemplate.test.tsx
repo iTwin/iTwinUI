@@ -13,6 +13,9 @@ it('should render FileUploadTemplate', () => {
     <FileUploadTemplate onChange={mockedOnChange} />,
   );
 
+  const template = container.querySelector('.iui-file-upload-template');
+  expect(template).toBeTruthy();
+
   const input = container.querySelector(
     '.iui-browse-input',
   ) as HTMLInputElement;
@@ -33,9 +36,9 @@ it('should render FileUploadTemplate', () => {
   expect(secondary.textContent).toEqual('or drag & drop it here.');
 
   const { container: uploadIcon } = render(
-    <SvgUpload aria-hidden className='iui-icon' />,
+    <SvgUpload aria-hidden className='iui-template-icon' />,
   );
-  const svg = container.querySelector('.iui-icon') as SVGSVGElement;
+  const svg = container.querySelector('.iui-template-icon') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(uploadIcon.firstChild);
 });

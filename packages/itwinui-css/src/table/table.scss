@@ -15,7 +15,8 @@
   overflow: hidden;
   // Fix for Firefox columns misalignment
   @supports not (overflow: overlay) {
-    overflow-y: scroll;
+    scrollbar-gutter: stable;
+    background-color: var(--iui-color-background);
   }
   display: flex;
   flex-shrink: 0;

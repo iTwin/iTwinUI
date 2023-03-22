@@ -5,6 +5,8 @@
 @import '../surface/index';
 @import '../utils/index';
 
+$thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
+
 @mixin iui-tile {
   --_iui-tile-title-text-color: var(--iui-color-text);
   --_iui-tile-body-text-color: var(--iui-color-text-muted);
@@ -15,9 +17,19 @@
   flex-direction: column;
   width: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
+  isolation: isolate;
+  position: relative;
+  will-change: transform;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
   &:where(:not(.iui-folder)) {
-    > :where(:first-child) {
+    > :where(.iui-tile-thumbnail) {
       border-top-left-radius: inherit;
       border-top-right-radius: inherit;
     }
@@ -28,13 +40,14 @@
     }
   }
 
+  &:not(:hover, :focus-within) {
+    .iui-tile-more-options:where(:not(.iui-visible)) {
+      @include visually-hidden;
+    }
+  }
+
   &:hover,
   &:focus-within {
-    .iui-tile-more-options {
-      @include visually-hidden-revert;
-      position: absolute;
-    }
-
     .iui-tile-metadata:not(:last-child) {
       width: calc(100% - #{var(--iui-size-xl)});
     }
@@ -49,74 +62,13 @@
     }
   }
 
-  &.iui-selected {
-    @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
-    --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
-
-    outline: solid 2px var(--iui-color-border-accent);
-    background-color: var(--iui-color-background-accent-muted);
-  }
-
-  &.iui-actionable {
-    @include iui-focus($offset: var(--iui-size-3xs), $thickness: var(--iui-size-3xs));
-    cursor: pointer;
-    transition: box-shadow var(--iui-duration-1) ease-in-out;
-
-    &:hover {
-      box-shadow: var(--iui-shadow-3);
-    }
-
-    &:hover,
-    &:focus-within,
-    &.iui-selected {
-      .iui-tile-thumbnail-picture {
-        transform: translateZ(0) scale(1.1);
-      }
-    }
-  }
-
-  &.iui-folder {
-    display: inline-flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-
-    > :where(:first-child) {
-      border-top-left-radius: inherit;
-      border-bottom-left-radius: inherit;
-    }
-
-    > :where(:last-child) {
-      border-top-right-radius: inherit;
-      border-bottom-right-radius: inherit;
-    }
-
-    .iui-tile-thumbnail {
-      height: calc(var(--iui-size-s) * 10);
-      flex: 1;
-      border-bottom: none;
-      border-right: 1px solid var(--iui-color-border);
-    }
-
-    .iui-tile-content {
-      flex: 2;
-    }
-
-    .iui-tile-description {
-      height: 100%;
-      max-height: calc(var(--iui-size-s) * 4);
-      margin-bottom: 0;
-      -webkit-line-clamp: 2;
-    }
-  }
-
   //#region Statuses
   &.iui-loading,
   &[aria-disabled='true'] {
     --_iui-tile-title-text-color: var(--iui-color-text-disabled);
     --_iui-tile-body-text-color: var(--iui-color-text-disabled);
 
-    .iui-thumbnail-icon,
-    .iui-tile-thumbnail-picture {
+    #{$thumbnail-selector} {
       filter: grayscale(100%);
     }
 
@@ -125,8 +77,7 @@
       color: inherit;
     }
 
-    &:hover .iui-tile-thumbnail-picture,
-    &:focus-within .iui-tile-thumbnail-picture {
+    &:is(:hover, :focus-within) #{$thumbnail-selector} {
       transform: none;
     }
   }
@@ -142,103 +93,213 @@
   //#endregion Statuses
 }
 
-@mixin iui-tile-content {
-  padding: var(--iui-size-s) var(--iui-size-s);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 2;
-  min-width: 0;
+@mixin iui-selected {
+  @include iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
+  --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
 
-  .iui-tile-name {
-    display: flex;
-    flex-shrink: 0;
-    align-items: center;
-    font-size: var(--iui-font-size-2);
-    user-select: all;
-    margin-bottom: calc(var(--iui-size-s) * 0.5);
-    color: var(--_iui-tile-title-text-color);
-  }
+  outline: solid 2px var(--iui-color-border-accent);
+  background-color: var(--iui-color-background-accent-muted);
+}
 
-  .iui-tile-status-icon {
-    @include iui-icon-style('m');
-    margin-right: var(--iui-size-xs);
-    fill: var(--_iui-tile-status-icon-fill);
-  }
+@mixin iui-actionable {
+  &:has(.iui-link-action:focus-visible) {
+    outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    outline-offset: var(--iui-size-3xs);
 
-  .iui-tile-name-label {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
-
-  .iui-tile-description {
-    margin-bottom: var(--iui-size-s);
-    font-size: var(--iui-font-size-1);
-    height: 100%;
-    max-height: calc(var(--iui-size-s) * 6);
-    @include iui-line-clamp(3);
-    color: var(--_iui-tile-body-text-color);
-  }
-
-  .iui-tile-metadata {
-    font-size: var(--iui-font-size-0);
-    flex-shrink: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: var(--iui-size-l);
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-top: auto;
-    color: var(--_iui-tile-body-text-color);
-
-    > svg,
-    .iui-tile-metadata-icon {
-      @include iui-icon-style('m');
-      fill: var(--iui-color-icon-muted);
-      margin-right: var(--iui-size-xs);
+    &.iui-selected {
+      outline-width: var(--iui-size-2xs);
     }
+  }
 
-    > * {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+      outline-offset: var(--iui-size-3xs);
+
+      &.iui-selected {
+        outline-width: var(--iui-size-2xs);
+      }
+    }
+  }
+
+  cursor: pointer;
+  transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
+
+  &:hover {
+    box-shadow: var(--iui-shadow-4);
+
+    $y: 4px;
+    transform: translateY(-$y);
+
+    // prevent doom flicker when hovering near the bottom edge
+    &::before {
+      transform: translateY($y);
+    }
+  }
+
+  &:is(:hover, :focus-within) #{$thumbnail-selector} {
+    transform: rotate(-4deg);
+  }
+
+  &:is(:hover, :focus-within, .iui-selected) #{$thumbnail-selector} {
+    &:is(div, img) {
+      transform: translateZ(0) scale(1.1);
     }
   }
 }
 
-@mixin iui-tile-thumbnail {
-  box-sizing: content-box;
+@mixin iui-folder {
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  > :where(:first-child) {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+  }
+
+  > :where(:last-child) {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  .iui-tile-thumbnail {
+    height: calc(var(--iui-size-s) * 10);
+    flex: 1;
+    border-bottom: none;
+    border-right: 1px solid var(--iui-color-border);
+    margin: 0;
+  }
+
+  .iui-tile-content {
+    flex: 2;
+    padding: var(--iui-size-s);
+
+    > * {
+      padding: 0;
+    }
+  }
+
+  .iui-tile-description {
+    height: 100%;
+    max-height: calc(var(--iui-size-s) * 4);
+    margin-bottom: 0;
+    -webkit-line-clamp: 2;
+  }
+}
+
+@mixin iui-tile-content {
+  padding-bottom: var(--iui-size-s);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  flex-grow: 2;
+  min-width: 0;
+
+  > * {
+    grid-column: 1;
+    max-width: 100%;
+    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    padding-inline: var(--iui-size-s);
+  }
+}
+
+@mixin iui-tile-name {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  font-size: var(--iui-font-size-2);
+  user-select: all;
+  color: var(--_iui-tile-title-text-color);
+  overflow: hidden;
+  padding-inline: var(--iui-size-s);
+  margin-bottom: calc(var(--iui-size-s) * 0.5);
+}
+
+@mixin iui-tile-status-icon {
+  @include iui-icon-style('m');
+  margin-right: var(--iui-size-xs);
+  fill: var(--_iui-tile-status-icon-fill);
+}
+
+@mixin iui-tile-name-label {
+  &,
+  > .iui-link-action {
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+@mixin iui-tile-description {
+  margin-bottom: var(--iui-size-s);
+  font-size: var(--iui-font-size-1);
+  height: 100%;
+  max-height: calc(var(--iui-size-s) * 6);
+  @include iui-line-clamp(3);
+  color: var(--_iui-tile-body-text-color);
+}
+
+@mixin iui-tile-metadata {
+  font-size: var(--iui-font-size-0);
+  flex-shrink: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: var(--iui-size-l);
   width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: 0;
+  color: var(--_iui-tile-body-text-color);
+
+  > svg,
+  .iui-tile-metadata-icon {
+    @include iui-icon-style('m');
+    fill: var(--iui-color-icon-muted);
+    margin-right: var(--iui-size-xs);
+  }
+
+  > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@mixin iui-tile-thumbnail {
+  order: -1;
+  box-sizing: content-box;
   height: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
   overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
   background-color: var(--iui-color-background-zebra);
   border-bottom: 1px solid var(--iui-color-border);
+  margin-bottom: var(--iui-size-s);
+
+  > * {
+    grid-area: 1 / 1 / -1 / -1;
+  }
 
   .iui-avatar {
     @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
+    place-self: center;
   }
 
   .iui-thumbnail-icon {
     @include iui-icon-style(3xl);
     @include iui-icon-color;
+    transition: transform var(--iui-duration-2) ease;
+    place-self: center;
   }
 }
 
 @mixin iui-tile-thumbnail-picture {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   @media (prefers-reduced-motion: no-preference) {
     transition: transform var(--iui-duration-2) ease;
+    will-change: transform;
   }
 
   &:is(div) {
@@ -262,15 +323,14 @@
 @mixin iui-tile-thumbnail-button($variant) {
   @include iui-button-borderless;
   @include iui-button-size(small, borderless);
-  position: absolute;
+  z-index: 2;
   border-radius: 50%;
-  top: calc(var(--iui-size-s) * 0.5);
+  margin-top: calc(var(--iui-size-s) * 0.5);
+  margin-inline: var(--iui-size-xs);
+  place-self: start;
 
-  @if $variant == type-indicator {
-    left: var(--iui-size-xs);
-  }
   @if $variant == quick-action {
-    right: var(--iui-size-xs);
+    justify-self: end;
   }
 
   &[data-iui-active='true'] {
@@ -296,18 +356,19 @@
 }
 
 @mixin iui-tile-thumbnail-badge {
-  position: absolute;
-  bottom: calc(var(--iui-size-s) * 0.5);
+  place-self: end;
+  margin-bottom: calc(var(--iui-size-s) * 0.5);
   width: calc(100% - 2 * #{var(--iui-size-s)});
-  height: auto;
-  right: var(--iui-size-s);
+  margin-right: var(--iui-size-s);
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
   gap: var(--iui-size-2xs);
+  position: relative;
 }
 
 @mixin iui-tile-buttons {
+  z-index: 2;
   display: flex;
   flex-shrink: 0;
   user-select: none;
@@ -340,12 +401,29 @@
 }
 
 @mixin iui-tile-more-options {
+  z-index: 2;
+  grid-area: 1 / 1 / -1 / -1;
   position: absolute;
-  bottom: calc(var(--iui-size-s) * 0.5);
-  right: var(--iui-size-xs);
+  place-self: end;
+  display: grid;
+  margin: 0;
 
-  &:not(.iui-visible) {
-    @include visually-hidden;
+  // visual adjustment to counteract invisible padding from borderless button
+  margin-right: calc(-1 * var(--iui-size-2xs));
+
+  // safari doesn't support grid + position:absolute, so we will hardcode the values
+  @include safari-only {
+    bottom: var(--iui-size-s);
+    right: 0;
+    margin: 0;
+
+    :where(.iui-tile.iui-folder) & {
+      right: var(--iui-size-xs);
+    }
+
+    :where(.iui-tile:has(.iui-tile-buttons)) & {
+      bottom: 3.25rem;
+    }
   }
 }
 

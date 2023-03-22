@@ -10,11 +10,47 @@ import {
   SvgMore,
   SvgNew,
   SvgCheckmark,
+  LinkAction,
+  PolymorphicComponentProps,
+  useSafeContext,
+  getWindow,
 } from '../utils';
 import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu';
 import { IconButton } from '../Buttons';
 import { ProgressRadial } from '../ProgressIndicators';
+
+const TileContext = React.createContext<
+  | {
+      setActionable: React.Dispatch<React.SetStateAction<boolean>>;
+    }
+  | undefined
+>(undefined);
+
+type TileActionOwnProps = {}; // eslint-disable-line
+
+/**
+ * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+ * Renders `a` element by default.
+ * @example
+ * <Tile
+ *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+ * />
+ */
+export const TileAction = (
+  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
+) => {
+  const tileContext = useSafeContext(TileContext);
+  const supportsHas = getWindow()?.CSS?.supports?.('selector(:has(+ *))');
+
+  React.useEffect(() => {
+    if (!supportsHas) {
+      tileContext.setActionable(true);
+    }
+  }, [supportsHas, tileContext]);
+
+  return <LinkAction {...props} />;
+};
 
 export type TileProps = {
   /**
@@ -118,7 +154,8 @@ export type TileProps = {
    * @default false
    */
   isDisabled?: boolean;
-} & React.ComponentPropsWithoutRef<'div'>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
+} & Omit<React.ComponentPropsWithoutRef<'div'>, 'onClick'>;
 
 /**
  * Tile component that displays content and actions in a card-like format.
@@ -137,148 +174,190 @@ export type TileProps = {
  *  isNew={false}
  * />
  */
-export const Tile = (props: TileProps) => {
-  const {
-    className,
-    name,
-    description,
-    metadata,
-    thumbnail,
-    buttons,
-    leftIcon,
-    rightIcon,
-    badge,
-    isNew,
-    isSelected,
-    moreOptions,
-    variant = 'default',
-    children,
-    isActionable,
-    status,
-    isLoading = false,
-    isDisabled = false,
-    ...rest
-  } = props;
+export const Tile = Object.assign(
+  (props: TileProps) => {
+    const {
+      className,
+      name,
+      description,
+      metadata,
+      thumbnail,
+      buttons,
+      leftIcon,
+      rightIcon,
+      badge,
+      isNew,
+      isSelected,
+      moreOptions,
+      variant = 'default',
+      children,
+      isActionable: isActionableProp,
+      status,
+      isLoading = false,
+      isDisabled = false,
+      onClick,
+      ...rest
+    } = props;
 
-  useTheme();
+    useTheme();
 
-  const [isMenuVisible, setIsMenuVisible] = React.useState(false);
-  const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
-  const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
+    const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+    const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
+    const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
+    const [localActionable, setLocalActionable] =
+      React.useState(isActionableProp);
 
-  return (
-    <div
-      className={cx(
-        'iui-tile',
-        {
-          'iui-folder': variant === 'folder',
-          'iui-new': isNew,
-          'iui-selected': isSelected,
-          'iui-actionable': isActionable,
-          [`iui-${status}`]: !!status,
-          'iui-loading': isLoading,
-        },
-        className,
-      )}
-      aria-disabled={isDisabled}
-      tabIndex={isActionable && !isDisabled ? 0 : undefined}
-      {...rest}
-    >
-      {thumbnail && (
-        <div className='iui-tile-thumbnail'>
-          {typeof thumbnail === 'string' ? (
-            <div
-              className='iui-tile-thumbnail-picture'
-              style={{ backgroundImage: `url(${thumbnail})` }}
-            />
-          ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
-            React.cloneElement(thumbnail as JSX.Element, {
-              className: 'iui-tile-thumbnail-picture',
-            })
-          ) : React.isValidElement(thumbnail) ? (
-            React.cloneElement(thumbnail, {
-              className: cx('iui-thumbnail-icon', thumbnail.props.className),
-            })
-          ) : (
-            thumbnail
-          )}
+    const isActionable = isActionableProp ?? localActionable;
 
-          {leftIcon &&
-            React.cloneElement(leftIcon as React.ReactElement, {
-              className: 'iui-tile-thumbnail-type-indicator',
-              'data-iui-size': 'small',
-            })}
+    const tileName = (
+      <div className='iui-tile-name'>
+        <TitleIcon
+          isLoading={isLoading}
+          isSelected={isSelected}
+          isNew={isNew}
+          status={status}
+        />
 
-          {rightIcon &&
-            React.cloneElement(rightIcon as React.ReactElement, {
-              className: 'iui-tile-thumbnail-quick-action',
-              'data-iui-size': 'small',
-            })}
-
-          {badge && (
-            <div className='iui-tile-thumbnail-badge-container'>{badge}</div>
-          )}
-        </div>
-      )}
-
-      <div className='iui-tile-content'>
-        <div className='iui-tile-name'>
-          <TitleIcon
-            isLoading={isLoading}
-            isSelected={isSelected}
-            isNew={isNew}
-            status={status}
-          />
-
-          <span className='iui-tile-name-label'>{name}</span>
-        </div>
-
-        {description != undefined && (
-          <div className='iui-tile-description'>{description}</div>
-        )}
-
-        {metadata != undefined && (
-          <div className='iui-tile-metadata'>{metadata}</div>
-        )}
-
-        {moreOptions && (
-          <DropdownMenu
-            onShow={showMenu}
-            onHide={hideMenu}
-            menuItems={(close) =>
-              moreOptions.map((option: React.ReactElement) =>
-                React.cloneElement(option, {
-                  onClick: (value: unknown) => {
-                    close();
-                    option.props.onClick?.(value);
-                  },
-                }),
-              )
-            }
-          >
-            <div
-              className={cx('iui-tile-more-options', {
-                'iui-visible': isMenuVisible,
-              })}
+        <span className='iui-tile-name-label'>
+          {isActionable && onClick ? (
+            <LinkAction
+              as='button'
+              onClick={!isDisabled ? onClick : undefined}
+              aria-disabled={isDisabled}
             >
-              <IconButton
-                styleType='borderless'
-                size='small'
-                aria-label='More options'
-              >
-                <SvgMore />
-              </IconButton>
-            </div>
-          </DropdownMenu>
-        )}
-
-        {children}
+              {name}
+            </LinkAction>
+          ) : (
+            name
+          )}
+        </span>
       </div>
+    );
 
-      {buttons && <div className='iui-tile-buttons'>{buttons}</div>}
-    </div>
-  );
-};
+    return (
+      <TileContext.Provider value={{ setActionable: setLocalActionable }}>
+        <div
+          className={cx(
+            'iui-tile',
+            {
+              'iui-folder': variant === 'folder',
+              'iui-new': isNew,
+              'iui-selected': isSelected,
+              'iui-actionable': isActionable,
+              [`iui-${status}`]: !!status,
+              'iui-loading': isLoading,
+            },
+            className,
+          )}
+          aria-disabled={isDisabled}
+          {...rest}
+        >
+          {variant !== 'folder' ? tileName : null}
+
+          {thumbnail && (
+            <div className='iui-tile-thumbnail'>
+              {typeof thumbnail === 'string' ? (
+                <div
+                  className='iui-tile-thumbnail-picture'
+                  style={{ backgroundImage: `url(${thumbnail})` }}
+                />
+              ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
+                React.cloneElement(thumbnail as JSX.Element, {
+                  className: 'iui-tile-thumbnail-picture',
+                })
+              ) : React.isValidElement(thumbnail) ? (
+                React.cloneElement(thumbnail, {
+                  className: cx(
+                    'iui-thumbnail-icon',
+                    thumbnail.props.className,
+                  ),
+                })
+              ) : (
+                thumbnail
+              )}
+
+              {leftIcon &&
+                React.cloneElement(leftIcon as React.ReactElement, {
+                  className: 'iui-tile-thumbnail-type-indicator',
+                  'data-iui-size': 'small',
+                })}
+
+              {rightIcon &&
+                React.cloneElement(rightIcon as React.ReactElement, {
+                  className: 'iui-tile-thumbnail-quick-action',
+                  'data-iui-size': 'small',
+                })}
+
+              {badge && (
+                <div className='iui-tile-thumbnail-badge-container'>
+                  {badge}
+                </div>
+              )}
+            </div>
+          )}
+
+          <div className='iui-tile-content'>
+            {variant === 'folder' ? tileName : null}
+
+            {description != undefined && (
+              <div className='iui-tile-description'>{description}</div>
+            )}
+
+            {metadata != undefined && (
+              <div className='iui-tile-metadata'>{metadata}</div>
+            )}
+
+            {moreOptions && (
+              <DropdownMenu
+                onShow={showMenu}
+                onHide={hideMenu}
+                menuItems={(close) =>
+                  moreOptions.map((option: React.ReactElement) =>
+                    React.cloneElement(option, {
+                      onClick: (value: unknown) => {
+                        close();
+                        option.props.onClick?.(value);
+                      },
+                    }),
+                  )
+                }
+              >
+                <div
+                  className={cx('iui-tile-more-options', {
+                    'iui-visible': isMenuVisible,
+                  })}
+                >
+                  <IconButton
+                    styleType='borderless'
+                    size='small'
+                    aria-label='More options'
+                  >
+                    <SvgMore />
+                  </IconButton>
+                </div>
+              </DropdownMenu>
+            )}
+
+            {children}
+          </div>
+
+          {buttons && <div className='iui-tile-buttons'>{buttons}</div>}
+        </div>
+      </TileContext.Provider>
+    );
+  },
+  {
+    /**
+     * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+     * Renders `a` element by default.
+     * @example
+     * <Tile
+     *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+     * />
+     */
+    Action: TileAction,
+  },
+);
 
 type TitleIconProps = {
   isLoading?: boolean;

@@ -97,8 +97,27 @@ export type { ExpandableBlockProps } from './ExpandableBlock';
 export { Fieldset } from './Fieldset';
 export type { FieldsetProps } from './Fieldset';
 
-export { FileUpload, FileUploadTemplate } from './FileUpload';
-export type { FileUploadProps, FileUploadTemplateProps } from './FileUpload';
+export {
+  FileUpload,
+  FileUploadTemplate,
+  FileUploadCard,
+  FileEmptyCard,
+} from './FileUpload';
+export type {
+  FileUploadProps,
+  FileUploadTemplateProps,
+  FileUploadCardProps,
+  FileUploadCardIconProps,
+  FileUploadCardInfoProps,
+  FileUploadCardTitleProps,
+  FileUploadCardDescriptionProps,
+  FileUploadCardActionProps,
+  FileUploadCardInputLabelProps,
+  FileUploadCardInputProps,
+  FileEmptyCardProps,
+  FileEmptyCardIconProps,
+  FileEmptyCardTextProps,
+} from './FileUpload';
 
 export { Footer, defaultFooterElements } from './Footer';
 export type { FooterProps, FooterElement, TitleTranslations } from './Footer';
@@ -318,6 +337,8 @@ export {
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  LinkBox,
+  LinkAction,
   Icon,
   Flex,
   VerticalDivider,
@@ -330,6 +351,8 @@ export type {
   FlexItemProps,
   FlexSpacerProps,
   VerticalDividerProps,
+  LinkBoxProps,
+  LinkActionProps,
 } from './utils';
 
 export { SearchBox } from './SearchBox';

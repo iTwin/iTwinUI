@@ -59,6 +59,14 @@ export const useTheme = (
       return;
     }
 
+    // do nothing if using v1 for the main page (incremental migration)
+    if (
+      ownerDocument.documentElement.className.includes('iui-theme-') ||
+      ownerDocument.body.classList.contains('iui-body')
+    ) {
+      return;
+    }
+
     ownerDocument.body.classList.toggle('iui-root', true);
 
     switch (theme) {

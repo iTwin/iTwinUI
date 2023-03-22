@@ -32,3 +32,4 @@ export * from './SvgSearch';
 export * from './SvgFilter';
 export * from './SvgFilterHollow';
 export * from './SvgCalendar';
+export * from './SvgDocument';
