@@ -76,6 +76,16 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     useTheme();
 
     const [style, setStyle] = React.useState<React.CSSProperties>();
+    const [isOpenDelayed, setIsOpenDelayed] = React.useState(false);
+    React.useEffect(() => {
+      if (isOpen) {
+        setTimeout(() => {
+          setIsOpenDelayed(true);
+        }, 1);
+      } else {
+        setIsOpenDelayed(false);
+      }
+    }, [isOpen]);
 
     const dialogRef = React.useRef<HTMLDivElement>(null);
     const refs = useMergedRefs(dialogRef, ref);
@@ -190,7 +200,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           {
             'iui-dialog-default': styleType === 'default',
             'iui-dialog-full-page': styleType === 'fullPage',
-            'iui-dialog-visible': isOpen,
+            'iui-dialog-visible': isOpenDelayed,
             'iui-dialog-draggable': isDraggable,
           },
           className,
