@@ -38,7 +38,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   font-size: var(--iui-font-size-1);
   padding-block: var(--iui-size-2xs);
   padding-inline: var(--iui-size-s);
-  min-height: var(--iui-component-height);
+  min-block-size: var(--iui-component-height);
   cursor: pointer;
   line-height: normal;
   color: var(--iui-color-text);
@@ -47,7 +47,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   position: relative;
 
   + #{&} {
-    margin-top: -1px;
+    margin-block-start: -1px;
   }
 
   &:where(:hover) {
@@ -69,7 +69,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &.iui-large {
-    min-height: var(--iui-component-height-large);
+    min-block-size: var(--iui-component-height-large);
   }
 
   &.iui-active {
@@ -142,22 +142,22 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-item-skeleton {
   --iui-menu-item-content-skeleton-max-width: 30%;
   cursor: auto;
+  gap: var(--iui-size-2xs);
 
   .iui-content {
-    max-width: var(--iui-menu-item-content-skeleton-max-width);
+    max-inline-size: var(--iui-menu-item-content-skeleton-max-width);
   }
 
   .iui-menu-label {
-    width: 100%;
-    height: var(--iui-font-size-1);
+    inline-size: 100%;
+    block-size: var(--iui-font-size-1);
     vertical-align: middle;
   }
 
   .iui-menu-description {
-    width: 70%;
-    height: var(--iui-font-size-0);
+    inline-size: 70%;
+    block-size: var(--iui-font-size-0);
     vertical-align: middle;
-    margin-top: var(--iui-size-2xs);
   }
 
   &:hover {
@@ -168,14 +168,14 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-content {
   padding-block: var(--iui-size-xs);
   padding-inline: var(--iui-size-m);
-  min-height: var(--iui-component-height);
+  min-block-size: var(--iui-component-height);
   display: grid;
   align-items: center;
 }
 
 @mixin iui-menu-divider {
-  height: 1px;
-  width: calc(100% - #{var(--iui-size-l)});
+  block-size: 1px;
+  inline-size: calc(100% - #{var(--iui-size-l)});
   margin: 1px auto;
   background-color: var(--iui-color-border);
 }
