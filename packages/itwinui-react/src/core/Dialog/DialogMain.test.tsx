@@ -19,9 +19,7 @@ afterAll(() => {
 it('should render in its most basic state', () => {
   const { container } = render(<DialogMain isOpen>test-content</DialogMain>);
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
   expect(dialog.getAttribute('role')).toEqual('dialog');
@@ -35,7 +33,7 @@ it('should render full page dialog', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-full-page.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-full-page',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
@@ -50,7 +48,7 @@ it('should render draggable dialog', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-draggable',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
@@ -64,9 +62,7 @@ it('should render with custom style and className', () => {
     </DialogMain>,
   );
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog.classList.contains('test-class')).toBeTruthy();
   expect(dialog).toHaveStyle('color: red');
@@ -232,7 +228,7 @@ it('should handle drag', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-draggable',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
 
@@ -256,9 +252,7 @@ it('should not handle drag when dialog is not draggable', () => {
     </DialogMain>,
   );
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
 
   const titleBar = container.querySelector(

@@ -17,7 +17,6 @@ function assertBaseElement(
   expect(backdrop.className).toContain('iui-backdrop-visible');
   expect(dialog).toBeTruthy();
   expect(dialog.className).toContain('iui-dialog');
-  expect(dialog.className).toContain('iui-dialog-visible');
   expect(dialog.className).toContain(`iui-dialog-${styleType}`);
 
   const title = dialog.querySelector('.iui-dialog-title-bar') as HTMLElement;
