@@ -34,6 +34,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-item {
   display: flex;
   align-items: center;
+  gap: var(--iui-size-xs);
   font-size: var(--iui-font-size-1);
   padding-block: var(--iui-size-2xs);
   padding-inline: var(--iui-size-s);
@@ -69,10 +70,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
   &.iui-large {
     min-height: var(--iui-component-height-large);
-
-    .iui-menu-description {
-      display: block;
-    }
   }
 
   &.iui-active {
@@ -92,13 +89,10 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     color: var(--iui-color-text-accent);
     outline: $iui-active-outline;
     outline-offset: -1px;
+    --_iui-list-item-icon-fill: currentColor;
 
     .iui-menu-description {
       color: inherit;
-    }
-
-    > .iui-icon {
-      fill: currentColor;
     }
 
     &:where(:focus-visible, .iui-focused, :has(:focus-visible)) {
@@ -120,10 +114,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     outline: none;
     background-color: var(--iui-color-background);
     color: var(--iui-color-text-disabled);
-
-    > .iui-icon {
-      fill: var(--iui-color-icon-disabled);
-    }
+    --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
   }
 }
 
@@ -139,21 +130,11 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
   .iui-content {
     flex: 1 1 auto;
-
-    + .iui-icon {
-      margin-right: 0;
-      margin-left: var(--iui-size-xs);
-    }
   }
 
   .iui-menu-description {
-    display: none;
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
-  }
-
-  > .iui-icon {
-    @include iui-menu-icon;
   }
 }
 
@@ -201,9 +182,5 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-icon {
   @include iui-icon-style('m');
   flex: 0 0 auto;
-  fill: var(--iui-color-icon);
-
-  + .iui-content {
-    margin-left: var(--iui-size-xs);
-  }
+  fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
 }

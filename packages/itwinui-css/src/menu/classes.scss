@@ -18,6 +18,10 @@
   @include menu-item-content;
 }
 
+:is(.iui-menu-item > .iui-icon) {
+  @include iui-menu-icon;
+}
+
 .iui-menu-item-skeleton {
   @include iui-menu-item-skeleton;
 }
