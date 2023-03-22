@@ -14,7 +14,7 @@
   @include iui-menu-item;
 }
 
-:is(.iui-menu-item > .iui-icon) {
+:is(.iui-menu-item > .iui-icon, .iui-list-item-icon) {
   @include iui-menu-icon;
 }
 
