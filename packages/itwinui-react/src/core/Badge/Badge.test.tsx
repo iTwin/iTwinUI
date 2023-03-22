@@ -27,16 +27,18 @@ it('should set inline background color correctly', () => {
 });
 
 it.each([
-  ['primary', '#A5D7F5'],
-  ['positive', '#C3E1AF'],
-  ['negative', '#EFA9A9'],
-  ['warning', '#F9D7AB'],
-])('should render %s status badge', (key, value) => {
-  const { container } = render(<Badge backgroundColor={key}>label</Badge>);
+  'primary',
+  'positive',
+  'negative',
+  'warning',
+  'informational',
+] as const)('should render %s status badge', (status) => {
+  const { container } = render(<Badge backgroundColor={status}>label</Badge>);
   const badge = container.querySelector('.iui-badge') as HTMLElement;
   expect(badge.textContent).toBe('label');
-  expect(badge.style.getPropertyValue('--iui-badge-background-color')).toEqual(
-    value,
+  expect(badge).toHaveAttribute(
+    'data-iui-status',
+    status === 'primary' ? 'informational' : status,
   );
 });
 

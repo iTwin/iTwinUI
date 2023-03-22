@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as React from 'react';
 import { getDocument, getWindow } from '../functions';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 import { useIsThemeAlreadySet } from './useIsThemeAlreadySet';
@@ -54,8 +55,18 @@ export const useTheme = (
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
   const isThemeAlreadySet = useIsThemeAlreadySet(ownerDocument);
 
+  useCorrectRootFontSize();
+
   useIsomorphicLayoutEffect(() => {
     if (!ownerDocument || isThemeAlreadySet.current) {
+      return;
+    }
+
+    // do nothing if using v1 for the main page (incremental migration)
+    if (
+      ownerDocument.documentElement.className.includes('iui-theme-') ||
+      ownerDocument.body.classList.contains('iui-body')
+    ) {
       return;
     }
 
@@ -124,4 +135,29 @@ const handleTheme = (
     prefersDarkQuery?.removeEventListener?.('change', changeHandler);
     prefersHCQuery?.removeEventListener?.('change', changeHandler);
   };
+};
+
+let didLogWarning = false;
+let isDev = false;
+
+// wrapping in try-catch because process might be undefined
+try {
+  isDev = process.env.NODE_ENV !== 'production';
+} catch {}
+
+/** Shows console error if the page changes the root font size */
+const useCorrectRootFontSize = () => {
+  React.useEffect(() => {
+    if (isDev && !didLogWarning) {
+      const rootFontSize = parseInt(
+        getComputedStyle(document.documentElement).fontSize,
+      );
+      if (rootFontSize < 16) {
+        console.error(
+          'Root font size must not be overridden. \nSee https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#relative-font-size',
+        );
+        didLogWarning = true;
+      }
+    }
+  }, []);
 };

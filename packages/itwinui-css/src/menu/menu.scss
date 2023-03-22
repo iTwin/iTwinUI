@@ -76,6 +76,18 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &.iui-active {
+    @supports selector(:has(+ *)) {
+      &:where(:has(+ #{&})) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      + :where(#{&}) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
     background-color: var(--iui-color-background-accent-muted);
     color: var(--iui-color-text-accent);
     outline: $iui-active-outline;

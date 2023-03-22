@@ -913,3 +913,15 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
   await userEvent.tab();
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });
+
+it('should not crash when provided value in not in options when multiple enabled', async () => {
+  const mockOnChange = jest.fn();
+  const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
+
+  const { container } = render(
+    <ComboBox options={options} onChange={mockOnChange} multiple value={[3]} />,
+  );
+
+  const input = container.querySelector('.iui-input') as HTMLInputElement;
+  expect(input).toHaveValue('');
+});
