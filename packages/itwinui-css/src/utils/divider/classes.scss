@@ -2,14 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-surface {
-  @include iui-surface;
-}
-
-.iui-surface-header {
-  @include iui-surface-header;
-}
-
-.iui-surface-body {
-  @include iui-surface-body;
+.iui-divider {
+  @include iui-divider;
 }
