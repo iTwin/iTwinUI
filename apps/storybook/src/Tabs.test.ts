@@ -20,7 +20,6 @@ describe('Tabs', () => {
       cy.wait(1000); // wait for resize observer to be done
 
       if (testName === 'Overflow') {
-        cy.wait(5000);
         cy.get('.iui-button').click();
       }
 
