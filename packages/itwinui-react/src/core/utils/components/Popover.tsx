@@ -126,6 +126,10 @@ export const hideOnEscOrTab = {
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.altKey) {
+        return;
+      }
+
       switch (event.key) {
         case 'Escape':
           instance.hide();
