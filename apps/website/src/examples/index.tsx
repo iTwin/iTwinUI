@@ -36,7 +36,6 @@ export { default as BreadcrumbsFolderExample } from './Breadcrumbs.folder';
 export { default as BreadcrumbsLinkExample } from './Breadcrumbs.link';
 export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
 export { default as BreadcrumbsTruncationExample } from './Breadcrumbs.truncation';
-export { default as BreadcrumbsCustomOverflowBackButtonExample } from './Breadcrumbs.customOverflowBackButton';
 export { default as BreadcrumbsCustomOverflowDropdownExample } from './Breadcrumbs.customOverflowDropdown';
 
 export { default as ButtonDefaultExample } from './Button.default';
