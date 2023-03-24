@@ -17,6 +17,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     size = 'default',
     disabled = false,
     active = false,
+    actionable = false,
     className,
     ...rest
   } = props;
@@ -29,6 +30,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
       data-iui-size={size === 'large' ? 'large' : undefined}
+      data-iui-actionable={actionable ? 'true' : undefined}
       ref={ref}
       role='listitem'
       {...rest}
@@ -40,6 +42,7 @@ type ListItemOwnProps = {
   size?: 'default' | 'large';
   disabled?: boolean;
   active?: boolean;
+  actionable?: boolean;
 };
 
 // ----------------------------------------------------------------------------
