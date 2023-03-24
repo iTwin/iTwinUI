@@ -13,7 +13,7 @@ import '@itwin/itwinui-css/css/menu.css';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'div',
+    as: Element = 'li',
     size = 'default',
     disabled = false,
     active = false,
@@ -32,11 +32,10 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       data-iui-size={size === 'large' ? 'large' : undefined}
       data-iui-actionable={actionable ? 'true' : undefined}
       ref={ref}
-      role='listitem'
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', ListItemOwnProps>;
+}) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
 
 type ListItemOwnProps = {
   size?: 'default' | 'large';
@@ -102,4 +101,4 @@ export const ListItem = Object.assign(ListItemComponent, {
   Description: ListItemDescription,
 });
 
-export type ListItemProps = PolymorphicComponentProps<'div', ListItemOwnProps>;
+export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;

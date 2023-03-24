@@ -12,7 +12,7 @@ import type {
 import '@itwin/itwinui-css/css/menu.css';
 
 export const List = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
+  const { as: Element = 'ul', className, ...rest } = props;
 
   useTheme();
 
@@ -24,8 +24,8 @@ export const List = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', ListOwnProps>;
+}) as PolymorphicForwardRefComponent<'ul', ListOwnProps>;
 
 type ListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-export type ListProps = PolymorphicComponentProps<'div', ListOwnProps>;
+export type ListProps = PolymorphicComponentProps<'ul', ListOwnProps>;
