@@ -3,11 +3,15 @@
 @import './index';
 
 :is(.iui-list, .iui-menu) {
-  @include iui-list-menu;
+  @include iui-list;
 
   .iui-header-menu-icon {
     @include iui-header-menu-icon;
   }
+}
+
+.iui-menu {
+  @include iui-menu;
 }
 
 :is(.iui-list-item, .iui-menu-item) {
