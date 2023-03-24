@@ -18,6 +18,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     disabled = false,
     active = false,
     actionable = false,
+    focused = false,
     className,
     ...rest
   } = props;
@@ -31,6 +32,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       data-iui-disabled={disabled ? 'true' : undefined}
       data-iui-size={size === 'large' ? 'large' : undefined}
       data-iui-actionable={actionable ? 'true' : undefined}
+      data-iui-focused={focused ? 'true' : undefined}
       ref={ref}
       {...rest}
     />
@@ -42,6 +44,7 @@ type ListItemOwnProps = {
   disabled?: boolean;
   active?: boolean;
   actionable?: boolean;
+  focused?: boolean;
 };
 
 // ----------------------------------------------------------------------------

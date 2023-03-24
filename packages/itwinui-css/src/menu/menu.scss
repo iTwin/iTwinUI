@@ -57,7 +57,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     background-color: var(--iui-color-background-hover);
   }
 
-  &:where(:focus-visible, .iui-focused, :has(.iui-link-action:focus-visible)) {
+  &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
     outline: $iui-active-outline;
     outline-offset: -1px;
     z-index: 2;
@@ -96,7 +96,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     --_iui-list-item-icon-fill: currentColor;
     --_iui-list-item-description-color: var(--iui-color-text-accent);
 
-    &:where(:focus-visible, .iui-focused, :has(.iui-link-action:focus-visible)) {
+    &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
       outline-width: var(--iui-size-3xs);
       outline-offset: -2px;
     }
