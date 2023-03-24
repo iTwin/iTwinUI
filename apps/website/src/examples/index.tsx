@@ -108,6 +108,7 @@ export { default as SliderMainExample } from './Slider.main';
 export { default as StepperMainExample } from './Stepper.main';
 
 export { default as SurfaceMainExample } from './Surface.main';
+export { default as SurfaceCustomExample } from './Surface.custom';
 
 export { default as TableMainExample } from './Table.main';
 

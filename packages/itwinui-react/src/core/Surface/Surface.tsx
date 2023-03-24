@@ -4,7 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { CommonProps, useTheme } from '../utils';
+import {
+  CommonProps,
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+  useSafeContext,
+  useTheme,
+  supportsHas,
+} from '../utils';
 import '@itwin/itwinui-css/css/surface.css';
 
 /**
@@ -29,6 +36,69 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
   }
 };
 
+// ----------------------------------------------------------------------------
+// Surface.Header component
+
+type SurfaceHeaderOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, SurfaceHeaderOwnProps>;
+
+const SurfaceHeader = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', children, className, ...rest } = props;
+  const { setHasLayout } = useSafeContext(SurfaceContext);
+
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setHasLayout(true);
+    }
+  }, [setHasLayout]);
+
+  return (
+    <Element
+      className={cx('iui-surface-header', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', SurfaceHeaderOwnProps>;
+
+// ----------------------------------------------------------------------------
+// Surface.Body component
+
+type SurfaceBodyOwnProps = {
+  /**
+   * Gives padding to the surface body
+   */
+  isPadded?: boolean;
+};
+
+export type SurfaceBodyProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, SurfaceBodyOwnProps>;
+
+const SurfaceBody = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', children, className, isPadded, ...rest } = props;
+  const { setHasLayout } = useSafeContext(SurfaceContext);
+
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setHasLayout(true);
+    }
+  }, [setHasLayout]);
+  return (
+    <Element
+      className={cx('iui-surface-body', className)}
+      ref={ref}
+      data-iui-padded={isPadded ? 'true' : undefined}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', SurfaceBodyOwnProps>;
+
 export type SurfaceProps = {
   /**
    * Sets the elevation of the surface
@@ -45,27 +115,59 @@ export type SurfaceProps = {
  * @example
  * <Surface>Surface Content</Surface>
  * <Surface elevation={2}>Surface Content</Surface>
+ * <Surface>
+ *   <Surface.Header>Surface Header Content</Surface.Header>
+ *   <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
+ * </Surface>
  */
-export const Surface = React.forwardRef(
-  (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-    const { elevation, className, style, children, ...rest } = props;
-    useTheme();
+export const Surface = Object.assign(
+  React.forwardRef(
+    (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
+      const { elevation, className, style, children, ...rest } = props;
+      useTheme();
 
-    const _style = {
-      '--iui-surface-elevation': getSurfaceElevationValue(elevation),
-      ...style,
-    };
-    return (
-      <div
-        className={cx('iui-surface', className)}
-        style={_style}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
+      const [hasLayout, setHasLayout] = React.useState(false);
+
+      const _style = {
+        '--iui-surface-elevation': getSurfaceElevationValue(elevation),
+        ...style,
+      };
+      return (
+        <div
+          className={cx('iui-surface', className)}
+          style={_style}
+          ref={ref}
+          data-iui-layout={hasLayout ? 'true' : undefined}
+          {...rest}
+        >
+          <SurfaceContext.Provider value={{ setHasLayout }}>
+            {children}
+          </SurfaceContext.Provider>
+        </div>
+      );
+    },
+  ),
+  {
+    /**
+     * 	Surface header subcomponent
+     */
+    Header: SurfaceHeader,
+    /**
+     * 	Surface body subcomponent. Additional padding can be added to the body through the 'isPadded' prop
+     */
+    Body: SurfaceBody,
   },
 );
+
+const SurfaceContext = React.createContext<
+  | {
+      /**
+       * Callback to be fired when :has selector is not supported.
+       * Used for setting data-iui-layout attribute
+       */
+      setHasLayout: (layout: boolean) => void;
+    }
+  | undefined
+>(undefined);
 
 export default Surface;

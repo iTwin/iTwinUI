@@ -43,3 +43,39 @@ it('should add className and style correctly', () => {
   expect(surface).toBeTruthy();
   expect(surface.style.color).toBe('grey');
 });
+
+it('should render custom surface', () => {
+  const { container } = render(
+    <Surface>
+      <Surface.Header>TestHeader</Surface.Header>
+      <Surface.Body isPadded={true}>TestBody</Surface.Body>
+    </Surface>,
+  );
+  const surface = container.querySelector('.iui-surface') as HTMLElement;
+  expect(surface).toBeTruthy();
+  expect(surface.getAttribute('data-iui-layout')).toBeTruthy();
+
+  const surfaceHeader = container.querySelector(
+    '.iui-surface-header',
+  ) as HTMLElement;
+  expect(surfaceHeader).toBeTruthy();
+  expect(surfaceHeader.textContent).toBe('TestHeader');
+
+  const surfaceBody = container.querySelector(
+    '.iui-surface-body',
+  ) as HTMLElement;
+  expect(surfaceBody).toBeTruthy();
+  expect(surfaceBody.getAttribute('data-iui-padded')).toBeTruthy();
+  expect(surfaceBody.textContent).toBe('TestBody');
+});
+it('should support polymorphic `as` prop', () => {
+  const { container } = render(
+    <Surface>
+      <Surface.Header as='h1'>TestHeader</Surface.Header>
+      <Surface.Body as='h2'>TestBody</Surface.Body>
+    </Surface>,
+  );
+
+  expect(container.querySelector('h1')).toHaveClass('iui-surface-header');
+  expect(container.querySelector('h2')).toHaveClass('iui-surface-body');
+});
