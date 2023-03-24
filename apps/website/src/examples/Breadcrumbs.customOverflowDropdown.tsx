@@ -12,7 +12,15 @@ export default () => {
     .map((_, index) => <Button key={index}>Item {index}</Button>);
 
   return (
-    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '75%',
+        minWidth: 150,
+        maxWidth: 425,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Breadcrumbs
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
