@@ -26,32 +26,12 @@ export default {
   title: 'Input/SearchBox',
 } as Meta<SearchBoxProps>;
 
-export const Basic: Story<SearchBoxProps> = (args) => {
-  return (
-    <SearchBox {...args}>
-      <input type='search' placeholder='Search...' />
-      <IconButton styleType='borderless'>
-        <SvgCaretUpSmall />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgCaretDownSmall />
-      </IconButton>
-    </SearchBox>
-  );
+export const Basic: Story<SearchBoxProps> = () => {
+  return <SearchBox />;
 };
 
 export const Expandable: Story<SearchBoxProps> = (args) => {
-  return (
-    <SearchBox expandable {...args}>
-      <input type='search' placeholder='Search...' />
-      <IconButton styleType='borderless'>
-        <SvgCaretUpSmall />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgCaretDownSmall />
-      </IconButton>
-    </SearchBox>
-  );
+  return <SearchBox expandable {...args} />;
 };
 
 export const Small: Story<SearchBoxProps> = (args) => {
@@ -75,10 +55,11 @@ export const WithCustomAction: Story<SearchBoxProps> = (args) => {
     <SearchBox
       expandable
       isExpanded={expanded}
-      onToggle={(_expanded: boolean) => setExpanded(_expanded)}
+      onFocus={() => setExpanded(true)}
+      // onToggle={(_expanded: boolean) => setExpanded(_expanded)}
       {...args}
     >
-      <IconButton styleType='borderless'>
+      <IconButton styleType='borderless' onClick={() => setExpanded(false)}>
         <SvgCloseSmall />
       </IconButton>
       <input type='search' placeholder='Search...' />
