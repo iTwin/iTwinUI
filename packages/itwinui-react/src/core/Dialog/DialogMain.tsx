@@ -183,6 +183,14 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       [],
     );
 
+    const contentRef = React.useRef<HTMLDivElement>(null);
+
+    React.useEffect(() => {
+      if (isOpen && contentRef.current) {
+        contentRef.current.focus();
+      }
+    }, [isOpen]);
+
     const content = (
       <div
         className={cx(
@@ -222,14 +230,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         {children}
       </div>
     );
-
-    const contentRef = React.useRef<HTMLDivElement>(null);
-
-    React.useEffect(() => {
-      if (isOpen && contentRef.current) {
-        contentRef.current.focus();
-      }
-    }, [isOpen]);
 
     return (
       <CSSTransition
