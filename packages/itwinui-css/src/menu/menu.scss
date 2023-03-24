@@ -7,12 +7,12 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 @mixin iui-list {
   @include iui-reset;
-  @include iui-surface;
   list-style-type: none;
   isolation: isolate;
 }
 
 @mixin iui-menu {
+  @include iui-surface;
   max-height: var(--iui-menu-max-height);
   border-radius: var(--iui-border-radius-1);
 
