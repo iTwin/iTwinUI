@@ -8,7 +8,7 @@ import { SvgSmileyHappyVery, SvgSmileySadVery } from '@itwin/itwinui-icons-react
 
 export default () => {
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: 'min(100%, 300px)' }}>
       <Slider
         values={[50]}
         minLabel={<SvgSmileySadVery />}

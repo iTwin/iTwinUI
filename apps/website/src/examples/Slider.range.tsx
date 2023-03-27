@@ -7,7 +7,7 @@ import { Slider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ width: '300px' }}>
+    <div style={{ width: 'min(100%, 300px)' }}>
       <Slider
         values={[25, 75]}
         tickLabels={['0', '20', '40', '60', '80', '100']}
