@@ -37,7 +37,11 @@ export { default as BreadcrumbsLinkExample } from './Breadcrumbs.link';
 export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
 export { default as BreadcrumbsTruncationExample } from './Breadcrumbs.truncation';
 
+export { default as ButtonSizeExample } from './Button.size';
 export { default as ButtonDefaultExample } from './Button.default';
+export { default as ButtonHighVisibilityExample } from './Button.highvisibility';
+export { default as ButtonBorderlessExample } from './Button.borderless';
+export { default as ButtonCTAExample } from './Button.cta';
 export { default as ButtonMainExample } from './Button.main';
 export { default as IconButtonMainExample } from './IconButton.main';
 export { default as IdeasButtonMainExample } from './IdeasButton.main';
