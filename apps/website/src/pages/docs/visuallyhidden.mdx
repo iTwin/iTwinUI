@@ -1,0 +1,33 @@
+---
+title: Visually hidden
+description: A utility component content visually but keeps it accessible to assistive technologies.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/utils/components/VisuallyHidden.d.ts'
+thumbnail: #TODO
+group: utilities
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
+
+The `VisuallyHidden` utility is used for hiding content from sighted users, while still keeping it in the accessibility tree for screen readers and others assistive technologies. This is achieved using a [very specific ruleset](https://www.tpgi.com/the-anatomy-of-visually-hidden/) that has been tested across a variety of browsers and assistive technologies.
+
+One common use for this component is to provide a text alternative for icons and symbols. In the following example, sighted users will see the star visual reprentation, while screen reader users will hear "3 stars out 5".
+
+<LiveExample src='VisuallyHidden.icon.tsx'>
+  <AllExamples.VisuallyHiddenIconExample client:load />
+</LiveExample>
+
+Another use for this component is to add additional text for screen readers to make it easy to differentiate between a set of similar buttons/links, without interfering with the design for sighted users. In the following example, the buttons will be announced by screen readers as "Delete item 1", "Delete item 2", etc.
+
+<LiveExample src='VisuallyHidden.moretext.tsx'>
+  <AllExamples.VisuallyHiddenMoreTextExample client:load />
+</LiveExample>
+
+By default, if an interactive element is passed as children and it gets focused, then it will "unhide". This avoids confusion for keyboard users for whom the focus might otherwise get "lost". If your design already has alternative means to indicate focus, then you can disable this behavior using `unhideOnFocus={false}`.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
