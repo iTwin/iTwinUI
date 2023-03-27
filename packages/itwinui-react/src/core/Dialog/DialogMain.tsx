@@ -7,7 +7,6 @@ import cx from 'classnames';
 import {
   FocusTrap,
   getTranslateValues,
-  useLatestRef,
   Resizer,
   useMergedRefs,
   useTheme,
@@ -83,25 +82,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
 
     // Focuses dialog when opened and brings back focus to the previously focused element when closed.
     const previousFocusedElement = React.useRef<HTMLElement | null>();
-    const setFocusRef = useLatestRef(setFocus);
-    React.useEffect(() => {
-      if (!setFocusRef.current) {
-        return;
-      }
-
-      if (isOpen) {
-        previousFocusedElement.current = dialogRef.current?.ownerDocument
-          .activeElement as HTMLElement;
-        dialogRef.current?.focus();
-      } else {
-        previousFocusedElement.current?.focus();
-      }
-      const ref = dialogRef.current;
-      return () => {
-        ref?.contains(document.activeElement) &&
-          previousFocusedElement.current?.focus();
-      };
-    }, [isOpen, setFocusRef]);
 
     const originalBodyOverflow = React.useRef('');
     React.useEffect(() => {
@@ -233,7 +213,12 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         }}
         timeout={{ exit: 600 }}
         onEntered={() => {
-          setTimeout(() => dialogRef.current?.focus(), 300);
+          previousFocusedElement.current = dialogRef.current?.ownerDocument
+            .activeElement as HTMLElement;
+          setFocus && dialogRef.current?.focus({ preventScroll: true });
+        }}
+        onExited={() => {
+          setFocus && previousFocusedElement.current?.focus();
         }}
         unmountOnExit={true}
         nodeRef={dialogRef}
