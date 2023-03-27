@@ -15,6 +15,7 @@ const isDev = process.env.NODE_ENV === 'development';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://itwinui.bentley.com',
   integrations: [react(), mdx(), sitemap()],
   markdown: {
     syntaxHighlight: 'prism',
