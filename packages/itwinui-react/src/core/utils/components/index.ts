@@ -14,4 +14,5 @@ export * from './VisuallyHidden';
 export * from './VerticalDivider';
 export * from './Icon';
 export * from './Flex';
+export * from './Divider';
 export * from './LinkAction';
