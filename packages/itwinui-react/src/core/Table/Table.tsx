@@ -729,7 +729,7 @@ export const Table = <
     ],
   );
 
-  const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
+  const { tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
@@ -820,10 +820,10 @@ export const Table = <
     ],
   );
 
-  const virtualizedItemRenderer = React.useCallback(
-    (index: number) => getPreparedRow(index),
-    [getPreparedRow],
-  );
+  // const virtualizedItemRenderer = React.useCallback(
+  //   (index: number) => getPreparedRow(index),
+  //   [getPreparedRow],
+  // );
 
   const updateStickyState = () => {
     if (!bodyRef.current || flatHeaders.every((header) => !header.sticky)) {
@@ -1027,11 +1027,9 @@ export const Table = <
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
-                <VirtualScroll
-                  itemsLength={page.length}
-                  itemRenderer={virtualizedItemRenderer}
-                  scrollToIndex={scrollToIndex}
-                />
+                <VirtualScroll height={bodyRef.current?.scrollHeight as number}>
+                  {page.map((_, index) => getPreparedRow(index))}
+                </VirtualScroll>
               ) : (
                 page.map((_, index) => getPreparedRow(index))
               )}

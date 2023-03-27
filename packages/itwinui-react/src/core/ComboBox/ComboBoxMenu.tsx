@@ -9,7 +9,7 @@ import { Surface } from '../Surface';
 import {
   useSafeContext,
   useMergedRefs,
-  useVirtualization,
+  // useVirtualization,
   mergeRefs,
   getWindow,
 } from '../utils';
@@ -26,38 +26,37 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     { children, className, style, ...rest }: ComboBoxMenuProps,
     forwardedRef: React.Ref<HTMLUListElement>,
   ) => {
-    const { minWidth, id, filteredOptions, getMenuItem, focusedIndex } =
-      useSafeContext(ComboBoxStateContext);
+    const { minWidth, id } = useSafeContext(ComboBoxStateContext);
     const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-    const virtualItemRenderer = React.useCallback(
-      (index: number) =>
-        filteredOptions.length > 0
-          ? getMenuItem(filteredOptions[index], index)
-          : (children as JSX.Element), // Here is expected empty state content
-      [filteredOptions, getMenuItem, children],
-    );
+    // const virtualItemRenderer = React.useCallback(
+    //   (index: number) =>
+    //     filteredOptions.length > 0
+    //       ? getMenuItem(filteredOptions[index], index)
+    //       : (children as JSX.Element), // Here is expected empty state content
+    //   [filteredOptions, getMenuItem, children],
+    // );
 
-    const focusedVisibleIndex = React.useMemo(() => {
-      const currentElement = menuRef.current?.querySelector(
-        `[data-iui-index="${focusedIndex}"]`,
-      );
-      if (!currentElement) {
-        return focusedIndex;
-      }
+    // const focusedVisibleIndex = React.useMemo(() => {
+    //   const currentElement = menuRef.current?.querySelector(
+    //     `[data-iui-index="${focusedIndex}"]`,
+    //   );
+    //   if (!currentElement) {
+    //     return focusedIndex;
+    //   }
 
-      return Number(
-        currentElement.getAttribute('data-iui-filtered-index') ?? focusedIndex,
-      );
-    }, [focusedIndex, menuRef]);
+    //   return Number(
+    //     currentElement.getAttribute('data-iui-filtered-index') ?? focusedIndex,
+    //   );
+    // }, [focusedIndex, menuRef]);
 
-    const { outerProps, innerProps, visibleChildren } = useVirtualization({
-      // 'Fool' VirtualScroll by passing length 1
-      // whenever there is no elements, to show empty state message
-      itemsLength: filteredOptions.length || 1,
-      itemRenderer: virtualItemRenderer,
-      scrollToIndex: focusedVisibleIndex,
-    });
+    // const { outerProps, innerProps, visibleChildren } = useVirtualization({
+    //   // 'Fool' VirtualScroll by passing length 1
+    //   // whenever there is no elements, to show empty state message
+    //   itemsLength: filteredOptions.length || 1,
+    //   itemRenderer: virtualItemRenderer,
+    //   scrollToIndex: focusedVisibleIndex,
+    // });
 
     const surfaceStyles = {
       minWidth,
@@ -73,16 +72,15 @@ const VirtualizedComboBoxMenu = React.forwardRef(
 
     return (
       <Surface style={surfaceStyles} {...rest}>
-        <div {...outerProps}>
+        <div>
           <Menu
             id={`${id}-list`}
             setFocus={false}
             role='listbox'
-            ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
+            ref={mergeRefs(menuRef, forwardedRef)}
             className={className}
-            style={innerProps.style}
           >
-            {visibleChildren}
+            {children}
           </Menu>
         </div>
       </Surface>

@@ -7,9 +7,9 @@ import {
   CommonProps,
   useTheme,
   getFocusableElements,
-  useVirtualization,
-  mergeRefs,
-  StylingProps,
+  // useVirtualization,
+  // mergeRefs,
+  // StylingProps,
 } from '../utils';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
@@ -317,17 +317,16 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   return (
     <>
       {enableVirtualization ? (
-        <VirtualizedTree
-          flatNodesList={flatNodesList}
-          itemRenderer={itemRenderer}
-          scrollToIndex={scrollToIndex}
-          onFocus={handleFocus}
+        <TreeElement
           onKeyDown={handleKeyDown}
-          ref={treeRef}
+          onFocus={handleFocus}
           className={className}
           style={style}
+          ref={treeRef}
           {...rest}
-        />
+        >
+          {flatNodesList.map((_, i) => itemRenderer(i))}
+        </TreeElement>
       ) : (
         <TreeElement
           onKeyDown={handleKeyDown}
@@ -369,51 +368,51 @@ const TreeElement = React.forwardRef(
   },
 );
 
-type VirtualizedTreeProps<T> = {
-  flatNodesList: FlatNode<T>[];
-  itemRenderer: (index: number) => JSX.Element;
-  scrollToIndex?: number;
-  onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
-  onFocus: React.FocusEventHandler<HTMLUListElement>;
-} & StylingProps;
+// type VirtualizedTreeProps<T> = {
+//   flatNodesList: FlatNode<T>[];
+//   itemRenderer: (index: number) => JSX.Element;
+//   scrollToIndex?: number;
+//   onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
+//   onFocus: React.FocusEventHandler<HTMLUListElement>;
+// } & StylingProps;
 
 // Having virtualized tree separately prevents from running all virtualization logic
-const VirtualizedTree = React.forwardRef(
-  <T,>(
-    {
-      flatNodesList,
-      itemRenderer,
-      scrollToIndex,
-      className,
-      style,
-      ...rest
-    }: VirtualizedTreeProps<T>,
-    ref: React.ForwardedRef<HTMLUListElement>,
-  ) => {
-    const { outerProps, innerProps, visibleChildren } = useVirtualization({
-      itemsLength: flatNodesList.length,
-      itemRenderer: itemRenderer,
-      scrollToIndex,
-    });
+// const VirtualizedTree = React.forwardRef(
+//   <T,>(
+//     {
+//       flatNodesList,
+//       itemRenderer,
+//       scrollToIndex,
+//       className,
+//       style,
+//       ...rest
+//     }: VirtualizedTreeProps<T>,
+//     ref: React.ForwardedRef<HTMLUListElement>,
+//   ) => {
+//     const { outerProps, innerProps, visibleChildren } = useVirtualization({
+//       itemsLength: flatNodesList.length,
+//       itemRenderer: itemRenderer,
+//       scrollToIndex,
+//     });
 
-    return (
-      <div
-        {...{
-          ...outerProps,
-          className: cx(className, outerProps.className),
-          style: { ...style, ...outerProps.style },
-        }}
-      >
-        <TreeElement
-          {...innerProps}
-          {...rest}
-          ref={mergeRefs(ref, innerProps.ref)}
-        >
-          {visibleChildren}
-        </TreeElement>
-      </div>
-    );
-  },
-);
+//     return (
+//       <div
+//         {...{
+//           ...outerProps,
+//           className: cx(className, outerProps.className),
+//           style: { ...style, ...outerProps.style },
+//         }}
+//       >
+//         <TreeElement
+//           {...innerProps}
+//           {...rest}
+//           ref={mergeRefs(ref, innerProps.ref)}
+//         >
+//           {visibleChildren}
+//         </TreeElement>
+//       </div>
+//     );
+//   },
+// );
 
 export default Tree;
