@@ -79,8 +79,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     const dialogRef = React.useRef<HTMLDivElement>(null);
     const refs = useMergedRefs(dialogRef, ref);
     const hasBeenResized = React.useRef(false);
-
-    // Focuses dialog when opened and brings back focus to the previously focused element when closed.
     const previousFocusedElement = React.useRef<HTMLElement | null>();
 
     const originalBodyOverflow = React.useRef('');
@@ -212,13 +210,15 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           enterDone: 'iui-dialog-visible',
         }}
         timeout={{ exit: 600 }}
+        // Focuses dialog when opened
         onEntered={() => {
           previousFocusedElement.current = dialogRef.current?.ownerDocument
             .activeElement as HTMLElement;
           setFocus && dialogRef.current?.focus({ preventScroll: true });
         }}
-        onExited={() => {
-          setFocus && previousFocusedElement.current?.focus();
+        // Brings back focus to the previously focused element when closed
+        onExit={() => {
+          previousFocusedElement.current?.focus();
         }}
         unmountOnExit={true}
         nodeRef={dialogRef}
