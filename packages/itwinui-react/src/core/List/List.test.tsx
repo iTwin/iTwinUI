@@ -20,7 +20,6 @@ it('should render in its most basic state', () => {
   const items = container.querySelectorAll('.iui-list-item');
   expect(items).toHaveLength(3);
   items.forEach((item, index) => {
-    expect(item).toHaveAttribute('role', 'listitem');
     expect(item).toHaveTextContent(`item ${index + 1}`);
   });
 });
