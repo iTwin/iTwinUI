@@ -223,14 +223,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       </div>
     );
 
-    const contentRef = React.useRef<HTMLDivElement>(null);
-
-    React.useEffect(() => {
-      if (isOpen && contentRef.current) {
-        contentRef.current.focus();
-      }
-    }, [isOpen]);
-
     return (
       <CSSTransition
         in={isOpen}
