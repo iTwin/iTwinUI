@@ -9,7 +9,6 @@ import {
   SearchBoxProps,
   IconButton,
   Text,
-  VerticalDivider,
 } from '@itwin/itwinui-react';
 import {
   SvgCaretDownSmall,
@@ -71,7 +70,6 @@ export const WithCustomAction: Story<SearchBoxProps> = (args) => {
       >
         0/3
       </Text>
-      <VerticalDivider />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />
       </IconButton>
