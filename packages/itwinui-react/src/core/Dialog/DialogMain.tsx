@@ -134,6 +134,9 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     }, [isOpen, preventDocumentScroll]);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.altKey) {
+        return;
+      }
       // Prevents React from resetting its properties
       event.persist();
       if (isDismissible && closeOnEsc && event.key === 'Escape' && onClose) {

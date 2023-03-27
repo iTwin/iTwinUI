@@ -227,7 +227,7 @@ export const Tabs = (props: TabsProps) => {
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     // alt + arrow keys are used by browser / assistive technologies
-    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+    if (event.altKey) {
       return;
     }
 

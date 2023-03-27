@@ -106,7 +106,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
     const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
-      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+      if (event.altKey) {
         return;
       }
 

@@ -47,5 +47,5 @@
     "*.tsx": "${capture}.ts, ${capture}.css",
     "*.stories.tsx": "${capture}.test.ts"
   },
-  "cSpell.words": ["itwin", "itwinui", "Tbgr"]
+  "cSpell.words": ["dont", "itwin", "itwinui", "Tbgr"]
 }
