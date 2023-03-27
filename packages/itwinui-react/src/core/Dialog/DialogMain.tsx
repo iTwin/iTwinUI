@@ -232,6 +232,9 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           enterDone: 'iui-dialog-visible',
         }}
         timeout={{ exit: 600 }}
+        onEntered={() => {
+          setTimeout(() => dialogRef.current?.focus(), 300);
+        }}
         unmountOnExit={true}
         nodeRef={dialogRef}
       >
