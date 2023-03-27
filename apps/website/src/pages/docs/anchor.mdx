@@ -1,19 +1,26 @@
 ---
 title: Anchor
-description:
+description: The anchor component creates a hyperlink targeting a specific location within the same page or a different one.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Typography/Body/Body.tsx'
-exampleCodeFile1: Anchor.main.tsx
 group: typography
 thumbnail: Anchor
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='typography-anchor' />
+
+<LiveExample src='Anchor.main.tsx' truncate={false}>
+  <AllExamples.AnchorMainExample client:load />
+</LiveExample>
+
+Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it.
 
 ## Props
 

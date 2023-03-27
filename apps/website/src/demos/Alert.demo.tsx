@@ -11,7 +11,7 @@ export default function AlertDemo() {
       <Alert
         onClose={() => console.log('CLOSED')}
         clickableText='Learn more'
-        style={{ minWidth: 280 }}
+        style={{ minWidth: 'min(100%, 280px)' }}
       >
         This is an alert
       </Alert>

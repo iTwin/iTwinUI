@@ -8,10 +8,18 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   FileUpload,
+  FileUploadCard,
+  FileEmptyCard,
   FileUploadProps,
   FileUploadTemplate,
   LabeledInput,
+  IconButton,
 } from '@itwin/itwinui-react';
+import {
+  SvgClose,
+  SvgSmileyHappyVery,
+  SvgSmileySadVery,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   component: FileUpload,
@@ -73,4 +81,75 @@ export const WrappingInput: Story<FileUploadProps> = (args) => {
 
 WrappingInput.args = {
   dragContent: 'Drop file to upload',
+};
+
+export const DefaultFileUploadCard: Story<FileUploadProps> = (args) => {
+  const [files, setFiles] = useState<Array<File>>([]);
+  return (
+    <FileUpload
+      {...args}
+      onFileDropped={(files) => {
+        setFiles(files);
+        action(`${files.length} files uploaded`)();
+      }}
+    >
+      <FileUploadCard
+        files={files}
+        onFilesChange={(files) => setFiles(files)}
+      />
+    </FileUpload>
+  );
+};
+
+export const CustomFileUploadCard: Story<FileUploadProps> = (args) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  const emptyCard = (
+    <FileEmptyCard>
+      <FileEmptyCard.Icon>
+        <SvgSmileySadVery />
+      </FileEmptyCard.Icon>
+      <FileEmptyCard.Text>
+        <FileUploadCard.InputLabel>Custom Label Text</FileUploadCard.InputLabel>
+        <div>Custom Description Text</div>
+      </FileEmptyCard.Text>
+    </FileEmptyCard>
+  );
+  return (
+    <FileUpload
+      {...args}
+      onFileDropped={(files) => {
+        setFiles(files);
+        action(`${files.length} files uploaded`)();
+      }}
+    >
+      <FileUploadCard
+        files={files}
+        onFilesChange={(files) => setFiles(files)}
+        emptyCard={emptyCard}
+        input={<FileUploadCard.Input name={'my-file'} ref={inputRef} />}
+      >
+        <FileUploadCard.Icon>
+          <SvgSmileyHappyVery />
+        </FileUploadCard.Icon>
+        <FileUploadCard.Info>
+          <FileUploadCard.Title>Custom File Name</FileUploadCard.Title>
+          <FileUploadCard.Description>
+            Custom File Description
+          </FileUploadCard.Description>
+        </FileUploadCard.Info>
+        <FileUploadCard.Action>
+          <IconButton
+            onClick={() => {
+              setFiles([]);
+            }}
+            styleType={'borderless'}
+          >
+            <SvgClose />
+          </IconButton>
+        </FileUploadCard.Action>
+      </FileUploadCard>
+    </FileUpload>
+  );
 };

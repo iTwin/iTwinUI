@@ -7,28 +7,30 @@ propsPathSplitButton: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitBu
 propsPathIconButton: '@itwin/itwinui-react/esm/core/Buttons/IconButton/IconButton.d.ts'
 propsPathIdeasButton: '@itwin/itwinui-react/src/core/Buttons/IdeasButton/IdeasButton.tsx'
 propsPathDropdownButton: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
-exampleCodeFile1: Button.main.tsx
-exampleCodeFileDefault: Button.default.tsx
-exampleCodeFileSplitButton: SplitButton.main.tsx
-exampleCodeFileIconButton: IconButton.main.tsx
-exampleCodeFileIdeasButton: IdeasButton.main.tsx
-exampleCodeFileDropdownButton: DropdownButton.main.tsx
 thumbnail: Button
 group: buttons
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<Placeholder componentPageName='buttons-button' />
+
+<LiveExample src='Button.main.tsx' truncate={false}>
+  <AllExamples.ButtonMainExample client:load />
+</LiveExample>
 
 Buttons are the recipients of a user onClick action (a mouse click for browsers and a finger press on touch-sensitive devices). Buttons have states and events and should be used when a form is submitted (post) or where the button represents a clear call to action on a page. In some cases, buttons can also be used in place of href links to draw special attention to that action.
 
 ## Button
 
-<LiveExample src={frontmatter.exampleCodeFileDefault} />
+<LiveExample src='Button.default.tsx'>
+  <AllExamples.ButtonDefaultExample client:load />
+</LiveExample>
 
 ### Props
 
@@ -36,7 +38,9 @@ Buttons are the recipients of a user onClick action (a mouse click for browsers 
 
 ## Split button
 
-<LiveExample src={frontmatter.exampleCodeFileSplitButton} />
+<LiveExample src='SplitButton.main.tsx'>
+  <AllExamples.SplitButtonMainExample client:load />
+</LiveExample>
 
 Pressing this left side of the button will commit the action. Pressing the right side of the button will open a menu. Upon selecting an option from the menu, the action immediately takes place, and the left side of the button’s label will change to match the recent selection.
 
@@ -46,7 +50,9 @@ Pressing this left side of the button will commit the action. Pressing the right
 
 ## Dropdown button
 
-<LiveExample src={frontmatter.exampleCodeFileDropdownButton} />
+<LiveExample src='DropdownButton.main.tsx'>
+  <AllExamples.DropdownButtonMainExample client:load />
+</LiveExample>
 
 Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The label of the button is not effected from your selection within the menu. The menu button can only be applied to default buttons and borderless buttons.
 
@@ -56,7 +62,9 @@ Pressing this button will always open a menu. Upon selecting an option from the 
 
 ## Icon button
 
-<LiveExample src={frontmatter.exampleCodeFileIconButton} />
+<LiveExample src='IconButton.main.tsx' truncate={false}>
+  <AllExamples.IconButtonMainExample client:load />
+</LiveExample>
 
 ### Props
 
@@ -64,7 +72,9 @@ Pressing this button will always open a menu. Upon selecting an option from the 
 
 ## Ideas button
 
-<LiveExample src={frontmatter.exampleCodeFileIdeasButton} />
+<LiveExample src='IdeasButton.main.tsx'>
+  <AllExamples.IdeasButtonMainExample client:load />
+</LiveExample>
 
 ### Props
 

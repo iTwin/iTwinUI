@@ -33,6 +33,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
   bodyRef: HTMLDivElement | null;
   tableRowRef?: React.Ref<HTMLDivElement>;
+  density?: 'default' | 'condensed' | 'extra-condensed';
 }) => {
   const {
     row,
@@ -49,6 +50,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
     expanderCell,
     bodyRef,
     tableRowRef,
+    density,
   } = props;
 
   const onIntersect = React.useCallback(() => {
@@ -115,6 +117,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
               tableHasSubRows={tableHasSubRows}
               tableInstance={tableInstance}
               expanderCell={expanderCell}
+              density={density}
             />
           );
         })}
@@ -184,5 +187,6 @@ export const TableRowMemoized = React.memo(
     prevProp.state.sticky.isScrolledToLeft ===
       nextProp.state.sticky.isScrolledToLeft &&
     prevProp.state.sticky.isScrolledToRight ===
-      nextProp.state.sticky.isScrolledToRight,
+      nextProp.state.sticky.isScrolledToRight &&
+    prevProp.density === nextProp.density,
 ) as typeof TableRow;

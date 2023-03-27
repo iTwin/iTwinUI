@@ -613,22 +613,24 @@
 
       <div class="iui-file-upload">
         <div class="iui-content">
-          <svg-upload
-            class="iui-template-icon"
-            aria-hidden="true"
-          ></svg-upload>
-          <div class="iui-template-text">
-            <label class="iui-anchor">
-              <input
-                class="iui-browse-input"
-                type="file"
-                name="files[]"
-                data-multiple-caption="{count} files selected"
-                multiple
-              />
-              Choose a file
-            </label>
-            <div>or drag & drop it here.</div>
+          <div class="iui-file-upload-template">
+            <svg-upload
+              class="iui-template-icon"
+              aria-hidden="true"
+            ></svg-upload>
+            <div class="iui-template-text">
+              <label class="iui-anchor">
+                <input
+                  class="iui-browse-input"
+                  type="file"
+                  name="files[]"
+                  data-multiple-caption="{count} files selected"
+                  multiple
+                />
+                Choose a file
+              </label>
+              <div>or drag & drop it here.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -637,22 +639,162 @@
 
       <div class="iui-file-upload iui-drag">
         <div class="iui-content">
-          <svg-upload
-            class="iui-template-icon"
-            aria-hidden="true"
-          ></svg-upload>
-          <div class="iui-template-text">
-            <label class="iui-anchor">
-              <input
-                class="iui-browse-input"
-                type="file"
-                name="files[]"
-                data-multiple-caption="{count} files selected"
-                multiple
-              />
-              Choose a file
+          <div class="iui-file-upload-template">
+            <svg-upload
+              class="iui-template-icon"
+              aria-hidden="true"
+            ></svg-upload>
+            <div class="iui-template-text">
+              <label class="iui-anchor">
+                <input
+                  class="iui-browse-input"
+                  type="file"
+                  name="files[]"
+                  data-multiple-caption="{count} files selected"
+                  multiple
+                />
+                Choose a file
+              </label>
+              <div>or drag & drop it here.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <h2>File Card</h2>
+    <section id="demo-file-card">
+
+      <div class="iui-file-card-empty">
+        <svg-upload
+          class="iui-file-card-empty-icon"
+          aria-hidden="true"
+        ></svg-upload>
+        <div class="iui-file-card-empty-action">
+          <label class="iui-anchor">
+            <input
+              class="iui-visually-hidden"
+              type="file"
+              name="files[]"
+              data-multiple-caption="{count} files selected"
+              multiple
+            />
+            Choose a file
+          </label>
+          <div>or drag & drop it here.</div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-file-card">
+        <svg-filetype-pdf
+          class="iui-file-card-icon"
+          aria-hidden="true"
+        ></svg-filetype-pdf>
+        <span class="iui-file-card-text">
+          <span class="iui-file-card-title">File title</span>
+          <span class="iui-file-card-description">15KB Wed Jan 11 2023 5:25:59 PM</span>
+        </span>
+        <div class="iui-file-card-action">
+          <label class="iui-anchor">
+            <input
+              class="iui-visually-hidden"
+              type="file"
+              name="files[]"
+              data-multiple-caption="{count} files selected"
+              multiple
+            />
+            Replace
+          </label>
+        </div>
+      </div>
+
+    </section>
+
+    <hr />
+
+    <h2>File Card (Wrapped with iui-file-upload and iui-content)</h2>
+    <section id="demo-file-card-with-file-upload">
+      <div class="iui-file-upload">
+        <div class="iui-content">
+
+          <div class="iui-file-card-empty">
+            <svg-upload
+              class="iui-file-card-empty-icon"
+              aria-hidden="true"
+            ></svg-upload>
+            <div class="iui-file-card-empty-action">
+              <label class="iui-anchor">
+                <input
+                  class="iui-visually-hidden"
+                  type="file"
+                  name="files[]"
+                  data-multiple-caption="{count} files selected"
+                  multiple
+                />
+                Choose a file
+              </label>
+              <div>or drag & drop it here.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-file-upload iui-drag">
+        <div class="iui-content">
+          <div class="iui-file-card-empty">
+            <svg-upload
+              class="iui-file-card-empty-icon"
+              aria-hidden="true"
+            ></svg-upload>
+            <div class="iui-file-card-empty-action">
+              <label class="iui-anchor">
+                <input
+                  class="iui-visually-hidden"
+                  type="file"
+                  name="files[]"
+                  data-multiple-caption="{count} files selected"
+                  multiple
+                />
+                Choose a file
+              </label>
+              <div>or drag & drop it here.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div class="iui-file-upload">
+        <div class="iui-content">
+          <div class="iui-file-card">
+            <svg-filetype-pdf
+              class="iui-file-card-icon"
+              aria-hidden="true"
+            ></svg-filetype-pdf>
+            <span class="iui-file-card-text">
+              <span class="iui-file-card-title">File title</span>
+              <span class="iui-file-card-description">15KB Wed Jan 11 2023 5:25:59 PM</span>
+            </span>
+            <div class="iui-file-card-action">
+              <label class="iui-anchor">
+                <input
+                  class="iui-visually-hidden"
+                  type="file"
+                  name="files[]"
+                  data-multiple-caption="{count} files selected"
+                  multiple
+                />
+                Replace
+            </div>
             </label>
-            <div>or drag & drop it here.</div>
           </div>
         </div>
       </div>
