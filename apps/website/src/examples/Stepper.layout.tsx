@@ -3,49 +3,98 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Flex, Stepper } from '@itwin/itwinui-react';
+import { Button, Flex, Input, Label, Stepper, InputGroup, Radio } from '@itwin/itwinui-react';
 
-const steps = [
-  { name: 'Completed Step', description: 'Completed Tooltip' },
-  { name: 'Current Step', description: 'Current Tooltip' },
-  { name: 'Next Step', description: 'Next Tooltip' },
-  { name: 'Last Step', description: 'Last Tooltip' },
-];
+const stepLabels = [{ name: 'User Info' }, { name: 'Color Selection' }, { name: 'Explanation' }];
 
 export default () => {
-  const [currentStep, setCurrentStep] = React.useState(2);
+  const [currentStep, setCurrentStep] = React.useState(0);
+  const [disableProgress, setDisableProgress] = React.useState(true);
+
+  React.useEffect(() => {
+    setDisableProgress(true);
+  }, [currentStep]);
+  const stepOne = (
+    <>
+      <Label required>Name</Label>
+      <Input
+        placeholder='Enter name'
+        onChange={({ target: { value } }) => {
+          setDisableProgress(!value);
+        }}
+      />
+      <Label htmlFot='occupation'>Occupation</Label>
+      <Input id='occupation' placeholder='Enter occupation' />
+    </>
+  );
+
+  const stepTwo = (
+    <InputGroup
+      label='Choose your favorite color'
+      required
+      onChange={({ target: { value } }) => {
+        setDisableProgress(!value);
+      }}
+    >
+      <Radio name='color' value='Red' label='Red' />
+      <Radio name='color' value='Orange' label='Orange' />
+      <Radio name='color' value='Yellow' label='Yellow' />
+      <Radio name='color' value='Green' label='Green' />
+      <Radio name='color' value='Blue' label='Blue' />
+      <Radio name='color' value='Purple' label='Purple' />
+    </InputGroup>
+  );
+
+  const stepThree = (
+    <>
+      <Label required>Why is this your favorite color</Label>
+      <Input
+        placeholder='Enter text here...'
+        onChange={({ target: { value } }) => {
+          setDisableProgress(!value);
+        }}
+      />
+    </>
+  );
+
+  const steps = [stepOne, stepTwo, stepThree];
 
   return (
-    <Flex flexDirection='column' gap='m' style={{ minWidth: 'min(100%, 400px)' }}>
-      <Flex.Item alignSelf='stretch'>
-        <Stepper
-          currentStep={currentStep}
-          steps={steps}
-          onStepClick={(index: number) => {
-            setCurrentStep(index);
-          }}
-        />
-      </Flex.Item>
-
-      <Flex>
-        <Button
-          disabled={currentStep === 0}
-          onClick={() => {
-            if (currentStep !== 0) setCurrentStep(currentStep - 1);
-          }}
-        >
-          Previous
-        </Button>
-        <Button
-          styleType='cta'
-          disabled={currentStep === steps.length - 1}
-          onClick={() => {
-            if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
-          }}
-        >
-          Next
-        </Button>
+    <>
+      <Flex flexDirection='column' gap='m' style={{ minWidth: 'min(100%, 400px)' }}>
+        <Flex as='h2'>Color survey</Flex>
+        <Flex.Item alignSelf='stretch'>
+          <Stepper
+            currentStep={currentStep}
+            steps={stepLabels}
+            onStepClick={(index: number) => {
+              setCurrentStep(index);
+            }}
+          />
+        </Flex.Item>
+        <Flex.Item alignSelf='flex-start' style={{ width: '100%' }}>
+          {steps[currentStep]}
+        </Flex.Item>
+        <Flex>
+          <Button
+            disabled={currentStep === 0}
+            onClick={() => {
+              if (currentStep !== 0) setCurrentStep(currentStep - 1);
+            }}
+          >
+            Back
+          </Button>
+          <Button
+            styleType='cta'
+            disabled={disableProgress}
+            onClick={() => {
+              if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+            }}
+          >
+            {currentStep === 2 ? 'Register' : 'Next'}
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 };
