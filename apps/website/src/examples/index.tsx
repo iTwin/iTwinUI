@@ -46,6 +46,8 @@ export { default as SplitButtonMainExample } from './SplitButton.main';
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';
 
 export { default as CarouselMainExample } from './Carousel.main';
+export { default as CarouselControlledExample } from './Carousel.controlled';
+export { default as CarouselOnlyDotsExample } from './Carousel.onlyDots';
 
 export { default as CheckboxMainExample } from './Checkbox.main';
 
