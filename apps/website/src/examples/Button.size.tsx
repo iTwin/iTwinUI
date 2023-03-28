@@ -9,7 +9,7 @@ export default () => {
   return (
     <Flex>
       <Button size='small'>Small</Button>
-      <Button>Default</Button>
+      <Button>Medium</Button>
       <Button size='large'>Large</Button>
     </Flex>
   );
