@@ -27,9 +27,9 @@ There are two different styles of stepper, depending on the amount of steps requ
 
 The default "short" stepper example is suggested for processes with four (4) steps or less. Each step is named under the circle. This stepper is suggested if the step names can be summarized with very short labels. For example, instead of “Complete Billing Information”, simply use “Billing.”
 
-The user may click on previous steps to go back. [Tooltips](tooltip) can also be implemented to give more information about a particular step.
+The user may click on previous steps to go back.
 
-Designers should confirm the display is acceptable due to the number of steps and labels at various resolutions. If text wrapping occurs or the stepper's visual quality decreases significantly when the window is re-sized, use the long stepper instead (see below).
+Designers should confirm the display is acceptable due to the number of steps and labels at various resolutions. If text wrapping occurs or the stepper's visual quality decreases significantly when the window is re-sized, use the [long stepper](#long-stepper) instead.
 
 ### Long Stepper
 
@@ -41,13 +41,37 @@ The long stepper is suggested for processes with five or more steps or with step
 
 ## Usage
 
-### Tooltip
+### Short vs Long Stepper
 
-Additional (optional) information can be displayed within a tooltip when hovering over a step indicator.
+- Use a short stepper if a process has less than five steps and if the label for each step can be summarized with 1-2 words.
+
+- Use a long stepper if a process has five steps or more or if the label for each step are long (20 characters or over) and/or cannot be summarized
+
+- A long stepper may be used for a process corresponding to the short stepper’s criteria if desired. However, using a short stepper for a process that would require a long stepper is not recommended.
+
+### Tooltip
 
 <LiveExample src='Stepper.tooltip.tsx'>
   <AllExamples.StepperTooltipExample client:load />
 </LiveExample>
+
+Additional (optional) information can be displayed within a tooltip when hovering over a step indicator.
+
+### Layout
+
+<LiveExample src='Stepper.layout.tsx'>
+  <AllExamples.StepperLayoutExample client:load />
+</LiveExample>
+
+We recommend the following layout:
+
+1. **Title**: Displayed above the stepper so the user acknowledges what the process is about.
+
+2. **Stepper**
+
+3. **Content**
+
+4. [**Buttons**](button): A [call-to-action button](button#call-to-action) for progress & one or two [default](button#default) buttons for canceling and/or going back one step. If the user has not completed a required task, the call-to-action button may be disabled. If the stepper is in a full screen page, the buttons can be placed within a sticky footer.
 
 ## Props
 

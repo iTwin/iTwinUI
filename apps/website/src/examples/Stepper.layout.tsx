@@ -6,14 +6,14 @@ import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
 
 const steps = [
-  { name: 'Completed step', description: 'Completed tooltip' },
-  { name: 'Current step', description: 'Current tooltip' },
-  { name: 'Next step', description: 'Next tooltip' },
-  { name: 'Last step', description: 'Last tooltip' },
+  { name: 'Completed Step', description: 'Completed Tooltip' },
+  { name: 'Current Step', description: 'Current Tooltip' },
+  { name: 'Next Step', description: 'Next Tooltip' },
+  { name: 'Last Step', description: 'Last Tooltip' },
 ];
 
 export default () => {
-  const [currentStep, setCurrentStep] = React.useState(1);
+  const [currentStep, setCurrentStep] = React.useState(2);
 
   return (
     <Flex flexDirection='column' gap='m' style={{ minWidth: 'min(100%, 400px)' }}>
