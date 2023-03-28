@@ -8,8 +8,7 @@ const contentDescription =
   content.description ||
   `An open-source design system for building consistent, accessible experiences.`;
 
-const canonicalUrl = 'https://www.itwinui.com';
-const deployUrl = import.meta.env.DEPLOY_PRIME_URL || Astro.request.url;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <title>{contentTitle}</title>
@@ -24,7 +23,7 @@ const deployUrl = import.meta.env.DEPLOY_PRIME_URL || Astro.request.url;
 <meta property='og:type' content='article' />
 <meta property='og:url' content={canonicalUrl} />
 <meta property='og:locale' content={content.ogLocale ?? 'en-us'} />
-<meta property='og:image' content={new URL('og-image.png', deployUrl)} />
+<meta property='og:image' content={new URL('/og-image.png', Astro.url)} />
 <meta property='og:image:alt' content='iTwinUI logo' />
 <meta property='og:site_name' content={contentTitle} />
 
@@ -32,4 +31,4 @@ const deployUrl = import.meta.env.DEPLOY_PRIME_URL || Astro.request.url;
 <meta name='twitter:card' content='summary_large_image' />
 <meta name='twitter:title' content={contentTitle} />
 <meta name='twitter:description' content={contentDescription} />
-<meta name='twitter:image' content={new URL('twitter-image.png', deployUrl)} />
+<meta name='twitter:image' content={new URL('/twitter-image.png', Astro.url)} />
