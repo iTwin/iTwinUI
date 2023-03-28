@@ -8,8 +8,10 @@ import { Flex, Radio } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <Radio label='Apple' value='apple' name='fruit' />
-      <Radio label='Orange' value='orange' name='fruit' />
+      <Radio label='Option 1' defaultChecked />
+      <Radio label='Option 2' />
+      <Radio label='Option 3' defaultChecked disabled />
+      <Radio label='Option 4' disabled />
     </Flex>
   );
 };

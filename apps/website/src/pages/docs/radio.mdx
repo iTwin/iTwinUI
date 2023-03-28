@@ -20,11 +20,9 @@ import * as AllExamples from '~/examples';
   <AllExamples.RadioMainExample client:load />
 </LiveExample>
 
-A radio button is a control element allowing the selection of a single option amongst a predefined set of choices. They are similar to checkboxes, however the latter allows the selection of several options at once, or even none at all. Within a set of options accompanied by radio buttons, there will always be a single one that is selected at once.
+A radio button unlike checkboxes, permit selection of a single item within a set. Use radio buttons when the user is required to make a choice in a list with only one selection allowed. For example, a list where the user can only answer with yes or no.
 
-Within the same list, only one radio button can be selected at once. Clicking an unselected radio button will deselect the current selected one and apply the selection to the one the user has clicked.
-
-In the event when by default, there are no buttons selected in a list when a user enters a page, selecting one would make restoring to the empty default impossible. Then the list of radio buttons would behave like it normally would.
+A radio is not interchangeable with a [checkbox](checkbox). A radio must have at minimum 2 choice options and only one option can be checked. A checkbox, however, can have as many or as few items checked, and can be displayed as standalone or within a group of two or more.
 
 ## Props
 
