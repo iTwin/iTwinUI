@@ -14,6 +14,7 @@ export { default as AvatarMainExample } from './Avatar.main';
 export { default as AvatarGroupExample } from './Avatar.group';
 export { default as AvatarGroupAnimatedExample } from './Avatar.groupanimated';
 export { default as AvatarGroupOverflowExample } from './Avatar.groupoverflow';
+export { default as AvatarGroupOverflowTooltipExample } from './Avatar.groupoverflowtooltip';
 export { default as AvatarGroupStackedExample } from './Avatar.groupstacked';
 export { default as AvatarIconExample } from './Avatar.icon';
 export { default as AvatarInitialsExample } from './Avatar.initials';
@@ -35,6 +36,7 @@ export { default as BreadcrumbsFolderExample } from './Breadcrumbs.folder';
 export { default as BreadcrumbsLinkExample } from './Breadcrumbs.link';
 export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
 export { default as BreadcrumbsTruncationExample } from './Breadcrumbs.truncation';
+export { default as BreadcrumbsCustomOverflowDropdownExample } from './Breadcrumbs.customOverflowDropdown';
 
 export { default as ButtonDefaultExample } from './Button.default';
 export { default as ButtonMainExample } from './Button.main';
@@ -106,6 +108,7 @@ export { default as SliderMainExample } from './Slider.main';
 export { default as StepperMainExample } from './Stepper.main';
 
 export { default as SurfaceMainExample } from './Surface.main';
+export { default as SurfaceCustomExample } from './Surface.custom';
 
 export { default as TableMainExample } from './Table.main';
 
