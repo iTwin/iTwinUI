@@ -1,8 +1,8 @@
 ---
 title: Button group
-description: Buttons allow users to take actions and make choices with a single tap or click.
+description: Buttons group is a set of buttons with similar functionality.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
+propsPath: '@itwin/itwinui-react/esm/core/ButtonGroup/ButtonGroup.d.ts'
 thumbnail: ButtonGroup
 group: buttons
 ---
@@ -14,14 +14,50 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='buttons-buttongroup' />
-
 <LiveExample src='ButtonGroup.main.tsx'>
   <AllExamples.ButtonGroupMainExample client:load />
 </LiveExample>
 
-A button group consists of similar tools. The button group can only consist of default buttons or borderless buttons, a button group can not be a mix of the two. If there is not enough space to display all of the buttons, the buttons can truncate into an overflow menu.
+Use a button group if you want to but similar functionality in one place. It helps users differentiate functional areas of the UI.
+
+Buttons in button group can be active, disabled and both, active and disabled.
+
+## Appearance
+
+### Overflow
+
+If there is not enough space to display all of the buttons, the buttons can truncate into an overflow menu.
+
+<LiveExample src='ButtonGroup.overflow.tsx'>
+  <AllExamples.ButtonGroupOverflowExample client:load />
+</LiveExample>
+
+### Vertical
+
+Use <code>orientation</code> prop to switch button group to vertical.
+
+<LiveExample src='ButtonGroup.vertical.tsx'>
+  <AllExamples.ButtonGroupVerticalExample client:load />
+</LiveExample>
+
+### With input
+
+You can combine inputs with buttons in a button group.
+
+<LiveExample src='ButtonGroup.input.tsx'>
+  <AllExamples.ButtonGroupInputExample client:load />
+</LiveExample>
+
+## Usage
+
+- The button group should only consist of default buttons or borderless buttons
+- You should not mix different styles buttons in the same group.
+- You can put buttons and button group in close proximity. In such cases, see if there is a main action and give it emphasis with a [high visibility](button#high-visibility) button.
+
+<LiveExample src='ButtonGroup.usage.tsx'>
+  <AllExamples.ButtonGroupUsageExample client:load />
+</LiveExample>
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+To be defined
