@@ -131,6 +131,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
+                aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
                 }}
@@ -190,7 +191,10 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
                 })
             }
           >
-            <IconButton onClick={() => action('Clicked on overflow icon')()}>
+            <IconButton
+              aria-label='Dropdown with more breadcrumbs'
+              onClick={() => action('Clicked on overflow icon')()}
+            >
               <SvgMore />
             </IconButton>
           </DropdownMenu>
