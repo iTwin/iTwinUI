@@ -106,6 +106,7 @@ export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SliderMainExample } from './Slider.main';
 
 export { default as StepperMainExample } from './Stepper.main';
+export { default as StepperShortExample } from './Stepper.short';
 export { default as StepperLongExample } from './Stepper.long';
 export { default as StepperTooltipExample } from './Stepper.tooltip';
 export { default as StepperLayoutExample } from './Stepper.layout';
