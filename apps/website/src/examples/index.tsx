@@ -109,6 +109,7 @@ export { default as StepperMainExample } from './Stepper.main';
 export { default as StepperShortExample } from './Stepper.short';
 export { default as StepperLongExample } from './Stepper.long';
 export { default as StepperTooltipExample } from './Stepper.tooltip';
+export { default as StepperLocalizationExample } from './Stepper.localization';
 export { default as StepperLayoutExample } from './Stepper.layout';
 
 export { default as SurfaceMainExample } from './Surface.main';
