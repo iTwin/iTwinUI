@@ -23,13 +23,9 @@ Changes made with sliders should be immediate, allowing a user to make slider ad
 
 ## Variants
 
-### With labels & steps
+### Default
 
-<LiveExample src='Slider.labels.tsx'>
-  <AllExamples.SliderLabelsExample client:load />
-</LiveExample>
-
-You can display tick labels underneath the slider. You can also have the value jump by a certain amount of steps - in this example it jumps by 10. The min and max labels can be text or icons.
+Use the default slider in most situations, when a simple gradation between numerical values is required. Numerical gradation between the two absolute values is optional.
 
 ### Range
 
@@ -52,6 +48,50 @@ You can have multiple ranges and can also have the range wrap.
 </LiveExample>
 
 The slider can be displayed horizontally (default) or vertically.
+
+## Usage
+
+Sliders reflect a range of values along a bar, from which users may select a single value. They are ideal for adjusting settings such as volume, brightness, or applying image filters.
+
+### Immediate effect
+
+Changes made with sliders are immediate, allowing a user to make slider adjustments until finding their preference. This means a setting controlled by a slider should not require to be validated by clicking a button for the changes to be applied. They shouldn’t be paired with settings that have even minor delays in providing user feedback.
+
+### Current state
+
+Sliders reflect the current state of the settings they control.
+
+### Labels & steps
+
+<LiveExample src='Slider.labels.tsx'>
+  <AllExamples.SliderLabelsExample client:load />
+</LiveExample>
+
+You can display min / max labels as text or icons and can optionally enable tick labels underneath the slider. You can also have the value jump by a certain amount of steps - in this example it jumps by `10`. To have more finer control, the jump can be changed to a decimal such as `0.5`.
+
+### Custom thumb
+
+<LiveExample src='Slider.thumbcustom.tsx'>
+  <AllExamples.SliderThumbCustomExample client:load />
+</LiveExample>
+
+The thumb can be customized if desired.
+
+### Tooltips
+
+<LiveExample src='Slider.tooltipnone.tsx'>
+  <AllExamples.SliderTooltipNoneExample client:load />
+</LiveExample>
+
+Tooltips are enabled by default but can be turned off.
+
+<LiveExample src='Slider.tooltipcustom.tsx'>
+  <AllExamples.SliderTooltipCustomExample client:load />
+</LiveExample>
+
+Tooltips can also be customized such as changing the placement or the information that is displayed within it.
+
+###
 
 ## Props
 

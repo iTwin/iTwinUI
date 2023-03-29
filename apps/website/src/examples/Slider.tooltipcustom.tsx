@@ -8,7 +8,15 @@ import { Slider } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <Slider values={[25, 75]} min={0} max={100} />
+      <Slider
+        values={[50]}
+        min={0}
+        max={100}
+        tickLabels={['0', '20', '40', '60', '80', '100']}
+        tooltipProps={(index, val) => {
+          return { placement: 'right', content: `\$${val}.00` };
+        }}
+      />
     </div>
   );
 };
