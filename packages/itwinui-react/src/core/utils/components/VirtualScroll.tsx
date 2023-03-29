@@ -195,6 +195,21 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     return arr;
   }, [itemsLength, itemRenderer, bufferSize, startNode, visibleNodeCount]);
 
+  const getAverageChildHeight = React.useCallback(() => {
+    let height = 0;
+
+    if (!parentRef.current) {
+      return 0;
+    }
+
+    for (let i = 1; i < parentRef.current.children.length - 1; i++) {
+      const ch = parentRef.current.children.item(i) as HTMLElement;
+      height += Number(getElementHeightWithMargins(ch)?.toFixed(2)) ?? 0;
+    }
+
+    return height / (parentRef.current.children.length - 2);
+  }, []);
+
   const updateChildHeight = React.useCallback(() => {
     if (!parentRef.current || !visibleChildren.length) {
       return;
@@ -288,10 +303,10 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       return;
     }
     parentRef.current.style.transform = `translateY(${getTranslateValue(
-      childHeight.current.middle,
+      getAverageChildHeight(),
       startIndex,
     )}px)`;
-  }, [bufferSize, itemsLength]);
+  }, [bufferSize, getAverageChildHeight, itemsLength]);
 
   const onScroll = React.useCallback(() => {
     updateVirtualScroll();
@@ -419,7 +434,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       style: {
         minHeight:
           itemsLength > 1
-            ? Math.max(itemsLength - 2, 0) * childHeight.current.middle +
+            ? Math.max(itemsLength - 2, 0) * getAverageChildHeight() +
               childHeight.current.first +
               childHeight.current.last
             : childHeight.current.middle,

@@ -880,12 +880,19 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
+        maxWidth: 200,
+        Cell: (props: CellProps<{ name: string }>) => {
+          return (
+            <div style={{ wordBreak: 'break-word' }}>
+              {props.row.original.name}
+            </div>
+          );
+        },
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
-        maxWidth: 200,
       },
       {
         id: 'click-me',
@@ -908,7 +915,12 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
     return Array(end - start)
       .fill(null)
       .map((_, index) => ({
-        name: `Name${start + index}`,
+        name:
+          index % 10
+            ? `Name${start + index}`
+            : `Name${
+                start + index
+              } veeeeeeeeeeeeeerrrrryyyyyyyyyyyyyyyyyyyyyyyyy looooooooooooooooooooooooooooonnnnnnnnnnngggggggggggggggg naaaaaaameeeeeeeeeeeee, wwwwwwwwwwwooooooooooooooooooooooooooooooooooooooooooooooooooooow`,
         description: `Description${start + index}`,
       }));
   };
