@@ -5,15 +5,10 @@
 import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
 
-const steps = [
-  { name: 'First Step' },
-  { name: 'Second Step' },
-  { name: 'Third Step' },
-  { name: 'Last Step' },
-];
+const steps = [{ name: 'Previous Step' }, { name: 'Current Step' }, { name: 'Next Step' }];
 
 export default () => {
-  const [currentStep, setCurrentStep] = React.useState(2);
+  const [currentStep, setCurrentStep] = React.useState(1);
 
   return (
     <Flex flexDirection='column' gap='m' style={{ minWidth: 'min(100%, 400px)' }}>
