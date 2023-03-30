@@ -110,6 +110,13 @@ export { default as SelectMainExample } from './Select.main';
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 
 export { default as SliderMainExample } from './Slider.main';
+export { default as SliderRangeExample } from './Slider.range';
+export { default as SliderRangeMultipleExample } from './Slider.rangemultiple';
+export { default as SliderVerticalExample } from './Slider.vertical';
+export { default as SliderLabelsExample } from './Slider.labels';
+export { default as SliderThumbCustomExample } from './Slider.thumbcustom';
+export { default as SliderTooltipCustomExample } from './Slider.tooltipcustom';
+export { default as SliderTooltipNoneExample } from './Slider.tooltipnone';
 
 export { default as StepperMainExample } from './Stepper.main';
 
