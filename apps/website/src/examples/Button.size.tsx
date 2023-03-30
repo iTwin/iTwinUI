@@ -3,18 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { IconButton, Flex } from '@itwin/itwinui-react';
-import { SvgAdd, SvgClose } from '@itwin/itwinui-icons-react';
+import { Button, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <Flex>
-      <IconButton>
-        <SvgAdd />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgClose />
-      </IconButton>
+      <Button size='small'>Small</Button>
+      <Button>Medium</Button>
+      <Button size='large'>Large</Button>
     </Flex>
   );
 };
