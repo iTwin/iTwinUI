@@ -9,10 +9,16 @@ import { SvgAdd, SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <Flex>
-      <Button>Default</Button>
-      <Button disabled>Disabled</Button>
-      <Button startIcon={<SvgAdd />}>With startIcon</Button>
-      <Button endIcon={<SvgCheckmarkSmall />}>With endIcon</Button>
+      <Button styleType='high-visibility'>Default</Button>
+      <Button styleType='high-visibility' disabled>
+        Disabled
+      </Button>
+      <Button styleType='high-visibility' startIcon={<SvgAdd />}>
+        With startIcon
+      </Button>
+      <Button styleType='high-visibility' endIcon={<SvgCheckmarkSmall />}>
+        With endIcon
+      </Button>
     </Flex>
   );
 };

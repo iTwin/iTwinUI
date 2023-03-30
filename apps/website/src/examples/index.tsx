@@ -38,7 +38,11 @@ export { default as BreadcrumbsMainExample } from './Breadcrumbs.main';
 export { default as BreadcrumbsTruncationExample } from './Breadcrumbs.truncation';
 export { default as BreadcrumbsCustomOverflowDropdownExample } from './Breadcrumbs.customOverflowDropdown';
 
+export { default as ButtonSizeExample } from './Button.size';
 export { default as ButtonDefaultExample } from './Button.default';
+export { default as ButtonHighVisibilityExample } from './Button.highvisibility';
+export { default as ButtonBorderlessExample } from './Button.borderless';
+export { default as ButtonCTAExample } from './Button.cta';
 export { default as ButtonMainExample } from './Button.main';
 export { default as IconButtonMainExample } from './IconButton.main';
 export { default as IdeasButtonMainExample } from './IdeasButton.main';
@@ -72,6 +76,7 @@ export { default as DropdownMenuMainExample } from './DropdownMenu.main';
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
 
 export { default as FieldsetMainExample } from './Fieldset.main';
+export { default as FieldsetDisabledExample } from './Fieldset.disabled';
 
 export { default as FileUploadMainExample } from './FileUpload.main';
 
@@ -104,6 +109,13 @@ export { default as SelectMainExample } from './Select.main';
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 
 export { default as SliderMainExample } from './Slider.main';
+export { default as SliderRangeExample } from './Slider.range';
+export { default as SliderRangeMultipleExample } from './Slider.rangemultiple';
+export { default as SliderVerticalExample } from './Slider.vertical';
+export { default as SliderLabelsExample } from './Slider.labels';
+export { default as SliderThumbCustomExample } from './Slider.thumbcustom';
+export { default as SliderTooltipCustomExample } from './Slider.tooltipcustom';
+export { default as SliderTooltipNoneExample } from './Slider.tooltipnone';
 
 export { default as StepperMainExample } from './Stepper.main';
 
@@ -115,6 +127,13 @@ export { default as TableMainExample } from './Table.main';
 export { default as TabsMainExample } from './Tabs.main';
 
 export { default as TagMainExample } from './Tag.main';
+export { default as TagBasicExample } from './Tag.basic';
+export { default as TagDefaultExample } from './Tag.default';
+
+export { default as TagContainerMainExample } from './TagContainer.main';
+export { default as TagContainerWrapExample } from './TagContainer.wrap';
+export { default as TagContainerTruncateExample } from './TagContainer.truncate';
+export { default as TagContainerScrollExample } from './TagContainer.scroll';
 
 export { default as TextareaMainExample } from './Textarea.main';
 
