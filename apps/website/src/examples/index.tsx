@@ -53,6 +53,11 @@ export { default as ButtonGroupMainExample } from './ButtonGroup.main';
 export { default as CarouselMainExample } from './Carousel.main';
 
 export { default as CheckboxMainExample } from './Checkbox.main';
+export { default as CheckboxIndeterminateExample } from './Checkbox.indeterminate';
+export { default as CheckboxLoadingExample } from './Checkbox.loading';
+export { default as CheckboxStatusesExample } from './Checkbox.statuses';
+export { default as CheckboxVisibilityExample } from './Checkbox.visibility';
+export { default as CheckboxInputGroupExample } from './Checkbox.inputgroup';
 
 export { default as CodeMainExample } from './Code.main';
 
