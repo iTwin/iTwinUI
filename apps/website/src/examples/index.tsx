@@ -52,6 +52,7 @@ export { default as CheckboxIndeterminateExample } from './Checkbox.indeterminat
 export { default as CheckboxLoadingExample } from './Checkbox.loading';
 export { default as CheckboxStatusesExample } from './Checkbox.statuses';
 export { default as CheckboxVisibilityExample } from './Checkbox.visibility';
+export { default as CheckboxInputGroupExample } from './Checkbox.inputgroup';
 
 export { default as CodeMainExample } from './Code.main';
 
