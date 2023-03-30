@@ -3,12 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { LabeledInput } from '@itwin/itwinui-react';
+import { Input, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
-      <LabeledInput label='Label' placeholder='Placeholder' message='Hint message' />
-    </>
+    <Flex flexDirection='column'>
+      <Input placeholder='Small' size='small' />
+      <Input placeholder='Medium' />
+      <Input placeholder='Large' size='large' />
+    </Flex>
   );
 };
