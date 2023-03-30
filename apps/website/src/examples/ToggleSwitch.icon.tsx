@@ -4,14 +4,24 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ToggleSwitch, Flex } from '@itwin/itwinui-react';
+import { SvgCheckmark } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <ToggleSwitch onChange={() => {}} label='Option 1' defaultChecked={true} />
-      <ToggleSwitch onChange={() => {}} label='Option 2' defaultChecked={false} />
-      <ToggleSwitch onChange={() => {}} label='Option 3' defaultChecked={true} disabled />
-      <ToggleSwitch onChange={() => {}} label='Option 4' defaultChecked={false} disabled />
+      <ToggleSwitch
+        onChange={() => {}}
+        label='Option 1'
+        icon={<SvgCheckmark />}
+        defaultChecked={true}
+      />
+      <ToggleSwitch
+        onChange={() => {}}
+        label='Option 2'
+        icon={<SvgCheckmark />}
+        defaultChecked={true}
+        disabled
+      />
     </Flex>
   );
 };
