@@ -44,7 +44,7 @@
 
   @each $status in positive, warning, negative {
     &.iui-#{$status} {
-      @include iui-input-status($status: $status, $iconSelector: 'svg', $textSelector: 'input');
+      @include iui-flex-input-status($status: $status);
     }
   }
 }

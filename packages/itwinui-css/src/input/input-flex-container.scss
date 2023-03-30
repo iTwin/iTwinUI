@@ -3,7 +3,15 @@
 @mixin iui-input-flex-container {
   --_iui-input-background-color: var(--iui-color-background);
   --_iui-input-border-color: var(--iui-color-border-foreground);
+  --_iui-input-accent-border-color: var(--iui-color-border-accent);
   --_iui-input-text-color: var(--iui-color-text);
+
+  &[disabled] {
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+    cursor: not-allowed;
+  }
 
   display: inline-flex;
   background-color: var(--_iui-input-background-color);
@@ -15,13 +23,13 @@
   transition: width 0.2s;
 
   &:has(input:focus-visible) {
-    outline: 2px solid var(--iui-color-border-accent);
+    outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
   }
 
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
-      outline: 2px solid var(--iui-color-border-accent);
+      outline: 2px solid var(--_iui-input-accent-border-color);
       outline-offset: -2px;
     }
   }
@@ -47,10 +55,19 @@
   }
 }
 
+/// Mixin for applying status colors to input container.
+/// @arg status - must be one of: positive, negative, warning
+@mixin iui-flex-input-status($status) {
+  --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
+
+  &::before {
+    border-bottom: var(--iui-size-3xs) solid var(--_iui-input-accent-border-color);
+  }
+}
+
 @mixin iui-expandable-searchbox {
   transition: width var(--iui-duration-3) ease;
   width: var(--_iui-input-min-height);
-  // overflow: hidden;
 
   &::before {
     content: '';
