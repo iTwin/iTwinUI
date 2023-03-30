@@ -68,6 +68,7 @@ export default () => {
             currentStep={currentStep}
             steps={stepLabels}
             onStepClick={(index: number) => {
+              setDisableProgress(true);
               setCurrentStep(index);
             }}
           />
@@ -79,7 +80,10 @@ export default () => {
           <Button
             disabled={currentStep === 0}
             onClick={() => {
-              if (currentStep !== 0) setCurrentStep(currentStep - 1);
+              if (currentStep !== 0) {
+                setDisableProgress(true);
+                setCurrentStep(currentStep - 1);
+              }
             }}
           >
             Back
@@ -88,7 +92,10 @@ export default () => {
             styleType='cta'
             disabled={disableProgress}
             onClick={() => {
-              if (currentStep < steps.length - 1) setCurrentStep(currentStep + 1);
+              if (currentStep < steps.length - 1) {
+                setDisableProgress(true);
+                setCurrentStep(currentStep + 1);
+              }
             }}
           >
             {currentStep === 2 ? 'Register' : 'Next'}
