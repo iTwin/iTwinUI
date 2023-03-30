@@ -172,12 +172,14 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   const parentRef = React.useRef<HTMLElement>(null);
   const childHeight = React.useRef({ first: 0, middle: 0, last: 0 });
   const onScrollRef = React.useRef<(e: Event) => void>();
+  const [minHeight, setMinHeight] = React.useState(0);
   // Used only to recalculate on resize
   const [scrollContainerHeight, setScrollContainerHeight] = React.useState(0);
   const visibleIndex = React.useRef({ start: 0, end: 0 });
   // Used to mark when scroll container has height (updated by resize observer)
   // because before that calculations are not right
   const [isMounted, setIsMounted] = React.useState(false);
+  const childrenHeightsMap = React.useRef<{ [index: number]: number }>({});
 
   const getScrollableContainer = () =>
     scrollContainer.current ??
@@ -192,22 +194,21 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     for (let i = startNode; i < endIndex; i++) {
       arr.push(itemRenderer(i));
     }
+
     return arr;
   }, [itemsLength, itemRenderer, bufferSize, startNode, visibleNodeCount]);
 
   const getAverageChildHeight = React.useCallback(() => {
-    let height = 0;
-
     if (!parentRef.current) {
       return 0;
     }
+    let height = 0;
+    Object.keys(childrenHeightsMap.current).forEach((i: string) => {
+      const castedThing = Number(i);
+      height += childrenHeightsMap.current[castedThing];
+    });
 
-    for (let i = 1; i < parentRef.current.children.length - 1; i++) {
-      const ch = parentRef.current.children.item(i) as HTMLElement;
-      height += Number(getElementHeightWithMargins(ch)?.toFixed(2)) ?? 0;
-    }
-
-    return height / (parentRef.current.children.length - 2);
+    return height / Object.keys(childrenHeightsMap.current).length;
   }, []);
 
   const updateChildHeight = React.useCallback(() => {
@@ -234,7 +235,31 @@ export const useVirtualization = (props: VirtualScrollProps) => {
         getElementHeightWithMargins(lastChild)?.toFixed(2) ?? firstChildHeight,
       ),
     };
-  }, [visibleChildren.length]);
+
+    const endIndex = Math.min(
+      itemsLength,
+      startNode + visibleNodeCount + bufferSize * 2,
+    );
+
+    for (let i = startNode; i < endIndex; i++) {
+      // move into separate uselayouteffect
+      if (!parentRef.current || !!childrenHeightsMap.current[i]) {
+        continue;
+      }
+      const ch = parentRef.current?.children.item(i - startNode) as HTMLElement;
+      if (!ch) {
+        continue;
+      }
+      childrenHeightsMap.current[i] =
+        Number(getElementHeightWithMargins(ch)?.toFixed(2)) ?? 0;
+    }
+  }, [
+    bufferSize,
+    itemsLength,
+    startNode,
+    visibleChildren.length,
+    visibleNodeCount,
+  ]);
 
   const onResize = React.useCallback(
     ({ height }: DOMRectReadOnly) => {
@@ -279,11 +304,11 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     }
 
     const start = getNumberOfNodesInHeight(
-      childHeight.current.middle,
+      getAverageChildHeight(),
       Math.round(scrollableContainer.scrollTop),
     );
     const visibleNodes = getVisibleNodeCount(
-      childHeight.current.middle,
+      getAverageChildHeight(), //is this what we want?
       start,
       itemsLength,
       scrollableContainer,
@@ -429,15 +454,20 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     updateVirtualScroll();
   }, [scrollContainerHeight, updateVirtualScroll]);
 
+  React.useEffect(() => {
+    setMinHeight(
+      itemsLength > 1
+        ? Math.max(visibleNodeCount - 2, 0) * getAverageChildHeight() +
+            childHeight.current.first +
+            childHeight.current.last
+        : childHeight.current.middle,
+    );
+  }, [getAverageChildHeight, itemsLength, visibleChildren, visibleNodeCount]);
+
   return {
     outerProps: {
       style: {
-        minHeight:
-          itemsLength > 1
-            ? Math.max(itemsLength - 2, 0) * getAverageChildHeight() +
-              childHeight.current.first +
-              childHeight.current.last
-            : childHeight.current.middle,
+        minHeight: minHeight,
         minWidth: '100%',
         ...style,
       },
