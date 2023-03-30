@@ -9,7 +9,8 @@ export default () => {
   const [option1, setOption1] = React.useState(false);
   const [option2, setOption2] = React.useState(true);
   const [allOptions, setAllOptions] = React.useState(false);
-  const [isIndeterminate, setIsIndeterminate] = React.useState(true);
+
+const isIndeterminate = !(option1 && option2) && (option1 || option2);
 
   React.useEffect(() => {
     if (option1 && option2) {
