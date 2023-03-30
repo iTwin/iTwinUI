@@ -8,23 +8,10 @@ import { Checkbox, Flex } from '@itwin/itwinui-react';
 export default () => {
   const [option1, setOption1] = React.useState(false);
   const [option2, setOption2] = React.useState(true);
-  const [allOptions, setAllOptions] = React.useState(false);
+  const allOptions = option1 && option2;
   const isIndeterminate = !(option1 && option2) && (option1 || option2);
 
-  React.useEffect(() => {
-    if (option1 && option2) {
-      setAllOptions(true);
-      return;
-    }
-    if (option1 || option2) {
-      setAllOptions(false);
-    } else {
-      setAllOptions(false);
-    }
-  }, [option1, option2]);
-
   const onAllChange = (value: boolean) => {
-    setAllOptions(value);
     setOption1(value);
     setOption2(value);
   };
