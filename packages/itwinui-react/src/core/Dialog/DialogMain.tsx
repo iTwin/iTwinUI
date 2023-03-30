@@ -218,7 +218,13 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         }}
         // Brings back focus to the previously focused element when closed
         onExit={() => {
-          previousFocusedElement.current?.focus();
+          if (
+            dialogRef.current?.contains(
+              dialogRef.current?.ownerDocument.activeElement,
+            )
+          ) {
+            previousFocusedElement.current?.focus();
+          }
         }}
         unmountOnExit={true}
         nodeRef={dialogRef}

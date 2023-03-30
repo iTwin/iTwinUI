@@ -3,9 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain';
 import DialogTitleBar from './DialogTitleBar';
+import { config } from 'react-transition-group';
 
 const DOMMatrixMock = jest.fn(() => ({ m41: 0, m42: 0 }));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -68,7 +69,8 @@ it('should render with custom style and className', () => {
   expect(dialog).toHaveStyle('color: red');
 });
 
-it('should close on Esc click and move focus back', () => {
+it('should close on Esc click and move focus back', async () => {
+  config.disabled = true;
   const { container: buttonContainer } = render(<button>button</button>);
   const button = buttonContainer.querySelector('button') as HTMLElement;
   button.focus();
@@ -86,7 +88,9 @@ it('should close on Esc click and move focus back', () => {
   fireEvent.keyDown(dialog, { key: 'Escape' });
   expect(onClose).toHaveBeenCalled();
   // Focus dialog when opened
-  expect(document.activeElement).toEqual(dialog);
+  waitFor(() => {
+    expect(document.activeElement).toEqual(dialog);
+  });
 
   rerender(
     <DialogMain

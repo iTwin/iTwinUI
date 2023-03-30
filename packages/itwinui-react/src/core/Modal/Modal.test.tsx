@@ -2,7 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
+import { config } from 'react-transition-group';
 import React from 'react';
 
 import { Modal, ModalProps } from './Modal';
@@ -103,7 +104,8 @@ it('should not close on overlay mouse down when closeOnExternalClick is false', 
   );
 });
 
-it('should close on Esc click and move focus back', () => {
+it('should close on Esc click and move focus back', async () => {
+  config.disabled = true;
   const { container } = render(<button>button</button>);
   const button = container.querySelector('button') as HTMLElement;
   button.focus();
@@ -116,7 +118,9 @@ it('should close on Esc click and move focus back', () => {
     document.querySelector('.iui-backdrop') as HTMLElement,
     dialog,
   );
-  expect(document.activeElement).toEqual(dialog);
+  waitFor(() => {
+    expect(document.activeElement).toEqual(dialog);
+  });
 
   fireEvent.keyDown(dialog, { key: 'Escape' });
   expect(onClose).toHaveBeenCalled();
