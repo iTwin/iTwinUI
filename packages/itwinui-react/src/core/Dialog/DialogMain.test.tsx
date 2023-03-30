@@ -6,7 +6,6 @@ import React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain';
 import DialogTitleBar from './DialogTitleBar';
-import { config } from 'react-transition-group';
 
 const DOMMatrixMock = jest.fn(() => ({ m41: 0, m42: 0 }));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -70,7 +69,6 @@ it('should render with custom style and className', () => {
 });
 
 it('should close on Esc click and move focus back', async () => {
-  config.disabled = true;
   const { container: buttonContainer } = render(<button>button</button>);
   const button = buttonContainer.querySelector('button') as HTMLElement;
   button.focus();
