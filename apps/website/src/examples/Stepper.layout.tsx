@@ -18,18 +18,20 @@ export default () => {
     <>
       <Label required>Name</Label>
       <Input
+        key='name'
         placeholder='Enter name'
         onChange={({ target: { value } }) => {
           setDisableProgress(!value);
         }}
       />
-      <Label htmlFot='occupation'>Occupation</Label>
-      <Input id='occupation' placeholder='Enter occupation' />
+      <Label>Occupation</Label>
+      <Input key='occupation' placeholder='Enter occupation' />
     </>
   );
 
   const stepTwo = (
     <InputGroup
+      key='color'
       label='Choose your favorite color'
       required
       onChange={({ target: { value } }) => {
@@ -49,6 +51,7 @@ export default () => {
     <>
       <Label required>Why is this your favorite color</Label>
       <Input
+        key='explanation'
         placeholder='Enter text here...'
         onChange={({ target: { value } }) => {
           setDisableProgress(!value);
