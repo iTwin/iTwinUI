@@ -120,6 +120,13 @@ export { default as TableMainExample } from './Table.main';
 export { default as TabsMainExample } from './Tabs.main';
 
 export { default as TagMainExample } from './Tag.main';
+export { default as TagBasicExample } from './Tag.basic';
+export { default as TagDefaultExample } from './Tag.default';
+
+export { default as TagContainerMainExample } from './TagContainer.main';
+export { default as TagContainerWrapExample } from './TagContainer.wrap';
+export { default as TagContainerTruncateExample } from './TagContainer.truncate';
+export { default as TagContainerScrollExample } from './TagContainer.scroll';
 
 export { default as TextareaMainExample } from './Textarea.main';
 
