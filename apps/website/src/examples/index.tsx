@@ -76,6 +76,7 @@ export { default as DropdownMenuMainExample } from './DropdownMenu.main';
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
 
 export { default as FieldsetMainExample } from './Fieldset.main';
+export { default as FieldsetDisabledExample } from './Fieldset.disabled';
 
 export { default as FileUploadMainExample } from './FileUpload.main';
 
