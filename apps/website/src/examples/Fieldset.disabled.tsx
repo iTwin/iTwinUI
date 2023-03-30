@@ -3,18 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { IconButton, Flex } from '@itwin/itwinui-react';
-import { SvgAdd, SvgClose } from '@itwin/itwinui-icons-react';
+import { Fieldset, LabeledInput, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
-      <IconButton>
-        <SvgAdd />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgClose />
-      </IconButton>
-    </Flex>
+    <Fieldset
+      legend='Disabled Fieldset'
+      disabled
+      style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
+    >
+      <LabeledInput label='Full Name' placeholder='Enter full name' />
+      <LabeledInput label='Address' placeholder='Enter address' />
+    </Fieldset>
   );
 };
