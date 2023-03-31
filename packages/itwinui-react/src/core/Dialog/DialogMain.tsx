@@ -7,7 +7,6 @@ import cx from 'classnames';
 import {
   FocusTrap,
   getTranslateValues,
-  useLatestRef,
   Resizer,
   useMergedRefs,
   useTheme,
@@ -80,28 +79,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     const dialogRef = React.useRef<HTMLDivElement>(null);
     const refs = useMergedRefs(dialogRef, ref);
     const hasBeenResized = React.useRef(false);
-
-    // Focuses dialog when opened and brings back focus to the previously focused element when closed.
     const previousFocusedElement = React.useRef<HTMLElement | null>();
-    const setFocusRef = useLatestRef(setFocus);
-    React.useEffect(() => {
-      if (!setFocusRef.current) {
-        return;
-      }
-
-      if (isOpen) {
-        previousFocusedElement.current = dialogRef.current?.ownerDocument
-          .activeElement as HTMLElement;
-        dialogRef.current?.focus();
-      } else {
-        previousFocusedElement.current?.focus();
-      }
-      const ref = dialogRef.current;
-      return () => {
-        ref?.contains(document.activeElement) &&
-          previousFocusedElement.current?.focus();
-      };
-    }, [isOpen, setFocusRef]);
 
     const originalBodyOverflow = React.useRef('');
     React.useEffect(() => {
@@ -193,7 +171,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           {
             'iui-dialog-default': styleType === 'default',
             'iui-dialog-full-page': styleType === 'fullPage',
-            'iui-dialog-visible': isOpen,
             'iui-dialog-draggable': isDraggable,
           },
           className,
@@ -230,8 +207,28 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     return (
       <CSSTransition
         in={isOpen}
-        classNames='iui-dialog-animation'
+        classNames={{
+          enter: 'iui-dialog-animation-enter',
+          enterActive: 'iui-dialog-animation-enter-active',
+          enterDone: 'iui-dialog-visible',
+        }}
         timeout={{ exit: 600 }}
+        // Focuses dialog when opened
+        onEntered={() => {
+          previousFocusedElement.current = dialogRef.current?.ownerDocument
+            .activeElement as HTMLElement;
+          setFocus && dialogRef.current?.focus({ preventScroll: true });
+        }}
+        // Brings back focus to the previously focused element when closed
+        onExit={() => {
+          if (
+            dialogRef.current?.contains(
+              dialogRef.current?.ownerDocument.activeElement,
+            )
+          ) {
+            previousFocusedElement.current?.focus();
+          }
+        }}
         unmountOnExit={true}
         nodeRef={dialogRef}
       >
