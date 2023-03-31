@@ -3,18 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { IconButton, Flex } from '@itwin/itwinui-react';
-import { SvgAdd, SvgClose } from '@itwin/itwinui-icons-react';
+import { Checkbox, InputGroup } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
-      <IconButton>
-        <SvgAdd />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgClose />
-      </IconButton>
-    </Flex>
+    <InputGroup label='What are your hobbies?'>
+      <Checkbox label='Sports' defaultChecked />
+      <Checkbox label='Writing' />
+      <Checkbox label='Cooking' />
+      <Checkbox label='Arts and crafts' />
+    </InputGroup>
   );
 };

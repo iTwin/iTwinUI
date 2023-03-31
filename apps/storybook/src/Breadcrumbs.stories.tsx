@@ -123,6 +123,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
+                aria-label={`Item ${previousBreadcrumb}`}
                 style={{ paddingTop: '8px' }}
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
@@ -176,6 +177,7 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
             }
           >
             <IconButton
+              aria-label='Dropdown with more breadcrumbs'
               style={{ paddingTop: '8px' }}
               onClick={() => action('Clicked on overflow icon')()}
             >
