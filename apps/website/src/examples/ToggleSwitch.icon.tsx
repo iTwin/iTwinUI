@@ -9,19 +9,8 @@ import { SvgCheckmark } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <ToggleSwitch
-        onChange={() => {}}
-        label='Option 1'
-        icon={<SvgCheckmark />}
-        defaultChecked={true}
-      />
-      <ToggleSwitch
-        onChange={() => {}}
-        label='Option 2'
-        icon={<SvgCheckmark />}
-        defaultChecked={true}
-        disabled
-      />
+      <ToggleSwitch label='Option 1' icon={<SvgCheckmark />} defaultChecked={true} />
+      <ToggleSwitch label='Option 2' icon={<SvgCheckmark />} defaultChecked={true} disabled />
     </Flex>
   );
 };

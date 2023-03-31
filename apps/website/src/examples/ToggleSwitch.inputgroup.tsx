@@ -8,10 +8,10 @@ import { ToggleSwitch, InputGroup } from '@itwin/itwinui-react';
 export default () => {
   return (
     <InputGroup label='Home lights'>
-      <ToggleSwitch onChange={() => {}} label='Dining room' defaultChecked={true} />
-      <ToggleSwitch onChange={() => {}} label='Garage' defaultChecked={false} />
-      <ToggleSwitch onChange={() => {}} label='Kitchen' defaultChecked={true} />
-      <ToggleSwitch onChange={() => {}} label='Living room' defaultChecked={false} />
+      <ToggleSwitch label='Dining room' defaultChecked={true} />
+      <ToggleSwitch label='Garage' defaultChecked={false} />
+      <ToggleSwitch label='Kitchen' defaultChecked={true} />
+      <ToggleSwitch label='Living room' defaultChecked={false} />
     </InputGroup>
   );
 };
