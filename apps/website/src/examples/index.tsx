@@ -158,3 +158,6 @@ export { default as ToggleSwitchMainExample } from './ToggleSwitch.main';
 export { default as TooltipMainExample } from './Tooltip.main';
 
 export { default as TreeMainExample } from './Tree.main';
+
+export { default as VisuallyHiddenIconExample } from './VisuallyHidden.icon';
+export { default as VisuallyHiddenMoreTextExample } from './VisuallyHidden.moretext';
