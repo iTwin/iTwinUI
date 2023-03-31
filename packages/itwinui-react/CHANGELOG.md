@@ -1,5 +1,41 @@
 # Changelog
 
+## 2.8.0
+
+### Minor Changes
+
+- 861fcab3: The `Surface` component can now be broken down using the `SurfaceHeader` and `SurfaceBody` subcomponents. Users can add padding to the body using `isPadded`
+
+  ```jsx
+  <Surface>
+    <Surface.Header>Surface Header Content</Surface.Header>
+    <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
+  </Surface>
+  ```
+
+- 861fcab3: A new `Divider` component has been created which can be used horizontally or vertically
+
+  ```jsx
+  <Divider orientation={'vertical'} />
+  ```
+
+- 8c89441f: Added `VisuallyHidden`, a utility component for providing text to assistive technologies while hiding it visually.
+
+  ```jsx
+  <div aria-hidden='true'>★★★☆☆</div>
+  <VisuallyHidden>3 stars out of 5</VisuallyHidden>
+  ```
+
+### Patch Changes
+
+- 3ad2dd90: Fixed an issue in draggable/resizable dialogs opened in popup windows, where pointermove event listeners were not being removed correctly.
+- 521610a0: iTwinUI will now show a warning in development if it detects that the page overrides the root font size. For more details, see the [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#relative-font-size).
+- 6caccc8d: Fixes jumpy animation when opening full page dialog
+- Updated dependencies [3ad916b2]
+- Updated dependencies [c8f6a8dd]
+- Updated dependencies [f1e0d8d6]
+  - @itwin/itwinui-css@1.9.0
+
 ## 2.7.0
 
 ### Minor Changes
