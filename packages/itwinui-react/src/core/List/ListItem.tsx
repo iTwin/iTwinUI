@@ -91,9 +91,9 @@ const ListItemDescription = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', LListItemDescriptionOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', ListItemDescriptionOwnProps>;
 
-type LListItemDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type ListItemDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Exported compound component
