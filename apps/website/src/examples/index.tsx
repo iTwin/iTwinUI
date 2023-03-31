@@ -154,6 +154,10 @@ export { default as TileMainExample } from './Tile.main';
 export { default as ToastMainExample } from './Toast.main';
 
 export { default as ToggleSwitchMainExample } from './ToggleSwitch.main';
+export { default as ToggleSwitchSizesExample } from './ToggleSwitch.sizes';
+export { default as ToggleSwitchLabelsExample } from './ToggleSwitch.labels';
+export { default as ToggleSwitchIconExample } from './ToggleSwitch.icon';
+export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgroup';
 
 export { default as TooltipMainExample } from './Tooltip.main';
 
