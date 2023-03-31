@@ -49,6 +49,10 @@ export { default as IdeasButtonMainExample } from './IdeasButton.main';
 export { default as SplitButtonMainExample } from './SplitButton.main';
 
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';
+export { default as ButtonGroupVerticalExample } from './ButtonGroup.vertical';
+export { default as ButtonGroupOverflowExample } from './ButtonGroup.overflow';
+export { default as ButtonGroupInputExample } from './ButtonGroup.input';
+export { default as ButtonGroupUsageExample } from './ButtonGroup.usage';
 
 export { default as CarouselMainExample } from './Carousel.main';
 
