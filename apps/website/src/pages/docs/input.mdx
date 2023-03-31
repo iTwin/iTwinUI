@@ -17,7 +17,7 @@ import * as AllExamples from '~/examples';
   <AllExamples.InputMainExample client:load />
 </LiveExample>
 
-Inputs are form elements meant to receive text input from the user. It is strongly recommended that each input have a label to indicate what info goes into the associated field. You can also display placeholder text within the field itself. This placeholder text is replaced by the actual text input by the user. Unlike the [textarea](textarea), which allow entry of a more sizable quantity of text, text fields are meant to receive info that is a few words long at most.
+Inputs are form elements meant to receive text input from the user. It is strongly recommended that each input have a label to indicate what info goes into the associated field. You can also display placeholder text within the field itself. This placeholder text is replaced by the actual text input by the user. Unlike the [textarea](textarea), which allow entry of a more sizable quantity of text, text fields are meant to receive info that is a few words long at most. Use inputs wherever you need the user to enter information too specific or personal to be listed within a [select](select).
 
 ## Variants
 
@@ -52,6 +52,36 @@ The labeled input bundles the label with the input and includes additional featu
 </LiveExample>
 
 There are three different sizes.
+
+### Inline
+
+<LiveExample src='Input.inline.tsx'>
+  <AllExamples.InputInlineExample client:load />
+</LiveExample>
+
+It’s possible to use inputs inline, in forms for example. The status displays a bit differently. For these textareas the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
+
+### Status
+
+<LiveExample src='Input.status.tsx'>
+  <AllExamples.InputStatusExample client:load />
+</LiveExample>
+
+Status messages are sometimes required for bringing warnings or errors to the user’s attention. For example, required fields that are left empty, spelling mistakes, or to notify a user the username they have entered is available. To achieve this, the bottom border gains the color of the alert level, and the corresponding icon and message displays right below the field, to ensure confusion between errors and text fields is unlikely. Note that the status is conveyed differently when [inline](#inline) styling is applied.
+
+### With other inputs
+
+<LiveExample src='Input.button.tsx'>
+  <AllExamples.InputButtonExample client:load />
+</LiveExample>
+
+You can pair an input and a button together.
+
+<LiveExample src='ButtonGroup.input.tsx'>
+  <AllExamples.ButtonGroupInputExample client:load />
+</LiveExample>
+
+There are more complex options of pairing inputs with other various form components when using the [button group](buttongroup).
 
 ## Props
 

@@ -49,6 +49,7 @@ export { default as IdeasButtonMainExample } from './IdeasButton.main';
 export { default as SplitButtonMainExample } from './SplitButton.main';
 
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';
+export { default as ButtonGroupInputExample } from './ButtonGroup.input';
 
 export { default as CarouselMainExample } from './Carousel.main';
 
@@ -99,6 +100,9 @@ export { default as InputMainExample } from './Input.main';
 export { default as InputInputExample } from './Input.input';
 export { default as InputSizesExample } from './Input.sizes';
 export { default as InputSeparateLabelExample } from './Input.separatelabel';
+export { default as InputInlineExample } from './Input.inline';
+export { default as InputStatusExample } from './Input.status';
+export { default as InputButtonExample } from './Input.button';
 
 export { default as KeyboardMainExample } from './Keyboard.main';
 
