@@ -14,47 +14,16 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const buttons = [
-    <IconButton>
-      <SvgAdd />
-    </IconButton>,
-    <IconButton isActive>
-      <SvgEdit />
-    </IconButton>,
-    <IconButton disabled>
-      <SvgDelete />
-    </IconButton>,
-    <IconButton>
-      <SvgUndo />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-    <IconButton>
-      <SvgPlaceholder />
-    </IconButton>,
-  ];
+  const buttons = Array(12)
+    .fill(null)
+    .map((_, _index) => {
+      return (
+        <IconButton>
+          <SvgPlaceholder />
+        </IconButton>
+      );
+    });
+
   return (
     <div style={{ maxWidth: '70%' }}>
       <ButtonGroup
