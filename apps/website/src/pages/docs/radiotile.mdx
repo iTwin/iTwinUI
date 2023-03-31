@@ -9,16 +9,21 @@ group: inputs
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='input-radiotilegroup' />
-
 <LiveExample src='RadioTile.main.tsx'>
   <AllExamples.RadioTileMainExample client:load />
 </LiveExample>
+
+A series of selectable tile components that behave like radio buttons.
+
+The descriptive text and tile name however retain the same appearance whether the tile they belong to the selected or not. Can include icons to help make each tile more identifiable. The icon inside the selected tile should change to blue, matching the checkmark in the top right as well as the border.
+
+If you do not need descriptive text, go with condensed radio tiles to save space. They contain label and icon.
+
+Highly recommend one radio tile group per page as it is visually heavy and consumes a lot of space. For accessibility reasons, avoid displaying just an icon with no accompanying text. Disabled radio tiles can coexit with active tile. A selected tile can also take on the disabled state.
 
 ## Props
 
