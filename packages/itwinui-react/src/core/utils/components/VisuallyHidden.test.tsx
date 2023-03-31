@@ -8,14 +8,14 @@ import { VisuallyHidden } from './VisuallyHidden';
 
 it('should render in its most basic state', () => {
   const { container } = render(<VisuallyHidden>hi</VisuallyHidden>);
-  const visuallyHidden = container.querySelector('div') as HTMLElement;
+  const visuallyHidden = container.querySelector('span') as HTMLElement;
   expect(visuallyHidden).toHaveClass('iui-visually-hidden');
   expect(visuallyHidden).toHaveAttribute('data-iui-unhide-on-focus');
 });
 
 it('should support polymorphic `as` prop', () => {
-  const { container } = render(<VisuallyHidden as='span'>hi</VisuallyHidden>);
-  expect(container.querySelector('span')).toHaveClass('iui-visually-hidden');
+  const { container } = render(<VisuallyHidden as='div'>hi</VisuallyHidden>);
+  expect(container.querySelector('div')).toHaveClass('iui-visually-hidden');
 });
 
 it('should respect unhideOnFocus prop', () => {

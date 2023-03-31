@@ -22,7 +22,7 @@ type VisuallyHiddenOwnProps = {
 };
 
 export type VisuallyHiddenProps = PolymorphicComponentProps<
-  'div',
+  'span',
   VisuallyHiddenOwnProps
 >;
 
@@ -38,7 +38,7 @@ export type VisuallyHiddenProps = PolymorphicComponentProps<
  */
 export const VisuallyHidden = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'div',
+    as: Element = 'span',
     className,
     unhideOnFocus = true,
     ...rest
@@ -54,6 +54,6 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', VisuallyHiddenOwnProps>;
+}) as PolymorphicForwardRefComponent<'span', VisuallyHiddenOwnProps>;
 
 export default VisuallyHidden;
