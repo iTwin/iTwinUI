@@ -8,9 +8,8 @@ import { TagContainer, Tag } from '@itwin/itwinui-react';
 export default () => {
   return (
     <TagContainer>
-      <Tag>Tag 1</Tag>
-      <Tag onRemove={() => {}}>Tag 2</Tag>
-      <Tag onRemove={() => {}}>Tag 3</Tag>
+      <Tag variant='basic'>Tag 1</Tag>
+      <Tag variant='basic'>Tag 2</Tag>
     </TagContainer>
   );
 };

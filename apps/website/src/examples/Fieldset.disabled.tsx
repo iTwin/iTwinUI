@@ -3,24 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Fieldset, InputGroup, Radio, ToggleSwitch } from '@itwin/itwinui-react';
+import { Fieldset, LabeledInput, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <Fieldset
-      legend='General Settings'
+      legend='Disabled Fieldset'
+      disabled
       style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
     >
-      <InputGroup label='Color Theme'>
-        <Radio name='choice' value='option1' label={'Light'} />
-        <Radio name='choice' value='option2' label={'Dark'} />
-        <Radio name='choice' value='option3' label={'Match device'} />
-      </InputGroup>
-
-      <InputGroup>
-        <ToggleSwitch label='Share crash logs' />
-        <ToggleSwitch disabled label='Advanced settings' />
-      </InputGroup>
+      <LabeledInput label='Full Name' placeholder='Enter full name' />
+      <LabeledInput label='Address' placeholder='Enter address' />
     </Fieldset>
   );
 };

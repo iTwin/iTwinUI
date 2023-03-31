@@ -3,14 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { TagContainer, Tag } from '@itwin/itwinui-react';
+import { Slider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <TagContainer>
-      <Tag>Tag 1</Tag>
-      <Tag onRemove={() => {}}>Tag 2</Tag>
-      <Tag onRemove={() => {}}>Tag 3</Tag>
-    </TagContainer>
+    <div style={{ width: 'min(100%, 300px)' }}>
+      <Slider
+        values={[20, 40, 60, 80]}
+        min={0}
+        max={100}
+        thumbMode='allow-crossing'
+        trackDisplayMode='even-segments'
+      />
+    </div>
   );
 };

@@ -3,14 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { TagContainer, Tag } from '@itwin/itwinui-react';
+import { Checkbox, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <TagContainer>
-      <Tag>Tag 1</Tag>
-      <Tag onRemove={() => {}}>Tag 2</Tag>
-      <Tag onRemove={() => {}}>Tag 3</Tag>
-    </TagContainer>
+    <Flex flexDirection='column' alignItems='flex-start'>
+      <Checkbox label='Default' />
+      <Checkbox label='Positive' status='positive' />
+      <Checkbox label='Warning' status='warning' />
+      <Checkbox label='Negative' status='negative' />
+    </Flex>
   );
 };

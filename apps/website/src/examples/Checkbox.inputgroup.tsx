@@ -3,14 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { TagContainer, Tag } from '@itwin/itwinui-react';
+import { Checkbox, InputGroup } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <TagContainer>
-      <Tag>Tag 1</Tag>
-      <Tag onRemove={() => {}}>Tag 2</Tag>
-      <Tag onRemove={() => {}}>Tag 3</Tag>
-    </TagContainer>
+    <InputGroup label='What are your hobbies?'>
+      <Checkbox label='Sports' defaultChecked />
+      <Checkbox label='Writing' />
+      <Checkbox label='Cooking' />
+      <Checkbox label='Arts and crafts' />
+    </InputGroup>
   );
 };
