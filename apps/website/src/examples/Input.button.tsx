@@ -14,7 +14,7 @@ export default () => {
         placeholder='1600 Pennsylvania Avenue, Washington, DC 20500'
         defaultValue='685 Stockton Dr, Exton, PA 19341'
         svgIcon={
-          <IconButton styleType='borderless'>
+          <IconButton styleType='borderless' aria-label='Clear address input'>
             <SvgCloseSmall />
           </IconButton>
         }
