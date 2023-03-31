@@ -10,11 +10,10 @@ export default () => {
   return (
     <>
       <LabeledInput
-        label='Address'
-        placeholder='1600 Pennsylvania Avenue, Washington, DC 20500'
-        defaultValue='685 Stockton Dr, Exton, PA 19341'
+        label='Street'
+        defaultValue='1051 Faribault Road'
         svgIcon={
-          <IconButton styleType='borderless' aria-label='Clear address input'>
+          <IconButton styleType='borderless' aria-label='Clear street input'>
             <SvgCloseSmall />
           </IconButton>
         }
