@@ -146,6 +146,9 @@ export { default as TagContainerTruncateExample } from './TagContainer.truncate'
 export { default as TagContainerScrollExample } from './TagContainer.scroll';
 
 export { default as TextareaMainExample } from './Textarea.main';
+export { default as TextareaScrollExample } from './Textarea.scroll';
+export { default as TextareaStatusExample } from './Textarea.status';
+export { default as TextareaInlineExample } from './Textarea.inline';
 
 export { default as TextMainExample } from './Text.main';
 
