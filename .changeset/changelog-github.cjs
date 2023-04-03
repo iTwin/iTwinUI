@@ -22,7 +22,7 @@ module.exports = {
               `[#${number}](https://github.com/${options.repo}/pull/${number}): `,
           );
       } catch {
-        return `${commit}: ` || '';
+        return commit ? `${commit}: ` : '';
       }
     })();
 
