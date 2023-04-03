@@ -3,5 +3,7 @@
 @import './visually-hidden';
 
 .iui-visually-hidden {
-  @include visually-hidden;
+  &:where(:not([data-iui-unhide-on-focus]:is(:focus-within, :active))) {
+    @include visually-hidden;
+  }
 }
