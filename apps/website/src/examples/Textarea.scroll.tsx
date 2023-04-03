@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Label, Textarea } from '@itwin/itwinui-react';
+import { Textarea } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState(
