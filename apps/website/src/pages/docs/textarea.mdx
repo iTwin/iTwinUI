@@ -19,8 +19,6 @@ import * as AllExamples from '~/examples';
 
 Text areas (or multi-line fields) are larger text fields that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
 
-It used to be possible to freely resize the text area horizontally in addition to vertically; this pattern is now deprecated, and text areas only allow vertical resizing for better predictability. The resize handle is optional; it may be omitted if resizing of the text area is not desired.
-
 <LiveExample src='Textarea.scroll.tsx'>
   <AllExamples.TextareaScrollExample client:load />
 </LiveExample>
@@ -35,7 +33,7 @@ If the area is shrunk to a size smaller than the amount of text within, a scroll
   <AllExamples.TextareaStatusExample client:load />
 </LiveExample>
 
-If status messages are required, the styling is once again similar to [inputs](input). For the default textarea, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
+If status messages are required, the styling is similar to [inputs](input). For the default textarea, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
 
 ### Inline
 
@@ -43,11 +41,11 @@ If status messages are required, the styling is once again similar to [inputs](i
   <AllExamples.TextareaInlineExample client:load />
 </LiveExample>
 
-It’s possible to use textareas inline, in forms for example. he status displays a bit differently. For these textareas the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
+It's possible to use text areas inline. This could be useful in styling forms.
 
 ## Usage
 
-Use multi-line text areas when a form requires extensive information to be entered by the user. Example: Incident reports, daily logs, details of events, etc.
+Use multi-line text areas when a form requires extensive information to be entered by the user. Examples include incident reports, daily logs, and details of events.
 
 The area’s height may be manipulated at the user’s discretion, if the resizing handle is enabled. This way, if the amount of text required is expected to be lengthy, it makes writing more comfortable.
 
