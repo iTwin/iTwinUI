@@ -42,7 +42,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   padding-block: var(--iui-size-2xs);
   padding-inline: var(--iui-size-s);
   min-block-size: var(--iui-component-height);
-  cursor: pointer;
   line-height: normal;
   color: var(--iui-color-text);
   border-radius: var(--iui-border-radius-1);
@@ -54,6 +53,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &:where([data-iui-actionable='true'], .iui-menu-item, :has(.iui-link-action:hover)):where(:hover) {
+    cursor: pointer;
     background-color: var(--iui-color-background-hover);
   }
 
