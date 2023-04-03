@@ -9,8 +9,10 @@ export default () => {
   return (
     <div
       style={{
-        border: '1px solid pink',
+        width: '75%',
+        minWidth: 150,
         maxWidth: 450,
+        border: '1px solid pink',
         padding: 8,
       }}
     >

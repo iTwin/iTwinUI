@@ -8,21 +8,19 @@ import { SvgAdd, SvgEdit, SvgDelete, SvgUndo } from '@itwin/itwinui-icons-react'
 
 export default () => {
   return (
-    <div>
-      <ButtonGroup>
-        <IconButton onClick={() => {}}>
-          <SvgAdd />
-        </IconButton>
-        <IconButton onClick={() => {}} isActive>
-          <SvgEdit />
-        </IconButton>
-        <IconButton disabled onClick={() => {}}>
-          <SvgDelete />
-        </IconButton>
-        <IconButton onClick={() => {}}>
-          <SvgUndo />
-        </IconButton>
-      </ButtonGroup>
-    </div>
+    <ButtonGroup>
+      <IconButton onClick={() => {}}>
+        <SvgAdd />
+      </IconButton>
+      <IconButton onClick={() => {}} isActive>
+        <SvgEdit />
+      </IconButton>
+      <IconButton disabled onClick={() => {}}>
+        <SvgDelete />
+      </IconButton>
+      <IconButton onClick={() => {}}>
+        <SvgUndo />
+      </IconButton>
+    </ButtonGroup>
   );
 };
