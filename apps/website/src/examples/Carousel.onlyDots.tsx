@@ -46,13 +46,8 @@ export default () => {
             key={index}
             role='tabpanel'
             id={`${id}-slide-${index}`}
-            onClick={({ clientX }) => {
-              // -10 accounts for the width of the scrollbar
-              let diff = visualViewport.width - clientX - 10 > visualViewport.width / 2 ? -1 : +1;
-              if (visualViewport.width > 800) {
-                // +100 accounts for the widths of the sidenav and scrollbar
-                diff = visualViewport.width - clientX + 100 > visualViewport.width / 2 ? -1 : +1;
-              }
+            onClick={({ currentTarget: { clientWidth }, nativeEvent: { offsetX } }) => {
+              const diff = clientWidth - offsetX > clientWidth / 2 ? -1 : +1;
               setCurrent((prev) => (gradients.length + prev + diff) % gradients.length);
             }}
             style={{
