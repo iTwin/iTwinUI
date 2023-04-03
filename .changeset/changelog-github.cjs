@@ -1,7 +1,11 @@
 /** @type {import('@changesets/types').ChangelogFunctions} */
 module.exports = {
   getReleaseLine: async ({ commit, summary }, type, options) => {
-    checkOptionsRepo(options);
+    if (!options.repo) {
+      throw new Error(
+        'Please provide a repo to this changelog generator like this:\n"changelog": ["./changelog-github.mjs", { "repo": "org/repo" }]',
+      );
+    }
 
     const [firstLine, ...futureLines] = summary
       .split('\n')
@@ -30,13 +34,7 @@ module.exports = {
 
     return returnVal;
   },
-  getDependencyReleaseLine: async (
-    changesets,
-    dependenciesUpdated,
-    options,
-  ) => {
-    checkOptionsRepo(options);
-
+  getDependencyReleaseLine: async (changesets, dependenciesUpdated) => {
     if (dependenciesUpdated.length === 0) return '';
 
     const updatedDependenciesList = dependenciesUpdated.map(
@@ -46,11 +44,3 @@ module.exports = {
     return ['- Updated dependencies:', ...updatedDependenciesList].join('\n');
   },
 };
-
-function checkOptionsRepo(options) {
-  if (!options.repo) {
-    throw new Error(
-      'Please provide a repo to this changelog generator like this:\n"changelog": ["./changelog-github.mjs", { "repo": "org/repo" }]',
-    );
-  }
-}
