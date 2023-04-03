@@ -36,6 +36,8 @@
 
 @mixin iui-alert-message {
   margin: var(--iui-size-s) var(--iui-size-m);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 @mixin iui-alert-link {
