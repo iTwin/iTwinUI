@@ -8,7 +8,7 @@ import { SvgAdd, SvgEdit, SvgDelete, SvgUndo } from '@itwin/itwinui-icons-react'
 
 export default () => {
   return (
-    <ButtonGroup>
+    <ButtonGroup orientation='vertical'>
       <IconButton onClick={() => {}}>
         <SvgAdd />
       </IconButton>
