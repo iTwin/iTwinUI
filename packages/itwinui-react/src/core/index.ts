@@ -345,6 +345,7 @@ export {
   LinkAction,
   Icon,
   Flex,
+  VisuallyHidden,
   Divider,
 } from './utils';
 export type {
@@ -357,4 +358,5 @@ export type {
   DividerProps,
   LinkBoxProps,
   LinkActionProps,
+  VisuallyHiddenProps,
 } from './utils';
