@@ -20,51 +20,66 @@ import * as AllExamples from '~/examples';
   <AllExamples.ExpandableBlockMainExample client:load />
 </LiveExample>
 
-Expandable blocks, called expandable rows when inside a table, are used to progressively disclose information. Read this article to learn more about progressive disclosure. Expandable blocks and rows should not be used with flattened hierarchy or information panels. This type of navigation allows the user to see content inside a parent row or block.
+The expandable block has a label reflecting its content. On click, it expands to reveal more content.
 
-## Appearance
+## Variants
 
-### Expandable rows
+### With caption
 
-Expandable rows resemble normal table rows that can be expanded to reveal nested data. An expandable row could optionally be selectable. Because expandable rows are part of a table, the rows must sort based on the table column sort applied. This means expandable rows can not re-arranged, the user must interact with the table header to re-arrange.
+<LiveExample src='ExpandableBlock.withcaption.tsx'>
+  <AllExamples.ExpandableBlockWithCaptionExample client:load />
+</LiveExample>
 
-Expandable rows should not be confused with a tree hierarchy. Unlike trees, they follow a single branch pattern. If you have trouble telling the two apart, the Expandable block VS Hierarchy tree section explains what makes them different.
+Users can optionally display descriptor text underneath the title.
 
-There can be several child elements nested in an expandable row. These indented elements all coexist on the same level without further indentation. If you require more levels, a tree hierarchy is a better pattern for this interaction.
+### Accordion
 
-The child elements don’t reflect the column titles. They are expected to retain the same properties as the parent row (in the example below, the owner). It’s unnecessary to repeat the properties for the child items because of this, so do not include them in the expanded row area.
+<LiveExample src='ExpandableBlock.accordion.tsx'>
+  <AllExamples.ExpandableBlockAccordionExample client:load />
+</LiveExample>
 
-Child items are not interchangeable between rows, e.g. you cannot drag a child item from row A and drag it in row B like you would move files to a folder.
+NEEDS CAPTION
 
-### Expandable blocks
+### With status
 
-The main block has a label reflecting its content. On click, it expands to reveal more content.
+<LiveExample src='ExpandableBlock.status.tsx'>
+  <AllExamples.ExpandableBlockStatusExample client:load />
+</LiveExample>
 
-An expandable block could display status, a total count, or other helpful information at a glance right aligned within the block header. You may also optionally display descriptor text underneath the title.
+An expandable block could display status, a total count, or other helpful information at a glance right aligned within the block header.
 
-Expandable blocks don’t always need to be sorted alphabetically, unlike an expandable row which would be sorted based on the table column sort. You may optionally allow expandable blocks to be re-ordered by the user.
+### Small
 
-The visual appearance of an expandable block is different from an expandable row. An expandable block can not be selected / checked like an expandable row can, therefore it is visually styled differently.
+<LiveExample src='ExpandableBlock.small.tsx'>
+  <AllExamples.ExpandableBlockSmallExample client:load />
+</LiveExample>
+
+NEEDS CAPTION
+
+### Borderless
+
+<LiveExample src='ExpandableBlock.borderless.tsx'>
+  <AllExamples.ExpandableBlockBorderlessExample client:load />
+</LiveExample>
+
+NEEDS CAPTION
 
 ## Usage
 
-### Expandable rows
+- Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/)
 
-Expandable rows are used in tables. The layout inside expanded rows varies according to requirements. Child rows can be selectable and be an entry point to more content (ex.: downloadable files), or only contain metadata about the parent file. If at least one row within a table is expandable, all rows should follow the same pattern. Avoid mixing regular table rows with expandable rows.
+- Expandable blocks should not be used with flattened hierarchy or information panels.
 
-### Expandable blocks
+### Forms
 
 Expandable blocks are used in pages to divide up content in sections, in forms for example. If each section has many fields, using expandable blocks will help alleviate the UI and prevent the user from scrolling endlessly to get to the section they are looking for.
 
-Expanded block containing form elements within an interface.
+### Expandable blocks VS [hierarchy tree](tree)
 
-### Expandable blocks VS hierarchy tree
+While these two patterns may appear similar, they both fulfill a different role and are not interchangeable. Here are some tips to determine if an expandable block is what you need.
 
-While these two patterns may appear similar, they both fulfill a different role and are not interchangeable. Here are some tips to determine if an expandable block or row is what you need.
+Use an expandable blocks when:
 
-Use an expandable rows/blocks when:
-
-- You need a row in a table to display additional metadata that doesn’t align with the column content;
 - You have a page with different sections all containing user-generated content that would benefit from being split up;
 - There is only one level of indentation possible at all times;
 - The content you want to be expandable varies from simple list items to more complex form components (such as text fields, buttons, etc.).
@@ -78,5 +93,3 @@ Use a hierarchy tree when:
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
-
-## Related resources
