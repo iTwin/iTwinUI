@@ -1,3 +1,5 @@
+// see https://github.com/changesets/changesets/blob/main/docs/modifying-changelog-format.md
+
 /** @type {import('@changesets/types').ChangelogFunctions} */
 module.exports = {
   getReleaseLine: async ({ commit, summary }, type, options) => {
@@ -34,6 +36,7 @@ module.exports = {
 
     return returnVal;
   },
+
   getDependencyReleaseLine: async (changesets, dependenciesUpdated) => {
     if (dependenciesUpdated.length === 0) return '';
 
