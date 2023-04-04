@@ -180,7 +180,11 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 @mixin iui-menu-icon {
-  @include iui-icon-style('m');
   flex: 0 0 auto;
-  fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
+
+  &,
+  svg {
+    @include iui-icon-style('m');
+    fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
+  }
 }
