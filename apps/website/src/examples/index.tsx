@@ -49,6 +49,10 @@ export { default as IdeasButtonMainExample } from './IdeasButton.main';
 export { default as SplitButtonMainExample } from './SplitButton.main';
 
 export { default as ButtonGroupMainExample } from './ButtonGroup.main';
+export { default as ButtonGroupVerticalExample } from './ButtonGroup.vertical';
+export { default as ButtonGroupOverflowExample } from './ButtonGroup.overflow';
+export { default as ButtonGroupInputExample } from './ButtonGroup.input';
+export { default as ButtonGroupUsageExample } from './ButtonGroup.usage';
 
 export { default as CarouselMainExample } from './Carousel.main';
 
@@ -159,7 +163,14 @@ export { default as TileMainExample } from './Tile.main';
 export { default as ToastMainExample } from './Toast.main';
 
 export { default as ToggleSwitchMainExample } from './ToggleSwitch.main';
+export { default as ToggleSwitchSizesExample } from './ToggleSwitch.sizes';
+export { default as ToggleSwitchLabelsExample } from './ToggleSwitch.labels';
+export { default as ToggleSwitchIconExample } from './ToggleSwitch.icon';
+export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgroup';
 
 export { default as TooltipMainExample } from './Tooltip.main';
 
 export { default as TreeMainExample } from './Tree.main';
+
+export { default as VisuallyHiddenIconExample } from './VisuallyHidden.icon';
+export { default as VisuallyHiddenMoreTextExample } from './VisuallyHidden.moretext';

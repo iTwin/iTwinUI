@@ -5,25 +5,10 @@
 /// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
 /// If it contains a focusable element, make sure to revert/exclude these styles.
 @mixin visually-hidden {
-  clip-path: inset(50%);
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  height: 1px;
-  width: 1px;
-  padding: 0;
-  margin: -1px;
-  border-width: 0;
-}
-
-/// Reverts visually-hidden styles, making it visible again.
-@mixin visually-hidden-revert {
-  clip-path: revert;
-  overflow: visible;
-  position: static;
-  white-space: normal;
-  height: auto;
-  width: auto;
-  padding: 0;
-  margin: 0;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  height: 1px !important;
+  width: 1px !important;
 }
