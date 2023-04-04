@@ -51,28 +51,28 @@ This component uses a composition approach so it should be used with the provide
 
 ### Slider
 
-`CarouselSlider` is the scrollable list that should consist of `CarouselSlide` components.
+`Carousel.Slider` is the scrollable list that should consist of `Carousel.Slide` components.
 
 ### Slide
 
-`CarouselSlide` is used for the actual slide content. The content can be specified through `children`. It is recommended that the slide content bring its own dimensions (esp. height) and that the dimensions should be the same for all slides.
+`Carousel.Slide` is used for the actual slide content. The content can be specified through `children`. It is recommended that the slide content bring its own dimensions (esp. height) and that the dimensions should be the same for all slides.
 
-<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselSlider.d.ts'} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselSlide.d.ts'} />
 
 ### Navigation
 
-The `CarouselNavigation` component by default consists of the `PreviousButton` and `NextButton` shown on the left and right, and the `CarouselDotsList` component shown in the middle. `children` can be specified to override what is shown in this navigation section.
+The `Carousel.Navigation` component by default consists of the `PreviousButton` and `NextButton` shown on the left and right, and the `Carousel.DotsList` component shown in the middle. `children` can be specified to override what is shown in this navigation section.
 
-<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselSlider.d.ts'} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselNavigation.d.ts'} />
 
-### DotsList
+### Dots List
 
-The `CarouselDots` component shows a list of `CarouselDot` components which can be used to choose a specific slide. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
+The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
 
-<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselSlider.d.ts'} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDotsList.d.ts'} />
 
 ### Dot
 
-`CarouselDot` is the actual "dot" component used to activate a slide on clicking. It should be used as a child of `CarouselDotsList`.
+`Carousel.Dot` is the actual "dot" component used to activate a slide on clicking. It should be used as a child of `Carousel.Dots`.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDot.d.ts'} />
