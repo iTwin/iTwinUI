@@ -466,6 +466,10 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (!focusedDay) {
       return;
     }
