@@ -7,8 +7,6 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 import { SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [totalClicks, setTotalClicks] = React.useState(0);
-
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
       <ExpandableBlock status='positive' title='Positive block'>
