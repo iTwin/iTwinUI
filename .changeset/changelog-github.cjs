@@ -11,23 +11,23 @@ module.exports = {
       .split('\n')
       .map((l) => l.trimEnd());
 
+    // make API call to find PR number associated with the commit
     const prOrCommit = await (async () => {
       try {
-        return await fetch(
+        const [{ number }] = await fetch(
           `https://api.github.com/repos/${options.repo}/commits/${commit}/pulls`,
-        )
-          .then((r) => r.json())
-          .then(
-            ([{ number }]) =>
-              `[#${number}](https://github.com/${options.repo}/pull/${number}): `,
-          );
+        ).then((r) => r.json());
+
+        return `[#${number}](https://github.com/${options.repo}/pull/${number})`;
       } catch {
-        return commit ? `${commit}: ` : '';
+        // fallback to commit sha if API call fails for some reason
+        return commit;
       }
     })();
 
-    let returnVal = `- ${prOrCommit}${firstLine}`;
+    let returnVal = `- ${prOrCommit}: ${firstLine}`;
 
+    // indent everything so it's aligned with the first line
     if (futureLines.length > 0) {
       returnVal += `\n${futureLines.map((l) => `  ${l}`).join('\n')}`;
     }
