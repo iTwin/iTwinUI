@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
-import { SvgSmileyHappy } from '@itwin/itwinui-react/cjs/core/utils';
+import { SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
