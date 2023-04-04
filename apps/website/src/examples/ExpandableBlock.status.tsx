@@ -7,24 +7,23 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 import { SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default () => {
+  const [totalClicks, setTotalClicks] = React.useState(0);
+
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock status='positive' title='Positive expandable block'>
+      <ExpandableBlock status='positive' title='Positive block'>
         Content in block!
       </ExpandableBlock>
-      <ExpandableBlock status='negative' title='Negative expandable block'>
+      <ExpandableBlock status='negative' title='Negative block'>
         Content in block!
       </ExpandableBlock>
-      <ExpandableBlock status='warning' title='Warning expandable block'>
+      <ExpandableBlock status='warning' title='Warning block'>
         Content in block!
       </ExpandableBlock>
-      <ExpandableBlock status='informational' title='Informational expandable block'>
+      <ExpandableBlock status='informational' title='Informational block'>
         Content in block!
       </ExpandableBlock>
-      <ExpandableBlock endIcon={<SvgSmileyHappy />} title='Positive expandable block'>
-        Content in block!
-      </ExpandableBlock>
-      <ExpandableBlock status='positive' title='Positive expandable block'>
+      <ExpandableBlock endIcon={<SvgSmileyHappy />} title='Happy block'>
         Content in block!
       </ExpandableBlock>
     </div>

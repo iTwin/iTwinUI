@@ -9,7 +9,6 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -36,7 +35,7 @@ Users can optionally display descriptor text underneath the title.
   <AllExamples.ExpandableBlockAccordionExample client:load />
 </LiveExample>
 
-NEEDS CAPTION
+Expandable blocks can also stack on top of each other in an accordion to make large sets of information easier to read
 
 ### With status
 
@@ -44,7 +43,7 @@ NEEDS CAPTION
   <AllExamples.ExpandableBlockStatusExample client:load />
 </LiveExample>
 
-An expandable block could display status, a total count, or other helpful information at a glance right aligned within the block header.
+An expandable block could display status, an icon, or other helpful information at a glance right aligned within the block header.
 
 ### Small
 
@@ -52,7 +51,7 @@ An expandable block could display status, a total count, or other helpful inform
   <AllExamples.ExpandableBlockSmallExample client:load />
 </LiveExample>
 
-NEEDS CAPTION
+An expandable block can be one of two sizes: default and small
 
 ### Borderless
 
@@ -60,7 +59,7 @@ NEEDS CAPTION
   <AllExamples.ExpandableBlockBorderlessExample client:load />
 </LiveExample>
 
-NEEDS CAPTION
+The borderless expandable block is useful in tighter areas where using a default expandable block would visibly cause too many blocks.
 
 ## Usage
 
@@ -70,9 +69,13 @@ NEEDS CAPTION
 
 ### Forms
 
+<LiveExample src='ExpandableBlock.form.tsx'>
+  <AllExamples.ExpandableBlockFormExample client:load />
+</LiveExample>
+
 Expandable blocks are used in pages to divide up content in sections, in forms for example. If each section has many fields, using expandable blocks will help alleviate the UI and prevent the user from scrolling endlessly to get to the section they are looking for.
 
-### Expandable blocks VS [hierarchy tree](tree)
+### Expandable blocks VS hierarchy tree
 
 While these two patterns may appear similar, they both fulfill a different role and are not interchangeable. Here are some tips to determine if an expandable block is what you need.
 
@@ -82,7 +85,7 @@ Use an expandable blocks when:
 - There is only one level of indentation possible at all times;
 - The content you want to be expandable varies from simple list items to more complex form components (such as text fields, buttons, etc.).
 
-Use a hierarchy tree when:
+Use a [hierarchy tree](tree) when:
 
 - You require a pattern that works with several levels of data (folder drilling);
 - There are only list items in the pattern;
