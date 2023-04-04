@@ -7,6 +7,7 @@ import cx from 'classnames';
 import { InputProps } from '../Input';
 import { InputFlexContainer, useTheme, SvgSearch } from '../utils';
 import { IconButton } from '../Buttons/IconButton';
+import type { IconButtonProps } from '../Buttons/IconButton';
 
 type SearchBoxOwnProps = {
   /**
@@ -50,11 +51,11 @@ const SearchBoxInput = (
   );
 };
 
-// const SearchBoxButton = (props: React.ComponentProps<'button'>) => {
-const SearchBoxButton = () => {
+const SearchBoxButton = (props: IconButtonProps) => {
+  const { children, ...rest } = props;
   return (
-    <IconButton styleType='borderless'>
-      <SvgSearch />
+    <IconButton styleType='borderless' {...rest}>
+      {children ?? <SvgSearch />}
     </IconButton>
   );
 };
@@ -86,14 +87,22 @@ export const SearchBox = Object.assign(
       expandable = false,
       onToggle,
       isExpanded,
-      // children,
+      children,
       inputProps,
-      //collapsedState = expandable ? <SearchBoxIcon /> : null,
       ...rest
     } = props;
 
+    const [localExpanded, setLocalExpanded] = React.useState(isExpanded);
+
+    React.useEffect(() => {
+      setLocalExpanded(document.activeElement === searchBoxRef.current);
+    }, []);
+
+    const searchBoxRef = React.useRef(null);
+
     return (
       <InputFlexContainer
+        ref={searchBoxRef}
         className={cx({
           'iui-expandable-searchbox': expandable,
         })}
@@ -106,15 +115,21 @@ export const SearchBox = Object.assign(
         data-iui-expanded={isExpanded}
         {...rest}
       >
-        {/* {expandable && !isExpanded && collapsedState} */}
-        {/* {!expandable || isExpanded ? (
-          children
-        ) : ( */}
-        <>
-          <SearchBoxInput {...inputProps} />
-          <SearchBoxButton />
-        </>
-        {/* )} */}
+        {!expandable &&
+          (children ?? (
+            <>
+              <SearchBoxInput {...inputProps} />
+              <SearchBoxButton />
+            </>
+          ))}
+        {expandable &&
+          localExpanded &&
+          (children ?? (
+            <>
+              <SearchBoxInput {...inputProps} />
+              <SearchBoxButton />
+            </>
+          ))}
       </InputFlexContainer>
     );
   },

@@ -9,6 +9,7 @@ import {
   SearchBoxProps,
   IconButton,
   Text,
+  Flex,
 } from '@itwin/itwinui-react';
 import {
   SvgCaretDownSmall,
@@ -26,11 +27,20 @@ export default {
 } as Meta<SearchBoxProps>;
 
 export const Basic: Story<SearchBoxProps> = () => {
-  return <SearchBox />;
+  return (
+    <Flex>
+      <SearchBox />
+      <SearchBox>
+        <SearchBox.Button />
+        <SearchBox.Input />
+        <SearchBox.Button>button</SearchBox.Button>
+      </SearchBox>
+    </Flex>
+  );
 };
 
-export const Expandable: Story<SearchBoxProps> = (args) => {
-  return <SearchBox expandable {...args} />;
+export const Expandable: Story<SearchBoxProps> = () => {
+  return <SearchBox expandable />;
 };
 
 export const Small: Story<SearchBoxProps> = (args) => {

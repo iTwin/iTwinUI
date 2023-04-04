@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
+import { PolymorphicForwardRefComponent } from '../props';
 
 export type InputFlexContainerProps<T extends React.ElementType = 'div'> = {
   as?: T;
@@ -19,9 +20,7 @@ export type InputFlexContainerProps<T extends React.ElementType = 'div'> = {
  * Input flex container.
  * @private
  */
-export const InputFlexContainer = <T extends React.ElementType = 'div'>(
-  props: InputFlexContainerProps<T>,
-) => {
+export const InputFlexContainer = React.forwardRef((props) => {
   const {
     as: Element = 'div',
     disabled,
@@ -48,4 +47,4 @@ export const InputFlexContainer = <T extends React.ElementType = 'div'>(
       {children}
     </Element>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', InputFlexContainerProps>;
