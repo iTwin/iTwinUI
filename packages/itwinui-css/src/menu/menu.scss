@@ -148,15 +148,15 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   .iui-menu-label {
+    display: block;
     inline-size: 100%;
     block-size: var(--iui-font-size-1);
-    vertical-align: middle;
   }
 
   .iui-menu-description {
+    display: block;
     inline-size: 70%;
     block-size: var(--iui-font-size-0);
-    vertical-align: middle;
     margin-block-start: var(--iui-size-2xs);
   }
 
