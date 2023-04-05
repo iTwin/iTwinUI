@@ -34,7 +34,7 @@
     "vite": "^4.1.1"
   },
   "scripts": {
-    "build": "storybook build",
+    "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=2048\" storybook build",
     "dev": "storybook dev -p 6006 --no-open --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
