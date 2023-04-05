@@ -1,0 +1,71 @@
+---
+import Card from './Card.astro';
+
+export type Props = {
+  components: { title: string; url: string }[];
+};
+
+const { components } = Astro.props;
+---
+
+<ul>
+  {
+    components.map((page) => (
+      <li class='card'>
+        <h3>
+          <a href={page.url}>{page.title}</a>
+        </h3>
+      </li>
+    ))
+  }
+</ul>
+
+<style lang='scss'>
+  ul {
+    --_iui-grid-item-min-width: 200px;
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(min(100%, var(--_iui-grid-item-min-width)), 1fr)
+    );
+    gap: var(--space-5);
+    margin-top: var(--space-5);
+    padding: 0;
+  }
+
+  .card {
+    position: relative;
+    display: flex;
+    flex: 1 0 20%;
+    flex-direction: column;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    border-radius: var(--border-radius-1);
+    box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+    transition: box-shadow var(--transition-speed) ease;
+
+    &:where(:hover, :focus-within) {
+      box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+    }
+  }
+
+  a {
+    color: var(--color-text);
+    text-decoration: none;
+
+    &:where(:focus) {
+      outline: none;
+      text-decoration: none;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  h3 {
+    font-size: var(--type-0);
+  }
+</style>
