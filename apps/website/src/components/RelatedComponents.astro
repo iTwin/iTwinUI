@@ -1,20 +1,16 @@
 ---
-import Card from './Card.astro';
-
 export type Props = {
   components: { title: string; url: string }[];
 };
 
-const { components } = Astro.props;
+const { components, ...rest } = Astro.props;
 ---
 
-<ul>
+<ul {...rest}>
   {
     components.map((page) => (
       <li class='card'>
-        <h3>
-          <a href={page.url}>{page.title}</a>
-        </h3>
+        <a href={page.url}>{page.title}</a>
       </li>
     ))
   }
