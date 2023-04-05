@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ColorBuilder, ColorInputPanel, ColorPicker, ColorValue } from '@itwin/itwinui-react';
+import { ColorInputPanel, ColorPicker, ColorValue } from '@itwin/itwinui-react';
 
 export default () => {
-  const [activeColor, setActiveColor] = React.useState<ColorValue>(ColorValue.create('#0073ba'));
+  const [activeColor, setActiveColor] = React.useState<ColorValue>(ColorValue.create('#28d467'));
 
   const onColorChanged = (color: ColorValue) => {
     setActiveColor(color);
@@ -14,8 +14,7 @@ export default () => {
 
   return (
     <ColorPicker selectedColor={activeColor} onChangeComplete={onColorChanged}>
-      <ColorBuilder />
-      <ColorInputPanel defaultColorFormat={'hsl'} />
+      <ColorInputPanel defaultColorFormat={'hex'} />
     </ColorPicker>
   );
 };
