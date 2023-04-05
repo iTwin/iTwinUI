@@ -8,9 +8,9 @@ import { LabeledTextarea } from '@itwin/itwinui-react';
 export default () => {
   return (
     <LabeledTextarea
-      label='Inline textarea'
+      label='Inline text area'
       status='positive'
-      placeholder='Labeled textarea'
+      placeholder='Labeled text area'
       displayStyle='inline'
     />
   );

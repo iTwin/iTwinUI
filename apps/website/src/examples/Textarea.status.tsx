@@ -9,22 +9,22 @@ export default () => {
   return (
     <Flex>
       <LabeledTextarea
-        label='Positive textarea'
+        label='Positive text area'
         message='Happy message'
         status='positive'
-        placeholder='Labeled textarea'
+        placeholder='Labeled text area'
       />
       <LabeledTextarea
-        label='Warning textarea'
+        label='Warning text area'
         message='Cautious message'
         status='warning'
-        placeholder='Labeled textarea'
+        placeholder='Labeled text area'
       />
       <LabeledTextarea
-        label='Negative textarea'
+        label='Negative text area'
         message='Angry message'
         status='negative'
-        placeholder='Labeled textarea'
+        placeholder='Labeled text area'
       />
     </Flex>
   );
