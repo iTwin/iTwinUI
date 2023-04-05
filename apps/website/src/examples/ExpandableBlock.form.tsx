@@ -8,10 +8,12 @@ import { ExpandableBlock, Label, Input, InputGroup, Radio } from '@itwin/itwinui
 export default () => {
   const nameSection = (
     <>
-      <Label required>Name</Label>
-      <Input key='name' placeholder='Enter name' />
-      <Label>Occupation</Label>
-      <Input key='occupation' placeholder='Enter occupation' />
+      <Label htmlFor='name' required>
+        Name
+      </Label>
+      <Input id='name' key='name' placeholder='Enter name' />
+      <Label htmlFor='occupation'>Occupation</Label>
+      <Input id='occupation' key='occupation' placeholder='Enter occupation' />
     </>
   );
 
@@ -28,8 +30,10 @@ export default () => {
 
   const reasonSection = (
     <>
-      <Label required>Why is this your favorite color</Label>
-      <Input key='explanation' placeholder='Enter text here...' />
+      <Label htmlFor='explanation' required>
+        Why is this your favorite color
+      </Label>
+      <Input id='explanation' key='explanation' placeholder='Enter text here...' />
     </>
   );
 
