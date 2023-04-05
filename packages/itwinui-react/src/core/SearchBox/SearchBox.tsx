@@ -92,12 +92,6 @@ export const SearchBox = Object.assign(
       ...rest
     } = props;
 
-    const [localExpanded, setLocalExpanded] = React.useState(isExpanded);
-
-    React.useEffect(() => {
-      setLocalExpanded(document.activeElement === searchBoxRef.current);
-    }, []);
-
     const searchBoxRef = React.useRef(null);
 
     return (
@@ -122,14 +116,15 @@ export const SearchBox = Object.assign(
               <SearchBoxButton />
             </>
           ))}
-        {expandable &&
+        {expandable && <SearchBoxButton />}
+        {/* {expandable &&
           localExpanded &&
           (children ?? (
             <>
               <SearchBoxInput {...inputProps} />
               <SearchBoxButton />
             </>
-          ))}
+          ))} */}
       </InputFlexContainer>
     );
   },
