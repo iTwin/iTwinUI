@@ -190,9 +190,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 }
 
-@mixin iui-menu-listbox {
-  box-shadow: none;
+@mixin iui-listbox {
+  @include iui-surface($elevation: none);
   overflow-y: auto;
   overflow-y: overlay;
-  height: var(--iui-menu-listbox-height);
+  height: var(--iui-listbox-height);
 }

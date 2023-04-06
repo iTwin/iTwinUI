@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/input-container/input-container.scss';
+@import '../utils/input-container/input-container';
 
 @mixin iui-listbox-wrapper {
-  --iui-menu-listbox-height: calc((var(--iui-component-height) - 1px) * 4.5);
+  --iui-listbox-height: calc((var(--iui-component-height) - 1px) * 4.5);
 
   display: grid;
   grid-template-columns: 1fr auto 1fr;

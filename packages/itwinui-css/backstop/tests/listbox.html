@@ -206,18 +206,6 @@
         // Clicking on menu-item should toggle selection
         document.querySelectorAll('.iui-list-item:not(.iui-disabled)').forEach((item) => {
           item.addEventListener('click', () => {
-            if (item.classList.contains('iui-active')) {
-              item.lastElementChild.remove();
-            } else {
-              const checkmarkSvg = document.createElement('svg-checkmark');
-              checkmarkSvg.classList.add('iui-icon');
-              checkmarkSvg.toggleAttribute('aria-hidden', true);
-              if (item.lastElementChild.classList.contains('iui-icon')) {
-                item.lastElementChild.replaceWith(checkmarkSvg); // this will replace the previous icon completely
-              } else {
-                item.appendChild(checkmarkSvg);
-              }
-            }
             item.classList.toggle('iui-active');
           });
         });
