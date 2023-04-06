@@ -35,6 +35,8 @@ import {
   Input,
   Radio,
   ProgressRadial,
+  useTheme,
+  BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -2388,6 +2390,170 @@ WithManualPaginatorAndFilter.argTypes = {
   data: { control: { disable: true } },
 };
 WithManualPaginatorAndFilter.parameters = {
+  docs: { source: { excludeDecorators: true } },
+};
+
+export const CustomFilter: Story<Partial<TableProps>> = (args) => {
+  type RowData = {
+    name: string;
+    description: string;
+  };
+
+  const rowsCount = useMemo(() => 100, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [filter, setFilter] = useState('');
+  const [filteredData, setFilteredData] = useState(
+    undefined as unknown as RowData[],
+  );
+
+  const generateData = (start: number, end: number) => {
+    return Array(end - start)
+      .fill(null)
+      .map((_, index) => {
+        if (filteredData !== undefined && !filter) {
+          return filteredData[index];
+        } else {
+          return {
+            name: `Name${start + index}`,
+            description: `Description${start + index}`,
+          };
+        }
+      });
+  };
+
+  const [data, setData] = useState(() => generateData(0, 100));
+
+  const isPassFilter = React.useCallback(
+    (dataRow: RowData, filter: RowData) => {
+      // check that the name passes a filter, if there is one
+      if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+        return true;
+      }
+      return false;
+    },
+    [],
+  );
+
+  const generateFilteredData = React.useCallback(
+    (filter: RowData) => {
+      let dataNumber = 0;
+      const dataArray = [];
+      let newData = { name: '', description: '' };
+      do {
+        do {
+          newData = {
+            name: `Name${dataNumber}`,
+            description: `Description${dataNumber}`,
+          };
+          dataNumber++;
+        } while (!isPassFilter(newData, filter) && dataNumber < rowsCount);
+        if (isPassFilter(newData, filter)) {
+          dataArray.push(newData);
+        }
+      } while (dataNumber < rowsCount);
+
+      setFilteredData(dataArray);
+      return dataArray;
+    },
+    [isPassFilter, rowsCount],
+  );
+
+  const CustomFilter = () => {
+    useTheme();
+
+    const handleChange = (isChecked: boolean, filter: string) => {
+      setFilter(isChecked ? filter : '');
+      setIsLoading(true);
+      setData([]);
+      // simulate a filtered request
+      setTimeout(() => {
+        setIsLoading(false);
+        const filteredData = generateFilteredData({
+          name: isChecked ? filter : '',
+          description: '',
+        } as RowData);
+        setData(filteredData.slice(0, rowsCount));
+      }, 500);
+    };
+
+    return (
+      <BaseFilter style={{ alignItems: 'flex-start' }}>
+        <Radio
+          label="Contains '3'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '3');
+          }}
+          checked={filter === '3'}
+        />
+        <Radio
+          label="Contains '5'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '5');
+          }}
+          checked={filter === '5'}
+        />
+        <Radio
+          label="Contains '7'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '7');
+          }}
+          checked={filter === '7'}
+        />
+        <Radio
+          label='No filter'
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '');
+          }}
+          checked={filter === ''}
+        />
+      </BaseFilter>
+    );
+  };
+
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: CustomFilter,
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      maxWidth: 200,
+    },
+  ];
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No data.'
+        {...args}
+        isLoading={isLoading}
+        columns={columns}
+        data={data}
+        pageSize={100}
+        style={{ height: '100%' }}
+        manualPagination
+        manualFilters={true}
+      />
+    </>
+  );
+};
+
+CustomFilter.decorators = [
+  (Story) => (
+    <div style={{ height: '90vh' }}>
+      <Story />
+    </div>
+  ),
+];
+
+CustomFilter.argTypes = {
+  data: { control: { disable: true } },
+};
+CustomFilter.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
