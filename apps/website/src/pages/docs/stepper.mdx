@@ -19,6 +19,70 @@ import * as AllExamples from '~/examples';
 
 In defined, multi-step user interactions, it is useful to inform the user of the number of steps involved in the process, and the current step within that sequence. A UI 'Stepper' guides the user through the steps and provides some interaction to return to previous steps. A standard example of a Stepper would be an e-Commerce checkout process, but there are many others where the user must perform sequential steps.
 
+## Variants
+
+There are two different styles of stepper, depending on the amount of steps required to complete the process.
+
+### Short Stepper
+
+<LiveExample src='Stepper.short.tsx'>
+  <AllExamples.StepperShortExample client:load />
+</LiveExample>
+
+In the default "short" stepper, each step is named under a circle.
+
+Designers should confirm the display is acceptable due to the number of steps and labels at various resolutions. If text wrapping occurs or the stepper's visual quality decreases significantly when the window is re-sized, use the [long stepper](#long-stepper) instead.
+
+### Long Stepper
+
+<LiveExample src='Stepper.long.tsx'>
+  <AllExamples.StepperLongExample client:load />
+</LiveExample>
+
+In the long stepper, there are no labels underneath the step indicators to save space. Instead, the label for the step currently in progress appears under the diagram along with ‘Step X of X’. This allocates more space for longer step names, as well as allowing more step indicators to be contained within the diagram.
+
+## Usage
+
+### Short vs Long Stepper
+
+- Use a short stepper if a process has less than five steps and if the label for each step can be summarized with 1-2 words.
+
+- Use a long stepper if a process has five steps or more or if the label for each step are long (20 characters or over) and/or cannot be summarized
+
+- A long stepper may be used for a process corresponding to the short stepper’s criteria if desired. However, using a short stepper for a process that would require a long stepper is not recommended.
+
+### Tooltip
+
+<LiveExample src='Stepper.tooltip.tsx'>
+  <AllExamples.StepperTooltipExample client:load />
+</LiveExample>
+
+Additional (optional) information can be displayed within a [tooltip](tooltip) when hovering over a step indicator.
+
+### Localization
+
+<LiveExample src='Stepper.localization.tsx'>
+  <AllExamples.StepperLocalizationExample client:load />
+</LiveExample>
+
+The ‘Step X of X’ label that appears in the default long stepper can be replaced with a localized string.
+
+### Layout
+
+<LiveExample src='Stepper.layout.tsx'>
+  <AllExamples.StepperLayoutExample client:load />
+</LiveExample>
+
+We recommend the following layout:
+
+1. **Title**: Displayed above the stepper so the user acknowledges what the process is about.
+
+2. **Stepper**
+
+3. **Content**
+
+4. [**Buttons**](button): A [call-to-action button](button#call-to-action) for progress & one or two [default](button#default) buttons for canceling and/or going back one step. If the user has not completed a required task, the call-to-action button may be disabled. If the stepper is in a full screen page, the buttons can be placed within a sticky footer.
+
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />

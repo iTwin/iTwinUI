@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/index';
+@import '../surface/index';
 
 @mixin iui-file-upload {
   @include iui-reset;
@@ -8,6 +9,7 @@
   font-weight: var(--iui-font-weight-normal);
   position: relative;
   display: flex;
+  line-height: 1;
 
   > .iui-content {
     visibility: hidden;
@@ -16,36 +18,27 @@
     left: 0;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    user-select: none;
-    padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-s);
+    display: grid;
+    align-content: center;
+    place-items: center;
+    gap: var(--iui-size-xs);
     background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
-      width: 0.1px;
-      height: 0.1px;
-      opacity: 0;
-      overflow: hidden;
-      position: absolute;
+      @include visually-hidden;
     }
 
     > svg,
     .iui-template-icon {
-      @include iui-icon-style(3xl);
+      @include iui-icon-style('xl');
       @include iui-icon-color;
-      margin-top: var(--iui-size-s);
-      margin-bottom: var(--iui-size-s);
     }
 
     &:only-child {
       visibility: visible;
       position: relative;
-      flex-direction: row;
 
       &:focus-within {
         outline: 2px solid var(--iui-color-text-accent);
@@ -55,6 +48,8 @@
 
     .iui-template-text {
       margin-left: var(--iui-size-l);
+      display: grid;
+      gap: var(--iui-size-2xs);
 
       > label {
         font-weight: var(--iui-font-weight-bold);
@@ -62,15 +57,113 @@
     }
   }
 
-  &.iui-drag > .iui-content {
-    background-color: var(--iui-color-background-accent-muted);
-    border-color: var(--iui-color-border-accent);
-    color: var(--iui-color-text-accent);
-    visibility: visible;
-
-    > svg,
-    .iui-template-icon {
-      fill: var(--iui-color-icon-accent);
+  &.iui-drag {
+    > .iui-content {
+      visibility: visible;
     }
+
+    > .iui-content {
+      background-color: var(--iui-color-background-accent-muted);
+      border-color: var(--iui-color-border-accent);
+      color: var(--iui-color-text-accent);
+
+      svg,
+      .iui-template-icon {
+        fill: var(--iui-color-icon-accent);
+      }
+    }
+  }
+}
+
+@mixin iui-file-upload-template {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--iui-size-m);
+}
+
+@mixin iui-file-card {
+  @include iui-reset;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--iui-size-s);
+  padding: var(--iui-size-m);
+  border-radius: var(--iui-border-radius-1);
+  background-color: var(--iui-color-background);
+  border: 1px solid var(--iui-color-border-subtle);
+  color: var(--iui-color-text);
+  width: 100%;
+
+  &:focus-within {
+    outline: 2px solid var(--iui-color-text-accent);
+    outline-offset: -2px;
+  }
+}
+
+@mixin iui-file-card-icon {
+  &,
+  svg {
+    @include iui-icon-style('xl');
+    @include iui-icon-color;
+  }
+}
+
+@mixin iui-file-card-text {
+  display: grid;
+  gap: var(--iui-size-2xs);
+}
+
+@mixin iui-file-card-title {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+@mixin iui-file-card-description {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--iui-font-size-0);
+  color: var(--iui-color-text-muted);
+}
+
+@mixin iui-file-card-action {
+  margin-left: auto;
+  font-weight: var(--iui-font-weight-bold);
+}
+
+@mixin iui-file-card-empty {
+  @include iui-reset;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--iui-size-l);
+  padding: var(--iui-size-m);
+  border-radius: var(--iui-border-radius-1);
+  border: 1px solid var(--iui-color-border);
+  width: 100%;
+
+  &:focus-within {
+    outline: 2px solid var(--iui-color-text-accent);
+    outline-offset: -2px;
+  }
+}
+
+@mixin iui-file-card-empty-icon {
+  &,
+  svg {
+    @include iui-icon-color;
+    @include iui-icon-style('xl');
+  }
+}
+
+@mixin iui-file-card-empty-action {
+  display: grid;
+  gap: var(--iui-size-2xs);
+
+  label {
+    font-weight: var(--iui-font-weight-bold);
   }
 }

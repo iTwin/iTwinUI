@@ -21,18 +21,16 @@ const getBadgeColorValue = (color: BadgeProps['backgroundColor']) => {
     return '';
   }
 
-  switch (color) {
-    case 'primary':
-      return '#A5D7F5';
-    case 'positive':
-      return '#C3E1AF';
-    case 'negative':
-      return '#EFA9A9';
-    case 'warning':
-      return '#F9D7AB';
-    default:
-      return isSoftBackground(color) ? SoftBackgrounds[color] : color;
-  }
+  return isSoftBackground(color) ? SoftBackgrounds[color] : color;
+};
+
+/**
+ * Helper function that returns one of the preset badge status values.
+ */
+const getStatusValue = (color: BadgeProps['backgroundColor']) => {
+  const statuses = ['positive', 'negative', 'warning', 'informational'];
+
+  return color && statuses.includes(color) ? color : undefined;
 };
 
 export type BadgeProps = {
@@ -45,6 +43,7 @@ export type BadgeProps = {
    */
   backgroundColor?:
     | 'primary'
+    | 'informational'
     | 'positive'
     | 'negative'
     | 'warning'
@@ -69,15 +68,29 @@ export const Badge = (props: BadgeProps) => {
 
   useTheme();
 
-  const _style = backgroundColor
-    ? {
-        '--iui-badge-background-color': getBadgeColorValue(backgroundColor),
-        ...style,
-      }
-    : { ...style };
+  // choosing 'primary' status should result in data-iui-status equaling 'informational'
+  const reducedBackgroundColor =
+    backgroundColor === 'primary' ? 'informational' : backgroundColor;
+
+  const statusValue = getStatusValue(reducedBackgroundColor);
+
+  const _style =
+    reducedBackgroundColor && !statusValue
+      ? {
+          '--iui-badge-background-color': getBadgeColorValue(
+            reducedBackgroundColor,
+          ),
+          ...style,
+        }
+      : { ...style };
 
   return (
-    <span className={cx('iui-badge', className)} style={_style} {...rest}>
+    <span
+      className={cx('iui-badge', className)}
+      style={_style}
+      data-iui-status={statusValue}
+      {...rest}
+    >
       {children}
     </span>
   );

@@ -3,23 +3,23 @@
 @import './index';
 
 :is(.iui-list, .iui-menu) {
-  @include iui-list-menu;
+  @include iui-list;
 
-  .iui-listbox-wrapper & {
-    @include iui-menu-listbox;
+  .iui-header-menu-icon {
+    @include iui-header-menu-icon;
   }
 }
 
 .iui-menu {
-  @include header-menu-styles;
+  @include iui-menu;
 }
 
 :is(.iui-list-item, .iui-menu-item) {
   @include iui-menu-item;
 }
 
-.iui-menu-item {
-  @include menu-item-content;
+:is(.iui-menu-item > .iui-icon, .iui-list-item-icon) {
+  @include iui-menu-icon;
 }
 
 .iui-menu-item-skeleton {
@@ -28,6 +28,14 @@
 
 .iui-menu-content {
   @include iui-menu-content;
+}
+
+:is(.iui-menu-item > .iui-content, .iui-list-item-content) {
+  @include iui-menu-item-content;
+}
+
+:is(.iui-menu-description, .iui-list-item-description) {
+  @include iui-menu-item-description;
 }
 
 .iui-menu-divider {

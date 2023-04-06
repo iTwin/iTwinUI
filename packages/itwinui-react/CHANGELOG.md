@@ -1,5 +1,112 @@
 # Changelog
 
+## 2.8.0
+
+### Minor Changes
+
+- 861fcab3: The `Surface` component can now be broken down using the `Surface.Header` and `Surface.Body` subcomponents. Users can add padding to the body using `isPadded`.
+
+  ```jsx
+  <Surface>
+    <Surface.Header>Surface Header Content</Surface.Header>
+    <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
+  </Surface>
+  ```
+
+- 861fcab3: A new `Divider` component has been created which can be used horizontally or vertically
+
+  ```jsx
+  <Divider orientation={'vertical'} />
+  ```
+
+- 8c89441f: Added `VisuallyHidden`, a utility component for providing text to assistive technologies while hiding it visually.
+
+  ```jsx
+  <div aria-hidden='true'>★★★☆☆</div>
+  <VisuallyHidden>3 stars out of 5</VisuallyHidden>
+  ```
+
+### Patch Changes
+
+- 3ad2dd90: Fixed an issue in draggable/resizable dialogs opened in popup windows, where pointermove event listeners were not being removed correctly.
+- 521610a0: iTwinUI will now show a warning in development if it detects that the page overrides the root font size. For more details, see the [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#relative-font-size).
+- 6caccc8d: Fixes jumpy animation when opening full page dialog
+- Updated dependencies
+  - @itwin/itwinui-css@1.9.0
+
+## 2.7.0
+
+### Minor Changes
+
+- bea577e2: Updated the visuals for status colors in Badge.
+- c581e9ed: Added `LinkBox` and `LinkAction`components to improve components with action accessibility.
+
+  Usage:
+
+  ```js
+  <LinkBox>
+    <LinkAction href='/new-page'>Link to click</LinkAction>
+  </LinkBox>
+  ```
+
+- c581e9ed: Added `Tile.Action` to take advantage of these new a11y components in Tile.
+
+  Usage:
+
+  ```js
+  <Tile
+    name={
+      <Tile.Action as='button' onClick={() => {/* Do things */}>
+        Tile name that is also a button
+      </Tile.Action>
+    }
+  />
+  ```
+
+- 61f44293: Added new `isDateDisabled` prop to DatePicker. Accepts a function which takes a date and returns a boolean to indicate whether that date is not selectable.
+
+### Patch Changes
+
+- 198d6a95: Remove the ability to set icon prop for ToggleSwitch when size is set to small
+- c5cfa4c6: Fixed an issue with incremental migration where adding a close button to v2 Toaster was breaking v1 styles for the whole page.
+- a1f235d0: Fixed Carousel showing warnings in React 16 when using arrow keys.
+- c9dee6f5: Fixed an issue where Slider's tooltip was still visible after unmounting the component.
+- 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 028d4cd7: Updated actionable tile to have a more prominent hover effect.
+- 341449ca: Fixes an issue where stripe width for borderless and pill tabs was rendering an incorrect length upon first visiting the page.
+- Updated dependencies
+  - @itwin/itwinui-css@1.8.0
+
+## 2.6.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- d2ffe2f2: `ComboBox` will not crash when user provided value is not in Options list.
+- 56f9d524: HeaderLogo now supports `as` prop to allow rendering as a link. It will default to a `button` if `onClick` is passed, and `div` if not.
+- Updated dependencies
+  - @itwin/itwinui-css@1.7.0
+
 ## 2.5.1
 
 ### Patch Changes

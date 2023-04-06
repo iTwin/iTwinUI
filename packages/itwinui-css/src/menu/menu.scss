@@ -5,13 +5,16 @@
 
 $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
-@mixin iui-list-menu {
+@mixin iui-list {
   @include iui-reset;
-  @include iui-surface;
   list-style-type: none;
+  isolation: isolate;
+}
+
+@mixin iui-menu {
+  @include iui-surface;
   max-height: var(--iui-menu-max-height);
   border-radius: var(--iui-border-radius-1);
-  isolation: isolate;
 
   &.iui-scroll {
     overflow-y: auto;
@@ -20,12 +23,10 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 }
 
-@mixin header-menu-styles {
-  .iui-header-menu-icon {
-    margin: 0 var(--iui-size-2xs);
-  }
+@mixin iui-header-menu-icon {
+  margin: 0 var(--iui-size-2xs);
 
-  div.iui-header-menu-icon {
+  &:is(div) {
     @include iui-icon-style('l');
     margin: 0;
     border-radius: var(--iui-border-radius-1);
@@ -36,11 +37,11 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-item {
   display: flex;
   align-items: center;
+  gap: var(--iui-size-xs);
   font-size: var(--iui-font-size-1);
   padding-block: var(--iui-size-2xs);
   padding-inline: var(--iui-size-s);
-  min-height: var(--iui-component-height);
-  cursor: pointer;
+  min-block-size: var(--iui-component-height);
   line-height: normal;
   color: var(--iui-color-text);
   border-radius: var(--iui-border-radius-1);
@@ -48,50 +49,54 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   position: relative;
 
   + #{&} {
-    margin-top: -1px;
+    margin-block-start: -1px;
   }
 
-  &:where(:hover) {
+  &:where([data-iui-actionable='true'], .iui-menu-item, :has(.iui-link-action:hover)):where(:hover) {
+    cursor: pointer;
     background-color: var(--iui-color-background-hover);
   }
 
-  &:where(:focus-visible, .iui-focused, :has(:focus-visible)) {
+  &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
     outline: $iui-active-outline;
     outline-offset: -1px;
-    z-index: 1;
+    z-index: 2;
   }
 
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
       outline: $iui-active-outline;
       outline-offset: -1px;
-      z-index: 1;
+      z-index: 2;
     }
   }
 
-  &.iui-large {
-    min-height: var(--iui-component-height-large);
-
-    .iui-menu-description {
-      display: block;
-    }
+  &:where(.iui-large, [data-iui-size='large']) {
+    min-block-size: var(--iui-component-height-large);
   }
 
-  &.iui-active {
+  &:where(.iui-active, [data-iui-active='true']) {
+    @supports selector(:has(+ *)) {
+      &:where(:has(+ #{&})) {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      + :where(#{&}) {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
     background-color: var(--iui-color-background-accent-muted);
     color: var(--iui-color-text-accent);
     outline: $iui-active-outline;
     outline-offset: -1px;
+    z-index: 1;
+    --_iui-list-item-icon-fill: currentColor;
+    --_iui-list-item-description-color: var(--iui-color-text-accent);
 
-    .iui-menu-description {
-      color: inherit;
-    }
-
-    > .iui-icon {
-      fill: currentColor;
-    }
-
-    &:where(:focus-visible, .iui-focused, :has(:focus-visible)) {
+    &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
       outline-width: var(--iui-size-3xs);
       outline-offset: -2px;
     }
@@ -104,60 +109,34 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     }
   }
 
-  &.iui-disabled {
+  &:where(.iui-disabled, [data-iui-disabled='true']) {
     z-index: -1;
     cursor: not-allowed;
     outline: none;
-    background-color: var(--iui-color-background);
+    background-color: transparent;
     color: var(--iui-color-text-disabled);
-
-    > .iui-icon {
-      fill: var(--iui-color-icon-disabled);
-    }
-  }
-
-  // nested links should have no styling and should have the same click area as the list item
-  :where(a) {
-    all: unset;
-    color: inherit;
-    text-decoration: none;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-    }
+    --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-list-item-description-color: var(--iui-color-text-disabled);
   }
 }
 
-// TODO: improve these classes
-@mixin menu-item-content {
-  .iui-content,
-  .iui-menu-label,
-  .iui-menu-description {
+@mixin iui-menu-item-content {
+  flex: 1 1 auto;
+
+  &,
+  > * {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
+}
 
-  .iui-content {
-    flex: 1 1 auto;
-
-    + .iui-icon {
-      margin-right: 0;
-      margin-left: var(--iui-size-xs);
-    }
-  }
-
-  .iui-menu-description {
-    display: none;
-    font-size: var(--iui-font-size-0);
-    color: var(--iui-color-text-muted);
-  }
-
-  > .iui-icon {
-    @include iui-menu-icon;
-  }
+@mixin iui-menu-item-description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--iui-font-size-0);
+  color: var(--_iui-list-item-description-color, var(--iui-color-text-muted));
 }
 
 @mixin iui-menu-item-skeleton {
@@ -165,20 +144,20 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   cursor: auto;
 
   .iui-content {
-    max-width: var(--iui-menu-item-content-skeleton-max-width);
+    max-inline-size: var(--iui-menu-item-content-skeleton-max-width);
   }
 
   .iui-menu-label {
-    width: 100%;
-    height: var(--iui-font-size-1);
-    vertical-align: middle;
+    display: block;
+    inline-size: 100%;
+    block-size: var(--iui-font-size-1);
   }
 
   .iui-menu-description {
-    width: 70%;
-    height: var(--iui-font-size-0);
-    vertical-align: middle;
-    margin-top: var(--iui-size-2xs);
+    display: block;
+    inline-size: 70%;
+    block-size: var(--iui-font-size-0);
+    margin-block-start: var(--iui-size-2xs);
   }
 
   &:hover {
@@ -189,25 +168,25 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-content {
   padding-block: var(--iui-size-xs);
   padding-inline: var(--iui-size-m);
-  min-height: var(--iui-component-height);
+  min-block-size: var(--iui-component-height);
   display: grid;
   align-items: center;
 }
 
 @mixin iui-menu-divider {
-  height: 1px;
-  width: calc(100% - #{var(--iui-size-l)});
+  block-size: 1px;
+  inline-size: calc(100% - #{var(--iui-size-l)});
   margin: 1px auto;
   background-color: var(--iui-color-border);
 }
 
 @mixin iui-menu-icon {
-  @include iui-icon-style('m');
   flex: 0 0 auto;
-  fill: var(--iui-color-icon);
 
-  + .iui-content {
-    margin-left: var(--iui-size-xs);
+  &,
+  svg {
+    @include iui-icon-style('m');
+    fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
   }
 }
 
