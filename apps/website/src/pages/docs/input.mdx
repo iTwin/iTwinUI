@@ -53,14 +53,6 @@ The labeled input bundles the label with the input and includes additional featu
 
 There are three different sizes, which can be specified using the `size` prop.
 
-### Inline
-
-<LiveExample src='Input.inline.tsx'>
-  <AllExamples.InputInlineExample client:load />
-</LiveExample>
-
-It’s possible to use inputs inline, in forms for example. The status displays a bit differently. For these inputs the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
-
 ### Status
 
 <LiveExample src='Input.status.tsx'>
@@ -68,6 +60,14 @@ It’s possible to use inputs inline, in forms for example. The status displays 
 </LiveExample>
 
 Status messages are sometimes required for bringing warnings or errors to the user’s attention. For example, required fields that are left empty, spelling mistakes, or to notify a user the username they have entered is available. To achieve this, the bottom border gains the color of the alert level, and the corresponding icon and message displays right below the field, to ensure confusion between errors and text fields is unlikely. Note that the status is conveyed differently when [inline](#inline) styling is applied.
+
+### Inline
+
+<LiveExample src='Input.inline.tsx'>
+  <AllExamples.InputInlineExample client:load />
+</LiveExample>
+
+It’s possible to use inputs inline, in forms for example. The [status](#status) displays a bit differently. For these inputs the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
 
 ### With other inputs
 
