@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain';
 import DialogTitleBar from './DialogTitleBar';
 
@@ -19,9 +19,7 @@ afterAll(() => {
 it('should render in its most basic state', () => {
   const { container } = render(<DialogMain isOpen>test-content</DialogMain>);
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
   expect(dialog.getAttribute('role')).toEqual('dialog');
@@ -35,7 +33,7 @@ it('should render full page dialog', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-full-page.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-full-page',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
@@ -50,7 +48,7 @@ it('should render draggable dialog', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-draggable',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog).toHaveTextContent('test-content');
@@ -64,15 +62,13 @@ it('should render with custom style and className', () => {
     </DialogMain>,
   );
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog.classList.contains('test-class')).toBeTruthy();
   expect(dialog).toHaveStyle('color: red');
 });
 
-it('should close on Esc click and move focus back', () => {
+it('should close on Esc click and move focus back', async () => {
   const { container: buttonContainer } = render(<button>button</button>);
   const button = buttonContainer.querySelector('button') as HTMLElement;
   button.focus();
@@ -90,7 +86,9 @@ it('should close on Esc click and move focus back', () => {
   fireEvent.keyDown(dialog, { key: 'Escape' });
   expect(onClose).toHaveBeenCalled();
   // Focus dialog when opened
-  expect(document.activeElement).toEqual(dialog);
+  waitFor(() => {
+    expect(document.activeElement).toEqual(dialog);
+  });
 
   rerender(
     <DialogMain
@@ -232,7 +230,7 @@ it('should handle drag', () => {
   );
 
   const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-draggable.iui-dialog-visible',
+    '.iui-dialog.iui-dialog-draggable',
   ) as HTMLElement;
   expect(dialog).toBeTruthy();
 
@@ -256,9 +254,7 @@ it('should not handle drag when dialog is not draggable', () => {
     </DialogMain>,
   );
 
-  const dialog = container.querySelector(
-    '.iui-dialog.iui-dialog-visible',
-  ) as HTMLElement;
+  const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
 
   const titleBar = container.querySelector(

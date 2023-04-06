@@ -8,10 +8,8 @@ import { ToggleSwitch, Flex } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Flex flexDirection='column' alignItems='flex-start'>
-      <ToggleSwitch label='Option 1' defaultChecked={true} />
-      <ToggleSwitch label='Option 2' defaultChecked={false} />
-      <ToggleSwitch label='Option 3' defaultChecked={true} disabled />
-      <ToggleSwitch label='Option 4' defaultChecked={false} disabled />
+      <ToggleSwitch label='Small' size='small' defaultChecked={true} />
+      <ToggleSwitch label='Medium' defaultChecked={true} />
     </Flex>
   );
 };
