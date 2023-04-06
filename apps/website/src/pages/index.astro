@@ -75,11 +75,11 @@ const currentPage = new URL(Astro.request.url).pathname;
         </div>
         <div class='demo-wrapper'>
           <div class='demo-box demo-box-muted'>
-            <li class='discover-more'>
+            <div class='discover-more'>
               <a href={'/docs/components'} class='component-link'
                 >Discover more components <RightArrowIcon />
               </a>
-            </li>
+            </div>
           </div>
         </div>
       </div>
@@ -220,6 +220,7 @@ const currentPage = new URL(Astro.request.url).pathname;
 
       &:hover {
         text-decoration: underline;
+        text-underline-offset: 0.2ex;
       }
     }
     .header {
