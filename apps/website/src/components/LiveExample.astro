@@ -22,15 +22,9 @@ export type Props = {
    * @default true
    */
   hasDemoCode?: boolean;
-
-  /**
-   * use to set the max height if it needs to be taller than the default
-   * @default '400px'
-   */
-  maxHeight?: string;
 };
 
-const { src, truncate = true, hasDemoCode = true, maxHeight = '400px' } = Astro.props;
+const { src, truncate = true, hasDemoCode = true } = Astro.props;
 
 const codePath = path.join(baseUrl, `./src/examples/${src}`);
 let code = await fs.promises.readFile(codePath, 'utf8');
@@ -41,7 +35,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 }
 ---
 
-<div class='demo-box' style={{ maxHeight: maxHeight }}>
+<div class='demo-box'>
   <ThemeProvider
     className='demo-iui-wrapper'
     theme='dark'
@@ -100,7 +94,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
   .demo-box {
     position: relative;
     min-height: 300px;
-    max-height: 400px;
+    max-height: 500px;
     display: grid;
     justify-items: center;
     padding: 1rem;
