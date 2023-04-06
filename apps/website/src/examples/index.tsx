@@ -55,6 +55,8 @@ export { default as ButtonGroupInputExample } from './ButtonGroup.input';
 export { default as ButtonGroupUsageExample } from './ButtonGroup.usage';
 
 export { default as CarouselMainExample } from './Carousel.main';
+export { default as CarouselControlledExample } from './Carousel.controlled';
+export { default as CarouselOnlyDotsExample } from './Carousel.onlyDots';
 
 export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CheckboxIndeterminateExample } from './Checkbox.indeterminate';
