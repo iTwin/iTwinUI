@@ -9,6 +9,7 @@ group: inputs
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -70,3 +71,12 @@ You may want to place the label somewhere separated from the input. This can be 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Button', url: 'button' },
+    { title: 'Textarea', url: 'textarea' },
+  ]}
+/>
