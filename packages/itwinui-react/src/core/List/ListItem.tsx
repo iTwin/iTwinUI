@@ -162,3 +162,15 @@ export const ListItem = Object.assign(ListItemComponent, {
 });
 
 export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;
+export type ListItemIconProps = PolymorphicComponentProps<
+  'li',
+  ListItemIconOwnProps
+>;
+export type ListItemContentProps = PolymorphicComponentProps<
+  'li',
+  ListItemContentOwnProps
+>;
+export type ListItemDescriptionProps = PolymorphicComponentProps<
+  'li',
+  ListItemDescriptionOwnProps
+>;
