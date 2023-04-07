@@ -24,49 +24,49 @@ Inputs are form elements meant to receive text input from the user. It is strong
 
 ### Sizes
 
+There are three different sizes, which can be specified using the `size` prop.
+
 <LiveExample src='Input.sizes.tsx'>
   <AllExamples.InputSizesExample client:load />
 </LiveExample>
 
-There are three different sizes, which can be specified using the `size` prop.
-
 ### Status
+
+Status messages are sometimes required for bringing warnings or errors to the user’s attention. For example, required fields that are left empty, spelling mistakes, or to notify a user the username they have entered is available. Note that the status is conveyed differently when [inline](#inline) styling is applied.
 
 <LiveExample src='Input.status.tsx'>
   <AllExamples.InputStatusExample client:load />
 </LiveExample>
 
-Status messages are sometimes required for bringing warnings or errors to the user’s attention. For example, required fields that are left empty, spelling mistakes, or to notify a user the username they have entered is available. Note that the status is conveyed differently when [inline](#inline) styling is applied.
-
 ### Inline
+
+It’s possible to use inputs inline, in forms for example. The [status](#status) displays a bit differently. For these inputs the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
 
 <LiveExample src='Input.inline.tsx'>
   <AllExamples.InputInlineExample client:load />
 </LiveExample>
 
-It’s possible to use inputs inline, in forms for example. The [status](#status) displays a bit differently. For these inputs the status border remains the same, but the icon displays horizontally centered inside the area, at the far right.
-
 ### With other inputs
+
+You can pair an input and a button together.
 
 <LiveExample src='Input.button.tsx'>
   <AllExamples.InputButtonExample client:load />
 </LiveExample>
 
-You can pair an input and a button together.
+There are more complex options of pairing inputs with other various form components when using the [button group](buttongroup).
 
 <LiveExample src='ButtonGroup.input.tsx'>
   <AllExamples.ButtonGroupInputExample client:load />
 </LiveExample>
 
-There are more complex options of pairing inputs with other various form components when using the [button group](buttongroup).
-
 ### Standalone
+
+You may want to place the label somewhere separated from the input. This can be useful when you want to create columns where the text labels are all right aligned. Use `<Input>` in combination with `<Label>` when you want to separate the two. Be aware that it is an accessibility requirement for all inputs to be paired with a label.
 
 <LiveExample src='Input.separatelabel.tsx'>
   <AllExamples.InputSeparateLabelExample client:load />
 </LiveExample>
-
-You may want to place the label somewhere separated from the input. This can be useful when you want to create columns where the text labels are all right aligned. Use `<Input>` in combination with `<Label>` when you want to separate the two. Be aware that it is an accessibility requirement for all inputs to be paired with a label.
 
 ## Props
 
