@@ -102,6 +102,11 @@ export { default as InformationPanelMainExample } from './InformationPanel.main'
 export { default as InputGroupMainExample } from './InputGroup.main';
 
 export { default as InputMainExample } from './Input.main';
+export { default as InputSizesExample } from './Input.sizes';
+export { default as InputSeparateLabelExample } from './Input.separatelabel';
+export { default as InputInlineExample } from './Input.inline';
+export { default as InputStatusExample } from './Input.status';
+export { default as InputButtonExample } from './Input.button';
 
 export { default as KeyboardMainExample } from './Keyboard.main';
 
