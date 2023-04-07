@@ -71,10 +71,6 @@ export { default as ColorPickerMainExample } from './ColorPicker.main';
 export { default as ColorPickerBasicExample } from './ColorPicker.basic';
 export { default as ColorPickerAdvancedExample } from './ColorPicker.advanced';
 export { default as ColorPickerAdvancedPopoverExample } from './ColorPicker.advancedPopover';
-export { default as ColorPickerBuilderExample } from './ColorPicker.builder';
-export { default as ColorPickerInputPanelExample } from './ColorPicker.inputPanel';
-export { default as ColorPickerPaletteExample } from './ColorPicker.palette';
-export { default as ColorPickerSwatchExample } from './ColorPicker.swatch';
 
 export { default as ComboBoxMainExample } from './ComboBox.main';
 
