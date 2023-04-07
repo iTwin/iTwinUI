@@ -55,6 +55,8 @@ export { default as ButtonGroupInputExample } from './ButtonGroup.input';
 export { default as ButtonGroupUsageExample } from './ButtonGroup.usage';
 
 export { default as CarouselMainExample } from './Carousel.main';
+export { default as CarouselControlledExample } from './Carousel.controlled';
+export { default as CarouselOnlyDotsExample } from './Carousel.onlyDots';
 
 export { default as CheckboxMainExample } from './Checkbox.main';
 export { default as CheckboxIndeterminateExample } from './Checkbox.indeterminate';
@@ -150,6 +152,9 @@ export { default as TagContainerTruncateExample } from './TagContainer.truncate'
 export { default as TagContainerScrollExample } from './TagContainer.scroll';
 
 export { default as TextareaMainExample } from './Textarea.main';
+export { default as TextareaScrollExample } from './Textarea.scroll';
+export { default as TextareaStatusExample } from './Textarea.status';
+export { default as TextareaInlineExample } from './Textarea.inline';
 
 export { default as TextMainExample } from './Text.main';
 
