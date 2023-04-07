@@ -7,10 +7,6 @@ import { LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <LabeledTextarea
-      label='Text area label'
-      message='Help message'
-      placeholder='Labeled text area'
-    />
+    <LabeledTextarea label='textarea label' message='Help message' placeholder='Labeled textarea' />
   );
 };

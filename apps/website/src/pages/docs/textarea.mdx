@@ -17,13 +17,13 @@ import * as AllExamples from '~/examples';
   <AllExamples.TextareaMainExample client:load />
 </LiveExample>
 
-Text areas (or multi-line fields) are larger text fields that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
+Textarea (or multi-line fields) are larger text field that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
 
 <LiveExample src='Textarea.scroll.tsx'>
   <AllExamples.TextareaScrollExample client:load />
 </LiveExample>
 
-If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for text areas without a resizing handle, to avoid making text editing tedious.
+If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for textarea without a resizing handle, to avoid making text editing tedious.
 
 ## Variants
 
@@ -33,7 +33,7 @@ If the area is shrunk to a size smaller than the amount of text within, a scroll
   <AllExamples.TextareaStatusExample client:load />
 </LiveExample>
 
-If status messages are required, the styling is similar to [inputs](input). For the default text area, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
+If status messages are required, the styling is similar to [inputs](input). For the default textarea, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
 
 ### Inline
 
@@ -41,11 +41,11 @@ If status messages are required, the styling is similar to [inputs](input). For 
   <AllExamples.TextareaInlineExample client:load />
 </LiveExample>
 
-It's possible to use text areas inline. This could be useful in styling forms.
+It's possible to use textarea inline. This could be useful in styling forms.
 
 ## Usage
 
-Use multi-line text areas when a form requires extensive information to be entered by the user. Examples include incident reports, daily logs, and details of events.
+Use multi-line textarea when a form requires extensive information to be entered by the user. Examples include incident reports, daily logs, and details of events.
 
 The area’s height may be manipulated at the user’s discretion, if the resizing handle is enabled. This way, if the amount of text required is expected to be lengthy, it makes writing more comfortable.
 
