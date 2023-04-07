@@ -7,7 +7,7 @@ import { Textarea } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState(
-    'If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for textareas without a resizing handle, to avoid making text editing tedious.'
+    'If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for textarea without a resizing handle, to avoid making text editing tedious.'
   );
 
   return (
