@@ -2,20 +2,20 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { mergeConfig } = require('vite');
 
-/**
- * @type {import('@storybook/builder-vite').StorybookViteConfig}
- */
-module.exports = {
+/** @type { import('@storybook/react-vite').StorybookConfig } */
+export default {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
   staticDirs: ['./public'],
   addons: [
     {
       name: '@storybook/addon-essentials',
-      options: { measure: false, outline: false },
+      options: {
+        measure: false,
+        outline: false,
+      },
     },
-    'storybook-dark-mode/register',
+    'storybook-dark-mode',
     {
       name: '@storybook/addon-storysource',
       options: {
@@ -27,24 +27,18 @@ module.exports = {
         },
       },
     },
-    './hcThemeAddon/register.js',
+    './hcThemeAddon',
     '@storybook/addon-a11y',
+    '@storybook/addon-mdx-gfm',
   ],
-  framework: '@storybook/react',
-  core: {
-    builder: '@storybook/builder-vite',
+  features: {
+    storyStoreV7: false,
   },
-  async viteFinal(config, { configType }) {
-    return mergeConfig(config, {
-      base: configType === 'PRODUCTION' ? './' : '/',
-      server: {
-        watch: {
-          ignored: ['cypress-visual-report', 'cypress-visual-report/**'],
-        },
-      },
-      build: {
-        sourcemap: configType === 'DEVELOPMENT',
-      },
-    });
+  framework: {
+    name: '@storybook/react-vite',
+    options: {},
+  },
+  docs: {
+    autodocs: false,
   },
 };

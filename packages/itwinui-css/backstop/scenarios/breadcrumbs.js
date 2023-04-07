@@ -22,4 +22,8 @@ module.exports = [
     actions: [hover('#test-7'), focus('#test-8')],
     selectors: ['#demo-buttons-2'],
   }),
+  scenario('State hover and focus overflow buttons', {
+    actions: [hover('#overflow-hover'), focus('#overflow-focus')],
+    selectors: ['#demo-buttons-3'],
+  }),
 ];
