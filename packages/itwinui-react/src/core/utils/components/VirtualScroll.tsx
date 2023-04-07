@@ -52,32 +52,84 @@ const getElementHeightWithMargins = (element: HTMLElement | undefined) => {
   return getElementHeight(element) + (isNaN(margin) ? 0 : margin);
 };
 
-const getNumberOfNodesInHeight = (childHeight: number, totalHeight: number) => {
-  if (!childHeight) {
+const getKnownHeightOfChildren = (childrenHeight: {
+  [index: number]: number;
+}) => {
+  let height = 0;
+  Object.keys(childrenHeight).forEach((i: string) => {
+    const castedThing = Number(i);
+    height += childrenHeight[castedThing];
+  });
+
+  return height;
+};
+
+const getAverageChildHeight = (childrenHeight: Record<number, number>) => {
+  const height = getKnownHeightOfChildren(childrenHeight);
+
+  return Math.floor(height / Object.keys(childrenHeight).length);
+};
+
+const getNumberOfNodesInHeight = (
+  childrenHeight: Record<number, number>,
+  totalHeight: number,
+) => {
+  if (!Object.keys(childrenHeight).length) {
     return 0;
   }
 
-  return Math.floor(totalHeight / childHeight);
+  let calculatedHeight = 0;
+  let iteration = 0;
+  const avgHeight = getAverageChildHeight(childrenHeight);
+
+  while (calculatedHeight < totalHeight) {
+    calculatedHeight += childrenHeight[iteration] ?? avgHeight;
+    ++iteration;
+  }
+
+  return iteration;
 };
 
-const getTranslateValue = (childHeight: number, startIndex: number) => {
+const getTranslateValue = (
+  childrenHeight: Record<number, number>,
+  startIndex: number,
+) => {
   if (startIndex > 0) {
-    return childHeight * startIndex;
+    let translateValue = 0;
+    const averageHeight = getAverageChildHeight(childrenHeight);
+    for (let i = 0; i < startIndex; i++) {
+      translateValue += childrenHeight[i] || averageHeight;
+    }
+    return translateValue;
   }
 
   return 0;
 };
 
 const getVisibleNodeCount = (
-  childHeight: number,
+  childrenHeight: Record<number, number>,
   startIndex: number,
   childrenLength: number,
   scrollContainer: HTMLElement,
 ) => {
   return Math.min(
     childrenLength - startIndex,
-    getNumberOfNodesInHeight(childHeight, getElementHeight(scrollContainer)),
+    getNumberOfNodesInHeight(childrenHeight, getElementHeight(scrollContainer)),
   );
+};
+
+const getMinHeight = (
+  childrenHeight: Record<number, number>,
+  itemsCount: number,
+) => {
+  let height = getKnownHeightOfChildren(childrenHeight);
+  const objKeys = Object.keys(childrenHeight);
+  if (objKeys.length < itemsCount) {
+    const averageChildHeight = height / objKeys.length;
+    height += averageChildHeight * (itemsCount - objKeys.length);
+  }
+
+  return height;
 };
 
 export type VirtualScrollProps = {
@@ -170,7 +222,6 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   const [visibleNodeCount, setVisibleNodeCount] = React.useState(0);
   const scrollContainer = React.useRef<HTMLElement>();
   const parentRef = React.useRef<HTMLElement>(null);
-  const childHeight = React.useRef({ first: 0, middle: 0, last: 0 });
   const onScrollRef = React.useRef<(e: Event) => void>();
   const [minHeight, setMinHeight] = React.useState(0);
   // Used only to recalculate on resize
@@ -179,7 +230,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   // Used to mark when scroll container has height (updated by resize observer)
   // because before that calculations are not right
   const [isMounted, setIsMounted] = React.useState(false);
-  const childrenHeightsMap = React.useRef<{ [index: number]: number }>({});
+  const childrenHeightsMap = React.useRef<Record<number, number>>({});
 
   const getScrollableContainer = () =>
     scrollContainer.current ??
@@ -198,43 +249,10 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     return arr;
   }, [itemsLength, itemRenderer, bufferSize, startNode, visibleNodeCount]);
 
-  const getAverageChildHeight = React.useCallback(() => {
-    if (!parentRef.current) {
-      return 0;
-    }
-    let height = 0;
-    Object.keys(childrenHeightsMap.current).forEach((i: string) => {
-      const castedThing = Number(i);
-      height += childrenHeightsMap.current[castedThing];
-    });
-
-    return height / Object.keys(childrenHeightsMap.current).length;
-  }, []);
-
   const updateChildHeight = React.useCallback(() => {
     if (!parentRef.current || !visibleChildren.length) {
       return;
     }
-
-    const firstChild = parentRef.current.children.item(0) as HTMLElement;
-    const secondChild = parentRef.current.children.item(1) as HTMLElement;
-    const lastChild = parentRef.current.children.item(
-      parentRef.current.children.length - 1,
-    ) as HTMLElement;
-    const firstChildHeight = Number(
-      getElementHeightWithMargins(firstChild)?.toFixed(2) ?? 0,
-    );
-
-    childHeight.current = {
-      first: firstChildHeight,
-      middle: Number(
-        getElementHeightWithMargins(secondChild)?.toFixed(2) ??
-          firstChildHeight,
-      ),
-      last: Number(
-        getElementHeightWithMargins(lastChild)?.toFixed(2) ?? firstChildHeight,
-      ),
-    };
 
     const endIndex = Math.min(
       itemsLength,
@@ -242,10 +260,6 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     );
 
     for (let i = startNode; i < endIndex; i++) {
-      // move into separate uselayouteffect
-      if (!parentRef.current || !!childrenHeightsMap.current[i]) {
-        continue;
-      }
       const ch = parentRef.current?.children.item(i - startNode) as HTMLElement;
       if (!ch) {
         continue;
@@ -261,6 +275,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     visibleNodeCount,
   ]);
 
+  // TODO: investigate, why this is getting called on scroll
   const onResize = React.useCallback(
     ({ height }: DOMRectReadOnly) => {
       // Initial value returned by resize observer is 0
@@ -304,11 +319,11 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     }
 
     const start = getNumberOfNodesInHeight(
-      getAverageChildHeight(),
+      childrenHeightsMap.current,
       Math.round(scrollableContainer.scrollTop),
     );
     const visibleNodes = getVisibleNodeCount(
-      getAverageChildHeight(), //is this what we want?
+      childrenHeightsMap.current,
       start,
       itemsLength,
       scrollableContainer,
@@ -327,11 +342,9 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     if (!parentRef.current) {
       return;
     }
-    parentRef.current.style.transform = `translateY(${getTranslateValue(
-      getAverageChildHeight(),
-      startIndex,
-    )}px)`;
-  }, [bufferSize, getAverageChildHeight, itemsLength]);
+    const translate = getTranslateValue(childrenHeightsMap.current, startIndex);
+    parentRef.current.style.transform = `translateY(${translate}px)`;
+  }, [bufferSize, itemsLength]);
 
   const onScroll = React.useCallback(() => {
     updateVirtualScroll();
@@ -379,6 +392,9 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       return;
     }
 
+    // TODO: add heights map for scrollToIndex calculations
+    const avg = 0; // fix this
+
     // if `scrollToIndex` is not visible, scroll to it
     if (
       scrollToIndex > visibleIndex.current.end ||
@@ -398,18 +414,17 @@ export const useVirtualization = (props: VirtualScrollProps) => {
       scrollableContainer.scrollTo({
         top:
           indexDiff > 0
-            ? Math.ceil(scrollableContainer.scrollTop) +
-              indexDiff * childHeight.current.middle
-            : scrollToIndex * childHeight.current.middle,
+            ? Math.ceil(scrollableContainer.scrollTop) + indexDiff * avg
+            : scrollToIndex * avg,
       });
 
       // update visible index
       const start = getNumberOfNodesInHeight(
-        childHeight.current.middle,
+        childrenHeightsMap.current,
         Math.round(scrollableContainer.scrollTop),
       );
       const visibleNodes = getVisibleNodeCount(
-        childHeight.current.middle,
+        childrenHeightsMap.current,
         start,
         itemsLength,
         scrollableContainer,
@@ -421,7 +436,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     // ensure it is fully visible
     if (scrollToIndex === visibleIndex.current.start) {
       const roundedScrollTop = Math.round(scrollableContainer.scrollTop);
-      const diff = roundedScrollTop % childHeight.current.middle;
+      const diff = roundedScrollTop % avg;
       diff > 0 &&
         scrollableContainer.scrollTo({
           top: roundedScrollTop - diff,
@@ -432,15 +447,13 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     // if `scrollToIndex` is the last visible node
     // ensure it is fully visible
     if (scrollToIndex === visibleIndex.current.end) {
-      const diff =
-        (scrollableContainer.offsetHeight - childHeight.current.first) %
-        childHeight.current.middle;
+      const diff = (scrollableContainer.offsetHeight - avg) % avg;
       const roundedScrollTop = Math.ceil(scrollableContainer.scrollTop);
-      const scrollTopMod = roundedScrollTop % childHeight.current.middle;
+      const scrollTopMod = roundedScrollTop % avg;
 
       if (diff > 0 && scrollTopMod === 0) {
         scrollableContainer.scrollTo({
-          top: roundedScrollTop + childHeight.current.middle - diff,
+          top: roundedScrollTop + avg - diff,
         });
       }
     }
@@ -455,14 +468,9 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   }, [scrollContainerHeight, updateVirtualScroll]);
 
   React.useEffect(() => {
-    setMinHeight(
-      itemsLength > 1
-        ? Math.max(visibleNodeCount - 2, 0) * getAverageChildHeight() +
-            childHeight.current.first +
-            childHeight.current.last
-        : childHeight.current.middle,
-    );
-  }, [getAverageChildHeight, itemsLength, visibleChildren, visibleNodeCount]);
+    const height = getMinHeight(childrenHeightsMap.current, itemsLength);
+    setMinHeight(height);
+  }, [itemsLength, visibleChildren, visibleNodeCount]);
 
   return {
     outerProps: {
