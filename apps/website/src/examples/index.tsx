@@ -108,6 +108,11 @@ export { default as InformationPanelMainExample } from './InformationPanel.main'
 export { default as InputGroupMainExample } from './InputGroup.main';
 
 export { default as InputMainExample } from './Input.main';
+export { default as InputSizesExample } from './Input.sizes';
+export { default as InputSeparateLabelExample } from './Input.separatelabel';
+export { default as InputInlineExample } from './Input.inline';
+export { default as InputStatusExample } from './Input.status';
+export { default as InputButtonExample } from './Input.button';
 
 export { default as KeyboardMainExample } from './Keyboard.main';
 
@@ -158,6 +163,9 @@ export { default as TagContainerTruncateExample } from './TagContainer.truncate'
 export { default as TagContainerScrollExample } from './TagContainer.scroll';
 
 export { default as TextareaMainExample } from './Textarea.main';
+export { default as TextareaScrollExample } from './Textarea.scroll';
+export { default as TextareaStatusExample } from './Textarea.status';
+export { default as TextareaInlineExample } from './Textarea.inline';
 
 export { default as TextMainExample } from './Text.main';
 
