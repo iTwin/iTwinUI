@@ -9,6 +9,7 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -63,7 +64,7 @@ The borderless expandable block is useful in tighter areas where using a default
 
 ## Usage
 
-Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/) Expandable blocks should not be used with flattened hierarchy or information panels.
+Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/) Expandable blocks should not be used with flattened hierarchy or information panels. [Table](table) rows can also expand similarly to expandable block
 
 ### Forms
 
@@ -92,3 +93,12 @@ Use a [hierarchy tree](tree) when:
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Table', url: 'table' },
+    { title: 'Tree', url: 'tree' },
+  ]}
+/>
