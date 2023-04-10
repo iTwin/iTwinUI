@@ -16,15 +16,9 @@ export type Props = {
    * @default true
    */
   truncate?: boolean;
-
-  /**
-   * whether the live example will have a visible code snippet
-   * @default true
-   */
-  hasDemoCode?: boolean;
 };
 
-const { src, truncate = true, hasDemoCode = true } = Astro.props;
+const { src, truncate = true } = Astro.props;
 
 const codePath = path.join(baseUrl, `./src/examples/${src}`);
 let code = await fs.promises.readFile(codePath, 'utf8');
@@ -45,17 +39,13 @@ if (code.includes('Copyright (c) Bentley Systems')) {
   </ThemeProvider>
   <OpenInCodesandbox class='sandbox-link' code={code} />
 </div>
-{
-  hasDemoCode && (
-    <demo-code>
-      {truncate && <button aria-expanded='false'>Toggle full code</button>}
-      <button data-copied='false'>
-        <span class='visually-hidden'>Copy to clipboard</span>
-      </button>
-      <Code code={code} lang='tsx' theme={nightOwl} />
-    </demo-code>
-  )
-}
+<demo-code>
+  {truncate && <button aria-expanded='false'>Toggle full code</button>}
+  <button data-copied='false'>
+    <span class='visually-hidden'>Copy to clipboard</span>
+  </button>
+  <Code code={code} lang='tsx' theme={nightOwl} />
+</demo-code>
 
 <script>
   customElements.define(
