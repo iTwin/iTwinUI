@@ -217,11 +217,6 @@ const currentPage = new URL(Astro.request.url).pathname;
     a {
       text-decoration: none;
       color: unset;
-
-      &:hover {
-        text-decoration: underline;
-        text-underline-offset: 0.2ex;
-      }
     }
     .header {
       grid-area: header;
@@ -390,8 +385,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       text-align: center;
       padding-bottom: var(--space-4);
     }
-    h3,
-    .component-link {
+    h3 {
       font-size: var(--type-2);
       text-align: left;
     }
@@ -402,6 +396,16 @@ const currentPage = new URL(Astro.request.url).pathname;
 
       @media (max-width: 50em) {
         padding: var(--space-5);
+      }
+    }
+
+    .component-link {
+      font-size: var(--type-2);
+      text-align: left;
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.5ex;
       }
     }
 
