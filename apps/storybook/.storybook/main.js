@@ -32,7 +32,7 @@ export default {
     '@storybook/addon-mdx-gfm',
   ],
   features: {
-    storyStoreV7: false,
+    storyStoreV7: true,
   },
   framework: {
     name: '@storybook/react-vite',
