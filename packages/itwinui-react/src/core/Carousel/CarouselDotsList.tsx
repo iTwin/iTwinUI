@@ -25,7 +25,7 @@ type CarouselDotsListProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 /**
- * The `CarouselDots` component shows a list of `CarouselDot` components which can be used to
+ * The `CarouselDotsList` component shows a list of `CarouselDot` components which can be used to
  * choose a specific slide. If used as a descendant of `Carousel`, then this component does not need
  * any props or `children`.
  *

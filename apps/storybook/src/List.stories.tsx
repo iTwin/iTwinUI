@@ -97,3 +97,6 @@ export const Actionable: Story<ListItemProps> = (args) => {
 Actionable.args = {
   actionable: true,
 };
+Actionable.argTypes = {
+  actionable: { control: { disable: true } },
+};

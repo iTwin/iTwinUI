@@ -131,7 +131,13 @@ export type {
 } from './Header';
 
 export { List, ListItem } from './List';
-export type { ListProps, ListItemProps } from './List';
+export type {
+  ListProps,
+  ListItemProps,
+  ListItemIconProps,
+  ListItemContentProps,
+  ListItemDescriptionProps,
+} from './List';
 
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs';
 export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
