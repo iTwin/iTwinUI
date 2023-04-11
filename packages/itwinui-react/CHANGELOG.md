@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.1
+
+### Patch Changes
+
+- [#1195](https://github.com/iTwin/iTwinUI/pull/1195): Fixed an issue with missing css in LabeledSelect.
+
 ## 2.8.0
 
 ### Minor Changes
