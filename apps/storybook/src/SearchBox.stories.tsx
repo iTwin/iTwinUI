@@ -31,16 +31,28 @@ export const Basic: Story<SearchBoxProps> = () => {
     <Flex>
       <SearchBox />
       <SearchBox>
-        <SearchBox.Button />
+        <SearchBox.Button title='Search button' />
         <SearchBox.Input />
-        <SearchBox.Button>button</SearchBox.Button>
+        <SearchBox.Button title='random'>button</SearchBox.Button>
       </SearchBox>
     </Flex>
   );
 };
 
 export const Expandable: Story<SearchBoxProps> = () => {
-  return <SearchBox expandable />;
+  return (
+    <Flex flexDirection='column' alignItems='start'>
+      <SearchBox expandable />
+      <SearchBox expandable isExpanded />
+      <SearchBox
+        expandable
+        inputProps={{ placeholder: 'Test' }}
+        onToggle={(isExpanding) => {
+          console.log(isExpanding);
+        }}
+      />
+    </Flex>
+  );
 };
 
 export const Small: Story<SearchBoxProps> = (args) => {

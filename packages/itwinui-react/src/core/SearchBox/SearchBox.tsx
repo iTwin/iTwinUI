@@ -5,9 +5,10 @@
 import React from 'react';
 import cx from 'classnames';
 import { InputProps } from '../Input';
-import { InputFlexContainer, useTheme, SvgSearch } from '../utils';
+import { InputFlexContainer, useTheme, SvgSearch, Icon } from '../utils';
 import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
+import type { IconProps } from '../utils';
 
 type SearchBoxOwnProps = {
   /**
@@ -27,34 +28,31 @@ type SearchBoxOwnProps = {
 
 export type SearchBoxProps = SearchBoxOwnProps & InputProps;
 
-const SearchBoxIcon = (props: React.ComponentProps<'span'>) => {
+const SearchBoxIcon = (props: IconProps) => {
   const { className, children, ...rest } = props;
   return (
-    <span aria-hidden className={cx('iui-search-icon', className)} {...rest}>
+    <Icon aria-hidden className={cx('iui-search-icon', className)} {...rest}>
       {children ?? <SvgSearch />}
-    </span>
+    </Icon>
   );
 };
 
-const SearchBoxInput = (
-  props: React.ComponentProps<'input'> & { label?: string },
-) => {
-  const { className, /*label = 'Search', */ ...rest } = props;
+const SearchBoxInput = (props: React.ComponentProps<'input'>) => {
+  const { className, ...rest } = props;
 
   return (
     <input
       type='search'
       className={cx('iui-search-input', className)}
-      aria-label='Search'
       {...rest}
     />
   );
 };
 
 const SearchBoxButton = (props: IconButtonProps) => {
-  const { children, ...rest } = props;
+  const { children, title = 'Search button', ...rest } = props;
   return (
-    <IconButton styleType='borderless' {...rest}>
+    <IconButton title={title} styleType='borderless' {...rest}>
       {children ?? <SvgSearch />}
     </IconButton>
   );
@@ -105,7 +103,9 @@ export const SearchBox = Object.assign(
           props.onFocus;
           onToggle?.(true);
         }}
-        onBlur={() => onToggle?.(false)}
+        onBlur={() => {
+          onToggle?.(false);
+        }}
         data-iui-expanded={isExpanded}
         {...rest}
       >
@@ -113,16 +113,16 @@ export const SearchBox = Object.assign(
           (children ?? (
             <>
               <SearchBoxInput {...inputProps} />
-              <SearchBoxButton />
+              <SearchBoxIcon />
             </>
           ))}
-        {expandable && <SearchBoxButton />}
+        {expandable && <SearchBoxInput />}
         {/* {expandable &&
-          localExpanded &&
+          isSearchExpanded() &&
           (children ?? (
             <>
               <SearchBoxInput {...inputProps} />
-              <SearchBoxButton />
+              <SearchBoxIcon />
             </>
           ))} */}
       </InputFlexContainer>
@@ -136,6 +136,19 @@ export const SearchBox = Object.assign(
 );
 
 export default SearchBox;
+
+export const SearchBoxContext = React.createContext<
+  | {
+      size?: 'small' | 'large';
+      /**
+       * Id to pass to input
+       */
+      inputId?: string;
+
+      setInputId: (inputId: string) => void;
+    }
+  | undefined
+>(undefined);
 
 // <SearchBox />
 // <SearchBox expandable />
@@ -157,11 +170,11 @@ export default SearchBox;
 //     <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
 //   </SearchBox.Collapsed>
 //   <SearchBox.Expanded>
-//   <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
-//   <SearchBox.Input />
-//   <SearchBox.Button></SearchBox.Button>
-//   <Divider />
-//   <SearchBox.Button></SearchBox.Button>
-//   <SearchBox.Button></SearchBox.Button>
+//     <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
+//     <SearchBox.Input />
+//     <SearchBox.Button></SearchBox.Button>
+//     <Divider />
+//     <SearchBox.Button></SearchBox.Button>
+//     <SearchBox.Button></SearchBox.Button>
 //   </SearchBox.Expanded>
 // </SearchBox>
