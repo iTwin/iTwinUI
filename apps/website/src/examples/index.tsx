@@ -81,6 +81,13 @@ export { default as DialogNonDismissibleExample } from './Dialog.nondismissible'
 export { default as DropdownButtonMainExample } from './DropdownButton.main';
 
 export { default as DropdownMenuMainExample } from './DropdownMenu.main';
+export { default as DropdownMenuBasicExample } from './DropdownMenu.basic';
+export { default as DropdownMenuIconExample } from './DropdownMenu.icon';
+export { default as DropdownMenuBadgeExample } from './DropdownMenu.badge';
+export { default as DropdownMenuSublabelExample } from './DropdownMenu.sublabel';
+export { default as DropdownMenuSubmenuExample } from './DropdownMenu.submenu';
+export { default as DropdownMenuSeparatorExample } from './DropdownMenu.separator';
+export { default as DropdownMenuContentExample } from './DropdownMenu.content';
 
 export { default as ExpandableBlockMainExample } from './ExpandableBlock.main';
 
