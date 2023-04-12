@@ -4,11 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { InputProps } from '../Input';
 import { InputFlexContainer, useTheme, SvgSearch, Icon } from '../utils';
+import type {
+  IconProps,
+  PolymorphicForwardRefComponent,
+  PolymorphicComponentProps,
+} from '../utils';
 import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
-import type { IconProps } from '../utils';
 
 type SearchBoxOwnProps = {
   /**
@@ -24,18 +27,75 @@ type SearchBoxOwnProps = {
   onToggle?: (isExpanding: boolean) => void;
   inputProps?: React.ComponentProps<'input'>;
   collapsedState?: React.ReactNode;
+  /**
+   * Modify size of the input.
+   */
+  size?: 'small' | 'large';
 };
 
-export type SearchBoxProps = SearchBoxOwnProps & InputProps;
+const SearchBoxComponent = React.forwardRef((props, ref) => {
+  useTheme();
 
-const SearchBoxIcon = (props: IconProps) => {
+  const {
+    size,
+    expandable = false,
+    onToggle,
+    onFocus: onFocusProp,
+    isExpanded,
+    children,
+    inputProps,
+    ...rest
+  } = props;
+
+  return (
+    <InputFlexContainer
+      ref={ref}
+      className={cx({
+        'iui-expandable-searchbox': expandable,
+      })}
+      data-iui-size={size}
+      onFocus={(e) => {
+        onFocusProp?.(e);
+        onToggle?.(true);
+      }}
+      onBlur={() => {
+        onToggle?.(false);
+      }}
+      data-iui-expanded={isExpanded}
+      {...rest}
+    >
+      {children ?? (
+        <>
+          <SearchBoxInput {...inputProps} />
+          <SearchBoxIcon />
+        </>
+      )}
+    </InputFlexContainer>
+  );
+}) as PolymorphicForwardRefComponent<'div', SearchBoxOwnProps>;
+
+export type SearchBoxProps = PolymorphicComponentProps<
+  'div',
+  SearchBoxOwnProps
+>;
+
+// ----------------------------------------------------------------------------
+
+const SearchBoxIcon = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   return (
-    <Icon aria-hidden className={cx('iui-search-icon', className)} {...rest}>
+    <Icon
+      aria-hidden
+      className={cx('iui-search-icon', className)}
+      ref={ref}
+      {...rest}
+    >
       {children ?? <SvgSearch />}
     </Icon>
   );
-};
+}) as PolymorphicForwardRefComponent<'span', IconProps>;
+
+// ----------------------------------------------------------------------------
 
 const SearchBoxInput = (props: React.ComponentProps<'input'>) => {
   const { className, ...rest } = props;
@@ -49,6 +109,8 @@ const SearchBoxInput = (props: React.ComponentProps<'input'>) => {
   );
 };
 
+// ----------------------------------------------------------------------------
+
 const SearchBoxButton = (props: IconButtonProps) => {
   const { children, title = 'Search button', ...rest } = props;
   return (
@@ -57,6 +119,8 @@ const SearchBoxButton = (props: IconButtonProps) => {
     </IconButton>
   );
 };
+
+// ----------------------------------------------------------------------------
 
 /**
  * Searchbox component.
@@ -76,64 +140,11 @@ const SearchBoxButton = (props: IconButtonProps) => {
  *     </IconButton>
  *  </SearchBox>
  */
-export const SearchBox = Object.assign(
-  (props: SearchBoxProps) => {
-    useTheme();
-
-    const {
-      size,
-      expandable = false,
-      onToggle,
-      isExpanded,
-      children,
-      inputProps,
-      ...rest
-    } = props;
-
-    const searchBoxRef = React.useRef(null);
-
-    return (
-      <InputFlexContainer
-        ref={searchBoxRef}
-        className={cx({
-          'iui-expandable-searchbox': expandable,
-        })}
-        data-iui-size={size}
-        onFocus={() => {
-          props.onFocus;
-          onToggle?.(true);
-        }}
-        onBlur={() => {
-          onToggle?.(false);
-        }}
-        data-iui-expanded={isExpanded}
-        {...rest}
-      >
-        {!expandable &&
-          (children ?? (
-            <>
-              <SearchBoxInput {...inputProps} />
-              <SearchBoxIcon />
-            </>
-          ))}
-        {expandable && <SearchBoxInput />}
-        {/* {expandable &&
-          isSearchExpanded() &&
-          (children ?? (
-            <>
-              <SearchBoxInput {...inputProps} />
-              <SearchBoxIcon />
-            </>
-          ))} */}
-      </InputFlexContainer>
-    );
-  },
-  {
-    Icon: SearchBoxIcon,
-    Input: SearchBoxInput,
-    Button: SearchBoxButton,
-  },
-);
+export const SearchBox = Object.assign(SearchBoxComponent, {
+  Icon: SearchBoxIcon,
+  Input: SearchBoxInput,
+  Button: SearchBoxButton,
+});
 
 export default SearchBox;
 
