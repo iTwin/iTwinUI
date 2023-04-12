@@ -9,19 +9,35 @@ thumbnail: Anchor
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='typography-anchor' />
 
 <LiveExample src='Anchor.main.tsx' truncate={false}>
   <AllExamples.AnchorMainExample client:load />
 </LiveExample>
 
+## Variants
+
+### `as` prop
+
+<LiveExample src='Anchor.asbutton.tsx' truncate={false}>
+  <AllExamples.AnchorAsButtonExample client:load />
+</LiveExample>
+
+The anchor component supports the polymorphic `as` prop to render the anchor as a button.
+
+## Usage
+
 Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it.
+
+A common question is whether to use an anchor or a [button](button). The basic rule of thumb is an anchor takes you to another page, whereas a button performs an action.
 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'Button', url: 'button' }]} />
