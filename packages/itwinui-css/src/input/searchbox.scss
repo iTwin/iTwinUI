@@ -1,15 +1,17 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @mixin iui-expandable-searchbox {
-  transition: width var(--iui-duration-3) ease;
+  overflow: hidden;
   width: var(--_iui-input-min-height);
+  transition: width var(--iui-duration-3) ease;
 
   &::before {
     content: '';
     position: absolute;
     inset: 0;
     background-color: inherit;
-    z-index: 2;
+    z-index: 3;
+    pointer-events: none;
   }
 
   &::after {
@@ -28,11 +30,10 @@
     height: 1rem;
     pointer-events: none;
     cursor: pointer;
-    z-index: 2;
+    z-index: 3;
   }
 
   &[data-iui-expanded='true'],
-  &:focus,
   &:focus-within {
     width: 100%;
     border-color: var(--_iui-input-border-color);

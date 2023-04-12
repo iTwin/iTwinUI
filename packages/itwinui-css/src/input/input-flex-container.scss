@@ -20,7 +20,6 @@
   position: relative;
   height: var(--_iui-input-min-height);
   width: 100%;
-  transition: width 0.2s;
 
   &:has(input:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
@@ -45,14 +44,15 @@
   > input {
     all: unset;
     z-index: 2;
-    width: 100%;
+    min-width: var(--_iui-input-min-height);
+    flex: 999;
     padding-inline-start: var(--iui-size-s);
   }
 
-  > button {
-    height: 100%;
-    z-index: 2;
-  }
+  // > button {
+  //   height: 100%;
+  //   z-index: 2;
+  // }
 }
 
 /// Mixin for applying status colors to input container.

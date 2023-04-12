@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { InputFlexContainer, useTheme, SvgSearch, Icon } from '../utils';
+import { InputFlexContainer, useTheme, SvgSearch } from '../utils';
 import type {
   IconProps,
   PolymorphicForwardRefComponent,
@@ -12,6 +12,7 @@ import type {
 } from '../utils';
 import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
+import '@itwin/itwinui-css/css/input.css';
 
 type SearchBoxOwnProps = {
   /**
@@ -25,7 +26,7 @@ type SearchBoxOwnProps = {
    */
   isExpanded?: boolean;
   onToggle?: (isExpanding: boolean) => void;
-  inputProps?: React.ComponentProps<'input'>;
+  inputProps?: React.ComponentPropsWithoutRef<'input'>;
   collapsedState?: React.ReactNode;
   /**
    * Modify size of the input.
@@ -37,6 +38,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   useTheme();
 
   const {
+    as: Element = 'div',
     size,
     expandable = false,
     onToggle,
@@ -50,6 +52,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   return (
     <InputFlexContainer
       ref={ref}
+      as={Element}
       className={cx({
         'iui-expandable-searchbox': expandable,
       })}
@@ -82,43 +85,50 @@ export type SearchBoxProps = PolymorphicComponentProps<
 // ----------------------------------------------------------------------------
 
 const SearchBoxIcon = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { as: Element = 'span', className, children, ...rest } = props;
   return (
-    <Icon
+    <Element
       aria-hidden
-      className={cx('iui-search-icon', className)}
+      className={cx('iui-svg-icon', 'iui-search-icon', className)}
       ref={ref}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </Icon>
+    </Element>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
 
 // ----------------------------------------------------------------------------
 
-const SearchBoxInput = (props: React.ComponentProps<'input'>) => {
-  const { className, ...rest } = props;
+const SearchBoxInput = React.forwardRef(
+  (props: React.ComponentProps<'input'>, ref: React.Ref<HTMLInputElement>) => {
+    const { className, ...rest } = props;
 
-  return (
-    <input
-      type='search'
-      className={cx('iui-search-input', className)}
-      {...rest}
-    />
-  );
-};
+    return (
+      <input
+        ref={ref}
+        type='search'
+        aria-label='Search'
+        className={cx('iui-search-input', className)}
+        {...rest}
+      />
+    );
+  },
+);
 
 // ----------------------------------------------------------------------------
 
-const SearchBoxButton = (props: IconButtonProps) => {
-  const { children, title = 'Search button', ...rest } = props;
+/**
+ * SearchBox.Button component to add to your SearchBox.
+ */
+const SearchBoxButton = React.forwardRef((props, ref) => {
+  const { children, ...rest } = props;
   return (
-    <IconButton title={title} styleType='borderless' {...rest}>
+    <IconButton styleType='borderless' ref={ref} {...rest}>
       {children ?? <SvgSearch />}
     </IconButton>
   );
-};
+}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 
 // ----------------------------------------------------------------------------
 
