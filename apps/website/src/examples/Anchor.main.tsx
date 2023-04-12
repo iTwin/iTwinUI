@@ -6,5 +6,5 @@ import * as React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Anchor href='https://www.example.com/'>www.example.com</Anchor>;
+  return <Anchor href='https://www.example.com/'>Example Site</Anchor>;
 };
