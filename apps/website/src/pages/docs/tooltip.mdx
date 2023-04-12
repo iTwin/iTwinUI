@@ -9,18 +9,19 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='core-tooltip' />
 
 <LiveExample src='Tooltip.main.tsx' truncate={false}>
   <AllExamples.TooltipMainExample client:load />
 </LiveExample>
 
-A tooltip is a small container that typically appears above the element you are hovering with your cursor. The tooltip displays a short, helpful text message. Tooltips should never be used to display critical information, or as a means to navigate an interface. Because mobile devices do not have a hover state, use caution when using tooltips in desktop apps that have a mobile counterpart. There is no determined way of replacing tooltips in mobile devices. In some cases, a single short tap can display a tooltip on a touch display.
+A tooltip is a small container that typically appears above the element you are hovering with your cursor with a short, helpful text message. You can use up to 256 characters. Content other than text such as pictures, tables, etc, are not recommended.
+
+Is it not recommended not to use Tooltips to display critical information, or as a means to navigate an interface. They are necessary only when supplemental information is required. Functionality of the product should NOT be dependent on the user reading the tooltips.
+
+Mobile devices do not have a hover state, use with caution when using tooltips in desktop apps that have a mobile counterpart. There is no determined way of replacing tooltips in mobile devices. In some cases, a single short tap can display a tooltip on a touch display.
 
 ## Props
 
