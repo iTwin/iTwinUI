@@ -1,0 +1,79 @@
+---
+title: List
+description: Used to display a list of items that can optionally be interactive.
+layout: ./_layout.astro
+thumbnail: Menu
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
+
+The `List` component is used to display a list of `ListItem`s that may optionally have start/end icons and a description.
+
+<LiveExample src='List.main.tsx'>
+  <AllExamples.ListMainExample client:load />
+</LiveExample>
+
+The `ListItem` component may be used within a `List` for simple display purposes, or it may be seen as a low-level primitive for building more advanced interactive components (such as a custom dropdown menu or a listbox).
+
+## Usage
+
+### With subcomponents
+
+The `ListItem` component comes with the following subcomponents which can be passed as children:
+
+- `ListItem.Icon`: Can be placed before or after the main text.
+- `ListItem.Description`: Description (sublabel) shown under the main text.
+- `ListItem.Content`: Wrapper for the main text and description. This content expands to fill up the available space and can be used to push an icon to the very end.
+
+There is also a `size` prop which can be set to `'large'` to ensure that all items have a uniform large size even when there is no description.
+
+<LiveExample src='List.subcomponents.tsx'>
+  <AllExamples.ListSubcomponentsExample client:idle />
+</LiveExample>
+
+### Actionable
+
+`ListItem` has an `actionable` prop which can be set to true to provide hover styling.
+
+Please note that this prop only provides the hover styling and does nothing else. Usually you want to combine this prop either with `LinkAction` (which lets you use an anchor or a button) or with a more advanced component, such as [`Select`](select), which will do many additional things like set `role=option`, manage roving tabindex, and handle arrow-key navigation.
+
+### With `LinkAction`
+
+When `ListItem` contains a link, it is recommended to use `LinkAction` instead of a regular anchor link. This ensures that the tap target size (clickable area) of the link is as big as the whole list item, and that there is proper hover and focus styling. You can read more about this accessibility pattern from [Inclusive Components](https://inclusive-components.design/cards/).
+
+<LiveExample src='List.links.tsx'>
+  <AllExamples.ListLinksExample client:idle />
+</LiveExample>
+
+`LinkAction` supports the polymorphic `as` prop so it can also be rendered as a `<button>` if it performs an action on the same page.
+
+### Interactive states
+
+In more advanced interactive components, your lists might need to show additional states. `ListItem` comes with the following props which change the visuals accordingly:
+
+- `active` - to display the currently active/selected list items
+- `disabled` - to display disabled/non-interactable list items
+- `focused` - to force focus styling on a list item
+
+Please note again that these props only adjust the visual styling and do not hold any semantic information. When building accessibile interfaces, it is important to ensure that its various states are properly conveyed to non-sighted users. Since `ListItem` is intended to be a flexible low-level primitive, it cannot automatically handle these things for you so you must do it yourself.
+
+For example, in addition to the `active` prop, you might want to use `aria-selected` and `role='option'` when building a custom select menu, or you might want to use `aria-current` when building a navigation list. In addition to the `disabled` prop, you might want to use the `aria-disabled` attribute on a `<button>` inside the list item and also remove its click handler. In addition to forcing `focused` visuals, you might want to use fully custom focus management. When building such advanced interfaces, we always recommend carefully researching accessibility patterns and testing them with screenreaders yourself and also with real disabled users to get feedback.
+
+The example below shows the use of these props inside a [`ComboBox`](combobox) using its custom `itemRenderer`. Notice how we manually set `role` to be `option` - this allows us to use `aria-selected` and `aria-disabled` to go along with the `active` and `disabled` props. The ComboBox also has the correct attributes and includes built-in focus management so that the up/down arrow keys change the `isFocused` property; the only additional thing we had to add in our list item is the `id` which gets referenced by the `aria-activedescendant` attribute set on the input.
+
+<LiveExample src='List.combobox.tsx'>
+  <AllExamples.ListComboboxExample client:idle />
+</LiveExample>
+
+## Props
+
+### List
+
+<PropsTable path='@itwin/itwinui-react/esm/core/List/List.d.ts' />
+
+### ListItem
+
+<PropsTable path='@itwin/itwinui-react/esm/core/List/ListItem.d.ts' />
