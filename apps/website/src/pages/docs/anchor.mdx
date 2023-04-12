@@ -24,11 +24,11 @@ The anchor's `href` attribute is used to indicate the link's destination while t
 
 Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it.
 
-A common question is whether to use an anchor or a [button](button). The basic rule of thumb is an anchor takes you to another page, whereas a button performs an action. [Read this article to learn more about when to use a button vs an anchor.](https://yatil.net/blog/buttons-vs-links)
+A common question is whether to use an anchor or a [button](button). The basic rule of thumb is an anchor takes you to another page, whereas a button performs an action. For more details, read [this article on buttons vs links](https://yatil.net/blog/buttons-vs-links).
 
 ### `as` prop
 
-The anchor component supports the polymorphic `as` prop to render the anchor as a button.
+The anchor component supports the polymorphic `as` prop to render the anchor as a button. This can be useful when the design requires a control which visually looks like an anchor but acts like a button, i.e. it performs an action within the same page, rather than navigating to a destination URL.
 
 <LiveExample src='Anchor.asbutton.tsx' truncate={false}>
   <AllExamples.AnchorAsButtonExample client:load />
