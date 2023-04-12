@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
+let isWindows = process.platform === 'win32';
+
 /** @type { import('@storybook/react-vite').StorybookConfig } */
 export default {
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
@@ -32,7 +34,7 @@ export default {
     '@storybook/addon-mdx-gfm',
   ],
   features: {
-    storyStoreV7: true,
+    storyStoreV7: { isWindows },
   },
   framework: {
     name: '@storybook/react-vite',
