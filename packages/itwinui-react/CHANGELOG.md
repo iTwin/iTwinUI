@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.8.2
+
+### Patch Changes
+
+- [#1197](https://github.com/iTwin/iTwinUI/pull/1197): Reverted animation class change that broke Dialog.
+
 ## 2.8.1
 
 ### Patch Changes
