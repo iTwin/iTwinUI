@@ -28,14 +28,14 @@
     "react-dom": "^18.0.0",
     "react-table": "^7.1.0",
     "serve": "^14.0.1",
-    "storybook": "~7.0.2",
+    "sb": "~7.0.2",
     "storybook-dark-mode": "^3.0.0",
     "typescript": "^4.6.3",
     "vite": "^4.1.1"
   },
   "scripts": {
-    "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" storybook build",
-    "dev": "storybook dev -p 6006 --no-open --quiet",
+    "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
+    "dev": "sb dev -p 6006 --no-open --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
     "approve": "cypress-image-diff -u",
