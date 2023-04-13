@@ -34,7 +34,7 @@ export default {
     '@storybook/addon-mdx-gfm',
   ],
   features: {
-    storyStoreV7: { isWindows },
+    storyStoreV7: isWindows,
   },
   framework: {
     name: '@storybook/react-vite',
