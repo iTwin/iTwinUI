@@ -94,9 +94,7 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]');
               nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
-              if (nextElement?.ariaDisabled !== 'true') {
-                return dispatch({ type: 'focus', value: nextIndex });
-              }
+              return dispatch({ type: 'focus', value: nextIndex });
             } while (nextIndex !== focusedIndexRef.current);
             break;
           }
@@ -139,9 +137,7 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]:last-of-type');
               prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
-              if (prevElement?.ariaDisabled !== 'true') {
-                return dispatch({ type: 'focus', value: prevIndex });
-              }
+              return dispatch({ type: 'focus', value: prevIndex });
             } while (prevIndex !== focusedIndexRef.current);
             break;
           }
