@@ -5,10 +5,10 @@
 import React from 'react';
 
 import { Select } from '../Select';
-import { SelectProps } from '../Select/Select';
+import type { SelectProps } from '../Select/Select';
 import { StatusIconMap, useTheme, InputContainer } from '../utils';
-import { LabeledInputProps } from '../LabeledInput';
-import '@itwin/itwinui-css/css/select.css';
+import type { LabeledInputProps } from '../LabeledInput';
+import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledSelectProps<T> = {
   /**

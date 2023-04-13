@@ -8,9 +8,7 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock title='Block #1'>Content in block!</ExpandableBlock>
-      <ExpandableBlock title='Block #2'>Content in block!</ExpandableBlock>
-      <ExpandableBlock title='Block #3'>Content in block!</ExpandableBlock>
+      <ExpandableBlock title='Expandable Block'>Content in block!</ExpandableBlock>
     </div>
   );
 };
