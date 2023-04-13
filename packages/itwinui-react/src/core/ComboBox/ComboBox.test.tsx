@@ -925,3 +925,57 @@ it('should not crash when provided value in not in options when multiple enabled
   const input = container.querySelector('.iui-input') as HTMLInputElement;
   expect(input).toHaveValue('');
 });
+
+it('should not select disabled items', async () => {
+  const id = 'test-component';
+  const onChange = jest.fn();
+  const { container } = renderComponent({
+    id,
+    onChange,
+    options: [
+      { label: 'An item', value: 0 },
+      { label: 'A disabled item', value: 1, disabled: true },
+      { label: 'Another item', value: 2 },
+      { label: 'Another disabled item', value: 3, disabled: true },
+    ],
+  });
+  const input = assertBaseElement(container);
+
+  await userEvent.tab();
+  await userEvent.click(screen.getByText('A disabled item'));
+  expect(onChange).not.toHaveBeenCalled();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+  expect(input).toHaveValue('');
+
+  // focus first disabled item, then press Enter
+  await userEvent.tab();
+  const disabled1Id = `${id}-option-A-disabled-item`;
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
+  expect(input).toHaveAttribute('aria-activedescendant', disabled1Id);
+  expect(document.querySelector(`#${disabled1Id}`)).toHaveClass('iui-focused');
+  await userEvent.keyboard('{Enter}');
+  expect(onChange).not.toHaveBeenCalled();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+  expect(input).toHaveValue('');
+
+  // filter the list, then try selecting another disabled item with mouse
+  await userEvent.keyboard('An');
+  await userEvent.click(screen.getByText('Another disabled item'));
+  expect(onChange).not.toHaveBeenCalled();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+  expect(input).toHaveValue('An');
+
+  // and with keyboard
+  await userEvent.tab();
+  const disabled2Id = `${id}-option-Another-disabled-item`;
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
+  await userEvent.keyboard('{ArrowDown}');
+  expect(document.querySelector(`#${disabled2Id}`)).toHaveClass('iui-focused');
+  expect(input).toHaveAttribute('aria-activedescendant', disabled2Id);
+  await userEvent.keyboard('{Enter}');
+  expect(onChange).not.toHaveBeenCalled();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
+  expect(input).toHaveValue('An');
+});

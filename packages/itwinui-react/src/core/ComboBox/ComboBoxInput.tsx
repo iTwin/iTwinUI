@@ -148,16 +148,8 @@ export const ComboBoxInput = React.forwardRef(
           case 'Enter': {
             event.preventDefault();
             if (isOpen) {
-              if (multiple) {
-                // Keep menu open when multiselect is enabled and user selects an item
-                if (focusedIndexRef.current > -1) {
-                  onClickHandler?.(focusedIndexRef.current);
-                } else {
-                  dispatch({ type: 'close' });
-                }
-              } else {
+              if (focusedIndexRef.current > -1) {
                 onClickHandler?.(focusedIndexRef.current);
-                dispatch({ type: 'close' });
               }
             } else {
               dispatch({ type: 'open' });
@@ -179,7 +171,6 @@ export const ComboBoxInput = React.forwardRef(
         enableVirtualization,
         isOpen,
         menuRef,
-        multiple,
         onClickHandler,
         onKeyDownProp,
         optionsExtraInfoRef,
