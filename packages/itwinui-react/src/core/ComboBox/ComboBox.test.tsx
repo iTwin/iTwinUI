@@ -926,7 +926,7 @@ it('should not crash when provided value in not in options when multiple enabled
   expect(input).toHaveValue('');
 });
 
-it.only('should not select disabled items', async () => {
+it('should not select disabled items', async () => {
   const id = 'test-component';
   const onChange = jest.fn();
   const { container } = renderComponent({
