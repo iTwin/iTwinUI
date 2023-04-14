@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme } from '../../../utils';
+import { useTheme, isBefore } from '../../../utils';
 import {
   FilterButtonBar,
   FilterButtonBarTranslation,
@@ -12,20 +12,6 @@ import { BaseFilter } from '../BaseFilter';
 import { TableFilterProps } from '../types';
 import '@itwin/itwinui-css/css/table.css';
 import DatePickerInput from './DatePickerInput';
-
-const isBefore = (
-  beforeDate: Date | undefined,
-  afterDate: Date | undefined,
-) => {
-  if (!beforeDate || !afterDate) {
-    return false;
-  }
-  const firstDate = new Date(beforeDate);
-  const secondDate = new Date(afterDate);
-  firstDate && firstDate.setHours(0, 0, 0, 0);
-  secondDate && secondDate.setHours(0, 0, 0, 0);
-  return firstDate < secondDate;
-};
 
 export type DateRangeTranslation = {
   from: string;

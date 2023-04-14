@@ -10,6 +10,7 @@ import {
   SvgChevronRight,
   SvgChevronLeftDouble,
   SvgChevronRightDouble,
+  isBefore,
 } from '../utils';
 import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton';
@@ -40,21 +41,6 @@ const isInDateRange = (
   minDate && minDate.setHours(0, 0, 0, 0);
   maxDate && maxDate.setHours(0, 0, 0, 0);
   return testDate > minDate && testDate < maxDate;
-};
-
-// compares to see if one date is earlier than another
-const isBefore = (
-  beforeDate: Date | undefined,
-  afterDate: Date | undefined,
-) => {
-  if (!beforeDate || !afterDate) {
-    return false;
-  }
-  const firstDate = new Date(beforeDate);
-  const secondDate = new Date(afterDate);
-  firstDate && firstDate.setHours(0, 0, 0, 0);
-  secondDate && secondDate.setHours(0, 0, 0, 0);
-  return firstDate < secondDate;
 };
 
 // Type guard for multiple did not work
