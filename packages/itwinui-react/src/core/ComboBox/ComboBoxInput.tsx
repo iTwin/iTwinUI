@@ -19,6 +19,7 @@ export const ComboBoxInput = React.forwardRef(
     const {
       onKeyDown: onKeyDownProp,
       onFocus: onFocusProp,
+      onClick: onClickProp,
       selectTags,
       ...rest
     } = props;
@@ -94,7 +95,9 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]');
               nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
-              return dispatch({ type: 'focus', value: nextIndex });
+              if (nextElement) {
+                return dispatch({ type: 'focus', value: nextIndex });
+              }
             } while (nextIndex !== focusedIndexRef.current);
             break;
           }
@@ -137,7 +140,9 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]:last-of-type');
               prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
-              return dispatch({ type: 'focus', value: prevIndex });
+              if (prevElement) {
+                return dispatch({ type: 'focus', value: prevIndex });
+              }
             } while (prevIndex !== focusedIndexRef.current);
             break;
           }
@@ -181,6 +186,20 @@ export const ComboBoxInput = React.forwardRef(
       [dispatch, onFocusProp],
     );
 
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        onClickProp?.(e);
+        if (e.isDefaultPrevented()) {
+          return;
+        }
+
+        if (!isOpen) {
+          dispatch({ type: 'open' });
+        }
+      },
+      [dispatch, isOpen, onClickProp],
+    );
+
     const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
     return (
@@ -188,6 +207,7 @@ export const ComboBoxInput = React.forwardRef(
         <Input
           ref={refs}
           onKeyDown={handleKeyDown}
+          onClick={handleClick}
           onFocus={handleFocus}
           aria-activedescendant={
             isOpen && focusedIndex != undefined && focusedIndex > -1

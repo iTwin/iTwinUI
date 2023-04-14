@@ -398,6 +398,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   const onClickHandler = React.useCallback(
     (__originalIndex: number) => {
+      inputRef.current?.focus({ preventScroll: true }); // return focus to input
+
       if (optionsRef.current[__originalIndex]?.disabled) {
         return;
       }

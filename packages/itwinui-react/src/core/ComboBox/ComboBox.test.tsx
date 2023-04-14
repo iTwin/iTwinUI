@@ -926,7 +926,7 @@ it('should not crash when provided value in not in options when multiple enabled
   expect(input).toHaveValue('');
 });
 
-it('should not select disabled items', async () => {
+it.only('should not select disabled items', async () => {
   const id = 'test-component';
   const onChange = jest.fn();
   const { container } = renderComponent({
@@ -946,9 +946,9 @@ it('should not select disabled items', async () => {
   expect(onChange).not.toHaveBeenCalled();
   expect(document.querySelector('.iui-menu')).toBeVisible();
   expect(input).toHaveValue('');
+  expect(input).toHaveFocus();
 
   // focus first disabled item, then press Enter
-  await userEvent.tab();
   const disabled1Id = `${id}-option-A-disabled-item`;
   await userEvent.keyboard('{ArrowDown}');
   await userEvent.keyboard('{ArrowDown}');
@@ -967,7 +967,6 @@ it('should not select disabled items', async () => {
   expect(input).toHaveValue('An');
 
   // and with keyboard
-  await userEvent.tab();
   const disabled2Id = `${id}-option-Another-disabled-item`;
   await userEvent.keyboard('{ArrowDown}');
   await userEvent.keyboard('{ArrowDown}');

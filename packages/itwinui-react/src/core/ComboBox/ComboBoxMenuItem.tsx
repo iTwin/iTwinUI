@@ -53,7 +53,7 @@ export const ComboBoxMenuItem = React.memo(
             className,
           )}
           ref={refs}
-          onClick={() => !disabled && onClick?.(value)}
+          onClick={() => onClick?.(value)}
           role={role}
           tabIndex={role === 'presentation' ? undefined : -1}
           aria-selected={isSelected}
