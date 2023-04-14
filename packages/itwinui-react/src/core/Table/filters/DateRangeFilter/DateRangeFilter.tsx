@@ -13,6 +13,20 @@ import { TableFilterProps } from '../types';
 import '@itwin/itwinui-css/css/table.css';
 import DatePickerInput from './DatePickerInput';
 
+const isBefore = (
+  beforeDate: Date | undefined,
+  afterDate: Date | undefined,
+) => {
+  if (!beforeDate || !afterDate) {
+    return false;
+  }
+  const firstDate = new Date(beforeDate);
+  const secondDate = new Date(afterDate);
+  firstDate && firstDate.setHours(0, 0, 0, 0);
+  secondDate && secondDate.setHours(0, 0, 0, 0);
+  return firstDate < secondDate;
+};
+
 export type DateRangeTranslation = {
   from: string;
   to: string;
@@ -68,42 +82,57 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   const [from, setFrom] = React.useState<Date | undefined>(
     column.filterValue?.[0] ? new Date(column.filterValue?.[0]) : undefined,
   );
-  const onFromChange = React.useCallback((date?: Date) => {
-    setFrom((prevDate) => {
-      if (prevDate || !date) {
-        return date;
-      }
-      return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        0,
-        0,
-        0,
-        0,
-      );
-    });
-  }, []);
-
   const [to, setTo] = React.useState<Date | undefined>(
     column.filterValue?.[1] ? new Date(column.filterValue?.[1]) : undefined,
   );
-  const onToChange = React.useCallback((date?: Date) => {
-    setTo((prevDate) => {
-      if (prevDate || !date) {
-        return date;
-      }
-      return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        23,
-        59,
-        59,
-        999,
-      );
-    });
-  }, []);
+
+  const onFromChange = React.useCallback(
+    (date?: Date) => {
+      setFrom((prevDate) => {
+        if (to && isBefore(to, date)) {
+          setTo(date);
+          return to;
+        }
+        if (prevDate || !date) {
+          return date;
+        }
+        return new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate(),
+          0,
+          0,
+          0,
+          0,
+        );
+      });
+    },
+    [to],
+  );
+
+  const onToChange = React.useCallback(
+    (date?: Date) => {
+      setTo((prevDate) => {
+        if (from && isBefore(date, from)) {
+          setFrom(date);
+          return from;
+        }
+        if (prevDate || !date) {
+          return date;
+        }
+        return new Date(
+          date.getFullYear(),
+          date.getMonth(),
+          date.getDate(),
+          23,
+          59,
+          59,
+          999,
+        );
+      });
+    },
+    [from],
+  );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter') {
