@@ -6,17 +6,26 @@ import * as React from 'react';
 import { ComboBox } from '@itwin/itwinui-react';
 
 export default () => {
+  const [value, setValue] = React.useState('green');
+
   const options = React.useMemo(
     () => [
-      { label: 'Apple', value: 'apple' },
-      { label: 'Banana', value: 'banana' },
-      { label: 'Grapefruit', value: 'grapefruit' },
-      { label: 'Lychee', value: 'lychee' },
-      { label: 'Kiwi', value: 'kiwi' },
+      { label: 'Red', value: 'red' },
       { label: 'Orange', value: 'orange' },
+      { label: 'Yellow', value: 'yellow' },
+      { label: 'Green', value: 'green' },
+      { label: 'Blue', value: 'blue' },
+      { label: 'Purple', value: 'purple' },
     ],
     []
   );
 
-  return <ComboBox options={options} inputProps={{ placeholder: 'Pick a fruit, any fruit' }} />;
+  return (
+    <ComboBox
+      options={options}
+      inputProps={{ placeholder: 'Select a color' }}
+      value={value}
+      onChange={setValue}
+    />
+  );
 };

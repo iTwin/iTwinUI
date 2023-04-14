@@ -70,6 +70,16 @@ export { default as CodeMainExample } from './Code.main';
 export { default as ColorPickerMainExample } from './ColorPicker.main';
 
 export { default as ComboBoxMainExample } from './ComboBox.main';
+export { default as ComboBoxControlledExample } from './ComboBox.controlled';
+export { default as ComboBoxCustomExample } from './ComboBox.custom';
+export { default as ComboBoxDisabledExample } from './ComboBox.disabled';
+export { default as ComboBoxLabelExample } from './ComboBox.label';
+export { default as ComboBoxLoadingExample } from './ComboBox.loading';
+export { default as ComboBoxMessageExample } from './ComboBox.message';
+export { default as ComboBoxMessageIconExample } from './ComboBox.messageIcon';
+export { default as ComboBoxMultipleSelectExample } from './ComboBox.multipleSelect';
+export { default as ComboBoxStatusExample } from './ComboBox.status';
+export { default as ComboBoxVirtualizedExample } from './ComboBox.virtualized';
 
 export { default as DatePickerMainExample } from './DatePicker.main';
 
