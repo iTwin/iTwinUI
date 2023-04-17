@@ -52,6 +52,10 @@ export const ComboBoxInput = React.forwardRef(
         onKeyDownProp?.(event);
         const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
 
+        if (event.altKey) {
+          return;
+        }
+
         switch (event.key) {
           case 'ArrowDown': {
             event.preventDefault();

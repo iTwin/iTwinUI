@@ -23,6 +23,7 @@ export { default as AvatarSizesExample } from './Avatar.sizes';
 export { default as AvatarStatusesExample } from './Avatar.statuses';
 
 export { default as AnchorMainExample } from './Anchor.main';
+export { default as AnchorAsButtonExample } from './Anchor.asbutton';
 
 export { default as BadgeMainExample } from './Badge.main';
 export { default as BadgeSoftExample } from './Badge.soft';
@@ -129,6 +130,7 @@ export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 
 export { default as RadioMainExample } from './Radio.main';
+export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 
 export { default as SelectMainExample } from './Select.main';
