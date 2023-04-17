@@ -9,7 +9,7 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -109,3 +109,12 @@ The property `itemRenderer` allows you to customize the combobox more specifical
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Dropdown menu', url: 'dropdownmenu' },
+    { title: 'Label', url: 'typography#label' },
+  ]}
+/>
