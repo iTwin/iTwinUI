@@ -6,14 +6,8 @@
   --_iui-input-accent-border-color: var(--iui-color-border-accent);
   --_iui-input-text-color: var(--iui-color-text);
 
-  &[disabled] {
-    --_iui-input-background-color: var(--iui-color-background-disabled);
-    --_iui-input-border-color: var(--iui-color-border-disabled);
-    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
-    cursor: not-allowed;
-  }
-
   display: inline-flex;
+  align-items: center;
   background-color: var(--_iui-input-background-color);
   border-radius: var(--iui-border-radius-1);
   color: var(--_iui-input-text-color);
@@ -47,12 +41,18 @@
     min-width: var(--_iui-input-min-height);
     flex: 999;
     padding-inline-start: var(--iui-size-s);
+
+    &:is(:not(:first-child)) {
+      padding-inline-start: var(--iui-size-2xs);
+    }
   }
 
-  // > button {
-  //   height: 100%;
-  //   z-index: 2;
-  // }
+  &[disabled] {
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+    cursor: not-allowed;
+  }
 }
 
 /// Mixin for applying status colors to input container.
@@ -61,6 +61,6 @@
   --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
 
   &::before {
-    border-bottom: var(--iui-size-3xs) solid var(--_iui-input-accent-border-color);
+    border-bottom-width: var(--iui-size-3xs);
   }
 }
