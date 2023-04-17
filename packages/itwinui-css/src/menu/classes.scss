@@ -2,16 +2,40 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import './index';
 
-.iui-menu {
-  @include iui-list-menu;
+:is(.iui-list, .iui-menu) {
+  @include iui-list;
+
+  .iui-header-menu-icon {
+    @include iui-header-menu-icon;
+  }
 }
 
-.iui-menu-item {
+.iui-menu {
+  @include iui-menu;
+}
+
+:is(.iui-list-item, .iui-menu-item) {
   @include iui-menu-item;
+}
+
+:is(.iui-menu-item > .iui-icon, .iui-list-item-icon) {
+  @include iui-menu-icon;
+}
+
+.iui-menu-item-skeleton {
+  @include iui-menu-item-skeleton;
 }
 
 .iui-menu-content {
   @include iui-menu-content;
+}
+
+:is(.iui-menu-item > .iui-content, .iui-list-item-content) {
+  @include iui-menu-item-content;
+}
+
+:is(.iui-menu-description, .iui-list-item-description) {
+  @include iui-menu-item-description;
 }
 
 .iui-menu-divider {

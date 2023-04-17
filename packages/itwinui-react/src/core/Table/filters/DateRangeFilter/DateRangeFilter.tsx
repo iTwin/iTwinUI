@@ -106,6 +106,10 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   }, []);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (event.key === 'Enter') {
       setFilter([from, to]);
     }
