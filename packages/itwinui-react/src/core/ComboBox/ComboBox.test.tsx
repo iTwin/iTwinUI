@@ -494,7 +494,7 @@ it('should work with custom itemRenderer', async () => {
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
   expect(input).toHaveValue('Item 1'); // the actual value of input doesn't change
 
-  await userEvent.tab({ shift: true }); // reopen menu
+  await userEvent.keyboard('{Enter}'); // reopen menu
 
   expect(
     document.querySelector(
