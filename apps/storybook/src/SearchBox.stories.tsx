@@ -12,11 +12,7 @@ import {
   Flex,
   Divider,
 } from '@itwin/itwinui-react';
-import {
-  SvgCaretDownSmall,
-  SvgCaretUpSmall,
-  SvgCloseSmall,
-} from '@itwin/itwinui-icons-react';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
 
 export default {
   component: SearchBox,
@@ -93,20 +89,9 @@ export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
     setExpanded(value);
   };
 
-  const handleClose = () => {
-    console.log('handling close');
-    setExpanded(false);
-  };
-
   return (
-    <SearchBox
-      expandable
-      isExpanded={expanded}
-      onOpen={() => handleToggle(true)}
-    >
-      <IconButton styleType='borderless' onClick={handleClose}>
-        <SvgCloseSmall />
-      </IconButton>
+    <SearchBox expandable isExpanded={expanded} onToggle={handleToggle}>
+      <SearchBox.CloseButton />
       <input type='search' placeholder='Search...' />
       <Text
         isMuted

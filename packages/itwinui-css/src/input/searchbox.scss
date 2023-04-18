@@ -34,8 +34,13 @@
     z-index: 3;
   }
 
-  &[data-iui-expanded='true'],
-  &:focus-within {
+  &:where(:not([data-iui-expanded='true'], :focus-within)) {
+    > :where(:is(:not(input))) {
+      display: none;
+    }
+  }
+
+  &:where([data-iui-expanded='true'], :focus-within):where(:not([data-iui-expanded='false'])) {
     width: 100%;
     border-color: var(--_iui-input-border-color);
 

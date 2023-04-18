@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { InputFlexContainer, useTheme, SvgSearch } from '../utils';
+import {
+  InputFlexContainer,
+  useTheme,
+  SvgSearch,
+  SvgCloseSmall,
+  useSafeContext,
+} from '../utils';
 import type {
   IconProps,
   PolymorphicForwardRefComponent,
@@ -14,12 +20,34 @@ import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
 import '@itwin/itwinui-css/css/input.css';
 
+/* Ask UX:
+manually handling close - open, keep it open - I want to close? Where close button goes?
+X is for clearing.
+vs code search example.
+
+search pattern in other apps?
+*/
+
+const SearchBoxContext = React.createContext<
+  | {
+      size?: 'small' | 'large';
+      /**
+       * Id to pass to input
+       */
+      inputId?: string;
+
+      setInputId?: (inputId: string) => void;
+      onClose?: () => void;
+    }
+  | undefined
+>(undefined);
+
 type SearchBoxOwnProps = {
   /**
    * Whether the searchbox is animated to expand.
    * @default false
    */
-  expandable: true;
+  expandable?: boolean;
   /**
    * Whether or not to show the search input.
    * @default false
@@ -29,7 +57,7 @@ type SearchBoxOwnProps = {
   inputProps?: React.ComponentPropsWithoutRef<'input'>;
   collapsedState?: React.ReactNode;
   /**
-   * Modify size of the input.
+   * Modify size of the searchbox.
    */
   size?: 'small' | 'large';
 };
@@ -38,42 +66,61 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   useTheme();
 
   const {
-    as: Element = 'div',
     size,
     expandable = false,
     onToggle,
     onFocus: onFocusProp,
+    onBlur: onBlurProp,
     isExpanded,
     children,
     inputProps,
+    className,
     ...rest
   } = props;
 
+  const onClose = () => {
+    onToggle?.(false);
+  };
+
   return (
-    <InputFlexContainer
-      ref={ref}
-      as={Element}
-      className={cx({
-        'iui-expandable-searchbox': expandable,
-      })}
-      data-iui-size={size}
-      onFocus={(e) => {
-        onFocusProp?.(e);
-        onToggle?.(true);
-      }}
-      onBlur={() => {
-        onToggle?.(false);
-      }}
-      data-iui-expanded={isExpanded}
-      {...rest}
-    >
-      {children ?? (
-        <>
-          <SearchBoxInput {...inputProps} />
-          <SearchBoxIcon />
-        </>
-      )}
-    </InputFlexContainer>
+    <SearchBoxContext.Provider value={{ onClose }}>
+      <InputFlexContainer
+        ref={ref}
+        className={cx({ 'iui-expandable-searchbox': expandable }, className)}
+        data-iui-size={size}
+        onFocus={(e) => {
+          // console.log('focus', e.target, e.currentTarget, e.relatedTarget);
+          onFocusProp?.(e);
+          if (
+            e.isDefaultPrevented() ||
+            e.currentTarget.contains(e.relatedTarget)
+          ) {
+            return;
+          }
+          onToggle?.(true);
+        }}
+        onBlur={(e) => {
+          // console.log('blur', e.target, e.currentTarget, e.relatedTarget);
+          onBlurProp?.(e);
+          if (
+            e.isDefaultPrevented() ||
+            e.currentTarget.contains(e.relatedTarget)
+          ) {
+            return;
+          }
+          onToggle?.(false);
+        }}
+        data-iui-expanded={isExpanded}
+        {...rest}
+      >
+        {children ?? (
+          <>
+            <SearchBoxInput {...inputProps} />
+            <SearchBoxIcon />
+          </>
+        )}
+      </InputFlexContainer>
+    </SearchBoxContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', SearchBoxOwnProps>;
 
@@ -133,43 +180,44 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 
 /**
+ * SearchBox.Button component to add to your SearchBox.
+ */
+const SearchBoxCloseButton = React.forwardRef((props, ref) => {
+  const { children, onClick: onClickProp, ...rest } = props;
+
+  const { onClose } = useSafeContext(SearchBoxContext);
+
+  return (
+    <SearchBoxButton
+      ref={ref}
+      aria-label='Close'
+      onClick={(e) => {
+        onClickProp?.(e);
+        onClose?.();
+      }}
+      {...rest}
+    >
+      {children ?? <SvgCloseSmall />}
+    </SearchBoxButton>
+  );
+}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+
+// ----------------------------------------------------------------------------
+
+/**
  * Searchbox component.
  * Used for searches :)
  * @example
- *  <SearchBox>
- *    <input type='search' placeholder='Search...' />
- *  </SearchBox>
- *
- *  <SearchBox>
- *    <input type='search' placeholder='Search...' />
- *    <IconButton styleType='borderless'>
- *     <SvgCaretUpSmall />
- *   </IconButton>
- *   <IconButton styleType='borderless'>
- *      <SvgCaretDownSmall />
- *     </IconButton>
  *  </SearchBox>
  */
 export const SearchBox = Object.assign(SearchBoxComponent, {
   Icon: SearchBoxIcon,
   Input: SearchBoxInput,
   Button: SearchBoxButton,
+  CloseButton: SearchBoxCloseButton,
 });
 
 export default SearchBox;
-
-export const SearchBoxContext = React.createContext<
-  | {
-      size?: 'small' | 'large';
-      /**
-       * Id to pass to input
-       */
-      inputId?: string;
-
-      setInputId: (inputId: string) => void;
-    }
-  | undefined
->(undefined);
 
 // <SearchBox />
 // <SearchBox expandable />
