@@ -1,5 +1,27 @@
 # Changelog
 
+## 2.9.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
+### Patch Changes
+
+- [#1210](https://github.com/iTwin/iTwinUI/pull/1210): Removed incorrect `role=tooltip` from Popover, DropdownMenu, Select and ComboBox.
+- [#1209](https://github.com/iTwin/iTwinUI/pull/1209): Fixed an issue in ComboBox where disabled items didn't have a proper focus outline and were still selectable with keyboard.
+- [#1149](https://github.com/iTwin/iTwinUI/pull/1149): added event.altKey to file with handleKeyDown and onKeyDown function
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.0
+
 ## 2.8.2
 
 ### Patch Changes
