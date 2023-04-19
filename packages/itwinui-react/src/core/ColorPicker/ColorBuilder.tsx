@@ -201,6 +201,10 @@ export const ColorBuilder = React.forwardRef(
 
     // Arrow key navigation for color dot
     const handleColorDotKeyDown = (event: React.KeyboardEvent) => {
+      if (event.altKey) {
+        return;
+      }
+
       let x = squareLeft;
       let y = squareTop;
       keysPressed.current[event.key] = true;

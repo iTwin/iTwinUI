@@ -9,6 +9,7 @@ describe('Table', () => {
     'Column Manager',
     'Condensed',
     'Controlled State',
+    'Custom Filter',
     'Customized Columns',
     'Disabled Rows',
     'Draggable Columns',
@@ -47,6 +48,10 @@ describe('Table', () => {
         }
         case 'Condensed': {
           cy.get('.iui-table-row-expander').first().click();
+          break;
+        }
+        case 'Custom Filter': {
+          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
           break;
         }
         case 'Customized Columns': {

@@ -206,26 +206,11 @@ const currentPage = new URL(Astro.request.url).pathname;
         }
 
         &:global(:not(:first-child)) {
-          margin-top: 1rem;
+          margin-block-start: 1.1em;
         }
       }
 
-      :global(
-          :where(
-              :not(
-                  a,
-                  h1,
-                  h2,
-                  h3,
-                  h4,
-                  .demo-iui-wrapper,
-                  .demo-iui-wrapper *,
-                  table,
-                  table *,
-                  [data-iui-theme] *
-                )
-            )
-        ) {
+      :global(:where(p, ul, ol):where(:not(.demo-iui-wrapper *))) {
         color: var(--color-subtext);
         font-size: var(--type-1);
       }

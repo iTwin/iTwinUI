@@ -2,13 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import addons from '@storybook/addons';
+describe('NotificationMarker', () => {
+  const storyPath = 'Core/List';
 
-// Rename "Story" tab to "Code"
-setTimeout(() => {
-  const storySourceId = 'storybook/source-loader/panel';
-  const storyTab = addons.getElements('panel')?.[storySourceId];
-  if (storyTab) {
-    storyTab.title = 'Code';
-  }
+  const tests = ['Basic', 'With Icon', 'Actionable'];
+
+  tests.forEach((testName) => {
+    it(testName, function () {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('iframe', { qs: { id } });
+      cy.compareSnapshot(testName);
+    });
+  });
 });
