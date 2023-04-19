@@ -12,6 +12,7 @@
   min-height: var(--_iui-select-min-height);
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
+  gap: var(--iui-size-xs);
   transition: border-color var(--iui-duration-1) ease-out;
   display: flex;
   align-items: center;

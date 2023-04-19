@@ -10,6 +10,7 @@ group: buttons
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
 import Placeholder from '~/components/Placeholder.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -61,3 +62,13 @@ You can combine [inputs](input) with buttons in a button group.
 ## Props
 
 To be defined
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Button', url: 'button' },
+    { title: 'Dropdown menu', url: 'dropdownmenu' },
+    { title: 'Input', url: 'input' },
+  ]}
+/>

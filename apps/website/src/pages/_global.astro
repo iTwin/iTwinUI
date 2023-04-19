@@ -65,8 +65,25 @@ const { content = {} } = Astro.props;
         line-height: 1.2;
       }
 
+      :where(h1) {
+        font-size: var(--type-4);
+      }
+
+      :where(h2) {
+        font-size: var(--type-3);
+      }
+
+      :where(h3) {
+        font-size: var(--type-2);
+      }
+
       :where(code, pre) {
         font-family: var(--font-mono);
+      }
+
+      :where(ul:not(.content-wrapper *)) {
+        list-style: none;
+        padding: 0;
       }
 
       @media (pointer: fine) and (hover: hover) {
