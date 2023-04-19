@@ -10,6 +10,8 @@ import {
   SvgSearch,
   SvgCloseSmall,
   useSafeContext,
+  useId,
+  Icon,
 } from '../utils';
 import type {
   IconProps,
@@ -20,27 +22,20 @@ import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
 import '@itwin/itwinui-css/css/input.css';
 
-/* Ask UX:
-manually handling close - open, keep it open - I want to close? Where close button goes?
-X is for clearing.
-vs code search example.
-
-search pattern in other apps?
-*/
-
 const SearchBoxContext = React.createContext<
   | {
       size?: 'small' | 'large';
       /**
        * Id to pass to input
        */
-      inputId?: string;
-
-      setInputId?: (inputId: string) => void;
+      inputId: string;
+      setInputId: (inputId: string) => void;
       onClose?: () => void;
     }
   | undefined
 >(undefined);
+
+// ----------------------------------------------------------------------------
 
 type SearchBoxOwnProps = {
   /**
@@ -53,9 +48,16 @@ type SearchBoxOwnProps = {
    * @default false
    */
   isExpanded?: boolean;
+  /**
+   *
+   * @param isExpanding
+   * @returns
+   */
   onToggle?: (isExpanding: boolean) => void;
+  /**
+   *
+   */
   inputProps?: React.ComponentPropsWithoutRef<'input'>;
-  collapsedState?: React.ReactNode;
   /**
    * Modify size of the searchbox.
    */
@@ -78,12 +80,14 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const [inputId, setInputId] = React.useState(useId());
+
   const onClose = () => {
     onToggle?.(false);
   };
 
   return (
-    <SearchBoxContext.Provider value={{ onClose }}>
+    <SearchBoxContext.Provider value={{ size, onClose, inputId, setInputId }}>
       <InputFlexContainer
         ref={ref}
         className={cx({ 'iui-expandable-searchbox': expandable }, className)}
@@ -130,32 +134,47 @@ export type SearchBoxProps = PolymorphicComponentProps<
 >;
 
 // ----------------------------------------------------------------------------
+export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
 
 const SearchBoxIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'span', className, children, ...rest } = props;
+  const { size, className, children, ...rest } = props;
+  const { size: sizeContext } = useSafeContext(SearchBoxContext);
+
   return (
-    <Element
+    <Icon
       aria-hidden
       className={cx('iui-svg-icon', 'iui-search-icon', className)}
+      size={size ?? sizeContext}
       ref={ref}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </Element>
+    </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
 
 // ----------------------------------------------------------------------------
 
+export type SearchBoxInputProps = {
+  label?: string;
+} & React.ComponentProps<'input'>;
+
 const SearchBoxInput = React.forwardRef(
-  (props: React.ComponentProps<'input'>, ref: React.Ref<HTMLInputElement>) => {
-    const { className, ...rest } = props;
+  (props: SearchBoxInputProps, ref: React.Ref<HTMLInputElement>) => {
+    const { className, label = 'Search input', id: idProp, ...rest } = props;
+
+    const { inputId, setInputId } = useSafeContext(SearchBoxContext);
+
+    if (idProp && idProp !== inputId) {
+      setInputId(idProp);
+    }
 
     return (
       <input
+        id={idProp ?? inputId}
+        aria-label={label}
         ref={ref}
         type='search'
-        aria-label='Search'
         className={cx('iui-search-input', className)}
         {...rest}
       />
@@ -168,10 +187,22 @@ const SearchBoxInput = React.forwardRef(
 /**
  * SearchBox.Button component to add to your SearchBox.
  */
+export type SearchBoxButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
+
 const SearchBoxButton = React.forwardRef((props, ref) => {
-  const { children, ...rest } = props;
+  const { children, size, ...rest } = props;
+  const { size: sizeContext } = useSafeContext(SearchBoxContext);
+
   return (
-    <IconButton styleType='borderless' ref={ref} {...rest}>
+    <IconButton
+      styleType='borderless'
+      size={size ?? sizeContext}
+      ref={ref}
+      {...rest}
+    >
       {children ?? <SvgSearch />}
     </IconButton>
   );
@@ -182,15 +213,21 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
 /**
  * SearchBox.Button component to add to your SearchBox.
  */
-const SearchBoxCloseButton = React.forwardRef((props, ref) => {
-  const { children, onClick: onClickProp, ...rest } = props;
+export type SearchBoxCloseButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
 
-  const { onClose } = useSafeContext(SearchBoxContext);
+const SearchBoxCloseButton = React.forwardRef((props, ref) => {
+  const { children, onClick: onClickProp, size, ...rest } = props;
+
+  const { onClose, size: sizeContext } = useSafeContext(SearchBoxContext);
 
   return (
     <SearchBoxButton
       ref={ref}
       aria-label='Close'
+      size={size ?? sizeContext}
       onClick={(e) => {
         onClickProp?.(e);
         onClose?.();
@@ -218,32 +255,3 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
 });
 
 export default SearchBox;
-
-// <SearchBox />
-// <SearchBox expandable />
-
-// <SearchBox expandable isExpanded />
-// <SearchBox expandable onToggle={} />
-
-// <SearchBox>
-//   <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
-//   <SearchBox.Input />
-//   <SearchBox.Button></SearchBox.Button>
-//   <Divider />
-//   <SearchBox.Button></SearchBox.Button>
-//   <SearchBox.Button></SearchBox.Button>
-// </SearchBox>
-
-// <SearchBox expandable>
-//   <SearchBox.Collapsed>
-//     <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
-//   </SearchBox.Collapsed>
-//   <SearchBox.Expanded>
-//     <SearchBox.Icon><SvgSearch /></SearchBox.Icon>
-//     <SearchBox.Input />
-//     <SearchBox.Button></SearchBox.Button>
-//     <Divider />
-//     <SearchBox.Button></SearchBox.Button>
-//     <SearchBox.Button></SearchBox.Button>
-//   </SearchBox.Expanded>
-// </SearchBox>

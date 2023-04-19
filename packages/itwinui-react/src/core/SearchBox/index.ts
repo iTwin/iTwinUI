@@ -3,5 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { SearchBox } from './SearchBox';
-export type { SearchBoxProps } from './SearchBox';
+export type {
+  SearchBoxProps,
+  SearchBoxButtonProps,
+  SearchBoxCloseButtonProps,
+  SearchBoxIconProps,
+  SearchBoxInputProps,
+} from './SearchBox';
 export default './SearchBox';

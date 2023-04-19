@@ -78,7 +78,30 @@ export const Expandable: StoryFn<SearchBoxProps> = () => {
 };
 
 export const Small: StoryFn<SearchBoxProps> = () => {
-  return <SearchBox size='small' inputProps={{ placeholder: 'Search...' }} />;
+  return (
+    <Flex flexDirection='column' alignItems='start'>
+      <SearchBox size='small' inputProps={{ placeholder: 'Search...' }} />
+      <SearchBox size='small'>
+        <SearchBox.Icon />
+        <SearchBox.Input placeholder='Expandable search with custom interactions' />
+        <Text
+          isMuted
+          variant='body'
+          as='p'
+          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
+        >
+          0/3
+        </Text>
+        <Divider orientation='vertical' />
+        <SearchBox.Button styleType='borderless'>
+          <SvgCaretUpSmall />
+        </SearchBox.Button>
+        <SearchBox.Button styleType='borderless'>
+          <SvgCaretDownSmall />
+        </SearchBox.Button>
+      </SearchBox>
+    </Flex>
+  );
 };
 
 export const WithCustomAction: StoryFn<SearchBoxProps> = () => {

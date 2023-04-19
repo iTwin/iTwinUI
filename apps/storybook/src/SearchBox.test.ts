@@ -11,8 +11,8 @@ describe('SearchBox', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(testName);
-      if (testName !== 'Static' && testName !== 'Small') {
-        cy.get('.iui-button').first().click();
+      if (testName !== 'Basic' && testName !== 'Small') {
+        cy.get('input').first().focus();
         cy.compareSnapshot(`${testName} (Open)`);
       }
     });

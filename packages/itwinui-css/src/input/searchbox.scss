@@ -56,4 +56,8 @@
 
 @mixin iui-search-icon {
   margin: 0 var(--iui-size-s);
+
+  &[data-iui-icon-size='s'] {
+    margin: 0 var(--iui-size-xs);
+  }
 }
