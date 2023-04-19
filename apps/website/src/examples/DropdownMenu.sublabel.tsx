@@ -22,7 +22,7 @@ export default () => {
   return (
     <>
       <DropdownMenu menuItems={dropdownMenuItems}>
-        <IconButton>
+        <IconButton aria-label='More options'>
           <SvgMore />
         </IconButton>
       </DropdownMenu>
