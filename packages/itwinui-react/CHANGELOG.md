@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.9.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.1
+
 ## 2.9.0
 
 ### Minor Changes
