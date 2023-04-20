@@ -37,6 +37,8 @@ export const ComboBoxInput = React.forwardRef(
       useSafeContext(ComboBoxRefsContext);
     const refs = useMergedRefs(inputRef, forwardedRef);
 
+    const selectedTagContainerId = `${id}-selected-list`;
+
     const focusedIndexRef = React.useRef(focusedIndex ?? -1);
     React.useEffect(() => {
       focusedIndexRef.current = focusedIndex ?? -1;
@@ -225,10 +227,12 @@ export const ComboBoxInput = React.forwardRef(
           autoCapitalize='none'
           autoCorrect='off'
           style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+          aria-describedby={multiple ? selectedTagContainerId : undefined}
           {...rest}
         />
         {multiple && selectTags && (
           <ComboBoxMultipleContainer
+            id={selectedTagContainerId}
             ref={tagContainerWidthRef}
             selectedItems={selectTags}
           />

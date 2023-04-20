@@ -12,7 +12,7 @@ export type SelectTagContainerProps = {
    * Select tags.
    */
   tags: React.ReactNode[];
-} & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
+} & Omit<React.ComponentPropsWithoutRef<'ul'>, 'children'>;
 
 /**
  */
@@ -25,8 +25,11 @@ export const SelectTagContainer = React.forwardRef(
     const refs = useMergedRefs(ref, containerRef);
 
     return (
-      <div
+      <ul
         className={cx('iui-select-tag-container', className)}
+        aria-live='assertive'
+        aria-atomic='false'
+        aria-relevant='additions removals'
         ref={refs}
         {...rest}
       >
@@ -36,7 +39,7 @@ export const SelectTagContainer = React.forwardRef(
             <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
           )}
         </>
-      </div>
+      </ul>
     );
   },
 );

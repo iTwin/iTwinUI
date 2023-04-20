@@ -69,6 +69,8 @@
 }
 
 @mixin iui-select-tag-container {
+  margin: 0;
+  padding: 0;
   position: absolute;
   // align wth Select's padding
   inset: 0 calc(var(--iui-size-m) + var(--iui-size-l)) 0 var(--iui-size-s);
@@ -77,6 +79,7 @@
   align-items: center;
   gap: var(--iui-size-2xs);
   overflow: hidden;
+  list-style: none;
 
   > * + * {
     margin-left: var(--iui-size-2xs);
