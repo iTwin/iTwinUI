@@ -67,7 +67,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     arrow: false,
     duration: 0,
     interactive: true,
-    role: undefined,
+    role: '',
     offset: [0, 0],
     maxWidth: '',
     zIndex: 99999,
