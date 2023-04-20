@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useTheme, isBefore } from '../../../utils';
+import { useTheme } from '../../../utils';
 import {
   FilterButtonBar,
   FilterButtonBarTranslation,
@@ -68,57 +68,43 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   const [from, setFrom] = React.useState<Date | undefined>(
     column.filterValue?.[0] ? new Date(column.filterValue?.[0]) : undefined,
   );
+  const onFromChange = React.useCallback((date?: Date) => {
+    setFrom((prevDate) => {
+      if (prevDate || !date) {
+        return date;
+      }
+      return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        0,
+        0,
+        0,
+        0,
+      );
+    });
+  }, []);
+
   const [to, setTo] = React.useState<Date | undefined>(
     column.filterValue?.[1] ? new Date(column.filterValue?.[1]) : undefined,
   );
 
-  const onFromChange = React.useCallback(
-    (date?: Date) => {
-      setFrom((prevDate) => {
-        if (to && isBefore(to, date)) {
-          setTo(date);
-          return to;
-        }
-        if (prevDate || !date) {
-          return date;
-        }
-        return new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          0,
-          0,
-          0,
-          0,
-        );
-      });
-    },
-    [to],
-  );
-
-  const onToChange = React.useCallback(
-    (date?: Date) => {
-      setTo((prevDate) => {
-        if (from && isBefore(date, from)) {
-          setFrom(date);
-          return from;
-        }
-        if (prevDate || !date) {
-          return date;
-        }
-        return new Date(
-          date.getFullYear(),
-          date.getMonth(),
-          date.getDate(),
-          23,
-          59,
-          59,
-          999,
-        );
-      });
-    },
-    [from],
-  );
+  const onToChange = React.useCallback((date?: Date) => {
+    setTo((prevDate) => {
+      if (prevDate || !date) {
+        return date;
+      }
+      return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate(),
+        23,
+        59,
+        59,
+        999,
+      );
+    });
+  }, []);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
@@ -132,25 +118,33 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
 
   return (
     <BaseFilter>
-      <DatePickerInput
-        label={translatedStrings.from}
-        date={from}
-        onChange={onFromChange}
-        formatDate={formatDate}
-        parseInput={parseInput}
-        onKeyDown={onKeyDown}
-        placeholder={placeholder}
-        setFocus
-      />
-      <DatePickerInput
-        label={translatedStrings.to}
-        date={to}
-        onChange={onToChange}
-        formatDate={formatDate}
-        parseInput={parseInput}
-        onKeyDown={onKeyDown}
-        placeholder={placeholder}
-      />
+      <DateRangeFilterContext.Provider
+        value={{ datePicker: 'from', selectedDate: to }}
+      >
+        <DatePickerInput
+          label={translatedStrings.from}
+          date={from}
+          onChange={onFromChange}
+          formatDate={formatDate}
+          parseInput={parseInput}
+          onKeyDown={onKeyDown}
+          placeholder={placeholder}
+          setFocus
+        />
+      </DateRangeFilterContext.Provider>
+      <DateRangeFilterContext.Provider
+        value={{ datePicker: 'to', selectedDate: from }}
+      >
+        <DatePickerInput
+          label={translatedStrings.to}
+          date={to}
+          onChange={onToChange}
+          formatDate={formatDate}
+          parseInput={parseInput}
+          onKeyDown={onKeyDown}
+          placeholder={placeholder}
+        />
+      </DateRangeFilterContext.Provider>
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}
         clearFilter={clearFilter}
@@ -159,3 +153,17 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
     </BaseFilter>
   );
 };
+
+export const DateRangeFilterContext = React.createContext<
+  | {
+      /**
+       * Decides if the context is wrapped around 'from' or 'to'
+       */
+      datePicker: 'from' | 'to';
+      /**
+       * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
+       */
+      selectedDate?: Date;
+    }
+  | undefined
+>(undefined);

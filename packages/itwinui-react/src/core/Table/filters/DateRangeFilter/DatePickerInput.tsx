@@ -3,10 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Popover, SvgCalendar } from '../../../utils';
+import { Popover, SvgCalendar, useSafeContext, isBefore } from '../../../utils';
 import { LabeledInput, LabeledInputProps } from '../../../LabeledInput';
 import { DatePicker } from '../../../DatePicker';
 import { IconButton } from '../../../Buttons';
+import { DateRangeFilterContext } from './DateRangeFilter';
 
 export type DatePickerInputProps = {
   date?: Date;
@@ -17,6 +18,15 @@ export type DatePickerInputProps = {
 
 const DatePickerInput = (props: DatePickerInputProps) => {
   const { onChange, date, parseInput, formatDate, ...rest } = props;
+  const { datePicker, selectedDate } = useSafeContext(DateRangeFilterContext);
+
+  const isDateDisabled = (date: Date) => {
+    if (datePicker === 'to') {
+      return isBefore(date, selectedDate);
+    } else {
+      return isBefore(selectedDate, date);
+    }
+  };
 
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -57,7 +67,14 @@ const DatePickerInput = (props: DatePickerInputProps) => {
 
   return (
     <Popover
-      content={<DatePicker date={date} onChange={onDateSelected} setFocus />}
+      content={
+        <DatePicker
+          date={date}
+          onChange={onDateSelected}
+          setFocus
+          isDateDisabled={isDateDisabled}
+        />
+      }
       placement='bottom'
       visible={isVisible}
       onClickOutside={(_, e) => {
