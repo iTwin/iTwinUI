@@ -167,7 +167,9 @@ export { default as StepperLocalizationExample } from './Stepper.localization';
 export { default as StepperLayoutExample } from './Stepper.layout';
 
 export { default as SurfaceMainExample } from './Surface.main';
-export { default as SurfaceCustomExample } from './Surface.custom';
+export { default as SurfaceElevationExample } from './Surface.elevation';
+export { default as SurfaceHeaderFooterExample } from './Surface.headerfooter';
+export { default as SurfaceNoPaddingExample } from './Surface.nopadding';
 
 export { default as TableMainExample } from './Table.main';
 
