@@ -28,6 +28,10 @@ export const TextFilter = <T extends Record<string, unknown>>(
   const [text, setText] = React.useState(column.filterValue ?? '');
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (event.key === 'Enter') {
       setFilter(text);
     }

@@ -125,6 +125,9 @@ export const TreeNode = (props: TreeNodeProps) => {
   const nodeRef = React.useRef<HTMLLIElement>(null);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.altKey) {
+      return;
+    }
     const isNodeFocused =
       nodeRef.current === nodeRef.current?.ownerDocument.activeElement;
     switch (event.key) {

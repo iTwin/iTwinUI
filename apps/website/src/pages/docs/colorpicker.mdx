@@ -14,16 +14,64 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-colorpicker' />
-
 <LiveExample src='ColorPicker.main.tsx'>
   <AllExamples.ColorPickerMainExample client:load />
 </LiveExample>
 
-The color picker is extremely flexible. Bits and pieces can be used based on product requirements. If certain parts are not required for your context, they can be left out.
+Color pickers allow users to browse and apply a color to a selected item.
 
-There is no hard guidelines for what an advanced color picker contains. The point is that it remains usable and aligns with the user’s workflow. If you are unsure about a product’s use of the color picker, contact a member of the visual team for advice.
+## Variants
+
+### Basic
+
+A basic color picker displays a pre-determined selection of colors. Because the colors are system-provided, each color should have a user friendly name. The user cannot add or remove swatches from what is available in the basic color picker. You may offer a transparent / no color option.
+
+<LiveExample src='ColorPicker.basic.tsx'>
+  <AllExamples.ColorPickerBasicExample client:load />
+</LiveExample>
+
+### Advanced
+
+The advanced color picker lets the user pick any color. You may display user saved colors or recently used colors if needed. Because the colors are immensely flexible, colors are labeled with HEX, RGB/RGBA, or HSL/HSLA color code values. A clickable icon in the text field allows the user to rotate through the different color code types.
+
+<LiveExample src='ColorPicker.advanced.tsx'>
+  <AllExamples.ColorPickerAdvancedExample client:load />
+</LiveExample>
+
+The color code can be displayed in editable fields for precise color selection. There are two ways to show this code: within the panel itself as seen in the example above, or in a dropdown button/input field combo, like below. If the color code is shown outside of the panel, do not include the color code within the panel at the same time.
+
+<LiveExample src='ColorPicker.advancedPopover.tsx'>
+  <AllExamples.ColorPickerAdvancedPopoverExample client:load />
+</LiveExample>
 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Subcomponents
+
+The color picker is extremely flexible; pieces can be used based on product requirements. If certain parts are not required for your context, they can be left out. There are no hard guidelines for what an advanced color picker contains. It should remain usable and align with the user’s workflow.
+
+### Color Builder
+
+`ColorBuilder` consists of two parts: a color canvas to adjust saturation and lightness values, and a set of sliders to adjust hue and alpha values.
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/ColorPicker/ColorBuilder.d.ts'} />
+
+### Color Input Panel
+
+`ColorInputPanel` shows input fields to enter precise color values in the specified format. It also allows switching between the specified formats using a swap button.
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/ColorPicker/ColorInputPanel.d.ts'} />
+
+### Color Palette
+
+`ColorPalette` is used to show a group of `ColorSwatch` components.
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/ColorPicker/ColorPalette.d.ts'} />
+
+### Color Swatch
+
+`ColorSwatch` is a component to display within a color palette.
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/ColorPicker/ColorSwatch.d.ts'} />

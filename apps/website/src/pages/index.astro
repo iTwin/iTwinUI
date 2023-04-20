@@ -46,38 +46,40 @@ const currentPage = new URL(Astro.request.url).pathname;
       <div class='demo-carousel-list move-on-visible' data-move-on-visible-direction='up'>
         <div class='demo-wrapper'>
           <div class='demo-box'><AlertDemo client:load /></div>
-          <h3>Alert</h3>
+          <a href='/docs/alert' class='component-link'>Alert</a>
           <p>A small box to quickly grab user attention and communicate a brief message.</p>
         </div>
 
         <div class='demo-wrapper'>
           <div class='demo-box'><DialogDemo client:load /></div>
-          <h3>Dialog</h3>
+          <a href='/docs/dialog' class='component-link'>Dialog</a>
           <p>Provides the foundation for building modals and modeless dialogs.</p>
         </div>
 
         <div class='demo-wrapper'>
           <div class='demo-box'><FieldsetDemo client:load /></div>
-          <h3>Fieldset</h3>
+          <a href='/docs/fieldset' class='component-link'>Fieldset</a>
           <p>A fieldset is a container grouping interactive components together.</p>
         </div>
 
         <div class='demo-wrapper'>
           <div class='demo-box'><SliderDemo client:load /></div>
-          <h3>Slider</h3>
+          <a href='/docs/slider' class='component-link'>Slider</a>
           <p>Sliders let users make selections from a range of values.</p>
         </div>
 
         <div class='demo-wrapper'>
           <div class='demo-box'><ComboBoxDemo client:load /></div>
-          <h3>ComboBox</h3>
+          <a href='/docs/combobox' class='component-link'>ComboBox</a>
           <p>Allows typing a value to filter and choose from the options in dropdown list.</p>
         </div>
         <div class='demo-wrapper'>
           <div class='demo-box demo-box-muted'>
-            <li class='discover-more'>
-              <h3><a href={'/docs/components'}>Discover more components <RightArrowIcon /></a></h3>
-            </li>
+            <div class='discover-more'>
+              <a href={'/docs/components'} class='component-link'
+                >Discover more components <RightArrowIcon />
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -394,6 +396,16 @@ const currentPage = new URL(Astro.request.url).pathname;
 
       @media (max-width: 50em) {
         padding: var(--space-5);
+      }
+    }
+
+    .component-link {
+      font-size: var(--type-2);
+      text-align: left;
+
+      &:hover {
+        text-decoration: underline;
+        text-underline-offset: 0.5ex;
       }
     }
 
