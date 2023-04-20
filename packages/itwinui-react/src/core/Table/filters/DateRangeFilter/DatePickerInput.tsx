@@ -16,7 +16,7 @@ export type DatePickerInputProps = {
   /**
    * Decides if this component is used for the 'from' or 'to' date
    */
-  datePicker: 'from' | 'to';
+  datePicker?: 'from' | 'to';
   /**
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
