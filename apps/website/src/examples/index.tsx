@@ -69,6 +69,9 @@ export { default as CheckboxInputGroupExample } from './Checkbox.inputgroup';
 export { default as CodeMainExample } from './Code.main';
 
 export { default as ColorPickerMainExample } from './ColorPicker.main';
+export { default as ColorPickerBasicExample } from './ColorPicker.basic';
+export { default as ColorPickerAdvancedExample } from './ColorPicker.advanced';
+export { default as ColorPickerAdvancedPopoverExample } from './ColorPicker.advancedPopover';
 
 export { default as ComboBoxMainExample } from './ComboBox.main';
 export { default as ComboBoxControlledExample } from './ComboBox.controlled';
