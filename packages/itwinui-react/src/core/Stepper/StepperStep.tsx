@@ -63,6 +63,10 @@ export const StepperStep = (props: StepperStepProps) => {
   };
 
   const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.altKey) {
+      return;
+    }
+
     if (!isClickable) {
       return;
     }

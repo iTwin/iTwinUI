@@ -1,5 +1,25 @@
 # Changelog
 
+## 1.10.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+
+## 1.10.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
 ## 1.9.0
 
 ### Minor Changes

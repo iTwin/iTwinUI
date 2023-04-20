@@ -590,6 +590,10 @@ const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
     onSelect: (value: number) => void,
     currentValue: number,
   ) => {
+    if (event.altKey) {
+      return;
+    }
+
     switch (event.key) {
       case 'ArrowDown':
         if (currentValue + 1 > maxValue) {
