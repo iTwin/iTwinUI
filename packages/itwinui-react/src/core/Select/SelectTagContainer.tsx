@@ -27,9 +27,8 @@ export const SelectTagContainer = React.forwardRef(
     return (
       <ul
         className={cx('iui-select-tag-container', className)}
-        aria-live='assertive'
-        aria-atomic='false'
-        aria-relevant='additions removals'
+        aria-live='polite'
+        aria-atomic='true'
         ref={refs}
         {...rest}
       >
