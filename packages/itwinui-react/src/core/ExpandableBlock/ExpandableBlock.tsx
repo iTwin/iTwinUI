@@ -100,6 +100,10 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (
       event.key === 'Enter' ||
       event.key === ' ' ||

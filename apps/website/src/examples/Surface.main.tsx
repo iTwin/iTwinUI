@@ -7,8 +7,18 @@ import { Surface } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Surface elevation={4} style={{ height: 200, padding: 12 }}>
-      <p>Change the elevation prop to adjust the shadow level.</p>
+    <Surface
+      elevation={4}
+      style={{
+        height: 200,
+        padding: 12,
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <p>This is a surface</p>
     </Surface>
   );
 };
