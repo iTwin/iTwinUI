@@ -118,33 +118,29 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
 
   return (
     <BaseFilter>
-      <DateRangeFilterContext.Provider
-        value={{ datePicker: 'from', selectedDate: to }}
-      >
-        <DatePickerInput
-          label={translatedStrings.from}
-          date={from}
-          onChange={onFromChange}
-          formatDate={formatDate}
-          parseInput={parseInput}
-          onKeyDown={onKeyDown}
-          placeholder={placeholder}
-          setFocus
-        />
-      </DateRangeFilterContext.Provider>
-      <DateRangeFilterContext.Provider
-        value={{ datePicker: 'to', selectedDate: from }}
-      >
-        <DatePickerInput
-          label={translatedStrings.to}
-          date={to}
-          onChange={onToChange}
-          formatDate={formatDate}
-          parseInput={parseInput}
-          onKeyDown={onKeyDown}
-          placeholder={placeholder}
-        />
-      </DateRangeFilterContext.Provider>
+      <DatePickerInput
+        label={translatedStrings.from}
+        date={from}
+        onChange={onFromChange}
+        formatDate={formatDate}
+        parseInput={parseInput}
+        onKeyDown={onKeyDown}
+        placeholder={placeholder}
+        selectedDate={to}
+        datePicker='from'
+        setFocus
+      />
+      <DatePickerInput
+        label={translatedStrings.to}
+        date={to}
+        onChange={onToChange}
+        formatDate={formatDate}
+        parseInput={parseInput}
+        onKeyDown={onKeyDown}
+        placeholder={placeholder}
+        selectedDate={from}
+        datePicker='to'
+      />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}
         clearFilter={clearFilter}
@@ -153,17 +149,3 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
     </BaseFilter>
   );
 };
-
-export const DateRangeFilterContext = React.createContext<
-  | {
-      /**
-       * Decides if the context is wrapped around 'from' or 'to'
-       */
-      datePicker: 'from' | 'to';
-      /**
-       * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
-       */
-      selectedDate?: Date;
-    }
-  | undefined
->(undefined);

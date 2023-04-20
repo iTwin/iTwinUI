@@ -3,22 +3,36 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Popover, SvgCalendar, useSafeContext, isBefore } from '../../../utils';
+import { Popover, SvgCalendar, isBefore } from '../../../utils';
 import { LabeledInput, LabeledInputProps } from '../../../LabeledInput';
 import { DatePicker } from '../../../DatePicker';
 import { IconButton } from '../../../Buttons';
-import { DateRangeFilterContext } from './DateRangeFilter';
 
 export type DatePickerInputProps = {
   date?: Date;
   onChange: (date?: Date) => void;
   parseInput: (text: string) => Date;
   formatDate: (date: Date) => string;
+  /**
+   * Decides if this component is used for the 'from' or 'to' date
+   */
+  datePicker: 'from' | 'to';
+  /**
+   * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
+   */
+  selectedDate?: Date;
 } & Omit<LabeledInputProps, 'value' | 'onChange' | 'svgIcon' | 'displayStyle'>;
 
 const DatePickerInput = (props: DatePickerInputProps) => {
-  const { onChange, date, parseInput, formatDate, ...rest } = props;
-  const { datePicker, selectedDate } = useSafeContext(DateRangeFilterContext);
+  const {
+    onChange,
+    date,
+    parseInput,
+    formatDate,
+    datePicker,
+    selectedDate,
+    ...rest
+  } = props;
 
   const isDateDisabled = (date: Date) => {
     if (datePicker === 'to') {
