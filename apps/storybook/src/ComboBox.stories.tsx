@@ -44,7 +44,7 @@ const countriesList = [
   { label: 'Albania', value: 'AL' },
   { label: 'Algeria', value: 'DZ' },
   { label: 'American Samoa', value: 'AS' },
-  { label: 'AndorrA', value: 'AD' },
+  { label: 'Andorra', value: 'AD' },
   { label: 'Angola', value: 'AO' },
   { label: 'Anguilla', value: 'AI' },
   { label: 'Antarctica', value: 'AQ' },

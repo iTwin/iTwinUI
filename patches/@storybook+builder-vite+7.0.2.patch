@@ -1,0 +1,26 @@
+diff --git a/node_modules/@storybook/builder-vite/dist/index.js b/node_modules/@storybook/builder-vite/dist/index.js
+index 4775a24..2c12c30 100644
+--- a/node_modules/@storybook/builder-vite/dist/index.js
++++ b/node_modules/@storybook/builder-vite/dist/index.js
+@@ -2,7 +2,7 @@
+ `),importArray=(name,length)=>new Array(length).fill(0).map((_,i)=>`${name}_${i}`);return`
+     // Ensure that the client API is initialized by the framework before any other iframe code
+     // is loaded. That way our client-apis can assume the existence of the API+store
+-    import { configure } from '${rendererName}';
++    import { configure } from '${rendererName.replaceAll('\\', '/')}';
+ 
+     import { logger } from '@storybook/client-logger';
+     import * as previewApi from "@storybook/preview-api";
+diff --git a/node_modules/@storybook/builder-vite/dist/index.mjs b/node_modules/@storybook/builder-vite/dist/index.mjs
+index 570e913..49b087e 100644
+--- a/node_modules/@storybook/builder-vite/dist/index.mjs
++++ b/node_modules/@storybook/builder-vite/dist/index.mjs
+@@ -2,7 +2,7 @@ var __require=(x=>typeof require<"u"?require:typeof Proxy<"u"?new Proxy(x,{get:(
+ `),importArray=(name,length)=>new Array(length).fill(0).map((_,i)=>`${name}_${i}`);return`
+     // Ensure that the client API is initialized by the framework before any other iframe code
+     // is loaded. That way our client-apis can assume the existence of the API+store
+-    import { configure } from '${rendererName}';
++    import { configure } from '${rendererName.replaceAll('\\', '/')}';
+ 
+     import { logger } from '@storybook/client-logger';
+     import * as previewApi from "@storybook/preview-api";

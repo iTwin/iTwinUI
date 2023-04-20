@@ -69,8 +69,21 @@ export { default as CheckboxInputGroupExample } from './Checkbox.inputgroup';
 export { default as CodeMainExample } from './Code.main';
 
 export { default as ColorPickerMainExample } from './ColorPicker.main';
+export { default as ColorPickerBasicExample } from './ColorPicker.basic';
+export { default as ColorPickerAdvancedExample } from './ColorPicker.advanced';
+export { default as ColorPickerAdvancedPopoverExample } from './ColorPicker.advancedPopover';
 
 export { default as ComboBoxMainExample } from './ComboBox.main';
+export { default as ComboBoxControlledExample } from './ComboBox.controlled';
+export { default as ComboBoxCustomExample } from './ComboBox.custom';
+export { default as ComboBoxDisabledExample } from './ComboBox.disabled';
+export { default as ComboBoxLabelExample } from './ComboBox.label';
+export { default as ComboBoxLoadingExample } from './ComboBox.loading';
+export { default as ComboBoxMessageExample } from './ComboBox.message';
+export { default as ComboBoxMessageIconExample } from './ComboBox.messageIcon';
+export { default as ComboBoxMultipleSelectExample } from './ComboBox.multipleSelect';
+export { default as ComboBoxStatusExample } from './ComboBox.status';
+export { default as ComboBoxVirtualizedExample } from './ComboBox.virtualized';
 
 export { default as DatePickerMainExample } from './DatePicker.main';
 
@@ -130,6 +143,7 @@ export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 
 export { default as RadioMainExample } from './Radio.main';
+export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 
 export { default as SelectMainExample } from './Select.main';

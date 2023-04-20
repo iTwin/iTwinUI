@@ -76,6 +76,10 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
     }, [setFocus, focusedIndex, getFocusableNodes]);
 
     const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+      if (event.altKey) {
+        return;
+      }
+
       const items = getFocusableNodes();
       if (!items?.length) {
         return;
