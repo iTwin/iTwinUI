@@ -8,7 +8,7 @@ import { LabeledInput } from '@itwin/itwinui-react';
 export default () => {
   return (
     <>
-      <LabeledInput label='Labeled input' message='Input message' />
+      <LabeledInput label='Label' placeholder='Placeholder' message='Hint message' />
     </>
   );
 };
