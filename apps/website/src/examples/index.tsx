@@ -119,7 +119,8 @@ export { default as HeaderMainExample } from './Header.main';
 
 export { default as InformationPanelMainExample } from './InformationPanel.main';
 
-export { default as InputGroupMainExample } from './InputGroup.main';
+export { default as InputGroupToggleSwitchExample } from './InputGroup.toggleSwitch';
+export { default as InputGroupCheckboxGroupExample } from './InputGroup.checkboxGroup';
 
 export { default as InputMainExample } from './Input.main';
 export { default as InputSizesExample } from './Input.sizes';
