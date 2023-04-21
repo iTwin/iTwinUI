@@ -17,15 +17,19 @@ import * as AllExamples from '~/examples';
   <AllExamples.RadioTileMainExample client:load />
 </LiveExample>
 
-A series of selectable tile components that behave like radio button. You may include icons to help make each tile more identifiable. If you choose to include them, the icon inside the selected tile should change to blue, matching ghe checkmark in the top right as well as the border, like the example above. The descriptive tex and tile name however retain the same appearance whether the tile they belong to is selected or not.
+## Usage
+
+A series of selectable tile components that behave like radio button. You may include icons to help make each tile more identifiable.
 
 The example below is the condensed version of the radio tiles. They contain only a label and an icon (the icon is optional but recommended is using condensed). If you do not need descriptive text, go with the condensed radio tiles to save space.
+
+Disabled radio tiles can coexit with active tile. A selected tile can also take on the disabled state.
 
 <LiveExample src='RadioTile.color.tsx'>
   <AllExamples.RadioTileColorExample client:load />
 </LiveExample>
 
-Highly recommend one radio tile group per page as it is visually heavy and consumes a lot of space. For accessibility reasons, avoid displaying just an icon with no accompanying text. Disabled radio tiles can coexit with active tile. A selected tile can also take on the disabled state.
+Highly recommend one radio tile group per page as it is visually heavy and consumes a lot of space. For accessibility reasons, avoid displaying just an icon with no accompanying text.
 
 ## Props
 
