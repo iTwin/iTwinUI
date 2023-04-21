@@ -32,6 +32,7 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
+    "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "push-docker:css": "yarn workspace @itwin/itwinui-css push-docker",
     "push-docker:react": "yarn workspace storybook push-docker",
@@ -50,6 +51,7 @@
     "cross-env": "^7.0.3",
     "husky": "^8.0.2",
     "lint-staged": "^12.5.0",
+    "patch-package": "~6.5.1",
     "prettier": "2.8.0",
     "rimraf": "^3.0.2",
     "turbo": "~1.6.3"

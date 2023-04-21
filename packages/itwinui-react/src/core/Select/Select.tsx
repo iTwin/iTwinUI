@@ -273,6 +273,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   }, [isOpen]);
 
   const onKeyDown = (event: React.KeyboardEvent, toggle: () => void) => {
+    if (event.altKey) {
+      return;
+    }
+
     switch (event.key) {
       case 'Enter':
       case ' ':
