@@ -9,7 +9,7 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
@@ -81,3 +81,13 @@ The menu can contain extra content, including both text and additional selectabl
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Button', url: 'button' },
+    { title: 'Select', url: 'select' },
+    { title: 'ComboBox', url: 'combobox' },
+  ]}
+/>
