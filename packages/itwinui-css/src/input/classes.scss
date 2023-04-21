@@ -12,10 +12,6 @@
   &[data-iui-size='large'] {
     @include iui-input-size(large);
   }
-
-  &[type='search'] {
-    @include iui-search-box;
-  }
 }
 
 .iui-input-with-icon.iui-input-with-icon {
@@ -30,10 +26,6 @@
   @include iui-input-flex-container;
   @include iui-input-size();
 
-  > input[type='search'] {
-    @include iui-search-box;
-  }
-
   &[data-iui-size='small'] {
     @include iui-input-size(small);
   }
@@ -43,7 +35,7 @@
   }
 
   @each $status in positive, warning, negative {
-    &.iui-#{$status} {
+    &[data-iui-status='#{$status}'] {
       @include iui-flex-input-status($status: $status);
     }
   }

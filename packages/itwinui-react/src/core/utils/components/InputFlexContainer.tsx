@@ -37,10 +37,10 @@ export const InputFlexContainer = React.forwardRef((props) => {
         'iui-input-flex-container',
         {
           'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
         },
         className,
       )}
+      data-iui-status={status}
       style={style}
       {...rest}
     >

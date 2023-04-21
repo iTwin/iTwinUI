@@ -92,6 +92,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         ref={ref}
         className={cx({ 'iui-expandable-searchbox': expandable }, className)}
         data-iui-size={size}
+        role='searchbox'
         onFocus={(e) => {
           // console.log('focus', e.target, e.currentTarget, e.relatedTarget);
           onFocusProp?.(e);
@@ -174,7 +175,7 @@ const SearchBoxInput = React.forwardRef(
         id={idProp ?? inputId}
         aria-label={label}
         ref={ref}
-        type='search'
+        type='text'
         className={cx('iui-search-input', className)}
         {...rest}
       />
