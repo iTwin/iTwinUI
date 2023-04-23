@@ -16,7 +16,7 @@ export type DatePickerInputProps = {
   /**
    * Decides if this component is used for the 'from' or 'to' date
    */
-  datePicker?: 'from' | 'to';
+  isFromOrTo?: 'from' | 'to';
   /**
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
@@ -29,13 +29,13 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     date,
     parseInput,
     formatDate,
-    datePicker,
+    isFromOrTo,
     selectedDate,
     ...rest
   } = props;
 
   const isDateDisabled = (date: Date) => {
-    if (datePicker === 'to') {
+    if (isFromOrTo === 'to') {
       return isBefore(date, selectedDate);
     } else {
       return isBefore(selectedDate, date);
