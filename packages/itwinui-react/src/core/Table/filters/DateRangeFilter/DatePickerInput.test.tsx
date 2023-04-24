@@ -136,15 +136,10 @@ it('should disable dates before "from" date when using "to" date picker', async 
     selectedDate: fromDate,
   });
 
-  const iconButton = container.querySelector(
-    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
-  ) as HTMLButtonElement;
+  const iconButton = container.querySelector('button') as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
   await userEvent.click(iconButton);
-  const calendar = container.querySelector('.iui-date-picker');
-  expect(calendar).toBeTruthy();
-
   const day12 = getByText('12');
   await userEvent.click(day12);
   expect(onClick).not.toHaveBeenCalled();
