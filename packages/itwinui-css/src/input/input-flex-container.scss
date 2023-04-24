@@ -27,6 +27,7 @@
     }
   }
 
+  // Using before element to make content centered when using small widths
   &::before {
     content: '';
     position: absolute;
@@ -47,7 +48,7 @@
     }
   }
 
-  &[disabled] {
+  &.iui-disabled {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);

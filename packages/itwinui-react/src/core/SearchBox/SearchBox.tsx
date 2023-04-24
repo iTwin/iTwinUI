@@ -28,6 +28,7 @@ const SearchBoxContext = React.createContext<
       /**
        * Id to pass to input
        */
+      disabled?: boolean;
       inputId: string;
       setInputId: (inputId: string) => void;
       onClose?: () => void;
@@ -50,6 +51,10 @@ type SearchBoxOwnProps = {
   isExpanded?: boolean;
   /**
    *
+   */
+  disabled?: boolean;
+  /**
+   *
    * @param isExpanding
    * @returns
    */
@@ -70,6 +75,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   const {
     size,
     expandable = false,
+    disabled = false,
     onToggle,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
@@ -87,11 +93,14 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   };
 
   return (
-    <SearchBoxContext.Provider value={{ size, onClose, inputId, setInputId }}>
+    <SearchBoxContext.Provider
+      value={{ size, onClose, inputId, setInputId, disabled }}
+    >
       <InputFlexContainer
         ref={ref}
         className={cx({ 'iui-expandable-searchbox': expandable }, className)}
         data-iui-size={size}
+        disabled={disabled}
         role='searchbox'
         onFocus={(e) => {
           // console.log('focus', e.target, e.currentTarget, e.relatedTarget);
@@ -162,9 +171,15 @@ export type SearchBoxInputProps = {
 
 const SearchBoxInput = React.forwardRef(
   (props: SearchBoxInputProps, ref: React.Ref<HTMLInputElement>) => {
-    const { className, label = 'Search input', id: idProp, ...rest } = props;
+    const {
+      className,
+      label = 'Search input',
+      id: idProp,
+      disabled: disabledProp,
+      ...rest
+    } = props;
 
-    const { inputId, setInputId } = useSafeContext(SearchBoxContext);
+    const { inputId, setInputId, disabled } = useSafeContext(SearchBoxContext);
 
     if (idProp && idProp !== inputId) {
       setInputId(idProp);
@@ -177,6 +192,7 @@ const SearchBoxInput = React.forwardRef(
         ref={ref}
         type='text'
         className={cx('iui-search-input', className)}
+        disabled={disabledProp ?? disabled}
         {...rest}
       />
     );
@@ -194,14 +210,15 @@ export type SearchBoxButtonProps = PolymorphicComponentProps<
 >;
 
 const SearchBoxButton = React.forwardRef((props, ref) => {
-  const { children, size, ...rest } = props;
-  const { size: sizeContext } = useSafeContext(SearchBoxContext);
+  const { children, size, disabled: disabledProp, ...rest } = props;
+  const { size: sizeContext, disabled } = useSafeContext(SearchBoxContext);
 
   return (
     <IconButton
       styleType='borderless'
       size={size ?? sizeContext}
       ref={ref}
+      disabled={disabledProp ?? disabled}
       {...rest}
     >
       {children ?? <SvgSearch />}
@@ -220,15 +237,26 @@ export type SearchBoxCloseButtonProps = PolymorphicComponentProps<
 >;
 
 const SearchBoxCloseButton = React.forwardRef((props, ref) => {
-  const { children, onClick: onClickProp, size, ...rest } = props;
+  const {
+    children,
+    onClick: onClickProp,
+    size,
+    disabled: disabledProp,
+    ...rest
+  } = props;
 
-  const { onClose, size: sizeContext } = useSafeContext(SearchBoxContext);
+  const {
+    onClose,
+    size: sizeContext,
+    disabled,
+  } = useSafeContext(SearchBoxContext);
 
   return (
     <SearchBoxButton
       ref={ref}
       aria-label='Close'
       size={size ?? sizeContext}
+      disabled={disabledProp ?? disabled}
       onClick={(e) => {
         onClickProp?.(e);
         onClose?.();
