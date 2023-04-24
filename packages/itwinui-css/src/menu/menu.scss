@@ -192,5 +192,5 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   @include iui-surface($elevation: none);
   overflow-y: auto;
   overflow-y: overlay;
-  height: var(--iui-listbox-height);
+  height: calc((var(--iui-component-height) - 1px) * 4.5);
 }

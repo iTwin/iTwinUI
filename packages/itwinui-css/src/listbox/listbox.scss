@@ -3,8 +3,6 @@
 @import '../utils/input-container/input-container';
 
 @mixin iui-listbox-wrapper {
-  --iui-listbox-height: calc((var(--iui-component-height) - 1px) * 4.5);
-
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   column-gap: var(--iui-size-xs);
