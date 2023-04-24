@@ -1,0 +1,49 @@
+---
+title: Listbox
+description: TODO Write Listbox description
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/Listbox/Listbox.d.ts'
+thumbnail: Menu
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Listbox.main.tsx' truncate={false}>
+  <AllExamples.ListboxMainExample client:load />
+</LiveExample>
+
+## Variants
+
+### With Label
+
+A label can be placed above the Listbox by using the `Listbox.Label` subcomponent
+
+<LiveExample src='Listbox.withlabel.tsx'>
+  <AllExamples.ListboxWithLabelExample client:load />
+</LiveExample>
+
+### With Toolbar
+
+A toolbar can be placed to the right of the Listbox by using the `Listbox.Toolbar` subcomponent
+
+<LiveExample src='Listbox.withtoolbar.tsx'>
+  <AllExamples.ListboxWithToolbarExample client:load />
+</LiveExample>
+
+## Usage
+
+TODO: Write usage documentation
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'List', url: 'list' }]} />

@@ -139,6 +139,9 @@ export type {
   ListItemDescriptionProps,
 } from './List';
 
+export { Listbox } from './Listbox';
+export type { ListboxProps } from './Listbox';
+
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs';
 export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
 
