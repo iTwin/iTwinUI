@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
-import { SvgNetwork, SvgWindows } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
