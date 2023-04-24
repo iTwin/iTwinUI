@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import React from 'react';
-import { useMergedRefs, useTheme, VisuallyHidden, Popover } from '../../utils';
+import { useTheme, VisuallyHidden, Popover } from '../../utils';
 import type { ButtonProps } from '../Button';
 import type { PolymorphicForwardRefComponent } from '../../utils';
 import '@itwin/itwinui-css/css/button.css';
@@ -50,42 +50,49 @@ export const IconButton: IconButtonComponent = React.forwardRef(
 
     useTheme();
 
-    const buttonRef = React.useRef<HTMLElement>(null);
-    const refs = useMergedRefs(ref, buttonRef);
-
     return (
-      <Element
-        ref={refs}
-        className={cx('iui-button', className)}
-        data-iui-variant={styleType !== 'default' ? styleType : undefined}
-        data-iui-size={size}
-        data-iui-active={isActive}
-        type={type}
-        {...rest}
-      >
-        <span className='iui-button-icon' aria-hidden>
-          {children}
-        </span>
-
-        {label ? (
-          <>
-            <VisuallyHidden>{label}</VisuallyHidden>
-            <Popover
-              reference={buttonRef}
-              interactive={false}
-              offset={[0, 4]}
-              aria={{ content: null }}
-              content={
-                <div aria-hidden className={cx('iui-tooltip', className)}>
-                  {label}
-                </div>
-              }
-            />
-          </>
-        ) : null}
-      </Element>
+      <IconButtonTooltip label={label}>
+        <Element
+          ref={ref}
+          className={cx('iui-button', className)}
+          data-iui-variant={styleType !== 'default' ? styleType : undefined}
+          data-iui-size={size}
+          data-iui-active={isActive}
+          type={type}
+          {...rest}
+        >
+          <span className='iui-button-icon' aria-hidden>
+            {children}
+          </span>
+          {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
+        </Element>
+      </IconButtonTooltip>
     );
   },
 );
+
+const IconButtonTooltip = (props: {
+  label?: React.ReactNode;
+  children: React.ReactElement;
+}) => {
+  const { label, children } = props;
+
+  return label ? (
+    <Popover
+      interactive={false}
+      offset={[0, 4]}
+      aria={{ content: null }}
+      content={
+        <div aria-hidden='true' className='iui-tooltip'>
+          {label}
+        </div>
+      }
+    >
+      {children}
+    </Popover>
+  ) : (
+    children
+  );
+};
 
 export default IconButton;
