@@ -127,7 +127,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         onKeyDown={onKeyDown}
         placeholder={placeholder}
         selectedDate={to}
-        datePicker='from'
+        isFromOrTo='from'
         setFocus
       />
       <DatePickerInput
@@ -139,7 +139,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         onKeyDown={onKeyDown}
         placeholder={placeholder}
         selectedDate={from}
-        datePicker='to'
+        isFromOrTo='to'
       />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}
