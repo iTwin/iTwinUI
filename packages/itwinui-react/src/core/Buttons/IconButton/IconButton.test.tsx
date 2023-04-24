@@ -11,13 +11,15 @@ import { IconButton } from './IconButton';
 it('renders icon button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
-    <IconButton onClick={onClickMock}>
+    <IconButton onClick={onClickMock} label='More options'>
       <SvgMore />
     </IconButton>,
   );
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).toHaveAccessibleName('More options');
+
   button.click();
   expect(onClickMock).toHaveBeenCalled();
   const icon = container.querySelector('.iui-button-icon');
