@@ -66,6 +66,10 @@ export const ColorPalette = React.forwardRef(
 
     // Color palette arrow key navigation
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.altKey) {
+        return;
+      }
+
       const swatches = getFocusableElements(
         paletteRef.current,
       ) as HTMLElement[];

@@ -57,20 +57,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     background-color: var(--iui-color-background-hover);
   }
 
-  &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
-    outline: $iui-active-outline;
-    outline-offset: -1px;
-    z-index: 2;
-  }
-
-  @supports not selector(:has(+ *)) {
-    &:where(:focus-within) {
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-      z-index: 2;
-    }
-  }
-
   &:where(.iui-large, [data-iui-size='large']) {
     min-block-size: var(--iui-component-height-large);
   }
@@ -95,18 +81,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     z-index: 1;
     --_iui-list-item-icon-fill: currentColor;
     --_iui-list-item-description-color: var(--iui-color-text-accent);
-
-    &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
-      outline-width: var(--iui-size-3xs);
-      outline-offset: -2px;
-    }
-
-    @supports not selector(:has(+ *)) {
-      &:where(:focus-within) {
-        outline-width: var(--iui-size-3xs);
-        outline-offset: -2px;
-      }
-    }
   }
 
   &:where(.iui-disabled, [data-iui-disabled='true']) {
@@ -117,6 +91,30 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     color: var(--iui-color-text-disabled);
     --_iui-list-item-icon-fill: var(--iui-color-icon-disabled);
     --_iui-list-item-description-color: var(--iui-color-text-disabled);
+  }
+
+  &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
+    outline: $iui-active-outline;
+    outline-offset: -1px;
+    z-index: 2;
+
+    &:where(.iui-active, [data-iui-active='true']) {
+      outline-width: var(--iui-size-3xs);
+      outline-offset: -2px;
+    }
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: $iui-active-outline;
+      outline-offset: -1px;
+      z-index: 2;
+
+      &:where(.iui-active, [data-iui-active='true']) {
+        outline-width: var(--iui-size-3xs);
+        outline-offset: -2px;
+      }
+    }
   }
 }
 
