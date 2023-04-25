@@ -106,8 +106,8 @@ $borderless-horizontal-tab-min-height: calc(
     &::-webkit-scrollbar {
       display: none; /* Hide scrollbar for Chrome, Safari and Opera */
     }
-    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
-    scrollbar-width: none;  /*Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none; /*Hide scrollbar for Firefox */
 
     .iui-tab {
       white-space: nowrap;
@@ -140,7 +140,6 @@ $borderless-horizontal-tab-min-height: calc(
       min-height: $borderless-horizontal-tab-min-height;
     }
 
-    
     &[data-iui-overflow='true'] {
       border-left: 1px solid var(--iui-color-border);
       border-right: 1px solid var(--iui-color-border);
@@ -176,8 +175,7 @@ $borderless-horizontal-tab-min-height: calc(
       flex-grow: 1;
     }
 
-    
-   &[data-iui-overflow='true'] {
+    &[data-iui-overflow='true'] {
       border-top: 1px solid var(--iui-color-border);
       border-bottom: 1px solid var(--iui-color-border);
     }
