@@ -5,12 +5,17 @@ on:
     branches:
       - main
 
+env:
+  NPM_CONFIG_PROVENANCE: true
+
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
     name: Release
     if: github.repository == 'iTwin/iTwinUI'
+    permissions:
+      id-token: write
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
