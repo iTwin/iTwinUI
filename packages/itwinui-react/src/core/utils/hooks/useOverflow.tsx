@@ -5,7 +5,6 @@
 import React from 'react';
 import { useMergedRefs } from './useMergedRefs';
 import { useResizeObserver } from './useResizeObserver';
-import { useChildrenObserver } from './useChildrenObserver';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
 
 const STARTING_MAX_ITEMS_COUNT = 20;
@@ -55,26 +54,6 @@ export const useOverflow = <T extends HTMLElement>(
   const [resizeRef, observer] = useResizeObserver<T>(updateContainerSize);
   const resizeObserverRef = React.useRef(observer);
 
-  const [childrenSize, setChildrenSize] = React.useState<number>(0);
-  const previousChildrenSize = React.useRef<number>(0);
-  const updateChildrenSize = React.useCallback(
-    (mutationList: MutationRecord[]) => {
-      if (containerRef.current && mutationList) {
-        const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-        const size = Array.from(containerRef.current.children).reduce(
-          (sum: number, child: HTMLElement) =>
-            sum + child[`offset${dimension}`],
-          0,
-        );
-        setChildrenSize(size);
-      }
-    },
-    [orientation],
-  );
-  const [childrenRef, childrenObserver] =
-    useChildrenObserver<T>(updateChildrenSize);
-  const childrenObserverRef = React.useRef(childrenObserver);
-
   useIsomorphicLayoutEffect(() => {
     if (disabled) {
       setVisibleCount(items.length);
@@ -82,14 +61,13 @@ export const useOverflow = <T extends HTMLElement>(
       setVisibleCount(Math.min(items.length, STARTING_MAX_ITEMS_COUNT));
       needsFullRerender.current = true;
     }
-  }, [containerSize, childrenSize, disabled, items]);
+  }, [containerSize, disabled, items]);
 
-  const mergedRefs = useMergedRefs(containerRef, resizeRef, childrenRef);
+  const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
   useIsomorphicLayoutEffect(() => {
     if (!containerRef.current || disabled) {
       resizeObserverRef.current?.disconnect();
-      childrenObserverRef.current?.disconnect();
       return;
     }
     const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
@@ -102,16 +80,15 @@ export const useOverflow = <T extends HTMLElement>(
       const visibleItems = Math.floor(availableSize / avgItemSize);
       setVisibleCount(visibleItems);
     } else if (needsFullRerender.current) {
-      const childrenSizeTemp = Array.from(containerRef.current.children).reduce(
+      const childrenSize = Array.from(containerRef.current.children).reduce(
         (sum: number, child: HTMLElement) => sum + child[`offset${dimension}`],
         0,
       );
-      setChildrenSize(childrenSizeTemp);
       // Previous `useEffect` might have updated visible count, but we still have old one
       // If it is 0, lets try to update it with items length.
       const currentVisibleCount =
         visibleCount || Math.min(items.length, STARTING_MAX_ITEMS_COUNT);
-      const avgItemSize = childrenSizeTemp / currentVisibleCount;
+      const avgItemSize = childrenSize / currentVisibleCount;
       const visibleItems = Math.floor(availableSize / avgItemSize);
 
       if (!isNaN(visibleItems)) {
@@ -120,21 +97,11 @@ export const useOverflow = <T extends HTMLElement>(
       }
     }
     needsFullRerender.current = false;
-  }, [
-    containerSize,
-    childrenSize,
-    visibleCount,
-    disabled,
-    items.length,
-    orientation,
-  ]);
+  }, [containerSize, visibleCount, disabled, items.length, orientation]);
 
   useIsomorphicLayoutEffect(() => {
     previousContainerSize.current = containerSize;
   }, [containerSize]);
-  useIsomorphicLayoutEffect(() => {
-    previousChildrenSize.current = childrenSize;
-  }, [childrenSize]);
 
   return [mergedRefs, visibleCount] as const;
 };
