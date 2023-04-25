@@ -273,58 +273,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   }, [isOpen]);
 
-  const handleItemClick = React.useCallback(
-    (option: SelectOption<T>, isSelected: boolean) => {
-      if (option.disabled) {
-        return;
-      }
-      if (isSingleOnChange(onChange, multiple)) {
-        onChange?.(option.value);
-        setIsOpen(false);
-      } else {
-        onChange?.(option.value, isSelected ? 'removed' : 'added');
-      }
-    },
-    [multiple, onChange],
-  );
-
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey) {
       return;
     }
 
     switch (event.key) {
-      case 'ArrowDown': {
-        if (isOpen) {
-          const nextIndex = (focusedIndex + 1) % menuItems.length;
-          setFocusedIndex(nextIndex);
-        } else {
-          setIsOpen(true);
-        }
-        event.preventDefault();
-        break;
-      }
-      case 'ArrowUp': {
-        if (isOpen) {
-          const nextIndex =
-            (focusedIndex - 1 + menuItems.length) % menuItems.length;
-          setFocusedIndex(nextIndex);
-        }
-        event.preventDefault();
-        break;
-      }
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        if (isOpen) {
-          const option = options[focusedIndex];
-          const isSelected = isMultipleEnabled(value, multiple)
-            ? value?.includes(option.value) ?? false
-            : value === option.value;
-          handleItemClick(option, isSelected);
-        } else {
-          setIsOpen(true);
-        }
+        setIsOpen((o) => !o);
         event.preventDefault();
         break;
       }
@@ -341,14 +299,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       ? options.filter((option) => value.some((val) => val === option.value))
       : options.find((option) => option.value === value);
   }, [multiple, options, value]);
-
-  const [focusedIndex, setFocusedIndex] = React.useState(() =>
-    options.findIndex((option) =>
-      Array.isArray(option.value)
-        ? option.value.some((val) => val === option.value)
-        : option.value === value,
-    ),
-  );
 
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
@@ -367,35 +317,28 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         key: `${label}-${index}`,
         isSelected,
         onClick: () => {
-          handleItemClick(option, isSelected);
+          if (option.disabled) {
+            return;
+          }
+          if (isSingleOnChange(onChange, multiple)) {
+            selectRef.current?.focus({ preventScroll: true });
+            onChange?.(option.value);
+            setIsOpen(false);
+          } else {
+            onChange?.(option.value, isSelected ? 'removed' : 'added');
+          }
         },
         ref: (el: HTMLElement) => {
-          if (
-            focusedIndex === index ||
-            (focusedIndex === -1 && isSelected && !multiple)
-          ) {
+          if (isSelected && !multiple) {
             el?.scrollIntoView({ block: 'nearest' });
           }
         },
         role: 'option',
-        id: `${uid}-item-${index}`,
         ...restOption,
         ...menuItem.props,
-        className: cx(
-          { 'iui-focused': focusedIndex === index },
-          menuItem.props?.className,
-        ),
       });
     });
-  }, [
-    focusedIndex,
-    itemRenderer,
-    multiple,
-    handleItemClick,
-    options,
-    value,
-    uid,
-  ]);
+  }, [itemRenderer, multiple, onChange, options, value]);
 
   const tagRenderer = React.useCallback((item: SelectOption<T>) => {
     return <SelectTag key={item.label} label={item.label} />;
@@ -412,7 +355,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           <Menu
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
-            setFocus={false}
             style={{
               minWidth,
               maxWidth: `min(${minWidth * 2}px, 90vw)`,
@@ -426,9 +368,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           </Menu>
         }
         placement='bottom-start'
-        animation='shift-away'
         aria={{ content: null }}
-        duration={200}
         onShow={onShowHandler}
         onHide={onHideHandler}
         {...popoverProps}
@@ -456,11 +396,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
-          aria-activedescendant={
-            focusedIndex !== -1 && isOpen
-              ? options[focusedIndex]?.id ?? `${uid}-item-${focusedIndex}`
-              : undefined
-          }
           // aria-labelledby
         >
           {(!selectedItems || selectedItems.length === 0) && (
