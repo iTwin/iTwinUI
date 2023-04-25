@@ -58,6 +58,7 @@ export const IconButton: IconButtonComponent = React.forwardRef(
           data-iui-variant={styleType !== 'default' ? styleType : undefined}
           data-iui-size={size}
           data-iui-active={isActive}
+          aria-pressed={isActive}
           type={type}
           {...rest}
         >
