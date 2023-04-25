@@ -10,11 +10,28 @@ import {
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
-  useOverflow,
   useIsClient,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
+
+export type OverflowOptions = {
+  /**
+   * Whether to allow tabs list to scroll when there is overflow,
+   * i.e. when there is not enough space to fit all the tabs.
+   *
+   * Not applicable to `type: 'pill'`.
+   *
+   * @default false
+   * @example <caption>Enables scrolling for overflowing tabs</caption>
+   *  return (
+   *    <Tabs useOverflow={true}>
+   *      {tabs}
+   *    </Tabs>
+   *  );
+   */
+  useOverflow?: boolean;
+};
 
 type TabsOrientationProps =
   | {
@@ -59,67 +76,15 @@ type TabsTypeProps =
 type TabsOverflowProps =
   | {
       /**
-       * If specified, this prop will be used to show a custom button when overflow happens,
-       * i.e. when there is not enough space to fit all the tabs. When using overflowButton,
-       * the last visible tab will be replaced by the active tab if it's not otherwise visible.
-       *
-       * Expects a function that takes the number of items that are visible
-       * and returns the `ReactNode` to render.
-       *
-       * Not applicable to `type: 'pill'` or `orientation: 'vertical'`.
-       *
-       * @example <caption>Uses the overflow button to add a dropdown that contains hidden tabs</caption>
-       *  const [index, setIndex] = React.useState(0);
-       *  return (
-       *    <Tabs
-       *      overflowButton={(visibleCount) => (
-       *        <DropdownMenu
-       *          menuItems={(close) =>
-       *            Array(items.length - visibleCount)
-       *              .fill(null)
-       *              .map((_, _index) => {
-       *                const index = visibleCount + _index + 1;
-       *                const onClick = () => {
-       *                  // click on "index" tab
-       *                  setIndex(index - 1);
-       *                  close();
-       *                };
-       *                return (
-       *                  <MenuItem key={index} onClick={onClick}>
-       *                    Item {index}
-       *                  </MenuItem>
-       *                );
-       *              })
-       *          }
-       *        >
-       *          <IconButton style={{ paddingTop: '12px', margin: '4px', height: 'auto' }} styleType='borderless'>
-       *            <SvgMoreSmall />
-       *          </IconButton>
-       *        </DropdownMenu>
-       *      )}
-       *      onTabSelected={setIndex}
-       *      activeIndex={index}
-       *    >
-       *      {tabs}
-       *    </Tabs>
-       *  );
+       * Options that can be specified to deal with tabs overflowing the allotted space.
        */
-      overflowButton?: (visibleCount: number) => React.ReactNode;
-      /**
-       * Orientation of the tabs.
-       * @default 'horizontal'
-       */
-      orientation?: 'horizontal';
+      overflowOptions?: OverflowOptions;
       /**
        * Type of the tabs.
        *
        * If `orientation = 'vertical'`, `pill` is not applicable.
        * @default 'default'
        */
-      type?: 'default' | 'borderless';
-    }
-  | {
-      orientation: 'vertical';
       type?: 'default' | 'borderless';
     }
   | {
@@ -219,16 +184,12 @@ export const Tabs = (props: TabsProps) => {
     props = { ...props };
     delete props.actions;
   }
-  // Separate overflowButton from props to avoid adding it to the DOM (using {...rest})
-  let overflowButton: ((visibleCount: number) => React.ReactNode) | undefined;
-  if (
-    props.type !== 'pill' &&
-    props.orientation !== 'vertical' &&
-    props.overflowButton
-  ) {
-    overflowButton = props.overflowButton;
+  // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
+  let overflowOptions: OverflowOptions | undefined;
+  if (props.type !== 'pill' && props.overflowOptions) {
+    overflowOptions = props.overflowOptions;
     props = { ...props };
-    delete props.overflowButton;
+    delete props.overflowOptions;
   }
 
   const {
@@ -251,8 +212,7 @@ export const Tabs = (props: TabsProps) => {
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
-  const [overflowRef, visibleCount] = useOverflow(labels);
-  const refs = useMergedRefs(tablistRef, tablistSizeRef, overflowRef);
+  const refs = useMergedRefs(tablistRef, tablistSizeRef);
 
   const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>
     activeIndex != null
@@ -290,17 +250,10 @@ export const Tabs = (props: TabsProps) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      let tab;
-      const isOverflow = labels.length - visibleCount > 0;
-      const isLastVisibleTab = focusedIndex > visibleCount - 1;
-      if (isOverflow && isLastVisibleTab) {
-        tab = tablistRef.current.querySelectorAll('.iui-tab')[visibleCount - 1];
-      } else {
-        tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
-      }
+      const tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
       (tab as HTMLElement)?.focus();
     }
-  }, [focusedIndex, labels.length, visibleCount]);
+  }, [focusedIndex]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
   useIsomorphicLayoutEffect(() => {
@@ -309,6 +262,124 @@ export const Tabs = (props: TabsProps) => {
         !!tablistRef.current?.querySelector('.iui-tab-description'), // check directly for the sublabel class
     );
   }, [type]);
+
+  const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    let scrollLeft = ownerDoc?.scrollLeft ?? 0;
+    if (e.deltaY > 0 || e.deltaX > 0) {
+      scrollLeft += 25;
+    } else if (e.deltaY < 0 || e.deltaX < 0) {
+      scrollLeft -= 25;
+    }
+    ownerDoc.scrollLeft = scrollLeft;
+  }, []);
+
+  // allow normal mouse wheels to scroll horizontally for horizontal overflow
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow || orientation === 'vertical') {
+      ownerDoc.removeEventListener('wheel', enableHorizontalScroll);
+      return;
+    }
+
+    ownerDoc.addEventListener('wheel', enableHorizontalScroll);
+  }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
+
+  const isTabFullyVisible = (activeTab: HTMLElement, isVertical: boolean) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const visibleStart = isVertical ? ownerDoc.offsetTop : ownerDoc.offsetLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.offsetTop + ownerDoc.offsetHeight
+      : ownerDoc.offsetLeft + ownerDoc.offsetWidth;
+    const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
+    const tabEnd = isVertical
+      ? activeTab.offsetTop + activeTab.offsetHeight
+      : activeTab.offsetLeft + activeTab.offsetWidth;
+
+    if (tabStart > visibleStart && tabEnd < visibleEnd) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  function easeInOutQuad(
+    time: number,
+    beginning: number,
+    change: number,
+    duration: number,
+  ) {
+    if ((time /= duration / 2) < 1) {
+      return (change / 2) * time * time + beginning;
+    }
+    return (-change / 2) * (--time * (time - 2) - 1) + beginning;
+  }
+
+  const scrollToTab = React.useCallback(
+    (element: Element, to: number, duration: number, isVertical: boolean) => {
+      const start = isVertical ? element.scrollTop : element.scrollLeft;
+      const change = to - start;
+      let currentTime = 0;
+      const increment = 20;
+
+      const animateScroll = function () {
+        currentTime += increment;
+        const val = easeInOutQuad(currentTime, start, change, duration);
+        if (isVertical) {
+          element.scrollTop = val;
+        } else {
+          element.scrollLeft = val;
+        }
+        if (currentTime < duration) {
+          setTimeout(animateScroll, increment);
+        }
+      };
+      animateScroll();
+    },
+    [],
+  );
+
+  // scroll to active tab if it is not visible with overflow
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (
+      ownerDoc !== null &&
+      overflowOptions?.useOverflow &&
+      currentActiveIndex !== undefined
+    ) {
+      const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
+        currentActiveIndex
+      ] as HTMLElement;
+      if (orientation === 'vertical') {
+        if (!isTabFullyVisible(activeTab, true)) {
+          const tabEnd = activeTab.offsetTop + activeTab.offsetHeight;
+          scrollToTab(ownerDoc, tabEnd, 20, true);
+        }
+      } else {
+        if (!isTabFullyVisible(activeTab, false)) {
+          const tabEnd = activeTab.offsetLeft + activeTab.offsetWidth;
+          scrollToTab(ownerDoc, tabEnd, 20, false);
+        }
+      }
+    }
+  }, [
+    overflowOptions?.useOverflow,
+    currentActiveIndex,
+    orientation,
+    scrollToTab,
+  ]);
 
   const onTabClick = React.useCallback(
     (index: number) => {
@@ -428,36 +499,6 @@ export const Tabs = (props: TabsProps) => {
     [currentActiveIndex, onTabClick],
   );
 
-  const displayTabs = React.useMemo(() => {
-    const visibleLabels = labels.slice(0, visibleCount - 1);
-    const visibleIndices: number[] = [];
-
-    const visibleTabs = visibleLabels.map((label, index) => {
-      visibleIndices.push(index);
-
-      return createTab(label, index);
-    });
-
-    const isActiveTabVisible =
-      visibleIndices.findIndex((tab) => tab === currentActiveIndex) > -1;
-    if (isActiveTabVisible) {
-      visibleTabs.push(createTab(labels[visibleCount - 1], visibleCount - 1));
-    } else {
-      visibleTabs.push(
-        createTab(labels[currentActiveIndex], currentActiveIndex),
-      );
-    }
-
-    if (overflowButton && labels.length - visibleCount > 0) {
-      const overflowButtonElement = (
-        <li key={'overflow'}>{overflowButton(visibleCount)}</li>
-      );
-      visibleTabs.push(overflowButtonElement);
-    }
-
-    return visibleTabs;
-  }, [labels, visibleCount, overflowButton, createTab, currentActiveIndex]);
-
   return (
     <div
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
@@ -475,15 +516,13 @@ export const Tabs = (props: TabsProps) => {
           },
           tabsClassName,
         )}
-        data-iui-overflow={overflowButton !== undefined}
+        data-iui-overflow={overflowOptions?.useOverflow}
         role='tablist'
         ref={refs}
         onKeyDown={onKeyDown}
         {...rest}
       >
-        {overflowButton
-          ? displayTabs
-          : labels.map((label, index) => createTab(label, index))}
+        {labels.map((label, index) => createTab(label, index))}
       </ul>
 
       {actions && (
