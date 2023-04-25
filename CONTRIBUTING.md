@@ -78,7 +78,6 @@ By default, a portal will be opened containing links to all the different dev se
   - vite playground: `http://localhost:1701`
   - next playground: `http://localhost:1702`
   - astro playground: `http://localhost:1703`
-  - cra playground: `http://localhost:1704`
   - storybook: `http://localhost:6006` (storybook default)
   - html test pages: `http://localhost:5173` (vite default)
 
