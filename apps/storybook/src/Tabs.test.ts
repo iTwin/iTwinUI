@@ -10,8 +10,8 @@ describe('Tabs', () => {
     'Pill Tabs',
     'Sublabels And Icons',
     'Vertical',
-    'HorizontalOverflow',
-    'VerticalOverflow',
+    'Horizontal Overflow',
+    'Vertical Overflow',
   ];
 
   tests.forEach((testName) => {
