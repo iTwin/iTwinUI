@@ -67,7 +67,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     arrow: false,
     duration: 0,
     interactive: true,
-    role: undefined,
+    role: '',
     offset: [0, 0],
     maxWidth: '',
     zIndex: 99999,
@@ -126,6 +126,10 @@ export const hideOnEscOrTab = {
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
+      if (event.altKey) {
+        return;
+      }
+
       switch (event.key) {
         case 'Escape':
           instance.hide();

@@ -130,6 +130,15 @@ export type {
   HeaderLogoProps,
 } from './Header';
 
+export { List, ListItem } from './List';
+export type {
+  ListProps,
+  ListItemProps,
+  ListItemIconProps,
+  ListItemContentProps,
+  ListItemDescriptionProps,
+} from './List';
+
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs';
 export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
 
@@ -345,6 +354,7 @@ export {
   LinkAction,
   Icon,
   Flex,
+  VisuallyHidden,
   Divider,
 } from './utils';
 export type {
@@ -357,4 +367,5 @@ export type {
   DividerProps,
   LinkBoxProps,
   LinkActionProps,
+  VisuallyHiddenProps,
 } from './utils';

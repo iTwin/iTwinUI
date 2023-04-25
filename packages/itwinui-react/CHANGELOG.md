@@ -1,5 +1,81 @@
 # Changelog
 
+## 2.9.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.1
+
+## 2.9.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
+### Patch Changes
+
+- [#1210](https://github.com/iTwin/iTwinUI/pull/1210): Removed incorrect `role=tooltip` from Popover, DropdownMenu, Select and ComboBox.
+- [#1209](https://github.com/iTwin/iTwinUI/pull/1209): Fixed an issue in ComboBox where disabled items didn't have a proper focus outline and were still selectable with keyboard.
+- [#1149](https://github.com/iTwin/iTwinUI/pull/1149): added event.altKey to file with handleKeyDown and onKeyDown function
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.0
+
+## 2.8.2
+
+### Patch Changes
+
+- [#1197](https://github.com/iTwin/iTwinUI/pull/1197): Reverted animation class change that broke Dialog.
+
+## 2.8.1
+
+### Patch Changes
+
+- [#1195](https://github.com/iTwin/iTwinUI/pull/1195): Fixed an issue with missing css in LabeledSelect.
+
+## 2.8.0
+
+### Minor Changes
+
+- 861fcab3: The `Surface` component can now be broken down using the `Surface.Header` and `Surface.Body` subcomponents. Users can add padding to the body using `isPadded`.
+
+  ```jsx
+  <Surface>
+    <Surface.Header>Surface Header Content</Surface.Header>
+    <Surface.Body isPadded={true}>Surface Body Content</Surface.Body>
+  </Surface>
+  ```
+
+- 861fcab3: A new `Divider` component has been created which can be used horizontally or vertically
+
+  ```jsx
+  <Divider orientation={'vertical'} />
+  ```
+
+- 8c89441f: Added `VisuallyHidden`, a utility component for providing text to assistive technologies while hiding it visually.
+
+  ```jsx
+  <div aria-hidden='true'>★★★☆☆</div>
+  <VisuallyHidden>3 stars out of 5</VisuallyHidden>
+  ```
+
+### Patch Changes
+
+- 3ad2dd90: Fixed an issue in draggable/resizable dialogs opened in popup windows, where pointermove event listeners were not being removed correctly.
+- 521610a0: iTwinUI will now show a warning in development if it detects that the page overrides the root font size. For more details, see the [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#relative-font-size).
+- 6caccc8d: Fixes jumpy animation when opening full page dialog
+- Updated dependencies
+  - @itwin/itwinui-css@1.9.0
+
 ## 2.7.0
 
 ### Minor Changes

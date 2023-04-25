@@ -1,5 +1,36 @@
 # Changelog
 
+## 1.10.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+
+## 1.10.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
+## 1.9.0
+
+### Minor Changes
+
+- c8f6a8dd: Add surface component with included layout for header, body, and button footer.
+
+### Patch Changes
+
+- 3ad916b2: Allows alert messages to break when words are long.
+- f1e0d8d6: Allows toast messages to break when words are long.
+
 ## 1.8.0
 
 ### Minor Changes

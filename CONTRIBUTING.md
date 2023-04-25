@@ -14,7 +14,7 @@ Want to contribute code changes to components? Great! [Fork iTwinUI](https://doc
 
 ## How to setup
 
-To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 16+](https://nodejs.org/en/download/), and [Yarn 1](https://classic.yarnpkg.com/en/docs/install) installed on your computer.
+To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Yarn 1](https://classic.yarnpkg.com/en/docs/install) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
@@ -78,7 +78,6 @@ By default, a portal will be opened containing links to all the different dev se
   - vite playground: `http://localhost:1701`
   - next playground: `http://localhost:1702`
   - astro playground: `http://localhost:1703`
-  - cra playground: `http://localhost:1704`
   - storybook: `http://localhost:6006` (storybook default)
   - html test pages: `http://localhost:5173` (vite default)
 

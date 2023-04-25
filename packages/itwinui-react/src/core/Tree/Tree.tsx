@@ -182,6 +182,9 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (event.altKey) {
+      return;
+    }
     const items = getFocusableNodes();
     if (!items?.length) {
       return;

@@ -41,7 +41,9 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 </div>
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <button data-copied='false'><span class='visually-hidden'>Copy to clipboard</span></button>
+  <button data-copied='false'>
+    <span class='visually-hidden'>Copy to clipboard</span>
+  </button>
   <Code code={code} lang='tsx' theme={nightOwl} />
 </demo-code>
 
@@ -82,7 +84,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
   .demo-box {
     position: relative;
     min-height: 300px;
-    max-height: 400px;
+    max-height: 500px;
     display: grid;
     justify-items: center;
     padding: 1rem;
@@ -96,7 +98,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     width: 100%;
     overflow: auto;
     display: grid;
-    align-content: center;
+    align-items: center;
     justify-items: center;
   }
 
