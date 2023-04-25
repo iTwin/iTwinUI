@@ -7,6 +7,7 @@
 
 @mixin iui-select-button {
   @include iui-focus($offset: -2px, $thickness: 2px);
+  font: inherit;
   width: 100%;
   border-radius: var(--iui-border-radius-1);
   min-height: var(--_iui-select-min-height);

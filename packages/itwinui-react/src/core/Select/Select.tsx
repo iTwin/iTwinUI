@@ -4,14 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { DropdownMenu } from '../DropdownMenu';
-import { MenuItem, MenuItemProps } from '../Menu/MenuItem';
+import { Menu, MenuItem, MenuItemProps } from '../Menu';
 import {
   PopoverProps,
   PopoverInstance,
   CommonProps,
   useTheme,
   SvgCaretDownSmall,
+  Popover,
+  useId,
 } from '../utils';
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag';
@@ -210,6 +211,8 @@ export type SelectProps<T> = {
  * />
  */
 export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
+  const uid = useId();
+
   const {
     options,
     value,
@@ -233,16 +236,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   useTheme();
 
-  const [isOpen, setIsOpen] = React.useState(popoverProps?.visible ?? false);
-  React.useEffect(() => {
-    setIsOpen((open) => popoverProps?.visible ?? open);
-  }, [popoverProps]);
+  const [isOpenState, setIsOpen] = React.useState(false);
+  const isOpen = popoverProps?.visible ?? isOpenState;
 
   const [minWidth, setMinWidth] = React.useState(0);
-  const toggle = () => setIsOpen((open) => !open);
 
-  const selectRef = React.useRef<HTMLDivElement>(null);
+  const selectRef = React.useRef<HTMLButtonElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
+  const menuRef = React.useRef<HTMLUListElement>(null);
 
   const onShowHandler = React.useCallback(
     (instance: PopoverInstance) => {
@@ -272,66 +273,65 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   }, [isOpen]);
 
-  const onKeyDown = (event: React.KeyboardEvent, toggle: () => void) => {
+  const handleItemClick = React.useCallback(
+    (option: SelectOption<T>, isSelected: boolean) => {
+      if (option.disabled) {
+        return;
+      }
+      if (isSingleOnChange(onChange, multiple)) {
+        onChange?.(option.value);
+        setIsOpen(false);
+      } else {
+        onChange?.(option.value, isSelected ? 'removed' : 'added');
+      }
+    },
+    [multiple, onChange],
+  );
+
+  const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey) {
       return;
     }
 
     switch (event.key) {
+      case 'ArrowDown': {
+        if (isOpen) {
+          const nextIndex = (focusedIndex + 1) % menuItems.length;
+          setFocusedIndex(nextIndex);
+        } else {
+          setIsOpen(true);
+        }
+        event.preventDefault();
+        break;
+      }
+      case 'ArrowUp': {
+        if (isOpen) {
+          const nextIndex =
+            (focusedIndex - 1 + menuItems.length) % menuItems.length;
+          setFocusedIndex(nextIndex);
+        }
+        event.preventDefault();
+        break;
+      }
       case 'Enter':
       case ' ':
-      case 'Spacebar':
-        if (event.target === selectRef.current) {
-          toggle();
-          event.preventDefault();
+      case 'Spacebar': {
+        if (isOpen) {
+          const option = options[focusedIndex];
+          const isSelected = isMultipleEnabled(value, multiple)
+            ? value?.includes(option.value) ?? false
+            : value === option.value;
+          handleItemClick(option, isSelected);
+        } else {
+          setIsOpen(true);
         }
+        event.preventDefault();
         break;
+      }
       default:
         break;
     }
   };
-
-  const menuItems = React.useCallback(
-    (close: () => void) => {
-      return options.map((option, index) => {
-        const isSelected = isMultipleEnabled(value, multiple)
-          ? value?.includes(option.value) ?? false
-          : value === option.value;
-        const menuItem: JSX.Element = itemRenderer ? (
-          itemRenderer(option, { close, isSelected })
-        ) : (
-          <MenuItem>{option.label}</MenuItem>
-        );
-
-        const { label, ...restOption } = option;
-
-        return React.cloneElement<MenuItemProps>(menuItem, {
-          key: `${label}-${index}`,
-          isSelected,
-          onClick: () => {
-            if (option.disabled) {
-              return;
-            }
-            if (isSingleOnChange(onChange, multiple)) {
-              onChange?.(option.value);
-              close();
-            } else {
-              onChange?.(option.value, isSelected ? 'removed' : 'added');
-            }
-          },
-          ref: (el: HTMLElement) => {
-            if (isSelected && !multiple) {
-              el?.scrollIntoView();
-            }
-          },
-          role: 'option',
-          ...restOption,
-          ...menuItem.props,
-        });
-      });
-    },
-    [itemRenderer, multiple, onChange, options, value],
-  );
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -342,6 +342,61 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       : options.find((option) => option.value === value);
   }, [multiple, options, value]);
 
+  const [focusedIndex, setFocusedIndex] = React.useState(() =>
+    options.findIndex((option) =>
+      Array.isArray(option.value)
+        ? option.value.some((val) => val === option.value)
+        : option.value === value,
+    ),
+  );
+
+  const menuItems = React.useMemo(() => {
+    return options.map((option, index) => {
+      const isSelected = isMultipleEnabled(value, multiple)
+        ? value?.includes(option.value) ?? false
+        : value === option.value;
+      const menuItem: JSX.Element = itemRenderer ? (
+        itemRenderer(option, { close: () => setIsOpen(false), isSelected })
+      ) : (
+        <MenuItem>{option.label}</MenuItem>
+      );
+
+      const { label, ...restOption } = option;
+
+      return React.cloneElement<MenuItemProps>(menuItem, {
+        key: `${label}-${index}`,
+        isSelected,
+        onClick: () => {
+          handleItemClick(option, isSelected);
+        },
+        ref: (el: HTMLElement) => {
+          if (
+            focusedIndex === index ||
+            (focusedIndex === -1 && isSelected && !multiple)
+          ) {
+            el?.scrollIntoView({ block: 'nearest' });
+          }
+        },
+        role: 'option',
+        id: `${uid}-item-${index}`,
+        ...restOption,
+        ...menuItem.props,
+        className: cx(
+          { 'iui-focused': focusedIndex === index },
+          menuItem.props?.className,
+        ),
+      });
+    });
+  }, [
+    focusedIndex,
+    itemRenderer,
+    multiple,
+    handleItemClick,
+    options,
+    value,
+    uid,
+  ]);
+
   const tagRenderer = React.useCallback((item: SelectOption<T>) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
@@ -349,24 +404,33 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   return (
     <div
       className={cx('iui-input-with-icon', className)}
-      aria-expanded={isOpen}
-      aria-haspopup='listbox'
       style={style}
       {...rest}
     >
-      <DropdownMenu
-        menuItems={menuItems}
+      <Popover
+        content={
+          <Menu
+            role='listbox'
+            className={cx('iui-scroll', menuClassName)}
+            setFocus={false}
+            style={{
+              minWidth,
+              maxWidth: `min(${minWidth * 2}px, 90vw)`,
+              ...menuStyle,
+            }}
+            ref={menuRef}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+          >
+            {menuItems}
+          </Menu>
+        }
         placement='bottom-start'
-        className={cx('iui-scroll', menuClassName)}
-        style={{
-          minWidth,
-          maxWidth: `min(${minWidth * 2}px, 90vw)`,
-          ...menuStyle,
-        }}
-        role='listbox'
+        animation='shift-away'
+        aria={{ content: null }}
+        duration={200}
         onShow={onShowHandler}
         onHide={onHideHandler}
-        disabled={disabled}
         {...popoverProps}
         visible={isOpen}
         onClickOutside={(_, { target }) => {
@@ -375,7 +439,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           }
         }}
       >
-        <div
+        <button
+          type='button'
+          role='combobox'
           ref={selectRef}
           className={cx('iui-select-button', {
             'iui-placeholder':
@@ -383,9 +449,19 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             'iui-disabled': disabled,
           })}
           data-iui-size={size}
-          onClick={() => !disabled && toggle()}
-          onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
-          tabIndex={!disabled ? 0 : undefined}
+          onClick={() => !disabled && setIsOpen((o) => !o)}
+          onKeyDown={(e) => !disabled && onKeyDown(e)}
+          aria-disabled={disabled}
+          aria-autocomplete='none'
+          aria-expanded={isOpen}
+          aria-haspopup='listbox'
+          aria-controls={`${uid}-menu`}
+          aria-activedescendant={
+            focusedIndex !== -1 && isOpen
+              ? options[focusedIndex]?.id ?? `${uid}-item-${focusedIndex}`
+              : undefined
+          }
+          // aria-labelledby
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <span className='iui-content'>{placeholder}</span>
@@ -408,8 +484,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               }
             />
           )}
-        </div>
-      </DropdownMenu>
+        </button>
+      </Popover>
       <span
         ref={toggleButtonRef}
         className={cx('iui-end-icon', {
@@ -417,7 +493,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           'iui-disabled': disabled,
           'iui-open': isOpen,
         })}
-        onClick={() => !disabled && toggle()}
+        onClick={() => !disabled && setIsOpen((o) => !o)}
       >
         <SvgCaretDownSmall aria-hidden />
       </span>
