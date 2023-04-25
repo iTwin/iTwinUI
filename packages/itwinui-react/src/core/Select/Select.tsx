@@ -248,7 +248,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const selectRef = React.useRef<HTMLButtonElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
-  const menuRef = React.useRef<HTMLUListElement>(null);
 
   const onShowHandler = React.useCallback(
     (instance: PopoverInstance) => {
@@ -296,15 +295,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   };
 
-  const selectedItems = React.useMemo(() => {
-    if (value == null) {
-      return undefined;
-    }
-    return isMultipleEnabled(value, multiple)
-      ? options.filter((option) => value.some((val) => val === option.value))
-      : options.find((option) => option.value === value);
-  }, [multiple, options, value]);
-
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
       const isSelected = isMultipleEnabled(value, multiple)
@@ -345,6 +335,15 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     });
   }, [itemRenderer, multiple, onChange, options, value]);
 
+  const selectedItems = React.useMemo(() => {
+    if (value == null) {
+      return undefined;
+    }
+    return isMultipleEnabled(value, multiple)
+      ? options.filter((option) => value.some((val) => val === option.value))
+      : options.find((option) => option.value === value);
+  }, [multiple, options, value]);
+
   const tagRenderer = React.useCallback((item: SelectOption<T>) => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
@@ -365,7 +364,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               maxWidth: `min(${minWidth * 2}px, 90vw)`,
               ...menuStyle,
             }}
-            ref={menuRef}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
           >
