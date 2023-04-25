@@ -20,13 +20,9 @@ describe('Breadcrumbs', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName === 'Custom Overflow Dropdown') {
-        cy.get('.iui-button').then((buttons) => {
-          cy.wrap(buttons[1]).click({ force: true });
-        });
+        cy.get('.iui-button').eq(1).click();
       } else if (testName === 'Custom Overflow Back Button') {
-        cy.get('.iui-button').then((buttons) => {
-          cy.wrap(buttons[1]).trigger('mouseenter', { force: true });
-        });
+        cy.get('.iui-button').eq(1).trigger('mouseenter');
       }
 
       cy.compareSnapshot(testName);

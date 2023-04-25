@@ -3,17 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import SvgMore from '@itwin/itwinui-icons-react/cjs/icons/More';
 import { Meta, Story } from '@storybook/react/';
-import { action } from '@storybook/addon-actions';
 import React from 'react';
-import {
-  Button,
-  Tab,
-  IconButton,
-  DropdownMenu,
-  MenuItem,
-} from '@itwin/itwinui-react';
+import { Button, Tab } from '@itwin/itwinui-react';
 import { Tabs, TabsProps } from '@itwin/itwinui-react/esm/core/Tabs/Tabs';
 
 export default {
@@ -260,11 +252,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         {...args}
         onTabSelected={setActiveIndex}
         activeIndex={activeIndex}
-        actions={[
-          <Button styleType='borderless' key={'button'}>
-            Button
-          </Button>,
-        ]}
+        actions={[<Button key={'button'}>Button</Button>]}
       >
         {getContent()}
       </Tabs>
@@ -361,11 +349,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         {...args}
         onTabSelected={setActiveIndex}
         activeIndex={activeIndex}
-        actions={[
-          <Button styleType='borderless' key={'button'}>
-            Button
-          </Button>,
-        ]}
+        actions={[<Button key={'button'}>Button</Button>]}
       >
         {getContent()}
       </Tabs>

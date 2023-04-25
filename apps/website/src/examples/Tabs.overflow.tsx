@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tabs, Tab, DropdownMenu, MenuItem, IconButton } from '@itwin/itwinui-react';
-import SvgMoreSmall from '@itwin/itwinui-icons-react/cjs/icons/MoreSmall';
+import { Tabs, Tab } from '@itwin/itwinui-react';
 
 export default () => {
   const [index, setIndex] = React.useState(0);
@@ -39,40 +38,11 @@ export default () => {
     <Tab key={8} label='History' />,
   ];
 
-  const overflowButton = (visibleCount: number) => (
-    <DropdownMenu
-      menuItems={(close: () => void) =>
-        Array(labels.length - visibleCount)
-          .fill(null)
-          .map((_, _index) => {
-            const index = visibleCount + _index + 1;
-            const onClick = () => {
-              setIndex(index - 1);
-              close();
-            };
-            return (
-              <MenuItem key={index} onClick={onClick}>
-                Item {index}
-              </MenuItem>
-            );
-          })
-      }
-    >
-      <IconButton
-        role='button'
-        style={{ paddingTop: '12px', margin: '4px', height: 'auto' }}
-        styleType='borderless'
-      >
-        <SvgMoreSmall />
-      </IconButton>
-    </DropdownMenu>
-  );
-
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
       <Tabs
         labels={labels}
-        overflowButton={overflowButton}
+        overflowOptions={{ useOverflow: true }}
         onTabSelected={setIndex}
         activeIndex={index}
       >
