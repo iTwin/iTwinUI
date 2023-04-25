@@ -6,7 +6,7 @@ import React from 'react';
 
 import { Select } from '../Select';
 import type { SelectProps } from '../Select/Select';
-import { StatusIconMap, useTheme, InputContainer } from '../utils';
+import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
 import type { LabeledInputProps } from '../LabeledInput';
 import '@itwin/itwinui-css/css/input.css';
 
@@ -92,10 +92,13 @@ export const LabeledSelect = <T,>(
     selectClassName,
     selectStyle,
     required = false,
+    buttonProps,
     ...rest
   } = props;
 
   useTheme();
+
+  const labelId = useId();
 
   const icon = () => {
     if (svgIcon) {
@@ -118,12 +121,14 @@ export const LabeledSelect = <T,>(
       isLabelInline={displayStyle === 'inline'}
       className={className}
       style={style}
+      labelId={labelId}
     >
       <Select
         disabled={disabled}
         className={selectClassName}
         style={selectStyle}
         {...rest}
+        buttonProps={{ 'aria-labelledby': labelId, ...buttonProps }}
       />
     </InputContainer>
   );

@@ -154,6 +154,10 @@ export type SelectProps<T> = {
    * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
    */
   popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
+  /**
+   * Props to pass to the select button (trigger) element.
+   */
+  buttonProps?: React.ComponentPropsWithoutRef<'button'>;
 } & SelectMultipleTypeProps<T> &
   Pick<PopoverProps, 'onShow' | 'onHide'> &
   Omit<
@@ -231,6 +235,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     onHide,
     popoverProps,
     multiple = false,
+    buttonProps,
     ...rest
   } = props;
 
@@ -383,11 +388,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           type='button'
           role='combobox'
           ref={selectRef}
-          className={cx('iui-select-button', {
-            'iui-placeholder':
-              (!selectedItems || selectedItems.length === 0) && !!placeholder,
-            'iui-disabled': disabled,
-          })}
           data-iui-size={size}
           onClick={() => !disabled && setIsOpen((o) => !o)}
           onKeyDown={(e) => !disabled && onKeyDown(e)}
@@ -396,7 +396,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
-          // aria-labelledby
+          {...buttonProps}
+          className={cx(
+            'iui-select-button',
+            {
+              'iui-placeholder':
+                (!selectedItems || selectedItems.length === 0) && !!placeholder,
+              'iui-disabled': disabled,
+            },
+            buttonProps?.className,
+          )}
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <span className='iui-content'>{placeholder}</span>
