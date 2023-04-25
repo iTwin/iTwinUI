@@ -100,7 +100,14 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   &[data-iui-overflow='true'] {
-    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+    }
+    -ms-overflow-style: none;  /* Hide scrollbar for IE and Edge */
+    scrollbar-width: none;  /*Hide scrollbar for Firefox */
 
     .iui-tab {
       white-space: nowrap;
@@ -132,6 +139,12 @@ $borderless-horizontal-tab-min-height: calc(
     &.iui-borderless {
       min-height: $borderless-horizontal-tab-min-height;
     }
+
+    
+    &[data-iui-overflow='true'] {
+      border-left: 1px solid var(--iui-color-border);
+      border-right: 1px solid var(--iui-color-border);
+    }
   }
 
   .iui-tab {
@@ -150,6 +163,7 @@ $borderless-horizontal-tab-min-height: calc(
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
+  height: 100%;
 
   .iui-tabs {
     li,
@@ -160,6 +174,12 @@ $borderless-horizontal-tab-min-height: calc(
 
     ~ .iui-tabs-content {
       flex-grow: 1;
+    }
+
+    
+   &[data-iui-overflow='true'] {
+      border-top: 1px solid var(--iui-color-border);
+      border-bottom: 1px solid var(--iui-color-border);
     }
   }
 
