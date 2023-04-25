@@ -11,7 +11,8 @@ import { getRandomValue } from '../functions/numbers';
  * a random value as fallback for older React versions which don't include `useId`.
  */
 export const useId = () => {
-  return React.useMemo(() => `iui-${uniqueValue()}`, []);
+  const uniqueValue = useUniqueValue();
+  return React.useMemo(() => `iui-${uniqueValue}`, [uniqueValue]);
 };
 
-const uniqueValue = React.useId ?? (() => getRandomValue(10));
+const useUniqueValue = React.useId ?? (() => getRandomValue(10));
