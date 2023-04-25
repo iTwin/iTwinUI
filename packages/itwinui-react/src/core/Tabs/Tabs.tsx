@@ -293,7 +293,7 @@ export const Tabs = (props: TabsProps) => {
     ownerDoc.addEventListener('wheel', enableHorizontalScroll);
   }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
 
-  const isTabFullyVisible = (activeTab: HTMLElement, isVertical: boolean) => {
+  const isTabHidden = (activeTab: HTMLElement, isVertical: boolean) => {
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
       return;
@@ -309,9 +309,11 @@ export const Tabs = (props: TabsProps) => {
       : activeTab.offsetLeft + activeTab.offsetWidth;
 
     if (tabStart > visibleStart && tabEnd < visibleEnd) {
-      return true;
+      return 0; // tab is visible
+    } else if (tabEnd < visibleStart) {
+      return -1; // tab is before visible section
     } else {
-      return false;
+      return 1; // tab is after visible section
     }
   };
 
@@ -328,19 +330,41 @@ export const Tabs = (props: TabsProps) => {
   }
 
   const scrollToTab = React.useCallback(
-    (element: Element, to: number, duration: number, isVertical: boolean) => {
-      const start = isVertical ? element.scrollTop : element.scrollLeft;
-      const change = to - start;
+    (
+      list: HTMLUListElement,
+      activeTab: HTMLElement,
+      duration: number,
+      isVertical: boolean,
+      tabPlacement: number,
+    ) => {
+      const start = isVertical ? list.scrollTop : list.scrollLeft;
+      let change = 0;
       let currentTime = 0;
       const increment = 20;
 
-      const animateScroll = function () {
+      if (tabPlacement < 0) {
+        // if tab is before visible section
+        change = isVertical
+          ? activeTab.offsetTop - list.scrollTop
+          : activeTab.offsetLeft - list.scrollLeft;
+      } else {
+        // tab is after visible section
+        change = isVertical
+          ? activeTab.offsetTop -
+            (list.scrollTop + list.offsetHeight) +
+            activeTab.offsetHeight
+          : activeTab.offsetLeft -
+            (list.scrollLeft + list.offsetWidth) +
+            activeTab.offsetWidth;
+      }
+
+      const animateScroll = () => {
         currentTime += increment;
         const val = easeInOutQuad(currentTime, start, change, duration);
         if (isVertical) {
-          element.scrollTop = val;
+          list.scrollTop = val;
         } else {
-          element.scrollLeft = val;
+          list.scrollLeft = val;
         }
         if (currentTime < duration) {
           setTimeout(animateScroll, increment);
@@ -362,16 +386,11 @@ export const Tabs = (props: TabsProps) => {
       const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
         currentActiveIndex
       ] as HTMLElement;
-      if (orientation === 'vertical') {
-        if (!isTabFullyVisible(activeTab, true)) {
-          const tabEnd = activeTab.offsetTop + activeTab.offsetHeight;
-          scrollToTab(ownerDoc, tabEnd, 20, true);
-        }
-      } else {
-        if (!isTabFullyVisible(activeTab, false)) {
-          const tabEnd = activeTab.offsetLeft + activeTab.offsetWidth;
-          scrollToTab(ownerDoc, tabEnd, 20, false);
-        }
+      const tabPlacement = isTabHidden(activeTab, true);
+      const isVertical = orientation === 'vertical';
+
+      if (tabPlacement) {
+        scrollToTab(ownerDoc, activeTab, 20, isVertical, tabPlacement);
       }
     }
   }, [
