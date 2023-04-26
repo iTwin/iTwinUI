@@ -45,6 +45,10 @@
   @include iui-expandable-searchbox;
 }
 
+.iui-searchbox-expanded {
+  @include iui-searchbox-expanded;
+}
+
 .iui-search-icon {
   @include iui-search-icon;
 }

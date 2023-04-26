@@ -115,7 +115,7 @@ export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
   return (
     <SearchBox expandable isExpanded={expanded} onToggle={handleToggle}>
       <SearchBox.CloseButton />
-      <input type='search' placeholder='Search...' />
+      <SearchBox.Input placeholder='Test' />
       <Text
         isMuted
         variant='body'

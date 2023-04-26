@@ -12,6 +12,7 @@ import {
   useSafeContext,
   useId,
   Icon,
+  useMergedRefs,
 } from '../utils';
 import type {
   IconProps,
@@ -31,7 +32,10 @@ const SearchBoxContext = React.createContext<
       disabled?: boolean;
       inputId: string;
       setInputId: (inputId: string) => void;
+      inputRef: React.RefObject<HTMLInputElement>;
+      openButtonRef: React.RefObject<HTMLButtonElement>;
       onClose?: () => void;
+      onOpen?: () => void;
     }
   | undefined
 >(undefined);
@@ -62,6 +66,14 @@ type SearchBoxOwnProps = {
   /**
    *
    */
+  toggleOnFocus?: boolean;
+  /**
+   *
+   */
+  collapsedState?: React.ReactNode;
+  /**
+   *
+   */
   inputProps?: React.ComponentPropsWithoutRef<'input'>;
   /**
    * Modify size of the searchbox.
@@ -79,6 +91,8 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     onToggle,
     onFocus: onFocusProp,
     onBlur: onBlurProp,
+    collapsedState,
+    // toggleOnFocus = false,
     isExpanded,
     children,
     inputProps,
@@ -87,14 +101,47 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   } = props;
 
   const [inputId, setInputId] = React.useState(useId());
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const openButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const [localExpanded, setLocalExpanded] = React.useState(isExpanded);
+
+  // const handleFocus = () => {
+  //   setLocalExpanded(true);
+  //   toggleOnFocus && inputRef.current && inputRef.current.focus();
+  // };
+
+  // const handleBlur = () => {
+  //   setLocalExpanded(false);
+  //   toggleOnFocus && openButtonRef.current && openButtonRef.current.focus();
+  // };
 
   const onClose = () => {
+    console.log('calling onClose');
+    setLocalExpanded(false);
     onToggle?.(false);
+    openButtonRef.current && openButtonRef.current.focus();
+  };
+
+  const onOpen = () => {
+    console.log('clicking open');
+    setLocalExpanded(true);
+    onToggle?.(true);
+    inputRef.current && inputRef.current.focus();
   };
 
   return (
     <SearchBoxContext.Provider
-      value={{ size, onClose, inputId, setInputId, disabled }}
+      value={{
+        size,
+        disabled,
+        onOpen,
+        onClose,
+        inputRef,
+        inputId,
+        setInputId,
+        openButtonRef,
+      }}
     >
       <InputFlexContainer
         ref={ref}
@@ -103,34 +150,47 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         disabled={disabled}
         role='searchbox'
         onFocus={(e) => {
-          // console.log('focus', e.target, e.currentTarget, e.relatedTarget);
           onFocusProp?.(e);
-          if (
-            e.isDefaultPrevented() ||
-            e.currentTarget.contains(e.relatedTarget)
-          ) {
-            return;
-          }
-          onToggle?.(true);
+          // if (
+          //   e.isDefaultPrevented()
+          // ) {
+          //   return;
+          // }
+          // handleFocus();
         }}
         onBlur={(e) => {
-          // console.log('blur', e.target, e.currentTarget, e.relatedTarget);
           onBlurProp?.(e);
-          if (
-            e.isDefaultPrevented() ||
-            e.currentTarget.contains(e.relatedTarget)
-          ) {
-            return;
-          }
-          onToggle?.(false);
+          // if (
+          //   e.isDefaultPrevented()
+          // ) {
+          //   return;
+          // }
+          // handleBlur();
         }}
-        data-iui-expanded={isExpanded}
+        data-iui-expanded={localExpanded}
         {...rest}
       >
-        {children ?? (
+        {!expandable &&
+          (children ?? (
+            <>
+              <SearchBoxInput {...inputProps} />
+              <SearchBoxIcon />
+            </>
+          ))}
+        {expandable && (
           <>
-            <SearchBoxInput {...inputProps} />
-            <SearchBoxIcon />
+            <div className='iui-searchbox-collapsed'>
+              {collapsedState ?? <SearchBoxOpenButton />}
+            </div>
+            <div className='iui-searchbox-expanded'>
+              {/* {children ?? ( */}
+              <>
+                <SearchBoxCloseButton />
+                <SearchBoxInput {...inputProps} />
+                <SearchBoxIcon />
+              </>
+              {/* )} */}
+            </div>
           </>
         )}
       </InputFlexContainer>
@@ -179,7 +239,8 @@ const SearchBoxInput = React.forwardRef(
       ...rest
     } = props;
 
-    const { inputId, setInputId, disabled } = useSafeContext(SearchBoxContext);
+    const { inputId, setInputId, disabled, inputRef } =
+      useSafeContext(SearchBoxContext);
 
     if (idProp && idProp !== inputId) {
       setInputId(idProp);
@@ -189,7 +250,7 @@ const SearchBoxInput = React.forwardRef(
       <input
         id={idProp ?? inputId}
         aria-label={label}
-        ref={ref}
+        ref={useMergedRefs(ref, inputRef)}
         type='text'
         className={cx('iui-search-input', className)}
         disabled={disabledProp ?? disabled}
@@ -267,6 +328,48 @@ const SearchBoxCloseButton = React.forwardRef((props, ref) => {
     </SearchBoxButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+// ----------------------------------------------------------------------------
+
+/**
+ * SearchBox.Button component to add to your SearchBox.
+ */
+export type SearchBoxOpenButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
+
+const SearchBoxOpenButton = React.forwardRef((props, ref) => {
+  const {
+    children,
+    onClick: onClickProp,
+    size,
+    disabled: disabledProp,
+    ...rest
+  } = props;
+
+  const {
+    onOpen,
+    size: sizeContext,
+    disabled,
+    openButtonRef,
+  } = useSafeContext(SearchBoxContext);
+
+  return (
+    <SearchBoxButton
+      ref={useMergedRefs(ref, openButtonRef)}
+      aria-label='Expand'
+      size={size ?? sizeContext}
+      disabled={disabledProp ?? disabled}
+      onClick={(e) => {
+        onClickProp?.(e);
+        onOpen?.();
+      }}
+      {...rest}
+    >
+      {children ?? <SvgSearch />}
+    </SearchBoxButton>
+  );
+}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 
 // ----------------------------------------------------------------------------
 
@@ -281,6 +384,7 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
   Input: SearchBoxInput,
   Button: SearchBoxButton,
   CloseButton: SearchBoxCloseButton,
+  OpenButton: SearchBoxOpenButton,
 });
 
 export default SearchBox;
