@@ -9,18 +9,41 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='core-sidenavigation' />
 
 <LiveExample src='SideNavigation.main.tsx'>
   <AllExamples.SideNavigationMainExample client:load />
 </LiveExample>
 
 The side navigation is a way for the user to quickly switch between different workflows within a product. The menu items listed may change from user to user depending on their job function. The side navigation can be viewed in a minimal way using just icons or can be expanded to show labels. Menu items can open a single page or can expand into a submenu.
+
+## Variants
+
+### Basic
+
+The basic variant contains interactive buttons with associated icons. When the side panel is expanded, the icon is accompanied by a right-aligned label. If collapsed, a [tooltip](tooltip) with the corresponding label pops up on-hover of a menu item. The expander button can be used to collapse and expand the side navigation panel. It is placed at the top of the pannel by default, or it can be at the bottom or hidden via the use of `expanderPlacement` property.
+
+<LiveExample src='SideNavigation.basic.tsx'>
+  <AllExamples.SideNavigationBasicExample client:load />
+</LiveExample>
+
+### Active item
+
+Active menu item allows the currently selected item to be highlighted via the `key` and `activeIndex` property which specify the index to highlight for better user feedback.
+
+<LiveExample src='SideNavigation.activeitem.tsx'>
+  <AllExamples.SideNavigationActiveItemExample client:load />
+</LiveExample>
+
+### Submenu
+
+The submenu is the menu that expands on-click of one of the menu items. It contains all subitems and page links associated to the main item. When the submenu appears, the main page’s content does not yet change; the user must select something within the submenu first for the page content to change.
+
+<LiveExample src='SideNavigation.submenu.tsx'>
+  <AllExamples.SideNavigationSubmenuExample client:load />
+</LiveExample>
 
 ## Props
 
