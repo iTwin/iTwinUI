@@ -66,10 +66,6 @@ type SearchBoxOwnProps = {
   /**
    *
    */
-  toggleOnFocus?: boolean;
-  /**
-   *
-   */
   collapsedState?: React.ReactNode;
   /**
    *
@@ -89,10 +85,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     expandable = false,
     disabled = false,
     onToggle,
-    onFocus: onFocusProp,
-    onBlur: onBlurProp,
     collapsedState,
-    // toggleOnFocus = false,
     isExpanded,
     children,
     inputProps,
@@ -106,25 +99,13 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
 
   const [localExpanded, setLocalExpanded] = React.useState(isExpanded);
 
-  // const handleFocus = () => {
-  //   setLocalExpanded(true);
-  //   toggleOnFocus && inputRef.current && inputRef.current.focus();
-  // };
-
-  // const handleBlur = () => {
-  //   setLocalExpanded(false);
-  //   toggleOnFocus && openButtonRef.current && openButtonRef.current.focus();
-  // };
-
   const onClose = () => {
-    console.log('calling onClose');
     setLocalExpanded(false);
     onToggle?.(false);
     openButtonRef.current && openButtonRef.current.focus();
   };
 
   const onOpen = () => {
-    console.log('clicking open');
     setLocalExpanded(true);
     onToggle?.(true);
     inputRef.current && inputRef.current.focus();
@@ -149,24 +130,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         data-iui-size={size}
         disabled={disabled}
         role='searchbox'
-        onFocus={(e) => {
-          onFocusProp?.(e);
-          // if (
-          //   e.isDefaultPrevented()
-          // ) {
-          //   return;
-          // }
-          // handleFocus();
-        }}
-        onBlur={(e) => {
-          onBlurProp?.(e);
-          // if (
-          //   e.isDefaultPrevented()
-          // ) {
-          //   return;
-          // }
-          // handleBlur();
-        }}
         data-iui-expanded={localExpanded}
         {...rest}
       >
@@ -183,13 +146,12 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
               {collapsedState ?? <SearchBoxOpenButton />}
             </div>
             <div className='iui-searchbox-expanded'>
-              {/* {children ?? ( */}
-              <>
-                <SearchBoxCloseButton />
-                <SearchBoxInput {...inputProps} />
-                <SearchBoxIcon />
-              </>
-              {/* )} */}
+              {children ?? (
+                <>
+                  <SearchBoxInput {...inputProps} />
+                  <SearchBoxCloseButton />
+                </>
+              )}
             </div>
           </>
         )}
