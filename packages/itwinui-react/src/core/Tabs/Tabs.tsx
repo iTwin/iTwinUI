@@ -299,10 +299,10 @@ export const Tabs = (props: TabsProps) => {
       return;
     }
 
-    const visibleStart = isVertical ? ownerDoc.offsetTop : ownerDoc.offsetLeft;
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
     const visibleEnd = isVertical
-      ? ownerDoc.offsetTop + ownerDoc.offsetHeight
-      : ownerDoc.offsetLeft + ownerDoc.offsetWidth;
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
     const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
     const tabEnd = isVertical
       ? activeTab.offsetTop + activeTab.offsetHeight
@@ -310,7 +310,7 @@ export const Tabs = (props: TabsProps) => {
 
     if (tabStart > visibleStart && tabEnd < visibleEnd) {
       return 0; // tab is visible
-    } else if (tabEnd < visibleStart) {
+    } else if (tabStart < visibleStart) {
       return -1; // tab is before visible section
     } else {
       return 1; // tab is after visible section
@@ -386,11 +386,11 @@ export const Tabs = (props: TabsProps) => {
       const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
         currentActiveIndex
       ] as HTMLElement;
-      const tabPlacement = isTabHidden(activeTab, true);
       const isVertical = orientation === 'vertical';
+      const tabPlacement = isTabHidden(activeTab, isVertical);
 
       if (tabPlacement) {
-        scrollToTab(ownerDoc, activeTab, 20, isVertical, tabPlacement);
+        scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
       }
     }
   }, [

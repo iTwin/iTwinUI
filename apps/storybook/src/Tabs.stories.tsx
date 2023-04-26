@@ -239,7 +239,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
     <div
       style={{
         width: '50%',
-        maxWidth: 1000,
+        maxWidth: 800,
         minWidth: 250,
         border: '1px solid lightpink',
         padding: 8,
@@ -335,8 +335,8 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
     <div
       style={{
         height: '50vh',
-        maxHeight: 1000,
-        minHeight: 250,
+        maxHeight: 400,
+        minHeight: 100,
         border: '1px solid lightpink',
         padding: 8,
       }}
