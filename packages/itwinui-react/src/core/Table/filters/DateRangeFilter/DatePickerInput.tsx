@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Popover, SvgCalendar } from '../../../utils';
+import { Popover, SvgCalendar, isBefore } from '../../../utils';
 import { LabeledInput, LabeledInputProps } from '../../../LabeledInput';
 import { DatePicker } from '../../../DatePicker';
 import { IconButton } from '../../../Buttons';
@@ -13,10 +13,34 @@ export type DatePickerInputProps = {
   onChange: (date?: Date) => void;
   parseInput: (text: string) => Date;
   formatDate: (date: Date) => string;
+  /**
+   * Decides if this component is used for the 'from' or 'to' date
+   */
+  isFromOrTo?: 'from' | 'to';
+  /**
+   * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
+   */
+  selectedDate?: Date;
 } & Omit<LabeledInputProps, 'value' | 'onChange' | 'svgIcon' | 'displayStyle'>;
 
 const DatePickerInput = (props: DatePickerInputProps) => {
-  const { onChange, date, parseInput, formatDate, ...rest } = props;
+  const {
+    onChange,
+    date,
+    parseInput,
+    formatDate,
+    isFromOrTo,
+    selectedDate,
+    ...rest
+  } = props;
+
+  const isDateDisabled = (date: Date) => {
+    if (isFromOrTo === 'to') {
+      return isBefore(date, selectedDate);
+    } else {
+      return isBefore(selectedDate, date);
+    }
+  };
 
   const buttonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -57,7 +81,14 @@ const DatePickerInput = (props: DatePickerInputProps) => {
 
   return (
     <Popover
-      content={<DatePicker date={date} onChange={onDateSelected} setFocus />}
+      content={
+        <DatePicker
+          date={date}
+          onChange={onDateSelected}
+          setFocus
+          isDateDisabled={isDateDisabled}
+        />
+      }
       placement='bottom'
       visible={isVisible}
       onClickOutside={(_, e) => {
