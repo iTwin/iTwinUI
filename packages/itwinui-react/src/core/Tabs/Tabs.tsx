@@ -20,6 +20,8 @@ export type OverflowOptions = {
    * Whether to allow tabs list to scroll when there is overflow,
    * i.e. when there is not enough space to fit all the tabs.
    *
+   * Not applicable to types `pill` or `borderless`.
+   *
    * @default false
    * @example <caption>Enables scrolling for overflowing tabs</caption>
    *  return (
@@ -30,6 +32,24 @@ export type OverflowOptions = {
    */
   useOverflow?: boolean;
 };
+
+type TabsOverflowProps =
+  | {
+      /**
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
+      /**
+       * Type of the tabs.
+       *
+       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default';
+    }
+  | {
+      type: 'borderless' | 'pill';
+    };
 
 type TabsOrientationProps =
   | {
@@ -70,13 +90,6 @@ type TabsTypeProps =
   | {
       type: 'pill';
     };
-
-type TabsOverflowProps = {
-  /**
-   * Options that can be specified to deal with tabs overflowing the allotted space.
-   */
-  overflowOptions?: OverflowOptions;
-};
 
 export type TabsProps = {
   /**
@@ -172,7 +185,11 @@ export const Tabs = (props: TabsProps) => {
   }
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
-  if (props.overflowOptions) {
+  if (
+    props.type !== 'borderless' &&
+    props.type !== 'pill' &&
+    props.overflowOptions
+  ) {
     overflowOptions = props.overflowOptions;
     props = { ...props };
     delete props.overflowOptions;
@@ -363,22 +380,24 @@ export const Tabs = (props: TabsProps) => {
 
   // scroll to active tab if it is not visible with overflow
   useIsomorphicLayoutEffect(() => {
-    const ownerDoc = tablistRef.current;
-    if (
-      ownerDoc !== null &&
-      overflowOptions?.useOverflow &&
-      currentActiveIndex !== undefined
-    ) {
-      const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
-        currentActiveIndex
-      ] as HTMLElement;
-      const isVertical = orientation === 'vertical';
-      const tabPlacement = isTabHidden(activeTab, isVertical);
+    setTimeout(() => {
+      const ownerDoc = tablistRef.current;
+      if (
+        ownerDoc !== null &&
+        overflowOptions?.useOverflow &&
+        currentActiveIndex !== undefined
+      ) {
+        const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
+          currentActiveIndex
+        ] as HTMLElement;
+        const isVertical = orientation === 'vertical';
+        const tabPlacement = isTabHidden(activeTab, isVertical);
 
-      if (tabPlacement) {
-        scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
+        if (tabPlacement) {
+          scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
+        }
       }
-    }
+    }, 50);
   }, [
     overflowOptions?.useOverflow,
     currentActiveIndex,
@@ -403,9 +422,9 @@ export const Tabs = (props: TabsProps) => {
       ? ownerDoc.scrollHeight
       : ownerDoc.scrollWidth;
 
-    if (visibleStart === 0) {
+    if (Math.abs(visibleStart - 0) < 1) {
       setScrollingPlacement('start');
-    } else if (visibleEnd === totalTabsSpace) {
+    } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
       setScrollingPlacement('end');
     } else {
       setScrollingPlacement('center');

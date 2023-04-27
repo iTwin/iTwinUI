@@ -12,7 +12,6 @@ describe('Tabs', () => {
     'Vertical',
     'Horizontal Overflow',
     'Vertical Overflow',
-    'Pill Overflow',
   ];
 
   tests.forEach((testName) => {

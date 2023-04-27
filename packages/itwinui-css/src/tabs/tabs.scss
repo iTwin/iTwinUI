@@ -111,6 +111,7 @@ $borderless-horizontal-tab-min-height: calc(
       &::-webkit-scrollbar {
         height: 4px;
         width: 4px;
+        z-index: 5;
       }
     }
 
@@ -152,13 +153,13 @@ $borderless-horizontal-tab-min-height: calc(
 
     &[data-iui-overflow='true'] {
       /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 90%, transparent 100%);
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
       }
 
       &[data-iui-scroll-placement='end'] {
@@ -166,11 +167,11 @@ $borderless-horizontal-tab-min-height: calc(
         -webkit-mask-image: linear-gradient(
           90deg,
           transparent 0%,
-          rgb(0, 0, 0) 10%,
+          rgb(0, 0, 0) 5%,
           rgb(0, 0, 0) 100%,
           transparent 100%
         );
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 100%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
       }
     }
   }
@@ -206,25 +207,19 @@ $borderless-horizontal-tab-min-height: calc(
 
     &[data-iui-overflow='true'] {
       /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, transparent 100%);
-      mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 90%, transparent 100%);
+      -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+      mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 90%, transparent 100%);
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 90%, transparent 100%);
+        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
       }
 
       &[data-iui-scroll-placement='end'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(
-          0deg,
-          transparent 0%,
-          rgb(0, 0, 0) 10%,
-          rgb(0, 0, 0) 100%,
-          transparent 100%
-        );
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 10%, rgb(0, 0, 0) 100%, transparent 100%);
+        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
       }
     }
   }
