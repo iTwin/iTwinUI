@@ -381,6 +381,102 @@ VerticalOverflow.argTypes = {
   actions: { control: { disable: true } },
 };
 
+export const PillOverflow: Story<Partial<TabsProps>> = (args) => {
+  const [activeIndex, setActiveIndex] = React.useState(10);
+  const getContent = () => {
+    switch (activeIndex) {
+      case 0:
+        return 'Tab Content One';
+      case 1:
+        return 'Tab Content Two';
+      case 2:
+        return 'Tab Content Three';
+      case 3:
+        return 'Tab Content Four';
+      case 4:
+        return 'Tab Content Five';
+      case 5:
+        return 'Tab Content Six';
+      case 6:
+        return 'Tab Content Seven';
+      case 7:
+        return 'Tab Content Eight';
+      case 8:
+        return 'Tab Content Nine';
+      case 9:
+        return 'Tab Content Ten';
+      case 10:
+        return 'Tab Content Eleven';
+      case 11:
+        return 'Tab Content Twelve';
+      default:
+        return 'Tab Content Thirteen';
+    }
+  };
+  const labels = [
+    <Tab key={1} label='Item 1' />,
+    <Tab key={2} label='Item 2' />,
+    <Tab key={3} label='Item 3' />,
+    <Tab key={4} label='Item 4' />,
+    <Tab key={5} label='Item 5' />,
+    <Tab key={6} label='Item 6' disabled />,
+    <Tab key={7} label='Item 7' />,
+    <Tab key={8} label='Item 8' />,
+    <Tab key={9} label='Item 9' disabled />,
+    <Tab key={10} label='Item 10' />,
+    <Tab key={11} label='Item 11' />,
+    <Tab key={12} label='Item 12' />,
+    <Tab key={13} label='Very long item number thirteen' />,
+  ];
+
+  return (
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 800,
+        minWidth: 250,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
+      <Tabs
+        type='pill'
+        labels={labels}
+        overflowOptions={{ useOverflow: true }}
+        {...args}
+        onTabSelected={setActiveIndex}
+        activeIndex={activeIndex}
+        actions={undefined}
+      >
+        {getContent()}
+      </Tabs>
+    </div>
+  );
+};
+PillOverflow.args = {
+  type: 'pill',
+  labels: [
+    <Tab key={1} label='Item 1' />,
+    <Tab key={2} label='Item 2' />,
+    <Tab key={3} label='Item 3' />,
+    <Tab key={4} label='Item 4' />,
+    <Tab key={5} label='Item 5' />,
+    <Tab key={6} label='Item 6' disabled />,
+    <Tab key={7} label='Item 7' />,
+    <Tab key={8} label='Item 8' />,
+    <Tab key={9} label='Item 9' disabled />,
+    <Tab key={10} label='Item 10' />,
+    <Tab key={11} label='Item 11' />,
+    <Tab key={12} label='Item 12' />,
+    <Tab key={13} label='Very long item number thirteen' />,
+  ],
+};
+PillOverflow.argTypes = {
+  type: { options: ['default', 'borderless', 'pill'] },
+  orientation: { control: { disable: true } },
+  actions: { control: { disable: true } },
+};
+
 export const Vertical: Story<Partial<TabsProps>> = (args) => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {

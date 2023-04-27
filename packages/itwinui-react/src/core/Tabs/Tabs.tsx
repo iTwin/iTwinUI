@@ -20,8 +20,6 @@ export type OverflowOptions = {
    * Whether to allow tabs list to scroll when there is overflow,
    * i.e. when there is not enough space to fit all the tabs.
    *
-   * Not applicable to `type: 'pill'`.
-   *
    * @default false
    * @example <caption>Enables scrolling for overflowing tabs</caption>
    *  return (
@@ -73,24 +71,12 @@ type TabsTypeProps =
       type: 'pill';
     };
 
-type TabsOverflowProps =
-  | {
-      /**
-       * Options that can be specified to deal with tabs overflowing the allotted space.
-       */
-      overflowOptions?: OverflowOptions;
-      /**
-       * Type of the tabs.
-       *
-       * If `orientation = 'vertical'`, `pill` is not applicable.
-       * @default 'default'
-       */
-      type?: 'default' | 'borderless';
-    }
-  | {
-      type: 'pill';
-      orientation?: 'horizontal';
-    };
+type TabsOverflowProps = {
+  /**
+   * Options that can be specified to deal with tabs overflowing the allotted space.
+   */
+  overflowOptions?: OverflowOptions;
+};
 
 export type TabsProps = {
   /**
@@ -186,7 +172,7 @@ export const Tabs = (props: TabsProps) => {
   }
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
-  if (props.type !== 'pill' && props.overflowOptions) {
+  if (props.overflowOptions) {
     overflowOptions = props.overflowOptions;
     props = { ...props };
     delete props.overflowOptions;
@@ -401,6 +387,46 @@ export const Tabs = (props: TabsProps) => {
     scrollToTab,
   ]);
 
+  const [scrollingPlacement, setScrollingPlacement] = React.useState('start');
+  const determineScrollingPlacement = React.useCallback(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const isVertical = orientation === 'vertical';
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
+    const totalTabsSpace = isVertical
+      ? ownerDoc.scrollHeight
+      : ownerDoc.scrollWidth;
+
+    if (visibleStart === 0) {
+      setScrollingPlacement('start');
+    } else if (visibleEnd === totalTabsSpace) {
+      setScrollingPlacement('end');
+    } else {
+      setScrollingPlacement('center');
+    }
+  }, [orientation]);
+
+  // check if overflow tabs are scrolled to far edges
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow) {
+      ownerDoc.removeEventListener('scroll', determineScrollingPlacement);
+      return;
+    }
+
+    ownerDoc.addEventListener('scroll', determineScrollingPlacement);
+  }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
+
   const onTabClick = React.useCallback(
     (index: number) => {
       if (onTabSelected) {
@@ -531,6 +557,7 @@ export const Tabs = (props: TabsProps) => {
           tabsClassName,
         )}
         data-iui-overflow={overflowOptions?.useOverflow}
+        data-iui-scroll-placement={scrollingPlacement}
         role='tablist'
         ref={refs}
         onKeyDown={onKeyDown}
