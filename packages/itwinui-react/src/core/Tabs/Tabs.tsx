@@ -376,7 +376,7 @@ export const Tabs = (props: TabsProps) => {
   );
 
   // scroll to active tab if it is not visible with overflow
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     const ownerDoc = tablistRef.current;
     if (
       ownerDoc !== null &&
@@ -396,6 +396,7 @@ export const Tabs = (props: TabsProps) => {
   }, [
     overflowOptions?.useOverflow,
     currentActiveIndex,
+    focusedIndex,
     orientation,
     scrollToTab,
   ]);
@@ -464,15 +465,9 @@ export const Tabs = (props: TabsProps) => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        if (
-          !(event.target as HTMLTextAreaElement).className.includes(
-            'iui-button',
-          )
-        ) {
-          event.preventDefault();
-          if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
-            onTabClick(focusedIndex);
-          }
+        event.preventDefault();
+        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
+          onTabClick(focusedIndex);
         }
         break;
       }
