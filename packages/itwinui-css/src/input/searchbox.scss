@@ -4,11 +4,11 @@
   width: var(--_iui-input-min-height);
   transition: width var(--iui-duration-3) ease;
   isolation: isolate;
-  justify-content: center;
+  overflow: hidden;
 
   &:where(:not([data-iui-expanded='true'])) {
     .iui-searchbox-expanded {
-      display: none;
+      visibility: hidden;
     }
   }
 
