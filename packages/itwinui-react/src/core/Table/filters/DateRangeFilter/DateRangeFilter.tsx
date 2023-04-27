@@ -88,6 +88,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   const [to, setTo] = React.useState<Date | undefined>(
     column.filterValue?.[1] ? new Date(column.filterValue?.[1]) : undefined,
   );
+
   const onToChange = React.useCallback((date?: Date) => {
     setTo((prevDate) => {
       if (prevDate || !date) {
@@ -125,6 +126,8 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         parseInput={parseInput}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
+        selectedDate={to}
+        isFromOrTo='from'
         setFocus
       />
       <DatePickerInput
@@ -135,6 +138,8 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         parseInput={parseInput}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
+        selectedDate={from}
+        isFromOrTo='to'
       />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}
