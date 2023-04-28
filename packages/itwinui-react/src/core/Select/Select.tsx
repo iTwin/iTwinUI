@@ -235,7 +235,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     onHide,
     popoverProps,
     multiple = false,
-    triggerProps: buttonProps,
+    triggerProps,
     ...rest
   } = props;
 
@@ -394,7 +394,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
-          {...buttonProps}
+          {...triggerProps}
           className={cx(
             'iui-select-button',
             {
@@ -402,7 +402,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
                 (!selectedItems || selectedItems.length === 0) && !!placeholder,
               'iui-disabled': disabled,
             },
-            buttonProps?.className,
+            triggerProps?.className,
           )}
         >
           {(!selectedItems || selectedItems.length === 0) && (
