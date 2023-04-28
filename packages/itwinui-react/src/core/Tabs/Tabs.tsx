@@ -302,6 +302,9 @@ export const Tabs = (props: TabsProps) => {
       return;
     }
 
+    const fadeBuffer = isVertical
+      ? ownerDoc.offsetHeight * 0.05
+      : ownerDoc.offsetWidth * 0.05;
     const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
     const visibleEnd = isVertical
       ? ownerDoc.scrollTop + ownerDoc.offsetHeight
@@ -311,9 +314,12 @@ export const Tabs = (props: TabsProps) => {
       ? activeTab.offsetTop + activeTab.offsetHeight
       : activeTab.offsetLeft + activeTab.offsetWidth;
 
-    if (tabStart > visibleStart && tabEnd < visibleEnd) {
+    if (
+      tabStart > visibleStart + fadeBuffer &&
+      tabEnd < visibleEnd - fadeBuffer
+    ) {
       return 0; // tab is visible
-    } else if (tabStart < visibleStart) {
+    } else if (tabStart < visibleStart + fadeBuffer) {
       return -1; // tab is before visible section
     } else {
       return 1; // tab is after visible section
@@ -344,12 +350,16 @@ export const Tabs = (props: TabsProps) => {
       let change = 0;
       let currentTime = 0;
       const increment = 20;
+      const fadeBuffer = isVertical
+        ? list.offsetHeight * 0.05
+        : list.offsetWidth * 0.05;
 
       if (tabPlacement < 0) {
         // if tab is before visible section
         change = isVertical
           ? activeTab.offsetTop - list.scrollTop
           : activeTab.offsetLeft - list.scrollLeft;
+        change -= fadeBuffer; // give some space so the active tab isn't covered by the fade
       } else {
         // tab is after visible section
         change = isVertical
@@ -359,6 +369,7 @@ export const Tabs = (props: TabsProps) => {
           : activeTab.offsetLeft -
             (list.scrollLeft + list.offsetWidth) +
             activeTab.offsetWidth;
+        change += fadeBuffer; // give some space so the active tab isn't covered by the fade
       }
 
       const animateScroll = () => {
