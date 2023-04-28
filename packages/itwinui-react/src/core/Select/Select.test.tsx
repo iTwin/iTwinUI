@@ -14,11 +14,10 @@ function assertSelect(
   { text = '', isPlaceholderVisible = false, hasIcon = false } = {},
 ) {
   expect(select).toBeTruthy();
-  expect(select.getAttribute('aria-expanded')).toEqual('false');
-  const selectButton = select.querySelector(
-    '.iui-select-button',
-  ) as HTMLElement;
+  const selectButton = select.querySelector('button') as HTMLElement;
   expect(selectButton).toBeTruthy();
+  expect(selectButton).toHaveAttribute('role', 'combobox');
+  expect(selectButton).toHaveAttribute('aria-expanded', 'false');
   expect(selectButton.classList.contains('iui-placeholder')).toBe(
     isPlaceholderVisible,
   );
@@ -130,7 +129,6 @@ it('should set focus on select and call onBlur', () => {
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
   expect(selectButton).toHaveFocus();
-  expect(selectButton.getAttribute('tabIndex')).toBe('0');
   expect(onBlur).not.toHaveBeenCalled();
 
   fireEvent.click(selectButton);
@@ -209,10 +207,10 @@ it('should respect visible prop', () => {
   assertMenu(document.querySelector('.iui-menu') as HTMLUListElement);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  expect(tippy).not.toBeVisible();
-
-  rerender(<Select options={options} popoverProps={{ visible: true }} />);
   expect(tippy).toBeVisible();
+
+  rerender(<Select options={options} popoverProps={{ visible: false }} />);
+  expect(tippy).not.toBeVisible();
 });
 
 it.each(['Enter', ' ', 'Spacebar'])(
