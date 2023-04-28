@@ -187,7 +187,6 @@ export const DisabledWithSelectedValue: Story<SelectProps<number>> = (args) => {
         value={value}
         onChange={setValue}
         placeholder={placeholder}
-        popoverProps={{ visible: true }}
         disabled
         {...rest}
       />
