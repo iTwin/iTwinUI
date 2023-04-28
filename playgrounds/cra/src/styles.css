@@ -6,10 +6,13 @@ body {
   margin: 0;
 }
 
-html, body, #root, .theme-provider {
-  height: 100%;
+.my-theme-toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
-.theme-provider {
+.my-app-wrapper {
+  height: 100dvh;
   padding: 2rem 1rem;
 }
