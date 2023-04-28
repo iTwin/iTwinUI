@@ -26,7 +26,7 @@ export default {
 export const Basic: StoryFn<SearchBoxProps> = () => {
   return (
     <Flex flexDirection='column'>
-      <SearchBox inputProps={{ placeholder: 'Basic search' }} />
+      <SearchBox disabled inputProps={{ placeholder: 'Basic search' }} />
       <SearchBox>
         <SearchBox.Button title='Search button' />
         <SearchBox.Input placeholder='Basic search with custom interactions' />
@@ -53,9 +53,9 @@ export const Basic: StoryFn<SearchBoxProps> = () => {
 export const Expandable: StoryFn<SearchBoxProps> = () => {
   return (
     <Flex flexDirection='column' alignItems='start'>
-      <SearchBox expandable />
+      <SearchBox expandable id='search-input' />
       <SearchBox expandable>
-        <SearchBox.Icon />
+        <SearchBox.CloseButton />
         <SearchBox.Input placeholder='Expandable search with custom interactions' />
         <Text
           isMuted
@@ -107,23 +107,15 @@ export const Small: StoryFn<SearchBoxProps> = () => {
 export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
   const [expanded, setExpanded] = React.useState(false);
 
-  const handleToggle = (value: boolean) => {
-    console.log('handling toggle', value);
+  const onToggle = (value: boolean) => {
     setExpanded(value);
   };
 
   return (
-    <SearchBox expandable isExpanded={expanded} onToggle={handleToggle}>
-      <SearchBox.CloseButton />
+    <SearchBox expandable isExpanded={expanded} onToggle={onToggle}>
       <SearchBox.Input placeholder='Test' />
-      <Text
-        isMuted
-        variant='body'
-        as='p'
-        style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
-      >
-        0/3
-      </Text>
+      <SearchBox.CloseButton />
+      <Divider orientation='vertical' />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />
       </IconButton>

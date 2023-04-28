@@ -12,7 +12,7 @@ describe('SearchBox', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(testName);
       if (testName !== 'Basic' && testName !== 'Small') {
-        cy.get('input').first().focus();
+        cy.get('button').first().click();
         cy.compareSnapshot(`${testName} (Open)`);
       }
     });

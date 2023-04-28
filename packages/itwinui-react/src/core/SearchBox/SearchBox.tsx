@@ -18,6 +18,7 @@ import type {
   IconProps,
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
+  InputFlexContainerProps,
 } from '../utils';
 import { IconButton } from '../Buttons/IconButton';
 import type { IconButtonProps } from '../Buttons/IconButton';
@@ -25,16 +26,34 @@ import '@itwin/itwinui-css/css/input.css';
 
 const SearchBoxContext = React.createContext<
   | {
+      /**
+       * Context prop for sizing subcomponents
+       */
       size?: 'small' | 'large';
+      /**
+       * Context prop for disabling subcomponents
+       */
+      disabled?: boolean;
       /**
        * Id to pass to input
        */
-      disabled?: boolean;
       inputId: string;
       setInputId: (inputId: string) => void;
+      /**
+       * Ref for input subcomponent
+       */
       inputRef: React.RefObject<HTMLInputElement>;
+      /**
+       * Ref for open button subcomponent
+       */
       openButtonRef: React.RefObject<HTMLButtonElement>;
+      /**
+       * Callback for closing expandable searchbox
+       */
       onClose?: () => void;
+      /**
+       * Callback for expanding searchbox
+       */
       onOpen?: () => void;
     }
   | undefined
@@ -44,35 +63,37 @@ const SearchBoxContext = React.createContext<
 
 type SearchBoxOwnProps = {
   /**
-   * Whether the searchbox is animated to expand.
+   * Whether the searchbox is expandable.
    * @default false
    */
   expandable?: boolean;
   /**
-   * Whether or not to show the search input.
-   * @default false
+   * Searchbox state toggle.
    */
   isExpanded?: boolean;
   /**
-   *
-   */
-  disabled?: boolean;
-  /**
-   *
-   * @param isExpanding
-   * @returns
+   * Function that is called on toggling (expand, collapse) searchbox.
    */
   onToggle?: (isExpanding: boolean) => void;
   /**
-   *
+   * Collapsed searchbox state.
+   * @default SearchBox.OpenButton
    */
   collapsedState?: React.ReactNode;
   /**
-   *
+   * Input props when using default searchbox.
    */
   inputProps?: React.ComponentPropsWithoutRef<'input'>;
   /**
-   * Modify size of the searchbox.
+   * Open button props when using default searchbox.
+   */
+  openButtonProps?: React.ComponentPropsWithoutRef<'button'>;
+  /**
+   * Close button props when using default searchbox.
+   */
+  closeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
+  /**
+   * Modify size of the searchbox and it's subcomponents.
    */
   size?: 'small' | 'large';
 };
@@ -89,6 +110,8 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     isExpanded,
     children,
     inputProps,
+    openButtonProps,
+    closeButtonProps,
     className,
     ...rest
   } = props;
@@ -143,13 +166,13 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         {expandable && (
           <>
             <div className='iui-searchbox-collapsed'>
-              {collapsedState ?? <SearchBoxOpenButton />}
+              {collapsedState ?? <SearchBoxOpenButton {...openButtonProps} />}
             </div>
             <div className='iui-searchbox-expanded'>
               {children ?? (
                 <>
                   <SearchBoxInput {...inputProps} />
-                  <SearchBoxCloseButton />
+                  <SearchBoxCloseButton {...closeButtonProps} />
                 </>
               )}
             </div>
@@ -158,11 +181,14 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
       </InputFlexContainer>
     </SearchBoxContext.Provider>
   );
-}) as PolymorphicForwardRefComponent<'div', SearchBoxOwnProps>;
+}) as PolymorphicForwardRefComponent<
+  'div',
+  SearchBoxOwnProps & InputFlexContainerProps
+>;
 
 export type SearchBoxProps = PolymorphicComponentProps<
   'div',
-  SearchBoxOwnProps
+  SearchBoxOwnProps & InputFlexContainerProps
 >;
 
 // ----------------------------------------------------------------------------
@@ -277,7 +303,7 @@ const SearchBoxCloseButton = React.forwardRef((props, ref) => {
   return (
     <SearchBoxButton
       ref={ref}
-      aria-label='Close'
+      aria-label='Close searchbox'
       size={size ?? sizeContext}
       disabled={disabledProp ?? disabled}
       onClick={(e) => {
@@ -319,7 +345,7 @@ const SearchBoxOpenButton = React.forwardRef((props, ref) => {
   return (
     <SearchBoxButton
       ref={useMergedRefs(ref, openButtonRef)}
-      aria-label='Expand'
+      aria-label='Expand searchbox'
       size={size ?? sizeContext}
       disabled={disabledProp ?? disabled}
       onClick={(e) => {
@@ -337,15 +363,33 @@ const SearchBoxOpenButton = React.forwardRef((props, ref) => {
 
 /**
  * Searchbox component.
- * Used for searches :)
  * @example
- *  </SearchBox>
+ *  <Searchbox inputProps={{ placeholder: 'Basic search' }}/>
+ *
+ * @example
+ * <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }}/>
  */
 export const SearchBox = Object.assign(SearchBoxComponent, {
+  /**
+   * Icon to be placed within Searchbox.
+   * @default Looking glass icon
+   */
   Icon: SearchBoxIcon,
+  /**
+   * Input to be placed within Searchbox
+   */
   Input: SearchBoxInput,
+  /**
+   * Button to be placed within Searchbox. Default has looking glass icon.
+   */
   Button: SearchBoxButton,
+  /**
+   * Close button for expandable Searchbox. Clicking on this button will collapse Searchbox.
+   */
   CloseButton: SearchBoxCloseButton,
+  /**
+   * Open button for expandable Searchbox. Clicking on this will expand Searchbox.
+   */
   OpenButton: SearchBoxOpenButton,
 });
 

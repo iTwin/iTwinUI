@@ -10,6 +10,7 @@
   align-items: center;
   background-color: var(--_iui-input-background-color);
   border-radius: var(--iui-border-radius-1);
+  border: 1px solid var(--_iui-input-border-color);
   color: var(--_iui-input-text-color);
   position: relative;
   height: var(--_iui-input-min-height);
@@ -25,15 +26,6 @@
       outline: 2px solid var(--_iui-input-accent-border-color);
       outline-offset: -2px;
     }
-  }
-
-  // Using before element to make content centered when using small widths
-  &::before {
-    content: '';
-    position: absolute;
-    border-radius: var(--iui-border-radius-1);
-    border: 1px solid var(--_iui-input-border-color);
-    inset: 0;
   }
 
   input {
@@ -60,9 +52,6 @@
 /// @arg status - must be one of: positive, negative, warning
 @mixin iui-flex-input-status($status) {
   --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
-
-  &::before {
-    border-bottom-width: var(--iui-size-3xs);
-    border-bottom-color: var(--_iui-input-accent-border-color);
-  }
+  border-bottom-width: var(--iui-size-3xs);
+  border-bottom-color: var(--_iui-input-accent-border-color);
 }
