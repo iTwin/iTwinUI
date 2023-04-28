@@ -260,6 +260,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const onHideHandler = React.useCallback(
     (instance: PopoverInstance) => {
       setIsOpen(false);
+      selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
       onHide?.(instance);
     },
     [onHide],
@@ -316,7 +317,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             return;
           }
           if (isSingleOnChange(onChange, multiple)) {
-            selectRef.current?.focus({ preventScroll: true });
             onChange?.(option.value);
             setIsOpen(false);
           } else {
