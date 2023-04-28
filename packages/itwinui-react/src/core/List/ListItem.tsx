@@ -20,19 +20,51 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     actionable = false,
     focused = false,
     className,
+    onClick,
     ...rest
   } = props;
 
   useTheme();
 
+  const [isActive, setIsActive] = React.useState(active);
+
+  const onClickEvents = (
+    e:
+      | React.MouseEvent<HTMLLIElement, MouseEvent>
+      | React.KeyboardEvent<HTMLLIElement>,
+  ) => {
+    if (actionable) {
+      onClick?.(e);
+      setIsActive(!isActive);
+    }
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar'
+    ) {
+      !disabled && onClickEvents(event);
+      event.preventDefault();
+    }
+  };
+
   return (
     <Element
       className={cx('iui-list-item', className)}
-      data-iui-active={active ? 'true' : undefined}
+      data-iui-active={isActive ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
       data-iui-size={size === 'large' ? 'large' : undefined}
       data-iui-actionable={actionable ? 'true' : undefined}
       data-iui-focused={focused ? 'true' : undefined}
+      tabIndex={disabled ? undefined : -1}
+      onKeyDown={onKeyDown}
+      onClick={onClickEvents}
       ref={ref}
       {...rest}
     />
@@ -66,6 +98,10 @@ type ListItemOwnProps = {
    * This prop is useful for custom focus management (e.g. using `aria-activedescendant`).
    */
   focused?: boolean;
+  /**
+   * Callback function that handles click and keyboard actions.
+   */
+  onClick?: (value?: unknown) => void;
 };
 
 // ----------------------------------------------------------------------------

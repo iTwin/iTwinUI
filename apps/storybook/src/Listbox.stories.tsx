@@ -31,12 +31,12 @@ export const Basic: Story<ListboxProps> = (args) => {
     <Listbox {...args}>
       <Listbox.Area>
         <List role={'listbox'}>
-          <ListItem>Item 1</ListItem>
-          <ListItem>Item 2</ListItem>
-          <ListItem>Item 3</ListItem>
-          <ListItem>Item 4</ListItem>
-          <ListItem>Item 5</ListItem>
-          <ListItem>Item 6</ListItem>
+          <ListItem actionable>Item 1</ListItem>
+          <ListItem actionable>Item 2</ListItem>
+          <ListItem actionable>Item 3</ListItem>
+          <ListItem actionable>Item 4</ListItem>
+          <ListItem actionable>Item 5</ListItem>
+          <ListItem actionable>Item 6</ListItem>
         </List>
       </Listbox.Area>
     </Listbox>
@@ -50,12 +50,12 @@ export const WithLabel: Story<ListboxProps> = (args) => {
       <Listbox.Area>
         <Listbox.Label>Options</Listbox.Label>
         <List role={'listbox'}>
-          <ListItem>Option 1</ListItem>
-          <ListItem>Option 2</ListItem>
-          <ListItem>Option 3</ListItem>
-          <ListItem>Option 4</ListItem>
-          <ListItem>Option 5</ListItem>
-          <ListItem>Option 6</ListItem>
+          <ListItem actionable>Option 1</ListItem>
+          <ListItem actionable>Option 2</ListItem>
+          <ListItem actionable>Option 3</ListItem>
+          <ListItem actionable>Option 4</ListItem>
+          <ListItem actionable>Option 5</ListItem>
+          <ListItem actionable>Option 6</ListItem>
         </List>
       </Listbox.Area>
     </Listbox>
@@ -69,12 +69,12 @@ export const WithToolbar: Story<ListboxProps> = (args) => {
       <Listbox.Area>
         <Listbox.Label>Options</Listbox.Label>
         <List role={'listbox'}>
-          <ListItem>Option 1</ListItem>
-          <ListItem>Option 2</ListItem>
-          <ListItem>Option 3</ListItem>
-          <ListItem>Option 4</ListItem>
-          <ListItem>Option 5</ListItem>
-          <ListItem>Option 6</ListItem>
+          <ListItem actionable>Option 1</ListItem>
+          <ListItem actionable>Option 2</ListItem>
+          <ListItem actionable>Option 3</ListItem>
+          <ListItem actionable>Option 4</ListItem>
+          <ListItem actionable>Option 5</ListItem>
+          <ListItem actionable>Option 6</ListItem>
         </List>
       </Listbox.Area>
       <Listbox.Toolbar>

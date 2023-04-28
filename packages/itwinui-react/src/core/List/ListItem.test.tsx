@@ -3,15 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { ListItem } from './ListItem';
+import userEvent from '@testing-library/user-event';
 
 it('should respect actionable prop', () => {
+  const mockedOnClick = jest.fn();
   render(<ListItem actionable>Item</ListItem>);
-  expect(screen.getByRole('listitem')).toHaveAttribute(
-    'data-iui-actionable',
-    'true',
-  );
+  const listItem = screen.getByRole('listitem');
+  expect(listItem).toHaveAttribute('data-iui-actionable', 'true');
+  fireEvent.click(listItem);
+  expect(mockedOnClick).toHaveBeenCalledTimes(0);
 });
 
 it('should respect active prop', () => {
@@ -31,11 +33,12 @@ it('should respect focused prop', () => {
 });
 
 it('should respect disabled prop', () => {
+  const mockedOnClick = jest.fn();
   render(<ListItem disabled>Item</ListItem>);
-  expect(screen.getByRole('listitem')).toHaveAttribute(
-    'data-iui-disabled',
-    'true',
-  );
+  const listItem = screen.getByRole('listitem');
+  expect(listItem).toHaveAttribute('data-iui-disabled', 'true');
+  fireEvent.click(listItem);
+  expect(mockedOnClick).toHaveBeenCalledTimes(0);
 });
 
 it('should respect size prop', () => {
@@ -71,4 +74,24 @@ it('should respect other props', () => {
     </ListItem>,
   );
   expect(container.querySelector('div')).toHaveAttribute('role', 'option');
+});
+
+it('should handle key presses', async () => {
+  const mockedOnClick = jest.fn();
+  render(
+    <ListItem actionable onClick={mockedOnClick}>
+      Item
+    </ListItem>,
+  );
+
+  const listItem = screen.getByRole('listitem');
+  listItem.focus();
+
+  // click
+  await userEvent.keyboard('{Enter}');
+  expect(mockedOnClick).toHaveBeenCalledTimes(1);
+  await userEvent.keyboard(' ');
+  expect(mockedOnClick).toHaveBeenCalledTimes(2);
+  await userEvent.keyboard('{Spacebar}');
+  expect(mockedOnClick).toHaveBeenCalledTimes(3);
 });
