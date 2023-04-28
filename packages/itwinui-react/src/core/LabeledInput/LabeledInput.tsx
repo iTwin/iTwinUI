@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Input, InputProps } from '../Input/Input';
-import { StatusIconMap, useTheme, InputContainer } from '../utils';
+import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
 import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledInputProps = {
@@ -61,6 +61,8 @@ export type LabeledInputProps = {
  */
 export const LabeledInput = React.forwardRef(
   (props: LabeledInputProps, ref: React.RefObject<HTMLInputElement>) => {
+    const uid = useId();
+
     const {
       className,
       disabled = false,
@@ -74,6 +76,7 @@ export const LabeledInput = React.forwardRef(
       displayStyle = 'default',
       iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
       required = false,
+      id = uid,
       ...rest
     } = props;
 
@@ -83,7 +86,6 @@ export const LabeledInput = React.forwardRef(
 
     return (
       <InputContainer
-        as='label'
         label={label}
         disabled={disabled}
         required={required}
@@ -94,6 +96,7 @@ export const LabeledInput = React.forwardRef(
         isIconInline={iconDisplayStyle === 'inline'}
         className={className}
         style={style}
+        inputId={id}
       >
         <Input
           disabled={disabled}
@@ -101,6 +104,7 @@ export const LabeledInput = React.forwardRef(
           style={inputStyle}
           required={required}
           ref={ref}
+          id={id}
           {...rest}
         />
       </InputContainer>
