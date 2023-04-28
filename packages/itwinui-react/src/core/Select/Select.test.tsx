@@ -14,9 +14,8 @@ function assertSelect(
   { text = '', isPlaceholderVisible = false, hasIcon = false } = {},
 ) {
   expect(select).toBeTruthy();
-  const selectButton = select.querySelector('button') as HTMLElement;
+  const selectButton = select.querySelector('[role=combobox]') as HTMLElement;
   expect(selectButton).toBeTruthy();
-  expect(selectButton).toHaveAttribute('role', 'combobox');
   expect(selectButton).toHaveAttribute('aria-expanded', 'false');
   expect(selectButton.classList.contains('iui-placeholder')).toBe(
     isPlaceholderVisible,
@@ -113,7 +112,7 @@ it('should render disabled select', async () => {
   expect(selectButton).toBeTruthy();
   await userEvent.click(selectButton);
   expect(mockedFn).not.toHaveBeenCalled();
-  expect(selectButton.getAttribute('tabIndex')).toBeNull();
+  expect(selectButton.getAttribute('tabIndex')).toBe('0');
   fireEvent.keyDown(selectButton, 'Spacebar');
   expect(document.querySelector('.iui-menu')).toBeNull();
 });
@@ -128,6 +127,7 @@ it('should set focus on select and call onBlur', () => {
     '.iui-select-button',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
+  expect(selectButton.getAttribute('tabIndex')).toBe('0');
   expect(selectButton).toHaveFocus();
   expect(onBlur).not.toHaveBeenCalled();
 

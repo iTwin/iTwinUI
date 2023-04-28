@@ -92,13 +92,15 @@ export const LabeledSelect = <T,>(
     selectClassName,
     selectStyle,
     required = false,
-    buttonProps,
+    triggerProps,
     ...rest
   } = props;
 
   useTheme();
 
-  const labelId = useId();
+  const baseId = useId();
+  const labelId = `${baseId}-label`;
+  const triggerId = triggerProps?.id ?? `${baseId}-button`;
 
   const icon = () => {
     if (svgIcon) {
@@ -128,7 +130,11 @@ export const LabeledSelect = <T,>(
         className={selectClassName}
         style={selectStyle}
         {...rest}
-        buttonProps={{ 'aria-labelledby': labelId, ...buttonProps }}
+        triggerProps={{
+          id: triggerId,
+          'aria-labelledby': `${labelId} ${triggerId}`,
+          ...triggerProps,
+        }}
       />
     </InputContainer>
   );

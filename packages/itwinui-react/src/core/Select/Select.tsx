@@ -157,7 +157,7 @@ export type SelectProps<T> = {
   /**
    * Props to pass to the select button (trigger) element.
    */
-  buttonProps?: React.ComponentPropsWithoutRef<'button'>;
+  triggerProps?: React.ComponentPropsWithoutRef<'div'>;
 } & SelectMultipleTypeProps<T> &
   Pick<PopoverProps, 'onShow' | 'onHide'> &
   Omit<
@@ -235,7 +235,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     onHide,
     popoverProps,
     multiple = false,
-    buttonProps,
+    triggerProps: buttonProps,
     ...rest
   } = props;
 
@@ -246,7 +246,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const [minWidth, setMinWidth] = React.useState(0);
 
-  const selectRef = React.useRef<HTMLButtonElement>(null);
+  const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
   const onShowHandler = React.useCallback(
@@ -382,8 +382,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           }
         }}
       >
-        <button
-          type='button'
+        <div
+          tabIndex={0}
           role='combobox'
           ref={selectRef}
           data-iui-size={size}
@@ -426,9 +426,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               }
             />
           )}
-        </button>
+        </div>
       </Popover>
       <span
+        aria-hidden
         ref={toggleButtonRef}
         className={cx('iui-end-icon', {
           'iui-actionable': !disabled,
@@ -437,7 +438,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         })}
         onClick={() => !disabled && setIsOpen((o) => !o)}
       >
-        <SvgCaretDownSmall aria-hidden />
+        <SvgCaretDownSmall />
       </span>
     </div>
   );
