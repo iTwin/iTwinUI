@@ -154,6 +154,9 @@ export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 
 export { default as SelectMainExample } from './Select.main';
+export { default as SelectStatusesExample } from './Select.statuses';
+export { default as SelectTruncateExample } from './Select.truncate';
+export { default as SelectIconExample } from './Select.icon';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 
