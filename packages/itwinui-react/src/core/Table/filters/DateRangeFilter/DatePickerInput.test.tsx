@@ -127,3 +127,42 @@ it('should call onChange with undefined when input field is cleared', async () =
   fireEvent.change(input, { target: { value: '' } });
   expect(onChange).toHaveBeenNthCalledWith(2, undefined);
 });
+
+it('should disable dates before "from" date when using "to" date picker', async () => {
+  const fromDate = new Date(2023, 3, 22);
+  const onClick = jest.fn();
+  const { container, getByText } = renderComponent({
+    isFromOrTo: 'to',
+    selectedDate: fromDate,
+  });
+
+  const iconButton = container.querySelector('button') as HTMLButtonElement;
+  expect(iconButton).toBeTruthy();
+
+  await userEvent.click(iconButton);
+  const day12 = getByText('12');
+  await userEvent.click(day12);
+  expect(onClick).not.toHaveBeenCalled();
+});
+
+it('should disable dates after "to" date when using "from" date picker', async () => {
+  const toDate = new Date(2023, 3, 8);
+  const onClick = jest.fn();
+  const { container, getByText } = renderComponent({
+    isFromOrTo: 'from',
+    selectedDate: toDate,
+  });
+
+  const iconButton = container.querySelector(
+    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
+  ) as HTMLButtonElement;
+  expect(iconButton).toBeTruthy();
+
+  await userEvent.click(iconButton);
+  const calendar = container.querySelector('.iui-date-picker');
+  expect(calendar).toBeTruthy();
+
+  const day12 = getByText('12');
+  await userEvent.click(day12);
+  expect(onClick).not.toHaveBeenCalled();
+});
