@@ -5,12 +5,7 @@
 import React from 'react';
 import { Input, InputProps } from '../Input';
 import { SelectTag } from '../Select/SelectTag';
-import {
-  useSafeContext,
-  useMergedRefs,
-  useContainerWidth,
-  VisuallyHidden,
-} from '../utils';
+import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
 import {
   ComboBoxStateContext,
@@ -233,6 +228,7 @@ export const ComboBoxInput = React.forwardRef(
           autoCapitalize='none'
           autoCorrect='off'
           style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+          aria-describedby={multiple ? `${id}-selected-live` : undefined}
           {...rest}
         />
 
@@ -243,10 +239,8 @@ export const ComboBoxInput = React.forwardRef(
               selectedItems={selectedItems.map((item) => (
                 <SelectTag key={item.label} label={item.label} />
               ))}
+              id={`${id}-selected-live`}
             />
-            <VisuallyHidden as='div' aria-live='polite'>
-              {selectedItems?.map((item) => item.label).join(',')}
-            </VisuallyHidden>
           </>
         ) : null}
       </>

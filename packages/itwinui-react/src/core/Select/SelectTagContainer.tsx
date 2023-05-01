@@ -28,6 +28,8 @@ export const SelectTagContainer = React.forwardRef(
       <div
         className={cx('iui-select-tag-container', className)}
         ref={refs}
+        aria-live='polite'
+        key={tags.length} // key on the length so that the whole container is replaced each time
         {...rest}
       >
         <>
