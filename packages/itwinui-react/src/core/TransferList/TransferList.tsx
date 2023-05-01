@@ -8,9 +8,12 @@ import {
   CommonProps,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
+  getFocusableElements,
+  useMergedRefs,
   useTheme,
 } from '../utils';
 import '@itwin/itwinui-css/css/transfer-list.css';
+import { List, ListItem, ListItemProps, ListProps } from '../List';
 
 // ----------------------------------------------------------------------------
 // TransferList.Area component
@@ -33,6 +36,134 @@ const TransferListArea = React.forwardRef((props, ref) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListAreaOwnProps>;
+
+// ----------------------------------------------------------------------------
+// TransferList.List component
+
+type TransferListListOwnProps = ListProps; // eslint-disable-line @typescript-eslint/ban-types
+
+export type TransferListListProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, TransferListListOwnProps>;
+
+const TransferListList = React.forwardRef((props, ref) => {
+  const { as: Element = 'ul', children, ...rest } = props;
+
+  const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
+  const listRef = React.useRef<HTMLUListElement>(null);
+  const refs = useMergedRefs(listRef, ref);
+
+  const getFocusableNodes = React.useCallback(() => {
+    const focusableItems = getFocusableElements(listRef.current);
+    // Filter out focusable elements that are inside each list item, e.g. checkbox, anchor
+    return focusableItems.filter(
+      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+    ) as HTMLElement[];
+  }, []);
+
+  React.useEffect(() => {
+    const items = getFocusableNodes();
+    if (focusedIndex != null) {
+      (items?.[focusedIndex] as HTMLLIElement)?.focus();
+      return;
+    }
+  }, [focusedIndex, getFocusableNodes]);
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
+    const items = getFocusableNodes();
+    if (!items?.length) {
+      return;
+    }
+
+    const currentIndex = focusedIndex ?? 0;
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
+        event.preventDefault();
+        event.stopPropagation();
+        break;
+      }
+      case 'ArrowUp': {
+        setFocusedIndex(Math.max(currentIndex - 1, 0));
+        event.preventDefault();
+        event.stopPropagation();
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  return (
+    <List
+      as={Element}
+      onKeyDown={onKeyDown}
+      role='listbox'
+      ref={refs}
+      {...rest}
+    >
+      {children}
+    </List>
+  );
+}) as PolymorphicForwardRefComponent<'ul', TransferListListOwnProps>;
+
+// ----------------------------------------------------------------------------
+// TransferList.ListItem component
+
+type TransferListListItemOwnProps = ListItemProps;
+
+export type TransferListListItemProps<T extends React.ElementType = 'li'> =
+  PolymorphicComponentProps<T, TransferListListItemOwnProps>;
+
+const TransferListListItem = React.forwardRef((props, ref) => {
+  const { actionable, disabled, onClick, children, active, ...rest } = props;
+
+  const [isActive, setIsActive] = React.useState(active);
+
+  console.log('isActive', isActive);
+
+  const onClickEvents = (
+    e:
+      | React.MouseEvent<HTMLLIElement, MouseEvent>
+      | React.KeyboardEvent<HTMLLIElement>,
+  ) => {
+    if (actionable) {
+      onClick?.(e);
+      setIsActive(!isActive);
+    }
+  };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
+    if (
+      event.key === 'Enter' ||
+      event.key === ' ' ||
+      event.key === 'Spacebar'
+    ) {
+      !disabled && onClickEvents(event);
+      event.preventDefault();
+    }
+  };
+
+  return (
+    <ListItem
+      ref={ref}
+      onClick={onClickEvents}
+      onKeyDown={onKeyDown}
+      active={isActive}
+      {...rest}
+    >
+      {children}
+    </ListItem>
+  );
+}) as PolymorphicForwardRefComponent<'li', TransferListListItemOwnProps>;
 
 // ----------------------------------------------------------------------------
 // TransferList.Label component
@@ -118,6 +249,14 @@ export const TransferList = Object.assign(
      * 	TransferList area subcomponent
      */
     Area: TransferListArea,
+    /**
+     * 	TransferList list subcomponent
+     */
+    List: TransferListList,
+    /**
+     * 	TransferList list item subcomponent
+     */
+    ListItem: TransferListListItem,
     /**
      * 	TransferList label subcomponent
      */

@@ -30,14 +30,14 @@ export const Basic: Story<TransferListProps> = (args) => {
   return (
     <TransferList {...args}>
       <TransferList.Area>
-        <List role={'listbox'}>
-          <ListItem actionable>Item 1</ListItem>
-          <ListItem actionable>Item 2</ListItem>
-          <ListItem actionable>Item 3</ListItem>
-          <ListItem actionable>Item 4</ListItem>
-          <ListItem actionable>Item 5</ListItem>
-          <ListItem actionable>Item 6</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem actionable>Item 1</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 2</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 3</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 4</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 5</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 6</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>
   );
@@ -49,14 +49,14 @@ export const WithLabel: Story<TransferListProps> = (args) => {
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem actionable>Option 1</ListItem>
-          <ListItem actionable>Option 2</ListItem>
-          <ListItem actionable>Option 3</ListItem>
-          <ListItem actionable>Option 4</ListItem>
-          <ListItem actionable>Option 5</ListItem>
-          <ListItem actionable>Option 6</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem actionable>Option 1</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 2</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 3</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 4</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 5</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 6</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>
   );
@@ -68,14 +68,14 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem actionable>Option 1</ListItem>
-          <ListItem actionable>Option 2</ListItem>
-          <ListItem actionable>Option 3</ListItem>
-          <ListItem actionable>Option 4</ListItem>
-          <ListItem actionable>Option 5</ListItem>
-          <ListItem actionable>Option 6</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem actionable>Item 1</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 2</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 3</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 4</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 5</TransferList.ListItem>
+          <TransferList.ListItem actionable>Item 6</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
       <TransferList.Toolbar>
         <IconButton styleType={'borderless'}>

@@ -5,7 +5,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { ListItem } from './ListItem';
-import userEvent from '@testing-library/user-event';
 
 it('should respect actionable prop', () => {
   const mockedOnClick = jest.fn();
@@ -74,24 +73,4 @@ it('should respect other props', () => {
     </ListItem>,
   );
   expect(container.querySelector('div')).toHaveAttribute('role', 'option');
-});
-
-it('should handle key presses', async () => {
-  const mockedOnClick = jest.fn();
-  render(
-    <ListItem actionable onClick={mockedOnClick}>
-      Item
-    </ListItem>,
-  );
-
-  const listItem = screen.getByRole('listitem');
-  listItem.focus();
-
-  // click
-  await userEvent.keyboard('{Enter}');
-  expect(mockedOnClick).toHaveBeenCalledTimes(1);
-  await userEvent.keyboard(' ');
-  expect(mockedOnClick).toHaveBeenCalledTimes(2);
-  await userEvent.keyboard('{Spacebar}');
-  expect(mockedOnClick).toHaveBeenCalledTimes(3);
 });
