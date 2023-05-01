@@ -236,7 +236,7 @@ export const ComboBoxInput = React.forwardRef(
           {...rest}
         />
 
-        {multiple && selectedItems && (
+        {multiple && selectedItems ? (
           <>
             <ComboBoxMultipleContainer
               ref={tagContainerWidthRef}
@@ -248,7 +248,7 @@ export const ComboBoxInput = React.forwardRef(
               {selectedItems?.map((item) => item.label).join(',')}
             </VisuallyHidden>
           </>
-        )}
+        ) : null}
       </>
     );
   },
