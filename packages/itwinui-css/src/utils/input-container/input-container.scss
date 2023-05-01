@@ -128,6 +128,7 @@
   @include iui-input-label-styling;
   grid-area: label;
   align-self: center;
+  cursor: pointer;
 }
 
 /// Independent label outside the grid.

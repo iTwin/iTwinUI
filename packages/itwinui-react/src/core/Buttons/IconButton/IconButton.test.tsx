@@ -11,13 +11,16 @@ import { IconButton } from './IconButton';
 it('renders icon button correctly', () => {
   const onClickMock = jest.fn();
   const { container } = render(
-    <IconButton onClick={onClickMock}>
+    <IconButton onClick={onClickMock} label='More options'>
       <SvgMore />
     </IconButton>,
   );
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
+  expect(button).toHaveAccessibleName('More options');
+  expect(button).not.toHaveAttribute('aria-pressed');
+
   button.click();
   expect(onClickMock).toHaveBeenCalled();
   const icon = container.querySelector('.iui-button-icon');
@@ -33,8 +36,10 @@ it('renders active icon button correctly', () => {
   );
 
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
-  expect(button).toHaveAttribute('data-iui-active', 'true');
   expect(button).toBeTruthy();
+  expect(button).toHaveAttribute('data-iui-active', 'true');
+  expect(button).toHaveAttribute('aria-pressed', 'true');
+
   button.click();
   expect(onClickMock).toHaveBeenCalled();
   const icon = container.querySelector('.iui-button-icon');
