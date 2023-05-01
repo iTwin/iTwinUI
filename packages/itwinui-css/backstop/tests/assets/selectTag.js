@@ -16,7 +16,7 @@ class SelectTag extends HTMLElement {
     const dismissible = this.hasAttribute('dismissible');
 
     const innerHtml = `
-    <li
+    <span
       class="iui-select-tag"
     >
       <span
@@ -32,7 +32,7 @@ class SelectTag extends HTMLElement {
           </button>`
           : ''
       }
-    </li>
+    </span>
     `;
     this.parentElement.insertAdjacentHTML('beforeend', innerHtml);
     this.remove();
