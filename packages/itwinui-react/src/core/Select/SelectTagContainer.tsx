@@ -33,7 +33,7 @@ export const SelectTagContainer = React.forwardRef(
         {...rest}
       >
         <React.Fragment
-          key={tags.length} // key on the length so that the whole container is replaced each time
+          key={tags.length} // key on the length so that the whole contents are replaced each time
         >
           {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
           {visibleCount < tags.length && (
