@@ -3,16 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ListItem } from './ListItem';
 
 it('should respect actionable prop', () => {
-  const mockedOnClick = jest.fn();
   render(<ListItem actionable>Item</ListItem>);
-  const listItem = screen.getByRole('listitem');
-  expect(listItem).toHaveAttribute('data-iui-actionable', 'true');
-  fireEvent.click(listItem);
-  expect(mockedOnClick).toHaveBeenCalledTimes(0);
+  expect(screen.getByRole('listitem')).toHaveAttribute(
+    'data-iui-actionable',
+    'true',
+  );
 });
 
 it('should respect active prop', () => {
@@ -32,12 +31,11 @@ it('should respect focused prop', () => {
 });
 
 it('should respect disabled prop', () => {
-  const mockedOnClick = jest.fn();
   render(<ListItem disabled>Item</ListItem>);
-  const listItem = screen.getByRole('listitem');
-  expect(listItem).toHaveAttribute('data-iui-disabled', 'true');
-  fireEvent.click(listItem);
-  expect(mockedOnClick).toHaveBeenCalledTimes(0);
+  expect(screen.getByRole('listitem')).toHaveAttribute(
+    'data-iui-disabled',
+    'true',
+  );
 });
 
 it('should respect size prop', () => {
