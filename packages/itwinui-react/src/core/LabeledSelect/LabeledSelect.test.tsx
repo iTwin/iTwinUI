@@ -45,12 +45,9 @@ it('should render correctly in its most basic state', () => {
 it('should have correct accessible name', () => {
   const { container } = renderComponent();
   const label = container.querySelector('.iui-label') as HTMLElement;
-  const selectButton = container.querySelector(
-    '[role=combobox]',
-  ) as HTMLElement;
-  expect(selectButton).toHaveAttribute(
+  expect(container.querySelector('[role=combobox]')).toHaveAttribute(
     'aria-labelledby',
-    `${label.id} ${selectButton.id}`,
+    `${label.id}`,
   );
 });
 
