@@ -67,10 +67,6 @@ type ListItemOwnProps = {
    * This prop is useful for custom focus management (e.g. using `aria-activedescendant`).
    */
   focused?: boolean;
-  /**
-   * Callback function that handles click and keyboard actions.
-   */
-  onClick?: (value?: unknown) => void;
 };
 
 // ----------------------------------------------------------------------------

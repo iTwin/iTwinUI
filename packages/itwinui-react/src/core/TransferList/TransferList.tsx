@@ -114,7 +114,12 @@ const TransferListList = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // TransferList.ListItem component
 
-type TransferListListItemOwnProps = ListItemProps;
+type TransferListListItemOwnProps = {
+  /**
+   * Callback function that handles click and keyboard actions.
+   */
+  onClick?: (value?: unknown) => void;
+} & ListItemProps;
 
 export type TransferListListItemProps<T extends React.ElementType = 'li'> =
   PolymorphicComponentProps<T, TransferListListItemOwnProps>;
@@ -123,8 +128,6 @@ const TransferListListItem = React.forwardRef((props, ref) => {
   const { actionable, disabled, onClick, children, active, ...rest } = props;
 
   const [isActive, setIsActive] = React.useState(active);
-
-  console.log('isActive', isActive);
 
   const onClickEvents = (
     e:
