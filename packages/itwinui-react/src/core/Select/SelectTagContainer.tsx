@@ -73,7 +73,7 @@ const useClearAfterDelay = (tags?: React.ReactNode) => {
       getWindow()?.clearTimeout(timeoutRef.current);
     }
 
-    setTagsThatWillClear(tags);
+    setTagsThatWillClear(<div>{tags}</div>);
 
     timeoutRef.current = getWindow()?.setTimeout(() => {
       setTagsThatWillClear(null);
