@@ -98,9 +98,7 @@ export const LabeledSelect = <T,>(
 
   useTheme();
 
-  const baseId = useId();
-  const labelId = `${baseId}-label`;
-  const triggerId = triggerProps?.id ?? `${baseId}-button`;
+  const labelId = `${useId()}-label`;
 
   const icon = () => {
     if (svgIcon) {
@@ -131,8 +129,7 @@ export const LabeledSelect = <T,>(
         style={selectStyle}
         {...rest}
         triggerProps={{
-          id: triggerId,
-          'aria-labelledby': `${labelId} ${triggerId}`,
+          'aria-labelledby': labelId,
           ...triggerProps,
         }}
       />
