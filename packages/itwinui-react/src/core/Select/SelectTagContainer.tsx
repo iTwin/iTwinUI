@@ -30,15 +30,16 @@ export const SelectTagContainer = React.forwardRef(
         ref={refs}
         aria-live='polite'
         aria-atomic='true'
-        key={tags.length} // key on the length so that the whole container is replaced each time
         {...rest}
       >
-        <>
+        <React.Fragment
+          key={tags.length} // key on the length so that the whole container is replaced each time
+        >
           {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
           {visibleCount < tags.length && (
             <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
           )}
-        </>
+        </React.Fragment>
       </div>
     );
   },
