@@ -128,6 +128,7 @@ export { default as InformationPanelMainExample } from './InformationPanel.main'
 
 export { default as InputGroupToggleSwitchExample } from './InputGroup.toggleSwitch';
 export { default as InputGroupCheckboxGroupExample } from './InputGroup.checkboxGroup';
+export { default as InputGroupRadioGroupExample } from './InputGroup.radioGroup';
 
 export { default as InputMainExample } from './Input.main';
 export { default as InputSizesExample } from './Input.sizes';
