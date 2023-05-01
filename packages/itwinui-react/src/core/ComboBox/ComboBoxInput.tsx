@@ -232,11 +232,11 @@ export const ComboBoxInput = React.forwardRef(
           {...rest}
         />
 
-        {multiple && selectedItems ? (
+        {multiple ? (
           <>
             <ComboBoxMultipleContainer
               ref={tagContainerWidthRef}
-              selectedItems={selectedItems.map((item) => (
+              selectedItems={selectedItems?.map((item) => (
                 <SelectTag key={item.label} label={item.label} />
               ))}
               id={`${id}-selected-live`}
