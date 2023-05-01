@@ -5,8 +5,8 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
-  Listbox,
-  ListboxProps,
+  TransferList,
+  TransferListProps,
   List,
   ListItem,
   IconButton,
@@ -18,18 +18,18 @@ import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
 import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
 
 export default {
-  component: Listbox,
+  component: TransferList,
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
   },
-  title: 'Core/Listbox',
-} as Meta<ListboxProps>;
+  title: 'Core/TransferList',
+} as Meta<TransferListProps>;
 
-export const Basic: Story<ListboxProps> = (args) => {
+export const Basic: Story<TransferListProps> = (args) => {
   return (
-    <Listbox {...args}>
-      <Listbox.Area>
+    <TransferList {...args}>
+      <TransferList.Area>
         <List role={'listbox'}>
           <ListItem actionable>Item 1</ListItem>
           <ListItem actionable>Item 2</ListItem>
@@ -38,17 +38,17 @@ export const Basic: Story<ListboxProps> = (args) => {
           <ListItem actionable>Item 5</ListItem>
           <ListItem actionable>Item 6</ListItem>
         </List>
-      </Listbox.Area>
-    </Listbox>
+      </TransferList.Area>
+    </TransferList>
   );
 };
 Basic.args = {};
 
-export const WithLabel: Story<ListboxProps> = (args) => {
+export const WithLabel: Story<TransferListProps> = (args) => {
   return (
-    <Listbox {...args}>
-      <Listbox.Area>
-        <Listbox.Label>Options</Listbox.Label>
+    <TransferList {...args}>
+      <TransferList.Area>
+        <TransferList.Label>Options</TransferList.Label>
         <List role={'listbox'}>
           <ListItem actionable>Option 1</ListItem>
           <ListItem actionable>Option 2</ListItem>
@@ -57,17 +57,17 @@ export const WithLabel: Story<ListboxProps> = (args) => {
           <ListItem actionable>Option 5</ListItem>
           <ListItem actionable>Option 6</ListItem>
         </List>
-      </Listbox.Area>
-    </Listbox>
+      </TransferList.Area>
+    </TransferList>
   );
 };
 WithLabel.args = {};
 
-export const WithToolbar: Story<ListboxProps> = (args) => {
+export const WithToolbar: Story<TransferListProps> = (args) => {
   return (
-    <Listbox {...args}>
-      <Listbox.Area>
-        <Listbox.Label>Options</Listbox.Label>
+    <TransferList {...args}>
+      <TransferList.Area>
+        <TransferList.Label>Options</TransferList.Label>
         <List role={'listbox'}>
           <ListItem actionable>Option 1</ListItem>
           <ListItem actionable>Option 2</ListItem>
@@ -76,8 +76,8 @@ export const WithToolbar: Story<ListboxProps> = (args) => {
           <ListItem actionable>Option 5</ListItem>
           <ListItem actionable>Option 6</ListItem>
         </List>
-      </Listbox.Area>
-      <Listbox.Toolbar>
+      </TransferList.Area>
+      <TransferList.Toolbar>
         <IconButton styleType={'borderless'}>
           <SvgChevronUp />
         </IconButton>
@@ -90,14 +90,14 @@ export const WithToolbar: Story<ListboxProps> = (args) => {
         <IconButton styleType={'borderless'}>
           <SvgChevronRight />
         </IconButton>
-      </Listbox.Toolbar>
-      <Listbox.Area>
-        <Listbox.Label>Applied</Listbox.Label>
+      </TransferList.Toolbar>
+      <TransferList.Area>
+        <TransferList.Label>Applied</TransferList.Label>
         <List role={'listbox'}>
           <ListItem>Option 7</ListItem>
         </List>
-      </Listbox.Area>
-    </Listbox>
+      </TransferList.Area>
+    </TransferList>
   );
 };
 WithToolbar.args = {};

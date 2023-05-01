@@ -2,17 +2,17 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @import '../utils/input-container/input-container';
 
-@mixin iui-listbox-wrapper {
+@mixin iui-transfer-list-wrapper {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   column-gap: var(--iui-size-xs);
 }
 
-@mixin iui-listbox-label {
+@mixin iui-transfer-list-label {
   @include iui-input-label-styling;
 }
 
-@mixin iui-listbox($area: null) {
+@mixin iui-transfer-list($area: null) {
   display: flex;
   flex-direction: column;
   flex: 1;

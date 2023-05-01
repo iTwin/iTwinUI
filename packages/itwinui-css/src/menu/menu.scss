@@ -188,7 +188,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 }
 
-@mixin iui-listbox {
+@mixin iui-transfer-list {
   @include iui-surface($elevation: none);
   overflow-y: auto;
   overflow-y: overlay;

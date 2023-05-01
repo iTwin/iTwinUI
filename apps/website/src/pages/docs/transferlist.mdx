@@ -1,0 +1,49 @@
+---
+title: TransferList
+description: TODO Write TransferList description
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/TransferList/TransferList.d.ts'
+thumbnail: Menu
+group: core
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='TransferList.main.tsx' truncate={false}>
+  <AllExamples.TransferListMainExample client:load />
+</LiveExample>
+
+## Variants
+
+### With Label
+
+A label can be placed above the TransferList by using the `TransferList.Label` subcomponent
+
+<LiveExample src='TransferList.withlabel.tsx'>
+  <AllExamples.TransferListWithLabelExample client:load />
+</LiveExample>
+
+### With Toolbar
+
+A toolbar can be placed to the right of the TransferList by using the `TransferList.Toolbar` subcomponent
+
+<LiveExample src='TransferList.withtoolbar.tsx'>
+  <AllExamples.TransferListWithToolbarExample client:load />
+</LiveExample>
+
+## Usage
+
+TODO: Write usage documentation
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'List', url: 'list' }]} />

@@ -15,7 +15,7 @@
 }
 
 .iui-list[role='listbox'] {
-  @include iui-listbox;
+  @include iui-transfer-list;
 }
 
 :is(.iui-list-item, .iui-menu-item) {

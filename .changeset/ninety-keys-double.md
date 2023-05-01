@@ -3,16 +3,16 @@
 '@itwin/itwinui-react': minor
 ---
 
-Added `Listbox` component.
+Added `TransferList` component.
 
 ```jsx
-<Listbox >
-  <Listbox.Area>
+<TransferList >
+  <TransferList.Area>
     <List role={'listbox'}>
       <ListItem>Item 1</ListItem>
       <ListItem>Item 2</ListItem>
       <ListItem>Item 3</ListItem>
     </List>
-  </Listbox.Area>
-</Listbox>
+  </TransferList.Area>
+</TransferList>
 ```

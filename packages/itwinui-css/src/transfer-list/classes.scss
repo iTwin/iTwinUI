@@ -1,0 +1,19 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import './index';
+
+.iui-transfer-list-wrapper {
+  @include iui-transfer-list-wrapper;
+}
+
+.iui-transfer-list-label {
+  @include iui-transfer-list-label;
+}
+
+.iui-transfer-list-area {
+  @include iui-transfer-list;
+}
+
+.iui-transfer-list-toolbar {
+  @include iui-transfer-list('toolbar');
+}

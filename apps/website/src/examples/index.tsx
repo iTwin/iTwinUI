@@ -144,9 +144,9 @@ export { default as ListSubcomponentsExample } from './List.subcomponents';
 export { default as ListLinksExample } from './List.links';
 export { default as ListComboboxExample } from './List.combobox';
 
-export { default as ListboxMainExample } from './Listbox.main';
-export { default as ListboxWithLabelExample } from './Listbox.withlabel';
-export { default as ListboxWithToolbarExample } from './Listbox.withtoolbar';
+export { default as TransferListMainExample } from './TransferList.main';
+export { default as TransferListWithLabelExample } from './TransferList.withlabel';
+export { default as TransferListWithToolbarExample } from './TransferList.withtoolbar';
 
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 
