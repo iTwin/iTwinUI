@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { MenuItem, MiddleTextTruncation, Select } from '@itwin/itwinui-react';
+import { useCallback, useState } from 'react';
 
 export default (args) => {
   const {
@@ -51,13 +52,3 @@ export default (args) => {
     />
   );
 };
-function useState<T>(value: any): [any, any] {
-  throw new Error('Function not implemented.');
-}
-
-function useCallback(
-  arg0: (truncatedText: string, originalText: string) => JSX.Element,
-  arg1: undefined[]
-) {
-  throw new Error('Function not implemented.');
-}

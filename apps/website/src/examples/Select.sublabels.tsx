@@ -4,38 +4,40 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Select } from '@itwin/itwinui-react';
-import { SvgSmileyHappy, SvgSmileySad, SvgSmileyNeutral } from '@itwin/itwinui-icons-react';
+import { useState } from 'react';
 
 export default (args) => {
   const {
     options = [
       {
-        value: 'happy',
-        label: 'Happy',
-        icon: <SvgSmileyHappy />,
+        value: 1,
+        label: 'Item #1',
+        sublabel: 'Sublabel #1',
       },
       {
-        value: 'neutral',
-        label: 'Neutral',
-        icon: <SvgSmileyNeutral />,
+        value: 2,
+        label: 'Item #2',
+        sublabel: 'Sublabel #2',
       },
       {
-        value: 'sad',
-        label: 'Sad',
-        icon: <SvgSmileySad />,
+        value: 3,
+        label: 'Item #3',
+        sublabel: 'Sublabel #3',
       },
     ],
-    placeholder = 'How are you today?',
+    placeholder = 'Placeholder text',
+    size = 'large',
     ...rest
   } = args;
-  const [value, setValue] = React.useState<string | undefined>(undefined);
+  const [value, setValue] = useState<number | undefined>(undefined);
   return (
-    <Select<string>
+    <Select<number>
       {...rest}
       options={options}
       value={value}
       onChange={setValue}
       placeholder={placeholder}
+      size={size}
     />
   );
 };

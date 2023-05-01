@@ -22,25 +22,39 @@ import * as AllExamples from '~/examples';
 
 A select is a control element meant to allow the user to select an option from a list. Depending on type, it is either visible at all times (permanent) or only if the user triggers it by clicking an element or right-clicking (temporary).
 
-There are select menus that are called ‘temporary’; they appear as fully expanded and do not possess a collapsed state. Instead of collapsing and expanding, they are dismissed from the interface by clicking away. They may reappear only when the user triggers them again, either by right-clicking or clicking an item associated with it.
-
 ## Usage
 
-<LiveExample src='Select.truncate.tsx'>
-  <AllExamples.SelectTruncateExample client:load />
-</LiveExample>
+Select menus take up less space since they can be collapsed back into a single line. Use select menus in forms and lists that have many items that each have several options to pick from.
+
+### Appearance
 
 <LiveExample src='Select.icon.tsx'>
   <AllExamples.SelectIconExample client:load />
 </LiveExample>
 
-Use select menus in forms and lists that have many items that each have several options to pick from.
+This is a list of options contained within a collapsible container. These are mostly found in forms and dialogs. When it is clicked, it expands into a full list of items. This list can be scrollable if there are a lot of options, to avoid covering up too much of the interface. It collapses back into a single line when the user either selects an option in the list, or clicks outside of it.
 
-## Statuses
+The default appearance of the collapsed select menu can either display placeholder text (such as Select an Option… in $iui-text-color-placeholder), or a pre-selected option that can be switched when the user picks a new item inside the list.
+
+<LiveExample src='Select.sublabels.tsx'>
+  <AllExamples.SelectSublabelsExample client:load />
+</LiveExample>
+
+### Statuses
 
 <LiveExample src='Select.statuses.tsx'>
   <AllExamples.SelectStatusesExample client:load />
 </LiveExample>
+
+### Truncation
+
+<LiveExample src='Select.truncate.tsx'>
+  <AllExamples.SelectTruncateExample client:load />
+</LiveExample>
+
+Ideally, truncation in select menus should be avoided as much as possible. It is recommended that the collapsed select be wide enough to fit 24 characters, plus the ellipsis symbol. There may be cases where this cannot be followed, so it is only our best recommendation.
+
+In certain situations, text truncation is inevitable. This may happen in a select menu containing files or folders that were named by the user.
 
 ## Props
 
