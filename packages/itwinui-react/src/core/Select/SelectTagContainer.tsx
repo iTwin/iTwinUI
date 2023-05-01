@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { useTheme, useOverflow, useMergedRefs } from '../utils';
+import {
+  useTheme,
+  useOverflow,
+  useMergedRefs,
+  VisuallyHidden,
+  getWindow,
+} from '../utils';
 import SelectTag from './SelectTag';
 
 export type SelectTagContainerProps = {
@@ -24,25 +30,55 @@ export const SelectTagContainer = React.forwardRef(
     const [containerRef, visibleCount] = useOverflow(tags);
     const refs = useMergedRefs(ref, containerRef);
 
+    const tagsLiveText = useClearAfterDelay(tags);
+
     return (
-      <div
-        className={cx('iui-select-tag-container', className)}
-        ref={refs}
-        aria-live='polite'
-        aria-atomic='true'
-        {...rest}
-      >
-        <React.Fragment
-          key={tags.length} // key on the length so that the whole contents are replaced each time
+      <>
+        <div
+          className={cx('iui-select-tag-container', className)}
+          ref={refs}
+          {...rest}
         >
-          {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
-          {visibleCount < tags.length && (
-            <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-          )}
-        </React.Fragment>
-      </div>
+          <>
+            {visibleCount < tags.length
+              ? tags.slice(0, visibleCount - 1)
+              : tags}
+            {visibleCount < tags.length && (
+              <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
+            )}
+          </>
+        </div>
+
+        <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
+          {tagsLiveText}
+        </VisuallyHidden>
+      </>
     );
   },
 );
 
 export default SelectTagContainer;
+
+/**
+ * Hook that returns the latest value of tags but clears it after 5 seconds.
+ * The assumption is that the text has already been announced so it no longer needs
+ * to be present in the DOM, as it could lead to duplicate announcements.
+ */
+const useClearAfterDelay = (tags?: React.ReactNode) => {
+  const [tagsThatWillClear, setTagsThatWillClear] = React.useState(tags);
+  const timeoutRef = React.useRef<number>();
+
+  React.useEffect(() => {
+    if (timeoutRef.current) {
+      getWindow()?.clearTimeout(timeoutRef.current);
+    }
+
+    setTagsThatWillClear(tags);
+
+    timeoutRef.current = getWindow()?.setTimeout(() => {
+      setTagsThatWillClear(null);
+    }, 5000);
+  }, [tags]);
+
+  return tagsThatWillClear;
+};
