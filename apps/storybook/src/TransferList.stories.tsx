@@ -7,8 +7,6 @@ import React from 'react';
 import {
   TransferList,
   TransferListProps,
-  List,
-  ListItem,
   IconButton,
 } from '@itwin/itwinui-react';
 
@@ -93,9 +91,9 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
       </TransferList.Toolbar>
       <TransferList.Area>
         <TransferList.Label>Applied</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem>Option 7</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem>Option 7</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>
   );

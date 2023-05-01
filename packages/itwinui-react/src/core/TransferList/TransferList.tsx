@@ -221,13 +221,19 @@ export type TransferListProps = {
 } & Omit<CommonProps, 'title'>;
 
 /**
- * The TransferList container allows content to appear elevated through the use of a drop shadow
+ * The TransferList component is used to display a list within a box
  * @example
- * <TransferList>TransferList Content</TransferList>
- * <TransferList elevation={2}>TransferList Content</TransferList>
  * <TransferList>
- *   <TransferList.Header>TransferList Header Content</TransferList.Header>
- *   <TransferList.Body isPadded={true}>TransferList Body Content</TransferList.Body>
+ *   <TransferList.Area>
+ *     <TransferList.List role={'listbox'}>
+ *       <TransferList.ListItem>Item 1</TransferList.ListItem>
+ *       <TransferList.ListItem>Item 2</TransferList.ListItem>
+ *       <TransferList.ListItem>Item 3</TransferList.ListItem>
+ *       <TransferList.ListItem>Item 4</TransferList.ListItem>
+ *       <TransferList.ListItem>Item 5</TransferList.ListItem>
+ *       <TransferList.ListItem>Item 6</TransferList.ListItem>
+ *     </TransferList.List>
+ *   </TransferList.Area>
  * </TransferList>
  */
 export const TransferList = Object.assign(

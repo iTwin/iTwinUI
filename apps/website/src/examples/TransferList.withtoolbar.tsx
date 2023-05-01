@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { TransferList, List, ListItem, IconButton } from '@itwin/itwinui-react';
+import { TransferList, IconButton } from '@itwin/itwinui-react';
 import {
   SvgChevronDown,
   SvgChevronUp,
@@ -16,14 +16,14 @@ export default () => {
     <TransferList style={{ width: 500 }}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem>Option 1</ListItem>
-          <ListItem>Option 2</ListItem>
-          <ListItem>Option 3</ListItem>
-          <ListItem>Option 4</ListItem>
-          <ListItem>Option 5</ListItem>
-          <ListItem>Option 6</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem actionable>Option 1</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 2</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 3</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 4</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 5</TransferList.ListItem>
+          <TransferList.ListItem actionable>Option 6</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
       <TransferList.Toolbar>
         <IconButton styleType={'borderless'}>
@@ -41,9 +41,9 @@ export default () => {
       </TransferList.Toolbar>
       <TransferList.Area>
         <TransferList.Label>Applied</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem>Option 7</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem actionable>Option 7</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>
   );
