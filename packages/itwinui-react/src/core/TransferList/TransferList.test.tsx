@@ -5,8 +5,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { TransferList } from './TransferList';
-import { List } from '../List/List';
-import { ListItem } from '../List/ListItem';
 import { Button } from '../Buttons';
 import userEvent from '@testing-library/user-event';
 
@@ -14,11 +12,11 @@ it('should render in its most basic state', () => {
   const { container } = render(
     <TransferList>
       <TransferList.Area>
-        <List role={'listbox'}>
-          <ListItem>Item 1</ListItem>
-          <ListItem>Item 2</ListItem>
-          <ListItem>Item 3</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem>Item 1</TransferList.ListItem>
+          <TransferList.ListItem>Item 2</TransferList.ListItem>
+          <TransferList.ListItem>Item 3</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>,
   );
@@ -120,21 +118,21 @@ it('should render custom transfer list with label and toolbar', () => {
     <TransferList>
       <TransferList.Area>
         <TransferList.Label>Label</TransferList.Label>
-        <List role={'listbox'}>
-          <ListItem>Item 1</ListItem>
-          <ListItem>Item 2</ListItem>
-          <ListItem>Item 3</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem>Item 1</TransferList.ListItem>
+          <TransferList.ListItem>Item 2</TransferList.ListItem>
+          <TransferList.ListItem>Item 3</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
       <TransferList.Toolbar>
         <Button />
       </TransferList.Toolbar>
       <TransferList.Area>
-        <List role={'listbox'}>
-          <ListItem>Item 4</ListItem>
-          <ListItem>Item 5</ListItem>
-          <ListItem>Item 6</ListItem>
-        </List>
+        <TransferList.List role={'listbox'}>
+          <TransferList.ListItem>Item 4</TransferList.ListItem>
+          <TransferList.ListItem>Item 5</TransferList.ListItem>
+          <TransferList.ListItem>Item 6</TransferList.ListItem>
+        </TransferList.List>
       </TransferList.Area>
     </TransferList>,
   );
