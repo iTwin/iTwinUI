@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Input, InputProps } from '../Input';
-import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
+import { SelectTag } from '../Select/SelectTag';
+import {
+  useSafeContext,
+  useMergedRefs,
+  useContainerWidth,
+  VisuallyHidden,
+} from '../utils';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
 import {
   ComboBoxStateContext,
@@ -12,7 +18,9 @@ import {
   ComboBoxRefsContext,
 } from './helpers';
 
-type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
+type ComboBoxInputProps = {
+  selectedItems?: Array<{ label: string; [k: string]: unknown }>;
+} & InputProps;
 
 export const ComboBoxInput = React.forwardRef(
   (props: ComboBoxInputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
@@ -20,7 +28,7 @@ export const ComboBoxInput = React.forwardRef(
       onKeyDown: onKeyDownProp,
       onFocus: onFocusProp,
       onClick: onClickProp,
-      selectTags,
+      selectedItems,
       ...rest
     } = props;
 
@@ -36,8 +44,6 @@ export const ComboBoxInput = React.forwardRef(
     const { inputRef, menuRef, optionsExtraInfoRef } =
       useSafeContext(ComboBoxRefsContext);
     const refs = useMergedRefs(inputRef, forwardedRef);
-
-    const selectedTagContainerId = `${id}-selected-list`;
 
     const focusedIndexRef = React.useRef(focusedIndex ?? -1);
     React.useEffect(() => {
@@ -227,15 +233,21 @@ export const ComboBoxInput = React.forwardRef(
           autoCapitalize='none'
           autoCorrect='off'
           style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
-          aria-describedby={multiple ? selectedTagContainerId : undefined}
           {...rest}
         />
-        {multiple && selectTags && (
-          <ComboBoxMultipleContainer
-            id={selectedTagContainerId}
-            ref={tagContainerWidthRef}
-            selectedItems={selectTags}
-          />
+
+        {multiple && selectedItems && (
+          <>
+            <ComboBoxMultipleContainer
+              ref={tagContainerWidthRef}
+              selectedItems={selectedItems.map((item) => (
+                <SelectTag key={item.label} label={item.label} />
+              ))}
+            />
+            <VisuallyHidden as='div' aria-live='polite'>
+              {selectedItems?.map((item) => item.label).join(',')}
+            </VisuallyHidden>
+          </>
         )}
       </>
     );

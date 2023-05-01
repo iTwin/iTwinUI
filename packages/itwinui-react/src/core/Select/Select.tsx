@@ -13,6 +13,7 @@ import {
   SvgCaretDownSmall,
   Popover,
   useId,
+  VisuallyHidden,
 } from '../utils';
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag';
@@ -440,6 +441,12 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       >
         <SvgCaretDownSmall />
       </span>
+
+      {isMultipleEnabled(selectedItems, multiple) ? (
+        <VisuallyHidden as='div' aria-live='polite'>
+          {selectedItems?.map((item) => item.label).join(',')}
+        </VisuallyHidden>
+      ) : null}
     </div>
   );
 };

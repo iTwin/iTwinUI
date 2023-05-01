@@ -23,9 +23,9 @@ export const SelectTag = (props: SelectTagProps) => {
   useTheme();
 
   return (
-    <li className={cx('iui-select-tag', className)} {...rest}>
+    <span className={cx('iui-select-tag', className)} {...rest}>
       <span className='iui-select-tag-label'>{label}</span>
-    </li>
+    </span>
   );
 };
 

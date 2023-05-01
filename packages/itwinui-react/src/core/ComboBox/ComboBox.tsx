@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { InputProps } from '../Input';
 import { MenuExtraContent } from '../Menu';
 import { SelectOption } from '../Select';
-import SelectTag from '../Select/SelectTag';
 import { Text } from '../Typography';
 import {
   useTheme,
@@ -526,14 +525,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 value={inputValue}
                 {...inputProps}
                 onChange={handleOnInput}
-                selectTags={
+                selectedItems={
                   isMultipleEnabled(selected, multiple)
-                    ? selected.map((index) => {
-                        const item = optionsRef.current[index];
-                        return (
-                          <SelectTag key={item.label} label={item.label} />
-                        );
-                      })
+                    ? selected.map((index) => optionsRef.current[index])
                     : undefined
                 }
               />
