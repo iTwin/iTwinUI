@@ -25,34 +25,6 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 
   useTheme();
 
-  // const [isActive, setIsActive] = React.useState(active);
-
-  // const onClickEvents = (
-  //   e:
-  //     | React.MouseEvent<HTMLLIElement, MouseEvent>
-  //     | React.KeyboardEvent<HTMLLIElement>,
-  // ) => {
-  //   if (actionable) {
-  //     onClick?.(e);
-  //     setIsActive(!isActive);
-  //   }
-  // };
-
-  // const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
-  //   if (event.altKey) {
-  //     return;
-  //   }
-
-  //   if (
-  //     event.key === 'Enter' ||
-  //     event.key === ' ' ||
-  //     event.key === 'Spacebar'
-  //   ) {
-  //     !disabled && onClickEvents(event);
-  //     event.preventDefault();
-  //   }
-  // };
-
   return (
     <Element
       className={cx('iui-list-item', className)}
