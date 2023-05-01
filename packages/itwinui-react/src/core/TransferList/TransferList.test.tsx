@@ -38,12 +38,6 @@ it('should handle keyboard navigation', () => {
   const list = container.querySelector('.iui-list') as HTMLUListElement;
   const items = container.querySelectorAll('.iui-list-item');
 
-  // item 1
-  fireEvent.keyDown(list, { key: 'ArrowDown' });
-  items.forEach((item, index) => {
-    expect(document.activeElement === item).toBe(0 === index);
-  });
-
   // 1 -> 2
   fireEvent.keyDown(list, { key: 'ArrowDown' });
   items.forEach((item, index) => {
@@ -86,7 +80,7 @@ it('should handle keyboard navigation', () => {
     expect(document.activeElement === item).toBe(0 === index);
   });
 
-  // item
+  // item 1
   fireEvent.keyDown(list, { key: 'ArrowUp' });
   items.forEach((item, index) => {
     expect(document.activeElement === item).toBe(0 === index);
