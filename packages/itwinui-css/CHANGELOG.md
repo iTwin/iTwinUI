@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.10.2
+
+### Patch Changes
+
+- [#1235](https://github.com/iTwin/iTwinUI/pull/1235): Changed the internal DOM structure of `LabeledInput` and `LabeledTextarea` to prefer explicit association over implicit. The `<label>` is now associated with the input using `htmlFor`/`id` and the container is a generic div.
+
+  This change improves accessibility, with no API changes and no effect on visuals.
+
 ## 1.10.1
 
 ### Patch Changes
