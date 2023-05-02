@@ -239,6 +239,9 @@ export const ComboBoxInput = React.forwardRef(
               selectedItems={selectedItems?.map((item) => (
                 <SelectTag key={item.label} label={item.label} />
               ))}
+              selectedItemsString={
+                selectedItems?.map((item) => item.label).join(', ') ?? ''
+              }
               id={`${id}-selected-live`}
             />
           </>

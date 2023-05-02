@@ -34,8 +34,6 @@ export const SelectTagContainer = React.forwardRef(
     const [containerRef, visibleCount] = useOverflow(tags);
     const refs = useMergedRefs(ref, containerRef);
 
-    const tagsLiveText = useClearAfterDelay(selectedItemsString);
-
     return (
       <>
         <div
@@ -52,9 +50,7 @@ export const SelectTagContainer = React.forwardRef(
             )}
           </>
         </div>
-        <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
-          {tagsLiveText}
-        </VisuallyHidden>
+        <AutoclearingLiveRegion text={selectedItemsString} />
       </>
     );
   },
@@ -62,26 +58,25 @@ export const SelectTagContainer = React.forwardRef(
 
 export default SelectTagContainer;
 
-/**
- * Hook that returns the latest value of tags but clears it after 5 seconds.
- * The assumption is that the text has already been announced so it no longer needs
- * to be present in the DOM, as it could lead to duplicate announcements.
- */
-const useClearAfterDelay = (tags?: React.ReactNode) => {
-  const [tagsThatWillClear, setTagsThatWillClear] = React.useState(tags);
-  const timeoutRef = React.useRef<number>();
+const AutoclearingLiveRegion = ({ text = '' }) => {
+  const [maybeText, setMaybeText] = React.useState(text);
 
   React.useEffect(() => {
-    if (timeoutRef.current) {
-      getWindow()?.clearTimeout(timeoutRef.current);
-    }
+    setMaybeText(text);
 
-    setTagsThatWillClear(<div key={timeoutRef.current}>{tags}</div>);
-
-    timeoutRef.current = getWindow()?.setTimeout(() => {
-      setTagsThatWillClear(null);
+    // clear the text after 5 seconds so that users cannot manually move their cursor to it
+    const timeout = getWindow()?.setTimeout(() => {
+      setMaybeText('');
     }, 5000);
-  }, [tags]);
 
-  return tagsThatWillClear;
+    return () => {
+      getWindow()?.clearTimeout(timeout);
+    };
+  }, [text]);
+
+  return (
+    <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
+      {maybeText}
+    </VisuallyHidden>
+  );
 };
