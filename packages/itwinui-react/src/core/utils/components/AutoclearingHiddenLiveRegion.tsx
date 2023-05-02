@@ -20,13 +20,8 @@ export const AutoclearingHiddenLiveRegion = ({ text = '' }) => {
   React.useEffect(() => {
     setMaybeText(text);
 
-    const timeout = getWindow()?.setTimeout(() => {
-      setMaybeText('');
-    }, 5000);
-
-    return () => {
-      getWindow()?.clearTimeout(timeout);
-    };
+    const timeout = getWindow()?.setTimeout(() => setMaybeText(''), 5000);
+    return () => void getWindow()?.clearTimeout(timeout);
   }, [text]);
 
   return (
