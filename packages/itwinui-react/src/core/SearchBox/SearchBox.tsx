@@ -329,6 +329,7 @@ export type SearchBoxOpenButtonProps = PolymorphicComponentProps<
 const SearchBoxOpenButton = React.forwardRef((props, ref) => {
   const {
     children,
+    className,
     onClick: onClickProp,
     size,
     disabled: disabledProp,
@@ -345,6 +346,7 @@ const SearchBoxOpenButton = React.forwardRef((props, ref) => {
   return (
     <SearchBoxButton
       ref={useMergedRefs(ref, openButtonRef)}
+      className={cx('iui-searchbox-open-button', className)}
       aria-label='Expand searchbox'
       size={size ?? sizeContext}
       disabled={disabledProp ?? disabled}

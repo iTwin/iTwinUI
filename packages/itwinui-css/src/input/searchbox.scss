@@ -6,6 +6,11 @@
   isolation: isolate;
   overflow: hidden;
 
+  &:has(.iui-searchbox-open-button:focus-visible) {
+    outline: 2px solid var(--_iui-input-accent-border-color);
+    outline-offset: -2px;
+  }
+
   &:where(:not([data-iui-expanded='true'])) {
     .iui-searchbox-expanded {
       visibility: hidden;

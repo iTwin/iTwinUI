@@ -10,11 +10,19 @@
   align-items: center;
   background-color: var(--_iui-input-background-color);
   border-radius: var(--iui-border-radius-1);
-  border: 1px solid var(--_iui-input-border-color);
   color: var(--_iui-input-text-color);
   position: relative;
   height: var(--_iui-input-min-height);
   width: 100%;
+
+  // Adding before pseudo-element to make inner elements more centered
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--_iui-input-border-color);
+    border-radius: var(--iui-border-radius-1);
+  }
 
   &:has(input:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
@@ -40,7 +48,7 @@
     }
   }
 
-  &.iui-disabled {
+  &[data-iui-disabled='true'] {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);

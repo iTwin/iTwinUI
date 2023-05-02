@@ -39,5 +39,7 @@ it('should render InputFlexContainer disabled', () => {
       <input />
     </InputFlexContainer>,
   );
-  expect(container.querySelector('div')).toHaveClass('.iui-disabled');
+  expect(container.querySelector('div')).toHaveClass(
+    'iui-input-flex-container iui-disabled',
+  );
 });

@@ -29,14 +29,9 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
 
   return (
     <Element
-      className={cx(
-        'iui-input-flex-container',
-        {
-          'iui-disabled': disabled,
-        },
-        className,
-      )}
+      className={cx('iui-input-flex-container', className)}
       data-iui-status={status}
+      data-iui-disabled={disabled ? 'true' : undefined}
       ref={ref}
       style={style}
       {...rest}
