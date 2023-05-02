@@ -11,6 +11,8 @@ import { getWindow } from '../functions';
  *
  * Should only be used for small updates and user-initiated actions (e.g. when _updating_ the selection),
  * otherwise it could cause too many announcements every time an instance of this component is mounted.
+ *
+ * @private
  */
 export const AutoclearingHiddenLiveRegion = ({ text = '' }) => {
   const [maybeText, setMaybeText] = React.useState(text);
@@ -18,7 +20,6 @@ export const AutoclearingHiddenLiveRegion = ({ text = '' }) => {
   React.useEffect(() => {
     setMaybeText(text);
 
-    // clear the text after 5 seconds so that users cannot manually move their cursor to it
     const timeout = getWindow()?.setTimeout(() => {
       setMaybeText('');
     }, 5000);
