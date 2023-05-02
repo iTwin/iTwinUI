@@ -161,6 +161,9 @@ export { default as SelectSublabelsExample } from './Select.sublabels';
 export { default as SelectTruncateExample } from './Select.truncate';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
+export { default as SideNavigationBasicExample } from './SideNavigation.basic';
+export { default as SideNavigationActiveItemExample } from './SideNavigation.activeitem';
+export { default as SideNavigationSubmenuExample } from './SideNavigation.submenu';
 
 export { default as SliderMainExample } from './Slider.main';
 export { default as SliderRangeExample } from './Slider.range';

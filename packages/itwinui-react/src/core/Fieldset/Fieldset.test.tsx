@@ -95,10 +95,10 @@ it('should render disabled select group', () => {
   const selectButton = container.querySelector(
     '.iui-select-button.iui-disabled',
   ) as HTMLElement;
+  expect(selectButton).toHaveAttribute('aria-disabled', 'true');
   expect(selectButton).toBeTruthy();
   selectButton.click();
   expect(mockedFn).not.toHaveBeenCalled();
-  expect(selectButton.getAttribute('tabIndex')).toBeNull();
   fireEvent.keyDown(selectButton, 'Spacebar');
   expect(document.querySelector('.iui-menu')).toBeNull();
 });

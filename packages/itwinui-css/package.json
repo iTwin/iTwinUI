@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -17,6 +17,11 @@
   },
   "description": "CSS library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
   "homepage": "https://github.com/iTwin/iTwinUI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iTwin/iTwinUI.git",
+    "directory": "packages/itwinui-css"
+  },
   "keywords": [
     "css",
     "html",

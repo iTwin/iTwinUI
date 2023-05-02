@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { StatusIconMap, useTheme, InputContainer } from '../utils';
+import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
 import { Textarea } from '../Textarea';
 import { TextareaProps } from '../Textarea/Textarea';
 import { LabeledInputProps } from '../LabeledInput';
@@ -56,6 +56,8 @@ export type LabeledTextareaProps = {
  */
 export const LabeledTextarea = React.forwardRef(
   (props: LabeledTextareaProps, ref: React.RefObject<HTMLTextAreaElement>) => {
+    const uid = useId();
+
     const {
       className,
       style,
@@ -69,6 +71,7 @@ export const LabeledTextarea = React.forwardRef(
       iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
       svgIcon,
       required = false,
+      id = uid,
       ...textareaProps
     } = props;
 
@@ -78,7 +81,6 @@ export const LabeledTextarea = React.forwardRef(
 
     return (
       <InputContainer
-        as='label'
         label={label}
         disabled={disabled}
         required={required}
@@ -89,12 +91,14 @@ export const LabeledTextarea = React.forwardRef(
         isIconInline={iconDisplayStyle === 'inline'}
         className={className}
         style={style}
+        inputId={id}
       >
         <Textarea
           disabled={disabled}
           className={textareaClassName}
           style={textareaStyle}
           required={required}
+          id={id}
           {...textareaProps}
           ref={ref}
         />
