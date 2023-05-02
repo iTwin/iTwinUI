@@ -12,7 +12,16 @@ type ComboBoxMultipleContainerProps = {
 export const ComboBoxMultipleContainer = React.forwardRef(
   (props: ComboBoxMultipleContainerProps, ref: React.Ref<HTMLDivElement>) => {
     const { selectedItems = [], ...rest } = props;
-    return <SelectTagContainer ref={ref} tags={selectedItems} {...rest} />;
+    return (
+      <SelectTagContainer
+        ref={ref}
+        tags={selectedItems}
+        selectedItemsString={
+          selectedItems?.map((item) => item.label).join(',') ?? ''
+        }
+        {...rest}
+      />
+    );
   },
 );
 

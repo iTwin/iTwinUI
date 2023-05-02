@@ -18,19 +18,23 @@ export type SelectTagContainerProps = {
    * Select tags.
    */
   tags: React.ReactNode[];
+  /**
+   * Selected tags joined into a single string for live region.
+   */
+  selectedItemsString: string;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 /**
  */
 export const SelectTagContainer = React.forwardRef(
   (props: SelectTagContainerProps, ref: React.RefObject<HTMLDivElement>) => {
-    const { tags, className, ...rest } = props;
+    const { tags, className, selectedItemsString, ...rest } = props;
 
     useTheme();
     const [containerRef, visibleCount] = useOverflow(tags);
     const refs = useMergedRefs(ref, containerRef);
 
-    const tagsLiveText = useClearAfterDelay(tags);
+    const tagsLiveText = useClearAfterDelay(selectedItemsString);
 
     return (
       <>
@@ -48,7 +52,6 @@ export const SelectTagContainer = React.forwardRef(
             )}
           </>
         </div>
-
         <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
           {tagsLiveText}
         </VisuallyHidden>
