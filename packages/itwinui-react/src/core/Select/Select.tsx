@@ -17,6 +17,7 @@ import {
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag';
 import SelectTagContainer from './SelectTagContainer';
+import { AutoclearingHiddenLiveRegion } from '../utils/components/AutoclearingHiddenLiveRegion';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -245,6 +246,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const isOpen = popoverProps?.visible ?? isOpenState;
 
   const [minWidth, setMinWidth] = React.useState(0);
+  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
@@ -321,6 +323,21 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             setIsOpen(false);
           } else {
             onChange?.(option.value, isSelected ? 'removed' : 'added');
+          }
+
+          // update live region
+          if (isMultipleEnabled(value, multiple)) {
+            const prevSelectedValue = value || [];
+            const newSelectedValue = isSelected
+              ? prevSelectedValue.filter((i) => option.value !== i)
+              : [...prevSelectedValue, option.value];
+            setLiveRegionSelection(
+              options
+                .filter((i) => newSelectedValue.includes(i.value))
+                .map((item) => item.label)
+                .filter(Boolean)
+                .join(', '),
+            );
           }
         },
         ref: (el: HTMLElement) => {
@@ -440,6 +457,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       >
         <SvgCaretDownSmall />
       </span>
+
+      {multiple ? (
+        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+      ) : null}
     </div>
   );
 };
@@ -497,12 +518,7 @@ const MultipleSelectButton = <T,>({
         selectedItemsRenderer(selectedItems)}
       {selectedItems && !selectedItemsRenderer && (
         <span className='iui-content'>
-          <SelectTagContainer
-            tags={selectedItemsElements}
-            selectedItemsString={
-              selectedItems?.map((item) => item.label).join(',') ?? ''
-            }
-          />
+          <SelectTagContainer tags={selectedItemsElements} />
         </span>
       )}
     </>

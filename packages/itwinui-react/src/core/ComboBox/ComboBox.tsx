@@ -17,6 +17,7 @@ import {
   mergeRefs,
   useLatestRef,
   useIsomorphicLayoutEffect,
+  AutoclearingHiddenLiveRegion,
 } from '../utils';
 import 'tippy.js/animations/shift-away.css';
 import {
@@ -304,6 +305,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     inputProps?.value?.toString() ?? '',
   );
 
+  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
+
   const handleOnInput = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.currentTarget;
@@ -410,6 +413,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         const newArray = selectedChangeHandler(__originalIndex, actionType);
         dispatch({ type: 'multiselect', value: newArray });
         onChangeHandler(__originalIndex, actionType, newArray);
+
+        // update live region
+        setLiveRegionSelection(
+          newArray
+            .map((item) => optionsRef.current[item]?.label)
+            .filter(Boolean)
+            .join(', '),
+        );
       } else {
         dispatch({ type: 'select', value: __originalIndex });
         dispatch({ type: 'close' });
@@ -533,6 +544,10 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
               />
             </>
             <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
+
+            {multiple ? (
+              <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+            ) : null}
           </ComboBoxInputContainer>
           <ComboBoxDropdown
             {...dropdownMenuProps}

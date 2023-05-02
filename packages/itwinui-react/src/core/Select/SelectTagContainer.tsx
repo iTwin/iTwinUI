@@ -4,13 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import {
-  useTheme,
-  useOverflow,
-  useMergedRefs,
-  VisuallyHidden,
-  getWindow,
-} from '../utils';
+import { useTheme, useOverflow, useMergedRefs } from '../utils';
 import SelectTag from './SelectTag';
 
 export type SelectTagContainerProps = {
@@ -18,17 +12,13 @@ export type SelectTagContainerProps = {
    * Select tags.
    */
   tags: React.ReactNode[];
-  /**
-   * Selected tags joined into a single string for live region.
-   */
-  selectedItemsString: string;
 } & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
 
 /**
  */
 export const SelectTagContainer = React.forwardRef(
   (props: SelectTagContainerProps, ref: React.RefObject<HTMLDivElement>) => {
-    const { tags, className, selectedItemsString, ...rest } = props;
+    const { tags, className, ...rest } = props;
 
     useTheme();
     const [containerRef, visibleCount] = useOverflow(tags);
@@ -50,33 +40,9 @@ export const SelectTagContainer = React.forwardRef(
             )}
           </>
         </div>
-        <AutoclearingLiveRegion text={selectedItemsString} />
       </>
     );
   },
 );
 
 export default SelectTagContainer;
-
-const AutoclearingLiveRegion = ({ text = '' }) => {
-  const [maybeText, setMaybeText] = React.useState(text);
-
-  React.useEffect(() => {
-    setMaybeText(text);
-
-    // clear the text after 5 seconds so that users cannot manually move their cursor to it
-    const timeout = getWindow()?.setTimeout(() => {
-      setMaybeText('');
-    }, 5000);
-
-    return () => {
-      getWindow()?.clearTimeout(timeout);
-    };
-  }, [text]);
-
-  return (
-    <VisuallyHidden as='div' aria-live='polite' aria-atomic='true'>
-      {maybeText}
-    </VisuallyHidden>
-  );
-};
