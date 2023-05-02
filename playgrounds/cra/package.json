@@ -2,31 +2,27 @@
   "name": "cra-playground",
   "version": "0.1.0",
   "private": true,
-  "main": "src/index.jsx",
+  "main": "src/index.tsx",
   "dependencies": {
-    "@itwin/itwinui-react": "2.9.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1"
+    "@itwin/itwinui-react": "2",
+    "react": "18",
+    "react-dom": "18",
+    "react-scripts": "5"
   },
   "devDependencies": {
-    "postcss-normalize": "^10.0.1"
+    "@types/react": "18",
+    "@types/react-dom": "18",
+    "typescript": "5"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "dev": "cross-env PORT=1704 BROWSER=none react-scripts start",
-    "clean": "rimraf .turbo && rimraf node_modules && rimraf build"
+    "dev": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
-  },
-  "lint-staged": {
-    "*.{tsx,ts,jsx,js}": [
-      "prettier --write"
     ]
   },
   "prettier": "configs/prettier-config",
