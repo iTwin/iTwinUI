@@ -31,6 +31,11 @@
   ],
   "description": "A react component library for iTwinUI",
   "homepage": "https://github.com/iTwin/iTwinUI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iTwin/iTwinUI.git",
+    "directory": "packages/itwinui-react"
+  },
   "keywords": [
     "component",
     "components",
