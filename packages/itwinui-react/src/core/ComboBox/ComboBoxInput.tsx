@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Input, InputProps } from '../Input';
-import { SelectTag } from '../Select/SelectTag';
 import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
 import {
@@ -13,9 +12,7 @@ import {
   ComboBoxRefsContext,
 } from './helpers';
 
-type ComboBoxInputProps = {
-  selectedItems?: Array<{ label: string; [k: string]: unknown }>;
-} & InputProps;
+type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
 
 export const ComboBoxInput = React.forwardRef(
   (props: ComboBoxInputProps, forwardedRef: React.Ref<HTMLInputElement>) => {
@@ -23,7 +20,7 @@ export const ComboBoxInput = React.forwardRef(
       onKeyDown: onKeyDownProp,
       onFocus: onFocusProp,
       onClick: onClickProp,
-      selectedItems,
+      selectTags,
       ...rest
     } = props;
 
@@ -232,16 +229,12 @@ export const ComboBoxInput = React.forwardRef(
           {...rest}
         />
 
-        {multiple ? (
-          <>
-            <ComboBoxMultipleContainer
-              ref={tagContainerWidthRef}
-              selectedItems={selectedItems?.map((item) => (
-                <SelectTag key={item.label} label={item.label} />
-              ))}
-              id={`${id}-selected-live`}
-            />
-          </>
+        {multiple && selectTags ? (
+          <ComboBoxMultipleContainer
+            ref={tagContainerWidthRef}
+            selectedItems={selectTags}
+            id={`${id}-selected-live`}
+          />
         ) : null}
       </>
     );

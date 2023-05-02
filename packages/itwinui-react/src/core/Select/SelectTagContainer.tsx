@@ -25,22 +25,18 @@ export const SelectTagContainer = React.forwardRef(
     const refs = useMergedRefs(ref, containerRef);
 
     return (
-      <>
-        <div
-          className={cx('iui-select-tag-container', className)}
-          ref={refs}
-          {...rest}
-        >
-          <>
-            {visibleCount < tags.length
-              ? tags.slice(0, visibleCount - 1)
-              : tags}
-            {visibleCount < tags.length && (
-              <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
-            )}
-          </>
-        </div>
-      </>
+      <div
+        className={cx('iui-select-tag-container', className)}
+        ref={refs}
+        {...rest}
+      >
+        <>
+          {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
+          {visibleCount < tags.length && (
+            <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
+          )}
+        </>
+      </div>
     );
   },
 );

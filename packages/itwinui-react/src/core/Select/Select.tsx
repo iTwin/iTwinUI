@@ -13,11 +13,11 @@ import {
   SvgCaretDownSmall,
   Popover,
   useId,
+  AutoclearingHiddenLiveRegion,
 } from '../utils';
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag';
 import SelectTagContainer from './SelectTagContainer';
-import { AutoclearingHiddenLiveRegion } from '../utils/components/AutoclearingHiddenLiveRegion';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
