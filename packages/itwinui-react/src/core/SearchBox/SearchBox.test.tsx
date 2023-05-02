@@ -30,7 +30,7 @@ it('should render in disabled state', () => {
   // Base flex container
   const searchbox = container.querySelector('.iui-input-flex-container');
   expect(searchbox).toBeTruthy();
-  expect(searchbox).toHaveClass('iui-input-flex-container iui-disabled');
+  expect(searchbox).toHaveAttribute('data-iui-disabled', 'true');
 
   // Input element
   const input = searchbox?.querySelector('input');
