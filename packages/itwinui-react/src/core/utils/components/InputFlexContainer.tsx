@@ -8,7 +8,7 @@ import { PolymorphicForwardRefComponent } from '../props';
 
 export type InputFlexContainerProps<T extends React.ElementType = 'div'> = {
   as?: T;
-  disabled?: boolean;
+  isDisabled?: boolean;
   status?: 'positive' | 'warning' | 'negative';
 } & React.ComponentPropsWithoutRef<T>;
 
@@ -19,7 +19,7 @@ export type InputFlexContainerProps<T extends React.ElementType = 'div'> = {
 export const InputFlexContainer = React.forwardRef((props, ref) => {
   const {
     as: Element = 'div',
-    disabled,
+    isDisabled,
     status,
     children,
     className,
@@ -31,7 +31,7 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
     <Element
       className={cx('iui-input-flex-container', className)}
       data-iui-status={status}
-      data-iui-disabled={disabled ? 'true' : undefined}
+      data-iui-disabled={isDisabled ? 'true' : undefined}
       ref={ref}
       style={style}
       {...rest}
