@@ -1,0 +1,63 @@
+---
+title: SearchBox
+description: An input that lets users enter search queries.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/SearchBox/SearchBox.d.ts'
+thumbnail: Input
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Searchbox.main.tsx' truncate={false}>
+  <AllExamples.SearchboxMainExample client:load />
+</LiveExample>
+
+## Usage
+
+### Sizes
+
+<LiveExample src='Searchbox.size.tsx'>
+  <AllExamples.SearchboxSizeExample client:load />
+</LiveExample>
+
+### Status
+
+<LiveExample src='Searchbox.status.tsx'>
+  <AllExamples.SearchboxStatusExample client:load />
+</LiveExample>
+
+### Expandable
+
+<LiveExample src='Searchbox.expandable.tsx'>
+  <AllExamples.SearchboxExpandableExample client:load />
+</LiveExample>
+
+### Customized
+
+<LiveExample src='Searchbox.custom.tsx'>
+  <AllExamples.SearchboxCustomExample client:load />
+</LiveExample>
+
+## Subcomponents
+
+### SearchBox.Input
+
+### SearchBox.Button
+
+### SearchBox.Icon
+
+### SearchBox.CloseButton
+
+### SearchBox.OpenButton
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
+
+## Related components
