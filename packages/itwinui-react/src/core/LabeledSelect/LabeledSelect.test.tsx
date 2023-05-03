@@ -42,6 +42,15 @@ it('should render correctly in its most basic state', () => {
   assertBaseElement(inputContainer);
 });
 
+it('should have correct accessible name', () => {
+  const { container } = renderComponent();
+  const label = container.querySelector('.iui-label') as HTMLElement;
+  expect(container.querySelector('[role=combobox]')).toHaveAttribute(
+    'aria-labelledby',
+    `${label.id}`,
+  );
+});
+
 it('should render message', () => {
   const { container } = renderComponent({
     message: <div className='my-message'>Message</div>,

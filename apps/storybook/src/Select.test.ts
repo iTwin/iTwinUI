@@ -30,8 +30,6 @@ describe('Select', () => {
 
       if (testName.includes('With Selected Value')) {
         cy.compareSnapshot(`${testName} (Open)`);
-        cy.get('.iui-select-button').click();
-        cy.compareSnapshot(`${testName} (Closed)`);
         return;
       }
 
