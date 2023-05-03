@@ -107,6 +107,11 @@ export const WithLabel: Story<TransferListProps> = (args) => {
 WithLabel.args = {};
 
 export const WithToolbar: Story<TransferListProps> = (args) => {
+  type TransferItemDataType = {
+    name: string;
+    active: boolean;
+  };
+
   const [optionData, setOptionData] = React.useState([
     { name: 'Option 1', active: false },
     { name: 'Option 2', active: false },
@@ -116,16 +121,41 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
     { name: 'Option 6', active: false },
   ]);
 
+  console.log(optionData);
+
   const [appliedData, setAppliedData] = React.useState([
     { name: 'Option 7', active: false },
   ]);
+
+  const transfer = (
+    fromData: Array<TransferItemDataType>,
+    setFromData: (data: Array<TransferItemDataType>) => void,
+    toData: Array<TransferItemDataType>,
+    setToData: (data: Array<TransferItemDataType>) => void,
+    sendAll?: boolean,
+  ) => {
+    setToData((oldToData) => {
+      const newToData = [...oldToData];
+      console.log('fromData before', fromData);
+      fromData.forEach((item) => {
+        if (sendAll || item.active === true) {
+          const newItem = item;
+          newItem.active = false;
+          newToData.push(newItem);
+        }
+      });
+      console.log('fromData after', fromData);
+      setFromData(fromData.filter((item) => item.active === true));
+      return newToData;
+    });
+  };
 
   return (
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
         <TransferList.List role={'listbox'}>
-          {optionData.map((item, index) => {
+          {optionData?.map((item, index) => {
             return (
               <TransferList.ListItem
                 actionable
@@ -136,6 +166,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
                     const newObject = { ...newData[index] };
                     newObject.active = !isActive;
                     newData[index] = newObject;
+                    console.log('newOptionData', newData);
                     return newData;
                   });
                 }}
@@ -147,10 +178,33 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
         </TransferList.List>
       </TransferList.Area>
       <TransferList.Toolbar>
-        <IconButton styleType={'borderless'}>
+        <IconButton
+          styleType={'borderless'}
+          onClick={() => {
+            console.log('optionData', optionData);
+            transfer(
+              optionData,
+              setOptionData,
+              appliedData,
+              setAppliedData,
+              true,
+            );
+          }}
+        >
           <SvgChevronUp />
         </IconButton>
-        <IconButton styleType={'borderless'}>
+        <IconButton
+          styleType={'borderless'}
+          onClick={() =>
+            transfer(
+              optionData,
+              setOptionData,
+              appliedData,
+              setAppliedData,
+              false,
+            )
+          }
+        >
           <SvgChevronDown />
         </IconButton>
         <IconButton styleType={'borderless'}>
