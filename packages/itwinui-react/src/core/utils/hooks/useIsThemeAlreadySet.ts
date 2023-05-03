@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
-import { getDocument } from '../functions';
+import * as React from 'react';
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { getDocument } from '../functions/index.js';
 
 /**
  * Hook that returns a boolean ref which is true if either:

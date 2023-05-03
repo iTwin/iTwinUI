@@ -2,18 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { HeaderGroup } from 'react-table';
+import type { HeaderGroup } from 'react-table';
 import '@itwin/itwinui-css/css/table.css';
 import {
   useTheme,
   Popover,
-  StylingProps,
   SvgFilterHollow,
   SvgFilter,
-} from '../../utils';
-import { IconButton } from '../../Buttons';
+} from '../../utils/index.js';
+import type { StylingProps } from '../../utils/index.js';
+import { IconButton } from '../../Buttons/index.js';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;

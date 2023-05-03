@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { ProgressRadial } from './ProgressRadial';
+import { ProgressRadial } from './ProgressRadial.js';
 
 it('renders determinate ProgressRadial', () => {
   const { container } = render(<ProgressRadial value={43} />);

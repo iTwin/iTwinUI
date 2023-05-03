@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, waitFor } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Modal, ModalProps } from './Modal';
+import { Modal, type ModalProps } from './Modal.js';
 
 function assertBaseElement(
   backdrop: HTMLElement,

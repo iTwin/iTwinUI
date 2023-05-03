@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SvgChevronRight } from '../../utils';
-import { CellProps, CellRendererProps, Row } from 'react-table';
-import { IconButton } from '../../Buttons';
-import { DefaultCell } from '../cells';
+import * as React from 'react';
+import { SvgChevronRight } from '../../utils/index.js';
+import type { CellProps, CellRendererProps, Row } from 'react-table';
+import { IconButton } from '../../Buttons/index.js';
+import { DefaultCell } from '../cells/index.js';
 
 export const EXPANDER_CELL_ID = 'iui-table-expander';
 

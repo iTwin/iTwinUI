@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
 
-import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
+import { defaultStatusTitles, Avatar, type AvatarStatus } from './Avatar.js';
 
 function assertBaseElements(size = 'small', backgroundColor?: string) {
   const avatarContainer = screen.getByTitle('Terry Rivers');

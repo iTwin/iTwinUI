@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import SelectTagContainer from '../Select/SelectTagContainer';
+import * as React from 'react';
+import SelectTagContainer from '../Select/SelectTagContainer.js';
 
 type ComboBoxMultipleContainerProps = {
   selectedItems?: React.ReactNode[];

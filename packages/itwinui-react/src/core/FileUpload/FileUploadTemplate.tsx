@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, SvgUpload } from '../utils';
+import { useTheme, SvgUpload } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
 export type FileUploadTemplateProps = {

@@ -2,6 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { SkipToContentLink } from './SkipToContentLink';
-export type { SkipToContentLinkProps } from './SkipToContentLink';
+export { SkipToContentLink } from './SkipToContentLink.js';
+export type { SkipToContentLinkProps } from './SkipToContentLink.js';
 export default './SkipToContentLink';

@@ -2,15 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { act, render, RenderResult } from '@testing-library/react';
-import React from 'react';
-import Toast, { ToastCategory } from './Toast';
+import { act, render, type RenderResult } from '@testing-library/react';
+import * as React from 'react';
+import Toast, { type ToastCategory } from './Toast.js';
 import {
   SvgInfoCircular,
   SvgStatusError,
   SvgStatusSuccess,
   SvgStatusWarning,
-} from '../utils';
+} from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
 it('renders the category classes & icons correctly', () => {

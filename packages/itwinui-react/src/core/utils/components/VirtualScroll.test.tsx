@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { act, fireEvent, render } from '@testing-library/react';
-import React from 'react';
-import VirtualScroll from './VirtualScroll';
-import * as UseResizeObserver from '../hooks/useResizeObserver';
-import { useVirtualization } from '.';
+import * as React from 'react';
+import VirtualScroll from './VirtualScroll.js';
+import * as UseResizeObserver from '../hooks/useResizeObserver.js';
+import { useVirtualization } from './index.js';
 
 // to return correct values for container 'scroller' and children
 const heightsMock = jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect');

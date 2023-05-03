@@ -57,7 +57,7 @@ const reactComponentFactory = (directory, componentName) => {
   return {
     path: `${directory}/${componentName}.tsx`,
     template: `${copyrightBannerJs}
-import React from 'react';
+import * as React from 'react';
 import { useTheme } from '../utils';
 
 export type ${componentName}Props = {};
@@ -84,7 +84,7 @@ const storiesFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.stories.tsx`,
     template: `${copyrightBannerJs}
 import { Story, Meta } from '@storybook/react';
-import React from 'react';
+import * as React from 'react';
 import { ${componentName}, ${componentName}Props } from '@itwin/itwinui-react';
 
 export default {
@@ -141,7 +141,7 @@ const reactComponentTestFactory = (directory, componentName) => {
   return {
     path: `${directory}/${componentName}.test.tsx`,
     template: `${copyrightBannerJs}
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { ${componentName} } from './${componentName}';

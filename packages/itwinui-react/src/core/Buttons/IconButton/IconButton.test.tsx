@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { SvgMore } from '../../utils';
+import * as React from 'react';
+import { SvgMore } from '../../utils/index.js';
 
-import { IconButton } from './IconButton';
+import { IconButton } from './IconButton.js';
 
 it('renders icon button correctly', () => {
   const onClickMock = jest.fn();

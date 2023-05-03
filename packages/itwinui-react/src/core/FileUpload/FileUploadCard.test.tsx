@@ -2,12 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { SvgDocument, SvgUpload, SvgCheckmark, SvgSmileyHappy } from '../utils';
-import { FileUploadCard, FileUploadCardProps } from './FileUploadCard';
-import { Button } from '../Buttons';
-import { FileEmptyCard } from './FileEmptyCard';
+import {
+  SvgDocument,
+  SvgUpload,
+  SvgCheckmark,
+  SvgSmileyHappy,
+} from '../utils/index.js';
+import { FileUploadCard, type FileUploadCardProps } from './FileUploadCard.js';
+import { Button } from '../Buttons/index.js';
+import { FileEmptyCard } from './FileEmptyCard.js';
 
 const CustomFileUploadCard = (props: FileUploadCardProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);

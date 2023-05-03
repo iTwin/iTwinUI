@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import RadioTile from './RadioTile';
-import { SvgMore as SvgPlaceholder } from '../utils';
+import RadioTile from './RadioTile.js';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
 it('should render empty radio tile', () => {
   const { container } = render(<RadioTile />);

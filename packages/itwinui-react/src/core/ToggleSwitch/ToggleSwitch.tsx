@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, useTheme } from '../utils';
+import { useMergedRefs, useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/toggle-switch.css';
 
 export type ToggleSwitchProps = {

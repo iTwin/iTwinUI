@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { DialogTitleBarTitle } from './DialogTitleBarTitle';
+import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(

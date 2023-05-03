@@ -4,10 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
-import { PolymorphicForwardRefComponent, useTheme } from '../utils';
-import { Button, ButtonProps } from '../Buttons';
+import { useTheme } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Button } from '../Buttons/index.js';
+import type { ButtonProps } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
 export type SidenavButtonProps = {

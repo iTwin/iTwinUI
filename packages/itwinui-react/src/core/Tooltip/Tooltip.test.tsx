@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, fireEvent, render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Tooltip } from './Tooltip';
+import { Tooltip } from './Tooltip.js';
 
 it('should toggle the visibility of tooltip on hover', () => {
   jest.useFakeTimers();

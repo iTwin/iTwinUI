@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Tooltip, TooltipProps } from '../Tooltip';
-import { SliderProps } from './Slider';
+import { Tooltip } from '../Tooltip/index.js';
+import type { TooltipProps } from '../Tooltip/index.js';
+import type { SliderProps } from './Slider.js';
 
 export type ThumbProps = {
   /**

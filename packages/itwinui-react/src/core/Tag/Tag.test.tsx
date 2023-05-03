@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Tag } from './Tag';
+import { Tag } from './Tag.js';
 
 it('renders in its most basic state', () => {
   const { container } = render(<Tag>Mocked tag</Tag>);
