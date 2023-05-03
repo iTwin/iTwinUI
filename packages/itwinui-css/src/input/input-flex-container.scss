@@ -60,6 +60,9 @@
 /// @arg status - must be one of: positive, negative, warning
 @mixin iui-flex-input-status($status) {
   --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
-  border-bottom-width: var(--iui-size-3xs);
-  border-bottom-color: var(--_iui-input-accent-border-color);
+
+  &::before {
+    border-bottom-width: var(--iui-size-3xs);
+    border-bottom-color: var(--_iui-input-accent-border-color);
+  }
 }
