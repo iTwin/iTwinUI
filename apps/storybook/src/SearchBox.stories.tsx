@@ -9,7 +9,6 @@ import {
   SearchBoxProps,
   IconButton,
   Text,
-  Flex,
   Divider,
 } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
@@ -24,84 +23,55 @@ export default {
 } as Meta<SearchBoxProps>;
 
 export const Basic: StoryFn<SearchBoxProps> = () => {
+  return <SearchBox disabled inputProps={{ placeholder: 'Basic search' }} />;
+};
+
+export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
   return (
-    <Flex flexDirection='column'>
-      <SearchBox disabled inputProps={{ placeholder: 'Basic search' }} />
-      <SearchBox>
-        <SearchBox.Button title='Search button' />
-        <SearchBox.Input placeholder='Basic search with custom interactions' />
-        <Text
-          isMuted
-          variant='body'
-          as='p'
-          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
-        >
-          0/3
-        </Text>
-        <Divider orientation='vertical' />
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretUpSmall />
-        </SearchBox.Button>
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretDownSmall />
-        </SearchBox.Button>
-      </SearchBox>
-    </Flex>
+    <SearchBox>
+      <SearchBox.Button title='Search button' />
+      <SearchBox.Input placeholder='Basic search with custom interactions' />
+      <Text
+        isMuted
+        variant='body'
+        as='p'
+        style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
+      >
+        0/3
+      </Text>
+      <Divider orientation='vertical' />
+      <SearchBox.Button styleType='borderless'>
+        <SvgCaretUpSmall />
+      </SearchBox.Button>
+      <SearchBox.Button styleType='borderless'>
+        <SvgCaretDownSmall />
+      </SearchBox.Button>
+    </SearchBox>
   );
 };
 
 export const Expandable: StoryFn<SearchBoxProps> = () => {
+  return <SearchBox expandable id='search-input' />;
+};
+
+export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
   return (
-    <Flex flexDirection='column' alignItems='start'>
-      <SearchBox expandable id='search-input' />
-      <SearchBox expandable>
-        <SearchBox.CloseButton />
-        <SearchBox.Input placeholder='Expandable search with custom interactions' />
-        <Text
-          isMuted
-          variant='body'
-          as='p'
-          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
-        >
-          0/3
-        </Text>
-        <Divider orientation='vertical' />
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretUpSmall />
-        </SearchBox.Button>
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretDownSmall />
-        </SearchBox.Button>
-      </SearchBox>
-    </Flex>
+    <SearchBox expandable>
+      <SearchBox.Input placeholder='Expandable search with custom interactions' />
+      <SearchBox.Button>
+        <SvgCaretUpSmall />
+      </SearchBox.Button>
+      <SearchBox.Button>
+        <SvgCaretDownSmall />
+      </SearchBox.Button>
+      <Divider orientation='vertical' />
+      <SearchBox.CloseButton />
+    </SearchBox>
   );
 };
 
 export const Small: StoryFn<SearchBoxProps> = () => {
-  return (
-    <Flex flexDirection='column' alignItems='start'>
-      <SearchBox size='small' inputProps={{ placeholder: 'Search...' }} />
-      <SearchBox size='small'>
-        <SearchBox.Icon />
-        <SearchBox.Input placeholder='Expandable search with custom interactions' />
-        <Text
-          isMuted
-          variant='body'
-          as='p'
-          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
-        >
-          0/3
-        </Text>
-        <Divider orientation='vertical' />
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretUpSmall />
-        </SearchBox.Button>
-        <SearchBox.Button styleType='borderless'>
-          <SvgCaretDownSmall />
-        </SearchBox.Button>
-      </SearchBox>
-    </Flex>
-  );
+  return <SearchBox size='small' inputProps={{ placeholder: 'Search...' }} />;
 };
 
 export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
