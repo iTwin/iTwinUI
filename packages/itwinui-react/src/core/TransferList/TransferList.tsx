@@ -116,29 +116,20 @@ const TransferListList = React.forwardRef((props, ref) => {
 
 type TransferListListItemOwnProps = {
   /**
-   * Callback function that handles click and keyboard actions.
+   * Callback fired when the the active state changes.
    */
-  onClick?: (value?: unknown) => void;
+  onActiveChange?: (value: boolean) => void;
 } & ListItemProps;
 
 export type TransferListListItemProps<T extends React.ElementType = 'li'> =
   PolymorphicComponentProps<T, TransferListListItemOwnProps>;
 
 const TransferListListItem = React.forwardRef((props, ref) => {
-  const { actionable, disabled, onClick, children, active, ...rest } = props;
+  const { actionable, disabled, onActiveChange, children, active, ...rest } =
+    props;
 
-  const [isActive, setIsActive] = React.useState(active);
-
-  const onClickEvents = (
-    e:
-      | React.MouseEvent<HTMLLIElement, MouseEvent>
-      | React.KeyboardEvent<HTMLLIElement>,
-  ) => {
-    if (actionable) {
-      onClick?.(e);
-      setIsActive(!isActive);
-    }
-  };
+  const onClickEvents = () =>
+    actionable && onActiveChange && onActiveChange(active ?? false);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
     if (event.altKey) {
@@ -150,7 +141,7 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       event.key === ' ' ||
       event.key === 'Spacebar'
     ) {
-      !disabled && onClickEvents(event);
+      !disabled && onClickEvents();
       event.preventDefault();
     }
   };
@@ -160,7 +151,8 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       ref={ref}
       onClick={onClickEvents}
       onKeyDown={onKeyDown}
-      active={isActive}
+      active={active}
+      actionable={actionable}
       {...rest}
     >
       {children}

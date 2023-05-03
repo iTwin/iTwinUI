@@ -90,7 +90,7 @@ it('should handle keyboard navigation', () => {
 it('should handle key presses', async () => {
   const mockedOnClick = jest.fn();
   render(
-    <TransferList.ListItem actionable onClick={mockedOnClick}>
+    <TransferList.ListItem actionable onActiveChange={mockedOnClick}>
       Item
     </TransferList.ListItem>,
   );

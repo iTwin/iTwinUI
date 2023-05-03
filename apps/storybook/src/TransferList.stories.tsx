@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
@@ -25,16 +26,38 @@ export default {
 } as Meta<TransferListProps>;
 
 export const Basic: Story<TransferListProps> = (args) => {
+  const [data, setData] = React.useState([
+    { name: 'Item 1', active: false },
+    { name: 'Item 2', active: false },
+    { name: 'Item 3', active: false },
+    { name: 'Item 4', active: false },
+    { name: 'Item 5', active: false },
+    { name: 'Item 6', active: false },
+  ]);
+
   return (
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.List role={'listbox'}>
-          <TransferList.ListItem actionable>Item 1</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 2</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 3</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 4</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 5</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 6</TransferList.ListItem>
+          {data.map((item, index) => {
+            return (
+              <TransferList.ListItem
+                actionable
+                active={item.active}
+                onActiveChange={(isActive: boolean) => {
+                  setData((oldData) => {
+                    const newData = [...oldData];
+                    const newObject = { ...newData[index] };
+                    newObject.active = !isActive;
+                    newData[index] = newObject;
+                    return newData;
+                  });
+                }}
+              >
+                {item.name}
+              </TransferList.ListItem>
+            );
+          })}
         </TransferList.List>
       </TransferList.Area>
     </TransferList>
@@ -43,17 +66,39 @@ export const Basic: Story<TransferListProps> = (args) => {
 Basic.args = {};
 
 export const WithLabel: Story<TransferListProps> = (args) => {
+  const [data, setData] = React.useState([
+    { name: 'Option 1', active: false },
+    { name: 'Option 2', active: false },
+    { name: 'Option 3', active: false },
+    { name: 'Option 4', active: false },
+    { name: 'Option 5', active: false },
+    { name: 'Option 6', active: false },
+  ]);
+
   return (
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
         <TransferList.List role={'listbox'}>
-          <TransferList.ListItem actionable>Option 1</TransferList.ListItem>
-          <TransferList.ListItem actionable>Option 2</TransferList.ListItem>
-          <TransferList.ListItem actionable>Option 3</TransferList.ListItem>
-          <TransferList.ListItem actionable>Option 4</TransferList.ListItem>
-          <TransferList.ListItem actionable>Option 5</TransferList.ListItem>
-          <TransferList.ListItem actionable>Option 6</TransferList.ListItem>
+          {data.map((item, index) => {
+            return (
+              <TransferList.ListItem
+                actionable
+                active={item.active}
+                onActiveChange={(isActive: boolean) => {
+                  setData((oldData) => {
+                    const newData = [...oldData];
+                    const newObject = { ...newData[index] };
+                    newObject.active = !isActive;
+                    newData[index] = newObject;
+                    return newData;
+                  });
+                }}
+              >
+                {item.name}
+              </TransferList.ListItem>
+            );
+          })}
         </TransferList.List>
       </TransferList.Area>
     </TransferList>
@@ -62,17 +107,43 @@ export const WithLabel: Story<TransferListProps> = (args) => {
 WithLabel.args = {};
 
 export const WithToolbar: Story<TransferListProps> = (args) => {
+  const [optionData, setOptionData] = React.useState([
+    { name: 'Option 1', active: false },
+    { name: 'Option 2', active: false },
+    { name: 'Option 3', active: false },
+    { name: 'Option 4', active: false },
+    { name: 'Option 5', active: false },
+    { name: 'Option 6', active: false },
+  ]);
+
+  const [appliedData, setAppliedData] = React.useState([
+    { name: 'Option 7', active: false },
+  ]);
+
   return (
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
         <TransferList.List role={'listbox'}>
-          <TransferList.ListItem actionable>Item 1</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 2</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 3</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 4</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 5</TransferList.ListItem>
-          <TransferList.ListItem actionable>Item 6</TransferList.ListItem>
+          {optionData.map((item, index) => {
+            return (
+              <TransferList.ListItem
+                actionable
+                active={item.active}
+                onActiveChange={(isActive: boolean) => {
+                  setOptionData((oldData) => {
+                    const newData = [...oldData];
+                    const newObject = { ...newData[index] };
+                    newObject.active = !isActive;
+                    newData[index] = newObject;
+                    return newData;
+                  });
+                }}
+              >
+                {item.name}
+              </TransferList.ListItem>
+            );
+          })}
         </TransferList.List>
       </TransferList.Area>
       <TransferList.Toolbar>
@@ -92,7 +163,25 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
       <TransferList.Area>
         <TransferList.Label>Applied</TransferList.Label>
         <TransferList.List role={'listbox'}>
-          <TransferList.ListItem>Option 7</TransferList.ListItem>
+          {appliedData.map((item, index) => {
+            return (
+              <TransferList.ListItem
+                actionable
+                active={item.active}
+                onActiveChange={(isActive: boolean) => {
+                  setAppliedData((oldData) => {
+                    const newData = [...oldData];
+                    const newObject = { ...newData[index] };
+                    newObject.active = !isActive;
+                    newData[index] = newObject;
+                    return newData;
+                  });
+                }}
+              >
+                {item.name}
+              </TransferList.ListItem>
+            );
+          })}
         </TransferList.List>
       </TransferList.Area>
     </TransferList>
