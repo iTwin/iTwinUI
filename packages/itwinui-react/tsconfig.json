@@ -17,10 +17,7 @@
     "importHelpers": false,
     "strictNullChecks": true,
     "noUnusedLocals": true,
-    "skipLibCheck": true,
-    "importsNotUsedAsValues": "error",
-    "preserveValueImports": true,
-    "isolatedModules": true
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }
