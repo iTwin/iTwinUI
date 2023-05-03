@@ -11,27 +11,17 @@
     outline-offset: -2px;
   }
 
-  &:where(:not([data-iui-expanded='true'])) {
-    .iui-searchbox-expanded {
-      visibility: hidden;
+  @supports not selector(:has(+ *)) {
+    &:where(.iui-searchbox-open-button:focus-visible) {
+      outline: 2px solid var(--_iui-input-accent-border-color);
+      outline-offset: -2px;
     }
   }
 
   &:where([data-iui-expanded='true']) {
     width: 100%;
     border-color: var(--_iui-input-border-color);
-
-    .iui-searchbox-collapsed {
-      display: none;
-    }
   }
-}
-
-@mixin iui-searchbox-expanded {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
 }
 
 @mixin iui-search-icon {
