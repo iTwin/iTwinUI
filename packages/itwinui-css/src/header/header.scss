@@ -4,7 +4,7 @@
 @use 'header-buttons';
 @use '../mixins';
 
-@mixin iui-page-header {
+.iui-page-header {
   --_iui-header-brand-label-font-size: var(--iui-font-size-2);
   --_iui-header-height: calc(var(--iui-size-s) * 5);
   --_iui-header-icon-scale: none;
@@ -35,15 +35,6 @@
 .iui-page-header-right {
   display: flex;
   align-items: center;
-}
-
-.iui-page-header-left,
-.iui-header-breadcrumbs,
-.iui-header-breadcrumbs-list {
-  overflow: hidden;
-  box-sizing: content-box;
-  margin-bottom: calc(0px - var(--iui-size-2xs));
-  padding-bottom: var(--iui-size-2xs);
 }
 
 .iui-page-header-right {
@@ -80,8 +71,33 @@
   }
 }
 
-.iui-page-header-breadcrumbs {
+.iui-header-breadcrumbs {
   @include breadcrumbs.iui-breadcrumbs($breadcrumbs-height: 100%);
+}
+
+.iui-header-brand {
+  @include header-buttons.iui-header-brand;
+}
+
+.iui-header-brand-icon {
+  @include header-buttons.iui-header-brand-icon;
+}
+
+.iui-header-brand-label {
+  @include header-buttons.iui-header-brand-label;
+}
+
+.iui-header-breadcrumbs-list {
+  @include header-buttons.iui-breadcrumbs-list;
+}
+
+.iui-page-header-left,
+.iui-header-breadcrumbs,
+.iui-header-breadcrumbs-list {
+  overflow: hidden;
+  box-sizing: content-box;
+  margin-bottom: calc(0px - var(--iui-size-2xs));
+  padding-bottom: var(--iui-size-2xs);
 }
 
 .iui-header-breadcrumb-button {
