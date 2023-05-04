@@ -100,24 +100,6 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   &[data-iui-overflow='true'] {
-    &::-webkit-scrollbar {
-      height: 0;
-      width: 0;
-    }
-
-    &:hover {
-      &::-webkit-scrollbar {
-        height: 4px;
-        width: 4px;
-        z-index: 5;
-      }
-    }
-
-    &::-webkit-scrollbar:hover {
-      height: 8px;
-      width: 8px;
-    }
-
     .iui-tab {
       white-space: nowrap;
     }
@@ -150,15 +132,18 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-x: overlay;
-      /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+      overflow-x: auto;
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
         -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
         mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+      }
+
+      &[data-iui-scroll-placement='center'] {
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
       }
 
       &[data-iui-scroll-placement='end'] {
@@ -205,16 +190,19 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-y: overlay;
+      overflow-y: auto;
       min-width: min-content;
-      /* stylelint-disable-next-line property-no-vendor-prefix */
-      -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
-      mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
         -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
         mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+      }
+
+      &[data-iui-scroll-placement='center'] {
+        /* stylelint-disable-next-line property-no-vendor-prefix */
+        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
       }
 
       &[data-iui-scroll-placement='end'] {

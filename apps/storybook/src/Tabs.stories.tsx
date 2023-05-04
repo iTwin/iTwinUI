@@ -278,7 +278,7 @@ HorizontalOverflow.args = {
   ],
 };
 HorizontalOverflow.argTypes = {
-  type: { control: { disable: true } },
+  type: { options: ['default', 'borderless'] },
   orientation: { control: { disable: true } },
   actions: { control: { disable: true } },
 };
@@ -358,7 +358,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
 };
 VerticalOverflow.args = {
   orientation: 'vertical',
-  type: 'default',
+  type: 'borderless',
   labels: [
     <Tab key={1} label='Item 1' />,
     <Tab key={2} label='Item 2' />,
@@ -376,7 +376,7 @@ VerticalOverflow.args = {
   ],
 };
 VerticalOverflow.argTypes = {
-  type: { control: { disable: true } },
+  type: { options: ['default', 'borderless'] },
   orientation: { control: { disable: true } },
   actions: { control: { disable: true } },
 };

@@ -11,6 +11,7 @@ import {
   useContainerWidth,
   useIsomorphicLayoutEffect,
   useIsClient,
+  useResizeObserver,
 } from '../utils';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab';
@@ -20,7 +21,7 @@ export type OverflowOptions = {
    * Whether to allow tabs list to scroll when there is overflow,
    * i.e. when there is not enough space to fit all the tabs.
    *
-   * Not applicable to types `pill` or `borderless`.
+   * Not applicable to type `pill`.
    *
    * @default false
    * @example <caption>Enables scrolling for overflowing tabs</caption>
@@ -45,10 +46,10 @@ type TabsOverflowProps =
        * If `orientation = 'vertical'`, `pill` is not applicable.
        * @default 'default'
        */
-      type?: 'default';
+      type?: 'default' | 'borderless';
     }
   | {
-      type: 'borderless' | 'pill';
+      type: 'pill';
     };
 
 type TabsOrientationProps =
@@ -185,11 +186,7 @@ export const Tabs = (props: TabsProps) => {
   }
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
-  if (
-    props.type !== 'borderless' &&
-    props.type !== 'pill' &&
-    props.overflowOptions
-  ) {
+  if (props.type !== 'pill' && props.overflowOptions) {
     overflowOptions = props.overflowOptions;
     props = { ...props };
     delete props.overflowOptions;
@@ -417,7 +414,7 @@ export const Tabs = (props: TabsProps) => {
     scrollToTab,
   ]);
 
-  const [scrollingPlacement, setScrollingPlacement] = React.useState('start');
+  const [scrollingPlacement, setScrollingPlacement] = React.useState('none');
   const determineScrollingPlacement = React.useCallback(() => {
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
@@ -433,7 +430,12 @@ export const Tabs = (props: TabsProps) => {
       ? ownerDoc.scrollHeight
       : ownerDoc.scrollWidth;
 
-    if (Math.abs(visibleStart - 0) < 1) {
+    if (
+      Math.abs(visibleStart - 0) < 1 &&
+      Math.abs(visibleEnd - totalTabsSpace) < 1
+    ) {
+      setScrollingPlacement('none');
+    } else if (Math.abs(visibleStart - 0) < 1) {
       setScrollingPlacement('start');
     } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
       setScrollingPlacement('end');
@@ -441,6 +443,9 @@ export const Tabs = (props: TabsProps) => {
       setScrollingPlacement('center');
     }
   }, [orientation]);
+  // apply correct mask when tabs list is resized
+  const [resizeRef] = useResizeObserver(determineScrollingPlacement);
+  resizeRef(tablistRef?.current);
 
   // check if overflow tabs are scrolled to far edges
   React.useEffect(() => {
