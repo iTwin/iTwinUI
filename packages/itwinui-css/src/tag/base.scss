@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 @use '../text/mixins' as text-mixins;
-@use '../anchor/base' as anchor;
+@use '../anchor/mixins' as anchor;
 
 @mixin iui-tag-base {
   user-select: all;

@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './base' as *;
+@use './mixins' as *;
 
 .iui-checkbox-wrapper {
   @include iui-checkbox-wrapper;

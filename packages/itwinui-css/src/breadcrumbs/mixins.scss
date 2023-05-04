@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../anchor/base' as anchor;
+@use '../anchor/mixins' as anchor;
 @use '../button/borderless';
 @use '../mixins';
 @use '../button/base';

@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './base' as *;
 @use '../mixins';
-@use '../anchor/base' as anchor;
+@use '../anchor/mixins' as anchor;
 
 .iui-tag {
   @include iui-tag;

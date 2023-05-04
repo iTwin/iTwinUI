@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../checkbox/base' as checkbox;
+@use '../checkbox/mixins' as checkbox;
 
 .iui-radio-wrapper {
   @include checkbox.iui-checkbox-wrapper;
