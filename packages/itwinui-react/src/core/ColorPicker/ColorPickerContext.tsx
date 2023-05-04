@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { ColorValue, HsvColor } from '../utils';
+import * as React from 'react';
+import type { ColorValue, HsvColor } from '../utils/index.js';
 
 export const ColorPickerContext = React.createContext<
   | {

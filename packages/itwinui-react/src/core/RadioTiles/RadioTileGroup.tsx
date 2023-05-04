@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { InputGroup, InputGroupProps } from '../InputGroup';
+import * as React from 'react';
+import { InputGroup } from '../InputGroup/index.js';
+import type { InputGroupProps } from '../InputGroup/index.js';
 import '@itwin/itwinui-css/css/radio-tile.css';
-import { useTheme } from '../utils';
+import { useTheme } from '../utils/index.js';
 
 export type RadioTileGroupProps = Omit<
   InputGroupProps,

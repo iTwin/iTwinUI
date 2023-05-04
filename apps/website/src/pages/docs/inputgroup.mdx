@@ -9,15 +9,26 @@ group: inputs
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='input-inputgroup' />
+<LiveExample src='InputGroup.toggleSwitch.tsx'>
+  <AllExamples.InputGroupToggleSwitchExample client:load />
+</LiveExample>
 
-<LiveExample src='InputGroup.main.tsx'>
-  <AllExamples.InputGroupMainExample client:load />
+Input group class is a container to enhance an input by adding an icon, text, or a button in front or behind the input field as a "help text".
+
+## Usage
+
+<LiveExample src='InputGroup.checkboxGroup.tsx'>
+  <AllExamples.InputGroupCheckboxGroupExample client:load />
+</LiveExample>
+
+Multiple add-ons are supported and can be mixed with [checkbox](checkbox#with-input-group), [radio](radio#statuses), [toggle switch](toggleswitch#with-input-group) input version.
+
+<LiveExample src='InputGroup.radioGroup.tsx'>
+  <AllExamples.InputGroupRadioGroupExample client:load />
 </LiveExample>
 
 ## Props

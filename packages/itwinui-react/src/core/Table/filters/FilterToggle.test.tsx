@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { render, RenderResult, screen } from '@testing-library/react';
-import React from 'react';
+import { render, type RenderResult, screen } from '@testing-library/react';
+import * as React from 'react';
 import type { HeaderGroup } from 'react-table';
-import { FilterToggle, FilterToggleProps } from './FilterToggle';
-import { tableFilters } from './tableFilters';
+import { FilterToggle, type FilterToggleProps } from './FilterToggle.js';
+import { tableFilters } from './tableFilters.js';
 
 function renderComponent<
   T extends Record<string, unknown> = Record<string, unknown>,

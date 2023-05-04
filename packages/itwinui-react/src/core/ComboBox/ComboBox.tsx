@@ -2,37 +2,39 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { InputProps } from '../Input';
-import { MenuExtraContent } from '../Menu';
-import { SelectOption } from '../Select';
-import SelectTag from '../Select/SelectTag';
-import { Text } from '../Typography';
+import type { InputProps } from '../Input/index.js';
+import { MenuExtraContent } from '../Menu/index.js';
+import type { SelectOption } from '../Select/index.js';
+import SelectTag from '../Select/SelectTag.js';
+import { Text } from '../Typography/index.js';
 import {
   useTheme,
-  PopoverProps,
-  CommonProps,
   getRandomValue,
-  InputContainerProps,
   mergeRefs,
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
-} from '../utils';
+} from '../utils/index.js';
+import type {
+  PopoverProps,
+  CommonProps,
+  InputContainerProps,
+} from '../utils/index.js';
 import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
   ComboBoxRefsContext,
   ComboBoxStateContext,
-} from './helpers';
-import { ComboBoxDropdown } from './ComboBoxDropdown';
-import { ComboBoxEndIcon } from './ComboBoxEndIcon';
-import { ComboBoxInput } from './ComboBoxInput';
-import { ComboBoxInputContainer } from './ComboBoxInputContainer';
-import { ComboBoxMenu } from './ComboBoxMenu';
-import { ComboBoxMenuItem } from './ComboBoxMenuItem';
+} from './helpers.js';
+import { ComboBoxDropdown } from './ComboBoxDropdown.js';
+import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
+import { ComboBoxInput } from './ComboBoxInput.js';
+import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
+import { ComboBoxMenu } from './ComboBoxMenu.js';
+import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(

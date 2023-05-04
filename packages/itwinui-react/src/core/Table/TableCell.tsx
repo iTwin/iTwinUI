@@ -2,13 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Cell, CellProps, CellRendererProps, TableInstance } from 'react-table';
+import * as React from 'react';
+import type {
+  Cell,
+  CellProps,
+  CellRendererProps,
+  TableInstance,
+} from 'react-table';
 import cx from 'classnames';
-import { getCellStyle, getStickyStyle } from './utils';
-import { SubRowExpander } from './SubRowExpander';
-import { SELECTION_CELL_ID } from './columns';
-import { DefaultCell } from './cells';
+import { getCellStyle, getStickyStyle } from './utils.js';
+import { SubRowExpander } from './SubRowExpander.js';
+import { SELECTION_CELL_ID } from './columns/index.js';
+import { DefaultCell } from './cells/index.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;

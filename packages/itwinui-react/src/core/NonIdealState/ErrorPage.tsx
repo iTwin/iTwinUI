@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Button } from '../Buttons/Button';
-import { NonIdealState } from './NonIdealState';
-import { CommonProps } from '../utils';
+import * as React from 'react';
+import { Button } from '../Buttons/Button/index.js';
+import { NonIdealState } from './NonIdealState.js';
+import type { CommonProps } from '../utils/index.js';
 import {
   Svg401,
   Svg403,

@@ -2,15 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import {
-  CommonProps,
-  useTheme,
-  isSoftBackground,
-  SoftBackgrounds,
-} from '../utils';
-import type { AnyString } from '../utils';
+import { useTheme, isSoftBackground, SoftBackgrounds } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
+import type { AnyString } from '../utils/index.js';
 import '@itwin/itwinui-css/css/badge.css';
 
 /**

@@ -76,6 +76,13 @@
   outline: solid 1px var(--_iui-checkbox-border-color);
   outline-offset: -1px;
 
+  // increase tap target size to 24x24 by default and allow adjusting through CSS var
+  &::before {
+    content: '';
+    position: absolute;
+    inset: calc((var(--iui-checkbox-target-size, 24px) - 16px) / -2);
+  }
+
   &::after {
     content: '';
     position: absolute;

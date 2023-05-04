@@ -2,15 +2,20 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Input, InputProps } from '../Input';
-import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
-import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
+import * as React from 'react';
+import { Input } from '../Input/index.js';
+import type { InputProps } from '../Input/index.js';
+import {
+  useSafeContext,
+  useMergedRefs,
+  useContainerWidth,
+} from '../utils/index.js';
+import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import {
   ComboBoxStateContext,
   ComboBoxActionContext,
   ComboBoxRefsContext,
-} from './helpers';
+} from './helpers.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
 

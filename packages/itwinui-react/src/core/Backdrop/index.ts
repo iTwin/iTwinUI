@@ -2,5 +2,5 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Backdrop } from './Backdrop';
-export type { BackdropProps } from './Backdrop';
+export { Backdrop } from './Backdrop.js';
+export type { BackdropProps } from './Backdrop.js';

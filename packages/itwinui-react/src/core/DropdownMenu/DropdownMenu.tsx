@@ -2,16 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import {
-  useTheme,
+import * as React from 'react';
+import { useTheme, Popover, mergeRefs } from '../utils/index.js';
+import type {
   CommonProps,
-  Popover,
   PopoverProps,
   PopoverInstance,
-  mergeRefs,
-} from '../utils';
-import { Menu } from '../Menu';
+} from '../utils/index.js';
+import { Menu } from '../Menu/index.js';
 
 export type DropdownMenuProps = {
   /**

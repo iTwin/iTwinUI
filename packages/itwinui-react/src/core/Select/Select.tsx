@@ -2,22 +2,25 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Menu, MenuItem, MenuItemProps } from '../Menu';
+import { Menu, MenuItem } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/index.js';
 import {
-  PopoverProps,
-  PopoverInstance,
-  CommonProps,
   useTheme,
   SvgCaretDownSmall,
   Popover,
   useId,
   AutoclearingHiddenLiveRegion,
-} from '../utils';
+} from '../utils/index.js';
+import type {
+  PopoverProps,
+  PopoverInstance,
+  CommonProps,
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
-import SelectTag from './SelectTag';
-import SelectTagContainer from './SelectTagContainer';
+import SelectTag from './SelectTag.js';
+import SelectTagContainer from './SelectTagContainer.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),

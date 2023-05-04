@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../utils';
-import { CommonProps } from '../../utils';
+import { useTheme } from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 
 export type BaseFilterProps = {
   /**
