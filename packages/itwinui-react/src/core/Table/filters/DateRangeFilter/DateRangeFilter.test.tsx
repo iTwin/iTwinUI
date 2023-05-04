@@ -4,8 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import { HeaderGroup } from 'react-table';
-import { DateRangeFilter, DateRangeFilterProps } from './DateRangeFilter.js';
+import type { HeaderGroup } from 'react-table';
+import {
+  DateRangeFilter,
+  type DateRangeFilterProps,
+} from './DateRangeFilter.js';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
