@@ -195,14 +195,14 @@ export type SearchBoxProps = PolymorphicComponentProps<
 export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
 
 const SearchBoxIcon = React.forwardRef((props, ref) => {
-  const { size, className, children, ...rest } = props;
+  const { className, children, ...rest } = props;
   const { size: sizeContext } = useSafeContext(SearchBoxContext);
 
   return (
     <Icon
       aria-hidden
       className={cx('iui-search-icon', className)}
-      size={size ?? sizeContext}
+      size={sizeContext}
       ref={ref}
       {...rest}
     >
@@ -246,17 +246,14 @@ export type SearchBoxButtonProps = PolymorphicComponentProps<
   IconButtonProps
 >;
 
-/**
- * SearchBox.Button component to add to your SearchBox.
- */
 const SearchBoxButton = React.forwardRef((props, ref) => {
-  const { children, size, ...rest } = props;
+  const { children, ...rest } = props;
   const { size: sizeContext, isDisabled } = useSafeContext(SearchBoxContext);
 
   return (
     <IconButton
       styleType='borderless'
-      size={size ?? sizeContext}
+      size={sizeContext}
       ref={ref}
       disabled={isDisabled}
       {...rest}
@@ -272,11 +269,8 @@ export type SearchBoxCloseButtonProps = PolymorphicComponentProps<
   IconButtonProps
 >;
 
-/**
- * SearchBox.CloseButton component to add to your SearchBox.
- */
 const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
-  const { children, onClick: onClickProp, size, ...rest } = props;
+  const { children, onClick: onClickProp, ...rest } = props;
 
   const {
     onCollapse,
@@ -288,7 +282,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
     <SearchBoxButton
       ref={ref}
       aria-label='Close searchbox'
-      size={size ?? sizeContext}
+      size={sizeContext}
       disabled={isDisabled}
       onClick={(e) => {
         onClickProp?.(e);
@@ -309,11 +303,8 @@ export type SearchBoxOpenButtonProps = PolymorphicComponentProps<
   IconButtonProps
 >;
 
-/**
- * SearchBox.OpenButton component to add to your SearchBox.
- */
 const SearchBoxExpandButton = React.forwardRef((props, ref) => {
-  const { children, className, onClick: onClickProp, size, ...rest } = props;
+  const { children, className, onClick: onClickProp, ...rest } = props;
 
   const {
     onExpand,
@@ -327,7 +318,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       ref={useMergedRefs(ref, openButtonRef)}
       className={cx('iui-searchbox-open-button', className)}
       aria-label='Expand searchbox'
-      size={size ?? sizeContext}
+      size={sizeContext}
       disabled={isDisabled}
       onClick={(e) => {
         onClickProp?.(e);
