@@ -514,3 +514,41 @@ it('should use custom render for selected item (multiple)', async () => {
   expect((selectedValues[0] as HTMLElement).style.color).toEqual('green');
   expect((selectedValues[1] as HTMLElement).style.color).toEqual('red');
 });
+
+it('should update live region when selection changes', async () => {
+  const MultiSelectTest = () => {
+    const [selected, setSelected] = React.useState([0]);
+    return (
+      <Select
+        options={[0, 1, 2].map((value) => ({
+          value,
+          label: `Item ${value}`,
+        }))}
+        popoverProps={{ visible: true }}
+        multiple
+        value={selected}
+        onChange={(value, type) =>
+          setSelected((prev) =>
+            type === 'added'
+              ? [...prev, value]
+              : prev.filter((v) => v !== value),
+          )
+        }
+      />
+    );
+  };
+  const { container } = render(<MultiSelectTest />);
+
+  const liveRegion = container.querySelector('[aria-live="polite"]');
+  expect(liveRegion).toBeEmptyDOMElement();
+  const options = document.querySelectorAll('[role="option"]');
+
+  await userEvent.click(options[1]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1');
+
+  await userEvent.click(options[2]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
+
+  await userEvent.click(options[0]);
+  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
+});
