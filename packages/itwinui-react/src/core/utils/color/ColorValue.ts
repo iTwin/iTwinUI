@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { getBoundedValue } from '../functions/numbers';
+import { getBoundedValue } from '../functions/numbers.js';
 
 // portions adapted from Three.js Copyright © 2010-2017 three.js authors
 

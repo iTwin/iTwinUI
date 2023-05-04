@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.10.3
+
+### Patch Changes
+
+- [#1245](https://github.com/iTwin/iTwinUI/pull/1245): Adjusted Checkbox so that its clickable target area is 24pxx24px by default (increased from 16x16) and 32x32 when used in a Table selection column.
+
+## 1.10.2
+
+### Patch Changes
+
+- [#1235](https://github.com/iTwin/iTwinUI/pull/1235): Changed the internal DOM structure of `LabeledInput` and `LabeledTextarea` to prefer explicit association over implicit. The `<label>` is now associated with the input using `htmlFor`/`id` and the container is a generic div.
+
+  This change improves accessibility, with no API changes and no effect on visuals.
+
 ## 1.10.1
 
 ### Patch Changes

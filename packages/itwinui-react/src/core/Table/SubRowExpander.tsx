@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SvgChevronRight } from '../utils';
-import { Cell, CellProps } from 'react-table';
-import { IconButton } from '../Buttons';
+import * as React from 'react';
+import { SvgChevronRight } from '../utils/index.js';
+import type { Cell, CellProps } from 'react-table';
+import { IconButton } from '../Buttons/index.js';
 
 export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;

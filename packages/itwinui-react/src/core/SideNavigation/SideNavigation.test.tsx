@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { SideNavigation, SideNavigationProps } from './SideNavigation';
-import { SidenavButton } from './SidenavButton';
-import { SidenavSubmenu } from './SidenavSubmenu';
-import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils/';
+import { SideNavigation, type SideNavigationProps } from './SideNavigation.js';
+import { SidenavButton } from './SidenavButton.js';
+import { SidenavSubmenu } from './SidenavSubmenu.js';
+import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils//index.js';
 import userEvent from '@testing-library/user-event';
 
 function renderComponent(props?: Partial<SideNavigationProps>) {

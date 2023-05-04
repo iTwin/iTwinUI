@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import { getWindow } from './dom';
+import { getWindow } from './dom.js';
 
 /**
  * Returns true if the :has selector is supported in the browser

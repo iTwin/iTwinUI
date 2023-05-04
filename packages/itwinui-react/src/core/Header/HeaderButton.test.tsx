@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 import {
   SvgMore as SvgPlaceholder,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-} from '../utils';
+} from '../utils/index.js';
 
-import HeaderButton from './HeaderButton';
-import { MenuItem } from '../Menu';
+import HeaderButton from './HeaderButton.js';
+import { MenuItem } from '../Menu/index.js';
 import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {

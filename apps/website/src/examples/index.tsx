@@ -126,7 +126,9 @@ export { default as HeaderMainExample } from './Header.main';
 
 export { default as InformationPanelMainExample } from './InformationPanel.main';
 
-export { default as InputGroupMainExample } from './InputGroup.main';
+export { default as InputGroupToggleSwitchExample } from './InputGroup.toggleSwitch';
+export { default as InputGroupCheckboxGroupExample } from './InputGroup.checkboxGroup';
+export { default as InputGroupRadioGroupExample } from './InputGroup.radioGroup';
 
 export { default as InputMainExample } from './Input.main';
 export { default as InputSizesExample } from './Input.sizes';
@@ -152,10 +154,14 @@ export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 export { default as RadioMainExample } from './Radio.main';
 export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
+export { default as RadioTileColorExample } from './RadioTile.color';
 
 export { default as SelectMainExample } from './Select.main';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
+export { default as SideNavigationBasicExample } from './SideNavigation.basic';
+export { default as SideNavigationActiveItemExample } from './SideNavigation.activeitem';
+export { default as SideNavigationSubmenuExample } from './SideNavigation.submenu';
 
 export { default as SliderMainExample } from './Slider.main';
 export { default as SliderRangeExample } from './Slider.range';

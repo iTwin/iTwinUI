@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 import {
   useTheme,
   SvgChevronLeft,
@@ -11,10 +11,11 @@ import {
   SvgChevronLeftDouble,
   SvgChevronRightDouble,
   isBefore,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/date-picker.css';
-import { IconButton } from '../Buttons/IconButton';
-import { TimePicker, TimePickerProps } from '../TimePicker';
+import { IconButton } from '../Buttons/IconButton/index.js';
+import { TimePicker } from '../TimePicker/index.js';
+import type { TimePickerProps } from '../TimePicker/index.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (

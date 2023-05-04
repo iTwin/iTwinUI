@@ -2,11 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/color-picker.css';
-import { useTheme, ColorValue, ColorType } from '../utils';
-import { getColorValue } from './ColorPicker';
+import { useTheme, ColorValue } from '../utils/index.js';
+import type { ColorType } from '../utils/index.js';
+import { getColorValue } from './ColorPicker.js';
 
 export type ColorSwatchProps = {
   /**

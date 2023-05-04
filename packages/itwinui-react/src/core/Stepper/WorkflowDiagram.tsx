@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useTheme } from '../utils';
+import * as React from 'react';
+import { useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/workflow-diagram.css';
-import { StepperProps } from './Stepper';
-import { WorkflowDiagramStep } from './WorkflowDiagramStep';
+import type { StepperProps } from './Stepper.js';
+import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
 export type WorkflowDiagramProps = Pick<StepperProps, 'steps'>;
 

@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen, act } from '@testing-library/react';
-import React from 'react';
-import { CarouselDotsList } from './CarouselDotsList';
-import * as UseResizeObserver from '../utils/hooks/useResizeObserver';
+import * as React from 'react';
+import { CarouselDotsList } from './CarouselDotsList.js';
+import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
 import userEvent from '@testing-library/user-event';
 
 const originalMatchMedia = window.matchMedia;

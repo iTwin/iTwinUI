@@ -2,9 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Stepper, StepperProps, StepperLocalization } from './Stepper';
-import { WorkflowDiagram } from './WorkflowDiagram';
+import * as React from 'react';
+import { Stepper } from './Stepper.js';
+import type { StepperProps, StepperLocalization } from './Stepper.js';
+import { WorkflowDiagram } from './WorkflowDiagram.js';
 
 /**
  * @deprecated Since v2:

@@ -3,17 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { Menu, MenuProps } from '../Menu';
-import { Surface } from '../Surface';
+import * as React from 'react';
+import { Menu } from '../Menu/index.js';
+import type { MenuProps } from '../Menu/index.js';
+import { Surface } from '../Surface/index.js';
 import {
   useSafeContext,
   useMergedRefs,
   useVirtualization,
   mergeRefs,
   getWindow,
-} from '../utils';
-import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers';
+} from '../utils/index.js';
+import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxMenuProps = Omit<MenuProps, 'onClick'> &
   React.ComponentPropsWithoutRef<'ul'>;

@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { useContainerWidth } from './useContainerWidth';
-import * as UseResizeObserver from './useResizeObserver';
+import { useContainerWidth } from './useContainerWidth.js';
+import * as UseResizeObserver from './useResizeObserver.js';
 import { act, renderHook } from '@testing-library/react';
 
 beforeEach(() => {

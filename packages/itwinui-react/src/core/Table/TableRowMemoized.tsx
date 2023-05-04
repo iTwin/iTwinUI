@@ -2,11 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { CellProps, Row, TableInstance, TableState } from 'react-table';
-import { useIntersection, useMergedRefs, WithCSSTransition } from '../utils';
-import { TableCell } from './TableCell';
+import type { CellProps, Row, TableInstance, TableState } from 'react-table';
+import {
+  useIntersection,
+  useMergedRefs,
+  WithCSSTransition,
+} from '../utils/index.js';
+import { TableCell } from './TableCell.js';
 
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.

@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import {
   getWindow,
   SvgDocument,
   useMergedRefs,
   useSafeContext,
-} from '../utils';
+  useId,
+} from '../utils/index.js';
 import cx from 'classnames';
-import { FileEmptyCard } from './FileEmptyCard';
-import { useId } from '../utils';
+import { FileEmptyCard } from './FileEmptyCard.js';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];

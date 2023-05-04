@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SvgSmileyHappy, useTheme } from '../../utils';
-import { Button } from '../Button';
+import * as React from 'react';
+import { SvgSmileyHappy, useTheme } from '../../utils/index.js';
+import { Button } from '../Button/index.js';
 
 export type IdeasButtonProps = {
   /**

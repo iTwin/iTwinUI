@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { ColumnInstance, Hooks } from 'react-table';
-import { SelectionColumn, SELECTION_CELL_ID } from '../columns';
+import type { ColumnInstance, Hooks } from 'react-table';
+import { SelectionColumn, SELECTION_CELL_ID } from '../columns/index.js';
 
 export const useSelectionCell =
   <T extends Record<string, unknown>>(

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/utils.css';
 
@@ -18,6 +18,7 @@ export type InputContainerProps<T extends React.ElementType = 'div'> = {
   isIconInline?: boolean;
   statusMessage?: React.ReactNode;
   inputId?: string;
+  labelId?: string;
 } & React.ComponentPropsWithoutRef<T>;
 
 /**
@@ -42,6 +43,7 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
     style,
     statusMessage,
     inputId,
+    labelId,
     ...rest
   } = props;
 
@@ -70,6 +72,7 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
             'iui-required': required,
           })}
           htmlFor={inputId}
+          id={labelId}
         >
           {label}
         </LabelElement>
