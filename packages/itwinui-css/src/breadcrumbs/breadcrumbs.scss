@@ -32,50 +32,6 @@
   }
 }
 
-@mixin iui-breadcrumbs-item-overrides {
-  > * {
-    padding: 0 var(--iui-size-xs);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:not(.iui-button) {
-      color: var(--iui-color-text);
-    }
-  }
-
-  > :any-link {
-    @include iui-anchor;
-    box-sizing: border-box;
-    line-height: var(--iui-component-height);
-
-    &:focus {
-      outline-offset: -1px;
-    }
-  }
-
-  .iui-button {
-    &.iui-button {
-      @include iui-button-borderless;
-      border: none;
-    }
-
-    > span {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &:not([aria-current]) {
-      &,
-      &:hover,
-      &:active {
-        --_iui-button-text-color: var(--iui-color-text-accent);
-      }
-    }
-  }
-}
-
 @mixin iui-breadcrumbs-text {
   padding: 0 var(--iui-size-xs);
   overflow: hidden;

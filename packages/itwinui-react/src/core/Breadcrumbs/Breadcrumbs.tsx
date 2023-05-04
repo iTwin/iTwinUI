@@ -142,7 +142,7 @@ export const Breadcrumbs = React.forwardRef(
           )}
           {items.length - visibleCount > 0 && (
             <>
-              <li className='iui-breadcrumbs-item iui-breadcrumbs-item-overrides'>
+              <li className='iui-breadcrumbs-item'>
                 {overflowButton ? (
                   overflowButton(visibleCount)
                 ) : (
@@ -189,7 +189,7 @@ const ListItem = ({
   isActive: boolean;
 }) => {
   return (
-    <li className={'iui-breadcrumbs-item iui-breadcrumbs-item-overrides'}>
+    <li className={'iui-breadcrumbs-item'}>
       {React.isValidElement(item)
         ? React.cloneElement(item, {
             'aria-current':
