@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
-import { Tab } from './Tab';
-import { Tabs, TabsProps } from './Tabs';
+import * as React from 'react';
+import { Tab } from './Tab.js';
+import { Tabs, type TabsProps } from './Tabs.js';
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,

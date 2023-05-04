@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, renderHook } from '@testing-library/react';
-import { useIntersection } from './useIntersection';
+import { useIntersection } from './useIntersection.js';
 
 const observers = new Map<
   Element,

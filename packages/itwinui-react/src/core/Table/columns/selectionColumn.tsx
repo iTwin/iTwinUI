@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CellProps, CellRendererProps, HeaderProps } from 'react-table';
-import { Checkbox } from '../../Checkbox';
-import { DefaultCell } from '../cells';
+import * as React from 'react';
+import type { CellProps, CellRendererProps, HeaderProps } from 'react-table';
+import { Checkbox } from '../../Checkbox/index.js';
+import { DefaultCell } from '../cells/index.js';
 
 export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';
 

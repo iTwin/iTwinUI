@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import React from 'react';
-import { Button } from '../Buttons';
+import * as React from 'react';
+import { Button } from '../Buttons/index.js';
 
-import { DialogButtonBar } from './DialogButtonBar';
+import { DialogButtonBar } from './DialogButtonBar.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(

@@ -2,14 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, SvgClose } from '../utils';
-import { IconButton } from '../Buttons';
+import { useTheme, SvgClose } from '../utils/index.js';
+import { IconButton } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
-import { DialogContextProps, useDialogContext } from './DialogContext';
-import { DialogTitleBarTitle } from './DialogTitleBarTitle';
-import { useDialogDragContext } from './DialogDragContext';
+import { useDialogContext } from './DialogContext.js';
+import type { DialogContextProps } from './DialogContext.js';
+import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
+import { useDialogDragContext } from './DialogDragContext.js';
 
 export type DialogTitleBarProps = {
   /**

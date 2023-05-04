@@ -2,12 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { ColorPalette } from './ColorPalette';
-import { ColorPicker } from './ColorPicker';
-import { IconButton } from '../Buttons';
-import { ColorValue, SvgMore } from '../utils';
+import { ColorPalette } from './ColorPalette.js';
+import { ColorPicker } from './ColorPicker.js';
+import { IconButton } from '../Buttons/index.js';
+import { ColorValue, SvgMore } from '../utils/index.js';
 
 it('should render in its most basic state', () => {
   const colors = [

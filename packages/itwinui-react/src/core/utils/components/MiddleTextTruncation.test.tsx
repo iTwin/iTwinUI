@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import MiddleTextTruncation from './MiddleTextTruncation';
-import * as UseOverflow from '../hooks/useOverflow';
+import * as React from 'react';
+import MiddleTextTruncation from './MiddleTextTruncation.js';
+import * as UseOverflow from '../hooks/useOverflow.js';
 
 it('should truncate the text', () => {
   jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);

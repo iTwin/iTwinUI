@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 
 /**
  * SSR-safe version of `useLayoutEffect` that replaces it with `useEffect` on the server.

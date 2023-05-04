@@ -2,15 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, act } from '@testing-library/react';
 
-import { InformationPanel } from './InformationPanel';
-import { InformationPanelWrapper } from './InformationPanelWrapper';
-import { InformationPanelHeader } from './InformationPanelHeader';
-import { InformationPanelBody } from './InformationPanelBody';
-import { SvgCloseSmall, SvgMore } from '../utils';
-import { IconButton } from '../Buttons';
+import { InformationPanel } from './InformationPanel.js';
+import { InformationPanelWrapper } from './InformationPanelWrapper.js';
+import { InformationPanelHeader } from './InformationPanelHeader.js';
+import { InformationPanelBody } from './InformationPanelBody.js';
+import { SvgCloseSmall, SvgMore } from '../utils/index.js';
+import { IconButton } from '../Buttons/index.js';
 
 const getBoundingClientRect = HTMLElement.prototype.getBoundingClientRect;
 HTMLElement.prototype.getBoundingClientRect = () => {

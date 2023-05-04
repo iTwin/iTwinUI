@@ -1,20 +1,20 @@
 ## Style guide
 
-### Import only React and use members from there instead of separate imports
+### Import only the React namespace and use members from there instead of separate imports
 
 ```jsx
-// Good
-import React from 'react';
-```
-
-```jsx
-// Bad
-import React, { useState } from 'react';
-```
-
-```jsx
-// Bad
+// Good: namespace import
 import * as React from 'react';
+```
+
+```jsx
+// Bad: named import 
+import { useState } from 'react';
+```
+
+```jsx
+// Bad: default import
+import React from 'react';
 ```
 
 ### Use type instead of interface

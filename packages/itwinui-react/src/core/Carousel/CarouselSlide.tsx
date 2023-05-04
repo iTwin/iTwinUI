@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useIntersection, useMergedRefs } from '../utils';
-import { CarouselContext } from './CarouselContext';
+import { useIntersection, useMergedRefs } from '../utils/index.js';
+import { CarouselContext } from './CarouselContext.js';
 
 type CarouselSlideProps = {
   /**

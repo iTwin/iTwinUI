@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useMergedRefs } from './useMergedRefs';
-import { useResizeObserver } from './useResizeObserver';
+import * as React from 'react';
+import { useMergedRefs } from './useMergedRefs.js';
+import { useResizeObserver } from './useResizeObserver.js';
 
 /**
  * Hook that returns the width of an element in three stages:

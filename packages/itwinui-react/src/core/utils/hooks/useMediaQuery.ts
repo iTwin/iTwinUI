@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getWindow } from '../functions';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import * as React from 'react';
+import { getWindow } from '../functions/index.js';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 export const useMediaQuery = (queryString: string) => {
   const [matches, setMatches] = React.useState<boolean>();

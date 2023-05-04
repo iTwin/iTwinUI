@@ -2,20 +2,20 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   useTheme,
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
-} from '../utils';
+} from '../utils/index.js';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
   ThemeOptions,
   ThemeType,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 

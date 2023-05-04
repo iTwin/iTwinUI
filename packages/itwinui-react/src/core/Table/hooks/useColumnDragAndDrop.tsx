@@ -2,18 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import {
-  actions,
+import type * as React from 'react';
+import { actions, makePropGetter, useGetLatest } from 'react-table';
+import type {
   ActionType,
   HeaderGroup,
   Hooks,
   IdType,
-  makePropGetter,
   TableInstance,
   TableKeyedProps,
   TableState,
-  useGetLatest,
 } from 'react-table';
 
 const REORDER_ACTIONS = {

@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
-import { StepperStep } from './StepperStep';
+import * as React from 'react';
+import { StepperStep } from './StepperStep.js';
 
 describe('Stepper step (default)', () => {
   it('should render step correctly (past)', () => {
