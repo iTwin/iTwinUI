@@ -76,33 +76,33 @@
   }
 }
 
-@mixin iui-breadcrumbs-text {
-  padding: 0 var(--iui-size-xs);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: var(--iui-component-height);
+// @mixin iui-breadcrumbs-text {
+//   padding: 0 var(--iui-size-xs);
+//   overflow: hidden;
+//   white-space: nowrap;
+//   text-overflow: ellipsis;
+//   line-height: var(--iui-component-height);
 
-  &:is(a) {
-    @include iui-anchor;
+//   &:is(a) {
+//     @include iui-anchor;
 
-    &:focus {
-      outline-offset: -1px;
-    }
-  }
-}
+//     &:focus {
+//       outline-offset: -1px;
+//     }
+//   }
+// }
 
-@mixin iui-breadcrumbs-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  padding: 0;
-  border: none;
-  color: var(--iui-color-text-accent);
+// @mixin iui-breadcrumbs-button {
+//   @include iui-button;
+//   @include iui-button-borderless;
+//   padding: 0;
+//   border: none;
+//   color: var(--iui-color-text-accent);
 
-  &[aria-current] {
-    color: var(--iui-color-text);
-  }
-}
+//   &[aria-current] {
+//     color: var(--iui-color-text);
+//   }
+// }
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
