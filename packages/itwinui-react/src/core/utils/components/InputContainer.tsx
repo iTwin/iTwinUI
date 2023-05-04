@@ -18,6 +18,7 @@ export type InputContainerProps<T extends React.ElementType = 'div'> = {
   isIconInline?: boolean;
   statusMessage?: React.ReactNode;
   inputId?: string;
+  labelId?: string;
 } & React.ComponentPropsWithoutRef<T>;
 
 /**
@@ -42,6 +43,7 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
     style,
     statusMessage,
     inputId,
+    labelId,
     ...rest
   } = props;
 
@@ -70,6 +72,7 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
             'iui-required': required,
           })}
           htmlFor={inputId}
+          id={labelId}
         >
           {label}
         </LabelElement>
