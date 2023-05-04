@@ -1,13 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 
-@mixin iui-radio-tile {
+.iui-radio-tile {
   cursor: pointer;
   -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
 }
 
-@mixin iui-radio-tile-content {
+.iui-radio-tile-content {
   width: calc(var(--iui-size-xl) * 5);
   height: 100%;
   padding: var(--iui-size-xs);
@@ -30,7 +30,7 @@
   }
 }
 
-@mixin iui-radio-tile-container {
+.iui-radio-tile-container {
   display: inline-flex;
   flex-wrap: wrap;
   gap: 1px; // prevent overlapping from outline
@@ -40,7 +40,7 @@
   isolation: isolate;
 }
 
-@mixin iui-radio-tile-input {
+.iui-radio-tile-input {
   width: 0;
   height: 0;
   appearance: none;
@@ -129,7 +129,7 @@
   }
 }
 
-@mixin iui-radio-tile-icon {
+.iui-radio-tile-icon {
   @include iui-icon-style('xl');
   @include iui-icon-color;
   margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
@@ -140,7 +140,7 @@
   }
 }
 
-@mixin iui-radio-tile-label {
+.iui-radio-tile-label {
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-semibold);
   line-height: var(--iui-size-l);
@@ -149,7 +149,7 @@
   color: var(--iui-color-text);
 }
 
-@mixin iui-radio-tile-sublabel {
+.iui-radio-tile-sublabel {
   font-size: var(--iui-font-size-0);
   line-height: calc(var(--iui-size-s) * 1.25);
   text-align: center;

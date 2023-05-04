@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../surface/index';
+@import '../surface/surface';
 
 @mixin iui-table-column-filter {
   @include iui-surface;

@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './location-marker';
+@import './base';
 
 @mixin iui-location-marker-data-rich {
   @include iui-location-marker;

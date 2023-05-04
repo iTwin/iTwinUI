@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './utils/index';
+@import './~mixins';
 
 // reset anything that may have been set by v1
 :where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {

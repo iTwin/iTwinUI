@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../breadcrumbs/index';
+@import '../breadcrumbs/breadcrumbs';
+@import './header-buttons';
 
 @mixin iui-page-header {
   --_iui-header-brand-label-font-size: var(--iui-font-size-2);
@@ -20,27 +21,31 @@
   @media (prefers-reduced-motion: no-preference) {
     transition: height var(--iui-duration-1) ease-out;
   }
+
+  &[data-iui-size='slim'] {
+    --_iui-header-brand-label-font-size: var(--iui-font-size-1);
+    --_iui-header-height: calc(var(--iui-size-s) * 3);
+    --_iui-header-icon-scale: scale(0.66666);
+  }
 }
 
-@mixin iui-page-header-slim {
-  --_iui-header-brand-label-font-size: var(--iui-font-size-1);
-  --_iui-header-height: calc(var(--iui-size-s) * 3);
-  --_iui-header-icon-scale: scale(0.66666);
-}
-
-@mixin iui-page-header-zone {
+.iui-page-header-left,
+.iui-page-header-center,
+.iui-page-header-right {
   display: flex;
   align-items: center;
 }
 
-@mixin iui-page-header-left {
+.iui-page-header-left,
+.iui-header-breadcrumbs,
+.iui-header-breadcrumbs-list {
   overflow: hidden;
   box-sizing: content-box;
   margin-bottom: calc(0px - var(--iui-size-2xs));
   padding-bottom: var(--iui-size-2xs);
 }
 
-@mixin iui-page-header-right {
+.iui-page-header-right {
   .iui-button {
     height: 100%;
     border-radius: 0;
@@ -66,7 +71,7 @@
   }
 }
 
-@mixin iui-page-header-divider {
+.iui-page-header-divider {
   height: calc(var(--iui-size-s) * 2);
   border-left: 2px solid var(--iui-color-border);
   @media (forced-colors: active) {
@@ -74,6 +79,34 @@
   }
 }
 
-@mixin iui-page-header-breadcrumbs {
+.iui-page-header-breadcrumbs {
   @include iui-breadcrumbs($breadcrumbs-height: 100%);
+}
+
+.iui-header-breadcrumb-button {
+  @include iui-header-breadcrumb-button;
+}
+
+.iui-header-breadcrumb-button-split {
+  @include iui-header-breadcrumb-button-split;
+}
+
+.iui-header-breadcrumb-item {
+  @include iui-header-breadcrumb-item;
+}
+
+.iui-header-breadcrumb-button-wrapper {
+  @include iui-header-breadcrumb-button-wrapper;
+}
+
+.iui-header-breadcrumb-button-icon {
+  @include iui-header-breadcrumb-button-icon;
+}
+
+.iui-header-breadcrumb-button-dropdown-icon {
+  @include iui-header-breadcrumb-button-dropdown-icon;
+}
+
+.iui-header-breadcrumb-button-text {
+  @include iui-header-breadcrumb-button-text;
 }

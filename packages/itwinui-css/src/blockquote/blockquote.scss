@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../surface/index';
+@import '../~mixins';
+@import '../surface/surface';
 
-@mixin iui-blockquote {
+.iui-blockquote {
   @include iui-reset;
   @include iui-surface;
   display: block;

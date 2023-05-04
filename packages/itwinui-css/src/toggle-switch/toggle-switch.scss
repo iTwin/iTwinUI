@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 
-@mixin iui-toggle-switch-wrapper {
+.iui-toggle-switch-wrapper {
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
 
@@ -47,7 +47,7 @@
   }
 }
 
-@mixin iui-toggle-switch {
+.iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
 
   @include iui-reset;
@@ -60,7 +60,7 @@
   width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
   height: calc(
     var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
-    ($iui-toggle-switch-border-thickness * 2)
+      ($iui-toggle-switch-border-thickness * 2)
   );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;

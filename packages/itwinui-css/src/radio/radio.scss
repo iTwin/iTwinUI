@@ -1,8 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../checkbox/index';
+@import '../checkbox/checkbox';
 
-@mixin iui-radio {
+.iui-radio-wrapper {
+  @include iui-checkbox-wrapper;
+}
+
+.iui-radio {
   @include iui-checkbox;
 
   border-radius: 50%;

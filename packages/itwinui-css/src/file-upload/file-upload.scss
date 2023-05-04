@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../surface/index';
+@import '../~mixins';
+@import '../surface/surface';
 
-@mixin iui-file-upload {
+.iui-file-upload {
   @include iui-reset;
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
@@ -75,14 +75,14 @@
   }
 }
 
-@mixin iui-file-upload-template {
+.iui-file-upload-template {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: var(--iui-size-m);
 }
 
-@mixin iui-file-card {
+.iui-file-card {
   @include iui-reset;
   line-height: 1;
   display: flex;
@@ -101,7 +101,7 @@
   }
 }
 
-@mixin iui-file-card-icon {
+.iui-file-card-icon {
   &,
   svg {
     @include iui-icon-style('xl');
@@ -109,18 +109,18 @@
   }
 }
 
-@mixin iui-file-card-text {
+.iui-file-card-text {
   display: grid;
   gap: var(--iui-size-2xs);
 }
 
-@mixin iui-file-card-title {
+.iui-file-card-title {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
 
-@mixin iui-file-card-description {
+.iui-file-card-description {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -128,12 +128,12 @@
   color: var(--iui-color-text-muted);
 }
 
-@mixin iui-file-card-action {
+.iui-file-card-action {
   margin-left: auto;
   font-weight: var(--iui-font-weight-bold);
 }
 
-@mixin iui-file-card-empty {
+.iui-file-card-empty {
   @include iui-reset;
   line-height: 1;
   display: flex;
@@ -151,7 +151,7 @@
   }
 }
 
-@mixin iui-file-card-empty-icon {
+.iui-file-card-empty-icon {
   &,
   svg {
     @include iui-icon-color;
@@ -159,7 +159,7 @@
   }
 }
 
-@mixin iui-file-card-empty-action {
+.iui-file-card-empty-action {
   display: grid;
   gap: var(--iui-size-2xs);
 

@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 
 @mixin iui-anchor {
   &:where(button) {
@@ -70,5 +70,15 @@
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-anchor {
+  @include iui-anchor;
+
+  &-external {
+    @include iui-anchor-external;
   }
 }

@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../menu/index';
-@import '../utils/index';
-@import '../tag/index';
-@import '../button/index';
+@import '../menu/menu';
+@import '../~mixins';
+@import '../tag/tag';
+@import '../button/button';
 
 @mixin iui-select-button {
   @include iui-focus($offset: -2px, $thickness: 2px);
@@ -131,4 +131,38 @@
   .iui-select-button[data-iui-size='small'] & svg {
     @include iui-icon-style('s');
   }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-select-button {
+  @include iui-select-button;
+
+  &[data-iui-size='small'] {
+    @include iui-select-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-select-size(large);
+  }
+}
+
+.iui-select-tag-container {
+  @include iui-select-tag-container;
+}
+
+.iui-select-tag {
+  @include iui-select-tag;
+}
+
+.iui-select-tag-label {
+  @include iui-select-tag-label;
+}
+
+.iui-select-tag-button {
+  @include iui-select-tag-button;
+}
+
+.iui-select-tag-button-icon {
+  @include iui-select-tag-button-icon;
 }

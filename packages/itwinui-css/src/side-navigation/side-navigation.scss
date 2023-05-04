@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 @import '../text/mixins';
 
 $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
-@mixin iui-side-navigation {
+.iui-side-navigation {
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
@@ -159,7 +159,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 }
 
-@mixin iui-side-navigation-submenu {
+.iui-side-navigation-submenu {
   min-width: calc(var(--iui-size-3xl) * 2);
   max-width: 50vw;
   height: 100%;
@@ -212,7 +212,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 }
 
-@mixin iui-side-navigation-wrapper {
+.iui-side-navigation-wrapper {
   display: flex;
   position: relative;
   height: 100%;

@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../menu/index';
-@import '../utils/index';
+@import '../menu/menu';
+@import '../~mixins';
 
-@mixin iui-time-picker {
+.iui-time-picker {
   @include iui-reset;
   user-select: none;
   text-align: center;
@@ -24,7 +24,8 @@
   }
 }
 
-@mixin iui-time-picker-list {
+.iui-time-picker-list,
+.iui-period {
   padding: var(--iui-size-s) var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
@@ -59,7 +60,7 @@
   }
 }
 
-@mixin iui-time-picker-period {
+.iui-period {
   display: flex;
   align-items: center;
 }

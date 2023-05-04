@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 
-@mixin iui-fieldset {
+.iui-fieldset {
   @include iui-reset;
   padding: var(--iui-size-s) var(--iui-size-s);
   border-radius: var(--iui-border-radius-1);

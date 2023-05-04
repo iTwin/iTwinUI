@@ -1,0 +1,86 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+$iui-notification-marker-size: var(--iui-size-xs);
+$iui-notification-marker-spacing: var(--iui-size-3xs);
+
+$iui-notification-marker-cutout-size: calc($iui-notification-marker-size + 2 * $iui-notification-marker-spacing);
+$iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cutout-size);
+
+@mixin iui-notification-marker {
+  @include iui-notification-marker-status;
+
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: $iui-notification-marker-size;
+    height: $iui-notification-marker-size;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+
+    border-radius: 100%;
+    background-color: var(--_iui-notification-marker-color);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+    }
+  }
+
+  > * {
+    mask: radial-gradient(
+      ellipse $iui-notification-marker-cutout-radius $iui-notification-marker-cutout-radius at 100% 0%,
+      transparent 95%,
+      #000 100%
+    );
+  }
+}
+
+@mixin iui-notification-marker-urgent {
+  &::before {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: pulse 2s infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 var(--_iui-notification-marker-color);
+      }
+
+      70% {
+        box-shadow: 0 0 0 7px rgba(0, 0, 0, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}
+
+@mixin iui-notification-marker-status($status: informational) {
+  @if $status == 'white' {
+    --_iui-notification-marker-color: var(--iui-color-#{$status});
+  } @else {
+    --_iui-notification-marker-color: var(--iui-color-icon-#{$status});
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-notification-marker {
+  @include iui-notification-marker;
+
+  &:where([data-iui-urgent='true']) {
+    @include iui-notification-marker-urgent;
+  }
+
+  @each $status in positive, warning, negative, 'white' {
+    &[data-iui-variant='#{$status}'] {
+      @include iui-notification-marker-status($status);
+    }
+  }
+}

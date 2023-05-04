@@ -1,21 +1,58 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 
 $thumb-height: var(--iui-size-m); // 16px
 $track-height: var(--iui-size-2xs); // 4px
 $tick-height: var(--iui-size-s); // 12px
 
-@mixin iui-slider-component-container {
+.iui-slider-component-container {
   display: flex;
   align-items: flex-start;
 
   &.iui-disabled {
-    @include iui-slider-disabled;
+    cursor: not-allowed;
+
+    .iui-slider-container {
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .iui-slider-rail {
+      background-color: var(--iui-color-background-disabled);
+    }
+
+    .iui-slider-thumb {
+      cursor: not-allowed;
+      background-color: var(--iui-color-border);
+      border-color: var(--iui-color-border);
+      @media (forced-colors: active) {
+        background-color: GrayText;
+        border-color: GrayText;
+      }
+    }
+
+    .iui-slider-track {
+      background-color: var(--iui-color-border);
+      @media (forced-colors: active) {
+        background-color: GrayText;
+      }
+    }
+
+    .iui-slider-min,
+    .iui-slider-max,
+    .iui-slider-tick {
+      user-select: none;
+      color: var(--iui-color-text-disabled);
+      @media (forced-colors: active) {
+        color: GrayText;
+      }
+    }
   }
 }
 
-@mixin iui-slider-endpoints {
+.iui-slider-min,
+.iui-slider-max {
   user-select: all;
   display: flex;
   justify-content: center;
@@ -26,7 +63,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-container {
+.iui-slider-container {
   position: relative;
   flex-grow: 1;
   cursor: pointer;
@@ -38,7 +75,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-rail {
+.iui-slider-rail {
   position: absolute;
   background-color: var(--iui-color-border);
   @media (forced-colors: active) {
@@ -46,7 +83,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-thumb {
+.iui-slider-thumb {
   box-sizing: content-box;
   position: absolute;
   height: $thumb-height;
@@ -67,7 +104,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-track {
+.iui-slider-track {
   pointer-events: none;
   position: absolute;
   top: var(--iui-size-s);
@@ -77,7 +114,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-ticks {
+.iui-slider-ticks {
   position: relative;
   display: flex;
   pointer-events: none;
@@ -100,47 +137,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-disabled {
-  cursor: not-allowed;
-
-  .iui-slider-container {
-    cursor: not-allowed;
-    pointer-events: none;
-  }
-
-  .iui-slider-rail {
-    background-color: var(--iui-color-background-disabled);
-  }
-
-  .iui-slider-thumb {
-    cursor: not-allowed;
-    background-color: var(--iui-color-border);
-    border-color: var(--iui-color-border);
-    @media (forced-colors: active) {
-      background-color: GrayText;
-      border-color: GrayText;
-    }
-  }
-
-  .iui-slider-track {
-    background-color: var(--iui-color-border);
-    @media (forced-colors: active) {
-      background-color: GrayText;
-    }
-  }
-
-  .iui-slider-min,
-  .iui-slider-max,
-  .iui-slider-tick {
-    user-select: none;
-    color: var(--iui-color-text-disabled);
-    @media (forced-colors: active) {
-      color: GrayText;
-    }
-  }
-}
-
-@mixin iui-slider-horizontal {
+.iui-slider-horizontal {
   min-height: calc(var(--iui-size-s) * 2);
 
   .iui-slider-rail {
@@ -195,7 +192,7 @@ $tick-height: var(--iui-size-s); // 12px
   }
 }
 
-@mixin iui-slider-vertical {
+.iui-slider-vertical {
   flex-direction: column-reverse;
   min-width: calc(var(--iui-size-s) * 2);
   height: 100%;

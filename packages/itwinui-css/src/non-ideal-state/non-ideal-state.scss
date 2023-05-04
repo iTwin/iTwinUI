@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@import '../~mixins';
 @import '../text/mixins';
 
-@mixin iui-non-ideal-state {
+.iui-non-ideal-state {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,7 +16,7 @@
   transform: translate(-50%, -40%);
 }
 
-@mixin iui-non-ideal-state-illustration {
+.iui-non-ideal-state-illustration {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,17 +24,17 @@
   height: calc(var(--iui-size-3xl) * 2);
 }
 
-@mixin iui-non-ideal-state-text($type) {
-  @if $type == 'title' {
-    @include iui-text(headline);
-  }
-  @if $type == 'description' {
-    @include iui-text(body);
-  }
+.iui-non-ideal-state-title {
+  @include iui-text(headline);
   @include iui-text-block-spacing;
 }
 
-@mixin iui-non-ideal-state-actions {
+.iui-non-ideal-state-description {
+  @include iui-text(body);
+  @include iui-text-block-spacing;
+}
+
+.iui-non-ideal-state-actions {
   display: flex;
   align-items: center;
   margin-bottom: var(--iui-size-xs);
