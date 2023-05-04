@@ -35,7 +35,7 @@ it.each(['positive', 'negative', 'warning'] as const)(
 
 it('should render InputFlexContainer disabled', () => {
   const { container } = render(
-    <InputFlexContainer disabled>
+    <InputFlexContainer isDisabled>
       <input />
     </InputFlexContainer>,
   );

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
-
+import userEvent from '@testing-library/user-event';
 import { SearchBox } from './SearchBox';
 
 it('should render in its most basic state', () => {
@@ -57,7 +57,7 @@ it('should render in small state', () => {
   expect(searchIcon).toHaveAttribute('data-iui-icon-size', 's');
 });
 
-it('should render expandable Searchbox', () => {
+it('should render expandable Searchbox', async () => {
   const { container } = render(<SearchBox expandable />);
 
   // Base flex container
@@ -74,8 +74,9 @@ it('should render expandable Searchbox', () => {
   expect(openButton).toBeTruthy();
   expect(openButton).toHaveAccessibleName('Expand searchbox');
 
-  openButton.click();
+  await userEvent.click(openButton);
 
+  expect(searchbox).toHaveAttribute('data-iui-expanded', 'true');
   const searchInput = searchbox?.querySelector(
     '.iui-search-input',
   ) as HTMLInputElement;
