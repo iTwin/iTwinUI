@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 @mixin iui-table {
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: flex;
   flex-direction: column;
   isolation: isolate;
@@ -37,7 +37,7 @@
   }
 
   .iui-table-cell:not(.iui-slot) {
-    @include iui-focus;
+    @include mixins.iui-focus;
     column-gap: var(--iui-size-2xs);
     padding-block: calc(var(--iui-size-s) * 0.5);
 
@@ -203,7 +203,7 @@
       border-right: 1px solid transparent;
       border-bottom: 1px solid var(--iui-color-border);
       flex-shrink: 0;
-      @include iui-transition-group;
+      @include mixins.iui-transition-group;
     }
 
     // #region Selection
@@ -325,7 +325,7 @@
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  @include iui-scroll-snapping('.iui-table-row');
+  @include mixins.iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background);
 
   &:last-child {
@@ -431,7 +431,7 @@
   + .iui-table-expanded-content {
     box-shadow: inset var(--iui-size-2xs) 0 0 0 var(--iui-color-border-#{$status});
 
-    @include iui-text-selection($status);
+    @include mixins.iui-text-selection($status);
   }
 
   .iui-table-cell-end-icon {
@@ -444,8 +444,8 @@
 }
 
 @mixin iui-table-cell-status($status) {
-  @include iui-text-selection($status);
-  @include pseudo-content {
+  @include mixins.iui-text-selection($status);
+  @include mixins.pseudo-content {
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }
@@ -460,7 +460,7 @@
     fill: var(--_iui-table-cell-icon-fill);
 
     svg:not(.iui-radial) {
-      @include iui-icon-style('m');
+      @include mixins.iui-icon-style('m');
     }
   }
 

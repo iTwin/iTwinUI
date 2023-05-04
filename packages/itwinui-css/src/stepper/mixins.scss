@@ -2,10 +2,10 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-@mixin iui-location-marker {
+@mixin iui-stepper-list {
   @include mixins.iui-reset;
-
-  display: inline-block;
-  user-select: none;
-  position: relative;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 100%;
 }

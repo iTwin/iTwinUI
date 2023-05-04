@@ -1,7 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../text/mixins';
+@use 'sass:map';
+@use 'sass:string';
+@use '../mixins';
+@use '../text/mixins' as text-mixins;
 
 $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
@@ -56,17 +58,17 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   &.iui-collapsed {
     box-sizing: content-box;
 
-    $icon-large: map-get($iui-icon-sizes, l);
+    $icon-large: map.get(mixins.$iui-icon-sizes, l);
 
     min-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
     max-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
 
     // iPhone notch support
-    @supports (min-width: unquote('max(0px)')) {
-      min-width: unquote(
+    @supports (min-width: string.unquote('max(0px)')) {
+      min-width: string.unquote(
         'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
-      max-width: unquote(
+      max-width: string.unquote(
         'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
     }
@@ -95,8 +97,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     &:not(.iui-expand) {
       height: calc(var(--iui-size-s) * 5);
       // iPhone notch support
-      @supports (padding: unquote('max(0px)')) {
-        padding-left: unquote(
+      @supports (padding: string.unquote('max(0px)')) {
+        padding-left: string.unquote(
           'max(#{$iui-side-navigation-icon-margins}, #{$iui-side-navigation-icon-margins} + env(safe-area-inset-left))'
         );
       }
@@ -115,7 +117,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     .iui-button-icon:not(.iui-avatar) svg {
-      @include iui-icon-style('l');
+      @include mixins.iui-icon-style('l');
     }
 
     &.iui-submenu-open {
@@ -149,8 +151,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       border-bottom: 1px solid var(--iui-color-border);
 
       > .iui-button-icon svg {
-        @include iui-icon-style('s');
-        @include iui-icon-color;
+        @include mixins.iui-icon-style('s');
+        @include mixins.iui-icon-color;
         @media (prefers-reduced-motion: no-preference) {
           transition: transform var(--iui-duration-2) ease-out;
         }
@@ -170,7 +172,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   background-color: var(--iui-color-background);
   border-right: 1px solid var(--iui-color-border);
 
-  @include iui-transition-group;
+  @include mixins.iui-transition-group;
 
   &.iui-enter-active,
   &.iui-exit-active {
@@ -189,7 +191,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     justify-content: space-between;
 
     &-label {
-      @include iui-text(title);
+      @include text-mixins.iui-text(title);
       display: flex;
       align-items: center;
       overflow: hidden;

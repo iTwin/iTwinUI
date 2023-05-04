@@ -1,11 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../button/button';
-@import '../text/muted';
+@use '../mixins';
+@use '../text/muted';
+@use '../button/base';
+@use '../button/borderless';
+@use '../button/default';
 
 @mixin iui-table-paginator {
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,7 +40,7 @@
 }
 
 @mixin iui-table-paginator-page-size-label {
-  @include iui-text-muted;
+  @include muted.iui-text-muted;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -62,16 +64,16 @@
 }
 
 @mixin iui-table-paginator-page-button {
-  @include iui-button;
-  @include iui-button-borderless;
+  @include base.iui-button;
+  @include borderless.iui-button-borderless;
 
   &-small {
-    @include iui-button-size(small);
+    @include base.iui-button-size(small);
   }
 
   &[data-iui-active='true'] {
-    @include iui-button-default-active;
-    @include iui-button-borderless-active;
+    @include default.iui-button-default-active;
+    @include borderless.iui-button-borderless-active;
 
     // Adds stripe above active button
     --_iui-button-active-stripe-inset: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)} #{var(--iui-size-3xs)};

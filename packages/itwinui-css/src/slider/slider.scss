@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 $thumb-height: var(--iui-size-m); // 16px
 $track-height: var(--iui-size-2xs); // 4px
@@ -58,8 +58,8 @@ $tick-height: var(--iui-size-s); // 12px
   justify-content: center;
 
   svg {
-    @include iui-icon-style('m');
-    @include iui-icon-color;
+    @include mixins.iui-icon-style('m');
+    @include mixins.iui-icon-color;
   }
 }
 
@@ -91,7 +91,7 @@ $tick-height: var(--iui-size-s); // 12px
   border-radius: 100%;
   z-index: 1;
   cursor: grab;
-  @include iui-focus($thickness: 2px);
+  @include mixins.iui-focus($thickness: 2px);
   background: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-foreground);
   @media (forced-colors: active) {

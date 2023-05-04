@@ -1,14 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../breadcrumbs/breadcrumbs';
-@import './header-buttons';
+@use '../breadcrumbs/base' as breadcrumbs;
+@use 'header-buttons';
+@use '../mixins';
 
 @mixin iui-page-header {
   --_iui-header-brand-label-font-size: var(--iui-font-size-2);
   --_iui-header-height: calc(var(--iui-size-s) * 5);
   --_iui-header-icon-scale: none;
 
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -80,33 +81,33 @@
 }
 
 .iui-page-header-breadcrumbs {
-  @include iui-breadcrumbs($breadcrumbs-height: 100%);
+  @include breadcrumbs.iui-breadcrumbs($breadcrumbs-height: 100%);
 }
 
 .iui-header-breadcrumb-button {
-  @include iui-header-breadcrumb-button;
+  @include header-buttons.iui-header-breadcrumb-button;
 }
 
 .iui-header-breadcrumb-button-split {
-  @include iui-header-breadcrumb-button-split;
+  @include header-buttons.iui-header-breadcrumb-button-split;
 }
 
 .iui-header-breadcrumb-item {
-  @include iui-header-breadcrumb-item;
+  @include header-buttons.iui-header-breadcrumb-item;
 }
 
 .iui-header-breadcrumb-button-wrapper {
-  @include iui-header-breadcrumb-button-wrapper;
+  @include header-buttons.iui-header-breadcrumb-button-wrapper;
 }
 
 .iui-header-breadcrumb-button-icon {
-  @include iui-header-breadcrumb-button-icon;
+  @include header-buttons.iui-header-breadcrumb-button-icon;
 }
 
 .iui-header-breadcrumb-button-dropdown-icon {
-  @include iui-header-breadcrumb-button-dropdown-icon;
+  @include header-buttons.iui-header-breadcrumb-button-dropdown-icon;
 }
 
 .iui-header-breadcrumb-button-text {
-  @include iui-header-breadcrumb-button-text;
+  @include header-buttons.iui-header-breadcrumb-button-text;
 }

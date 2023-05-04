@@ -1,14 +1,14 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../anchor/anchor';
-@import '../~mixins';
+@use '../anchor/base' as anchor;
+@use '../mixins';
 
 /// category must be one of: informational, positive, warning, negative
 @mixin iui-toast-category($category) {
   border-color: var(--iui-color-border-#{$category});
 
   > .iui-message {
-    @include iui-text-selection($category);
+    @include mixins.iui-text-selection($category);
   }
 
   > .iui-status-area {
@@ -24,7 +24,7 @@
   }
 
   > .iui-toast-anchor {
-    @include iui-anchor-status($category);
+    @include anchor.iui-anchor-status($category);
   }
 
   > button {
@@ -110,7 +110,7 @@
 }
 
 .iui-toast {
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: inline-flex;
   align-items: center;
   pointer-events: all;
@@ -131,7 +131,7 @@
     flex-shrink: 0;
 
     > .iui-icon {
-      @include iui-icon-style('m');
+      @include mixins.iui-icon-style('m');
       fill: var(--iui-color-icon-muted);
     }
   }
@@ -152,7 +152,7 @@
   }
 
   &-anchor {
-    @include iui-anchor-underline('on-initial');
+    @include anchor.iui-anchor-underline('on-initial');
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;
     font-size: var(--iui-font-size-0);

@@ -1,8 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../surface/surface';
-@import '../button/borderless';
-@import '../~mixins';
+@use '../surface/base' as surface;
+@use '../button/borderless';
+@use '../mixins';
 
 @mixin iui-transparent-background($size: var(--iui-size-m)) {
   background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
@@ -30,7 +30,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 .iui-color-picker {
   --iui-color-picker-selected-color: initial;
 
-  @include iui-surface;
+  @include surface.iui-surface;
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   padding: var(--iui-size-s) var(--iui-size-s);
@@ -72,7 +72,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
   }
 
-  @include iui-focus($offset: 2px, $thickness: 2px);
+  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
 
   &.iui-active {
     box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
@@ -236,5 +236,5 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     box-shadow: $iui-hover-box-shadow;
   }
 
-  @include iui-focus($offset: 0, $thickness: 2px);
+  @include mixins.iui-focus($offset: 0, $thickness: 2px);
 }

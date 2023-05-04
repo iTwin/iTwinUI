@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../anchor/anchor';
-@import '../~mixins';
+@use '../anchor/base' as anchor;
+@use '../mixins';
 
 .iui-legal-footer {
-  @include iui-reset;
+  @include mixins.iui-reset;
 
   text-align: center;
   width: 100%;
@@ -31,7 +31,7 @@
   color: var(--iui-color-text-muted);
 
   > a {
-    @include iui-anchor;
+    @include anchor.iui-anchor;
 
     &,
     &:hover {

@@ -1,8 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
 
 @mixin iui-button {
-  @include iui-reset;
+  @include mixins.iui-reset;
   font-family: inherit;
   display: inline-flex;
   flex-shrink: 0;
@@ -29,14 +30,14 @@
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   @include iui-button-size;
-  @include iui-focus;
+  @include mixins.iui-focus;
 }
 
 @mixin iui-button-icon {
   display: inline-flex;
 
   svg {
-    @include iui-icon-style('m');
+    @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
     fill: var(--_iui-button-icon-fill, currentColor);
   }

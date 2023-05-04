@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../button/button';
+@use '../mixins';
+@use '../button/base';
 
 @mixin hide-scrollbar {
   overflow-x: auto;
@@ -16,7 +16,7 @@
 
 .iui-carousel {
   overflow: hidden;
-  @include iui-focus($offset: 4px);
+  @include mixins.iui-focus($offset: 4px);
   border-radius: var(--iui-border-radius-1);
 }
 
@@ -55,8 +55,8 @@
   }
 
   &-dots {
-    @include iui-reset;
-    @include iui-focus;
+    @include mixins.iui-reset;
+    @include mixins.iui-focus;
     max-width: calc(var(--iui-size-2xl) * 4);
     border-radius: var(--iui-border-radius-1);
     white-space: nowrap;
@@ -64,7 +64,7 @@
   }
 
   &-dot {
-    @include iui-button-size($size: small);
+    @include base.iui-button-size($size: small);
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -77,7 +77,7 @@
     }
 
     &::after {
-      @include iui-icon-style('s');
+      @include mixins.iui-icon-style('s');
       content: '';
       border-radius: 50%;
       border: 1px solid transparent;

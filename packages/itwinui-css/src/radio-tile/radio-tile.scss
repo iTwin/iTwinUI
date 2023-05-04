@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 .iui-radio-tile {
   cursor: pointer;
@@ -65,7 +65,7 @@
     }
 
     &::after {
-      @include iui-icon-style('m');
+      @include mixins.iui-icon-style('m');
       content: '';
       position: absolute;
       top: var(--iui-size-xs);
@@ -92,7 +92,7 @@
     }
 
     .iui-radio-tile-icon {
-      filter: $iui-icon-color-multicolor-disabled;
+      filter: mixins.$iui-icon-color-multicolor-disabled;
       fill: var(--iui-color-icon-disabled);
       @media (forced-colors: active) {
         fill: GrayText;
@@ -116,7 +116,7 @@
     }
   }
 
-  @include focus-visible {
+  @include mixins.focus-visible {
     + * {
       // outline for checkmark
       z-index: 2;
@@ -130,8 +130,8 @@
 }
 
 .iui-radio-tile-icon {
-  @include iui-icon-style('xl');
-  @include iui-icon-color;
+  @include mixins.iui-icon-style('xl');
+  @include mixins.iui-icon-color;
   margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
   fill: var(--iui-color-icon-muted);
   transition: fill var(--iui-duration-1) ease-out;

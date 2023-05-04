@@ -1,88 +1,88 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './base';
-@import './default';
-@import './borderless';
-@import './variant';
-@import './idea';
-@import './button-group';
-@import './split-button';
+@use 'base';
+@use 'default';
+@use 'borderless';
+@use 'variant';
+@use 'idea';
+@use 'button-group';
+@use 'split-button';
 
 .iui-button {
-  @include iui-button;
-  @include iui-button-default;
+  @include base.iui-button;
+  @include default.iui-button-default;
 
   &[data-iui-size='small'] {
-    @include iui-button-size(small);
+    @include base.iui-button-size(small);
   }
 
   &[data-iui-size='large'] {
-    @include iui-button-size(large);
+    @include base.iui-button-size(large);
   }
 
   &[data-iui-variant='borderless'] {
-    @include iui-button-borderless;
+    @include borderless.iui-button-borderless;
 
     &[data-iui-size='small'] {
-      @include iui-button-size(small, borderless);
+      @include base.iui-button-size(small, borderless);
     }
 
     &[data-iui-size='large'] {
-      @include iui-button-size(large, borderless);
+      @include base.iui-button-size(large, borderless);
     }
   }
 
   &[data-iui-active='true'] {
-    @include iui-button-default-active;
+    @include default.iui-button-default-active;
 
     &[data-iui-variant='borderless'] {
-      @include iui-button-borderless-active;
+      @include borderless.iui-button-borderless-active;
     }
 
-    @include iui-button-active-disabled;
+    @include default.iui-button-active-disabled;
   }
 
   &[data-iui-variant='high-visibility'] {
-    @include iui-button-variant(high-visibility);
+    @include variant.iui-button-variant(high-visibility);
   }
 
   &[data-iui-variant='cta'] {
-    @include iui-button-variant(cta);
+    @include variant.iui-button-variant(cta);
   }
 
   &[data-iui-variant='idea'] {
-    @include iui-button-idea;
+    @include idea.iui-button-idea;
   }
 }
 
 .iui-button-icon {
-  @include iui-button-icon;
+  @include base.iui-button-icon;
 }
 
 .iui-button-dropdown {
-  @include iui-button-dropdown;
+  @include base.iui-button-dropdown;
 
   &[data-iui-size='small'] {
-    @include iui-button-dropdown(small);
+    @include base.iui-button-dropdown(small);
   }
 
   &[data-iui-size='large'] {
-    @include iui-button-dropdown(large);
+    @include base.iui-button-dropdown(large);
   }
 }
 
 .iui-button-split {
-  @include iui-button-split;
+  @include split-button.iui-button-split;
 }
 
 .iui-button-group {
-  @include iui-button-group;
+  @include button-group.iui-button-group;
 }
 
 .iui-button-group-vertical {
-  @include iui-button-group(vertical);
+  @include button-group.iui-button-group(vertical);
 }
 
 .iui-button-group-overflow-x {
-  @include iui-button-group-overflow-x;
+  @include button-group.iui-button-group-overflow-x;
 }

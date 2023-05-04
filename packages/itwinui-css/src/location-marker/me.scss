@@ -1,10 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './base';
+@use 'base';
+@use '../mixins';
 
 @mixin iui-location-marker-me {
-  @include iui-location-marker;
-  @include iui-icon-style('l');
+  @include base.iui-location-marker;
+  @include mixins.iui-icon-style('l');
   position: relative;
   border-radius: 50%;
   cursor: default;

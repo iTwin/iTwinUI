@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 // Statics version of hidden/visible animation handling
 .iui-tooltip-container {
@@ -26,7 +26,7 @@
 
 // Styling tooltip only
 .iui-tooltip {
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: block;
   text-align: center;
   border-radius: var(--iui-border-radius-1);
@@ -43,5 +43,5 @@
   color: var(--iui-color-white);
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 
-  @include iui-blur($hsl: 0 0% 0%, $opacity: 3);
+  @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
 }

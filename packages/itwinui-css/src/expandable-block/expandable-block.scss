@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 @mixin iui-expandable-block {
   --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
@@ -63,8 +63,8 @@
 }
 
 @mixin iui-expandable-block-header {
-  @include iui-reset;
-  @include iui-focus(
+  @include mixins.iui-reset;
+  @include mixins.iui-focus(
     $offset: var(--_iui-expandable-block-header-focus-offset),
     $thickness: var(--_iui-expandable-block-header-focus-thickness)
   );
@@ -125,7 +125,7 @@
 
 /// @arg $type Can be one of: expander, status
 @mixin iui-expandable-block-header-icons($type) {
-  @include iui-icon-style('m');
+  @include mixins.iui-icon-style('m');
 
   @if $type == 'expander' {
     width: var(--_iui-expandable-block-expander-icon-size);
@@ -173,7 +173,7 @@
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 
-  @include iui-transition-group;
+  @include mixins.iui-transition-group;
 
   // padding should be in a separate div because otherwise it messes up height transition
   > div {

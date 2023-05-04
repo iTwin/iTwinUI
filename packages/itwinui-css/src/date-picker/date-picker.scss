@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../surface/surface';
+@use '../mixins';
+@use '../surface/base' as surface;
 
 //#region Helper mixins
 @mixin iui-calendar-day-base {
-  @include iui-focus;
+  @include mixins.iui-focus;
   cursor: pointer;
   text-align: center;
   width: $iui-date-picker-cell-width;
@@ -47,7 +47,7 @@
   font-weight: var(--iui-font-weight-semibold);
   background-color: var(--iui-color-background-accent);
   color: var(--iui-color-white);
-  @include iui-focus($color: var(--iui-color-white), $offset: -3px);
+  @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {
@@ -84,7 +84,7 @@ $iui-date-picker-cell-height: 36px;
 $iui-date-picker-today-circle-size: 32px;
 
 .iui-date-picker {
-  @include iui-surface;
+  @include surface.iui-surface;
   user-select: none;
   display: inline-grid;
   grid-template-columns: 1fr auto;

@@ -1,7 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../utils/input-container';
+@use '../mixins';
+@use '../input-container/mixins' as input-container;
 
 @mixin iui-information-panel-vertical {
   top: 0;
@@ -123,8 +123,8 @@
       }
 
       svg {
-        @include iui-icon-style('l');
-        @include iui-icon-color;
+        @include mixins.iui-icon-style('l');
+        @include mixins.iui-icon-color;
         margin-right: var(--iui-size-xs);
       }
     }
@@ -207,7 +207,7 @@
     align-items: center;
 
     .iui-input-label {
-      @include iui-input-label-inline;
+      @include input-container.iui-input-label-inline;
       // right align labels
       justify-self: end;
       text-align: end;

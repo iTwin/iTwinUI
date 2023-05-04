@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../surface/surface';
+@use '../mixins';
+@use '../surface/base' as surface;
 
 .iui-blockquote {
-  @include iui-reset;
-  @include iui-surface;
+  @include mixins.iui-reset;
+  @include surface.iui-surface;
   display: block;
   position: relative;
   padding: var(--iui-size-s) var(--iui-size-m);

@@ -1,5 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@use 'sass:map';
 
 @mixin focus-visible {
   &:focus-visible {
@@ -203,7 +204,7 @@ $iui-icon-sizes: (
   display: flex;
   flex-shrink: 0;
 
-  $icon-size: map-get($iui-icon-sizes, $size);
+  $icon-size: map.get($iui-icon-sizes, $size);
   width: $icon-size;
   height: $icon-size;
 }

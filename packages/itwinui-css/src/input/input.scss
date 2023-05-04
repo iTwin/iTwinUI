@@ -1,15 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import './input-with-icon';
+@use '../mixins';
+@use 'input-with-icon';
 
 @mixin iui-input {
   --_iui-input-background-color: var(--iui-color-background);
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-text-color: var(--iui-color-text);
 
-  @include iui-reset;
-  @include iui-focus($offset: -2px, $thickness: 2px);
+  @include mixins.iui-reset;
+  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   font-family: inherit;
   font-size: var(--iui-font-size-1);
@@ -98,9 +98,9 @@
 }
 
 .iui-input-with-icon.iui-input-with-icon {
-  @include iui-input-with-icon;
+  @include input-with-icon.iui-input-with-icon;
 }
 
 .iui-end-icon {
-  @include iui-end-icon;
+  @include input-with-icon.iui-end-icon;
 }

@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 /// Container for grouping inputs with a label, an icon and a status message.
 /// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
 @mixin iui-input-container {
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: grid;
   grid-template:
     'label label'
@@ -159,8 +159,8 @@
 
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
-  @include iui-icon-style('m');
-  @include iui-icon-color;
+  @include mixins.iui-icon-style('m');
+  @include mixins.iui-icon-color;
   grid-area: icon;
   align-self: center;
 
@@ -177,7 +177,7 @@
   position: relative;
 
   svg {
-    @include iui-icon-style('m');
+    @include mixins.iui-icon-style('m');
   }
 
   &.iui-button {
@@ -199,7 +199,7 @@
     cursor: pointer;
     box-sizing: content-box;
 
-    @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
+    @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
     svg {
       fill: var(--iui-color-icon);
@@ -225,7 +225,7 @@
 /// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
 @mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
-  @include iui-text-selection($status);
+  @include mixins.iui-text-selection($status);
 
   #{$iconSelector} {
     fill: var(--iui-color-icon-#{$status});
@@ -289,42 +289,4 @@
       background-color: var(--iui-color-border-#{$status});
     }
   }
-}
-
-// ----------------------------------------------------------------------------
-
-.iui-input-container {
-  @include iui-input-container;
-
-  > .iui-label {
-    @include iui-input-container-label;
-  }
-
-  .iui-input-icon {
-    @include iui-input-icon;
-  }
-
-  .iui-message {
-    @include iui-input-message;
-  }
-
-  &.iui-inline-icon > .iui-input-icon {
-    @include iui-input-icon-inline;
-  }
-
-  &.iui-inline-label {
-    > .iui-label {
-      @include iui-input-label-inline;
-    }
-  }
-
-  @each $status in positive, warning, negative {
-    &.iui-#{$status} {
-      @include iui-input-status($status: $status);
-    }
-  }
-}
-
-.iui-input-label {
-  @include iui-input-label;
 }

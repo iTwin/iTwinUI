@@ -1,13 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './base';
+@use 'base';
 
 @mixin iui-button-borderless {
   --_iui-button-text-color: var(--iui-color-text);
   --_iui-button-background-color: transparent;
   --_iui-button-border-color: transparent;
   --_iui-button-icon-fill: var(--iui-color-icon);
-  @include iui-button-size(medium, borderless);
+  @include base.iui-button-size(medium, borderless);
 
   &:where(:hover, :active) {
     --_iui-button-text-color: var(--iui-color-text-hover);

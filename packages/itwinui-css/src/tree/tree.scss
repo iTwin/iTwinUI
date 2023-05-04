@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 $iui-active-outline: thin solid var(--iui-color-border-accent);
 
@@ -11,19 +11,19 @@ $iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
 $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
 .iui-tree {
-  @include iui-reset;
+  @include mixins.iui-reset;
   list-style: none;
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
 }
 
 .iui-sub-tree {
-  @include iui-reset;
+  @include mixins.iui-reset;
   list-style: none;
 }
 
 .iui-tree-item {
-  @include focus-visible {
+  @include mixins.focus-visible {
     outline: none;
 
     > .iui-tree-node {
@@ -58,8 +58,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     padding-left: var(--iui-size-3xs);
 
     &-icon {
-      @include iui-icon-style('m');
-      @include iui-icon-color;
+      @include mixins.iui-icon-style('m');
+      @include mixins.iui-icon-color;
       margin: 0 $iui-expander-inline-padding;
 
       &:first-child {

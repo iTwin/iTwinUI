@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 .iui-keyboard {
-  @include iui-reset;
+  @include mixins.iui-reset;
   border-radius: var(--iui-border-radius-1);
   display: inline-block;
   font-size: var(--iui-font-size-0);

@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
-@import '../surface/surface';
+@use '../mixins';
+@use '../surface/base' as surface;
 
 .iui-file-upload {
-  @include iui-reset;
+  @include mixins.iui-reset;
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
   position: relative;
@@ -27,13 +27,13 @@
     border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
-      @include visually-hidden;
+      @include mixins.visually-hidden;
     }
 
     > svg,
     .iui-template-icon {
-      @include iui-icon-style('xl');
-      @include iui-icon-color;
+      @include mixins.iui-icon-style('xl');
+      @include mixins.iui-icon-color;
     }
 
     &:only-child {
@@ -83,7 +83,7 @@
 }
 
 .iui-file-card {
-  @include iui-reset;
+  @include mixins.iui-reset;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -104,8 +104,8 @@
 .iui-file-card-icon {
   &,
   svg {
-    @include iui-icon-style('xl');
-    @include iui-icon-color;
+    @include mixins.iui-icon-style('xl');
+    @include mixins.iui-icon-color;
   }
 }
 
@@ -134,7 +134,7 @@
 }
 
 .iui-file-card-empty {
-  @include iui-reset;
+  @include mixins.iui-reset;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -154,8 +154,8 @@
 .iui-file-card-empty-icon {
   &,
   svg {
-    @include iui-icon-color;
-    @include iui-icon-style('xl');
+    @include mixins.iui-icon-color;
+    @include mixins.iui-icon-style('xl');
   }
 }
 

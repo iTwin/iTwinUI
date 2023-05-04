@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../stepper/stepper';
+@use '../stepper/mixins' as *;
+@use '../text/mixins' as *;
 
 .iui-workflow-diagram {
   @include iui-stepper-list;

@@ -1,0 +1,74 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+@mixin iui-anchor {
+  &:where(button) {
+    font: inherit;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  @include iui-anchor-status('accent');
+  border-radius: var(--iui-border-radius-1);
+  cursor: pointer;
+
+  @include iui-anchor-underline('on-hover');
+
+  @media (prefers-contrast: more) {
+    @include iui-anchor-underline('on-initial');
+  }
+
+  :is([data-iui-contrast='high'] &) {
+    @include iui-anchor-underline('on-initial');
+  }
+}
+
+@mixin iui-anchor-external {
+  --_iui-anchor-external-svg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m16 0v5.4l-1.9-2-8.4 8.4-1.5-1.5 8.3-8.4-1.9-1.9m5.4 16v-9h-1v8h-14v-14h8v-1h-9v16z' /></svg>");
+
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 1.5ch;
+    height: 1.5ch;
+    margin-left: 0.5ch;
+    vertical-align: -0.1ch;
+    background-color: currentColor;
+    mask: var(--_iui-anchor-external-svg);
+    @media (forced-colors: active) {
+      background-color: LinkText;
+    }
+  }
+}
+
+@mixin iui-anchor-status($status: accent) {
+  @include mixins.iui-focus($color: var(--iui-color-text-#{$status}), $offset: 1px);
+  color: var(--iui-color-text-#{$status});
+  -webkit-tap-highlight-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
+  @if $status != accent {
+    @include mixins.iui-text-selection($status);
+  }
+
+  &:hover {
+    color: var(--iui-color-text-#{$status}-hover);
+  }
+}
+
+/// $behavior should be one of: 'on-hover' or 'on-initial'
+@mixin iui-anchor-underline($behavior: 'on-hover') {
+  @if $behavior == 'on-hover' {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  } @else {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

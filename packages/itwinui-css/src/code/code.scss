@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 .iui-code {
   display: inline;
@@ -13,7 +13,7 @@
 }
 
 .iui-codeblock {
-  @include iui-reset;
+  @include mixins.iui-reset;
   margin: calc(var(--iui-size-s) * 0.5) 0;
 
   > .iui-title-bar {
@@ -43,7 +43,7 @@
     white-space: normal;
     border: 1px solid var(--iui-color-border);
     color: var(--iui-color-text);
-    @include iui-focus;
+    @include mixins.iui-focus;
 
     > code {
       display: block;

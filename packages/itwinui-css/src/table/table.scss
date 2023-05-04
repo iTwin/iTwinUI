@@ -1,67 +1,67 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './base';
-@import './column-filter';
-@import './paginator';
-@import './sizes';
+@use 'base';
+@use 'column-filter';
+@use 'paginator';
+@use 'sizes';
 
 .iui-table {
-  @include iui-table;
-  @include iui-table-sizes;
+  @include base.iui-table;
+  @include sizes.iui-table-sizes;
 }
 
 .iui-table-header-wrapper {
-  @include iui-table-header-wrapper;
+  @include base.iui-table-header-wrapper;
 }
 
 .iui-table-header {
-  @include iui-table-header;
+  @include base.iui-table-header;
 }
 
 .iui-table-row {
-  @include iui-table-row;
+  @include base.iui-table-row;
 }
 
 .iui-table-header-actions-container {
-  @include iui-table-header-actions-container;
+  @include base.iui-table-header-actions-container;
 }
 
 .iui-table-body {
-  @include iui-table-body;
+  @include base.iui-table-body;
 }
 
 .iui-table-cell {
-  @include iui-table-cell;
+  @include base.iui-table-cell;
 }
 
 .iui-table-cell-shadow-left {
-  @include iui-table-cell-shadow(left);
+  @include base.iui-table-cell-shadow(left);
 }
 
 .iui-table-cell-shadow-right {
-  @include iui-table-cell-shadow(right);
+  @include base.iui-table-cell-shadow(right);
 }
 
 .iui-table-paginator {
-  @include iui-table-paginator;
+  @include paginator.iui-table-paginator;
 }
 
 .iui-table-paginator-page-size-label {
-  @include iui-table-paginator-page-size-label;
+  @include paginator.iui-table-paginator-page-size-label;
 }
 
 .iui-table-paginator-ellipsis {
-  @include iui-table-paginator-ellipsis;
+  @include paginator.iui-table-paginator-ellipsis;
 }
 
 .iui-table-paginator-pages-group {
-  @include iui-table-paginator-pages-group;
+  @include paginator.iui-table-paginator-pages-group;
 }
 
 .iui-table-paginator-page-button {
-  @include iui-table-paginator-page-button;
+  @include paginator.iui-table-paginator-page-button;
 }
 
 .iui-table-column-filter {
-  @include iui-table-column-filter;
+  @include column-filter.iui-table-column-filter;
 }

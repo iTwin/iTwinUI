@@ -1,11 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../anchor/anchor';
-@import '../~mixins';
-@import '../button/button';
+@use '../anchor/base' as anchor;
+@use '../mixins';
+@use '../button/base';
+@use '../button/borderless';
 
 .iui-alert {
-  @include iui-reset;
+  @include mixins.iui-reset;
 
   --_iui-alert-border-color: var(--iui-color-border);
 
@@ -22,10 +23,10 @@
       --_iui-alert-border-color: var(--iui-color-border-#{$statusColor});
       --_iui-alert-icon-color: var(--iui-color-icon-#{$statusColor});
 
-      @include iui-text-selection($statusColor);
+      @include mixins.iui-text-selection($statusColor);
 
       .iui-alert-link {
-        @include iui-anchor-status($statusColor);
+        @include anchor.iui-anchor-status($statusColor);
       }
 
       .iui-alert-button:focus {
@@ -43,7 +44,7 @@
 }
 
 .iui-alert-icon {
-  @include iui-icon-style('m');
+  @include mixins.iui-icon-style('m');
   margin-left: var(--iui-size-m);
   fill: var(--_iui-alert-icon-color, var(--iui-color-icon-muted));
   @media (forced-colors: active) {
@@ -58,7 +59,7 @@
 }
 
 .iui-alert-link {
-  @include iui-anchor-underline('on-initial');
+  @include anchor.iui-anchor-underline('on-initial');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
   margin-left: var(--iui-size-xs);
@@ -67,13 +68,13 @@
 }
 
 .iui-alert-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-button-size(small, borderless);
+  @include base.iui-button;
+  @include borderless.iui-button-borderless;
+  @include base.iui-button-size(small, borderless);
   margin-left: auto;
   margin-right: var(--iui-size-xs);
 }
 
 .iui-alert-button-icon {
-  @include iui-button-icon;
+  @include base.iui-button-icon;
 }

@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 .iui-flex {
   --iui-flex-display: flex;
@@ -36,7 +36,7 @@
   $margin-start: calc(var(--iui-flex-item-gap-before) - var(--iui-flex-gap));
   $margin-end: calc(var(--iui-flex-item-gap-after) - var(--iui-flex-gap));
 
-  @include space-toggle-states;
+  @include mixins.space-toggle-states;
   --iui-flex-item-gap-before-toggle: var(--iui-off);
   --iui-flex-item-gap-after-toggle: var(--iui-off);
 

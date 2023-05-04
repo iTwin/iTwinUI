@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './base';
+@use 'base';
 
 @mixin iui-tabs-default {
-  @include iui-tab-not-animated;
+  @include base.iui-tab-not-animated;
 
   .iui-tab {
     padding: var(--iui-size-2xs) var(--iui-size-m);

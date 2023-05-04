@@ -1,11 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use 'sass:map';
+@use '../mixins';
 
 @mixin iui-progress-indicator-radial {
   position: relative;
   display: inline-block;
-  --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, xl)};
+  --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
 
   width: var(--_iui-progress-indicator-radial-size);
   height: var(--_iui-progress-indicator-radial-size);
@@ -43,7 +44,7 @@
 
     svg,
     img {
-      @include iui-icon-style('m');
+      @include mixins.iui-icon-style('m');
       fill: var(--iui-color-icon);
 
       &:hover {
@@ -80,7 +81,7 @@
   }
 
   &.iui-x-small {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, m)};
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, m)};
 
     .iui-inner-content {
       display: none;
@@ -88,18 +89,18 @@
   }
 
   &.iui-small {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, l)};
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
   }
 
   &.iui-large {
-    --_iui-progress-indicator-radial-size: #{map-get($iui-icon-sizes, 2xl)};
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
 
     .iui-inner-content {
       font-size: var(--iui-font-size-2);
 
       svg,
       img {
-        @include iui-icon-style('l');
+        @include mixins.iui-icon-style('l');
       }
     }
   }

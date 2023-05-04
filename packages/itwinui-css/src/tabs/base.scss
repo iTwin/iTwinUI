@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 // (12px) Between .iui-tabs and .iui-tabs-actions-wrapper
 $tabs-actions-gap: var(--iui-size-s);
@@ -23,13 +23,13 @@ $borderless-horizontal-tab-min-height: calc(
 }
 
 @mixin iui-tabs {
-  @include iui-reset;
+  @include mixins.iui-reset;
   position: relative;
   list-style: none;
   user-select: none;
 
   .iui-tab {
-    @include iui-reset;
+    @include mixins.iui-reset;
     font-family: inherit;
     position: relative;
     display: flex;
@@ -66,11 +66,11 @@ $borderless-horizontal-tab-min-height: calc(
       }
     }
 
-    @include iui-focus;
+    @include mixins.iui-focus;
   }
 
   .iui-tab-icon {
-    @include iui-icon-style('m');
+    @include mixins.iui-icon-style('m');
     fill: var(--iui-color-icon);
     transition: fill var(--iui-duration-1) ease-out;
 
@@ -110,7 +110,7 @@ $borderless-horizontal-tab-min-height: calc(
   max-width: 60ch;
 
   > * {
-    @include iui-line-clamp(3);
+    @include mixins.iui-line-clamp(3);
   }
 }
 

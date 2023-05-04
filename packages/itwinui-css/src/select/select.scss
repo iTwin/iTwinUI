@@ -1,12 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../menu/menu';
-@import '../~mixins';
-@import '../tag/tag';
-@import '../button/button';
+@use '../menu/base' as menu;
+@use '../mixins';
+@use '../tag/base' as tag;
+@use '../button/base';
+@use '../button/borderless';
 
 @mixin iui-select-button {
-  @include iui-focus($offset: -2px, $thickness: 2px);
+  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
   width: 100%;
   border-radius: var(--iui-border-radius-1);
   min-height: var(--_iui-select-min-height);
@@ -32,7 +33,7 @@
   }
 
   .iui-icon {
-    @include iui-menu-icon;
+    @include menu.iui-menu-icon;
     fill: currentColor;
   }
 
@@ -87,7 +88,7 @@
 }
 
 @mixin iui-select-tag {
-  @include iui-tag;
+  @include tag.iui-tag;
   // Override hardcoded Tag margin
   margin-top: 0;
   margin-bottom: 0;
@@ -98,7 +99,7 @@
 }
 
 @mixin iui-select-tag-label {
-  @include iui-tag-label;
+  @include tag.iui-tag-label;
   display: inline-flex;
   align-items: center;
 
@@ -109,9 +110,9 @@
 }
 
 @mixin iui-select-tag-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  @include iui-tag-button;
+  @include base.iui-button;
+  @include borderless.iui-button-borderless;
+  @include tag.iui-tag-button;
   padding: 0 var(--iui-size-2xs);
   min-height: unset;
   min-width: unset;
@@ -125,11 +126,11 @@
 }
 
 @mixin iui-select-tag-button-icon {
-  @include iui-button-icon;
+  @include base.iui-button-icon;
   flex-shrink: 0;
 
   .iui-select-button[data-iui-size='small'] & svg {
-    @include iui-icon-style('s');
+    @include mixins.iui-icon-style('s');
   }
 }
 

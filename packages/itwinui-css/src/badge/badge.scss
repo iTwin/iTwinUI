@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 $iui-badge-background-informational: hsl(203, 80%, 80%); // foreground-informational--dark
 $iui-badge-background-positive: hsl(96, 45%, 78%); // foreground-positive--dark
@@ -13,7 +13,7 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: hsl(0 0% 0% / 0.6);
 
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: inline-block;
   font-size: var(--iui-font-size-0);
   padding: 0 $iui-badge-horizontal-padding;

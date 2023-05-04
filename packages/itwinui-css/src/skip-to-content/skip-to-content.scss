@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../~mixins';
+@use '../mixins';
 
 .iui-skip-to-content-link {
-  @include iui-blur($opacity: 3);
-  @include iui-focus($offset: 2px, $thickness: 2px);
+  @include mixins.iui-blur($opacity: 3);
+  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
   color: var(--iui-color-white);
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;
@@ -24,7 +24,7 @@
   }
 
   &:hover {
-    @include iui-blur($opacity: 2);
+    @include mixins.iui-blur($opacity: 2);
   }
 
   &:focus {
