@@ -8,10 +8,14 @@ import React from 'react';
 import { Alert } from './Alert';
 
 it('renders correctly in its default state', () => {
-  const { container } = render(<Alert>This is an alert.</Alert>);
+  const { container } = render(
+    <Alert>
+      <Alert.Message>This is an alert.</Alert.Message>
+    </Alert>,
+  );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-alert-icon')).toBeFalsy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.querySelector('a')).toBeNull();
@@ -22,16 +26,17 @@ it('renders correctly in its default state', () => {
 it('renders clickable text with href correctly', () => {
   const mockHref = 'https://www.example.com/';
   const { container, getByText } = render(
-    <Alert
-      clickableText='I am a clickable text'
-      clickableTextProps={{ href: mockHref, className: 'my-link' }}
-    >
-      This is an alert.
+    <Alert>
+      <Alert.Message>
+        This is an alert.
+        <Alert.ClickableText href={mockHref} className={'my-link'}>
+          I am a clickable text
+        </Alert.ClickableText>
+      </Alert.Message>
     </Alert>,
   );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
   const link = container.querySelector(
     '.iui-alert-message > .iui-alert-link',
   ) as HTMLAnchorElement;
@@ -45,7 +50,7 @@ it('renders clickable text with href correctly', () => {
 it('takes a className and style correctly', () => {
   const { container, getByText } = render(
     <Alert className='custom-alert' style={{ width: 100 }}>
-      This is an alert.
+      <Alert.Message>This is an alert.</Alert.Message>
     </Alert>,
   );
 
@@ -58,7 +63,9 @@ it('takes a className and style correctly', () => {
 
 it('renders sticky alert correctly', () => {
   const { container, getByText } = render(
-    <Alert isSticky>This is sticky alert.</Alert>,
+    <Alert isSticky>
+      <Alert.Message>This is sticky alert.</Alert.Message>
+    </Alert>,
   );
 
   const alert = container.querySelector('.iui-alert') as HTMLElement;
@@ -75,8 +82,10 @@ it('renders sticky alert correctly', () => {
   it(`renders ${type} correctly`, () => {
     const closeMock = jest.fn();
     const { container, getByText } = render(
-      <Alert type={type} onClose={closeMock}>
-        This is an alert.
+      <Alert type={type}>
+        <Alert.Icon type={type} />
+        <Alert.Message>This is an alert.</Alert.Message>
+        <Alert.CloseButton onClose={closeMock} />
       </Alert>,
     );
     const alert = container.querySelector('.iui-alert') as HTMLElement;

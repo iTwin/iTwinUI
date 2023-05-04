@@ -7,14 +7,15 @@ import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Alert
-      type='positive'
-      onClose={() => console.log('CLOSED')}
-      clickableText='Learn more'
-      clickableTextProps={{ onClick: () => console.log('Clicked more info!') }}
-      style={{ minWidth: 'min(100%, 350px)' }}
-    >
-      This is a positive alert
+    <Alert type='positive' style={{ minWidth: 'min(100%, 350px)' }}>
+      <Alert.Icon type='positive' />
+      <Alert.Message>
+        This is a positive alert
+        <Alert.ClickableText onClick={() => console.log('Clicked more info!')}>
+          Learn more
+        </Alert.ClickableText>
+      </Alert.Message>
+      <Alert.CloseButton onClose={() => console.log('CLOSED')} />
     </Alert>
   );
 };

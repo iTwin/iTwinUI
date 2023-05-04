@@ -6,6 +6,7 @@ import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Alert, AlertProps } from '@itwin/itwinui-react';
+import { SvgCollapse, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Alert',
@@ -21,81 +22,81 @@ export default {
 
 export const Informational: Story<AlertProps> = (args) => {
   return (
-    <Alert
-      type='informational'
-      clickableText='More Info.'
-      onClose={action('Close!')}
-      clickableTextProps={{ onClick: action('Clicked more info!') }}
-      {...args}
-    >
-      {args.children}
+    <Alert type='informational' {...args}>
+      <Alert.Icon type='informational' />
+      <Alert.Message>
+        This is an informational message.
+        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+          More Info.
+        </Alert.ClickableText>
+      </Alert.Message>
+      <Alert.CloseButton onClose={action('Close!')} />
     </Alert>
   );
 };
 
 Informational.args = {
   children: 'This is an informational message.',
-  clickableText: 'More Info.',
   type: 'informational',
 };
 
 export const Positive: Story<AlertProps> = (args) => {
   return (
-    <Alert
-      type='positive'
-      clickableText='More Info.'
-      onClose={action('Close!')}
-      clickableTextProps={{ onClick: action('Clicked more info!') }}
-      {...args}
-    >
-      {args.children}
+    <Alert type='positive' {...args}>
+      <Alert.Icon type='positive' />
+      <Alert.Message>
+        This is a positive message.
+        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+          More Info.
+        </Alert.ClickableText>
+      </Alert.Message>
+      <Alert.CloseButton onClose={action('Close!')} />
     </Alert>
   );
 };
 
 Positive.args = {
   children: 'This is a positive message.',
-  clickableText: 'More Info.',
   type: 'positive',
 };
 
 export const Warning: Story<AlertProps> = (args) => {
   return (
-    <Alert
-      type='warning'
-      clickableText='More Info.'
-      onClose={action('Close!')}
-      clickableTextProps={{ onClick: action('Clicked more info!') }}
-      {...args}
-    >
-      {args.children}
+    <Alert type='warning' {...args}>
+      <Alert.Icon type='warning' />
+      <Alert.Message>
+        This is a warning message.
+        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+          More Info.
+        </Alert.ClickableText>
+      </Alert.Message>
+      <Alert.CloseButton onClose={action('Close!')} />
     </Alert>
   );
 };
 
 Warning.args = {
   children: 'This is a warning message.',
-  clickableText: 'More Info.',
   type: 'warning',
 };
 
 export const Negative: Story<AlertProps> = (args) => {
   return (
-    <Alert
-      type='negative'
-      clickableText='More Info.'
-      onClose={action('Close!')}
-      clickableTextProps={{ onClick: action('Clicked more info!') }}
-      {...args}
-    >
-      {args.children}
+    <Alert type='negative' {...args}>
+      <Alert.Icon type='negative' />
+      <Alert.Message>
+        This is a negative message.
+        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+          More Info.
+        </Alert.ClickableText>
+      </Alert.Message>
+      <Alert.CloseButton onClose={action('Close!')} />
     </Alert>
   );
 };
 
 Negative.args = {
   children: 'This is a negative message.',
-  clickableText: 'More Info.',
   type: 'negative',
 };
 
@@ -109,13 +110,15 @@ export const Sticky: Story<AlertProps> = (args) => {
         border: 'solid 0.5px',
       }}
     >
-      <Alert
-        clickableText='More Info.'
-        onClose={action('Close!')}
-        clickableTextProps={{ onClick: action('Clicked more info!') }}
-        {...args}
-      >
-        {args.children}
+      <Alert type='informational' isSticky={true} {...args}>
+        <Alert.Icon type='informational' />
+        <Alert.Message>
+          This is sticky!
+          <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+            More Info.
+          </Alert.ClickableText>
+        </Alert.Message>
+        <Alert.CloseButton onClose={action('Close!')} />
       </Alert>
       <p style={{ margin: 0, padding: '8px' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -163,7 +166,6 @@ export const Sticky: Story<AlertProps> = (args) => {
 
 Sticky.args = {
   children: 'This is sticky!',
-  clickableText: 'More Info.',
   type: 'informational',
   isSticky: true,
 };
@@ -171,7 +173,29 @@ Sticky.args = {
 export const Empty: Story<AlertProps> = (args) => {
   return (
     <Alert type='informational' {...args}>
-      {args.children}
+      <Alert.Icon type='informational' />
+      <Alert.Message>This is an empty info message.</Alert.Message>
+    </Alert>
+  );
+};
+
+Empty.args = {
+  children: 'This is empty info message.',
+  type: 'informational',
+};
+
+export const CustomIcon: Story<AlertProps> = (args) => {
+  return (
+    <Alert type='informational' {...args}>
+      <Alert.Icon>
+        <SvgSmileyHappy />
+      </Alert.Icon>
+      <Alert.Message>This is an info message with a custom icon.</Alert.Message>
+      <Alert.CloseButton onClose={action('Close!')}>
+        <Alert.CloseButtonIcon>
+          <SvgCollapse />
+        </Alert.CloseButtonIcon>
+      </Alert.CloseButton>
     </Alert>
   );
 };
