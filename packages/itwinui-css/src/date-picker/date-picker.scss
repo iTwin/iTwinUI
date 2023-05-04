@@ -176,6 +176,23 @@ $iui-date-picker-today-circle-size: 32px;
   }
 }
 
+.iui-calendar-day-outside-month {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-base-hover;
+    color: var(--iui-color-text-muted);
+
+    &[aria-disabled='true'] {
+      @include disabled-date-styling;
+    }
+  }
+
+  &-today {
+    @include iui-calendar-day-today-base;
+  }
+}
+
 .iui-calendar-day-range-start {
   &,
   &-today {
@@ -233,22 +250,5 @@ $iui-date-picker-today-circle-size: 32px;
     &::before {
       border-color: var(--iui-color-border-accent);
     }
-  }
-}
-
-.iui-calendar-day-outside-month {
-  &,
-  &-today {
-    @include iui-calendar-day-base;
-    @include iui-calendar-day-base-hover;
-    color: var(--iui-color-text-muted);
-
-    &[aria-disabled='true'] {
-      @include disabled-date-styling;
-    }
-  }
-
-  &-today {
-    @include iui-calendar-day-today-base;
   }
 }
