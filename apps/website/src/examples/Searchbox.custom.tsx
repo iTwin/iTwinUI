@@ -18,7 +18,7 @@ export default () => {
           <SvgCaretDownSmall />
         </SearchBox.Button>
         <Divider orientation='vertical' />
-        <SearchBox.CloseButton label='Close search' />
+        <SearchBox.CollapseButton label='Close search' />
       </SearchBox>
       <SearchBox>
         <SearchBox.Input placeholder='Basic search with custom interactions' />

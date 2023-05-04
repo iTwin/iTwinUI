@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { Meta, StoryFn } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
   SearchBox,
@@ -23,7 +24,7 @@ export default {
 } as Meta<SearchBoxProps>;
 
 export const Basic: StoryFn<SearchBoxProps> = () => {
-  return <SearchBox disabled inputProps={{ placeholder: 'Basic search' }} />;
+  return <SearchBox inputProps={{ placeholder: 'Basic search' }} />;
 };
 
 export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
@@ -65,7 +66,7 @@ export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
         <SvgCaretDownSmall />
       </SearchBox.Button>
       <Divider orientation='vertical' />
-      <SearchBox.CloseButton />
+      <SearchBox.CollapseButton />
     </SearchBox>
   );
 };
@@ -77,14 +78,25 @@ export const Small: StoryFn<SearchBoxProps> = () => {
 export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
   const [expanded, setExpanded] = React.useState(false);
 
-  const onToggle = (value: boolean) => {
-    setExpanded(value);
+  const handleExpand = () => {
+    action('Expanding searchbox');
+    setExpanded(true);
+  };
+
+  const handleCollapse = () => {
+    action('Collapsing searchbox');
+    setExpanded(false);
   };
 
   return (
-    <SearchBox expandable isExpanded={expanded} onToggle={onToggle}>
+    <SearchBox
+      expandable
+      isExpanded={expanded}
+      onExpand={handleExpand}
+      onCollapse={handleCollapse}
+    >
       <SearchBox.Input placeholder='Test' />
-      <SearchBox.CloseButton />
+      <SearchBox.CollapseButton />
       <Divider orientation='vertical' />
       <IconButton styleType='borderless'>
         <SvgCaretUpSmall />

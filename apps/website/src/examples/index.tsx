@@ -161,6 +161,7 @@ export { default as SearchboxSizeExample } from './Searchbox.size';
 export { default as SearchboxExpandableExample } from './Searchbox.expandable';
 export { default as SearchboxStatusExample } from './Searchbox.status';
 export { default as SearchboxCustomExample } from './Searchbox.custom';
+export { default as SearchboxCustomOpenExample } from './Searchbox.customopen';
 
 export { default as SelectMainExample } from './Select.main';
 
