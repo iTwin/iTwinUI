@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Input } from './Input';
+import { Input } from './Input.js';
 
 const assertBaseElement = (container: HTMLElement) => {
   expect(container.querySelector('.iui-input')).toBeTruthy();

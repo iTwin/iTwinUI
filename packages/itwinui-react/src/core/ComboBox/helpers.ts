@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SelectOption } from '../Select/Select';
+import * as React from 'react';
+import type { SelectOption } from '../Select/Select.js';
 
 type ComboBoxAction =
   | { type: 'multiselect'; value: number[] }

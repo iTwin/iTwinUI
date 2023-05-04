@@ -2,10 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { CarouselContext } from './CarouselContext';
-import { getWindow, useMergedRefs, useIsomorphicLayoutEffect } from '../utils';
+import { CarouselContext } from './CarouselContext.js';
+import {
+  getWindow,
+  useMergedRefs,
+  useIsomorphicLayoutEffect,
+} from '../utils/index.js';
 
 /**
  * `CarouselSlider` is the scrollable list that should consist of `CarouselSlide` components.

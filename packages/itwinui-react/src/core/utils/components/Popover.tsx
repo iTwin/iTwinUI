@@ -3,14 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import Tippy, { TippyProps } from '@tippyjs/react';
+import Tippy from '@tippyjs/react';
+import type { TippyProps } from '@tippyjs/react';
 import type { Placement, Instance } from 'tippy.js';
-import { useMergedRefs } from '../hooks/useMergedRefs';
+import { useMergedRefs } from '../hooks/useMergedRefs.js';
 export type PopoverInstance = Instance;
 import '@itwin/itwinui-css/css/utils.css';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider';
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
 
 export type PopoverProps = {
   /**

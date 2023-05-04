@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { TreeNode, TreeNodeProps } from './TreeNode';
-import { TreeContextProps, TreeContext } from './TreeContext';
-import { Checkbox } from '../Checkbox';
-import { SvgMore as SvgPlaceholder } from '../utils';
+import { TreeNode, type TreeNodeProps } from './TreeNode.js';
+import { type TreeContextProps, TreeContext } from './TreeContext.js';
+import { Checkbox } from '../Checkbox/index.js';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
 const renderComponent = ({
   props,

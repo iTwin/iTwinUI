@@ -2,20 +2,19 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   ColorValue,
-  CommonProps,
   getBoundedValue,
-  HsvColor,
   useEventListener,
   useMergedRefs,
   useTheme,
-} from '../utils';
-import { Slider } from '../Slider';
+} from '../utils/index.js';
+import type { CommonProps, HsvColor } from '../utils/index.js';
+import { Slider } from '../Slider/index.js';
 import '@itwin/itwinui-css/css/color-picker.css';
-import { useColorPickerContext } from './ColorPickerContext';
+import { useColorPickerContext } from './ColorPickerContext.js';
 
 const getVerticalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {
   const position = getBoundedValue(pointer, rect.top, rect.bottom);

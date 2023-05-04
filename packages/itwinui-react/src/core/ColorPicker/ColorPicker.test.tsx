@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { getColorValue, ColorPicker } from './ColorPicker';
-import { ColorPalette } from './ColorPalette';
-import { ColorBuilder } from './ColorBuilder';
-import { ColorInputPanel } from './ColorInputPanel';
-import { ColorValue } from '../utils';
+import { getColorValue, ColorPicker } from './ColorPicker.js';
+import { ColorPalette } from './ColorPalette.js';
+import { ColorBuilder } from './ColorBuilder.js';
+import { ColorInputPanel } from './ColorInputPanel.js';
+import { ColorValue } from '../utils/index.js';
 
 it('should convert color list to ColorValues', () => {
   ['#9BA5AF', '#23450b', '#00121D', '#002A44'].forEach((value) => {

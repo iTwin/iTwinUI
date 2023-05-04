@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
-import { useMergedRefs, useTheme } from '../utils';
+import { useMergedRefs, useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/radio.css';
 
 export type RadioProps = {

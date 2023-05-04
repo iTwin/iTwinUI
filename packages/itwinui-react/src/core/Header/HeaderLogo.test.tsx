@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { SvgMore as SvgPlaceholder } from '../utils';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
-import HeaderLogo from './HeaderLogo';
+import HeaderLogo from './HeaderLogo.js';
 
 it('renders default correctly', () => {
   const { container } = render(

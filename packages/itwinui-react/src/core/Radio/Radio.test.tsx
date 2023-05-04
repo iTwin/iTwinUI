@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Radio } from './Radio';
+import { Radio } from './Radio.js';
 
 const assertBaseElements = (container: HTMLElement) => {
   expect(container.querySelector('input[type="radio"]')).toHaveClass(

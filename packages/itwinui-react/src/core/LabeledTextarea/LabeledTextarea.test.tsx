@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { LabeledTextarea } from './LabeledTextarea';
+import { LabeledTextarea } from './LabeledTextarea.js';
 
 it('should render correctly in its most basic state', () => {
   const { container } = render(<LabeledTextarea label='test-label' />);

@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { ColorSwatch } from './ColorSwatch';
-import { ColorValue } from '../utils';
+import { ColorSwatch } from './ColorSwatch.js';
+import { ColorValue } from '../utils/index.js';
 
 it('should render in its most basic state with ColorValue', () => {
   const { container } = render(

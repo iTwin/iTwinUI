@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { LinkBox, LinkAction } from './LinkAction';
+import { LinkBox, LinkAction } from './LinkAction.js';
 
 it('should render LinkBox and LinkAction in its most basic state', () => {
   const { container } = render(

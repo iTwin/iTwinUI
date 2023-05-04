@@ -2,16 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../../utils';
-import { Input } from '../../../Input';
-import {
-  FilterButtonBar,
-  FilterButtonBarTranslation,
-} from '../FilterButtonBar';
-import { BaseFilter } from '../BaseFilter';
-import { TableFilterProps } from '../types';
+import { useTheme } from '../../../utils/index.js';
+import { Input } from '../../../Input/index.js';
+import { FilterButtonBar } from '../FilterButtonBar.js';
+import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
+import { BaseFilter } from '../BaseFilter.js';
+import type { TableFilterProps } from '../types.js';
 
 export type TextFilterProps<T extends Record<string, unknown>> =
   TableFilterProps<T> & {

@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { VisuallyHidden } from './VisuallyHidden';
+import { VisuallyHidden } from './VisuallyHidden.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<VisuallyHidden>hi</VisuallyHidden>);

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { renderHook } from '@testing-library/react';
-import { useEventListener } from './useEventListener';
+import { useEventListener } from './useEventListener.js';
 
 it('should handle event on Window', () => {
   const mouseClickEvent = new MouseEvent('click', { bubbles: true });

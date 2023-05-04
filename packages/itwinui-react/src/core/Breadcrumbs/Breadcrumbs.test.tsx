@@ -2,14 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { Breadcrumbs, BreadcrumbsProps } from './Breadcrumbs';
-import { Button } from '../Buttons';
-import { SvgChevronRight, SvgMore } from '../utils';
-import * as UseOverflow from '../utils/hooks/useOverflow';
-import { IconButton } from '../Buttons/IconButton';
+import { Breadcrumbs, type BreadcrumbsProps } from './Breadcrumbs.js';
+import { Button } from '../Buttons/index.js';
+import { SvgChevronRight, SvgMore } from '../utils/index.js';
+import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import { IconButton } from '../Buttons/IconButton/index.js';
 
 const renderComponent = (props?: Partial<BreadcrumbsProps>) => {
   return render(

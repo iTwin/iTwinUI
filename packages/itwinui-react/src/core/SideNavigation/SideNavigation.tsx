@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   useTheme,
-  CommonProps,
   WithCSSTransition,
   SvgChevronRight,
-} from '../utils';
-import { IconButton } from '../Buttons';
-import { Tooltip } from '../Tooltip';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
+import { IconButton } from '../Buttons/index.js';
+import { Tooltip } from '../Tooltip/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
 export type SideNavigationProps = {

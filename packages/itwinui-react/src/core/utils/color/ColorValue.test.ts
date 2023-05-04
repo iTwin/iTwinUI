@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { ColorValue } from './ColorValue';
+import { ColorValue } from './ColorValue.js';
 
 describe('ColorValue', () => {
   it('should properly handle RGB number values', () => {

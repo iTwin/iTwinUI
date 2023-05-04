@@ -2,14 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../hooks';
+import { useTheme } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-} from '../props';
+} from '../props.js';
 
 type VisuallyHiddenOwnProps = {
   /**

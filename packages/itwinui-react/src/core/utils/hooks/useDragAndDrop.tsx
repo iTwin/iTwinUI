@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getTranslateValues, getWindow } from '../functions';
-import { useEventListener } from './useEventListener';
-import { useResizeObserver } from './useResizeObserver';
+import * as React from 'react';
+import { getTranslateValues, getWindow } from '../functions/index.js';
+import { useEventListener } from './useEventListener.js';
+import { useResizeObserver } from './useResizeObserver.js';
 
 const getContainerRect = (
   containerRef: React.RefObject<HTMLElement> | undefined,

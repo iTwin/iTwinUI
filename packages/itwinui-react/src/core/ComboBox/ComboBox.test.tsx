@@ -2,12 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen, act } from '@testing-library/react';
-import { ComboBox, ComboboxMultipleTypeProps, ComboBoxProps } from './ComboBox';
-import { SvgCaretDownSmall } from '../utils';
-import { MenuItem } from '../Menu';
-import { StatusMessage } from '../StatusMessage';
+import {
+  ComboBox,
+  type ComboboxMultipleTypeProps,
+  type ComboBoxProps,
+} from './ComboBox.js';
+import { SvgCaretDownSmall } from '../utils/index.js';
+import { MenuItem } from '../Menu/index.js';
+import { StatusMessage } from '../StatusMessage/index.js';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = (

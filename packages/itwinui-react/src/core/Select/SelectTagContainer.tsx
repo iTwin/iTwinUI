@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, useOverflow, useMergedRefs } from '../utils';
-import SelectTag from './SelectTag';
+import { useTheme, useOverflow, useMergedRefs } from '../utils/index.js';
+import SelectTag from './SelectTag.js';
 
 export type SelectTagContainerProps = {
   /**
