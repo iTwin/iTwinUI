@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { IdeasButton } from './IdeasButton';
+import { IdeasButton } from './IdeasButton.js';
 
 it('renders ideas button correctly', () => {
   const onClickMock = jest.fn();

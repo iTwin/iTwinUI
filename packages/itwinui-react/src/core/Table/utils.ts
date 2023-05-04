@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { ColumnInstance } from 'react-table';
+import type { ColumnInstance } from 'react-table';
 
 export const getCellStyle = <T extends Record<string, unknown>>(
   column: ColumnInstance<T>,

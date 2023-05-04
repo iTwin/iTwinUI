@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Backdrop } from './Backdrop';
+import { Backdrop } from './Backdrop.js';
 
 it('should render in most basic form', () => {
   const { container } = render(<Backdrop />);

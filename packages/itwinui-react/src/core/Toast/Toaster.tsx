@@ -2,11 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { getContainer, getDocument } from '../utils';
-import { ToastCategory, ToastProps } from './Toast';
-import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
+import { getContainer, getDocument } from '../utils/index.js';
+import type { ToastCategory, ToastProps } from './Toast.js';
+import { ToastWrapper } from './ToastWrapper.js';
+import type { ToastWrapperHandle } from './ToastWrapper.js';
 
 const TOASTS_CONTAINER_ID = 'iui-toasts-container';
 

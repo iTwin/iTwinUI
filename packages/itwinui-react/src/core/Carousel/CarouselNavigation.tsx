@@ -2,12 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { CarouselContext } from './CarouselContext';
-import { IconButton, IconButtonProps } from '../Buttons';
-import { CarouselDotsList } from './CarouselDotsList';
-import { SvgChevronLeft, SvgChevronRight } from '../utils';
+import { CarouselContext } from './CarouselContext.js';
+import { IconButton } from '../Buttons/index.js';
+import type { IconButtonProps } from '../Buttons/index.js';
+import { CarouselDotsList } from './CarouselDotsList.js';
+import { SvgChevronLeft, SvgChevronRight } from '../utils/index.js';
 
 /** Button for switching to previous slide */
 const PreviousButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(

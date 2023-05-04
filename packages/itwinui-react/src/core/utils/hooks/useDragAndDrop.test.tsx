@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import useDragAndDrop from './useDragAndDrop';
-import * as DomFunctions from '../functions/dom';
+import useDragAndDrop from './useDragAndDrop.js';
+import * as DomFunctions from '../functions/dom.js';
 
 const DOMMatrixMock = jest.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

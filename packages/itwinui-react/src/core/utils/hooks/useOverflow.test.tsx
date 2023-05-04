@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, render, waitFor } from '@testing-library/react';
-import React from 'react';
-import { useOverflow } from './useOverflow';
-import * as UseResizeObserver from './useResizeObserver';
+import * as React from 'react';
+import { useOverflow } from './useOverflow.js';
+import * as UseResizeObserver from './useResizeObserver.js';
 
 const MockComponent = ({
   children,

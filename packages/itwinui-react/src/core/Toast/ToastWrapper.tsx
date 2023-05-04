@@ -3,10 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import '@itwin/itwinui-css/css/toast.css';
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import Toast, { ToastProps } from './Toast';
-import { ToasterSettings } from './Toaster';
+import Toast from './Toast.js';
+import type { ToastProps } from './Toast.js';
+import type { ToasterSettings } from './Toaster.js';
 
 type ToastPlacement = NonNullable<ToasterSettings['placement']>;
 

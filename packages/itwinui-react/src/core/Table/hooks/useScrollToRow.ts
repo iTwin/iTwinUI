@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import type { Row } from 'react-table';
-import { TableProps } from '../Table';
+import type { TableProps } from '../Table.js';
 
 type ScrollToRow<T extends Record<string, unknown>> = {
   scrollToIndex: number | undefined;

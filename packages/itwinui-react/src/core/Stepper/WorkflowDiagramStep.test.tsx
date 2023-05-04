@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { WorkflowDiagramStep } from './WorkflowDiagramStep';
+import * as React from 'react';
+import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
 it('should render correctly', () => {
   const step = <WorkflowDiagramStep title='Second step' />;

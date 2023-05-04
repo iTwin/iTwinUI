@@ -3,17 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { Button, ButtonProps } from '../Button';
-import { IconButton } from '../IconButton';
-import { DropdownMenu } from '../../DropdownMenu';
-import { Placement } from 'tippy.js';
+import * as React from 'react';
+import { Button } from '../Button/index.js';
+import type { ButtonProps } from '../Button/index.js';
+import { IconButton } from '../IconButton/index.js';
+import { DropdownMenu } from '../../DropdownMenu/index.js';
+import type { Placement } from 'tippy.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-  PolymorphicForwardRefComponent,
   useTheme,
-} from '../../utils';
+} from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = ButtonProps & {

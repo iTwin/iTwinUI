@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import Resizer, { ResizerProps } from './Resizer';
-import * as Styles from '../functions/styles';
+import Resizer, { type ResizerProps } from './Resizer.js';
+import * as Styles from '../functions/styles.js';
 
 jest.spyOn(Styles, 'getTranslateValues').mockReturnValue([100, 100]);
 jest.spyOn(window, 'getComputedStyle').mockReturnValue({

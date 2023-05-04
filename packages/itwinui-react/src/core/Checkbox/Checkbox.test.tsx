@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
+import * as React from 'react';
 
-import { Checkbox } from './Checkbox';
+import { Checkbox } from './Checkbox.js';
 
 const assertBaseElements = (container: HTMLElement) => {
   expect(container.querySelector('input[type="checkbox"]')).toHaveClass(

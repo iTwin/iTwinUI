@@ -2,9 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Input, InputProps } from '../Input/Input';
-import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
+import * as React from 'react';
+import { Input } from '../Input/Input.js';
+import type { InputProps } from '../Input/Input.js';
+import {
+  StatusIconMap,
+  useTheme,
+  InputContainer,
+  useId,
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledInputProps = {

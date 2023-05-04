@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { SvgMore } from '../utils';
-import { IconButton } from '../Buttons';
-import { SidenavSubmenu } from './SidenavSubmenu';
-import { SidenavSubmenuHeader } from './SidenavSubmenuHeader';
+import { SvgMore } from '../utils/index.js';
+import { IconButton } from '../Buttons/index.js';
+import { SidenavSubmenu } from './SidenavSubmenu.js';
+import { SidenavSubmenuHeader } from './SidenavSubmenuHeader.js';
 
 it('should render in a basic state', () => {
   const { container } = render(

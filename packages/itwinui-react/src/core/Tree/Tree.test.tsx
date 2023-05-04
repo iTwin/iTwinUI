@@ -2,13 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { NodeData, Tree, NodeRenderProps, TreeProps } from './Tree';
-import { TreeNode } from './TreeNode';
+import {
+  Tree,
+  type NodeData,
+  type NodeRenderProps,
+  type TreeProps,
+} from './Tree.js';
+import { TreeNode } from './TreeNode.js';
 import userEvent from '@testing-library/user-event';
-import { Checkbox } from '../Checkbox';
+import { Checkbox } from '../Checkbox/index.js';
 
 type TestData = {
   id: string;

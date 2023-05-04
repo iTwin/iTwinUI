@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
-import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils';
+import * as React from 'react';
+import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils/index.js';
 
-import { ExpandableBlock } from './ExpandableBlock';
+import { ExpandableBlock } from './ExpandableBlock.js';
 
 it('should render correctly in its most basic state', () => {
   const { container } = render(

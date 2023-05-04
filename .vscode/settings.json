@@ -44,7 +44,10 @@
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
     "*.astro": "${capture}.tsx, ${capture).css",
-    "*.tsx": "${capture}.ts, ${capture}.css",
+    "*.ts": "${capture}.test.ts",
+    "*.tsx": "${capture}.ts, ${capture}.css, ${capture}.test.tsx",
     "*.stories.tsx": "${capture}.test.ts"
-  }
+  },
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "typescript.preferences.importModuleSpecifierEnding": "js"
 }

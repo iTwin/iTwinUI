@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import { FileUploadTemplate } from './FileUploadTemplate';
-import { SvgUpload } from '../utils';
+import { FileUploadTemplate } from './FileUploadTemplate.js';
+import { SvgUpload } from '../utils/index.js';
 
 it('should render FileUploadTemplate', () => {
   const mockedOnChange = jest.fn();

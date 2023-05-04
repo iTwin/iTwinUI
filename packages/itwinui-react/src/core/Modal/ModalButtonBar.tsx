@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CommonProps } from '../utils';
-import { DialogButtonBar } from '../Dialog/DialogButtonBar';
+import * as React from 'react';
+import type { CommonProps } from '../utils/index.js';
+import { DialogButtonBar } from '../Dialog/DialogButtonBar.js';
 
 export type ModalButtonBarProps = {
   /**
