@@ -7,7 +7,6 @@ import { action } from '@storybook/addon-actions';
 import { useState } from '@storybook/addons';
 import React from 'react';
 import {
-  Button,
   IconButton,
   Breadcrumbs,
   BreadcrumbsProps,
@@ -37,15 +36,15 @@ export default {
 export const Basic: Story<BreadcrumbsProps> = (args) => {
   return (
     <Breadcrumbs {...args}>
-      <Button key={0} onClick={() => action('Root')()}>
+      <Breadcrumbs.Item key={0} onClick={() => action('Root')}>
         Root
-      </Button>
-      <Button key={1} onClick={() => action('Item 1')()}>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item key={1} onClick={() => action('Item 1')}>
         Item 1
-      </Button>
-      <Button key={2} onClick={() => action('Item 2')()}>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item key={2} onClick={() => action('Item 2')}>
         Item 2
-      </Button>
+      </Breadcrumbs.Item>
     </Breadcrumbs>
   );
 };
@@ -53,13 +52,19 @@ export const Basic: Story<BreadcrumbsProps> = (args) => {
 export const Links: Story<BreadcrumbsProps> = (args) => {
   return (
     <Breadcrumbs {...args}>
-      <a key={0} href='/'>
+      <Breadcrumbs.Item key={0} type='anchor' href='/'>
         iTwinUI
-      </a>
-      <a key={1} href='/?path=/docs/core-breadcrumbs'>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item
+        key={1}
+        type='anchor'
+        href='/?path=/docs/core-breadcrumbs'
+      >
         Breadcrumbs
-      </a>
-      <span key={2}>Links</span>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item key={2} type='text'>
+        Links
+      </Breadcrumbs.Item>
     </Breadcrumbs>
   );
 };
@@ -67,15 +72,15 @@ export const Links: Story<BreadcrumbsProps> = (args) => {
 export const CustomSeparator: Story<BreadcrumbsProps> = (args) => {
   return (
     <Breadcrumbs separator={<SvgChevronRightDouble />} {...args}>
-      <Button key={0} onClick={() => action('Root')()}>
+      <Breadcrumbs.Item key={0} onClick={() => action('Root')}>
         Root
-      </Button>
-      <Button key={1} onClick={() => action('Item 1')()}>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item key={1} onClick={() => action('Item 1')}>
         Item 1
-      </Button>
-      <Button key={2} onClick={() => action('Item 2')()}>
+      </Breadcrumbs.Item>
+      <Breadcrumbs.Item key={2} onClick={() => action('Item 2')}>
         Item 2
-      </Button>
+      </Breadcrumbs.Item>
     </Breadcrumbs>
   );
 };
@@ -87,12 +92,12 @@ export const Overflow: Story<BreadcrumbsProps> = (args) => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
-      <Button
+      <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
-      </Button>
+      </Breadcrumbs.Item>
     ));
 
   return (
@@ -106,12 +111,12 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
-      <Button
+      <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
-      </Button>
+      </Breadcrumbs.Item>
     ));
 
   return (
@@ -131,6 +136,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
+                styleType='borderless'
                 aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
@@ -153,12 +159,12 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
-      <Button
+      <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
-      </Button>
+      </Breadcrumbs.Item>
     ));
 
   return (
@@ -192,6 +198,7 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
             }
           >
             <IconButton
+              styleType='borderless'
               aria-label='Dropdown with more breadcrumbs'
               onClick={() => action('Clicked on overflow icon')()}
             >
@@ -219,7 +226,7 @@ export const FolderNavigation: Story<BreadcrumbsProps> = (args) => {
   const breadcrumbItems = React.useMemo(
     () =>
       items.slice(0, lastIndex + 1).map((item, index) => (
-        <Button
+        <Breadcrumbs.Item
           key={`Breadcrumb${index}`}
           onClick={() => {
             if (lastIndex !== index) {
@@ -230,7 +237,7 @@ export const FolderNavigation: Story<BreadcrumbsProps> = (args) => {
           }}
         >
           {item}
-        </Button>
+        </Breadcrumbs.Item>
       )),
     [items, lastIndex],
   );

@@ -12,6 +12,7 @@ import {
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/breadcrumbs.css';
+import { BreadcrumbsItem } from './BreadcrumbsItem.js';
 
 export type BreadcrumbsProps = {
   /**
@@ -110,74 +111,79 @@ export type BreadcrumbsProps = {
  *   <span>Current level</span>
  * </Breadcrumbs>
  */
-export const Breadcrumbs = React.forwardRef(
-  (props: BreadcrumbsProps, ref: React.RefObject<HTMLElement>) => {
-    const {
-      children: items,
-      currentIndex = items.length - 1,
-      separator,
-      overflowButton,
-      className,
-      ...rest
-    } = props;
+export const Breadcrumbs = Object.assign(
+  React.forwardRef(
+    (props: BreadcrumbsProps, ref: React.RefObject<HTMLElement>) => {
+      const {
+        children: items,
+        currentIndex = items.length - 1,
+        separator,
+        overflowButton,
+        className,
+        ...rest
+      } = props;
 
-    useTheme();
+      useTheme();
 
-    const [overflowRef, visibleCount] = useOverflow(items);
-    const refs = useMergedRefs(overflowRef, ref);
+      const [overflowRef, visibleCount] = useOverflow(items);
+      const refs = useMergedRefs(overflowRef, ref);
 
-    return (
-      <nav
-        className={cx('iui-breadcrumbs', className)}
-        ref={refs}
-        aria-label='Breadcrumb'
-        {...rest}
-      >
-        <ol className='iui-breadcrumbs-list'>
-          {visibleCount > 1 && (
-            <>
-              <ListItem item={items[0]} isActive={currentIndex === 0} />
-              <Separator separator={separator} />
-            </>
-          )}
-          {items.length - visibleCount > 0 && (
-            <>
-              <li className='iui-breadcrumbs-item'>
-                {overflowButton ? (
-                  overflowButton(visibleCount)
-                ) : (
-                  <span className='iui-breadcrumbs-text'>…</span>
-                )}
-              </li>
-              <Separator separator={separator} />
-            </>
-          )}
-          {items
-            .slice(
-              visibleCount > 1
-                ? items.length - visibleCount + 1
-                : items.length - 1,
-            )
-            .map((_, _index) => {
-              const index =
-                visibleCount > 1
-                  ? 1 + (items.length - visibleCount) + _index
-                  : items.length - 1;
-              return (
-                <React.Fragment key={index}>
-                  <ListItem
-                    item={items[index]}
-                    isActive={currentIndex === index}
-                  />
-                  {index < items.length - 1 && (
-                    <Separator separator={separator} />
+      return (
+        <nav
+          className={cx('iui-breadcrumbs', className)}
+          ref={refs}
+          aria-label='Breadcrumb'
+          {...rest}
+        >
+          <ol className='iui-breadcrumbs-list'>
+            {visibleCount > 1 && (
+              <>
+                <ListItem item={items[0]} isActive={currentIndex === 0} />
+                <Separator separator={separator} />
+              </>
+            )}
+            {items.length - visibleCount > 0 && (
+              <>
+                <li className='iui-breadcrumbs-item'>
+                  {overflowButton ? (
+                    overflowButton(visibleCount)
+                  ) : (
+                    <span className='iui-breadcrumbs-text'>…</span>
                   )}
-                </React.Fragment>
-              );
-            })}
-        </ol>
-      </nav>
-    );
+                </li>
+                <Separator separator={separator} />
+              </>
+            )}
+            {items
+              .slice(
+                visibleCount > 1
+                  ? items.length - visibleCount + 1
+                  : items.length - 1,
+              )
+              .map((_, _index) => {
+                const index =
+                  visibleCount > 1
+                    ? 1 + (items.length - visibleCount) + _index
+                    : items.length - 1;
+                return (
+                  <React.Fragment key={index}>
+                    <ListItem
+                      item={items[index]}
+                      isActive={currentIndex === index}
+                    />
+                    {index < items.length - 1 && (
+                      <Separator separator={separator} />
+                    )}
+                  </React.Fragment>
+                );
+              })}
+          </ol>
+        </nav>
+      );
+    },
+  ),
+  {
+    Item: BreadcrumbsItem,
   },
 );
 
