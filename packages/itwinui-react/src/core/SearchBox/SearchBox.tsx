@@ -93,13 +93,6 @@ type SearchBoxOwnProps = {
   size?: 'small' | 'large';
 };
 
-/**
- * <SearchBox expandable>
- *   <SearchBox.Expanded>...</SearchBox.Expanded>
- *   <SearchBox.Collapsed>...</SearchBox.Collapsed>
- * </SearchBox>
- */
-
 const SearchBoxComponent = React.forwardRef((props, ref) => {
   useTheme();
 
@@ -386,9 +379,13 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
    * Open button for expandable Searchbox. Clicking on this will expand Searchbox.
    */
   ExpandButton: SearchBoxExpandButton,
-
+  /**
+   * Subcomponent to customise expanded state of the SearchBox
+   */
   ExpandedState: SearchBoxExpandedState,
-
+  /**
+   * Subcomponent to customise collapsed state.
+   */
   CollapsedState: SearchBoxCollapsedState,
 });
 
