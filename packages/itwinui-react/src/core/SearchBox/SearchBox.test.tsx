@@ -5,7 +5,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { SearchBox } from './SearchBox';
+import { SearchBox } from './SearchBox.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<SearchBox />);

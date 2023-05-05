@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
-
-import { InputFlexContainer } from './InputFlexContainer';
+import { InputFlexContainer } from './InputFlexContainer.js';
 
 it('should render InputFlexContainer in its most basic state', () => {
   const { container } = render(

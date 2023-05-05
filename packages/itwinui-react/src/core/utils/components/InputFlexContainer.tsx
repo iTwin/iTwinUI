@@ -4,13 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import { PolymorphicForwardRefComponent } from '../props';
+import type {
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+} from '../props.js';
 
-export type InputFlexContainerProps<T extends React.ElementType = 'div'> = {
-  as?: T;
+type InputFlexContainerOwnProps = {
   isDisabled?: boolean;
   status?: 'positive' | 'warning' | 'negative';
-} & React.ComponentPropsWithoutRef<T>;
+};
 
 /**
  * Utility component for input container with display flex abilities.
@@ -39,4 +41,9 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'div', InputFlexContainerProps>;
+}) as PolymorphicForwardRefComponent<'div', InputFlexContainerOwnProps>;
+
+export type InputFlexContainerProps = PolymorphicComponentProps<
+  'div',
+  InputFlexContainerOwnProps
+>;
