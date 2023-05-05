@@ -11,10 +11,12 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 
-import SvgChevronUp from '@itwin/itwinui-icons-react/cjs/icons/ChevronUp';
-import SvgChevronDown from '@itwin/itwinui-icons-react/cjs/icons/ChevronDown';
-import SvgChevronLeft from '@itwin/itwinui-icons-react/cjs/icons/ChevronLeft';
-import SvgChevronRight from '@itwin/itwinui-icons-react/cjs/icons/ChevronRight';
+import {
+  SvgChevronLeft,
+  SvgChevronRight,
+  SvgChevronLeftDouble,
+  SvgChevronRightDouble,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   component: TransferList,
@@ -121,7 +123,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
     { name: 'Option 6', active: false },
   ]);
 
-  console.log(optionData);
+  console.log('optionData', optionData);
 
   const [appliedData, setAppliedData] = React.useState([
     { name: 'Option 7', active: false },
@@ -136,7 +138,6 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
   ) => {
     setToData((oldToData) => {
       const newToData = [...oldToData];
-      console.log('fromData before', fromData);
       fromData.forEach((item) => {
         if (sendAll || item.active === true) {
           const newItem = item;
@@ -144,7 +145,6 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
           newToData.push(newItem);
         }
       });
-      console.log('fromData after', fromData);
       setFromData(fromData.filter((item) => item.active === true));
       return newToData;
     });
@@ -166,7 +166,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
                     const newObject = { ...newData[index] };
                     newObject.active = !isActive;
                     newData[index] = newObject;
-                    console.log('newOptionData', newData);
+                    console.log('Item selected!');
                     return newData;
                   });
                 }}
@@ -191,7 +191,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
             );
           }}
         >
-          <SvgChevronUp />
+          <SvgChevronRightDouble />
         </IconButton>
         <IconButton
           styleType={'borderless'}
@@ -205,13 +205,13 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
             )
           }
         >
-          <SvgChevronDown />
+          <SvgChevronRight />
         </IconButton>
         <IconButton styleType={'borderless'}>
           <SvgChevronLeft />
         </IconButton>
         <IconButton styleType={'borderless'}>
-          <SvgChevronRight />
+          <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>
       <TransferList.Area>
