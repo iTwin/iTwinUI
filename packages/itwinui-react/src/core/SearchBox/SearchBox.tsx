@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   InputFlexContainer,
@@ -13,15 +13,15 @@ import {
   useId,
   Icon,
   useMergedRefs,
-} from '../utils';
+} from '../utils/index.js';
 import type {
   IconProps,
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
   InputFlexContainerProps,
-} from '../utils';
-import { IconButton } from '../Buttons/IconButton';
-import type { IconButtonProps } from '../Buttons/IconButton';
+} from '../utils/index.js';
+import { IconButton } from '../Buttons/IconButton/index.js';
+import type { IconButtonProps } from '../Buttons/IconButton/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 const SearchBoxContext = React.createContext<
@@ -121,7 +121,8 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [inputId, setInputId] = React.useState(useId());
+  const uid = useId();
+  const [inputId, setInputId] = React.useState(uid);
   const inputRef = React.useRef<HTMLInputElement>(null);
   const openButtonRef = React.useRef<HTMLButtonElement>(null);
 
@@ -222,9 +223,11 @@ const SearchBoxInput = React.forwardRef(
     const { inputId, setInputId, isDisabled, inputRef } =
       useSafeContext(SearchBoxContext);
 
-    if (idProp && idProp !== inputId) {
-      setInputId(idProp);
-    }
+    React.useEffect(() => {
+      if (idProp && idProp !== inputId) {
+        setInputId(idProp);
+      }
+    }, [idProp, inputId, setInputId]);
 
     return (
       <input
