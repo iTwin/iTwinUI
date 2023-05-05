@@ -3,9 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { PolymorphicForwardRefComponent, useTheme } from '../utils';
-import { ButtonProps } from '../Buttons';
+import * as React from 'react';
+import { useTheme } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { ButtonProps } from '../Buttons/index.js';
 
 export type HeaderBasicButtonProps = ButtonProps;
 

@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgInfoCircular } from './SvgInfoCircular';
-import { SvgStatusError } from './SvgStatusError';
-import { SvgStatusSuccess } from './SvgStatusSuccess';
-import { SvgStatusWarning } from './SvgStatusWarning';
-import type { CommonProps } from '../props';
+import { SvgInfoCircular } from './SvgInfoCircular.js';
+import { SvgStatusError } from './SvgStatusError.js';
+import { SvgStatusSuccess } from './SvgStatusSuccess.js';
+import { SvgStatusWarning } from './SvgStatusWarning.js';
+import type { CommonProps } from '../props.js';
 
 export const StatusIconMap = {
   negative: (args?: CommonProps) => <SvgStatusError aria-hidden {...args} />,

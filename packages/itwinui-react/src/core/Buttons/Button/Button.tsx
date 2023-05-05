@@ -3,13 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
-import {
-  useTheme,
+import { useTheme } from '../../utils/index.js';
+import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-} from '../../utils';
+} from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
 type ButtonOwnProps = {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 import {
   useTheme,
   useMergedRefs,
@@ -11,9 +11,9 @@ import {
   useContainerWidth,
   useIsomorphicLayoutEffect,
   useIsClient,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/tabs.css';
-import { Tab } from './Tab';
+import { Tab } from './Tab.js';
 
 type TabsOrientationProps =
   | {

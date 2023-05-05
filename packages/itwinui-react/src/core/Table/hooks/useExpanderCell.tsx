@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CellProps, ColumnInstance, Hooks, Row } from 'react-table';
-import { ExpanderColumn, EXPANDER_CELL_ID } from '../columns';
+import * as React from 'react';
+import type { CellProps, ColumnInstance, Hooks, Row } from 'react-table';
+import { ExpanderColumn, EXPANDER_CELL_ID } from '../columns/index.js';
 
 export const useExpanderCell =
   <T extends Record<string, unknown>>(

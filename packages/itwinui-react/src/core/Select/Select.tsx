@@ -2,21 +2,25 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Menu, MenuItem, MenuItemProps } from '../Menu';
+import { Menu, MenuItem } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/index.js';
 import {
-  PopoverProps,
-  PopoverInstance,
-  CommonProps,
   useTheme,
   SvgCaretDownSmall,
   Popover,
   useId,
-} from '../utils';
+  AutoclearingHiddenLiveRegion,
+} from '../utils/index.js';
+import type {
+  PopoverProps,
+  PopoverInstance,
+  CommonProps,
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
-import SelectTag from './SelectTag';
-import SelectTagContainer from './SelectTagContainer';
+import SelectTag from './SelectTag.js';
+import SelectTagContainer from './SelectTagContainer.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -245,6 +249,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const isOpen = popoverProps?.visible ?? isOpenState;
 
   const [minWidth, setMinWidth] = React.useState(0);
+  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
@@ -321,6 +326,21 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             setIsOpen(false);
           } else {
             onChange?.(option.value, isSelected ? 'removed' : 'added');
+          }
+
+          // update live region
+          if (isMultipleEnabled(value, multiple)) {
+            const prevSelectedValue = value || [];
+            const newSelectedValue = isSelected
+              ? prevSelectedValue.filter((i) => option.value !== i)
+              : [...prevSelectedValue, option.value];
+            setLiveRegionSelection(
+              options
+                .filter((i) => newSelectedValue.includes(i.value))
+                .map((item) => item.label)
+                .filter(Boolean)
+                .join(', '),
+            );
           }
         },
         ref: (el: HTMLElement) => {
@@ -440,6 +460,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       >
         <SvgCaretDownSmall />
       </span>
+
+      {multiple ? (
+        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+      ) : null}
     </div>
   );
 };

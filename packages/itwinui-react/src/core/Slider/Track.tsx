@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SliderProps, TrackDisplayMode } from './Slider';
+import * as React from 'react';
+import type { SliderProps, TrackDisplayMode } from './Slider.js';
 
 function shouldDisplaySegment(segmentIndex: number, mode: TrackDisplayMode) {
   if ('odd-segments' === mode && 0 === (segmentIndex + 1) % 2) {

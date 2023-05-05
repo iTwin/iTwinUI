@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
-import { ColorPicker } from './ColorPicker';
-import { ColorInputPanel } from './ColorInputPanel';
-import { ColorValue } from '../utils';
+import { ColorPicker } from './ColorPicker.js';
+import { ColorInputPanel } from './ColorInputPanel.js';
+import { ColorValue } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
 it('should render ColorInputPanel with input fields', async () => {

@@ -2,12 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import cx from 'classnames';
-import { getWindow, StatusIconMap, CommonProps, SvgCloseSmall } from '../utils';
+import { getWindow, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/toast.css';
-import { IconButton } from '../Buttons';
+import { IconButton } from '../Buttons/index.js';
 
 const isMotionOk = () =>
   getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;

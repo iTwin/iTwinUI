@@ -7,7 +7,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import {
+import type {
   UseColumnOrderInstanceProps,
   UseColumnOrderState,
   UseExpandedHooks,
@@ -57,7 +57,7 @@ import {
   UseSortByState,
   UseTableOptions,
 } from 'react-table';
-import { TableFilterProps } from '../core';
+import type { TableFilterProps } from '../core/index.js';
 
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;

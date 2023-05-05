@@ -2,16 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { HeaderProps } from 'react-table';
-import { Checkbox } from '../../Checkbox';
-import { SvgColumnManager } from '../../utils';
-import { DropdownMenu, DropdownMenuProps } from '../../DropdownMenu';
-import { IconButton } from '../../Buttons/IconButton';
-import { MenuItem } from '../../Menu';
-import { tableResizeStartAction } from '../Table';
-import { SELECTION_CELL_ID } from './selectionColumn';
-import { EXPANDER_CELL_ID } from './expanderColumn';
+import * as React from 'react';
+import type { HeaderProps } from 'react-table';
+import { Checkbox } from '../../Checkbox/index.js';
+import { SvgColumnManager } from '../../utils/index.js';
+import { DropdownMenu } from '../../DropdownMenu/index.js';
+import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
+import { IconButton } from '../../Buttons/IconButton/index.js';
+import { MenuItem } from '../../Menu/index.js';
+import { tableResizeStartAction } from '../Table.js';
+import { SELECTION_CELL_ID } from './selectionColumn.js';
+import { EXPANDER_CELL_ID } from './expanderColumn.js';
 import cx from 'classnames';
 
 const ACTION_CELL_ID = 'iui-table-action';

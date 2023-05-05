@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { act, render } from '@testing-library/react';
 
-import { ToastWrapper, ToastWrapperHandle } from './ToastWrapper';
-import { ToastProps } from './Toast';
+import { ToastWrapper, type ToastWrapperHandle } from './ToastWrapper.js';
+import type { ToastProps } from './Toast.js';
 import userEvent from '@testing-library/user-event';
 
 const mockToastObject1 = {

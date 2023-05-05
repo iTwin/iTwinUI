@@ -4,17 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 
 import cx from 'classnames';
-import React from 'react';
-import { ButtonProps } from '../Buttons';
+import * as React from 'react';
+import type { ButtonProps } from '../Buttons/index.js';
 
-import { PolymorphicForwardRefComponent, useTheme } from '../utils';
+import { useTheme } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
-import { HeaderSplitButton, HeaderSplitButtonProps } from './HeaderSplitButton';
-import {
-  HeaderDropdownButton,
-  HeaderDropdownButtonProps,
-} from './HeaderDropdownButton';
-import { HeaderBasicButton } from './HeaderBasicButton';
+import { HeaderSplitButton } from './HeaderSplitButton.js';
+import type { HeaderSplitButtonProps } from './HeaderSplitButton.js';
+import { HeaderDropdownButton } from './HeaderDropdownButton.js';
+import type { HeaderDropdownButtonProps } from './HeaderDropdownButton.js';
+import { HeaderBasicButton } from './HeaderBasicButton.js';
 
 export type HeaderButtonProps = {
   /**

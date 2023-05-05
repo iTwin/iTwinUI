@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CellRendererProps } from 'react-table';
+import * as React from 'react';
+import type { CellRendererProps } from 'react-table';
 import cx from 'classnames';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {

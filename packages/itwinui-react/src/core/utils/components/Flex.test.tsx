@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Flex } from './Flex';
+import { Flex } from './Flex.js';
 
 it('should render Flex in its most basic state', () => {
   const { container } = render(<Flex>it do be flex</Flex>);
