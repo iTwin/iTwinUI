@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import React from 'react';
-import { DialogContent } from './DialogContent';
+import * as React from 'react';
+import { DialogContent } from './DialogContent.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(

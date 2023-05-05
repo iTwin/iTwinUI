@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Table } from './Table';
-export type { TableProps, TablePaginatorRendererProps } from './Table';
+export { Table } from './Table.js';
+export type { TableProps, TablePaginatorRendererProps } from './Table.js';
 
-export { BaseFilter, FilterButtonBar, tableFilters } from './filters';
+export { BaseFilter, FilterButtonBar, tableFilters } from './filters/index.js';
 export type {
   BaseFilterProps,
   DateRangeFilterOptions,
@@ -13,14 +13,18 @@ export type {
   FilterButtonBarTranslation,
   TableFilterProps,
   TableFilterValue,
-} from './filters';
+} from './filters/index.js';
 
-export { DefaultCell, EditableCell } from './cells';
-export type { DefaultCellProps, EditableCellProps } from './cells';
+export { DefaultCell, EditableCell } from './cells/index.js';
+export type { DefaultCellProps, EditableCellProps } from './cells/index.js';
 
-export { TablePaginator } from './TablePaginator';
-export type { TablePaginatorProps } from './TablePaginator';
+export { TablePaginator } from './TablePaginator.js';
+export type { TablePaginatorProps } from './TablePaginator.js';
 
-export { ActionColumn, ExpanderColumn, SelectionColumn } from './columns';
+export {
+  ActionColumn,
+  ExpanderColumn,
+  SelectionColumn,
+} from './columns/index.js';
 
 export default './Table';

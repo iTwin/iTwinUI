@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils';
+import { useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 
 export type DialogButtonBarProps = {

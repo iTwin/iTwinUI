@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Badge } from './Badge';
-import { SoftBackgrounds } from '../utils';
+import { Badge } from './Badge.js';
+import { SoftBackgrounds } from '../utils/index.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<Badge>label</Badge>);

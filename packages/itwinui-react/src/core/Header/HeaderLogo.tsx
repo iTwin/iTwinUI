@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
-import { useTheme } from '../utils';
+import { useTheme } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 
 type HeaderLogoOwnProps = {

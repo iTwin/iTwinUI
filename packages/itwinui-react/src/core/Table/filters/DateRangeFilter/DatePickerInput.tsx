@@ -2,11 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Popover, SvgCalendar, isBefore } from '../../../utils';
-import { LabeledInput, LabeledInputProps } from '../../../LabeledInput';
-import { DatePicker } from '../../../DatePicker';
-import { IconButton } from '../../../Buttons';
+import * as React from 'react';
+import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import { LabeledInput } from '../../../LabeledInput/index.js';
+import type { LabeledInputProps } from '../../../LabeledInput/index.js';
+import { DatePicker } from '../../../DatePicker/index.js';
+import { IconButton } from '../../../Buttons/index.js';
 
 export type DatePickerInputProps = {
   date?: Date;

@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { MenuItemProps } from '../Menu';
-import { useSafeContext, useMergedRefs } from '../utils';
-import { ComboBoxStateContext } from './helpers';
+import * as React from 'react';
+import type { MenuItemProps } from '../Menu/index.js';
+import { useSafeContext, useMergedRefs } from '../utils/index.js';
+import { ComboBoxStateContext } from './helpers.js';
 
 type ComboBoxMenuItemProps = MenuItemProps & { index: number };
 

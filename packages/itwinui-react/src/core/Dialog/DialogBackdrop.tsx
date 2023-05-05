@@ -2,10 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Backdrop, BackdropProps } from '../Backdrop';
-import { useMergedRefs } from '../utils';
-import { DialogContextProps, useDialogContext } from './DialogContext';
+import * as React from 'react';
+import { Backdrop } from '../Backdrop/index.js';
+import type { BackdropProps } from '../Backdrop/index.js';
+import { useMergedRefs } from '../utils/index.js';
+import { useDialogContext } from './DialogContext.js';
+import type { DialogContextProps } from './DialogContext.js';
 import cx from 'classnames';
 
 export type DialogBackdropProps = BackdropProps &

@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useOverflow } from '../hooks/useOverflow';
-import { CommonProps } from '../props';
+import * as React from 'react';
+import { useOverflow } from '../hooks/useOverflow.js';
+import type { CommonProps } from '../props.js';
 
 const ELLIPSIS_CHAR = '…';
 

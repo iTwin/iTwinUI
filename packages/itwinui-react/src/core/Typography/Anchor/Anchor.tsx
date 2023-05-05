@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import {
+import { useTheme } from '../../utils/index.js';
+import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-  useTheme,
-} from '../../utils';
+} from '../../utils/index.js';
 import '@itwin/itwinui-css/css/anchor.css';
 
 type AnchorOwnProps = Record<never, never>;

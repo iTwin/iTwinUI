@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { act, screen, waitForElementToBeRemoved } from '@testing-library/react';
-import { ToastCategory, ToastProps } from './Toast';
-import Toaster, { ToastOptions } from './Toaster';
+import type { ToastCategory, ToastProps } from './Toast.js';
+import Toaster, { type ToastOptions } from './Toaster.js';
 
 const mockOnClick = jest.fn();
 

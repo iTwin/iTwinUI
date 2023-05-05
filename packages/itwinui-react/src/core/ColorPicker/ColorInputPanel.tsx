@@ -2,18 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { IconButton } from '../Buttons';
-import { Input } from '../Input';
+import { IconButton } from '../Buttons/index.js';
+import { Input } from '../Input/index.js';
 import {
   ColorValue,
-  CommonProps,
   InputContainer,
   useTheme,
   SvgSwap,
-} from '../utils';
-import { useColorPickerContext } from './ColorPickerContext';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
+import { useColorPickerContext } from './ColorPickerContext.js';
 import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorInputPanelProps = {

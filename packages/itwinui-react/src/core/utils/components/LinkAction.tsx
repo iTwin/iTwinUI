@@ -2,12 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import {
+import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-} from '../props';
+} from '../props.js';
 import '@itwin/itwinui-css/css/utils.css';
 type LinkActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types

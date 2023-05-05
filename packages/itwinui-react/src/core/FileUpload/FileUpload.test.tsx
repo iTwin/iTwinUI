@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { FileUpload } from './FileUpload';
+import { FileUpload } from './FileUpload.js';
 
 it('should render dragContent and children', () => {
   const mockContent = 'Mock drag content';

@@ -2,11 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
-import { Textarea } from '../Textarea';
-import { TextareaProps } from '../Textarea/Textarea';
-import { LabeledInputProps } from '../LabeledInput';
+import * as React from 'react';
+import {
+  StatusIconMap,
+  useTheme,
+  InputContainer,
+  useId,
+} from '../utils/index.js';
+import { Textarea } from '../Textarea/index.js';
+import type { TextareaProps } from '../Textarea/Textarea.js';
+import type { LabeledInputProps } from '../LabeledInput/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledTextareaProps = {

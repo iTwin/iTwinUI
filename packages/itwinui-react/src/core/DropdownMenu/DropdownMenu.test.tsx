@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import DropdownMenu, { DropdownMenuProps } from './DropdownMenu';
-import { Button } from '../Buttons';
-import { MenuItem } from '../Menu';
+import DropdownMenu, { type DropdownMenuProps } from './DropdownMenu.js';
+import { Button } from '../Buttons/index.js';
+import { MenuItem } from '../Menu/index.js';
 import userEvent from '@testing-library/user-event';
 
 function assertBaseElement(menu: HTMLUListElement, role = 'menu') {

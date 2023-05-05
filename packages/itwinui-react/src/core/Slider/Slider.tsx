@@ -3,17 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import {
-  useTheme,
-  CommonProps,
-  getBoundedValue,
-  useEventListener,
-} from '../utils';
+import * as React from 'react';
+import { useTheme, getBoundedValue, useEventListener } from '../utils/index.js';
 import '@itwin/itwinui-css/css/slider.css';
-import { TooltipProps } from '../Tooltip';
-import { Track } from './Track';
-import { Thumb } from './Thumb';
+import type { CommonProps } from '../utils/index.js';
+import type { TooltipProps } from '../Tooltip/index.js';
+import { Track } from './Track.js';
+import { Thumb } from './Thumb.js';
 
 /**
  * Determines which segments are shown with color.

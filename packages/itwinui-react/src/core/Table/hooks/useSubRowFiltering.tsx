@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Hooks, IdType, Row, TableInstance } from 'react-table';
-import { defaultFilterFunctions } from '../filters/defaultFilterFunctions';
+import * as React from 'react';
+import type { Hooks, IdType, Row, TableInstance } from 'react-table';
+import { defaultFilterFunctions } from '../filters/defaultFilterFunctions.js';
 
 export const useSubRowFiltering =
   <T extends Record<string, unknown>>(hasAnySubRows: boolean) =>

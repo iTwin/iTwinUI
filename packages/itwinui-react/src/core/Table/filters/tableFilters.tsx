@@ -2,19 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import {
-  DateRangeFilter,
-  DateRangeTranslation,
-} from './DateRangeFilter/DateRangeFilter';
-import { FilterButtonBarTranslation } from './FilterButtonBar';
-import {
+import * as React from 'react';
+import { DateRangeFilter } from './DateRangeFilter/DateRangeFilter.js';
+import type { DateRangeTranslation } from './DateRangeFilter/DateRangeFilter.js';
+import type { FilterButtonBarTranslation } from './FilterButtonBar.js';
+import { NumberRangeFilter } from './NumberRangeFilter/NumberRangeFilter.js';
+import type {
   NumberRangeTranslation,
   NumberRangeFilterProps,
-  NumberRangeFilter,
-} from './NumberRangeFilter/NumberRangeFilter';
-import { TextFilter } from './TextFilter/TextFilter';
-import { TableFilterProps } from './types';
+} from './NumberRangeFilter/NumberRangeFilter.js';
+import { TextFilter } from './TextFilter/TextFilter.js';
+import type { TableFilterProps } from './types.js';
 
 export type DateRangeFilterOptions = {
   /**
