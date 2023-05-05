@@ -52,21 +52,26 @@ export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
 };
 
 export const Expandable: StoryFn<SearchBoxProps> = () => {
-  return <SearchBox expandable id='search-input' />;
+  return (
+    <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }} />
+  );
 };
 
 export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
   return (
     <SearchBox expandable>
-      <SearchBox.Input placeholder='Expandable search with custom interactions' />
-      <SearchBox.Button>
-        <SvgCaretUpSmall />
-      </SearchBox.Button>
-      <SearchBox.Button>
-        <SvgCaretDownSmall />
-      </SearchBox.Button>
-      <Divider orientation='vertical' />
-      <SearchBox.CollapseButton />
+      <SearchBox.CollapsedState />
+      <SearchBox.ExpandedState>
+        <SearchBox.Input placeholder='Expandable search with custom interactions' />
+        <SearchBox.Button>
+          <SvgCaretUpSmall />
+        </SearchBox.Button>
+        <SearchBox.Button>
+          <SvgCaretDownSmall />
+        </SearchBox.Button>
+        <Divider orientation='vertical' />
+        <SearchBox.CollapseButton />
+      </SearchBox.ExpandedState>
     </SearchBox>
   );
 };
@@ -95,15 +100,20 @@ export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
       onExpand={handleExpand}
       onCollapse={handleCollapse}
     >
-      <SearchBox.Input placeholder='Test' />
-      <SearchBox.CollapseButton />
-      <Divider orientation='vertical' />
-      <IconButton styleType='borderless'>
-        <SvgCaretUpSmall />
-      </IconButton>
-      <IconButton styleType='borderless'>
-        <SvgCaretDownSmall />
-      </IconButton>
+      <SearchBox.CollapsedState>
+        <SearchBox.ExpandButton />
+      </SearchBox.CollapsedState>
+      <SearchBox.ExpandedState>
+        <SearchBox.Input placeholder='Test' />
+        <SearchBox.CollapseButton />
+        <Divider orientation='vertical' />
+        <IconButton styleType='borderless'>
+          <SvgCaretUpSmall />
+        </IconButton>
+        <IconButton styleType='borderless'>
+          <SvgCaretDownSmall />
+        </IconButton>
+      </SearchBox.ExpandedState>
     </SearchBox>
   );
 };

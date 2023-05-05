@@ -55,6 +55,10 @@ const SearchBoxContext = React.createContext<
        * Callback for expanding searchbox
        */
       onExpand?: () => void;
+      /**
+       * Searchbox state
+       */
+      isExpanded?: boolean;
     }
   | undefined
 >(undefined);
@@ -80,27 +84,21 @@ type SearchBoxOwnProps = {
    */
   onCollapse?: () => void;
   /**
-   * Collapsed searchbox state.
-   * @default SearchBox.OpenButton
-   */
-  collapsedState?: React.ReactNode;
-  /**
    * Input props when using default searchbox.
    */
   inputProps?: React.ComponentPropsWithoutRef<'input'>;
-  /**
-   * Open button props when using default searchbox.
-   */
-  openButtonProps?: React.ComponentPropsWithoutRef<'button'>;
-  /**
-   * Close button props when using default searchbox.
-   */
-  closeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
   /**
    * Modify size of the searchbox and it's subcomponents.
    */
   size?: 'small' | 'large';
 };
+
+/**
+ * <SearchBox expandable>
+ *   <SearchBox.Expanded>...</SearchBox.Expanded>
+ *   <SearchBox.Collapsed>...</SearchBox.Collapsed>
+ * </SearchBox>
+ */
 
 const SearchBoxComponent = React.forwardRef((props, ref) => {
   useTheme();
@@ -109,14 +107,11 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     size,
     expandable = false,
     isDisabled = false,
-    collapsedState,
     onCollapse: onCollapseProp,
     onExpand: onExpandProp,
     isExpanded: isExpandedProp,
     children,
     inputProps,
-    openButtonProps,
-    closeButtonProps,
     className,
     ...rest
   } = props;
@@ -153,6 +148,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         inputId,
         setInputId,
         openButtonRef,
+        isExpanded,
       }}
     >
       <InputFlexContainer
@@ -163,22 +159,19 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         data-iui-expanded={isExpanded}
         {...rest}
       >
-        {!expandable &&
-          (children ?? (
-            <>
+        {children ?? (
+          <>
+            <SearchBoxCollapsedState>
+              <SearchBoxExpandButton />
+            </SearchBoxCollapsedState>
+
+            <SearchBoxExpandedState>
               <SearchBoxInput {...inputProps} />
-              <SearchBoxIcon />
-            </>
-          ))}
-        {expandable &&
-          (!isExpanded
-            ? collapsedState ?? <SearchBoxExpandButton {...openButtonProps} />
-            : children ?? (
-                <>
-                  <SearchBoxInput {...inputProps} />
-                  <SearchBoxCollapseButton {...closeButtonProps} />
-                </>
-              ))}
+
+              {expandable ? <SearchBoxCollapseButton /> : <SearchBoxIcon />}
+            </SearchBoxExpandedState>
+          </>
+        )}
       </InputFlexContainer>
     </SearchBoxContext.Provider>
   );
@@ -191,6 +184,30 @@ export type SearchBoxProps = PolymorphicComponentProps<
   'div',
   SearchBoxOwnProps & InputFlexContainerProps
 >;
+
+// ----------------------------------------------------------------------------
+
+const SearchBoxCollapsedState = ({
+  children,
+}: {
+  children?: React.ReactNode;
+}) => {
+  const { isExpanded } = useSafeContext(SearchBoxContext);
+  return <>{isExpanded ? null : children ?? <SearchBoxExpandButton />}</>;
+};
+SearchBoxCollapsedState.displayName = 'SearchBox.CollapsedState';
+
+// ----------------------------------------------------------------------------
+
+const SearchBoxExpandedState = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
+  const { isExpanded } = useSafeContext(SearchBoxContext);
+  return <>{isExpanded ? children : null}</>;
+};
+SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
 
 // ----------------------------------------------------------------------------
 export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
@@ -369,6 +386,10 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
    * Open button for expandable Searchbox. Clicking on this will expand Searchbox.
    */
   ExpandButton: SearchBoxExpandButton,
+
+  ExpandedState: SearchBoxExpandedState,
+
+  CollapsedState: SearchBoxCollapsedState,
 });
 
 export default SearchBox;
