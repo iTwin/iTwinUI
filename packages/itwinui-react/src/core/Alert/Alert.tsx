@@ -25,9 +25,6 @@ type AlertIconOwnProps = {
   type?: 'positive' | 'warning' | 'negative' | 'informational';
 };
 
-export type AlertIconProps<T extends React.ElementType = 'svg'> =
-  PolymorphicComponentProps<T, AlertIconOwnProps>;
-
 const AlertIcon = React.forwardRef((props, ref) => {
   const { as: Element = 'svg', children, className, type, ...rest } = props;
 
@@ -54,9 +51,6 @@ const AlertIcon = React.forwardRef((props, ref) => {
 
 type AlertMessageOwnProps = {};
 
-export type AlertMessageProps<T extends React.ElementType = 'span'> =
-  PolymorphicComponentProps<T, AlertMessageOwnProps>;
-
 const AlertMessage = React.forwardRef((props, ref) => {
   const { as: Element = 'span', children, className, ...rest } = props;
 
@@ -71,9 +65,6 @@ const AlertMessage = React.forwardRef((props, ref) => {
 // Alert.ClickableText component
 
 type AlertClickableTextOwnProps = {};
-
-export type AlertClickableTextProps<T extends React.ElementType = 'a'> =
-  PolymorphicComponentProps<T, AlertClickableTextOwnProps>;
 
 const AlertClickableText = React.forwardRef((props, ref) => {
   const { as: Element = 'a', children, className, ...rest } = props;
@@ -94,9 +85,6 @@ type AlertCloseButtonOwnProps = {
    */
   onClose: () => void;
 };
-
-export type AlertCloseButtonProps<T extends React.ElementType = 'svg'> =
-  PolymorphicComponentProps<T, AlertCloseButtonOwnProps>;
 
 const AlertCloseButton = React.forwardRef((props, ref) => {
   const {
@@ -126,9 +114,6 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
 
 type AlertCloseButtonIconOwnProps = {};
 
-export type AlertCloseButtonIconProps<T extends React.ElementType = 'span'> =
-  PolymorphicComponentProps<T, AlertCloseButtonIconOwnProps>;
-
 const AlertCloseButtonIcon = React.forwardRef((props, ref) => {
   const { as: Element = 'span', children, className, ...rest } = props;
 
@@ -144,7 +129,10 @@ const AlertCloseButtonIcon = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'span', AlertCloseButtonIconOwnProps>;
 
-export type AlertProps = {
+// ----------------------------------------------------------------------------
+// Alert component
+
+type AlertOwnProps = {
   /**
    * Type of the alert.
    * @default 'informational'
@@ -160,6 +148,34 @@ export type AlertProps = {
    */
   children: React.ReactNode;
 } & Omit<CommonProps, 'title'>;
+
+export const AlertComponent = React.forwardRef(
+  (props: AlertProps, ref: React.RefObject<HTMLDivElement>) => {
+    const {
+      children,
+      className,
+      type = 'informational',
+      style,
+      isSticky = false,
+      ...rest
+    } = props;
+
+    useTheme();
+
+    return (
+      <div
+        className={cx('iui-alert', className)}
+        data-iui-status={type}
+        data-iui-variant={isSticky ? 'sticky' : undefined}
+        style={style}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </div>
+    );
+  },
+) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
 
 /**
  * A small box to quickly grab user attention and communicate a brief message
@@ -185,56 +201,54 @@ export type AlertProps = {
  *    </Alert.CloseButtonIcon>
  *  </Alert.CloseButton>
  */
-export const Alert = Object.assign(
-  React.forwardRef(
-    (props: AlertProps, ref: React.RefObject<HTMLDivElement>) => {
-      const {
-        children,
-        className,
-        type = 'informational',
-        style,
-        isSticky = false,
-        ...rest
-      } = props;
+export const Alert = Object.assign(AlertComponent, {
+  /**
+   * 	Alert icon subcomponent
+   */
+  Icon: AlertIcon,
+  /**
+   * 	Alert message subcomponent
+   */
+  Message: AlertMessage,
+  /**
+   * 	Alert clickable text subcomponent for the link you want to provide.
+   */
+  ClickableText: AlertClickableText,
+  /**
+   * 	Alert close button subcomponent
+   */
+  CloseButton: AlertCloseButton,
+  /**
+   * 	Alert close button subcomponent
+   */
+  CloseButtonIcon: AlertCloseButtonIcon,
+});
 
-      useTheme();
+export type AlertIconProps = PolymorphicComponentProps<
+  'svg',
+  AlertIconOwnProps
+>;
 
-      return (
-        <div
-          className={cx('iui-alert', className)}
-          data-iui-status={type}
-          data-iui-variant={isSticky ? 'sticky' : undefined}
-          style={style}
-          ref={ref}
-          {...rest}
-        >
-          {children}
-        </div>
-      );
-    },
-  ),
-  {
-    /**
-     * 	Alert icon subcomponent
-     */
-    Icon: AlertIcon,
-    /**
-     * 	Alert message subcomponent
-     */
-    Message: AlertMessage,
-    /**
-     * 	Alert clickable text subcomponent for the link you want to provide.
-     */
-    ClickableText: AlertClickableText,
-    /**
-     * 	Alert close button subcomponent
-     */
-    CloseButton: AlertCloseButton,
-    /**
-     * 	Alert close button subcomponent
-     */
-    CloseButtonIcon: AlertCloseButtonIcon,
-  },
-);
+export type AlertMessageProps = PolymorphicComponentProps<
+  'span',
+  AlertMessageOwnProps
+>;
+
+export type AlertClickableTextProps = PolymorphicComponentProps<
+  'a',
+  AlertClickableTextOwnProps
+>;
+
+export type AlertCloseButtonProps = PolymorphicComponentProps<
+  'button',
+  AlertCloseButtonOwnProps
+>;
+
+export type AlertCloseButtonIconProps = PolymorphicComponentProps<
+  'span',
+  AlertCloseButtonIconOwnProps
+>;
+
+export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;
 
 export default Alert;
