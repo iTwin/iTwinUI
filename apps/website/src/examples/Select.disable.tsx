@@ -24,7 +24,7 @@ export default (args) => {
     placeholder = 'Placeholder text',
     ...rest
   } = args;
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <div
       style={{

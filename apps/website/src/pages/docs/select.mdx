@@ -9,12 +9,9 @@ group: inputs
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='input-select' />
 
 <LiveExample src='Select.main.tsx'>
   <AllExamples.SelectMainExample client:load />
@@ -36,7 +33,7 @@ A select is a control element meant to allow the user to select an option from a
   <AllExamples.SelectDisableExample client:load />
 </LiveExample>
 
-The menu can be disabled as its default state, without any option selected; it can be disaled with an option selected; and options in the dropdown menu can be disabled so the user cannot select one or more specific options, depending on context.
+The menu can be disabled as its default state, without any option selected; it can be disabled with an option selected; and options in the dropdown menu can be disabled so the user cannot select one or more specific options, depending on context.
 
 ## Usage
 
