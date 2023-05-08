@@ -155,7 +155,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         data-iui-size={size}
         isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
-        aria-label='SearchBox'
         {...rest}
       >
         {children ?? (
