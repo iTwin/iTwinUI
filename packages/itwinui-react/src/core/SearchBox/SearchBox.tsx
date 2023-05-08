@@ -56,9 +56,13 @@ const SearchBoxContext = React.createContext<
        */
       onExpand?: () => void;
       /**
-       * Searchbox state
+       * SearchBox state
        */
       isExpanded?: boolean;
+      /**
+       * Is SearchBox expandable
+       */
+      expandable?: boolean;
     }
   | undefined
 >(undefined);
@@ -72,7 +76,7 @@ type SearchBoxOwnProps = {
    */
   expandable?: boolean;
   /**
-   * Searchbox state toggle.
+   * SearchBox state toggle.
    */
   isExpanded?: boolean;
   /**
@@ -142,6 +146,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
         setInputId,
         openButtonRef,
         isExpanded,
+        expandable,
       }}
     >
       <InputFlexContainer
@@ -173,11 +178,6 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   SearchBoxOwnProps & InputFlexContainerProps
 >;
 
-export type SearchBoxProps = PolymorphicComponentProps<
-  'div',
-  SearchBoxOwnProps & InputFlexContainerProps
->;
-
 // ----------------------------------------------------------------------------
 
 const SearchBoxCollapsedState = ({
@@ -185,8 +185,16 @@ const SearchBoxCollapsedState = ({
 }: {
   children?: React.ReactNode;
 }) => {
-  const { isExpanded } = useSafeContext(SearchBoxContext);
-  return <>{isExpanded ? null : children ?? <SearchBoxExpandButton />}</>;
+  const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
+  return (
+    <>
+      {expandable
+        ? isExpanded
+          ? null
+          : children ?? <SearchBoxExpandButton />
+        : null}
+    </>
+  );
 };
 SearchBoxCollapsedState.displayName = 'SearchBox.CollapsedState';
 
@@ -197,13 +205,12 @@ const SearchBoxExpandedState = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { isExpanded } = useSafeContext(SearchBoxContext);
-  return <>{isExpanded ? children : null}</>;
+  const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
+  return <>{!expandable || isExpanded ? children : null}</>;
 };
 SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
 
 // ----------------------------------------------------------------------------
-export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
 
 const SearchBoxIcon = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
@@ -221,10 +228,9 @@ const SearchBoxIcon = React.forwardRef((props, ref) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
+SearchBoxIcon.displayName = 'SearchBox.Icon';
 
 // ----------------------------------------------------------------------------
-
-export type SearchBoxInputProps = React.ComponentProps<'input'>;
 
 const SearchBoxInput = React.forwardRef(
   (props: SearchBoxInputProps, ref: React.Ref<HTMLInputElement>) => {
@@ -252,12 +258,9 @@ const SearchBoxInput = React.forwardRef(
     );
   },
 );
+SearchBoxInput.displayName = 'SearchBox.Input';
 
 // ----------------------------------------------------------------------------
-export type SearchBoxButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
 
 const SearchBoxButton = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
@@ -275,12 +278,9 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
     </IconButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+SearchBoxButton.displayName = 'SearchBox.Button';
 
 // ----------------------------------------------------------------------------
-export type SearchBoxCloseButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
 
 const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
   const { children, onClick: onClickProp, ...rest } = props;
@@ -310,11 +310,9 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
     </SearchBoxButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+SearchBoxCollapseButton.displayName = 'SearchBox.CollapseButton';
+
 // ----------------------------------------------------------------------------
-export type SearchBoxOpenButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
 
 const SearchBoxExpandButton = React.forwardRef((props, ref) => {
   const { children, className, onClick: onClickProp, ...rest } = props;
@@ -346,37 +344,45 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
     </SearchBoxButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+SearchBoxExpandButton.displayName = 'SearchBox.ExpandButton';
 
 // ----------------------------------------------------------------------------
 
 /**
- * Searchbox component.
+ * SearchBox component.
+ * Can be used to implement search functionality for pages, tables and more.
  * @example
- *  <Searchbox inputProps={{ placeholder: 'Basic search' }}/>
+ *  <SearchBox inputProps={{ placeholder: 'Basic search' }}/>
  *
  * @example
  * <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }}/>
+ *
+ * @example
+ *
+ * <SearchBox>
+ *   <
+ * </SearchBox>
  */
 export const SearchBox = Object.assign(SearchBoxComponent, {
   /**
-   * Icon to be placed within Searchbox.
+   * Icon to be placed within SearchBox.
    * @default Looking glass icon
    */
   Icon: SearchBoxIcon,
   /**
-   * Input to be placed within Searchbox
+   * Input to be placed within SearchBox
    */
   Input: SearchBoxInput,
   /**
-   * Button to be placed within Searchbox. Default has looking glass icon.
+   * Button to be placed within SearchBox. Default has looking glass icon.
    */
   Button: SearchBoxButton,
   /**
-   * Close button for expandable Searchbox. Clicking on this button will collapse Searchbox.
+   * Close button for expandable SearchBox. Clicking on this button will collapse SearchBox.
    */
   CollapseButton: SearchBoxCollapseButton,
   /**
-   * Open button for expandable Searchbox. Clicking on this will expand Searchbox.
+   * Open button for expandable SearchBox. Clicking on this will expand SearchBox.
    */
   ExpandButton: SearchBoxExpandButton,
   /**
@@ -388,5 +394,26 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
    */
   CollapsedState: SearchBoxCollapsedState,
 });
+
+SearchBox.displayName = 'SearchBox';
+
+export type SearchBoxProps = PolymorphicComponentProps<
+  'div',
+  SearchBoxOwnProps & InputFlexContainerProps
+>;
+export type SearchBoxInputProps = React.ComponentProps<'input'>;
+export type SearchBoxButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
+export type SearchBoxExpandButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
+export type SearchBoxCollapseButtonProps = PolymorphicComponentProps<
+  'button',
+  IconButtonProps
+>;
+export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
 
 export default SearchBox;

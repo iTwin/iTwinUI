@@ -6,7 +6,8 @@ export { SearchBox } from './SearchBox.js';
 export type {
   SearchBoxProps,
   SearchBoxButtonProps,
-  SearchBoxCloseButtonProps,
+  SearchBoxCollapseButtonProps,
+  SearchBoxExpandButtonProps,
   SearchBoxIconProps,
   SearchBoxInputProps,
 } from './SearchBox.js';
