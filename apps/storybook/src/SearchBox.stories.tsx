@@ -20,9 +20,7 @@ export default {
   title: 'Input/SearchBox',
 } as Meta<SearchBoxProps>;
 
-export const Basic: StoryFn<SearchBoxProps> = (
-  args: JSX.IntrinsicAttributes,
-) => {
+export const Basic: StoryFn<SearchBoxProps> = (args) => {
   return <SearchBox inputProps={{ placeholder: 'Basic search' }} {...args} />;
 };
 
