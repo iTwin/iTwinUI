@@ -21,6 +21,7 @@ describe('Breadcrumbs', () => {
 
       if (testName === 'Custom Overflow Dropdown') {
         cy.get('[aria-label="Dropdown with more breadcrumbs"').click();
+        cy.wait(1000); // wait for dropdown to open?
       } else if (testName === 'Custom Overflow Back Button') {
         cy.get('.iui-button').eq(1).trigger('mouseenter');
       }
