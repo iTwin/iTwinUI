@@ -20,7 +20,7 @@ describe('Breadcrumbs', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName === 'Custom Overflow Dropdown') {
-        cy.get('.iui-button').eq(1).click();
+        cy.get('[aria-label="Dropdown with more breadcrumbs"').click();
       } else if (testName === 'Custom Overflow Back Button') {
         cy.get('.iui-button').eq(1).trigger('mouseenter');
       }
