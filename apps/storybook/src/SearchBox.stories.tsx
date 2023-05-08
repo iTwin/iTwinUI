@@ -5,13 +5,7 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
-import {
-  SearchBox,
-  SearchBoxProps,
-  IconButton,
-  Text,
-  Divider,
-} from '@itwin/itwinui-react';
+import { SearchBox, SearchBoxProps, Text, Divider } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -50,10 +44,10 @@ export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
         0/3
       </Text>
       <Divider orientation='vertical' />
-      <SearchBox.Button styleType='borderless'>
+      <SearchBox.Button aria-label='Previous result'>
         <SvgCaretUpSmall />
       </SearchBox.Button>
-      <SearchBox.Button styleType='borderless'>
+      <SearchBox.Button aria-label='Next result'>
         <SvgCaretDownSmall />
       </SearchBox.Button>
     </SearchBox>
@@ -81,10 +75,10 @@ export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
       <SearchBox.CollapsedState />
       <SearchBox.ExpandedState>
         <SearchBox.Input placeholder='Expandable search with custom interactions' />
-        <SearchBox.Button>
+        <SearchBox.Button aria-label='Previous result'>
           <SvgCaretUpSmall />
         </SearchBox.Button>
-        <SearchBox.Button>
+        <SearchBox.Button aria-label='Next result'>
           <SvgCaretDownSmall />
         </SearchBox.Button>
         <Divider orientation='vertical' />
@@ -125,12 +119,12 @@ export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
         <SearchBox.Input placeholder='Test' />
         <SearchBox.CollapseButton />
         <Divider orientation='vertical' />
-        <IconButton styleType='borderless'>
+        <SearchBox.Button aria-label='Previous result'>
           <SvgCaretUpSmall />
-        </IconButton>
-        <IconButton styleType='borderless'>
+        </SearchBox.Button>
+        <SearchBox.Button aria-label='Next result'>
           <SvgCaretDownSmall />
-        </IconButton>
+        </SearchBox.Button>
       </SearchBox.ExpandedState>
     </SearchBox>
   );
