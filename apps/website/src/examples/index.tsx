@@ -29,6 +29,7 @@ export { default as BadgeMainExample } from './Badge.main';
 export { default as BadgeSoftExample } from './Badge.soft';
 export { default as BadgeStatusesExample } from './Badge.statuses';
 
+export { default as BlockquoteFooterExample } from './Blockquote.footer';
 export { default as BlockquoteMainExample } from './Blockquote.main';
 
 export { default as BreadcrumbsButtonExample } from './Breadcrumbs.button';
