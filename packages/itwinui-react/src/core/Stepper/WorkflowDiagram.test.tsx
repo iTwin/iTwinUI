@@ -8,8 +8,8 @@ import {
   waitForElementToBeRemoved,
   fireEvent,
 } from '@testing-library/react';
-import React from 'react';
-import { WorkflowDiagram } from './WorkflowDiagram';
+import * as React from 'react';
+import { WorkflowDiagram } from './WorkflowDiagram.js';
 
 it('should display all step names in default workflow diagram', () => {
   const workflowDiagram = (

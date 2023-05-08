@@ -4,16 +4,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import {
+import * as React from 'react';
+import '@itwin/itwinui-css/css/alert.css';
+import { useTheme, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
+import type {
   CommonProps,
-  useTheme,
-  StatusIconMap,
-  SvgCloseSmall,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-} from '../utils';
-import '@itwin/itwinui-css/css/alert.css';
+} from '../utils/props.js';
 
 // ----------------------------------------------------------------------------
 // Alert.Icon component

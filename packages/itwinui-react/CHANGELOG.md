@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.10.1
+
+### Patch Changes
+
+- [#1245](https://github.com/iTwin/iTwinUI/pull/1245): Adjusted Checkbox so that its clickable target area is 24pxx24px by default (increased from 16x16) and 32x32 when used in a Table selection column.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.3
+
 ## 2.10.0
 
 ### Minor Changes

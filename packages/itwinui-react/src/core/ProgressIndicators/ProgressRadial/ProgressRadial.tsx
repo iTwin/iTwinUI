@@ -3,13 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 import {
-  CommonProps,
   useTheme,
   SvgCheckmarkSmall,
   SvgImportantSmall,
-} from '../../utils';
+} from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
 export type ProgressRadialProps = {

@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { act, render } from '@testing-library/react';
-import * as UseMediaQuery from '../utils/hooks/useMediaQuery';
+import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
 
-import { ThemeProvider } from './ThemeProvider';
+import { ThemeProvider } from './ThemeProvider.js';
 
 describe('When rendering an element (with children)', () => {
   let useMediaSpy: jest.SpyInstance;

@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
 @mixin iui-expandable-block {
   --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
@@ -63,8 +63,8 @@
 }
 
 @mixin iui-expandable-block-header {
-  @include iui-reset;
-  @include iui-focus(
+  @include mixins.iui-reset;
+  @include mixins.iui-focus(
     $offset: var(--_iui-expandable-block-header-focus-offset),
     $thickness: var(--_iui-expandable-block-header-focus-thickness)
   );
@@ -125,7 +125,7 @@
 
 /// @arg $type Can be one of: expander, status
 @mixin iui-expandable-block-header-icons($type) {
-  @include iui-icon-style('m');
+  @include mixins.iui-icon-style('m');
 
   @if $type == 'expander' {
     width: var(--_iui-expandable-block-expander-icon-size);
@@ -173,10 +173,52 @@
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 
-  @include iui-transition-group;
+  @include mixins.iui-transition-group;
 
   // padding should be in a separate div because otherwise it messes up height transition
   > div {
     padding: var(--_iui-expandable-block-content-padding);
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-expandable-block {
+  @include iui-expandable-block;
+
+  > .iui-header {
+    @include iui-expandable-block-header;
+
+    > .iui-icon {
+      @include iui-expandable-block-header-icons('expander');
+    }
+
+    > .iui-status-icon {
+      @include iui-expandable-block-header-icons('status');
+    }
+  }
+
+  .iui-expandable-content {
+    @include iui-expandable-block-content;
+  }
+
+  &:where(.iui-small) {
+    @include iui-expandable-block-size('small');
+  }
+
+  &:where(.iui-borderless) {
+    @include iui-expandable-block-variant('borderless');
+  }
+}
+
+.iui-expandable-block-label {
+  @include iui-expandable-block-header-label;
+
+  .iui-title {
+    @include iui-expandable-block-header-label-text('label');
+  }
+
+  .iui-caption {
+    @include iui-expandable-block-header-label-text('sublabel');
   }
 }

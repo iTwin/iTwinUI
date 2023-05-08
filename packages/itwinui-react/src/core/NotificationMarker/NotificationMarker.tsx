@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useTheme } from '../utils';
+import * as React from 'react';
+import { useTheme } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/utils.css';
 

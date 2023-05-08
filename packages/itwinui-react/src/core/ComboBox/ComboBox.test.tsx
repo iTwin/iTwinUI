@@ -2,12 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen, act } from '@testing-library/react';
-import { ComboBox, ComboboxMultipleTypeProps, ComboBoxProps } from './ComboBox';
-import { SvgCaretDownSmall } from '../utils';
-import { MenuItem } from '../Menu';
-import { StatusMessage } from '../StatusMessage';
+import {
+  ComboBox,
+  type ComboboxMultipleTypeProps,
+  type ComboBoxProps,
+} from './ComboBox.js';
+import { SvgCaretDownSmall } from '../utils/index.js';
+import { MenuItem } from '../Menu/index.js';
+import { StatusMessage } from '../StatusMessage/index.js';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = (
@@ -977,4 +981,27 @@ it('should not select disabled items', async () => {
   expect(onChange).not.toHaveBeenCalled();
   expect(document.querySelector('.iui-menu')).toBeVisible();
   expect(input).toHaveValue('An');
+});
+
+it('should update live region when selection changes', async () => {
+  const { container } = render(
+    <ComboBox
+      options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
+      multiple
+      value={[0]}
+    />,
+  );
+
+  const liveRegion = container.querySelector('[aria-live="polite"]');
+  expect(liveRegion).toBeEmptyDOMElement();
+
+  await userEvent.tab();
+  const options = document.querySelectorAll('[role="option"]');
+
+  await userEvent.click(options[1]);
+  await userEvent.click(options[2]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
+
+  await userEvent.click(options[0]);
+  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });

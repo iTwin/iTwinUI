@@ -2,18 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import '@itwin/itwinui-css/css/color-picker.css';
-import {
-  useTheme,
-  CommonProps,
-  ColorType,
-  ColorValue,
-  HsvColor,
-  getTabbableElements,
-} from '../utils';
+import { useTheme, ColorValue, getTabbableElements } from '../utils/index.js';
+import type { CommonProps, ColorType, HsvColor } from '../utils/index.js';
 import cx from 'classnames';
-import { ColorPickerContext } from './ColorPickerContext';
+import { ColorPickerContext } from './ColorPickerContext.js';
 
 export const getColorValue = (color: ColorType | ColorValue | undefined) => {
   if (color instanceof ColorValue) {

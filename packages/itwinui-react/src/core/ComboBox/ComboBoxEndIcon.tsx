@@ -3,9 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { useSafeContext, useMergedRefs, SvgCaretDownSmall } from '../utils';
-import { ComboBoxActionContext, ComboBoxRefsContext } from './helpers';
+import * as React from 'react';
+import {
+  useSafeContext,
+  useMergedRefs,
+  SvgCaretDownSmall,
+} from '../utils/index.js';
+import { ComboBoxActionContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxEndIconProps = React.ComponentPropsWithoutRef<'span'> & {
   disabled?: boolean;

@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Alert } from './Alert';
+import { Alert } from './Alert.js';
 
 it('renders correctly in its default state', () => {
   const { container } = render(

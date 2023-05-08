@@ -9,31 +9,36 @@ import {
   screen,
   waitFor,
 } from '@testing-library/react';
-import React from 'react';
-import { Table, TableProps } from './Table';
-import * as IntersectionHooks from '../utils/hooks/useIntersection';
+import * as React from 'react';
+import { Table, type TableProps } from './Table.js';
+import * as IntersectionHooks from '../utils/hooks/useIntersection.js';
 import {
   BaseFilter,
   FilterButtonBar,
-  TableFilterProps,
+  type TableFilterProps,
   tableFilters,
-} from './filters';
-import { actions, CellProps, Column, Row } from 'react-table';
-import { InputGroup } from '../InputGroup';
-import { Radio } from '../Radio';
+} from './filters/index.js';
+import { actions } from 'react-table';
+import type { CellProps, Column, Row } from 'react-table';
+import { InputGroup } from '../InputGroup/index.js';
+import { Radio } from '../Radio/index.js';
 import {
   SvgChevronRight,
   SvgMore,
   SvgClose,
   SvgSortUp,
   SvgSortDown,
-} from '../utils';
-import { DefaultCell, EditableCell } from './cells';
-import { TablePaginator } from './TablePaginator';
-import * as UseOverflow from '../utils/hooks/useOverflow';
-import * as UseResizeObserver from '../utils/hooks/useResizeObserver';
+} from '../utils/index.js';
+import { DefaultCell, EditableCell } from './cells/index.js';
+import { TablePaginator } from './TablePaginator.js';
+import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
 import userEvent from '@testing-library/user-event';
-import { ActionColumn, SelectionColumn, ExpanderColumn } from './columns';
+import {
+  ActionColumn,
+  SelectionColumn,
+  ExpanderColumn,
+} from './columns/index.js';
 
 const intersectionCallbacks = new Map<Element, () => void>();
 jest

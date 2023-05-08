@@ -2,12 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 
-import { Select } from '../Select';
-import type { SelectProps } from '../Select/Select';
-import { StatusIconMap, useTheme, InputContainer, useId } from '../utils';
-import type { LabeledInputProps } from '../LabeledInput';
+import { Select } from '../Select/index.js';
+import type { SelectProps } from '../Select/Select.js';
+import {
+  StatusIconMap,
+  useTheme,
+  InputContainer,
+  useId,
+} from '../utils/index.js';
+import type { LabeledInputProps } from '../LabeledInput/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledSelectProps<T> = {

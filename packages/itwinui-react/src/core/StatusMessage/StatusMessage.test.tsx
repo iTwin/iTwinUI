@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { StatusMessage } from './StatusMessage';
-import { StatusIconMap } from '../utils';
+import { StatusMessage } from './StatusMessage.js';
+import { StatusIconMap } from '../utils/index.js';
 
 it('should render only message', () => {
   const { container } = render(<StatusMessage>This is my text</StatusMessage>);
