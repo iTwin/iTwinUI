@@ -187,9 +187,7 @@ const SearchBoxCollapsedState = ({
 }) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
 
-  // Do not render if SearchBox is not expandable
-  // Do not render if SearchBox is expanded
-  if (!expandable || (expandable && isExpanded)) {
+  if (!expandable || isExpanded) {
     return null;
   }
 
@@ -206,7 +204,6 @@ const SearchBoxExpandedState = ({
 }) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
 
-  // Do not render if SearchBox is collapsed
   if (expandable && !isExpanded) {
     return null;
   }
