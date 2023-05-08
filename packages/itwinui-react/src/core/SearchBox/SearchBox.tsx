@@ -187,15 +187,14 @@ const SearchBoxCollapsedState = ({
   children?: React.ReactNode;
 }) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
-  return (
-    <>
-      {expandable
-        ? isExpanded
-          ? null
-          : children ?? <SearchBoxExpandButton />
-        : null}
-    </>
-  );
+
+  // Do not render if SearchBox is not expandable
+  // Do not render if SearchBox is expanded
+  if (!expandable || (expandable && isExpanded)) {
+    return null;
+  }
+
+  return <>{children ?? <SearchBoxExpandButton />}</>;
 };
 SearchBoxCollapsedState.displayName = 'SearchBox.CollapsedState';
 
@@ -207,7 +206,13 @@ const SearchBoxExpandedState = ({
   children: React.ReactNode;
 }) => {
   const { isExpanded, expandable } = useSafeContext(SearchBoxContext);
-  return <>{!expandable || isExpanded ? children : null}</>;
+
+  // Do not render if SearchBox is collapsed
+  if (expandable && !isExpanded) {
+    return null;
+  }
+
+  return <>{children}</>;
 };
 SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
 
@@ -359,9 +364,13 @@ SearchBoxExpandButton.displayName = 'SearchBox.ExpandButton';
  * <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }}/>
  *
  * @example
- *
  * <SearchBox>
- *   <
+ *   <SearchBox.CollapsedState />
+ *   <SearchBox.ExpandedState>
+ *     <SearchBox.Icon />
+ *     <SearchBox.Input />
+ *     <SearchBox.CollapseButton />
+ *   </SearchBox.ExpandedState>
  * </SearchBox>
  */
 export const SearchBox = Object.assign(SearchBoxComponent, {
