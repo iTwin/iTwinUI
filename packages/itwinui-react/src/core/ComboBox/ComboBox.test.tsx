@@ -982,3 +982,26 @@ it('should not select disabled items', async () => {
   expect(document.querySelector('.iui-menu')).toBeVisible();
   expect(input).toHaveValue('An');
 });
+
+it('should update live region when selection changes', async () => {
+  const { container } = render(
+    <ComboBox
+      options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
+      multiple
+      value={[0]}
+    />,
+  );
+
+  const liveRegion = container.querySelector('[aria-live="polite"]');
+  expect(liveRegion).toBeEmptyDOMElement();
+
+  await userEvent.tab();
+  const options = document.querySelectorAll('[role="option"]');
+
+  await userEvent.click(options[1]);
+  await userEvent.click(options[2]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
+
+  await userEvent.click(options[0]);
+  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
+});
