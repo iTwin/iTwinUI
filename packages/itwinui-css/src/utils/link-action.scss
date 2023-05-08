@@ -1,0 +1,39 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+@mixin iui-link-box {
+  position: relative;
+
+  &:has(.iui-link-action:focus-visible) {
+    outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
+    }
+  }
+}
+
+@mixin iui-link-action {
+  all: unset;
+  color: inherit;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-link-box {
+  @include iui-link-box;
+}
+
+.iui-link-action {
+  @include iui-link-action;
+}

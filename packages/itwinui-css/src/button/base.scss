@@ -1,0 +1,121 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+@mixin iui-button {
+  @include mixins.iui-reset;
+  font-family: inherit;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--iui-border-radius-1);
+  line-height: 1.2;
+  font-size: var(--iui-font-size-1);
+  font-weight: var(--iui-font-weight-normal);
+  user-select: none;
+  cursor: pointer;
+  white-space: nowrap;
+  border: 1px solid var(--_iui-button-border-color);
+  background: var(--_iui-button-background-color);
+  color: var(--_iui-button-text-color);
+  gap: var(--_iui-button-gap);
+  min-height: var(--_iui-button-min-height);
+  min-width: var(--_iui-button-min-height);
+  padding-block: var(--_iui-button-padding-block);
+  padding-inline: var(--_iui-button-padding-inline);
+  transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  @include iui-button-size;
+  @include mixins.iui-focus;
+}
+
+@mixin iui-button-icon {
+  display: inline-flex;
+
+  svg {
+    @include mixins.iui-icon-style('m');
+    transition: fill var(--iui-duration-1) ease-out;
+    fill: var(--_iui-button-icon-fill, currentColor);
+  }
+}
+
+@mixin iui-button-active {
+  --_iui-button-active-stripe-inset: initial;
+  --_iui-button-active-stripe-background: var(--iui-color-border-accent);
+  --_iui-button-text-color: var(--iui-color-text-accent);
+  --_iui-button-icon-fill: var(--iui-color-text-accent);
+
+  // Shows active stripe only if --_iui-button-active-stripe-inset is set (from outside)
+  &::after {
+    content: '';
+    position: absolute;
+    inset: var(--_iui-button-active-stripe-inset);
+    background: var(--_iui-button-active-stripe-background);
+  }
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
+    --_iui-button-text-color: var(--iui-color-text-disabled);
+    --_iui-button-icon-fill: var(--iui-color-icon-disabled);
+  }
+}
+
+@mixin iui-button-dropdown($size: default) {
+  @if $size == small {
+    padding-right: calc(var(--iui-size-2xs) - 1px);
+  }
+
+  @if $size == default {
+    padding-right: calc(var(--iui-size-xs) - 1px);
+  }
+
+  @if $size == large {
+    padding-right: calc(var(--iui-size-s) - 1px);
+  }
+}
+
+/// Mixin for applying padding and margins to various button sizes.
+/// @arg size - must be one of: small, medium, large
+/// @arg styleType - must be one of: default, borderless
+@mixin iui-button-size($size: medium, $styleType: default) {
+  @if $size == small {
+    --_iui-button-gap: var(--iui-size-2xs);
+    --_iui-button-padding-block: 0;
+    --_iui-button-padding-inline: var(--iui-size-xs);
+    --_iui-button-min-height: var(--iui-component-height-small);
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: var(--iui-size-2xs);
+    }
+  }
+
+  @if $size == medium {
+    --_iui-button-gap: var(--iui-size-xs);
+    --_iui-button-padding-block: var(--iui-size-2xs);
+    --_iui-button-padding-inline: var(--iui-size-m);
+    --_iui-button-min-height: var(--iui-component-height);
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: var(--iui-size-xs);
+    }
+  }
+
+  @if $size == large {
+    font-size: var(--iui-font-size-2);
+
+    --_iui-button-gap: var(--iui-size-s);
+    --_iui-button-padding-block: var(--iui-size-xs);
+    --_iui-button-padding-inline: var(--iui-size-l);
+    --_iui-button-min-height: var(--iui-component-height-large);
+
+    @if $styleType == borderless {
+      --_iui-button-padding-inline: var(--iui-size-s);
+    }
+  }
+}

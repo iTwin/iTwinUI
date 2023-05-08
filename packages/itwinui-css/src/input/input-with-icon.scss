@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
+@use '../input-container/mixins' as input-container;
 
 // Mixin to have inputs combined with icon (eg. select)
 @mixin iui-input-with-icon {
@@ -36,7 +37,7 @@
 }
 
 @mixin iui-end-icon {
-  @include iui-input-icon-inline;
+  @include input-container.iui-input-icon-inline;
   display: flex;
   grid-area: 1 / -1;
 }

@@ -1,11 +1,22 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use 'default';
+@use 'data-rich';
+@use 'me';
+@use 'base';
 
-@mixin iui-location-marker {
-  @include iui-reset;
+.iui-location-marker {
+  @include base.iui-location-marker;
+}
 
-  display: inline-block;
-  user-select: none;
-  position: relative;
+.iui-location-marker-default {
+  @include default.iui-location-marker-default;
+}
+
+.iui-location-marker-data-rich {
+  @include data-rich.iui-location-marker-data-rich;
+}
+
+.iui-location-marker-me {
+  @include me.iui-location-marker-me;
 }
