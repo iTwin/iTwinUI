@@ -27,12 +27,20 @@
   &:has(input:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
+
+    &::before {
+      border-color: transparent;
+    }
   }
 
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
       outline: 2px solid var(--_iui-input-accent-border-color);
       outline-offset: -2px;
+
+      &::before {
+        border-color: transparent;
+      }
     }
   }
 
