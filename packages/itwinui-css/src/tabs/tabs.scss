@@ -103,6 +103,18 @@ $borderless-horizontal-tab-min-height: calc(
     .iui-tab {
       white-space: nowrap;
     }
+
+    &.iui-borderless {
+      &::-webkit-scrollbar {
+        width: var(--iui-size-m);
+        height: var(--iui-size-m);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border: 3px solid transparent;
+        background-clip: content-box;
+      }
+    }
   }
 
   ~ .iui-tabs-content {
@@ -132,7 +144,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-x: auto;
+      overflow-x: overlay;
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -190,7 +202,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-y: auto;
+      overflow-y: overlay;
       min-width: min-content;
 
       &[data-iui-scroll-placement='start'] {
