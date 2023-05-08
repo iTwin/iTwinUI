@@ -31,7 +31,7 @@ const Shell = () => {
           >
             {theme === 'dark' ? <SvgMoon /> : <SvgSun />}
           </ThemeButton>
-          <App />
+          <App name='we' />
         </Main>
       </ThemeProvider>
     </>

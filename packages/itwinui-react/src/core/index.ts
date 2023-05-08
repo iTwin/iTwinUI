@@ -282,6 +282,10 @@ export type { TextareaProps } from './Textarea';
 export { Tile } from './Tile';
 export type { TileProps } from './Tile';
 
+export { TileNew } from './Tile';
+export type { TileNewProps } from './Tile';
+export type { TileNewThumbnailProps } from './Tile';
+
 export { TimePicker } from './TimePicker';
 export type { MeridiemType, TimePickerProps } from './TimePicker';
 

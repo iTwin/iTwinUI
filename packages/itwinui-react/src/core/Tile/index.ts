@@ -5,3 +5,4 @@
 export { Tile } from './Tile';
 export type { TileProps } from './Tile';
 export default './Tile';
+export * from './TileNew';
