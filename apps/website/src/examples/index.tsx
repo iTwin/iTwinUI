@@ -216,6 +216,7 @@ export { default as ToggleSwitchIconExample } from './ToggleSwitch.icon';
 export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgroup';
 
 export { default as TooltipMainExample } from './Tooltip.main';
+export { default as TooltipPlacementExample } from './Tooltip.placement';
 
 export { default as TreeMainExample } from './Tree.main';
 

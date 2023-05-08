@@ -1,0 +1,56 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+@mixin iui-anchor {
+  &:where(button) {
+    font: inherit;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+
+  @include iui-anchor-status('accent');
+  border-radius: var(--iui-border-radius-1);
+  cursor: pointer;
+
+  @include iui-anchor-underline('on-hover');
+
+  @media (prefers-contrast: more) {
+    @include iui-anchor-underline('on-initial');
+  }
+
+  :is([data-iui-contrast='high'] &) {
+    @include iui-anchor-underline('on-initial');
+  }
+}
+
+@mixin iui-anchor-status($status: accent) {
+  @include mixins.iui-focus($color: var(--iui-color-text-#{$status}), $offset: 1px);
+  color: var(--iui-color-text-#{$status});
+  -webkit-tap-highlight-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
+  @if $status != accent {
+    @include mixins.iui-text-selection($status);
+  }
+
+  &:hover {
+    color: var(--iui-color-text-#{$status}-hover);
+  }
+}
+
+/// $behavior should be one of: 'on-hover' or 'on-initial'
+@mixin iui-anchor-underline($behavior: 'on-hover') {
+  @if $behavior == 'on-hover' {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  } @else {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
