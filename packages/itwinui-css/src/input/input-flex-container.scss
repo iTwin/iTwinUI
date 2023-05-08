@@ -28,6 +28,7 @@
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
 
+    // Added to make sure border color is not visible with outline
     &::before {
       border-color: transparent;
     }
@@ -38,6 +39,7 @@
       outline: 2px solid var(--_iui-input-accent-border-color);
       outline-offset: -2px;
 
+      // Added to make sure border color is not visible with outline
       &::before {
         border-color: transparent;
       }
