@@ -1,0 +1,511 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+@mixin iui-table {
+  @include mixins.iui-reset;
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+
+  @include iui-table-cell-icon;
+}
+
+@mixin iui-table-header-wrapper {
+  overflow: hidden;
+  // Fix for Firefox columns misalignment
+  @supports not (overflow: overlay) {
+    scrollbar-gutter: stable;
+    background-color: var(--iui-color-background);
+  }
+  display: flex;
+  flex-shrink: 0;
+  border-top-left-radius: var(--iui-border-radius-1);
+  border-top-right-radius: var(--iui-border-radius-1);
+}
+
+@mixin iui-table-header {
+  display: flex;
+  user-select: none;
+  min-width: 100%;
+  flex-shrink: 0;
+  font-weight: var(--iui-font-weight-semibold);
+  border-bottom: 1px solid var(--iui-color-border);
+
+  .iui-table-cell {
+    background-color: var(--iui-color-background);
+  }
+
+  .iui-table-cell:not(.iui-slot) {
+    @include mixins.iui-focus;
+    column-gap: var(--iui-size-2xs);
+    padding-block: calc(var(--iui-size-s) * 0.5);
+
+    &.iui-actionable {
+      cursor: pointer;
+    }
+
+    &.iui-grabbing {
+      cursor: grabbing;
+    }
+
+    .iui-table-filter-button:not([data-iui-active='true']) {
+      opacity: 0;
+    }
+
+    > .iui-table-resizer {
+      height: 100%;
+      width: var(--iui-size-m);
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(50%);
+      touch-action: none;
+      cursor: ew-resize;
+      z-index: 1;
+      opacity: 0;
+
+      > .iui-table-resizer-bar {
+        height: 100%;
+        width: var(--iui-size-3xs);
+        margin: 0 auto;
+        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
+        background-color: var(--iui-color-border);
+      }
+
+      &:hover > .iui-table-resizer-bar {
+        width: var(--iui-size-2xs);
+        background-color: var(--iui-color-border-accent);
+      }
+    }
+
+    &:hover > .iui-table-resizer {
+      opacity: 1;
+    }
+
+    &:hover,
+    &:focus,
+    &:focus-within {
+      background-color: var(--iui-color-background-hover);
+
+      .iui-table-sort,
+      .iui-table-filter-button {
+        opacity: 1;
+      }
+    }
+  }
+
+  .iui-table-reorder-bar {
+    position: absolute;
+    height: 100%;
+    width: var(--iui-size-3xs);
+  }
+
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
+      right: 0;
+    }
+  }
+
+  .iui-table-reorder-column-left {
+    > .iui-table-reorder-bar {
+      left: 0;
+    }
+  }
+
+  .iui-table-reorder-column-left,
+  .iui-table-reorder-column-right {
+    > .iui-table-reorder-bar {
+      background-color: var(--iui-color-border-accent);
+    }
+  }
+
+  // Sort icon
+  .iui-table-sort {
+    opacity: 0;
+    --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
+  }
+
+  // Sorted column
+  .iui-sorted {
+    background-color: var(--iui-color-background-hover);
+
+    .iui-table-sort {
+      opacity: 1;
+      --_iui-table-cell-icon-fill: var(--iui-color-icon);
+    }
+  }
+}
+
+@mixin iui-table-row {
+  --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
+
+  min-width: 100%;
+  display: flex;
+
+  &:last-of-type {
+    border-radius: inherit;
+  }
+
+  .iui-table-header & {
+    flex-grow: 1;
+  }
+
+  .iui-table-body & {
+    .iui-table-cell {
+      border-top: solid 1px transparent;
+      border-bottom: solid 1px transparent;
+      border-bottom-color: var(--iui-color-border);
+      background-color: var(--iui-color-background);
+      transition: border var(--iui-duration-1) ease-out;
+    }
+
+    > .iui-slot > .iui-table-more-options {
+      opacity: 0;
+    }
+
+    &:where(:hover, :focus-within) > .iui-slot > .iui-table-more-options {
+      opacity: 1;
+    }
+
+    &:where(:hover:not(.iui-loading):not([aria-disabled='true'])) .iui-table-cell {
+      background-color: var(--iui-color-background-hover);
+    }
+
+    .iui-table-row-expander > .iui-button-icon {
+      @media (prefers-reduced-motion: no-preference) {
+        transition: transform var(--iui-duration-1) ease-out;
+      }
+    }
+
+    &.iui-table-row-expanded {
+      overflow: hidden;
+
+      .iui-table-cell {
+        border-left-color: var(--iui-color-border);
+        border-right-color: var(--iui-color-border);
+        border-bottom-color: transparent;
+      }
+
+      .iui-table-row-expander > .iui-button-icon {
+        transform: rotate(90deg);
+      }
+
+      + .iui-table-expanded-content {
+        border-left-color: var(--iui-color-border);
+        border-right-color: var(--iui-color-border);
+      }
+    }
+
+    &.iui-table-expanded-content {
+      overflow: hidden;
+      border-left: 1px solid transparent;
+      border-right: 1px solid transparent;
+      border-bottom: 1px solid var(--iui-color-border);
+      flex-shrink: 0;
+      @include mixins.iui-transition-group;
+    }
+
+    // #region Selection
+    &:not([aria-selected='true']) + [aria-selected='true'] .iui-table-cell,
+    &[aria-selected='true']:first-child .iui-table-cell {
+      border-bottom-color: transparent;
+    }
+
+    &[aria-selected='true'] {
+      .iui-table-cell {
+        border-color: var(--iui-color-border-accent);
+        background-color: var(--iui-color-background-accent-muted);
+      }
+
+      + [aria-selected='true'] .iui-table-cell {
+        border-bottom-color: transparent;
+        border-top-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-4));
+      }
+
+      &:last-child .iui-table-cell {
+        border-bottom-color: var(--iui-color-border-accent);
+      }
+
+      /* stylelint-disable-next-line selector-max-compound-selectors */
+      + :not([aria-selected='true']) .iui-table-cell,
+      + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
+        border-top-color: var(--iui-color-border-accent);
+      }
+
+      + .iui-table-expanded-content {
+        border-color: transparent var(--iui-color-border-accent);
+
+        &:last-child {
+          border-bottom-color: var(--iui-color-border-accent);
+        }
+      }
+    }
+    // #endregion Selection
+
+    // #region Statuses & states
+    &.iui-new {
+      font-weight: var(--iui-font-weight-semibold);
+
+      > .iui-main-column::before {
+        content: '•';
+        position: absolute;
+        left: 0;
+        font-size: var(--iui-font-size-4);
+        color: var(--iui-color-icon-positive);
+      }
+    }
+
+    &.iui-loading,
+    .iui-table-cell[aria-disabled='true'],
+    &.iui-table-expanded-content[aria-disabled='true'] {
+      --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
+      --_iui-table-cell-image-filter: grayscale(100%);
+
+      color: var(--iui-color-text-disabled);
+
+      img,
+      svg:not(.iui-radial),
+      .iui-avatar {
+        filter: var(--_iui-table-cell-image-filter);
+      }
+    }
+
+    &.iui-loading {
+      font-style: italic;
+
+      &,
+      .iui-checkbox {
+        cursor: progress;
+      }
+    }
+
+    .iui-table-cell[aria-disabled='true'],
+    &.iui-table-expanded-content[aria-disabled='true'] {
+      cursor: not-allowed;
+    }
+
+    &[data-iui-status='positive'] {
+      @include iui-table-row-status($status: positive);
+    }
+
+    &[data-iui-status='warning'] {
+      @include iui-table-row-status($status: warning);
+    }
+
+    &[data-iui-status='negative'] {
+      @include iui-table-row-status($status: negative);
+    }
+    // #endregion Statuses & states
+  }
+}
+
+@mixin iui-table-header-actions-container {
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-right: var(--iui-size-s);
+
+  .iui-table-cell-end-icon {
+    // Hardcoded size of the borderless button so that the icons are centered
+    width: 28px;
+    height: 28px;
+    margin-right: initial;
+    margin-left: auto;
+  }
+}
+
+@mixin iui-table-body {
+  overflow-y: scroll;
+  overflow: overlay;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  // Allows columns with static width to take more space than the table width
+  align-items: flex-start;
+  @include mixins.iui-scroll-snapping('.iui-table-row');
+  background-color: var(--iui-color-background);
+
+  &:last-child {
+    border-bottom-left-radius: var(--iui-border-radius-1);
+    border-bottom-right-radius: var(--iui-border-radius-1);
+  }
+
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
+    background-color: var(--iui-color-background-zebra);
+  }
+
+  &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']):hover .iui-table-cell {
+    background-color: var(--iui-color-background-hover);
+  }
+
+  // Empty & loading states
+  > .iui-table-empty {
+    text-align: center;
+    padding: var(--iui-size-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    align-self: center;
+    color: var(--iui-color-text-muted);
+    background-color: var(--iui-color-background);
+  }
+}
+
+@mixin iui-table-cell {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  min-width: var(--iui-size-2xl);
+  padding-left: var(--iui-size-m);
+  flex-basis: var(--iui-size-2xl);
+  position: relative;
+  word-break: break-word;
+
+  &:first-of-type {
+    border-left: solid 1px transparent;
+    border-bottom-left-radius: inherit;
+  }
+
+  &:last-of-type {
+    border-right: solid 1px transparent;
+  }
+
+  &.iui-slot {
+    width: calc(var(--iui-size-l) * 2);
+    padding: 0;
+    flex-grow: 0;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-basis: calc(var(--iui-size-l) * 2);
+
+    // make the checkbox bigger (32x32) to prevent accidentally clicking on the row
+    --iui-checkbox-target-size: 32px;
+  }
+
+  &.iui-table-cell-sticky {
+    position: sticky;
+    z-index: 1;
+    left: var(--iui-table-sticky-left, initial);
+    right: var(--iui-table-sticky-right, initial);
+  }
+
+  &:not(.iui-slot):last-child {
+    padding-right: var(--iui-size-m);
+  }
+
+  &[data-iui-status='positive'] {
+    @include iui-table-cell-status($status: positive);
+  }
+
+  &[data-iui-status='warning'] {
+    @include iui-table-cell-status($status: warning);
+  }
+
+  &[data-iui-status='negative'] {
+    @include iui-table-cell-status($status: negative);
+  }
+
+  &[contenteditable] {
+    outline-offset: -1px;
+
+    &:hover {
+      outline: 1px solid var(--iui-color-border-accent);
+    }
+
+    &:focus {
+      background-color: var(--iui-color-background);
+      outline: 1px solid var(--iui-color-text-accent);
+    }
+  }
+}
+
+@mixin iui-table-row-status($status) {
+  .iui-table-cell:first-of-type,
+  + .iui-table-expanded-content {
+    box-shadow: inset var(--iui-size-2xs) 0 0 0 var(--iui-color-border-#{$status});
+
+    @include mixins.iui-text-selection($status);
+  }
+
+  .iui-table-cell-end-icon {
+    --_iui-table-cell-icon-fill: var(--iui-color-icon-#{$status});
+  }
+
+  .iui-table-cell[aria-disabled='true'] .iui-table-cell-end-icon {
+    --_iui-table-cell-image-filter: none;
+  }
+}
+
+@mixin iui-table-cell-status($status) {
+  @include mixins.iui-text-selection($status);
+  @include mixins.pseudo-content {
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
+  }
+}
+
+@mixin iui-table-cell-icon {
+  .iui-table-cell-end-icon,
+  .iui-table-cell-start-icon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    fill: var(--_iui-table-cell-icon-fill);
+
+    svg:not(.iui-radial) {
+      @include mixins.iui-icon-style('m');
+    }
+  }
+
+  .iui-table-cell-start-icon {
+    margin-right: var(--iui-size-xs);
+  }
+
+  .iui-table-cell-end-icon {
+    width: var(--iui-size-l);
+    height: var(--iui-size-l);
+    margin-right: var(--iui-size-s);
+    margin-left: auto;
+
+    :where(svg:not(.iui-radial)) {
+      fill: var(--_iui-table-cell-icon-fill);
+    }
+  }
+}
+
+@mixin iui-table-cell-shadow-base {
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  width: var(--iui-size-l);
+  pointer-events: none;
+
+  // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
+  // makes content to overflow
+  .iui-table-header & {
+    top: 0;
+    bottom: 0;
+  }
+}
+
+/// @arg side - must be one of: left, right
+@mixin iui-table-cell-shadow($side) {
+  @include iui-table-cell-shadow-base;
+  @if $side == left {
+    left: 0;
+    transform: translate(-100%);
+    box-shadow: inset -10px 0 5px -10px var(--iui-shadow-color);
+  }
+  @if $side == right {
+    right: 0;
+    transform: translate(100%);
+    box-shadow: inset 10px 0 5px -10px var(--iui-shadow-color);
+  }
+}
