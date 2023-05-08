@@ -1,13 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../breadcrumbs/index';
+@use '../breadcrumbs/mixins' as breadcrumbs;
+@use 'header-buttons';
+@use '../mixins';
 
-@mixin iui-page-header {
+.iui-page-header {
   --_iui-header-brand-label-font-size: var(--iui-font-size-2);
   --_iui-header-height: calc(var(--iui-size-s) * 5);
   --_iui-header-icon-scale: none;
 
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -20,27 +22,22 @@
   @media (prefers-reduced-motion: no-preference) {
     transition: height var(--iui-duration-1) ease-out;
   }
+
+  &[data-iui-size='slim'] {
+    --_iui-header-brand-label-font-size: var(--iui-font-size-1);
+    --_iui-header-height: calc(var(--iui-size-s) * 3);
+    --_iui-header-icon-scale: scale(0.66666);
+  }
 }
 
-@mixin iui-page-header-slim {
-  --_iui-header-brand-label-font-size: var(--iui-font-size-1);
-  --_iui-header-height: calc(var(--iui-size-s) * 3);
-  --_iui-header-icon-scale: scale(0.66666);
-}
-
-@mixin iui-page-header-zone {
+.iui-page-header-left,
+.iui-page-header-center,
+.iui-page-header-right {
   display: flex;
   align-items: center;
 }
 
-@mixin iui-page-header-left {
-  overflow: hidden;
-  box-sizing: content-box;
-  margin-bottom: calc(0px - var(--iui-size-2xs));
-  padding-bottom: var(--iui-size-2xs);
-}
-
-@mixin iui-page-header-right {
+.iui-page-header-right {
   .iui-button {
     height: 100%;
     border-radius: 0;
@@ -66,7 +63,7 @@
   }
 }
 
-@mixin iui-page-header-divider {
+.iui-page-header-divider {
   height: calc(var(--iui-size-s) * 2);
   border-left: 2px solid var(--iui-color-border);
   @media (forced-colors: active) {
@@ -74,6 +71,59 @@
   }
 }
 
-@mixin iui-page-header-breadcrumbs {
-  @include iui-breadcrumbs($breadcrumbs-height: 100%);
+.iui-header-breadcrumbs {
+  @include breadcrumbs.iui-breadcrumbs($breadcrumbs-height: 100%);
+}
+
+.iui-header-brand {
+  @include header-buttons.iui-header-brand;
+}
+
+.iui-header-brand-icon {
+  @include header-buttons.iui-header-brand-icon;
+}
+
+.iui-header-brand-label {
+  @include header-buttons.iui-header-brand-label;
+}
+
+.iui-header-breadcrumbs-list {
+  @include breadcrumbs.iui-breadcrumbs-list;
+}
+
+.iui-page-header-left,
+.iui-header-breadcrumbs,
+.iui-header-breadcrumbs-list {
+  overflow: hidden;
+  box-sizing: content-box;
+  margin-bottom: calc(0px - var(--iui-size-2xs));
+  padding-bottom: var(--iui-size-2xs);
+}
+
+.iui-header-breadcrumb-button {
+  @include header-buttons.iui-header-breadcrumb-button;
+}
+
+.iui-header-breadcrumb-button-split {
+  @include header-buttons.iui-header-breadcrumb-button-split;
+}
+
+.iui-header-breadcrumb-item {
+  @include header-buttons.iui-header-breadcrumb-item;
+}
+
+.iui-header-breadcrumb-button-wrapper {
+  @include header-buttons.iui-header-breadcrumb-button-wrapper;
+}
+
+.iui-header-breadcrumb-button-icon {
+  @include header-buttons.iui-header-breadcrumb-button-icon;
+}
+
+.iui-header-breadcrumb-button-dropdown-icon {
+  @include header-buttons.iui-header-breadcrumb-button-dropdown-icon;
+}
+
+.iui-header-breadcrumb-button-text {
+  @include header-buttons.iui-header-breadcrumb-button-text;
 }

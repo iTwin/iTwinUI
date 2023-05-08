@@ -1,8 +1,24 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../surface/index';
-@import '../button/borderless';
-@import '../utils/index';
+@use '../surface/base' as surface;
+@use '../button/borderless';
+@use '../mixins';
+
+@mixin iui-transparent-background($size: var(--iui-size-m)) {
+  background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
+  background-size: $size $size;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #C7CCD1 25%,
+    transparent 25%,
+    transparent 75%,
+    #C7CCD1 75%,
+    #C7CCD1
+  ),
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
+}
+
+// ----------------------------------------------------------------------------
 
 $iui-color-picker-content-width: calc(var(--iui-size-l) * 9 + var(--iui-size-xs) * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: calc(var(--iui-size-l) * 10 + var(--iui-size-xs) * 9); // (10 swatches per row) + (gaps)
@@ -11,10 +27,10 @@ $iui-inset-box-shadow: inset 0 0 0 1px var(--iui-color-border-foreground);
 $iui-active-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border-accent);
 $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
-@mixin iui-color-picker {
+.iui-color-picker {
   --iui-color-picker-selected-color: initial;
 
-  @include iui-surface;
+  @include surface.iui-surface;
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;
   padding: var(--iui-size-s) var(--iui-size-s);
@@ -28,7 +44,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   row-gap: var(--iui-size-s);
 }
 
-@mixin iui-color-swatch {
+.iui-color-swatch {
   --iui-color-swatch-background: initial;
 
   height: var(--iui-size-l);
@@ -56,7 +72,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
   }
 
-  @include iui-focus($offset: 2px, $thickness: 2px);
+  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
 
   &.iui-active {
     box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
@@ -67,7 +83,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-color-palette {
+.iui-color-palette {
   //Contains the color swatches
   display: flex;
   flex-wrap: wrap;
@@ -86,7 +102,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-color-input {
+.iui-color-input {
   display: flex;
   align-items: center;
 
@@ -122,7 +138,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-color-picker-section-label {
+.iui-color-picker-section-label {
   margin-bottom: calc(var(--iui-size-s) * 0.5);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -130,13 +146,13 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   flex-shrink: 0;
 }
 
-@mixin iui-color-selection-wrapper {
+.iui-color-selection-wrapper {
   display: flex;
   flex-direction: column;
   min-width: $iui-color-picker-content-width;
 }
 
-@mixin iui-color-field {
+.iui-color-field {
   --iui-color-field-hue: initial;
 
   position: relative;
@@ -152,7 +168,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-hue-slider {
+.iui-hue-slider {
   $red: #F00;
   $yellow: #FF0;
   $blue: #03F;
@@ -180,7 +196,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-opacity-slider {
+.iui-opacity-slider {
   .iui-slider-container {
     .iui-slider-rail {
       height: var(--iui-size-xs);
@@ -202,7 +218,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   }
 }
 
-@mixin iui-color-dot {
+.iui-color-dot {
   --iui-color-dot-inset: initial;
 
   position: absolute;
@@ -220,19 +236,5 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     box-shadow: $iui-hover-box-shadow;
   }
 
-  @include iui-focus($offset: 0, $thickness: 2px);
-}
-
-@mixin iui-transparent-background($size: var(--iui-size-m)) {
-  background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
-  background-size: $size $size;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #C7CCD1 25%,
-    transparent 25%,
-    transparent 75%,
-    #C7CCD1 75%,
-    #C7CCD1
-  ),
-    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
+  @include mixins.iui-focus($offset: 0, $thickness: 2px);
 }
