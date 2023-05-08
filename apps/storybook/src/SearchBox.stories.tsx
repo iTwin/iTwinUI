@@ -20,11 +20,20 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
   },
+  args: {
+    isDisabled: false,
+  },
   title: 'Input/SearchBox',
 } as Meta<SearchBoxProps>;
 
-export const Basic: StoryFn<SearchBoxProps> = () => {
-  return <SearchBox inputProps={{ placeholder: 'Basic search' }} />;
+export const Basic: StoryFn<SearchBoxProps> = (
+  args: JSX.IntrinsicAttributes,
+) => {
+  return <SearchBox inputProps={{ placeholder: 'Basic search' }} {...args} />;
+};
+
+Basic.args = {
+  isDisabled: false,
 };
 
 export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
@@ -48,6 +57,15 @@ export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
         <SvgCaretDownSmall />
       </SearchBox.Button>
     </SearchBox>
+  );
+};
+
+export const BasicWithStatus: StoryFn<SearchBoxProps> = () => {
+  return (
+    <SearchBox
+      inputProps={{ placeholder: 'Search with warning' }}
+      status='warning'
+    />
   );
 };
 

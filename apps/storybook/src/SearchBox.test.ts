@@ -6,6 +6,7 @@ describe('SearchBox', () => {
   const storyPath = 'Input/SearchBox';
   const tests = [
     'Basic',
+    'Basic With Status',
     'Basic With Custom Items',
     'Expandable',
     'Expandable With Custom Items',
