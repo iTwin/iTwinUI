@@ -4,5 +4,4 @@
 
 - Add `iui-input-flex-container` class for inputs with icons and buttons within
 - Add `iui-expandable-searchbox` class for Searchbox that can be expanded
-  - Add `iui-search-icon` for styling icons within search
-  - Additional styling for buttons and input is not needed
+- Add `iui-search-icon` for styling icons within search
