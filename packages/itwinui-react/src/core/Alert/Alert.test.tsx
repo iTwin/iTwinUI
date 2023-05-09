@@ -85,7 +85,7 @@ it('renders sticky alert correctly', () => {
       <Alert type={type}>
         <Alert.Icon type={type} />
         <Alert.Message>This is an alert.</Alert.Message>
-        <Alert.CloseButton onClose={closeMock} />
+        <Alert.CloseButton onClick={closeMock} />
       </Alert>,
     );
     const alert = container.querySelector('.iui-alert') as HTMLElement;

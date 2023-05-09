@@ -15,8 +15,6 @@ export default {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
-    onClose: { control: { disable: true } },
-    clickableText: { type: 'string' },
   },
 } as Meta<AlertProps>;
 
@@ -30,7 +28,7 @@ export const Informational: Story<AlertProps> = (args) => {
           More Info.
         </Alert.ClickableText>
       </Alert.Message>
-      <Alert.CloseButton onClose={action('Close!')} />
+      <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
   );
 };
@@ -50,7 +48,7 @@ export const Positive: Story<AlertProps> = (args) => {
           More Info.
         </Alert.ClickableText>
       </Alert.Message>
-      <Alert.CloseButton onClose={action('Close!')} />
+      <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
   );
 };
@@ -70,7 +68,7 @@ export const Warning: Story<AlertProps> = (args) => {
           More Info.
         </Alert.ClickableText>
       </Alert.Message>
-      <Alert.CloseButton onClose={action('Close!')} />
+      <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
   );
 };
@@ -90,7 +88,7 @@ export const Negative: Story<AlertProps> = (args) => {
           More Info.
         </Alert.ClickableText>
       </Alert.Message>
-      <Alert.CloseButton onClose={action('Close!')} />
+      <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
   );
 };
@@ -118,7 +116,7 @@ export const Sticky: Story<AlertProps> = (args) => {
             More Info.
           </Alert.ClickableText>
         </Alert.Message>
-        <Alert.CloseButton onClose={action('Close!')} />
+        <Alert.CloseButton onClick={action('Close!')} />
       </Alert>
       <p style={{ margin: 0, padding: '8px' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -191,7 +189,7 @@ export const CustomIcon: Story<AlertProps> = (args) => {
         <SvgSmileyHappy />
       </Alert.Icon>
       <Alert.Message>This is an info message with a custom icon.</Alert.Message>
-      <Alert.CloseButton onClose={action('Close!')}>
+      <Alert.CloseButton onClick={action('Close!')}>
         <Alert.CloseButtonIcon>
           <SvgCollapse />
         </Alert.CloseButtonIcon>

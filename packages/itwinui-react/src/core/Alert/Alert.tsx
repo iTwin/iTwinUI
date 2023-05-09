@@ -77,25 +77,13 @@ const AlertClickableText = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
 
-type AlertCloseButtonOwnProps = {
-  /**
-   * Action handler for close.
-   */
-  onClose: () => void;
-};
+type AlertCloseButtonOwnProps = {};
 
 const AlertCloseButton = React.forwardRef((props, ref) => {
-  const {
-    as: Element = 'button',
-    children,
-    className,
-    onClose,
-    ...rest
-  } = props;
+  const { as: Element = 'button', children, className, ...rest } = props;
 
   return (
     <Element
-      onClick={onClose}
       aria-label='Close'
       type='button'
       className={cx('iui-alert-button', className)}
@@ -193,7 +181,7 @@ export const AlertComponent = React.forwardRef(
  *    This is an alert.
  *    <Alert.ClickableText>This is clickable text.</Alert.ClickableText>
  *  </Alert.Message>
- *  <Alert.CloseButton onClose={action('Close!')}>
+ *  <Alert.CloseButton onClick={action('Close!')}>
  *    <Alert.CloseButtonIcon>
  *      <SvgCollapse />
  *    </Alert.CloseButtonIcon>

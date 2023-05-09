@@ -15,7 +15,7 @@ export default () => {
           Learn more
         </Alert.ClickableText>
       </Alert.Message>
-      <Alert.CloseButton onClose={() => console.log('CLOSED')} />
+      <Alert.CloseButton onClick={() => console.log('CLOSED')} />
     </Alert>
   );
 };
