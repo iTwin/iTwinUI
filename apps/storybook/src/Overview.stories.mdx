@@ -20,7 +20,7 @@ import { Meta } from '@storybook/addon-docs';
 ## What is iTwinUI-react?
 
 iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
-The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI-react) to see the components in action.
+The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI/react) to see the components in action.
 
 ## Installation
 
@@ -59,7 +59,9 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 const App = () => (
   <>
-    <ThemeProvider theme='dark'>{/* Your components go here. */}</ThemeProvider>
+    <ThemeProvider theme='dark'>
+      {/* Your components go here. */}
+    </ThemeProvider>
   </>
 );
 ```
