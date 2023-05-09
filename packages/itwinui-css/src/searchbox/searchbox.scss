@@ -31,3 +31,13 @@
     margin: 0 var(--iui-size-xs);
   }
 }
+
+// ----------------------------------------------------------------------------
+
+.iui-expandable-searchbox {
+  @include iui-expandable-searchbox;
+}
+
+.iui-search-icon {
+  @include iui-search-icon;
+}

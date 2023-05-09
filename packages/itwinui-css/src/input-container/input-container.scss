@@ -37,3 +37,24 @@
 .iui-input-label {
   @include iui-input-label;
 }
+
+// ----------------------------------------------------------------------------
+
+.iui-input-flex-container {
+  @include iui-input-flex-container;
+  @include iui-input-flex-size();
+
+  &[data-iui-size='small'] {
+    @include iui-input-flex-size(small);
+  }
+
+  &[data-iui-size='large'] {
+    @include iui-input-flex-size(large);
+  }
+
+  @each $status in positive, warning, negative {
+    &[data-iui-status='#{$status}'] {
+      @include iui-flex-input-status($status: $status);
+    }
+  }
+}

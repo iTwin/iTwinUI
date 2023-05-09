@@ -8,6 +8,7 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../props.js';
+import '@itwin/itwinui-css/css/utils.css';
 
 type InputFlexContainerOwnProps = {
   isDisabled?: boolean;
