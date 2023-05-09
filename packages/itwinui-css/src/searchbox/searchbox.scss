@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@mixin iui-expandable-searchbox {
+
+.iui-expandable-searchbox {
   width: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
   isolation: isolate;
@@ -24,20 +25,10 @@
   }
 }
 
-@mixin iui-search-icon {
+.iui-search-icon {
   margin: 0 var(--iui-size-s);
 
   &:is(:first-child) {
     margin: 0 var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
   }
-}
-
-// ----------------------------------------------------------------------------
-
-.iui-expandable-searchbox {
-  @include iui-expandable-searchbox;
-}
-
-.iui-search-icon {
-  @include iui-search-icon;
 }

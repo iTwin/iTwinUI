@@ -41,26 +41,100 @@
 // ----------------------------------------------------------------------------
 
 .iui-input-flex-container {
-  @include iui-input-flex-container;
-  @include iui-input-flex-size();
+  --_iui-input-background-color: var(--iui-color-background);
+  --_iui-input-border-color: var(--iui-color-border-foreground);
+  --_iui-input-accent-border-color: var(--iui-color-border-accent);
+  --_iui-input-text-color: var(--iui-color-text);
+  --_iui-input-padding-block: 0;
+  --_iui-input-min-height: var(--iui-component-height-small);
+
   // To match borderless button left padding + border
   --_iui-flex-input-icon-padding: 10px;
 
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--_iui-input-background-color);
+  border-radius: var(--iui-border-radius-1);
+  color: var(--_iui-input-text-color);
+  position: relative;
+  height: var(--_iui-input-min-height);
+  width: 100%;
+
+  // Adding before pseudo-element to make inner elements more centered
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--_iui-input-border-color);
+    border-radius: var(--iui-border-radius-1);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--_iui-input-accent-border-color);
+    outline-offset: -2px;
+
+    // Added to make sure border color is not visible with outline
+    &::before {
+      border-color: transparent;
+    }
+  }
+
+  @supports not selector(:has(+ *)) {
+    &:where(:focus-within) {
+      outline: 2px solid var(--_iui-input-accent-border-color);
+      outline-offset: -2px;
+
+      // Added to make sure border color is not visible with outline
+      &::before {
+        border-color: transparent;
+      }
+    }
+  }
+
+  input {
+    all: unset;
+    z-index: 2;
+    min-width: var(--_iui-input-min-height);
+    flex: 999;
+    padding-inline-start: var(--iui-size-s);
+
+    &:is(:not(:first-child)) {
+      padding-inline-start: var(--iui-size-2xs);
+    }
+  }
+
+  &[data-iui-disabled='true'] {
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
+    --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+    cursor: not-allowed;
+  }
+
   &[data-iui-size='small'] {
-    @include iui-input-flex-size(small);
+    --_iui-input-padding-block: var(--iui-size-2xs);
+    --_iui-input-min-height: var(--iui-component-height);
+
     // To match small borderless button left padding + border
     --_iui-flex-input-icon-padding: 5px;
   }
 
   &[data-iui-size='large'] {
-    @include iui-input-flex-size(large);
+    --_iui-input-padding-block: var(--iui-size-xs);
+    --_iui-input-min-height: var(--iui-component-height-large);
+    font-size: var(--iui-font-size-2);
+
     // To match large borderless button left padding + border
     --_iui-flex-input-icon-padding: 16px;
   }
 
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
-      @include iui-flex-input-status($status: $status);
+      --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
+
+      &::before {
+        border-bottom-width: var(--iui-size-3xs);
+        border-bottom-color: var(--_iui-input-accent-border-color);
+      }
     }
   }
 }
