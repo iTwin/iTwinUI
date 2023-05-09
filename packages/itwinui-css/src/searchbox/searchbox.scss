@@ -28,11 +28,7 @@
   margin: 0 var(--iui-size-s);
 
   &:is(:first-child) {
-    margin: 0 var(--iui-size-xs) 0 var(--iui-size-s);
-  }
-
-  &[data-iui-icon-size='s'] {
-    margin: 0 var(--iui-size-2xs) 0 var(--iui-size-xs);
+    margin: 0 var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
   }
 }
 

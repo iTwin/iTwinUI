@@ -43,13 +43,19 @@
 .iui-input-flex-container {
   @include iui-input-flex-container;
   @include iui-input-flex-size();
+  // To match borderless button left padding + border
+  --_iui-flex-input-icon-padding: 10px;
 
   &[data-iui-size='small'] {
     @include iui-input-flex-size(small);
+    // To match small borderless button left padding + border
+    --_iui-flex-input-icon-padding: 5px;
   }
 
   &[data-iui-size='large'] {
     @include iui-input-flex-size(large);
+    // To match large borderless button left padding + border
+    --_iui-flex-input-icon-padding: 16px;
   }
 
   @each $status in positive, warning, negative {

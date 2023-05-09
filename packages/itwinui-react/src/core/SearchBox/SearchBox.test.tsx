@@ -64,7 +64,6 @@ it.each(['small', 'large'] as const)(
   'should render SearchBox with %s size',
   (size) => {
     const { container } = render(<SearchBox size={size} />);
-    const iconSize = size === 'small' ? 's' : 'l';
 
     // Base flex container
     const searchbox = container.querySelector('.iui-input-flex-container');
@@ -74,7 +73,6 @@ it.each(['small', 'large'] as const)(
     // Search icon
     const searchIcon = searchbox?.querySelector('.iui-svg-icon');
     expect(searchIcon).toBeTruthy();
-    expect(searchIcon).toHaveAttribute('data-iui-icon-size', iconSize);
   },
 );
 

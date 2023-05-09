@@ -217,13 +217,11 @@ SearchBoxExpandedState.displayName = 'SearchBox.ExpandedState';
 
 const SearchBoxIcon = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
-  const { size: sizeContext } = useSafeContext(SearchBoxContext);
 
   return (
     <Icon
       aria-hidden
       className={cx('iui-search-icon', className)}
-      size={sizeContext}
       ref={ref}
       {...rest}
     >
