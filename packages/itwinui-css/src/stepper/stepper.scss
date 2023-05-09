@@ -1,7 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../text/mixins';
+@use '../mixins';
+@use '../text/mixins' as text-mixins;
+@use './mixins' as *;
 
 @mixin iui-stepper {
   display: flex;
@@ -11,14 +12,6 @@
   > ol {
     @include iui-stepper-list;
   }
-}
-
-@mixin iui-stepper-list {
-  @include iui-reset;
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
-  width: 100%;
 }
 
 @mixin iui-stepper-step {
@@ -33,16 +26,8 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  @include iui-text(small);
+  @include text-mixins.iui-text(small);
   color: var(--_iui-stepper-step-text-color);
-
-  &:first-of-type {
-    --_iui-stepper-step-track-before-color: transparent;
-  }
-
-  &:last-of-type {
-    --_iui-stepper-step-track-after-color: transparent;
-  }
 }
 
 @mixin iui-stepper-step-modifiers {
@@ -72,6 +57,14 @@
   // Clickable steps
   &.iui-clickable:focus {
     outline: 0;
+  }
+
+  &:first-of-type {
+    --_iui-stepper-step-track-before-color: transparent;
+  }
+
+  &:last-of-type {
+    --_iui-stepper-step-track-after-color: transparent;
   }
 }
 
@@ -147,4 +140,35 @@
   user-select: none;
   margin-right: var(--iui-size-xs);
   color: var(--iui-color-text-muted);
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-stepper {
+  @include iui-stepper;
+}
+
+.iui-stepper-step {
+  @include iui-stepper-step;
+  @include iui-stepper-step-modifiers;
+}
+
+.iui-stepper-circle {
+  @include iui-stepper-circle;
+}
+
+.iui-stepper-track-content {
+  @include iui-stepper-track-content;
+}
+
+.iui-stepper-step-name {
+  @include iui-stepper-step-name;
+}
+
+.iui-stepper-steps-label {
+  @include iui-stepper-steps-label;
+}
+
+.iui-stepper-steps-label-count {
+  @include iui-stepper-steps-label-count;
 }

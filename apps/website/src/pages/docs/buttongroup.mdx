@@ -1,22 +1,74 @@
 ---
 title: Button group
-description: Buttons allow users to take actions and make choices with a single tap or click.
+description: A button group is a set of buttons with similar functionality.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
-exampleCodeFile1: ButtonGroup.main.tsx
+propsPath: '@itwin/itwinui-react/esm/core/ButtonGroup/ButtonGroup.d.ts'
 thumbnail: ButtonGroup
 group: buttons
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ButtonGroup.main.tsx'>
+  <AllExamples.ButtonGroupMainExample client:load />
+</LiveExample>
 
-A button group consists of similar tools. The button group can only consist of default buttons or borderless buttons, a button group can not be a mix of the two. If there is not enough space to display all of the buttons, the buttons can truncate into an overflow menu.
+Use a button group if you want to put similar functionality in one place. It helps users differentiate functional areas of the UI.
+
+Buttons in a button group can be active, disabled and both.
+
+## Appearance
+
+### Overflow
+
+If there is not enough space to display all of the buttons, the buttons can truncate into an [dropdown menu](dropdownmenu).
+
+<LiveExample src='ButtonGroup.overflow.tsx'>
+  <AllExamples.ButtonGroupOverflowExample client:load />
+</LiveExample>
+
+### Vertical
+
+Use the <code>orientation</code> prop to switch the button group to vertical.
+
+<LiveExample src='ButtonGroup.vertical.tsx'>
+  <AllExamples.ButtonGroupVerticalExample client:load />
+</LiveExample>
+
+### With input
+
+You can combine [inputs](input) with buttons in a button group.
+
+<LiveExample src='ButtonGroup.input.tsx'>
+  <AllExamples.ButtonGroupInputExample client:load />
+</LiveExample>
+
+## Usage
+
+- The button group should only consist of [default buttons](button#default) or [borderless buttons](button#borderless).
+- You should not mix different styled buttons in the same group.
+- You can put buttons and button groups in close proximity. In such cases, see if there is a main action and give it emphasis with a [high visibility](button#high-visibility) button.
+
+<LiveExample src='ButtonGroup.usage.tsx'>
+  <AllExamples.ButtonGroupUsageExample client:load />
+</LiveExample>
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+To be defined
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Button', url: 'button' },
+    { title: 'Dropdown menu', url: 'dropdownmenu' },
+    { title: 'Input', url: 'input' },
+  ]}
+/>

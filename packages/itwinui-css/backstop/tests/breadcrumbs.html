@@ -21,6 +21,7 @@
       import "@itwin/itwinui-icons-elements/caret-down-small";
       import "@itwin/itwinui-icons-elements/chevron-right";
       import "@itwin/itwinui-icons-elements/close-small";
+      import "@itwin/itwinui-icons-elements/more";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -331,6 +332,93 @@
             <button
               class="iui-breadcrumbs-button"
               id="test-8"
+            >
+              <span class="iui-breadcrumbs-text">Double nested folder with truncation</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden="true"
+          >
+            <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button
+              class="iui-breadcrumbs-button"
+              aria-current="page"
+            >
+              <span class="iui-breadcrumbs-text">You are here</span>
+            </button>
+          </li>
+        </ol>
+      </nav>
+
+    </section>
+
+    <h2>Overflow button</h2>
+    <section id="demo-buttons-3">
+
+      <nav
+        class="iui-breadcrumbs"
+        aria-label="Breadcrumbs"
+      >
+        <button
+          class="iui-button iui-button-dropdown"
+          data-iui-variant="borderless"
+        >
+          <svg-folder
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-folder>
+          <svg-caret-down-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-caret-down-small>
+        </button>
+        <ol class="iui-breadcrumbs-list">
+          <li class="iui-breadcrumbs-item">
+            <button class="iui-breadcrumbs-button">
+              <span class="iui-breadcrumbs-text">Root</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden="true"
+          >
+            <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button
+              class="iui-breadcrumbs-button"
+              id="overflow-hover"
+            >
+              <svg-more
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-more>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden="true"
+          >
+            <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button class="iui-breadcrumbs-button">
+              <span class="iui-breadcrumbs-text">Nested</span>
+            </button>
+          </li>
+          <li
+            class="iui-breadcrumbs-separator"
+            aria-hidden="true"
+          >
+            <svg-chevron-right aria-hidden="true"></svg-chevron-right>
+          </li>
+          <li class="iui-breadcrumbs-item">
+            <button
+              class="iui-breadcrumbs-button"
+              id="overflow-focus"
             >
               <span class="iui-breadcrumbs-text">Double nested folder with truncation</span>
             </button>

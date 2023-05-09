@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.4.0",
+  "version": "1.10.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -17,6 +17,11 @@
   },
   "description": "CSS library for building beautiful and well working web UI components within Bentley Systems & iTwin.js applications.",
   "homepage": "https://github.com/iTwin/iTwinUI",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iTwin/iTwinUI.git",
+    "directory": "packages/itwinui-css"
+  },
   "keywords": [
     "css",
     "html",
@@ -34,17 +39,19 @@
   "devDependencies": {
     "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
-    "backstopjs": "~6.0.5",
+    "backstopjs": "~6.2.1",
     "chokidar": "^3.5.3",
     "html-minifier": "^4.0.0",
     "lightningcss": "^1.16.1",
+    "postcss": "^8.4.21",
+    "postcss-scoper": "^1.0.11",
     "npm-run-all": "^4.1.5",
     "sass": "^1.54.4",
     "sass-embedded": "^1.49.9",
     "serve": "^14.0.1",
     "stylelint": "^14.2.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
-    "vite": "^3.0.0"
+    "vite": "^4.1.1"
   },
   "scripts": {
     "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",
@@ -59,8 +66,7 @@
     "test:only": "backstop --config=./backstop/backstop.js test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --",
     "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js",
-    "push-docker": "node scripts/pushDocker.js"
+    "print": "node scripts/print.js"
   },
   "prettier": "configs/prettier-scss-config.js"
 }

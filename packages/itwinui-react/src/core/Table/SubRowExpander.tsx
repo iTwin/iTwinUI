@@ -2,22 +2,23 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { SvgChevronRight } from '../utils';
-import { Cell, CellProps } from 'react-table';
-import { IconButton } from '../Buttons';
+import * as React from 'react';
+import { SvgChevronRight } from '../utils/index.js';
+import type { Cell, CellProps } from 'react-table';
+import { IconButton } from '../Buttons/index.js';
 
 export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
   isDisabled: boolean;
   cellProps: CellProps<T>;
+  density?: 'default' | 'condensed' | 'extra-condensed';
 };
 
 export const SubRowExpander = <T extends Record<string, unknown>>(
   props: SubRowExpanderProps<T>,
 ) => {
-  const { cell, isDisabled, cellProps, expanderCell } = props;
+  const { cell, isDisabled, cellProps, expanderCell, density } = props;
 
   return (
     <>
@@ -25,7 +26,9 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
         expanderCell(cellProps)
       ) : (
         <IconButton
-          style={{ marginRight: 8 }}
+          style={{
+            marginRight: density === 'default' || density === undefined ? 8 : 4,
+          }}
           className='iui-table-row-expander'
           styleType='borderless'
           size='small'

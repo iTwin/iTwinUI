@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { getRandomValue, useMergedRefs, useTheme } from '../utils';
+import { getRandomValue, useMergedRefs, useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/carousel.css';
-import { CarouselContext } from './CarouselContext';
-import { CarouselSlider } from './CarouselSlider';
-import { CarouselSlide } from './CarouselSlide';
-import { CarouselDotsList } from './CarouselDotsList';
-import { CarouselDot } from './CarouselDot';
-import { CarouselNavigation } from './CarouselNavigation';
+import { CarouselContext } from './CarouselContext.js';
+import { CarouselSlider } from './CarouselSlider.js';
+import { CarouselSlide } from './CarouselSlide.js';
+import { CarouselDotsList } from './CarouselDotsList.js';
+import { CarouselDot } from './CarouselDot.js';
+import { CarouselNavigation } from './CarouselNavigation.js';
 
 export type CarouselProps = {
   /**
@@ -98,8 +98,9 @@ export const Carousel = Object.assign(
         return;
       }
 
-      if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
-        setKeysPressed((old) => ({ ...old, [event.key]: true }));
+      const key = event.key;
+      if (key === 'ArrowLeft' || key === 'ArrowRight') {
+        setKeysPressed((old) => ({ ...old, [key]: true }));
       }
     };
 

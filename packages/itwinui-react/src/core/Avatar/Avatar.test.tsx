@@ -2,20 +2,26 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
+import { SvgUser } from '@itwin/itwinui-icons-react';
 
-import { defaultStatusTitles, Avatar, AvatarStatus } from './Avatar';
+import { defaultStatusTitles, Avatar, type AvatarStatus } from './Avatar.js';
 
-function assertBaseElements(size = 'small', backgroundColor = 'white') {
+function assertBaseElements(size = 'small', backgroundColor?: string) {
   const avatarContainer = screen.getByTitle('Terry Rivers');
   expect(avatarContainer.className).toEqual(
     `iui-avatar${size !== 'medium' ? ` iui-${size}` : ''}`,
   );
 
+  if (backgroundColor) {
+    expect(avatarContainer.style.backgroundColor).toEqual(backgroundColor);
+  } else {
+    expect(avatarContainer.style.backgroundColor).toBeFalsy();
+  }
+
   const abbreviation = screen.getByText('TR');
   expect(abbreviation.className).toEqual('iui-initials');
-  expect(abbreviation.style.backgroundColor).toEqual(backgroundColor);
 }
 
 it('should render with given abbreviation', () => {
@@ -90,6 +96,17 @@ it('renders with image', () => {
   expect(abbreviation).toBeFalsy();
   const img = container.querySelector('img');
   expect(img).toBeTruthy();
+});
+
+it('image prop also supports passing <svg>', () => {
+  const {
+    container: { firstChild: userIcon },
+  } = render(<SvgUser />);
+
+  const { container } = render(
+    <Avatar image={<SvgUser />} title='Terry Rivers' />,
+  );
+  expect(container.querySelector('.iui-avatar > svg')).toEqual(userIcon);
 });
 
 it('should render with custom className', () => {

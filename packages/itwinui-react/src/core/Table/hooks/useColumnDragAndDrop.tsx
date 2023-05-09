@@ -2,18 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import {
-  actions,
+import type * as React from 'react';
+import { actions, makePropGetter, useGetLatest } from 'react-table';
+import type {
   ActionType,
   HeaderGroup,
   Hooks,
   IdType,
-  makePropGetter,
   TableInstance,
   TableKeyedProps,
   TableState,
-  useGetLatest,
 } from 'react-table';
 
 const REORDER_ACTIONS = {
@@ -98,7 +96,7 @@ const defaultGetDragAndDropProps =
       event.preventDefault();
       setOnDragColumnStyle(event);
 
-      const columnIds = instance.flatHeaders.map((x) => x.id);
+      const columnIds = instance.allColumns.map((x) => x.id);
       const srcIndex = instance.state.columnReorderStartIndex;
       const dstIndex = columnIds.findIndex((x) => x === header.id);
 

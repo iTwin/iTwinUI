@@ -2,8 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useTheme, SvgUpload } from '../utils';
+import * as React from 'react';
+import cx from 'classnames';
+import { useTheme, SvgUpload } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
 export type FileUploadTemplateProps = {
@@ -36,7 +37,7 @@ export type FileUploadTemplateProps = {
    * Optional children appended to the template.
    */
   children?: React.ReactNode;
-};
+} & React.ComponentProps<'div'>;
 
 /**
  * Default template to be used with the `FileUpload` wrapper component.
@@ -52,12 +53,14 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
     label = 'Choose a file',
     subtitle = 'or drag & drop it here.',
     children,
+    className,
+    ...rest
   } = props;
   useTheme();
 
   return (
-    <>
-      <SvgUpload className='iui-icon' aria-hidden />
+    <div className={cx('iui-file-upload-template', className)} {...rest}>
+      <SvgUpload className='iui-template-icon' aria-hidden />
       <div className='iui-template-text'>
         <label className='iui-anchor'>
           <input
@@ -72,7 +75,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
         <div>{subtitle}</div>
         {children}
       </div>
-    </>
+    </div>
   );
 };
 

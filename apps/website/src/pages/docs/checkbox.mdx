@@ -3,23 +3,77 @@ title: Checkbox
 description: Allows the user to make one or more choices within a list of options.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Checkbox/Checkbox.tsx'
-exampleCodeFile1: Checkbox.main.tsx
 thumbnail: Checkbox
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Checkbox.main.tsx' truncate={false}>
+  <AllExamples.CheckboxMainExample client:load />
+</LiveExample>
 
-A checkbox (or tickbox) is a form component allowing multiple options selection. It serves a similar purpose than the radio button, the main difference being that radio buttons only permits binary option selection.
+A checkbox is a form component, typically accompanied with a label, allowing for the selection of multiple items. A checkbox can be used for selecting one or more options within a list, or to enable / disable / show / hide a feature within the user interface.
 
-Checkboxes are usually accompanied by a label. They can be used either for selecting one or more options in a list, or to enable, disable, show, or hide a feature in the UI. It should however not be confused with a toggle switch, which has a similar role but is not appropriate in all settings. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
+A checkbox should not be confused with a [toggle switch](toggleswitch), which has a similar role but is not appropriate in all scenarios. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
 
-A checkbox is not interchangeable with a radio button. A radio button must have at minimum 2 choice options, almost always has one option pre-selected, and cannot have several options selected at once. A checkbox, however, can be checked and unchecked at will, and can be displayed as standalone or in a group of two or more.
+A checkbox is not interchangeable with a [radio](radio). A radio must have at minimum 2 choice options and only one option can be checked. A checkbox, however, can have as many or as few items checked, and can be displayed as standalone or within a group of two or more.
+
+## Variants
+
+### Default
+
+<LiveExample src='Checkbox.indeterminate.tsx'>
+  <AllExamples.CheckboxIndeterminateExample client:load />
+</LiveExample>
+
+The default checkboxes are used to turn on and off one or multiple options.
+
+### Visibility
+
+<LiveExample src='Checkbox.visibility.tsx'>
+  <AllExamples.CheckboxVisibilityExample client:load />
+</LiveExample>
+
+Often times checkboxes are used to visibly turn on and off a layer within a view. If the checkboxes are used for visibility you can use the eyeball variant which uses an eyeball icon instead of a checkmark to reinforce that something is being shown or hidden.
+
+## Usage
+
+### With input group
+
+<LiveExample src='Checkbox.inputgroup.tsx'>
+  <AllExamples.CheckboxInputGroupExample client:load />
+</LiveExample>
+
+Checkboxes are often paired with the [input group](inputgroup) which gives many additional options.
+
+### Indeterminate
+
+<LiveExample src='Checkbox.indeterminate.tsx'>
+  <AllExamples.CheckboxIndeterminateExample client:load />
+</LiveExample>
+
+When a main option has associated sub-options, parent-child checkboxes are used. They make selecting/unselecting the entirety of a list of options easier if all or neither of them apply to a user’s choice. If some, but not all, child checkboxes are checked, the parent checkbox becomes an indeterminate checkbox.
+
+### Loading
+
+<LiveExample src='Checkbox.loading.tsx'>
+  <AllExamples.CheckboxLoadingExample client:load />
+</LiveExample>
+
+If the checkbox is performing an action immediately after being checked, it may take the user interface some time before reflecting that change. While waiting for that change to occur you can display a loading checkbox so the user understands that the action taken has yet to be applied.
+
+### Statuses
+
+<LiveExample src='Checkbox.statuses.tsx'>
+  <AllExamples.CheckboxStatusesExample client:load />
+</LiveExample>
+
+If you ever need to display the status or severity of a single checkbox, you can apply a status on the checkbox. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
 
 ## Props
 

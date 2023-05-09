@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
 $iui-badge-background-informational: hsl(203, 80%, 80%); // foreground-informational--dark
 $iui-badge-background-positive: hsl(96, 45%, 78%); // foreground-positive--dark
@@ -8,15 +8,17 @@ $iui-badge-background-negative: hsl(0, 69%, 80%); // foreground-negative--dark
 $iui-badge-background-warning: hsl(34, 87%, 82%); // foreground-warning--dark
 $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
 
-@mixin iui-badge {
-  --iui-badge-background-color: hsl(210, 10%, 80%); // background-5--light
+.iui-badge {
+  --iui-badge-background-color: hsl(210, 10%, 80%);
+  --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: hsl(0 0% 0% / 0.6);
 
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: inline-block;
   font-size: var(--iui-font-size-0);
   padding: 0 $iui-badge-horizontal-padding;
   margin: calc(var(--iui-size-s) * 0.5) 0;
+  border: 1px solid var(--_iui-badge-border-color);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);
@@ -27,4 +29,12 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: var(--iui-font-weight-semibold);
+
+  @each $status in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$status}']) {
+      --iui-badge-background-color: var(--iui-color-background-#{$status}-muted);
+      --_iui-badge-border-color: var(--iui-color-border-#{$status});
+      --_iui-badge-text-color: var(--iui-color-text-#{$status});
+    }
+  }
 }

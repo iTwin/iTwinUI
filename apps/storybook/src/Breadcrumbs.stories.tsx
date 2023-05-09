@@ -20,7 +20,7 @@ import {
 import {
   SvgChevronRightDouble,
   SvgFolder,
-  SvgMoreSmall,
+  SvgMore,
 } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -115,7 +115,15 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
     ));
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 725,
+        minWidth: 150,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Breadcrumbs
         overflowButton={(visibleCount: number) => {
           const previousBreadcrumb =
@@ -123,12 +131,12 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           return (
             <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
               <IconButton
-                style={{ paddingTop: '8px' }}
+                aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
                 }}
               >
-                <SvgMoreSmall />
+                <SvgMore />
               </IconButton>
             </Tooltip>
           );
@@ -154,7 +162,15 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
     ));
 
   return (
-    <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 725,
+        minWidth: 150,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
       <Breadcrumbs
         overflowButton={(visibleCount: number) => (
           <DropdownMenu
@@ -176,10 +192,10 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
             }
           >
             <IconButton
-              style={{ paddingTop: '8px' }}
+              aria-label='Dropdown with more breadcrumbs'
               onClick={() => action('Clicked on overflow icon')()}
             >
-              <SvgMoreSmall />
+              <SvgMore />
             </IconButton>
           </DropdownMenu>
         )}

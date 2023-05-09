@@ -3,17 +3,47 @@ title: Surface
 description: The Surface container allows content to appear elevated through the use of a drop shadow.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Surface/Surface.d.ts'
-exampleCodeFile1: Surface.main.tsx
 thumbnail: Surface
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Surface.main.tsx' truncate={false}>
+  <AllExamples.SurfaceMainExample client:load />
+</LiveExample>
+
+## Variants
+
+### Elevation
+
+Elevation is measured as the distance between surfaces.
+
+<LiveExample src='Surface.elevation.tsx'>
+  <AllExamples.SurfaceElevationExample client:load />
+</LiveExample>
+
+The distance from the front of one surface to the front of another is measured along the z-axis in density-independent pixels (`dp`) and depicted using drop shadows.
+
+We support from `0dp` up to `24dp` in elevation with the shadows copying real life, getting larger and more blurred the further they go away from the surface. `0dp` represents the absence of drop shadow. Next are `2dp` and `4dp`, then scaling directly up to `8dp`, `16dp`, to finally reach the maximal elevation of `24dp`.
+
+### Header & Body
+
+The surface component also has customizable subcomponents for header and body
+
+<LiveExample src='Surface.headerfooter.tsx'>
+  <AllExamples.SurfaceHeaderFooterExample client:load />
+</LiveExample>
+
+By default, the surface's body component includes padding. This can be disabled using the `isPadded` prop
+
+<LiveExample src='Surface.nopadding.tsx'>
+  <AllExamples.SurfaceNoPaddingExample client:load />
+</LiveExample>
 
 ## Props
 

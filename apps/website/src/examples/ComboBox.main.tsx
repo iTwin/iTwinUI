@@ -6,23 +6,17 @@ import * as React from 'react';
 import { ComboBox } from '@itwin/itwinui-react';
 
 export default () => {
-  const [value, setValue] = React.useState('');
-
   const options = React.useMemo(
     () => [
       { label: 'Apple', value: 'apple' },
       { label: 'Banana', value: 'banana' },
       { label: 'Grapefruit', value: 'grapefruit' },
+      { label: 'Lychee', value: 'lychee' },
+      { label: 'Kiwi', value: 'kiwi' },
+      { label: 'Orange', value: 'orange' },
     ],
     []
   );
 
-  return (
-    <ComboBox
-      options={options}
-      value={value}
-      onChange={setValue}
-      inputProps={{ placeholder: 'Pick a fruit, any fruit' }}
-    />
-  );
+  return <ComboBox options={options} inputProps={{ placeholder: 'Pick a fruit, any fruit' }} />;
 };

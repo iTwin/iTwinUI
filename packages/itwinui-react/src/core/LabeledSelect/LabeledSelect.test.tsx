@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { LabeledSelect, LabeledSelectProps } from './LabeledSelect';
-import { SelectMultipleTypeProps } from '../Select/Select';
+import { LabeledSelect } from './LabeledSelect.js';
+import type { LabeledSelectProps } from './LabeledSelect.js';
+import type { SelectMultipleTypeProps } from '../Select/Select.js';
 
 const assertBaseElement = (inputContainer: HTMLElement) => {
   expect(inputContainer).toBeTruthy();
@@ -40,6 +41,15 @@ it('should render correctly in its most basic state', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
+});
+
+it('should have correct accessible name', () => {
+  const { container } = renderComponent();
+  const label = container.querySelector('.iui-label') as HTMLElement;
+  expect(container.querySelector('[role=combobox]')).toHaveAttribute(
+    'aria-labelledby',
+    `${label.id}`,
+  );
 });
 
 it('should render message', () => {

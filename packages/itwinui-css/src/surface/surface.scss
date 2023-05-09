@@ -1,26 +1,34 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
+@use './base';
 
-// Internal mixin used as base for other components.
-@mixin iui-surface(
-  $background-color: var(--iui-color-background),
-  $border-color: var(--iui-color-border-subtle),
-  $border-radius: var(--iui-border-radius-1),
-  $elevation: var(--iui-shadow-1)
-) {
-  --iui-surface-background-color: #{$background-color};
-  --iui-surface-border-color: #{$border-color};
-  --iui-surface-border-radius: #{$border-radius};
-  --iui-surface-elevation: #{$elevation};
+$surface-padding: var(--iui-size-2xs);
 
-  background-color: var(--iui-surface-background-color);
-  border: 1px solid var(--iui-surface-border-color);
-  border-radius: var(--iui-surface-border-radius);
-  box-shadow: var(--iui-surface-elevation);
-  color: var(--iui-color-text);
+.iui-surface {
+  @include base.iui-surface;
 }
 
-// Public facing surface component.
-@mixin iui-surface-component {
-  @include iui-surface;
+.iui-surface-header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 1px solid var(--iui-surface-border-color);
+  padding: $surface-padding;
+  scrollbar-gutter: stable both-edges;
+}
+
+.iui-surface-body {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &[data-iui-padded='false'] {
+    overflow-y: overlay;
+  }
+
+  &[data-iui-padded='true'] {
+    scrollbar-gutter: stable both-edges;
+    padding: $surface-padding;
+  }
 }

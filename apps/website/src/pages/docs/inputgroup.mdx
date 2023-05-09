@@ -3,17 +3,33 @@ title: Input group
 description: Input let users enter and edit data.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/InputGroup/InputGroup.d.ts'
-exampleCodeFile1: InputGroup.main.tsx
 thumbnail: InputGroup
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='InputGroup.toggleSwitch.tsx'>
+  <AllExamples.InputGroupToggleSwitchExample client:load />
+</LiveExample>
+
+Input group class is a container to enhance an input by adding an icon, text, or a button in front or behind the input field as a "help text".
+
+## Usage
+
+<LiveExample src='InputGroup.checkboxGroup.tsx'>
+  <AllExamples.InputGroupCheckboxGroupExample client:load />
+</LiveExample>
+
+Multiple add-ons are supported and can be mixed with [checkbox](checkbox#with-input-group), [radio](radio#statuses), [toggle switch](toggleswitch#with-input-group) input version.
+
+<LiveExample src='InputGroup.radioGroup.tsx'>
+  <AllExamples.InputGroupRadioGroupExample client:load />
+</LiveExample>
 
 ## Props
 

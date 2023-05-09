@@ -2,16 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Button, ButtonProps } from '../Button';
-import { DropdownMenu, DropdownMenuProps } from '../../DropdownMenu';
+import { Button } from '../Button/index.js';
+import type { ButtonProps } from '../Button/index.js';
+import { DropdownMenu } from '../../DropdownMenu/index.js';
+import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
   useTheme,
   useMergedRefs,
-} from '../../utils';
+} from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
 export type DropdownButtonProps = {

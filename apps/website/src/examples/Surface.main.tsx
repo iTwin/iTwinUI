@@ -10,15 +10,15 @@ export default () => {
     <Surface
       elevation={4}
       style={{
-        height: '50%',
+        height: 200,
+        padding: 12,
+        width: 200,
         display: 'flex',
-        justifyContent: 'center',
         alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
-      <span style={{ padding: '12px' }}>
-        Change the elevation property of the component to adjust the shadow level.
-      </span>
+      <p>This is a surface</p>
     </Surface>
   );
 };

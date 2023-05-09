@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@itwin/itwinui-react';

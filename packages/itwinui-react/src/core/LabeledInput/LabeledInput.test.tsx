@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { LabeledInput } from './LabeledInput';
+import { LabeledInput } from './LabeledInput.js';
 
 const assertBaseElement = (container: HTMLElement) => {
   const inputContainer = container.querySelector('.iui-input-container');

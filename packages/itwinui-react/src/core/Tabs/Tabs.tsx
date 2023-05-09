@@ -3,16 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 import {
   useTheme,
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
-} from '../utils';
+  useIsClient,
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/tabs.css';
-import { Tab } from './Tab';
+import { Tab } from './Tab.js';
 
 type TabsOrientationProps =
   | {
@@ -162,6 +163,7 @@ export const Tabs = (props: TabsProps) => {
   } = props;
 
   useTheme();
+  const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
@@ -299,7 +301,8 @@ export const Tabs = (props: TabsProps) => {
           `iui-${type}`,
           {
             'iui-green': color === 'green',
-            'iui-animated': type !== 'default',
+            'iui-animated': type !== 'default' && isClient,
+            'iui-not-animated': type !== 'default' && !isClient,
             'iui-large': hasSublabel,
           },
           tabsClassName,

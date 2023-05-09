@@ -2,15 +2,20 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Input, InputProps } from '../Input';
-import { useSafeContext, useMergedRefs, useContainerWidth } from '../utils';
-import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer';
+import * as React from 'react';
+import { Input } from '../Input/index.js';
+import type { InputProps } from '../Input/index.js';
+import {
+  useSafeContext,
+  useMergedRefs,
+  useContainerWidth,
+} from '../utils/index.js';
+import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import {
   ComboBoxStateContext,
   ComboBoxActionContext,
   ComboBoxRefsContext,
-} from './helpers';
+} from './helpers.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
 
@@ -19,6 +24,7 @@ export const ComboBoxInput = React.forwardRef(
     const {
       onKeyDown: onKeyDownProp,
       onFocus: onFocusProp,
+      onClick: onClickProp,
       selectTags,
       ...rest
     } = props;
@@ -51,6 +57,10 @@ export const ComboBoxInput = React.forwardRef(
       (event: React.KeyboardEvent<HTMLInputElement>) => {
         onKeyDownProp?.(event);
         const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
+
+        if (event.altKey) {
+          return;
+        }
 
         switch (event.key) {
           case 'ArrowDown': {
@@ -94,7 +104,7 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]');
               nextIndex = Number(nextElement?.getAttribute('data-iui-index'));
 
-              if (nextElement?.ariaDisabled !== 'true') {
+              if (nextElement) {
                 return dispatch({ type: 'focus', value: nextIndex });
               }
             } while (nextIndex !== focusedIndexRef.current);
@@ -139,7 +149,7 @@ export const ComboBoxInput = React.forwardRef(
                 menuRef.current?.querySelector('[data-iui-index]:last-of-type');
               prevIndex = Number(prevElement?.getAttribute('data-iui-index'));
 
-              if (prevElement?.ariaDisabled !== 'true') {
+              if (prevElement) {
                 return dispatch({ type: 'focus', value: prevIndex });
               }
             } while (prevIndex !== focusedIndexRef.current);
@@ -148,16 +158,8 @@ export const ComboBoxInput = React.forwardRef(
           case 'Enter': {
             event.preventDefault();
             if (isOpen) {
-              if (multiple) {
-                // Keep menu open when multiselect is enabled and user selects an item
-                if (focusedIndexRef.current > -1) {
-                  onClickHandler?.(focusedIndexRef.current);
-                } else {
-                  dispatch({ type: 'close' });
-                }
-              } else {
+              if (focusedIndexRef.current > -1) {
                 onClickHandler?.(focusedIndexRef.current);
-                dispatch({ type: 'close' });
               }
             } else {
               dispatch({ type: 'open' });
@@ -179,7 +181,6 @@ export const ComboBoxInput = React.forwardRef(
         enableVirtualization,
         isOpen,
         menuRef,
-        multiple,
         onClickHandler,
         onKeyDownProp,
         optionsExtraInfoRef,
@@ -194,6 +195,20 @@ export const ComboBoxInput = React.forwardRef(
       [dispatch, onFocusProp],
     );
 
+    const handleClick = React.useCallback(
+      (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
+        onClickProp?.(e);
+        if (e.isDefaultPrevented()) {
+          return;
+        }
+
+        if (!isOpen) {
+          dispatch({ type: 'open' });
+        }
+      },
+      [dispatch, isOpen, onClickProp],
+    );
+
     const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
     return (
@@ -201,6 +216,7 @@ export const ComboBoxInput = React.forwardRef(
         <Input
           ref={refs}
           onKeyDown={handleKeyDown}
+          onClick={handleClick}
           onFocus={handleFocus}
           aria-activedescendant={
             isOpen && focusedIndex != undefined && focusedIndex > -1
@@ -214,14 +230,17 @@ export const ComboBoxInput = React.forwardRef(
           autoCapitalize='none'
           autoCorrect='off'
           style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+          aria-describedby={multiple ? `${id}-selected-live` : undefined}
           {...rest}
         />
-        {multiple && selectTags && (
+
+        {multiple && selectTags ? (
           <ComboBoxMultipleContainer
             ref={tagContainerWidthRef}
             selectedItems={selectTags}
+            id={`${id}-selected-live`}
           />
-        )}
+        ) : null}
       </>
     );
   },

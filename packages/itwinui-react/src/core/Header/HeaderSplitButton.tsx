@@ -3,16 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { DropdownMenu } from '../DropdownMenu';
+import * as React from 'react';
+import { DropdownMenu } from '../DropdownMenu/index.js';
 import {
-  PolymorphicForwardRefComponent,
   useTheme,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-} from '../utils';
-import { SplitButtonProps } from '../Buttons';
-import { HeaderBasicButton } from './HeaderBasicButton';
+} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type { SplitButtonProps } from '../Buttons/index.js';
+import { HeaderBasicButton } from './HeaderBasicButton.js';
 
 export type HeaderSplitButtonProps = SplitButtonProps;
 

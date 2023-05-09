@@ -2,12 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { DropdownButton, DropdownButtonProps } from './DropdownButton';
-import { MenuItem } from '../../Menu';
-import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils';
+import { DropdownButton, type DropdownButtonProps } from './DropdownButton.js';
+import { MenuItem } from '../../Menu/index.js';
+import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
 function renderComponent(props?: Partial<DropdownButtonProps>) {

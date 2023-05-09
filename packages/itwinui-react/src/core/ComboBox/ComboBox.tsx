@@ -2,36 +2,39 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { InputProps } from '../Input';
-import { MenuExtraContent } from '../Menu';
-import { SelectOption } from '../Select';
-import SelectTag from '../Select/SelectTag';
-import { Text } from '../Typography';
+import type { InputProps } from '../Input/index.js';
+import { MenuExtraContent } from '../Menu/index.js';
+import type { SelectOption } from '../Select/index.js';
+import SelectTag from '../Select/SelectTag.js';
+import { Text } from '../Typography/index.js';
 import {
   useTheme,
-  PopoverProps,
-  CommonProps,
   getRandomValue,
-  InputContainerProps,
   mergeRefs,
   useLatestRef,
   useIsomorphicLayoutEffect,
-} from '../utils';
+  AutoclearingHiddenLiveRegion,
+} from '../utils/index.js';
+import type {
+  PopoverProps,
+  CommonProps,
+  InputContainerProps,
+} from '../utils/index.js';
 import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
   ComboBoxRefsContext,
   ComboBoxStateContext,
-} from './helpers';
-import { ComboBoxDropdown } from './ComboBoxDropdown';
-import { ComboBoxEndIcon } from './ComboBoxEndIcon';
-import { ComboBoxInput } from './ComboBoxInput';
-import { ComboBoxInputContainer } from './ComboBoxInputContainer';
-import { ComboBoxMenu } from './ComboBoxMenu';
-import { ComboBoxMenuItem } from './ComboBoxMenuItem';
+} from './helpers.js';
+import { ComboBoxDropdown } from './ComboBoxDropdown.js';
+import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
+import { ComboBoxInput } from './ComboBoxInput.js';
+import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
+import { ComboBoxMenu } from './ComboBoxMenu.js';
+import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -226,7 +229,12 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     if (isMultipleEnabled(valueProp, multiple)) {
       const indexArray: number[] = [];
       valueProp?.forEach((value) => {
-        indexArray.push(options.findIndex((option) => option.value === value));
+        const indexToAdd = options.findIndex(
+          (option) => option.value === value,
+        );
+        if (indexToAdd > -1) {
+          indexArray.push(indexToAdd);
+        }
       });
       return indexArray;
     } else {
@@ -299,6 +307,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   const [inputValue, setInputValue] = React.useState<string>(
     inputProps?.value?.toString() ?? '',
   );
+
+  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const handleOnInput = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -393,6 +403,12 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   const onClickHandler = React.useCallback(
     (__originalIndex: number) => {
+      inputRef.current?.focus({ preventScroll: true }); // return focus to input
+
+      if (optionsRef.current[__originalIndex]?.disabled) {
+        return;
+      }
+
       if (isMultipleEnabled(selected, multiple)) {
         const actionType = isMenuItemSelected(__originalIndex)
           ? 'removed'
@@ -400,6 +416,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         const newArray = selectedChangeHandler(__originalIndex, actionType);
         dispatch({ type: 'multiselect', value: newArray });
         onChangeHandler(__originalIndex, actionType, newArray);
+
+        // update live region
+        setLiveRegionSelection(
+          newArray
+            .map((item) => optionsRef.current[item]?.label)
+            .filter(Boolean)
+            .join(', '),
+        );
       } else {
         dispatch({ type: 'select', value: __originalIndex });
         dispatch({ type: 'close' });
@@ -412,6 +436,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       multiple,
       onChangeHandler,
       selected,
+      optionsRef,
     ],
   );
 
@@ -527,6 +552,10 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
               />
             </>
             <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
+
+            {multiple ? (
+              <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+            ) : null}
           </ComboBoxInputContainer>
           <ComboBoxDropdown
             {...dropdownMenuProps}

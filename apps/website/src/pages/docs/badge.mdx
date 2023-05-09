@@ -3,19 +3,19 @@ title: Badge
 description: Badges are easily scannable visual identifiers that help categorize items of a same nature on a page.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Badge/Badge.d.ts'
-exampleCodeMain: Badge.main.tsx
-exampleCodeSoft: Badge.soft.tsx
-exampleCodeStatuses: Badge.statuses.tsx
 thumbnail: Badge
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeMain} />
+<LiveExample src='Badge.main.tsx' truncate={false}>
+  <AllExamples.BadgeMainExample client:load />
+</LiveExample>
 
 Badges are small visual identifiers with a label to categorize certain things, such as tiles or table rows. Badges are similar to [tags](tag) in shape but they are not interchangeable, as they fulfill different roles. Unlike tags which are user-generated, badges are provided by the system.
 
@@ -25,13 +25,17 @@ Badges are small visual identifiers with a label to categorize certain things, s
 
 Soft background badge colors do not carry any meaning and are used solely for identification at a quick glance.
 
-<LiveExample src={frontmatter.exampleCodeSoft} />
+<LiveExample src='Badge.soft.tsx'>
+  <AllExamples.BadgeSoftExample client:load />
+</LiveExample>
 
 ### Statuses
 
 Status badge colors do carry a meaning and are used to quickly identify potential issues.
 
-<LiveExample src={frontmatter.exampleCodeStatuses} />
+<LiveExample src='Badge.statuses.tsx'>
+  <AllExamples.BadgeStatusesExample client:load />
+</LiveExample>
 
 ## Usage
 

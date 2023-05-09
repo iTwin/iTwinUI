@@ -2,11 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
-import Select, { SelectProps, SelectMultipleTypeProps } from './Select';
-import { SvgSmileyHappy } from '../utils';
-import { MenuItem } from '../Menu';
+import Select, {
+  type SelectProps,
+  type SelectMultipleTypeProps,
+} from './Select.js';
+import { SvgSmileyHappy } from '../utils/index.js';
+import { MenuItem } from '../Menu/index.js';
 import userEvent from '@testing-library/user-event';
 
 function assertSelect(
@@ -14,11 +17,9 @@ function assertSelect(
   { text = '', isPlaceholderVisible = false, hasIcon = false } = {},
 ) {
   expect(select).toBeTruthy();
-  expect(select.getAttribute('aria-expanded')).toEqual('false');
-  const selectButton = select.querySelector(
-    '.iui-select-button',
-  ) as HTMLElement;
+  const selectButton = select.querySelector('[role=combobox]') as HTMLElement;
   expect(selectButton).toBeTruthy();
+  expect(selectButton).toHaveAttribute('aria-expanded', 'false');
   expect(selectButton.classList.contains('iui-placeholder')).toBe(
     isPlaceholderVisible,
   );
@@ -112,9 +113,10 @@ it('should render disabled select', async () => {
     '.iui-select-button.iui-disabled',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
+  expect(selectButton).toHaveAttribute('aria-disabled', 'true');
+  expect(selectButton.getAttribute('tabIndex')).toBe('0');
   await userEvent.click(selectButton);
   expect(mockedFn).not.toHaveBeenCalled();
-  expect(selectButton.getAttribute('tabIndex')).toBeNull();
   fireEvent.keyDown(selectButton, 'Spacebar');
   expect(document.querySelector('.iui-menu')).toBeNull();
 });
@@ -129,8 +131,8 @@ it('should set focus on select and call onBlur', () => {
     '.iui-select-button',
   ) as HTMLElement;
   expect(selectButton).toBeTruthy();
-  expect(selectButton).toHaveFocus();
   expect(selectButton.getAttribute('tabIndex')).toBe('0');
+  expect(selectButton).toHaveFocus();
   expect(onBlur).not.toHaveBeenCalled();
 
   fireEvent.click(selectButton);
@@ -209,10 +211,10 @@ it('should respect visible prop', () => {
   assertMenu(document.querySelector('.iui-menu') as HTMLUListElement);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  expect(tippy).not.toBeVisible();
-
-  rerender(<Select options={options} popoverProps={{ visible: true }} />);
   expect(tippy).toBeVisible();
+
+  rerender(<Select options={options} popoverProps={{ visible: false }} />);
+  expect(tippy).not.toBeVisible();
 });
 
 it.each(['Enter', ' ', 'Spacebar'])(
@@ -514,4 +516,42 @@ it('should use custom render for selected item (multiple)', async () => {
   expect(selectedValues.length).toBe(2);
   expect((selectedValues[0] as HTMLElement).style.color).toEqual('green');
   expect((selectedValues[1] as HTMLElement).style.color).toEqual('red');
+});
+
+it('should update live region when selection changes', async () => {
+  const MultiSelectTest = () => {
+    const [selected, setSelected] = React.useState([0]);
+    return (
+      <Select
+        options={[0, 1, 2].map((value) => ({
+          value,
+          label: `Item ${value}`,
+        }))}
+        popoverProps={{ visible: true }}
+        multiple
+        value={selected}
+        onChange={(value, type) =>
+          setSelected((prev) =>
+            type === 'added'
+              ? [...prev, value]
+              : prev.filter((v) => v !== value),
+          )
+        }
+      />
+    );
+  };
+  const { container } = render(<MultiSelectTest />);
+
+  const liveRegion = container.querySelector('[aria-live="polite"]');
+  expect(liveRegion).toBeEmptyDOMElement();
+  const options = document.querySelectorAll('[role="option"]');
+
+  await userEvent.click(options[1]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1');
+
+  await userEvent.click(options[2]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
+
+  await userEvent.click(options[0]);
+  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });

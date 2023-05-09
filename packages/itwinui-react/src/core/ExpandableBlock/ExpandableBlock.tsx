@@ -3,16 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 
 import {
-  CommonProps,
   useTheme,
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
   Icon,
-} from '../utils';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/expandable-block.css';
 
 export type ExpandableBlockProps = {
@@ -100,6 +100,10 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (
       event.key === 'Enter' ||
       event.key === ' ' ||

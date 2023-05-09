@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TablePaginator, TablePaginatorProps } from './TablePaginator';
-import * as UseOverflow from '../utils/hooks/useOverflow';
-import * as UseContainerWidth from '../utils/hooks/useContainerWidth';
+import { TablePaginator, type TablePaginatorProps } from './TablePaginator.js';
+import * as UseOverflow from '../utils/hooks/useOverflow.js';
+import * as UseContainerWidth from '../utils/hooks/useContainerWidth.js';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<TablePaginatorProps>) => {
@@ -38,6 +38,7 @@ it('should render in its most basic form', () => {
   const pages = container.querySelectorAll('.iui-table-paginator-page-button');
   expect(pages).toHaveLength(20);
   expect(pages[0]).toHaveAttribute('data-iui-active', 'true');
+  expect(pages[0]).toHaveAttribute('type', 'button');
 
   const previousPageButton = screen.getByLabelText(
     'Previous page',

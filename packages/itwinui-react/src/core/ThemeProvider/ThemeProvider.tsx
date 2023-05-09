@@ -2,20 +2,20 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   useTheme,
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
-} from '../utils';
+} from '../utils/index.js';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
   ThemeOptions,
   ThemeType,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 
@@ -30,9 +30,12 @@ type RootProps = {
    * in SSR environments because it is not possible detect system preference on the server.
    * This can cause a flash of incorrect theme on first render.
    *
+   * The 'inherit' option is intended to be used by packages, to enable incremental adoption
+   * of iTwinUI v2 in app that might be using v1 in other places.
+   *
    * @default 'light'
    */
-  theme?: ThemeType;
+  theme?: ThemeType | 'inherit';
   themeOptions?: Pick<ThemeOptions, 'highContrast'> & {
     /**
      * Whether or not the element should apply the recommended `background-color` on itself.
@@ -41,10 +44,17 @@ type RootProps = {
      * if it is the topmost `ThemeProvider` in the tree. Nested `ThemeProvider`s will
      * be detected using React Context and will not apply a background-color.
      *
+     * Additionally, if theme is set to `'inherit'`, then this will default to false.
+     *
      * When set to true or false, it will override the default behavior.
      */
     applyBackground?: boolean;
   };
+  /**
+   * Whether theme was set to `'inherit'`.
+   * This will be used to determine if applyBackground will default to false.
+   */
+  isInheritingTheme?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
@@ -83,13 +93,16 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
  * </ThemeProvider>
  */
 export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme, children, themeOptions, ...rest } = props;
+  const { theme: themeProp, children, themeOptions, ...rest } = props;
 
   const rootRef = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(rootRef, ref);
 
   const hasChildren = React.Children.count(children) > 0;
   const parentContext = React.useContext(ThemeContext);
+
+  const theme =
+    themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, rootRef }),
@@ -100,7 +113,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   if (!hasChildren) {
     return (
       <ThemeLogicWrapper
-        theme={theme ?? parentContext?.theme}
+        theme={theme}
         themeOptions={themeOptions ?? parentContext?.themeOptions}
       />
     );
@@ -108,7 +121,13 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   // now that we know there are children, we can render the root and provide the context value
   return (
-    <Root theme={theme} themeOptions={themeOptions} ref={mergedRefs} {...rest}>
+    <Root
+      theme={theme}
+      isInheritingTheme={themeProp === 'inherit'}
+      themeOptions={themeOptions}
+      ref={mergedRefs}
+      {...rest}
+    >
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
@@ -134,6 +153,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
     themeOptions,
     as: Element = 'div',
     className,
+    isInheritingTheme,
     ...rest
   } = props;
 
@@ -145,7 +165,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
   const isThemeAlreadySet = useIsThemeAlreadySet(ref.current?.ownerDocument);
   const shouldApplyBackground =
-    themeOptions?.applyBackground ?? !isThemeAlreadySet.current;
+    themeOptions?.applyBackground ??
+    (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
   return (
     <Element
@@ -164,7 +185,11 @@ const Root = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
 
-const ThemeLogicWrapper = ({ theme, themeOptions }: ThemeProviderOwnProps) => {
+const ThemeLogicWrapper = (props: {
+  theme?: ThemeType;
+  themeOptions?: ThemeOptions;
+}) => {
+  const { theme, themeOptions } = props;
   useTheme(theme, themeOptions);
   return <></>;
 };

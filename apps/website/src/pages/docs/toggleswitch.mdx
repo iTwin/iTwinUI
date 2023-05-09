@@ -1,24 +1,59 @@
 ---
-title: Toggle Switch
+title: Toggle switch
 description: The toggle switch is a high contrast component used for toggling settings that only have two states.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/ToggleSwitch/ToggleSwitch.tsx'
-exampleCodeFile1: ToggleSwitch.main.tsx
 thumbnail: ToggleSwitch
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ToggleSwitch.main.tsx' truncate={false}>
+  <AllExamples.ToggleSwitchMainExample client:load />
+</LiveExample>
 
-Toggle switches are instant action components used to toggle an option instantly with a single click
-or tap. They are more common in mobile layouts, but are also present in desktop environments. For example,
-on mobile, you can go to the settings menu and enable or disable wi-fi, airplane mode and sound with
-a single tap using the associated toggle switch.
+Toggle switches are instant action components used to toggle an option instantly with a single click or tap. They are more common in mobile layouts, but are also present in desktop environments. For example, on mobile, you can go to the settings menu and enable or disable wi-fi, airplane mode and sound with a single tap using the associated toggle switch.
+
+It fulfills a role similar to that of a [checkbox](checkbox), though they are not necessarily used in the same contexts. To learn more about when to use a toggle switch or a checkbox, please read [Checkbox vs Toggle Switch by Saadia Minhas](https://uxplanet.org/checkbox-vs-toggle-switch-7fc6e83f10b8).
+
+## Usage
+
+### Sizes
+
+<LiveExample src='ToggleSwitch.sizes.tsx'>
+  <AllExamples.ToggleSwitchSizesExample client:load />
+</LiveExample>
+
+There are two sizes available.
+
+### Label placement
+
+<LiveExample src='ToggleSwitch.labels.tsx'>
+  <AllExamples.ToggleSwitchLabelsExample client:load />
+</LiveExample>
+
+A toggle switch's label can be placed on the right (default), left, or not used at all although it is strongly recommended that a label should be used.
+
+### With icon
+
+<LiveExample src='ToggleSwitch.icon.tsx'>
+  <AllExamples.ToggleSwitchIconExample client:load />
+</LiveExample>
+
+A toggle switch can optionally show an icon when in the checked state. Note that the [small size toggle switch](#sizes) does not support icons.
+
+### With input group
+
+<LiveExample src='ToggleSwitch.inputgroup.tsx'>
+  <AllExamples.ToggleSwitchInputGroupExample client:load />
+</LiveExample>
+
+Toggle switches can be paired with the [input group](inputgroup) which gives many additional options.
 
 ## Props
 

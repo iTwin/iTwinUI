@@ -1,6 +1,17 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import './utils/index';
+@use 'mixins';
+
+// reset anything that may have been set by v1
+:where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
+  :where([class*='iui-']:not(.iui-root)) {
+    &,
+    &::before,
+    &::after {
+      all: revert;
+    }
+  }
+}
 
 :where(.iui-root) {
   color: var(--iui-color-text);
@@ -36,6 +47,6 @@
 :where([data-iui-theme]),
 :where(.iui-root),
 :where(.iui-root *) {
-  @include iui-text-selection;
-  @include iui-scrollbar;
+  @include mixins.iui-text-selection;
+  @include mixins.iui-scrollbar;
 }

@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { MenuItemProps } from '../Menu';
-import { useSafeContext, useMergedRefs } from '../utils';
-import { ComboBoxStateContext } from './helpers';
+import * as React from 'react';
+import type { MenuItemProps } from '../Menu/index.js';
+import { useSafeContext, useMergedRefs } from '../utils/index.js';
+import { ComboBoxStateContext } from './helpers.js';
 
 type ComboBoxMenuItemProps = MenuItemProps & { index: number };
 
@@ -53,9 +53,9 @@ export const ComboBoxMenuItem = React.memo(
             className,
           )}
           ref={refs}
-          onClick={() => !disabled && onClick?.(value)}
+          onClick={() => onClick?.(value)}
           role={role}
-          tabIndex={disabled || role === 'presentation' ? undefined : -1}
+          tabIndex={role === 'presentation' ? undefined : -1}
           aria-selected={isSelected}
           aria-disabled={disabled}
           data-iui-index={index}

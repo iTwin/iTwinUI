@@ -35,6 +35,8 @@ import {
   Input,
   Radio,
   ProgressRadial,
+  useTheme,
+  BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
@@ -1842,12 +1844,23 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
+  const onExpand = useCallback(
+    (rows, state) =>
+      action(
+        `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
+          state,
+        )}`,
+      )(),
+    [],
+  );
+
   const columns = useMemo(
     () => [
       {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
+        Filter: tableFilters.TextFilter(),
       },
       {
         id: 'description',
@@ -1872,31 +1885,115 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const data = useMemo(
-    () => [
-      { name: 'Name1', description: 'Description1' },
-      { name: 'Name2', description: 'Description2' },
-      { name: 'Name3', description: 'Description3' },
-    ],
-    [],
-  );
+  const data = [
+    {
+      name: 'Row 1',
+      description: 'Description 1',
+      subRows: [
+        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+        {
+          name: 'Row 1.2',
+          description: 'Description 1.2',
+          subRows: [
+            {
+              name: 'Row 1.2.1',
+              description: 'Description 1.2.1',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.2',
+              description: 'Description 1.2.2',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.3',
+              description: 'Description 1.2.3',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.4',
+              description: 'Description 1.2.4',
+              subRows: [],
+            },
+          ],
+        },
+        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+      ],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description 2',
+      subRows: [
+        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+      ],
+    },
+    { name: 'Row 3', description: 'Description 3', subRows: [] },
+  ];
 
   return (
     <Table
+      isSelectable
+      isSortable
       columns={columns}
       data={data}
       emptyTableContent='No data.'
       density='condensed'
       {...args}
+      onExpand={onExpand}
     />
   );
 };
 Condensed.args = {
   density: 'condensed',
   data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
+    {
+      name: 'Row 1',
+      description: 'Description 1',
+      subRows: [
+        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
+        {
+          name: 'Row 1.2',
+          description: 'Description 1.2',
+          subRows: [
+            {
+              name: 'Row 1.2.1',
+              description: 'Description 1.2.1',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.2',
+              description: 'Description 1.2.2',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.3',
+              description: 'Description 1.2.3',
+              subRows: [],
+            },
+            {
+              name: 'Row 1.2.4',
+              description: 'Description 1.2.4',
+              subRows: [],
+            },
+          ],
+        },
+        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
+        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
+      ],
+    },
+    {
+      name: 'Row 2',
+      description: 'Description 2',
+      subRows: [
+        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
+        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
+        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+      ],
+    },
+    { name: 'Row 3', description: 'Description 3', subRows: [] },
   ],
 };
 
@@ -2081,40 +2178,131 @@ WithPaginator.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
-  const columns = useMemo(
-    () => [
-      {
-        id: 'name',
-        Header: 'Name',
-        accessor: 'name',
-        Filter: tableFilters.TextFilter(),
-      },
-      {
-        id: 'description',
-        Header: 'Description',
-        accessor: 'description',
-        maxWidth: 200,
-        Filter: tableFilters.TextFilter(),
-      },
-    ],
-    [],
+export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
+  args,
+) => {
+  type RowData = {
+    name: string;
+    description: string;
+  };
+
+  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const maxRowsCount = useMemo(() => 60000, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [currentPageSize, setCurrentPageSize] = useState(pageSizeList[0]);
+  const [filter, setFilter] = useState({
+    name: '',
+    description: '',
+  } as RowData);
+  const [filteredData, setFilteredData] = useState(
+    undefined as unknown as RowData[],
   );
+  const [totalRowsCount, setTotalRowsCount] = useState(maxRowsCount);
 
   const generateData = (start: number, end: number) => {
     return Array(end - start)
       .fill(null)
-      .map((_, index) => ({
-        name: `Name${start + index}`,
-        description: `Description${start + index}`,
-      }));
+      .map((_, index) => {
+        if (
+          filteredData !== undefined &&
+          !(filter.name === '' && filter.description === '')
+        ) {
+          return filteredData[index];
+        } else {
+          return {
+            name: `Name${start + index}`,
+            description: `Description${start + index}`,
+          };
+        }
+      });
   };
 
   const [data, setData] = useState(() => generateData(0, 25));
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
 
-  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const isPassFilter = React.useCallback(
+    (dataRow: RowData, filter: RowData) => {
+      let isPassName = false;
+      let isPassDescription = false;
+      // check that the name passes a filter, if there is one
+      if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+        isPassName = true;
+      }
+      // check that the description passes a filter, if there is one
+      if (
+        !filter.description ||
+        (filter.description && dataRow.description.includes(filter.description))
+      ) {
+        isPassDescription = true;
+      }
+      return isPassName && isPassDescription;
+    },
+    [],
+  );
+
+  const generateFilteredData = React.useCallback(
+    (filter: RowData) => {
+      let dataNumber = 0;
+      const dataArray = [];
+      let newData = { name: '', description: '' };
+      do {
+        do {
+          newData = {
+            name: `Name${dataNumber}`,
+            description: `Description${dataNumber}`,
+          };
+          dataNumber++;
+        } while (!isPassFilter(newData, filter) && dataNumber < maxRowsCount);
+        if (isPassFilter(newData, filter)) {
+          dataArray.push(newData);
+        }
+      } while (dataNumber < maxRowsCount);
+
+      setFilteredData(dataArray);
+      return dataArray;
+    },
+    [isPassFilter, maxRowsCount],
+  );
+
+  const onFilter = React.useCallback(
+    (filters: TableFilterValue<Record<string, unknown>>[]) => {
+      setFilter({
+        name: filters.find((f) => f.id == 'name')?.value ?? '',
+        description: filters.find((f) => f.id == 'description')?.value ?? '',
+      } as RowData);
+      setIsLoading(true);
+      setData([]);
+      setCurrentPage(0);
+      // simulate a filtered request
+      setTimeout(() => {
+        setIsLoading(false);
+        const filteredData = generateFilteredData({
+          name: filters.find((f) => f.id === 'name')?.value ?? '',
+          description: filters.find((f) => f.id === 'description')?.value ?? '',
+        } as RowData);
+        setData(filteredData.slice(0, currentPageSize));
+        setTotalRowsCount(filteredData.length);
+      }, 500);
+    },
+    [currentPageSize, generateFilteredData],
+  );
+
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: tableFilters.TextFilter(),
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      maxWidth: 200,
+      Filter: tableFilters.TextFilter(),
+    },
+  ];
+
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
       <TablePaginator
@@ -2126,23 +2314,49 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
           // Simulating a request
           setTimeout(() => {
             setIsLoading(false);
-            setData(
-              generateData(page * props.pageSize, (page + 1) * props.pageSize),
-            );
+            if (
+              filteredData !== undefined &&
+              !(filter.name === '' && filter.description === '')
+            ) {
+              setData(
+                filteredData.slice(
+                  page * props.pageSize,
+                  (page + 1) * props.pageSize,
+                ),
+              );
+            } else {
+              setData(
+                generateData(
+                  page * props.pageSize,
+                  (page + 1) * props.pageSize,
+                ),
+              );
+            }
           }, 500);
         }}
         onPageSizeChange={(size) => {
-          setData(generateData(currentPage * size, (currentPage + 1) * size));
+          if (
+            filteredData !== undefined &&
+            !(filter.name === '' && filter.description === '')
+          ) {
+            setData(
+              filteredData.slice(currentPage * size, (currentPage + 1) * size),
+            );
+          } else {
+            setData(generateData(currentPage * size, (currentPage + 1) * size));
+          }
+          setCurrentPageSize(size);
           props.onPageSizeChange(size);
         }}
         pageSizeList={pageSizeList}
         currentPage={currentPage}
         isLoading={false}
         // Imagining we know the total count of data items
-        totalRowsCount={60000}
+        totalRowsCount={totalRowsCount}
       />
     ),
-    [currentPage, pageSizeList],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentPage, pageSizeList, totalRowsCount],
   );
 
   return (
@@ -2157,12 +2371,14 @@ export const WithManualPaginator: Story<Partial<TableProps>> = (args) => {
         paginatorRenderer={paginator}
         style={{ height: '100%' }}
         manualPagination
+        onFilter={onFilter}
+        manualFilters={true}
       />
     </>
   );
 };
 
-WithManualPaginator.decorators = [
+WithManualPaginatorAndFilter.decorators = [
   (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
@@ -2170,10 +2386,174 @@ WithManualPaginator.decorators = [
   ),
 ];
 
-WithManualPaginator.argTypes = {
+WithManualPaginatorAndFilter.argTypes = {
   data: { control: { disable: true } },
 };
-WithManualPaginator.parameters = {
+WithManualPaginatorAndFilter.parameters = {
+  docs: { source: { excludeDecorators: true } },
+};
+
+export const CustomFilter: Story<Partial<TableProps>> = (args) => {
+  type RowData = {
+    name: string;
+    description: string;
+  };
+
+  const rowsCount = useMemo(() => 100, []);
+  const [isLoading, setIsLoading] = useState(false);
+  const [filter, setFilter] = useState('');
+  const [filteredData, setFilteredData] = useState(
+    undefined as unknown as RowData[],
+  );
+
+  const generateData = (start: number, end: number) => {
+    return Array(end - start)
+      .fill(null)
+      .map((_, index) => {
+        if (filteredData !== undefined && !filter) {
+          return filteredData[index];
+        } else {
+          return {
+            name: `Name${start + index}`,
+            description: `Description${start + index}`,
+          };
+        }
+      });
+  };
+
+  const [data, setData] = useState(() => generateData(0, 100));
+
+  const isPassFilter = React.useCallback(
+    (dataRow: RowData, filter: RowData) => {
+      // check that the name passes a filter, if there is one
+      if (!filter.name || (filter.name && dataRow.name.includes(filter.name))) {
+        return true;
+      }
+      return false;
+    },
+    [],
+  );
+
+  const generateFilteredData = React.useCallback(
+    (filter: RowData) => {
+      let dataNumber = 0;
+      const dataArray = [];
+      let newData = { name: '', description: '' };
+      do {
+        do {
+          newData = {
+            name: `Name${dataNumber}`,
+            description: `Description${dataNumber}`,
+          };
+          dataNumber++;
+        } while (!isPassFilter(newData, filter) && dataNumber < rowsCount);
+        if (isPassFilter(newData, filter)) {
+          dataArray.push(newData);
+        }
+      } while (dataNumber < rowsCount);
+
+      setFilteredData(dataArray);
+      return dataArray;
+    },
+    [isPassFilter, rowsCount],
+  );
+
+  const CustomFilter = () => {
+    useTheme();
+
+    const handleChange = (isChecked: boolean, filter: string) => {
+      setFilter(isChecked ? filter : '');
+      setIsLoading(true);
+      setData([]);
+      // simulate a filtered request
+      setTimeout(() => {
+        setIsLoading(false);
+        const filteredData = generateFilteredData({
+          name: isChecked ? filter : '',
+          description: '',
+        } as RowData);
+        setData(filteredData.slice(0, rowsCount));
+      }, 500);
+    };
+
+    return (
+      <BaseFilter style={{ alignItems: 'flex-start' }}>
+        <Radio
+          label="Contains '3'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '3');
+          }}
+          checked={filter === '3'}
+        />
+        <Radio
+          label="Contains '5'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '5');
+          }}
+          checked={filter === '5'}
+        />
+        <Radio
+          label="Contains '7'"
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '7');
+          }}
+          checked={filter === '7'}
+        />
+        <Radio
+          label='No filter'
+          onChange={({ target: { value } }) => {
+            handleChange(value === 'on', '');
+          }}
+          checked={filter === ''}
+        />
+      </BaseFilter>
+    );
+  };
+
+  const columns = [
+    {
+      id: 'name',
+      Header: 'Name',
+      accessor: 'name',
+      Filter: CustomFilter,
+    },
+    {
+      id: 'description',
+      Header: 'Description',
+      accessor: 'description',
+      maxWidth: 200,
+    },
+  ];
+
+  return (
+    <>
+      <Table
+        emptyTableContent='No data.'
+        {...args}
+        isLoading={isLoading}
+        columns={columns}
+        data={data}
+        pageSize={100}
+        style={{ height: '100%' }}
+        manualPagination
+        manualFilters={true}
+      />
+    </>
+  );
+};
+
+CustomFilter.decorators = [
+  (Story) => (
+    <div style={{ height: '90vh' }}>
+      <Story />
+    </div>
+  ),
+];
+
+CustomFilter.argTypes = {
+  data: { control: { disable: true } },
+};
+CustomFilter.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
@@ -3092,7 +3472,9 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
 
   const columns = useMemo(
     (): Column<typeof data[number]>[] => [
-      SelectionColumn({ isDisabled: isCheckboxDisabled }),
+      SelectionColumn({
+        isDisabled: isCheckboxDisabled,
+      }),
       ExpanderColumn({ subComponent, isDisabled: isExpanderDisabled }),
       {
         id: 'name',

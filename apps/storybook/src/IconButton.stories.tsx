@@ -6,7 +6,7 @@ import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { IconButton, IconButtonProps } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
-import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
+import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/IconButton',
@@ -22,48 +22,59 @@ export default {
 
 export const Add: Story<IconButtonProps> = (args) => {
   return (
-    <IconButton onClick={action('clicked')} {...args}>
+    <IconButton label='Add' onClick={action('clicked')} {...args}>
       <SvgAdd />
     </IconButton>
   );
 };
 
 Add.args = {
+  label: 'Add',
   isActive: false,
 };
 
 export const SmallActiveAdd: Story<IconButtonProps> = (args) => {
   return (
-    <IconButton onClick={action('clicked')} isActive {...args}>
+    <IconButton label='Add' onClick={action('clicked')} isActive {...args}>
       <SvgAdd />
     </IconButton>
   );
 };
 
 SmallActiveAdd.args = {
+  label: 'Add',
   size: 'small',
   isActive: true,
 };
 
 export const HighVisibilityAdd: Story<IconButtonProps> = (args) => {
   return (
-    <IconButton onClick={action('clicked')} {...args}>
+    <IconButton label='Add' onClick={action('clicked')} {...args}>
       <SvgAdd />
     </IconButton>
   );
 };
 
 HighVisibilityAdd.args = {
+  label: 'Add',
   isActive: false,
   styleType: 'high-visibility',
 };
 
 export const Borderless: Story<IconButtonProps> = ({ styleType, ...rest }) => {
   return (
-    <IconButton styleType={styleType} onClick={action('clicked')} {...rest}>
+    <IconButton
+      label='Add'
+      styleType={styleType}
+      onClick={action('clicked')}
+      {...rest}
+    >
       <SvgAdd />
     </IconButton>
   );
 };
 
-Borderless.args = { styleType: 'borderless' };
+Borderless.args = {
+  label: 'Add',
+  styleType: 'borderless',
+};

@@ -2,11 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme, CommonProps } from '../../utils';
-import { Button } from '../../Buttons';
+import { useTheme } from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
+import { Button } from '../../Buttons/index.js';
 
 export type FilterButtonBarTranslation = {
   filter: string;

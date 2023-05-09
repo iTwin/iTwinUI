@@ -12,9 +12,9 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@astrojs/react": "^1.2.2",
-    "@itwin/itwinui-react": "*",
-    "astro": "~1.7.2",
+    "@astrojs/react": "^2.0.2",
+    "@itwin/itwinui-react": "2.10.1",
+    "astro": "^2.0.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

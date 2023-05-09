@@ -7,11 +7,8 @@ import { Fieldset, InputGroup, Radio, ThemeProvider, ToggleSwitch } from '@itwin
 
 export default () => {
   return (
-    <ThemeProvider theme='dark'>
-      <Fieldset
-        legend='General Settings'
-        style={{ display: 'flex', flexDirection: 'column', gap: 12 }}
-      >
+    <ThemeProvider theme='dark' themeOptions={{ applyBackground: false }}>
+      <Fieldset legend='General Settings'>
         <InputGroup label='Color Theme'>
           <Radio name='choice' value='option1' label={'Light'} />
           <Radio name='choice' value='option2' label={'Dark'} />

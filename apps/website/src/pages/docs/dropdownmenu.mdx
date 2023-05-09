@@ -1,20 +1,93 @@
 ---
 title: Dropdown menu
-description:
+description: The dropdown menu displays a list of selectable choices and options.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/DropdownMenu/DropdownMenu.d.ts'
-exampleCodeFile1: DropdownMenu.main.tsx
 thumbnail: Menu
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='DropdownMenu.main.tsx'>
+  <AllExamples.DropdownMenuMainExample client:load />
+</LiveExample>
+
+A dropdown menu is a control element meant to allow the user to select an option from a list. This is a list of options contained within a collapsible container and are mostly found in forms and dialogs. When it is clicked, it expands into a full list of items. This list can be scrollable if there are a lot of options, to avoid covering up too much of the interface. It collapses back into a single line when the user either selects an option in the list, or clicks outside of it.
+
+## Variants
+
+### Basic
+
+The basic dropdown menu displays a list of clickable options when expanded. Additionally, each option can be disabled to disallow clicking.
+
+<LiveExample src='DropdownMenu.basic.tsx'>
+  <AllExamples.DropdownMenuBasicExample client:load />
+</LiveExample>
+
+### Icon
+
+An icon may be display on the left side of option for better visualization of common menu items.
+
+<LiveExample src='DropdownMenu.icon.tsx'>
+  <AllExamples.DropdownMenuIconExample client:load />
+</LiveExample>
+
+### Badge
+
+Similar to icon but badge goes on the right side of option.
+
+<LiveExample src='DropdownMenu.badge.tsx'>
+  <AllExamples.DropdownMenuBadgeExample client:load />
+</LiveExample>
+
+### Sublabel
+
+The dropdown menu items can also be displayed on two lines, with a label and a sublabel for improved clarity.
+
+<LiveExample src='DropdownMenu.sublabel.tsx'>
+  <AllExamples.DropdownMenuSublabelExample client:load />
+</LiveExample>
+
+### Submenu
+
+The menu can contain one or more sub-menus. To show that an option within the list has another menu with more options associated to it, there is usually a caret icon pointing outward. Hovering on that option will expand the sub-menu outside the parent menu. Ideally, the list of child items should appear to the right of the parent item.
+
+<LiveExample src='DropdownMenu.submenu.tsx'>
+  <AllExamples.DropdownMenuSubmenuExample client:load />
+</LiveExample>
+
+### Separator
+
+The separator line helps to visually organize the options into distinct categories, making it easier for the user to locate and select the desired option.
+
+<LiveExample src='DropdownMenu.separator.tsx'>
+  <AllExamples.DropdownMenuSeparatorExample client:load />
+</LiveExample>
+
+### Content
+
+The menu can contain extra content, including both text and additional selectable dropdown items, which allows for additional nested options to be displayed. This type of dropdown menu is commonly used in applications that have multiple levels of options or actions, such as in navigation or switching user's context.
+
+<LiveExample src='DropdownMenu.content.tsx'>
+  <AllExamples.DropdownMenuContentExample client:load />
+</LiveExample>
 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Button', url: 'button' },
+    { title: 'Select', url: 'select' },
+    { title: 'ComboBox', url: 'combobox' },
+  ]}
+/>

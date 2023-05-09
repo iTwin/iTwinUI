@@ -2,13 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { Cell, CellProps, CellRendererProps, TableInstance } from 'react-table';
+import * as React from 'react';
+import type {
+  Cell,
+  CellProps,
+  CellRendererProps,
+  TableInstance,
+} from 'react-table';
 import cx from 'classnames';
-import { getCellStyle, getStickyStyle } from './utils';
-import { SubRowExpander } from './SubRowExpander';
-import { SELECTION_CELL_ID } from './columns';
-import { DefaultCell } from './cells';
+import { getCellStyle, getStickyStyle } from './utils.js';
+import { SubRowExpander } from './SubRowExpander.js';
+import { SELECTION_CELL_ID } from './columns/index.js';
+import { DefaultCell } from './cells/index.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
@@ -17,6 +22,7 @@ export type TableCellProps<T extends Record<string, unknown>> = {
   tableHasSubRows: boolean;
   tableInstance: TableInstance<T>;
   expanderCell?: (cellProps: CellProps<T>) => React.ReactNode;
+  density?: 'default' | 'condensed' | 'extra-condensed';
 };
 
 export const TableCell = <T extends Record<string, unknown>>(
@@ -29,6 +35,7 @@ export const TableCell = <T extends Record<string, unknown>>(
     tableHasSubRows,
     tableInstance,
     expanderCell,
+    density,
   } = props;
 
   const hasSubRowExpander =
@@ -40,9 +47,23 @@ export const TableCell = <T extends Record<string, unknown>>(
       return undefined;
     }
     // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
-    // 16 = initial_cell_padding, 35 = 27 + 8 = expander_width + margin
+    const dynamicMargin = cell.row.depth + (cell.row.canExpand ? 0 : 1);
+
+    let cellPadding = 16;
+    let expanderMargin = 8;
+
+    if (density === 'condensed') {
+      cellPadding = 12;
+      expanderMargin = 4;
+    } else if (density === 'extra-condensed') {
+      cellPadding = 8;
+      expanderMargin = 4;
+    }
+
+    const multiplier = 26 + expanderMargin; // 26 = expander width
+
     return {
-      paddingLeft: 16 + (cell.row.depth + (cell.row.canExpand ? 0 : 1)) * 35,
+      paddingLeft: cellPadding + dynamicMargin * multiplier,
     };
   };
 
@@ -70,6 +91,7 @@ export const TableCell = <T extends Record<string, unknown>>(
           isDisabled={isDisabled}
           cellProps={cellProps}
           expanderCell={expanderCell}
+          density={density}
         />
       )}
       {cell.render('Cell')}

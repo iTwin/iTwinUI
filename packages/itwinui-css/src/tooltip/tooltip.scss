@@ -1,9 +1,32 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
-@mixin iui-tooltip {
-  @include iui-reset;
+// Statics version of hidden/visible animation handling
+.iui-tooltip-container {
+  width: fit-content;
+  height: fit-content;
+  position: relative;
+
+  > .iui-tooltip {
+    position: absolute;
+    visibility: hidden;
+    user-select: none;
+    opacity: 0;
+    /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
+    transition: visibility var(--iui-duration-0) linear var(--iui-duration-1), opacity var(--iui-duration-1) ease-out;
+  }
+
+  > .iui-tooltip.iui-tooltip-visible,
+  &:hover > .iui-tooltip {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+// Styling tooltip only
+.iui-tooltip {
+  @include mixins.iui-reset;
   display: block;
   text-align: center;
   border-radius: var(--iui-border-radius-1);
@@ -17,21 +40,8 @@
   z-index: 999;
   box-shadow: var(--iui-shadow-3);
   pointer-events: none;
-  background-color: rgba(0, 0, 0, var(--iui-opacity-3));
   color: var(--iui-color-white);
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
-}
 
-@mixin iui-tooltip-hidden {
-  position: absolute;
-  visibility: hidden;
-  user-select: none;
-  opacity: 0;
-  /// Following this guide for animation on exit hover: https://greywyvern.com/?post=337
-  transition: visibility var(--iui-duration-0) linear var(--iui-duration-1), opacity var(--iui-duration-1) ease-out;
-}
-
-@mixin iui-tooltip-visible {
-  visibility: visible;
-  opacity: 1;
+  @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
 }

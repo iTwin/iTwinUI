@@ -1,118 +1,31 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../anchor/index';
-@import '../button/borderless';
-@import '../utils/index';
+@use './mixins' as *;
 
-@mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
-  --_iui-breadcrumbs-height: #{$breadcrumbs-height};
-
-  @include iui-reset;
-  display: flex;
-  align-items: center;
-  height: var(--_iui-breadcrumbs-height);
+.iui-breadcrumbs {
+  @include iui-breadcrumbs;
 }
 
-@mixin iui-breadcrumbs-list {
-  @include iui-reset;
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  user-select: none;
-  height: 100%;
+.iui-breadcrumbs-list {
+  @include iui-breadcrumbs-list;
 }
 
-@mixin iui-breadcrumbs-item {
-  display: flex;
-  align-items: center;
-  height: 100%;
-
-  > * {
-    max-width: 26ch;
-  }
+.iui-breadcrumbs-item {
+  @include iui-breadcrumbs-item;
 }
 
-@mixin iui-breadcrumbs-item-overrides {
-  > * {
-    padding: 0 var(--iui-size-xs);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:not(.iui-button) {
-      color: var(--iui-color-text);
-    }
-  }
-
-  > :any-link {
-    @include iui-anchor;
-    box-sizing: border-box;
-    line-height: var(--iui-component-height);
-
-    &:focus {
-      outline-offset: -1px;
-    }
-  }
-
-  .iui-button {
-    &.iui-button {
-      @include iui-button-borderless;
-      border: none;
-    }
-
-    > span {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &:not([aria-current]) {
-      &,
-      &:hover,
-      &:active {
-        --_iui-button-text-color: var(--iui-color-text-accent);
-      }
-    }
-  }
+.iui-breadcrumbs-item-overrides {
+  @include iui-breadcrumbs-item-overrides;
 }
 
-@mixin iui-breadcrumbs-text {
-  padding: 0 var(--iui-size-xs);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: var(--iui-component-height);
-
-  &:is(a) {
-    @include iui-anchor;
-
-    &:focus {
-      outline-offset: -1px;
-    }
-  }
+.iui-breadcrumbs-text {
+  @include iui-breadcrumbs-text;
 }
 
-@mixin iui-breadcrumbs-button {
-  @include iui-button;
-  @include iui-button-borderless;
-  padding: 0;
-  border: none;
-  color: var(--iui-color-text-accent);
-
-  &[aria-current] {
-    color: var(--iui-color-text);
-  }
+.iui-breadcrumbs-button {
+  @include iui-breadcrumbs-button;
 }
 
-@mixin iui-breadcrumbs-separator {
-  display: flex;
-  margin: 0 var(--iui-size-3xs);
-
-  svg {
-    @include iui-icon-style('s');
-    @include iui-icon-color;
-    @media (forced-colors: active) {
-      fill: CanvasText;
-    }
-  }
+.iui-breadcrumbs-separator {
+  @include iui-breadcrumbs-separator;
 }

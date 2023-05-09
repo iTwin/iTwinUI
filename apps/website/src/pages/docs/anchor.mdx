@@ -1,20 +1,45 @@
 ---
 title: Anchor
-description:
+description: The anchor component creates a hyperlink targeting a specific location within the same page or a different one.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/src/core/Typography/Body/Body.tsx'
-exampleCodeFile1: Anchor.main.tsx
 group: typography
 thumbnail: Anchor
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='Anchor.main.tsx' truncate={false}>
+  <AllExamples.AnchorMainExample client:load />
+</LiveExample>
+
+The anchor's `href` attribute is the destination URL while the text within the anchor element should describe the link's name.
+
+## Usage
+
+Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it.
+
+A common question is whether to use an anchor or a [button](button). The basic rule of thumb is an anchor takes you to another page, whereas a button performs an action. For more details, read [this article on buttons vs links](https://yatil.net/blog/buttons-vs-links).
+
+### `as` prop
+
+The anchor component supports the polymorphic `as` prop to render the anchor as a button. This can be useful when the design requires a control which visually looks like an anchor but acts like a button, i.e. it performs an action within the same page, rather than navigating to a destination URL.
+
+<LiveExample src='Anchor.asbutton.tsx' truncate={false}>
+  <AllExamples.AnchorAsButtonExample client:load />
+</LiveExample>
+
+The `as` prop can also be used with `Link` components from different routers such as [Next.js](https://nextjs.org/docs/api-reference/next/link) and [React Router](https://reactrouter.com/en/main/components/link)
 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'Button', url: 'button' }]} />

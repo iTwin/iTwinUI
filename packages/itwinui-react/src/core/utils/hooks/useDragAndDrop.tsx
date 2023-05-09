@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getTranslateValues, getWindow } from '../functions';
-import { useEventListener } from './useEventListener';
-import { useResizeObserver } from './useResizeObserver';
+import * as React from 'react';
+import { getTranslateValues, getWindow } from '../functions/index.js';
+import { useEventListener } from './useEventListener.js';
+import { useResizeObserver } from './useResizeObserver.js';
 
 const getContainerRect = (
   containerRef: React.RefObject<HTMLElement> | undefined,
@@ -120,17 +120,18 @@ export const useDragAndDrop = (
       // Prevents from selecting inner content when dragging.
       elementRef.current.style.userSelect = 'none';
 
-      elementRef.current.ownerDocument.addEventListener(
-        'pointermove',
-        onPointerMove.current,
-      );
-      elementRef.current.ownerDocument.addEventListener(
+      const ownerDocument = elementRef.current.ownerDocument || document;
+      ownerDocument.addEventListener('pointermove', onPointerMove.current);
+      ownerDocument.addEventListener(
         'pointerup',
         () => {
           setTransform(
             `translate(${translateX.current}px, ${translateY.current}px)`,
           );
-          document.removeEventListener('pointermove', onPointerMove.current);
+          ownerDocument.removeEventListener(
+            'pointermove',
+            onPointerMove.current,
+          );
           if (elementRef.current) {
             elementRef.current.style.userSelect = originalUserSelect.current;
           }

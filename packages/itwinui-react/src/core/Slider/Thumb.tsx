@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { Tooltip, TooltipProps } from '../Tooltip';
-import { SliderProps } from './Slider';
+import { Tooltip } from '../Tooltip/index.js';
+import type { TooltipProps } from '../Tooltip/index.js';
+import type { SliderProps } from './Slider.js';
 
 export type ThumbProps = {
   /**
@@ -129,8 +130,6 @@ export const Thumb = (props: ThumbProps) => {
     !disabled && onThumbActivated(index);
   }, [disabled, index, onThumbActivated]);
 
-  const [hasFocus, setHasFocus] = React.useState(false);
-  const [isHovered, setIsHovered] = React.useState(false);
   const adjustedValue = React.useMemo(() => {
     if (value < sliderMin) {
       return sliderMin;
@@ -150,8 +149,10 @@ export const Thumb = (props: ThumbProps) => {
 
   return (
     <Tooltip
-      visible={isActive || hasFocus || isHovered}
       placement='top'
+      trigger={
+        tooltipProps?.visible == null ? 'mouseenter click focus' : undefined
+      }
       {...tooltipProps}
     >
       <div
@@ -178,10 +179,6 @@ export const Thumb = (props: ThumbProps) => {
         onPointerDown={handlePointerDownOnThumb}
         onKeyDown={(event) => handleOnKeyboardEvent(event, false)}
         onKeyUp={(event) => handleOnKeyboardEvent(event, true)}
-        onFocus={() => setHasFocus(true)}
-        onBlur={() => setHasFocus(false)}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       />
     </Tooltip>
   );

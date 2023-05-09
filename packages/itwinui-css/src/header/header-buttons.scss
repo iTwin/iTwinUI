@@ -1,6 +1,8 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../side-navigation/side-navigation';
+@use '../mixins';
+
+$iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-brand {
   height: 100%;
@@ -12,7 +14,7 @@
   box-sizing: border-box;
 
   &:is(a, button, [role='button']) {
-    @include iui-focus;
+    @include mixins.iui-focus;
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: background-color var(--iui-duration-1) ease-out;
@@ -23,7 +25,7 @@
     }
 
     // #region resets for button
-    @include iui-reset;
+    @include mixins.iui-reset;
     font-family: inherit;
     background-color: unset;
     color: unset;
@@ -40,7 +42,7 @@
 }
 
 @mixin iui-header-brand-icon {
-  @include iui-icon-style('l');
+  @include mixins.iui-icon-style('l');
   margin: 0 $iui-side-navigation-icon-margins;
   fill: var(--iui-color-icon);
   will-change: transform;
@@ -116,8 +118,8 @@
 }
 
 @mixin iui-header-breadcrumb-button {
-  @include iui-reset;
-  @include iui-focus;
+  @include mixins.iui-reset;
+  @include mixins.iui-focus;
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
@@ -182,7 +184,7 @@
 }
 
 @mixin iui-header-breadcrumb-button-dropdown-icon {
-  @include iui-icon-style('m');
+  @include mixins.iui-icon-style('m');
   fill: currentColor;
   flex-shrink: 0;
   margin-right: calc(0px - var(--iui-size-2xs));
@@ -239,7 +241,7 @@
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  @include iui-icon-style('l');
+  @include mixins.iui-icon-style('l');
   background-color: var(--iui-color-background-backdrop);
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;

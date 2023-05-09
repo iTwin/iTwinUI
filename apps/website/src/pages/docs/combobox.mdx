@@ -1,24 +1,120 @@
 ---
 title: ComboBox
-description:
+description: A dropdown list that allows users to type a value to filter the options.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/ComboBox/ComboBox.d.ts'
-exampleCodeFile1: ComboBox.main.tsx
 thumbnail: ComboBox
 group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src={frontmatter.exampleCodeFile1} />
+<LiveExample src='ComboBox.main.tsx'>
+  <AllExamples.ComboBoxMainExample client:load />
+</LiveExample>
 
-ComboBox component that allows typing a value to filter the options in dropdown list.
+The combobox component is a [dropdown menu](dropdownmenu) that allows filtering. Values can be selected either using mouse clicks or using the Enter key.
 
-Values can be selected either using mouse clicks or using the Enter key.
+## Variants
+
+### Controlled
+
+The `value` property allows you to control of the selected value. If [multiselect](combobox#multiselect) is enabled, `value` will be an array of values.
+
+<LiveExample src='ComboBox.controlled.tsx'>
+  <AllExamples.ComboBoxControlledExample client:load />
+</LiveExample>
+
+### Messages
+
+Add a message below the combobox with the `message` property.
+
+<LiveExample src='ComboBox.message.tsx'>
+  <AllExamples.ComboBoxMessageExample client:load />
+</LiveExample>
+
+Use the `StatusMessage` component if you want a more complex message. In the example below, `StatusMessage` is used to add an icon to the message.
+
+<LiveExample src='ComboBox.messageIcon.tsx'>
+  <AllExamples.ComboBoxMessageIconExample client:load />
+</LiveExample>
+
+### Status
+
+Comboboxes can have different statuses applied to them. A status will give the combobox a colored border and an associated icon below. The available statuses are:
+
+- `positive`
+- `warning`
+- `negative`
+
+<LiveExample src='ComboBox.status.tsx'>
+  <AllExamples.ComboBoxStatusExample client:load />
+</LiveExample>
+
+### Multiselect
+
+Set the property `multiple` to true to allow users to select more than one value.
+
+<LiveExample src='ComboBox.multipleSelect.tsx'>
+  <AllExamples.ComboBoxMultipleSelectExample client:load />
+</LiveExample>
+
+### Virtualized
+
+If you expect the combobox to have a very long list of items, you can set `enableVirtualization` to true. This will use virtualization for the scrollable dropdown list.
+
+<LiveExample src='ComboBox.Virtualized.tsx'>
+  <AllExamples.ComboBoxVirtualizedExample client:load />
+</LiveExample>
+
+## Usage
+
+### Labels
+
+You can use a [Label](typography#label) component alongside the combobox to add a label. Note that passing the same id to the label as `htmlFor` and to the combobox as `id` in `inputProps` will allow users to open the combobox by clicking on the label.
+
+<LiveExample src='ComboBox.label.tsx'>
+  <AllExamples.ComboBoxLabelExample client:load />
+</LiveExample>
+
+### Disabled items
+
+To disable specific items in the list, add the `disabled` property to the options.
+
+<LiveExample src='ComboBox.disabled.tsx'>
+  <AllExamples.ComboBoxDisabledExample client:load />
+</LiveExample>
+
+### Loading
+
+If you expect to take a while to retrieve the options, you can show skeletons in the options list while the items are loading. Use `MenuItemSkeleton` to achieve this as in the example below.
+
+<LiveExample src='ComboBox.loading.tsx'>
+  <AllExamples.ComboBoxLoadingExample client:load />
+</LiveExample>
+
+### Custom renderer
+
+The property `itemRenderer` allows you to customize the combobox more specifically. Note that for keyboard navigation to work, the returned element should use the `id` provided by this function. The `isFocused` state is calculated using this `id` and can be used for specifying the focus styling. If a `MenuItem` is returned, then focus styling is automatically handled.
+
+<LiveExample src='ComboBox.custom.tsx'>
+  <AllExamples.ComboBoxCustomExample client:load />
+</LiveExample>
 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents
+  components={[
+    { title: 'Dropdown menu', url: 'dropdownmenu' },
+    { title: 'Label', url: 'typography#label' },
+  ]}
+/>

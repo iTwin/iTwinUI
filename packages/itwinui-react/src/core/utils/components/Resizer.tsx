@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getBoundedValue, getTranslateValues } from '../functions';
+import * as React from 'react';
+import { getBoundedValue, getTranslateValues } from '../functions/index.js';
 
 export type ResizerProps = {
   /**
@@ -69,10 +69,10 @@ export const Resizer = (props: ResizerProps) => {
     );
 
     const resizer = event.currentTarget.dataset.iuiResizer;
+    const ownerDocument = elementRef.current.ownerDocument || document;
 
-    const originalUserSelect =
-      elementRef.current.ownerDocument.body.style.userSelect;
-    elementRef.current.ownerDocument.body.style.userSelect = 'none';
+    const originalUserSelect = ownerDocument.body.style.userSelect;
+    ownerDocument.body.style.userSelect = 'none';
 
     const onResizePointerMove = (event: PointerEvent) => {
       if (!elementRef.current) {
@@ -88,15 +88,13 @@ export const Resizer = (props: ResizerProps) => {
       const clientX = getBoundedValue(
         event.clientX,
         containerRect?.left ?? 0,
-        containerRect?.right ??
-          elementRef.current.ownerDocument.documentElement.clientWidth ??
-          0,
+        containerRect?.right ?? ownerDocument.documentElement.clientWidth ?? 0,
       );
       const clientY = getBoundedValue(
         event.clientY,
         containerRect?.top ?? 0,
         containerRect?.bottom ??
-          elementRef.current.ownerDocument.documentElement.clientHeight ??
+          ownerDocument.documentElement.clientHeight ??
           0,
       );
 
@@ -182,17 +180,13 @@ export const Resizer = (props: ResizerProps) => {
       }
     };
 
-    elementRef.current.ownerDocument.addEventListener(
-      'pointermove',
-      onResizePointerMove,
-    );
-    elementRef.current.ownerDocument.addEventListener(
+    ownerDocument.addEventListener('pointermove', onResizePointerMove);
+    ownerDocument.addEventListener(
       'pointerup',
       () => {
-        document.removeEventListener('pointermove', onResizePointerMove);
+        ownerDocument.removeEventListener('pointermove', onResizePointerMove);
         if (elementRef.current) {
-          elementRef.current.ownerDocument.body.style.userSelect =
-            originalUserSelect;
+          ownerDocument.body.style.userSelect = originalUserSelect;
           isResizing.current = false;
           onResizeEnd?.({
             width,

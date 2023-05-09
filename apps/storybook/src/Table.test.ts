@@ -9,6 +9,7 @@ describe('Table', () => {
     'Column Manager',
     'Condensed',
     'Controlled State',
+    'Custom Filter',
     'Customized Columns',
     'Disabled Rows',
     'Draggable Columns',
@@ -29,7 +30,7 @@ describe('Table', () => {
     'Selectable Single',
     'Sortable',
     'Sticky Columns',
-    'With Manual Paginator',
+    'With Manual Paginator And Filter',
     'With Paginator',
     'Zebra Striped Rows',
     'Status And Cell Icons',
@@ -43,6 +44,14 @@ describe('Table', () => {
       switch (testName) {
         case 'Column Manager': {
           cy.get('.iui-slot .iui-button').click();
+          break;
+        }
+        case 'Condensed': {
+          cy.get('.iui-table-row-expander').first().click();
+          break;
+        }
+        case 'Custom Filter': {
+          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
           break;
         }
         case 'Customized Columns': {

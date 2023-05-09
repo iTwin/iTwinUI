@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CellProps, CellRendererProps, HeaderProps } from 'react-table';
-import { Checkbox } from '../../Checkbox';
-import { DefaultCell } from '../cells';
+import * as React from 'react';
+import type { CellProps, CellRendererProps, HeaderProps } from 'react-table';
+import { Checkbox } from '../../Checkbox/index.js';
+import { DefaultCell } from '../cells/index.js';
 
 export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';
 
@@ -25,17 +25,20 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
   props: {
     /** Function that returns whether row checkbox should be disabled. */
     isDisabled?: (rowData: T) => boolean;
+    density?: 'default' | 'condensed' | 'extra-condensed';
   } = {},
 ) => {
-  const { isDisabled } = props;
+  const { isDisabled, density } = props;
+  const densityWidth =
+    density === 'condensed' ? 42 : density === 'extra-condensed' ? 34 : 48;
   return {
     id: SELECTION_CELL_ID,
     disableResizing: true,
     disableGroupBy: true,
     disableReordering: true,
-    minWidth: 48,
-    width: 48,
-    maxWidth: 48,
+    minWidth: densityWidth,
+    width: densityWidth,
+    maxWidth: densityWidth,
     columnClassName: 'iui-slot',
     cellClassName: 'iui-slot',
     Header: ({

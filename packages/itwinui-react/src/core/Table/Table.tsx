@@ -2,42 +2,45 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   actions as TableActions,
-  CellProps,
-  HeaderGroup,
-  TableOptions,
-  Row,
-  TableState,
   useFlexLayout,
   useFilters,
   useRowSelect,
   useSortBy,
   useTable,
-  ActionType,
-  TableInstance,
   useExpanded,
   usePagination,
   useColumnOrder,
-  Column,
   useGlobalFilter,
 } from 'react-table';
-import { ProgressRadial } from '../ProgressIndicators';
+import type {
+  CellProps,
+  HeaderGroup,
+  TableOptions,
+  Row,
+  TableState,
+  ActionType,
+  TableInstance,
+  Column,
+} from 'react-table';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useTheme,
-  CommonProps,
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
   useIsomorphicLayoutEffect,
-} from '../utils';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/table.css';
-import { getCellStyle, getStickyStyle } from './utils';
-import { TableRowMemoized } from './TableRowMemoized';
-import { FilterToggle, TableFilterValue } from './filters';
-import { customFilterFunctions } from './filters/customFilterFunctions';
+import { getCellStyle, getStickyStyle } from './utils.js';
+import { TableRowMemoized } from './TableRowMemoized.js';
+import { FilterToggle } from './filters/index.js';
+import type { TableFilterValue } from './filters/index.js';
+import { customFilterFunctions } from './filters/customFilterFunctions.js';
 import {
   useExpanderCell,
   useSelectionCell,
@@ -47,7 +50,7 @@ import {
   useColumnDragAndDrop,
   useScrollToRow,
   useStickyColumns,
-} from './hooks';
+} from './hooks/index.js';
 import {
   onExpandHandler,
   onFilterHandler,
@@ -56,14 +59,22 @@ import {
   onSingleSelectHandler,
   onTableResizeEnd,
   onTableResizeStart,
-} from './actionHandlers';
-import VirtualScroll from '../utils/components/VirtualScroll';
-import { SELECTION_CELL_ID } from './columns';
+} from './actionHandlers/index.js';
+import VirtualScroll from '../utils/components/VirtualScroll.js';
+import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
+
+let didLogWarning = false;
+let isDev = false;
+
+// wrapping in try-catch because process might be undefined
+try {
+  isDev = process.env.NODE_ENV !== 'production';
+} catch {}
 
 export type TablePaginatorRendererProps = {
   /**
@@ -291,16 +302,11 @@ export type TableProps<
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
-// Original type for some reason is missing sub-columns
-type ColumnType<T extends Record<string, unknown> = Record<string, unknown>> =
-  Column<T> & {
-    columns: ColumnType[];
-  };
-const flattenColumns = (columns: ColumnType[]): ColumnType[] => {
-  const flatColumns: ColumnType[] = [];
+const flattenColumns = (columns: Column[]): Column[] => {
+  const flatColumns: Column[] = [];
   columns.forEach((column) => {
     flatColumns.push(column);
-    if (column.columns) {
+    if ('columns' in column) {
       flatColumns.push(...flattenColumns(column.columns));
     }
   });
@@ -412,7 +418,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const flatColumns = flattenColumns(columns as ColumnType[]);
+    const flatColumns = flattenColumns(columns as Column[]);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
 
@@ -575,7 +581,7 @@ export const Table = <
     useRowSelect,
     useSubRowSelection,
     useExpanderCell(subComponent, expanderCell, isRowDisabled),
-    useSelectionCell(isSelectable, selectionMode, isRowDisabled),
+    useSelectionCell(isSelectable, selectionMode, isRowDisabled, density),
     useColumnOrder,
     useColumnDragAndDrop(enableColumnReordering),
     useStickyColumns,
@@ -584,7 +590,7 @@ export const Table = <
   const {
     getTableProps,
     rows,
-    headerGroups,
+    headerGroups: _headerGroups,
     getTableBodyProps,
     prepareRow,
     state,
@@ -597,6 +603,19 @@ export const Table = <
     visibleColumns,
     setGlobalFilter,
   } = instance;
+
+  let headerGroups = _headerGroups;
+
+  if (columns.length === 1 && 'columns' in columns[0]) {
+    headerGroups = _headerGroups.slice(1);
+    if (isDev && !didLogWarning) {
+      console.warn(
+        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+      );
+      didLogWarning = true;
+    }
+  }
+
   const ariaDataAttributes = Object.entries(rest).reduce(
     (result, [key, value]) => {
       if (key.startsWith('data-') || key.startsWith('aria-')) {
@@ -685,7 +704,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns;
+    lastPassedColumns.current = columns as Column<T>[];
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
@@ -782,6 +801,7 @@ export const Table = <
           expanderCell={expanderCell}
           bodyRef={bodyRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
+          density={density}
         />
       );
     },
@@ -799,6 +819,7 @@ export const Table = <
       expanderCell,
       enableVirtualization,
       tableRowRef,
+      density,
     ],
   );
 

@@ -2,16 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useTheme } from '../../../utils';
-import {
-  FilterButtonBar,
-  FilterButtonBarTranslation,
-} from '../FilterButtonBar';
-import { BaseFilter } from '../BaseFilter';
-import { TableFilterProps } from '../types';
+import * as React from 'react';
+import { useTheme } from '../../../utils/index.js';
+import { FilterButtonBar } from '../FilterButtonBar.js';
+import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
+import { BaseFilter } from '../BaseFilter.js';
+import type { TableFilterProps } from '../types.js';
 import '@itwin/itwinui-css/css/table.css';
-import DatePickerInput from './DatePickerInput';
+import DatePickerInput from './DatePickerInput.js';
 
 export type DateRangeTranslation = {
   from: string;
@@ -88,6 +86,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   const [to, setTo] = React.useState<Date | undefined>(
     column.filterValue?.[1] ? new Date(column.filterValue?.[1]) : undefined,
   );
+
   const onToChange = React.useCallback((date?: Date) => {
     setTo((prevDate) => {
       if (prevDate || !date) {
@@ -106,6 +105,10 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
   }, []);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (event.key === 'Enter') {
       setFilter([from, to]);
     }
@@ -121,6 +124,8 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         parseInput={parseInput}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
+        selectedDate={to}
+        isFromOrTo='from'
         setFocus
       />
       <DatePickerInput
@@ -131,6 +136,8 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         parseInput={parseInput}
         onKeyDown={onKeyDown}
         placeholder={placeholder}
+        selectedDate={from}
+        isFromOrTo='to'
       />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}

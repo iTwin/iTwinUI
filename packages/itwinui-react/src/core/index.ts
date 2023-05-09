@@ -2,29 +2,32 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Alert } from './Alert';
-export type { AlertProps } from './Alert';
+export { Alert } from './Alert/index.js';
+export type { AlertProps } from './Alert/index.js';
 
-export { Avatar, UserIcon } from './Avatar';
+export { Avatar, UserIcon } from './Avatar/index.js';
 export type {
   AvatarProps,
   StatusTitles,
   AvatarStatus,
   UserIconProps,
   UserIconStatus,
-} from './Avatar';
+} from './Avatar/index.js';
 
-export { AvatarGroup, UserIconGroup } from './AvatarGroup';
-export type { AvatarGroupProps, UserIconGroupProps } from './AvatarGroup';
+export { AvatarGroup, UserIconGroup } from './AvatarGroup/index.js';
+export type {
+  AvatarGroupProps,
+  UserIconGroupProps,
+} from './AvatarGroup/index.js';
 
-export { Backdrop } from './Backdrop';
-export type { BackdropProps } from './Backdrop';
+export { Backdrop } from './Backdrop/index.js';
+export type { BackdropProps } from './Backdrop/index.js';
 
-export { Badge } from './Badge';
-export type { BadgeProps } from './Badge';
+export { Badge } from './Badge/index.js';
+export type { BadgeProps } from './Badge/index.js';
 
-export { Breadcrumbs } from './Breadcrumbs';
-export type { BreadcrumbsProps } from './Breadcrumbs';
+export { Breadcrumbs } from './Breadcrumbs/index.js';
+export type { BreadcrumbsProps } from './Breadcrumbs/index.js';
 
 export {
   Button,
@@ -32,23 +35,23 @@ export {
   IconButton,
   IdeasButton,
   SplitButton,
-} from './Buttons';
+} from './Buttons/index.js';
 export type {
   ButtonProps,
   DropdownButtonProps,
   IconButtonProps,
   IdeasButtonProps,
   SplitButtonProps,
-} from './Buttons';
+} from './Buttons/index.js';
 
-export { ButtonGroup } from './ButtonGroup';
-export type { ButtonGroupProps } from './ButtonGroup';
+export { ButtonGroup } from './ButtonGroup/index.js';
+export type { ButtonGroupProps } from './ButtonGroup/index.js';
 
-export { Carousel } from './Carousel';
-export type { CarouselProps } from './Carousel';
+export { Carousel } from './Carousel/index.js';
+export type { CarouselProps } from './Carousel/index.js';
 
-export { Checkbox } from './Checkbox';
-export type { CheckboxProps } from './Checkbox';
+export { Checkbox } from './Checkbox/index.js';
+export type { CheckboxProps } from './Checkbox/index.js';
 
 export {
   ColorPicker,
@@ -56,63 +59,104 @@ export {
   ColorBuilder,
   ColorInputPanel,
   ColorPalette,
-} from './ColorPicker';
+} from './ColorPicker/index.js';
 export type {
   ColorPickerProps,
   ColorSwatchProps,
   ColorBuilderProps,
   ColorInputPanelProps,
   ColorPaletteProps,
-} from './ColorPicker';
+} from './ColorPicker/index.js';
 
-export { ComboBox } from './ComboBox';
-export type { ComboBoxProps } from './ComboBox';
+export { ComboBox } from './ComboBox/index.js';
+export type { ComboBoxProps } from './ComboBox/index.js';
 
-export { DatePicker, generateLocalizedStrings } from './DatePicker';
-export type { DatePickerProps } from './DatePicker';
+export { DatePicker, generateLocalizedStrings } from './DatePicker/index.js';
+export type { DatePickerProps } from './DatePicker/index.js';
 
-export { Dialog } from './Dialog';
+export { Dialog } from './Dialog/index.js';
 export type {
   DialogProps,
   DialogButtonBarProps,
   DialogContentProps,
   DialogMainProps,
   DialogTitleBarProps,
-} from './Dialog';
+} from './Dialog/index.js';
 
-export { DropdownMenu } from './DropdownMenu';
-export type { DropdownMenuProps } from './DropdownMenu';
+export { DropdownMenu } from './DropdownMenu/index.js';
+export type { DropdownMenuProps } from './DropdownMenu/index.js';
 
-export { ErrorPage, NonIdealState } from './NonIdealState';
+export { ErrorPage, NonIdealState } from './NonIdealState/index.js';
 export type {
   ErrorPageProps,
   ErrorPageType,
   ErrorTypeTranslations,
   NonIdealStateProps,
-} from './NonIdealState';
+} from './NonIdealState/index.js';
 
-export { ExpandableBlock } from './ExpandableBlock';
-export type { ExpandableBlockProps } from './ExpandableBlock';
+export { ExpandableBlock } from './ExpandableBlock/index.js';
+export type { ExpandableBlockProps } from './ExpandableBlock/index.js';
 
-export { Fieldset } from './Fieldset';
-export type { FieldsetProps } from './Fieldset';
+export { Fieldset } from './Fieldset/index.js';
+export type { FieldsetProps } from './Fieldset/index.js';
 
-export { FileUpload, FileUploadTemplate } from './FileUpload';
-export type { FileUploadProps, FileUploadTemplateProps } from './FileUpload';
+export {
+  FileUpload,
+  FileUploadTemplate,
+  FileUploadCard,
+  FileEmptyCard,
+} from './FileUpload/index.js';
+export type {
+  FileUploadProps,
+  FileUploadTemplateProps,
+  FileUploadCardProps,
+  FileUploadCardIconProps,
+  FileUploadCardInfoProps,
+  FileUploadCardTitleProps,
+  FileUploadCardDescriptionProps,
+  FileUploadCardActionProps,
+  FileUploadCardInputLabelProps,
+  FileUploadCardInputProps,
+  FileEmptyCardProps,
+  FileEmptyCardIconProps,
+  FileEmptyCardTextProps,
+} from './FileUpload/index.js';
 
-export { Footer, defaultFooterElements } from './Footer';
-export type { FooterProps, FooterElement, TitleTranslations } from './Footer';
+export { Footer, defaultFooterElements } from './Footer/index.js';
+export type {
+  FooterProps,
+  FooterElement,
+  TitleTranslations,
+} from './Footer/index.js';
 
-export { Header, HeaderBreadcrumbs, HeaderButton, HeaderLogo } from './Header';
+export {
+  Header,
+  HeaderBreadcrumbs,
+  HeaderButton,
+  HeaderLogo,
+} from './Header/index.js';
 export type {
   HeaderProps,
   HeaderBreadcrumbsProps,
   HeaderButtonProps,
   HeaderLogoProps,
-} from './Header';
+} from './Header/index.js';
 
-export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs';
-export type { VerticalTabsProps, TabProps, HorizontalTabsProps } from './Tabs';
+export { List, ListItem } from './List/index.js';
+export type {
+  ListProps,
+  ListItemProps,
+  ListItemIconProps,
+  ListItemContentProps,
+  ListItemDescriptionProps,
+} from './List/index.js';
+
+export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
+export type {
+  VerticalTabsProps,
+  TabProps,
+  HorizontalTabsProps,
+} from './Tabs/index.js';
 
 export {
   InformationPanel,
@@ -120,32 +164,32 @@ export {
   InformationPanelHeader,
   InformationPanelBody,
   InformationPanelContent,
-} from './InformationPanel';
+} from './InformationPanel/index.js';
 export type {
   InformationPanelProps,
   InformationPanelWrapperProps,
   InformationPanelHeaderProps,
   InformationPanelBodyProps,
   InformationPanelContentProps,
-} from './InformationPanel';
+} from './InformationPanel/index.js';
 
-export { Input } from './Input';
-export type { InputProps } from './Input';
+export { Input } from './Input/index.js';
+export type { InputProps } from './Input/index.js';
 
-export { Label } from './Label';
-export type { LabelProps } from './Label';
+export { Label } from './Label/index.js';
+export type { LabelProps } from './Label/index.js';
 
-export { LabeledInput } from './LabeledInput';
-export type { LabeledInputProps } from './LabeledInput';
+export { LabeledInput } from './LabeledInput/index.js';
+export type { LabeledInputProps } from './LabeledInput/index.js';
 
-export { InputGroup } from './InputGroup';
-export type { InputGroupProps } from './InputGroup';
+export { InputGroup } from './InputGroup/index.js';
+export type { InputGroupProps } from './InputGroup/index.js';
 
-export { LabeledSelect } from './LabeledSelect';
-export type { LabeledSelectProps } from './LabeledSelect';
+export { LabeledSelect } from './LabeledSelect/index.js';
+export type { LabeledSelectProps } from './LabeledSelect/index.js';
 
-export { LabeledTextarea } from './LabeledTextarea';
-export type { LabeledTextareaProps } from './LabeledTextarea';
+export { LabeledTextarea } from './LabeledTextarea/index.js';
+export type { LabeledTextareaProps } from './LabeledTextarea/index.js';
 
 export {
   Menu,
@@ -153,69 +197,76 @@ export {
   MenuDivider,
   MenuExtraContent,
   MenuItemSkeleton,
-} from './Menu';
+} from './Menu/index.js';
 export type {
   MenuProps,
   MenuItemProps,
   MenuDividerProps,
   MenuExtraContentProps,
   MenuItemSkeletonProps,
-} from './Menu';
+} from './Menu/index.js';
 
-export { Modal, ModalButtonBar, ModalContent } from './Modal';
+export { Modal, ModalButtonBar, ModalContent } from './Modal/index.js';
 export type {
   ModalProps,
   ModalButtonBarProps,
   ModalContentProps,
-} from './Modal';
+} from './Modal/index.js';
 
-export { NotificationMarker } from './NotificationMarker';
-export type { NotificationMarkerProps } from './NotificationMarker';
+export { NotificationMarker } from './NotificationMarker/index.js';
+export type { NotificationMarkerProps } from './NotificationMarker/index.js';
 
-export { ProgressLinear, ProgressRadial } from './ProgressIndicators';
+export { ProgressLinear, ProgressRadial } from './ProgressIndicators/index.js';
 export type {
   ProgressLinearProps,
   ProgressRadialProps,
-} from './ProgressIndicators';
+} from './ProgressIndicators/index.js';
 
-export { Radio } from './Radio';
-export type { RadioProps } from './Radio';
+export { Radio } from './Radio/index.js';
+export type { RadioProps } from './Radio/index.js';
 
-export { RadioTile, RadioTileGroup } from './RadioTiles';
-export type { RadioTileGroupProps, RadioTileProps } from './RadioTiles';
+export { RadioTile, RadioTileGroup } from './RadioTiles/index.js';
+export type {
+  RadioTileGroupProps,
+  RadioTileProps,
+} from './RadioTiles/index.js';
 
-export { Select } from './Select';
+export { Select } from './Select/index.js';
 export type {
   SelectProps,
   SelectOption,
   ItemRendererProps,
   SelectValueChangeEvent,
-} from './Select';
+} from './Select/index.js';
 
 export {
   SideNavigation,
   SidenavButton,
   SidenavSubmenu,
   SidenavSubmenuHeader,
-} from './SideNavigation';
+} from './SideNavigation/index.js';
 export type {
   SideNavigationProps,
   SidenavButtonProps,
   SidenavSubmenuProps,
   SidenavSubmenuHeaderProps,
-} from './SideNavigation';
+} from './SideNavigation/index.js';
 
-export { SkipToContentLink } from './SkipToContentLink';
-export type { SkipToContentLinkProps } from './SkipToContentLink';
+export { SkipToContentLink } from './SkipToContentLink/index.js';
+export type { SkipToContentLinkProps } from './SkipToContentLink/index.js';
 
-export { Slider } from './Slider';
-export type { SliderProps } from './Slider';
+export { Slider } from './Slider/index.js';
+export type { SliderProps } from './Slider/index.js';
 
-export { StatusMessage } from './StatusMessage';
-export type { StatusMessageProps } from './StatusMessage';
+export { StatusMessage } from './StatusMessage/index.js';
+export type { StatusMessageProps } from './StatusMessage/index.js';
 
-export { Surface } from './Surface';
-export type { SurfaceProps } from './Surface';
+export { Surface } from './Surface/index.js';
+export type {
+  SurfaceProps,
+  SurfaceHeaderProps,
+  SurfaceBodyProps,
+} from './Surface/index.js';
 
 export {
   Table,
@@ -228,7 +279,7 @@ export {
   ActionColumn,
   ExpanderColumn,
   SelectionColumn,
-} from './Table';
+} from './Table/index.js';
 export type {
   TableProps,
   TableFilterProps,
@@ -239,40 +290,40 @@ export type {
   EditableCellProps,
   TablePaginatorProps,
   TablePaginatorRendererProps,
-} from './Table';
+} from './Table/index.js';
 
-export { Tag, TagContainer } from './Tag';
-export type { TagProps, TagContainerProps } from './Tag';
+export { Tag, TagContainer } from './Tag/index.js';
+export type { TagProps, TagContainerProps } from './Tag/index.js';
 
-export { Textarea } from './Textarea';
-export type { TextareaProps } from './Textarea';
+export { Textarea } from './Textarea/index.js';
+export type { TextareaProps } from './Textarea/index.js';
 
-export { Tile } from './Tile';
-export type { TileProps } from './Tile';
+export { Tile } from './Tile/index.js';
+export type { TileProps } from './Tile/index.js';
 
-export { TimePicker } from './TimePicker';
-export type { MeridiemType, TimePickerProps } from './TimePicker';
+export { TimePicker } from './TimePicker/index.js';
+export type { MeridiemType, TimePickerProps } from './TimePicker/index.js';
 
-export { default as toaster } from './Toast';
-export type { ToastOptions } from './Toast';
+export { default as toaster } from './Toast/index.js';
+export type { ToastOptions } from './Toast/index.js';
 
-export { ThemeProvider } from './ThemeProvider';
-export type { ThemeProviderProps } from './ThemeProvider';
+export { ThemeProvider } from './ThemeProvider/index.js';
+export type { ThemeProviderProps } from './ThemeProvider/index.js';
 
-export { ToggleSwitch } from './ToggleSwitch';
-export type { ToggleSwitchProps } from './ToggleSwitch';
+export { ToggleSwitch } from './ToggleSwitch/index.js';
+export type { ToggleSwitchProps } from './ToggleSwitch/index.js';
 
-export { Tooltip } from './Tooltip';
-export type { TooltipProps } from './Tooltip';
+export { Tooltip } from './Tooltip/index.js';
+export type { TooltipProps } from './Tooltip/index.js';
 
-export { Tree, TreeNode, TreeNodeExpander } from './Tree';
+export { Tree, TreeNode, TreeNodeExpander } from './Tree/index.js';
 export type {
   TreeProps,
   TreeNodeProps,
   TreeNodeExpanderProps,
   NodeData,
   NodeRenderProps,
-} from './Tree';
+} from './Tree/index.js';
 
 export {
   Anchor,
@@ -287,7 +338,7 @@ export {
   Kbd,
   KbdKeys,
   Text,
-} from './Typography';
+} from './Typography/index.js';
 export type {
   AnchorProps,
   BodyProps,
@@ -300,9 +351,9 @@ export type {
   CodeProps,
   KbdProps,
   TextProps,
-} from './Typography';
+} from './Typography/index.js';
 
-export { Wizard, Stepper, WorkflowDiagram } from './Stepper';
+export { Wizard, Stepper, WorkflowDiagram } from './Stepper/index.js';
 export type {
   WizardProps,
   StepProperties,
@@ -311,16 +362,20 @@ export type {
   StepperProps,
   StepperLocalization,
   WorkflowDiagramProps,
-} from './Stepper';
+} from './Stepper/index.js';
 
 export {
   getUserColor,
   useTheme,
   ColorValue,
   MiddleTextTruncation,
+  LinkBox,
+  LinkAction,
   Icon,
   Flex,
-} from './utils';
+  VisuallyHidden,
+  Divider,
+} from './utils/index.js';
 export type {
   ThemeType,
   MiddleTextTruncationProps,
@@ -328,4 +383,8 @@ export type {
   FlexProps,
   FlexItemProps,
   FlexSpacerProps,
-} from './utils';
+  DividerProps,
+  LinkBoxProps,
+  LinkActionProps,
+  VisuallyHiddenProps,
+} from './utils/index.js';

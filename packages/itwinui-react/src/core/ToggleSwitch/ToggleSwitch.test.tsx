@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore as SvgPlaceholder } from '../utils';
-import React from 'react';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { ToggleSwitch } from './ToggleSwitch';
+import { ToggleSwitch } from './ToggleSwitch.js';
 
 const assertBaseElements = (
   container: HTMLElement,
@@ -31,6 +31,18 @@ it('should render correctly in its most basic state', () => {
   expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
 });
 
+it('should render toggle with small size', () => {
+  const { container } = render(<ToggleSwitch size='small' />);
+
+  assertBaseElements(container);
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
+  expect(
+    container
+      .querySelector('.iui-toggle-switch-wrapper')
+      ?.getAttribute('data-iui-size'),
+  ).toBe('small');
+});
+
 it('should render checked toggle', () => {
   const { container } = render(<ToggleSwitch defaultChecked />);
 
@@ -50,6 +62,17 @@ it('should render toggle with icon', () => {
   assertBaseElements(container);
   expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
   expect(container.querySelector('.iui-toggle-switch-icon')).toBeTruthy();
+});
+
+it('should not allow icon setting when size is small', () => {
+  const { container } = render(
+    // @ts-expect-error: we don't allow icon setting in small toggle switch
+    <ToggleSwitch defaultChecked icon={<SvgPlaceholder />} size='small' />,
+  );
+
+  assertBaseElements(container);
+  expect(container.querySelector('.iui-toggle-switch-label')).toBeNull();
+  expect(container.querySelector('.iui-toggle-switch-icon')).toBeNull();
 });
 
 it('should render disabled toggle', () => {

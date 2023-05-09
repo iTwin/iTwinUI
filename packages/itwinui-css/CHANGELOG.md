@@ -1,5 +1,194 @@
 # Changelog
 
+## 1.10.3
+
+### Patch Changes
+
+- [#1245](https://github.com/iTwin/iTwinUI/pull/1245): Adjusted Checkbox so that its clickable target area is 24pxx24px by default (increased from 16x16) and 32x32 when used in a Table selection column.
+
+## 1.10.2
+
+### Patch Changes
+
+- [#1235](https://github.com/iTwin/iTwinUI/pull/1235): Changed the internal DOM structure of `LabeledInput` and `LabeledTextarea` to prefer explicit association over implicit. The `<label>` is now associated with the input using `htmlFor`/`id` and the container is a generic div.
+
+  This change improves accessibility, with no API changes and no effect on visuals.
+
+## 1.10.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+
+## 1.10.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
+## 1.9.0
+
+### Minor Changes
+
+- c8f6a8dd: Add surface component with included layout for header, body, and button footer.
+
+### Patch Changes
+
+- 3ad916b2: Allows alert messages to break when words are long.
+- f1e0d8d6: Allows toast messages to break when words are long.
+
+## 1.8.0
+
+### Minor Changes
+
+- 61f44293: Added new `isDateDisabled` prop to DatePicker. Accepts a function which takes a date and returns a boolean to indicate whether that date is not selectable.
+- 8bfd4fe9: Add predefined status variants for badge.
+- c581e9ed: Added a utils components `iui-link-box` and `iui-link-action` to provide better accessibility experience with actions on elements.
+  Updated Tile focus state when `iui-link-action` is present.
+
+  Usage example:
+
+  ```html
+  <div class="iui-link-box">
+    <a class="iui-link-action" href="/new-page">Test content</a>
+  </div>
+  ```
+
+### Patch Changes
+
+- 01d29fc1: Fixed an issue in Firefox where the right edge of the `Table` header was misaligned with the table body.
+- e2f547e1: Fixed a visual glitch in Tile thumbnail when hovering.
+- 028d4cd7: Updated actionable tile to have a more prominent hover effect.
+- 775933e3: The DOM order of Tile content has changed so that the name comes before the thumbnail region. This improves accessibility without affecting visuals.
+- 91486634: Modals and dialogs will have improved overflow behavior on smaller screen sizes with a lot of text.
+- 6f99039c: Fixed an issue with stepper when the last item is active.
+- 17d4fffb: Omit `border-radius` on adjacent active menu items.
+
+## 1.7.0
+
+### Minor Changes
+
+- 85af52c6: Add small size toggle switch option using `size` prop as follows: `<ToggleSwitch size='small' />`
+- 1b541699: Added a new FileUploadCard component which serves as a default UI for when a single file is uploaded. This can also be used as a child of FileUpload
+
+  ```jsx
+  <FileUploadCard />
+  ```
+
+  ```jsx
+  const [files, setFiles] = React.useState<File[]>([]);
+
+  <FileUpload
+    onFileDropped={(files) => {
+      setFiles(files);
+    }}
+  >
+    <FileUploadCard files={files} onFilesChange={(files) => setFiles(files)} />
+  </FileUpload>
+  ```
+
+### Patch Changes
+
+- 62c4a6da: Fixed issue where checkbox / radio border appeared above `:focus` outline.
+
+## 1.6.0
+
+### Minor Changes
+
+- 2397ee0c: All styles will now be scoped and always take preference over previous major versions (`@itwin/itwinui-react`@`1.x`).
+
+  This enables incremental adoption of `@itwin/itwinui-react`@`2.x` for some parts of the app, while still using `1.x` for the rest of the app.
+
+  To use this feature, make sure that all parts that use v1 are updated to `@itwin/itwinui-css@0.63.2`, and then wrap the v2 parts in `ThemeProvider`:
+
+  ```html
+  <body>
+    <!-- rest of your app (v1) -->
+
+    <ThemeProvider>
+      <!-- new UI built using v2 -->
+    </ThemeProvider>
+  </body>
+  ```
+
+  For packages, there is a new theme `'inherit'`. Setting this enables scoping without forcing the default light theme. When the app eventually updates to v2, it can use its own `ThemeProvider` with any theme, and the components inside your package will inherit the app's theme.
+
+  ```html
+  <body>
+    <!-- rest of the app (maybe v1) -->
+
+    <!-- inside your package ⬇️ -->
+    <ThemeProvider theme='inherit'>
+      <!-- v2 components inside package -->
+    </ThemeProvider>
+  </bod
+  ```
+
+## 1.5.5
+
+### Patch Changes
+
+- b2831ddb: Fix expandable rows not displaying when height is set on table and `overflow-y` is present.
+
+## 1.5.4
+
+### Patch Changes
+
+- e1efed3b: Fix Table status icon fill not overriding svg's fill attribute.
+
+## 1.5.3
+
+### Patch Changes
+
+- 27c23b31: Tooltip's background now has a blur filter to make text more readable.
+
+## 1.5.2
+
+### Patch Changes
+
+- 2845b4f4: Fixed a bug where inline elements (e.g. links) were getting disrupted when using inside a checkbox label.
+
+## 1.5.1
+
+### Patch Changes
+
+- d3844a07: Dialog content won't overflow off smaller screen sizes when the content is too big
+
+## 1.5.0
+
+### Minor Changes
+
+- 06476ada: Added new `Flex` utility component and optional `Flex.Spacer`/`Flex.Item` subcomponents to make it easier to work with CSS flexbox and use iTwinUI design tokens for gap.
+
+  ```jsx
+  <Flex gap='xl' justifyContent='center'>
+    <div>...</div>
+    <div>...</div>
+  </Flex>
+  ```
+
+  ```jsx
+  <Flex>
+    <Flex.Item>...</Flex.Item>
+    <Flex.Spacer />
+    <Flex.Item>...</Flex.Item>
+    <Flex.Item>...</Flex.Item>
+  </Flex>
+  ```
+
+### Patch Changes
+
+- fd2e5239: Alert: close button's focus color now matches the status color.
+- a1a8c74d: Resizable dialog now has a min height set so that it always includes the button bar.
+
 ## 1.4.0
 
 ### Minor Changes
