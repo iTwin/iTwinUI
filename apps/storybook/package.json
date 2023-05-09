@@ -18,8 +18,8 @@
     "@types/react": "^18.0.2",
     "@types/react-dom": "^18.0.2",
     "configs": "*",
-    "cypress": "9.6.0",
-    "cypress-image-diff-js": "1.18.1",
+    "cypress": "12.11.0",
+    "cypress-image-diff-js": "1.23.0",
     "dotenv-cli": "7.0.0",
     "eslint": "^8.14.0",
     "eslint-config-prettier": "^8.5.0",
@@ -39,7 +39,6 @@
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
     "approve": "cypress-image-diff -u",
-    "push-docker": "node scripts/push-docker.js",
     "cy": "cypress open",
     "cy:run": "cypress run",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf storybook-static"
