@@ -21,7 +21,7 @@ export default {
 export const Informational: Story<AlertProps> = (args) => {
   return (
     <Alert type='informational' {...args}>
-      <Alert.Icon type='informational' />
+      <Alert.Icon />
       <Alert.Message>
         This is an informational message.
         <Alert.Action onClick={() => action('Clicked more info!')}>
@@ -41,7 +41,7 @@ Informational.args = {
 export const Positive: Story<AlertProps> = (args) => {
   return (
     <Alert type='positive' {...args}>
-      <Alert.Icon type='positive' />
+      <Alert.Icon />
       <Alert.Message>
         This is a positive message.
         <Alert.Action onClick={() => action('Clicked more info!')}>
@@ -61,7 +61,7 @@ Positive.args = {
 export const Warning: Story<AlertProps> = (args) => {
   return (
     <Alert type='warning' {...args}>
-      <Alert.Icon type='warning' />
+      <Alert.Icon />
       <Alert.Message>
         This is a warning message.
         <Alert.Action onClick={() => action('Clicked more info!')}>
@@ -81,7 +81,7 @@ Warning.args = {
 export const Negative: Story<AlertProps> = (args) => {
   return (
     <Alert type='negative' {...args}>
-      <Alert.Icon type='negative' />
+      <Alert.Icon />
       <Alert.Message>
         This is a negative message.
         <Alert.Action onClick={() => action('Clicked more info!')}>
@@ -109,7 +109,7 @@ export const Sticky: Story<AlertProps> = (args) => {
       }}
     >
       <Alert type='informational' isSticky={true} {...args}>
-        <Alert.Icon type='informational' />
+        <Alert.Icon />
         <Alert.Message>
           This is sticky!
           <Alert.Action onClick={() => action('Clicked more info!')}>
@@ -171,7 +171,7 @@ Sticky.args = {
 export const Empty: Story<AlertProps> = (args) => {
   return (
     <Alert type='informational' {...args}>
-      <Alert.Icon type='informational' />
+      <Alert.Icon />
       <Alert.Message>This is an empty info message.</Alert.Message>
     </Alert>
   );

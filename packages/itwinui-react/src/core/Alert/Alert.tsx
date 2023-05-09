@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-types */
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
@@ -11,12 +10,23 @@ import {
   StatusIconMap,
   SvgCloseSmall,
   Icon,
+  useSafeContext,
 } from '../utils/index.js';
 import type {
   CommonProps,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../utils/props.js';
+
+const AlertContext = React.createContext<
+  | {
+      /**
+       * Type of the alert.
+       */
+      type: 'positive' | 'warning' | 'negative' | 'informational';
+    }
+  | undefined
+>(undefined);
 
 // ----------------------------------------------------------------------------
 // Alert component
@@ -60,7 +70,7 @@ const AlertComponent = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {children}
+      <AlertContext.Provider value={{ type }}>{children}</AlertContext.Provider>
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
@@ -68,17 +78,14 @@ const AlertComponent = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // Alert.Icon component
 
-type AlertIconOwnProps = {
-  /**
-   * Type of the alert icon.
-   */
-  type?: 'positive' | 'warning' | 'negative' | 'informational';
-};
+type AlertIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'svg', children, className, type, ...rest } = props;
+  const { as: Element = 'svg', children, className, ...rest } = props;
 
-  if (type) {
+  const { type } = useSafeContext(AlertContext);
+
+  if (!children) {
     const StatusIcon = StatusIconMap[type];
     return (
       <StatusIcon
@@ -99,7 +106,7 @@ const AlertIcon = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // Alert.Message component
 
-type AlertMessageOwnProps = {};
+type AlertMessageOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertMessage = React.forwardRef((props, ref) => {
   const { as: Element = 'span', children, className, ...rest } = props;
@@ -114,7 +121,7 @@ const AlertMessage = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // Alert.Action component
 
-type AlertActionOwnProps = {};
+type AlertActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertAction = React.forwardRef((props, ref) => {
   const { as: Element = 'a', children, className, ...rest } = props;
@@ -129,7 +136,7 @@ const AlertAction = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
 
-type AlertCloseButtonOwnProps = {};
+type AlertCloseButtonOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertCloseButton = React.forwardRef((props, ref) => {
   const { as: Element = 'button', children, className, ...rest } = props;
@@ -159,7 +166,7 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
  *  <Alert.Message>This is an alert.</Alert.Message>
  * </Alert>
  * <Alert type='informational'>
- *  <Alert.Icon type='informational' />
+ *  <Alert.Icon />
  *  <Alert.Message>This is an informational alert.</Alert.Message>
  * </Alert>
  * <Alert type='positive'>

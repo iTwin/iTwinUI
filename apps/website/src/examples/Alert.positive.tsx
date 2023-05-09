@@ -8,7 +8,7 @@ import { Alert } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Alert type='positive' style={{ minWidth: 'min(100%, 350px)' }}>
-      <Alert.Icon type='positive' />
+      <Alert.Icon />
       <Alert.Message>
         This is a positive alert
         <Alert.Action onClick={() => console.log('Clicked more info!')}>Learn more</Alert.Action>

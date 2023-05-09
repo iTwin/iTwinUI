@@ -83,7 +83,7 @@ it('renders sticky alert correctly', () => {
     const closeMock = jest.fn();
     const { container, getByText } = render(
       <Alert type={type}>
-        <Alert.Icon type={type} />
+        <Alert.Icon />
         <Alert.Message>This is an alert.</Alert.Message>
         <Alert.CloseButton onClick={closeMock} />
       </Alert>,

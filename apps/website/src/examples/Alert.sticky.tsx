@@ -9,7 +9,7 @@ export default () => {
   return (
     <div>
       <Alert isSticky>
-        <Alert.Icon type='informational' />
+        <Alert.Icon />
         <Alert.Message>
           This is a sticky alert
           <Alert.Action onClick={() => console.log('Clicked more info!')}>Learn more</Alert.Action>
