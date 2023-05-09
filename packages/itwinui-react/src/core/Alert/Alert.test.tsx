@@ -20,7 +20,7 @@ it('renders correctly in its default state', () => {
   expect(message).toBeTruthy();
   expect(message.querySelector('a')).toBeNull();
   expect(message.textContent).toBe('This is an alert.');
-  expect(container.querySelector('button > .iui-alert-button-icon')).toBeNull();
+  expect(container.querySelector('button > .iui-svg-icon')).toBeNull();
 });
 
 it('renders clickable text with href correctly', () => {
@@ -96,7 +96,7 @@ it('renders sticky alert correctly', () => {
       container.querySelector('.iui-alert-message > .iui-alert-link'),
     ).toBeNull();
     const close = container.querySelector(
-      'button > .iui-alert-button-icon',
+      'button > .iui-svg-icon',
     ) as HTMLElement;
     expect(close).toBeTruthy();
     fireEvent.click(close);

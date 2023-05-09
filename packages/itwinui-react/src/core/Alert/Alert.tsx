@@ -19,6 +19,53 @@ import type {
 } from '../utils/props.js';
 
 // ----------------------------------------------------------------------------
+// Alert component
+
+type AlertOwnProps = {
+  /**
+   * Type of the alert.
+   * @default 'informational'
+   */
+  type?: 'positive' | 'warning' | 'negative' | 'informational';
+  /**
+   * Stick the alert to the top.
+   * @default false
+   */
+  isSticky?: boolean;
+  /**
+   * Alert message text.
+   */
+  children: React.ReactNode;
+} & Omit<CommonProps, 'title'>;
+
+const AlertComponent = React.forwardRef((props, ref) => {
+  const {
+    as: Element = 'div',
+    children,
+    className,
+    type = 'informational',
+    style,
+    isSticky = false,
+    ...rest
+  } = props;
+
+  useTheme();
+
+  return (
+    <Element
+      className={cx('iui-alert', className)}
+      data-iui-status={type}
+      data-iui-variant={isSticky ? 'sticky' : undefined}
+      style={style}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
+
+// ----------------------------------------------------------------------------
 // Alert.Icon component
 
 type AlertIconOwnProps = {
@@ -105,54 +152,6 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'button', AlertCloseButtonOwnProps>;
 
-// ----------------------------------------------------------------------------
-// Alert component
-
-type AlertOwnProps = {
-  /**
-   * Type of the alert.
-   * @default 'informational'
-   */
-  type?: 'positive' | 'warning' | 'negative' | 'informational';
-  /**
-   * Stick the alert to the top.
-   * @default false
-   */
-  isSticky?: boolean;
-  /**
-   * Alert message text.
-   */
-  children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
-
-export const AlertComponent = React.forwardRef(
-  (props: AlertProps, ref: React.RefObject<HTMLDivElement>) => {
-    const {
-      children,
-      className,
-      type = 'informational',
-      style,
-      isSticky = false,
-      ...rest
-    } = props;
-
-    useTheme();
-
-    return (
-      <div
-        className={cx('iui-alert', className)}
-        data-iui-status={type}
-        data-iui-variant={isSticky ? 'sticky' : undefined}
-        style={style}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </div>
-    );
-  },
-) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
-
 /**
  * A small box to quickly grab user attention and communicate a brief message
  * @example
@@ -196,6 +195,8 @@ export const Alert = Object.assign(AlertComponent, {
   CloseButton: AlertCloseButton,
 });
 
+export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;
+
 export type AlertIconProps = PolymorphicComponentProps<
   'svg',
   AlertIconOwnProps
@@ -215,7 +216,5 @@ export type AlertCloseButtonProps = PolymorphicComponentProps<
   'button',
   AlertCloseButtonOwnProps
 >;
-
-export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;
 
 export default Alert;
