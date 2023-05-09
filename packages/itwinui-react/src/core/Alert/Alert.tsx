@@ -6,7 +6,12 @@
 import cx from 'classnames';
 import * as React from 'react';
 import '@itwin/itwinui-css/css/alert.css';
-import { useTheme, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
+import {
+  useTheme,
+  StatusIconMap,
+  SvgCloseSmall,
+  Icon,
+} from '../utils/index.js';
 import type {
   CommonProps,
   PolymorphicComponentProps,
@@ -82,6 +87,7 @@ type AlertCloseButtonOwnProps = {};
 const AlertCloseButton = React.forwardRef((props, ref) => {
   const { as: Element = 'button', children, className, ...rest } = props;
 
+  console.log('HasChildren?: ', children ? true : false);
   return (
     <Element
       aria-label='Close'
@@ -90,30 +96,14 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {children ?? <Alert.CloseButtonIcon />}
+      {children ?? (
+        <Icon>
+          <SvgCloseSmall />
+        </Icon>
+      )}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'button', AlertCloseButtonOwnProps>;
-
-// ----------------------------------------------------------------------------
-// Alert.CloseButtonIcon component
-
-type AlertCloseButtonIconOwnProps = {};
-
-const AlertCloseButtonIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'span', children, className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-alert-button-icon', className)}
-      ref={ref}
-      aria-hidden
-      {...rest}
-    >
-      {children ?? <SvgCloseSmall />}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'span', AlertCloseButtonIconOwnProps>;
 
 // ----------------------------------------------------------------------------
 // Alert component
@@ -182,9 +172,9 @@ export const AlertComponent = React.forwardRef(
  *    <Alert.ClickableText>This is clickable text.</Alert.ClickableText>
  *  </Alert.Message>
  *  <Alert.CloseButton onClick={action('Close!')}>
- *    <Alert.CloseButtonIcon>
+ *    <Icon>
  *      <SvgCollapse />
- *    </Alert.CloseButtonIcon>
+ *    </Icon>
  *  </Alert.CloseButton>
  */
 export const Alert = Object.assign(AlertComponent, {
@@ -204,10 +194,6 @@ export const Alert = Object.assign(AlertComponent, {
    * 	Alert close button subcomponent
    */
   CloseButton: AlertCloseButton,
-  /**
-   * 	Alert close button subcomponent
-   */
-  CloseButtonIcon: AlertCloseButtonIcon,
 });
 
 export type AlertIconProps = PolymorphicComponentProps<
@@ -228,11 +214,6 @@ export type AlertClickableTextProps = PolymorphicComponentProps<
 export type AlertCloseButtonProps = PolymorphicComponentProps<
   'button',
   AlertCloseButtonOwnProps
->;
-
-export type AlertCloseButtonIconProps = PolymorphicComponentProps<
-  'span',
-  AlertCloseButtonIconOwnProps
 >;
 
 export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;

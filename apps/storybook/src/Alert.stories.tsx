@@ -5,8 +5,8 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Alert, AlertProps } from '@itwin/itwinui-react';
-import { SvgCollapse, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
+import { Alert, AlertProps, Icon } from '@itwin/itwinui-react';
+import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Alert',
@@ -190,9 +190,9 @@ export const CustomIcon: Story<AlertProps> = (args) => {
       </Alert.Icon>
       <Alert.Message>This is an info message with a custom icon.</Alert.Message>
       <Alert.CloseButton onClick={action('Close!')}>
-        <Alert.CloseButtonIcon>
-          <SvgCollapse />
-        </Alert.CloseButtonIcon>
+        <Icon>
+          <SvgPlaceholder />
+        </Icon>
       </Alert.CloseButton>
     </Alert>
   );
