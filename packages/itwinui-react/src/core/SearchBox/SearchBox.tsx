@@ -164,9 +164,10 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
             </SearchBoxCollapsedState>
 
             <SearchBoxExpandedState>
+              <SearchBoxIcon />
               <SearchBoxInput {...inputProps} />
 
-              {expandable ? <SearchBoxCollapseButton /> : <SearchBoxIcon />}
+              {expandable ? <SearchBoxCollapseButton /> : null}
             </SearchBoxExpandedState>
           </>
         )}
