@@ -21,7 +21,51 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     overflow-y: overlay;
     --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
   }
+
+  &.iui-flat {
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+  }
 }
+
+// @mixin iui-list-menu {
+//   @include iui-menu;
+//   list-style-type: none;
+//   margin: 0;
+//   padding: 0;
+//   max-height: var(--iui-menu-max-height);
+
+//   .iui-header-menu-icon {
+//     margin: 0 var(--iui-size-2xs);
+//   }
+
+//   div.iui-header-menu-icon {
+//     @include iui-icon-style('l');
+//     margin: 0;
+//     border-radius: var(--iui-border-radius-1);
+//     box-shadow: inset 0 0 0 2px hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
+//   }
+
+//   &.iui-scroll {
+//     overflow-y: auto;
+//     overflow-y: overlay;
+//     --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
+//   }
+// }
+
+// @mixin iui-menu-item {
+//   @include iui-menu-item;
+
+//   .iui-content {
+//     &.iui-multilevel-selected {
+//       text-align: end;
+//       flex-shrink: 0;
+//       max-width: 70%;
+//       margin-left: var(--iui-size-xs);
+//     }
+//   }
+// }
 
 @mixin iui-header-menu-icon {
   margin: 0 var(--iui-size-2xs);
@@ -47,6 +91,13 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   border-radius: var(--iui-border-radius-1);
   list-style-type: none;
   position: relative;
+
+  .iui-content.iui-multilevel-selected {
+    text-align: end;
+    flex-shrink: 0;
+    max-width: 70%;
+    margin-left: var(--iui-size-xs);
+  }
 
   + #{&} {
     margin-block-start: -1px;
@@ -185,5 +236,29 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   svg {
     @include mixins.iui-icon-style('m');
     fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
+  }
+}
+
+@mixin iui-multilevel {
+  @include iui-menu;
+
+  .iui-menu {
+    border: none;
+    box-shadow: none;
+  }
+
+  .iui-multilevel-header {
+    @include iui-menu-item;
+    border-bottom: 1px solid var(--iui-surface-border-color);
+    border-radius: 0;
+
+    .iui-content {
+      @include iui-menu-item-content;
+    }
+
+    &:focus,
+    &.iui-focused {
+      border-radius: var(--iui-border-radius-1);
+    }
   }
 }
