@@ -29,9 +29,9 @@ it('renders clickable text with href correctly', () => {
     <Alert>
       <Alert.Message>
         This is an alert.
-        <Alert.ClickableText href={mockHref} className={'my-link'}>
+        <Alert.Action href={mockHref} className={'my-link'}>
           I am a clickable text
-        </Alert.ClickableText>
+        </Alert.Action>
       </Alert.Message>
     </Alert>,
   );

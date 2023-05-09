@@ -24,9 +24,9 @@ export const Informational: Story<AlertProps> = (args) => {
       <Alert.Icon type='informational' />
       <Alert.Message>
         This is an informational message.
-        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => action('Clicked more info!')}>
           More Info.
-        </Alert.ClickableText>
+        </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
@@ -44,9 +44,9 @@ export const Positive: Story<AlertProps> = (args) => {
       <Alert.Icon type='positive' />
       <Alert.Message>
         This is a positive message.
-        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => action('Clicked more info!')}>
           More Info.
-        </Alert.ClickableText>
+        </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
@@ -64,9 +64,9 @@ export const Warning: Story<AlertProps> = (args) => {
       <Alert.Icon type='warning' />
       <Alert.Message>
         This is a warning message.
-        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => action('Clicked more info!')}>
           More Info.
-        </Alert.ClickableText>
+        </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
@@ -84,9 +84,9 @@ export const Negative: Story<AlertProps> = (args) => {
       <Alert.Icon type='negative' />
       <Alert.Message>
         This is a negative message.
-        <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => action('Clicked more info!')}>
           More Info.
-        </Alert.ClickableText>
+        </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
     </Alert>
@@ -112,9 +112,9 @@ export const Sticky: Story<AlertProps> = (args) => {
         <Alert.Icon type='informational' />
         <Alert.Message>
           This is sticky!
-          <Alert.ClickableText onClick={() => action('Clicked more info!')}>
+          <Alert.Action onClick={() => action('Clicked more info!')}>
             More Info.
-          </Alert.ClickableText>
+          </Alert.Action>
         </Alert.Message>
         <Alert.CloseButton onClick={action('Close!')} />
       </Alert>

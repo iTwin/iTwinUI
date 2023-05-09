@@ -112,11 +112,11 @@ const AlertMessage = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'span', AlertMessageOwnProps>;
 
 // ----------------------------------------------------------------------------
-// Alert.ClickableText component
+// Alert.Action component
 
-type AlertClickableTextOwnProps = {};
+type AlertActionOwnProps = {};
 
-const AlertClickableText = React.forwardRef((props, ref) => {
+const AlertAction = React.forwardRef((props, ref) => {
   const { as: Element = 'a', children, className, ...rest } = props;
 
   return (
@@ -124,7 +124,7 @@ const AlertClickableText = React.forwardRef((props, ref) => {
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'a', AlertClickableTextOwnProps>;
+}) as PolymorphicForwardRefComponent<'a', AlertActionOwnProps>;
 
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
@@ -168,7 +168,7 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
  *  </Alert.Icon>
  *  <Alert.Message>
  *    This is an alert.
- *    <Alert.ClickableText>This is clickable text.</Alert.ClickableText>
+ *    <Alert.Action>This is clickable text.</Alert.Action>
  *  </Alert.Message>
  *  <Alert.CloseButton onClick={action('Close!')}>
  *    <Icon>
@@ -186,9 +186,9 @@ export const Alert = Object.assign(AlertComponent, {
    */
   Message: AlertMessage,
   /**
-   * 	Alert clickable text subcomponent for the link you want to provide.
+   * 	Alert action subcomponent for the link you want to provide.
    */
-  ClickableText: AlertClickableText,
+  Action: AlertAction,
   /**
    * 	Alert close button subcomponent
    */
@@ -207,9 +207,9 @@ export type AlertMessageProps = PolymorphicComponentProps<
   AlertMessageOwnProps
 >;
 
-export type AlertClickableTextProps = PolymorphicComponentProps<
+export type AlertActionProps = PolymorphicComponentProps<
   'a',
-  AlertClickableTextOwnProps
+  AlertActionOwnProps
 >;
 
 export type AlertCloseButtonProps = PolymorphicComponentProps<

@@ -12,9 +12,7 @@ export default () => {
         <Alert.Icon type='informational' />
         <Alert.Message>
           This is a sticky alert
-          <Alert.ClickableText onClick={() => console.log('Clicked more info!')}>
-            Learn more
-          </Alert.ClickableText>
+          <Alert.Action onClick={() => console.log('Clicked more info!')}>Learn more</Alert.Action>
         </Alert.Message>
         <Alert.CloseButton onClick={() => console.log('CLOSED')} />
       </Alert>
