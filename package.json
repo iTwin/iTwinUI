@@ -34,7 +34,6 @@
     "prepare": "husky install",
     "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
-    "push-docker:react": "yarn workspace storybook push-docker",
     "createComponent": "node scripts/createComponent.js",
     "approve:css": "yarn workspace @itwin/itwinui-css approve",
     "approve:react": "yarn workspace storybook approve",
