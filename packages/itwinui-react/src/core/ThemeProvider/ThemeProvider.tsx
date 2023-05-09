@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useItwinui,
+  useGlobals,
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
@@ -168,7 +168,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
     themeOptions?.applyBackground ??
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
-  useItwinui();
+  useGlobals();
 
   return (
     <Element

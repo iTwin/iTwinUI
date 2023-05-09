@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useItwinui } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { Button } from '../../Buttons/index.js';
 
@@ -56,7 +56,7 @@ export const FilterButtonBar = (props: FilterButtonBarProps) => {
 
   const translatedStrings = { ...defaultStrings, ...translatedLabels };
 
-  useItwinui();
+  useGlobals();
 
   return (
     <div className={cx('iui-button-bar', className)} style={style} id={id}>

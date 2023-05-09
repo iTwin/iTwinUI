@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/blockquote.css';
 
 export type BlockquoteProps = {
@@ -26,7 +26,7 @@ export const Blockquote = React.forwardRef(
   (props: BlockquoteProps, ref: React.RefObject<HTMLQuoteElement>) => {
     const { className, children, footer, ...rest } = props;
 
-    useItwinui();
+    useGlobals();
 
     return (
       <blockquote

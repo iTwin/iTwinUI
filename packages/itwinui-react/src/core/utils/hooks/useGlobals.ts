@@ -6,11 +6,11 @@ import * as React from 'react';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 
-export const useItwinui = () => {
+export const useGlobals = () => {
   useCorrectRootFontSize();
 };
 
-export default useItwinui;
+export default useGlobals;
 
 let didLogWarning = false;
 let isDev = false;

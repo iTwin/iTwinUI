@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
 
@@ -21,7 +21,7 @@ export type SelectTagProps = {
  */
 export const SelectTag = (props: SelectTagProps) => {
   const { className, label, ...rest } = props;
-  useItwinui();
+  useGlobals();
 
   return (
     <span className={cx('iui-select-tag', className)} {...rest}>

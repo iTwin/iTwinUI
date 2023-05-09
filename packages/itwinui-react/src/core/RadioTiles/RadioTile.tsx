@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useItwinui } from '../utils/index.js';
+import { useMergedRefs, useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/radio-tile.css';
 
 export type RadioTileProps = {
@@ -44,7 +44,7 @@ export const RadioTile = React.forwardRef(
       ...rest
     } = props;
 
-    useItwinui();
+    useGlobals();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

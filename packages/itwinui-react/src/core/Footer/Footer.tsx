@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { StylingProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/footer.css';
 import { FooterItem } from './FooterItem.js';
@@ -113,7 +113,7 @@ export const Footer = Object.assign(
     const { children, customElements, translatedTitles, className, ...rest } =
       props;
 
-    useItwinui();
+    useGlobals();
 
     const titles = { ...footerTranslations, ...translatedTitles };
     const translatedElements = defaultFooterElements.map((element) => {

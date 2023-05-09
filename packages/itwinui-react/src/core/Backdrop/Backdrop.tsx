@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/backdrop.css';
 
 export type BackdropProps = {
@@ -18,7 +18,7 @@ export type BackdropProps = {
 export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
   (props, ref) => {
     const { isVisible = true, className, ...rest } = props;
-    useItwinui();
+    useGlobals();
     return (
       <div
         className={cx(

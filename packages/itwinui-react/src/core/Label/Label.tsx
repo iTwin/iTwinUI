@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 
 type LabelOwnProps<T extends React.ElementType = 'label'> = {
@@ -50,7 +50,7 @@ export const Label = <T extends React.ElementType = 'label'>(
     ...rest
   } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <Element

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useItwinui,
+  useGlobals,
   isSoftBackground,
   SoftBackgrounds,
 } from '../utils/index.js';
@@ -66,7 +66,7 @@ export type BadgeProps = {
 export const Badge = (props: BadgeProps) => {
   const { backgroundColor, style, className, children, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   // choosing 'primary' status should result in data-iui-status equaling 'informational'
   const reducedBackgroundColor =

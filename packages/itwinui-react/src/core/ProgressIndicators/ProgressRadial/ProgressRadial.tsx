@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useItwinui,
+  useGlobals,
   SvgCheckmarkSmall,
   SvgImportantSmall,
 } from '../../utils/index.js';
@@ -66,7 +66,7 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
     ...rest
   } = props;
 
-  useItwinui();
+  useGlobals();
 
   const statusMap = {
     negative: <SvgImportantSmall aria-hidden />,

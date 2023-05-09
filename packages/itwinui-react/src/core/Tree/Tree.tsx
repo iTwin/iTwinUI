@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  useItwinui,
+  useGlobals,
   getFocusableElements,
   useVirtualization,
   mergeRefs,
@@ -163,7 +163,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     style,
     ...rest
   } = props;
-  useItwinui();
+  useGlobals();
 
   const treeRef = React.useRef<HTMLUListElement>(null);
 

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useItwinui,
+  useGlobals,
   WithCSSTransition,
   SvgChevronRight,
 } from '../utils/index.js';
@@ -91,7 +91,7 @@ export const SideNavigation = (props: SideNavigationProps) => {
     ...rest
   } = props;
 
-  useItwinui();
+  useGlobals();
 
   const [_isExpanded, _setIsExpanded] = React.useState(isExpanded);
   React.useEffect(() => {

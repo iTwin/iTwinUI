@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import {
-  useItwinui,
+  useGlobals,
   useMergedRefs,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
@@ -25,7 +25,7 @@ export const HeaderDropdownButton: HeaderDropdownButtonComponent =
   React.forwardRef((props, ref) => {
     const { menuItems, className, children, ...rest } = props;
 
-    useItwinui();
+    useGlobals();
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui, useOverflow, useMergedRefs } from '../utils/index.js';
+import { useGlobals, useOverflow, useMergedRefs } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 
 export type SelectTagContainerProps = {
@@ -20,7 +20,7 @@ export const SelectTagContainer = React.forwardRef(
   (props: SelectTagContainerProps, ref: React.RefObject<HTMLDivElement>) => {
     const { tags, className, ...rest } = props;
 
-    useItwinui();
+    useGlobals();
     const [containerRef, visibleCount] = useOverflow(tags);
     const refs = useMergedRefs(ref, containerRef);
 

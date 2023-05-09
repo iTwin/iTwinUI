@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
 export type HeadlineProps = {
@@ -24,7 +24,7 @@ export const Headline = React.forwardRef(
   (props: HeadlineProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
-    useItwinui();
+    useGlobals();
 
     return (
       <h1

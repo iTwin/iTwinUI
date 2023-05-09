@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/index.js';
 import {
-  useItwinui,
+  useGlobals,
   SvgCaretDownSmall,
   Popover,
   useId,
@@ -243,7 +243,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     ...rest
   } = props;
 
-  useItwinui();
+  useGlobals();
 
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = popoverProps?.visible ?? isOpenState;

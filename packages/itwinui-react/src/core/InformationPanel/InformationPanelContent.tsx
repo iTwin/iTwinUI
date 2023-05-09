@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -51,7 +51,7 @@ export const InformationPanelContent = (
 ) => {
   const { className, displayStyle = 'default', children, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <div

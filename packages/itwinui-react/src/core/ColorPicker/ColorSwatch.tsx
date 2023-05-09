@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/color-picker.css';
-import { useItwinui, ColorValue } from '../utils/index.js';
+import { useGlobals, ColorValue } from '../utils/index.js';
 import type { ColorType } from '../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
 
@@ -29,7 +29,7 @@ export type ColorSwatchProps = {
 export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
   (props, ref) => {
     const { color, style, onClick, isActive, className, ...rest } = props;
-    useItwinui();
+    useGlobals();
 
     const colorString = React.useMemo(
       () =>

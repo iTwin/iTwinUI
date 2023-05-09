@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui, useOverflow, useMergedRefs } from '../utils/index.js';
+import { useGlobals, useOverflow, useMergedRefs } from '../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
 export type ButtonGroupProps = {
@@ -78,7 +78,7 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
       [children],
     );
 
-    useItwinui();
+    useGlobals();
 
     const [overflowRef, visibleCount] = useOverflow(
       items,

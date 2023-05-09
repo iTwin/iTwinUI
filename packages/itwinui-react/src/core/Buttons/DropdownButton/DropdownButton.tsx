@@ -11,7 +11,7 @@ import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-  useItwinui,
+  useGlobals,
   useMergedRefs,
 } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
@@ -56,7 +56,7 @@ export const DropdownButton = React.forwardRef(
       ...rest
     } = props;
 
-    useItwinui();
+    useGlobals();
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

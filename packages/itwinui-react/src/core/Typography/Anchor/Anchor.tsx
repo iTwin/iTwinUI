@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
@@ -33,7 +33,7 @@ export type AnchorProps<T extends React.ElementType = 'a'> =
 export const Anchor = React.forwardRef((props, ref) => {
   const { as: Element = 'a', className, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <Element className={cx('iui-anchor', className)} ref={ref} {...rest} />

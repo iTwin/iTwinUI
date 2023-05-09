@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { ClassNameProps, StylingProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/time-picker.css';
 
@@ -216,7 +216,7 @@ export const TimePicker = (props: TimePickerProps): JSX.Element => {
     ...rest
   } = props;
 
-  useItwinui();
+  useGlobals();
 
   const [selectedTime, setSelectedTime] = React.useState(date);
   const [focusedTime, setFocusedTime] = React.useState(

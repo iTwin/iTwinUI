@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/footer.css';
 
@@ -15,7 +15,7 @@ export type FooterListProps = React.ComponentPropsWithRef<'ul'>;
 export const FooterList = (props: FooterListProps) => {
   const { className, children, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <ul className={cx('iui-legal-footer-list', className)} {...rest}>

@@ -9,7 +9,7 @@ import {
   getBoundedValue,
   useEventListener,
   useMergedRefs,
-  useItwinui,
+  useGlobals,
 } from '../utils/index.js';
 import type { CommonProps, HsvColor } from '../utils/index.js';
 import { Slider } from '../Slider/index.js';
@@ -39,7 +39,7 @@ export const ColorBuilder = React.forwardRef(
     const builderRef = React.useRef<HTMLDivElement>();
     const refs = useMergedRefs(builderRef, ref);
 
-    useItwinui();
+    useGlobals();
 
     const {
       activeColor,

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
-import { useItwinui, SvgCloseSmall } from '../utils/index.js';
+import { useGlobals, SvgCloseSmall } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -52,7 +52,7 @@ export type InformationPanelHeaderProps = {
 export const InformationPanelHeader = (props: InformationPanelHeaderProps) => {
   const { children, onClose, actions, className, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <div className={cx('iui-information-header', className)} {...rest}>

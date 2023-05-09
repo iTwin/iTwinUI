@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/utils.css';
 
@@ -65,7 +65,7 @@ export const NotificationMarker = React.forwardRef(
       enabled = true,
       ...rest
     } = props;
-    useItwinui();
+    useGlobals();
 
     return (
       <span

@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useItwinui,
+  useGlobals,
   getBoundedValue,
   useEventListener,
 } from '../utils/index.js';
@@ -248,7 +248,7 @@ export const Slider = React.forwardRef(
       setTrackDisplay(getDefaultTrackDisplay(trackDisplayMode, currentValues));
     }, [trackDisplayMode, currentValues]);
 
-    useItwinui();
+    useGlobals();
     const containerRef = React.useRef<HTMLDivElement>(null);
 
     React.useEffect(() => {

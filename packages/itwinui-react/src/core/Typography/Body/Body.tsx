@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
 /**
@@ -32,7 +32,7 @@ export const Body = React.forwardRef(
   (props: BodyProps, ref: React.RefObject<HTMLParagraphElement>) => {
     const { className, isMuted = false, isSkeleton = false, ...rest } = props;
 
-    useItwinui();
+    useGlobals();
 
     return (
       <p

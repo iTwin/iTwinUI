@@ -9,7 +9,7 @@ import { Input } from '../Input/index.js';
 import {
   ColorValue,
   InputContainer,
-  useItwinui,
+  useGlobals,
   SvgSwap,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
@@ -49,7 +49,7 @@ export const ColorInputPanel = React.forwardRef(
       ...rest
     } = props;
 
-    useItwinui();
+    useGlobals();
 
     const inputsContainerRef = React.useRef<HTMLDivElement>(null);
     const { activeColor, applyHsvColorChange, hsvColor, showAlpha } =

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useItwinui, SvgClose } from '../utils/index.js';
+import { useGlobals, SvgClose } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
@@ -66,7 +66,7 @@ export const DialogTitleBar = Object.assign(
       [onPointerDown, onPointerDownProp],
     );
 
-    useItwinui();
+    useGlobals();
 
     return (
       <div

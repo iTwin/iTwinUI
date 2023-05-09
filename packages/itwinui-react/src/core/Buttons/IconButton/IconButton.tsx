@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useItwinui, VisuallyHidden, Popover } from '../../utils/index.js';
+import { useGlobals, VisuallyHidden, Popover } from '../../utils/index.js';
 import type { ButtonProps } from '../Button/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
@@ -48,7 +48,7 @@ export const IconButton: IconButtonComponent = React.forwardRef(
       ...rest
     } = props;
 
-    useItwinui();
+    useGlobals();
 
     return (
       <IconButtonTooltip label={label}>

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useItwinui } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/non-ideal-state.css';
 
@@ -56,7 +56,7 @@ export type NonIdealStateProps = {
 export const NonIdealState = (props: NonIdealStateProps): JSX.Element => {
   const { className, svg, heading, description, actions, ...rest } = props;
 
-  useItwinui();
+  useGlobals();
 
   return (
     <div className={cx('iui-non-ideal-state', className)} {...rest}>
