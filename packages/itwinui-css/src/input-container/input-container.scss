@@ -45,8 +45,8 @@
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-accent-border-color: var(--iui-color-border-accent);
   --_iui-input-text-color: var(--iui-color-text);
-  --_iui-input-padding-block: 0;
-  --_iui-input-min-height: var(--iui-component-height-small);
+  --_iui-input-padding-block: var(--iui-size-2xs);
+  --_iui-input-min-height: var(--iui-component-height);
 
   display: inline-flex;
   align-items: center;
@@ -109,8 +109,8 @@
   }
 
   &[data-iui-size='small'] {
-    --_iui-input-padding-block: var(--iui-size-2xs);
-    --_iui-input-min-height: var(--iui-component-height);
+    --_iui-input-padding-block: 0;
+    --_iui-input-min-height: var(--iui-component-height-small);
   }
 
   &[data-iui-size='large'] {
