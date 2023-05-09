@@ -3,3 +3,4 @@ storybook-static
 cypress-visual-screenshots/comparison
 cypress-visual-screenshots/diff
 cypress-visual-report
+cypress/screenshots

@@ -54,10 +54,10 @@ module.exports = async (page, scenario) => {
   await page.waitForTimeout(scenario.postInteractionWait);
 
   const scrollToSelector = scenario.scrollToSelector;
-  if (scrollToSelector) {
-    await page.waitForSelector(scrollToSelector);
-    await page.evaluate((scrollToSelector) => {
-      document.querySelector(scrollToSelector).scrollIntoView();
-    }, scrollToSelector);
+  if (Array.isArray(scrollToSelector)) {
+    for (let selector of scrollToSelector) {
+      await page.waitForSelector(selector);
+      await page.evaluate((selector) => document.querySelector(selector)?.scrollIntoView(), selector);
+    }
   }
 };

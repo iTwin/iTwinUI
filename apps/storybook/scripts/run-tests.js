@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 const spawn = require('child_process').spawn;
 const args = process.argv.slice(2).join(' ');
-const os = require('os');
-const imagePlatformName = os.arch().includes('arm') ? 'arm' : 'amd';
+
+const IMAGE_NAME = 'cypress/included:12.11.0'; // https://hub.docker.com/r/cypress/included
 
 // Need to use this script because current directory variable is different in different shells
 const dockerProcess = spawn(
@@ -15,7 +15,7 @@ const dockerProcess = spawn(
   // -w /e2e - makes `e2e` the working directory
   // scripts/entrypoint.sh - entrypoint script to run
   // args - cli args to forward to entrypoint scripts, e.g. for testing only one component using --spec Component.test.ts
-  `docker run --rm --entrypoint /bin/bash -v "${__dirname}/../../..":/e2e -w /e2e bentleysystemsinc/itwinui-cypress:${imagePlatformName} apps/storybook/scripts/entrypoint.sh ${args}`,
+  `docker run --rm --entrypoint /bin/bash -v "${__dirname}/../../..":/e2e -w /e2e ${IMAGE_NAME} apps/storybook/scripts/entrypoint.sh ${args}`,
   {
     stdio: 'inherit',
     shell: true,
