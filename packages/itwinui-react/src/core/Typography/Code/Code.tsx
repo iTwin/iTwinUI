@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../../utils/index.js';
+import { useItwinui } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/code.css';
 
@@ -23,7 +23,7 @@ export type CodeProps = {
 export const Code = (props: CodeProps) => {
   const { className, children, ...rest } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <code className={cx('iui-code', className)} {...rest}>

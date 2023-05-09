@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../../../utils/index.js';
+import { useItwinui } from '../../../utils/index.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
@@ -59,7 +59,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
     placeholder = 'MMM dd, yyyy',
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const translatedStrings = { ...defaultStrings, ...translatedLabels };
 

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, VisuallyHidden } from '../utils/index.js';
+import { useItwinui, VisuallyHidden } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -47,7 +47,7 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <li

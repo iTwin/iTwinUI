@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme, SvgChevronRight } from '../utils/index.js';
+import { useItwinui, SvgChevronRight } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 
 export type HeaderBreadcrumbsProps = {
@@ -32,7 +32,7 @@ export type HeaderBreadcrumbsProps = {
 export const HeaderBreadcrumbs = (props: HeaderBreadcrumbsProps) => {
   const { items, ...rest } = props;
 
-  useTheme();
+  useItwinui();
   return (
     <nav aria-label='breadcrumbs' className='iui-header-breadcrumbs' {...rest}>
       <ol className='iui-header-breadcrumbs-list'>

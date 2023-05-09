@@ -7,7 +7,7 @@ export * from './useMergedRefs.js';
 export * from './useOverflow.js';
 export * from './useResizeObserver.js';
 export * from './useContainerWidth.js';
-export * from './useTheme.js';
+export * from './useItwinui.js';
 export * from './useIntersection.js';
 export * from './useMediaQuery.js';
 export * from './useSafeContext.js';

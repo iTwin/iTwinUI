@@ -10,7 +10,7 @@ import {
   getWindow,
   useMergedRefs,
   useResizeObserver,
-  useTheme,
+  useItwinui,
 } from '../utils/index.js';
 import { CarouselDot } from './CarouselDot.js';
 import '@itwin/itwinui-css/css/carousel.css';
@@ -59,7 +59,7 @@ export const CarouselDotsList = React.forwardRef<
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const context = React.useContext(CarouselContext);
   const slideCount =

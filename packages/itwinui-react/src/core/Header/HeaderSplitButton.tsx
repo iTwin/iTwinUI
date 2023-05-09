@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import {
-  useTheme,
+  useItwinui,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
 } from '../utils/index.js';
@@ -34,7 +34,7 @@ export const HeaderSplitButton: HeaderSplitButtonComponent = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

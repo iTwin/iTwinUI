@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useTheme,
+  useItwinui,
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
@@ -162,7 +162,7 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
   const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);

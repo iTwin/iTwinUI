@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../../utils/index.js';
+import { useItwinui } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
 export type SmallProps = {
@@ -24,7 +24,7 @@ export const Small = React.forwardRef(
   (props: SmallProps, ref: React.RefObject<HTMLParagraphElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
-    useTheme();
+    useItwinui();
 
     return (
       <small

@@ -12,7 +12,7 @@ import type { Placement } from 'tippy.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-  useTheme,
+  useItwinui,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
@@ -69,7 +69,7 @@ export const SplitButton: SplitButtonComponent = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

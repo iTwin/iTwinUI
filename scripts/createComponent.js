@@ -58,7 +58,7 @@ const reactComponentFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.tsx`,
     template: `${copyrightBannerJs}
 import * as React from 'react';
-import { useTheme } from '../utils';
+import { useItwinui } from '../utils';
 
 export type ${componentName}Props = {};
 
@@ -69,7 +69,7 @@ export type ${componentName}Props = {};
  */
 export const ${componentName} = (props: ${componentName}Props) => {
   const { ...rest } = props;
-  useTheme();
+  useItwinui();
   return <div {...rest} />;
 };
 

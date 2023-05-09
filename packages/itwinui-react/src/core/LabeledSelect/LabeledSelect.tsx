@@ -8,7 +8,7 @@ import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
 import {
   StatusIconMap,
-  useTheme,
+  useItwinui,
   InputContainer,
   useId,
 } from '../utils/index.js';
@@ -101,7 +101,7 @@ export const LabeledSelect = <T,>(
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const labelId = `${useId()}-label`;
 

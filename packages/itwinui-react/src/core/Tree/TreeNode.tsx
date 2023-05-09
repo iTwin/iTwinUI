@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getFocusableElements, useTheme } from '../utils/index.js';
+import { getFocusableElements, useItwinui } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
@@ -111,7 +111,7 @@ export const TreeNode = (props: TreeNodeProps) => {
     expander,
     ...rest
   } = props;
-  useTheme();
+  useItwinui();
 
   const {
     nodeDepth,

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import {
   StatusIconMap,
-  useTheme,
+  useItwinui,
   InputContainer,
   useId,
 } from '../utils/index.js';
@@ -80,7 +80,7 @@ export const LabeledTextarea = React.forwardRef(
       ...textareaProps
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const icon = svgIcon ?? (status && StatusIconMap[status]());
 

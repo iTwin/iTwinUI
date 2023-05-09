@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../hooks/index.js';
+import { useItwinui } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 import type {
   PolymorphicComponentProps,
@@ -44,7 +44,7 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <Element

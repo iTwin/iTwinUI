@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 
 export type DialogTitleBarTitleProps = {
@@ -24,7 +24,7 @@ export const DialogTitleBarTitle = React.forwardRef<
   DialogTitleBarTitleProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
-  useTheme();
+  useItwinui();
   return (
     <div className={cx('iui-dialog-title', className)} ref={ref} {...rest}>
       {children}

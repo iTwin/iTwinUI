@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../../utils/index.js';
+import { useItwinui } from '../../utils/index.js';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
@@ -64,7 +64,7 @@ export const Text: TextComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <Element

@@ -10,7 +10,7 @@ import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { MenuItem } from '../Menu/index.js';
 import {
   getBoundedValue,
-  useTheme,
+  useItwinui,
   useOverflow,
   useContainerWidth,
   SvgChevronLeft,
@@ -135,7 +135,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const localization = React.useMemo(
     () => ({ ...defaultLocalization, ...userLocalization }),

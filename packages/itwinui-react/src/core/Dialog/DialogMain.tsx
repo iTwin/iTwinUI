@@ -9,7 +9,7 @@ import {
   getTranslateValues,
   Resizer,
   useMergedRefs,
-  useTheme,
+  useItwinui,
   useIsomorphicLayoutEffect,
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
@@ -73,7 +73,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const [style, setStyle] = React.useState<React.CSSProperties>();
 

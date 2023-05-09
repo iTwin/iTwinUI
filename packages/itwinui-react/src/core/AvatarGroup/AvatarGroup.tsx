@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
@@ -87,7 +87,7 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   const childrenArray = React.Children.toArray(children);
   const childrenLength = childrenArray.length;
 
-  useTheme();
+  useItwinui();
 
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>

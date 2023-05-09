@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -23,7 +23,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <Element

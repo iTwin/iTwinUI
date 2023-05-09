@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useTheme,
+  useItwinui,
   Popover,
   useMergedRefs,
   SvgCaretRightSmall,
@@ -94,7 +94,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const menuItemRef = React.useRef<HTMLLIElement>(null);
     const refs = useMergedRefs(menuItemRef, ref);

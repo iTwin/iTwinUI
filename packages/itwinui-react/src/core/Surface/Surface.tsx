@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useSafeContext, useTheme, supportsHas } from '../utils/index.js';
+import { useSafeContext, useItwinui, supportsHas } from '../utils/index.js';
 import type {
   CommonProps,
   PolymorphicComponentProps,
@@ -122,7 +122,7 @@ export const Surface = Object.assign(
   React.forwardRef(
     (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
       const { elevation, className, style, children, ...rest } = props;
-      useTheme();
+      useItwinui();
 
       const [hasLayout, setHasLayout] = React.useState(false);
 

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
@@ -36,7 +36,7 @@ export type SidenavSubmenuHeaderProps = {
 export const SidenavSubmenuHeader = (props: SidenavSubmenuHeaderProps) => {
   const { children, actions, className, ...rest } = props;
 
-  useTheme();
+  useItwinui();
 
   return (
     <div

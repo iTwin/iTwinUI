@@ -10,7 +10,7 @@ import type { SelectOption } from '../Select/index.js';
 import SelectTag from '../Select/SelectTag.js';
 import { Text } from '../Typography/index.js';
 import {
-  useTheme,
+  useItwinui,
   getRandomValue,
   mergeRefs,
   useLatestRef,
@@ -193,7 +193,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       `iui-cb-${getRandomValue(10)}`,
   );
 
-  useTheme();
+  useItwinui();
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);

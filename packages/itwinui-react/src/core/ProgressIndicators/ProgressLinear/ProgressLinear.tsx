@@ -5,7 +5,7 @@
 import * as React from 'react';
 
 import cx from 'classnames';
-import { useTheme } from '../../utils/index.js';
+import { useItwinui } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
@@ -62,7 +62,7 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const boundedValue = Math.min(100, Math.max(0, value));
 

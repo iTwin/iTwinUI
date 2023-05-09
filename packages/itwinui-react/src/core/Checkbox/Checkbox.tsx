@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
-import { useMergedRefs, useTheme } from '../utils/index.js';
+import { useMergedRefs, useItwinui } from '../utils/index.js';
 import '@itwin/itwinui-css/css/checkbox.css';
 
 export type CheckboxProps = {
@@ -65,7 +65,7 @@ export const Checkbox = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

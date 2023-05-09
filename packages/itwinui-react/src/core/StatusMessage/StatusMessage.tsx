@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useTheme } from '../utils/index.js';
+import { StatusIconMap, useItwinui } from '../utils/index.js';
 import cx from 'classnames';
 
 export type StatusMessageProps = {
@@ -33,7 +33,7 @@ export const StatusMessage = ({
   children,
   status,
 }: StatusMessageProps) => {
-  useTheme();
+  useItwinui();
 
   const StartIcon = () => {
     const icon = userStartIcon ?? (status && StatusIconMap[status]());

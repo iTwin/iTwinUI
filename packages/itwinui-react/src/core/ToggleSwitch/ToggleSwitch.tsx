@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, useTheme } from '../utils/index.js';
+import { useMergedRefs, useItwinui } from '../utils/index.js';
 import '@itwin/itwinui-css/css/toggle-switch.css';
 
 export type ToggleSwitchProps = {
@@ -78,7 +78,7 @@ export const ToggleSwitch = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const inputElementRef = React.useRef<HTMLInputElement>(null);
     const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/footer.css';
 
@@ -14,7 +14,7 @@ export type FooterItemProps = React.ComponentPropsWithRef<'li'>;
  */
 export const FooterItem = (props: FooterItemProps) => {
   const { children, className, ...rest } = props;
-  useTheme();
+  useItwinui();
 
   return (
     <li className={cx('iui-legal-footer-item', className)} {...rest}>

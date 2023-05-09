@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, useMergedRefs } from '../utils/index.js';
+import { useItwinui, useMergedRefs } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
@@ -36,7 +36,7 @@ export type FileUploadProps = {
 export const FileUpload = React.forwardRef(
   (props: FileUploadProps, ref: React.RefObject<HTMLDivElement>) => {
     const { dragContent, children, onFileDropped, className, ...rest } = props;
-    useTheme();
+    useItwinui();
 
     const [isDragActive, setIsDragActive] = React.useState(false);
     const fileUploadRef = React.useRef<HTMLDivElement>(null);

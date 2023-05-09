@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   StatusIconMap,
-  useTheme,
+  useItwinui,
   SvgMore,
   SvgNew,
   SvgCheckmark,
@@ -197,7 +197,7 @@ export const Tile = Object.assign(
       ...rest
     } = props;
 
-    useTheme();
+    useItwinui();
 
     const [isMenuVisible, setIsMenuVisible] = React.useState(false);
     const showMenu = React.useCallback(() => setIsMenuVisible(true), []);

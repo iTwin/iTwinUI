@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useTheme } from '../utils/index.js';
+import { useMergedRefs, useItwinui } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type InputProps = {
@@ -29,7 +29,7 @@ export type InputProps = {
 export const Input = React.forwardRef(
   (props: InputProps, ref: React.RefObject<HTMLInputElement>) => {
     const { setFocus = false, size, className, ...rest } = props;
-    useTheme();
+    useItwinui();
     const inputRef = React.useRef<HTMLInputElement>(null);
     const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 

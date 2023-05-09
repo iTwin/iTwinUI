@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useTheme,
+  useItwinui,
   SvgChevronLeft,
   SvgChevronRight,
   SvgChevronLeftDouble,
@@ -230,7 +230,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     ...rest
   } = props;
 
-  useTheme();
+  useItwinui();
 
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;

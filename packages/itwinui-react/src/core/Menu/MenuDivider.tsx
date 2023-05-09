@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -27,7 +27,7 @@ export type MenuDividerProps = Omit<CommonProps, 'title'>;
  */
 export const MenuDivider = (props: MenuDividerProps) => {
   const { className, ...rest } = props;
-  useTheme();
+  useItwinui();
   return (
     <li
       role='separator'

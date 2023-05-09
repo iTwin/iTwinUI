@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useTheme,
+  useItwinui,
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
@@ -13,11 +13,26 @@ import {
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
-  ThemeOptions,
-  ThemeType,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
+
+type ThemeOptions = {
+  /**
+   * Document to which the theme will be applied.
+   * Can be specified to handle popup windows.
+   * @default document
+   *
+   * @deprecated This prop will continue to work in `useTheme` but
+   * we recommend rendering `ThemeProvider` in the correct document instead.
+   */
+  ownerDocument?: Document;
+  /**
+   * Whether to apply high-contrast versions of light and dark themes.
+   * Will default to user preference if browser supports it.
+   */
+  highContrast?: boolean;
+};
+
+export type ThemeType = 'light' | 'dark' | 'os';
 
 export type ThemeProviderProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, ThemeProviderOwnProps>;
@@ -57,14 +72,10 @@ type RootProps = {
   isInheritingTheme?: boolean;
 };
 
-type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
-  (
-    | {
-        themeOptions?: RootProps['themeOptions'];
-        children: Required<React.ReactNode>;
-      }
-    | { themeOptions?: ThemeOptions; children?: undefined }
-  );
+type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
+  themeOptions?: RootProps['themeOptions'];
+  children: Required<React.ReactNode>;
+};
 
 /**
  * This component provides global styles and applies theme to the entire tree
@@ -98,7 +109,6 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const rootRef = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(rootRef, ref);
 
-  const hasChildren = React.Children.count(children) > 0;
   const parentContext = React.useContext(ThemeContext);
 
   const theme =
@@ -108,16 +118,6 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     () => ({ theme, themeOptions, rootRef }),
     [theme, themeOptions],
   );
-
-  // if no children, then fallback to this wrapper component which calls useTheme
-  if (!hasChildren) {
-    return (
-      <ThemeLogicWrapper
-        theme={theme}
-        themeOptions={themeOptions ?? parentContext?.themeOptions}
-      />
-    );
-  }
 
   // now that we know there are children, we can render the root and provide the context value
   return (
@@ -168,6 +168,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
     themeOptions?.applyBackground ??
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
+  useItwinui();
+
   return (
     <Element
       className={cx(
@@ -184,12 +186,3 @@ const Root = React.forwardRef((props, forwardedRef) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
-
-const ThemeLogicWrapper = (props: {
-  theme?: ThemeType;
-  themeOptions?: ThemeOptions;
-}) => {
-  const { theme, themeOptions } = props;
-  useTheme(theme, themeOptions);
-  return <></>;
-};

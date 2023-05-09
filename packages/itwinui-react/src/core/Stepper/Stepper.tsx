@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import '@itwin/itwinui-css/css/stepper.css';
 import { StepperStep } from './StepperStep.js';
 
@@ -67,7 +67,7 @@ export const Stepper = React.forwardRef(
       steps.length - 1,
     );
 
-    useTheme();
+    useItwinui();
 
     return (
       <div className={'iui-stepper'} ref={ref} {...rest}>

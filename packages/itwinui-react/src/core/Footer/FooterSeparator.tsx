@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useItwinui } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/footer.css';
 
@@ -17,7 +17,7 @@ export type FooterSeparatorProps = Omit<
  */
 export const FooterSeparator = (props: FooterSeparatorProps) => {
   const { className, ...rest } = props;
-  useTheme();
+  useItwinui();
 
   return (
     <li

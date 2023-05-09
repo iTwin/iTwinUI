@@ -308,7 +308,7 @@ export { default as toaster } from './Toast/index.js';
 export type { ToastOptions } from './Toast/index.js';
 
 export { ThemeProvider } from './ThemeProvider/index.js';
-export type { ThemeProviderProps } from './ThemeProvider/index.js';
+export type { ThemeProviderProps, ThemeType } from './ThemeProvider/index.js';
 
 export { ToggleSwitch } from './ToggleSwitch/index.js';
 export type { ToggleSwitchProps } from './ToggleSwitch/index.js';
@@ -366,7 +366,6 @@ export type {
 
 export {
   getUserColor,
-  useTheme,
   ColorValue,
   MiddleTextTruncation,
   LinkBox,
@@ -377,7 +376,6 @@ export {
   Divider,
 } from './utils/index.js';
 export type {
-  ThemeType,
   MiddleTextTruncationProps,
   IconProps,
   FlexProps,
