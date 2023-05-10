@@ -1,0 +1,42 @@
+---
+title: SearchBox
+description: The search is the primary way for users to quickly access the information they need.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/SearchBox/SearchBox.d.ts'
+thumbnail: Input
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from '~/examples';
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Searchbox.main.tsx'>
+  <AllExamples.SearchboxMainExample client:load />
+</LiveExample>
+
+<LiveExample src='Searchbox.expandable.tsx'>
+  <AllExamples.SearchboxExpandableExample client:load />
+</LiveExample>
+
+<LiveExample src='Searchbox.customopen.tsx'>
+  <AllExamples.SearchboxCustomOpenExample client:load />
+</LiveExample>
+
+<LiveExample src='Searchbox.custom.tsx'>
+  <AllExamples.SearchboxCustomExample client:load />
+</LiveExample>
+
+<LiveExample src='Searchbox.size.tsx'>
+  <AllExamples.SearchboxSizeExample client:load />
+</LiveExample>
+
+<LiveExample src='Searchbox.Status.tsx'>
+  <AllExamples.SearchboxStatusExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

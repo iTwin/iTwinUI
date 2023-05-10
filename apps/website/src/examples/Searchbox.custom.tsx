@@ -10,15 +10,18 @@ export default () => {
   return (
     <Flex style={{ width: '70%' }} justifyContent='center' flexDirection='column'>
       <SearchBox expandable>
-        <SearchBox.Input placeholder='Expandable search with custom interactions' />
-        <SearchBox.Button label='Previous result'>
-          <SvgCaretUpSmall />
-        </SearchBox.Button>
-        <SearchBox.Button label='Next result'>
-          <SvgCaretDownSmall />
-        </SearchBox.Button>
-        <Divider orientation='vertical' />
-        <SearchBox.CollapseButton label='Close search' />
+        <SearchBox.CollapsedState />
+        <SearchBox.ExpandedState>
+          <SearchBox.Input placeholder='Expandable search with custom interactions' />
+          <SearchBox.Button label='Previous result'>
+            <SvgCaretUpSmall />
+          </SearchBox.Button>
+          <SearchBox.Button label='Next result'>
+            <SvgCaretDownSmall />
+          </SearchBox.Button>
+          <Divider orientation='vertical' />
+          <SearchBox.CollapseButton label='Close search' />
+        </SearchBox.ExpandedState>
       </SearchBox>
       <SearchBox>
         <SearchBox.Input placeholder='Basic search with custom interactions' />
