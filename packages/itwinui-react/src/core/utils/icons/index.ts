@@ -28,6 +28,7 @@ export * from './SvgSortDown.js';
 export * from './SvgColumnManager.js';
 export * from './SvgMore.js';
 export * from './SvgNew.js';
+export * from './SvgSearch.js';
 export * from './SvgFilter.js';
 export * from './SvgFilterHollow.js';
 export * from './SvgCalendar.js';
