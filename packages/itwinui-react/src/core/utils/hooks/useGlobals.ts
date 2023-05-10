@@ -36,7 +36,9 @@ export const useThemeProviderWarning = () => {
   const themeContext = React.useContext(ThemeContext);
   React.useEffect(() => {
     if (isDev && !didLogWarning.themeProvider && !themeContext) {
-      console.error('Component must be wrapped in ThemeProvider.');
+      console.error(
+        'iTwinUI components must be used within a tree wrapped in a ThemeProvider.',
+      );
       didLogWarning.themeProvider = true;
     }
   }, [themeContext]);
