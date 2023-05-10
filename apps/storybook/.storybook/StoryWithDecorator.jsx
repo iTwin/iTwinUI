@@ -3,13 +3,23 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
 export default function StoryWithDecorator(Story, context) {
+  const theme = useDarkMode() ? 'dark' : 'light';
   const highContrast = context.globals.hc;
 
+  const background =
+    context.globals.backgrounds?.value ??
+    'var(--iui-color-background-backdrop)';
+
   return (
-    <ThemeProvider themeOptions={{ highContrast, applyBackground: false }}>
+    <ThemeProvider
+      theme={theme}
+      themeOptions={{ highContrast, applyBackground: false }}
+      style={{ background }}
+    >
       <Story />
     </ThemeProvider>
   );

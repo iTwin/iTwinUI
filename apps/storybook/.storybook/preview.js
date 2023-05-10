@@ -2,21 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import { lightTheme, darkTheme } from './itwinTheme';
 import StoryWithDecorator from './StoryWithDecorator.jsx';
 
-const channel = addons.getChannel();
-
-channel.on('DARK_MODE', (isDark) => updateTheme(isDark));
-
 const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-
-const updateTheme = (isDark) => {
-  const root = document.querySelector('.iui-root');
-  root.dataset.iuiTheme = isDark ? 'dark' : 'light';
-};
 
 /** @type { import('@storybook/react').Preview } */
 export default {
