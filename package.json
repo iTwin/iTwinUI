@@ -6,7 +6,7 @@
     "packages": [
       "apps/*",
       "packages/*",
-      "playgrounds/!(cra)",
+      "playgrounds/*",
       "internal/*"
     ]
   },

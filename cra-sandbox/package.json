@@ -1,5 +1,6 @@
 {
-  "name": "cra-playground",
+  "name": "cra-sandbox",
+  "description": "Template based on Create-React-App, used for CodeSandbox examples and bug reports.",
   "version": "0.1.0",
   "private": true,
   "main": "src/index.tsx",
