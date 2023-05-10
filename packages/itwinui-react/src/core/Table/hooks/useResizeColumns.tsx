@@ -494,6 +494,9 @@ function getLeafHeaders(header: HeaderGroup) {
 const getHeaderWidth = <T extends Record<string, unknown>>(
   header: ColumnInstance<T>,
 ) => {
+  if (!header) {
+    return 0;
+  }
   return Number(header.width || header.resizeWidth || 0);
 };
 

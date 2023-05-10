@@ -364,6 +364,9 @@ export type {
   WorkflowDiagramProps,
 } from './Stepper/index.js';
 
+export { SearchBox } from './SearchBox/index.js';
+export type { SearchBoxProps } from './SearchBox/index.js';
+
 export {
   getUserColor,
   ColorValue,
