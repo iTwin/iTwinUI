@@ -31,6 +31,8 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   padding: var(--iui-size-s) var(--iui-size-m);
   pointer-events: auto;
   background-color: var(--iui-color-background);
+  display: flex;
+  flex-direction: column;
   @media (forced-colors: active) {
     border: 1px solid;
   }
@@ -95,8 +97,6 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   width: 100vw;
   top: 0;
   left: 0;
-  display: flex;
-  flex-direction: column;
   will-change: transform;
 
   &:not(.iui-dialog-visible) {
@@ -114,8 +114,6 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
 }
 
 .iui-dialog-draggable {
-  display: flex;
-  flex-direction: column;
   border: 1px solid var(--iui-color-border);
   min-height: $iui-dialogue-resizable-min-height;
 }
