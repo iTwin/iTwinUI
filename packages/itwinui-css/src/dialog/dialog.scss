@@ -54,6 +54,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   max-width: Max(50%, $iui-dialog-width);
   min-width: Min(100%, $iui-dialog-width);
   max-height: 100vh;
+  max-height: 100dvh;
 
   &:not([data-iui-placement]) {
     left: 50%;
@@ -167,8 +168,6 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   padding: 0 var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
-  max-height: calc(100vh - 6.75rem); //6.75rem = 108px = button height + paddings + bottom bar
-  max-height: calc(100dvh - 6.75rem);
 }
 
 .iui-dialog-button-bar {
