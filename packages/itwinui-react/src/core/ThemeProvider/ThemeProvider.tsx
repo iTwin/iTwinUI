@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useGlobals,
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
@@ -158,8 +157,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground =
     themeOptions?.applyBackground ??
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
-
-  useGlobals();
 
   return (
     <Element
