@@ -183,7 +183,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   .iui-tile-description {
     height: 100%;
-    max-height: calc(var(--iui-size-s) * 4);
+    max-height: 3em;
     margin-bottom: 0;
     -webkit-line-clamp: 2;
   }
@@ -237,7 +237,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   margin-bottom: var(--iui-size-s);
   font-size: var(--iui-font-size-1);
   height: 100%;
-  max-height: calc(var(--iui-size-s) * 6);
+  max-height: 4.5em;
   @include mixins.iui-line-clamp(3);
   color: var(--_iui-tile-body-text-color);
 }

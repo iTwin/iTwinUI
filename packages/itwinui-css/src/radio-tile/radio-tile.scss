@@ -143,7 +143,6 @@
 .iui-radio-tile-label {
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-semibold);
-  line-height: var(--iui-size-l);
   text-align: center;
   word-break: break-word;
   color: var(--iui-color-text);
@@ -151,7 +150,6 @@
 
 .iui-radio-tile-sublabel {
   font-size: var(--iui-font-size-0);
-  line-height: calc(var(--iui-size-s) * 1.25);
   text-align: center;
   word-break: break-word;
   color: var(--iui-color-text-muted);
