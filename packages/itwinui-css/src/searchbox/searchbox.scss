@@ -23,14 +23,14 @@
   }
 
   // To match borderless button left padding + border
-  --_iui-flex-input-icon-padding: 10px;
+  --_iui-flex-input-icon-margin: 10px;
 
   &[data-iui-size='small'] {
-    --_iui-flex-input-icon-padding: 5px;
+    --_iui-flex-input-icon-margin: 5px;
   }
 
   &[data-iui-size='large'] {
-    --_iui-flex-input-icon-padding: 16px;
+    --_iui-flex-input-icon-margin: 16px;
   }
 }
 
@@ -38,6 +38,6 @@
   margin: 0 var(--iui-size-s);
 
   &:is(:first-child) {
-    margin: 0 var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
+    margin: 0 var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
   }
 }
