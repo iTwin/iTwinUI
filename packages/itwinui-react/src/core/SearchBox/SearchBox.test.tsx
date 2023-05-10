@@ -12,7 +12,7 @@ it('should render in its most basic state', () => {
   const { container } = render(<SearchBox />);
 
   // Base flex container
-  const searchbox = container.querySelector('.iui-input-flex-container');
+  const searchbox = container.querySelector('.iui-searchbox');
   expect(searchbox).toBeTruthy();
 
   // Input element
@@ -31,7 +31,7 @@ it('should pass input props', () => {
   );
 
   // Base flex container
-  const searchbox = container.querySelector('.iui-input-flex-container');
+  const searchbox = container.querySelector('.iui-searchbox');
   expect(searchbox).toBeTruthy();
 
   // Input element
@@ -45,7 +45,7 @@ it('should render in disabled state', () => {
   const { container } = render(<SearchBox isDisabled />);
 
   // Base flex container
-  const searchbox = container.querySelector('.iui-input-flex-container');
+  const searchbox = container.querySelector('.iui-searchbox');
   expect(searchbox).toBeTruthy();
   expect(searchbox).toHaveAttribute('data-iui-disabled', 'true');
 
@@ -66,7 +66,7 @@ it.each(['small', 'large'] as const)(
     const { container } = render(<SearchBox size={size} />);
 
     // Base flex container
-    const searchbox = container.querySelector('.iui-input-flex-container');
+    const searchbox = container.querySelector('.iui-searchbox');
     expect(searchbox).toBeTruthy();
     expect(searchbox).toHaveAttribute('data-iui-size', size);
 
@@ -81,9 +81,7 @@ it('should render expandable Searchbox', async () => {
   const { container } = render(<SearchBox expandable />);
 
   // Base flex container
-  const searchbox = container.querySelector(
-    '.iui-input-flex-container',
-  ) as HTMLDivElement;
+  const searchbox = container.querySelector('.iui-searchbox') as HTMLDivElement;
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
@@ -120,9 +118,7 @@ it('should render custom expanded state', async () => {
     </SearchBox>,
   );
 
-  const searchbox = container.querySelector(
-    '.iui-input-flex-container',
-  ) as HTMLDivElement;
+  const searchbox = container.querySelector('.iui-searchbox') as HTMLDivElement;
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
   const expandButton = searchbox?.querySelector(
@@ -169,9 +165,7 @@ it('should render custom expandable actions', async () => {
   );
 
   // Base flex container
-  const searchbox = container.querySelector(
-    '.iui-input-flex-container',
-  ) as HTMLDivElement;
+  const searchbox = container.querySelector('.iui-searchbox') as HTMLDivElement;
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
@@ -209,16 +203,14 @@ it('should render controlled state expandable SearchBox', async () => {
     <SearchBox expandable isExpanded={false} />,
   );
 
-  const searchbox = container.querySelector(
-    '.iui-input-flex-container',
-  ) as HTMLDivElement;
+  const searchbox = container.querySelector('.iui-searchbox') as HTMLDivElement;
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
   rerender(<SearchBox expandable isExpanded={true} />);
 
   const searchboxExpanded = container.querySelector(
-    '.iui-input-flex-container',
+    '.iui-searchbox',
   ) as HTMLDivElement;
   expect(searchboxExpanded).toBeTruthy();
   expect(searchboxExpanded).toHaveAttribute('data-iui-expanded', 'true');

@@ -154,7 +154,11 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     >
       <InputFlexContainer
         ref={ref}
-        className={cx({ 'iui-expandable-searchbox': expandable }, className)}
+        className={cx(
+          'iui-searchbox',
+          { 'iui-expandable-searchbox': expandable },
+          className,
+        )}
         data-iui-size={size}
         isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
