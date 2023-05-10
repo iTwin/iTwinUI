@@ -26,19 +26,13 @@ export default (args) => {
   } = args;
   const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <div
-      style={{
-        minHeight: 350,
-      }}
-    >
-      <Select<number>
-        disabled
-        {...rest}
-        options={options}
-        value={value}
-        onChange={setValue}
-        placeholder={placeholder}
-      />
-    </div>
+    <Select<number>
+      disabled
+      {...rest}
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder={placeholder}
+    />
   );
 };
