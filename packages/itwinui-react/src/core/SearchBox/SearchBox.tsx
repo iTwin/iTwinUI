@@ -38,6 +38,9 @@ const SearchBoxContext = React.createContext<
        * Id to pass to input
        */
       inputId: string;
+      /**
+       * Callback to set inputID
+       */
       setInputId: (inputId: string) => void;
       /**
        * Ref for input subcomponent
