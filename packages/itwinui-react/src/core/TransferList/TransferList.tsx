@@ -5,16 +5,19 @@
 import React from 'react';
 import cx from 'classnames';
 import {
-  CommonProps,
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
   getFocusableElements,
   useMergedRefs,
   useTheme,
-} from '../utils';
-import '@itwin/itwinui-css/css/transfer-list.css';
-import { List, ListItem, ListItemProps, ListProps } from '../List';
+} from '../utils/index.js';
+import type {
+  CommonProps,
+  PolymorphicComponentProps,
+  PolymorphicForwardRefComponent,
+} from '../utils/index.js';
 
+import '@itwin/itwinui-css/css/transfer-list.css';
+import { List, ListItem } from '../List/index.js';
+import type { ListItemProps, ListProps } from '../List/index.js';
 // ----------------------------------------------------------------------------
 // TransferList.Area component
 

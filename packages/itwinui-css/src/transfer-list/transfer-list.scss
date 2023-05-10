@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/input-container/input-container';
+@use '../mixins';
 
 @mixin iui-transfer-list-wrapper {
   display: grid;
@@ -9,7 +9,7 @@
 }
 
 @mixin iui-transfer-list-label {
-  @include iui-input-label-styling;
+  @include mixins.iui-input-label-styling;
 }
 
 @mixin iui-transfer-list($area: null) {
