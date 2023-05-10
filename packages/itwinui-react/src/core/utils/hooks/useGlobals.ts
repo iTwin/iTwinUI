@@ -26,7 +26,7 @@ const didLogWarning = {
  */
 export const useGlobals = () => {
   useThemeProviderWarning();
-  useCorrectRootFontSize();
+  useRootFontSizeWarning();
 };
 
 // ----------------------------------------------------------------------------
@@ -45,7 +45,7 @@ export const useThemeProviderWarning = () => {
 // ----------------------------------------------------------------------------
 
 /** Shows console error if the page changes the root font size */
-const useCorrectRootFontSize = () => {
+const useRootFontSizeWarning = () => {
   React.useEffect(() => {
     if (isDev && !didLogWarning.fontSize) {
       const rootFontSize = parseInt(
