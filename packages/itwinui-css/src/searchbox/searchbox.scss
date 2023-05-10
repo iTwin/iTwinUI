@@ -1,6 +1,19 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
+.iui-searchbox {
+  // To match borderless button left padding + border
+  --_iui-flex-input-icon-margin: 10px;
+
+  &[data-iui-size='small'] {
+    --_iui-flex-input-icon-margin: 5px;
+  }
+
+  &[data-iui-size='large'] {
+    --_iui-flex-input-icon-margin: 16px;
+  }
+}
+
 .iui-expandable-searchbox {
   width: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
@@ -21,23 +34,12 @@
     width: 100%;
     border-color: var(--_iui-input-border-color);
   }
-
-  // To match borderless button left padding + border
-  --_iui-flex-input-icon-padding: 10px;
-
-  &[data-iui-size='small'] {
-    --_iui-flex-input-icon-padding: 5px;
-  }
-
-  &[data-iui-size='large'] {
-    --_iui-flex-input-icon-padding: 16px;
-  }
 }
 
 .iui-search-icon {
   margin: 0 var(--iui-size-s);
 
   &:is(:first-child) {
-    margin: 0 var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
+    margin: 0 var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
   }
 }
