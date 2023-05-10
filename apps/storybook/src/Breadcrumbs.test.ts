@@ -10,7 +10,7 @@ describe('Breadcrumbs', () => {
     'Folder Navigation',
     'Links',
     'Overflow',
-    // 'Custom Overflow Dropdown', // excluding because these fellas keeps failing in CI
+    // 'Custom Overflow Dropdown', // excluding because these fellas keep failing in CI
     // 'Custom Overflow Back Button',
   ];
 
