@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
-import React from 'react';
 import { lightTheme, darkTheme } from './itwinTheme';
+import StoryWithDecorator from './StoryWithDecorator.jsx';
 
 const channel = addons.getChannel();
 
@@ -14,13 +14,15 @@ channel.on('DARK_MODE', (isDark) => updateTheme(isDark));
 const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 
 const updateTheme = (isDark) => {
-  document.body.dataset.iuiTheme = isDark ? 'dark' : 'light';
+  const root = document.querySelector('.iui-root');
+  root.dataset.iuiTheme = isDark ? 'dark' : 'light';
 };
 
 /** @type { import('@storybook/react').Preview } */
 export default {
   parameters: {
     darkMode: {
+      classTarget: '.iui-root',
       dark: { ...themes.dark, ...darkTheme },
       light: { ...themes.light, ...lightTheme },
     },
@@ -51,18 +53,5 @@ export default {
     },
   },
 
-  decorators: [
-    (Story, context) => {
-      const {
-        globals: { hc: highContrast },
-      } = context;
-
-      React.useEffect(() => {
-        document.body.classList.toggle('iui-root', true);
-        document.body.dataset.iuiContrast = highContrast ? 'high' : 'default';
-      }, [highContrast]);
-
-      return Story(); // builder-vite does not allow JSX here so we call Story as a function
-    },
-  ],
+  decorators: [StoryWithDecorator],
 };
