@@ -17,15 +17,6 @@ import type {
 
 type ThemeOptions = {
   /**
-   * Document to which the theme will be applied.
-   * Can be specified to handle popup windows.
-   * @default document
-   *
-   * @deprecated This prop will continue to work in `useTheme` but
-   * we recommend rendering `ThemeProvider` in the correct document instead.
-   */
-  ownerDocument?: Document;
-  /**
    * Whether to apply high-contrast versions of light and dark themes.
    * Will default to user preference if browser supports it.
    */
