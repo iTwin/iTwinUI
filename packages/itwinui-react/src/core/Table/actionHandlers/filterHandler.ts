@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { ActionType, TableInstance, TableState } from 'react-table';
-import { TableFilterValue } from '../filters';
+import type { ActionType, TableInstance, TableState } from 'react-table';
+import type { TableFilterValue } from '../filters/index.js';
 
 export const onFilterHandler = <T extends Record<string, unknown>>(
   newState: TableState<T>,

@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { Icon } from './Icon';
+import { Icon } from './Icon.js';
 
 it('should render in its most basic state', () => {
   render(<Icon>icon</Icon>);

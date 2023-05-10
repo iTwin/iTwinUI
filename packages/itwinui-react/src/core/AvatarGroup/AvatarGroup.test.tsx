@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Avatar, AvatarGroup } from '../../core';
+import { Avatar, AvatarGroup } from '../../core/index.js';
 
 function generateAvatars(length: number) {
   const userNames = [

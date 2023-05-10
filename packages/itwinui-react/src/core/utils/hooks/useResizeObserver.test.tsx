@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import { act, renderHook } from '@testing-library/react';
-import { useResizeObserver } from './useResizeObserver';
+import { useResizeObserver } from './useResizeObserver.js';
 
 const observe = jest.fn();
 const disconnect = jest.fn();

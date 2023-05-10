@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { Tooltip } from '../Tooltip';
-import { StylingProps } from '../utils';
+import * as React from 'react';
+import { Tooltip } from '../Tooltip/index.js';
+import type { StylingProps } from '../utils/index.js';
 
 export type StepperStepProps = {
   /**

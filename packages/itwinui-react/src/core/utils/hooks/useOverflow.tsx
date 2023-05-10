@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useMergedRefs } from './useMergedRefs';
-import { useResizeObserver } from './useResizeObserver';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
+import * as React from 'react';
+import { useMergedRefs } from './useMergedRefs.js';
+import { useResizeObserver } from './useResizeObserver.js';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 const STARTING_MAX_ITEMS_COUNT = 20;
 

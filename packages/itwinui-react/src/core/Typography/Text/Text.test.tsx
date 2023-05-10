@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { Text } from './Text';
+import * as React from 'react';
+import { Text } from './Text.js';
 
 it('should render in the most basic state', () => {
   const { container } = render(<Text>Some text</Text>);

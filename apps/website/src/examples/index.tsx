@@ -126,7 +126,9 @@ export { default as HeaderMainExample } from './Header.main';
 
 export { default as InformationPanelMainExample } from './InformationPanel.main';
 
-export { default as InputGroupMainExample } from './InputGroup.main';
+export { default as InputGroupToggleSwitchExample } from './InputGroup.toggleSwitch';
+export { default as InputGroupCheckboxGroupExample } from './InputGroup.checkboxGroup';
+export { default as InputGroupRadioGroupExample } from './InputGroup.radioGroup';
 
 export { default as InputMainExample } from './Input.main';
 export { default as InputSizesExample } from './Input.sizes';
@@ -217,6 +219,7 @@ export { default as ToggleSwitchIconExample } from './ToggleSwitch.icon';
 export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgroup';
 
 export { default as TooltipMainExample } from './Tooltip.main';
+export { default as TooltipPlacementExample } from './Tooltip.placement';
 
 export { default as TreeMainExample } from './Tree.main';
 

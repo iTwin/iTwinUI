@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React from 'react';
-import { getRandomValue } from '../functions/numbers';
+import * as React from 'react';
+import { getRandomValue } from '../functions/numbers.js';
 
 /**
  * Wrapper around React's `useId` hook, which prefixes the id with `iui-` and uses

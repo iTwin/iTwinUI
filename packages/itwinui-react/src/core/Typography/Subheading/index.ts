@@ -2,6 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Subheading } from './Subheading';
-export type { SubheadingProps } from './Subheading';
+export { Subheading } from './Subheading.js';
+export type { SubheadingProps } from './Subheading.js';
 export default './Subheading';

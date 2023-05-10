@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "1.10.2",
+  "version": "1.10.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -39,7 +39,7 @@
   "devDependencies": {
     "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
-    "backstopjs": "~6.0.5",
+    "backstopjs": "~6.2.1",
     "chokidar": "^3.5.3",
     "html-minifier": "^4.0.0",
     "lightningcss": "^1.16.1",
@@ -66,8 +66,7 @@
     "test:only": "backstop --config=./backstop/backstop.js test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --",
     "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js",
-    "push-docker": "node scripts/pushDocker.js"
+    "print": "node scripts/print.js"
   },
   "prettier": "configs/prettier-scss-config.js"
 }

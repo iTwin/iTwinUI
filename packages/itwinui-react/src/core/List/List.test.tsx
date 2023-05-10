@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { List } from './List';
-import { ListItem } from './ListItem';
+
+import { List } from './List.js';
+import { ListItem } from './ListItem.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(

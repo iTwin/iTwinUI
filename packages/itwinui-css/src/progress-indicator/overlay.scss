@@ -1,6 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
 @mixin iui-progress-indicator-overlay {
   width: 100%;
@@ -14,7 +14,7 @@
   z-index: 10000;
 
   // Blur fallback
-  @include iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
+  @include mixins.iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
 
   .iui-progress-indicator-linear {
     width: 50%;

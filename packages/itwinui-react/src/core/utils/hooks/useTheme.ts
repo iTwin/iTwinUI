@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getDocument, getWindow } from '../functions';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect';
-import { useIsThemeAlreadySet } from './useIsThemeAlreadySet';
+import { getDocument, getWindow } from '../functions/index.js';
+import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { useIsThemeAlreadySet } from './useIsThemeAlreadySet.js';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 

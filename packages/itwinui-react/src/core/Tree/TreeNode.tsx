@@ -2,12 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { CommonProps, getFocusableElements, useTheme } from '../utils';
+import * as React from 'react';
+import { getFocusableElements, useTheme } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
-import { TreeNodeExpander } from './TreeNodeExpander';
-import { useTreeContext } from './TreeContext';
+import { TreeNodeExpander } from './TreeNodeExpander.js';
+import { useTreeContext } from './TreeContext.js';
 
 export type TreeNodeProps = {
   /**

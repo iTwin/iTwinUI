@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { InformationPanelContent } from './InformationPanelContent';
+import { InformationPanelContent } from './InformationPanelContent.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(

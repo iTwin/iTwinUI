@@ -1,12 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
-@mixin iui-toggle-switch-wrapper {
+.iui-toggle-switch-wrapper {
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
 
-  @include iui-reset;
+  @include mixins.iui-reset;
   display: grid;
   grid-template-areas: 'toggle';
   align-items: center;
@@ -47,11 +47,14 @@
   }
 }
 
-@mixin iui-toggle-switch {
+.iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
 
-  @include iui-reset;
-  @include iui-focus($thickness: $iui-toggle-switch-border-thickness, $offset: $iui-toggle-switch-border-thickness);
+  @include mixins.iui-reset;
+  @include mixins.iui-focus(
+    $thickness: $iui-toggle-switch-border-thickness,
+    $offset: $iui-toggle-switch-border-thickness
+  );
   grid-area: toggle;
   display: flex;
   position: relative;
@@ -60,7 +63,7 @@
   width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
   height: calc(
     var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
-    ($iui-toggle-switch-border-thickness * 2)
+      ($iui-toggle-switch-border-thickness * 2)
   );
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
@@ -109,14 +112,14 @@
       background-color: var(--iui-color-icon-hover);
     }
 
-    @include focus-visible {
+    @include mixins.focus-visible {
       &::after {
         background-color: var(--iui-color-icon-hover);
       }
     }
   }
 
-  @include focus-visible {
+  @include mixins.focus-visible {
     border-color: var(--iui-color-border-foreground-hover);
   }
   // #endregion Unchecked toggle switch

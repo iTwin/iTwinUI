@@ -2,11 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { act, fireEvent, render } from '@testing-library/react';
-import Select, { SelectProps, SelectMultipleTypeProps } from './Select';
-import { SvgSmileyHappy } from '../utils';
-import { MenuItem } from '../Menu';
+import Select, {
+  type SelectProps,
+  type SelectMultipleTypeProps,
+} from './Select.js';
+import { SvgSmileyHappy } from '../utils/index.js';
+import { MenuItem } from '../Menu/index.js';
 import userEvent from '@testing-library/user-event';
 
 function assertSelect(
@@ -513,4 +516,42 @@ it('should use custom render for selected item (multiple)', async () => {
   expect(selectedValues.length).toBe(2);
   expect((selectedValues[0] as HTMLElement).style.color).toEqual('green');
   expect((selectedValues[1] as HTMLElement).style.color).toEqual('red');
+});
+
+it('should update live region when selection changes', async () => {
+  const MultiSelectTest = () => {
+    const [selected, setSelected] = React.useState([0]);
+    return (
+      <Select
+        options={[0, 1, 2].map((value) => ({
+          value,
+          label: `Item ${value}`,
+        }))}
+        popoverProps={{ visible: true }}
+        multiple
+        value={selected}
+        onChange={(value, type) =>
+          setSelected((prev) =>
+            type === 'added'
+              ? [...prev, value]
+              : prev.filter((v) => v !== value),
+          )
+        }
+      />
+    );
+  };
+  const { container } = render(<MultiSelectTest />);
+
+  const liveRegion = container.querySelector('[aria-live="polite"]');
+  expect(liveRegion).toBeEmptyDOMElement();
+  const options = document.querySelectorAll('[role="option"]');
+
+  await userEvent.click(options[1]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1');
+
+  await userEvent.click(options[2]);
+  expect(liveRegion).toHaveTextContent('Item 0, Item 1, Item 2');
+
+  await userEvent.click(options[0]);
+  expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });

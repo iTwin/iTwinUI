@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
-import { IconButton } from '../Buttons';
+import * as React from 'react';
+import { IconButton } from '../Buttons/index.js';
 
-import { useTheme, CommonProps, SvgMoreVertical } from '../utils';
+import { useTheme, SvgMoreVertical } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
-import { DropdownMenu } from '../DropdownMenu';
+import { DropdownMenu } from '../DropdownMenu/index.js';
 
 export type HeaderTranslations = {
   /**

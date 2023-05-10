@@ -2,10 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import { FilterButtonBar, FilterButtonBarProps } from './FilterButtonBar';
-import { BaseFilter } from './BaseFilter';
+import {
+  FilterButtonBar,
+  type FilterButtonBarProps,
+} from './FilterButtonBar.js';
+import { BaseFilter } from './BaseFilter.js';
 import userEvent from '@testing-library/user-event';
 
 const setFilter = jest.fn();
