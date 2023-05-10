@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { Checkbox } from '../Checkbox';
-import { Radio } from '../Radio';
+import * as React from 'react';
+import { Checkbox } from '../Checkbox/index.js';
+import { Radio } from '../Radio/index.js';
 
-import { InputGroup } from './InputGroup';
+import { InputGroup } from './InputGroup.js';
 
 it('should render correctly in its most basic state', () => {
   const { container, getByText } = render(

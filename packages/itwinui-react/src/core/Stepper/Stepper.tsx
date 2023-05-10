@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { useTheme } from '../utils';
+import * as React from 'react';
+import { useTheme } from '../utils/index.js';
 import '@itwin/itwinui-css/css/stepper.css';
-import { StepperStep } from './StepperStep';
+import { StepperStep } from './StepperStep.js';
 
 export type StepperLocalization = {
   stepsCountLabel: (currentStep: number, totalSteps: number) => string;

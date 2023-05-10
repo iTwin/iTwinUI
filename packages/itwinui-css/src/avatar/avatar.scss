@@ -1,9 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
+@use './mixins' as *;
 
-@mixin iui-avatar {
-  @include iui-reset;
+.iui-avatar {
+  @include mixins.iui-reset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -159,9 +160,23 @@
       }
     }
   }
+
+  @include iui-avatar-size;
+
+  &:where(.iui-small) {
+    @include iui-avatar-size($size: l, $font-size: var(--iui-font-size-0));
+  }
+
+  &:where(.iui-large) {
+    @include iui-avatar-size($size: 2xl, $font-size: var(--iui-font-size-3));
+  }
+
+  &:where(.iui-x-large) {
+    @include iui-avatar-size($size: 3xl, $font-size: var(--iui-font-size-4));
+  }
 }
 
-@mixin iui-avatar-list {
+.iui-avatar-list {
   display: inline-flex;
   flex-wrap: wrap;
 
@@ -203,41 +218,5 @@
         @include iui-avatar-margins;
       }
     }
-  }
-}
-
-@mixin iui-avatar-margins {
-  .iui-avatar:not(:first-child) {
-    margin-left: var(--iui-size-2xs);
-
-    &.iui-small {
-      margin-left: var(--iui-size-3xs);
-    }
-
-    &.iui-large {
-      margin-left: var(--iui-size-xs);
-    }
-
-    &.iui-x-large {
-      margin-left: var(--iui-size-s);
-    }
-  }
-}
-
-/// @arg $size Must be one of: xl, l, 2xl, 3xl
-@mixin iui-avatar-size($size: xl, $font-size: var(--iui-font-size-2)) {
-  $icon-size: map-get($iui-icon-sizes, $size);
-
-  --_iui-avatar-size: #{$icon-size};
-  --_iui-avatar-font-size: #{$font-size};
-
-  @if ($size == xl) {
-    --_iui-avatar-status-size: calc(var(--iui-size-2xs) * 1.5);
-  } @else if ($size == l) {
-    --_iui-avatar-status-size: var(--iui-size-2xs);
-  } @else if ($size == 2xl) {
-    --_iui-avatar-status-size: var(--iui-size-xs);
-  } @else {
-    --_iui-avatar-status-size: var(--iui-size-s);
   }
 }

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   FocusTrap,
@@ -11,12 +11,13 @@ import {
   useMergedRefs,
   useTheme,
   useIsomorphicLayoutEffect,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
-import { DialogContextProps, useDialogContext } from './DialogContext';
+import { useDialogContext } from './DialogContext.js';
+import type { DialogContextProps } from './DialogContext.js';
 import { CSSTransition } from 'react-transition-group';
-import { DialogDragContext } from './DialogDragContext';
-import useDragAndDrop from '../utils/hooks/useDragAndDrop';
+import { DialogDragContext } from './DialogDragContext.js';
+import useDragAndDrop from '../utils/hooks/useDragAndDrop.js';
 
 export type DialogMainProps = {
   /**
@@ -112,6 +113,9 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
     }, [isOpen, preventDocumentScroll]);
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.altKey) {
+        return;
+      }
       // Prevents React from resetting its properties
       event.persist();
       if (isDismissible && closeOnEsc && event.key === 'Escape' && onClose) {
@@ -168,6 +172,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
           {
             'iui-dialog-default': styleType === 'default',
             'iui-dialog-full-page': styleType === 'fullPage',
+            'iui-dialog-visible': isOpen,
             'iui-dialog-draggable': isDraggable,
           },
           className,
@@ -207,7 +212,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         classNames={{
           enter: 'iui-dialog-animation-enter',
           enterActive: 'iui-dialog-animation-enter-active',
-          enterDone: 'iui-dialog-visible',
         }}
         timeout={{ exit: 600 }}
         // Focuses dialog when opened

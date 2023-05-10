@@ -2,42 +2,45 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   actions as TableActions,
-  CellProps,
-  HeaderGroup,
-  TableOptions,
-  Row,
-  TableState,
   useFlexLayout,
   useFilters,
   useRowSelect,
   useSortBy,
   useTable,
-  ActionType,
-  TableInstance,
   useExpanded,
   usePagination,
   useColumnOrder,
-  Column,
   useGlobalFilter,
 } from 'react-table';
-import { ProgressRadial } from '../ProgressIndicators';
+import type {
+  CellProps,
+  HeaderGroup,
+  TableOptions,
+  Row,
+  TableState,
+  ActionType,
+  TableInstance,
+  Column,
+} from 'react-table';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useTheme,
-  CommonProps,
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
   useIsomorphicLayoutEffect,
-} from '../utils';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/table.css';
-import { getCellStyle, getStickyStyle } from './utils';
-import { TableRowMemoized } from './TableRowMemoized';
-import { FilterToggle, TableFilterValue } from './filters';
-import { customFilterFunctions } from './filters/customFilterFunctions';
+import { getCellStyle, getStickyStyle } from './utils.js';
+import { TableRowMemoized } from './TableRowMemoized.js';
+import { FilterToggle } from './filters/index.js';
+import type { TableFilterValue } from './filters/index.js';
+import { customFilterFunctions } from './filters/customFilterFunctions.js';
 import {
   useExpanderCell,
   useSelectionCell,
@@ -47,7 +50,7 @@ import {
   useColumnDragAndDrop,
   useScrollToRow,
   useStickyColumns,
-} from './hooks';
+} from './hooks/index.js';
 import {
   onExpandHandler,
   onFilterHandler,
@@ -56,9 +59,9 @@ import {
   onSingleSelectHandler,
   onTableResizeEnd,
   onTableResizeStart,
-} from './actionHandlers';
-import VirtualScroll from '../utils/components/VirtualScroll';
-import { SELECTION_CELL_ID } from './columns';
+} from './actionHandlers/index.js';
+import VirtualScroll from '../utils/components/VirtualScroll.js';
+import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
 const shiftRowSelectedAction = 'shiftRowSelected';

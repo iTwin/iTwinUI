@@ -2,10 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { StatusMessage } from '../StatusMessage';
-import { InputContainer, InputContainerProps, useSafeContext } from '../utils';
-import { ComboBoxStateContext } from './helpers';
+import * as React from 'react';
+import { StatusMessage } from '../StatusMessage/index.js';
+import { InputContainer, useSafeContext } from '../utils/index.js';
+import type { InputContainerProps } from '../utils/index.js';
+import { ComboBoxStateContext } from './helpers.js';
 
 type ComboBoxInputContainerProps = React.ComponentPropsWithoutRef<'div'> &
   Pick<InputContainerProps, 'status' | 'message' | 'disabled'>;

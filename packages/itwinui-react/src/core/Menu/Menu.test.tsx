@@ -2,14 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import MenuItem from './MenuItem';
-import Menu, { MenuProps } from './Menu';
-import { MenuDivider } from './MenuDivider';
-import { MenuExtraContent } from './MenuExtraContent';
-import { Checkbox } from '../Checkbox';
-import { Button } from '../Buttons';
+import MenuItem from './MenuItem.js';
+import Menu, { type MenuProps } from './Menu.js';
+import { MenuDivider } from './MenuDivider.js';
+import { MenuExtraContent } from './MenuExtraContent.js';
+import { Checkbox } from '../Checkbox/index.js';
+import { Button } from '../Buttons/index.js';
 
 const testLabels = ['Test0', 'Test1', 'Test2'];
 

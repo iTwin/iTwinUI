@@ -2,16 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/dialog.css';
-import { DialogTitleBar } from './DialogTitleBar';
-import { DialogContent } from './DialogContent';
-import { DialogBackdrop } from './DialogBackdrop';
-import { DialogContext, DialogContextProps } from './DialogContext';
-import { DialogButtonBar } from './DialogButtonBar';
-import { DialogMain } from './DialogMain';
-import { useMergedRefs } from '../utils';
+import { DialogTitleBar } from './DialogTitleBar.js';
+import { DialogContent } from './DialogContent.js';
+import { DialogBackdrop } from './DialogBackdrop.js';
+import { DialogContext } from './DialogContext.js';
+import type { DialogContextProps } from './DialogContext.js';
+import { DialogButtonBar } from './DialogButtonBar.js';
+import { DialogMain } from './DialogMain.js';
+import { useMergedRefs } from '../utils/index.js';
 
 export type DialogProps = {
   /**

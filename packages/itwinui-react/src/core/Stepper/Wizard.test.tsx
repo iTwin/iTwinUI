@@ -8,8 +8,8 @@ import {
   waitForElementToBeRemoved,
   fireEvent,
 } from '@testing-library/react';
-import React from 'react';
-import { Wizard } from './Wizard';
+import * as React from 'react';
+import { Wizard } from './Wizard.js';
 
 it('should render all step names and numbers in default wizard', () => {
   const wizard = (

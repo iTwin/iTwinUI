@@ -2,8 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getWindow } from '../functions/dom';
+import * as React from 'react';
+import { getWindow } from '../functions/dom.js';
 
 /**
  * Hook that uses `ResizeObserver` to access an element's size every time it updates.

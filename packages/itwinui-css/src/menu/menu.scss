@@ -1,207 +1,43 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../surface/index';
+@use './mixins' as *;
 
-$iui-active-outline: thin solid var(--iui-color-border-accent);
-
-@mixin iui-list-menu {
-  @include iui-reset;
-  @include iui-surface;
-  list-style-type: none;
-  user-select: none;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  max-height: var(--iui-menu-max-height);
-  border-radius: var(--iui-border-radius-1);
+:is(.iui-list, .iui-menu) {
+  @include iui-list;
 
   .iui-header-menu-icon {
-    margin: 0 var(--iui-size-2xs);
-  }
-
-  div.iui-header-menu-icon {
-    @include iui-icon-style('l');
-    margin: 0;
-    border-radius: var(--iui-border-radius-1);
-    box-shadow: inset 0 0 0 2px hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
-  }
-
-  &.iui-scroll {
-    overflow-y: auto;
-    overflow-y: overlay;
-    --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items in .iui-scroll
+    @include iui-header-menu-icon;
   }
 }
 
-@mixin iui-menu-item {
-  display: flex;
-  align-items: center;
-  font-size: var(--iui-font-size-1);
-  padding-block: var(--iui-size-2xs);
-  padding-inline: var(--iui-size-s);
-  min-height: var(--iui-component-height);
-  cursor: pointer;
-  line-height: normal;
-  color: var(--iui-color-text);
-  border-radius: var(--iui-border-radius-1);
-
-  + #{&} {
-    margin-top: -1px;
-  }
-
-  .iui-content,
-  .iui-menu-label,
-  .iui-menu-description {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .iui-content {
-    flex: 1 1 auto;
-
-    + .iui-icon {
-      margin-right: 0;
-      margin-left: var(--iui-size-xs);
-    }
-  }
-
-  .iui-menu-description {
-    display: none;
-    font-size: var(--iui-font-size-0);
-    color: var(--iui-color-text-muted);
-  }
-
-  > .iui-icon {
-    @include iui-menu-icon;
-  }
-
-  &:hover {
-    background-color: var(--iui-color-background-hover);
-  }
-
-  &:focus,
-  &.iui-focused {
-    outline: $iui-active-outline;
-    outline-offset: -1px;
-  }
-
-  &:focus:not(:focus-visible) {
-    outline: none;
-  }
-
-  &.iui-large {
-    min-height: var(--iui-component-height-large);
-
-    .iui-menu-description {
-      display: block;
-    }
-  }
-
-  &.iui-active {
-    @supports selector(:has(+ *)) {
-      &:where(:has(+ #{&})) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-      }
-
-      + :where(#{&}) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-      }
-    }
-
-    &,
-    &:hover {
-      background-color: var(--iui-color-background-accent-muted);
-      color: var(--iui-color-text-accent);
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
-
-    .iui-menu-description {
-      color: inherit;
-    }
-
-    > .iui-icon {
-      fill: currentColor;
-    }
-
-    &:focus,
-    &.iui-focused {
-      outline-width: var(--iui-size-3xs);
-      outline-offset: -2px;
-    }
-
-    &:focus:not(:focus-visible) {
-      outline: $iui-active-outline;
-      outline-offset: -1px;
-    }
-  }
-
-  &.iui-disabled {
-    &,
-    &:hover {
-      cursor: not-allowed;
-      outline: none;
-      background-color: var(--iui-color-background);
-      color: var(--iui-color-text-disabled);
-
-      > .iui-icon {
-        fill: var(--iui-color-icon-disabled);
-      }
-    }
-  }
-
-  &-skeleton {
-    --iui-menu-item-content-skeleton-max-width: 30%;
-    cursor: auto;
-
-    .iui-content {
-      max-width: var(--iui-menu-item-content-skeleton-max-width);
-    }
-
-    .iui-menu-label {
-      width: 100%;
-      height: var(--iui-font-size-1);
-      vertical-align: middle;
-    }
-
-    .iui-menu-description {
-      width: 70%;
-      height: var(--iui-font-size-0);
-      vertical-align: middle;
-      margin-top: var(--iui-size-2xs);
-    }
-
-    &:hover {
-      background-color: unset;
-    }
-  }
+.iui-menu {
+  @include iui-menu;
 }
 
-@mixin iui-menu-content {
-  padding-block: var(--iui-size-xs);
-  padding-inline: var(--iui-size-m);
-  min-height: var(--iui-component-height);
-  display: grid;
-  align-items: center;
+:is(.iui-list-item, .iui-menu-item) {
+  @include iui-menu-item;
 }
 
-@mixin iui-menu-divider {
-  height: 1px;
-  width: calc(100% - #{var(--iui-size-l)});
-  margin: 1px auto;
-  background-color: var(--iui-color-border);
+:is(.iui-menu-item > .iui-icon, .iui-list-item-icon) {
+  @include iui-menu-icon;
 }
 
-@mixin iui-menu-icon {
-  @include iui-icon-style('m');
-  flex: 0 0 auto;
-  fill: var(--iui-color-icon);
+.iui-menu-item-skeleton {
+  @include iui-menu-item-skeleton;
+}
 
-  + .iui-content {
-    margin-left: var(--iui-size-xs);
-  }
+.iui-menu-content {
+  @include iui-menu-content;
+}
+
+:is(.iui-menu-item > .iui-content, .iui-list-item-content) {
+  @include iui-menu-item-content;
+}
+
+:is(.iui-menu-description, .iui-list-item-description) {
+  @include iui-menu-item-description;
+}
+
+.iui-menu-divider {
+  @include iui-menu-divider;
 }

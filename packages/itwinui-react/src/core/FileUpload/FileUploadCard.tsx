@@ -2,16 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import {
   getWindow,
   SvgDocument,
   useMergedRefs,
   useSafeContext,
-} from '../utils';
+  useId,
+} from '../utils/index.js';
 import cx from 'classnames';
-import { FileEmptyCard } from './FileEmptyCard';
-import { useId } from '../utils';
+import { FileEmptyCard } from './FileEmptyCard.js';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -44,6 +44,7 @@ const FileUploadCardIcon = React.forwardRef<
     </span>
   );
 });
+FileUploadCardIcon.displayName = 'FileUploadCard.Icon';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Info component
@@ -61,6 +62,7 @@ const FileUploadCardInfo = React.forwardRef<
     </span>
   );
 });
+FileUploadCardInfo.displayName = 'FileUploadCard.Info';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Title component
@@ -81,6 +83,7 @@ const FileUploadCardTitle = React.forwardRef<
     </span>
   );
 });
+FileUploadCardTitle.displayName = 'FileUploadCard.Title';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Description component
@@ -114,6 +117,7 @@ const FileUploadCardDescription = React.forwardRef<
     </span>
   );
 });
+FileUploadCardDescription.displayName = 'FileUploadCard.Description';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Action component
@@ -131,6 +135,7 @@ const FileUploadCardAction = React.forwardRef<
     </div>
   );
 });
+FileUploadCardAction.displayName = 'FileUploadCard.Action';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.InputLabel component
@@ -155,6 +160,7 @@ const FileUploadCardInputLabel = React.forwardRef<
     </label>
   );
 });
+FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Input component
@@ -185,9 +191,11 @@ const FileUploadCardInput = React.forwardRef<
 
   const refs = useMergedRefs(ref, setNativeFilesRef);
 
-  if (id && id !== inputId) {
-    setInputId(id);
-  }
+  React.useEffect(() => {
+    if (id && id !== inputId) {
+      setInputId(id);
+    }
+  }, [id, inputId, setInputId]);
 
   return (
     <>
@@ -210,6 +218,7 @@ const FileUploadCardInput = React.forwardRef<
     </>
   );
 });
+FileUploadCardInput.displayName = 'FileUploadCard.Input';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard component
@@ -273,7 +282,8 @@ export const FileUploadCard = Object.assign(
       } = props;
 
       const [internalFiles, setInternalFiles] = React.useState<File[]>();
-      const [inputId, setInputId] = React.useState(useId());
+      const uid = useId();
+      const [inputId, setInputId] = React.useState(uid);
       const files = filesProp ?? internalFiles ?? [];
 
       return (
@@ -321,6 +331,7 @@ export const FileUploadCard = Object.assign(
     Input: FileUploadCardInput,
   },
 );
+FileUploadCard.displayName = 'FileUploadCard';
 export default FileUploadCard;
 
 export const FileUploadCardContext = React.createContext<

@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
-import React from 'react';
-import { HeaderGroup } from 'react-table';
-import { TableFilterProps } from '../types';
-import { TextFilter } from './TextFilter';
+import * as React from 'react';
+import type { HeaderGroup } from 'react-table';
+import type { TableFilterProps } from '../types.js';
+import { TextFilter } from './TextFilter.js';
 
 const setFilter = jest.fn() as (value: unknown) => void;
 const clearFilter = jest.fn() as () => void;

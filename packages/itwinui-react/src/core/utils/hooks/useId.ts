@@ -3,15 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React from 'react';
-import { getRandomValue } from '../functions/numbers';
+import * as React from 'react';
+import { getRandomValue } from '../functions/numbers.js';
 
 /**
- * Return custom useId function as a fallback for React.useId
+ * Wrapper around React's `useId` hook, which prefixes the id with `iui-` and uses
+ * a random value as fallback for older React versions which don't include `useId`.
  */
-export const useId =
-  React.useId ??
-  (() => {
-    const [id] = React.useState(() => `iui-${getRandomValue(10)}`);
-    return id;
-  });
+export const useId = () => {
+  const uniqueValue = useUniqueValue();
+  return React.useMemo(() => `iui-${uniqueValue}`, [uniqueValue]);
+};
+
+const useUniqueValue = React.useId ?? (() => getRandomValue(10));

@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgMore as SvgPlaceholder } from '../utils';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 import { render } from '@testing-library/react';
-import React from 'react';
+import * as React from 'react';
 
-import { Tab } from './Tab';
+import { Tab } from './Tab.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<Tab label='Tab label' />);

@@ -2,10 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Dialog } from './Dialog';
-import { Button } from '../Buttons';
+import { Dialog } from './Dialog.js';
+import { Button } from '../Buttons/index.js';
 import userEvent from '@testing-library/user-event';
 
 it('should pass down the props through DialogContext', async () => {

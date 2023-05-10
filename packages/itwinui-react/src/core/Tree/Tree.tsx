@@ -2,18 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import {
-  CommonProps,
   useTheme,
   getFocusableElements,
   useVirtualization,
   mergeRefs,
-  StylingProps,
-} from '../utils';
+} from '../utils/index.js';
+import type { CommonProps, StylingProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
-import { TreeContext } from './TreeContext';
+import { TreeContext } from './TreeContext.js';
 
 export type NodeData<T> = {
   /**
@@ -182,6 +181,9 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (event.altKey) {
+      return;
+    }
     const items = getFocusableNodes();
     if (!items?.length) {
       return;

@@ -1,0 +1,96 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+@use '../text/mixins' as text-mixins;
+@use '../anchor/mixins' as anchor;
+
+@mixin iui-tag-base {
+  user-select: all;
+  text-transform: lowercase;
+  display: inline-flex;
+}
+
+@mixin iui-tag-basic {
+  @include iui-tag-base;
+
+  &:not(a) {
+    color: var(--iui-color-text-muted);
+  }
+}
+
+@mixin iui-tag {
+  @include iui-tag-base;
+  height: calc(var(--iui-size-s) * 3);
+  margin-block: var(--iui-size-2xs);
+  border-radius: var(--iui-border-radius-round);
+  padding: 0 var(--iui-size-3xs);
+  align-items: center;
+  transition: border-color var(--iui-duration-1) ease-out;
+  font-size: var(--iui-font-size-1);
+  text-transform: none;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  border: 1px solid var(--iui-color-border-foreground);
+  background-color: var(--iui-color-background);
+  color: var(--iui-color-text);
+
+  &:hover {
+    border-color: var(--iui-color-border-foreground-hover);
+  }
+
+  &:focus-within {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -2px;
+  }
+}
+
+@mixin iui-tag-label {
+  @include text-mixins.iui-text;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0 var(--iui-size-2xs) 0 var(--iui-size-xs);
+
+  &:only-child {
+    margin: 0 var(--iui-size-xs);
+  }
+}
+
+@mixin iui-tag-button {
+  border-radius: var(--iui-border-radius-round);
+
+  &:focus {
+    outline: none;
+  }
+}
+
+@mixin iui-tag-container {
+  color: var(--iui-color-text-muted);
+
+  > a.iui-tag-basic {
+    margin: var(--iui-size-3xs);
+  }
+
+  > *:not(last-child) {
+    margin-right: var(--iui-size-2xs);
+  }
+
+  > .iui-tag-basic:not(:last-child)::after {
+    content: ',';
+  }
+
+  &.iui-truncate {
+    @include mixins.iui-line-clamp(1);
+  }
+
+  &.iui-scroll {
+    white-space: nowrap;
+    overflow-x: scroll;
+  }
+
+  &.iui-visible {
+    border-radius: var(--iui-border-radius-1);
+    padding: var(--iui-size-2xs) var(--iui-size-s);
+    background-color: var(--iui-color-background);
+  }
+}

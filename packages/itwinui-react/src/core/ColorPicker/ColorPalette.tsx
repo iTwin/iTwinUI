@@ -2,19 +2,18 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
-  ColorType,
   ColorValue,
-  CommonProps,
   getFocusableElements,
   useMergedRefs,
   useTheme,
-} from '../utils';
-import { getColorValue } from './ColorPicker';
-import { ColorSwatch } from './ColorSwatch';
-import { useColorPickerContext } from './ColorPickerContext';
+} from '../utils/index.js';
+import type { CommonProps, ColorType } from '../utils/index.js';
+import { getColorValue } from './ColorPicker.js';
+import { ColorSwatch } from './ColorSwatch.js';
+import { useColorPickerContext } from './ColorPickerContext.js';
 import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorPaletteProps = {
@@ -66,6 +65,10 @@ export const ColorPalette = React.forwardRef(
 
     // Color palette arrow key navigation
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+      if (event.altKey) {
+        return;
+      }
+
       const swatches = getFocusableElements(
         paletteRef.current,
       ) as HTMLElement[];

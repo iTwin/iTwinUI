@@ -1,5 +1,77 @@
 # Changelog
 
+## 2.10.1
+
+### Patch Changes
+
+- [#1245](https://github.com/iTwin/iTwinUI/pull/1245): Adjusted Checkbox so that its clickable target area is 24pxx24px by default (increased from 16x16) and 32x32 when used in a Table selection column.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.3
+
+## 2.10.0
+
+### Minor Changes
+
+- [#1231](https://github.com/iTwin/iTwinUI/pull/1231): Added `label` prop to `IconButton`. The label will be displayed visually as a tooltip when the button is hovered/focused and will be exposed as the button's accessible name.
+- [#1211](https://github.com/iTwin/iTwinUI/pull/1211): The date range picker used in date filters now prevents users from picking a start date later than the end date or picking an end date earlier than the start date.
+- [#1238](https://github.com/iTwin/iTwinUI/pull/1238): `Select` will now render a `<div role=combobox>` instead of a generic `<div>` for the trigger element. This element now also supports passing DOM props/attributes using `triggerProps`.
+
+  `LabeledSelect` will correctly associate the label with select's trigger using `aria-labelledby`.
+
+- [#1235](https://github.com/iTwin/iTwinUI/pull/1235): Changed the internal DOM structure of `LabeledInput` and `LabeledTextarea` to prefer explicit association over implicit. The `<label>` is now associated with the input using `htmlFor`/`id` and the container is a generic div.
+
+  This change improves accessibility, with no API changes and no effect on visuals.
+
+### Patch Changes
+
+- [#1232](https://github.com/iTwin/iTwinUI/pull/1232): `IconButton` will now set `aria-pressed` attribute when `isActive` prop is used.
+- [#1236](https://github.com/iTwin/iTwinUI/pull/1236): Fixed an issue in FileUploadCard where setState was called during render.
+- [#1238](https://github.com/iTwin/iTwinUI/pull/1238): Fixed an issue in Select where `popoverProps.visible` was not being respected.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.2
+
+## 2.9.1
+
+### Patch Changes
+
+- [#1215](https://github.com/iTwin/iTwinUI/pull/1215): Code component when used inside an Anchor will now have correct styling.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.1
+
+## 2.9.0
+
+### Minor Changes
+
+- [#1106](https://github.com/iTwin/iTwinUI/pull/1106): Added new List and ListItem components.
+
+  ```jsx
+  <List>
+    <ListItem>item 1</ListItem>
+    <ListItem>item 2</ListItem>
+    <ListItem>item 3</ListItem>
+  </List>
+  ```
+
+### Patch Changes
+
+- [#1210](https://github.com/iTwin/iTwinUI/pull/1210): Removed incorrect `role=tooltip` from Popover, DropdownMenu, Select and ComboBox.
+- [#1209](https://github.com/iTwin/iTwinUI/pull/1209): Fixed an issue in ComboBox where disabled items didn't have a proper focus outline and were still selectable with keyboard.
+- [#1149](https://github.com/iTwin/iTwinUI/pull/1149): added event.altKey to file with handleKeyDown and onKeyDown function
+- Updated dependencies:
+  - @itwin/itwinui-css@1.10.0
+
+## 2.8.2
+
+### Patch Changes
+
+- [#1197](https://github.com/iTwin/iTwinUI/pull/1197): Reverted animation class change that broke Dialog.
+
+## 2.8.1
+
+### Patch Changes
+
+- [#1195](https://github.com/iTwin/iTwinUI/pull/1195): Fixed an issue with missing css in LabeledSelect.
+
 ## 2.8.0
 
 ### Minor Changes

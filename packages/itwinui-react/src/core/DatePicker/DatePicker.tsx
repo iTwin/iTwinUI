@@ -3,17 +3,19 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
-import React from 'react';
+import * as React from 'react';
 import {
   useTheme,
   SvgChevronLeft,
   SvgChevronRight,
   SvgChevronLeftDouble,
   SvgChevronRightDouble,
-} from '../utils';
+  isBefore,
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/date-picker.css';
-import { IconButton } from '../Buttons/IconButton';
-import { TimePicker, TimePickerProps } from '../TimePicker';
+import { IconButton } from '../Buttons/IconButton/index.js';
+import { TimePicker } from '../TimePicker/index.js';
+import type { TimePickerProps } from '../TimePicker/index.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -40,21 +42,6 @@ const isInDateRange = (
   minDate && minDate.setHours(0, 0, 0, 0);
   maxDate && maxDate.setHours(0, 0, 0, 0);
   return testDate > minDate && testDate < maxDate;
-};
-
-// compares to see if one date is earlier than another
-const isBefore = (
-  beforeDate: Date | undefined,
-  afterDate: Date | undefined,
-) => {
-  if (!beforeDate || !afterDate) {
-    return false;
-  }
-  const firstDate = new Date(beforeDate);
-  const secondDate = new Date(afterDate);
-  firstDate && firstDate.setHours(0, 0, 0, 0);
-  secondDate && secondDate.setHours(0, 0, 0, 0);
-  return firstDate < secondDate;
 };
 
 // Type guard for multiple did not work
@@ -466,6 +453,10 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
+    if (event.altKey) {
+      return;
+    }
+
     if (!focusedDay) {
       return;
     }

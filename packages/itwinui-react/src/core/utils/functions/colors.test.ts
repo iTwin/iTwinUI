@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { getUserColor } from './colors';
+import { getUserColor } from './colors.js';
 
 describe('getUserColor', () => {
   it('should return color for given user name', () => {

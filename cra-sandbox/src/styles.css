@@ -1,0 +1,18 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+.my-theme-toggle {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.my-app-wrapper {
+  height: 100dvh;
+  padding: 2rem 1rem;
+}

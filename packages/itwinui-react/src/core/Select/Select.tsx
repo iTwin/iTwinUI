@@ -2,20 +2,25 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { DropdownMenu } from '../DropdownMenu';
-import { MenuItem, MenuItemProps } from '../Menu/MenuItem';
+import { Menu, MenuItem } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/index.js';
 import {
+  useTheme,
+  SvgCaretDownSmall,
+  Popover,
+  useId,
+  AutoclearingHiddenLiveRegion,
+} from '../utils/index.js';
+import type {
   PopoverProps,
   PopoverInstance,
   CommonProps,
-  useTheme,
-  SvgCaretDownSmall,
-} from '../utils';
+} from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
-import SelectTag from './SelectTag';
-import SelectTagContainer from './SelectTagContainer';
+import SelectTag from './SelectTag.js';
+import SelectTagContainer from './SelectTagContainer.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -153,6 +158,10 @@ export type SelectProps<T> = {
    * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
    */
   popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
+  /**
+   * Props to pass to the select button (trigger) element.
+   */
+  triggerProps?: React.ComponentPropsWithoutRef<'div'>;
 } & SelectMultipleTypeProps<T> &
   Pick<PopoverProps, 'onShow' | 'onHide'> &
   Omit<
@@ -210,6 +219,8 @@ export type SelectProps<T> = {
  * />
  */
 export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
+  const uid = useId();
+
   const {
     options,
     value,
@@ -228,18 +239,17 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     onHide,
     popoverProps,
     multiple = false,
+    triggerProps,
     ...rest
   } = props;
 
   useTheme();
 
-  const [isOpen, setIsOpen] = React.useState(popoverProps?.visible ?? false);
-  React.useEffect(() => {
-    setIsOpen((open) => popoverProps?.visible ?? open);
-  }, [popoverProps]);
+  const [isOpenState, setIsOpen] = React.useState(false);
+  const isOpen = popoverProps?.visible ?? isOpenState;
 
   const [minWidth, setMinWidth] = React.useState(0);
-  const toggle = () => setIsOpen((open) => !open);
+  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
@@ -255,6 +265,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const onHideHandler = React.useCallback(
     (instance: PopoverInstance) => {
       setIsOpen(false);
+      selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
       onHide?.(instance);
     },
     [onHide],
@@ -272,62 +283,77 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   }, [isOpen]);
 
-  const onKeyDown = (event: React.KeyboardEvent, toggle: () => void) => {
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    if (event.altKey) {
+      return;
+    }
+
     switch (event.key) {
       case 'Enter':
       case ' ':
-      case 'Spacebar':
-        if (event.target === selectRef.current) {
-          toggle();
-          event.preventDefault();
-        }
+      case 'Spacebar': {
+        setIsOpen((o) => !o);
+        event.preventDefault();
         break;
+      }
       default:
         break;
     }
   };
 
-  const menuItems = React.useCallback(
-    (close: () => void) => {
-      return options.map((option, index) => {
-        const isSelected = isMultipleEnabled(value, multiple)
-          ? value?.includes(option.value) ?? false
-          : value === option.value;
-        const menuItem: JSX.Element = itemRenderer ? (
-          itemRenderer(option, { close, isSelected })
-        ) : (
-          <MenuItem>{option.label}</MenuItem>
-        );
+  const menuItems = React.useMemo(() => {
+    return options.map((option, index) => {
+      const isSelected = isMultipleEnabled(value, multiple)
+        ? value?.includes(option.value) ?? false
+        : value === option.value;
+      const menuItem: JSX.Element = itemRenderer ? (
+        itemRenderer(option, { close: () => setIsOpen(false), isSelected })
+      ) : (
+        <MenuItem>{option.label}</MenuItem>
+      );
 
-        const { label, ...restOption } = option;
+      const { label, ...restOption } = option;
 
-        return React.cloneElement<MenuItemProps>(menuItem, {
-          key: `${label}-${index}`,
-          isSelected,
-          onClick: () => {
-            if (option.disabled) {
-              return;
-            }
-            if (isSingleOnChange(onChange, multiple)) {
-              onChange?.(option.value);
-              close();
-            } else {
-              onChange?.(option.value, isSelected ? 'removed' : 'added');
-            }
-          },
-          ref: (el: HTMLElement) => {
-            if (isSelected && !multiple) {
-              el?.scrollIntoView();
-            }
-          },
-          role: 'option',
-          ...restOption,
-          ...menuItem.props,
-        });
+      return React.cloneElement<MenuItemProps>(menuItem, {
+        key: `${label}-${index}`,
+        isSelected,
+        onClick: () => {
+          if (option.disabled) {
+            return;
+          }
+          if (isSingleOnChange(onChange, multiple)) {
+            onChange?.(option.value);
+            setIsOpen(false);
+          } else {
+            onChange?.(option.value, isSelected ? 'removed' : 'added');
+          }
+
+          // update live region
+          if (isMultipleEnabled(value, multiple)) {
+            const prevSelectedValue = value || [];
+            const newSelectedValue = isSelected
+              ? prevSelectedValue.filter((i) => option.value !== i)
+              : [...prevSelectedValue, option.value];
+            setLiveRegionSelection(
+              options
+                .filter((i) => newSelectedValue.includes(i.value))
+                .map((item) => item.label)
+                .filter(Boolean)
+                .join(', '),
+            );
+          }
+        },
+        ref: (el: HTMLElement) => {
+          if (isSelected && !multiple) {
+            el?.scrollIntoView({ block: 'nearest' });
+          }
+        },
+        role: 'option',
+        ...restOption,
+        ...menuItem.props,
       });
-    },
-    [itemRenderer, multiple, onChange, options, value],
-  );
+    });
+  }, [itemRenderer, multiple, onChange, options, value]);
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -345,24 +371,29 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   return (
     <div
       className={cx('iui-input-with-icon', className)}
-      aria-expanded={isOpen}
-      aria-haspopup='listbox'
       style={style}
       {...rest}
     >
-      <DropdownMenu
-        menuItems={menuItems}
+      <Popover
+        content={
+          <Menu
+            role='listbox'
+            className={cx('iui-scroll', menuClassName)}
+            style={{
+              minWidth,
+              maxWidth: `min(${minWidth * 2}px, 90vw)`,
+              ...menuStyle,
+            }}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+          >
+            {menuItems}
+          </Menu>
+        }
         placement='bottom-start'
-        className={cx('iui-scroll', menuClassName)}
-        style={{
-          minWidth,
-          maxWidth: `min(${minWidth * 2}px, 90vw)`,
-          ...menuStyle,
-        }}
-        role='listbox'
+        aria={{ content: null }}
         onShow={onShowHandler}
         onHide={onHideHandler}
-        disabled={disabled}
         {...popoverProps}
         visible={isOpen}
         onClickOutside={(_, { target }) => {
@@ -372,16 +403,27 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         }}
       >
         <div
+          tabIndex={0}
+          role='combobox'
           ref={selectRef}
-          className={cx('iui-select-button', {
-            'iui-placeholder':
-              (!selectedItems || selectedItems.length === 0) && !!placeholder,
-            'iui-disabled': disabled,
-          })}
           data-iui-size={size}
-          onClick={() => !disabled && toggle()}
-          onKeyDown={(e) => !disabled && onKeyDown(e, toggle)}
-          tabIndex={!disabled ? 0 : undefined}
+          onClick={() => !disabled && setIsOpen((o) => !o)}
+          onKeyDown={(e) => !disabled && onKeyDown(e)}
+          aria-disabled={disabled}
+          aria-autocomplete='none'
+          aria-expanded={isOpen}
+          aria-haspopup='listbox'
+          aria-controls={`${uid}-menu`}
+          {...triggerProps}
+          className={cx(
+            'iui-select-button',
+            {
+              'iui-placeholder':
+                (!selectedItems || selectedItems.length === 0) && !!placeholder,
+              'iui-disabled': disabled,
+            },
+            triggerProps?.className,
+          )}
         >
           {(!selectedItems || selectedItems.length === 0) && (
             <span className='iui-content'>{placeholder}</span>
@@ -405,18 +447,23 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </div>
-      </DropdownMenu>
+      </Popover>
       <span
+        aria-hidden
         ref={toggleButtonRef}
         className={cx('iui-end-icon', {
           'iui-actionable': !disabled,
           'iui-disabled': disabled,
           'iui-open': isOpen,
         })}
-        onClick={() => !disabled && toggle()}
+        onClick={() => !disabled && setIsOpen((o) => !o)}
       >
-        <SvgCaretDownSmall aria-hidden />
+        <SvgCaretDownSmall />
       </span>
+
+      {multiple ? (
+        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+      ) : null}
     </div>
   );
 };

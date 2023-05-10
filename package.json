@@ -32,9 +32,8 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
+    "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
-    "push-docker:css": "yarn workspace @itwin/itwinui-css push-docker",
-    "push-docker:react": "yarn workspace storybook push-docker",
     "createComponent": "node scripts/createComponent.js",
     "approve:css": "yarn workspace @itwin/itwinui-css approve",
     "approve:react": "yarn workspace storybook approve",
@@ -49,7 +48,8 @@
     "concurrently": "^7.6.0",
     "cross-env": "^7.0.3",
     "husky": "^8.0.2",
-    "lint-staged": "^12.5.0",
+    "lint-staged": "^13.2.1",
+    "patch-package": "~6.5.1",
     "prettier": "2.8.0",
     "rimraf": "^3.0.2",
     "turbo": "~1.6.3"
@@ -69,8 +69,8 @@
     "prettier": "2.8.0",
     "nanoid": "3.3.4",
     "loader-utils": "2.0.4",
-    "@svgr/webpack": "6.5.1",
-    "autoprefixer": "10.4.13"
+    "autoprefixer": "10.4.13",
+    "yaml": "^2.2.2"
   },
   "engines": {
     "npm": ">=7.0.0",

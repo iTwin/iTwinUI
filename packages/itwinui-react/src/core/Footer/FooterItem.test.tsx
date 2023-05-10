@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { FooterItem } from './FooterItem';
+import * as React from 'react';
+import { FooterItem } from './FooterItem.js';
 
 it('should render with misc props', () => {
   const { container } = render(

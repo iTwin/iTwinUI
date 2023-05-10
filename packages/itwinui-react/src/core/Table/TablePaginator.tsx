@@ -2,22 +2,22 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { IconButton, Button, DropdownButton } from '../Buttons';
-import { ProgressRadial } from '../ProgressIndicators';
-import { MenuItem } from '../Menu';
+import { IconButton, Button, DropdownButton } from '../Buttons/index.js';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
+import { MenuItem } from '../Menu/index.js';
 import {
-  CommonProps,
   getBoundedValue,
   useTheme,
   useOverflow,
   useContainerWidth,
   SvgChevronLeft,
   SvgChevronRight,
-} from '../utils';
-import { TablePaginatorRendererProps } from './Table';
+} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
+import type { TablePaginatorRendererProps } from './Table.js';
 
 const defaultLocalization = {
   pageSizeLabel: (size: number) => `${size} per page`,

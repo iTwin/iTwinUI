@@ -2,17 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { CarouselContext } from './CarouselContext';
+import { CarouselContext } from './CarouselContext.js';
 import {
   getBoundedValue,
   getWindow,
   useMergedRefs,
   useResizeObserver,
   useTheme,
-} from '../utils';
-import { CarouselDot } from './CarouselDot';
+} from '../utils/index.js';
+import { CarouselDot } from './CarouselDot.js';
 import '@itwin/itwinui-css/css/carousel.css';
 
 type CarouselDotsListProps = {
@@ -25,7 +25,7 @@ type CarouselDotsListProps = {
 } & React.ComponentPropsWithoutRef<'div'>;
 
 /**
- * The `CarouselDots` component shows a list of `CarouselDot` components which can be used to
+ * The `CarouselDotsList` component shows a list of `CarouselDot` components which can be used to
  * choose a specific slide. If used as a descendant of `Carousel`, then this component does not need
  * any props or `children`.
  *
