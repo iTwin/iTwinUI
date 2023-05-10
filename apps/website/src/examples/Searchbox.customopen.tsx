@@ -9,23 +9,23 @@ import { SvgCaretUpSmall, SvgCaretDownSmall, SvgAirplane } from '@itwin/itwinui-
 export default () => {
   return (
     <Flex style={{ width: '70%' }} justifyContent='center' flexDirection='column'>
-      <SearchBox
-        expandable
-        collapsedState={
+      <SearchBox expandable>
+        <SearchBox.CollapsedState>
           <SearchBox.ExpandButton>
             <SvgAirplane />
           </SearchBox.ExpandButton>
-        }
-      >
-        <SearchBox.Input placeholder='Expandable search with custom open icon' />
-        <SearchBox.Button label='Previous result'>
-          <SvgCaretUpSmall />
-        </SearchBox.Button>
-        <SearchBox.Button label='Next result'>
-          <SvgCaretDownSmall />
-        </SearchBox.Button>
-        <Divider orientation='vertical' />
-        <SearchBox.CollapseButton label='Close search' />
+        </SearchBox.CollapsedState>
+        <SearchBox.ExpandedState>
+          <SearchBox.Input placeholder='Expandable search with custom open icon' />
+          <SearchBox.Button label='Previous result'>
+            <SvgCaretUpSmall />
+          </SearchBox.Button>
+          <SearchBox.Button label='Next result'>
+            <SvgCaretDownSmall />
+          </SearchBox.Button>
+          <Divider orientation='vertical' />
+          <SearchBox.CollapseButton label='Close search' />
+        </SearchBox.ExpandedState>
       </SearchBox>
     </Flex>
   );
