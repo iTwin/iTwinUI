@@ -6,11 +6,14 @@ import * as React from 'react';
 import '@itwin/itwinui-css/css/global.css';
 import '@itwin/itwinui-variables/index.css';
 
+/**
+ * Hook used in every component for any shared setup and side effects.
+ *
+ * @private
+ */
 export const useGlobals = () => {
   useCorrectRootFontSize();
 };
-
-export default useGlobals;
 
 let didLogWarning = false;
 let isDev = false;
