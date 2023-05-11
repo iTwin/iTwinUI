@@ -36,7 +36,7 @@ export type IconProps = {
     | 'negative'
     | 'warning'
     | AnyString;
-} & React.ComponentProps<'span'>;
+} & React.ComponentPropsWithoutRef<'span'>;
 
 const getSizeValue = (size: string) => {
   switch (size) {

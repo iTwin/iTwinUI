@@ -19,7 +19,7 @@ Also go through our FAQ: https://github.com/iTwin/iTwinUI/wiki/FAQ
 <!-- A clear and concise description of what you expected to happen. -->
 
 #### Reproduction
-Link to a minimal repro: <!-- fork this sandbox: https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/playgrounds/cra?file=/src/App.jsx -->
+Link to a minimal repro: <!-- fork this sandbox: https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx -->
 
 ##### Steps to reproduce
 1. <!-- fill this out -->
