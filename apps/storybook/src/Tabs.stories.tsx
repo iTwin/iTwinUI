@@ -5,8 +5,7 @@
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
-import { Button, Tab } from '@itwin/itwinui-react';
-import { Tabs, TabsProps } from '@itwin/itwinui-react/esm/core/Tabs/Tabs';
+import { Button, Tab, Tabs, TabsProps } from '@itwin/itwinui-react';
 
 export default {
   title: 'Core/Tabs',
@@ -358,7 +357,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
 };
 VerticalOverflow.args = {
   orientation: 'vertical',
-  type: 'borderless',
+  type: 'default',
   labels: [
     <Tab key={1} label='Item 1' />,
     <Tab key={2} label='Item 2' />,
