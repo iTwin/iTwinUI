@@ -2,28 +2,27 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-describe('Breadcrumbs', () => {
-  const storyPath = 'Core/Breadcrumbs';
+describe('SearchBox', () => {
+  const storyPath = 'Input/SearchBox';
   const tests = [
     'Basic',
-    'Custom Separator',
-    'Folder Navigation',
-    'Links',
-    'Overflow',
-    // 'Custom Overflow Dropdown', // excluding because these fellas keep failing in CI
-    // 'Custom Overflow Back Button',
+    'Basic With Status',
+    'Basic With Custom Items',
+    'Expandable',
+    'Expandable With Custom Items',
+    'With Custom Action',
+    'Small',
   ];
 
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
-
-      if (testName === 'Custom Overflow Back Button') {
-        cy.get('.iui-button').eq(1).trigger('mouseenter');
-      }
-
       cy.compareSnapshot(testName);
+      if (!testName.includes('Basic') && testName !== 'Small') {
+        cy.get('.iui-searchbox-open-button').first().click();
+        cy.compareSnapshot(`${testName} (Open)`);
+      }
     });
   });
 });
