@@ -147,7 +147,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
           newFromData.push(item);
         }
       });
-      setFromData(a);
+      setFromData(newFromData);
       return newToData;
     });
   };
