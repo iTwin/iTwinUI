@@ -4,15 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
-import { Svg404 } from '@itwin/itwinui-illustrations-react';
+import { Svg403 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div style={{ position: 'relative', minHeight: 403 }}>
       <NonIdealState
-        svg={<Svg404 />}
-        heading='Page not found'
-        description={<>We can not find the iModel that you are looking for or it does not exist.</>}
+        svg={<Svg403 />}
+        heading='Forbidden'
+        description={
+          <>
+            Forbidden You do not have permission to access this server. Unable to fulfill request.
+          </>
+        }
       />
     </div>
   );

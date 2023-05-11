@@ -9,12 +9,9 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='core-nonidealstate' />
 
 <LiveExample src='NonIdealState.main.tsx' truncate={false}>
   <AllExamples.NonIdealStateMainExample client:load />
@@ -38,6 +35,10 @@ Error pages come with their own error and should not be mixed and matched to avo
 
 Both 401 and 403 errors inform of similar yet slightly different situations. They inform the user that they have reached a page they do not have the permission to view, either because the credentials they entered are erroneous (401), or because they simply do not have the rights to access it (403).
 
+<LiveExample src='NonIdealState.unauthorized.tsx' truncate={false}>
+  <AllExamples.NonIdealStateUnauthorizedExample client:load />
+</LiveExample>
+
 A 401 error means the request sent by the client could not be authenticated. It may be because the provided user ID and password are invalid and the server denied access to the client.
 
 Potential causes other than invalid credentials;
@@ -46,6 +47,10 @@ Potential causes other than invalid credentials;
 - Invalid information stored in browser cache and interfering;
 - Page loaded incorrectly;
 - Mistake on the site owner’s side.
+
+<LiveExample src='NonIdealState.forbidden.tsx' truncate={false}>
+  <AllExamples.NonIdealStateForbiddenExample client:load />
+</LiveExample>
 
 A 403 error means the client encountering it is completely forbidden from accessing the page. In this case, the user cannot do much to resolve it, as the resource is accessible only by the authorized parties.
 

@@ -146,6 +146,8 @@ export { default as ListSubcomponentsExample } from './List.subcomponents';
 export { default as ListLinksExample } from './List.links';
 export { default as ListComboboxExample } from './List.combobox';
 
+export { default as NonIdealStateUnauthorizedExample } from './NonIdealState.unauthorized';
+export { default as NonIdealStateForbiddenExample } from './NonIdealState.forbidden';
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 
 export { default as ProgressLinearMainExample } from './ProgressLinear.main';
