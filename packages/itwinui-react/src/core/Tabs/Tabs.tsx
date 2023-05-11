@@ -414,7 +414,9 @@ export const Tabs = (props: TabsProps) => {
     scrollToTab,
   ]);
 
-  const [scrollingPlacement, setScrollingPlacement] = React.useState('none');
+  const [scrollingPlacement, setScrollingPlacement] = React.useState('none');  const [scrollingPlacement, setScrollingPlacement] = React.useState<
+    string | undefined
+  >(undefined);
   const determineScrollingPlacement = React.useCallback(() => {
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
