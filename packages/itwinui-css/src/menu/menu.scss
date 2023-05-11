@@ -10,6 +10,10 @@
   }
 }
 
+.iui-list[role='listbox'] {
+  @include iui-transfer-list;
+}
+
 .iui-menu {
   @include iui-menu;
 }
@@ -40,11 +44,4 @@
 
 .iui-menu-divider {
   @include iui-menu-divider;
-}
-
-@mixin iui-transfer-list {
-  @include iui-surface($elevation: none);
-  overflow-y: auto;
-  overflow-y: overlay;
-  height: calc((var(--iui-component-height) - 1px) * 4.5);
 }
