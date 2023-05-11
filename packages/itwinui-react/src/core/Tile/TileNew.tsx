@@ -74,33 +74,20 @@ type TileOwnProps = {
 // Tile.ThumbnailArea component
 
 const TileThumbnailArea = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, badge, children, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     <Element
       className={cx('iui-tile-thumbnail', className)}
       ref={ref}
       {...rest}
     >
-      {badge && (
-        <div className='iui-tile-thumbnail-badge-container'>{badge}</div>
-      )}
       {children}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TileThumbnailAreaOwnProps>;
 TileThumbnailArea.displayName = 'TileNew.ThumbnailArea';
 
-type TileThumbnailAreaOwnProps = {
-  /**
-   * Icon shown on top left of the tile. Also known as "type indicator".
-   * Recommended to use an invisible `IconButton`.
-   */
-  leftIcon?: React.ReactNode;
-  /**
-   * `Badge` shown on the bottom right of thumbnail.
-   */
-  badge?: React.ReactNode;
-};
+type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
