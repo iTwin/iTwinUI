@@ -319,17 +319,17 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
-  function easeInOutQuad(
+  const easeInOutQuad = (
     time: number,
     beginning: number,
     change: number,
     duration: number,
-  ) {
+  ) => {
     if ((time /= duration / 2) < 1) {
       return (change / 2) * time * time + beginning;
     }
     return (-change / 2) * (--time * (time - 2) - 1) + beginning;
-  }
+  };
 
   const scrollToTab = React.useCallback(
     (
