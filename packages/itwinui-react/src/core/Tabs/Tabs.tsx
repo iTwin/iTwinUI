@@ -21,15 +21,7 @@ export type OverflowOptions = {
    * Whether to allow tabs list to scroll when there is overflow,
    * i.e. when there is not enough space to fit all the tabs.
    *
-   * Not applicable to type `pill`.
-   *
-   * @default false
-   * @example <caption>Enables scrolling for overflowing tabs</caption>
-   *  return (
-   *    <Tabs useOverflow={true}>
-   *      {tabs}
-   *    </Tabs>
-   *  );
+   * Not applicable to types `pill` and `borderless`.
    */
   useOverflow?: boolean;
 };
@@ -46,10 +38,10 @@ type TabsOverflowProps =
        * If `orientation = 'vertical'`, `pill` is not applicable.
        * @default 'default'
        */
-      type?: 'default' | 'borderless';
+      type?: 'default';
     }
   | {
-      type: 'pill';
+      type: 'pill' | 'borderless';
     };
 
 type TabsOrientationProps =
@@ -186,7 +178,11 @@ export const Tabs = (props: TabsProps) => {
   }
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
-  if (props.type !== 'pill' && props.overflowOptions) {
+  if (
+    props.type !== 'borderless' &&
+    props.type !== 'pill' &&
+    props.overflowOptions
+  ) {
     overflowOptions = props.overflowOptions;
     props = { ...props };
     delete props.overflowOptions;
@@ -444,7 +440,7 @@ export const Tabs = (props: TabsProps) => {
     } else {
       setScrollingPlacement('center');
     }
-  }, [orientation]);
+  }, [orientation, setScrollingPlacement]);
   // apply correct mask when tabs list is resized
   const [resizeRef] = useResizeObserver(determineScrollingPlacement);
   resizeRef(tablistRef?.current);
