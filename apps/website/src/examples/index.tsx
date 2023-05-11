@@ -163,7 +163,12 @@ export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as RadioTileColorExample } from './RadioTile.color';
 
+export { default as SelectDisableExample } from './Select.disable';
+export { default as SelectIconExample } from './Select.icon';
 export { default as SelectMainExample } from './Select.main';
+export { default as SelectStatusesExample } from './Select.statuses';
+export { default as SelectSublabelsExample } from './Select.sublabels';
+export { default as SelectTruncateExample } from './Select.truncate';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SideNavigationBasicExample } from './SideNavigation.basic';
