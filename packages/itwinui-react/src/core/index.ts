@@ -284,7 +284,11 @@ export type { TileProps } from './Tile';
 
 export { TileNew } from './Tile';
 export type { TileNewProps } from './Tile';
-export type { TileNewThumbnailProps } from './Tile';
+export type { TileNewThumbnailAreaProps } from './Tile';
+export type { TileNewThumbnailPictureProps } from './Tile';
+export type { TileNewQuickActionProps } from './Tile';
+export type { TileNewTypeIndicatorProps } from './Tile';
+export type { TileNewBadgeProps } from './Tile';
 
 export { TimePicker } from './TimePicker';
 export type { MeridiemType, TimePickerProps } from './TimePicker';
