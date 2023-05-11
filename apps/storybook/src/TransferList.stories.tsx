@@ -77,6 +77,16 @@ export const WithLabel: Story<TransferListProps> = (args) => {
     { name: 'Option 6', active: false },
   ]);
 
+  const onDataEdit = React.useCallback((isActive: boolean, index: number) => {
+    setData((oldData) => {
+      const newData = [...oldData];
+      const newObject = { ...newData[index] };
+      newObject.active = !isActive;
+      newData[index] = newObject;
+      return newData;
+    });
+  }, []);
+
   return (
     <TransferList {...args}>
       <TransferList.Area>
@@ -87,15 +97,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
               <TransferList.ListItem
                 actionable
                 active={item.active}
-                onActiveChange={(isActive: boolean) => {
-                  setData((oldData) => {
-                    const newData = [...oldData];
-                    const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
-                    newData[index] = newObject;
-                    return newData;
-                  });
-                }}
+                onActiveChange={onDataEdit(item.active, index)}
               >
                 {item.name}
               </TransferList.ListItem>
@@ -123,8 +125,6 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
     { name: 'Option 6', active: false },
   ]);
 
-  console.log('optionData', optionData);
-
   const [appliedData, setAppliedData] = React.useState([
     { name: 'Option 7', active: false },
   ]);
@@ -132,20 +132,22 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
   const transfer = (
     fromData: Array<TransferItemDataType>,
     setFromData: (data: Array<TransferItemDataType>) => void,
-    toData: Array<TransferItemDataType>,
     setToData: (data: Array<TransferItemDataType>) => void,
     sendAll?: boolean,
   ) => {
     setToData((oldToData) => {
       const newToData = [...oldToData];
+      const newFromData: Array<TransferItemDataType> = [];
       fromData.forEach((item) => {
         if (sendAll || item.active === true) {
           const newItem = item;
           newItem.active = false;
           newToData.push(newItem);
+        } else {
+          newFromData.push(item);
         }
       });
-      setFromData(fromData.filter((item) => item.active === true));
+      setFromData(a);
       return newToData;
     });
   };
@@ -166,7 +168,6 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
                     const newObject = { ...newData[index] };
                     newObject.active = !isActive;
                     newData[index] = newObject;
-                    console.log('Item selected!');
                     return newData;
                   });
                 }}
@@ -181,14 +182,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
         <IconButton
           styleType={'borderless'}
           onClick={() => {
-            console.log('optionData', optionData);
-            transfer(
-              optionData,
-              setOptionData,
-              appliedData,
-              setAppliedData,
-              true,
-            );
+            transfer(optionData, setOptionData, setAppliedData, true);
           }}
         >
           <SvgChevronRightDouble />
@@ -196,21 +190,25 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
         <IconButton
           styleType={'borderless'}
           onClick={() =>
-            transfer(
-              optionData,
-              setOptionData,
-              appliedData,
-              setAppliedData,
-              false,
-            )
+            transfer(optionData, setOptionData, setAppliedData, false)
           }
         >
           <SvgChevronRight />
         </IconButton>
-        <IconButton styleType={'borderless'}>
+        <IconButton
+          styleType={'borderless'}
+          onClick={() =>
+            transfer(appliedData, setAppliedData, setOptionData, false)
+          }
+        >
           <SvgChevronLeft />
         </IconButton>
-        <IconButton styleType={'borderless'}>
+        <IconButton
+          styleType={'borderless'}
+          onClick={() =>
+            transfer(appliedData, setAppliedData, setOptionData, true)
+          }
+        >
           <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>

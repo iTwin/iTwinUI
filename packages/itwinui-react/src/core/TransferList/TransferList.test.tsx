@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import { TransferList } from './TransferList';
-import { Button } from '../Buttons';
 import userEvent from '@testing-library/user-event';
+import { Button } from '../Buttons/index.js';
+import { TransferList } from './TransferList.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(
