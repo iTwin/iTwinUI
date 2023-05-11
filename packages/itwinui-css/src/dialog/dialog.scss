@@ -1,11 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
 $iui-dialog-width: 380px;
 $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
 
-@mixin iui-dialog-wrapper {
+.iui-dialog-wrapper {
   position: fixed;
   overflow: hidden;
   top: 0;
@@ -22,7 +22,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog {
+.iui-dialog {
   z-index: 999;
   isolation: isolate;
   border-radius: var(--iui-border-radius-1);
@@ -48,13 +48,11 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog-default {
+.iui-dialog-default {
   max-width: Max(50%, $iui-dialog-width);
   min-width: Min(100%, $iui-dialog-width);
   max-height: 100vh;
-}
 
-@mixin iui-dialog-placement {
   &:not([data-iui-placement]) {
     left: 50%;
     top: 33%;
@@ -90,7 +88,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog-full-page {
+.iui-dialog-full-page {
   border-radius: 0;
   height: 100vh;
   height: 100dvh;
@@ -115,14 +113,14 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog-draggable {
+.iui-dialog-draggable {
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
   min-height: $iui-dialogue-resizable-min-height;
 }
 
-@mixin iui-dialog-animation {
+.iui-dialog-animation {
   &-enter {
     transform: translateY(100%);
     opacity: 0;
@@ -134,7 +132,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog-title {
+.iui-dialog-title {
   display: flex;
   align-items: center;
   font-size: inherit;
@@ -145,14 +143,14 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   margin-right: auto;
 }
 
-@mixin iui-dialog-title-bar {
+.iui-dialog-title-bar {
   display: flex;
   align-items: center;
   margin-bottom: var(--iui-size-s);
   font-size: var(--iui-font-size-3);
 }
 
-@mixin iui-dialog-title-bar-filled {
+.iui-dialog-title-bar-filled {
   font-size: var(--iui-font-size-2);
   padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
   margin: calc(0px - var(--iui-size-s)) calc(0px - var(--iui-size-m)) var(--iui-size-s) calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
@@ -165,7 +163,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   }
 }
 
-@mixin iui-dialog-content {
+.iui-dialog-content {
   flex-grow: 2;
   margin: 0 calc(0px - var(--iui-size-m));
   padding: 0 var(--iui-size-m);
@@ -175,7 +173,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   max-height: calc(100dvh - 6.75rem);
 }
 
-@mixin iui-dialog-button-bar {
+.iui-dialog-button-bar {
   margin-top: var(--iui-size-s);
   display: flex;
   align-items: center;

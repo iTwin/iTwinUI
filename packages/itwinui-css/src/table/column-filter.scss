@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../surface/index';
+@use '../surface/base' as surface;
 
 @mixin iui-table-column-filter {
-  @include iui-surface;
+  @include surface.iui-surface;
   padding: var(--iui-size-s) var(--iui-size-s);
   display: inline-flex;
   flex-direction: column;

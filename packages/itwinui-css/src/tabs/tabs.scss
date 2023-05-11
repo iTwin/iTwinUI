@@ -1,72 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use 'base';
+@use 'default';
+@use 'borderless';
+@use 'pill';
 
-// (12px) Between .iui-tabs and .iui-tabs-actions-wrapper
-$tabs-actions-gap: var(--iui-size-s);
+.iui-tabs-wrapper {
+  @include base.iui-tabs-wrapper;
 
-// (4px) Smaller min content-actions spacing for default tabs
-$content-actions-min-gap-default-horizontal-tabs: var(--iui-size-2xs);
-// (8px) Larger min content-actions spacing for borderless tabs
-$content-actions-min-gap-borderless-horizontal-tabs: var(--iui-size-xs);
-// (8px) Padding for iui-tabs (vertical tabs)
-$content-actions-gap-vertical-tabs: var(--iui-size-xs);
-
-// (44px) Min tab height for borderless tabs
-$borderless-horizontal-tab-min-height: calc(
-  var(--iui-size-s) * 3 + #{$content-actions-min-gap-borderless-horizontal-tabs}
-);
-
-@mixin iui-tabs-wrapper {
-  display: grid;
-  position: relative;
-}
-
-@mixin iui-tabs {
-  @include iui-reset;
-  position: relative;
-  list-style: none;
-  user-select: none;
-
-  .iui-tab {
-    @include iui-reset;
-    font-family: inherit;
-    position: relative;
-    display: flex;
-    align-items: center;
-    font-size: var(--iui-font-size-1);
-    min-height: calc(var(--iui-size-m) * 2.5);
-    height: 100%;
-    cursor: pointer;
-    color: var(--iui-color-text);
-    transition: background-color var(--iui-duration-1) ease-out;
-
-    &.iui-active {
-      color: var(--iui-color-text-accent);
-
-      .iui-tab-icon {
-        fill: currentColor;
-      }
-
-      .iui-tab-description {
-        color: inherit;
-      }
-    }
-
-    &[disabled] {
-      cursor: not-allowed;
-      color: var(--iui-color-text-disabled);
-
-      .iui-tab-description {
-        color: inherit;
-      }
-
-      .iui-tab-icon {
-        fill: var(--iui-color-icon-disabled);
-      }
-    }
-
-    @include iui-focus;
+  &.iui-horizontal {
+    @include base.iui-tabs-horizontal;
   }
 
   .iui-tab-icon {
@@ -123,12 +66,39 @@ $borderless-horizontal-tab-min-height: calc(
   }
 }
 
-@mixin iui-tab-label {
-  text-align: left;
-  max-width: 60ch;
+.iui-tabs-actions-wrapper {
+  @include base.iui-tabs-actions-wrapper;
+}
 
-  > * {
-    @include iui-line-clamp(3);
+.iui-tabs-actions {
+  @include base.iui-tabs-actions;
+}
+
+.iui-tabs-content {
+  @include base.iui-tabs-content;
+}
+
+.iui-tabs {
+  @include base.iui-tabs;
+
+  &.iui-default {
+    @include default.iui-tabs-default;
+  }
+
+  &.iui-borderless {
+    @include borderless.iui-tabs-borderless;
+  }
+
+  &.iui-pill {
+    @include pill.iui-tabs-pill;
+  }
+
+  &.iui-animated {
+    @include base.iui-tab-animated;
+  }
+
+  &.iui-not-animated {
+    @include base.iui-tab-not-animated;
   }
 }
 

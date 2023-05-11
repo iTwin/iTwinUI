@@ -1,78 +1,11 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
-@import '../surface/index';
-
-$iui-date-picker-cell-width: 40px;
-$iui-date-picker-cell-height: 36px;
-$iui-date-picker-today-circle-size: 32px;
-
-@mixin iui-date-picker {
-  @include iui-surface;
-  user-select: none;
-  display: inline-grid;
-  grid-template-columns: 1fr auto;
-
-  .iui-time-picker {
-    height: 0;
-    min-height: 100%;
-  }
-}
-
-@mixin iui-calendar-month-year {
-  display: inline-flex;
-  width: 100%;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--iui-size-2xs);
-  font-weight: var(--iui-font-weight-bold);
-  gap: var(--iui-size-2xs);
-
-  > span {
-    width: 156px;
-    white-space: nowrap;
-    display: inline-flex;
-    flex-shrink: 0;
-    align-items: center;
-    justify-content: center;
-    line-height: calc(var(--iui-size-s) * 4);
-  }
-}
-
-@mixin iui-calendar-month {
-  overflow: hidden;
-  max-width: 15ch;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-@mixin iui-calendar-weekdays {
-  line-height: $iui-date-picker-cell-height;
-  display: flex;
-  padding: 0 var(--iui-size-xs);
-  font-weight: var(--iui-font-weight-bold);
-  background-color: var(--iui-color-background-backdrop);
-
-  > div {
-    white-space: nowrap;
-    overflow: hidden;
-    width: $iui-date-picker-cell-width;
-    text-align: center;
-  }
-}
-
-@mixin iui-calendar-week {
-  white-space: nowrap;
-  line-height: $iui-date-picker-cell-height;
-  display: flex;
-  padding: 0 var(--iui-size-xs);
-  margin-bottom: var(--iui-size-3xs);
-}
+@use '../mixins';
+@use '../surface/base' as surface;
 
 //#region Helper mixins
 @mixin iui-calendar-day-base {
-  @include iui-focus;
+  @include mixins.iui-focus;
   cursor: pointer;
   text-align: center;
   width: $iui-date-picker-cell-width;
@@ -114,7 +47,7 @@ $iui-date-picker-today-circle-size: 32px;
   font-weight: var(--iui-font-weight-semibold);
   background-color: var(--iui-color-background-accent);
   color: var(--iui-color-white);
-  @include iui-focus($color: var(--iui-color-white), $offset: -3px);
+  @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
 }
 
 @mixin iui-calendar-day-selected-today-base {
@@ -144,7 +77,76 @@ $iui-date-picker-today-circle-size: 32px;
 }
 //#endregion Helper mixins
 
-@mixin iui-calendar-day {
+// ----------------------------------------------------------------------------
+
+$iui-date-picker-cell-width: 40px;
+$iui-date-picker-cell-height: 36px;
+$iui-date-picker-today-circle-size: 32px;
+
+.iui-date-picker {
+  @include surface.iui-surface;
+  user-select: none;
+  display: inline-grid;
+  grid-template-columns: 1fr auto;
+
+  .iui-time-picker {
+    height: 0;
+    min-height: 100%;
+  }
+}
+
+.iui-calendar-month-year {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--iui-size-2xs);
+  font-weight: var(--iui-font-weight-bold);
+  gap: var(--iui-size-2xs);
+
+  > span {
+    width: 156px;
+    white-space: nowrap;
+    display: inline-flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    line-height: calc(var(--iui-size-s) * 4);
+  }
+}
+
+.iui-calendar-month {
+  overflow: hidden;
+  max-width: 15ch;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.iui-calendar-weekdays {
+  line-height: $iui-date-picker-cell-height;
+  display: flex;
+  padding: 0 var(--iui-size-xs);
+  font-weight: var(--iui-font-weight-bold);
+  background-color: var(--iui-color-background-backdrop);
+
+  > div {
+    white-space: nowrap;
+    overflow: hidden;
+    width: $iui-date-picker-cell-width;
+    text-align: center;
+  }
+}
+
+.iui-calendar-week {
+  white-space: nowrap;
+  line-height: $iui-date-picker-cell-height;
+  display: flex;
+  padding: 0 var(--iui-size-xs);
+  margin-bottom: var(--iui-size-3xs);
+}
+
+.iui-calendar-day {
   &,
   &-today {
     @include iui-calendar-day-base;
@@ -160,7 +162,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 }
 
-@mixin iui-calendar-day-selected {
+.iui-calendar-day-selected {
   &,
   &-today {
     @include iui-calendar-day-base;
@@ -174,7 +176,24 @@ $iui-date-picker-today-circle-size: 32px;
   }
 }
 
-@mixin iui-calendar-day-range-start {
+.iui-calendar-day-outside-month {
+  &,
+  &-today {
+    @include iui-calendar-day-base;
+    @include iui-calendar-day-base-hover;
+    color: var(--iui-color-text-muted);
+
+    &[aria-disabled='true'] {
+      @include disabled-date-styling;
+    }
+  }
+
+  &-today {
+    @include iui-calendar-day-today-base;
+  }
+}
+
+.iui-calendar-day-range-start {
   &,
   &-today {
     @include iui-calendar-day-base;
@@ -191,7 +210,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 }
 
-@mixin iui-calendar-day-range-end {
+.iui-calendar-day-range-end {
   &,
   &-today {
     @include iui-calendar-day-base;
@@ -207,7 +226,7 @@ $iui-date-picker-today-circle-size: 32px;
   }
 }
 
-@mixin iui-calendar-day-range {
+.iui-calendar-day-range {
   &,
   &-today {
     @include iui-calendar-day-base;
@@ -231,22 +250,5 @@ $iui-date-picker-today-circle-size: 32px;
     &::before {
       border-color: var(--iui-color-border-accent);
     }
-  }
-}
-
-@mixin iui-calendar-day-outside-month {
-  &,
-  &-today {
-    @include iui-calendar-day-base;
-    @include iui-calendar-day-base-hover;
-    color: var(--iui-color-text-muted);
-
-    &[aria-disabled='true'] {
-      @include disabled-date-styling;
-    }
-  }
-
-  &-today {
-    @include iui-calendar-day-today-base;
   }
 }
