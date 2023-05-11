@@ -1,0 +1,29 @@
+---
+title: SearchBox
+description:
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/src/core/LabeledSelect/LabeledSelect.tsx'
+thumbnail:
+group: inputs
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import Placeholder from '~/components/Placeholder.astro';
+import * as AllExamples from '~/examples';
+
+<p>{frontmatter.description}</p>
+
+<Placeholder componentPageName='input-select' />
+
+<LiveExample src='Select.main.tsx'>
+  <AllExamples.SelectMainExample client:load />
+</LiveExample>
+
+A select is a control element meant to allow the user to select an option from a list. Depending on type, it is either visible at all times (permanent) or only if the user triggers it by clicking an element or right-clicking (temporary).
+
+There are select menus that are called ‘temporary’; they appear as fully expanded and do not possess a collapsed state. Instead of collapsing and expanding, they are dismissed from the interface by clicking away. They may reappear only when the user triggers them again, either by right-clicking or clicking an item associated with it.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
