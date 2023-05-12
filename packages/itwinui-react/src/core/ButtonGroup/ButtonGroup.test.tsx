@@ -72,7 +72,7 @@ it.each(['start', 'end'] as const)(
     const buttons = container.querySelectorAll('.iui-button');
     expect(buttons).toHaveLength(2);
     fireEvent.click(overflowPlacement === 'end' ? buttons[1] : buttons[0]);
-    expect(mockOnClick).toHaveBeenCalledWith(2);
+    expect(mockOnClick).toHaveBeenCalledWith(1);
 
     scrollWidthSpy.mockRestore();
     offsetWidthSpy.mockRestore();

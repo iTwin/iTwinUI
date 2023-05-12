@@ -61,6 +61,7 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
       <IconButton
         key={index}
         onClick={() => action(`Clicked on button ${index + 1}`)()}
+        label={`Button #${index + 1}`}
       >
         <SvgPlaceholder />
       </IconButton>
@@ -83,12 +84,12 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
           overflowButton={(overflowStart) => (
             <DropdownMenu
               menuItems={(close) =>
-                Array(buttons.length - overflowStart + 1)
+                Array(buttons.length - overflowStart)
                   .fill(null)
                   .map((_, _index) => {
                     const index = overflowStart + _index;
                     const onClick = () => {
-                      action(`Clicked button ${index} (overflow)`)();
+                      action(`Clicked button ${index + 1} (overflow)`)();
                       close();
                     };
                     return (
@@ -97,7 +98,7 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
                         onClick={onClick}
                         icon={<SvgPlaceholder />}
                       >
-                        Button #{index}
+                        Button #{index + 1}
                       </MenuItem>
                     );
                   })

@@ -102,23 +102,32 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
         ref={refs}
         {...rest}
       >
-        <>
-          {visibleCount < items.length &&
-            overflowButton &&
-            overflowPlacement === 'start' && (
-              <div>{overflowButton(visibleCount)}</div>
-            )}
+        {(() => {
+          if (!(visibleCount < items.length)) {
+            return items;
+          }
 
-          {visibleCount < items.length
-            ? items.slice(0, Math.max(0, visibleCount - 1))
-            : items}
+          const overflowStart =
+            overflowPlacement === 'start'
+              ? items.length - visibleCount
+              : visibleCount - 1;
 
-          {visibleCount < items.length &&
-            overflowButton &&
-            overflowPlacement === 'end' && (
-              <div>{overflowButton(visibleCount)}</div>
-            )}
-        </>
+          return (
+            <>
+              {overflowButton && overflowPlacement === 'start' && (
+                <div>{overflowButton(overflowStart)}</div>
+              )}
+
+              {overflowPlacement === 'start'
+                ? items.slice(overflowStart + 1)
+                : items.slice(0, Math.max(0, overflowStart))}
+
+              {overflowButton && overflowPlacement === 'end' && (
+                <div>{overflowButton(overflowStart)}</div>
+              )}
+            </>
+          );
+        })()}
       </div>
     );
   },
