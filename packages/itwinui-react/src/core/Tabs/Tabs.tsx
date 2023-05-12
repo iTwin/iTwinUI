@@ -432,7 +432,7 @@ export const Tabs = (props: TabsProps) => {
       Math.abs(visibleStart - 0) < 1 &&
       Math.abs(visibleEnd - totalTabsSpace) < 1
     ) {
-      setScrollingPlacement('none');
+      setScrollingPlacement(undefined);
     } else if (Math.abs(visibleStart - 0) < 1) {
       setScrollingPlacement('start');
     } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
