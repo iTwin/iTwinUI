@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, prettyDOM, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { Tab } from './Tab.js';
 import { Tabs, type TabsProps } from './Tabs.js';
@@ -131,6 +131,44 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(9);
+});
+
+it('should change scrollbar placement', () => {
+  const component = (activeIndex: number) => {
+    return (
+      <Tabs
+        overflowOptions={{ useOverflow: true }}
+        activeIndex={activeIndex}
+        labels={[
+          <Tab key={1} label='Label 1' />,
+          <Tab key={2} label='Label 2' />,
+          <Tab key={3} label='Label 3' />,
+          <Tab key={4} label='Label 4' />,
+          <Tab key={5} label='Label 5' />,
+          <Tab key={6} label='Label 6' />,
+          <Tab key={7} label='Label 7' />,
+          <Tab key={8} label='Label 8' />,
+          <Tab key={9} label='Label 9' />,
+        ]}
+      >
+        Test content
+      </Tabs>
+    );
+  };
+  const { rerender, container } = render(component(0));
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
+  console.log(prettyDOM(tabContainer));
+  expect(tabContainer).toHaveAttribute('data-iui-scroll-placement', 'start');
+
+  rerender(component(5));
+  expect(tabContainer).toHaveAttribute('data-iui-scroll-placement', 'center');
+
+  rerender(component(8));
+  expect(tabContainer).toHaveAttribute('data-iui-scroll-placement', 'end');
 });
 
 it('should render green tabs', () => {
