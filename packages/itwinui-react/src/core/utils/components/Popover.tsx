@@ -109,7 +109,16 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     computedProps.content = mounted ? clonedContent : '';
   }
 
-  return <Tippy {...computedProps} ref={refs} />;
+  // When using controlled mode with visible=true on first render,
+  // we need to force a remount using key because rootRef is undefined.
+  const [key, setKey] = React.useState(0);
+  React.useEffect(() => {
+    if (props.visible !== undefined) {
+      setKey((prev) => prev + 1);
+    }
+  }, [props.visible]);
+
+  return <Tippy {...computedProps} ref={refs} key={key} />;
 });
 
 /**
