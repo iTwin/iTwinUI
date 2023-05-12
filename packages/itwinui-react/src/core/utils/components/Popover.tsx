@@ -40,6 +40,7 @@ export type PopoverProps = {
 export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   const [mounted, setMounted] = React.useState(false);
   const themeInfo = React.useContext(ThemeContext);
+  const isDomAvailable = useIsDomAvailable();
 
   const tippyRef = React.useRef<Element>(null);
   const refs = useMergedRefs(tippyRef, ref);
@@ -74,6 +75,10 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     zIndex: 99999,
     ...props,
     className: cx('iui-popover', props.className),
+    // add additional check for isDomAvailable when using in controlled mode,
+    // because rootRef is not available in first render
+    visible:
+      props.visible !== undefined ? props.visible && isDomAvailable : undefined,
     plugins: [
       lazyLoad,
       removeTabIndex,
@@ -109,16 +114,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     computedProps.content = mounted ? clonedContent : '';
   }
 
-  // When using controlled mode with visible=true on first render,
-  // we need to force a remount using key because rootRef is undefined.
-  const [key, setKey] = React.useState(0);
-  React.useEffect(() => {
-    if (props.visible !== undefined) {
-      setKey((prev) => prev + 1);
-    }
-  }, [props.visible]);
-
-  return <Tippy {...computedProps} ref={refs} key={key} />;
+  return <Tippy {...computedProps} ref={refs} />;
 });
 
 /**
@@ -165,3 +161,9 @@ export const hideOnEscOrTab = {
 };
 
 export default Popover;
+
+const useIsDomAvailable = () => {
+  const [isDomAvailable, setIsDomAvailable] = React.useState(false);
+  React.useEffect(() => void setIsDomAvailable(true), []);
+  return isDomAvailable;
+};
