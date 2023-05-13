@@ -2,15 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import {
   Footer,
-  FooterProps,
-  FooterElement,
+  type FooterProps,
+  type FooterElement,
   defaultFooterElements,
-} from './Footer';
+} from './Footer.js';
 
 const renderComponent = (props?: Partial<FooterProps>) => {
   return render(<Footer {...props} />);

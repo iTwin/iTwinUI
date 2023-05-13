@@ -33,18 +33,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import React from 'react';
-import {
-  actions,
+import type * as React from 'react';
+import { actions, makePropGetter, useGetLatest } from 'react-table';
+import type {
   ActionType,
   ColumnInstance,
   HeaderGroup,
   Hooks,
-  makePropGetter,
   TableInstance,
   TableKeyedProps,
   TableState,
-  useGetLatest,
 } from 'react-table';
 
 export const useResizeColumns =
@@ -496,6 +494,9 @@ function getLeafHeaders(header: HeaderGroup) {
 const getHeaderWidth = <T extends Record<string, unknown>>(
   header: ColumnInstance<T>,
 ) => {
+  if (!header) {
+    return 0;
+  }
   return Number(header.width || header.resizeWidth || 0);
 };
 

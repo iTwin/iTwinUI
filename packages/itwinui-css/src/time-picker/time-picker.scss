@@ -1,10 +1,10 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../menu/index';
-@import '../utils/index';
+@use '../menu/mixins' as menu;
+@use '../mixins';
 
-@mixin iui-time-picker {
-  @include iui-reset;
+.iui-time-picker {
+  @include mixins.iui-reset;
   user-select: none;
   text-align: center;
   height: calc(var(--iui-size-s) * 26);
@@ -24,7 +24,8 @@
   }
 }
 
-@mixin iui-time-picker-list {
+.iui-time,
+.iui-period {
   padding: var(--iui-size-s) var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
@@ -35,11 +36,11 @@
   }
 
   > ol {
-    @include iui-reset;
+    @include mixins.iui-reset;
     list-style: none;
 
     > li {
-      @include iui-focus;
+      @include mixins.iui-focus;
       padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
@@ -51,7 +52,7 @@
       &.iui-selected {
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
-        @include iui-focus($color: var(--iui-color-white), $offset: -3px);
+        @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
         background-color: var(--iui-color-background-accent);
         color: var(--iui-color-white);
       }
@@ -59,7 +60,7 @@
   }
 }
 
-@mixin iui-time-picker-period {
+.iui-period {
   display: flex;
   align-items: center;
 }

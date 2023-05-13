@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { List } from './List';
-export type { ListProps } from './List';
+export { List } from './List.js';
+export type { ListProps } from './List.js';
 
-export { ListItem } from './ListItem';
+export { ListItem } from './ListItem.js';
 export type {
   ListItemProps,
   ListItemIconProps,
   ListItemContentProps,
   ListItemDescriptionProps,
-} from './ListItem';
+} from './ListItem.js';

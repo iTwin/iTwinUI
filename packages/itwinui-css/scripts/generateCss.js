@@ -58,9 +58,9 @@ const run = async () => {
   const globalCss = await compileScss(`${inDir}/global.scss`, 'global');
   allCss += globalCss;
 
-  for (const directory of directories) {
-    if (!ignorePaths.includes(directory) && fs.existsSync(path.join(inDir, directory, 'classes.scss'))) {
-      const outCss = await compileScss(`${inDir}/${directory}/classes.scss`, directory);
+  for (const component of directories) {
+    if (!ignorePaths.includes(component) && fs.existsSync(path.join(inDir, component, `${component}.scss`))) {
+      const outCss = await compileScss(`${inDir}/${component}/${component}.scss`, component);
       allCss += outCss;
     }
   }

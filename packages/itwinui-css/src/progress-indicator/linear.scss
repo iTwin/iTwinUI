@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
 @mixin iui-progress-indicator-linear($height: var(--iui-size-2xs)) {
-  @include iui-reset;
+  @include mixins.iui-reset;
   text-align: left;
   display: block;
 
@@ -39,7 +39,7 @@
     }
 
     svg {
-      @include iui-icon-style('m');
+      @include mixins.iui-icon-style('m');
     }
   }
 
@@ -57,7 +57,7 @@
       }
 
       > span {
-        @include iui-text-selection(positive);
+        @include mixins.iui-text-selection(positive);
       }
     }
   }
@@ -76,7 +76,7 @@
       }
 
       > span {
-        @include iui-text-selection(negative);
+        @include mixins.iui-text-selection(negative);
       }
     }
   }

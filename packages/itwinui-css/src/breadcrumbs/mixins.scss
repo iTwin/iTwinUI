@@ -1,0 +1,119 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../anchor/mixins' as anchor;
+@use '../button/borderless';
+@use '../mixins';
+@use '../button/base';
+
+@mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
+  --_iui-breadcrumbs-height: #{$breadcrumbs-height};
+
+  @include mixins.iui-reset;
+  display: flex;
+  align-items: center;
+  height: var(--_iui-breadcrumbs-height);
+}
+
+@mixin iui-breadcrumbs-list {
+  @include mixins.iui-reset;
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  user-select: none;
+  height: 100%;
+}
+
+@mixin iui-breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+  > * {
+    max-width: 26ch;
+  }
+}
+
+@mixin iui-breadcrumbs-item-overrides {
+  > * {
+    padding: 0 var(--iui-size-xs);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:not(.iui-button) {
+      color: var(--iui-color-text);
+    }
+  }
+
+  > :any-link {
+    @include anchor.iui-anchor;
+    box-sizing: border-box;
+    line-height: var(--iui-component-height);
+
+    &:focus {
+      outline-offset: -1px;
+    }
+  }
+
+  .iui-button {
+    &.iui-button {
+      @include borderless.iui-button-borderless;
+      border: none;
+    }
+
+    > span {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &:not([aria-current]) {
+      &,
+      &:hover,
+      &:active {
+        --_iui-button-text-color: var(--iui-color-text-accent);
+      }
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-text {
+  padding: 0 var(--iui-size-xs);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: var(--iui-component-height);
+
+  &:is(a) {
+    @include anchor.iui-anchor;
+
+    &:focus {
+      outline-offset: -1px;
+    }
+  }
+}
+
+@mixin iui-breadcrumbs-button {
+  @include base.iui-button;
+  @include borderless.iui-button-borderless;
+  padding: 0;
+  border: none;
+  color: var(--iui-color-text-accent);
+
+  &[aria-current] {
+    color: var(--iui-color-text);
+  }
+}
+
+@mixin iui-breadcrumbs-separator {
+  display: flex;
+  margin: 0 var(--iui-size-3xs);
+
+  svg {
+    @include mixins.iui-icon-style('s');
+    @include mixins.iui-icon-color;
+    @media (forced-colors: active) {
+      fill: CanvasText;
+    }
+  }
+}

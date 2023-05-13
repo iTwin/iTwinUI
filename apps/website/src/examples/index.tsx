@@ -29,6 +29,7 @@ export { default as BadgeMainExample } from './Badge.main';
 export { default as BadgeSoftExample } from './Badge.soft';
 export { default as BadgeStatusesExample } from './Badge.statuses';
 
+export { default as BlockquoteFooterExample } from './Blockquote.footer';
 export { default as BlockquoteMainExample } from './Blockquote.main';
 
 export { default as BreadcrumbsButtonExample } from './Breadcrumbs.button';
@@ -126,7 +127,9 @@ export { default as HeaderMainExample } from './Header.main';
 
 export { default as InformationPanelMainExample } from './InformationPanel.main';
 
-export { default as InputGroupMainExample } from './InputGroup.main';
+export { default as InputGroupToggleSwitchExample } from './InputGroup.toggleSwitch';
+export { default as InputGroupCheckboxGroupExample } from './InputGroup.checkboxGroup';
+export { default as InputGroupRadioGroupExample } from './InputGroup.radioGroup';
 
 export { default as InputMainExample } from './Input.main';
 export { default as InputSizesExample } from './Input.sizes';
@@ -152,8 +155,14 @@ export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 export { default as RadioMainExample } from './Radio.main';
 export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
+export { default as RadioTileColorExample } from './RadioTile.color';
 
+export { default as SelectDisableExample } from './Select.disable';
+export { default as SelectIconExample } from './Select.icon';
 export { default as SelectMainExample } from './Select.main';
+export { default as SelectStatusesExample } from './Select.statuses';
+export { default as SelectSublabelsExample } from './Select.sublabels';
+export { default as SelectTruncateExample } from './Select.truncate';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SideNavigationBasicExample } from './SideNavigation.basic';
@@ -212,6 +221,7 @@ export { default as ToggleSwitchIconExample } from './ToggleSwitch.icon';
 export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgroup';
 
 export { default as TooltipMainExample } from './Tooltip.main';
+export { default as TooltipPlacementExample } from './Tooltip.placement';
 
 export { default as TreeMainExample } from './Tree.main';
 

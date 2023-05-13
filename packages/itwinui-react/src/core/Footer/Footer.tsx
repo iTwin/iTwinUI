@@ -2,13 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, StylingProps } from '../utils';
+import { useTheme } from '../utils/index.js';
+import type { StylingProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/footer.css';
-import { FooterItem } from './FooterItem';
-import { FooterSeparator } from './FooterSeparator';
-import { FooterList } from './FooterList';
+import { FooterItem } from './FooterItem.js';
+import { FooterSeparator } from './FooterSeparator.js';
+import { FooterList } from './FooterList.js';
 
 export type TitleTranslations = {
   termsOfService: string;

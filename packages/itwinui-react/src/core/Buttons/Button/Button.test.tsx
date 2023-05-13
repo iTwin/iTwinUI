@@ -3,9 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
-import React from 'react';
-import { SvgClose as SvgPlaceholder } from '../../utils';
-import { Button } from './Button';
+import * as React from 'react';
+import { SvgClose as SvgPlaceholder } from '../../utils/index.js';
+import { Button } from './Button.js';
 
 it('renders default button correctly', () => {
   const onClickMock = jest.fn();

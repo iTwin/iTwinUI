@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
-import { getTabbableElements } from '../functions/focusable';
-import { mergeRefs } from '../hooks/useMergedRefs';
+import * as React from 'react';
+import { getTabbableElements } from '../functions/focusable.js';
+import { mergeRefs } from '../hooks/useMergedRefs.js';
 
 export type FocusTrapProps = {
   /**

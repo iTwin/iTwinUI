@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   StatusIconMap,
@@ -11,14 +11,14 @@ import {
   SvgNew,
   SvgCheckmark,
   LinkAction,
-  PolymorphicComponentProps,
   useSafeContext,
   supportsHas,
-} from '../utils';
+} from '../utils/index.js';
+import type { PolymorphicComponentProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
-import { DropdownMenu } from '../DropdownMenu';
-import { IconButton } from '../Buttons';
-import { ProgressRadial } from '../ProgressIndicators';
+import { DropdownMenu } from '../DropdownMenu/index.js';
+import { IconButton } from '../Buttons/index.js';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
 
 const TileContext = React.createContext<
   | {

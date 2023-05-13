@@ -1,9 +1,9 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@import '../utils/index';
+@use '../mixins';
 
-@mixin iui-keyboard {
-  @include iui-reset;
+.iui-keyboard {
+  @include mixins.iui-reset;
   border-radius: var(--iui-border-radius-1);
   display: inline-block;
   font-size: var(--iui-font-size-0);
@@ -19,6 +19,7 @@
   border: 1px solid var(--iui-color-border);
   box-shadow: 0 1px 1px var(--iui-color-border), 0 1px 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
   transition: box-shadow var(--iui-duration-1) ease-out;
+  color: var(--iui-color-text);
 
   &:hover {
     box-shadow: 0 0 0 var(--iui-color-border), 0 0 0 0 rgba(255, 255, 255, var(--iui-opacity-5)) inset;
