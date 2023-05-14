@@ -1,11 +1,15 @@
 {
   "name": "search",
   "version": "0.0.1",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "uvicorn app.app:app --reload",
     "start": "uvicorn app.app:app",
     "build": "",
-    "clean": "rimraf .conda"
+    "clean": "rimraf node_modules && rimraf .conda"
+  },
+  "dependencies": {
+    "globby": "^13.1.4"
   }
 }
