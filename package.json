@@ -7,7 +7,8 @@
       "apps/*",
       "packages/*",
       "playgrounds/*",
-      "internal/*"
+      "internal/*",
+      "features/search"
     ]
   },
   "lint-staged": {

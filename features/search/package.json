@@ -1,0 +1,11 @@
+{
+  "name": "search",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "uvicorn app.app:app --reload",
+    "start": "uvicorn app.app:app",
+    "build": "",
+    "clean": "rimraf .conda"
+  }
+}
