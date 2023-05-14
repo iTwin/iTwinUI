@@ -284,7 +284,11 @@ const getIndexObjects = async (filePath) => {
     indexObjects.push({
       header: [...currentHeading],
       link: link,
-      content: buffer.join('\n').trim(),
+      content: buffer
+        .join(' ')
+        .replace(/\n/g, ' ') // Since any \n could signify a new paragraph to ChatGPT (even through both sentences are under the same heading)
+        .replace(/ +/g, ' ') // Reduce multiple spaces to just one space
+        .trim(),
     });
     buffer = [];
   };
