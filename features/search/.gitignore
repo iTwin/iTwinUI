@@ -1,3 +1,8 @@
 # Virtual Environments
 .conda
 .venv
+
+# Env
+.env
+
+.ipynb_checkpoints
