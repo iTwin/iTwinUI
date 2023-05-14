@@ -259,20 +259,42 @@ const removeUnnecessaryCode = async (lines) => {
  *  },
  * ]
  * ```
- *
- * @param {Array<string>} lines
- * @param {string} title
+ * Returns index objects for the given file
+ * @param {string} filePath
  * @returns
  */
-const getIndexObjects = (lines, title) => {
-  const indexObjects = [];
+const getIndexObjects = async (filePath) => {
+  // Read file
+  const componentName = path.parse(filePath).name;
+  const fileContent = await readFile(filePath);
 
+  // Get tile, lines (formatted)
+  let lines = await getFormattedFileLines(fileContent);
+  const title = getFieldFromFrontmatter(lines, 'title');
+  lines = await removeUnnecessaryCode(lines);
+
+  const indexObjects = [];
   let currentHeading = [title];
   let buffer = [];
 
   const flushBuffer = () => {
+    const pageLink = `/docs/${componentName}`;
+
+    // TODO: Confirm if this is the right way to get headline link
+    const headingLink =
+      currentHeading.length > 1 // If headings exist apart from the title
+        ? `#${currentHeading[currentHeading.length - 1]
+            .toLowerCase()
+            // Replace all spaces with one hyphen
+            .replace(/ +/g, '-') // E.g. "`as`   prop" -> "`as`-prop"
+            // Remove all non alphanumeric characters except hyphens
+            .replace(/[^a-z0-9-]/g, '')}` // E.g. "`as`-prop" -> "as-prop"
+        : '';
+    const link = pageLink + headingLink;
+
     indexObjects.push({
       header: [...currentHeading],
+      link: link,
       content: buffer.join('\n').trim(),
     });
     buffer = [];
@@ -311,14 +333,7 @@ const getIndexObjects = (lines, title) => {
  * @returns
  */
 const getIndexObjectsForFile = async (filePath) => {
-  const fileContent = await readFile(filePath);
-
-  let lines = await getFormattedFileLines(fileContent);
-  const title = getFieldFromFrontmatter(lines, 'title');
-
-  lines = await removeUnnecessaryCode(lines);
-  const indexObjects = getIndexObjects(lines, title);
-
+  const indexObjects = await getIndexObjects(filePath);
   return indexObjects;
 };
 
