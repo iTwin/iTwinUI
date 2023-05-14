@@ -1,0 +1,1 @@
+- [ ] In typography.mdx, there are two props headings with ids props and props-1. But both chunks will have the id of props. How to make one of them get the id of props-1? 
