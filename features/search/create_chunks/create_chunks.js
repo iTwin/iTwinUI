@@ -242,23 +242,19 @@ const removeUnnecessaryCode = async (lines) => {
  * ```jsx
  * [
  *  {
- *    "header": 'Alert',
- *    "upper-header": [],
+ *    "header": ['Alert'],
  *    "content": 'Alert is an element',
  *  },
  *  {
- *    "header": 'Appearance',
- *    "upper-header": ['Alert'],
+ *    "header": ['Alert', 'Appearance'],
  *    "content": 'Alert should be concise',
  *  },
  *  {
- *    "header": 'Informational',
- *    "upper-header": ['Alert', 'Appearance'],
+ *    "header": ['Alert', 'Appearance', 'Informational'],
  *    "content": 'Default style',
  *  },
  *  {
- *    "header": 'Placement',
- *    "upper-header": ['Alert'],
+ *    "header": ['Alert', 'Appearance', 'Placement'],
  *    "content": 'Either inline or sticky',
  *  },
  * ]
@@ -274,6 +270,14 @@ const getIndexObjects = (lines, title) => {
   let currentHeading = [title];
   let buffer = [];
 
+  const flushBuffer = () => {
+    indexObjects.push({
+      header: [...currentHeading],
+      content: buffer.join('\n').trim(),
+    });
+    buffer = [];
+  };
+
   for (const line of lines) {
     if (line.trim().startsWith('#')) {
       // E.g. line = "## Appearance"
@@ -283,11 +287,7 @@ const getIndexObjects = (lines, title) => {
       // E.g. headerHashes = "##"
       const headerHashes = line.trim().match(/#+/g)[0];
 
-      indexObjects.push({
-        header: currentHeading.slice(-1)[0],
-        'upper-header': currentHeading.slice(0, -1),
-        content: buffer.join('\n').trim(),
-      });
+      flushBuffer();
 
       // If same level or down one or more levels, pop stale headings
       while (headerHashes.length <= currentHeading.length) {
@@ -295,18 +295,12 @@ const getIndexObjects = (lines, title) => {
       }
 
       currentHeading.push(header);
-      buffer = [];
     } else {
       buffer.push(line);
     }
   }
 
-  // Flush the buffer
-  indexObjects.push({
-    header: currentHeading.slice(-1)[0],
-    'upper-header': currentHeading.slice(0, -1),
-    content: buffer.join('\n').trim(),
-  });
+  flushBuffer();
 
   return indexObjects;
 };
