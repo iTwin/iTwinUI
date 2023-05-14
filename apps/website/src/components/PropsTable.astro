@@ -1,24 +1,11 @@
 ---
 import __dirname from '__dirname';
-import fs from 'fs';
 import path from 'path';
-import { parse as docgenTsParse } from 'react-docgen-typescript';
-import {
-  parse as docgenParse,
-  handlers as docgenHandlers,
-  resolver as docgenResolver,
-  importers as docgenImporters,
-} from 'react-docgen';
-import type { DocumentationObject } from 'react-docgen/dist/Documentation';
-import snarkdown from 'snarkdown';
+import { getPropsTableValuesFromTypesFile } from '../utils/props_utils.js';
 
 export interface Props {
   path: string;
 }
-
-const defaultHandlers = Object.values(docgenHandlers).map((handler) => handler);
-const defaultResolver = docgenResolver.findAllExportedComponentDefinitions;
-const defaultImporter = docgenImporters.makeFsImporter();
 
 const relativePath = Astro.props.path.replace(
   '@itwin/itwinui-react',
@@ -26,16 +13,7 @@ const relativePath = Astro.props.path.replace(
 );
 
 const componentPath = path.join(__dirname, relativePath);
-const componentName = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
-const src = fs.readFileSync(componentPath, 'utf8');
-
-const docgenResults = componentPath.endsWith('.tsx')
-  ? (docgenParse(src, defaultResolver, defaultHandlers, {
-      importer: defaultImporter,
-    }) as DocumentationObject[])
-  : docgenTsParse(componentPath);
-
-const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === componentName);
+const propTableValues = getPropsTableValuesFromTypesFile(componentPath);
 ---
 
 <div class='wrapper'>
@@ -49,20 +27,16 @@ const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === c
     </thead>
     <tbody>
       {
-        componentDoc &&
-          Object.entries(componentDoc.props).map(([key, value]) => (
-            <tr>
-              <td class='mono'>{value.name || key}</td>
-              <td>
-                <div
-                  class='md'
-                  set:html={snarkdown(value.description.split('@example')[0] ?? value.description)}
-                />
-                <div class='types'>{value.type?.name || value.flowType.raw}</div>
-              </td>
-              <td class='mono'>{value.defaultValue?.value ?? value.defaultValue ?? ''}</td>
-            </tr>
-          ))
+        propTableValues.map((propTableValue) => (
+          <tr>
+            <td class='mono'>{propTableValue.name}</td>
+            <td>
+              <div class='md' set:html={propTableValue.description} />
+              <div class='types'>{propTableValue.type}</div>
+            </td>
+            <td class='mono'>{propTableValue.defaultValue}</td>
+          </tr>
+        ))
       }
     </tbody>
   </table>

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { getPropsTableValuesFromTypesFile } from '../../../apps/website/src/utils/props_utils.js';
 
 import { parse as docgenTsParse } from 'react-docgen-typescript';
 import {
@@ -86,33 +87,18 @@ const getFormattedFileLines = async (fileContent) => {
    * @returns {Promise<Array<string>>}
    */
   const replacePropsTableWithRealProps = async (lines) => {
-    const readProps = async (propsPath) => {
-      const defaultHandlers = Object.values(docgenHandlers).map(
-        (handler) => handler,
-      );
-      const defaultResolver =
-        docgenResolver.findAllExportedComponentDefinitions;
-      const defaultImporter = docgenImporters.makeFsImporter();
-
+    /**
+     * Replace `@itwin/itwinui-react` with the relative path in the provided `propsPath`
+     * @param {string} propsPath
+     * @returns {string}
+     */
+    const getRelativePath = (propsPath) => {
       const relativePath = propsPath.replace(
         '@itwin/itwinui-react',
-        '../../../packages/itwinui-react', // relative from root of `website` workspace
+        path.resolve(`${__dirname}/../../../packages/itwinui-react`), // relative from root of `website` workspace
       );
 
-      const componentPath = path.join(__dirname, relativePath);
-      const componentName = path.parse(componentPath).name.split('.')[0]; // Spliting on `.` since some files are .d.ts files
-      const src = await fs.readFile(componentPath, 'utf8');
-
-      const docgenResults = componentPath.endsWith('.tsx')
-        ? docgenParse(src, defaultResolver, defaultHandlers, {
-            importer: defaultImporter,
-          })
-        : docgenTsParse(componentPath);
-
-      const componentDoc = [...docgenResults].find(
-        (docs) => docs['displayName'] === componentName,
-      );
-      return componentDoc;
+      return relativePath;
     };
 
     const replaceProps = async (lines) => {
@@ -132,8 +118,11 @@ const getFormattedFileLines = async (fileContent) => {
               lines,
               propsPathKey,
             ).slice(1, -1); // Slice to remove the leading and trailing single quotes
-            const props = (await readProps(propsPathValue)).props;
-            newLines.push(JSON.stringify(props));
+
+            const propTableValues = getPropsTableValuesFromTypesFile(
+              getRelativePath(propsPathValue),
+            );
+            newLines.push(JSON.stringify(propTableValues));
           } else {
             newLines.push(line);
           }
