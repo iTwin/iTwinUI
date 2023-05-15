@@ -143,13 +143,7 @@ export type {
 } from './Header/index.js';
 
 export { List, ListItem } from './List/index.js';
-export type {
-  ListProps,
-  ListItemProps,
-  ListItemIconProps,
-  ListItemContentProps,
-  ListItemDescriptionProps,
-} from './List/index.js';
+export type { ListProps, ListItemProps } from './List/index.js';
 
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
 export type {
