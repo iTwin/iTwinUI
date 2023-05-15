@@ -155,6 +155,7 @@ export { default as NonIdealStateRedirectExample } from './NonIdealState.redirec
 export { default as NonIdealStateServiceunavailableExample } from './NonIdealState.serviceunavailable';
 export { default as NonIdealStateTimeoutExample } from './NonIdealState.timeout';
 export { default as NonIdealStateUnauthorizedExample } from './NonIdealState.unauthorized';
+export { default as NonIdealStateErrorExample } from './NonIdealState.error';
 
 export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
