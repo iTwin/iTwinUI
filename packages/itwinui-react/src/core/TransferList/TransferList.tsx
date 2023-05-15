@@ -102,7 +102,13 @@ const TransferListList = React.forwardRef((props, ref) => {
   };
 
   return (
-    <List as={Element} onKeyDown={onKeyDown} ref={refs} {...rest}>
+    <List
+      as={Element}
+      onKeyDown={onKeyDown}
+      role='listbox'
+      ref={refs}
+      {...rest}
+    >
       {children}
     </List>
   );

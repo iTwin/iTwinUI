@@ -1,7 +1,5 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../surface/base' as surface;
-
 @mixin iui-transfer-list($area: null) {
   display: flex;
   flex-direction: column;
@@ -10,12 +8,5 @@
 
   @if ($area == 'toolbar') {
     justify-content: center;
-  }
-
-  .iui-list {
-    @include surface.iui-surface($elevation: none);
-    overflow-y: auto;
-    overflow-y: overlay;
-    height: calc((var(--iui-component-height) - 1px) * 4.5);
   }
 }
