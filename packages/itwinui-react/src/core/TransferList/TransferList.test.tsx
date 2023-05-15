@@ -95,7 +95,7 @@ it('should handle key presses', async () => {
     </TransferList.ListItem>,
   );
 
-  const listItem = screen.getByRole('listitem');
+  const listItem = screen.getByRole('option');
   listItem.focus();
 
   // click

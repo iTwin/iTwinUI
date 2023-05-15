@@ -120,6 +120,7 @@ const TransferListList = React.forwardRef((props, ref) => {
       as={Element}
       className={cx('iui-transfer-list-listbox', className)}
       onKeyDown={onKeyDown}
+      role={'listbox'}
       ref={refs}
       {...rest}
     >
@@ -174,7 +175,9 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       active={active}
       actionable={actionable}
       tabIndex={-1}
+      role={'option'}
       aria-disabled={disabled}
+      aria-selected={active}
       disabled={disabled}
       {...rest}
     >
