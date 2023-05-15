@@ -157,6 +157,7 @@ export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as RadioTileColorExample } from './RadioTile.color';
 
 export { default as SearchBoxMainExample } from './SearchBox.main';
+export { default as SearchBoxBasicExample } from './SearchBox.basic';
 export { default as SearchBoxSizeExample } from './SearchBox.size';
 export { default as SearchBoxExpandableExample } from './SearchBox.expandable';
 export { default as SearchBoxStatusExample } from './SearchBox.status';

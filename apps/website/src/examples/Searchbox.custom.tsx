@@ -4,13 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { SearchBox, Divider, Flex } from '@itwin/itwinui-react';
-import { SvgCaretUpSmall, SvgCaretDownSmall, SvgCloseSmall } from '@itwin/itwinui-icons-react';
+import { SvgCaretUpSmall, SvgCaretDownSmall, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <Flex style={{ width: '70%' }} justifyContent='center' flexDirection='column'>
       <SearchBox expandable>
-        <SearchBox.CollapsedState />
+        <SearchBox.CollapsedState>
+          <SearchBox.ExpandButton>
+            <SvgAirplane />
+          </SearchBox.ExpandButton>
+        </SearchBox.CollapsedState>
         <SearchBox.ExpandedState>
           <SearchBox.Input placeholder='Expandable search with custom interactions' />
           <SearchBox.Button label='Previous result'>

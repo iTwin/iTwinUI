@@ -1,6 +1,6 @@
 ---
 title: SearchBox
-description: The search tool is the primary way for users to quickly access the information they need.
+description: The primary way for users to quickly access the information they need.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/SearchBox/SearchBox.d.ts'
 thumbnail:
@@ -17,17 +17,23 @@ import * as AllExamples from '~/examples';
   <AllExamples.SearchBoxMainExample client:load />
 </LiveExample>
 
+The SearchBox can be used to search for content, filter tree view or table. It can be added to the header for full page search or next to the component you want to use it for.
+
 ## Variants
 
 ### Basic
 
-<LiveExample src='SearchBox.main.tsx'>
-  <AllExamples.SearchBoxMainExample client:load />
+<LiveExample src='SearchBox.basic.tsx'>
+  <AllExamples.SearchBoxBasicExample client:load />
 </LiveExample>
+
+Basic SearchBox includes input field with search icon in front of it. You can access input by using `inputProps` property like we are doing in this example.
 
 <LiveExample src='SearchBox.customopen.tsx'>
   <AllExamples.SearchBoxCustomOpenExample client:load />
 </LiveExample>
+
+You also can fully customize the SearchBox by combining [subcomponents](#subcomponents) and other components.
 
 ### Expandable
 
@@ -35,21 +41,61 @@ import * as AllExamples from '~/examples';
   <AllExamples.SearchBoxExpandableExample client:load />
 </LiveExample>
 
+Expandable SearchBox is an [IconButton](button#icon-button) to save space on the screen. It expands into search input on click. Expandable SearchBox has collapse button at the end of the search input.
+
 <LiveExample src='SearchBox.custom.tsx'>
   <AllExamples.SearchBoxCustomExample client:load />
 </LiveExample>
 
-## Style
+Expandable SearchBox can be customized by using `ExpandedState` and `CollapsedState` [subcomponents](#subcomponents). Don't forget to add `ExpandButton` and `CollapseButton` or use `isExpanded` property to achieve expandable functionality.
+
+### Size
 
 <LiveExample src='SearchBox.size.tsx'>
   <AllExamples.SearchBoxSizeExample client:load />
 </LiveExample>
 
+SearchBox can be changed to have small or large size. By default it's "medium".
+
+### Status
+
 <LiveExample src='SearchBox.status.tsx'>
   <AllExamples.SearchBoxStatusExample client:load />
 </LiveExample>
 
+SearchBox, same as [input](input#status), can have a status.
+
 ## Usage
+
+- Most of the cases, use the non-expandable SearchBox.
+- Expandable SearchBox should only be used in tight spaces where non-expandable SearchBox does not fit.
+
+There are two types of search interactions you can implement:
+
+1. Manual search - user has to click "Search" button for search to be activated
+2. Automatic search - user does not have to finish typing a query for it to be treated. The search brings up results as soon as something is entered in the field. The results should adapt dynamically to what the user types.
+
+There are several options how to present search results:
+
+- Filtering search - search should only bring up results that match the query. Everything that is unrelated should be hidden.
+- Highlighting search - results matching the query will be highlighted and everything on the page remains visible.
+- Unsuccessful search (no results) - if the search brings up no results, an empty/error page with a message explaining to the user what went wrong should be displayed.
+
+## Subcomponents
+
+- SearchBox.Input - Input to be placed within SearchBox
+
+- SearchBox.Button - Button to be placed within SearchBox. Default has looking glass icon.
+
+- SearchBox.Icon - Icon to be placed within SearchBox. Default has looking glass icon.
+
+- SearchBox.ExpandButton - Expand button for expandable SearchBox. Clicking on this will expand SearchBox.
+
+- SearchBox.CollapseButton - Collapse button for expandable SearchBox. Clicking on this button will collapse SearchBox.
+
+- SearchBox.ExpandedState - Subcomponent to customize expanded state of the SearchBox.
+
+- SearchBox.CollapsedState - Subcomponent to customize collapsed state.
 
 ## Props
 
