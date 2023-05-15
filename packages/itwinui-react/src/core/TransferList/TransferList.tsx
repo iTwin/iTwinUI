@@ -128,8 +128,14 @@ export type TransferListListItemProps<T extends React.ElementType = 'li'> =
   PolymorphicComponentProps<T, TransferListListItemOwnProps>;
 
 const TransferListListItem = React.forwardRef((props, ref) => {
-  const { actionable, disabled, onActiveChange, children, active, ...rest } =
-    props;
+  const {
+    actionable = true,
+    disabled,
+    onActiveChange,
+    children,
+    active,
+    ...rest
+  } = props;
 
   const onClickEvents = () =>
     actionable && onActiveChange && onActiveChange(active ?? false);
@@ -156,7 +162,9 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       onKeyDown={onKeyDown}
       active={active}
       actionable={actionable}
-      tabIndex={disabled ? undefined : -1}
+      tabIndex={-1}
+      aria-disabled={disabled}
+      disabled={disabled}
       {...rest}
     >
       {children}
