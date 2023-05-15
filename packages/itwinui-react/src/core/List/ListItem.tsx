@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useTheme, Box } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -38,6 +38,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
+ListItemComponent.displayName = 'ListItem';
 
 type ListItemOwnProps = {
   /**
@@ -70,51 +71,18 @@ type ListItemOwnProps = {
 
 // ----------------------------------------------------------------------------
 
-const ListItemIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-icon', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemIconOwnProps>;
-
-type ListItemIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemIcon = Box('iui-list-item-icon');
+ListItemIcon.displayName = 'ListItem.Icon';
 
 // ----------------------------------------------------------------------------
 
-const ListItemContent = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-content', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemContentOwnProps>;
-
-type ListItemContentOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemContent = Box('iui-list-item-content');
+ListItemContent.displayName = 'ListItem.Content';
 
 // ----------------------------------------------------------------------------
 
-const ListItemDescription = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-description', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemDescriptionOwnProps>;
-
-type ListItemDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemDescription = Box('iui-list-item-description');
+ListItemDescription.displayName = 'ListItem.Description';
 
 // ----------------------------------------------------------------------------
 // Exported compound component
@@ -162,15 +130,3 @@ export const ListItem = Object.assign(ListItemComponent, {
 });
 
 export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;
-export type ListItemIconProps = PolymorphicComponentProps<
-  'li',
-  ListItemIconOwnProps
->;
-export type ListItemContentProps = PolymorphicComponentProps<
-  'li',
-  ListItemContentOwnProps
->;
-export type ListItemDescriptionProps = PolymorphicComponentProps<
-  'li',
-  ListItemDescriptionOwnProps
->;
