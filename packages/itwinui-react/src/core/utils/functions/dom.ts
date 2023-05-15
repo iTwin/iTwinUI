@@ -39,3 +39,20 @@ export const getDocument = () => {
 export const getWindow = () => {
   return typeof window === 'undefined' ? undefined : window;
 };
+
+/**
+ * Merges multiple event handlers into one, while making sure that
+ * `defaultPrevented` is respected for each callback.
+ */
+export const composeEventHandlers =
+  <E extends React.SyntheticEvent>(
+    ...callbacks: Array<((event: E) => void) | undefined>
+  ) =>
+  (event: E) => {
+    for (const cb of callbacks) {
+      cb?.(event);
+      if (event?.defaultPrevented) {
+        return;
+      }
+    }
+  };

@@ -8,6 +8,7 @@ import {
   useSafeContext,
   useMergedRefs,
   SvgCaretDownSmall,
+  composeEventHandlers,
 } from '../utils/index.js';
 import { ComboBoxActionContext, ComboBoxRefsContext } from './helpers.js';
 
@@ -42,12 +43,9 @@ export const ComboBoxEndIcon = React.forwardRef(
           },
           className,
         )}
-        onClick={(e) => {
-          onClickProp?.(e);
-          if (!e.isDefaultPrevented()) {
-            dispatch({ type: isOpen ? 'close' : 'open' });
-          }
-        }}
+        onClick={composeEventHandlers(onClickProp, () => {
+          dispatch({ type: isOpen ? 'close' : 'open' });
+        })}
         {...rest}
       >
         {children ?? <SvgCaretDownSmall aria-hidden />}

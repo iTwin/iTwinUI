@@ -9,6 +9,7 @@ import {
   useSafeContext,
   useMergedRefs,
   useContainerWidth,
+  composeEventHandlers,
 } from '../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import {
@@ -195,19 +196,11 @@ export const ComboBoxInput = React.forwardRef(
       [dispatch, onFocusProp],
     );
 
-    const handleClick = React.useCallback(
-      (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        onClickProp?.(e);
-        if (e.isDefaultPrevented()) {
-          return;
-        }
-
-        if (!isOpen) {
-          dispatch({ type: 'open' });
-        }
-      },
-      [dispatch, isOpen, onClickProp],
-    );
+    const handleClick = React.useCallback(() => {
+      if (!isOpen) {
+        dispatch({ type: 'open' });
+      }
+    }, [dispatch, isOpen]);
 
     const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
@@ -216,7 +209,7 @@ export const ComboBoxInput = React.forwardRef(
         <Input
           ref={refs}
           onKeyDown={handleKeyDown}
-          onClick={handleClick}
+          onClick={composeEventHandlers(onClickProp, handleClick)}
           onFocus={handleFocus}
           aria-activedescendant={
             isOpen && focusedIndex != undefined && focusedIndex > -1
