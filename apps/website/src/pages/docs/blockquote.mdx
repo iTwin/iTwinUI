@@ -9,18 +9,24 @@ group: typography
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='typography-blockquote' />
 
 <LiveExample src='Blockquote.main.tsx'>
   <AllExamples.BlockquoteMainExample client:load />
 </LiveExample>
 
 Blockquotes are used to isolate and highlight a large quotation made by a source that is external from the content it is quoted in. Sourcing its provenance and original author is strongly suggested. The source is displayed in the bottom right of the blockquote.
+
+## Usage
+
+<LiveExample src='Blockquote.footer.tsx'>
+  <AllExamples.BlockquoteFooterExample client:load />
+</LiveExample>
+
+If the citation was pulled from a website, you can provide the URL using the 'cite' tag for best practice purposes, but the blockquote does not provide a hyperlink to that location.
+
 
 ## Props
 
