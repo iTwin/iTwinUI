@@ -5,6 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
+import { useTheme } from '../hooks/useTheme.js';
 
 const _base = <T extends keyof JSX.IntrinsicElements = 'div'>(element: T) => {
   return (className: string) => {
@@ -13,6 +14,8 @@ const _base = <T extends keyof JSX.IntrinsicElements = 'div'>(element: T) => {
     const Comp = React.forwardRef((props, ref) => {
       const { as = element, className: classNameProp, ...rest } = props;
       const Element = (as as any) || 'div'; // eslint-disable-line
+
+      useTheme();
 
       return (
         <Element ref={ref} className={cx(className, classNameProp)} {...rest} />

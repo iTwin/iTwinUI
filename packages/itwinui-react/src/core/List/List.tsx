@@ -25,6 +25,7 @@ export const List = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'ul', ListOwnProps>;
+List.displayName = 'List';
 
 type ListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 

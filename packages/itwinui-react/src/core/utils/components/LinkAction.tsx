@@ -2,22 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import cx from 'classnames';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../props.js';
 import '@itwin/itwinui-css/css/utils.css';
-type LinkActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-export type LinkActionProps = PolymorphicComponentProps<
-  'a',
-  LinkActionOwnProps
->;
-
-export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
+import { Polymorphic } from './Polymorphic.js';
 
 /**
  * Polymorphic link action component.
@@ -29,13 +15,7 @@ export type LinkBoxProps = PolymorphicComponentProps<'div', LinkBoxOwnProps>;
  *   </Surface>
  * </LinkBox>
  */
-export const LinkAction = React.forwardRef((props, ref) => {
-  const { as: Element = 'a', className, ...rest } = props;
-  return (
-    <Element ref={ref} className={cx('iui-link-action', className)} {...rest} />
-  );
-}) as PolymorphicForwardRefComponent<'a', LinkActionOwnProps>;
-
+export const LinkAction = Polymorphic.a('iui-link-action');
 LinkAction.displayName = 'LinkAction';
 
 /**
@@ -49,11 +29,5 @@ LinkAction.displayName = 'LinkAction';
  *   </Surface>
  * </LinkBox>
  */
-export const LinkBox = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-  return (
-    <Element ref={ref} className={cx('iui-link-box', className)} {...rest} />
-  );
-}) as PolymorphicForwardRefComponent<'div', LinkBoxOwnProps>;
-
+export const LinkBox = Polymorphic.div('iui-link-box');
 LinkBox.displayName = 'LinkBox';

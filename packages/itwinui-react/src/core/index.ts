@@ -381,7 +381,5 @@ export type {
   FlexItemProps,
   FlexSpacerProps,
   DividerProps,
-  LinkBoxProps,
-  LinkActionProps,
   VisuallyHiddenProps,
 } from './utils/index.js';
