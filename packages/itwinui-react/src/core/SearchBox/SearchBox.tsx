@@ -13,7 +13,7 @@ import {
   useId,
   Icon,
   useMergedRefs,
-  composeEventHandlers,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type {
   IconProps,
@@ -306,7 +306,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
       aria-label='Close searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={composeEventHandlers(onClickProp, onCollapse)}
+      onClick={mergeEventHandlers(onClickProp, onCollapse)}
       {...rest}
     >
       {children ?? <SvgCloseSmall />}
@@ -334,7 +334,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       aria-label='Expand searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={composeEventHandlers(onClickProp, onExpand)}
+      onClick={mergeEventHandlers(onClickProp, onExpand)}
       {...rest}
     >
       {children ?? <SvgSearch />}

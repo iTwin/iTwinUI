@@ -9,7 +9,7 @@ import {
   useSafeContext,
   useMergedRefs,
   useContainerWidth,
-  composeEventHandlers,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import {
@@ -209,7 +209,7 @@ export const ComboBoxInput = React.forwardRef(
         <Input
           ref={refs}
           onKeyDown={handleKeyDown}
-          onClick={composeEventHandlers(onClickProp, handleClick)}
+          onClick={mergeEventHandlers(onClickProp, handleClick)}
           onFocus={handleFocus}
           aria-activedescendant={
             isOpen && focusedIndex != undefined && focusedIndex > -1

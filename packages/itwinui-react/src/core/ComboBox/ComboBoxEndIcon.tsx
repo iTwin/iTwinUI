@@ -8,7 +8,7 @@ import {
   useSafeContext,
   useMergedRefs,
   SvgCaretDownSmall,
-  composeEventHandlers,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import { ComboBoxActionContext, ComboBoxRefsContext } from './helpers.js';
 
@@ -43,7 +43,7 @@ export const ComboBoxEndIcon = React.forwardRef(
           },
           className,
         )}
-        onClick={composeEventHandlers(onClickProp, () => {
+        onClick={mergeEventHandlers(onClickProp, () => {
           dispatch({ type: isOpen ? 'close' : 'open' });
         })}
         {...rest}

@@ -44,7 +44,7 @@ export const getWindow = () => {
  * Merges multiple event handlers into one, while making sure that
  * `defaultPrevented` is respected for each callback.
  */
-export const composeEventHandlers =
+export const mergeEventHandlers =
   <E extends React.SyntheticEvent>(
     ...callbacks: Array<((event: E) => void) | undefined>
   ) =>

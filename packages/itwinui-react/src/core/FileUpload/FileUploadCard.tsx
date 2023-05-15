@@ -9,7 +9,7 @@ import {
   useMergedRefs,
   useSafeContext,
   useId,
-  composeEventHandlers,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
@@ -203,7 +203,7 @@ const FileUploadCardInput = React.forwardRef<
       <input
         className={cx('iui-visually-hidden', className)}
         type='file'
-        onChange={composeEventHandlers(onChange, (e) => {
+        onChange={mergeEventHandlers(onChange, (e) => {
           const _files = Array.from(e.currentTarget.files || []);
           onFilesChange?.(_files);
           setInternalFiles(_files);
