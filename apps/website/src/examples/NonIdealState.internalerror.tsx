@@ -13,10 +13,7 @@ export default () => {
         svg={<Svg500 />}
         heading='Internal Server Error'
         description={
-          <>
-            Please retry again. If this continues to happen, please contact our support team or
-            visit the iModel HUB.
-          </>
+          <>Please retry again. If this continues to happen, please contact our support team.</>
         }
       />
     </div>

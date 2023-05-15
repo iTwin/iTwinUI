@@ -12,12 +12,7 @@ export default () => {
       <NonIdealState
         svg={<SvgError />}
         heading='Error'
-        description={
-          <>
-            We can't find the iModel that you are looking for or it does not exist. Visit the iModel
-            HUB or contact our support team.
-          </>
-        }
+        description={<>We can't find the iModel that you are looking for or it does not exist.</>}
       />
     </div>
   );

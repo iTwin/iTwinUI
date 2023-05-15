@@ -12,11 +12,7 @@ export default () => {
       <NonIdealState
         svg={<Svg503 />}
         heading='Service Unavailable'
-        description={
-          <>
-            This service is being worked on. Please come back in a little bit or visit iModel HUB.
-          </>
-        }
+        description={<>This service is being worked on. Please come back in a little bit.</>}
       />
     </div>
   );

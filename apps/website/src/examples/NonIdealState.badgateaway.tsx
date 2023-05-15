@@ -12,12 +12,7 @@ export default () => {
       <NonIdealState
         svg={<Svg502 />}
         heading='Bad Gateway'
-        description={
-          <>
-            The server encountered a temporary error. Please try again in 30 seconds or visit iModel
-            HUB.
-          </>
-        }
+        description={<>The server encountered a temporary error. Please try again in 30 seconds.</>}
       />
     </div>
   );
