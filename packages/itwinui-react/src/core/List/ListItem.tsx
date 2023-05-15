@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, Polymorphic } from '../utils/index.js';
+import { useTheme, polymorphic } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -71,17 +71,17 @@ type ListItemOwnProps = {
 
 // ----------------------------------------------------------------------------
 
-const ListItemIcon = Polymorphic('iui-list-item-icon');
+const ListItemIcon = polymorphic('iui-list-item-icon');
 ListItemIcon.displayName = 'ListItem.Icon';
 
 // ----------------------------------------------------------------------------
 
-const ListItemContent = Polymorphic('iui-list-item-content');
+const ListItemContent = polymorphic('iui-list-item-content');
 ListItemContent.displayName = 'ListItem.Content';
 
 // ----------------------------------------------------------------------------
 
-const ListItemDescription = Polymorphic('iui-list-item-description');
+const ListItemDescription = polymorphic('iui-list-item-description');
 ListItemDescription.displayName = 'ListItem.Description';
 
 // ----------------------------------------------------------------------------

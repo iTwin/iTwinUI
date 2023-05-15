@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import { Polymorphic } from './Polymorphic.js';
+import { polymorphic } from './polymorphic.js';
 
 it('should work when called directly', () => {
-  const MyDiv = Polymorphic('my-div');
+  const MyDiv = polymorphic('my-div');
 
   const { container: container1 } = render(<MyDiv data-testid='foo'>🍏</MyDiv>);
   const el1 = container1.querySelector('div.my-div') as HTMLElement;
@@ -25,7 +25,7 @@ it('should work when called directly', () => {
 });
 
 it('should work when called as property', () => {
-  const MyButton = Polymorphic.button('my-button');
+  const MyButton = polymorphic.button('my-button');
 
   const { container: container1 } = render(
     <MyButton data-testid='foo'>🍏</MyButton>,
@@ -50,7 +50,7 @@ it('should work when called as property', () => {
 });
 
 it('should work with attributes', () => {
-  const MyButton = Polymorphic.button('my-button', {
+  const MyButton = polymorphic.button('my-button', {
     type: 'button',
     className: 'from-attrs',
   });

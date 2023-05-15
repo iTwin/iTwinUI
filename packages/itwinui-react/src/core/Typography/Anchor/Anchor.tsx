@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Polymorphic } from '../../utils/index.js';
+import { polymorphic } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/anchor.css';
 
 export type AnchorProps = React.ComponentPropsWithoutRef<'a'>;
@@ -21,6 +21,6 @@ export type AnchorProps = React.ComponentPropsWithoutRef<'a'>;
  * <Anchor as={Link} to='/'>Home</Anchor>
  * <Anchor as='button' onClick={() => {}}>click me</Anchor>
  */
-export const Anchor = Polymorphic.a('iui-anchor');
+export const Anchor = polymorphic.a('iui-anchor');
 
 export default Anchor;

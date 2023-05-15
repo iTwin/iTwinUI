@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import '@itwin/itwinui-css/css/utils.css';
-import { Polymorphic } from './Polymorphic.js';
+import { polymorphic } from '../functions/polymorphic.js';
 
 /**
  * Polymorphic link action component.
@@ -15,7 +15,7 @@ import { Polymorphic } from './Polymorphic.js';
  *   </Surface>
  * </LinkBox>
  */
-export const LinkAction = Polymorphic.a('iui-link-action');
+export const LinkAction = polymorphic.a('iui-link-action');
 LinkAction.displayName = 'LinkAction';
 
 /**
@@ -29,5 +29,5 @@ LinkAction.displayName = 'LinkAction';
  *   </Surface>
  * </LinkBox>
  */
-export const LinkBox = Polymorphic.div('iui-link-box');
+export const LinkBox = polymorphic.div('iui-link-box');
 LinkBox.displayName = 'LinkBox';

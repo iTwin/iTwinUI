@@ -39,19 +39,22 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
  * Utility to create a type-safe polymorphic component with a simple class.
  *
  * Can be called directly or as a property of the `Polymorphic` object.
- * In both cases, returns a component that forwards ref and rest props.
+ * In both cases, returns a component that:
+ * - supports `as` prop with default element
+ * - forwards ref and rest props
+ * - adds and merges css classes
  *
  * @example
- * const MyPolyDiv = Polymorphic('my-poly-div');
+ * const MyPolyDiv = polymorphic('my-poly-div');
  * <MyPolyDiv>...</MyPolyDiv>;
  *
  * @example
- * const MyPolyButton = Polymorphic.button('my-poly-button', { type: 'button' });
+ * const MyPolyButton = polymorphic.button('my-poly-button', { type: 'button' });
  * <MyPolyButton as='a' href='#'>...</MyPolyButton>;
  *
  * @private
  */
-export const Polymorphic = new Proxy(_base('div'), {
+export const polymorphic = new Proxy(_base('div'), {
   get: (target, prop) => {
     if (typeof prop === 'string') {
       // eslint-disable-next-line -- string is as far as we can narrow it down
