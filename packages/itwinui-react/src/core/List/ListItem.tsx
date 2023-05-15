@@ -33,7 +33,6 @@ const ListItemComponent = React.forwardRef((props, ref) => {
       data-iui-size={size === 'large' ? 'large' : undefined}
       data-iui-actionable={actionable ? 'true' : undefined}
       data-iui-focused={focused ? 'true' : undefined}
-      tabIndex={disabled ? undefined : -1}
       ref={ref}
       {...rest}
     />

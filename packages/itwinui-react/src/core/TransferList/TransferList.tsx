@@ -156,6 +156,7 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       onKeyDown={onKeyDown}
       active={active}
       actionable={actionable}
+      tabIndex={disabled ? undefined : -1}
       {...rest}
     >
       {children}
