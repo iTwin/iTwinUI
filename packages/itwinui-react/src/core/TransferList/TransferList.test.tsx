@@ -12,7 +12,7 @@ it('should render in its most basic state', () => {
   const { container } = render(
     <TransferList>
       <TransferList.Area>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           <TransferList.ListItem>Item 1</TransferList.ListItem>
           <TransferList.ListItem>Item 2</TransferList.ListItem>
           <TransferList.ListItem>Item 3</TransferList.ListItem>
@@ -112,7 +112,7 @@ it('should render custom transfer list with label and toolbar', () => {
     <TransferList>
       <TransferList.Area>
         <TransferList.Label>Label</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           <TransferList.ListItem>Item 1</TransferList.ListItem>
           <TransferList.ListItem>Item 2</TransferList.ListItem>
           <TransferList.ListItem>Item 3</TransferList.ListItem>
@@ -122,7 +122,7 @@ it('should render custom transfer list with label and toolbar', () => {
         <Button />
       </TransferList.Toolbar>
       <TransferList.Area>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           <TransferList.ListItem>Item 4</TransferList.ListItem>
           <TransferList.ListItem>Item 5</TransferList.ListItem>
           <TransferList.ListItem>Item 6</TransferList.ListItem>

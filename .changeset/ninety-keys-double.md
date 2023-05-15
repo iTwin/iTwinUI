@@ -8,7 +8,7 @@ Added `TransferList` component.
 ```jsx
 <TransferList >
   <TransferList.Area>
-    <TransferList.List role={'listbox'}>
+    <TransferList.List>
       <TransferList.ListItem>Item 1</TransferList.ListItem>
       <TransferList.ListItem>Item 2</TransferList.ListItem>
       <TransferList.ListItem>Item 3</TransferList.ListItem>

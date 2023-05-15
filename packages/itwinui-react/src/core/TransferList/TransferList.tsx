@@ -102,13 +102,7 @@ const TransferListList = React.forwardRef((props, ref) => {
   };
 
   return (
-    <List
-      as={Element}
-      onKeyDown={onKeyDown}
-      role='listbox'
-      ref={refs}
-      {...rest}
-    >
+    <List as={Element} onKeyDown={onKeyDown} ref={refs} {...rest}>
       {children}
     </List>
   );
@@ -220,7 +214,7 @@ export type TransferListProps = {
  * @example
  * <TransferList>
  *   <TransferList.Area>
- *     <TransferList.List role={'listbox'}>
+ *     <TransferList.List>
  *       <TransferList.ListItem>Item 1</TransferList.ListItem>
  *       <TransferList.ListItem>Item 2</TransferList.ListItem>
  *       <TransferList.ListItem>Item 3</TransferList.ListItem>

@@ -55,7 +55,7 @@ export default () => {
     <TransferList style={{ width: 500 }}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {optionData?.map((item, index) => {
             return (
               <TransferList.ListItem
@@ -107,7 +107,7 @@ export default () => {
       </TransferList.Toolbar>
       <TransferList.Area>
         <TransferList.Label>Applied</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {appliedData.map((item, index) => {
             return (
               <TransferList.ListItem

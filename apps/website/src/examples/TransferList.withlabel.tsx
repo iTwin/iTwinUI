@@ -10,7 +10,7 @@ export default () => {
     <TransferList style={{ width: 500 }}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           <TransferList.ListItem actionable>Option 1</TransferList.ListItem>
           <TransferList.ListItem actionable>Option 2</TransferList.ListItem>
           <TransferList.ListItem actionable>Option 3</TransferList.ListItem>

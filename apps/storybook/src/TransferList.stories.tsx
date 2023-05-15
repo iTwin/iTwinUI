@@ -40,7 +40,7 @@ export const Basic: Story<TransferListProps> = (args) => {
   return (
     <TransferList {...args}>
       <TransferList.Area>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {data.map((item, index) => {
             return (
               <TransferList.ListItem
@@ -91,7 +91,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {data.map((item, index) => {
             return (
               <TransferList.ListItem
@@ -156,7 +156,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
     <TransferList {...args}>
       <TransferList.Area>
         <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {optionData?.map((item, index) => {
             return (
               <TransferList.ListItem
@@ -214,7 +214,7 @@ export const WithToolbar: Story<TransferListProps> = (args) => {
       </TransferList.Toolbar>
       <TransferList.Area>
         <TransferList.Label>Applied</TransferList.Label>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           {appliedData.map((item, index) => {
             return (
               <TransferList.ListItem

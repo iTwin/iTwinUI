@@ -10,10 +10,6 @@
   }
 }
 
-.iui-list[role='listbox'] {
-  @include iui-transfer-list;
-}
-
 .iui-menu {
   @include iui-menu;
 }

@@ -9,7 +9,7 @@ export default () => {
   return (
     <TransferList style={{ width: 500 }}>
       <TransferList.Area>
-        <TransferList.List role={'listbox'}>
+        <TransferList.List>
           <TransferList.ListItem actionable>Item 1</TransferList.ListItem>
           <TransferList.ListItem actionable>Item 2</TransferList.ListItem>
           <TransferList.ListItem actionable>Item 3</TransferList.ListItem>

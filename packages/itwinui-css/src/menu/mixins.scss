@@ -187,10 +187,3 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
   }
 }
-
-@mixin iui-transfer-list {
-  @include surface.iui-surface($elevation: none);
-  overflow-y: auto;
-  overflow-y: overlay;
-  height: calc((var(--iui-component-height) - 1px) * 4.5);
-}
