@@ -8,7 +8,7 @@ import cx from 'classnames';
 import {
   useSafeContext,
   // useTheme,
-  // SvgMore,
+  SvgMore,
   type PolymorphicComponentProps,
   type PolymorphicForwardRefComponent,
   StatusIconMap,
@@ -19,8 +19,8 @@ import {
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
-// import { DropdownMenu } from '../DropdownMenu';
-// import { IconButton } from '../Buttons';
+import { DropdownMenu } from '../DropdownMenu/index.js';
+import { IconButton } from '../Buttons/index.js';
 // import { ProgressRadial } from '../ProgressIndicators';
 // import Tile from '.';
 
@@ -143,6 +143,7 @@ const TileComponent = React.forwardRef((props, ref) => {
           },
           className,
         )}
+        aria-disabled={isDisabled}
         ref={ref}
         {...rest}
       />
@@ -433,6 +434,135 @@ type TileNameOwnProps = {
   name: React.ReactNode;
 };
 
+// ----------------------------------------------------------------------------
+// Tile.ContentArea component
+
+const TileContentArea = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, children, ...rest } = props;
+  return (
+    <Element className={cx('iui-tile-content', className)} ref={ref} {...rest}>
+      {children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileContentAreaOwnProps>;
+TileContentArea.displayName = 'TileNew.ContentArea';
+
+type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+// ----------------------------------------------------------------------------
+// Tile.Description component
+
+const TileDescription = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, description, ...rest } = props;
+  return (
+    <Element
+      className={cx('iui-tile-description', className)}
+      ref={ref}
+      {...rest}
+    >
+      {description !== undefined && description}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileDescriptionOwnProps>;
+TileDescription.displayName = 'TileNew.Description';
+
+type TileDescriptionOwnProps = {
+  /**
+   * Description text of the tile.
+   * Gets truncated if it can't fit in the tile.
+   */
+  description?: React.ReactNode;
+};
+
+// ----------------------------------------------------------------------------
+// Tile.Metadata component
+
+const TileMetadata = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, metadata, ...rest } = props;
+  return (
+    <Element className={cx('iui-tile-metadata', className)} ref={ref} {...rest}>
+      {metadata !== undefined && metadata}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileMetadataOwnProps>;
+TileMetadata.displayName = 'TileNew.Metadata';
+
+type TileMetadataOwnProps = {
+  /**
+   * Metadata section located below description.
+   * @example
+   * <Tile
+   *  // ...
+   *  metadata='basic metadata'
+   *  // or
+   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
+   *  // or
+   *  metadata={<>
+   *    <SvgTag2 />
+   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
+   *  </>}
+   * />
+   */
+  metadata?: React.ReactNode;
+};
+
+// ----------------------------------------------------------------------------
+// Tile.MoreOptions component
+
+const TileMoreOptions = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, moreOptions, ...rest } = props;
+  const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+  const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
+  const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
+
+  return (
+    moreOptions && (
+      <DropdownMenu
+        onShow={showMenu}
+        onHide={hideMenu}
+        menuItems={(close) =>
+          moreOptions.map((option) =>
+            React.cloneElement(option, {
+              onClick: (value) => {
+                close();
+                option.props.onClick?.(value);
+              },
+            }),
+          )
+        }
+      >
+        <Element
+          className={cx(
+            'iui-tile-more-options',
+            {
+              'iui-visible': isMenuVisible,
+            },
+            className,
+          )}
+          ref={ref}
+          {...rest}
+        >
+          <IconButton
+            styleType='borderless'
+            size='small'
+            aria-label='More options'
+          >
+            <SvgMore />
+          </IconButton>
+        </Element>
+      </DropdownMenu>
+    )
+  );
+}) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
+TileMoreOptions.displayName = 'TileNew.MoreOptions';
+
+type TileMoreOptionsOwnProps = {
+  /**
+   * Dropdown menu containing `MenuItem`s.
+   */
+  moreOptions?: React.ReactNode[];
+};
+
 export const TileNew = Object.assign(TileComponent, {
   /**
    * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `Badge`
@@ -488,6 +618,37 @@ export const TileNew = Object.assign(TileComponent, {
    * />
    */
   Action: TileAction,
+
+  /**
+   * Tile content area that contains `description`, `metadata` and `moreOptions`
+   */
+
+  ContentArea: TileContentArea,
+  /**
+   * Description text of the tile.
+   * Gets truncated if it can't fit in the tile.
+   */
+  Description: TileDescription,
+  /**
+   * Metadata section located below description.
+   * @example
+   * <Tile
+   *  // ...
+   *  metadata='basic metadata'
+   *  // or
+   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
+   *  // or
+   *  metadata={<>
+   *    <SvgTag2 />
+   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
+   *  </>}
+   * />
+   */
+  Metadata: TileMetadata,
+  /**
+   * Dropdown menu containing `MenuItem`s.
+   */
+  MoreOptions: TileMoreOptions,
 });
 
 export type TileNewProps = PolymorphicComponentProps<'div', TileOwnProps>;
@@ -522,6 +683,22 @@ export type TileNewNameProps = PolymorphicComponentProps<
 export type TileNewActionProps = PolymorphicComponentProps<
   'a',
   TileActionOwnProps
+>;
+export type TileContentAreaProps = PolymorphicComponentProps<
+  'div',
+  TileContentAreaOwnProps
+>;
+export type TileDescriptionProps = PolymorphicComponentProps<
+  'div',
+  TileDescriptionOwnProps
+>;
+export type TileMetadataProps = PolymorphicComponentProps<
+  'div',
+  TileMetadataOwnProps
+>;
+export type TileMoreOptionsProps = PolymorphicComponentProps<
+  'div',
+  TileMoreOptionsOwnProps
 >;
 
 export default TileNew;
