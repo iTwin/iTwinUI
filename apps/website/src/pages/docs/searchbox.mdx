@@ -1,6 +1,6 @@
 ---
 title: SearchBox
-description: The primary way for users to quickly access the information they need.
+description: A search input component
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/SearchBox/SearchBox.d.ts'
 thumbnail:
@@ -23,47 +23,47 @@ The SearchBox can be used to search for content, filter tree view or table. It c
 
 ### Basic
 
+Basic SearchBox includes input field with search icon in front of it. You can access input by using `inputProps` property like we are doing in this example.
+
 <LiveExample src='SearchBox.basic.tsx'>
   <AllExamples.SearchBoxBasicExample client:load />
 </LiveExample>
 
-Basic SearchBox includes input field with search icon in front of it. You can access input by using `inputProps` property like we are doing in this example.
+You also can fully customize the SearchBox by combining [subcomponents](#subcomponents) and other components.
 
 <LiveExample src='SearchBox.customopen.tsx'>
   <AllExamples.SearchBoxCustomOpenExample client:load />
 </LiveExample>
 
-You also can fully customize the SearchBox by combining [subcomponents](#subcomponents) and other components.
-
 ### Expandable
+
+Expandable SearchBox is an [IconButton](button#icon-button) to save space on the screen. It expands into search input on click. Expandable SearchBox has collapse button at the end of the search input.
 
 <LiveExample src='SearchBox.expandable.tsx'>
   <AllExamples.SearchBoxExpandableExample client:load />
 </LiveExample>
 
-Expandable SearchBox is an [IconButton](button#icon-button) to save space on the screen. It expands into search input on click. Expandable SearchBox has collapse button at the end of the search input.
+Expandable SearchBox can be customized by using `ExpandedState` and `CollapsedState` [subcomponents](#subcomponents). Don't forget to add `ExpandButton` and `CollapseButton` or use `isExpanded` property to achieve expandable functionality.
 
 <LiveExample src='SearchBox.custom.tsx'>
   <AllExamples.SearchBoxCustomExample client:load />
 </LiveExample>
 
-Expandable SearchBox can be customized by using `ExpandedState` and `CollapsedState` [subcomponents](#subcomponents). Don't forget to add `ExpandButton` and `CollapseButton` or use `isExpanded` property to achieve expandable functionality.
-
 ### Size
+
+SearchBox can be changed to have small or large size. By default it's "medium".
 
 <LiveExample src='SearchBox.size.tsx'>
   <AllExamples.SearchBoxSizeExample client:load />
 </LiveExample>
 
-SearchBox can be changed to have small or large size. By default it's "medium".
-
 ### Status
+
+SearchBox, same as [input](input#status), can have a status.
 
 <LiveExample src='SearchBox.status.tsx'>
   <AllExamples.SearchBoxStatusExample client:load />
 </LiveExample>
-
-SearchBox, same as [input](input#status), can have a status.
 
 ## Usage
 
