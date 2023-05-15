@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('TransferList', () => {
   const storyPath = 'Core/TransferList';
-  const tests = ['Basic', 'With Label', 'With Toolbar'];
+  const tests = ['Basic', 'With Label'];
 
   tests.forEach((testName) => {
     it(testName, function () {

@@ -149,7 +149,6 @@ export { default as ListComboboxExample } from './List.combobox';
 
 export { default as TransferListMainExample } from './TransferList.main';
 export { default as TransferListWithLabelExample } from './TransferList.withlabel';
-export { default as TransferListWithToolbarExample } from './TransferList.withtoolbar';
 
 export { default as NonIdealStateMainExample } from './NonIdealState.main';
 
