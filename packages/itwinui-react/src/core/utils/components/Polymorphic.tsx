@@ -7,20 +7,27 @@ import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useTheme } from '../hooks/useTheme.js';
 
-const _base = <T extends keyof JSX.IntrinsicElements = 'div'>(element: T) => {
-  return (className: string) => {
-    type OwnProps = {}; // eslint-disable-line
-
-    const Comp = React.forwardRef((props, ref) => {
-      const { as = element, className: classNameProp, ...rest } = props;
+const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
+  defaultElement: As,
+) => {
+  return (className: string, attrs?: JSX.IntrinsicElements[As]) => {
+    const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
       const Element = (as as any) || 'div'; // eslint-disable-line
 
       useTheme();
 
       return (
-        <Element ref={ref} className={cx(className, classNameProp)} {...rest} />
+        <Element
+          ref={ref}
+          {...attrs}
+          {...props}
+          className={cx(className, attrs?.className, props.className)}
+        />
       );
-    }) as PolymorphicForwardRefComponent<NonNullable<typeof element>, OwnProps>;
+    }) as PolymorphicForwardRefComponent<
+      NonNullable<typeof defaultElement>,
+      {} // eslint-disable-line
+    >;
 
     Comp.displayName = getDisplayNameFromClass(className);
 
@@ -39,7 +46,7 @@ const _base = <T extends keyof JSX.IntrinsicElements = 'div'>(element: T) => {
  * <MyPolyDiv>...</MyPolyDiv>;
  *
  * @example
- * const MyPolyButton = Polymorphic.button('my-poly-button');
+ * const MyPolyButton = Polymorphic.button('my-poly-button', { type: 'button' });
  * <MyPolyButton as='a' href='#'>...</MyPolyButton>;
  *
  * @private
