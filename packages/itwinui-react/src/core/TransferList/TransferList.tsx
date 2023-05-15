@@ -63,7 +63,7 @@ const TransferListArea = React.forwardRef((props, ref) => {
 type TransferListListOwnProps = ListProps; // eslint-disable-line @typescript-eslint/ban-types
 
 const TransferListList = React.forwardRef((props, ref) => {
-  const { as: Element = 'ul', children, ...rest } = props;
+  const { as: Element = 'ul', children, className, ...rest } = props;
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const listRef = React.useRef<HTMLUListElement>(null);
@@ -118,8 +118,8 @@ const TransferListList = React.forwardRef((props, ref) => {
   return (
     <List
       as={Element}
+      className={cx('iui-transfer-list-listbox', className)}
       onKeyDown={onKeyDown}
-      role='listbox'
       ref={refs}
       {...rest}
     >
