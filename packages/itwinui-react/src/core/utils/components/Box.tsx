@@ -11,11 +11,25 @@ export const Box = <T extends React.ElementType = 'div'>(
   element?: T,
 ) => {
   type OwnProps = {}; // eslint-disable-line -- yolo
-  return React.forwardRef((props, ref) => {
+
+  const Comp = React.forwardRef((props, ref) => {
     const { as = element, className: classNameProp, ...rest } = props;
     const Element = (as as any) || 'div'; // eslint-disable-line -- yolo
+
     return (
       <Element ref={ref} className={cx(className, classNameProp)} {...rest} />
     );
   }) as PolymorphicForwardRefComponent<NonNullable<typeof element>, OwnProps>;
+
+  Comp.displayName = getDisplayNameFromClass(className);
+
+  return Comp;
+};
+
+const getDisplayNameFromClass = (str: string) => {
+  // kebab to camel
+  const camel = str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+
+  // remove iui- prefix
+  return camel.substring(3);
 };
