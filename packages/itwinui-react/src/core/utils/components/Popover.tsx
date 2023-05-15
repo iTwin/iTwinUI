@@ -8,7 +8,7 @@ import cx from 'classnames';
 import Tippy from '@tippyjs/react';
 import type { TippyProps } from '@tippyjs/react';
 import type { Placement, Instance } from 'tippy.js';
-import { useMergedRefs } from '../hooks/useMergedRefs.js';
+import { useMergedRefs, useIsClient } from '../hooks/index.js';
 export type PopoverInstance = Instance;
 import '@itwin/itwinui-css/css/utils.css';
 import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
@@ -40,7 +40,7 @@ export type PopoverProps = {
 export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   const [mounted, setMounted] = React.useState(false);
   const themeInfo = React.useContext(ThemeContext);
-  const isDomAvailable = useIsDomAvailable();
+  const isDomAvailable = useIsClient();
 
   const tippyRef = React.useRef<Element>(null);
   const refs = useMergedRefs(tippyRef, ref);
@@ -161,9 +161,3 @@ export const hideOnEscOrTab = {
 };
 
 export default Popover;
-
-const useIsDomAvailable = () => {
-  const [isDomAvailable, setIsDomAvailable] = React.useState(false);
-  React.useEffect(() => void setIsDomAvailable(true), []);
-  return isDomAvailable;
-};
