@@ -147,10 +147,15 @@ export { default as ListSubcomponentsExample } from './List.subcomponents';
 export { default as ListLinksExample } from './List.links';
 export { default as ListComboboxExample } from './List.combobox';
 
-export { default as TransferListMainExample } from './TransferList.main';
-export { default as TransferListWithLabelExample } from './TransferList.withlabel';
-
-export { default as NonIdealStateMainExample } from './NonIdealState.main';
+export { default as NonIdealStateBadgateawayExample } from './NonIdealState.badgateaway';
+export { default as NonIdealStateForbiddenExample } from './NonIdealState.forbidden';
+export { default as NonIdealStateInternalErrorExample } from './NonIdealState.internalerror';
+export { default as NonIdealStatePagenotfoundExample } from './NonIdealState.Pagenotfound';
+export { default as NonIdealStateRedirectExample } from './NonIdealState.redirect';
+export { default as NonIdealStateServiceunavailableExample } from './NonIdealState.serviceunavailable';
+export { default as NonIdealStateTimeoutExample } from './NonIdealState.timeout';
+export { default as NonIdealStateUnauthorizedExample } from './NonIdealState.unauthorized';
+export { default as NonIdealStateErrorExample } from './NonIdealState.error';
 
 export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
@@ -225,6 +230,9 @@ export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgr
 
 export { default as TooltipMainExample } from './Tooltip.main';
 export { default as TooltipPlacementExample } from './Tooltip.placement';
+
+export { default as TransferListMainExample } from './TransferList.main';
+export { default as TransferListWithLabelExample } from './TransferList.withlabel';
 
 export { default as TreeMainExample } from './Tree.main';
 
