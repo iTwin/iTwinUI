@@ -72,14 +72,17 @@ type ListItemOwnProps = {
 // ----------------------------------------------------------------------------
 
 const ListItemIcon = Box('iui-list-item-icon');
+ListItemIcon.displayName = 'ListItem.Icon';
 
 // ----------------------------------------------------------------------------
 
 const ListItemContent = Box('iui-list-item-content');
+ListItemContent.displayName = 'ListItem.Content';
 
 // ----------------------------------------------------------------------------
 
 const ListItemDescription = Box('iui-list-item-description');
+ListItemDescription.displayName = 'ListItem.Description';
 
 // ----------------------------------------------------------------------------
 // Exported compound component

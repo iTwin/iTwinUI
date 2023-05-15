@@ -26,10 +26,8 @@ export const Box = <T extends React.ElementType = 'div'>(
   return Comp;
 };
 
+// e.g. iui-list-item-icon -> ListItemIcon
 const getDisplayNameFromClass = (str: string) => {
-  // kebab to camel
   const camel = str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-
-  // remove iui- prefix
   return camel.substring(3);
 };
