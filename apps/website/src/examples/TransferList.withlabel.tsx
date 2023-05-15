@@ -65,7 +65,7 @@ export default () => {
                   setOptionData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });
@@ -117,7 +117,7 @@ export default () => {
                   setAppliedData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });

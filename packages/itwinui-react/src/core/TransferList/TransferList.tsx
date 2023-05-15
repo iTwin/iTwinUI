@@ -149,7 +149,7 @@ const TransferListListItem = React.forwardRef((props, ref) => {
   } = props;
 
   const onClickEvents = () =>
-    actionable && onActiveChange && onActiveChange(active ?? false);
+    actionable && onActiveChange && onActiveChange(!active);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
     if (event.altKey) {

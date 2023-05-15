@@ -9,6 +9,7 @@ import {
   TransferList,
   TransferListProps,
   IconButton,
+  Checkbox,
 } from '@itwin/itwinui-react';
 
 import {
@@ -82,7 +83,7 @@ export const Basic: Story<TransferListProps> = (args) => {
                   setOptionData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });
@@ -139,7 +140,7 @@ export const Basic: Story<TransferListProps> = (args) => {
                   setAppliedData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });
@@ -151,6 +152,9 @@ export const Basic: Story<TransferListProps> = (args) => {
           })}
         </TransferList.List>
       </TransferList.Area>
+      <Checkbox label={'First checkbox label'} />
+      <div />
+      <Checkbox label={'Second checkbox label'} />
     </TransferList>
   );
 };
@@ -212,7 +216,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
                   setOptionData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });
@@ -270,7 +274,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
                   setAppliedData((oldData) => {
                     const newData = [...oldData];
                     const newObject = { ...newData[index] };
-                    newObject.active = !isActive;
+                    newObject.active = isActive;
                     newData[index] = newObject;
                     return newData;
                   });
