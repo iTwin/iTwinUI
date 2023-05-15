@@ -29,6 +29,7 @@ export { default as BadgeMainExample } from './Badge.main';
 export { default as BadgeSoftExample } from './Badge.soft';
 export { default as BadgeStatusesExample } from './Badge.statuses';
 
+export { default as BlockquoteFooterExample } from './Blockquote.footer';
 export { default as BlockquoteMainExample } from './Blockquote.main';
 
 export { default as BreadcrumbsButtonExample } from './Breadcrumbs.button';
@@ -160,14 +161,12 @@ export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as RadioTileColorExample } from './RadioTile.color';
 
-export { default as SearchboxMainExample } from './Searchbox.main';
-export { default as SearchboxSizeExample } from './Searchbox.size';
-export { default as SearchboxExpandableExample } from './Searchbox.expandable';
-export { default as SearchboxStatusExample } from './Searchbox.status';
-export { default as SearchboxCustomExample } from './Searchbox.custom';
-export { default as SearchboxCustomOpenExample } from './Searchbox.customopen';
-
+export { default as SelectDisableExample } from './Select.disable';
+export { default as SelectIconExample } from './Select.icon';
 export { default as SelectMainExample } from './Select.main';
+export { default as SelectStatusesExample } from './Select.statuses';
+export { default as SelectSublabelsExample } from './Select.sublabels';
+export { default as SelectTruncateExample } from './Select.truncate';
 
 export { default as SideNavigationMainExample } from './SideNavigation.main';
 export { default as SideNavigationBasicExample } from './SideNavigation.basic';
