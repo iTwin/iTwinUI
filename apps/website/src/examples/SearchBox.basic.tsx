@@ -3,8 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Blockquote } from '@itwin/itwinui-react';
+import { SearchBox, Flex } from '@itwin/itwinui-react';
 
 export default () => {
-  return <Blockquote>This is a quote</Blockquote>;
+  return (
+    <Flex style={{ width: '70%' }}>
+      <SearchBox
+        aria-label='Search input'
+        inputProps={{
+          placeholder: 'Search...',
+        }}
+      />
+    </Flex>
+  );
 };
