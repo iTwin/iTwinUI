@@ -77,16 +77,6 @@ export const WithLabel: Story<TransferListProps> = (args) => {
     { name: 'Option 6', active: false },
   ]);
 
-  const onDataEdit = React.useCallback((isActive: boolean, index: number) => {
-    setData((oldData) => {
-      const newData = [...oldData];
-      const newObject = { ...newData[index] };
-      newObject.active = !isActive;
-      newData[index] = newObject;
-      return newData;
-    });
-  }, []);
-
   return (
     <TransferList {...args}>
       <TransferList.Area>
@@ -97,7 +87,15 @@ export const WithLabel: Story<TransferListProps> = (args) => {
               <TransferList.ListItem
                 actionable
                 active={item.active}
-                onActiveChange={onDataEdit(item.active, index)}
+                onActiveChange={(isActive: boolean) => {
+                  setData((oldData) => {
+                    const newData = [...oldData];
+                    const newObject = { ...newData[index] };
+                    newObject.active = !isActive;
+                    newData[index] = newObject;
+                    return newData;
+                  });
+                }}
               >
                 {item.name}
               </TransferList.ListItem>
