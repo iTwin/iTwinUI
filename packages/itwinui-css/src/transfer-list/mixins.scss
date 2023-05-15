@@ -7,6 +7,6 @@
   gap: var(--iui-size-2xs);
 
   @if ($area == 'toolbar') {
-    justify-content: center;
+    justify-content: flex-end;
   }
 }
