@@ -187,6 +187,7 @@ $borderless-horizontal-tab-min-height: calc(
 
     ~ .iui-tabs-content {
       flex-grow: 1;
+      overflow: auto;
     }
 
     &[data-iui-overflow='true'] {
