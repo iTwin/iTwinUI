@@ -12,7 +12,7 @@ import type {
 import '@itwin/itwinui-css/css/menu.css';
 
 export const List = React.forwardRef((props, ref) => {
-  const { as: Element = 'ul', className, role = 'list', ...rest } = props;
+  const { as: Element = 'ul', className, ...rest } = props;
 
   useTheme();
 
@@ -20,18 +20,12 @@ export const List = React.forwardRef((props, ref) => {
     <Element
       className={cx('iui-list', className)}
       ref={ref}
-      role={role}
+      role='list'
       {...rest}
     />
   );
 }) as PolymorphicForwardRefComponent<'ul', ListOwnProps>;
 
-type ListOwnProps = {
-  /**
-   * Sets the role of the list component
-   * @default 'list'
-   */
-  role?: 'list' | 'listbox';
-};
+type ListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 export type ListProps = PolymorphicComponentProps<'ul', ListOwnProps>;
