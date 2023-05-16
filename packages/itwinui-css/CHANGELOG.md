@@ -4,19 +4,11 @@
 
 ### Minor Changes
 
-- [#863](https://github.com/iTwin/iTwinUI/pull/863): - Add `iui-input-flex-container` class for inputs with icons and buttons within
+- [#863](https://github.com/iTwin/iTwinUI/pull/863): SearchBox - Add `iui-input-flex-container` class for inputs with icons and buttons within
   - Add `iui-searchbox` class for Searchbox
   - Add `iui-expandable-searchbox` class for Searchbox that can be expanded
   - Add `iui-search-icon` for styling icons within search
-- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): - Added data attribute 'data-iui-overflow' - when true it adds styling for overflow tabs
-
-  - Added property 'overflowOptions' - contains `useOverflow`, which when true enables tabs to scroll if there's overflow
-
-  ```typescript
-  <Tabs type='default' overflowButton={{ useOverflow: true }}>
-    {tabs}
-  </Tabs>
-  ```
+- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): Tabs - Added data attribute 'data-iui-overflow' - when true it adds styling for overflow tabs
 
 ### Patch Changes
 
