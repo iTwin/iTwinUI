@@ -1,5 +1,7 @@
 import time
 from fastapi import FastAPI
+from fastapi.responses import StreamingResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 import os
 import openai
@@ -11,7 +13,6 @@ import pandas as pd
 import json
 from pathlib import Path
 from tqdm import tqdm
-from fastapi.responses import StreamingResponse
 
 import dotenv
 
@@ -25,6 +26,19 @@ print(os.getenv("OPENAI_API_KEY"))
 print(Path.cwd())
 
 app = FastAPI()
+
+origins = [
+    "http://localhost:1700",
+    "*"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 embeddings_df = pd.read_parquet("data/embeddings_df.parquet", engine='fastparquet')
 embeddings_cache = pd.read_parquet("data/embeddings_cache.parquet", engine='fastparquet')
