@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.1
+
+### Patch Changes
+
+- [#1284](https://github.com/iTwin/iTwinUI/pull/1284): Add fix in `useId` to avoid bundlers trying to import non-existing export.
+
 ## 2.11.0
 
 ### Minor Changes
