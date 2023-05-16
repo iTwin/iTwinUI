@@ -29,6 +29,9 @@
       #demo-borderless-vertical {
         width: auto;
       }
+      #demo-overflow-vertical{
+        height: 250px;
+      }
     </style>
   </head>
   <body class="iui-root">
@@ -838,6 +841,374 @@
         </div>
       </div>
 
+    </section>
+
+    <br />
+
+    <h2>Overflow</h2>
+    <section id="demo-overflow">
+      <div class="iui-tabs-wrapper iui-horizontal">
+        <ul
+          class="iui-tabs iui-default"
+          role="tablist"
+          aria-label="Tab group name"
+          data-iui-overflow="true"
+          data-iui-scroll-placement="start"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>#5 item</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>#6 Item</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>#7 Item</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">#8 Item</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>#9 Item</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>#10 Item</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="iui-tabs-actions-wrapper">
+          <div class="iui-tabs-actions">
+            <button
+              class="iui-button iui-button-dropdown"
+              data-iui-size="small"
+            >
+              <span>Actions</span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
+
+      <br />
+      <div
+        class="iui-tabs-wrapper iui-vertical"
+        id="demo-overflow-vertical"
+      >
+        <ul
+          class="iui-tabs iui-default"
+          role="tablist"
+          aria-label="Tab group name"
+          data-iui-overflow="true"
+          data-iui-scroll-placement="start"
+        >
+          <li>
+            <button
+              class="iui-tab iui-active"
+              role="tab"
+              aria-selected="true"
+              aria-controls="active-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Active</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="left-tab"
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Left</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None</span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="disabled-tab"
+              disabled
+            >
+              <svg-placeholder
+                class="iui-tab-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tab-label">
+                <div>Disabled 2</div>
+                <div class="iui-tab-description">Sublabel</div>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button
+              class="iui-tab"
+              role="tab"
+              aria-selected="false"
+              aria-controls="none-tab"
+            >
+              <span class="iui-tab-label">None 2</span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="iui-tabs-actions-wrapper">
+          <div class="iui-tabs-actions">
+            <button class="iui-button iui-button-dropdown">
+              <span>Actions</span>
+              <svg-caret-down-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-caret-down-small>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="active-tab"
+          aria-labelledby="active"
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+          veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+          commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+          velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+          cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+          est laborum.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="left-tab"
+          aria-labelledby="left"
+          hidden
+        >
+          This is the left tab's content.
+        </div>
+        <div
+          class="iui-tabs-content"
+          role="tabpanel"
+          id="none-tab"
+          aria-labelledby="none"
+          hidden
+        >
+          This is the none tab's content.
+        </div>
+      </div>
     </section>
 
     <br />

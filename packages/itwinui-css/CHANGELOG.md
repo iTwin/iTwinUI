@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.11.0
+
+### Minor Changes
+
+- [#863](https://github.com/iTwin/iTwinUI/pull/863): SearchBox - Add `iui-input-flex-container` class for inputs with icons and buttons within
+  - Add `iui-searchbox` class for Searchbox
+  - Add `iui-expandable-searchbox` class for Searchbox that can be expanded
+  - Add `iui-search-icon` for styling icons within search
+- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): Tabs - Added data attribute 'data-iui-overflow' - when true it adds styling for overflow tabs
+
+### Patch Changes
+
+- [#1275](https://github.com/iTwin/iTwinUI/pull/1275): Fixed an issue where `ProgressRadial` was not correctly showing when used inside a v2 boundary within a v1 page.
+- [#1251](https://github.com/iTwin/iTwinUI/pull/1251): Reorganized source file structure. Should have no changes in the CSS output.
+- [#1271](https://github.com/iTwin/iTwinUI/pull/1271): Added `color` declaration to `iui-keyboard`.
+- [#1257](https://github.com/iTwin/iTwinUI/pull/1257): Fixed an issue where pseudo elements inside a v2 boundary were not reverting v1 styles.
+
 ## 1.10.3
 
 ### Patch Changes
