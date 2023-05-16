@@ -209,6 +209,7 @@ export { default as SurfaceNoPaddingExample } from './Surface.nopadding';
 export { default as TableMainExample } from './Table.main';
 
 export { default as TabsMainExample } from './Tabs.main';
+export { default as TabsOverflowExample } from './Tabs.overflow';
 
 export { default as TagMainExample } from './Tag.main';
 export { default as TagBasicExample } from './Tag.basic';
