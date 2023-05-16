@@ -217,14 +217,14 @@ type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/b
 // Tile.ThumbnailPicture component
 
 const TileThumbnailPicture = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, thumbnail, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     <Element
       className={cx('iui-tile-thumbnail-picture', className)}
       style={{
         backgroundImage:
-          thumbnail && typeof thumbnail === 'string'
-            ? `url(${thumbnail})`
+          children && typeof children === 'string'
+            ? `url(${children})`
             : undefined,
       }}
       ref={ref}
@@ -235,54 +235,30 @@ const TileThumbnailPicture = React.forwardRef((props, ref) => {
 
 TileThumbnailPicture.displayName = 'TileNew.TileThumbnailPicture';
 
-type TileThumbnailPictureOwnProps = {
-  /**
-   * Thumbnail image url
-   * @example
-   * <Tile
-   *  // ...
-   *  <Tile.ThumbnailPicture
-   *    thumbnail='/url/to/image.jpg'
-   *  />
-   * />
-   */
-  thumbnail?: string | React.ReactNode;
-};
+type TileThumbnailPictureOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailAvatar component
 
 const TileThumbnailAvatar = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, avatar, ...rest } = props;
-  if (React.isValidElement(avatar)) {
-    return React.createElement(avatar.type, {
-      ...avatar.props,
-      className: cx('iui-thumbnail-icon', avatar.props.className),
+  const { as: Element = 'div', className, children, ...rest } = props;
+  if (React.isValidElement(children)) {
+    return React.createElement(children.type, {
+      ...children.props,
+      className: cx('iui-thumbnail-icon', children.props.className),
     });
   }
 
   return (
     <Element className={cx(className)} ref={ref} {...rest}>
-      {avatar}
+      {children}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TileThumbnailAvatarOwnProps>;
 
 TileThumbnailPicture.displayName = 'TileNew.TileThumbnailAvatar';
 
-type TileThumbnailAvatarOwnProps = {
-  /**
-   * Thumbnail avatar, a custom component or an svg.
-   * @example
-   * <Tile
-   *  // ...
-   *  <Tile.ThumbnailAvatar avatar={<Avatar image={<img src='icon.png' />} />} />
-   *  // or
-   *  <Tile.ThumbnailAvatar avatar={<SvgImodelHollow />} />
-   * />
-   */
-  avatar?: React.ReactNode;
-};
+type TileThumbnailAvatarOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
@@ -353,7 +329,7 @@ type TileBadgeOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 // Tile.Name component
 
 const TileName = React.forwardRef(
-  ({ as: Element = 'div', name, ...rest }, ref) => {
+  ({ as: Element = 'div', children, ...rest }, ref) => {
     const {
       status,
       isLoading,
@@ -415,10 +391,10 @@ const TileName = React.forwardRef(
               onClick={!isDisabled ? onClick : undefined}
               aria-disabled={isDisabled}
             >
-              {name}
+              {children}
             </LinkAction>
           ) : (
-            name
+            children
           )}
         </span>
       </Element>
@@ -427,12 +403,7 @@ const TileName = React.forwardRef(
 ) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
 TileName.displayName = 'TileNew.Name';
 
-type TileNameOwnProps = {
-  /**
-   * Name or title of the tile.
-   */
-  name: React.ReactNode;
-};
+type TileNameOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
@@ -478,50 +449,33 @@ type TileDescriptionOwnProps = {
 // Tile.Metadata component
 
 const TileMetadata = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, metadata, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     <Element className={cx('iui-tile-metadata', className)} ref={ref} {...rest}>
-      {metadata !== undefined && metadata}
+      {children !== undefined && children}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMetadataOwnProps>;
 TileMetadata.displayName = 'TileNew.Metadata';
 
-type TileMetadataOwnProps = {
-  /**
-   * Metadata section located below description.
-   * @example
-   * <Tile
-   *  // ...
-   *  metadata='basic metadata'
-   *  // or
-   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
-   *  // or
-   *  metadata={<>
-   *    <SvgTag2 />
-   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
-   *  </>}
-   * />
-   */
-  metadata?: React.ReactNode;
-};
+type TileMetadataOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, moreOptions, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
   const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
   const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
 
   return (
-    moreOptions && (
+    children && (
       <DropdownMenu
         onShow={showMenu}
         onHide={hideMenu}
         menuItems={(close) =>
-          moreOptions.map((option) =>
+          children.map((option) =>
             React.cloneElement(option, {
               onClick: (value) => {
                 close();
@@ -556,32 +510,22 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 TileMoreOptions.displayName = 'TileNew.MoreOptions';
 
-type TileMoreOptionsOwnProps = {
-  /**
-   * Dropdown menu containing `MenuItem`s.
-   */
-  moreOptions?: React.ReactNode[];
-};
+type TileMoreOptionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.Description component
 
 const TileButtons = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, buttons, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     <Element className={cx('iui-tile-buttons', className)} ref={ref} {...rest}>
-      {buttons !== undefined && buttons}
+      {children}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TileButtonsOwnProps>;
 TileButtons.displayName = 'TileNew.Buttons';
 
-type TileButtonsOwnProps = {
-  /**
-   * Upto two buttons shown at the bottom of the tile.
-   */
-  buttons?: [React.ReactNode?, React.ReactNode?];
-};
+type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 export const TileNew = Object.assign(TileComponent, {
   /**
