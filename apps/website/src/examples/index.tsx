@@ -165,13 +165,13 @@ export { default as RadioStatusesExample } from './Radio.statuses';
 export { default as RadioTileMainExample } from './RadioTile.main';
 export { default as RadioTileColorExample } from './RadioTile.color';
 
-export { default as SearchBoxMainExample } from './SearchBox.main';
+export { default as SearchBoxMainExample } from './Searchbox.main';
 export { default as SearchBoxBasicExample } from './SearchBox.basic';
-export { default as SearchBoxSizeExample } from './SearchBox.size';
-export { default as SearchBoxExpandableExample } from './SearchBox.expandable';
-export { default as SearchBoxStatusExample } from './SearchBox.status';
-export { default as SearchBoxCustomExample } from './SearchBox.custom';
-export { default as SearchBoxCustomOpenExample } from './SearchBox.customopen';
+export { default as SearchBoxSizeExample } from './Searchbox.size';
+export { default as SearchBoxExpandableExample } from './Searchbox.expandable';
+export { default as SearchBoxStatusExample } from './Searchbox.status';
+export { default as SearchBoxCustomExample } from './Searchbox.custom';
+export { default as SearchBoxCustomOpenExample } from './Searchbox.customopen';
 
 export { default as SelectDisableExample } from './Select.disable';
 export { default as SelectIconExample } from './Select.icon';
