@@ -390,11 +390,11 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
    */
   Button: SearchBoxButton,
   /**
-   * Close button for expandable SearchBox. Clicking on this button will collapse SearchBox.
+   * Collapse button for expandable SearchBox. Clicking on this button will collapse SearchBox.
    */
   CollapseButton: SearchBoxCollapseButton,
   /**
-   * Open button for expandable SearchBox. Clicking on this will expand SearchBox.
+   * Expand button for expandable SearchBox. Clicking on this will expand SearchBox.
    */
   ExpandButton: SearchBoxExpandButton,
   /**
