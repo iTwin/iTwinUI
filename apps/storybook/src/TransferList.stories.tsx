@@ -9,7 +9,6 @@ import {
   TransferList,
   TransferListProps,
   IconButton,
-  Checkbox,
 } from '@itwin/itwinui-react';
 
 import {
@@ -152,9 +151,6 @@ export const Basic: Story<TransferListProps> = (args) => {
           })}
         </TransferList.List>
       </TransferList.Area>
-      <Checkbox label={'First checkbox label'} />
-      <div />
-      <Checkbox label={'Second checkbox label'} />
     </TransferList>
   );
 };
