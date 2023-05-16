@@ -13,10 +13,7 @@
 
   `SearchBox` has `SearchBox.Icon`, `SearchBox.Button`, `SearchBox.Input`, `SearchBox.CollapseButton` and `SearchBox.ExpandButton` subcomponents which can be passed as children to customise the look.
 
-- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): - Added data attribute 'data-iui-overflow' - when true it adds styling for overflow tabs
-
-  - Added property 'overflowOptions' - contains `useOverflow`, which when true enables tabs to scroll if there's overflow
-
+- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): Tabs - Added property `overflowOptions` - contains `useOverflow`, which when true enables tabs to scroll if there's overflow
   ```typescript
   <Tabs type='default' overflowButton={{ useOverflow: true }}>
     {tabs}
