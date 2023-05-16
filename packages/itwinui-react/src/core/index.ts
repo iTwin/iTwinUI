@@ -315,6 +315,7 @@ export type { TileContentAreaProps } from './Tile/index.js';
 export type { TileDescriptionProps } from './Tile/index.js';
 export type { TileMetadataProps } from './Tile/index.js';
 export type { TileMoreOptionsProps } from './Tile/index.js';
+export type { TileButtonsProps } from './Tile/index.js';
 
 export { TimePicker } from './TimePicker/index.js';
 export type { MeridiemType, TimePickerProps } from './TimePicker/index.js';

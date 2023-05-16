@@ -563,6 +563,26 @@ type TileMoreOptionsOwnProps = {
   moreOptions?: React.ReactNode[];
 };
 
+// ----------------------------------------------------------------------------
+// Tile.Description component
+
+const TileButtons = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, buttons, ...rest } = props;
+  return (
+    <Element className={cx('iui-tile-buttons', className)} ref={ref} {...rest}>
+      {buttons !== undefined && buttons}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileButtonsOwnProps>;
+TileButtons.displayName = 'TileNew.Buttons';
+
+type TileButtonsOwnProps = {
+  /**
+   * Upto two buttons shown at the bottom of the tile.
+   */
+  buttons?: [React.ReactNode?, React.ReactNode?];
+};
+
 export const TileNew = Object.assign(TileComponent, {
   /**
    * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `Badge`
@@ -649,6 +669,10 @@ export const TileNew = Object.assign(TileComponent, {
    * Dropdown menu containing `MenuItem`s.
    */
   MoreOptions: TileMoreOptions,
+  /**
+   * Upto two buttons shown at the bottom of the tile.
+   */
+  Buttons: TileButtons,
 });
 
 export type TileNewProps = PolymorphicComponentProps<'div', TileOwnProps>;
@@ -699,6 +723,10 @@ export type TileMetadataProps = PolymorphicComponentProps<
 export type TileMoreOptionsProps = PolymorphicComponentProps<
   'div',
   TileMoreOptionsOwnProps
+>;
+export type TileButtonsProps = PolymorphicComponentProps<
+  'div',
+  TileButtonsOwnProps
 >;
 
 export default TileNew;
