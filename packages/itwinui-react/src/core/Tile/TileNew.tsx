@@ -337,67 +337,34 @@ const TileName = React.forwardRef(
       isNew,
       isActionable,
       isDisabled,
+      variant,
       onClick,
     } = useSafeContext(TileContext);
 
-    type TitleIconProps = {
-      isLoading?: boolean;
-      isSelected?: boolean;
-      isNew?: boolean;
-      status?: 'positive' | 'warning' | 'negative';
-    };
-
-    const TitleIcon = ({
-      isLoading = false,
-      isSelected = false,
-      isNew = false,
-      status,
-    }: TitleIconProps) => {
-      const StatusIcon = !!status && StatusIconMap[status];
-
-      if (isLoading) {
-        return (
-          <ProgressRadial
-            className='iui-tile-status-icon'
-            aria-hidden
-            indeterminate
-          />
-        );
-      }
-      if (isSelected) {
-        return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
-      }
-      if (isNew) {
-        return <SvgNew className='iui-tile-status-icon' aria-hidden />;
-      }
-      if (StatusIcon) {
-        return <StatusIcon className='iui-tile-status-icon' />;
-      }
-      return null;
-    };
-
     return (
-      <Element className='iui-tile-name' ref={ref} {...rest}>
-        <TitleIcon
-          isLoading={isLoading}
-          isSelected={isSelected}
-          isNew={isNew}
-          status={status}
-        />
-        <span className='iui-tile-name-label'>
-          {isActionable && onClick ? (
-            <LinkAction
-              as='button'
-              onClick={!isDisabled ? onClick : undefined}
-              aria-disabled={isDisabled}
-            >
-              {children}
-            </LinkAction>
-          ) : (
-            children
-          )}
-        </span>
-      </Element>
+      variant !== 'folder' && (
+        <Element className='iui-tile-name' ref={ref} {...rest}>
+          <TitleIcon
+            isLoading={isLoading}
+            isSelected={isSelected}
+            isNew={isNew}
+            status={status}
+          />
+          <span className='iui-tile-name-label'>
+            {isActionable && onClick ? (
+              <LinkAction
+                as='button'
+                onClick={!isDisabled ? onClick : undefined}
+                aria-disabled={isDisabled}
+              >
+                {children}
+              </LinkAction>
+            ) : (
+              children
+            )}
+          </span>
+        </Element>
+      )
     );
   },
 ) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
@@ -513,7 +480,7 @@ TileMoreOptions.displayName = 'TileNew.MoreOptions';
 type TileMoreOptionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
-// Tile.Description component
+// Tile.Buttons component
 
 const TileButtons = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
@@ -526,6 +493,42 @@ const TileButtons = React.forwardRef((props, ref) => {
 TileButtons.displayName = 'TileNew.Buttons';
 
 type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+type TitleIconProps = {
+  isLoading?: boolean;
+  isSelected?: boolean;
+  isNew?: boolean;
+  status?: 'positive' | 'warning' | 'negative';
+};
+
+const TitleIcon = ({
+  isLoading = false,
+  isSelected = false,
+  isNew = false,
+  status,
+}: TitleIconProps) => {
+  const StatusIcon = !!status && StatusIconMap[status];
+
+  if (isLoading) {
+    return (
+      <ProgressRadial
+        className='iui-tile-status-icon'
+        aria-hidden
+        indeterminate
+      />
+    );
+  }
+  if (isSelected) {
+    return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
+  }
+  if (isNew) {
+    return <SvgNew className='iui-tile-status-icon' aria-hidden />;
+  }
+  if (StatusIcon) {
+    return <StatusIcon className='iui-tile-status-icon' />;
+  }
+  return null;
+};
 
 export const TileNew = Object.assign(TileComponent, {
   /**
