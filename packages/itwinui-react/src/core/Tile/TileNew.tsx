@@ -26,7 +26,6 @@ import { IconButton } from '../Buttons/index.js';
 
 const TileContext = React.createContext<
   | {
-      // setActionable: React.Dispatch<React.SetStateAction<boolean>>;
       status: 'positive' | 'warning' | 'negative' | undefined;
       /**
        * Whether the tile is selected or in "active" state.
@@ -533,31 +532,45 @@ const TitleIcon = ({
 export const TileNew = Object.assign(TileComponent, {
   /**
    * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `Badge`
+   * @example
+   * <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailPicture/>
+   *    // or
+   *    <Tile.ThumbnailAvatar/>
+   *    <Tile.QuickAction/>
+   *    <Tile.TypeIndicator/>
+   *    <Tile.Badge/>
+   * </Tile.ThumbnailArea>
    */
   ThumbnailArea: TileThumbnailArea,
   /**
    * Thumbnail image url
    * @example
-   * <Tile
+   * <Tile>
    *  // ...
-   *  <Tile.ThumbnailPicture
-   *    thumbnail='/url/to/image.jpg'
-   *  />
-   * />
+   *  <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailPicture>
+   *    '/url/to/image.jpg'
+   *    </Tile.ThumbnailPicture>
+   *  </Tile.ThumbnailArea>
+   * </Tile>
    */
   ThumbnailPicture: TileThumbnailPicture,
   /**
-   * Thumbnail image url, a custom component or an svg.
+   * a custom component or an svg for thumbnail avatar.
    * @example
-   * <Tile.ThumbnailPicture
+   * <Tile>
    *  // ...
-   *  thumbnail='/url/to/image.jpg'
-   *  // or
-   *  thumbnail={<Avatar image={<img src='icon.png' />} />}
-   *  // or
-   *  thumbnail={<SvgImodelHollow />}
-   * />
-   */ ThumbnailAvatar: TileThumbnailAvatar,
+   *  <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailAvatar>
+   *      {<Avatar image={<img src='icon.png' />} />}
+   *      // or
+   *      {<SvgImodelHollow />}
+   *    </Tile.ThumbnailAvatar>
+   *   </Tile.ThumbnailArea>
+   * /Tile>
+   */
+  ThumbnailAvatar: TileThumbnailAvatar,
   /**
    * QuickAction subcomponent shown on top left of the tile.
    * Recommended to use an invisible `IconButton`.
@@ -577,19 +590,25 @@ export const TileNew = Object.assign(TileComponent, {
    */
   Name: TileName,
   /**
-   * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+   * Polymorphic Tile action component. Recommended to be used in `Tile.Name` subcomponent.
    * Renders `a` element by default.
    * @example
-   * <Tile.Name
-   *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
-   * />
+   * <Tile.Name>
+   *   {<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+   * </Tile.Name>
    */
   Action: TileAction,
-
   /**
-   * Tile content area that contains `description`, `metadata` and `moreOptions`
+   * Tile content area that contains `Description`, `Metadata` and `MoreOptions` Tile subcomponents
+   * @example
+   * <Tile>
+   *  <Tile.ContentArea>
+   *    <Tile.Description/>
+   *    <Tile.Metadata/>
+   *    <Tile.MoreOptions/>
+   *  </Tile.ContentArea>
+   * </Tile>
    */
-
   ContentArea: TileContentArea,
   /**
    * Description text of the tile.
@@ -599,17 +618,17 @@ export const TileNew = Object.assign(TileComponent, {
   /**
    * Metadata section located below description.
    * @example
-   * <Tile
+   * <Tile.Metadata>
    *  // ...
-   *  metadata='basic metadata'
+   *  'basic metadata'
    *  // or
-   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
+   *  {<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
    *  // or
-   *  metadata={<>
+   *  {<>
    *    <SvgTag2 />
    *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
    *  </>}
-   * />
+   * </Tile.Metadata>
    */
   Metadata: TileMetadata,
   /**
