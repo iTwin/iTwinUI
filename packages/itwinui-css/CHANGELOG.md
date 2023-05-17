@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.1
+
+### Patch Changes
+
+- [#1288](https://github.com/iTwin/iTwinUI/pull/1288): Fixed hover styling for SearchBox.
+
 ## 1.11.0
 
 ### Minor Changes
