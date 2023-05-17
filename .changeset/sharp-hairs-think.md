@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-Add hover state to `iui-input-flex-container`
+Fixed hover styling for SearchBox.
