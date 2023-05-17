@@ -66,19 +66,26 @@ export const SearchInput = () => {
         <div style={{ flex: '1', overflowY: 'scroll' }}>
           <ReactMarkdown className='prose lg:prose-xl'>{answer}</ReactMarkdown>
         </div>
-        <Input
-          placeholder='Send a message...'
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-        />
-        <ModalButtonBar>
-          <Button onClick={() => setIsModalOpen(false)}>Close</Button>
-          {responseAwaiting ? (
-            <ProgressRadial indeterminate={true} />
-          ) : (
-            <Button onClick={() => fetchAnswer()}>Send</Button>
-          )}
-        </ModalButtonBar>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            fetchAnswer();
+          }}
+        >
+          <Input
+            placeholder='Send a message...'
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <ModalButtonBar>
+            <Button onClick={() => setIsModalOpen(false)}>Close</Button>
+            {responseAwaiting ? (
+              <ProgressRadial indeterminate={true} />
+            ) : (
+              <Button type='submit'>Send</Button>
+            )}
+          </ModalButtonBar>
+        </form>
       </Modal>
     </div>
   );
