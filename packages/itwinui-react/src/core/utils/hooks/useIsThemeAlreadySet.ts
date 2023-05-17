@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
+import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { getDocument } from '../functions/index.js';
 

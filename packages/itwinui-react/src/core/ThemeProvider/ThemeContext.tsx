@@ -2,8 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { List } from './List.js';
-export type { ListProps } from './List.js';
+import * as React from 'react';
+import type { ThemeOptions, ThemeType } from './ThemeProvider.js';
 
-export { ListItem } from './ListItem.js';
-export type { ListItemProps } from './ListItem.js';
+export const ThemeContext = React.createContext<
+  | {
+      theme?: ThemeType;
+      themeOptions?: ThemeOptions;
+      rootRef: React.RefObject<HTMLElement>;
+    }
+  | undefined
+>(undefined);

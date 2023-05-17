@@ -13,8 +13,11 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
+import { ThemeContext } from './ThemeContext.js';
+import '@itwin/itwinui-css/css/global.css';
+import '@itwin/itwinui-variables/index.css';
 
-type ThemeOptions = {
+export type ThemeOptions = {
   /**
    * Whether to apply high-contrast versions of light and dark themes.
    * Will default to user preference if browser supports it.
@@ -126,15 +129,6 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 
 export default ThemeProvider;
-
-export const ThemeContext = React.createContext<
-  | {
-      theme?: ThemeType;
-      themeOptions?: ThemeOptions;
-      rootRef: React.RefObject<HTMLElement>;
-    }
-  | undefined
->(undefined);
 
 const Root = React.forwardRef((props, forwardedRef) => {
   const {
