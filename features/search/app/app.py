@@ -36,7 +36,15 @@ app.add_middleware(
 )
 
 embeddings_df = pd.read_parquet("data/embeddings_df.parquet", engine='fastparquet')
-embeddings_cache = pd.read_parquet("_data/embeddings_cache.parquet", engine='fastparquet')
+
+try:
+    # Read `embeddings_cache` from parquet file
+    embeddings_cache = pd.read_parquet("_data/embeddings_cache.parquet", engine='fastparquet')
+except:
+    # If file does not exist, create an empty dataframe
+    embeddings_cache = pd.DataFrame(columns=['embedding'])
+    # Write to parquet file
+    embeddings_cache.to_parquet("_data/embeddings_cache.parquet", engine='fastparquet')
 
 def get_embeddings_same_as_df(input_content, model="text-embedding-ada-002"):
     response = openai.Embedding.create(
