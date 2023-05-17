@@ -9,6 +9,7 @@ import {
   useMergedRefs,
   useSafeContext,
   useId,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
@@ -202,14 +203,11 @@ const FileUploadCardInput = React.forwardRef<
       <input
         className={cx('iui-visually-hidden', className)}
         type='file'
-        onChange={(e) => {
-          onChange?.(e);
-          if (!e.isDefaultPrevented()) {
-            const _files = Array.from(e.currentTarget.files || []);
-            onFilesChange?.(_files);
-            setInternalFiles(_files);
-          }
-        }}
+        onChange={mergeEventHandlers(onChange, (e) => {
+          const _files = Array.from(e.currentTarget.files || []);
+          onFilesChange?.(_files);
+          setInternalFiles(_files);
+        })}
         ref={refs}
         id={id ?? inputId}
         {...rest}
