@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import {
-  useTheme,
+  useGlobals,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
 } from '../utils/index.js';
@@ -34,7 +34,7 @@ export const HeaderSplitButton: HeaderSplitButtonComponent = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useGlobals();
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

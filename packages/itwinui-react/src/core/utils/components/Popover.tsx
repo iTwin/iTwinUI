@@ -11,7 +11,7 @@ import type { Placement, Instance } from 'tippy.js';
 import { useMergedRefs, useIsClient } from '../hooks/index.js';
 export type PopoverInstance = Instance;
 import '@itwin/itwinui-css/css/utils.css';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
+import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 
 export type PopoverProps = {
   /**
