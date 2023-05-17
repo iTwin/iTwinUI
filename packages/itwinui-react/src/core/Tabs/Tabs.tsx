@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useTheme,
+  useGlobals,
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
@@ -203,7 +203,7 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
   const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);

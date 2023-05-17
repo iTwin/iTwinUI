@@ -6,7 +6,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/index.js';
 import type { ButtonProps } from '../Buttons/index.js';
@@ -45,7 +45,7 @@ export const SidenavButton: SideNavButtonComponent = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useGlobals();
 
     return (
       <Button

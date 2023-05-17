@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useMergedRefs, useTheme } from '../utils/index.js';
+import { useMergedRefs, useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type TextareaProps = {
@@ -26,7 +26,7 @@ export const Textarea = React.forwardRef(
   (props: TextareaProps, ref: React.RefObject<HTMLTextAreaElement>) => {
     const { className, rows = 3, setFocus = false, ...rest } = props;
 
-    useTheme();
+    useGlobals();
 
     const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
     const refs = useMergedRefs<HTMLTextAreaElement>(ref, textAreaRef);

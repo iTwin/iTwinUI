@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/workflow-diagram.css';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
@@ -16,7 +16,7 @@ export const WorkflowDiagram = React.forwardRef<
 >((props, ref) => {
   const { steps, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <div ref={ref}>

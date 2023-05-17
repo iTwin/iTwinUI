@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
@@ -29,7 +29,7 @@ export const SidenavSubmenu = React.forwardRef<
 >((props, ref) => {
   const { children, className, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <div

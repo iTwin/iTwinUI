@@ -7,7 +7,7 @@ import { Input } from '../Input/Input.js';
 import type { InputProps } from '../Input/Input.js';
 import {
   StatusIconMap,
-  useTheme,
+  useGlobals,
   InputContainer,
   useId,
 } from '../utils/index.js';
@@ -86,7 +86,7 @@ export const LabeledInput = React.forwardRef(
       ...rest
     } = props;
 
-    useTheme();
+    useGlobals();
 
     const icon = svgIcon ?? (status && StatusIconMap[status]());
 

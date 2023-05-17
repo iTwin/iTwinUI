@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
@@ -90,7 +90,7 @@ export const Avatar = (props: AvatarProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 

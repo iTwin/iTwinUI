@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   InputFlexContainer,
-  useTheme,
+  useGlobals,
   SvgSearch,
   SvgCloseSmall,
   useSafeContext,
@@ -102,7 +102,7 @@ type SearchBoxOwnProps = {
 };
 
 const SearchBoxComponent = React.forwardRef((props, ref) => {
-  useTheme();
+  useGlobals();
 
   const {
     size,

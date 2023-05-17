@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, SvgUpload } from '../utils/index.js';
+import { useGlobals, SvgUpload } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
 export type FileUploadTemplateProps = {
@@ -56,7 +56,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
     className,
     ...rest
   } = props;
-  useTheme();
+  useGlobals();
 
   return (
     <div className={cx('iui-file-upload-template', className)} {...rest}>
