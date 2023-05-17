@@ -147,7 +147,7 @@ export { default as ListSubcomponentsExample } from './List.subcomponents';
 export { default as ListLinksExample } from './List.links';
 export { default as ListComboboxExample } from './List.combobox';
 
-export { default as NonIdealStateBadgateawayExample } from './NonIdealState.badgateaway';
+export { default as NonIdealStateBadgatewayExample } from './NonIdealState.badgateway';
 export { default as NonIdealStateForbiddenExample } from './NonIdealState.forbidden';
 export { default as NonIdealStateInternalErrorExample } from './NonIdealState.internalerror';
 export { default as NonIdealStatePagenotfoundExample } from './NonIdealState.Pagenotfound';
