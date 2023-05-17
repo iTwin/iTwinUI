@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, SvgClose } from '../utils/index.js';
+import { useGlobals, SvgClose, mergeEventHandlers } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
@@ -56,15 +56,6 @@ export const DialogTitleBar = Object.assign(
     } = props;
 
     const { onPointerDown } = useDialogDragContext();
-    const handlePointerDown = React.useCallback(
-      (event: React.PointerEvent<HTMLDivElement>) => {
-        onPointerDownProp?.(event);
-        if (!event.defaultPrevented) {
-          onPointerDown?.(event);
-        }
-      },
-      [onPointerDown, onPointerDownProp],
-    );
 
     useGlobals();
 
@@ -74,7 +65,7 @@ export const DialogTitleBar = Object.assign(
           'iui-dialog-title-bar-filled': isDraggable,
         })}
         ref={ref}
-        onPointerDown={handlePointerDown}
+        onPointerDown={mergeEventHandlers(onPointerDownProp, onPointerDown)}
         {...rest}
       >
         {children ? (

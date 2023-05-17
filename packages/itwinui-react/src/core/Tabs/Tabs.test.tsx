@@ -76,6 +76,63 @@ it('should render vertical tabs', () => {
   expect(queryByText('Test content')).toHaveClass('iui-tabs-content');
 });
 
+it('should allow horizontal scrolling when overflowOptions useOverflow is true', () => {
+  const { container } = render(
+    <Tabs
+      overflowOptions={{ useOverflow: true }}
+      labels={[
+        <Tab key={1} label='Label 1' />,
+        <Tab key={2} label='Label 2' />,
+        <Tab key={3} label='Label 3' />,
+        <Tab key={4} label='Label 4' />,
+        <Tab key={5} label='Label 5' />,
+        <Tab key={6} label='Label 6' />,
+        <Tab key={7} label='Label 7' />,
+        <Tab key={8} label='Label 8' />,
+        <Tab key={9} label='Label 9' />,
+      ]}
+    >
+      Test content
+    </Tabs>,
+  );
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
+
+  const tabs = container.querySelectorAll('.iui-tab');
+  expect(tabs.length).toBe(9);
+});
+
+it('should allow vertical scrolling when overflowOptions useOverflow is true', () => {
+  const { container } = render(
+    <Tabs
+      overflowOptions={{ useOverflow: true }}
+      orientation='vertical'
+      labels={[
+        <Tab key={1} label='Label 1' />,
+        <Tab key={2} label='Label 2' />,
+        <Tab key={3} label='Label 3' />,
+        <Tab key={4} label='Label 4' />,
+        <Tab key={5} label='Label 5' />,
+        <Tab key={6} label='Label 6' />,
+        <Tab key={7} label='Label 7' />,
+        <Tab key={8} label='Label 8' />,
+        <Tab key={9} label='Label 9' />,
+      ]}
+    >
+      Test content
+    </Tabs>,
+  );
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
+
+  const tabs = container.querySelectorAll('.iui-tab');
+  expect(tabs.length).toBe(9);
+});
+
 it('should render green tabs', () => {
   const { container } = renderComponent({ color: 'green' });
 

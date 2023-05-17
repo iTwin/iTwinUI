@@ -2,7 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { getContainer, getDocument, getWindow } from './dom.js';
+import * as React from 'react';
+import { render, screen } from '@testing-library/react';
+import {
+  getContainer,
+  getDocument,
+  getWindow,
+  mergeEventHandlers,
+} from './dom.js';
 
 describe('getContainer', () => {
   it('should create container', () => {
@@ -47,5 +54,22 @@ describe('getWindow', () => {
     jest.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
     expect(getWindow()).toBeFalsy();
     jest.restoreAllMocks();
+  });
+});
+
+describe('mergeEventHandlers', () => {
+  it('should respect preventDefault', () => {
+    const handler1 = jest.fn();
+    const handler2 = jest.fn((e) => e.preventDefault());
+    const handler3 = jest.fn();
+    render(
+      <button onClick={mergeEventHandlers(handler1, handler2, handler3)}>
+        hi
+      </button>,
+    );
+    screen.getByText('hi').click();
+    expect(handler1).toHaveBeenCalled();
+    expect(handler2).toHaveBeenCalled();
+    expect(handler3).not.toHaveBeenCalled();
   });
 });

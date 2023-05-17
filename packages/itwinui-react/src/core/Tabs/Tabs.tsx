@@ -11,9 +11,38 @@ import {
   useContainerWidth,
   useIsomorphicLayoutEffect,
   useIsClient,
+  useResizeObserver,
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab.js';
+
+export type OverflowOptions = {
+  /**
+   * Whether to allow tabs list to scroll when there is overflow,
+   * i.e. when there is not enough space to fit all the tabs.
+   *
+   * Not applicable to types `pill` and `borderless`.
+   */
+  useOverflow?: boolean;
+};
+
+type TabsOverflowProps =
+  | {
+      /**
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
+      /**
+       * Type of the tabs.
+       *
+       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default';
+    }
+  | {
+      type: 'pill' | 'borderless';
+    };
 
 type TabsOrientationProps =
   | {
@@ -97,7 +126,8 @@ export type TabsProps = {
    */
   children?: React.ReactNode;
 } & TabsOrientationProps &
-  TabsTypeProps;
+  TabsTypeProps &
+  TabsOverflowProps;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
@@ -145,6 +175,17 @@ export const Tabs = (props: TabsProps) => {
     actions = props.actions;
     props = { ...props };
     delete props.actions;
+  }
+  // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
+  let overflowOptions: OverflowOptions | undefined;
+  if (
+    props.type !== 'borderless' &&
+    props.type !== 'pill' &&
+    props.overflowOptions
+  ) {
+    overflowOptions = props.overflowOptions;
+    props = { ...props };
+    delete props.overflowOptions;
   }
 
   const {
@@ -218,12 +259,216 @@ export const Tabs = (props: TabsProps) => {
     );
   }, [type]);
 
-  const onTabClick = (index: number) => {
-    if (onTabSelected) {
-      onTabSelected(index);
+  const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
     }
-    setCurrentActiveIndex(index);
+
+    let scrollLeft = ownerDoc?.scrollLeft ?? 0;
+    if (e.deltaY > 0 || e.deltaX > 0) {
+      scrollLeft += 25;
+    } else if (e.deltaY < 0 || e.deltaX < 0) {
+      scrollLeft -= 25;
+    }
+    ownerDoc.scrollLeft = scrollLeft;
+  }, []);
+
+  // allow normal mouse wheels to scroll horizontally for horizontal overflow
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow || orientation === 'vertical') {
+      ownerDoc.removeEventListener('wheel', enableHorizontalScroll);
+      return;
+    }
+
+    ownerDoc.addEventListener('wheel', enableHorizontalScroll);
+  }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
+
+  const isTabHidden = (activeTab: HTMLElement, isVertical: boolean) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const fadeBuffer = isVertical
+      ? ownerDoc.offsetHeight * 0.05
+      : ownerDoc.offsetWidth * 0.05;
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
+    const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
+    const tabEnd = isVertical
+      ? activeTab.offsetTop + activeTab.offsetHeight
+      : activeTab.offsetLeft + activeTab.offsetWidth;
+
+    if (
+      tabStart > visibleStart + fadeBuffer &&
+      tabEnd < visibleEnd - fadeBuffer
+    ) {
+      return 0; // tab is visible
+    } else if (tabStart < visibleStart + fadeBuffer) {
+      return -1; // tab is before visible section
+    } else {
+      return 1; // tab is after visible section
+    }
   };
+
+  const easeInOutQuad = (
+    time: number,
+    beginning: number,
+    change: number,
+    duration: number,
+  ) => {
+    if ((time /= duration / 2) < 1) {
+      return (change / 2) * time * time + beginning;
+    }
+    return (-change / 2) * (--time * (time - 2) - 1) + beginning;
+  };
+
+  const scrollToTab = React.useCallback(
+    (
+      list: HTMLUListElement,
+      activeTab: HTMLElement,
+      duration: number,
+      isVertical: boolean,
+      tabPlacement: number,
+    ) => {
+      const start = isVertical ? list.scrollTop : list.scrollLeft;
+      let change = 0;
+      let currentTime = 0;
+      const increment = 20;
+      const fadeBuffer = isVertical
+        ? list.offsetHeight * 0.05
+        : list.offsetWidth * 0.05;
+
+      if (tabPlacement < 0) {
+        // if tab is before visible section
+        change = isVertical
+          ? activeTab.offsetTop - list.scrollTop
+          : activeTab.offsetLeft - list.scrollLeft;
+        change -= fadeBuffer; // give some space so the active tab isn't covered by the fade
+      } else {
+        // tab is after visible section
+        change = isVertical
+          ? activeTab.offsetTop -
+            (list.scrollTop + list.offsetHeight) +
+            activeTab.offsetHeight
+          : activeTab.offsetLeft -
+            (list.scrollLeft + list.offsetWidth) +
+            activeTab.offsetWidth;
+        change += fadeBuffer; // give some space so the active tab isn't covered by the fade
+      }
+
+      const animateScroll = () => {
+        currentTime += increment;
+        const val = easeInOutQuad(currentTime, start, change, duration);
+        if (isVertical) {
+          list.scrollTop = val;
+        } else {
+          list.scrollLeft = val;
+        }
+        if (currentTime < duration) {
+          setTimeout(animateScroll, increment);
+        }
+      };
+      animateScroll();
+    },
+    [],
+  );
+
+  // scroll to active tab if it is not visible with overflow
+  useIsomorphicLayoutEffect(() => {
+    setTimeout(() => {
+      const ownerDoc = tablistRef.current;
+      if (
+        ownerDoc !== null &&
+        overflowOptions?.useOverflow &&
+        currentActiveIndex !== undefined
+      ) {
+        const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
+          currentActiveIndex
+        ] as HTMLElement;
+        const isVertical = orientation === 'vertical';
+        const tabPlacement = isTabHidden(activeTab, isVertical);
+
+        if (tabPlacement) {
+          scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
+        }
+      }
+    }, 50);
+  }, [
+    overflowOptions?.useOverflow,
+    currentActiveIndex,
+    focusedIndex,
+    orientation,
+    scrollToTab,
+  ]);
+
+  const [scrollingPlacement, setScrollingPlacement] = React.useState<
+    string | undefined
+  >(undefined);
+  const determineScrollingPlacement = React.useCallback(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const isVertical = orientation === 'vertical';
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
+    const totalTabsSpace = isVertical
+      ? ownerDoc.scrollHeight
+      : ownerDoc.scrollWidth;
+
+    if (
+      Math.abs(visibleStart - 0) < 1 &&
+      Math.abs(visibleEnd - totalTabsSpace) < 1
+    ) {
+      setScrollingPlacement(undefined);
+    } else if (Math.abs(visibleStart - 0) < 1) {
+      setScrollingPlacement('start');
+    } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
+      setScrollingPlacement('end');
+    } else {
+      setScrollingPlacement('center');
+    }
+  }, [orientation, setScrollingPlacement]);
+  // apply correct mask when tabs list is resized
+  const [resizeRef] = useResizeObserver(determineScrollingPlacement);
+  resizeRef(tablistRef?.current);
+
+  // check if overflow tabs are scrolled to far edges
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow) {
+      ownerDoc.removeEventListener('scroll', determineScrollingPlacement);
+      return;
+    }
+
+    ownerDoc.addEventListener('scroll', determineScrollingPlacement);
+  }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
+
+  const onTabClick = React.useCallback(
+    (index: number) => {
+      if (onTabSelected) {
+        onTabSelected(index);
+      }
+      setCurrentActiveIndex(index);
+    },
+    [onTabSelected],
+  );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
     // alt + arrow keys are used by browser / assistive technologies
@@ -290,6 +535,43 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
+  const createTab = React.useCallback(
+    (label: React.ReactNode, index: number) => {
+      const onClick = () => {
+        setFocusedIndex(index);
+        onTabClick(index);
+      };
+      return (
+        <li key={index}>
+          {!React.isValidElement(label) ? (
+            <Tab
+              label={label}
+              className={cx({
+                'iui-active': index === currentActiveIndex,
+              })}
+              tabIndex={index === currentActiveIndex ? 0 : -1}
+              onClick={onClick}
+              aria-selected={index === currentActiveIndex}
+            />
+          ) : (
+            React.cloneElement(label, {
+              className: cx(label.props.className, {
+                'iui-active': index === currentActiveIndex,
+              }),
+              'aria-selected': index === currentActiveIndex,
+              tabIndex: index === currentActiveIndex ? 0 : -1,
+              onClick: (args: unknown) => {
+                onClick();
+                label.props.onClick?.(args);
+              },
+            })
+          )}
+        </li>
+      );
+    },
+    [currentActiveIndex, onTabClick],
+  );
+
   return (
     <div
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
@@ -307,44 +589,14 @@ export const Tabs = (props: TabsProps) => {
           },
           tabsClassName,
         )}
+        data-iui-overflow={overflowOptions?.useOverflow}
+        data-iui-scroll-placement={scrollingPlacement}
         role='tablist'
         ref={refs}
         onKeyDown={onKeyDown}
         {...rest}
       >
-        {labels.map((label, index) => {
-          const onClick = () => {
-            setFocusedIndex(index);
-            onTabClick(index);
-          };
-          return (
-            <li key={index}>
-              {!React.isValidElement(label) ? (
-                <Tab
-                  label={label}
-                  className={cx({
-                    'iui-active': index === currentActiveIndex,
-                  })}
-                  tabIndex={index === currentActiveIndex ? 0 : -1}
-                  onClick={onClick}
-                  aria-selected={index === currentActiveIndex}
-                />
-              ) : (
-                React.cloneElement(label, {
-                  className: cx(label.props.className, {
-                    'iui-active': index === currentActiveIndex,
-                  }),
-                  'aria-selected': index === currentActiveIndex,
-                  tabIndex: index === currentActiveIndex ? 0 : -1,
-                  onClick: (args: unknown) => {
-                    onClick();
-                    label.props.onClick?.(args);
-                  },
-                })
-              )}
-            </li>
-          );
-        })}
+        {labels.map((label, index) => createTab(label, index))}
       </ul>
 
       {actions && (

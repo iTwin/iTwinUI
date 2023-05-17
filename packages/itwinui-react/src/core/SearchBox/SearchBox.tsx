@@ -13,6 +13,7 @@ import {
   useId,
   Icon,
   useMergedRefs,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type {
   IconProps,
@@ -305,13 +306,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
       aria-label='Close searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={(e) => {
-        onClickProp?.(e);
-        if (e.isDefaultPrevented()) {
-          return;
-        }
-        onCollapse?.();
-      }}
+      onClick={mergeEventHandlers(onClickProp, onCollapse)}
       {...rest}
     >
       {children ?? <SvgCloseSmall />}
@@ -339,13 +334,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       aria-label='Expand searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={(e) => {
-        onClickProp?.(e);
-        if (e.isDefaultPrevented()) {
-          return;
-        }
-        onExpand?.();
-      }}
+      onClick={mergeEventHandlers(onClickProp, onExpand)}
       {...rest}
     >
       {children ?? <SvgSearch />}
@@ -390,11 +379,11 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
    */
   Button: SearchBoxButton,
   /**
-   * Close button for expandable SearchBox. Clicking on this button will collapse SearchBox.
+   * Collapse button for expandable SearchBox. Clicking on this button will collapse SearchBox.
    */
   CollapseButton: SearchBoxCollapseButton,
   /**
-   * Open button for expandable SearchBox. Clicking on this will expand SearchBox.
+   * Expand button for expandable SearchBox. Clicking on this will expand SearchBox.
    */
   ExpandButton: SearchBoxExpandButton,
   /**
