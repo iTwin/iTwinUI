@@ -74,7 +74,10 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     } = props;
 
     const items = React.useMemo(
-      () => React.Children.map(children, (child) => <div>{child}</div>) ?? [],
+      () =>
+        React.Children.map(children, (child) =>
+          !!child ? <div>{child}</div> : undefined,
+        )?.filter(Boolean) ?? [],
       [children],
     );
 

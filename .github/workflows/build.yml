@@ -89,6 +89,32 @@ jobs:
       - run: yarn lint:copyright
       - run: yarn build --filter={./packages/*}...
 
+  apps:
+    name: Build website and playgrounds
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 18.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn build --filter=website --filter="{./playgrounds/*}..."
+
   deploy-gh-pages:
     name: Push static files to github pages
     needs: install
