@@ -1,0 +1,17 @@
+{
+  "mode": "pre",
+  "tag": "dev",
+  "initialVersions": {
+    "portal": "0.0.1",
+    "storybook": "0.0.0",
+    "website": "0.0.1",
+    "configs": "0.0.0",
+    "@itwin/itwinui-css": "1.11.1",
+    "@itwin/itwinui-react": "2.11.2",
+    "@itwin/itwinui-variables": "2.0.0",
+    "astro-playground": "0.0.1",
+    "next-playground": "0.1.0",
+    "vite-playground": "0.0.0"
+  },
+  "changesets": []
+}
