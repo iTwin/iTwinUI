@@ -11,7 +11,6 @@ import { action } from 'nanostores';
 import React from 'react';
 
 import ReactMarkdown from 'react-markdown';
-// import ReactDom from 'react-dom';
 
 export const SearchInput = () => {
   const sampleAnswer = `
@@ -32,12 +31,10 @@ export const SearchInput = () => {
     setResponseAwaiting(true);
 
     try {
-      // Call localhost:8000/answer?query=searchQuery
       const response = await fetch(`http://localhost:8000/search?query=${searchQuery}`);
       const data = await response.json();
       console.log(data);
 
-      // Set answer to the response
       setAnswer(data);
     } catch (e) {
       console.error('ERROR', e);
@@ -65,9 +62,7 @@ export const SearchInput = () => {
         }}
         isDismissible={false}
       >
-        {/* <ModalContent style={{ flex: '1', overflowY: 'scroll' }}> */}
-        {/* ChatGPT's conversation messages*/}
-        {/* <p style={{ flex: '1' }}>{answer}</p> */}
+        {/* TODO: Confirm if need to wrap this div in <ModalContent> */}
         <div style={{ flex: '1', overflowY: 'scroll' }}>
           <ReactMarkdown className='prose lg:prose-xl'>{answer}</ReactMarkdown>
         </div>
@@ -76,7 +71,6 @@ export const SearchInput = () => {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        {/* </ModalContent> */}
         <ModalButtonBar>
           <Button onClick={() => setIsModalOpen(false)}>Close</Button>
           {responseAwaiting ? (
