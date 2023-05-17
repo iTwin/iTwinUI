@@ -20,11 +20,6 @@ env_file = '.env'
 dotenv.load_dotenv(env_file, override=True)
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-print(os.getenv("OPENAI_API_KEY"))
-
-# print cwd
-print(Path.cwd())
-
 app = FastAPI()
 
 origins = [
@@ -74,7 +69,7 @@ def get_similarities(df, query, pprint=True):
 def get_top_chunks(query):
     res = get_similarities(embeddings_df, query)
     top_chunks = res.loc[:, ["chunk", "similarities"]]
-    top_chunks = top_chunks.head(7)
+    top_chunks = top_chunks.head(5)
     top_chunks["chunk"] = top_chunks["chunk"].apply(lambda x: {**x, "similarity": top_chunks.loc[top_chunks["chunk"] == x, "similarities"].values[0]})
 
     print("TOP CHUNKS", top_chunks)
@@ -92,7 +87,7 @@ You are an enthusiastic iTwinUI representative who loves helping users. iTwinUI 
 ```json
 {json.dumps(top_chunks, indent=4)}
 
-Your answer in markdown (hierarchical bullet points, whenever possible):
+Your answer in markdown:
     """.strip()
 
 # def generate_streaming_answer(prompt, model="text-ada-001", max_tokens=30):
@@ -133,7 +128,7 @@ def call_open_ai(prompt):
     response = openai.Completion.create(
         model="text-davinci-003",
         prompt=prompt,
-        temperature=0,
+        temperature=0.7,
         max_tokens=1500,
     )
     return response["choices"][0]["text"]
@@ -147,24 +142,6 @@ async def testing_streaming():
 async def root():
     return {"message": "Hello World"}
 
-print("START")
-
-query = "How to style iTwinUI Buttons?"
-
-top_chunks = get_top_chunks(query)
-prompt_ = prompt(query, top_chunks)
-
-response = call_open_ai("Say this is a test")
-
-# response = ""
-# for chunk in generate_streaming_answer(prompt_, max_tokens=1500):
-#     # print(response)
-#     response += chunk
-
-print(response)
-
-print("END")
-
 # Gets the top 10 chunks that are similar to the query (get_top_chunks())
 # Then, it gets the prompt (prompt())
 # Then, it gets the answer from the prompt as a stream, like ChatGPT streaming style (generate_streaming_answer())
@@ -172,6 +149,7 @@ print("END")
 @app.get("/search/")
 async def search(query: str):
     top_chunks = get_top_chunks(query)
+    print(top_chunks)
     prompt_ = prompt(query, top_chunks)
 
     response = call_open_ai(prompt_)
