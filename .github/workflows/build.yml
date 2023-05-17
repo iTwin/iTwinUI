@@ -113,7 +113,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build
+      - run: yarn build --filter=website --filter="{./playgrounds/*}..."
 
   deploy-gh-pages:
     name: Push static files to github pages
