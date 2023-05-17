@@ -30,6 +30,7 @@
     "react-docgen": "^6.0.0-alpha.3",
     "react-docgen-typescript": "^2.2.2",
     "react-dom": "^18.0.0",
+    "react-markdown": "^8.0.7",
     "rehype-autolink-headings": "^6.1.1",
     "rehype-slug": "^5.0.1",
     "sass": "^1.55.0",
