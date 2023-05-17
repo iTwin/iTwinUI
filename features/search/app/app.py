@@ -36,7 +36,7 @@ app.add_middleware(
 )
 
 embeddings_df = pd.read_parquet("data/embeddings_df.parquet", engine='fastparquet')
-embeddings_cache = pd.read_parquet("data/embeddings_cache.parquet", engine='fastparquet')
+embeddings_cache = pd.read_parquet("_data/embeddings_cache.parquet", engine='fastparquet')
 
 def get_embeddings_same_as_df(input_content, model="text-embedding-ada-002"):
     response = openai.Embedding.create(
@@ -52,7 +52,7 @@ def get_cached_embedding(query, model='text-embedding-ada-002'):
         print("CALLING OPENAI API")
         embeddings_cache.loc[query, "embedding"] = get_embeddings_same_as_df(query)["data"][0]["embedding"]
         # print("SAVING TO PARQUET", embeddings_cache.loc[query, "embedding"])
-        embeddings_cache.to_parquet("data/embeddings_cache.parquet", engine='fastparquet')
+        embeddings_cache.to_parquet("_data/embeddings_cache.parquet", engine='fastparquet')
         return embeddings_cache.loc[query, "embedding"]
     
 def get_similarities(df, query, pprint=True):

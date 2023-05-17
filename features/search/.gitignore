@@ -10,3 +10,6 @@ __pycache__/
 
 .ipynb_checkpoints
 
+# Private or only local data
+_data
+
