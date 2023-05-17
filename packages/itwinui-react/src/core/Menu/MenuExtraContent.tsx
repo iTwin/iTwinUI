@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -34,7 +34,7 @@ export type MenuExtraContentProps = {
  */
 export const MenuExtraContent = (props: MenuExtraContentProps) => {
   const { children, className, ...rest } = props;
-  useTheme();
+  useGlobals();
   return (
     <li
       className={cx('iui-menu-content', className)}

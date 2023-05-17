@@ -8,7 +8,7 @@ import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
 import {
   StatusIconMap,
-  useTheme,
+  useGlobals,
   InputContainer,
   useId,
 } from '../utils/index.js';
@@ -101,7 +101,7 @@ export const LabeledSelect = <T,>(
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const labelId = `${useId()}-label`;
 

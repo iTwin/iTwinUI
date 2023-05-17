@@ -7,7 +7,7 @@ import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
 import '@itwin/itwinui-css/css/table.css';
 import {
-  useTheme,
+  useGlobals,
   Popover,
   SvgFilterHollow,
   SvgFilter,
@@ -27,7 +27,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
 ) => {
   const { column, className, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   const [isVisible, setIsVisible] = React.useState(false);
   const close = React.useCallback(() => setIsVisible(false), []);

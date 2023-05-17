@@ -9,15 +9,12 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-nonidealstate' />
-
-<LiveExample src='NonIdealState.main.tsx' truncate={false}>
-  <AllExamples.NonIdealStateMainExample client:load />
+<LiveExample src='NonIdealState.Pagenotfound.tsx' truncate={false}>
+  <AllExamples.NonIdealStatePagenotfoundExample client:load />
 </LiveExample>
 
 Error pages are part of an everyday online experience. There are many types of error pages, but for most, their goal is to communicate to the user that their query was unsuccessful and there are no results to display. A well-designed error pages can potentially soothe some of the frustration that may result from the error. A well-known error page is the 404, that is triggered when the path the user followed led to a dead-end, with a page holding no content. However, if the user is ending up with a page that is displaying nothing, they might be confused and ignore what comes next. It’s why it’s important to put thoughts and time into designing good error pages.
@@ -38,6 +35,10 @@ Error pages come with their own error and should not be mixed and matched to avo
 
 Both 401 and 403 errors inform of similar yet slightly different situations. They inform the user that they have reached a page they do not have the permission to view, either because the credentials they entered are erroneous (401), or because they simply do not have the rights to access it (403).
 
+<LiveExample src='NonIdealState.unauthorized.tsx' truncate={false}>
+  <AllExamples.NonIdealStateUnauthorizedExample client:load />
+</LiveExample>
+
 A 401 error means the request sent by the client could not be authenticated. It may be because the provided user ID and password are invalid and the server denied access to the client.
 
 Potential causes other than invalid credentials;
@@ -47,29 +48,57 @@ Potential causes other than invalid credentials;
 - Page loaded incorrectly;
 - Mistake on the site owner’s side.
 
+<LiveExample src='NonIdealState.forbidden.tsx' truncate={false}>
+  <AllExamples.NonIdealStateForbiddenExample client:load />
+</LiveExample>
+
 A 403 error means the client encountering it is completely forbidden from accessing the page. In this case, the user cannot do much to resolve it, as the resource is accessible only by the authorized parties.
 
 ### Error 500
+
+<LiveExample src='NonIdealState.internalerror.tsx' truncate={false}>
+  <AllExamples.NonIdealStateInternalErrorExample client:load />
+</LiveExample>
 
 Also called Internal Server Error, a 500 error code means something went wrong with the website’s server, but it is unable to identify what caused the issue. More often than not, the error is on the user’s side.
 
 ### Error 502
 
+<LiveExample src='NonIdealState.badgateway.tsx' truncate={false}>
+  <AllExamples.NonIdealStateBadgatewayExample client:load />
+</LiveExample>
+
 Error code 502 is a Bad Gateway error. This means the communication between two servers resulted in an error, leading to a deadend. The user has no control over this error as it happens when there is a miscommunication between online servers.
 
 ### Error 503
+
+<LiveExample src='NonIdealState.serviceunavailable.tsx' truncate={false}>
+  <AllExamples.NonIdealStateServiceunavailableExample client:load />
+</LiveExample>
 
 Service Unavailable is the issue you get from a 503 error. It means the online server has encountered a problem because the network is unavailable (internet connection was interrupted), and thus cannot fulfill the request. The user cannot do anything about this issue.
 
 ### Timed out
 
+<LiveExample src='NonIdealState.timeout.tsx' truncate={false}>
+  <AllExamples.NonIdealStateTimeoutExample client:load />
+</LiveExample>
+
 For security reasons, certain web sessions will automatically sign a user out when they remain inactive for a few minutes. The user must then renew the session. This process may or may not require that they re-enter their credentials to resume; this is at developer’s discretion.
 
 ### Generic error
 
+<LiveExample src='NonIdealState.error.tsx' truncate={false}>
+  <AllExamples.NonIdealStateErrorExample client:load />
+</LiveExample>
+
 Used in any error that isn’t discussed above. This error can also be used if you disagree that an illustration doesn’t properly convey your specific error.
 
 ### Redirection notice
+
+<LiveExample src='NonIdealState.redirect.tsx' truncate={false}>
+  <AllExamples.NonIdealStateRedirectExample client:load />
+</LiveExample>
 
 This one isn’t technically an error, but more of an information page that requires an action from the user. If a clickable link has more than one potential destination, take the user to this page so they can decide where they want to land. A Remember my choice checkbox can be shown below so if the link is used more than once, the user won’t need to select a button every time.
 

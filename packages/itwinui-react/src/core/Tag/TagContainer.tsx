@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tag.css';
 
@@ -34,7 +34,7 @@ export type TagContainerProps = {
  */
 export const TagContainer = (props: TagContainerProps) => {
   const { className, children, overflow, background = 'none', ...rest } = props;
-  useTheme();
+  useGlobals();
 
   return (
     <div
