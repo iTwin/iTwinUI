@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { useGlobals, getContainer, getDocument } from '../utils/index.js';
+import { useGlobals, getDocument, useIsClient } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { Dialog } from '../Dialog/index.js';
@@ -39,16 +39,10 @@ export type ModalProps = {
    */
   onKeyDown?: React.KeyboardEventHandler;
   /**
-   * Id of the root where the modal will be rendered in.
-   * @default 'iui-react-portal-container'
+   * Element to render the modal into.
+   * By default, a <div> in the nearest ThemeProvider will be used.
    */
-  modalRootId?: string;
-  /**
-   * Document where the modal will be rendered.
-   * Can be specified to render in a different document (e.g. a popup window).
-   * @default document
-   */
-  ownerDocument?: Document;
+  portalTo?: HTMLElement;
   /**
    * Content of the modal.
    */
@@ -86,20 +80,17 @@ export const Modal = (props: ModalProps) => {
     onClose,
     title,
     children,
-    modalRootId = 'iui-react-portal-container',
-    ownerDocument = getDocument(),
+    portalTo: portalToProp,
     ...rest
   } = props;
 
-  useGlobals();
+  const context = useGlobals();
+  const isClient = useIsClient();
 
-  const [container, setContainer] = React.useState<HTMLElement>();
-  React.useEffect(() => {
-    setContainer(getContainer(modalRootId, ownerDocument));
-    return () => setContainer(undefined);
-  }, [ownerDocument, modalRootId]);
+  const portalTo =
+    portalToProp ?? context?.portalContainerRef?.current ?? getDocument()?.body;
 
-  return !!container ? (
+  return isClient && portalTo ? (
     ReactDOM.createPortal(
       <Dialog
         isOpen={isOpen}
@@ -117,7 +108,7 @@ export const Modal = (props: ModalProps) => {
           {children}
         </Dialog.Main>
       </Dialog>,
-      container,
+      portalTo,
     )
   ) : (
     <></>

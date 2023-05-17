@@ -21,19 +21,23 @@ const didLogWarning = {
 
 /**
  * Hook used in every component for any shared setup and side effects.
+ * Returns the nearest ThemeContext.
  *
  * @private
  */
 export const useGlobals = () => {
-  useThemeProviderWarning();
+  const themeContext = React.useContext(ThemeContext);
+  useThemeProviderWarning(themeContext);
   useRootFontSizeWarning();
+  return themeContext;
 };
 
 // ----------------------------------------------------------------------------
 
 /** Shows console error if ThemeProvider is not used */
-export const useThemeProviderWarning = () => {
-  const themeContext = React.useContext(ThemeContext);
+export const useThemeProviderWarning = (
+  themeContext: React.ContextType<typeof ThemeContext>,
+) => {
   React.useEffect(() => {
     if (isDev && !didLogWarning.themeProvider && !themeContext) {
       console.error(

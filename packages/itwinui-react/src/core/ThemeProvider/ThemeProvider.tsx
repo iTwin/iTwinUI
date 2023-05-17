@@ -100,7 +100,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const { theme: themeProp, children, themeOptions, ...rest } = props;
 
   const rootRef = React.useRef<HTMLElement>(null);
-  const mergedRefs = useMergedRefs(rootRef, ref);
+  const portalContainerRef = React.useRef<HTMLDivElement>(null);
 
   const parentContext = React.useContext(ThemeContext);
 
@@ -108,21 +108,21 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef }),
+    () => ({ theme, themeOptions, rootRef, portalContainerRef }),
     [theme, themeOptions],
   );
 
-  // now that we know there are children, we can render the root and provide the context value
   return (
     <Root
       theme={theme}
       isInheritingTheme={themeProp === 'inherit'}
       themeOptions={themeOptions}
-      ref={mergedRefs}
+      ref={useMergedRefs(rootRef, ref)}
       {...rest}
     >
       <ThemeContext.Provider value={contextValue}>
         {children}
+        <div ref={portalContainerRef} />
       </ThemeContext.Provider>
     </Root>
   );
