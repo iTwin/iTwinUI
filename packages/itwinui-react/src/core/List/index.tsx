@@ -6,9 +6,4 @@ export { List } from './List.js';
 export type { ListProps } from './List.js';
 
 export { ListItem } from './ListItem.js';
-export type {
-  ListItemProps,
-  ListItemIconProps,
-  ListItemContentProps,
-  ListItemDescriptionProps,
-} from './ListItem.js';
+export type { ListItemProps } from './ListItem.js';

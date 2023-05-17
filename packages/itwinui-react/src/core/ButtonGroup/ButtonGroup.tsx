@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, useOverflow, useMergedRefs } from '../utils/index.js';
+import { useGlobals, useOverflow, useMergedRefs } from '../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
 export type ButtonGroupProps = {
@@ -74,11 +74,14 @@ export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
     } = props;
 
     const items = React.useMemo(
-      () => React.Children.map(children, (child) => <div>{child}</div>) ?? [],
+      () =>
+        React.Children.map(children, (child) =>
+          !!child ? <div>{child}</div> : undefined,
+        )?.filter(Boolean) ?? [],
       [children],
     );
 
-    useTheme();
+    useGlobals();
 
     const [overflowRef, visibleCount] = useOverflow(
       items,

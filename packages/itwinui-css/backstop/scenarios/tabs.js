@@ -14,6 +14,10 @@ module.exports = [
     selectors: ['#demo-default-vertical'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Type Overflow', {
+    selectors: ['#demo-overflow'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
   scenario('Type borderless', {
     selectors: ['#demo-borderless'],
     viewports: [{ width: 800, height: 600 }],

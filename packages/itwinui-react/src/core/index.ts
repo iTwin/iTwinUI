@@ -143,13 +143,7 @@ export type {
 } from './Header/index.js';
 
 export { List, ListItem } from './List/index.js';
-export type {
-  ListProps,
-  ListItemProps,
-  ListItemIconProps,
-  ListItemContentProps,
-  ListItemDescriptionProps,
-} from './List/index.js';
+export type { ListProps, ListItemProps } from './List/index.js';
 
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
 export type {
@@ -308,7 +302,7 @@ export { default as toaster } from './Toast/index.js';
 export type { ToastOptions } from './Toast/index.js';
 
 export { ThemeProvider } from './ThemeProvider/index.js';
-export type { ThemeProviderProps } from './ThemeProvider/index.js';
+export type { ThemeProviderProps, ThemeType } from './ThemeProvider/index.js';
 
 export { ToggleSwitch } from './ToggleSwitch/index.js';
 export type { ToggleSwitchProps } from './ToggleSwitch/index.js';
@@ -369,7 +363,6 @@ export type { SearchBoxProps } from './SearchBox/index.js';
 
 export {
   getUserColor,
-  useTheme,
   ColorValue,
   MiddleTextTruncation,
   LinkBox,
@@ -380,14 +373,11 @@ export {
   Divider,
 } from './utils/index.js';
 export type {
-  ThemeType,
   MiddleTextTruncationProps,
   IconProps,
   FlexProps,
   FlexItemProps,
   FlexSpacerProps,
   DividerProps,
-  LinkBoxProps,
-  LinkActionProps,
   VisuallyHiddenProps,
 } from './utils/index.js';

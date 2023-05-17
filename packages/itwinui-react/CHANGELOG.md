@@ -1,5 +1,51 @@
 # Changelog
 
+## 2.11.2
+
+### Patch Changes
+
+- [#1288](https://github.com/iTwin/iTwinUI/pull/1288): Fixed hover styling for SearchBox.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.1
+
+## 2.11.1
+
+### Patch Changes
+
+- [#1284](https://github.com/iTwin/iTwinUI/pull/1284): Add fix in `useId` to avoid bundlers trying to import non-existing export.
+
+## 2.11.0
+
+### Minor Changes
+
+- [#863](https://github.com/iTwin/iTwinUI/pull/863): Add `SearchBox` component for your search needs. It can be used as static or expandable version of SearchBox.
+
+  ```ts
+  <SearchBox inputProps={{placeholder:'Basic search'}} />
+  <SearchBox expandable inputProps={{placeholder:'Expandable search'}} />
+  ```
+
+  `SearchBox` has `SearchBox.Icon`, `SearchBox.Button`, `SearchBox.Input`, `SearchBox.CollapseButton` and `SearchBox.ExpandButton` subcomponents which can be passed as children to customise the look.
+
+- [#1060](https://github.com/iTwin/iTwinUI/pull/1060): Tabs - Added property `overflowOptions` - contains `useOverflow`, which when true enables tabs to scroll if there's overflow
+  ```typescript
+  <Tabs type='default' overflowButton={{ useOverflow: true }}>
+    {tabs}
+  </Tabs>
+  ```
+
+### Patch Changes
+
+- [#1275](https://github.com/iTwin/iTwinUI/pull/1275): Fixed an issue where `ProgressRadial` was not correctly showing when used inside a v2 boundary within a v1 page.
+- [#1156](https://github.com/iTwin/iTwinUI/pull/1156): Fixes an issue where table crashes when resizing the Column Manager column in expand mode.
+- [#1246](https://github.com/iTwin/iTwinUI/pull/1246): All relative imports now use the `.js` extension, in preparation of better ESM support.
+- [#1228](https://github.com/iTwin/iTwinUI/pull/1228): `ComboBox` and `Select` will now use a hidden live region to ensure that multiple selected options are announced by assistive technologies every time the selection is updated.
+- [#1276](https://github.com/iTwin/iTwinUI/pull/1276): Fixed an issue where using Popover components in controlled mode (through `visible` prop) was appending it to the wrong root element.
+- [#1281](https://github.com/iTwin/iTwinUI/pull/1281): Fixed an issue in ButtonGroup where null/undefined children were also getting wrapped by empty `<div>`s.
+- [#1257](https://github.com/iTwin/iTwinUI/pull/1257): Fixed an issue where pseudo elements inside a v2 boundary were not reverting v1 styles.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.0
+
 ## 2.10.1
 
 ### Patch Changes

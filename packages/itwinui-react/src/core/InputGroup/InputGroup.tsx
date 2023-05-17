@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useTheme, InputContainer } from '../utils/index.js';
+import { StatusIconMap, useGlobals, InputContainer } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 
@@ -74,7 +74,7 @@ export const InputGroup = (props: InputGroupProps) => {
     required = false,
     ...rest
   } = props;
-  useTheme();
+  useGlobals();
 
   const icon = () => {
     if (svgIcon) {
