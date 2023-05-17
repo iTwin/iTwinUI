@@ -16,7 +16,7 @@
 :where(.iui-root) {
   color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
-  line-height: var(--iui-size-l);
+  line-height: 1.5;
   font-family: var(--iui-font-sans);
 
   // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
