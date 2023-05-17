@@ -1,7 +1,7 @@
 ---
 const isDev = import.meta.env.DEV;
 
-const titleSuffix = isDev ? ' (local)' : ' ';
+const titleSuffix = isDev ? ' (local)' : ' (v3)';
 const faviconHref = isDev ? 'favicon-dev.svg' : 'favicon.svg';
 
 const links = [
@@ -52,6 +52,7 @@ const links = [
     <style>
       body {
         padding: 1.5rem;
+        font-size: 1rem;
       }
       h1::before {
         content: '';
