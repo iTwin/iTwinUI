@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 
 import {
-  useTheme,
+  useGlobals,
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
@@ -85,7 +85,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const icon = endIcon ?? (status && StatusIconMap[status]());
 

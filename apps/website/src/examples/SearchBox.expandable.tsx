@@ -8,11 +8,7 @@ import { SearchBox, Flex } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Flex style={{ width: '70%' }} justifyContent='center'>
-      <SearchBox
-        expandable
-        aria-label='Search input'
-        inputProps={{ placeholder: 'Expandable search...' }}
-      />
+      <SearchBox expandable inputProps={{ placeholder: 'Expandable search...' }} />
     </Flex>
   );
 };

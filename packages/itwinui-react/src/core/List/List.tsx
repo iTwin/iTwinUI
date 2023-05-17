@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -14,7 +14,7 @@ import '@itwin/itwinui-css/css/menu.css';
 export const List = React.forwardRef((props, ref) => {
   const { as: Element = 'ul', className, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <Element

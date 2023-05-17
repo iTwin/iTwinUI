@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { getRandomValue, useMergedRefs, useTheme } from '../utils/index.js';
+import { getRandomValue, useMergedRefs, useGlobals } from '../utils/index.js';
 import '@itwin/itwinui-css/css/carousel.css';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
@@ -59,7 +59,7 @@ export const Carousel = Object.assign(
       () => props.id ?? `iui-carousel-${getRandomValue(10)}`,
     );
 
-    useTheme();
+    useGlobals();
 
     const isManuallyUpdating = React.useRef(false);
     const carouselRef = React.useRef<HTMLElement>(null);

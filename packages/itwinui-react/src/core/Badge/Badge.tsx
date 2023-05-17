@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, isSoftBackground, SoftBackgrounds } from '../utils/index.js';
+import {
+  useGlobals,
+  isSoftBackground,
+  SoftBackgrounds,
+} from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import type { AnyString } from '../utils/index.js';
 import '@itwin/itwinui-css/css/badge.css';
@@ -62,7 +66,7 @@ export type BadgeProps = {
 export const Badge = (props: BadgeProps) => {
   const { backgroundColor, style, className, children, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   // choosing 'primary' status should result in data-iui-status equaling 'informational'
   const reducedBackgroundColor =

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 
 export type BaseFilterProps = {
@@ -32,7 +32,7 @@ export type BaseFilterProps = {
 export const BaseFilter = (props: BaseFilterProps) => {
   const { children, className, style, id } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <div

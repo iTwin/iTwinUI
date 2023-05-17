@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme, polymorphic } from '../utils/index.js';
+import { useGlobals, polymorphic } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -23,7 +23,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <Element
