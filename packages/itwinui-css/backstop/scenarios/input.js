@@ -18,6 +18,7 @@ module.exports = [
     selectors: ['#demo-no-label'],
   }),
   scenario('Type SearchBox', {
+    actions: [hover('#demo-search-hover')],
     selectors: ['#demo-search-box'],
     viewports: [{ width: 800, height: 600 }],
   }),
