@@ -132,6 +132,10 @@
         border-bottom-width: var(--iui-size-3xs);
         border-bottom-color: var(--_iui-input-accent-border-color);
       }
+
+      &:hover {
+        --_iui-input-border-color: var(--iui-color-border-#{$status});
+      }
     }
   }
 }
