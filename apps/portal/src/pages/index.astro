@@ -5,11 +5,21 @@ const title = isDev ? 'iTwinUI (local)' : 'iTwinUI';
 const faviconHref = isDev ? 'favicon-dev.svg' : 'favicon.svg';
 
 const links = [
-  { name: 'html pages', href: isDev ? 'http://localhost:5173' : 'css' },
-  { name: 'storybook', href: isDev ? 'http://localhost:6006' : 'react' },
+  {
+    name: 'html pages (current)',
+    href: isDev ? 'http://localhost:5173' : 'css',
+  },
+  {
+    name: 'storybook (current)',
+    href: isDev ? 'http://localhost:6006' : 'react',
+  },
+  {
+    name: 'docs website (wip)',
+    href: isDev ? 'http://localhost:1700' : 'https://itwinui.bentley.com',
+  },
+  ...(!isDev ? [{ name: 'next major version (v3)', href: 'dev' }] : []),
   ...(isDev
     ? [
-        { name: 'docs website', href: 'http://localhost:1700' },
         { name: 'vite playground', href: 'http://localhost:1701' },
         { name: 'next playground', href: 'http://localhost:1702' },
         { name: 'astro playground', href: 'http://localhost:1703' },
@@ -50,6 +60,7 @@ const links = [
     <style>
       body {
         padding: 1.5rem;
+        font-size: 1rem;
       }
     </style>
   </body>
