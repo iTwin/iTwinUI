@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
-import { useTheme } from '../hooks/useTheme.js';
+import { useGlobals } from '../hooks/useGlobals.js';
 
 const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
@@ -14,7 +14,7 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
     const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
       const Element = (as as any) || 'div'; // eslint-disable-line
 
-      useTheme();
+      useGlobals();
 
       return (
         <Element
