@@ -3,12 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Flex } from '@itwin/itwinui-react';
+import { NonIdealState } from '@itwin/itwinui-react';
+import { SvgTimedOut } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }}>
-      <SearchBox inputProps={{ placeholder: 'SearchBox component' }} />
-    </Flex>
+    <div style={{ position: 'relative', minHeight: 400 }}>
+      <NonIdealState
+        svg={<SvgTimedOut />}
+        heading='Time Out'
+        description={<>Your request timed out. Please try again.</>}
+      />
+    </div>
   );
 };

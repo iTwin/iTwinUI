@@ -3,12 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Flex } from '@itwin/itwinui-react';
+import { NonIdealState } from '@itwin/itwinui-react';
+import { Svg502 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }}>
-      <SearchBox inputProps={{ placeholder: 'SearchBox component' }} />
-    </Flex>
+    <div style={{ position: 'relative', minHeight: 400 }}>
+      <NonIdealState
+        svg={<Svg502 />}
+        heading='Bad Gateway'
+        description={<>The server encountered a temporary error. Please try again in 30 seconds.</>}
+      />
+    </div>
   );
 };

@@ -3,12 +3,19 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Flex } from '@itwin/itwinui-react';
+import { NonIdealState } from '@itwin/itwinui-react';
+import { Svg500 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }}>
-      <SearchBox inputProps={{ placeholder: 'SearchBox component' }} />
-    </Flex>
+    <div style={{ position: 'relative', minHeight: 400 }}>
+      <NonIdealState
+        svg={<Svg500 />}
+        heading='Internal Server Error'
+        description={
+          <>Please retry again. If this continues to happen, please contact our support team.</>
+        }
+      />
+    </div>
   );
 };
