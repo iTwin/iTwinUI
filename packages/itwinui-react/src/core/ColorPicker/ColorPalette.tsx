@@ -8,7 +8,7 @@ import {
   ColorValue,
   getFocusableElements,
   useMergedRefs,
-  useTheme,
+  useGlobals,
 } from '../utils/index.js';
 import type { CommonProps, ColorType } from '../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
@@ -46,7 +46,7 @@ export const ColorPalette = React.forwardRef(
   (props: ColorPaletteProps, ref: React.Ref<HTMLDivElement>) => {
     const { colors, label, className, children, ...rest } = props;
 
-    useTheme();
+    useGlobals();
 
     const { activeColor, setActiveColor, onChangeComplete } =
       useColorPickerContext();

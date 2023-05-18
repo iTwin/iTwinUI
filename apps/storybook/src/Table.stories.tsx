@@ -35,7 +35,6 @@ import {
   Input,
   Radio,
   ProgressRadial,
-  useTheme,
   BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
@@ -2459,8 +2458,6 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
   );
 
   const CustomFilter = () => {
-    useTheme();
-
     const handleChange = (isChecked: boolean, filter: string) => {
       setFilter(isChecked ? filter : '');
       setIsLoading(true);

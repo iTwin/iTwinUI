@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { ButtonProps } from '../Buttons/index.js';
 
@@ -32,7 +32,7 @@ export const HeaderBasicButton: HeaderBasicButtonComponent = React.forwardRef(
     } = props;
     styleType; // To omit and prevent eslint error.
     size; // To omit and prevent eslint error.
-    useTheme();
+    useGlobals();
 
     return (
       <Element

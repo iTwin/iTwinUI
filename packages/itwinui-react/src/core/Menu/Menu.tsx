@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useTheme,
+  useGlobals,
   useMergedRefs,
   getFocusableElements,
 } from '../utils/index.js';
@@ -46,7 +46,7 @@ export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
       ...rest
     } = props;
 
-    useTheme();
+    useGlobals();
 
     const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
     const menuRef = React.useRef<HTMLUListElement>(null);
