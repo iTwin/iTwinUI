@@ -1,0 +1,27 @@
+{
+  "name": "styles",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "files": [
+    "dist"
+  ],
+  "main": "dist/styles.cjs",
+  "module": "dist/styles.js",
+  "exports": {
+    ".": {
+      "import": "./dist/styles.js",
+      "require": "./dist/styles.cjs"
+    },
+    "./*": "./dist/*.js"
+  },
+  "devDependencies": {
+    "@itwin/itwinui-css": "*",
+    "@itwin/itwinui-variables": "*",
+    "vite": "^4.3.8"
+  },
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vite build"
+  }
+}

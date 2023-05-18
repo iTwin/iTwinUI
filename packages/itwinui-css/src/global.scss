@@ -2,17 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'mixins';
 
-// reset anything that may have been set by v1
-:where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
-  :where([class*='iui-']:not(.iui-root, svg *)) {
-    &,
-    &::before,
-    &::after {
-      all: revert;
-    }
-  }
-}
-
 :where(.iui-root) {
   color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
@@ -20,7 +9,7 @@
   font-family: var(--iui-font-sans);
 
   // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
-  :where([class*='iui-']) {
+  :where([class*='iui-'], [class*='iui3-']) {
     &:where(:not(.iui-root)),
     * {
       &,
@@ -43,8 +32,7 @@
   background-color: var(--iui-color-background-backdrop);
 }
 
-// text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
-:where([data-iui-theme]),
+// text selection and scrollbar styling on iui-root and all elements under it
 :where(.iui-root),
 :where(.iui-root *) {
   @include mixins.iui-text-selection;

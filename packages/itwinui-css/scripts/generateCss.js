@@ -30,19 +30,9 @@ const compileScss = async (path, outFile) => {
         targets,
       }).code;
 
-      let finalOutput = processedOutput;
-
-      if (!['all.css', 'global.css'].includes(outFilename)) {
-        finalOutput = postcss([
-          postcssScoper({
-            scope: ':where(.iui-root, [data-iui-theme])',
-          }),
-        ]).process(processedOutput).css;
-      }
-
-      fs.writeFileSync(`${outDir}/${outFilename}`, finalOutput);
+      fs.writeFileSync(`${outDir}/${outFilename}`, processedOutput);
       console.log(` Wrote -> ${outFilename}`);
-      resolve(finalOutput);
+      resolve(processedOutput);
     } catch (error) {
       reject(`${error}\n in ${path}`);
     }
