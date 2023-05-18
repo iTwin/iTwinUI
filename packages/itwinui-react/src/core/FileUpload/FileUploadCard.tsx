@@ -10,7 +10,10 @@ import {
   useSafeContext,
   useId,
   mergeEventHandlers,
+  polymorphic,
+  Box,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
 
@@ -32,70 +35,43 @@ const toDate = (dateNumber: number) => {
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Icon component
-export type FileUploadCardIconProps = React.ComponentPropsWithRef<'span'>;
 
-const FileUploadCardIcon = React.forwardRef<
-  HTMLSpanElement,
-  FileUploadCardIconProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <span className={cx('iui-file-card-icon', className)} ref={ref} {...rest}>
-      {children ?? <SvgDocument />}
-    </span>
-  );
+const FileUploadCardIcon = polymorphic.span('iui-file-card-icon', {
+  children: <SvgDocument />,
 });
 FileUploadCardIcon.displayName = 'FileUploadCard.Icon';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Info component
 
-export type FileUploadCardInfoProps = React.ComponentPropsWithRef<'span'>;
-
-const FileUploadCardInfo = React.forwardRef<
-  HTMLSpanElement,
-  FileUploadCardInfoProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <span className={cx('iui-file-card-text', className)} ref={ref} {...rest}>
-      {children}
-    </span>
-  );
-});
+const FileUploadCardInfo = polymorphic.span('iui-file-card-text');
 FileUploadCardInfo.displayName = 'FileUploadCard.Info';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Title component
 
-export type FileUploadCardTitleProps = React.ComponentPropsWithRef<'span'>;
-
-const FileUploadCardTitle = React.forwardRef<
-  HTMLSpanElement,
-  FileUploadCardTitleProps
->((props, ref) => {
+const FileUploadCardTitle = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
   const { files } = useSafeContext(FileUploadCardContext);
   const title =
     files.length > 1 ? files.length + ' files selected' : files[0].name;
   return (
-    <span className={cx('iui-file-card-title', className)} ref={ref} {...rest}>
+    <Box
+      as='span'
+      className={cx('iui-file-card-title', className)}
+      ref={ref}
+      {...rest}
+    >
       {children ?? title}
-    </span>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'span', {}>; // eslint-disable-line
 FileUploadCardTitle.displayName = 'FileUploadCard.Title';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Description component
 
-export type FileUploadCardDescriptionProps =
-  React.ComponentPropsWithRef<'span'>;
-
-const FileUploadCardDescription = React.forwardRef<
-  HTMLSpanElement,
-  FileUploadCardDescriptionProps
->((props, ref) => {
+const FileUploadCardDescription = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
   const { files } = useSafeContext(FileUploadCardContext);
 
@@ -109,69 +85,48 @@ const FileUploadCardDescription = React.forwardRef<
   }
 
   return (
-    <span
+    <Box
+      as='span'
       className={cx('iui-file-card-description', className)}
       ref={ref}
       {...rest}
     >
       {children ?? description}
-    </span>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'span', {}>; // eslint-disable-line
 FileUploadCardDescription.displayName = 'FileUploadCard.Description';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Action component
 
-export type FileUploadCardActionProps = React.ComponentPropsWithRef<'div'>;
-
-const FileUploadCardAction = React.forwardRef<
-  HTMLDivElement,
-  FileUploadCardActionProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <div className={cx('iui-file-card-action', className)} ref={ref} {...rest}>
-      {children}
-    </div>
-  );
-});
+const FileUploadCardAction = polymorphic.div('iui-file-card-action');
 FileUploadCardAction.displayName = 'FileUploadCard.Action';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.InputLabel component
 
-export type FileUploadCardInputLabelProps =
-  React.ComponentPropsWithRef<'label'>;
-
-const FileUploadCardInputLabel = React.forwardRef<
-  HTMLLabelElement,
-  FileUploadCardInputLabelProps
->((props, ref) => {
+const FileUploadCardInputLabel = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
   const { inputId } = useSafeContext(FileUploadCardContext);
   return (
-    <label
+    <Box
+      as='label'
       className={cx('iui-anchor', className)}
       ref={ref}
       htmlFor={inputId}
       {...rest}
     >
       {children}
-    </label>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'label', {}>; // eslint-disable-line
 FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard.Input component
 
-export type FileUploadCardInputProps = React.ComponentPropsWithRef<'input'>;
-
-const FileUploadCardInput = React.forwardRef<
-  HTMLInputElement,
-  FileUploadCardInputProps
->((props, ref) => {
+const FileUploadCardInput = React.forwardRef((props, ref) => {
   const { children, className, onChange, id, ...rest } = props;
   const { files, onFilesChange, setInternalFiles, inputId, setInputId } =
     useSafeContext(FileUploadCardContext);
@@ -200,7 +155,8 @@ const FileUploadCardInput = React.forwardRef<
 
   return (
     <>
-      <input
+      <Box
+        as='input'
         className={cx('iui-visually-hidden', className)}
         type='file'
         onChange={mergeEventHandlers(onChange, (e) => {
@@ -215,13 +171,13 @@ const FileUploadCardInput = React.forwardRef<
       {children}
     </>
   );
-});
+}) as PolymorphicForwardRefComponent<'input', {}>; // eslint-disable-line
 FileUploadCardInput.displayName = 'FileUploadCard.Input';
 
 // ----------------------------------------------------------------------------
 // FileUploadCard component
 
-export type FileUploadCardProps = {
+type FileUploadCardProps = {
   /**
    * Files to pass (only needed when passing a custom action)
    */
@@ -241,7 +197,57 @@ export type FileUploadCardProps = {
    * @default <FileUploadCard.Input />
    */
   input?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'div'>;
+};
+
+const FileUploadCardComponent = React.forwardRef((props, ref) => {
+  const {
+    className,
+    children,
+    files: filesProp,
+    onFilesChange,
+    emptyCard = <FileEmptyCard />,
+    input,
+    ...rest
+  } = props;
+
+  const [internalFiles, setInternalFiles] = React.useState<File[]>();
+  const uid = useId();
+  const [inputId, setInputId] = React.useState(uid);
+  const files = filesProp ?? internalFiles ?? [];
+
+  return (
+    <FileUploadCardContext.Provider
+      value={{
+        files,
+        onFilesChange,
+        setInternalFiles,
+        inputId,
+        setInputId,
+      }}
+    >
+      {files?.length ? (
+        <Box className={cx('iui-file-card', className)} ref={ref} {...rest}>
+          {children ?? (
+            <>
+              <FileUploadCard.Icon />
+              <FileUploadCard.Info>
+                <FileUploadCard.Title />
+                <FileUploadCard.Description />
+              </FileUploadCard.Info>
+              <FileUploadCard.Action>
+                <FileUploadCard.InputLabel>Replace</FileUploadCard.InputLabel>
+              </FileUploadCard.Action>
+            </>
+          )}
+        </Box>
+      ) : (
+        emptyCard
+      )}
+      {input ?? <FileUploadCard.Input />}
+    </FileUploadCardContext.Provider>
+  );
+}) as PolymorphicForwardRefComponent<'div', FileUploadCardProps>;
+
 /**
  * Default card to be used with the `FileUpload` wrapper component for single-file uploading.
  * @example
@@ -266,69 +272,15 @@ export type FileUploadCardProps = {
  *   </FileUploadCard.Action>
  * </FileUploadCard>
  */
-export const FileUploadCard = Object.assign(
-  React.forwardRef<HTMLDivElement, FileUploadCardProps>(
-    (props, ref: React.RefObject<HTMLDivElement>) => {
-      const {
-        className,
-        children,
-        files: filesProp,
-        onFilesChange,
-        emptyCard = <FileEmptyCard />,
-        input,
-        ...rest
-      } = props;
-
-      const [internalFiles, setInternalFiles] = React.useState<File[]>();
-      const uid = useId();
-      const [inputId, setInputId] = React.useState(uid);
-      const files = filesProp ?? internalFiles ?? [];
-
-      return (
-        <FileUploadCardContext.Provider
-          value={{
-            files,
-            onFilesChange,
-            setInternalFiles,
-            inputId,
-            setInputId,
-          }}
-        >
-          {files?.length ? (
-            <div className={cx('iui-file-card', className)} ref={ref} {...rest}>
-              {children ?? (
-                <>
-                  <FileUploadCard.Icon />
-                  <FileUploadCard.Info>
-                    <FileUploadCard.Title />
-                    <FileUploadCard.Description />
-                  </FileUploadCard.Info>
-                  <FileUploadCard.Action>
-                    <FileUploadCard.InputLabel>
-                      Replace
-                    </FileUploadCard.InputLabel>
-                  </FileUploadCard.Action>
-                </>
-              )}
-            </div>
-          ) : (
-            emptyCard
-          )}
-          {input ?? <FileUploadCard.Input />}
-        </FileUploadCardContext.Provider>
-      );
-    },
-  ),
-  {
-    Icon: FileUploadCardIcon,
-    Info: FileUploadCardInfo,
-    Title: FileUploadCardTitle,
-    Description: FileUploadCardDescription,
-    Action: FileUploadCardAction,
-    InputLabel: FileUploadCardInputLabel,
-    Input: FileUploadCardInput,
-  },
-);
+export const FileUploadCard = Object.assign(FileUploadCardComponent, {
+  Icon: FileUploadCardIcon,
+  Info: FileUploadCardInfo,
+  Title: FileUploadCardTitle,
+  Description: FileUploadCardDescription,
+  Action: FileUploadCardAction,
+  InputLabel: FileUploadCardInputLabel,
+  Input: FileUploadCardInput,
+});
 FileUploadCard.displayName = 'FileUploadCard';
 export default FileUploadCard;
 

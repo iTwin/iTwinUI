@@ -4,16 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, polymorphic } from '../utils/index.js';
-import type {
-  PolymorphicForwardRefComponent,
-  PolymorphicComponentProps,
-} from '../utils/index.js';
+import { useGlobals, polymorphic, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'li',
     size = 'default',
     disabled = false,
     active = false,
@@ -26,7 +22,8 @@ const ListItemComponent = React.forwardRef((props, ref) => {
   useGlobals();
 
   return (
-    <Element
+    <Box
+      as='li'
       className={cx('iui-list-item', className)}
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
@@ -128,5 +125,3 @@ export const ListItem = Object.assign(ListItemComponent, {
    */
   Description: ListItemDescription,
 });
-
-export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;

@@ -11,6 +11,7 @@ import {
   InputContainer,
   useId,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledInputProps = {
@@ -65,57 +66,55 @@ export type LabeledInputProps = {
  * <LabeledInput status='positive' label='Positive' />
  * <LabeledInput status='negative' label='Negative' setFocus />
  */
-export const LabeledInput = React.forwardRef(
-  (props: LabeledInputProps, ref: React.RefObject<HTMLInputElement>) => {
-    const uid = useId();
+export const LabeledInput = React.forwardRef((props, ref) => {
+  const uid = useId();
 
-    const {
-      className,
-      disabled = false,
-      label,
-      message,
-      status,
-      svgIcon,
-      style,
-      inputClassName,
-      inputStyle,
-      displayStyle = 'default',
-      iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
-      required = false,
-      id = uid,
-      ...rest
-    } = props;
+  const {
+    className,
+    disabled = false,
+    label,
+    message,
+    status,
+    svgIcon,
+    style,
+    inputClassName,
+    inputStyle,
+    displayStyle = 'default',
+    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
+    required = false,
+    id = uid,
+    ...rest
+  } = props;
 
-    useGlobals();
+  useGlobals();
 
-    const icon = svgIcon ?? (status && StatusIconMap[status]());
+  const icon = svgIcon ?? (status && StatusIconMap[status]());
 
-    return (
-      <InputContainer
-        label={label}
+  return (
+    <InputContainer
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
+      icon={icon}
+      isLabelInline={displayStyle === 'inline'}
+      isIconInline={iconDisplayStyle === 'inline'}
+      className={className}
+      style={style}
+      inputId={id}
+    >
+      <Input
         disabled={disabled}
+        className={inputClassName}
+        style={inputStyle}
         required={required}
-        status={status}
-        message={message}
-        icon={icon}
-        isLabelInline={displayStyle === 'inline'}
-        isIconInline={iconDisplayStyle === 'inline'}
-        className={className}
-        style={style}
-        inputId={id}
-      >
-        <Input
-          disabled={disabled}
-          className={inputClassName}
-          style={inputStyle}
-          required={required}
-          ref={ref}
-          id={id}
-          {...rest}
-        />
-      </InputContainer>
-    );
-  },
-);
+        ref={ref}
+        id={id}
+        {...rest}
+      />
+    </InputContainer>
+  );
+}) as PolymorphicForwardRefComponent<'input', LabeledInputProps>;
 
 export default LabeledInput;

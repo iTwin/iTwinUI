@@ -14,6 +14,7 @@ import {
   mergeRefs,
   getWindow,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxMenuProps = Omit<MenuProps, 'onClick'> &
@@ -91,40 +92,38 @@ const VirtualizedComboBoxMenu = React.forwardRef(
   },
 );
 
-export const ComboBoxMenu = React.forwardRef(
-  (props: ComboBoxMenuProps, forwardedRef: React.Ref<HTMLUListElement>) => {
-    const { className, style, ...rest } = props;
-    const { minWidth, id, enableVirtualization } =
-      useSafeContext(ComboBoxStateContext);
-    const { menuRef } = useSafeContext(ComboBoxRefsContext);
+export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
+  const { className, style, ...rest } = props;
+  const { minWidth, id, enableVirtualization } =
+    useSafeContext(ComboBoxStateContext);
+  const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-    const refs = useMergedRefs(menuRef, forwardedRef);
+  const refs = useMergedRefs(menuRef, forwardedRef);
 
-    const styles = React.useMemo(
-      () => ({
-        minWidth,
-        maxWidth: `min(${minWidth * 2}px, 90vw)`,
-      }),
-      [minWidth],
-    );
+  const styles = React.useMemo(
+    () => ({
+      minWidth,
+      maxWidth: `min(${minWidth * 2}px, 90vw)`,
+    }),
+    [minWidth],
+  );
 
-    return (
-      <>
-        {!enableVirtualization ? (
-          <Menu
-            id={`${id}-list`}
-            style={{ ...styles, ...style }}
-            setFocus={false}
-            role='listbox'
-            ref={refs}
-            className={cx('iui-scroll', className)}
-            {...rest}
-          />
-        ) : (
-          <VirtualizedComboBoxMenu ref={forwardedRef} {...props} />
-        )}
-      </>
-    );
-  },
-);
+  return (
+    <>
+      {!enableVirtualization ? (
+        <Menu
+          id={`${id}-list`}
+          style={{ ...styles, ...style }}
+          setFocus={false}
+          role='listbox'
+          ref={refs}
+          className={cx('iui-scroll', className)}
+          {...rest}
+        />
+      ) : (
+        <VirtualizedComboBoxMenu ref={mergeRefs(forwardedRef)} {...props} />
+      )}
+    </>
+  );
+}) as PolymorphicForwardRefComponent<'ul', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

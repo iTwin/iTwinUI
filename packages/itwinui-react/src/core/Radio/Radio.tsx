@@ -5,10 +5,11 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useMergedRefs, useGlobals } from '../utils/index.js';
+import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/radio.css';
 
-export type RadioProps = {
+type RadioProps = {
   /**
    * Label of the radio.
    */
@@ -22,7 +23,7 @@ export type RadioProps = {
    * @default false
    */
   setFocus?: boolean;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+};
 
 /**
  * Basic radio input component
@@ -34,56 +35,60 @@ export type RadioProps = {
  * <Radio status='warning' label='Warning' />
  * <Radio status='negative' label='Negative' />
  */
-export const Radio = React.forwardRef(
-  (props: RadioProps, ref: React.RefObject<HTMLInputElement>) => {
-    const {
-      className,
-      disabled = false,
-      label,
-      status,
-      style,
-      setFocus = false,
-      ...rest
-    } = props;
+export const Radio = React.forwardRef((props, ref) => {
+  const {
+    className,
+    disabled = false,
+    label,
+    status,
+    style,
+    setFocus = false,
+    ...rest
+  } = props;
 
-    useGlobals();
+  useGlobals();
 
-    const inputElementRef = React.useRef<HTMLInputElement>(null);
-    const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
+  const inputElementRef = React.useRef<HTMLInputElement>(null);
+  const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
-    React.useEffect(() => {
-      if (inputElementRef.current && setFocus) {
-        inputElementRef.current.focus();
-      }
-    }, [setFocus]);
+  React.useEffect(() => {
+    if (inputElementRef.current && setFocus) {
+      inputElementRef.current.focus();
+    }
+  }, [setFocus]);
 
-    const radio = (
-      <input
-        className={cx('iui-radio', className && { [className]: !label })}
-        style={!label ? style : undefined}
-        disabled={disabled}
-        type='radio'
-        ref={refs}
-        {...rest}
-      />
-    );
+  const radio = (
+    <Box
+      as='input'
+      className={cx('iui-radio', className && { [className]: !label })}
+      style={!label ? style : undefined}
+      disabled={disabled}
+      type='radio'
+      ref={refs}
+      {...rest}
+    />
+  );
 
-    return !label ? (
-      radio
-    ) : (
-      <label
-        className={cx(
-          'iui-radio-wrapper',
-          { 'iui-disabled': disabled, [`iui-${status}`]: !!status },
-          className,
-        )}
-        style={style}
-      >
-        {radio}
-        {label && <span className='iui-radio-label'>{label}</span>}
-      </label>
-    );
-  },
-);
+  return !label ? (
+    radio
+  ) : (
+    <Box
+      as='label'
+      className={cx(
+        'iui-radio-wrapper',
+        { 'iui-disabled': disabled, [`iui-${status}`]: !!status },
+        className,
+      )}
+      style={style}
+    >
+      {radio}
+      {label && (
+        <Box as='span' className='iui-radio-label'>
+          {label}
+        </Box>
+      )}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'input', RadioProps>;
 
 export default Radio;

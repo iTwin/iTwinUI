@@ -9,15 +9,14 @@ import {
   getWindow,
   useMergedRefs,
   useIsomorphicLayoutEffect,
+  Box,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 /**
  * `CarouselSlider` is the scrollable list that should consist of `CarouselSlide` components.
  */
-export const CarouselSlider = React.forwardRef<
-  HTMLOListElement,
-  React.ComponentPropsWithoutRef<'ol'>
->((props, ref) => {
+export const CarouselSlider = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
   const context = React.useContext(CarouselContext);
 
@@ -86,7 +85,8 @@ export const CarouselSlider = React.forwardRef<
   }, [isManuallyUpdating]);
 
   return (
-    <ol
+    <Box
+      as='ol'
       aria-live='polite'
       className={cx('iui-carousel-slider', className)}
       ref={refs}
@@ -94,6 +94,6 @@ export const CarouselSlider = React.forwardRef<
       {...rest}
     >
       {items}
-    </ol>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'ol', {}>; // eslint-disable-line

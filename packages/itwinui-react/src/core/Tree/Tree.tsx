@@ -8,8 +8,10 @@ import {
   getFocusableElements,
   useVirtualization,
   mergeRefs,
+  Box,
+  polymorphic,
 } from '../utils/index.js';
-import type { CommonProps, StylingProps } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
@@ -100,7 +102,7 @@ export type TreeProps<T> = {
    * @beta
    */
   enableVirtualization?: boolean;
-} & Omit<CommonProps, 'title'>;
+} & CommonProps;
 
 /**
  * Tree component used to display a hierarchical structure of `TreeNodes`. 
@@ -346,30 +348,10 @@ export const Tree = <T,>(props: TreeProps<T>) => {
   );
 };
 
-type TreeElementProps = {
-  children: React.ReactNode;
-  onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
-  onFocus: React.FocusEventHandler<HTMLUListElement>;
-} & Omit<CommonProps, 'title'>;
-
-const TreeElement = React.forwardRef(
-  (
-    { children, className, ...rest }: TreeElementProps,
-    ref: React.ForwardedRef<HTMLUListElement>,
-  ) => {
-    return (
-      <ul
-        className={cx('iui-tree', className)}
-        role='tree'
-        ref={ref}
-        tabIndex={0}
-        {...rest}
-      >
-        {children}
-      </ul>
-    );
-  },
-);
+const TreeElement = polymorphic.ul('iui-tree', {
+  role: 'tree',
+  tabIndex: 0,
+});
 
 type VirtualizedTreeProps<T> = {
   flatNodesList: FlatNode<T>[];
@@ -377,7 +359,7 @@ type VirtualizedTreeProps<T> = {
   scrollToIndex?: number;
   onKeyDown: React.KeyboardEventHandler<HTMLUListElement>;
   onFocus: React.FocusEventHandler<HTMLUListElement>;
-} & StylingProps;
+} & CommonProps;
 
 // Having virtualized tree separately prevents from running all virtualization logic
 const VirtualizedTree = React.forwardRef(
@@ -399,7 +381,7 @@ const VirtualizedTree = React.forwardRef(
     });
 
     return (
-      <div
+      <Box
         {...{
           ...outerProps,
           className: cx(className, outerProps.className),
@@ -413,7 +395,7 @@ const VirtualizedTree = React.forwardRef(
         >
           {visibleChildren}
         </TreeElement>
-      </div>
+      </Box>
     );
   },
 );

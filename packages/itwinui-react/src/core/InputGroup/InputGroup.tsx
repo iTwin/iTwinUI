@@ -3,11 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useGlobals, InputContainer } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import {
+  StatusIconMap,
+  useGlobals,
+  InputContainer,
+  Box,
+} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 
-export type InputGroupProps = {
+type InputGroupProps = {
   /**
    * Label of the group.
    */
@@ -43,7 +48,7 @@ export type InputGroupProps = {
    * Child inputs inside group.
    */
   children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Group Checkbox/Radio components together
@@ -60,18 +65,13 @@ export type InputGroupProps = {
  *  <Radio />
  * </InputGroup>
  */
-export const InputGroup = (props: InputGroupProps) => {
+export const InputGroup = React.forwardRef((props, ref) => {
   const {
     children,
-    disabled = false,
     displayStyle = 'default',
-    label,
     message,
     status,
     svgIcon,
-    className,
-    style,
-    required = false,
     ...rest
   } = props;
   useGlobals();
@@ -90,20 +90,14 @@ export const InputGroup = (props: InputGroupProps) => {
 
   return (
     <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
       icon={icon()}
       isLabelInline={displayStyle === 'inline'}
-      className={className}
-      style={style}
+      ref={ref}
       {...rest}
     >
-      <div className='iui-input-group'>{children}</div>
+      <Box className='iui-input-group'>{children}</Box>
     </InputContainer>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
 
 export default InputGroup;

@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { InputGroup } from '../InputGroup/index.js';
-import type { InputGroupProps } from '../InputGroup/index.js';
 import '@itwin/itwinui-css/css/radio-tile.css';
-import { useGlobals } from '../utils/index.js';
+import { useGlobals, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type RadioTileGroupProps = Omit<
-  InputGroupProps,
+type RadioTileGroupProps = Omit<
+  React.ComponentProps<typeof InputGroup>,
   'displayStyle' | 'disabled'
 >;
 
@@ -21,16 +21,16 @@ export type RadioTileGroupProps = Omit<
  *   <RadioTile label='Second tile' icon={<SvgSmileySad />} />
  * </RadioTileGroup>
  */
-export const RadioTileGroup = (props: RadioTileGroupProps) => {
+export const RadioTileGroup = React.forwardRef((props, forwardedRef) => {
   const { children, label, ...rest } = props;
 
   useGlobals();
 
   return (
-    <InputGroup label={label} {...rest}>
-      <div className='iui-radio-tile-container'>{children}</div>
+    <InputGroup label={label} ref={forwardedRef} {...rest}>
+      <Box className='iui-radio-tile-container'>{children}</Box>
     </InputGroup>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', RadioTileGroupProps>;
 
 export default RadioTileGroup;

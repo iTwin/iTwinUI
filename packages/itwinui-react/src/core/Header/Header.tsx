@@ -6,19 +6,19 @@ import cx from 'classnames';
 import * as React from 'react';
 import { IconButton } from '../Buttons/index.js';
 
-import { useGlobals, SvgMoreVertical } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { useGlobals, SvgMoreVertical, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 
-export type HeaderTranslations = {
+type HeaderTranslations = {
   /**
    * 'More' menu button aria-label.
    */
   moreOptions: string;
 };
 
-export type HeaderProps = {
+type HeaderProps = {
   /**
    * Application logo.
    * (expects `HeaderLogo`)
@@ -94,7 +94,7 @@ export type HeaderProps = {
    * Provide localized strings.
    */
   translatedStrings?: HeaderTranslations;
-} & Omit<CommonProps, 'title'>;
+};
 
 const defaultTranslations: HeaderTranslations = {
   moreOptions: 'More options',
@@ -127,7 +127,7 @@ const defaultTranslations: HeaderTranslations = {
  *  isSlim
  * />
  */
-export const Header = (props: HeaderProps) => {
+export const Header = React.forwardRef((props, forwardedRef) => {
   const {
     appLogo,
     breadcrumbs,
@@ -143,18 +143,20 @@ export const Header = (props: HeaderProps) => {
   useGlobals();
   const headerTranslations = { ...defaultTranslations, ...translatedStrings };
   return (
-    <header
+    <Box
+      as='header'
       className={cx('iui-page-header', className)}
       data-iui-size={isSlim ? 'slim' : undefined}
+      ref={forwardedRef}
       {...rest}
     >
-      <div className='iui-page-header-left'>
+      <Box className='iui-page-header-left'>
         {appLogo}
-        {breadcrumbs && <div className='iui-page-header-divider' />}
+        {breadcrumbs && <Box className='iui-page-header-divider' />}
         {breadcrumbs}
-      </div>
-      {children && <div className='iui-page-header-center'>{children}</div>}
-      <div className='iui-page-header-right'>
+      </Box>
+      {children && <Box className='iui-page-header-center'>{children}</Box>}
+      <Box className='iui-page-header-right'>
         {actions}
         {userIcon}
         {menuItems && (
@@ -167,9 +169,9 @@ export const Header = (props: HeaderProps) => {
             </IconButton>
           </DropdownMenu>
         )}
-      </div>
-    </header>
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'header', HeaderProps>;
 
 export default Header;

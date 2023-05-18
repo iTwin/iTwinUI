@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, SvgClose, mergeEventHandlers } from '../utils/index.js';
+import {
+  useGlobals,
+  SvgClose,
+  mergeEventHandlers,
+  Box,
+} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
@@ -12,7 +18,7 @@ import type { DialogContextProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
 import { useDialogDragContext } from './DialogDragContext.js';
 
-export type DialogTitleBarProps = {
+type DialogTitleBarProps = {
   /**
    * Dialog title bar content. If passed, then `title` prop is ignored.
    */
@@ -21,8 +27,7 @@ export type DialogTitleBarProps = {
    * Dialog title.
    */
   titleText?: React.ReactNode;
-} & Pick<DialogContextProps, 'isDismissible' | 'onClose' | 'isDraggable'> &
-  React.ComponentPropsWithRef<'div'>;
+} & Pick<DialogContextProps, 'isDismissible' | 'onClose' | 'isDraggable'>;
 
 /**
  * Dialog title bar. Recommended to be used as a child of `Dialog`.
@@ -42,7 +47,7 @@ export type DialogTitleBarProps = {
  * </Dialog.TitleBar>
  */
 export const DialogTitleBar = Object.assign(
-  React.forwardRef<HTMLDivElement, DialogTitleBarProps>((props, ref) => {
+  React.forwardRef((props, ref) => {
     const dialogContext = useDialogContext();
     const {
       children,
@@ -60,7 +65,7 @@ export const DialogTitleBar = Object.assign(
     useGlobals();
 
     return (
-      <div
+      <Box
         className={cx('iui-dialog-title-bar', className, {
           'iui-dialog-title-bar-filled': isDraggable,
         })}
@@ -85,9 +90,9 @@ export const DialogTitleBar = Object.assign(
             )}
           </>
         )}
-      </div>
+      </Box>
     );
-  }),
+  }) as PolymorphicForwardRefComponent<'div', DialogTitleBarProps>,
   {
     Title: DialogTitleBarTitle,
   },

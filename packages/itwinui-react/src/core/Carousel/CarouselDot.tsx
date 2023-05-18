@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 
 type CarouselDotProps = {
   /** Is this dot currently active? */
@@ -12,20 +14,18 @@ type CarouselDotProps = {
   isSmall?: boolean;
   /** Should be set to true for dots that are at the edge of truncation. The dot size becomes even smaller.  */
   isSmaller?: boolean;
-} & React.ComponentPropsWithoutRef<'button'>;
+};
 
 /**
  * `CarouselDot` is the actual "dot" component used to activate a slide on clicking.
  * It should be used as a child of `CarouselDotsList`.
  */
-export const CarouselDot = React.forwardRef<
-  HTMLButtonElement,
-  CarouselDotProps
->((props, ref) => {
+export const CarouselDot = React.forwardRef((props, ref) => {
   const { isActive, isSmaller, isSmall, className, ...rest } = props;
 
   return (
-    <button
+    <Box
+      as='button'
       type='button'
       role='tab'
       tabIndex={-1}
@@ -43,4 +43,4 @@ export const CarouselDot = React.forwardRef<
       {...rest}
     />
   );
-});
+}) as PolymorphicForwardRefComponent<'button', CarouselDotProps>;

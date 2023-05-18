@@ -3,55 +3,44 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgUpload } from '../utils/index.js';
+import { Box, polymorphic, SvgUpload } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import FileUploadCard from './FileUploadCard.js';
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard.Icon component
-export type FileEmptyCardIconProps = React.ComponentPropsWithRef<'span'>;
 
-const FileEmptyCardIcon = React.forwardRef<
-  HTMLSpanElement,
-  FileEmptyCardIconProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <span
-      className={cx('iui-file-card-empty-icon', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children ?? <SvgUpload />}
-    </span>
-  );
+const FileEmptyCardIcon = polymorphic.span('iui-file-card-empty-icon', {
+  children: <SvgUpload />,
 });
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard.Text component
 
-export type FileEmptyCardTextProps = React.ComponentPropsWithRef<'span'>;
-
-const FileEmptyCardText = React.forwardRef<
-  HTMLSpanElement,
-  FileEmptyCardTextProps
->((props, ref) => {
-  const { children, className, ...rest } = props;
-  return (
-    <span
-      className={cx('iui-file-card-empty-action', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </span>
-  );
-});
+const FileEmptyCardText = polymorphic.span('iui-file-card-empty-action');
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard component
 
-export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
+const FileEmptyCardComponent = React.forwardRef((props, ref) => {
+  const { children, className, ...rest } = props;
+
+  return (
+    <Box className={cx('iui-file-card-empty', className)} ref={ref} {...rest}>
+      {children ?? (
+        <>
+          <FileEmptyCard.Icon />
+          <FileEmptyCard.Text>
+            <FileUploadCard.InputLabel>Choose a file</FileUploadCard.InputLabel>
+            <div>to upload.</div>
+          </FileEmptyCard.Text>
+        </>
+      )}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', {}>; // eslint-disable-line
+
 /**
  * Empty file card to be used with the `FileUploadCard` component when no file has been uploaded.
  * @example
@@ -68,36 +57,9 @@ export type FileEmptyCardProps = React.ComponentPropsWithoutRef<'div'>;
  *   </FileEmptyCard.Text>
  * </FileEmptyCard>
  */
-export const FileEmptyCard = Object.assign(
-  React.forwardRef<HTMLDivElement, FileEmptyCardProps>(
-    (props, ref: React.RefObject<HTMLDivElement>) => {
-      const { children, className, ...rest } = props;
-
-      return (
-        <div
-          className={cx('iui-file-card-empty', className)}
-          ref={ref}
-          {...rest}
-        >
-          {children ?? (
-            <>
-              <FileEmptyCard.Icon />
-              <FileEmptyCard.Text>
-                <FileUploadCard.InputLabel>
-                  Choose a file
-                </FileUploadCard.InputLabel>
-                <div>to upload.</div>
-              </FileEmptyCard.Text>
-            </>
-          )}
-        </div>
-      );
-    },
-  ),
-  {
-    Icon: FileEmptyCardIcon,
-    Text: FileEmptyCardText,
-  },
-);
+export const FileEmptyCard = Object.assign(FileEmptyCardComponent, {
+  Icon: FileEmptyCardIcon,
+  Text: FileEmptyCardText,
+});
 
 export default FileEmptyCard;

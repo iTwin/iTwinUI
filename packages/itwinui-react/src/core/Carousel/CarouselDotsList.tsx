@@ -11,7 +11,9 @@ import {
   useMergedRefs,
   useResizeObserver,
   useGlobals,
+  Box,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselDot } from './CarouselDot.js';
 import '@itwin/itwinui-css/css/carousel.css';
 
@@ -22,7 +24,7 @@ type CarouselDotsListProps = {
   currentIndex?: number;
   /** Callback fired when any of the dots are clicked. */
   onSlideChange?: (index: number) => void;
-} & React.ComponentPropsWithoutRef<'div'>;
+};
 
 /**
  * The `CarouselDotsList` component shows a list of `CarouselDot` components which can be used to
@@ -46,10 +48,7 @@ type CarouselDotsListProps = {
  *   onSlideChange={(i) => setCurrent(i)}
  * />
  */
-export const CarouselDotsList = React.forwardRef<
-  HTMLDivElement,
-  CarouselDotsListProps
->((props, ref) => {
+export const CarouselDotsList = React.forwardRef((props, ref) => {
   const {
     currentIndex: userCurrentIndex,
     length,
@@ -175,7 +174,7 @@ export const CarouselDotsList = React.forwardRef<
 
   return (
     <>
-      <div
+      <Box
         className={cx('iui-carousel-navigation-dots', className)}
         role='tablist'
         aria-label='Slides'
@@ -183,7 +182,7 @@ export const CarouselDotsList = React.forwardRef<
         {...rest}
       >
         {children ?? dots}
-      </div>
+      </Box>
     </>
   );
-});
+}) as PolymorphicForwardRefComponent<'div', CarouselDotsListProps>;

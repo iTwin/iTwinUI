@@ -5,21 +5,23 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { SvgChevronRight } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
-import type { IconButtonProps } from '../Buttons/IconButton/index.js';
+import type { IconButtonProps } from '../Buttons/IconButton/IconButton.js';
 import '@itwin/itwinui-css/css/tree.css';
 
-export type TreeNodeExpanderProps = {
+type TreeNodeExpanderProps = {
   isExpanded?: boolean;
 } & IconButtonProps;
 
-export const TreeNodeExpander = (props: TreeNodeExpanderProps) => {
+export const TreeNodeExpander = React.forwardRef((props, ref) => {
   const { isExpanded, ...rest } = props;
   return (
     <IconButton
       styleType='borderless'
       size='small'
       aria-label={isExpanded ? 'Collapse' : 'Expand'}
+      ref={ref}
       {...rest}
     >
       <SvgChevronRight
@@ -29,6 +31,6 @@ export const TreeNodeExpander = (props: TreeNodeExpanderProps) => {
       />
     </IconButton>
   );
-};
+}) as PolymorphicForwardRefComponent<'button', TreeNodeExpanderProps>;
 
 export default TreeNodeExpander;

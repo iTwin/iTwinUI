@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, VisuallyHidden } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box, useGlobals, VisuallyHidden } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
-export type MenuItemSkeletonProps = {
+type MenuItemSkeletonProps = {
   /**
    * Flag whether to show skeleton for sub-label.
    */
@@ -31,12 +31,12 @@ export type MenuItemSkeletonProps = {
      */
     loading: string;
   };
-} & CommonProps;
+};
 
 /**
  * Menu item that uses skeletons to indicate loading state.
  */
-export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
+export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
   const {
     hasSublabel,
     hasIcon,
@@ -50,7 +50,8 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
   useGlobals();
 
   return (
-    <li
+    <Box
+      as='li'
       className={cx(
         'iui-menu-item',
         'iui-menu-item-skeleton',
@@ -63,18 +64,19 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
         },
         ...style,
       }}
+      ref={forwardedRef}
       {...rest}
     >
-      {hasIcon && <div className='iui-icon iui-skeleton' aria-hidden />}
-      <span className='iui-content'>
-        <div className='iui-menu-label iui-skeleton' aria-hidden />
+      {hasIcon && <Box className='iui-icon iui-skeleton' aria-hidden />}
+      <Box as='span' className='iui-content'>
+        <Box className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (
-          <div className='iui-menu-description iui-skeleton' aria-hidden />
+          <Box className='iui-menu-description iui-skeleton' aria-hidden />
         )}
         <VisuallyHidden>{translatedStrings.loading}</VisuallyHidden>
-      </span>
-    </li>
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'li', MenuItemSkeletonProps>;
 
 export default MenuItemSkeleton;

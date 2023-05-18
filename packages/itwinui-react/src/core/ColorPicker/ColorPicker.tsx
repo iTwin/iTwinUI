@@ -4,8 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import '@itwin/itwinui-css/css/color-picker.css';
-import { useGlobals, ColorValue, getTabbableElements } from '../utils/index.js';
-import type { CommonProps, ColorType, HsvColor } from '../utils/index.js';
+import {
+  useGlobals,
+  ColorValue,
+  getTabbableElements,
+  useMergedRefs,
+  Box,
+} from '../utils/index.js';
+import type {
+  ColorType,
+  HsvColor,
+  PolymorphicForwardRefComponent,
+} from '../utils/index.js';
 import cx from 'classnames';
 import { ColorPickerContext } from './ColorPickerContext.js';
 
@@ -16,7 +26,7 @@ export const getColorValue = (color: ColorType | ColorValue | undefined) => {
   return ColorValue.create(color);
 };
 
-export type ColorPickerProps = {
+type ColorPickerProps = {
   /**
    * Content of the color palette.
    *
@@ -49,7 +59,7 @@ export type ColorPickerProps = {
    * @default false
    */
   showAlpha?: boolean;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * ColorPicker to display color builder options, color inputs, and a palette of ColorSwatches.
@@ -64,7 +74,7 @@ export type ColorPickerProps = {
  *   <ColorPalette label='Saved colors' colors={['#FFFFFF', '#5A6973']} />
  * </ColorPicker>
  */
-export const ColorPicker = (props: ColorPickerProps) => {
+export const ColorPicker = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     className,
@@ -139,7 +149,11 @@ export const ColorPicker = (props: ColorPickerProps) => {
   );
 
   return (
-    <div className={cx('iui-color-picker', className)} ref={ref} {...rest}>
+    <Box
+      className={cx('iui-color-picker', className)}
+      ref={useMergedRefs(ref, forwardedRef)}
+      {...rest}
+    >
       <ColorPickerContext.Provider
         value={{
           activeColor,
@@ -152,8 +166,8 @@ export const ColorPicker = (props: ColorPickerProps) => {
       >
         {children}
       </ColorPickerContext.Provider>
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ColorPickerProps>;
 
 export default ColorPicker;

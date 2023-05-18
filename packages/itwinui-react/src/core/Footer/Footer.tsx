@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../utils/index.js';
-import type { StylingProps } from '../utils/index.js';
+import { Box, useGlobals } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/footer.css';
 import { FooterItem } from './FooterItem.js';
 import { FooterSeparator } from './FooterSeparator.js';
@@ -19,7 +19,7 @@ export type TitleTranslations = {
   legalNotices: string;
 };
 
-export type FooterProps = {
+type FooterProps = {
   /**
    * Customize footer elements.
    * Providing a `FooterElement[]` will append the custom elements to the end of the default elements.
@@ -37,7 +37,7 @@ export type FooterProps = {
    * Use `defaultFooterElements` to get the default footer elements.
    */
   children?: React.ReactNode;
-} & StylingProps;
+} & CommonProps;
 
 export type FooterElement = {
   /**
@@ -136,7 +136,7 @@ export const Footer = Object.assign(
     }
 
     return (
-      <footer className={cx('iui-legal-footer', className)} {...rest}>
+      <Box as='footer' className={cx('iui-legal-footer', className)} {...rest}>
         {children ? (
           children
         ) : (
@@ -161,7 +161,7 @@ export const Footer = Object.assign(
             })}
           </FooterList>
         )}
-      </footer>
+      </Box>
     );
   },
   {

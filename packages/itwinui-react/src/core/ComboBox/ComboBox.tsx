@@ -16,12 +16,9 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
-} from '../utils/index.js';
-import type {
-  PopoverProps,
   CommonProps,
-  InputContainerProps,
 } from '../utils/index.js';
+import type { PopoverProps, InputContainerProps } from '../utils/index.js';
 import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
@@ -148,7 +145,7 @@ export type ComboBoxProps<T> = {
   onHide?: () => void;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
-  Omit<CommonProps, 'title'>;
+  CommonProps;
 
 /** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
 const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
