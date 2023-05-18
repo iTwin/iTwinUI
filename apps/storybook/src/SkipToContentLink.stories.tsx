@@ -25,7 +25,7 @@ export const Basic: Story<SkipToContentLinkProps> = () => {
   return (
     <>
       <SkipToContentLink href='#main-content' />
-      <Text>
+      <Text as='p'>
         This is not the main content. Press&nbsp;
         <Kbd>tab</Kbd>&nbsp;to see skip-to-content-link component. You might
         need to click on the top of the page or the URL first. Press&nbsp;
@@ -45,7 +45,7 @@ export const Basic: Story<SkipToContentLinkProps> = () => {
         }}
         id='main-content'
       >
-        <Text>
+        <Text as='p'>
           This is the main content. Focus will be directed here from the
           skip-to-content-link component.&nbsp;
           <Anchor href='#'>Tab again to focus on this link.</Anchor>
@@ -62,7 +62,7 @@ export const CustomText: Story<SkipToContentLinkProps> = () => {
       <SkipToContentLink href='#main-content'>
         Skip to main content (translated)
       </SkipToContentLink>
-      <Text>
+      <Text as='p'>
         This is not the main content. Press&nbsp;
         <Kbd>tab</Kbd>&nbsp;to see skip-to-content-link component. You might
         need to click on the top of the page or the URL first. Press&nbsp;
@@ -82,7 +82,7 @@ export const CustomText: Story<SkipToContentLinkProps> = () => {
         }}
         id='main-content'
       >
-        <Text>
+        <Text as='p'>
           This is the main content. Focus will be directed here from the
           skip-to-content-link component.&nbsp;
           <Anchor href='#'>Tab again to focus on this link.</Anchor>
