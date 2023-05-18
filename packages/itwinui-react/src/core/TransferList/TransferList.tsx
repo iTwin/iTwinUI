@@ -7,7 +7,8 @@ import cx from 'classnames';
 import {
   getFocusableElements,
   useMergedRefs,
-  useTheme,
+  useId,
+  useSafeContext,
 } from '../utils/index.js';
 import type {
   PolymorphicComponentProps,
@@ -25,7 +26,7 @@ type TransferListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-ty
 
 const TransferListComponent = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
-  useTheme();
+  const [labelId, setLabelId] = React.useState<string>();
 
   return (
     <Element
@@ -33,7 +34,9 @@ const TransferListComponent = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {children}
+      <TransferListContext.Provider value={{ labelId, setLabelId }}>
+        {children}
+      </TransferListContext.Provider>
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListOwnProps>;
@@ -64,6 +67,8 @@ type TransferListListOwnProps = ListProps; // eslint-disable-line @typescript-es
 
 const TransferListList = React.forwardRef((props, ref) => {
   const { as: Element = 'ul', children, className, ...rest } = props;
+
+  const { labelId } = useSafeContext(TransferListContext);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const listRef = React.useRef<HTMLUListElement>(null);
@@ -121,6 +126,7 @@ const TransferListList = React.forwardRef((props, ref) => {
       className={cx('iui-transfer-list-listbox', className)}
       onKeyDown={onKeyDown}
       role={'listbox'}
+      aria-labelledby={labelId}
       ref={refs}
       {...rest}
     >
@@ -192,11 +198,16 @@ const TransferListListItem = React.forwardRef((props, ref) => {
 type TransferListLabelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TransferListLabel = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', children, className, ...rest } = props;
+  const { as: Element = 'div', children, className, id, ...rest } = props;
+
+  const { labelId, setLabelId } = useSafeContext(TransferListContext);
+  const uid = useId();
+  setLabelId(id ?? uid);
 
   return (
     <Element
       className={cx('iui-transfer-list-label', className)}
+      id={labelId}
       ref={ref}
       {...rest}
     >
@@ -263,6 +274,20 @@ export const TransferList = Object.assign(TransferListComponent, {
    */
   Toolbar: TransferListToolbar,
 });
+
+export const TransferListContext = React.createContext<
+  | {
+      /**
+       * Id to set to label and set 'aria-labelledby' prop of the listbox
+       */
+      labelId?: string;
+      /**
+       * Callback that's fired when labelId is changed
+       */
+      setLabelId: (labelId: string) => void;
+    }
+  | undefined
+>(undefined);
 
 export type TransferListProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, TransferListOwnProps>;
