@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/fieldset.css';
@@ -29,7 +29,7 @@ export type FieldsetProps = {
 export const Fieldset = (props: FieldsetProps) => {
   const { children, className, disabled, legend, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <fieldset

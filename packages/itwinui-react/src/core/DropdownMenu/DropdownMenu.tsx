@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme, Popover, mergeRefs } from '../utils/index.js';
+import { useGlobals, Popover, mergeRefs } from '../utils/index.js';
 import type {
   CommonProps,
   PopoverProps,
@@ -91,7 +91,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     [onHide],
   );
 
-  useTheme();
+  useGlobals();
 
   return (
     <Popover

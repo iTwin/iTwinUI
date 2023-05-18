@@ -6,13 +6,14 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   InputFlexContainer,
-  useTheme,
+  useGlobals,
   SvgSearch,
   SvgCloseSmall,
   useSafeContext,
   useId,
   Icon,
   useMergedRefs,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type {
   IconProps,
@@ -101,7 +102,7 @@ type SearchBoxOwnProps = {
 };
 
 const SearchBoxComponent = React.forwardRef((props, ref) => {
-  useTheme();
+  useGlobals();
 
   const {
     size,
@@ -305,13 +306,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
       aria-label='Close searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={(e) => {
-        onClickProp?.(e);
-        if (e.isDefaultPrevented()) {
-          return;
-        }
-        onCollapse?.();
-      }}
+      onClick={mergeEventHandlers(onClickProp, onCollapse)}
       {...rest}
     >
       {children ?? <SvgCloseSmall />}
@@ -339,13 +334,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       aria-label='Expand searchbox'
       size={sizeContext}
       disabled={isDisabled}
-      onClick={(e) => {
-        onClickProp?.(e);
-        if (e.isDefaultPrevented()) {
-          return;
-        }
-        onExpand?.();
-      }}
+      onClick={mergeEventHandlers(onClickProp, onExpand)}
       {...rest}
     >
       {children ?? <SvgSearch />}

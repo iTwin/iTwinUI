@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import '@itwin/itwinui-css/css/alert.css';
-import { useTheme, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
+import { useGlobals, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
 import type { CommonProps } from '../utils/props.js';
 
 export type AlertProps = {
@@ -65,7 +65,7 @@ export const Alert = (props: AlertProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const StatusIcon = StatusIconMap[type];
 

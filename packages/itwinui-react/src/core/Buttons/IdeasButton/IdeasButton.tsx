@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SvgSmileyHappy, useTheme } from '../../utils/index.js';
+import { SvgSmileyHappy, useGlobals } from '../../utils/index.js';
 import { Button } from '../Button/index.js';
 
 export type IdeasButtonProps = {
@@ -26,7 +26,7 @@ export const IdeasButton = React.forwardRef(
   (props: IdeasButtonProps, ref: React.RefObject<HTMLButtonElement>) => {
     const { feedbackLabel = 'Feedback', onClick, ...rest } = props;
 
-    useTheme();
+    useGlobals();
 
     return (
       <Button
