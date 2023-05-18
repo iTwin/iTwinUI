@@ -195,7 +195,12 @@ const TransferListListItem = React.forwardRef((props, ref) => {
 // ----------------------------------------------------------------------------
 // TransferList.Label component
 
-type TransferListLabelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type TransferListLabelOwnProps = {
+  /**
+   * Text label that is wrapped by `TransferList.Label`
+   */
+  children?: string;
+};
 
 const TransferListLabel = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, id, ...rest } = props;
