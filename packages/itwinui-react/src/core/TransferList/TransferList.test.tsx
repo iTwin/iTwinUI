@@ -13,9 +13,9 @@ it('should render in its most basic state', () => {
     <TransferList>
       <TransferList.Area>
         <TransferList.List>
-          <TransferList.ListItem>Item 1</TransferList.ListItem>
+          <TransferList.ListItem>Item 0</TransferList.ListItem>
+          <TransferList.ListItem active>Item 1</TransferList.ListItem>
           <TransferList.ListItem>Item 2</TransferList.ListItem>
-          <TransferList.ListItem>Item 3</TransferList.ListItem>
         </TransferList.List>
       </TransferList.Area>
     </TransferList>,
@@ -24,16 +24,31 @@ it('should render in its most basic state', () => {
   expect(listBoxWrapper).toBeTruthy();
   const listBoxArea = container.querySelector('.iui-transfer-list-area');
   expect(listBoxArea).toBeTruthy();
+  const transferListBox = container.querySelector('.iui-transfer-list-listbox');
+  expect(transferListBox).toBeTruthy();
+  const transferListItems = container.querySelectorAll('.iui-list-item');
+  expect(transferListItems).toHaveLength(3);
+
+  transferListItems.forEach((item, index) => {
+    expect(item).toHaveTextContent(`Item ${index}`);
+    if (index === 1) {
+      expect(item).toHaveAttribute('aria-selected', 'true');
+    }
+  });
 });
 
 it('should handle keyboard navigation', () => {
   const { container } = render(
-    <TransferList.List>
-      <TransferList.ListItem actionable>item 1</TransferList.ListItem>
-      <TransferList.ListItem actionable>item 2</TransferList.ListItem>
-      <TransferList.ListItem actionable>item 3</TransferList.ListItem>
-      <TransferList.ListItem actionable>item 4</TransferList.ListItem>
-    </TransferList.List>,
+    <TransferList>
+      <TransferList.Area>
+        <TransferList.List>
+          <TransferList.ListItem actionable>item 1</TransferList.ListItem>
+          <TransferList.ListItem actionable>item 2</TransferList.ListItem>
+          <TransferList.ListItem actionable>item 3</TransferList.ListItem>
+          <TransferList.ListItem actionable>item 4</TransferList.ListItem>
+        </TransferList.List>
+      </TransferList.Area>
+    </TransferList>,
   );
   const list = container.querySelector('.iui-list') as HTMLUListElement;
   const items = container.querySelectorAll('.iui-list-item');
@@ -90,9 +105,15 @@ it('should handle keyboard navigation', () => {
 it('should handle key presses', async () => {
   const mockedOnClick = jest.fn();
   render(
-    <TransferList.ListItem actionable onActiveChange={mockedOnClick}>
-      Item
-    </TransferList.ListItem>,
+    <TransferList>
+      <TransferList.Area>
+        <TransferList.List>
+          <TransferList.ListItem actionable onActiveChange={mockedOnClick}>
+            Item
+          </TransferList.ListItem>
+        </TransferList.List>
+      </TransferList.Area>
+    </TransferList>,
   );
 
   const listItem = screen.getByRole('option');
@@ -132,6 +153,7 @@ it('should render custom transfer list with label and toolbar', () => {
   );
   const listBoxLabel = container.querySelector('.iui-transfer-list-label');
   expect(listBoxLabel).toBeTruthy();
+  expect(listBoxLabel).toHaveTextContent('Label');
 
   const listBoxToolbar = container.querySelector('.iui-transfer-list-toolbar');
   expect(listBoxToolbar).toBeTruthy();

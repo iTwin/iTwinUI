@@ -182,8 +182,8 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       actionable={actionable}
       tabIndex={-1}
       role={'option'}
-      aria-disabled={disabled}
-      aria-selected={active}
+      aria-disabled={disabled ? 'true' : undefined}
+      aria-selected={active ? 'true' : undefined}
       disabled={disabled}
       {...rest}
     >
