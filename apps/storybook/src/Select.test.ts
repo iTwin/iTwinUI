@@ -38,13 +38,13 @@ describe('Select', () => {
       cy.compareSnapshot(`${testName} (Open)`);
 
       if (testName.includes('Multi')) {
-        cy.get('.iui-menu-item').first().click();
-        cy.get('.iui-menu-item').eq(1).click();
+        cy.get('.iui-list-item').first().click();
+        cy.get('.iui-list-item').eq(1).click();
         cy.compareSnapshot(`${testName} (Multi selected)`);
       }
 
       if (testName === 'Custom') {
-        cy.get('.iui-menu-item').first().click();
+        cy.get('.iui-list-item').first().click();
         cy.compareSnapshot(`${testName} (Closed With Value)`);
       }
     });

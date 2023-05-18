@@ -7,6 +7,7 @@ import cx from 'classnames';
 import { useGlobals, VisuallyHidden } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
+import { ListItem } from '../List/ListItem.js';
 
 export type MenuItemSkeletonProps = {
   /**
@@ -50,9 +51,8 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
   useGlobals();
 
   return (
-    <li
+    <ListItem
       className={cx(
-        'iui-menu-item',
         'iui-menu-item-skeleton',
         { 'iui-large': hasSublabel },
         className,
@@ -65,15 +65,15 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
       }}
       {...rest}
     >
-      {hasIcon && <div className='iui-icon iui-skeleton' aria-hidden />}
-      <span className='iui-content'>
+      {hasIcon && <ListItem.Icon className='iui-skeleton' aria-hidden />}
+      <ListItem.Content>
         <div className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (
-          <div className='iui-menu-description iui-skeleton' aria-hidden />
+          <ListItem.Description className='iui-skeleton' aria-hidden />
         )}
         <VisuallyHidden>{translatedStrings.loading}</VisuallyHidden>
-      </span>
-    </li>
+      </ListItem.Content>
+    </ListItem>
   );
 };
 

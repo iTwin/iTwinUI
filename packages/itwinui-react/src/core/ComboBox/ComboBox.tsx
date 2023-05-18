@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import cx from 'classnames';
 import type { InputProps } from '../Input/index.js';
 import { MenuExtraContent } from '../Menu/index.js';
 import type { SelectOption } from '../Select/index.js';
@@ -462,9 +461,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           },
           // ComboBox.MenuItem handles scrollIntoView, data-iui-index and iui-focused through context
           // but we still need to pass them here for backwards compatibility with MenuItem
-          className: cx(customItem.props.className, {
-            'iui-focused': focusedIndex === __originalIndex,
-          }),
+          'data-iui-focused': focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
           ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {

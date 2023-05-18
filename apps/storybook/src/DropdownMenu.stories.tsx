@@ -78,13 +78,17 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick('Crop', close)} icon={<SvgCrop />}>
+    <MenuItem key={1} onClick={onClick('Crop', close)} startIcon={<SvgCrop />}>
       Crop
     </MenuItem>,
-    <MenuItem key={2} onClick={onClick('Paste', close)} icon={<SvgClipboard />}>
+    <MenuItem
+      key={2}
+      onClick={onClick('Paste', close)}
+      startIcon={<SvgClipboard />}
+    >
       Paste
     </MenuItem>,
-    <MenuItem key={3} onClick={onClick('Move', close)} icon={<SvgMove />}>
+    <MenuItem key={3} onClick={onClick('Move', close)} startIcon={<SvgMove />}>
       Move
     </MenuItem>,
   ];
@@ -108,17 +112,17 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick('Crop', close)} badge={<SvgCrop />}>
+    <MenuItem key={1} onClick={onClick('Crop', close)} endIcon={<SvgCrop />}>
       Crop
     </MenuItem>,
     <MenuItem
       key={2}
       onClick={onClick('Paste', close)}
-      badge={<SvgClipboard />}
+      endIcon={<SvgClipboard />}
     >
       Paste
     </MenuItem>,
-    <MenuItem key={3} onClick={onClick('Move', close)} badge={<SvgMove />}>
+    <MenuItem key={3} onClick={onClick('Move', close)} endIcon={<SvgMove />}>
       Move
     </MenuItem>,
   ];
@@ -145,7 +149,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={1}
       onClick={onClick(1, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #1'
     >
       Item #1
@@ -153,7 +157,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={2}
       onClick={onClick(2, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #2'
     >
       Item #2
@@ -161,7 +165,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={3}
       onClick={onClick(3, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #3'
     >
       Item #3

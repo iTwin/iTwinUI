@@ -14,11 +14,11 @@
   @include iui-menu;
 }
 
-:is(.iui-list-item, .iui-menu-item) {
+.iui-list-item {
   @include iui-menu-item;
 }
 
-:is(.iui-menu-item > .iui-icon, .iui-list-item-icon) {
+.iui-list-item-icon {
   @include iui-menu-icon;
 }
 
@@ -30,11 +30,11 @@
   @include iui-menu-content;
 }
 
-:is(.iui-menu-item > .iui-content, .iui-list-item-content) {
+.iui-list-item-content {
   @include iui-menu-item-content;
 }
 
-:is(.iui-menu-description, .iui-list-item-description) {
+.iui-list-item-description {
   @include iui-menu-item-description;
 }
 

@@ -72,11 +72,11 @@ it('should render currently visible rows info and page size selector', async () 
   expect(pageSizeSelector.textContent).toEqual('191-195 of 195');
 
   await userEvent.click(pageSizeSelector);
-  const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
+  const pageSizeSelections = document.querySelectorAll('.iui-list-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {
     expect(el.textContent).toEqual(`${pageSizeList[index]} per page`);
-    expect(el.classList.contains('iui-active')).toBe(index === 0);
+    expect(el.hasAttribute('data-iui-active')).toBe(index === 0);
   });
 
   await userEvent.click(pageSizeSelections[1]);
@@ -333,11 +333,11 @@ it('should render with custom localization', async () => {
   expect(container.querySelector('.iui-left')).toHaveTextContent('5 test(s)');
 
   await userEvent.click(pageSizeSelector);
-  const pageSizeSelections = document.querySelectorAll('.iui-menu-item');
+  const pageSizeSelections = document.querySelectorAll('.iui-list-item');
   expect(pageSizeSelections).toHaveLength(3);
   pageSizeSelections.forEach((el, index) => {
     expect(el.textContent).toEqual(`${pageSizeList[index]} per test page`);
-    expect(el.classList.contains('iui-active')).toBe(index === 0);
+    expect(el.hasAttribute('data-iui-active')).toBe(index === 0);
   });
 });
 

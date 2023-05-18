@@ -22,7 +22,7 @@ describe('DropdownMenu', () => {
       cy.get('.iui-button').click();
 
       if (testName === 'Submenu') {
-        cy.get('.iui-menu-item').last().trigger('mouseenter');
+        cy.get('.iui-list-item').last().trigger('mouseenter');
       }
 
       cy.compareSnapshot(`${testName} (Open)`);

@@ -306,13 +306,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       const isSelected = isMultipleEnabled(value, multiple)
         ? value?.includes(option.value) ?? false
         : value === option.value;
+
+      const { label, icon, ...restOption } = option;
+
       const menuItem: JSX.Element = itemRenderer ? (
         itemRenderer(option, { close: () => setIsOpen(false), isSelected })
       ) : (
-        <MenuItem>{option.label}</MenuItem>
+        <MenuItem startIcon={icon}>{label}</MenuItem>
       );
-
-      const { label, ...restOption } = option;
 
       return React.cloneElement<MenuItemProps>(menuItem, {
         key: `${label}-${index}`,

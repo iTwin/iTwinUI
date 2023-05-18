@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import cx from 'classnames';
 import {
   useGlobals,
   Popover,
@@ -13,6 +12,7 @@ import {
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 import { Menu } from './Menu.js';
+import { ListItem } from '../List/ListItem.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -52,11 +52,11 @@ export type MenuItemProps = {
   /**
    * SVG icon component shown on the left.
    */
-  icon?: JSX.Element;
+  startIcon?: JSX.Element;
   /**
    * SVG icon component shown on the right.
    */
-  badge?: JSX.Element;
+  endIcon?: JSX.Element;
   /**
    * ARIA role. For menu item use 'menuitem', for select item use 'option'.
    * @default 'menuitem'
@@ -85,10 +85,8 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
       onClick,
       sublabel,
       size = !!sublabel ? 'large' : 'default',
-      icon,
-      badge,
-      className,
-      style,
+      startIcon,
+      endIcon,
       role = 'menuitem',
       subMenuItems = [],
       ...rest
@@ -138,19 +136,13 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
     };
 
     const listItem = (
-      <li
-        className={cx(
-          'iui-menu-item',
-          {
-            'iui-large': size === 'large',
-            'iui-active': isSelected,
-            'iui-disabled': disabled,
-          },
-          className,
-        )}
+      <ListItem
+        actionable
+        size={size}
+        active={isSelected}
+        disabled={disabled}
         onClick={() => !disabled && onClick?.(value)}
         ref={refs}
-        style={style}
         role={role}
         tabIndex={disabled || role === 'presentation' ? undefined : -1}
         aria-selected={isSelected}
@@ -168,22 +160,18 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         }}
         {...rest}
       >
-        {icon &&
-          React.cloneElement(icon, {
-            className: cx(icon.props.className, 'iui-icon'),
-          })}
-        <span className='iui-content'>
-          <div className='iui-menu-label'>{children}</div>
-          {sublabel && <div className='iui-menu-description'>{sublabel}</div>}
-        </span>
-        {!badge && subMenuItems.length > 0 && (
-          <SvgCaretRightSmall className='iui-icon' />
+        {startIcon && <ListItem.Icon aria-hidden>{startIcon}</ListItem.Icon>}
+        <ListItem.Content>
+          {children}
+          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+        </ListItem.Content>
+        {!endIcon && subMenuItems.length > 0 && (
+          <ListItem.Icon aria-hidden>
+            <SvgCaretRightSmall />
+          </ListItem.Icon>
         )}
-        {badge &&
-          React.cloneElement(badge, {
-            className: cx(badge.props.className, 'iui-icon'),
-          })}
-      </li>
+        {endIcon && <ListItem.Icon aria-hidden>{endIcon}</ListItem.Icon>}
+      </ListItem>
     );
 
     return subMenuItems.length === 0 ? (
