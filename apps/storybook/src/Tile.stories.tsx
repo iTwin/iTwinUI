@@ -13,8 +13,8 @@ import {
   MenuItem,
   Tag,
   TagContainer,
-  Tile,
-  TileProps,
+  TileNew,
+  TileNewProps,
   Avatar,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
@@ -24,7 +24,7 @@ import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
 
 export default {
-  component: Tile,
+  component: TileNew,
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
@@ -38,99 +38,105 @@ export default {
     isLoading: false,
   },
   title: 'Core/Tile',
-} as Meta<TileProps>;
+} as Meta<TileNewProps>;
 
-export const Basic: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    badge,
-    thumbnail,
-    leftIcon,
-    rightIcon,
-    moreOptions,
-    ...rest
-  } = props;
+export const Basic: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-      moreOptions={moreOptions}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Stadium</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailPicture>
+          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
+        </TileNew.ThumbnailPicture>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>
+          National stadium in Singapore. Features landscape details and a metro
+          station. This is the largest sample iModel.
+        </TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <SvgTag />
+          <TagContainer>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
+          </TagContainer>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 
-Basic.args = {
-  name: 'Stadium',
-  description: `National stadium in Singapore. Features landscape details and a metro station. This is the largest sample iModel.`,
-  thumbnail: 'https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png',
-  metadata: (
-    <>
-      <SvgTag />
-      <TagContainer>
-        <Tag variant='basic'>tag 1</Tag>
-        <Tag variant='basic'>tag 2</Tag>
-      </TagContainer>
-    </>
-  ),
-  badge: <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>,
-  moreOptions: [
-    <MenuItem key={1} onClick={action('clicked item 1')}>
-      Item 1
-    </MenuItem>,
-    <MenuItem key={2} onClick={action('clicked item 2')}>
-      Item 2
-    </MenuItem>,
-  ],
-};
-Basic.argTypes = {
-  metadata: { control: { disable: true } },
-  moreOptions: { control: { disable: true } },
-  buttons: { control: { disable: true } },
-  leftIcon: { control: { disable: true } },
-  rightIcon: { control: { disable: true } },
-  badge: { control: { disable: true } },
-};
-
-export const AllProps: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    badge,
-    thumbnail,
-    buttons,
-    leftIcon,
-    rightIcon,
-    isSelected = true,
-    isNew,
-    moreOptions,
-    isActionable = true,
-    ...rest
-  } = props;
+export const AllProps: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
-      buttons={buttons}
-      leftIcon={leftIcon}
-      rightIcon={rightIcon}
-      isSelected={isSelected}
-      isNew={isNew}
-      moreOptions={moreOptions}
-      isActionable={isActionable}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Stadium</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailPicture>
+          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
+        </TileNew.ThumbnailPicture>
+        <TileNew.QuickAction>
+          <IconButton
+            styleType='borderless'
+            onClick={action('clicked left icon')}
+          >
+            <SvgInfo />
+          </IconButton>
+        </TileNew.QuickAction>
+        <TileNew.TypeIndicator>
+          <IconButton
+            styleType='borderless'
+            onClick={action('clicked right icon')}
+          >
+            <SvgStar />
+          </IconButton>
+        </TileNew.TypeIndicator>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>
+          National stadium in Singapore. Features landscape details and a metro
+          station. This is the largest sample iModel.
+        </TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <>
+            <SvgTag />
+            <TagContainer>
+              <Tag variant='basic'>tag 1</Tag>
+              <Tag variant='basic'>tag 2</Tag>
+            </TagContainer>
+          </>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+      <TileNew.Buttons>
+        <Button key={1} onClick={action('clicked left button')}>
+          Manage
+        </Button>
+        <Button key={2} onClick={action('clicked right button')}>
+          Projects
+        </Button>
+      </TileNew.Buttons>
+    </TileNew>
   );
 };
 AllProps.argTypes = {
@@ -139,303 +145,299 @@ AllProps.argTypes = {
 };
 AllProps.args = {
   ...Basic.args,
-  isSelected: true,
   isActionable: true,
-  leftIcon: (
-    <IconButton styleType='borderless' onClick={action('clicked left icon')}>
-      <SvgInfo />
-    </IconButton>
-  ),
-  rightIcon: (
-    <IconButton styleType='borderless' onClick={action('clicked right icon')}>
-      <SvgStar />
-    </IconButton>
-  ),
-  buttons: [
-    <Button key={1} onClick={action('clicked left button')}>
-      Manage
-    </Button>,
-    <Button key={2} onClick={action('clicked right button')}>
-      Projects
-    </Button>,
-  ],
+  isSelected: true,
 };
 
-export const Actionable: Story<TileProps> = (props) => {
-  const {
-    name,
-    description = 'If you click on this stadium, it is going to be selected.',
-    metadata,
-    badge,
-    thumbnail,
-    isNew,
-    isActionable = true,
-    ...rest
-  } = props;
+export const Actionable: Story<TileNewProps> = (args) => {
   const [selected, setSelected] = React.useState(false);
-
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
+    <TileNew
       isSelected={selected}
-      isNew={isNew}
-      isActionable={isActionable}
-      {...rest}
       onClick={() => setSelected((prev) => !prev)}
-    />
+      {...args}
+    >
+      <TileNew.Name>Stadium</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailPicture>
+          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
+        </TileNew.ThumbnailPicture>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>
+          If you click on this stadium, it is going to be selected.
+        </TileNew.Description>
+        <TileNew.Metadata>
+          <SvgTag />
+          <TagContainer>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
+          </TagContainer>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 Actionable.argTypes = { ...Basic.argTypes };
 Actionable.args = {
   ...Basic.args,
-  description: 'If you click on this stadium, it is going to be selected.',
   isActionable: true,
-  moreOptions: undefined,
 };
 
-export const AnchorLink: Story<TileProps> = (props) => {
-  const {
-    name,
-    description = 'If you click on this stadium, it is going to be selected.',
-    metadata,
-    badge,
-    thumbnail,
-    isNew,
-    moreOptions,
-    ...rest
-  } = props;
-
+export const AnchorLink: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={
-        <Tile.Action href='https://inclusive-components.design/cards/'>
-          {name}
-        </Tile.Action>
-      }
-      description={description}
-      metadata={metadata}
-      badge={badge}
-      thumbnail={thumbnail}
-      isNew={isNew}
-      moreOptions={moreOptions}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>
+        <TileNew.Action href='https://inclusive-components.design/cards/'>
+          Stadium
+        </TileNew.Action>
+      </TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailPicture>
+          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
+        </TileNew.ThumbnailPicture>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>
+          If you click on this stadium, it is going to open another page.
+        </TileNew.Description>
+        <TileNew.Metadata>
+          <SvgTag />
+          <TagContainer>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
+          </TagContainer>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 AnchorLink.argTypes = { ...Basic.argTypes };
 AnchorLink.args = {
   ...Basic.args,
-  description:
-    'If you click on this stadium, it is going to open another page.',
+  isActionable: true,
 };
-export const Condensed: Story<TileProps> = (props) => {
-  const { name, thumbnail, moreOptions, ...rest } = props;
+
+export const Condensed: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Condensed</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.ThumbnailAvatar>
+          <SvgImodelHollow />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 Condensed.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
 };
 Condensed.args = {
   ...Basic.args,
-  name: 'Condensed',
-  description: undefined,
-  metadata: undefined,
-  badge: undefined,
-  thumbnail: <SvgImodelHollow />,
 };
 
-export const WithAvatar: Story<TileProps> = (props) => {
-  const { name, description, badge, thumbnail, moreOptions, ...rest } = props;
+export const WithAvatar: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      badge={badge}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Some User</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailAvatar>
+          <Avatar
+            size='x-large'
+            status='online'
+            abbreviation='TR'
+            backgroundColor={getUserColor('Terry Rivers')}
+            image={
+              <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+            }
+            title='Terry Rivers'
+          />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>User Description</TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 WithAvatar.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
 };
 WithAvatar.args = {
   ...Basic.args,
-  name: 'Some User',
-  description: 'User description',
-  metadata: undefined,
-  thumbnail: (
-    <Avatar
-      size='x-large'
-      status='online'
-      abbreviation='TR'
-      backgroundColor={getUserColor('Terry Rivers')}
-      image={
-        <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-      }
-      title='Terry Rivers'
-    />
-  ),
 };
 
-export const Folder: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    thumbnail,
-    moreOptions,
-    variant,
-    ...rest
-  } = props;
+export const Folder: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      variant={variant}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Folder name</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.ThumbnailAvatar>
+          <SvgFolder />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>Folder description</TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <span>Folder metadata</span>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 Folder.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
   variant: { control: { disable: true } },
 };
 Folder.args = {
   ...Basic.args,
   variant: 'folder',
-  name: 'Folder name',
-  description: 'Folder description',
-  metadata: <span>Folder metadata</span>,
-  badge: undefined,
-  thumbnail: <SvgFolder />,
 };
 
-export const Status: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    thumbnail,
-    moreOptions,
-    status,
-    ...rest
-  } = props;
+export const Status: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      status={status}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Tile name</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.ThumbnailAvatar>
+          <SvgImodelHollow />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>Description</TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <span>Tile with status</span>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 Status.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
   status: { control: 'radio', options: ['positive', 'warning', 'negative'] },
 };
 Status.args = {
   ...Basic.args,
   status: 'positive',
-  name: 'Tile name',
-  description: 'Description',
-  metadata: <span>Tile with status</span>,
-  badge: undefined,
-  thumbnail: <SvgImodelHollow />,
 };
 
-export const Loading: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    thumbnail,
-    moreOptions,
-    isLoading,
-    ...rest
-  } = props;
+export const Loading: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      isLoading={isLoading}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Tile name</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.ThumbnailAvatar>
+          <SvgImodelHollow />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>Description</TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <span>Loading tile</span>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+    </TileNew>
   );
 };
 Loading.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
   isNew: { control: { disable: true } },
   isDisabled: { control: { disable: true } },
 };
 Loading.args = {
   ...Basic.args,
   isLoading: true,
-  name: 'Tile name',
-  description: 'Description',
-  metadata: <span>Loading tile</span>,
-  badge: undefined,
-  thumbnail: <SvgImodelHollow />,
 };
 
-export const Disabled: Story<TileProps> = (props) => {
-  const {
-    name,
-    description,
-    metadata,
-    thumbnail,
-    moreOptions,
-    isDisabled,
-    buttons,
-    ...rest
-  } = props;
+export const Disabled: Story<TileNewProps> = (args) => {
   return (
-    <Tile
-      name={name}
-      description={description}
-      metadata={metadata}
-      thumbnail={thumbnail}
-      moreOptions={moreOptions}
-      isDisabled={isDisabled}
-      buttons={buttons}
-      {...rest}
-    />
+    <TileNew {...args}>
+      <TileNew.Name>Tile name</TileNew.Name>
+      <TileNew.ThumbnailArea>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
+        <TileNew.ThumbnailAvatar>
+          <SvgImodelHollow />
+        </TileNew.ThumbnailAvatar>
+      </TileNew.ThumbnailArea>
+      <TileNew.ContentArea>
+        <TileNew.Description>Description</TileNew.Description>
+        <TileNew.MoreOptions>
+          <MenuItem key={1} onClick={action('clicked item 1')}>
+            Item 1
+          </MenuItem>
+          <MenuItem key={2} onClick={action('clicked item 2')}>
+            Item 2
+          </MenuItem>
+        </TileNew.MoreOptions>
+        <TileNew.Metadata>
+          <span>Loading tile</span>
+        </TileNew.Metadata>
+      </TileNew.ContentArea>
+      <TileNew.Buttons>
+        <Button disabled>Button</Button>
+      </TileNew.Buttons>
+    </TileNew>
   );
 };
 Disabled.argTypes = {
   ...Basic.argTypes,
-  thumbnail: { control: { disable: true } },
   isLoading: { control: { disable: true } },
 };
 Disabled.args = {
   ...Basic.args,
-  thumbnail: <SvgImodelHollow />,
-  buttons: <Button disabled>Button</Button>,
   isDisabled: true,
 };
