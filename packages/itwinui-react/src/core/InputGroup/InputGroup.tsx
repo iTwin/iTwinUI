@@ -65,13 +65,16 @@ type InputGroupProps = {
  *  <Radio />
  * </InputGroup>
  */
-export const InputGroup = React.forwardRef((props, ref) => {
+export const InputGroup = React.forwardRef((props, forwardedRef) => {
   const {
     children,
+    disabled = false,
     displayStyle = 'default',
+    label,
     message,
     status,
     svgIcon,
+    required = false,
     ...rest
   } = props;
   useGlobals();
@@ -90,9 +93,14 @@ export const InputGroup = React.forwardRef((props, ref) => {
 
   return (
     <InputContainer
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
       icon={icon()}
       isLabelInline={displayStyle === 'inline'}
-      ref={ref}
+      ref={forwardedRef}
       {...rest}
     >
       <Box className='iui-input-group'>{children}</Box>
