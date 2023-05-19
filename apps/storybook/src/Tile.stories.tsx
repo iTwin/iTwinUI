@@ -159,12 +159,12 @@ export const Actionable: Story<TileNewProps> = (args) => {
     >
       <TileNew.Name>Stadium</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
         <TileNew.ThumbnailPicture>
           https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
         </TileNew.ThumbnailPicture>
+        <TileNew.Badge>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </TileNew.Badge>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>
