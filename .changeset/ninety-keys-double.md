@@ -7,12 +7,12 @@ Added `TransferList` component.
 
 ```jsx
 <TransferList >
-  <TransferList.Area>
-    <TransferList.List>
-      <TransferList.ListItem>Item 1</TransferList.ListItem>
-      <TransferList.ListItem>Item 2</TransferList.ListItem>
-      <TransferList.ListItem>Item 3</TransferList.ListItem>
-    </TransferList.List>
-  </TransferList.Area>
+  <TransferList.ListboxWrapper>
+    <TransferList.Listbox>
+      <TransferList.Item>Item 1</TransferList.Item>
+      <TransferList.Item>Item 2</TransferList.Item>
+      <TransferList.Item>Item 3</TransferList.Item>
+    </TransferList.Listbox>
+  </TransferList.ListboxWrapper>
 </TransferList>
 ```

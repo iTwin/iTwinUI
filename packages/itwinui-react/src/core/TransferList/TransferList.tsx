@@ -42,30 +42,30 @@ const TransferListComponent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', TransferListOwnProps>;
 
 // ----------------------------------------------------------------------------
-// TransferList.Area component
+// TransferList.ListboxWrapper component
 
-type TransferListAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type TransferListListboxWrapperOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-const TransferListArea = React.forwardRef((props, ref) => {
+const TransferListListboxWrapper = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, ...rest } = props;
 
   return (
     <Element
-      className={cx('iui-transfer-list-area', className)}
+      className={cx('iui-transfer-list-listbox-wrapper', className)}
       ref={ref}
       {...rest}
     >
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'div', TransferListAreaOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TransferListListboxWrapperOwnProps>;
 
 // ----------------------------------------------------------------------------
-// TransferList.List component
+// TransferList.Listbox component
 
-type TransferListListOwnProps = ListProps; // eslint-disable-line @typescript-eslint/ban-types
+type TransferListListboxOwnProps = ListProps; // eslint-disable-line @typescript-eslint/ban-types
 
-const TransferListList = React.forwardRef((props, ref) => {
+const TransferListListbox = React.forwardRef((props, ref) => {
   const { as: Element = 'ul', children, className, ...rest } = props;
 
   const { labelId } = useSafeContext(TransferListContext);
@@ -133,19 +133,19 @@ const TransferListList = React.forwardRef((props, ref) => {
       {children}
     </List>
   );
-}) as PolymorphicForwardRefComponent<'ul', TransferListListOwnProps>;
+}) as PolymorphicForwardRefComponent<'ul', TransferListListboxOwnProps>;
 
 // ----------------------------------------------------------------------------
-// TransferList.ListItem component
+// TransferList.Item component
 
-type TransferListListItemOwnProps = {
+type TransferListItemOwnProps = {
   /**
    * Callback fired when the the active state changes.
    */
   onActiveChange?: (value: boolean) => void;
 } & ListItemProps;
 
-const TransferListListItem = React.forwardRef((props, ref) => {
+const TransferListItem = React.forwardRef((props, ref) => {
   const {
     actionable = true,
     disabled,
@@ -190,19 +190,19 @@ const TransferListListItem = React.forwardRef((props, ref) => {
       {children}
     </ListItem>
   );
-}) as PolymorphicForwardRefComponent<'li', TransferListListItemOwnProps>;
+}) as PolymorphicForwardRefComponent<'li', TransferListItemOwnProps>;
 
 // ----------------------------------------------------------------------------
-// TransferList.Label component
+// TransferList.ListboxLabel component
 
-type TransferListLabelOwnProps = {
+type TransferListListboxLabelOwnProps = {
   /**
-   * Text label that is wrapped by `TransferList.Label`
+   * Text label that is wrapped by `TransferList.ListboxLabel`
    */
   children?: string;
 };
 
-const TransferListLabel = React.forwardRef((props, ref) => {
+const TransferListListboxLabel = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, id, ...rest } = props;
 
   const { labelId, setLabelId } = useSafeContext(TransferListContext);
@@ -211,7 +211,7 @@ const TransferListLabel = React.forwardRef((props, ref) => {
 
   return (
     <Element
-      className={cx('iui-transfer-list-label', className)}
+      className={cx('iui-transfer-list-listbox-label', className)}
       id={labelId}
       ref={ref}
       {...rest}
@@ -219,7 +219,7 @@ const TransferListLabel = React.forwardRef((props, ref) => {
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'div', TransferListLabelOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TransferListListboxLabelOwnProps>;
 
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
@@ -245,35 +245,35 @@ const TransferListToolbar = React.forwardRef((props, ref) => {
  * The TransferList component is used to display a list within a box
  * @example
  * <TransferList>
- *   <TransferList.Area>
- *     <TransferList.List>
- *       <TransferList.ListItem>Item 1</TransferList.ListItem>
- *       <TransferList.ListItem>Item 2</TransferList.ListItem>
- *       <TransferList.ListItem>Item 3</TransferList.ListItem>
- *       <TransferList.ListItem>Item 4</TransferList.ListItem>
- *       <TransferList.ListItem>Item 5</TransferList.ListItem>
- *       <TransferList.ListItem>Item 6</TransferList.ListItem>
- *     </TransferList.List>
- *   </TransferList.Area>
+ *   <TransferList.ListboxWrapper>
+ *     <TransferList.Listbox>
+ *       <TransferList.Item>Item 1</TransferList.Item>
+ *       <TransferList.Item>Item 2</TransferList.Item>
+ *       <TransferList.Item>Item 3</TransferList.Item>
+ *       <TransferList.Item>Item 4</TransferList.Item>
+ *       <TransferList.Item>Item 5</TransferList.Item>
+ *       <TransferList.Item>Item 6</TransferList.Item>
+ *     </TransferList.Listbox>
+ *   </TransferList.ListboxWrapper>
  * </TransferList>
  */
 export const TransferList = Object.assign(TransferListComponent, {
   /**
-   * 	TransferList area subcomponent
+   * 	TransferList listbox wrapper subcomponent
    */
-  Area: TransferListArea,
+  ListboxWrapper: TransferListListboxWrapper,
   /**
-   * 	TransferList list subcomponent
+   * 	TransferList listbox subcomponent
    */
-  List: TransferListList,
+  Listbox: TransferListListbox,
   /**
-   * 	TransferList list item subcomponent
+   * 	TransferList item subcomponent
    */
-  ListItem: TransferListListItem,
+  Item: TransferListItem,
   /**
-   * 	TransferList label subcomponent
+   * 	TransferList listbox label subcomponent
    */
-  Label: TransferListLabel,
+  ListboxLabel: TransferListListboxLabel,
   /**
    * 	TransferList toolbar subcomponent
    */
@@ -297,17 +297,18 @@ export const TransferListContext = React.createContext<
 export type TransferListProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, TransferListOwnProps>;
 
-export type TransferListAreaProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListAreaOwnProps>;
+export type TransferListListboxWrapperProps<
+  T extends React.ElementType = 'div',
+> = PolymorphicComponentProps<T, TransferListListboxWrapperOwnProps>;
 
-export type TransferListListProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListListOwnProps>;
+export type TransferListListboxProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, TransferListListboxOwnProps>;
 
-export type TransferListListItemProps<T extends React.ElementType = 'li'> =
-  PolymorphicComponentProps<T, TransferListListItemOwnProps>;
+export type TransferListItemProps<T extends React.ElementType = 'li'> =
+  PolymorphicComponentProps<T, TransferListItemOwnProps>;
 
-export type TransferListLabelProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListLabelOwnProps>;
+export type TransferListListboxLabelProps<T extends React.ElementType = 'div'> =
+  PolymorphicComponentProps<T, TransferListListboxLabelOwnProps>;
 
 export type TransferListToolbarProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, TransferListToolbarOwnProps>;

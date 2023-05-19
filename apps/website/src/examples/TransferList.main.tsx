@@ -53,11 +53,11 @@ export default () => {
 
   return (
     <TransferList style={{ width: 500 }}>
-      <TransferList.Area>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.Listbox>
           {optionData?.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -71,11 +71,11 @@ export default () => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
@@ -104,11 +104,11 @@ export default () => {
           <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>
-      <TransferList.Area>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.Listbox>
           {appliedData.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -122,11 +122,11 @@ export default () => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
     </TransferList>
   );
 };

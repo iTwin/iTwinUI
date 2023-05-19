@@ -10,11 +10,11 @@
   column-gap: var(--iui-size-xs);
 }
 
-.iui-transfer-list-label {
+.iui-transfer-list-listbox-label {
   @include mixins.iui-input-label-styling;
 }
 
-.iui-transfer-list-area {
+.iui-transfer-list-listbox-wrapper {
   display: flex;
   flex-direction: column;
   flex: 1;

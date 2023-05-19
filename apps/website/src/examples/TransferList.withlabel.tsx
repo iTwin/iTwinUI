@@ -53,12 +53,12 @@ export default () => {
 
   return (
     <TransferList style={{ width: 500 }}>
-      <TransferList.Area>
-        <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.ListboxLabel>Options</TransferList.ListboxLabel>
+        <TransferList.Listbox>
           {optionData?.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -72,11 +72,11 @@ export default () => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
@@ -105,12 +105,12 @@ export default () => {
           <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>
-      <TransferList.Area>
-        <TransferList.Label>Applied</TransferList.Label>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.ListboxLabel>Applied</TransferList.ListboxLabel>
+        <TransferList.Listbox>
           {appliedData.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -124,11 +124,11 @@ export default () => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
     </TransferList>
   );
 };

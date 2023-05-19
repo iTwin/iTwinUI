@@ -1,8 +1,8 @@
-/* eslint-disable react/jsx-key */
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+/* eslint-disable react/jsx-key */
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
@@ -71,11 +71,11 @@ export const Basic: Story<TransferListProps> = (args) => {
 
   return (
     <TransferList {...args}>
-      <TransferList.Area>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.Listbox>
           {optionData?.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -89,11 +89,11 @@ export const Basic: Story<TransferListProps> = (args) => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
@@ -128,11 +128,11 @@ export const Basic: Story<TransferListProps> = (args) => {
           <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>
-      <TransferList.Area>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.Listbox>
           {appliedData.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -146,11 +146,11 @@ export const Basic: Story<TransferListProps> = (args) => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
     </TransferList>
   );
 };
@@ -200,12 +200,12 @@ export const WithLabel: Story<TransferListProps> = (args) => {
 
   return (
     <TransferList {...args}>
-      <TransferList.Area>
-        <TransferList.Label>Options</TransferList.Label>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.ListboxLabel>Options</TransferList.ListboxLabel>
+        <TransferList.Listbox>
           {optionData?.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -219,11 +219,11 @@ export const WithLabel: Story<TransferListProps> = (args) => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
@@ -258,12 +258,12 @@ export const WithLabel: Story<TransferListProps> = (args) => {
           <SvgChevronLeftDouble />
         </IconButton>
       </TransferList.Toolbar>
-      <TransferList.Area>
-        <TransferList.Label>Applied</TransferList.Label>
-        <TransferList.List>
+      <TransferList.ListboxWrapper>
+        <TransferList.ListboxLabel>Applied</TransferList.ListboxLabel>
+        <TransferList.Listbox>
           {appliedData.map((item, index) => {
             return (
-              <TransferList.ListItem
+              <TransferList.Item
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -277,11 +277,11 @@ export const WithLabel: Story<TransferListProps> = (args) => {
                 }}
               >
                 {item.name}
-              </TransferList.ListItem>
+              </TransferList.Item>
             );
           })}
-        </TransferList.List>
-      </TransferList.Area>
+        </TransferList.Listbox>
+      </TransferList.ListboxWrapper>
     </TransferList>
   );
 };
