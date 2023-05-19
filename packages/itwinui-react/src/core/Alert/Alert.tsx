@@ -9,6 +9,7 @@ import {
   Icon,
   useSafeContext,
   useGlobals,
+  polymorphic,
   StatusIconMap,
   SvgCloseSmall,
 } from '../utils/index.js';
@@ -54,7 +55,6 @@ const AlertComponent = React.forwardRef((props, ref) => {
     children,
     className,
     type = 'informational',
-    style,
     isSticky = false,
     ...rest
   } = props;
@@ -66,7 +66,6 @@ const AlertComponent = React.forwardRef((props, ref) => {
       className={cx('iui-alert', className)}
       data-iui-status={type}
       data-iui-variant={isSticky ? 'sticky' : undefined}
-      style={style}
       ref={ref}
       {...rest}
     >
@@ -74,6 +73,7 @@ const AlertComponent = React.forwardRef((props, ref) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
+AlertComponent.displayName = 'Alert';
 
 // ----------------------------------------------------------------------------
 // Alert.Icon component
@@ -102,21 +102,13 @@ const AlertIcon = React.forwardRef((props, ref) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'svg', AlertIconOwnProps>;
+AlertIcon.displayName = 'Alert.Icon';
 
 // ----------------------------------------------------------------------------
 // Alert.Message component
 
-type AlertMessageOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-const AlertMessage = React.forwardRef((props, ref) => {
-  const { as: Element = 'span', children, className, ...rest } = props;
-
-  return (
-    <Element className={cx('iui-alert-message', className)} ref={ref} {...rest}>
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'span', AlertMessageOwnProps>;
+const AlertMessage = polymorphic.span('iui-alert-message');
+AlertMessage.displayName = 'Alert.Message';
 
 // ----------------------------------------------------------------------------
 // Alert.Action component
@@ -132,6 +124,7 @@ const AlertAction = React.forwardRef((props, ref) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'a', AlertActionOwnProps>;
+AlertAction.displayName = 'Alert.Action';
 
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
@@ -141,7 +134,6 @@ type AlertCloseButtonOwnProps = {}; // eslint-disable-line @typescript-eslint/ba
 const AlertCloseButton = React.forwardRef((props, ref) => {
   const { as: Element = 'button', children, className, ...rest } = props;
 
-  console.log('HasChildren?: ', children ? true : false);
   return (
     <Element
       aria-label='Close'
@@ -158,6 +150,7 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'button', AlertCloseButtonOwnProps>;
+AlertCloseButton.displayName = 'Alert.CloseButton';
 
 /**
  * A small box to quickly grab user attention and communicate a brief message
@@ -207,11 +200,6 @@ export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;
 export type AlertIconProps = PolymorphicComponentProps<
   'svg',
   AlertIconOwnProps
->;
-
-export type AlertMessageProps = PolymorphicComponentProps<
-  'span',
-  AlertMessageOwnProps
 >;
 
 export type AlertActionProps = PolymorphicComponentProps<
