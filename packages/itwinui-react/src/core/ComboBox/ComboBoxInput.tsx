@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/index.js';
-import type { InputProps } from '../Input/index.js';
 import {
   useSafeContext,
   useMergedRefs,
@@ -19,7 +18,9 @@ import {
   ComboBoxRefsContext,
 } from './helpers.js';
 
-type ComboBoxInputProps = { selectTags?: JSX.Element[] } & InputProps;
+type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
+  typeof Input
+>;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const {

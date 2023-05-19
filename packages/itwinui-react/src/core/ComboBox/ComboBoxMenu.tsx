@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Menu } from '../Menu/index.js';
-import type { MenuProps } from '../Menu/index.js';
 import { Surface } from '../Surface/index.js';
 import {
   useSafeContext,
@@ -17,7 +16,10 @@ import {
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
-type ComboBoxMenuProps = Omit<MenuProps, 'onClick'> &
+type ComboBoxMenuProps = Omit<
+  React.ComponentPropsWithoutRef<typeof Menu>,
+  'onClick'
+> &
   React.ComponentPropsWithoutRef<'ul'>;
 
 const isOverflowOverlaySupported = () =>
@@ -74,7 +76,7 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     } as React.CSSProperties;
 
     return (
-      <Surface style={surfaceStyles} {...rest}>
+      <Surface style={surfaceStyles}>
         <div {...outerProps}>
           <Menu
             id={`${id}-list`}
@@ -83,6 +85,7 @@ const VirtualizedComboBoxMenu = React.forwardRef(
             ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
             className={className}
             style={innerProps.style}
+            {...rest}
           >
             {visibleChildren}
           </Menu>
@@ -121,7 +124,7 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
           {...rest}
         />
       ) : (
-        <VirtualizedComboBoxMenu ref={mergeRefs(forwardedRef)} {...props} />
+        <VirtualizedComboBoxMenu ref={forwardedRef} {...props} />
       )}
     </>
   );

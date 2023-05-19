@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useGlobals } from '../utils/index.js';
+import { Box, StatusIconMap, useGlobals } from '../utils/index.js';
 import cx from 'classnames';
 
-export type StatusMessageProps = {
+type StatusMessageProps = {
   /**
    * Custom icon to be displayed at the beginning.
    * It will default to the `status` icon, if it's set.
@@ -51,7 +51,7 @@ export const StatusMessage = ({
   return (
     <>
       <StartIcon />
-      <div className='iui-message'>{children}</div>
+      <Box className='iui-message'>{children}</Box>
     </>
   );
 };

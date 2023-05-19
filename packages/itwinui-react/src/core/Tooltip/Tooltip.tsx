@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, Popover } from '../utils/index.js';
+import { useGlobals, Popover, Box } from '../utils/index.js';
 import type { CommonProps, PopoverProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tooltip.css';
 
@@ -43,14 +43,14 @@ export const Tooltip = (props: TooltipProps) => {
       visible={visible}
       interactive={false}
       content={
-        <div
+        <Box
           className={cx('iui-tooltip', className)}
           style={style}
           role='tooltip'
           id={id}
         >
           {content}
-        </div>
+        </Box>
       }
       offset={[0, 4]}
       ref={ref}

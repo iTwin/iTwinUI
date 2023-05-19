@@ -39,7 +39,7 @@ const FileEmptyCardComponent = React.forwardRef((props, ref) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'div'>;
 
 /**
  * Empty file card to be used with the `FileUploadCard` component when no file has been uploaded.

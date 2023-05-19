@@ -96,4 +96,4 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
       {items}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'ol', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'ol'>;

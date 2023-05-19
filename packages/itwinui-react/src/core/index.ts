@@ -72,7 +72,6 @@ export {
 } from './Header/index.js';
 
 export { List, ListItem } from './List/index.js';
-export type { ListProps, ListItemProps } from './List/index.js';
 
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
 

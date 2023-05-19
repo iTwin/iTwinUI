@@ -103,7 +103,7 @@ const defaultCombinedRenderer = (date: Date, precision: Precision) => {
 export type MeridiemType = 'AM' | 'PM';
 export type Precision = 'hours' | 'minutes' | 'seconds';
 
-type TimePickerProps = {
+export type TimePickerProps = {
   /**
    * Selected date. Only time is used from Date object.
    */

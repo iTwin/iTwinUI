@@ -4,14 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../../utils/index.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../../utils/index.js';
+import { useGlobals, Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
-type TextOwnProps = {
+type TextProps = {
   /**
    * Which typography variant/size should be used for the styling?
    *
@@ -37,11 +34,6 @@ type TextOwnProps = {
   isSkeleton?: boolean;
 };
 
-export type TextProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TextOwnProps>;
-
-type TextComponent = PolymorphicForwardRefComponent<'div', TextOwnProps>;
-
 /**
  * Polymorphic typography component to render any kind of text as any kind of element.
  * Users should decide which element to render based on the context of their app. Link to heading levels docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements#accessibility_concerns
@@ -54,10 +46,9 @@ type TextComponent = PolymorphicForwardRefComponent<'div', TextOwnProps>;
  * <Text isMuted>Some muted text.</Text>
  * <Text isSkeleton>Skeleton text</Text>
  */
-export const Text: TextComponent = React.forwardRef((props, ref) => {
+export const Text = React.forwardRef((props, ref) => {
   const {
     variant = 'body',
-    as: Element = 'div',
     className,
     isMuted = false,
     isSkeleton = false,
@@ -67,7 +58,7 @@ export const Text: TextComponent = React.forwardRef((props, ref) => {
   useGlobals();
 
   return (
-    <Element
+    <Box
       className={cx(
         {
           [`iui-text-${variant}`]: variant !== 'body',
@@ -81,6 +72,6 @@ export const Text: TextComponent = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-});
+}) as PolymorphicForwardRefComponent<'div', TextProps>;
 
 export default Text;

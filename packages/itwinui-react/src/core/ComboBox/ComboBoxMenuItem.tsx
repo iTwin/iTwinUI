@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import type { MenuItemProps } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/MenuItem.js';
 import { useSafeContext, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext } from './helpers.js';

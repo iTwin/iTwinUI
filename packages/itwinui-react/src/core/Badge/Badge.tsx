@@ -66,7 +66,7 @@ type BadgeProps = {
  * <Badge backgroundColor="sunglow">Label</Badge>
  * <Badge backgroundColor="positive">Label</Badge>
  */
-export const Badge = React.forwardRef((props, ref) => {
+export const Badge = React.forwardRef((props, forwardedRef) => {
   const { backgroundColor, style, className, children, ...rest } = props;
 
   useGlobals();
@@ -93,6 +93,7 @@ export const Badge = React.forwardRef((props, ref) => {
       className={cx('iui-badge', className)}
       style={_style}
       data-iui-status={statusValue}
+      ref={forwardedRef}
       {...rest}
     >
       {children}

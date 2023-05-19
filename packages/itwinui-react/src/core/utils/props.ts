@@ -24,7 +24,7 @@ export type CommonProps = {
  */
 export interface PolymorphicForwardRefComponent<
   T,
-  OwnProps = Record<string, unknown>,
+  OwnProps = {}, // eslint-disable-line @typescript-eslint/ban-types
 > extends React.ForwardRefExoticComponent<
     Merge<
       T extends React.ElementType ? React.ComponentPropsWithRef<T> : never,

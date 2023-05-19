@@ -22,7 +22,7 @@ const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLLIElement> | undefined;
 }>({ ref: undefined });
 
-type MenuItemProps = {
+export type MenuItemProps = {
   /**
    * Item is selected.
    */

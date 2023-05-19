@@ -333,4 +333,4 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'div'>;

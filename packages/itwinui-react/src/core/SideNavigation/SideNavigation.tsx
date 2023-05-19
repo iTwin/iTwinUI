@@ -8,13 +8,14 @@ import {
   useGlobals,
   WithCSSTransition,
   SvgChevronRight,
+  Box,
 } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
-export type SideNavigationProps = {
+type SideNavigationProps = {
   /**
    * Buttons shown in the top portion of sidenav.
    * Recommended to use `SidenavButton` components.
@@ -62,7 +63,7 @@ export type SideNavigationProps = {
    * @default false
    */
   isSubmenuOpen?: boolean;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Left side navigation menu component.
@@ -78,7 +79,7 @@ export type SideNavigationProps = {
  *   ]}
  * />
  */
-export const SideNavigation = (props: SideNavigationProps) => {
+export const SideNavigation = React.forwardRef((props, forwardedRef) => {
   const {
     items,
     secondaryItems,
@@ -111,16 +112,20 @@ export const SideNavigation = (props: SideNavigationProps) => {
   );
 
   return (
-    <div className={cx('iui-side-navigation-wrapper', className)} {...rest}>
-      <div
+    <Box
+      className={cx('iui-side-navigation-wrapper', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      <Box
         className={cx('iui-side-navigation', {
           'iui-expanded': _isExpanded,
           'iui-collapsed': !_isExpanded,
         })}
       >
         {expanderPlacement === 'top' && ExpandButton}
-        <div className='iui-sidenav-content'>
-          <div className='iui-top'>
+        <Box className='iui-sidenav-content'>
+          <Box className='iui-top'>
             {items.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip
@@ -134,8 +139,8 @@ export const SideNavigation = (props: SideNavigationProps) => {
                 sidenavButton
               ),
             )}
-          </div>
-          <div className='iui-bottom'>
+          </Box>
+          <Box className='iui-bottom'>
             {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip
@@ -149,10 +154,10 @@ export const SideNavigation = (props: SideNavigationProps) => {
                 sidenavButton
               ),
             )}
-          </div>
-        </div>
+          </Box>
+        </Box>
         {expanderPlacement === 'bottom' && ExpandButton}
-      </div>
+      </Box>
       {submenu && (
         <WithCSSTransition
           in={isSubmenuOpen}
@@ -163,8 +168,8 @@ export const SideNavigation = (props: SideNavigationProps) => {
           {submenu}
         </WithCSSTransition>
       )}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;
 
 export default SideNavigation;

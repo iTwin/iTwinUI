@@ -35,7 +35,7 @@ const CarouselNavigationComponent = React.forwardRef((props, ref) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'nav', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'nav'>;
 
 /** Button for switching to previous slide */
 const PreviousButton = React.forwardRef((props, ref) => {

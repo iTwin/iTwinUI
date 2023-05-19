@@ -65,7 +65,7 @@ const FileUploadCardTitle = React.forwardRef((props, ref) => {
       {children ?? title}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'span', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'span'>;
 FileUploadCardTitle.displayName = 'FileUploadCard.Title';
 
 // ----------------------------------------------------------------------------
@@ -94,7 +94,7 @@ const FileUploadCardDescription = React.forwardRef((props, ref) => {
       {children ?? description}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'span', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'span'>;
 FileUploadCardDescription.displayName = 'FileUploadCard.Description';
 
 // ----------------------------------------------------------------------------
@@ -120,7 +120,7 @@ const FileUploadCardInputLabel = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'label', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'label'>;
 FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
 
 // ----------------------------------------------------------------------------
@@ -171,7 +171,7 @@ const FileUploadCardInput = React.forwardRef((props, ref) => {
       {children}
     </>
   );
-}) as PolymorphicForwardRefComponent<'input', {}>; // eslint-disable-line
+}) as PolymorphicForwardRefComponent<'input'>;
 FileUploadCardInput.displayName = 'FileUploadCard.Input';
 
 // ----------------------------------------------------------------------------

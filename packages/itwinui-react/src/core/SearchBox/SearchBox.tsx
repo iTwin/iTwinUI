@@ -14,15 +14,15 @@ import {
   Icon,
   useMergedRefs,
   mergeEventHandlers,
+  Box,
 } from '../utils/index.js';
 import type {
   IconProps,
   PolymorphicForwardRefComponent,
-  PolymorphicComponentProps,
   InputFlexContainerProps,
 } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
-import type { IconButtonProps } from '../Buttons/IconButton/index.js';
+import type { IconButtonProps } from '../Buttons/IconButton/IconButton.js';
 import '@itwin/itwinui-css/css/searchbox.css';
 
 const SearchBoxContext = React.createContext<
@@ -241,32 +241,31 @@ SearchBoxIcon.displayName = 'SearchBox.Icon';
 
 // ----------------------------------------------------------------------------
 
-const SearchBoxInput = React.forwardRef(
-  (props: SearchBoxInputProps, ref: React.Ref<HTMLInputElement>) => {
-    const { className, id: idProp, ...rest } = props;
+const SearchBoxInput = React.forwardRef((props, ref) => {
+  const { className, id: idProp, ...rest } = props;
 
-    const { inputId, setInputId, isDisabled, inputRef } =
-      useSafeContext(SearchBoxContext);
+  const { inputId, setInputId, isDisabled, inputRef } =
+    useSafeContext(SearchBoxContext);
 
-    React.useEffect(() => {
-      if (idProp && idProp !== inputId) {
-        setInputId(idProp);
-      }
-    }, [idProp, inputId, setInputId]);
+  React.useEffect(() => {
+    if (idProp && idProp !== inputId) {
+      setInputId(idProp);
+    }
+  }, [idProp, inputId, setInputId]);
 
-    return (
-      <input
-        id={idProp ?? inputId}
-        ref={useMergedRefs(ref, inputRef)}
-        role='searchbox'
-        type='text'
-        className={cx('iui-search-input', className)}
-        disabled={isDisabled}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Box
+      as='input'
+      id={idProp ?? inputId}
+      ref={useMergedRefs(ref, inputRef)}
+      role='searchbox'
+      type='text'
+      className={cx('iui-search-input', className)}
+      disabled={isDisabled}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'input'>;
 SearchBoxInput.displayName = 'SearchBox.Input';
 
 // ----------------------------------------------------------------------------
@@ -397,24 +396,5 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
 });
 
 SearchBox.displayName = 'SearchBox';
-
-export type SearchBoxProps = PolymorphicComponentProps<
-  'div',
-  SearchBoxOwnProps & InputFlexContainerProps
->;
-export type SearchBoxInputProps = React.ComponentProps<'input'>;
-export type SearchBoxButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
-export type SearchBoxExpandButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
-export type SearchBoxCollapseButtonProps = PolymorphicComponentProps<
-  'button',
-  IconButtonProps
->;
-export type SearchBoxIconProps = PolymorphicComponentProps<'span', IconProps>;
 
 export default SearchBox;

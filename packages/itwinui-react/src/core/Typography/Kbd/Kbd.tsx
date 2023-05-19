@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../../utils/index.js';
-import type { CommonProps } from '../../utils/index.js';
+import { Box, useGlobals } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/keyboard.css';
 
 /**
@@ -27,12 +27,12 @@ export const KbdKeys = {
   Down: '\u2193',
 } as const;
 
-export type KbdProps = {
+type KbdProps = {
   /**
    * Content of the key to be passed as children. Must be a string or one of the `KbdKeys`.
    */
   children: string;
-} & CommonProps;
+};
 
 /**
  * A keyboard key element.
@@ -40,16 +40,21 @@ export type KbdProps = {
  * <Kbd>A</Kbd>
  * <Kbd title='Enter'>{KbdKeys.Enter}</Kbd>
  */
-export const Kbd = (props: KbdProps) => {
+export const Kbd = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
 
   useGlobals();
 
   return (
-    <kbd className={cx('iui-keyboard', className)} {...rest}>
+    <Box
+      as='kbd'
+      className={cx('iui-keyboard', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children}
-    </kbd>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'kbd', KbdProps>;
 
 export default Kbd;

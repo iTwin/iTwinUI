@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type { InputProps } from '../Input/index.js';
 import { MenuExtraContent } from '../Menu/index.js';
 import type { SelectOption } from '../Select/index.js';
 import SelectTag from '../Select/SelectTag.js';
 import { Text } from '../Typography/index.js';
+import type { Input } from '../Input/Input.js';
 import {
   useGlobals,
   getRandomValue,
@@ -16,9 +16,12 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
+} from '../utils/index.js';
+import type {
+  PopoverProps,
+  InputContainerProps,
   CommonProps,
 } from '../utils/index.js';
-import type { PopoverProps, InputContainerProps } from '../utils/index.js';
 import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
@@ -101,7 +104,7 @@ export type ComboBoxProps<T> = {
   /**
    * Native input element props.
    */
-  inputProps?: Omit<InputProps, 'setFocus'>;
+  inputProps?: Omit<React.ComponentProps<typeof Input>, 'setFocus'>;
   /**
    * Props to customize dropdown menu behavior.
    */
