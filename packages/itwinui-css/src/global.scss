@@ -4,7 +4,7 @@
 
 // reset anything that may have been set by v1
 :where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
-  :where([class*='iui-']:not(.iui-root)) {
+  :where([class*='iui-']:not(.iui-root, svg *)) {
     &,
     &::before,
     &::after {
@@ -16,7 +16,7 @@
 :where(.iui-root) {
   color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
-  line-height: var(--iui-size-l);
+  line-height: 1.5;
   font-family: var(--iui-font-sans);
 
   // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements

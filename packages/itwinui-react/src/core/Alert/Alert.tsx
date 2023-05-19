@@ -6,11 +6,11 @@ import cx from 'classnames';
 import * as React from 'react';
 import '@itwin/itwinui-css/css/alert.css';
 import {
-  useTheme,
-  StatusIconMap,
-  SvgCloseSmall,
   Icon,
   useSafeContext,
+  useGlobals,
+  StatusIconMap,
+  SvgCloseSmall,
 } from '../utils/index.js';
 import type {
   CommonProps,
@@ -59,7 +59,7 @@ const AlertComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <Element

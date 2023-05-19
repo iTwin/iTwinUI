@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../../utils/index.js';
+import { useGlobals } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
 export type TitleProps = {
@@ -24,7 +24,7 @@ export const Title = React.forwardRef(
   (props: TitleProps, ref: React.RefObject<HTMLHeadingElement>) => {
     const { className, isMuted = false, ...rest } = props;
 
-    useTheme();
+    useGlobals();
 
     return (
       <h2

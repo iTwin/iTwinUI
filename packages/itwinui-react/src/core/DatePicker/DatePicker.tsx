@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useTheme,
+  useGlobals,
   SvgChevronLeft,
   SvgChevronRight,
   SvgChevronLeftDouble,
@@ -230,7 +230,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;

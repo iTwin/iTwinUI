@@ -17,6 +17,11 @@ module.exports = [
   scenario('Type Without Label', {
     selectors: ['#demo-no-label'],
   }),
+  scenario('Type SearchBox', {
+    actions: [hover('#demo-search-hover')],
+    selectors: ['#demo-search-box'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
   scenario('State hover in default', {
     actions: [hover('#test-default-singular')],
     selectors: ['#demo-default-singular'],

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import ReactDOM from 'react-dom';
-import { useTheme, getContainer, getDocument } from '../utils/index.js';
+import { useGlobals, getContainer, getDocument } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { Dialog } from '../Dialog/index.js';
@@ -91,7 +91,7 @@ export const Modal = (props: ModalProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const [container, setContainer] = React.useState<HTMLElement>();
   React.useEffect(() => {

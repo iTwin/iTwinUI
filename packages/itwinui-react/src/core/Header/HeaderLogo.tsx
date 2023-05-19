@@ -6,7 +6,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
@@ -48,7 +48,7 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <Element

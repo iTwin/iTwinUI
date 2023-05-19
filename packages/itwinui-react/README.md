@@ -2,10 +2,10 @@
   <picture>
     <source
       media='(prefers-color-scheme: dark)'
-      srcSet='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
+      srcset='https://itwin.github.io/iTwinUI/dev/logo-dark.svg'
     />
     <img
-      src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'
+      src='https://itwin.github.io/iTwinUI/dev/logo.svg'
       alt='iTwinUI logo'
     />
   </picture>
@@ -53,7 +53,7 @@ const App = () => (
 
 Yes, that's really all you need as you can see in this live interactive demo:
 
-[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/playgrounds/cra?file=/src/App.jsx)
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)
 
 ---
 

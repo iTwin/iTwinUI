@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { useGlobals } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -26,7 +26,7 @@ export const InformationPanelWrapper = (
 ) => {
   const { className, children, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   return (
     <div className={cx('iui-information-panel-wrapper', className)} {...rest}>

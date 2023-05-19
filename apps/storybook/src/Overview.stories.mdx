@@ -7,12 +7,9 @@ import { Meta } from '@storybook/addon-docs';
     <picture>
       <source
         media='(prefers-color-scheme: dark)'
-        srcSet='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
+        srcset='https://itwin.github.io/iTwinUI/dev/logo-dark.svg'
       />
-      <img
-        src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'
-        alt='iTwinUI logo'
-      />
+      <img src='https://itwin.github.io/iTwinUI/dev/logo.svg' alt='iTwinUI' />
     </picture>
   </h1>
 </center>
@@ -20,7 +17,7 @@ import { Meta } from '@storybook/addon-docs';
 ## What is iTwinUI-react?
 
 iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
-The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI-react) to see the components in action.
+The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI/react) to see the components in action.
 
 ## Installation
 
@@ -44,7 +41,7 @@ const App = () => <Button>Hello!</Button>;
 
 Yes, that's really all you need as you can see in this live interactive demo:
 
-[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/playgrounds/cra?file=/src/App.jsx)
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)
 
 ## Theming
 
@@ -59,9 +56,7 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 const App = () => (
   <>
-    <ThemeProvider theme='dark'>
-      {/* Your components go here. */}
-    </ThemeProvider>
+    <ThemeProvider theme='dark'>{/* Your components go here. */}</ThemeProvider>
   </>
 );
 ```

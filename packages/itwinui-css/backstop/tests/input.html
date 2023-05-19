@@ -20,6 +20,9 @@
       import "@itwin/itwinui-icons-elements/status-error";
       import "@itwin/itwinui-icons-elements/close-small";
       import "@itwin/itwinui-icons-elements/info-circular";
+      import "@itwin/itwinui-icons-elements/chevron-up";
+      import "@itwin/itwinui-icons-elements/chevron-down";
+      import "@itwin/itwinui-icons-elements/search";
     </script>
     <title>Input | iTwinUI</title>
     <style>
@@ -317,6 +320,7 @@
 
       <div class="iui-input-container">
         <input
+          aria-label="Search"
           value="A value"
           class="iui-input"
         />
@@ -333,6 +337,7 @@
       <div class="iui-input-container iui-disabled">
         <input
           disabled
+          aria-label="Search"
           value="A value"
           class="iui-input"
         />
@@ -373,6 +378,7 @@
 
       <div class="iui-input-container">
         <input
+          aria-label="Search"
           value="Small"
           class="iui-input"
           data-iui-size="small"
@@ -381,6 +387,7 @@
 
       <div class="iui-input-container">
         <input
+          aria-label="Search"
           value="Default"
           class="iui-input"
         />
@@ -388,6 +395,7 @@
 
       <div class="iui-input-container">
         <input
+          aria-label="Search"
           value="Large"
           class="iui-input"
           data-iui-size="large"
@@ -499,6 +507,210 @@
             id="test-6"
           />
         </div>
+      </div>
+
+    </section>
+
+    <br />
+
+    <h2>Search box</h2>
+    <section id="demo-search-box">
+      <div
+        class="iui-input-flex-container"
+        data-iui-size="small"
+      >
+        <span
+          class="iui-svg-icon iui-search-icon"
+          data-iui-icon-size="s"
+        >
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+          id="search-2"
+          value="test search input"
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          data-iui-size="small"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div
+        class="iui-input-flex-container"
+        data-iui-disabled="true"
+      >
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+          id="search-3"
+          disabled
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+          disabled
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div
+        class="iui-input-flex-container iui-searchbox"
+        id="demo-search-hover"
+      >
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div
+        class="iui-input-flex-container iui-searchbox"
+        data-iui-status="positive"
+      >
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div
+        class="iui-input-flex-container iui-searchbox"
+        data-iui-status="warning"
+      >
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div
+        class="iui-input-flex-container iui-searchbox"
+        data-iui-status="negative"
+      >
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+        />
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+      </div>
+      <div class="iui-input-flex-container">
+        <span class="iui-svg-icon iui-search-icon">
+          <svg-search
+            class="iui-button-icon"
+            aria-hidden="true"
+          /></span>
+        <input
+          placeholder="Placeholder…"
+          type="text"
+          id="search-4"
+        />
+        <p
+          class="iui-text-block iui-text-muted"
+          style="padding-right: var(--iui-size-s);"
+        >
+          0/3
+        </p>
+        <hr
+          class="iui-divider"
+          aria-orientation='vertical'
+        />
+
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-chevron-down
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-chevron-up
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
+        <button
+          class="iui-button"
+          data-iui-variant="borderless"
+        >
+          <svg-close-small
+            class="iui-button-icon"
+            aria-hidden="true"
+          />
+        </button>
       </div>
 
     </section>

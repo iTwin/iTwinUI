@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../hooks/index.js';
+import { useGlobals } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 
 export type DividerProps = {
@@ -22,7 +22,7 @@ export const Divider = React.forwardRef<HTMLHRElement, DividerProps>(
   (props, ref) => {
     const { className, orientation = 'horizontal', ...rest } = props;
 
-    useTheme();
+    useGlobals();
 
     return (
       <hr

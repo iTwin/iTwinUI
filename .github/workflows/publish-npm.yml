@@ -50,7 +50,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - run: yarn install
-      - run: yarn build
+      - run: yarn build --filter={./packages/*}...
 
       - run: npm publish --access public --tag ${{ inputs.tag }}
         working-directory: './packages/${{ inputs.package }}/'

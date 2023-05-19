@@ -160,7 +160,6 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
           visible={isOpen}
           placement='bottom-start'
         >
@@ -240,7 +239,6 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
           visible={isOpen}
           placement='bottom-start'
         >
