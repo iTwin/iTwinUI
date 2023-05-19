@@ -87,7 +87,7 @@ export const HeaderButton = React.forwardRef((props, ref) => {
   const headerButton =
     !!props.menuItems && !!props.onClick ? (
       <HeaderSplitButton {...buttonProps} />
-    ) : !!props.onClick ? (
+    ) : !!props.menuItems ? (
       <HeaderDropdownButton {...buttonProps} />
     ) : (
       <HeaderBasicButton {...buttonProps} />
