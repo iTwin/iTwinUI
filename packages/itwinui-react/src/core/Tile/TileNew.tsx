@@ -16,6 +16,7 @@ import {
   SvgNew,
   LinkAction,
   supportsHas,
+  polymorphic,
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
@@ -196,21 +197,8 @@ type TileOwnProps = {
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
 
-const TileThumbnailArea = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  return (
-    <Element
-      className={cx('iui-tile-thumbnail', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileThumbnailAreaOwnProps>;
+const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
 TileThumbnailArea.displayName = 'TileNew.ThumbnailArea';
-
-type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
@@ -308,18 +296,7 @@ type TileTypeIndicatorOwnProps = {}; // eslint-disable-line @typescript-eslint/b
 // ----------------------------------------------------------------------------
 // Tile.Badge component
 
-const TileBadge = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  return (
-    <Element
-      className={cx('iui-tile-thumbnail-badge-container', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileBadgeOwnProps>;
+const TileBadge = polymorphic.div('iui-tile-thumbnail-badge-container');
 TileBadge.displayName = 'Tile.Badge';
 
 type TileBadgeOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
@@ -374,14 +351,7 @@ type TileNameOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
 
-const TileContentArea = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  return (
-    <Element className={cx('iui-tile-content', className)} ref={ref} {...rest}>
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileContentAreaOwnProps>;
+const TileContentArea = polymorphic.div('iui-tile-content');
 TileContentArea.displayName = 'TileNew.ContentArea';
 
 type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
@@ -389,39 +359,15 @@ type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban
 // ----------------------------------------------------------------------------
 // Tile.Description component
 
-const TileDescription = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, description, ...rest } = props;
-  return (
-    <Element
-      className={cx('iui-tile-description', className)}
-      ref={ref}
-      {...rest}
-    >
-      {description !== undefined && description}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileDescriptionOwnProps>;
+const TileDescription = polymorphic.div('iui-tile-description');
 TileDescription.displayName = 'TileNew.Description';
 
-type TileDescriptionOwnProps = {
-  /**
-   * Description text of the tile.
-   * Gets truncated if it can't fit in the tile.
-   */
-  description?: React.ReactNode;
-};
+type TileDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
 
-const TileMetadata = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  return (
-    <Element className={cx('iui-tile-metadata', className)} ref={ref} {...rest}>
-      {children !== undefined && children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileMetadataOwnProps>;
+const TileMetadata = polymorphic.div('iui-tile-metadata');
 TileMetadata.displayName = 'TileNew.Metadata';
 
 type TileMetadataOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
@@ -481,14 +427,7 @@ type TileMoreOptionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
 
-const TileButtons = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  return (
-    <Element className={cx('iui-tile-buttons', className)} ref={ref} {...rest}>
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileButtonsOwnProps>;
+const TileButtons = polymorphic.div('iui-tile-buttons');
 TileButtons.displayName = 'TileNew.Buttons';
 
 type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
