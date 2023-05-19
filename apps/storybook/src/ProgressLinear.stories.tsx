@@ -7,7 +7,9 @@ import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErr
 import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { ProgressLinear, ProgressLinearProps } from '@itwin/itwinui-react';
+import { ProgressLinear } from '@itwin/itwinui-react';
+
+type ProgressLinearProps = React.ComponentProps<typeof ProgressLinear>;
 
 export default {
   title: 'ProgressIndicators/ProgressLinear',

@@ -12,7 +12,6 @@ import {
   HeaderBreadcrumbs,
   HeaderButton,
   HeaderLogo,
-  HeaderProps,
   IconButton,
   Input,
   MenuExtraContent,
@@ -28,6 +27,8 @@ import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
 import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
 import { SvgImodel } from '@itwin/itwinui-icons-react';
 import { useState } from '@storybook/addons';
+
+type HeaderProps = React.ComponentProps<typeof Header>;
 
 export default {
   title: 'Core/Header',

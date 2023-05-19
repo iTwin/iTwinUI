@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Flex, FlexProps } from '@itwin/itwinui-react';
+import { Flex } from '@itwin/itwinui-react';
+
+type FlexProps = React.ComponentProps<typeof Flex>;
 
 export default {
   component: Flex,

@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Tag, TagContainer, TagContainerProps } from '@itwin/itwinui-react';
+import { Tag, TagContainer } from '@itwin/itwinui-react';
+
+type TagContainerProps = React.ComponentProps<typeof TagContainer>;
 
 export default {
   component: TagContainer,

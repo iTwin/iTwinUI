@@ -6,6 +6,7 @@ import React from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
+
 export default {
   title: 'Core/Dialog',
   component: Dialog,

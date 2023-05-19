@@ -5,7 +5,9 @@
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledTextarea, LabeledTextareaProps } from '@itwin/itwinui-react';
+import { LabeledTextarea } from '@itwin/itwinui-react';
+
+type LabeledTextareaProps = React.ComponentProps<typeof LabeledTextarea>;
 
 export default {
   title: 'Input/LabeledTextarea',
