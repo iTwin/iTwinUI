@@ -20,14 +20,3 @@ export default () => {
     </div>
   );
 };
-
-{
-  /* <Alert
-isSticky
-onClose={() => console.log('CLOSED')}
-clickableTextProps={{ onClick: () => console.log('Clicked more info!') }}
-clickableText='Learn more'
->
-This is a sticky alert
-</Alert> */
-}

@@ -14,7 +14,6 @@ import {
   SvgCloseSmall,
 } from '../utils/index.js';
 import type {
-  CommonProps,
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../utils/props.js';
@@ -43,11 +42,7 @@ type AlertOwnProps = {
    * @default false
    */
   isSticky?: boolean;
-  /**
-   * Alert message text.
-   */
-  children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 const AlertComponent = React.forwardRef((props, ref) => {
   const {
