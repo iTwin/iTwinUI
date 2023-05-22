@@ -514,7 +514,9 @@ it('should work with custom itemRenderer', async () => {
   await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
 
   expect(
-    document.querySelector('.iui-list-item.iui-focused.my-custom-item'),
+    document.querySelector(
+      `.iui-list-item.my-custom-item[data-iui-focused='true']`,
+    ),
   ).toHaveTextContent('CUSTOM Item 2');
 
   await act(async () => void (await userEvent.keyboard('{Enter}')));
