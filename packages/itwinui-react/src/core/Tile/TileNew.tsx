@@ -313,34 +313,31 @@ const TileName = React.forwardRef(
       isNew,
       isActionable,
       isDisabled,
-      variant,
       onClick,
     } = useSafeContext(TileContext);
 
     return (
-      variant !== 'folder' && (
-        <Element className='iui-tile-name' ref={ref} {...rest}>
-          <TitleIcon
-            isLoading={isLoading}
-            isSelected={isSelected}
-            isNew={isNew}
-            status={status}
-          />
-          <span className='iui-tile-name-label'>
-            {isActionable && onClick ? (
-              <LinkAction
-                as='button'
-                onClick={!isDisabled ? onClick : undefined}
-                aria-disabled={isDisabled}
-              >
-                {children}
-              </LinkAction>
-            ) : (
-              children
-            )}
-          </span>
-        </Element>
-      )
+      <Element className='iui-tile-name' ref={ref} {...rest}>
+        <TitleIcon
+          isLoading={isLoading}
+          isSelected={isSelected}
+          isNew={isNew}
+          status={status}
+        />
+        <span className='iui-tile-name-label'>
+          {isActionable && onClick ? (
+            <LinkAction
+              as='button'
+              onClick={!isDisabled ? onClick : undefined}
+              aria-disabled={isDisabled}
+            >
+              {children}
+            </LinkAction>
+          ) : (
+            children
+          )}
+        </span>
+      </Element>
     );
   },
 ) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
@@ -525,7 +522,17 @@ export const TileNew = Object.assign(TileComponent, {
    */
   Badge: TileBadge,
   /**
-   * Name or title of the tile.
+   * Name or title of the tile. Goes under <Tile.ContentArea> for `folder` variant
+   * @example `default` variant
+   * <Tile>
+   *  <Tile.Name/>
+   * </Tile>
+   * @example `folder` variant
+   * <Tile>
+   *  <Tile.ContentArea>
+   *    <Tile.Name/>
+   *  <Tile.ContentArea>
+   * <Tile>
    */
   Name: TileName,
   /**

@@ -298,13 +298,13 @@ WithAvatar.args = {
 export const Folder: Story<TileNewProps> = (args) => {
   return (
     <TileNew {...args}>
-      <TileNew.Name>Folder name</TileNew.Name>
       <TileNew.ThumbnailArea>
         <TileNew.ThumbnailAvatar>
           <SvgFolder />
         </TileNew.ThumbnailAvatar>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
+        <TileNew.Name>Folder name</TileNew.Name>
         <TileNew.Description>Folder description</TileNew.Description>
         <TileNew.MoreOptions>
           <MenuItem key={1} onClick={action('clicked item 1')}>
