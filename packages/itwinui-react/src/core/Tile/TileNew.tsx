@@ -200,6 +200,8 @@ type TileOwnProps = {
 const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
 TileThumbnailArea.displayName = 'TileNew.ThumbnailArea';
 
+type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
 
