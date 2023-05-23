@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import type * as React from 'react';
 
-// TODO: remove this once we it's not used anywhere
+// TODO: remove this once it's not used anywhere
 export type CommonProps = {
   id?: string;
   className?: string;
@@ -15,23 +15,25 @@ export type CommonProps = {
  * Makes `as` prop available and merges original OwnProps and the inferred props from `as` element.
  * Extends ForwardRefExoticComponent so ref gets the correct type.
  *
- * T should be the default element that is used for the `as`  prop.
+ * `DefaultAs` should be the default element that is used for the `as`  prop.
  *
  * @example
- * type ButtonComponent = PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
- * ...
- * const Button: ButtonComponent = React.forwardRef((props, ref) => {});
+ * const Button = React.forwardRef((props, forwardedRef) => {
+ *   // ...
+ * }) as PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
  */
 export interface PolymorphicForwardRefComponent<
-  T,
+  DefaultAs,
   OwnProps = {}, // eslint-disable-line @typescript-eslint/ban-types
 > extends React.ForwardRefExoticComponent<
     Merge<
-      T extends React.ElementType ? React.ComponentPropsWithRef<T> : never,
-      OwnProps & { as?: T }
+      DefaultAs extends React.ElementType
+        ? React.ComponentPropsWithRef<DefaultAs>
+        : never,
+      OwnProps & { as?: DefaultAs }
     >
   > {
-  <As = T>(
+  <As = DefaultAs>(
     props: As extends keyof JSX.IntrinsicElements
       ? Merge<JSX.IntrinsicElements[As], OwnProps & { as: As }>
       : As extends React.ComponentType<infer P>
