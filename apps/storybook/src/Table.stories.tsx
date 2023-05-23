@@ -19,7 +19,7 @@ import {
   MenuItem,
   IconButton,
   Table,
-  Leading,
+  Text,
   tableFilters,
   TableFilterValue,
   TableProps,
@@ -697,7 +697,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1102,7 +1102,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1491,7 +1491,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -3458,7 +3458,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   const subComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
