@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   SvgChevronLeft,
   SvgChevronRight,
   SvgChevronLeftDouble,
@@ -230,8 +229,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     isDateDisabled,
     ...rest
   } = props;
-
-  useGlobals();
 
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;

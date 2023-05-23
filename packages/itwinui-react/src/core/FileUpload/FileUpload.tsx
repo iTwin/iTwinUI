@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useGlobals, useMergedRefs } from '../utils/index.js';
+import { Box, useMergedRefs } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
@@ -35,7 +35,6 @@ type FileUploadProps = {
  */
 export const FileUpload = React.forwardRef((props, ref) => {
   const { dragContent, children, onFileDropped, className, ...rest } = props;
-  useGlobals();
 
   const [isDragActive, setIsDragActive] = React.useState(false);
   const fileUploadRef = React.useRef<HTMLDivElement>(null);

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
@@ -81,8 +81,6 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
 
   const childrenArray = React.Children.toArray(children);
   const childrenLength = childrenArray.length;
-
-  useGlobals();
 
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>

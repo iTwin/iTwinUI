@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, polymorphic, Box } from '../utils/index.js';
+import { polymorphic, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -18,8 +18,6 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box

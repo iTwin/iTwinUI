@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
@@ -31,8 +30,6 @@ type VisuallyHiddenOwnProps = {
  */
 export const VisuallyHidden = React.forwardRef((props, ref) => {
   const { className, unhideOnFocus = true, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 import { Box } from './Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
@@ -22,8 +21,6 @@ type DividerProps = {
  */
 export const Divider = React.forwardRef((props, ref) => {
   const { className, orientation = 'horizontal', ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

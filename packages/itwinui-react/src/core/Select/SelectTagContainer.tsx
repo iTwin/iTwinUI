@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, useOverflow, useMergedRefs, Box } from '../utils/index.js';
+import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 
@@ -20,7 +20,6 @@ type SelectTagContainerProps = {
 export const SelectTagContainer = React.forwardRef((props, ref) => {
   const { tags, className, ...rest } = props;
 
-  useGlobals();
   const [containerRef, visibleCount] = useOverflow(tags);
   const refs = useMergedRefs(ref, containerRef);
 

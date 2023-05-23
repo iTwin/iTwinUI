@@ -8,7 +8,6 @@ import {
   ColorValue,
   getFocusableElements,
   useMergedRefs,
-  useGlobals,
   Box,
 } from '../utils/index.js';
 import type {
@@ -48,8 +47,6 @@ export type ColorPaletteProps = {
  */
 export const ColorPalette = React.forwardRef((props, ref) => {
   const { colors, label, className, children, ...rest } = props;
-
-  useGlobals();
 
   const { activeColor, setActiveColor, onChangeComplete } =
     useColorPickerContext();

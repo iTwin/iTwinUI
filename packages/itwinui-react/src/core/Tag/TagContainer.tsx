@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tag.css';
 
@@ -34,7 +34,6 @@ type TagContainerProps = {
  */
 export const TagContainer = React.forwardRef((props, forwardedRef) => {
   const { className, children, overflow, background = 'none', ...rest } = props;
-  useGlobals();
 
   return (
     <Box

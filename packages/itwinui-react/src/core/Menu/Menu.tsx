@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  useMergedRefs,
-  getFocusableElements,
-  Box,
-} from '../utils/index.js';
+import { useMergedRefs, getFocusableElements, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -33,8 +28,6 @@ type MenuProps = {
  */
 export const Menu = React.forwardRef((props, ref) => {
   const { setFocus = true, className, ...rest } = props;
-
-  useGlobals();
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
   const menuRef = React.useRef<HTMLUListElement>(null);

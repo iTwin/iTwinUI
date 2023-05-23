@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  isSoftBackground,
-  SoftBackgrounds,
-  Box,
-} from '../utils/index.js';
+import { isSoftBackground, SoftBackgrounds, Box } from '../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
@@ -68,8 +63,6 @@ type BadgeProps = {
  */
 export const Badge = React.forwardRef((props, forwardedRef) => {
   const { backgroundColor, style, className, children, ...rest } = props;
-
-  useGlobals();
 
   // choosing 'primary' status should result in data-iui-status equaling 'informational'
   const reducedBackgroundColor =

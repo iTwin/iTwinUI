@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  WithCSSTransition,
-  SvgChevronRight,
-  Box,
-} from '../utils/index.js';
+import { WithCSSTransition, SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
@@ -91,8 +86,6 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     isSubmenuOpen = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [_isExpanded, _setIsExpanded] = React.useState(isExpanded);
   React.useEffect(() => {

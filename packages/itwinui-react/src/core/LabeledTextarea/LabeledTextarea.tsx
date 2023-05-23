@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  StatusIconMap,
-  useGlobals,
-  InputContainer,
-  useId,
-} from '../utils/index.js';
+import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
 import type { TextareaProps } from '../Textarea/Textarea.js';
@@ -79,8 +74,6 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
     id = uid,
     ...textareaProps
   } = props;
-
-  useGlobals();
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 

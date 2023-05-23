@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
@@ -84,8 +83,6 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
     styleType = 'default',
     ...rest
   } = props;
-
-  useGlobals();
 
   const icon = endIcon ?? (status && StatusIconMap[status]());
 

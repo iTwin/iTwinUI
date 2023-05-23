@@ -5,12 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import '@itwin/itwinui-css/css/alert.css';
-import {
-  useGlobals,
-  StatusIconMap,
-  SvgCloseSmall,
-  Box,
-} from '../utils/index.js';
+import { StatusIconMap, SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type AlertProps = {
@@ -68,8 +63,6 @@ export const Alert = React.forwardRef((props, ref) => {
     isSticky = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   const StatusIcon = StatusIconMap[type];
 

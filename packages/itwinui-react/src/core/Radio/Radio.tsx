@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/radio.css';
 
@@ -45,8 +45,6 @@ export const Radio = React.forwardRef((props, ref) => {
     setFocus = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

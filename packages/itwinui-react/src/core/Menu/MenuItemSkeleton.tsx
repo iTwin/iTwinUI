@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useGlobals, VisuallyHidden } from '../utils/index.js';
+import { Box, VisuallyHidden } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 
@@ -46,8 +46,6 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
     style,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box

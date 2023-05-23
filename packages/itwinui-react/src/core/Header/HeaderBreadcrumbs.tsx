@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, SvgChevronRight, Box } from '../utils/index.js';
+import { SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 
@@ -34,7 +34,6 @@ type HeaderBreadcrumbsProps = {
 export const HeaderBreadcrumbs = React.forwardRef((props, forwardedRef) => {
   const { className, items, ...rest } = props;
 
-  useGlobals();
   return (
     <Box
       as='nav'

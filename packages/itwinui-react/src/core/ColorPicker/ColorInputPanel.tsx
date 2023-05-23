@@ -6,13 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
 import { Input } from '../Input/index.js';
-import {
-  ColorValue,
-  InputContainer,
-  useGlobals,
-  SvgSwap,
-  Box,
-} from '../utils/index.js';
+import { ColorValue, InputContainer, SvgSwap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 import '@itwin/itwinui-css/css/color-picker.css';
@@ -48,8 +42,6 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   const inputsContainerRef = React.useRef<HTMLDivElement>(null);
   const { activeColor, applyHsvColorChange, hsvColor, showAlpha } =

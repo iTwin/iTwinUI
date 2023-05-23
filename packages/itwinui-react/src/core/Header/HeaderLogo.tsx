@@ -6,7 +6,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 
@@ -39,8 +39,6 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     as = (!!onClick ? 'button' : 'div') as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box

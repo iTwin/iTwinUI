@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, SvgUpload, Box } from '../utils/index.js';
+import { SvgUpload, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
 
@@ -57,7 +57,6 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
     className,
     ...rest
   } = props;
-  useGlobals();
 
   return (
     <Box

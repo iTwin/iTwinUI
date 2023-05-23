@@ -5,7 +5,6 @@
 import * as React from 'react';
 import '@itwin/itwinui-css/css/color-picker.css';
 import {
-  useGlobals,
   ColorValue,
   getTabbableElements,
   useMergedRefs,
@@ -85,8 +84,6 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
     showAlpha = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   const ref = React.useRef<HTMLDivElement>(null);
 

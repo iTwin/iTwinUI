@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
@@ -18,8 +18,6 @@ import '@itwin/itwinui-css/css/side-navigation.css';
  */
 export const SidenavSubmenu = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

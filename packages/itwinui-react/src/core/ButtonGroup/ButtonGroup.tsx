@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, useOverflow, useMergedRefs, Box } from '../utils/index.js';
+import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
@@ -80,8 +80,6 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
       )?.filter(Boolean) ?? [],
     [children],
   );
-
-  useGlobals();
 
   const [overflowRef, visibleCount] = useOverflow(
     items,

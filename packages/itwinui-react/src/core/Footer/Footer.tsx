@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/footer.css';
 import { FooterItem } from './FooterItem.js';
@@ -112,8 +112,6 @@ export const Footer = Object.assign(
   (props: FooterProps) => {
     const { children, customElements, translatedTitles, className, ...rest } =
       props;
-
-    useGlobals();
 
     const titles = { ...footerTranslations, ...translatedTitles };
     const translatedElements = defaultFooterElements.map((element) => {

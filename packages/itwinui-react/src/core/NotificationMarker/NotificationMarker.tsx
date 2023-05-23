@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/utils.css';
@@ -65,7 +65,6 @@ export const NotificationMarker = React.forwardRef((props, ref) => {
     enabled = true,
     ...rest
   } = props;
-  useGlobals();
 
   return (
     <Box

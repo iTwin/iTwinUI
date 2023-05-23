@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
-import { useGlobals, SvgCloseSmall, Box } from '../utils/index.js';
+import { SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -52,8 +52,6 @@ type InformationPanelHeaderProps = {
 export const InformationPanelHeader = React.forwardRef(
   (props, forwardedRef) => {
     const { children, onClose, actions, className, ...rest } = props;
-
-    useGlobals();
 
     return (
       <Box

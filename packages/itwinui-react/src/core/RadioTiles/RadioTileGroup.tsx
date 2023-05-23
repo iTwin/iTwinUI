@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { InputGroup } from '../InputGroup/index.js';
 import '@itwin/itwinui-css/css/radio-tile.css';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type RadioTileGroupProps = Omit<
@@ -23,8 +23,6 @@ type RadioTileGroupProps = Omit<
  */
 export const RadioTileGroup = React.forwardRef((props, forwardedRef) => {
   const { children, label, ...rest } = props;
-
-  useGlobals();
 
   return (
     <InputGroup label={label} ref={forwardedRef} {...rest}>

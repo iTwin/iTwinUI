@@ -5,12 +5,7 @@
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
 import type { InputProps } from '../Input/Input.js';
-import {
-  StatusIconMap,
-  useGlobals,
-  InputContainer,
-  useId,
-} from '../utils/index.js';
+import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
@@ -85,8 +80,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     id = uid,
     ...rest
   } = props;
-
-  useGlobals();
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 

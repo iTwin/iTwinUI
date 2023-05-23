@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { IconButton } from '../Buttons/index.js';
 
-import { useGlobals, SvgMoreVertical, Box } from '../utils/index.js';
+import { SvgMoreVertical, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
@@ -140,7 +140,7 @@ export const Header = React.forwardRef((props, forwardedRef) => {
     children,
     ...rest
   } = props;
-  useGlobals();
+
   const headerTranslations = { ...defaultTranslations, ...translatedStrings };
   return (
     <Box

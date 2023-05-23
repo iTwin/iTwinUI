@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  SvgClose,
-  mergeEventHandlers,
-  Box,
-} from '../utils/index.js';
+import { SvgClose, mergeEventHandlers, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
@@ -61,8 +56,6 @@ export const DialogTitleBar = Object.assign(
     } = props;
 
     const { onPointerDown } = useDialogDragContext();
-
-    useGlobals();
 
     return (
       <Box

@@ -9,12 +9,7 @@ import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { Placement } from 'tippy.js';
-import {
-  Box,
-  SvgCaretDownSmall,
-  SvgCaretUpSmall,
-  useGlobals,
-} from '../../utils/index.js';
+import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
@@ -63,8 +58,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     title,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

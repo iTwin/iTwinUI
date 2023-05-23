@@ -7,7 +7,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import type { ButtonProps } from '../Buttons/Button/Button.js';
 
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/header.css';
 import { HeaderSplitButton } from './HeaderSplitButton.js';
@@ -53,8 +53,6 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     disabled,
     ...rest
   } = props;
-
-  useGlobals();
 
   const buttonProps = {
     startIcon: React.isValidElement(startIcon)

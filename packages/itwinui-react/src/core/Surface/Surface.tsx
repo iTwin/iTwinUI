@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useSafeContext,
-  useGlobals,
-  supportsHas,
-  Box,
-} from '../utils/index.js';
+import { useSafeContext, supportsHas, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/surface.css';
 
@@ -110,7 +105,6 @@ type SurfaceProps = {
 export const Surface = Object.assign(
   React.forwardRef((props, ref) => {
     const { elevation, className, style, children, ...rest } = props;
-    useGlobals();
 
     const [hasLayout, setHasLayout] = React.useState(false);
 

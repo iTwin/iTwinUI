@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  getRandomValue,
-  useMergedRefs,
-  useGlobals,
-  Box,
-} from '../utils/index.js';
+import { getRandomValue, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/carousel.css';
 import { CarouselContext } from './CarouselContext.js';
@@ -45,8 +40,6 @@ const CarouselComponent = React.forwardRef((props, ref) => {
   const [id] = React.useState(
     () => props.id ?? `iui-carousel-${getRandomValue(10)}`,
   );
-
-  useGlobals();
 
   const isManuallyUpdating = React.useRef(false);
   const carouselRef = React.useRef<HTMLElement>(null);

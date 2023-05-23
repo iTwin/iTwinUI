@@ -6,7 +6,6 @@ import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import {
-  useGlobals,
   useMergedRefs,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
@@ -17,8 +16,6 @@ import type { DropdownButtonProps } from '../Buttons/DropdownButton/DropdownButt
 
 export const HeaderDropdownButton = React.forwardRef((props, ref) => {
   const { menuItems, className, children, ...rest } = props;
-
-  useGlobals();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

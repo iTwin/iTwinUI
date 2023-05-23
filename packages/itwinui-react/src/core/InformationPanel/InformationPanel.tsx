@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -60,8 +60,6 @@ export const InformationPanel = React.forwardRef((props, ref) => {
     children,
     ...rest
   } = props;
-
-  useGlobals();
 
   const infoPanelRef = React.useRef<HTMLDivElement>(null);
   const refs = useMergedRefs(ref, infoPanelRef);

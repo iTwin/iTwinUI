@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useGlobals,
   useMergedRefs,
   useOverflow,
   SvgChevronRight,
@@ -120,8 +119,6 @@ export const Breadcrumbs = React.forwardRef((props, ref) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [overflowRef, visibleCount] = useOverflow(items);
   const refs = useMergedRefs(overflowRef, ref);

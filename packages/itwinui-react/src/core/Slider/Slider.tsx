@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import {
-  useGlobals,
-  getBoundedValue,
-  useEventListener,
-  Box,
-} from '../utils/index.js';
+import { getBoundedValue, useEventListener, Box } from '../utils/index.js';
 import '@itwin/itwinui-css/css/slider.css';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { TooltipProps } from '../Tooltip/Tooltip.js';
@@ -248,7 +243,6 @@ export const Slider = React.forwardRef((props, ref) => {
     setTrackDisplay(getDefaultTrackDisplay(trackDisplayMode, currentValues));
   }, [trackDisplayMode, currentValues]);
 
-  useGlobals();
   const containerRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {

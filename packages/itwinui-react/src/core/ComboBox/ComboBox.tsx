@@ -10,7 +10,6 @@ import SelectTag from '../Select/SelectTag.js';
 import { Text } from '../Typography/index.js';
 import type { Input } from '../Input/Input.js';
 import {
-  useGlobals,
   getRandomValue,
   mergeRefs,
   useLatestRef,
@@ -192,8 +191,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       (inputProps?.id && `${inputProps.id}-cb`) ??
       `iui-cb-${getRandomValue(10)}`,
   );
-
-  useGlobals();
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);

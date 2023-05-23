@@ -9,7 +9,6 @@ import {
   getBoundedValue,
   useEventListener,
   useMergedRefs,
-  useGlobals,
   Box,
 } from '../utils/index.js';
 import type {
@@ -39,8 +38,6 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
 
   const builderRef = React.useRef<HTMLDivElement>();
   const refs = useMergedRefs(builderRef, ref);
-
-  useGlobals();
 
   const {
     activeColor,

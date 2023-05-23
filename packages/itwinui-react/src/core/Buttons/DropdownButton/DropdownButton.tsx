@@ -11,7 +11,6 @@ import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-  useGlobals,
   useMergedRefs,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -55,8 +54,6 @@ export const DropdownButton = React.forwardRef((props, ref) => {
     dropdownMenuProps,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 

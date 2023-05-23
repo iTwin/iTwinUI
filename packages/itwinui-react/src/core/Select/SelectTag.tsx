@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
 
@@ -21,7 +21,6 @@ type SelectTagProps = {
  */
 export const SelectTag = React.forwardRef((props, forwardedRef) => {
   const { className, label, ...rest } = props;
-  useGlobals();
 
   return (
     <Box

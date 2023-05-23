@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
-  useGlobals,
   SvgCaretDownSmall,
   Popover,
   useId,
@@ -243,8 +242,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     triggerProps,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = popoverProps?.visible ?? isOpenState;

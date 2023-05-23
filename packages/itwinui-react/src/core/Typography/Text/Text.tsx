@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/text.css';
 
@@ -54,8 +54,6 @@ export const Text = React.forwardRef((props, ref) => {
     isSkeleton = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box

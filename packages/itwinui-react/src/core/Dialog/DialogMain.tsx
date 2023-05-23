@@ -9,7 +9,6 @@ import {
   getTranslateValues,
   Resizer,
   useMergedRefs,
-  useGlobals,
   useIsomorphicLayoutEffect,
   Box,
 } from '../utils/index.js';
@@ -72,8 +71,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
     style: propStyle,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [style, setStyle] = React.useState<React.CSSProperties>();
 

@@ -5,7 +5,7 @@
 import * as React from 'react';
 
 import cx from 'classnames';
-import { useGlobals, Box } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
@@ -60,8 +60,6 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   const boundedValue = Math.min(100, Math.max(0, value));
 

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/skip-to-content.css';
 
@@ -30,8 +30,6 @@ type SkipToContentLinkProps = {
  */
 export const SkipToContentLink = React.forwardRef((props, ref) => {
   const { children = 'Skip to main content', className, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

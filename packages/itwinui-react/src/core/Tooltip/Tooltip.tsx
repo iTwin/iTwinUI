@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, Popover, Box } from '../utils/index.js';
+import { Popover, Box } from '../utils/index.js';
 import type { CommonProps, PopoverProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tooltip.css';
 
@@ -35,8 +35,6 @@ export type TooltipProps = {
 export const Tooltip = (props: TooltipProps) => {
   const { content, children, className, style, visible, ref, id, ...rest } =
     props;
-
-  useGlobals();
 
   return (
     <Popover

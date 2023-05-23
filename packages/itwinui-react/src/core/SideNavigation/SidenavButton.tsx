@@ -5,8 +5,6 @@
 
 import cx from 'classnames';
 import * as React from 'react';
-
-import { useGlobals } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/index.js';
 import type { ButtonProps } from '../Buttons/Button/Button.js';
@@ -38,8 +36,6 @@ export const SidenavButton = React.forwardRef((props, ref) => {
     isSubmenuOpen = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Button

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, StatusIconMap, useGlobals } from '../utils/index.js';
+import { Box, StatusIconMap } from '../utils/index.js';
 import cx from 'classnames';
 
 type StatusMessageProps = {
@@ -33,8 +33,6 @@ export const StatusMessage = ({
   children,
   status,
 }: StatusMessageProps) => {
-  useGlobals();
-
   const StartIcon = () => {
     const icon = userStartIcon ?? (status && StatusIconMap[status]());
 

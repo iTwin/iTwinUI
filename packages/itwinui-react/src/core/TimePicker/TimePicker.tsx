@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/time-picker.css';
 
@@ -215,8 +215,6 @@ export const TimePicker = React.forwardRef((props, forwardedRef) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   const [selectedTime, setSelectedTime] = React.useState(date);
   const [focusedTime, setFocusedTime] = React.useState(

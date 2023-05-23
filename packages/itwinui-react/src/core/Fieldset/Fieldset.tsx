@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 import cx from 'classnames';
@@ -29,8 +29,6 @@ type FieldsetProps = {
  */
 export const Fieldset = React.forwardRef((props, ref) => {
   const { children, className, disabled, legend, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

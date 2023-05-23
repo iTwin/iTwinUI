@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/non-ideal-state.css';
@@ -56,8 +56,6 @@ type NonIdealStateProps = {
  */
 export const NonIdealState = React.forwardRef((props, forwardedRef) => {
   const { className, svg, heading, description, actions, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

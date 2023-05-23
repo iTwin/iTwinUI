@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
-import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/checkbox.css';
 
@@ -64,8 +64,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
     style,
     ...rest
   } = props;
-
-  useGlobals();
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

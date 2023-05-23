@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
@@ -24,8 +24,6 @@ export type TextareaProps = {
  */
 export const Textarea = React.forwardRef((props, ref) => {
   const { className, rows = 3, setFocus = false, ...rest } = props;
-
-  useGlobals();
 
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
   const refs = useMergedRefs<HTMLTextAreaElement>(ref, textAreaRef);

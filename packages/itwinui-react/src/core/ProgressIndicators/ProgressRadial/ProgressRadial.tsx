@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   SvgCheckmarkSmall,
   SvgImportantSmall,
   Box,
@@ -65,8 +64,6 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
     className,
     ...rest
   } = props;
-
-  useGlobals();
 
   const statusMap = {
     negative: <SvgImportantSmall aria-hidden />,

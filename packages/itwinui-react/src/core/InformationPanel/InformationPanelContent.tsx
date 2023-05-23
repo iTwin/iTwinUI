@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
@@ -49,8 +49,6 @@ type InformationPanelContentProps = {
 export const InformationPanelContent = React.forwardRef(
   (props, forwardedRef) => {
     const { className, displayStyle = 'default', children, ...rest } = props;
-
-    useGlobals();
 
     return (
       <Box

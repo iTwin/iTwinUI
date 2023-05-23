@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  useGlobals,
   getFocusableElements,
   useVirtualization,
   mergeRefs,
@@ -165,7 +164,6 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     style,
     ...rest
   } = props;
-  useGlobals();
 
   const treeRef = React.useRef<HTMLUListElement>(null);
 

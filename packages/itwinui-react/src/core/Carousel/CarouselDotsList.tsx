@@ -10,7 +10,6 @@ import {
   getWindow,
   useMergedRefs,
   useResizeObserver,
-  useGlobals,
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -57,8 +56,6 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     children,
     ...rest
   } = props;
-
-  useGlobals();
 
   const context = React.useContext(CarouselContext);
   const slideCount =

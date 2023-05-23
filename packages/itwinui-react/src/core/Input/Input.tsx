@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useGlobals, Box } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/input.css';
 
@@ -29,7 +29,6 @@ export type InputProps = {
  */
 export const Input = React.forwardRef((props, ref) => {
   const { setFocus = false, size, className, ...rest } = props;
-  useGlobals();
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 

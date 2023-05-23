@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, SvgCloseSmall, Box } from '../utils/index.js';
+import { SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tag.css';
 import { IconButton } from '../Buttons/index.js';
@@ -36,7 +36,6 @@ type TagProps = {
  */
 export const Tag = React.forwardRef((props, forwardedRef) => {
   const { className, variant = 'default', children, onRemove, ...rest } = props;
-  useGlobals();
 
   return (
     <Box

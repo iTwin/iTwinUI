@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
@@ -79,8 +79,6 @@ export const Avatar = React.forwardRef((props, ref) => {
     style,
     ...rest
   } = props;
-
-  useGlobals();
 
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 

@@ -3,11 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  useGlobals,
-  Box,
-  type PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/workflow-diagram.css';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
@@ -18,8 +15,6 @@ export const WorkflowDiagram = React.forwardRef(
   // TODO: Remove this ref cast. ref and rest props should be applied on the same element
   (props, ref: React.Ref<HTMLDivElement>) => {
     const { steps, ...rest } = props;
-
-    useGlobals();
 
     return (
       <Box ref={ref}>

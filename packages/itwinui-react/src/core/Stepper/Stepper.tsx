@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/stepper.css';
 import { StepperStep } from './StepperStep.js';
@@ -66,8 +66,6 @@ export const Stepper = React.forwardRef((props, ref) => {
     Math.max(0, currentStep ?? 0),
     steps.length - 1,
   );
-
-  useGlobals();
 
   return (
     <Box className={'iui-stepper'} ref={ref} {...rest}>

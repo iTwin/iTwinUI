@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box, useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { ButtonProps } from '../Buttons/Button/Button.js';
 
@@ -22,7 +22,6 @@ export const HeaderBasicButton = React.forwardRef((props, ref) => {
   } = props;
   styleType; // To omit and prevent eslint error.
   size; // To omit and prevent eslint error.
-  useGlobals();
 
   return (
     <Box

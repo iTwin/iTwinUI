@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { Box, useGlobals } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
@@ -51,8 +51,6 @@ export const Button = React.forwardRef((props, ref) => {
     endIcon,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box

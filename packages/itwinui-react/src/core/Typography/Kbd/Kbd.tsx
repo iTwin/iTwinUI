@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box, useGlobals } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/keyboard.css';
 
@@ -42,8 +42,6 @@ type KbdProps = {
  */
 export const Kbd = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
-
-  useGlobals();
 
   return (
     <Box

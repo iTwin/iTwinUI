@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useGlobals,
   Popover,
   useMergedRefs,
   SvgCaretRightSmall,
@@ -93,8 +92,6 @@ export const MenuItem = React.forwardRef((props, ref) => {
     subMenuItems = [],
     ...rest
   } = props;
-
-  useGlobals();
 
   const menuItemRef = React.useRef<HTMLLIElement>(null);
   const refs = useMergedRefs(menuItemRef, ref);
