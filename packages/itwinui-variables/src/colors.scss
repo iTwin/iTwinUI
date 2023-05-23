@@ -2,22 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './utils/hex' as *;
 
-/// Soft backgrounds used for highlighting something: e.g. avatar, badge, etc.
-/// Currently these stay the same between themes.
-@mixin soft-backgrounds {
-  --iui-color-background-skyblue: #{hex(hsl(197 71% 83%))};
-  --iui-color-background-celery: #{hex(hsl(72 51% 66%))};
-  --iui-color-background-froly: #{hex(hsl(2 90% 83%))};
-  --iui-color-background-steelblue: #{hex(hsl(207 44% 73%))};
-  --iui-color-background-sunglow: #{hex(hsl(42 100% 70%))};
-  --iui-color-background-seabuckthorn: #{hex(hsl(29 92% 71%))};
-  --iui-color-background-montecarlo: #{hex(hsl(176 43% 72%))};
-  --iui-color-background-poloblue: #{hex(hsl(211 44% 77%))};
-  --iui-color-background-bouquet: #{hex(hsl(305 19% 75%))};
-  --iui-color-background-ash: #{hex(hsl(42 15% 85%))};
-  --iui-color-background-oak: #{hex(hsl(27 32% 72%))};
-}
-
 /// Colors that don't change between light and dark themes
 @mixin unthemed {
   --iui-color-white: #{hex(hsl(0 0% 100%))};

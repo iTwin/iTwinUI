@@ -2,16 +2,12 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$iui-badge-background-informational: hsl(203, 80%, 80%); // foreground-informational--dark
-$iui-badge-background-positive: hsl(96, 45%, 78%); // foreground-positive--dark
-$iui-badge-background-negative: hsl(0, 69%, 80%); // foreground-negative--dark
-$iui-badge-background-warning: hsl(34, 87%, 82%); // foreground-warning--dark
 $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
 
 .iui-badge {
-  --iui-badge-background-color: hsl(210, 10%, 80%);
+  --iui-badge-background-color: var(--iui-color-background-gray);
   --_iui-badge-border-color: var(--iui-badge-background-color);
-  --_iui-badge-text-color: hsl(0 0% 0% / 0.6);
+  --_iui-badge-text-color: var(--iui-color-text);
 
   @include mixins.iui-reset;
   display: inline-block;

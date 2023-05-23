@@ -108,6 +108,18 @@ $opacities: (
   --iui-color-background-negative-hover: #{hex($bg-negative-2)};
   --iui-color-background-negative-muted: #{hex($bg-negative-0)};
   --iui-color-background-transparent-hover: #{hsl(0 0% 100% / 0.085)};
+
+  // UNFINISHED
+  --iui-color-background-gray: #{hex($bg-600)};
+  --iui-color-background-red: #{hex(hsl(7, 74%, 38%))};
+  --iui-color-background-orange: #{hex(hsl(30, 66%, 30%))};
+  --iui-color-background-yellow: #{hex(hsl(60, 56%, 23%))};
+  --iui-color-background-green: #{hex(hsl(118, 61%, 25%))};
+  --iui-color-background-cyan: #{hex(hsl(181, 55%, 25%))};
+  --iui-color-background-blue: #{hex(hsl(226, 90%, 49%))};
+  --iui-color-background-pink: #{hex(hsl(300, 50%, 37%))};
+  --iui-color-background-violet: #{hex(hsl(301, 50%, 38%))};
+  --iui-color-background-brown: #{hex(hsl(30, 38%, 32%))};
   // #endregion
   // #region Border variables
   --iui-color-border-subtle: #{hex($bg-800)};

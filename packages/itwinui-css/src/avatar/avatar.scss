@@ -45,7 +45,7 @@
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
-    color: var(--iui-color-white);
+    color: var(--iui-color-text);
     line-height: var(--_iui-avatar-size);
     font-size: var(--_iui-avatar-font-size);
   }
@@ -55,7 +55,7 @@
     width: 50%;
     height: 50%;
     position: absolute;
-    fill: var(--iui-color-white);
+    fill: var(--iui-color-icon);
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
