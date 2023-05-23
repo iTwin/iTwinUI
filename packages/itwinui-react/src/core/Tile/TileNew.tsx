@@ -7,7 +7,6 @@ import React from 'react';
 import cx from 'classnames';
 import {
   useSafeContext,
-  // useTheme,
   SvgMore,
   type PolymorphicComponentProps,
   type PolymorphicForwardRefComponent,
@@ -22,8 +21,6 @@ import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
-// import { ProgressRadial } from '../ProgressIndicators';
-// import Tile from '.';
 
 const TileContext = React.createContext<
   | {
@@ -43,7 +40,7 @@ const TileContext = React.createContext<
        */
       variant?: 'default' | 'folder';
       /**
-       * Whether the tile is expected to be interactable (i.e. `onClick`).
+       * Whether the tile is expected to be interactive (i.e. `onClick`).
        * It becomes focusable and gets on hover styling.
        */
       isActionable?: boolean;
@@ -68,27 +65,49 @@ const TileContext = React.createContext<
 >(undefined);
 TileContext.displayName = 'TileContext';
 
-type TileActionOwnProps = {}; // eslint-disable-line
+// ----------------------------------------------------------------------------
+// Main Tile component
 
-/**
- * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
- * Renders `a` element by default.
- * @example
- * <Tile
- *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
- * />
- */
-export const TileAction = (
-  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
-) => {
-  const tileContext = useSafeContext(TileContext);
-  React.useEffect(() => {
-    if (!supportsHas()) {
-      tileContext.setActionable(true);
-    }
-  }, [tileContext]);
-
-  return <LinkAction {...props} />;
+type TileOwnProps = {
+  /**
+   * Status of the tile.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
+   * Whether the tile is selected or in "active" state.
+   * Gets highlighted and shows a checkmark icon near tile name.
+   */
+  isSelected?: boolean;
+  /**
+   * Whether the tile is "new". Tile name becomes bold and gets a new status icon.
+   */
+  isNew?: boolean;
+  /**
+   * Default tile variant or the folder layout.
+   * @default 'default'
+   */
+  variant?: 'default' | 'folder';
+  /**
+   * Whether the tile is expected to be interactive (i.e. `onClick`).
+   * It becomes focusable and gets on hover styling.
+   */
+  isActionable?: boolean;
+  /**
+   * Display a loading state.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
+   * Flag whether the tile is disabled.
+   *
+   * Note: This only affects the tile. You need to manually disable
+   * the buttons and other interactive elements inside the tile.
+   *
+   * @default false
+   */
+  isDisabled?: boolean;
+  setActionable: React.Dispatch<React.SetStateAction<boolean>>;
+  onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
 //<Tile>
@@ -97,9 +116,6 @@ export const TileAction = (
 //  <Tile.Content>  //has meta data
 //  <Tile.Buttons>
 //</Tile>
-
-// ----------------------------------------------------------------------------
-// Main Tile component
 
 const TileComponent = React.forwardRef((props, ref) => {
   const {
@@ -152,58 +168,44 @@ const TileComponent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', TileOwnProps>;
 TileComponent.displayName = 'TileNew';
 
-type TileOwnProps = {
-  /**
-   * Status of the tile.
-   */
-  status?: 'positive' | 'warning' | 'negative';
-  /**
-   * Whether the tile is selected or in "active" state.
-   * Gets highlighted and shows a checkmark icon near tile name.
-   */
-  isSelected?: boolean;
-  /**
-   * Whether the tile is "new". Tile name becomes bold and gets a new status icon.
-   */
-  isNew?: boolean;
-  /**
-   * Default tile variant or the folder layout.
-   * @default 'default'
-   */
-  variant?: 'default' | 'folder';
-  /**
-   * Whether the tile is expected to be interactable (i.e. `onClick`).
-   * It becomes focusable and gets on hover styling.
-   */
-  isActionable?: boolean;
-  /**
-   * Display a loading state.
-   * @default false
-   */
-  isLoading?: boolean;
-  /**
-   * Flag whether the tile is disabled.
-   *
-   * Note: This only affects the tile. You need to manually disable
-   * the buttons and other interactive elements inside the tile.
-   *
-   * @default false
-   */
-  isDisabled?: boolean;
-  setActionable: React.Dispatch<React.SetStateAction<boolean>>;
-  onClick?: React.MouseEventHandler<HTMLElement>;
+// ----------------------------------------------------------------------------
+// Tile.Action component
+
+type TileActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+/**
+ * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
+ * Renders `a` element by default.
+ * @example
+ * <Tile
+ *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+ * />
+ */
+export const TileAction = (
+  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
+) => {
+  const { setActionable } = useSafeContext(TileContext);
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setActionable(true);
+    }
+  }, [setActionable]);
+
+  return <LinkAction {...props} />;
 };
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
 
+type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
 const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
 TileThumbnailArea.displayName = 'TileNew.ThumbnailArea';
 
-type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
+
+type TileThumbnailPictureOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileThumbnailPicture = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
@@ -224,10 +226,10 @@ const TileThumbnailPicture = React.forwardRef((props, ref) => {
 
 TileThumbnailPicture.displayName = 'TileNew.TileThumbnailPicture';
 
-type TileThumbnailPictureOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailAvatar component
+
+type TileThumbnailAvatarOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileThumbnailAvatar = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
@@ -247,10 +249,10 @@ const TileThumbnailAvatar = React.forwardRef((props, ref) => {
 
 TileThumbnailPicture.displayName = 'TileNew.TileThumbnailAvatar';
 
-type TileThumbnailAvatarOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
+
+type TileQuickActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileQuickAction = React.forwardRef((props, ref) => {
   const { as: Element = 'button', className, children, ...rest } = props;
@@ -268,10 +270,10 @@ const TileQuickAction = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'button', TileQuickActionOwnProps>;
 TileQuickAction.displayName = 'Tile.QuickAction';
 
-type TileQuickActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
+
+type TileTypeIndicatorOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileTypeIndicator = React.forwardRef((props, ref) => {
   const { as: Element = 'button', className, children, ...rest } = props;
@@ -293,143 +295,131 @@ const TileTypeIndicator = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'button', TileTypeIndicatorOwnProps>;
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
-type TileTypeIndicatorOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.Badge component
+type TileBadgeOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileBadge = polymorphic.div('iui-tile-thumbnail-badge-container');
 TileBadge.displayName = 'Tile.Badge';
 
-type TileBadgeOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.Name component
-
-const TileName = React.forwardRef(
-  ({ as: Element = 'div', children, ...rest }, ref) => {
-    const {
-      status,
-      isLoading,
-      isSelected,
-      isNew,
-      isActionable,
-      isDisabled,
-      onClick,
-    } = useSafeContext(TileContext);
-
-    return (
-      <Element className='iui-tile-name' ref={ref} {...rest}>
-        <TitleIcon
-          isLoading={isLoading}
-          isSelected={isSelected}
-          isNew={isNew}
-          status={status}
-        />
-        <span className='iui-tile-name-label'>
-          {isActionable && onClick ? (
-            <LinkAction
-              as='button'
-              onClick={!isDisabled ? onClick : undefined}
-              aria-disabled={isDisabled}
-            >
-              {children}
-            </LinkAction>
-          ) : (
-            children
-          )}
-        </span>
-      </Element>
-    );
-  },
-) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
-TileName.displayName = 'TileNew.Name';
-
 type TileNameOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TileName = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', children, ...rest } = props;
+  const {
+    status,
+    isLoading,
+    isSelected,
+    isNew,
+    isActionable,
+    isDisabled,
+    onClick,
+  } = useSafeContext(TileContext);
+
+  return (
+    <Element className='iui-tile-name' ref={ref} {...rest}>
+      <TitleIcon
+        isLoading={isLoading}
+        isSelected={isSelected}
+        isNew={isNew}
+        status={status}
+      />
+      <span className='iui-tile-name-label'>
+        {isActionable && onClick ? (
+          <LinkAction
+            as='button'
+            onClick={!isDisabled ? onClick : undefined}
+            aria-disabled={isDisabled}
+          >
+            {children}
+          </LinkAction>
+        ) : (
+          children
+        )}
+      </span>
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
+TileName.displayName = 'TileNew.Name';
 
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
+type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileContentArea = polymorphic.div('iui-tile-content');
 TileContentArea.displayName = 'TileNew.ContentArea';
 
-type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.Description component
+type TileDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileDescription = polymorphic.div('iui-tile-description');
 TileDescription.displayName = 'TileNew.Description';
 
-type TileDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
+type TileMetadataOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileMetadata = polymorphic.div('iui-tile-metadata');
 TileMetadata.displayName = 'TileNew.Metadata';
 
-type TileMetadataOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
+type TileMoreOptionsOwnProps = {
+  children: React.ReactNode[];
+};
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
-  const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
-  const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
 
   return (
-    children && (
-      <DropdownMenu
-        onShow={showMenu}
-        onHide={hideMenu}
-        menuItems={(close) =>
-          children.map((option) =>
-            React.cloneElement(option, {
-              onClick: (value) => {
-                close();
-                option.props.onClick?.(value);
-              },
-            }),
-          )
-        }
-      >
-        <Element
-          className={cx(
-            'iui-tile-more-options',
-            {
-              'iui-visible': isMenuVisible,
+    <DropdownMenu
+      onShow={React.useCallback(() => setIsMenuVisible(true), [])}
+      onHide={React.useCallback(() => setIsMenuVisible(false), [])}
+      menuItems={(close) =>
+        children.map((option: React.ReactElement) =>
+          React.cloneElement(option, {
+            onClick: (value: unknown) => {
+              close();
+              option.props.onClick?.(value);
             },
-            className,
-          )}
-          ref={ref}
-          {...rest}
+          }),
+        )
+      }
+    >
+      <Element
+        className={cx(
+          'iui-tile-more-options',
+          {
+            'iui-visible': isMenuVisible,
+          },
+          className,
+        )}
+        ref={ref}
+        {...rest}
+      >
+        <IconButton
+          styleType='borderless'
+          size='small'
+          aria-label='More options'
         >
-          <IconButton
-            styleType='borderless'
-            size='small'
-            aria-label='More options'
-          >
-            <SvgMore />
-          </IconButton>
-        </Element>
-      </DropdownMenu>
-    )
+          <SvgMore />
+        </IconButton>
+      </Element>
+    </DropdownMenu>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 TileMoreOptions.displayName = 'TileNew.MoreOptions';
 
-type TileMoreOptionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
+type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileButtons = polymorphic.div('iui-tile-buttons');
 TileButtons.displayName = 'TileNew.Buttons';
-
-type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 type TitleIconProps = {
   isLoading?: boolean;
