@@ -167,30 +167,38 @@
     margin-right: var(--iui-size-2xs);
   }
 
-  svg {
+  svg:where(:not(.iui-button svg)) {
     @include mixins.iui-icon-color;
   }
 }
 
 /// Modifier on iui-input-icon to place it at the end of input.
 @mixin iui-input-icon-inline {
+  $margin-end: calc(var(--iui-size-xs) + 1px);
+
   grid-area: inputs;
   justify-self: end;
-  margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
+  margin: 0 #{$margin-end} 0 0;
   position: relative;
+  height: 100%;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
 
-  svg {
+  svg:where(:not(.iui-button svg)) {
     @include mixins.iui-icon-style('m');
   }
 
-  &.iui-button {
-    height: 100%;
-    width: fit-content;
-    margin-right: 0;
+  &,
+  .iui-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-top-right-radius: inherit;
     border-bottom-right-radius: inherit;
+  }
+
+  .iui-button {
+    margin-right: calc(-1 * $margin-end);
   }
 
   &.iui-actionable {
@@ -204,7 +212,7 @@
 
     @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
-    svg {
+    svg:where(:not(.iui-button svg)) {
       fill: var(--iui-color-icon);
       transition: transform var(--iui-duration-1) ease-out;
     }

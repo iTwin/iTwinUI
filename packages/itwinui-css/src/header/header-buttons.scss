@@ -42,9 +42,12 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-brand-icon {
-  @include mixins.iui-icon-style('l');
+  &,
+  > * {
+    @include mixins.iui-icon-style('l');
+    fill: var(--iui-color-icon);
+  }
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-color-icon);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {

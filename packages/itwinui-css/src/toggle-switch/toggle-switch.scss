@@ -203,7 +203,6 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
     margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
@@ -217,6 +216,7 @@
     }
 
     svg {
+      padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
       fill: var(--iui-color-white);
       @media (forced-colors: active) {
         fill: HighlightText;
