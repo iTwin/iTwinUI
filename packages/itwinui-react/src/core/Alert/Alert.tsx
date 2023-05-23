@@ -111,7 +111,9 @@ AlertMessage.displayName = 'Alert.Message';
 type AlertActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertAction = React.forwardRef((props, ref) => {
-  const { as: Element = 'a', children, className, ...rest } = props;
+  const { as, children, className, ...rest } = props;
+
+  const Element = as ?? ((!!props.href ? 'a' : 'button') as 'a');
 
   return (
     <Element className={cx('iui-alert-link', className)} ref={ref} {...rest}>
