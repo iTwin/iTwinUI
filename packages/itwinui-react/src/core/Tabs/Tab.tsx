@@ -29,6 +29,12 @@ type TabProps = {
    * Custom content appended to the tab.
    */
   children?: React.ReactNode;
+  /**
+   * Whether the tab has active styling.
+   *
+   * This will be automatically set by the parent `Tabs` component.
+   */
+  active?: boolean;
 };
 
 /**
@@ -40,22 +46,30 @@ type TabProps = {
  * ];
  */
 export const Tab = React.forwardRef((props, forwardedRef) => {
-  const { label, sublabel, startIcon, children, className, ...rest } = props;
+  const {
+    label,
+    sublabel,
+    startIcon,
+    children,
+    active = false,
+    className,
+    ...rest
+  } = props;
 
   return (
     <Box
       as='button'
-      className={cx('iui-tab', className)}
+      className={cx('iui-tab', { 'iui-active': active }, className)}
       role='tab'
       tabIndex={-1}
       ref={forwardedRef}
       {...rest}
     >
-      {startIcon &&
-        React.cloneElement(startIcon, {
-          className: 'iui-tab-icon',
-          'aria-hidden': true,
-        })}
+      {!!startIcon ? (
+        <Box as='span' className='iui-tab-icon' aria-hidden>
+          {startIcon}
+        </Box>
+      ) : null}
       {label && (
         <Box as='span' className='iui-tab-label'>
           <div>{label}</div>

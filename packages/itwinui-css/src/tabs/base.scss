@@ -44,7 +44,7 @@ $borderless-horizontal-tab-min-height: calc(
     &.iui-active {
       color: var(--iui-color-text-accent);
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: currentColor;
       }
 
@@ -61,7 +61,7 @@ $borderless-horizontal-tab-min-height: calc(
         color: inherit;
       }
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: var(--iui-color-icon-disabled);
       }
     }
@@ -70,9 +70,15 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-icon {
-    @include mixins.iui-icon-style('m');
-    fill: var(--iui-color-icon);
-    transition: fill var(--iui-duration-1) ease-out;
+    &,
+    svg {
+      @include mixins.iui-icon-style('m');
+    }
+
+    svg {
+      fill: var(--iui-color-icon);
+      transition: fill var(--iui-duration-1) ease-out;
+    }
 
     + .iui-tab-label {
       margin-left: var(--iui-size-xs);
@@ -93,7 +99,7 @@ $borderless-horizontal-tab-min-height: calc(
     &.iui-active {
       color: var(--iui-color-text-positive);
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: currentColor;
       }
     }

@@ -167,7 +167,10 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-color-icon);
+
+      svg {
+        fill: var(--iui-color-icon);
+      }
     }
 
     &:checked {
@@ -183,9 +186,14 @@
 
       ~ .iui-toggle-switch-icon {
         opacity: var(--iui-opacity-5);
+
         @media (forced-colors: active) {
-          fill: Canvas;
           opacity: 0.75;
+
+          /* stylelint-disable-next-line max-nesting-depth */
+          svg {
+            fill: Canvas;
+          }
         }
       }
     }
@@ -195,17 +203,24 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: var(--_iui-toggle-switch-handle-size);
-    height: var(--_iui-toggle-switch-handle-size);
     padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
     margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
-    display: flex;
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
-    fill: var(--iui-color-white);
-    @media (forced-colors: active) {
-      fill: HighlightText;
+
+    &,
+    svg {
+      display: flex;
+      width: var(--_iui-toggle-switch-handle-size);
+      height: var(--_iui-toggle-switch-handle-size);
+    }
+
+    svg {
+      fill: var(--iui-color-white);
+      @media (forced-colors: active) {
+        fill: HighlightText;
+      }
     }
   }
 }

@@ -63,10 +63,11 @@ export const RadioTile = React.forwardRef((props, ref) => {
         {...rest}
       />
       <Box className='iui-radio-tile-content'>
-        {icon &&
-          React.cloneElement(icon, {
-            className: cx('iui-radio-tile-icon', icon.props.className),
-          })}
+        {icon && (
+          <Box as='span' className='iui-radio-tile-icon' aria-hidden>
+            {icon}
+          </Box>
+        )}
         {label && <Box className='iui-radio-tile-label'>{label}</Box>}
         {description && (
           <Box className='iui-radio-tile-sublabel'>{description}</Box>

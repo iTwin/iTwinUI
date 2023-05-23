@@ -160,12 +160,15 @@
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
   @include mixins.iui-icon-style('m');
-  @include mixins.iui-icon-color;
   grid-area: icon;
   align-self: center;
 
   &:not(:last-child) {
     margin-right: var(--iui-size-2xs);
+  }
+
+  svg {
+    @include mixins.iui-icon-color;
   }
 }
 
@@ -222,9 +225,9 @@
 
 /// Mixin for applying status colors to input container.
 /// @arg status - must be one of: positive, negative, warning
-/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon svg
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
-@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
+@mixin iui-input-status($status, $iconSelector: '.iui-input-icon svg', $textSelector: '.iui-message') {
   @include mixins.iui-text-selection($status);
 
   #{$iconSelector} {
