@@ -177,12 +177,6 @@ export type { NodeData, NodeRenderProps } from './Tree/index.js';
 
 export {
   Anchor,
-  Body,
-  Headline,
-  Leading,
-  Small,
-  Subheading,
-  Title,
   Blockquote,
   Code,
   Kbd,
