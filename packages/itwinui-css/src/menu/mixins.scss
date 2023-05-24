@@ -140,7 +140,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   --iui-menu-item-content-skeleton-max-width: 30%;
   cursor: auto;
 
-  .iui-content {
+  .iui-content,
+  .iui-list-item-content {
     max-inline-size: var(--iui-menu-item-content-skeleton-max-width);
   }
 

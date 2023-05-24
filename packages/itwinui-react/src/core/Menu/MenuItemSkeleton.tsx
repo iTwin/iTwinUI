@@ -69,7 +69,7 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
       <ListItem.Content>
         <div className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (
-          <ListItem.Description className='iui-skeleton' aria-hidden />
+          <div className='iui-menu-description iui-skeleton' aria-hidden />
         )}
         <VisuallyHidden>{translatedStrings.loading}</VisuallyHidden>
       </ListItem.Content>
