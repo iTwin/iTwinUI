@@ -248,6 +248,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   > * {
     @include mixins.iui-icon-style('l');
     flex-shrink: 0;
+    border-radius: var(--iui-border-radius-1);
   }
   transform: var(--_iui-header-icon-scale);
   will-change: transform;
@@ -278,8 +279,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
   }
 
-  :is(img, div) {
-    border-radius: var(--iui-border-radius-1);
+  :is(img, span) {
     outline: 2px solid hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
     outline-offset: -2px;
     transition: filter var(--iui-duration-1) ease-out;
@@ -292,13 +292,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     object-fit: cover;
   }
 
-  :is(div) {
+  :is(span) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  :is(img, div) {
+  :is(img, span) {
     :disabled &,
     [aria-disabled='true'] & {
       filter: grayscale(1) opacity(0.7);
