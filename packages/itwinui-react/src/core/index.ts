@@ -296,20 +296,22 @@ export { Tile } from './Tile/index.js';
 export type { TileProps } from './Tile/index.js';
 
 export { TileNew } from './Tile/index.js';
-export type { TileNewProps } from './Tile/index.js';
-export type { TileNewThumbnailAreaProps } from './Tile/index.js';
-export type { TileNewThumbnailPictureProps } from './Tile/index.js';
-export type { TileNewThumbnailAvatarProps } from './Tile/index.js';
-export type { TileNewQuickActionProps } from './Tile/index.js';
-export type { TileNewTypeIndicatorProps } from './Tile/index.js';
-export type { TileNewBadgeProps } from './Tile/index.js';
-export type { TileNewNameProps } from './Tile/index.js';
-export type { TileNewActionProps } from './Tile/index.js';
-export type { TileContentAreaProps } from './Tile/index.js';
-export type { TileDescriptionProps } from './Tile/index.js';
-export type { TileMetadataProps } from './Tile/index.js';
-export type { TileMoreOptionsProps } from './Tile/index.js';
-export type { TileButtonsProps } from './Tile/index.js';
+export type {
+  TileNewProps,
+  TileNewThumbnailAreaProps,
+  TileNewThumbnailPictureProps,
+  TileNewThumbnailAvatarProps,
+  TileNewQuickActionProps,
+  TileNewTypeIndicatorProps,
+  TileNewBadgeProps,
+  TileNewNameProps,
+  TileNewActionProps,
+  TileContentAreaProps,
+  TileDescriptionProps,
+  TileMetadataProps,
+  TileMoreOptionsProps,
+  TileButtonsProps,
+} from './Tile/index.js';
 
 export { TimePicker } from './TimePicker/index.js';
 export type { MeridiemType, TimePickerProps } from './TimePicker/index.js';

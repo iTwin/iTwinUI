@@ -16,6 +16,7 @@ import {
   LinkAction,
   supportsHas,
   polymorphic,
+  useGlobals,
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
@@ -132,6 +133,8 @@ const TileComponent = React.forwardRef((props, ref) => {
     onClick,
     ...rest
   } = props;
+
+  useGlobals();
   return (
     <TileContext.Provider
       value={{
@@ -205,22 +208,40 @@ TileThumbnailArea.displayName = 'TileNew.ThumbnailArea';
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailPicture component
 
-type TileThumbnailPictureOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type TileThumbnailPictureOwnProps =
+  | { url?: string }
+  | {
+      url?: never; //no url for custom children component but needed to extract from props
+      children?: React.ReactNode;
+    };
 
 const TileThumbnailPicture = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
+  const { as: Element = 'div', className, url, children, ...rest } = props;
+  if (url) {
+    return (
+      <Element
+        className={cx('iui-tile-thumbnail-picture', className)}
+        style={{
+          backgroundImage:
+            url && typeof url === 'string' ? `url(${url})` : undefined,
+        }}
+        ref={ref}
+        {...rest}
+      />
+    );
+  }
+
+  if (React.isValidElement(children) && children.type == 'SVG') {
+    console.log('true');
+  }
   return (
     <Element
-      className={cx('iui-tile-thumbnail-picture', className)}
-      style={{
-        backgroundImage:
-          children && typeof children === 'string'
-            ? `url(${children})`
-            : undefined,
-      }}
+      className={cx('iui-thumbnail-icon', className)}
       ref={ref}
       {...rest}
-    />
+    >
+      {children}
+    </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TileThumbnailPictureOwnProps>;
 

@@ -48,9 +48,7 @@ export const Basic: Story<TileNewProps> = (args) => {
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
-        <TileNew.ThumbnailPicture>
-          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
-        </TileNew.ThumbnailPicture>
+        <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>
@@ -85,9 +83,7 @@ export const AllProps: Story<TileNewProps> = (args) => {
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
-        <TileNew.ThumbnailPicture>
-          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
-        </TileNew.ThumbnailPicture>
+        <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <TileNew.QuickAction>
           <IconButton
             styleType='borderless'
@@ -159,9 +155,7 @@ export const Actionable: Story<TileNewProps> = (args) => {
     >
       <TileNew.Name>Stadium</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.ThumbnailPicture>
-          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
-        </TileNew.ThumbnailPicture>
+        <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
@@ -199,9 +193,7 @@ export const AnchorLink: Story<TileNewProps> = (args) => {
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
-        <TileNew.ThumbnailPicture>
-          https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png
-        </TileNew.ThumbnailPicture>
+        <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>
@@ -229,9 +221,9 @@ export const Condensed: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Condensed</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <SvgImodelHollow />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.MoreOptions>
@@ -261,7 +253,7 @@ export const WithAvatar: Story<TileNewProps> = (args) => {
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <Avatar
             size='x-large'
             status='online'
@@ -272,7 +264,7 @@ export const WithAvatar: Story<TileNewProps> = (args) => {
             }
             title='Terry Rivers'
           />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>User Description</TileNew.Description>
@@ -299,9 +291,9 @@ export const Folder: Story<TileNewProps> = (args) => {
   return (
     <TileNew {...args}>
       <TileNew.ThumbnailArea>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <SvgFolder />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Name>Folder name</TileNew.Name>
@@ -335,9 +327,9 @@ export const Status: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Tile name</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <SvgImodelHollow />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>Description</TileNew.Description>
@@ -370,9 +362,9 @@ export const Loading: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Tile name</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <SvgImodelHollow />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>Description</TileNew.Description>
@@ -409,9 +401,9 @@ export const Disabled: Story<TileNewProps> = (args) => {
         <TileNew.Badge>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </TileNew.Badge>
-        <TileNew.ThumbnailAvatar>
+        <TileNew.ThumbnailPicture>
           <SvgImodelHollow />
-        </TileNew.ThumbnailAvatar>
+        </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>Description</TileNew.Description>
