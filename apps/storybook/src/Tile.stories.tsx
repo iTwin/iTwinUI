@@ -295,8 +295,8 @@ export const Folder: Story<TileNewProps> = (args) => {
           <SvgFolder />
         </TileNew.ThumbnailPicture>
       </TileNew.ThumbnailArea>
+      <TileNew.Name>Folder name</TileNew.Name>
       <TileNew.ContentArea>
-        <TileNew.Name>Folder name</TileNew.Name>
         <TileNew.Description>Folder description</TileNew.Description>
         <TileNew.MoreOptions>
           <MenuItem key={1} onClick={action('clicked item 1')}>

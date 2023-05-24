@@ -150,9 +150,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-folder {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-areas:
+    'thumbnail name'
+    'thumbnail content';
 
   > :where(:first-child) {
     border-top-left-radius: inherit;
@@ -166,14 +167,18 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   .iui-tile-thumbnail {
     height: calc(var(--iui-size-s) * 10);
-    flex: 1;
+    grid-area: thumbnail;
     border-bottom: none;
     border-right: 1px solid var(--iui-color-border);
     margin: 0;
   }
 
+  .iui-tile-name {
+    grid-area: name;
+  }
+
   .iui-tile-content {
-    flex: 2;
+    grid-area: content;
     padding: var(--iui-size-s);
 
     > * {
