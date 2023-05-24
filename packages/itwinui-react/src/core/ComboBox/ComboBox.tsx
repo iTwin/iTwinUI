@@ -443,6 +443,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     (option: SelectOption<T>, filteredIndex?: number) => {
       const optionId = getOptionId(option, id);
       const { __originalIndex } = optionsExtraInfoRef.current[optionId];
+      const { icon, ...restOptions } = option;
 
       const customItem = itemRenderer
         ? itemRenderer(option, {
@@ -474,7 +475,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         <ComboBoxMenuItem
           key={optionId}
           id={optionId}
-          {...option}
+          startIcon={icon}
+          {...restOptions}
           isSelected={isMenuItemSelected(__originalIndex)}
           onClick={() => {
             onClickHandler(__originalIndex);

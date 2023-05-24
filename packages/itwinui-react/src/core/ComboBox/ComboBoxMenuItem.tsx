@@ -55,14 +55,22 @@ export const ComboBoxMenuItem = React.memo(
           data-iui-index={index}
           {...rest}
         >
-          {startIcon && <ListItem.Icon aria-hidden>{startIcon}</ListItem.Icon>}
+          {startIcon && (
+            <ListItem.Icon as='span' aria-hidden>
+              {startIcon}
+            </ListItem.Icon>
+          )}
           <ListItem.Content>
             {children}
             {sublabel && (
               <ListItem.Description>{sublabel}</ListItem.Description>
             )}
           </ListItem.Content>
-          {endIcon && <ListItem.Icon aria-hidden>{endIcon}</ListItem.Icon>}
+          {endIcon && (
+            <ListItem.Icon as='span' aria-hidden>
+              {endIcon}
+            </ListItem.Icon>
+          )}
         </ListItem>
       );
     },

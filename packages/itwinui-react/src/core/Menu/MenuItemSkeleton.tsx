@@ -65,7 +65,9 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
       }}
       {...rest}
     >
-      {hasIcon && <ListItem.Icon className='iui-skeleton' aria-hidden />}
+      {hasIcon && (
+        <ListItem.Icon as='span' className='iui-skeleton' aria-hidden />
+      )}
       <ListItem.Content>
         <div className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (

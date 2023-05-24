@@ -160,17 +160,25 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         }}
         {...rest}
       >
-        {startIcon && <ListItem.Icon aria-hidden>{startIcon}</ListItem.Icon>}
+        {startIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {startIcon}
+          </ListItem.Icon>
+        )}
         <ListItem.Content>
           {children}
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
         {!endIcon && subMenuItems.length > 0 && (
-          <ListItem.Icon aria-hidden>
+          <ListItem.Icon as='span' aria-hidden>
             <SvgCaretRightSmall />
           </ListItem.Icon>
         )}
-        {endIcon && <ListItem.Icon aria-hidden>{endIcon}</ListItem.Icon>}
+        {endIcon && (
+          <ListItem.Icon as='span' aria-hidden>
+            {endIcon}
+          </ListItem.Icon>
+        )}
       </ListItem>
     );
 
