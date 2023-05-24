@@ -321,12 +321,6 @@ export type {
 
 export {
   Anchor,
-  Body,
-  Headline,
-  Leading,
-  Small,
-  Subheading,
-  Title,
   Blockquote,
   Code,
   Kbd,
@@ -335,12 +329,6 @@ export {
 } from './Typography/index.js';
 export type {
   AnchorProps,
-  BodyProps,
-  HeadlineProps,
-  LeadingProps,
-  SmallProps,
-  SubheadingProps,
-  TitleProps,
   BlockquoteProps,
   CodeProps,
   KbdProps,
