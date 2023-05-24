@@ -12,15 +12,62 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { useMergedRefs } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type DialogProps = {
+type DialogProps = {
   /**
    * Dialog content.
    */
   children: React.ReactNode;
-} & Omit<DialogContextProps, 'dialogRootRef'> &
-  React.ComponentPropsWithRef<'div'>;
+} & Omit<DialogContextProps, 'dialogRootRef'>;
+
+const DialogComponent = React.forwardRef((props, ref) => {
+  const {
+    trapFocus = false,
+    setFocus = false,
+    preventDocumentScroll = false,
+    isOpen = false,
+    isDismissible = true,
+    closeOnEsc = true,
+    closeOnExternalClick = false,
+    onClose,
+    isDraggable = false,
+    isResizable = false,
+    relativeTo = 'viewport',
+    className,
+    ...rest
+  } = props;
+
+  const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const refs = useMergedRefs(ref, dialogRootRef);
+
+  return (
+    <DialogContext.Provider
+      value={{
+        isOpen,
+        onClose,
+        closeOnEsc,
+        closeOnExternalClick,
+        isDismissible,
+        preventDocumentScroll,
+        trapFocus,
+        setFocus,
+        isDraggable,
+        isResizable,
+        relativeTo,
+        dialogRootRef,
+      }}
+    >
+      <Box
+        className={cx('iui-dialog-wrapper', className)}
+        data-iui-relative={relativeTo === 'container'}
+        ref={refs}
+        {...rest}
+      />
+    </DialogContext.Provider>
+  );
+}) as PolymorphicForwardRefComponent<'div', DialogProps>;
 
 /**
  * Dialog component.
@@ -44,69 +91,12 @@ export type DialogProps = {
  *   </Dialog.Main>
  * </Dialog>
  */
-export const Dialog = Object.assign(
-  React.forwardRef(
-    (props: DialogProps, ref: React.RefObject<HTMLDivElement>) => {
-      const {
-        children,
-        trapFocus = false,
-        setFocus = false,
-        preventDocumentScroll = false,
-        isOpen = false,
-        isDismissible = true,
-        closeOnEsc = true,
-        closeOnExternalClick = false,
-        onClose,
-        isDraggable = false,
-        isResizable = false,
-        relativeTo = 'viewport',
-        className,
-        style,
-        ...rest
-      } = props;
-
-      const dialogRootRef = React.useRef<HTMLDivElement>(null);
-      const refs = useMergedRefs(ref, dialogRootRef);
-
-      return (
-        <DialogContext.Provider
-          value={{
-            isOpen,
-            onClose,
-            closeOnEsc,
-            closeOnExternalClick,
-            isDismissible,
-            preventDocumentScroll,
-            trapFocus,
-            setFocus,
-            isDraggable,
-            isResizable,
-            relativeTo,
-            dialogRootRef,
-          }}
-        >
-          <div
-            className={cx('iui-dialog-wrapper', className)}
-            data-iui-relative={relativeTo === 'container'}
-            ref={refs}
-            style={{
-              ...style,
-            }}
-            {...rest}
-          >
-            {children}
-          </div>
-        </DialogContext.Provider>
-      );
-    },
-  ),
-  {
-    Backdrop: DialogBackdrop,
-    Main: DialogMain,
-    TitleBar: DialogTitleBar,
-    Content: DialogContent,
-    ButtonBar: DialogButtonBar,
-  },
-);
+export const Dialog = Object.assign(DialogComponent, {
+  Backdrop: DialogBackdrop,
+  Main: DialogMain,
+  TitleBar: DialogTitleBar,
+  Content: DialogContent,
+  ButtonBar: DialogButtonBar,
+});
 
 export default Dialog;

@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Backdrop } from '../Backdrop/index.js';
-import type { BackdropProps } from '../Backdrop/index.js';
+import type { BackdropProps } from '../Backdrop/Backdrop.js';
 import { useMergedRefs } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import cx from 'classnames';
 
-export type DialogBackdropProps = BackdropProps &
+type DialogBackdropProps = BackdropProps &
   Pick<
     DialogContextProps,
     'onClose' | 'isDismissible' | 'closeOnExternalClick' | 'relativeTo'
@@ -22,10 +23,7 @@ export type DialogBackdropProps = BackdropProps &
  * @example
  * <Dialog.Backdrop />
  */
-export const DialogBackdrop = React.forwardRef<
-  HTMLDivElement,
-  DialogBackdropProps
->((props, ref) => {
+export const DialogBackdrop = React.forwardRef((props, ref) => {
   const dialogContext = useDialogContext();
   const {
     isVisible = dialogContext.isOpen,
@@ -58,9 +56,7 @@ export const DialogBackdrop = React.forwardRef<
     <Backdrop
       isVisible={isVisible}
       className={cx(
-        {
-          'iui-backdrop-fixed': relativeTo === 'viewport',
-        },
+        { 'iui-backdrop-fixed': relativeTo === 'viewport' },
         className,
       )}
       ref={refs}
@@ -72,6 +68,6 @@ export const DialogBackdrop = React.forwardRef<
       {...rest}
     />
   );
-});
+}) as PolymorphicForwardRefComponent<'div', DialogBackdropProps>;
 
 export default DialogBackdrop;

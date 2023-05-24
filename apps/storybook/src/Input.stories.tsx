@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Input, InputProps } from '@itwin/itwinui-react';
+import { Input } from '@itwin/itwinui-react';
+
+type InputProps = React.ComponentProps<typeof Input>;
 
 export default {
   title: 'Input/Input',

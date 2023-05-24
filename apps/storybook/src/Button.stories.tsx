@@ -5,9 +5,11 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import { Button, ButtonProps, NotificationMarker } from '@itwin/itwinui-react';
+import { Button, NotificationMarker } from '@itwin/itwinui-react';
 import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
 import { SvgEmail } from '@itwin/itwinui-icons-react';
+
+type ButtonProps = React.ComponentProps<typeof Button>;
 
 export default {
   title: 'Buttons/Button',

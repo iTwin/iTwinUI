@@ -5,13 +5,15 @@
 import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 
-import { SideNavigation, type SideNavigationProps } from './SideNavigation.js';
+import { SideNavigation } from './SideNavigation.js';
 import { SidenavButton } from './SidenavButton.js';
 import { SidenavSubmenu } from './SidenavSubmenu.js';
 import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils//index.js';
 import userEvent from '@testing-library/user-event';
 
-function renderComponent(props?: Partial<SideNavigationProps>) {
+function renderComponent(
+  props?: Partial<React.ComponentProps<typeof SideNavigation>>,
+) {
   return render(
     <SideNavigation
       items={[

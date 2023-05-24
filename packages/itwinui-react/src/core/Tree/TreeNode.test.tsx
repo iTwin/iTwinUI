@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { TreeNode, type TreeNodeProps } from './TreeNode.js';
+import { TreeNode } from './TreeNode.js';
 import { type TreeContextProps, TreeContext } from './TreeContext.js';
 import { Checkbox } from '../Checkbox/index.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
@@ -14,7 +14,7 @@ const renderComponent = ({
   props,
   contextProps,
 }: {
-  props?: Partial<TreeNodeProps>;
+  props?: Partial<React.ComponentProps<typeof TreeNode>>;
   contextProps?: Partial<TreeContextProps>;
 } = {}) => {
   return render(
