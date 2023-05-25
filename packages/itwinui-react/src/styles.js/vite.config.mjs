@@ -8,8 +8,18 @@ export default defineConfig({
     cssMinify: false,
     lib: {
       entry: resolve(__dirname, './classes.mjs'),
-      fileName: (format) => `${format === 'es' ? 'esm' : 'cjs'}/styles.js`,
-      formats: ['es', 'cjs'],
+      fileName: 'styles',
+      formats: ['es'],
+    },
+    rollupOptions: {
+      output: {
+        assetFileNames: (assetInfo) => {
+          if (assetInfo.name === 'style.css') {
+            return 'styles.css';
+          }
+          return assetInfo.name;
+        },
+      },
     },
   },
   css: {
