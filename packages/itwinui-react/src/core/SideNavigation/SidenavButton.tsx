@@ -5,14 +5,12 @@
 
 import cx from 'classnames';
 import * as React from 'react';
-
-import { useGlobals } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/index.js';
-import type { ButtonProps } from '../Buttons/index.js';
+import type { ButtonProps } from '../Buttons/Button/Button.js';
 import '@itwin/itwinui-css/css/side-navigation.css';
 
-export type SidenavButtonProps = {
+type SidenavButtonProps = {
   /**
    * Whether the sidenav button is active,
    * i.e. the current page corresponds to this button.
@@ -25,47 +23,36 @@ export type SidenavButtonProps = {
   isSubmenuOpen?: boolean;
 } & Omit<ButtonProps, 'styleType' | 'size'>;
 
-type SideNavButtonComponent = PolymorphicForwardRefComponent<
-  'button',
-  SidenavButtonProps
->;
-
 /**
  * Wrapper around Button to be used as SideNavigation items.
  * Label is hidden when sidenav is collapsed.
  */
-export const SidenavButton: SideNavButtonComponent = React.forwardRef(
-  (props, ref) => {
-    const {
-      className,
-      children,
-      isActive = false,
-      disabled = false,
-      isSubmenuOpen = false,
-      ...rest
-    } = props;
+export const SidenavButton = React.forwardRef((props, ref) => {
+  const {
+    className,
+    children,
+    isActive = false,
+    disabled = false,
+    isSubmenuOpen = false,
+    ...rest
+  } = props;
 
-    useGlobals();
-
-    return (
-      <Button
-        className={cx(
-          'iui-sidenav-button',
-          {
-            'iui-submenu-open': isSubmenuOpen,
-          },
-          className,
-        )}
-        data-iui-active={isActive}
-        size='large'
-        disabled={disabled}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </Button>
-    );
-  },
-);
+  return (
+    <Button
+      className={cx(
+        'iui-sidenav-button',
+        { 'iui-submenu-open': isSubmenuOpen },
+        className,
+      )}
+      data-iui-active={isActive}
+      size='large'
+      disabled={disabled}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Button>
+  );
+}) as PolymorphicForwardRefComponent<'button', SidenavButtonProps>;
 
 export default SidenavButton;

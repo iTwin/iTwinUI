@@ -5,8 +5,6 @@
 import { polymorphic } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/anchor.css';
 
-export type AnchorProps = React.ComponentPropsWithoutRef<'a'>;
-
 /**
  * A consistently styled anchor component.
  *

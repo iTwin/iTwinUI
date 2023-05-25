@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { DropdownButton } from './DropdownButton.js';
-export type { DropdownButtonProps } from './DropdownButton.js';
 export default './DropdownButton';

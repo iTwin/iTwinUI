@@ -58,7 +58,8 @@ const reactComponentFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.tsx`,
     template: `${copyrightBannerJs}
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type ${componentName}Props = {};
 
@@ -67,11 +68,10 @@ export type ${componentName}Props = {};
  * @example
  * Example usages go here!
  */
-export const ${componentName} = (props: ${componentName}Props) => {
+export const ${componentName} = React.forwardRef((props, forwardedRef) => {
   const { ...rest } = props;
-  useGlobals();
-  return <div {...rest} />;
-};
+  return <Box ref={forwardedRef} {...rest} />;
+}) as Polymorphic.ForwardRefComponent<'div', ${componentName}Props>;
 
 export default ${componentName};
 `,

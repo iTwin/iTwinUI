@@ -5,8 +5,9 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
-import { AnchorProps } from '@itwin/itwinui-react';
 import { action } from '@storybook/addon-actions';
+
+type AnchorProps = React.ComponentProps<typeof Anchor>;
 
 export default {
   title: 'Typography/Anchor',

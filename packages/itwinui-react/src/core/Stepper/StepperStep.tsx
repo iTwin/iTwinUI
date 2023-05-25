@@ -5,7 +5,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Tooltip } from '../Tooltip/index.js';
-import type { StylingProps } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type StepperStepProps = {
   /**
@@ -36,9 +37,9 @@ export type StepperStepProps = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
-} & StylingProps;
+};
 
-export const StepperStep = (props: StepperStepProps) => {
+export const StepperStep = React.forwardRef((props, forwardedRef) => {
   const {
     title,
     index,
@@ -77,7 +78,8 @@ export const StepperStep = (props: StepperStepProps) => {
   };
 
   const stepShape = (
-    <li
+    <Box
+      as='li'
       className={cx(
         'iui-stepper-step',
         {
@@ -94,16 +96,21 @@ export const StepperStep = (props: StepperStepProps) => {
       onKeyDown={onKeyDown}
       aria-current={isActive ? 'step' : undefined}
       tabIndex={isClickable ? 0 : undefined}
+      ref={forwardedRef}
       {...rest}
     >
-      <div className='iui-stepper-track-content'>
-        <span className='iui-stepper-circle'>{index + 1}</span>
-      </div>
+      <Box className='iui-stepper-track-content'>
+        <Box as='span' className='iui-stepper-circle'>
+          {index + 1}
+        </Box>
+      </Box>
 
       {type === 'default' && (
-        <span className='iui-stepper-step-name'>{title}</span>
+        <Box as='span' className='iui-stepper-step-name'>
+          {title}
+        </Box>
       )}
-    </li>
+    </Box>
   );
 
   return description ? (
@@ -111,4 +118,4 @@ export const StepperStep = (props: StepperStepProps) => {
   ) : (
     stepShape
   );
-};
+}) as PolymorphicForwardRefComponent<'li', StepperStepProps>;

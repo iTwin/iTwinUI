@@ -4,18 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-
 import {
-  useGlobals,
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
   Icon,
+  Box,
 } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/expandable-block.css';
 
-export type ExpandableBlockProps = {
+type ExpandableBlockProps = {
   /**
    * The main text displayed on the block, regardless of state.
    */
@@ -58,7 +57,7 @@ export type ExpandableBlockProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Container that allows content to be hidden behind a brief title and a caption.
@@ -69,7 +68,7 @@ export type ExpandableBlockProps = {
  * <ExpandableBlock title='Positive status' status='positive'>Content</ExpandableBlock>
  * <ExpandableBlock title='Block with icon' endIcon={<SvgPlaceholder />}>Content</ExpandableBlock>
  */
-export const ExpandableBlock = (props: ExpandableBlockProps) => {
+export const ExpandableBlock = React.forwardRef((props, ref) => {
   const {
     caption,
     children,
@@ -84,8 +83,6 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     styleType = 'default',
     ...rest
   } = props;
-
-  useGlobals();
 
   const icon = endIcon ?? (status && StatusIconMap[status]());
 
@@ -114,7 +111,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   };
 
   return (
-    <div
+    <Box
       className={cx(
         'iui-expandable-block',
         {
@@ -126,6 +123,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         className,
       )}
       style={style}
+      ref={ref}
       {...rest}
     >
       <div
@@ -147,8 +145,8 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
           <div>{children}</div>
         </div>
       </WithCSSTransition>
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockProps>;
 
 export default ExpandableBlock;

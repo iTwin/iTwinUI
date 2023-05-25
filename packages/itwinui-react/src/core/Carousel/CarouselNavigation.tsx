@@ -6,83 +6,112 @@ import * as React from 'react';
 import cx from 'classnames';
 import { CarouselContext } from './CarouselContext.js';
 import { IconButton } from '../Buttons/index.js';
-import type { IconButtonProps } from '../Buttons/index.js';
 import { CarouselDotsList } from './CarouselDotsList.js';
-import { SvgChevronLeft, SvgChevronRight } from '../utils/index.js';
+import { Box, SvgChevronLeft, SvgChevronRight } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+
+const CarouselNavigationComponent = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  return (
+    <Box
+      as='nav'
+      className={cx('iui-carousel-navigation', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children ?? (
+        <>
+          <Box className='iui-carousel-navigation-left'>
+            <PreviousButton />
+          </Box>
+
+          <CarouselDotsList />
+
+          <Box className='iui-carousel-navigation-right'>
+            <NextButton />
+          </Box>
+        </>
+      )}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'nav'>;
 
 /** Button for switching to previous slide */
-const PreviousButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  (props, ref) => {
-    const context = React.useContext(CarouselContext);
-    if (!context) {
-      throw new Error('CarouselNavigation should be used inside Carousel');
-    }
+const PreviousButton = React.forwardRef((props, ref) => {
+  const context = React.useContext(CarouselContext);
+  if (!context) {
+    throw new Error('CarouselNavigation should be used inside Carousel');
+  }
 
-    const {
-      slideCount,
-      currentIndex,
-      setCurrentIndex,
-      keysPressed,
-      scrollToSlide,
-    } = context;
+  const {
+    slideCount,
+    currentIndex,
+    setCurrentIndex,
+    keysPressed,
+    scrollToSlide,
+  } = context;
 
-    return (
-      <IconButton
-        styleType='borderless'
-        size='small'
-        tabIndex={-1}
-        data-pressed={keysPressed['ArrowLeft'] || undefined}
-        ref={ref}
-        {...props}
-        onClick={(e) => {
-          const prevIndex = (slideCount + currentIndex - 1) % slideCount;
-          setCurrentIndex(prevIndex);
-          scrollToSlide.current(prevIndex, { instant: e.detail > 3 });
-          props?.onClick?.(e);
-        }}
-      >
-        <SvgChevronLeft />
-      </IconButton>
-    );
-  },
-);
+  return (
+    <IconButton
+      styleType='borderless'
+      size='small'
+      tabIndex={-1}
+      data-pressed={keysPressed['ArrowLeft'] || undefined}
+      ref={ref}
+      {...props}
+      onClick={(e) => {
+        const prevIndex = (slideCount + currentIndex - 1) % slideCount;
+        setCurrentIndex(prevIndex);
+        scrollToSlide.current(prevIndex, { instant: e.detail > 3 });
+        props?.onClick?.(e);
+      }}
+    >
+      <SvgChevronLeft />
+    </IconButton>
+  );
+}) as PolymorphicForwardRefComponent<
+  'button',
+  React.ComponentProps<typeof IconButton>
+>;
 
 /** Button for switching to next slide */
-const NextButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  (props, ref) => {
-    const context = React.useContext(CarouselContext);
-    if (!context) {
-      throw new Error('CarouselNavigation should be used inside Carousel');
-    }
+const NextButton = React.forwardRef((props, ref) => {
+  const context = React.useContext(CarouselContext);
+  if (!context) {
+    throw new Error('CarouselNavigation should be used inside Carousel');
+  }
 
-    const {
-      slideCount,
-      currentIndex,
-      setCurrentIndex,
-      keysPressed,
-      scrollToSlide,
-    } = context;
+  const {
+    slideCount,
+    currentIndex,
+    setCurrentIndex,
+    keysPressed,
+    scrollToSlide,
+  } = context;
 
-    return (
-      <IconButton
-        styleType='borderless'
-        size='small'
-        tabIndex={-1}
-        data-pressed={keysPressed['ArrowRight'] || undefined}
-        ref={ref}
-        {...props}
-        onClick={(e) => {
-          const nextIndex = (slideCount + currentIndex + 1) % slideCount;
-          setCurrentIndex(nextIndex);
-          scrollToSlide.current(nextIndex, { instant: e.detail > 3 });
-          props?.onClick?.(e);
-        }}
-      >
-        <SvgChevronRight />
-      </IconButton>
-    );
-  },
-);
+  return (
+    <IconButton
+      styleType='borderless'
+      size='small'
+      tabIndex={-1}
+      data-pressed={keysPressed['ArrowRight'] || undefined}
+      ref={ref}
+      {...props}
+      onClick={(e) => {
+        const nextIndex = (slideCount + currentIndex + 1) % slideCount;
+        setCurrentIndex(nextIndex);
+        scrollToSlide.current(nextIndex, { instant: e.detail > 3 });
+        props?.onClick?.(e);
+      }}
+    >
+      <SvgChevronRight />
+    </IconButton>
+  );
+}) as PolymorphicForwardRefComponent<
+  'button',
+  React.ComponentProps<typeof IconButton>
+>;
 
 /**
  * The `CarouselNavigation` component by default consists of the `PreviousButton` and `NextButton`
@@ -90,33 +119,7 @@ const NextButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
  *
  * `children` can be specified to override what is shown in this navigation section.
  */
-export const CarouselNavigation = Object.assign(
-  React.forwardRef<HTMLElement, React.ComponentPropsWithoutRef<'nav'>>(
-    (props, ref) => {
-      const { className, children, ...rest } = props;
-
-      return (
-        <nav
-          className={cx('iui-carousel-navigation', className)}
-          ref={ref}
-          {...rest}
-        >
-          {children ?? (
-            <>
-              <div className='iui-carousel-navigation-left'>
-                <PreviousButton />
-              </div>
-
-              <CarouselDotsList />
-
-              <div className='iui-carousel-navigation-right'>
-                <NextButton />
-              </div>
-            </>
-          )}
-        </nav>
-      );
-    },
-  ),
-  { PreviousButton, NextButton },
-);
+export const CarouselNavigation = Object.assign(CarouselNavigationComponent, {
+  PreviousButton,
+  NextButton,
+});

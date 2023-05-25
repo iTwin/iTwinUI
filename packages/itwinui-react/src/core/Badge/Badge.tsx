@@ -4,13 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  isSoftBackground,
-  SoftBackgrounds,
+import { isSoftBackground, SoftBackgrounds, Box } from '../utils/index.js';
+import type {
+  AnyString,
+  PolymorphicForwardRefComponent,
 } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import type { AnyString } from '../utils/index.js';
 import '@itwin/itwinui-css/css/badge.css';
 
 /**
@@ -33,7 +31,7 @@ const getStatusValue = (color: BadgeProps['backgroundColor']) => {
   return color && statuses.includes(color) ? color : undefined;
 };
 
-export type BadgeProps = {
+type BadgeProps = {
   /**
    * Background color of the badge.
    *
@@ -54,7 +52,7 @@ export type BadgeProps = {
    * Always gets converted to uppercase, and truncated if too long.
    */
   children: string;
-} & CommonProps;
+};
 
 /**
  * A colorful visual indicator for categorizing items.
@@ -63,10 +61,8 @@ export type BadgeProps = {
  * <Badge backgroundColor="sunglow">Label</Badge>
  * <Badge backgroundColor="positive">Label</Badge>
  */
-export const Badge = (props: BadgeProps) => {
+export const Badge = React.forwardRef((props, forwardedRef) => {
   const { backgroundColor, style, className, children, ...rest } = props;
-
-  useGlobals();
 
   // choosing 'primary' status should result in data-iui-status equaling 'informational'
   const reducedBackgroundColor =
@@ -85,15 +81,17 @@ export const Badge = (props: BadgeProps) => {
       : { ...style };
 
   return (
-    <span
+    <Box
+      as='span'
       className={cx('iui-badge', className)}
       style={_style}
       data-iui-status={statusValue}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
-    </span>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'span', BadgeProps>;
 
 export default Badge;

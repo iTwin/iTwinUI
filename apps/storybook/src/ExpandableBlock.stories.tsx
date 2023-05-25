@@ -6,7 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { ExpandableBlock, ExpandableBlockProps } from '@itwin/itwinui-react';
+import { ExpandableBlock } from '@itwin/itwinui-react';
+
+type ExpandableBlockProps = React.ComponentProps<typeof ExpandableBlock>;
 
 export default {
   title: 'Core/ExpandableBlock',

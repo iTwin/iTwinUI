@@ -47,7 +47,8 @@ export type WizardProps = {
  *  />
  */
 export const Wizard = React.forwardRef<HTMLDivElement, WizardProps>(
-  (props, ref) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (props, ref: React.Ref<any>) => {
     const {
       currentStep,
       steps,

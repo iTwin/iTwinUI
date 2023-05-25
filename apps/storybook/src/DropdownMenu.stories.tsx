@@ -7,7 +7,6 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
-  DropdownMenuProps,
   IconButton,
   MenuExtraContent,
   MenuDivider,
@@ -23,6 +22,8 @@ import {
   SvgPlaceholder,
 } from '@itwin/itwinui-icons-react';
 import { useState } from '@storybook/addons';
+
+type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>;
 
 export default {
   title: 'Core/DropdownMenu',
