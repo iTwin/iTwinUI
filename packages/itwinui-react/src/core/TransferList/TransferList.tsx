@@ -10,7 +10,6 @@ import {
   useId,
   useSafeContext,
   useGlobals,
-  polymorphic,
 } from '../utils/index.js';
 import type {
   PolymorphicComponentProps,
@@ -30,7 +29,6 @@ const TransferListComponent = React.forwardRef((props, ref) => {
   const { as: Element = 'div', className, children, ...rest } = props;
 
   useGlobals();
-  const [labelId, setLabelId] = React.useState<string>();
 
   return (
     <Element
@@ -38,9 +36,7 @@ const TransferListComponent = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <TransferListContext.Provider value={{ labelId, setLabelId }}>
-        {children}
-      </TransferListContext.Provider>
+      {children}
     </Element>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListOwnProps>;
@@ -49,9 +45,26 @@ TransferListComponent.displayName = 'TransferList';
 // ----------------------------------------------------------------------------
 // TransferList.ListboxWrapper component
 
-const TransferListListboxWrapper = polymorphic(
-  'iui-transfer-list-listbox-wrapper',
-);
+type TransferListListboxWrapperOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TransferListListboxWrapper = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', className, children, ...rest } = props;
+
+  const uid = useId();
+  const [labelId, setLabelId] = React.useState(uid);
+
+  return (
+    <Element
+      className={cx('iui-transfer-list-listbox-wrapper', className)}
+      ref={ref}
+      {...rest}
+    >
+      <TransferListContext.Provider value={{ labelId, setLabelId }}>
+        {children}
+      </TransferListContext.Provider>
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TransferListListboxWrapperOwnProps>;
 TransferListListboxWrapper.displayName = 'TransferList.ListboxWrapper';
 
 // ----------------------------------------------------------------------------
@@ -202,8 +215,12 @@ const TransferListListboxLabel = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, className, id, ...rest } = props;
 
   const { labelId, setLabelId } = useSafeContext(TransferListContext);
-  const uid = useId();
-  setLabelId(id ?? uid);
+
+  React.useEffect(() => {
+    if (id && id !== labelId) {
+      setLabelId(id);
+    }
+  }, [id, labelId, setLabelId]);
 
   return (
     <Element
@@ -294,6 +311,10 @@ export const TransferListContext = React.createContext<
 
 export type TransferListProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, TransferListOwnProps>;
+
+export type TransferListListboxWrapperProps<
+  T extends React.ElementType = 'div',
+> = PolymorphicComponentProps<T, TransferListListboxWrapperOwnProps>;
 
 export type TransferListListboxProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, TransferListListboxOwnProps>;

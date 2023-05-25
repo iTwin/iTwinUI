@@ -5,6 +5,7 @@
 export { TransferList } from './TransferList.js';
 export type {
   TransferListProps,
+  TransferListListboxWrapperProps,
   TransferListListboxProps,
   TransferListItemProps,
   TransferListListboxLabelProps,
