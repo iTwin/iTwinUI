@@ -3,13 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  useGlobals,
-  Popover,
-  useMergedRefs,
-  SvgCaretRightSmall,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Popover, useMergedRefs, SvgCaretRightSmall } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
@@ -70,145 +65,141 @@ export type MenuItemProps = {
    * Content of the menu item.
    */
   children?: React.ReactNode;
-} & CommonProps;
+};
 
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
  */
-export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
-  (props, ref) => {
-    const {
-      children,
-      isSelected,
-      disabled,
-      value,
-      onClick,
-      sublabel,
-      size = !!sublabel ? 'large' : 'default',
-      startIcon,
-      endIcon,
-      role = 'menuitem',
-      subMenuItems = [],
-      ...rest
-    } = props;
+export const MenuItem = React.forwardRef((props, ref) => {
+  const {
+    children,
+    isSelected,
+    disabled,
+    value,
+    onClick,
+    sublabel,
+    size = !!sublabel ? 'large' : 'default',
+    startIcon,
+    endIcon,
+    role = 'menuitem',
+    subMenuItems = [],
+    ...rest
+  } = props;
 
-    useGlobals();
+  const menuItemRef = React.useRef<HTMLLIElement>(null);
+  const refs = useMergedRefs(menuItemRef, ref);
 
-    const menuItemRef = React.useRef<HTMLLIElement>(null);
-    const refs = useMergedRefs(menuItemRef, ref);
+  const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
 
-    const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
+  const subMenuRef = React.useRef<HTMLUListElement>(null);
 
-    const subMenuRef = React.useRef<HTMLUListElement>(null);
+  const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
 
-    const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+    if (event.altKey) {
+      return;
+    }
 
-    const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
-      if (event.altKey) {
-        return;
+    switch (event.key) {
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': {
+        !disabled && onClick?.(value);
+        event.preventDefault();
+        break;
       }
-
-      switch (event.key) {
-        case 'Enter':
-        case ' ':
-        case 'Spacebar': {
-          !disabled && onClick?.(value);
+      case 'ArrowRight': {
+        if (subMenuItems.length > 0) {
+          setIsSubmenuVisible(true);
           event.preventDefault();
-          break;
-        }
-        case 'ArrowRight': {
-          if (subMenuItems.length > 0) {
-            setIsSubmenuVisible(true);
-            event.preventDefault();
-            event.stopPropagation();
-          }
-          break;
-        }
-        case 'ArrowLeft': {
-          parentMenuItemRef?.current?.focus();
           event.stopPropagation();
-          event.preventDefault();
-          break;
         }
-        default:
-          break;
+        break;
       }
-    };
+      case 'ArrowLeft': {
+        parentMenuItemRef?.current?.focus();
+        event.stopPropagation();
+        event.preventDefault();
+        break;
+      }
+      default:
+        break;
+    }
+  };
 
-    const listItem = (
-      <ListItem
-        actionable
-        size={size}
-        active={isSelected}
-        disabled={disabled}
-        onClick={() => !disabled && onClick?.(value)}
-        ref={refs}
-        role={role}
-        tabIndex={disabled || role === 'presentation' ? undefined : -1}
-        aria-selected={isSelected}
-        aria-haspopup={subMenuItems.length > 0}
-        aria-disabled={disabled}
-        onKeyDown={onKeyDown}
-        onMouseEnter={() => setIsSubmenuVisible(true)}
-        onMouseLeave={(e) => {
-          if (
-            !(e.relatedTarget instanceof Node) ||
-            !subMenuRef.current?.contains(e.relatedTarget as Node)
-          ) {
-            setIsSubmenuVisible(false);
-          }
-        }}
-        {...rest}
+  const listItem = (
+    <ListItem
+      actionable
+      size={size}
+      active={isSelected}
+      disabled={disabled}
+      onClick={() => !disabled && onClick?.(value)}
+      ref={refs}
+      role={role}
+      tabIndex={disabled || role === 'presentation' ? undefined : -1}
+      aria-selected={isSelected}
+      aria-haspopup={subMenuItems.length > 0}
+      aria-disabled={disabled}
+      onKeyDown={onKeyDown}
+      onMouseEnter={() => setIsSubmenuVisible(true)}
+      onMouseLeave={(e) => {
+        if (
+          !(e.relatedTarget instanceof Node) ||
+          !subMenuRef.current?.contains(e.relatedTarget as Node)
+        ) {
+          setIsSubmenuVisible(false);
+        }
+      }}
+      {...rest}
+    >
+      {startIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {startIcon}
+        </ListItem.Icon>
+      )}
+      <ListItem.Content>
+        {children}
+        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+      </ListItem.Content>
+      {!endIcon && subMenuItems.length > 0 && (
+        <ListItem.Icon as='span' aria-hidden>
+          <SvgCaretRightSmall />
+        </ListItem.Icon>
+      )}
+      {endIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {endIcon}
+        </ListItem.Icon>
+      )}
+    </ListItem>
+  );
+
+  return subMenuItems.length === 0 ? (
+    listItem
+  ) : (
+    <MenuItemContext.Provider value={{ ref: menuItemRef }}>
+      <Popover
+        placement='right-start'
+        visible={isSubmenuVisible}
+        appendTo='parent'
+        content={
+          <div
+            onMouseLeave={() => setIsSubmenuVisible(false)}
+            onBlur={(e) => {
+              !!(e.relatedTarget instanceof Node) &&
+                !subMenuRef.current?.contains(e.relatedTarget as Node) &&
+                !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
+                setIsSubmenuVisible(false);
+            }}
+          >
+            <Menu ref={subMenuRef}>{subMenuItems}</Menu>
+          </div>
+        }
       >
-        {startIcon && (
-          <ListItem.Icon as='span' aria-hidden>
-            {startIcon}
-          </ListItem.Icon>
-        )}
-        <ListItem.Content>
-          {children}
-          {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
-        </ListItem.Content>
-        {!endIcon && subMenuItems.length > 0 && (
-          <ListItem.Icon as='span' aria-hidden>
-            <SvgCaretRightSmall />
-          </ListItem.Icon>
-        )}
-        {endIcon && (
-          <ListItem.Icon as='span' aria-hidden>
-            {endIcon}
-          </ListItem.Icon>
-        )}
-      </ListItem>
-    );
-
-    return subMenuItems.length === 0 ? (
-      listItem
-    ) : (
-      <MenuItemContext.Provider value={{ ref: menuItemRef }}>
-        <Popover
-          placement='right-start'
-          visible={isSubmenuVisible}
-          appendTo='parent'
-          content={
-            <div
-              onMouseLeave={() => setIsSubmenuVisible(false)}
-              onBlur={(e) => {
-                !!(e.relatedTarget instanceof Node) &&
-                  !subMenuRef.current?.contains(e.relatedTarget as Node) &&
-                  !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
-                  setIsSubmenuVisible(false);
-              }}
-            >
-              <Menu ref={subMenuRef}>{subMenuItems}</Menu>
-            </div>
-          }
-        >
-          {listItem}
-        </Popover>
-      </MenuItemContext.Provider>
-    );
-  },
-);
+        {listItem}
+      </Popover>
+    </MenuItemContext.Provider>
+  );
+}) as PolymorphicForwardRefComponent<'li', MenuItemProps>;
 
 export default MenuItem;

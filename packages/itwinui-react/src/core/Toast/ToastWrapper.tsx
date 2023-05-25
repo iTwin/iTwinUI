@@ -8,6 +8,7 @@ import cx from 'classnames';
 import Toast from './Toast.js';
 import type { ToastProps } from './Toast.js';
 import type { ToasterSettings } from './Toaster.js';
+import { Box } from '../utils/index.js';
 
 type ToastPlacement = NonNullable<ToasterSettings['placement']>;
 
@@ -31,7 +32,7 @@ export const ToastWrapper = React.forwardRef<ToastWrapperHandle>((_, ref) => {
   );
 
   return (
-    <span className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
+    <Box className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
       {toasts.map((toastProps) => {
         return (
           <Toast
@@ -41,6 +42,6 @@ export const ToastWrapper = React.forwardRef<ToastWrapperHandle>((_, ref) => {
           />
         );
       })}
-    </span>
+    </Box>
   );
 });

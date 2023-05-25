@@ -9,10 +9,11 @@ import {
   DatePicker,
   IconButton,
   TimePicker,
-  DatePickerProps,
   generateLocalizedStrings,
 } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
+
+type DatePickerProps = React.ComponentProps<typeof DatePicker>;
 
 export default {
   title: 'Core/DatePicker',

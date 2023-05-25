@@ -5,13 +5,13 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Menu, MenuItem } from '../Menu/index.js';
-import type { MenuItemProps } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
-  useGlobals,
   SvgCaretDownSmall,
   Popover,
   useId,
   AutoclearingHiddenLiveRegion,
+  Box,
 } from '../utils/index.js';
 import type {
   PopoverProps,
@@ -243,8 +243,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     ...rest
   } = props;
 
-  useGlobals();
-
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = popoverProps?.visible ?? isOpenState;
 
@@ -370,7 +368,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   }, []);
 
   return (
-    <div
+    <Box
       className={cx('iui-input-with-icon', className)}
       style={style}
       {...rest}
@@ -403,7 +401,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           }
         }}
       >
-        <div
+        <Box
           tabIndex={0}
           role='combobox'
           ref={selectRef}
@@ -427,7 +425,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           )}
         >
           {(!selectedItems || selectedItems.length === 0) && (
-            <span className='iui-content'>{placeholder}</span>
+            <Box as='span' className='iui-content'>
+              {placeholder}
+            </Box>
           )}
           {isMultipleEnabled(selectedItems, multiple) ? (
             <MultipleSelectButton
@@ -447,9 +447,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               }
             />
           )}
-        </div>
+        </Box>
       </Popover>
-      <span
+      <Box
+        as='span'
         aria-hidden
         ref={toggleButtonRef}
         className={cx('iui-end-icon', {
@@ -460,12 +461,12 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         onClick={() => !disabled && setIsOpen((o) => !o)}
       >
         <SvgCaretDownSmall />
-      </span>
+      </Box>
 
       {multiple ? (
         <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
       ) : null}
-    </div>
+    </Box>
   );
 };
 
@@ -489,7 +490,9 @@ const SingleSelectButton = <T,>({
             React.cloneElement(selectedItem.icon, {
               className: cx(selectedItem.icon.props.className, 'iui-icon'),
             })}
-          <span className='iui-content'>{selectedItem.label}</span>
+          <Box as='span' className='iui-content'>
+            {selectedItem.label}
+          </Box>
         </>
       )}
     </>
@@ -521,9 +524,9 @@ const MultipleSelectButton = <T,>({
         selectedItemsRenderer &&
         selectedItemsRenderer(selectedItems)}
       {selectedItems && !selectedItemsRenderer && (
-        <span className='iui-content'>
+        <Box as='span' className='iui-content'>
           <SelectTagContainer tags={selectedItemsElements} />
-        </span>
+        </Box>
       )}
     </>
   );

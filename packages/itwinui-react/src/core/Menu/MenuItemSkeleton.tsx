@@ -4,12 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, VisuallyHidden } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box, VisuallyHidden } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
-import { ListItem } from '../List/ListItem.js';
 
-export type MenuItemSkeletonProps = {
+type MenuItemSkeletonProps = {
   /**
    * Flag whether to show skeleton for sub-label.
    */
@@ -32,12 +31,12 @@ export type MenuItemSkeletonProps = {
      */
     loading: string;
   };
-} & CommonProps;
+};
 
 /**
  * Menu item that uses skeletons to indicate loading state.
  */
-export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
+export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
   const {
     hasSublabel,
     hasIcon,
@@ -48,10 +47,9 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
     ...rest
   } = props;
 
-  useGlobals();
-
   return (
-    <ListItem
+    <Box
+      as='li'
       className={cx(
         'iui-menu-item-skeleton',
         { 'iui-large': hasSublabel },
@@ -63,20 +61,19 @@ export const MenuItemSkeleton = (props: MenuItemSkeletonProps) => {
         },
         ...style,
       }}
+      ref={forwardedRef}
       {...rest}
     >
-      {hasIcon && (
-        <ListItem.Icon as='span' className='iui-skeleton' aria-hidden />
-      )}
-      <ListItem.Content>
-        <div className='iui-menu-label iui-skeleton' aria-hidden />
+      {hasIcon && <Box className='iui-icon iui-skeleton' aria-hidden />}
+      <Box as='span' className='iui-content'>
+        <Box className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (
-          <div className='iui-menu-description iui-skeleton' aria-hidden />
+          <Box className='iui-menu-description iui-skeleton' aria-hidden />
         )}
         <VisuallyHidden>{translatedStrings.loading}</VisuallyHidden>
-      </ListItem.Content>
-    </ListItem>
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'li', MenuItemSkeletonProps>;
 
 export default MenuItemSkeleton;

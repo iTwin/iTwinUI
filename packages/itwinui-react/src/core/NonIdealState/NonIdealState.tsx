@@ -3,11 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/non-ideal-state.css';
 
-export type NonIdealStateProps = {
+type NonIdealStateProps = {
   /**
    * An svg component, preferably from @itwin/itwinui-illustrations-react.
    *
@@ -44,7 +45,7 @@ export type NonIdealStateProps = {
    * />
    */
   actions?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'div'>;
+};
 
 /**
  * A stylized display to communicate common http errors and other non-ideal states.
@@ -53,21 +54,23 @@ export type NonIdealStateProps = {
  * @example
  * <NonIdealState svg={<Svg404 />} heading='Not found' />
  */
-export const NonIdealState = (props: NonIdealStateProps): JSX.Element => {
+export const NonIdealState = React.forwardRef((props, forwardedRef) => {
   const { className, svg, heading, description, actions, ...rest } = props;
 
-  useGlobals();
-
   return (
-    <div className={cx('iui-non-ideal-state', className)} {...rest}>
-      <div className='iui-non-ideal-state-illustration'>{svg}</div>
-      {heading && <div className='iui-non-ideal-state-title'>{heading}</div>}
+    <Box
+      className={cx('iui-non-ideal-state', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      <Box className='iui-non-ideal-state-illustration'>{svg}</Box>
+      {heading && <Box className='iui-non-ideal-state-title'>{heading}</Box>}
       {description && (
-        <div className='iui-non-ideal-state-description'>{description}</div>
+        <Box className='iui-non-ideal-state-description'>{description}</Box>
       )}
-      {actions && <div className='iui-non-ideal-state-actions'>{actions}</div>}
-    </div>
+      {actions && <Box className='iui-non-ideal-state-actions'>{actions}</Box>}
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', NonIdealStateProps>;
 
 export default NonIdealState;

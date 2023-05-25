@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { SkipToContentLink } from './SkipToContentLink.js';
-export type { SkipToContentLinkProps } from './SkipToContentLink.js';
 export default './SkipToContentLink';

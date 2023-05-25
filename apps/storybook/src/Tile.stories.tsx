@@ -14,7 +14,6 @@ import {
   Tag,
   TagContainer,
   Tile,
-  TileProps,
   Avatar,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
@@ -22,6 +21,8 @@ import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
 import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
+
+type TileProps = React.ComponentProps<typeof Tile>;
 
 export default {
   component: Tile,

@@ -18,7 +18,7 @@ const renderComponent = (
   props?: Partial<ComboBoxProps<number>> & ComboboxMultipleTypeProps<number>,
 ) => {
   return render(
-    <ComboBox<number>
+    <ComboBox
       options={[
         { label: 'Item 0', value: 0 },
         { label: 'Item 1', value: 1 },

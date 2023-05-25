@@ -4,8 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Badge, BadgeProps } from '@itwin/itwinui-react';
+import { Badge } from '@itwin/itwinui-react';
 import { SoftBackgrounds } from '@itwin/itwinui-react/esm/core/utils';
+
+type BadgeProps = React.ComponentProps<typeof Badge>;
 
 export default {
   component: Badge,

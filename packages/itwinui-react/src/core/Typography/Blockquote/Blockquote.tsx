@@ -4,15 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/blockquote.css';
 
-export type BlockquoteProps = {
+type BlockquoteProps = {
   /**
    * Optional footer for any attribution/source.
    */
   footer?: React.ReactNode;
-} & React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
+};
 
 /**
  * Basic blockquote component
@@ -22,23 +23,20 @@ export type BlockquoteProps = {
  *  <p>This is a quote from someone</p>
  * </Blockquote>
  */
-export const Blockquote = React.forwardRef(
-  (props: BlockquoteProps, ref: React.RefObject<HTMLQuoteElement>) => {
-    const { className, children, footer, ...rest } = props;
+export const Blockquote = React.forwardRef((props, ref) => {
+  const { className, children, footer, ...rest } = props;
 
-    useGlobals();
-
-    return (
-      <blockquote
-        className={cx('iui-blockquote', className)}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-        {footer && <footer>{footer}</footer>}
-      </blockquote>
-    );
-  },
-);
+  return (
+    <Box
+      as='blockquote'
+      className={cx('iui-blockquote', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+      {footer && <footer>{footer}</footer>}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'blockquote', BlockquoteProps>;
 
 export default Blockquote;

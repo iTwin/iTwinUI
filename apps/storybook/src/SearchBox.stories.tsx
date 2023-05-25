@@ -5,8 +5,10 @@
 import { Meta, StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
-import { SearchBox, SearchBoxProps, Text, Divider } from '@itwin/itwinui-react';
+import { SearchBox, Text, Divider } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
+
+type SearchBoxProps = React.ComponentProps<typeof SearchBox>;
 
 export default {
   component: SearchBox,

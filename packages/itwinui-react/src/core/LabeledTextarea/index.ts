@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { LabeledTextarea } from './LabeledTextarea.js';
-export type { LabeledTextareaProps } from './LabeledTextarea.js';
 export default './LabeledTextarea';

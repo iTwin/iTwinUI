@@ -3,13 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { InputProps } from '../Input/index.js';
 import { MenuExtraContent } from '../Menu/index.js';
 import type { SelectOption } from '../Select/index.js';
 import SelectTag from '../Select/SelectTag.js';
 import { Text } from '../Typography/index.js';
+import type { Input } from '../Input/Input.js';
 import {
-  useGlobals,
   getRandomValue,
   mergeRefs,
   useLatestRef,
@@ -18,8 +17,8 @@ import {
 } from '../utils/index.js';
 import type {
   PopoverProps,
-  CommonProps,
   InputContainerProps,
+  CommonProps,
 } from '../utils/index.js';
 import 'tippy.js/animations/shift-away.css';
 import {
@@ -103,7 +102,7 @@ export type ComboBoxProps<T> = {
   /**
    * Native input element props.
    */
-  inputProps?: Omit<InputProps, 'setFocus'>;
+  inputProps?: Omit<React.ComponentProps<typeof Input>, 'setFocus'>;
   /**
    * Props to customize dropdown menu behavior.
    */
@@ -147,7 +146,7 @@ export type ComboBoxProps<T> = {
   onHide?: () => void;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
-  Omit<CommonProps, 'title'>;
+  CommonProps;
 
 /** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
 const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
@@ -191,8 +190,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       (inputProps?.id && `${inputProps.id}-cb`) ??
       `iui-cb-${getRandomValue(10)}`,
   );
-
-  useGlobals();
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);

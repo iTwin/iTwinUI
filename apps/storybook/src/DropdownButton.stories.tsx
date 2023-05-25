@@ -5,11 +5,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import {
-  MenuItem,
-  DropdownButton,
-  DropdownButtonProps,
-} from '@itwin/itwinui-react';
+import { MenuItem, DropdownButton } from '@itwin/itwinui-react';
+
+type DropdownButtonProps = React.ComponentProps<typeof DropdownButton>;
 
 export default {
   title: 'Buttons/DropdownButton',

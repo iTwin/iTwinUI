@@ -6,7 +6,6 @@ import React from 'react';
 import {
   Button,
   ButtonGroup,
-  ButtonGroupProps,
   DropdownMenu,
   IconButton,
   Input,
@@ -23,6 +22,8 @@ import {
 } from '@itwin/itwinui-icons-react';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+type ButtonGroupProps = React.ComponentProps<typeof ButtonGroup>;
 
 export default {
   title: 'Buttons/ButtonGroup',
