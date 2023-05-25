@@ -11,6 +11,9 @@ esm
 # Compiled Styles
 src/**/*.css
 
+# CSS modules
+!src/styles/*
+
 # Storybook
 storybook-static/*
 

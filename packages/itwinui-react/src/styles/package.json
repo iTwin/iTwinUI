@@ -1,5 +1,4 @@
 {
-  "name": "styles",
   "type": "module",
   "version": "0.0.0",
   "private": true,
@@ -8,12 +7,14 @@
   ],
   "main": "dist/styles.cjs",
   "module": "dist/styles.js",
+  "types": "dist/styles.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/styles.d.ts",
       "import": "./dist/styles.js",
       "require": "./dist/styles.cjs"
     },
-    "./*": "./dist/*.js"
+    "./*": "./*"
   },
   "devDependencies": {
     "@itwin/itwinui-css": "*",

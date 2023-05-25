@@ -9,13 +9,13 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, './classes.mjs'),
       fileName: 'styles',
-      formats: ['es', 'cjs'],
+      formats: ['es'],
     },
   },
   css: {
     modules: {
       // TODO: use proper hash in v4
-      generateScopedName: (name, filename, css) => {
+      generateScopedName: (name) => {
         return `iui3-${name.replace('iui-', '')}`;
       },
     },
