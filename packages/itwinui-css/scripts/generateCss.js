@@ -6,8 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const sass = require('sass-embedded');
 const css = require('lightningcss');
-const postcss = require('postcss');
-const postcssScoper = require('postcss-scoper');
 const targets = require('./lightningCssSettings').targets;
 
 const { yellow, green, red } = require('./utils');
