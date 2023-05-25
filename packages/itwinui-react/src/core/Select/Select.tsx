@@ -71,9 +71,14 @@ export type SelectOption<T> = {
    */
   value: T;
   /**
+   * @deprecated Use startIcon
    * SVG icon component shown on the right.
    */
   icon?: JSX.Element;
+  /**
+   * SVG icon component shown on the right.
+   */
+  startIcon?: JSX.Element;
   /**
    * Item is disabled.
    */
@@ -305,12 +310,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ? value?.includes(option.value) ?? false
         : value === option.value;
 
-      const { label, icon, ...restOption } = option;
+      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+
+      const startIcon = startIconProp ?? icon;
 
       const menuItem: JSX.Element = itemRenderer ? (
         itemRenderer(option, { close: () => setIsOpen(false), isSelected })
       ) : (
-        <MenuItem startIcon={icon}>{label}</MenuItem>
+        <MenuItem startIcon={startIcon}>{label}</MenuItem>
       );
 
       return React.cloneElement<MenuItemProps>(menuItem, {

@@ -49,9 +49,19 @@ export type MenuItemProps = {
    */
   startIcon?: JSX.Element;
   /**
+   * @deprecated Use startIcon.
+   * SVG icon component shown on the left.
+   */
+  icon?: JSX.Element;
+  /**
    * SVG icon component shown on the right.
    */
   endIcon?: JSX.Element;
+  /**
+   * @deprecated Use endIcon
+   * SVG icon component shown on the right.
+   */
+  badge?: JSX.Element;
   /**
    * ARIA role. For menu item use 'menuitem', for select item use 'option'.
    * @default 'menuitem'
@@ -79,8 +89,10 @@ export const MenuItem = React.forwardRef((props, ref) => {
     onClick,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
-    startIcon,
-    endIcon,
+    startIcon: startIconProp,
+    icon,
+    endIcon: endIconProp,
+    badge,
     role = 'menuitem',
     subMenuItems = [],
     ...rest
@@ -94,6 +106,9 @@ export const MenuItem = React.forwardRef((props, ref) => {
   const subMenuRef = React.useRef<HTMLUListElement>(null);
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+
+  const startIcon = startIconProp ?? icon;
+  const endIcon = endIconProp ?? badge;
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
     if (event.altKey) {
