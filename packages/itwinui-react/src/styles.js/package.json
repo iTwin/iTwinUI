@@ -6,10 +6,8 @@
   ],
   "main": "dist/cjs/styles.js",
   "module": "dist/esm/styles.js",
-  "types": "dist/styles.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/styles.d.ts",
       "import": "./dist/esm/styles.js",
       "require": "./dist/cjs/styles.js"
     },
