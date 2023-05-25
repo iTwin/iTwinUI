@@ -115,6 +115,7 @@ const TransferListListbox = React.forwardRef((props, ref) => {
       onKeyDown={onKeyDown}
       role={'listbox'}
       aria-labelledby={labelId}
+      tabIndex={0}
       ref={refs}
       {...rest}
     >
