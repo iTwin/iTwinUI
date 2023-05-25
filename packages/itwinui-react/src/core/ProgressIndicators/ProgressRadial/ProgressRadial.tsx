@@ -5,14 +5,14 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   SvgCheckmarkSmall,
   SvgImportantSmall,
+  Box,
 } from '../../utils/index.js';
-import type { CommonProps } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
-export type ProgressRadialProps = {
+type ProgressRadialProps = {
   /**
    * Progress percentage. Should be a number between 0 and 100.
    * @default 0
@@ -36,7 +36,7 @@ export type ProgressRadialProps = {
    * Content shown inside progress indicator.
    */
   children?: React.ReactNode;
-} & CommonProps;
+};
 
 /**
  * Circular Progress Indicator
@@ -54,7 +54,7 @@ export type ProgressRadialProps = {
  * <ProgressRadial size={'small'} indeterminate/>
  */
 
-export const ProgressRadial = (props: ProgressRadialProps) => {
+export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
   const {
     value = 0,
     indeterminate = false,
@@ -62,11 +62,8 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
     children,
     size = '',
     className,
-    style,
     ...rest
   } = props;
-
-  useGlobals();
 
   const statusMap = {
     negative: <SvgImportantSmall aria-hidden />,
@@ -82,7 +79,7 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
   };
 
   return (
-    <div
+    <Box
       className={cx(
         'iui-progress-indicator-radial',
         {
@@ -93,23 +90,39 @@ export const ProgressRadial = (props: ProgressRadialProps) => {
         },
         className,
       )}
-      style={style}
+      ref={forwardedRef}
       {...rest}
     >
-      <svg className='iui-radial' viewBox='0 0 32 32' aria-hidden='true'>
-        <circle className='iui-track' cx='16' cy='16' r='14' />
-        <circle className='iui-fill' cx='16' cy='16' r='14' style={fillStyle} />
-      </svg>
+      <Box
+        as='svg'
+        className='iui-radial'
+        viewBox='0 0 32 32'
+        aria-hidden='true'
+      >
+        <Box as='circle' className='iui-track' cx='16' cy='16' r='14' />
+        <Box
+          as='circle'
+          className='iui-fill'
+          cx='16'
+          cy='16'
+          r='14'
+          style={fillStyle}
+        />
+      </Box>
       <>
         {status && (
-          <span className='iui-inner-content'>{statusMap[status]}</span>
+          <Box as='span' className='iui-inner-content'>
+            {statusMap[status]}
+          </Box>
         )}
         {!status && children && (
-          <span className='iui-inner-content'>{children}</span>
+          <Box as='span' className='iui-inner-content'>
+            {children}
+          </Box>
         )}
       </>
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
 
 export default ProgressRadial;

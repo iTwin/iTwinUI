@@ -12,11 +12,9 @@ import {
   polymorphic,
   StatusIconMap,
   SvgCloseSmall,
+  Box,
 } from '../utils/index.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../utils/props.js';
+import type { PolymorphicForwardRefComponent } from '../utils/props.js';
 
 const AlertContext = React.createContext<
   | {
@@ -46,7 +44,6 @@ type AlertOwnProps = {
 
 const AlertComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'div',
     children,
     className,
     type = 'informational',
@@ -57,7 +54,8 @@ const AlertComponent = React.forwardRef((props, ref) => {
   useGlobals();
 
   return (
-    <Element
+    <Box
+      as='div'
       className={cx('iui-alert', className)}
       data-iui-status={type}
       data-iui-variant={isSticky ? 'sticky' : undefined}
@@ -65,7 +63,7 @@ const AlertComponent = React.forwardRef((props, ref) => {
       {...rest}
     >
       <AlertContext.Provider value={{ type }}>{children}</AlertContext.Provider>
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
 AlertComponent.displayName = 'Alert';
@@ -76,7 +74,7 @@ AlertComponent.displayName = 'Alert';
 type AlertIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'svg', children, className, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   const { type } = useSafeContext(AlertContext);
 
@@ -92,9 +90,14 @@ const AlertIcon = React.forwardRef((props, ref) => {
   }
 
   return (
-    <Element className={cx('iui-alert-icon', className)} ref={ref} {...rest}>
+    <Box
+      as='svg'
+      className={cx('iui-alert-icon', className)}
+      ref={ref}
+      {...rest}
+    >
       {children}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'svg', AlertIconOwnProps>;
 AlertIcon.displayName = 'Alert.Icon';
@@ -111,14 +114,17 @@ AlertMessage.displayName = 'Alert.Message';
 type AlertActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertAction = React.forwardRef((props, ref) => {
-  const { as, children, className, ...rest } = props;
-
-  const Element = as ?? ((!!props.href ? 'a' : 'button') as 'a');
+  const { children, className, ...rest } = props;
 
   return (
-    <Element className={cx('iui-alert-link', className)} ref={ref} {...rest}>
+    <Box
+      as={(!!props.href ? 'a' : 'button') as 'a'}
+      className={cx('iui-alert-link', className)}
+      ref={ref}
+      {...rest}
+    >
       {children}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'a', AlertActionOwnProps>;
 AlertAction.displayName = 'Alert.Action';
@@ -129,10 +135,11 @@ AlertAction.displayName = 'Alert.Action';
 type AlertCloseButtonOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertCloseButton = React.forwardRef((props, ref) => {
-  const { as: Element = 'button', children, className, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   return (
-    <Element
+    <Box
+      as='button'
       aria-label='Close'
       type='button'
       className={cx('iui-alert-button', className)}
@@ -144,7 +151,7 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
           <SvgCloseSmall />
         </Icon>
       )}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', AlertCloseButtonOwnProps>;
 AlertCloseButton.displayName = 'Alert.CloseButton';
@@ -191,22 +198,5 @@ export const Alert = Object.assign(AlertComponent, {
    */
   CloseButton: AlertCloseButton,
 });
-
-export type AlertProps = PolymorphicComponentProps<'div', AlertOwnProps>;
-
-export type AlertIconProps = PolymorphicComponentProps<
-  'svg',
-  AlertIconOwnProps
->;
-
-export type AlertActionProps = PolymorphicComponentProps<
-  'a',
-  AlertActionOwnProps
->;
-
-export type AlertCloseButtonProps = PolymorphicComponentProps<
-  'button',
-  AlertCloseButtonOwnProps
->;
 
 export default Alert;

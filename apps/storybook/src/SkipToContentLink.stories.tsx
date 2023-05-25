@@ -4,13 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import {
-  SkipToContentLink,
-  SkipToContentLinkProps,
-  Text,
-  Kbd,
-  Anchor,
-} from '@itwin/itwinui-react';
+import { SkipToContentLink, Text, Kbd, Anchor } from '@itwin/itwinui-react';
+
+type SkipToContentLinkProps = React.ComponentProps<typeof SkipToContentLink>;
 
 export default {
   component: SkipToContentLink,

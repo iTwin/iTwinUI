@@ -6,12 +6,9 @@ import { SvgCloseSmall, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import {
-  LabeledInput,
-  Tooltip,
-  IconButton,
-  LabeledInputProps,
-} from '@itwin/itwinui-react';
+import { LabeledInput, Tooltip, IconButton } from '@itwin/itwinui-react';
+
+type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
 export default {
   title: 'Input/LabeledInput',

@@ -10,11 +10,13 @@ import {
   SvgCheckmark,
   SvgSmileyHappy,
 } from '../utils/index.js';
-import { FileUploadCard, type FileUploadCardProps } from './FileUploadCard.js';
+import { FileUploadCard } from './FileUploadCard.js';
 import { Button } from '../Buttons/index.js';
 import { FileEmptyCard } from './FileEmptyCard.js';
 
-const CustomFileUploadCard = (props: FileUploadCardProps) => {
+const CustomFileUploadCard = (
+  props: React.ComponentProps<typeof FileUploadCard>,
+) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [files, setFiles] = React.useState<File[]>(
     new Array<File>(

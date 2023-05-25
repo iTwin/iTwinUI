@@ -4,20 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
 export type AvatarStatus = 'online' | 'busy' | 'away' | 'offline';
 
-/**
- * @deprecated Since v2, this has been renamed to `AvatarStatus` (Use with `Avatar`)
- */
-export type UserIconStatus = AvatarStatus;
+type StatusTitles = { [key in Exclude<AvatarStatus, ''>]: string };
 
-export type StatusTitles = { [key in Exclude<AvatarStatus, ''>]: string };
-
-export type AvatarProps = {
+type AvatarProps = {
   /**
    * Size of an avatar.
    * @default 'small'
@@ -47,12 +42,7 @@ export type AvatarProps = {
    * Translated status messages shown on hover.
    */
   translatedStatusTitles?: StatusTitles;
-} & Omit<CommonProps, 'title'>;
-
-/**
- * @deprecated Since v2, this has been renamed to `AvatarProps` (Use with `Avatar`)
- */
-export type UserIconProps = AvatarProps;
+};
 
 export const defaultStatusTitles: StatusTitles = {
   away: 'Away',
@@ -76,7 +66,7 @@ export const defaultStatusTitles: StatusTitles = {
  * <caption>X-large icon with image</caption>
  * <Avatar size='x-large' title='Terry Rivers' abbreviation='TR' backgroundColor='green' image={<img src="https://cdn.example.com/user/profile/pic.png" />}/>
  */
-export const Avatar = (props: AvatarProps) => {
+export const Avatar = React.forwardRef((props, ref) => {
   const {
     size = 'small',
     status,
@@ -90,12 +80,11 @@ export const Avatar = (props: AvatarProps) => {
     ...rest
   } = props;
 
-  useGlobals();
-
   const statusTitles = { ...defaultStatusTitles, ...translatedStatusTitles };
 
   return (
-    <span
+    <Box
+      as='span'
       className={cx(
         'iui-avatar',
         { [`iui-${size}`]: size !== 'medium' },
@@ -103,15 +92,19 @@ export const Avatar = (props: AvatarProps) => {
       )}
       title={title}
       style={{ backgroundColor, ...style }}
+      ref={ref}
       {...rest}
     >
       {!image && (
-        <abbr className='iui-initials'>{abbreviation?.substring(0, 2)}</abbr>
+        <Box as='abbr' className='iui-initials'>
+          {abbreviation?.substring(0, 2)}
+        </Box>
       )}
       {image}
-      <span className='iui-stroke' />
+      <Box as='span' className='iui-stroke' />
       {status && (
-        <span
+        <Box
+          as='span'
           title={statusTitles[status]}
           className={cx('iui-status', {
             [`iui-${status}`]: !!status,
@@ -119,9 +112,9 @@ export const Avatar = (props: AvatarProps) => {
           aria-label={statusTitles[status]}
         />
       )}
-    </span>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'span', AvatarProps>;
 
 /**
  * @deprecated Since v2, this has been renamed to `Avatar`

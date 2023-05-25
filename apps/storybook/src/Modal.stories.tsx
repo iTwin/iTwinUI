@@ -8,10 +8,11 @@ import React from 'react';
 import {
   Button,
   Modal,
-  ModalProps,
   ModalButtonBar,
   ModalContent,
 } from '@itwin/itwinui-react';
+
+type ModalProps = React.ComponentProps<typeof Modal>;
 
 export default {
   title: 'Core/Modal',

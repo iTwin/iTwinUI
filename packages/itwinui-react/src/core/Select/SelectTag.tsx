@@ -4,30 +4,36 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/select.css';
 
-export type SelectTagProps = {
+type SelectTagProps = {
   /**
    * Text inside the tag.
    */
   label: string;
-} & CommonProps;
+};
 
 /**
  * Tag for showing selected value in `Select`.
  * @private
  */
-export const SelectTag = (props: SelectTagProps) => {
+export const SelectTag = React.forwardRef((props, forwardedRef) => {
   const { className, label, ...rest } = props;
-  useGlobals();
 
   return (
-    <span className={cx('iui-select-tag', className)} {...rest}>
-      <span className='iui-select-tag-label'>{label}</span>
-    </span>
+    <Box
+      as='span'
+      className={cx('iui-select-tag', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      <Box as='span' className='iui-select-tag-label'>
+        {label}
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'span', SelectTagProps>;
 
 export default SelectTag;
