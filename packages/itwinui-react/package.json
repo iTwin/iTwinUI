@@ -107,7 +107,6 @@
     "markdown-to-jsx": "6.11.4",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "styles": "*",
     "ts-jest": "^28.0.2",
     "ts-loader": "^9.2.8",
     "ts-node": "^8.0.2",
