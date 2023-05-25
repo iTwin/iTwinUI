@@ -5,11 +5,6 @@
 export { Wizard } from './Wizard.js';
 export { Stepper } from './Stepper.js';
 export { WorkflowDiagram } from './WorkflowDiagram.js';
-export type { WizardProps, WizardType, WizardLocalization } from './Wizard.js';
-export type {
-  StepperProps,
-  StepProperties,
-  StepperLocalization,
-} from './Stepper.js';
-export type { WorkflowDiagramProps } from './WorkflowDiagram.js';
+export type { WizardType, WizardLocalization } from './Wizard.js';
+export type { StepProperties, StepperLocalization } from './Stepper.js';
 export default './Wizard';

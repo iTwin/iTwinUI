@@ -5,14 +5,14 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { SplitButton, type SplitButtonProps } from './SplitButton.js';
+import { SplitButton } from './SplitButton.js';
 import { MenuItem } from '../../Menu/index.js';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
 function renderComponent(
   onClick?: () => void,
-  props?: Partial<SplitButtonProps>,
+  props?: Partial<React.ComponentProps<typeof SplitButton>>,
 ) {
   return render(
     <SplitButton

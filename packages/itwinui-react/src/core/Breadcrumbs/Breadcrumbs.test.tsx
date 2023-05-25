@@ -5,13 +5,15 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { Breadcrumbs, type BreadcrumbsProps } from './Breadcrumbs.js';
+import { Breadcrumbs } from './Breadcrumbs.js';
 import { Button } from '../Buttons/index.js';
 import { SvgChevronRight, SvgMore } from '../utils/index.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 
-const renderComponent = (props?: Partial<BreadcrumbsProps>) => {
+const renderComponent = (
+  props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
+) => {
   return render(
     <Breadcrumbs {...props}>
       {[...Array(3)].map((_, index) => (

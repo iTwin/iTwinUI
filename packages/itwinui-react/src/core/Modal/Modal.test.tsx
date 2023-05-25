@@ -5,7 +5,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
-import { Modal, type ModalProps } from './Modal.js';
+import { Modal } from './Modal.js';
 
 function assertBaseElement(
   backdrop: HTMLElement,
@@ -31,7 +31,7 @@ function assertBaseElement(
   expect(dialog.textContent).toContain('Body');
 }
 
-function renderComponent(props?: Partial<ModalProps>) {
+function renderComponent(props?: Partial<React.ComponentProps<typeof Modal>>) {
   return render(
     <Modal isOpen={true} title='Modal Title' {...props}>
       Body

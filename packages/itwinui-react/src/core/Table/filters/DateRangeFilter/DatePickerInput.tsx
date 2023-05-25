@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
 import { LabeledInput } from '../../../LabeledInput/index.js';
-import type { LabeledInputProps } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
 import { IconButton } from '../../../Buttons/index.js';
 
@@ -22,7 +21,10 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
-} & Omit<LabeledInputProps, 'value' | 'onChange' | 'svgIcon' | 'displayStyle'>;
+} & Omit<
+  React.ComponentProps<typeof LabeledInput>,
+  'value' | 'onChange' | 'svgIcon' | 'displayStyle'
+>;
 
 const DatePickerInput = (props: DatePickerInputProps) => {
   const {

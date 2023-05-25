@@ -6,7 +6,6 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Tree,
-  TreeProps,
   TreeNode,
   NodeData,
   Checkbox,
@@ -16,6 +15,8 @@ import {
 import { action } from '@storybook/addon-actions';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
+type TreeProps = React.ComponentProps<typeof Tree>;
+
 export default {
   component: Tree,
   argTypes: {
@@ -24,9 +25,9 @@ export default {
   },
   parameters: { controls: { hideNoControlsWarning: true } },
   title: 'Core/Tree',
-} as Meta<TreeProps<unknown>>;
+} as Meta<TreeProps>;
 
-export const Basic: Story<TreeProps<unknown>> = () => {
+export const Basic: Story<TreeProps> = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -115,7 +116,7 @@ export const Basic: Story<TreeProps<unknown>> = () => {
   );
 };
 
-export const Full: Story<TreeProps<unknown>> = () => {
+export const Full: Story<TreeProps> = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -239,7 +240,7 @@ export const Full: Story<TreeProps<unknown>> = () => {
   );
 };
 
-export const AsyncLoading: Story<TreeProps<unknown>> = () => {
+export const AsyncLoading: Story<TreeProps> = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -370,7 +371,7 @@ export const AsyncLoading: Story<TreeProps<unknown>> = () => {
   );
 };
 
-export const CustomizedExpander: Story<TreeProps<unknown>> = () => {
+export const CustomizedExpander: Story<TreeProps> = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -513,7 +514,7 @@ export const CustomizedExpander: Story<TreeProps<unknown>> = () => {
   );
 };
 
-export const Virtualized: Story<TreeProps<unknown>> = () => {
+export const Virtualized: Story<TreeProps> = () => {
   type StoryData = {
     id: string;
     label: string;

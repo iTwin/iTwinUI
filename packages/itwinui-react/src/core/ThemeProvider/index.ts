@@ -3,5 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { ThemeProvider } from './ThemeProvider.js';
-export type { ThemeProviderProps, ThemeType } from './ThemeProvider.js';
+export type { ThemeType } from './ThemeProvider.js';
 export default './ThemeProvider';

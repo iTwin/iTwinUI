@@ -17,11 +17,12 @@ import {
   SidenavButton,
   SidenavSubmenu,
   SidenavSubmenuHeader,
-  SideNavigationProps,
   Text,
   IconButton,
   Anchor,
 } from '@itwin/itwinui-react';
+
+type SideNavigationProps = React.ComponentProps<typeof SideNavigation>;
 
 export default {
   component: SideNavigation,

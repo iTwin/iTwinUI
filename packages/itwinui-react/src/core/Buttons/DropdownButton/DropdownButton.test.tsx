@@ -5,12 +5,14 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { DropdownButton, type DropdownButtonProps } from './DropdownButton.js';
+import { DropdownButton } from './DropdownButton.js';
 import { MenuItem } from '../../Menu/index.js';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
-function renderComponent(props?: Partial<DropdownButtonProps>) {
+function renderComponent(
+  props?: Partial<React.ComponentProps<typeof DropdownButton>>,
+) {
   return render(
     <DropdownButton
       menuItems={(close) => [

@@ -4,9 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { IconButton, IconButtonProps } from '@itwin/itwinui-react';
+import { IconButton } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 import { SvgAdd } from '@itwin/itwinui-icons-react';
+
+type IconButtonProps = React.ComponentProps<typeof IconButton>;
 
 export default {
   title: 'Buttons/IconButton',

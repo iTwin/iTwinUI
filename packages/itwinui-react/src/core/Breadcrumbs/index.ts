@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Breadcrumbs } from './Breadcrumbs.js';
-export type { BreadcrumbsProps } from './Breadcrumbs.js';
 export default './Breadcrumbs';

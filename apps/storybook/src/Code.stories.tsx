@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Code, CodeProps } from '@itwin/itwinui-react';
+import { Code } from '@itwin/itwinui-react';
+
+type CodeProps = React.ComponentProps<typeof Code>;
 
 export default {
   title: 'Typography/Code',

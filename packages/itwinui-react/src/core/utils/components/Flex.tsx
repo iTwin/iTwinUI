@@ -5,11 +5,9 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../props.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 import '@itwin/itwinui-css/css/utils.css';
+import { Box } from './Box.js';
 
 const sizeTokens = [
   '3xs',
@@ -40,7 +38,6 @@ const getValueForToken = (token?: string) => {
 
 const FlexComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'div',
     display,
     flexDirection,
     justifyContent,
@@ -53,7 +50,7 @@ const FlexComponent = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <Element
+    <Box
       className={cx('iui-flex', className)}
       style={
         {
@@ -71,6 +68,8 @@ const FlexComponent = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexOwnProps>;
+FlexComponent.displayName = 'Flex';
+
 type FlexOwnProps = {
   /**
    * Value of the `display` property.
@@ -115,9 +114,9 @@ type FlexOwnProps = {
 // Flex.Spacer component
 
 const FlexSpacer = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', flex, className, style, ...rest } = props;
+  const { flex, className, style, ...rest } = props;
   return (
-    <Element
+    <Box
       className={cx('iui-flex-spacer', className)}
       style={
         { '--iui-flex-spacer-flex': flex, ...style } as React.CSSProperties
@@ -127,6 +126,8 @@ const FlexSpacer = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexSpacerOwnProps>;
+FlexSpacer.displayName = 'Flex.Spacer';
+
 type FlexSpacerOwnProps = {
   /**
    * Value of the `flex` css property.
@@ -143,16 +144,8 @@ type FlexSpacerOwnProps = {
 // Flex.Item subcomponent
 
 const FlexItem = React.forwardRef((props, ref) => {
-  const {
-    as: Element = 'div',
-    gapBefore,
-    gapAfter,
-    flex,
-    alignSelf,
-    className,
-    style,
-    ...rest
-  } = props;
+  const { gapBefore, gapAfter, flex, alignSelf, className, style, ...rest } =
+    props;
 
   const _style = {
     '--iui-flex-item-flex': flex,
@@ -169,7 +162,7 @@ const FlexItem = React.forwardRef((props, ref) => {
   } as React.CSSProperties;
 
   return (
-    <Element
+    <Box
       className={cx('iui-flex-item', className)}
       ref={ref}
       style={_style}
@@ -177,6 +170,8 @@ const FlexItem = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', FlexItemOwnProps>;
+FlexItem.displayName = 'Flex.Item';
+
 type FlexItemOwnProps = {
   /**
    * Gap before the flex item, if different from the `gap` set on `Flex` component.
@@ -260,12 +255,5 @@ export const Flex = Object.assign(FlexComponent, {
    */
   Spacer: FlexSpacer,
 });
-
-export type FlexProps = PolymorphicComponentProps<'div', FlexOwnProps>;
-export type FlexItemProps = PolymorphicComponentProps<'div', FlexItemOwnProps>;
-export type FlexSpacerProps = PolymorphicComponentProps<
-  'div',
-  FlexSpacerOwnProps
->;
 
 export default Flex;
