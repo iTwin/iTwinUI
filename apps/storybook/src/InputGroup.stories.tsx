@@ -12,10 +12,11 @@ import React from 'react';
 import {
   Checkbox,
   InputGroup,
-  InputGroupProps,
   Radio,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
+
+type InputGroupProps = React.ComponentProps<typeof InputGroup>;
 
 export default {
   title: 'Input/InputGroup',

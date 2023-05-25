@@ -12,12 +12,12 @@ import {
   SvgFilterHollow,
   SvgFilter,
 } from '../../utils/index.js';
-import type { StylingProps } from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
-} & StylingProps;
+} & CommonProps;
 
 /**
  * Handles showing filter icon and opening filter component.

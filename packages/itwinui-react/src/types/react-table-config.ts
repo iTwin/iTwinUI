@@ -57,7 +57,7 @@ import type {
   UseSortByState,
   UseTableOptions,
 } from 'react-table';
-import type { TableFilterProps } from '../core/index.js';
+import type { TableFilterProps } from '../core/Table/filters/index.js';
 
 declare module 'react-table' {
   export type FieldType = 'text' | 'number' | 'date' | string;

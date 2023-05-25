@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { NotificationMarker } from './NotificationMarker.js';
-export type { NotificationMarkerProps } from './NotificationMarker.js';
 export default './NotificationMarker';

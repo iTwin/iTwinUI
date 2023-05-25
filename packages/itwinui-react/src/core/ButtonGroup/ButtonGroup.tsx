@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, useOverflow, useMergedRefs } from '../utils/index.js';
+import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/button.css';
 
-export type ButtonGroupProps = {
+type ButtonGroupProps = {
   /**
    * Buttons in the ButtonGroup.
    */
@@ -32,7 +33,7 @@ export type ButtonGroupProps = {
    * @default 'horizontal'
    */
   orientation?: 'horizontal' | 'vertical';
-} & React.ComponentPropsWithRef<'div'>;
+};
 
 /**
  * Group buttons together for common actions.
@@ -62,69 +63,74 @@ export type ButtonGroupProps = {
  *   {buttons}
  * </ButtonGroup>
  */
-export const ButtonGroup = React.forwardRef<HTMLDivElement, ButtonGroupProps>(
-  (props, ref) => {
-    const {
-      children,
-      className,
-      overflowButton,
-      overflowPlacement = 'end',
-      orientation = 'horizontal',
-      ...rest
-    } = props;
+export const ButtonGroup = React.forwardRef((props, ref) => {
+  const {
+    children,
+    className,
+    overflowButton,
+    overflowPlacement = 'end',
+    orientation = 'horizontal',
+    ...rest
+  } = props;
 
-    const items = React.useMemo(
-      () =>
-        React.Children.map(children, (child) =>
-          !!child ? <div>{child}</div> : undefined,
-        )?.filter(Boolean) ?? [],
-      [children],
-    );
+  const items = React.useMemo(
+    () =>
+      React.Children.map(children, (child) =>
+        !!child ? <div>{child}</div> : undefined,
+      )?.filter(Boolean) ?? [],
+    [children],
+  );
 
-    useGlobals();
+  const [overflowRef, visibleCount] = useOverflow(
+    items,
+    !overflowButton,
+    orientation,
+  );
+  const refs = useMergedRefs(overflowRef, ref);
 
-    const [overflowRef, visibleCount] = useOverflow(
-      items,
-      !overflowButton,
-      orientation,
-    );
-    const refs = useMergedRefs(overflowRef, ref);
+  return (
+    <Box
+      className={cx(
+        {
+          'iui-button-group': orientation === 'horizontal',
+          'iui-button-group-vertical': orientation === 'vertical',
+          'iui-button-group-overflow-x':
+            !!overflowButton && orientation === 'horizontal',
+        },
+        className,
+      )}
+      aria-orientation={orientation}
+      ref={refs}
+      {...rest}
+    >
+      {(() => {
+        if (!(visibleCount < items.length)) {
+          return items;
+        }
 
-    return (
-      <div
-        className={cx(
-          {
-            'iui-button-group': orientation === 'horizontal',
-            'iui-button-group-vertical': orientation === 'vertical',
-            'iui-button-group-overflow-x':
-              !!overflowButton && orientation === 'horizontal',
-          },
-          className,
-        )}
-        aria-orientation={orientation}
-        ref={refs}
-        {...rest}
-      >
-        <>
-          {visibleCount < items.length &&
-            overflowButton &&
-            overflowPlacement === 'start' && (
-              <div>{overflowButton(visibleCount)}</div>
+        const overflowStart =
+          overflowPlacement === 'start'
+            ? items.length - visibleCount
+            : visibleCount - 1;
+
+        return (
+          <>
+            {overflowButton && overflowPlacement === 'start' && (
+              <div>{overflowButton(overflowStart)}</div>
             )}
 
-          {visibleCount < items.length
-            ? items.slice(0, Math.max(0, visibleCount - 1))
-            : items}
+            {overflowPlacement === 'start'
+              ? items.slice(overflowStart + 1)
+              : items.slice(0, Math.max(0, overflowStart))}
 
-          {visibleCount < items.length &&
-            overflowButton &&
-            overflowPlacement === 'end' && (
-              <div>{overflowButton(visibleCount)}</div>
+            {overflowButton && overflowPlacement === 'end' && (
+              <div>{overflowButton(overflowStart)}</div>
             )}
-        </>
-      </div>
-    );
-  },
-);
+          </>
+        );
+      })()}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', ButtonGroupProps>;
 
 export default ButtonGroup;
