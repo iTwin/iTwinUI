@@ -9,37 +9,18 @@ import {
   useMergedRefs,
   useId,
   useSafeContext,
-  useGlobals,
+  Box,
+  polymorphic,
 } from '../utils/index.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 import '@itwin/itwinui-css/css/transfer-list.css';
 import { List, ListItem } from '../List/index.js';
-import type { ListItemProps, ListProps } from '../List/index.js';
 
 // ----------------------------------------------------------------------------
 // TransferListComponent
 
-type TransferListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-const TransferListComponent = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-
-  useGlobals();
-
-  return (
-    <Element
-      className={cx('iui-transfer-list-wrapper', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TransferListOwnProps>;
+const TransferListComponent = polymorphic('iui-transfer-list-wrapper');
 TransferListComponent.displayName = 'TransferList';
 
 // ----------------------------------------------------------------------------
@@ -48,13 +29,14 @@ TransferListComponent.displayName = 'TransferList';
 type TransferListListboxWrapperOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TransferListListboxWrapper = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
+  const { className, children, ...rest } = props;
 
   const uid = useId();
   const [labelId, setLabelId] = React.useState(uid);
 
   return (
-    <Element
+    <Box
+      as='div'
       className={cx('iui-transfer-list-listbox-wrapper', className)}
       ref={ref}
       {...rest}
@@ -62,7 +44,7 @@ const TransferListListboxWrapper = React.forwardRef((props, ref) => {
       <TransferListContext.Provider value={{ labelId, setLabelId }}>
         {children}
       </TransferListContext.Provider>
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListListboxWrapperOwnProps>;
 TransferListListboxWrapper.displayName = 'TransferList.ListboxWrapper';
@@ -70,10 +52,10 @@ TransferListListboxWrapper.displayName = 'TransferList.ListboxWrapper';
 // ----------------------------------------------------------------------------
 // TransferList.Listbox component
 
-type TransferListListboxOwnProps = ListProps; // eslint-disable-line @typescript-eslint/ban-types
+type TransferListListboxOwnProps = React.ComponentProps<typeof List>; // eslint-disable-line @typescript-eslint/ban-types
 
 const TransferListListbox = React.forwardRef((props, ref) => {
-  const { as: Element = 'ul', children, className, ...rest } = props;
+  const { children, className, ...rest } = props;
 
   const { labelId } = useSafeContext(TransferListContext);
 
@@ -129,7 +111,6 @@ const TransferListListbox = React.forwardRef((props, ref) => {
 
   return (
     <List
-      as={Element}
       className={cx('iui-transfer-list-listbox', className)}
       onKeyDown={onKeyDown}
       role={'listbox'}
@@ -151,7 +132,7 @@ type TransferListItemOwnProps = {
    * Callback fired when the the active state changes.
    */
   onActiveChange?: (value: boolean) => void;
-} & ListItemProps;
+} & React.ComponentProps<typeof ListItem>;
 
 const TransferListItem = React.forwardRef((props, ref) => {
   const {
@@ -212,7 +193,7 @@ type TransferListListboxLabelOwnProps = {
 };
 
 const TransferListListboxLabel = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', children, className, id, ...rest } = props;
+  const { children, className, id, ...rest } = props;
 
   const { labelId, setLabelId } = useSafeContext(TransferListContext);
 
@@ -223,14 +204,15 @@ const TransferListListboxLabel = React.forwardRef((props, ref) => {
   }, [id, labelId, setLabelId]);
 
   return (
-    <Element
+    <Box
+      as='div'
       className={cx('iui-transfer-list-listbox-label', className)}
       id={labelId}
       ref={ref}
       {...rest}
     >
       {children}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListListboxLabelOwnProps>;
 TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';
@@ -238,22 +220,9 @@ TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';
 // ----------------------------------------------------------------------------
 // TransferList.Toolbar component
 
-type TransferListToolbarOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-const TransferListToolbar = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', children, className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-transfer-list-toolbar', className)}
-      role={'toolbar'}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TransferListToolbarOwnProps>;
+const TransferListToolbar = polymorphic('iui-transfer-list-toolbar', {
+  role: 'toolbar',
+});
 TransferListToolbar.displayName = 'TransferList.Toolbar';
 
 /**
@@ -308,24 +277,5 @@ export const TransferListContext = React.createContext<
     }
   | undefined
 >(undefined);
-
-export type TransferListProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListOwnProps>;
-
-export type TransferListListboxWrapperProps<
-  T extends React.ElementType = 'div',
-> = PolymorphicComponentProps<T, TransferListListboxWrapperOwnProps>;
-
-export type TransferListListboxProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListListboxOwnProps>;
-
-export type TransferListItemProps<T extends React.ElementType = 'li'> =
-  PolymorphicComponentProps<T, TransferListItemOwnProps>;
-
-export type TransferListListboxLabelProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListListboxLabelOwnProps>;
-
-export type TransferListToolbarProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, TransferListToolbarOwnProps>;
 
 export default TransferList;
