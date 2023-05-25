@@ -8,7 +8,6 @@ import '@itwin/itwinui-css/css/alert.css';
 import {
   Icon,
   useSafeContext,
-  useGlobals,
   polymorphic,
   StatusIconMap,
   SvgCloseSmall,
@@ -50,8 +49,6 @@ const AlertComponent = React.forwardRef((props, ref) => {
     isSticky = false,
     ...rest
   } = props;
-
-  useGlobals();
 
   return (
     <Box
