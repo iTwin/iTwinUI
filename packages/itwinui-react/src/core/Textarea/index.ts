@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Textarea } from './Textarea.js';
-export type { TextareaProps } from './Textarea.js';
 export default './Textarea';

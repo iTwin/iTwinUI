@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Input, Label, LabelProps, Text } from '@itwin/itwinui-react';
+import { Input, Label, Text } from '@itwin/itwinui-react';
+
+type LabelProps = React.ComponentProps<typeof Label>;
 
 export default {
   component: Label,

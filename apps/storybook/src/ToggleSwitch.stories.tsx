@@ -5,7 +5,9 @@
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { ToggleSwitch, ToggleSwitchProps } from '@itwin/itwinui-react';
+import { ToggleSwitch } from '@itwin/itwinui-react';
+
+type ToggleSwitchProps = React.ComponentProps<typeof ToggleSwitch>;
 
 export default {
   title: 'Input/ToggleSwitch',

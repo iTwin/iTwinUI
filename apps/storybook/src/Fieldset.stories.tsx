@@ -7,12 +7,13 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Fieldset,
-  FieldsetProps,
   InputGroup,
   LabeledSelect,
   Radio,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
+
+type FieldsetProps = React.ComponentProps<typeof Fieldset>;
 
 export default {
   title: 'Input/Fieldset',

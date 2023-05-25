@@ -2,30 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import cx from 'classnames';
+import { polymorphic } from '../utils/index.js';
 import '@itwin/itwinui-css/css/footer.css';
-
-export type FooterSeparatorProps = Omit<
-  React.ComponentPropsWithRef<'li'>,
-  'children'
->;
 
 /**
  * Footer separator. Recommended to use inside `Footer.List`.
  */
-export const FooterSeparator = (props: FooterSeparatorProps) => {
-  const { className, ...rest } = props;
-  useGlobals();
-
-  return (
-    <li
-      className={cx('iui-legal-footer-separator', className)}
-      aria-hidden
-      {...rest}
-    />
-  );
-};
+export const FooterSeparator = polymorphic.li('iui-legal-footer-separator', {
+  'aria-hidden': true,
+});
 
 export default FooterSeparator;

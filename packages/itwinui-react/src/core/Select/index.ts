@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 export { Select } from './Select.js';
 export type {
-  SelectProps,
   SelectOption,
   ItemRendererProps,
   SelectValueChangeEvent,

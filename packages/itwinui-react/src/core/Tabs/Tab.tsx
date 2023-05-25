@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tabs.css';
 
-export type TabProps = {
+type TabProps = {
   /**
    * The main label shown in the tab.
    */
@@ -28,7 +29,7 @@ export type TabProps = {
    * Custom content appended to the tab.
    */
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
+};
 
 /**
  * Individual tab component to be used in the `labels` prop of `Tabs`.
@@ -38,16 +39,16 @@ export type TabProps = {
  *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
  * ];
  */
-export const Tab = (props: TabProps) => {
+export const Tab = React.forwardRef((props, forwardedRef) => {
   const { label, sublabel, startIcon, children, className, ...rest } = props;
 
-  useGlobals();
-
   return (
-    <button
+    <Box
+      as='button'
       className={cx('iui-tab', className)}
       role='tab'
       tabIndex={-1}
+      ref={forwardedRef}
       {...rest}
     >
       {startIcon &&
@@ -56,14 +57,14 @@ export const Tab = (props: TabProps) => {
           'aria-hidden': true,
         })}
       {label && (
-        <span className='iui-tab-label'>
+        <Box as='span' className='iui-tab-label'>
           <div>{label}</div>
-          {sublabel && <div className='iui-tab-description'>{sublabel}</div>}
-        </span>
+          {sublabel && <Box className='iui-tab-description'>{sublabel}</Box>}
+        </Box>
       )}
       {children}
-    </button>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'button', TabProps>;
 
 export default TabProps;

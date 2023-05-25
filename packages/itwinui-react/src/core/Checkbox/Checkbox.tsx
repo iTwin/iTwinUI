@@ -5,10 +5,11 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
-import { useMergedRefs, useGlobals } from '../utils/index.js';
+import { useMergedRefs, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/checkbox.css';
 
-export type CheckboxProps = {
+type CheckboxProps = {
   /**
    * Text that will be shown next to the checkbox.
    */
@@ -36,7 +37,7 @@ export type CheckboxProps = {
    * @default false
    */
   isLoading?: boolean;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+};
 
 /**
  * Simple input checkbox
@@ -50,82 +51,84 @@ export type CheckboxProps = {
  * <Checkbox label='Negative Checkbox' status='negative' />
  * <Checkbox label='Visibility Checkbox' variant='eyeball' />
  */
-export const Checkbox = React.forwardRef(
-  (props: CheckboxProps, ref: React.RefObject<HTMLInputElement>) => {
-    const {
-      className,
-      disabled = false,
-      indeterminate = false,
-      label,
-      status,
-      variant = 'default',
-      setFocus,
-      isLoading = false,
-      style,
-      ...rest
-    } = props;
+export const Checkbox = React.forwardRef((props, ref) => {
+  const {
+    className,
+    disabled = false,
+    indeterminate = false,
+    label,
+    status,
+    variant = 'default',
+    setFocus,
+    isLoading = false,
+    style,
+    ...rest
+  } = props;
 
-    useGlobals();
+  const inputElementRef = React.useRef<HTMLInputElement>(null);
+  const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
-    const inputElementRef = React.useRef<HTMLInputElement>(null);
-    const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
+  React.useEffect(() => {
+    if (inputElementRef.current && setFocus) {
+      inputElementRef.current.focus();
+    }
+  }, [setFocus]);
 
-    React.useEffect(() => {
-      if (inputElementRef.current && setFocus) {
-        inputElementRef.current.focus();
-      }
-    }, [setFocus]);
+  React.useEffect(() => {
+    if (inputElementRef.current) {
+      inputElementRef.current.indeterminate = indeterminate;
+      inputElementRef.current.checked = indeterminate
+        ? false
+        : inputElementRef.current.checked;
+    }
+  });
 
-    React.useEffect(() => {
-      if (inputElementRef.current) {
-        inputElementRef.current.indeterminate = indeterminate;
-        inputElementRef.current.checked = indeterminate
-          ? false
-          : inputElementRef.current.checked;
-      }
-    });
-
-    const checkbox = (
-      <>
-        <input
-          className={cx(
-            'iui-checkbox',
-            {
-              'iui-checkbox-visibility': variant === 'eyeball',
-              'iui-loading': isLoading,
-            },
-            className && { [className]: !label },
-          )}
-          style={!label ? style : undefined}
-          disabled={disabled || isLoading}
-          type='checkbox'
-          ref={refs}
-          {...rest}
-        />
-        {isLoading && <ProgressRadial size='x-small' indeterminate />}
-      </>
-    );
-
-    return !label ? (
-      checkbox
-    ) : (
-      <label
+  const checkbox = (
+    <>
+      <Box
+        as='input'
         className={cx(
-          'iui-checkbox-wrapper',
+          'iui-checkbox',
           {
-            'iui-disabled': disabled,
-            [`iui-${status}`]: !!status,
+            'iui-checkbox-visibility': variant === 'eyeball',
             'iui-loading': isLoading,
           },
-          className,
+          className && { [className]: !label },
         )}
-        style={style}
-      >
-        {checkbox}
-        {label && <span className='iui-checkbox-label'>{label}</span>}
-      </label>
-    );
-  },
-);
+        style={!label ? style : undefined}
+        disabled={disabled || isLoading}
+        type='checkbox'
+        ref={refs}
+        {...rest}
+      />
+      {isLoading && <ProgressRadial size='x-small' indeterminate />}
+    </>
+  );
+
+  return !label ? (
+    checkbox
+  ) : (
+    <Box
+      as='label'
+      className={cx(
+        'iui-checkbox-wrapper',
+        {
+          'iui-disabled': disabled,
+          [`iui-${status}`]: !!status,
+          'iui-loading': isLoading,
+        },
+        className,
+      )}
+      style={style}
+    >
+      {checkbox}
+      {label && (
+        <Box as='span' className='iui-checkbox-label'>
+          {label}
+        </Box>
+      )}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'input', CheckboxProps>;
 
 export default Checkbox;

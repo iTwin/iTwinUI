@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/information-panel.css';
 
-export type InformationPanelContentProps = {
+type InformationPanelContentProps = {
   /**
    * If set to 'inline', the label/input pairs will be shown on the same line.
    * The component handles the spacing and alignment automatically.
@@ -21,7 +21,7 @@ export type InformationPanelContentProps = {
    * Should ideally be pairs of `Label` and input components.
    */
   children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * The `InformationPanelContent` component should be used inside `InformationPanelBody`
@@ -46,25 +46,24 @@ export type InformationPanelContentProps = {
  *   <Input id='path-input' value='/Shared/Music/' />
  * </InformationPanelContent>
  */
-export const InformationPanelContent = (
-  props: InformationPanelContentProps,
-) => {
-  const { className, displayStyle = 'default', children, ...rest } = props;
+export const InformationPanelContent = React.forwardRef(
+  (props, forwardedRef) => {
+    const { className, displayStyle = 'default', children, ...rest } = props;
 
-  useGlobals();
-
-  return (
-    <div
-      className={cx(
-        'iui-information-body-content',
-        { 'iui-inline': displayStyle === 'inline' },
-        className,
-      )}
-      {...rest}
-    >
-      {children}
-    </div>
-  );
-};
+    return (
+      <Box
+        className={cx(
+          'iui-information-body-content',
+          { 'iui-inline': displayStyle === 'inline' },
+          className,
+        )}
+        ref={forwardedRef}
+        {...rest}
+      >
+        {children}
+      </Box>
+    );
+  },
+) as PolymorphicForwardRefComponent<'div', InformationPanelContentProps>;
 
 export default InformationPanelContent;

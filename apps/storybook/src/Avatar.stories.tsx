@@ -4,8 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { getUserColor, Avatar, AvatarProps } from '@itwin/itwinui-react';
+import { getUserColor, Avatar } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
+
+type AvatarProps = React.ComponentProps<typeof Avatar>;
 
 export default {
   title: 'Core/Avatar',
