@@ -461,7 +461,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           },
           // ComboBox.MenuItem handles scrollIntoView, data-iui-index and iui-focused through context
           // but we still need to pass them here for backwards compatibility with MenuItem
-          'data-iui-focused': focusedIndex === __originalIndex,
+          focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
           ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
