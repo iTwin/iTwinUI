@@ -13,6 +13,7 @@ import {
 } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
+import { Anchor } from '../Typography/Anchor/Anchor.js';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -148,17 +149,12 @@ const FileUploadCardInputLabel = React.forwardRef<
   HTMLLabelElement,
   FileUploadCardInputLabelProps
 >((props, ref) => {
-  const { children, className, ...rest } = props;
+  const { children, ...rest } = props;
   const { inputId } = useSafeContext(FileUploadCardContext);
   return (
-    <label
-      className={cx('iui-anchor', className)}
-      ref={ref}
-      htmlFor={inputId}
-      {...rest}
-    >
+    <Anchor as='label' ref={ref} htmlFor={inputId} {...rest}>
       {children}
-    </label>
+    </Anchor>
   );
 });
 FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
