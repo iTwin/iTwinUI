@@ -13,7 +13,7 @@
   user-select: none;
   width: var(--_iui-avatar-size);
   height: var(--_iui-avatar-size);
-  background-color: hsl(72, 51%, 56%);
+  background-color: var(--iui-color-background-gray);
   border-radius: 50%;
 
   > .iui-stroke {

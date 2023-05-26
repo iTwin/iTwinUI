@@ -2,29 +2,35 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
-
 .iui-badge {
   --iui-badge-background-color: var(--iui-color-background-gray);
   --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: var(--iui-color-text);
+  --_iui-badge-padding-inline: var(--iui-size-2xs);
 
   @include mixins.iui-reset;
   display: inline-block;
   font-size: var(--iui-font-size-0);
-  padding: 0 $iui-badge-horizontal-padding;
+  padding-inline: var(--_iui-badge-padding-inline);
   margin: calc(var(--iui-size-s) * 0.5) 0;
-  border: 1px solid var(--_iui-badge-border-color);
+  box-shadow: inset 0 0 0 1px var(--_iui-badge-border-color);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-badge-background-color);
   color: var(--_iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
-  max-width: calc(20ch + $iui-badge-horizontal-padding * 2);
+  max-width: calc(20ch + var(--_iui-badge-padding-inline) * 2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: var(--iui-font-weight-semibold);
+  @media (forced-colors: active) {
+    border: 1px solid;
+  }
+
+  &:where(:not([data-iui-status])) {
+    --_iui-badge-border-color: hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
+  }
 
   @each $status in informational, positive, warning, negative {
     &:where([data-iui-status='#{$status}']) {
