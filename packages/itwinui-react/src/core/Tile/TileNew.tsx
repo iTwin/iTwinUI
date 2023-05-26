@@ -8,8 +8,6 @@ import cx from 'classnames';
 import {
   useSafeContext,
   SvgMore,
-  type PolymorphicComponentProps,
-  type PolymorphicForwardRefComponent,
   StatusIconMap,
   SvgCheckmark,
   SvgNew,
@@ -22,6 +20,7 @@ import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 const TileContext = React.createContext<
   | {
@@ -293,19 +292,19 @@ const TileBadgeContainer = polymorphic.div(
 TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 
 // ----------------------------------------------------------------------------
-// Tile.Name component
-type TileNameOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+// Tile.NameIcon component
+type TileNameIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-const TileName = React.forwardRef((props, ref) => {
+const TileNameIcon = React.forwardRef((props, ref) => {
   const { as: Element = 'div', children, ...rest } = props;
   const {
     status,
     isLoading,
     isSelected,
     isNew,
-    isActionable,
-    isDisabled,
-    onClick,
+    // isActionable,
+    // isDisabled,
+    // onClick,
   } = useSafeContext(TileContext);
 
   return (
@@ -316,7 +315,37 @@ const TileName = React.forwardRef((props, ref) => {
         isNew={isNew}
         status={status}
       />
-      <span className='iui-tile-name-label'>
+      {!(isLoading || isSelected || isNew) && children}
+    </Element>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileNameIconOwnProps>;
+TileNameIcon.displayName = 'TileNew.NameIcon';
+
+// ----------------------------------------------------------------------------
+// Tile.NameLabel component
+type TileNameLabelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TileNameLabel = React.forwardRef((props, ref) => {
+  const { as: Element = 'div', ...rest } = props;
+  const {
+    status,
+    isLoading,
+    isSelected,
+    isNew,
+    // isActionable,
+    // isDisabled,
+    // onClick,
+  } = useSafeContext(TileContext);
+
+  return (
+    <Element className='iui-tile-name' ref={ref} {...rest}>
+      <TitleIcon
+        isLoading={isLoading}
+        isSelected={isSelected}
+        isNew={isNew}
+        status={status}
+      />
+      {/* <span className='iui-tile-name-label'>
         {isActionable && onClick ? (
           <LinkAction
             as='button'
@@ -328,11 +357,11 @@ const TileName = React.forwardRef((props, ref) => {
         ) : (
           children
         )}
-      </span>
+      </span> */}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
-TileName.displayName = 'TileNew.Name';
+}) as PolymorphicForwardRefComponent<'div', TileNameLabelOwnProps>;
+TileNameLabel.displayName = 'TileNew.NameLabel';
 
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
@@ -442,7 +471,11 @@ const TitleIcon = ({
   if (StatusIcon) {
     icon = <StatusIcon />;
   }
-  return icon ? <Box className='iui-tile-status-icon'>{icon}</Box> : null;
+  return icon ? (
+    <Box as='div' className='iui-tile-status-icon'>
+      {icon}
+    </Box>
+  ) : null;
 };
 
 export const TileNew = Object.assign(TileComponent, {
@@ -498,19 +531,19 @@ export const TileNew = Object.assign(TileComponent, {
    */
   BadgeContainer: TileBadgeContainer,
   /**
-   * Name or title of the tile. Goes under <Tile.ContentArea> for `folder` variant
+   * Icon next to name of the tile. Goes under <Tile.ContentArea> for `folder` variant
    * @example `default` variant
    * <Tile>
-   *  <Tile.Name/>
+   *  <Tile.NameIcon/>
    * </Tile>
    * @example `folder` variant
    * <Tile>
    *  <Tile.ContentArea>
-   *    <Tile.Name/>
+   *    <Tile.NameIcon/>
    *  <Tile.ContentArea>
    * <Tile>
    */
-  Name: TileName,
+  NameIcon: TileNameIcon,
   /**
    * Polymorphic Tile action component. Recommended to be used in `Tile.Name` subcomponent.
    * Renders `a` element by default.
@@ -611,6 +644,10 @@ export type TileMoreOptionsProps = PolymorphicComponentProps<
 export type TileButtonsProps = PolymorphicComponentProps<
   'div',
   TileButtonsOwnProps
+>;
+export type TileNameIconProps = PolymorphicComponentProps<
+  'div',
+  TileNameIconOwnProps
 >;
 
 export default TileNew;

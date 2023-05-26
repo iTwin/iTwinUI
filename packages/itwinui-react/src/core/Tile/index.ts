@@ -3,5 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Tile } from './Tile.js';
-export default './Tile';
-export * from './TileNew.js';
+export { TileNew } from './TileNew.js';
+export default './TileNew';

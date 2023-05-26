@@ -39,6 +39,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
     }
+
+    > :where(.iui-tile-name) {
+      margin-bottom: calc(var(--iui-size-s) * 0.5);
+    }
   }
 
   &:not(:hover, :focus-within) {
@@ -219,7 +223,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   color: var(--_iui-tile-title-text-color);
   overflow: hidden;
   padding-inline: var(--iui-size-s);
-  margin-bottom: calc(var(--iui-size-s) * 0.5);
 }
 
 @mixin iui-tile-status-icon {

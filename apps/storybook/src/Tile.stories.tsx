@@ -78,7 +78,9 @@ export const Basic: Story<TileNewProps> = (args) => {
 export const AllProps: Story<TileNewProps> = (args) => {
   return (
     <TileNew {...args}>
-      <TileNew.Name>Stadium</TileNew.Name>
+      <TileNew.NameIcon>
+        <SvgInfo />
+      </TileNew.NameIcon>
       <TileNew.ThumbnailArea>
         <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
