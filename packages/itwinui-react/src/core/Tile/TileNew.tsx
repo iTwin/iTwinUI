@@ -478,6 +478,26 @@ const TitleIcon = ({
   ) : null;
 };
 
+/**
+ * Tile with customizable Thumbnail, Name, Content and Buttons subcomponents
+ * @example
+ * <TileNew>
+ *    <TileNew.ThumbnailArea>
+ *      <TileNew.ThumbnailPicture/>
+ *      <TileNew.Badge/>
+ *      <TileNew.TypeIndicator/>
+ *      <TileNew.QuickAction/>
+ *    </TileNew.ThumbnailArea>
+ *    <TileNew.Name/>
+ *    <TileNew.ContentArea>
+ *      <TileNew.Description />
+ *      <TileNew.Metadata/>
+ *      <TileNew.MoreOptions/>
+ *    </TileNew.ContentArea>
+ *    <TileNew.Buttons/>
+ * </TileNew>
+ */
+
 export const TileNew = Object.assign(TileComponent, {
   /**
    * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `Badge`
