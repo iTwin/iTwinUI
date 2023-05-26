@@ -15,7 +15,6 @@ import {
   TagContainer,
   TileNew,
   TileNewProps,
-  Tile,
   Avatar,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
@@ -23,8 +22,6 @@ import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
 import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
-
-type TileProps = React.ComponentProps<typeof Tile>;
 
 export default {
   component: TileNew,
@@ -48,9 +45,9 @@ export const Basic: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Stadium</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
         <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
@@ -83,26 +80,28 @@ export const AllProps: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Stadium</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
         <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-        <TileNew.QuickAction>
-          <IconButton
-            styleType='borderless'
-            onClick={action('clicked left icon')}
-          >
-            <SvgInfo />
-          </IconButton>
-        </TileNew.QuickAction>
         <TileNew.TypeIndicator>
           <IconButton
+            size='small'
             styleType='borderless'
             onClick={action('clicked right icon')}
           >
             <SvgStar />
           </IconButton>
         </TileNew.TypeIndicator>
+        <TileNew.QuickAction>
+          <IconButton
+            size='small'
+            styleType='borderless'
+            onClick={action('clicked left icon')}
+          >
+            <SvgInfo />
+          </IconButton>
+        </TileNew.QuickAction>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>
@@ -159,9 +158,9 @@ export const Actionable: Story<TileNewProps> = (args) => {
       <TileNew.Name>Stadium</TileNew.Name>
       <TileNew.ThumbnailArea>
         <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
         <TileNew.Description>
@@ -193,9 +192,9 @@ export const AnchorLink: Story<TileNewProps> = (args) => {
         </TileNew.Action>
       </TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
         <TileNew.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </TileNew.ThumbnailArea>
       <TileNew.ContentArea>
@@ -253,9 +252,9 @@ export const WithAvatar: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Some User</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
         <TileNew.ThumbnailPicture>
           <Avatar
             size='x-large'
@@ -401,9 +400,9 @@ export const Disabled: Story<TileNewProps> = (args) => {
     <TileNew {...args}>
       <TileNew.Name>Tile name</TileNew.Name>
       <TileNew.ThumbnailArea>
-        <TileNew.Badge>
+        <TileNew.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
-        </TileNew.Badge>
+        </TileNew.BadgeContainer>
         <TileNew.ThumbnailPicture>
           <SvgImodelHollow />
         </TileNew.ThumbnailPicture>

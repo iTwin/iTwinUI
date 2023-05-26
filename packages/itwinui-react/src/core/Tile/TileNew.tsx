@@ -16,7 +16,7 @@ import {
   LinkAction,
   supportsHas,
   polymorphic,
-  useGlobals,
+  Box,
 } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
@@ -134,7 +134,6 @@ const TileComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useGlobals();
   return (
     <TileContext.Provider
       value={{
@@ -231,9 +230,6 @@ const TileThumbnailPicture = React.forwardRef((props, ref) => {
     );
   }
 
-  if (React.isValidElement(children) && children.type == 'SVG') {
-    console.log('true');
-  }
   return (
     <Element
       className={cx('iui-thumbnail-icon', className)}
@@ -248,47 +244,23 @@ const TileThumbnailPicture = React.forwardRef((props, ref) => {
 TileThumbnailPicture.displayName = 'TileNew.TileThumbnailPicture';
 
 // ----------------------------------------------------------------------------
-// Tile.ThumbnailAvatar component
-
-type TileThumbnailAvatarOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-const TileThumbnailAvatar = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, children, ...rest } = props;
-  if (React.isValidElement(children)) {
-    return React.createElement(children.type, {
-      ...children.props,
-      className: cx('iui-thumbnail-icon', children.props.className),
-    });
-  }
-
-  return (
-    <Element className={cx(className)} ref={ref} {...rest}>
-      {children}
-    </Element>
-  );
-}) as PolymorphicForwardRefComponent<'div', TileThumbnailAvatarOwnProps>;
-
-TileThumbnailPicture.displayName = 'TileNew.TileThumbnailAvatar';
-
-// ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
 type TileQuickActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileQuickAction = React.forwardRef((props, ref) => {
-  const { as: Element = 'button', className, children, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     //todo: styling is all off, need to fix after
     <Element
-      className={cx('iui-button', 'iui-tile-thumbnail-quick-action', className)}
-      data-iui-size='small'
+      className={cx('iui-tile-thumbnail-quick-action', className)}
       ref={ref}
       {...rest}
     >
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'button', TileQuickActionOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TileQuickActionOwnProps>;
 TileQuickAction.displayName = 'Tile.QuickAction';
 
 // ----------------------------------------------------------------------------
@@ -297,31 +269,28 @@ TileQuickAction.displayName = 'Tile.QuickAction';
 type TileTypeIndicatorOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileTypeIndicator = React.forwardRef((props, ref) => {
-  const { as: Element = 'button', className, children, ...rest } = props;
+  const { as: Element = 'div', className, children, ...rest } = props;
   return (
     //todo: styling is all off, need to fix after
     <Element
-      className={cx(
-        'iui-button',
-        'iui-tile-thumbnail-type-indicator',
-        className,
-      )}
-      data-iui-size='small'
+      className={cx('iui-tile-thumbnail-type-indicator', className)}
       ref={ref}
       {...rest}
     >
       {children}
     </Element>
   );
-}) as PolymorphicForwardRefComponent<'button', TileTypeIndicatorOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TileTypeIndicatorOwnProps>;
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
 // Tile.Badge component
-type TileBadgeOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type TileBadgeContainerOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
-const TileBadge = polymorphic.div('iui-tile-thumbnail-badge-container');
-TileBadge.displayName = 'Tile.Badge';
+const TileBadgeContainer = polymorphic.div(
+  'iui-tile-thumbnail-badge-container',
+);
+TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 
 // ----------------------------------------------------------------------------
 // Tile.Name component
@@ -457,25 +426,23 @@ const TitleIcon = ({
 }: TitleIconProps) => {
   const StatusIcon = !!status && StatusIconMap[status];
 
+  let icon = null;
+
   if (isLoading) {
-    return (
-      <ProgressRadial
-        className='iui-tile-status-icon'
-        aria-hidden
-        indeterminate
-      />
+    icon = (
+      <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
     );
   }
   if (isSelected) {
-    return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
+    icon = <SvgCheckmark aria-hidden />;
   }
   if (isNew) {
-    return <SvgNew className='iui-tile-status-icon' aria-hidden />;
+    icon = <SvgNew aria-hidden />;
   }
   if (StatusIcon) {
-    return <StatusIcon className='iui-tile-status-icon' />;
+    icon = <StatusIcon />;
   }
-  return null;
+  return icon ? <Box className='iui-tile-status-icon'>{icon}</Box> : null;
 };
 
 export const TileNew = Object.assign(TileComponent, {
@@ -493,7 +460,7 @@ export const TileNew = Object.assign(TileComponent, {
    */
   ThumbnailArea: TileThumbnailArea,
   /**
-   * Thumbnail image url
+   * Thumbnail image url, a custom component or an svg for thumbnail avatar.
    * @example
    * <Tile>
    *  // ...
@@ -503,23 +470,19 @@ export const TileNew = Object.assign(TileComponent, {
    *    </Tile.ThumbnailPicture>
    *  </Tile.ThumbnailArea>
    * </Tile>
-   */
-  ThumbnailPicture: TileThumbnailPicture,
-  /**
-   * a custom component or an svg for thumbnail avatar.
-   * @example
+   * or
    * <Tile>
    *  // ...
    *  <Tile.ThumbnailArea>
-   *    <Tile.ThumbnailAvatar>
+   *    <Tile.ThumbnailPicture>
    *      {<Avatar image={<img src='icon.png' />} />}
    *      // or
    *      {<SvgImodelHollow />}
-   *    </Tile.ThumbnailAvatar>
+   *    </Tile.ThumbnailPicture>
    *   </Tile.ThumbnailArea>
    * /Tile>
    */
-  ThumbnailAvatar: TileThumbnailAvatar,
+  ThumbnailPicture: TileThumbnailPicture,
   /**
    * QuickAction subcomponent shown on top left of the tile.
    * Recommended to use an invisible `IconButton`.
@@ -533,7 +496,7 @@ export const TileNew = Object.assign(TileComponent, {
   /**
    * `Badge` subcomponent shown on the bottom right of thumbnail.
    */
-  Badge: TileBadge,
+  BadgeContainer: TileBadgeContainer,
   /**
    * Name or title of the tile. Goes under <Tile.ContentArea> for `folder` variant
    * @example `default` variant
@@ -609,10 +572,6 @@ export type TileNewThumbnailPictureProps = PolymorphicComponentProps<
   'div',
   TileThumbnailPictureOwnProps
 >;
-export type TileNewThumbnailAvatarProps = PolymorphicComponentProps<
-  'div',
-  TileThumbnailAvatarOwnProps
->;
 export type TileNewQuickActionProps = PolymorphicComponentProps<
   'button',
   TileQuickActionOwnProps
@@ -621,9 +580,9 @@ export type TileNewTypeIndicatorProps = PolymorphicComponentProps<
   'button',
   TileTypeIndicatorOwnProps
 >;
-export type TileNewBadgeProps = PolymorphicComponentProps<
+export type TileNewBadgeContainerProps = PolymorphicComponentProps<
   'button',
-  TileBadgeOwnProps
+  TileBadgeContainerOwnProps
 >;
 export type TileNewNameProps = PolymorphicComponentProps<
   'div',
