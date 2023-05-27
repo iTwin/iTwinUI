@@ -159,8 +159,6 @@ export { Textarea } from './Textarea/index.js';
 
 export { Tile } from './Tile/index.js';
 
-export { TileNew } from './Tile/index.js';
-
 export { TimePicker } from './TimePicker/index.js';
 export type { MeridiemType } from './TimePicker/index.js';
 
