@@ -79,6 +79,7 @@ export default () => {
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right All'}
           onClick={() => {
             transfer(optionData, setOptionData, setAppliedData, true);
           }}
@@ -87,18 +88,21 @@ export default () => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right'}
           onClick={() => transfer(optionData, setOptionData, setAppliedData, false)}
         >
           <SvgChevronRight />
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left'}
           onClick={() => transfer(appliedData, setAppliedData, setOptionData, false)}
         >
           <SvgChevronLeft />
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left All'}
           onClick={() => transfer(appliedData, setAppliedData, setOptionData, true)}
         >
           <SvgChevronLeftDouble />

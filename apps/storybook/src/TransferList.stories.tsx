@@ -5,11 +5,7 @@
 /* eslint-disable react/jsx-key */
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import {
-  TransferList,
-  TransferListProps,
-  IconButton,
-} from '@itwin/itwinui-react';
+import { TransferList, IconButton } from '@itwin/itwinui-react';
 
 import {
   SvgChevronLeft,
@@ -17,6 +13,8 @@ import {
   SvgChevronLeftDouble,
   SvgChevronRightDouble,
 } from '@itwin/itwinui-icons-react';
+
+type TransferListProps = React.ComponentProps<typeof TransferList>;
 
 export default {
   component: TransferList,
@@ -97,6 +95,7 @@ export const Basic: Story<TransferListProps> = (args) => {
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right All'}
           onClick={() => {
             transfer(optionData, setOptionData, setAppliedData, true);
           }}
@@ -105,6 +104,7 @@ export const Basic: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right'}
           onClick={() =>
             transfer(optionData, setOptionData, setAppliedData, false)
           }
@@ -113,6 +113,7 @@ export const Basic: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left'}
           onClick={() =>
             transfer(appliedData, setAppliedData, setOptionData, false)
           }
@@ -121,6 +122,7 @@ export const Basic: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left All'}
           onClick={() =>
             transfer(appliedData, setAppliedData, setOptionData, true)
           }
@@ -227,6 +229,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
       <TransferList.Toolbar>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right All'}
           onClick={() => {
             transfer(optionData, setOptionData, setAppliedData, true);
           }}
@@ -235,6 +238,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Right'}
           onClick={() =>
             transfer(optionData, setOptionData, setAppliedData, false)
           }
@@ -243,6 +247,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left'}
           onClick={() =>
             transfer(appliedData, setAppliedData, setOptionData, false)
           }
@@ -251,6 +256,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
         </IconButton>
         <IconButton
           styleType={'borderless'}
+          label={'Move Left All'}
           onClick={() =>
             transfer(appliedData, setAppliedData, setOptionData, true)
           }
