@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import {
-  Tooltip,
-  NewTooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@itwin/itwinui-react';
+import { Tooltip } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 
 type TooltipProps = React.ComponentProps<typeof Tooltip>;
@@ -42,10 +37,21 @@ export default {
 
 export const Top: Story<TooltipProps> = () => {
   return (
-    <NewTooltip open={true}>
-      <TooltipTrigger>My trigger</TooltipTrigger>
-      <TooltipContent className='Tooltip'>My tooltip</TooltipContent>
-    </NewTooltip>
+    <Tooltip open={true}>
+      <Tooltip.Trigger>
+        <div
+          id='tooltip-target'
+          style={{
+            marginTop: 40,
+            marginLeft: 100,
+            width: 'fit-content',
+          }}
+        >
+          Please, try to hover me!
+        </div>
+      </Tooltip.Trigger>
+      <Tooltip.Content>My tooltip</Tooltip.Content>
+    </Tooltip>
   );
 };
 
@@ -55,7 +61,8 @@ export const Right: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
     <Tooltip placement={placement} {...rest}>
-      {children}
+      <Tooltip.Trigger>{children}</Tooltip.Trigger>
+      <Tooltip.Content>My tooltip</Tooltip.Content>
     </Tooltip>
   );
 };
@@ -63,10 +70,11 @@ export const Right: Story<TooltipProps> = (args) => {
 Right.args = { placement: 'right' };
 
 export const Bottom: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+  const { placement, children, ...rest } = args;
   return (
     <Tooltip placement={placement} {...rest}>
-      {children}
+      <Tooltip.Trigger>{children}</Tooltip.Trigger>
+      <Tooltip.Content>My tooltip</Tooltip.Content>
     </Tooltip>
   );
 };
@@ -74,10 +82,11 @@ export const Bottom: Story<TooltipProps> = (args) => {
 Bottom.args = { placement: 'bottom' };
 
 export const Left: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+  const { placement, children, ...rest } = args;
   return (
     <Tooltip placement={placement} {...rest}>
-      {children}
+      <Tooltip.Trigger>{children}</Tooltip.Trigger>
+      <Tooltip.Content>My tooltip</Tooltip.Content>
     </Tooltip>
   );
 };
@@ -87,16 +96,19 @@ Left.args = { placement: 'left' };
 export const Controlled: Story<TooltipProps> = (args) => {
   const { visible = true, ...rest } = args;
   return (
-    <Tooltip visible={visible} {...rest}>
-      <div
-        style={{
-          marginTop: 40,
-          marginLeft: 100,
-          width: 'fit-content',
-        }}
-      >
-        No need to hover me
-      </div>
+    <Tooltip open={visible} {...rest}>
+      <Tooltip.Trigger>
+        <div
+          style={{
+            marginTop: 40,
+            marginLeft: 100,
+            width: 'fit-content',
+          }}
+        >
+          No need to hover me
+        </div>
+      </Tooltip.Trigger>
+      <Tooltip.Content>My tooltip</Tooltip.Content>
     </Tooltip>
   );
 };
