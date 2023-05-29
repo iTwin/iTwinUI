@@ -5,12 +5,13 @@
 import React from 'react';
 import {
   Tooltip,
-  TooltipProps,
   NewTooltip,
   TooltipTrigger,
   TooltipContent,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
+
+type TooltipProps = React.ComponentProps<typeof Tooltip>;
 
 export default {
   title: 'Core/Tooltip',

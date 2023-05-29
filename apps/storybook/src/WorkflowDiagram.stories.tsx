@@ -5,7 +5,9 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { WorkflowDiagram, WorkflowDiagramProps } from '@itwin/itwinui-react';
+import { WorkflowDiagram } from '@itwin/itwinui-react';
+
+type WorkflowDiagramProps = React.ComponentProps<typeof WorkflowDiagram>;
 
 export default {
   title: 'Core/WorkflowDiagram',

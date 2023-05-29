@@ -4,16 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import SelectTagContainer from '../Select/SelectTagContainer.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ComboBoxMultipleContainerProps = {
   selectedItems?: React.ReactNode[];
-} & Omit<React.ComponentPropsWithoutRef<'div'>, 'children'>;
+};
 
-export const ComboBoxMultipleContainer = React.forwardRef(
-  (props: ComboBoxMultipleContainerProps, ref: React.Ref<HTMLDivElement>) => {
-    const { selectedItems = [], ...rest } = props;
-    return <SelectTagContainer ref={ref} tags={selectedItems} {...rest} />;
-  },
-);
+export const ComboBoxMultipleContainer = React.forwardRef((props, ref) => {
+  const { selectedItems = [], ...rest } = props;
+  return <SelectTagContainer ref={ref} tags={selectedItems} {...rest} />;
+}) as PolymorphicForwardRefComponent<'div', ComboBoxMultipleContainerProps>;
 
 ComboBoxMultipleContainer.displayName = 'ComboBoxMultipleContainer';

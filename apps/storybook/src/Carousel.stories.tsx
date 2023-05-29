@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Carousel, CarouselProps, Text, Code } from '@itwin/itwinui-react';
+import { Carousel, Text, Code } from '@itwin/itwinui-react';
+
+type CarouselProps = React.ComponentProps<typeof Carousel>;
 
 export default {
   component: Carousel,

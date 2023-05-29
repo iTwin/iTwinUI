@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/backdrop.css';
 
 export type BackdropProps = {
@@ -13,22 +14,20 @@ export type BackdropProps = {
    * @default true
    */
   isVisible?: boolean;
-} & React.ComponentPropsWithRef<'div'>;
+};
 
-export const Backdrop = React.forwardRef<HTMLDivElement, BackdropProps>(
-  (props, ref) => {
-    const { isVisible = true, className, ...rest } = props;
-    useGlobals();
-    return (
-      <div
-        className={cx(
-          'iui-backdrop',
-          { 'iui-backdrop-visible': isVisible },
-          className,
-        )}
-        ref={ref}
-        {...rest}
-      />
-    );
-  },
-);
+export const Backdrop = React.forwardRef((props, ref) => {
+  const { isVisible = true, className, ...rest } = props;
+
+  return (
+    <Box
+      className={cx(
+        'iui-backdrop',
+        { 'iui-backdrop-visible': isVisible },
+        className,
+      )}
+      ref={ref}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', BackdropProps>;

@@ -5,10 +5,11 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Tooltip } from '../Tooltip/index.js';
-import type { TooltipProps } from '../Tooltip/index.js';
+import type { TooltipProps } from '../Tooltip/Tooltip.js';
 import type { SliderProps } from './Slider.js';
+import { Box } from '../utils/index.js';
 
-export type ThumbProps = {
+type ThumbProps = {
   /**
    * Thumb value.
    */
@@ -155,7 +156,7 @@ export const Thumb = (props: ThumbProps) => {
       }
       {...tooltipProps}
     >
-      <div
+      <Box
         {...rest}
         data-index={index}
         ref={thumbRef}

@@ -5,6 +5,7 @@
 import { SvgMore, SvgClose as SvgPlaceholder } from '../utils/index.js';
 import { fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
+import * as UseOverflow from '../utils/hooks/useOverflow.js';
 
 import { ButtonGroup } from './ButtonGroup.js';
 import { Button, IconButton } from '../Buttons/index.js';
@@ -72,7 +73,7 @@ it.each(['start', 'end'] as const)(
     const buttons = container.querySelectorAll('.iui-button');
     expect(buttons).toHaveLength(2);
     fireEvent.click(overflowPlacement === 'end' ? buttons[1] : buttons[0]);
-    expect(mockOnClick).toHaveBeenCalledWith(2);
+    expect(mockOnClick).toHaveBeenCalledWith(1);
 
     scrollWidthSpy.mockRestore();
     offsetWidthSpy.mockRestore();
@@ -142,3 +143,44 @@ it('should work in vertical orientation', () => {
   expect(group).not.toHaveClass('iui-button-group');
   expect(group.children).toHaveLength(2);
 });
+
+it.each`
+  visibleCount | overflowStart | length | overflowPlacement
+  ${9}         | ${1}          | ${10}  | ${'start'}
+  ${8}         | ${2}          | ${10}  | ${'start'}
+  ${4}         | ${6}          | ${10}  | ${'start'}
+  ${3}         | ${7}          | ${10}  | ${'start'}
+  ${1}         | ${9}          | ${10}  | ${'start'}
+  ${9}         | ${8}          | ${10}  | ${'end'}
+  ${8}         | ${7}          | ${10}  | ${'end'}
+  ${4}         | ${3}          | ${10}  | ${'end'}
+  ${3}         | ${2}          | ${10}  | ${'end'}
+  ${1}         | ${0}          | ${10}  | ${'end'}
+`(
+  'should calculate correct values when overflowPlacement=$overflowPlacement and visibleCount=$visibleCount',
+  ({ visibleCount, overflowStart, length, overflowPlacement }) => {
+    const useOverflowMock = jest
+      .spyOn(UseOverflow, 'useOverflow')
+      .mockReturnValue([jest.fn(), visibleCount]);
+
+    const buttons = [...Array(length)].map((_, index) => (
+      <button key={index}>{index}</button>
+    ));
+
+    const { container } = render(
+      <ButtonGroup
+        overflowButton={(startIndex) => <span>{startIndex}</span>}
+        overflowPlacement={overflowPlacement}
+      >
+        {buttons}
+      </ButtonGroup>,
+    );
+
+    expect(container.querySelectorAll('button')).toHaveLength(visibleCount - 1);
+    expect(container.querySelector('span')).toHaveTextContent(
+      `${overflowStart}`,
+    );
+
+    useOverflowMock.mockRestore();
+  },
+);

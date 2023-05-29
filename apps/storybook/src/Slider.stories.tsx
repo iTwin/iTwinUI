@@ -5,9 +5,11 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { useMemo, useCallback, useState } from '@storybook/addons';
-import { Body, Slider, SliderProps } from '@itwin/itwinui-react';
+import { Text, Slider } from '@itwin/itwinui-react';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+
+type SliderProps = React.ComponentProps<typeof Slider>;
 
 export default {
   title: 'Input/Slider',
@@ -179,14 +181,15 @@ export const CustomTickNoTooltip: Story<SliderProps> = (args) => {
             marginTop: '20px',
           }}
         >
-          <Body
+          <Text
+            as='p'
             style={{
               width: '60px',
               marginRight: '6px',
             }}
           >
             {dateFormatter.format(currentDate)}
-          </Body>
+          </Text>
         </div>
       }
     />

@@ -9,8 +9,9 @@ import {
   Tooltip,
   Avatar,
   AvatarGroup,
-  AvatarGroupProps,
 } from '@itwin/itwinui-react';
+
+type AvatarGroupProps = React.ComponentProps<typeof AvatarGroup>;
 
 export default {
   component: AvatarGroup,

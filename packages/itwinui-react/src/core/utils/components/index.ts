@@ -17,4 +17,4 @@ export * from './Divider.js';
 export * from './LinkAction.js';
 export * from './FloatingUITooltip.js';
 export * from './AutoclearingHiddenLiveRegion.js';
-export * from '../functions/polymorphic.js';
+export * from './Box.js';
