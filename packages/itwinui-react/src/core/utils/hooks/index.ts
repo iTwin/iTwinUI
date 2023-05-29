@@ -16,3 +16,4 @@ export * from './useIsomorphicLayoutEffect.js';
 export * from './useIsThemeAlreadySet.js';
 export * from './useIsClient.js';
 export * from './useId.js';
+export * from './useTooltip.js';
