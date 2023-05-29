@@ -3,7 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Tooltip, TooltipProps } from '@itwin/itwinui-react';
+import {
+  Tooltip,
+  TooltipProps,
+  NewTooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 
 export default {
@@ -33,12 +39,12 @@ export default {
   },
 } as Meta<TooltipProps>;
 
-export const Top: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+export const Top: Story<TooltipProps> = () => {
   return (
-    <Tooltip placement={placement} {...rest}>
-      {children}
-    </Tooltip>
+    <NewTooltip open={true}>
+      <TooltipTrigger>My trigger</TooltipTrigger>
+      <TooltipContent className='Tooltip'>My tooltip</TooltipContent>
+    </NewTooltip>
   );
 };
 

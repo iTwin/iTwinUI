@@ -15,5 +15,6 @@ export * from './Icon.js';
 export * from './Flex.js';
 export * from './Divider.js';
 export * from './LinkAction.js';
+export * from './FloatingUITooltip.js';
 export * from './AutoclearingHiddenLiveRegion.js';
 export * from '../functions/polymorphic.js';

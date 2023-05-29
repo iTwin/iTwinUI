@@ -371,6 +371,9 @@ export {
   Flex,
   VisuallyHidden,
   Divider,
+  NewTooltip,
+  TooltipContent,
+  TooltipTrigger,
 } from './utils/index.js';
 export type {
   MiddleTextTruncationProps,
