@@ -171,16 +171,6 @@ TileComponent.displayName = 'Tile';
 // ----------------------------------------------------------------------------
 // Tile.Action component
 
-type TileActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-/**
- * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
- * Renders `a` element by default.
- * @example
- * <Tile
- *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
- * />
- */
 export const TileAction = (
   props: PolymorphicComponentProps<'a', TileActionOwnProps>,
 ) => {
@@ -196,8 +186,6 @@ export const TileAction = (
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
-
-type TileThumbnailAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
 TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
@@ -240,8 +228,6 @@ TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
-type TileQuickActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 const TileQuickAction = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   return (
@@ -253,13 +239,11 @@ const TileQuickAction = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TileQuickActionOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TileQuickAction.displayName = 'Tile.QuickAction';
 
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
-
-type TileTypeIndicatorOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileTypeIndicator = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
@@ -272,12 +256,11 @@ const TileTypeIndicator = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TileTypeIndicatorOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
 // Tile.Badge component
-type TileBadgeContainerOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileBadgeContainer = polymorphic.div(
   'iui-tile-thumbnail-badge-container',
@@ -285,23 +268,20 @@ const TileBadgeContainer = polymorphic.div(
 TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 
 // ----------------------------------------------------------------------------
+// Tile.Name component
+
+const TileName = polymorphic.div('iui-tile-name');
+TileBadgeContainer.displayName = 'Tile.Name';
+
+// ----------------------------------------------------------------------------
 // Tile.NameIcon component
-type TileNameIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileNameIcon = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
-  const {
-    status,
-    isLoading,
-    isSelected,
-    isNew,
-    // isActionable,
-    // isDisabled,
-    // onClick,
-  } = useSafeContext(TileContext);
+  const { status, isLoading, isSelected, isNew } = useSafeContext(TileContext);
 
   return (
-    <Box className='iui-tile-name' ref={ref} {...rest}>
+    <Box className='iui-tile-name-icon' ref={ref} {...rest}>
       <TitleIcon
         isLoading={isLoading}
         isSelected={isSelected}
@@ -311,77 +291,54 @@ const TileNameIcon = React.forwardRef((props, ref) => {
       {!(isLoading || isSelected || isNew) && children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TileNameIconOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TileNameIcon.displayName = 'Tile.NameIcon';
 
 // ----------------------------------------------------------------------------
 // Tile.NameLabel component
-type TileNameLabelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileNameLabel = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', ...rest } = props;
-  const {
-    status,
-    isLoading,
-    isSelected,
-    isNew,
-    // isActionable,
-    // isDisabled,
-    // onClick,
-  } = useSafeContext(TileContext);
+  const { children, ...rest } = props;
+  const { isActionable, isDisabled, onClick } = useSafeContext(TileContext);
 
   return (
-    <Element className='iui-tile-name' ref={ref} {...rest}>
-      <TitleIcon
-        isLoading={isLoading}
-        isSelected={isSelected}
-        isNew={isNew}
-        status={status}
-      />
-      {/* <span className='iui-tile-name-label'>
-        {isActionable && onClick ? (
-          <LinkAction
-            as='button'
-            onClick={!isDisabled ? onClick : undefined}
-            aria-disabled={isDisabled}
-          >
-            {children}
-          </LinkAction>
-        ) : (
-          children
-        )}
-      </span> */}
-    </Element>
+    <Box as='span' className='iui-tile-name-label' ref={ref} {...rest}>
+      {isActionable && onClick ? (
+        <LinkAction
+          as='button'
+          onClick={!isDisabled ? onClick : undefined}
+          aria-disabled={isDisabled}
+        >
+          {children}
+        </LinkAction>
+      ) : (
+        children
+      )}
+    </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TileNameLabelOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TileNameLabel.displayName = 'Tile.NameLabel';
 
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
-type TileContentAreaOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileContentArea = polymorphic.div('iui-tile-content');
 TileContentArea.displayName = 'Tile.ContentArea';
 
 // ----------------------------------------------------------------------------
 // Tile.Description component
-type TileDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileDescription = polymorphic.div('iui-tile-description');
 TileDescription.displayName = 'Tile.Description';
 
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
-type TileMetadataOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileMetadata = polymorphic.div('iui-tile-metadata');
 TileMetadata.displayName = 'Tile.Metadata';
 
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
-type TileMoreOptionsOwnProps = {
-  children: React.ReactNode[];
-};
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
@@ -424,12 +381,11 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
       </Box>
     </DropdownMenu>
   );
-}) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TileMoreOptions.displayName = 'Tile.MoreOptions';
 
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
-type TileButtonsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TileButtons = polymorphic.div('iui-tile-buttons');
 TileButtons.displayName = 'Tile.Buttons';
@@ -478,6 +434,9 @@ const TitleIcon = ({
  *      <Tile.TypeIndicator/>
  *      <Tile.QuickAction/>
  *    </Tile.ThumbnailArea>
+ *    <Tile.Name>
+ *      <Tile.NameIcon/>
+ *      <Tile.NameLabel/>
  *    <Tile.Name/>
  *    <Tile.ContentArea>
  *      <Tile.Description />
@@ -490,7 +449,7 @@ const TitleIcon = ({
 
 export const Tile = Object.assign(TileComponent, {
   /**
-   * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `Badge`
+   *ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
    * @example
    * <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture/>
@@ -498,7 +457,7 @@ export const Tile = Object.assign(TileComponent, {
    *    <Tile.ThumbnailAvatar/>
    *    <Tile.QuickAction/>
    *    <Tile.TypeIndicator/>
-   *    <Tile.Badge/>
+   *    <Tile.BadgeContainer/>
    * </Tile.ThumbnailArea>
    */
   ThumbnailArea: TileThumbnailArea,
@@ -508,9 +467,7 @@ export const Tile = Object.assign(TileComponent, {
    * <Tile>
    *  // ...
    *  <Tile.ThumbnailArea>
-   *    <Tile.ThumbnailPicture>
-   *    '/url/to/image.jpg'
-   *    </Tile.ThumbnailPicture>
+   *    <Tile.ThumbnailPicture url = '/url/to/image.jpg'/>
    *  </Tile.ThumbnailArea>
    * </Tile>
    * or
@@ -527,39 +484,51 @@ export const Tile = Object.assign(TileComponent, {
    */
   ThumbnailPicture: TileThumbnailPicture,
   /**
-   * QuickAction subcomponent shown on top left of the tile.
+   * `QuickAction` subcomponent shown on top left of the tile.
    * Recommended to use an invisible `IconButton`.
    */
   QuickAction: TileQuickAction,
   /**
-   * TypeIndicator subcomponent shown on top left of the tile.
+   * `TypeIndicator` subcomponent shown on top left of the tile.
    * Recommended to use an invisible `IconButton`.
    */
   TypeIndicator: TileTypeIndicator,
   /**
-   * `Badge` subcomponent shown on the bottom right of thumbnail.
+   * `BadgeContainer` subcomponent shown on the bottom right of thumbnail.
    */
   BadgeContainer: TileBadgeContainer,
   /**
-   * Icon next to name of the tile. Goes under <Tile.ContentArea> for `folder` variant
-   * @example `default` variant
+   * `Name` subcomponent under thumbnail or top of the Tile if no thumbnail present.
+   */
+  Name: TileName,
+  /**
+   * `NameIcon` next to name of the tile. Goes under <Tile.Name>
+   * @example
    * <Tile>
+   * <Tile.Name>
    *  <Tile.NameIcon/>
-   * </Tile>
-   * @example `folder` variant
-   * <Tile>
-   *  <Tile.ContentArea>
-   *    <Tile.NameIcon/>
-   *  <Tile.ContentArea>
-   * <Tile>
+   * </Tile.Name>
+   * <Tile/>
    */
   NameIcon: TileNameIcon,
+  /*
+   * `NameLabel` of the tile
+   * @example
+   * <Tile>
+   * <Tile.Name>
+   *  <Tile.NameLabel> Tile Name <Tile.NameLabel/>
+   * </Tile.Name/>
+   * <Tile/>
+   */
+  NameLabel: TileNameLabel,
   /**
-   * Polymorphic Tile action component. Recommended to be used in `Tile.Name` subcomponent.
+   * Polymorphic Tile action component. Recommended to be used in `Tile.NameLabel` subcomponent.
    * Renders `a` element by default.
    * @example
    * <Tile.Name>
-   *   {<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
+   *  <Tile.NameLabel>
+   *   {<Tile.Action href='/new-page'>Tile Name<Tile.Action/>}
+   *  <Tile.NameLabel/>
    * </Tile.Name>
    */
   Action: TileAction,
@@ -605,59 +574,5 @@ export const Tile = Object.assign(TileComponent, {
    */
   Buttons: TileButtons,
 });
-
-export type TileNewProps = PolymorphicComponentProps<'div', TileOwnProps>;
-export type TileNewThumbnailAreaProps = PolymorphicComponentProps<
-  'div',
-  TileThumbnailAreaOwnProps
->;
-export type TileNewThumbnailPictureProps = PolymorphicComponentProps<
-  'div',
-  TileThumbnailPictureOwnProps
->;
-export type TileNewQuickActionProps = PolymorphicComponentProps<
-  'button',
-  TileQuickActionOwnProps
->;
-export type TileNewTypeIndicatorProps = PolymorphicComponentProps<
-  'button',
-  TileTypeIndicatorOwnProps
->;
-export type TileNewBadgeContainerProps = PolymorphicComponentProps<
-  'button',
-  TileBadgeContainerOwnProps
->;
-export type TileNewNameProps = PolymorphicComponentProps<
-  'div',
-  TileNameOwnProps
->;
-export type TileNewActionProps = PolymorphicComponentProps<
-  'a',
-  TileActionOwnProps
->;
-export type TileContentAreaProps = PolymorphicComponentProps<
-  'div',
-  TileContentAreaOwnProps
->;
-export type TileDescriptionProps = PolymorphicComponentProps<
-  'div',
-  TileDescriptionOwnProps
->;
-export type TileMetadataProps = PolymorphicComponentProps<
-  'div',
-  TileMetadataOwnProps
->;
-export type TileMoreOptionsProps = PolymorphicComponentProps<
-  'div',
-  TileMoreOptionsOwnProps
->;
-export type TileButtonsProps = PolymorphicComponentProps<
-  'div',
-  TileButtonsOwnProps
->;
-export type TileNameIconProps = PolymorphicComponentProps<
-  'div',
-  TileNameIconOwnProps
->;
 
 export default Tile;

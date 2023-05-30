@@ -43,7 +43,10 @@ export default {
 export const Basic: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Stadium</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Stadium</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
@@ -78,9 +81,10 @@ export const Basic: Story<TileProps> = (args) => {
 export const AllProps: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>
-        <SvgInfo />
-      </Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Stadium</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
@@ -157,7 +161,10 @@ export const Actionable: Story<TileProps> = (args) => {
       onClick={() => setSelected((prev) => !prev)}
       {...args}
     >
-      <Tile.NameIcon>Stadium</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Stadium</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.BadgeContainer>
@@ -188,11 +195,14 @@ Actionable.args = {
 export const AnchorLink: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>
-        <Tile.Action href='https://inclusive-components.design/cards/'>
-          Stadium
-        </Tile.Action>
-      </Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>
+          <Tile.Action href='https://inclusive-components.design/cards/'>
+            Stadium
+          </Tile.Action>
+        </Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
@@ -223,7 +233,10 @@ AnchorLink.args = {
 export const Condensed: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Condensed</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Condensed</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />
@@ -252,7 +265,10 @@ Condensed.args = {
 export const WithAvatar: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Some User</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Some User</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
@@ -299,7 +315,10 @@ export const Folder: Story<TileProps> = (args) => {
           <SvgFolder />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
-      <Tile.NameIcon>Folder NameIcon</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Folder Name</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ContentArea>
         <Tile.Description>Folder description</Tile.Description>
         <Tile.MoreOptions>
@@ -329,7 +348,10 @@ Folder.args = {
 export const Status: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Tile NameIcon</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Tile Name</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />
@@ -364,7 +386,10 @@ Status.args = {
 export const Loading: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Tile NameIcon</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Tile Name</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />
@@ -400,7 +425,10 @@ Loading.args = {
 export const Disabled: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.NameIcon>Tile NameIcon</Tile.NameIcon>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Tile Name</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>

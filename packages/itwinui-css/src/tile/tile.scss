@@ -179,6 +179,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   .iui-tile-name {
     grid-area: name;
+    margin-top: calc(var(--iui-size-s));
   }
 
   .iui-tile-content {
