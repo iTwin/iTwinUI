@@ -69,28 +69,19 @@ AlertComponent.displayName = 'Alert';
 // ----------------------------------------------------------------------------
 // Alert.Icon component
 
-type AlertIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 const AlertIcon = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
 
   const { type } = useSafeContext(AlertContext);
 
-  if (!children) {
-    const StatusIcon = StatusIconMap[type];
-    return (
-      <Icon fill={type}>
-        <StatusIcon ref={ref} {...rest} />
-      </Icon>
-    );
-  }
+  const StatusIcon = StatusIconMap[type];
 
   return (
-    <Icon ref={ref} {...rest}>
-      {children}
+    <Icon fill={type} ref={ref} {...rest}>
+      {children ?? <StatusIcon />}
     </Icon>
   );
-}) as PolymorphicForwardRefComponent<'span', AlertIconOwnProps>;
+}) as PolymorphicForwardRefComponent<'span'>;
 AlertIcon.displayName = 'Alert.Icon';
 
 // ----------------------------------------------------------------------------
@@ -101,8 +92,6 @@ AlertMessage.displayName = 'Alert.Message';
 
 // ----------------------------------------------------------------------------
 // Alert.Action component
-
-type AlertActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertAction = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
@@ -117,13 +106,11 @@ const AlertAction = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'a', AlertActionOwnProps>;
+}) as PolymorphicForwardRefComponent<'a'>;
 AlertAction.displayName = 'Alert.Action';
 
 // ----------------------------------------------------------------------------
 // Alert.CloseButton component
-
-type AlertCloseButtonOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const AlertCloseButton = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
@@ -139,7 +126,7 @@ const AlertCloseButton = React.forwardRef((props, ref) => {
       {children ?? <SvgCloseSmall />}
     </IconButton>
   );
-}) as PolymorphicForwardRefComponent<'button', AlertCloseButtonOwnProps>;
+}) as PolymorphicForwardRefComponent<'button'>;
 AlertCloseButton.displayName = 'Alert.CloseButton';
 
 /**
@@ -148,10 +135,12 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  * <Alert>
  *  <Alert.Message>This is an alert.</Alert.Message>
  * </Alert>
+ * @example
  * <Alert type='informational'>
  *  <Alert.Icon />
  *  <Alert.Message>This is an informational alert.</Alert.Message>
  * </Alert>
+ * @example
  * <Alert type='positive'>
  *  <Alert.Icon>
  *    <SvgSmileyHappy />
@@ -165,6 +154,7 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  *      <SvgCollapse />
  *    </Icon>
  *  </Alert.CloseButton>
+ * </Alert>
  */
 export const Alert = Object.assign(AlertComponent, {
   /**
