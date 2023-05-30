@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import cx from 'classnames';
 import * as React from 'react';
 import type { ButtonProps } from '../Buttons/Button/Button.js';
 
@@ -47,7 +46,6 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     name,
     description,
     isActive = false,
-    className,
     startIcon,
     menuItems,
     disabled,
@@ -55,15 +53,11 @@ export const HeaderButton = React.forwardRef((props, ref) => {
   } = props;
 
   const buttonProps = {
-    startIcon: React.isValidElement(startIcon)
-      ? React.cloneElement(startIcon as JSX.Element, {
-          className: cx(
-            'iui-header-breadcrumb-button-icon',
-            (startIcon as JSX.Element).props.className,
-          ),
-        })
-      : undefined,
-    className: className,
+    startIcon: startIcon ? (
+      <Box as='span' className='iui-header-breadcrumb-button-icon' aria-hidden>
+        {startIcon}
+      </Box>
+    ) : null,
     children: (
       <Box as='span' className='iui-header-breadcrumb-button-text'>
         <Box as='span' className='iui-header-breadcrumb-button-text-label'>

@@ -149,5 +149,5 @@ it('should take custom icon', () => {
     container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
   getByText('some group label');
-  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
 });
