@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.3
+
+### Patch Changes
+
+- [#1309](https://github.com/iTwin/iTwinUI/pull/1309): Fixed missing CSS imports in `FileUploadCard` and `FileUpoadTemplate`.
+
 ## 2.11.2
 
 ### Patch Changes
