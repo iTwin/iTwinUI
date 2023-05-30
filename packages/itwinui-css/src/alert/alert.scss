@@ -17,6 +17,8 @@
   background-color: var(--iui-color-background);
   border: 1px solid var(--_iui-alert-border-color);
   box-shadow: inset var(--iui-size-2xs) 0 0 var(--_iui-alert-border-color);
+  padding-inline-start: var(--iui-size-m);
+  padding-inline-end: var(--iui-size-xs);
 
   @each $statusColor in informational, positive, warning, negative {
     &:where([data-iui-status='#{$statusColor}']) {
@@ -29,7 +31,7 @@
         @include anchor.iui-anchor-status($statusColor);
       }
 
-      .iui-alert-button:focus {
+      .iui-button:focus {
         outline-color: var(--iui-color-text-#{$statusColor});
       }
     }
@@ -43,19 +45,11 @@
   }
 }
 
-.iui-alert-icon {
-  @include mixins.iui-icon-style('m');
-  margin-left: var(--iui-size-m);
-  fill: var(--_iui-alert-icon-color, var(--iui-color-icon-muted));
-  @media (forced-colors: active) {
-    fill: CanvasText;
-  }
-}
-
 .iui-alert-message {
   margin: var(--iui-size-s) var(--iui-size-m);
   word-break: normal;
   overflow-wrap: anywhere;
+  flex: 999;
 }
 
 .iui-alert-link {
@@ -66,16 +60,4 @@
   margin-left: var(--iui-size-xs);
   user-select: none;
   white-space: nowrap;
-}
-
-.iui-alert-button {
-  @include base.iui-button;
-  @include borderless.iui-button-borderless;
-  @include base.iui-button-size(small, borderless);
-  margin-left: auto;
-  margin-right: var(--iui-size-xs);
-
-  > .iui-svg-icon {
-    --_iui-svg-fill: var(--iui-button-icon-fill, currentColor);
-  }
 }

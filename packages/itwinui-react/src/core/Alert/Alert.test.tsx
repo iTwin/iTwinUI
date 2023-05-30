@@ -15,12 +15,12 @@ it('renders correctly in its default state', () => {
   );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeFalsy();
+  expect(container.querySelector('.iui-svg-icon')).toBeFalsy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.querySelector('a')).toBeNull();
   expect(message.textContent).toBe('This is an alert.');
-  expect(container.querySelector('button > .iui-svg-icon')).toBeNull();
+  expect(container.querySelector('button > .iui-button-icon')).toBeNull();
 });
 
 it('renders clickable text with href correctly', () => {
@@ -91,12 +91,16 @@ it('renders sticky alert correctly', () => {
     const alert = container.querySelector('.iui-alert') as HTMLElement;
     expect(alert).toBeTruthy();
     expect(alert).toHaveAttribute('data-iui-status', `${type}`);
-    expect(container.querySelector(`.iui-alert-icon`)).toBeTruthy();
+
+    const icon = container.querySelector('.iui-svg-icon') as HTMLElement;
+    expect(icon).toBeTruthy();
+    expect(icon).toHaveAttribute('data-iui-icon-color', `${type}`);
+
     expect(
       container.querySelector('.iui-alert-message > .iui-alert-link'),
     ).toBeNull();
     const close = container.querySelector(
-      'button > .iui-svg-icon',
+      'button > .iui-button-icon',
     ) as HTMLElement;
     expect(close).toBeTruthy();
     fireEvent.click(close);
