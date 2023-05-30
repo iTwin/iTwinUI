@@ -20,6 +20,7 @@ import type {
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
+import type { MenuItemProps } from '../Menu/MenuItem.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -309,54 +310,55 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ? value?.includes(option.value) ?? false
         : value === option.value;
 
+      const menuItem: JSX.Element = itemRenderer ? (
+        itemRenderer(option, { close: () => setIsOpen(false), isSelected })
+      ) : (
+        <MenuItem>{option.label}</MenuItem>
+      );
+
       const { label, icon, startIcon: startIconProp, ...restOption } = option;
 
       const startIcon = startIconProp ?? icon;
 
-      return itemRenderer ? (
-        itemRenderer(option, { close: () => setIsOpen(false), isSelected })
-      ) : (
-        <MenuItem
-          startIcon={startIcon}
-          key={`${label}-${index}`}
-          isSelected={isSelected}
-          onClick={() => {
-            if (option.disabled) {
-              return;
-            }
-            if (isSingleOnChange(onChange, multiple)) {
-              onChange?.(option.value);
-              setIsOpen(false);
-            } else {
-              onChange?.(option.value, isSelected ? 'removed' : 'added');
-            }
+      return React.cloneElement<MenuItemProps>(menuItem, {
+        key: `${label}-${index}`,
+        isSelected,
+        startIcon: startIcon,
+        onClick: () => {
+          if (option.disabled) {
+            return;
+          }
+          if (isSingleOnChange(onChange, multiple)) {
+            onChange?.(option.value);
+            setIsOpen(false);
+          } else {
+            onChange?.(option.value, isSelected ? 'removed' : 'added');
+          }
 
-            // update live region
-            if (isMultipleEnabled(value, multiple)) {
-              const prevSelectedValue = value || [];
-              const newSelectedValue = isSelected
-                ? prevSelectedValue.filter((i) => option.value !== i)
-                : [...prevSelectedValue, option.value];
-              setLiveRegionSelection(
-                options
-                  .filter((i) => newSelectedValue.includes(i.value))
-                  .map((item) => item.label)
-                  .filter(Boolean)
-                  .join(', '),
-              );
-            }
-          }}
-          ref={(el: HTMLLIElement) => {
-            if (isSelected && !multiple) {
-              el?.scrollIntoView({ block: 'nearest' });
-            }
-          }}
-          role='option'
-          {...restOption}
-        >
-          {label}
-        </MenuItem>
-      );
+          // update live region
+          if (isMultipleEnabled(value, multiple)) {
+            const prevSelectedValue = value || [];
+            const newSelectedValue = isSelected
+              ? prevSelectedValue.filter((i) => option.value !== i)
+              : [...prevSelectedValue, option.value];
+            setLiveRegionSelection(
+              options
+                .filter((i) => newSelectedValue.includes(i.value))
+                .map((item) => item.label)
+                .filter(Boolean)
+                .join(', '),
+            );
+          }
+        },
+        ref: (el: HTMLElement) => {
+          if (isSelected && !multiple) {
+            el?.scrollIntoView({ block: 'nearest' });
+          }
+        },
+        role: 'option',
+        ...restOption,
+        ...menuItem.props,
+      });
     });
   }, [itemRenderer, multiple, onChange, options, value]);
 
