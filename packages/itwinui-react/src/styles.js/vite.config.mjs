@@ -56,7 +56,7 @@ const outCjsDir = path.resolve(root, 'cjs');
 const outEsmDir = path.resolve(root, 'esm');
 
 const copyBuildOutput = async () => {
-  // copy styles.js from src/styles.js/dist into cjs/styles.js and esm/styles.js
+  // copy styles.js from src/styles.js/dist/ into cjs/ and esm/
   await fs.copyFile(
     path.join(distEsmDir, 'styles.js'),
     path.join(outEsmDir, 'styles.js'),
@@ -66,13 +66,13 @@ const copyBuildOutput = async () => {
     path.join(outCjsDir, 'styles.js'),
   );
 
-  // copy styles.js/dist/styles.css into <root>/styles.css
+  // copy styles.css from src/styles.js/dist/ into <root>/
   await fs.copyFile(
     path.join(distDir, 'styles.css'),
     path.join(root, 'styles.css'),
   );
 
-  // copy styles.d.ts from src into cjs/styles.d.ts and esm/styles.d.ts
+  // copy styles.d.ts from src/ into cjs/ and esm/
   await fs.copyFile(
     path.join(srcDir, 'styles.d.ts'),
     path.join(outEsmDir, 'styles.d.ts'),
