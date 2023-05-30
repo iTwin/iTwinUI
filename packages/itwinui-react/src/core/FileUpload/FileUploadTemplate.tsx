@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useTheme, SvgUpload } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
+import { Anchor } from '../Typography/Anchor/Anchor.js';
 
 export type FileUploadTemplateProps = {
   /**
@@ -62,7 +63,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
     <div className={cx('iui-file-upload-template', className)} {...rest}>
       <SvgUpload className='iui-template-icon' aria-hidden />
       <div className='iui-template-text'>
-        <label className='iui-anchor'>
+        <Anchor as='label'>
           <input
             className='iui-browse-input'
             type='file'
@@ -71,7 +72,7 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
             accept={acceptType}
           />
           {label}
-        </label>
+        </Anchor>
         <div>{subtitle}</div>
         {children}
       </div>
