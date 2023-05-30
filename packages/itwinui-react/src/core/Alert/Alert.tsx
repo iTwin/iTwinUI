@@ -81,7 +81,7 @@ const AlertIcon = React.forwardRef((props, ref) => {
       {children ?? <StatusIcon />}
     </Icon>
   );
-}) as PolymorphicForwardRefComponent<'span'>;
+}) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Icon>>;
 AlertIcon.displayName = 'Alert.Icon';
 
 // ----------------------------------------------------------------------------
