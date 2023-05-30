@@ -32,7 +32,7 @@
     cursor: not-allowed;
   }
 
-  .iui-icon {
+  .iui-icon svg {
     @include menu.iui-menu-icon;
     fill: currentColor;
   }

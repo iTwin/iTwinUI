@@ -554,9 +554,7 @@ export const Tabs = (props: TabsProps) => {
             />
           ) : (
             React.cloneElement(label, {
-              className: cx(label.props.className, {
-                'iui-active': index === currentActiveIndex,
-              }),
+              active: index === currentActiveIndex,
               'aria-selected': index === currentActiveIndex,
               tabIndex: index === currentActiveIndex ? 0 : -1,
               onClick: (args: unknown) => {

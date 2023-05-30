@@ -29,8 +29,8 @@ it.each(['positive', 'negative', 'warning'] as const)(
 
     const {
       container: { firstChild: statusIcon },
-    } = render(StatusIconMap[status]({ className: `iui-input-icon` }));
-    expect(icon).toEqual(statusIcon);
+    } = render(StatusIconMap[status]());
+    expect(icon.firstElementChild).toEqual(statusIcon);
   },
 );
 
@@ -42,9 +42,9 @@ it('should render message with custom icon', () => {
   );
   const message = container.querySelector('.iui-message') as HTMLElement;
   expect(message.textContent).toBe('This is my text');
-  const icon = container.querySelector(
-    '.iui-input-icon.my-icon',
-  ) as HTMLElement;
-  expect(icon).toBeTruthy();
-  expect(icon.getAttribute('aria-hidden')).toBe('true');
+  expect(container.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon')).toHaveAttribute(
+    'aria-hidden',
+    'true',
+  );
 });

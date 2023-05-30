@@ -49,11 +49,11 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {React.isValidElement<{ className: string }>(logo)
-        ? React.cloneElement(logo, {
-            className: cx('iui-header-brand-icon', logo.props.className),
-          })
-        : undefined}
+      {logo ? (
+        <Box as='span' className='iui-header-brand-icon' aria-hidden>
+          {logo}
+        </Box>
+      ) : null}
       {children && (
         <Box as='span' className='iui-header-brand-label'>
           {children}
