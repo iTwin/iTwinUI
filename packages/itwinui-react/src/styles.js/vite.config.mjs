@@ -8,12 +8,13 @@ export default defineConfig({
     cssMinify: false,
     lib: {
       entry: resolve(__dirname, './classes.mjs'),
-      fileName: 'styles',
-      formats: ['es'],
+      fileName: (format) => `${format}/styles.js`,
+      formats: ['esm', 'cjs'],
     },
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
+          // renaming style.css to styles.css
           if (assetInfo.name === 'style.css') {
             return 'styles.css';
           }

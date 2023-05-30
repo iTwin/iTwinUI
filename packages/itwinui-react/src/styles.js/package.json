@@ -4,9 +4,13 @@
   "files": [
     "dist"
   ],
-  "module": "dist/style.js",
+  "main": "dist/cjs/styles.js",
+  "module": "dist/esm/styles.js",
   "exports": {
-    ".": "./dist/style.js",
+    ".": {
+      "import": "./dist/esm/styles.js",
+      "require": "./dist/cjs/styles.js"
+    },
     "./styles.css": "./dist/styles.css",
     "./*": "./*"
   }
