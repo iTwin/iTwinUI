@@ -7,6 +7,7 @@ import cx from 'classnames';
 import { SvgUpload, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/file-upload.css';
+import { Anchor } from '../Typography/Anchor/Anchor.js';
 
 type FileUploadTemplateProps = {
   /**
@@ -66,7 +67,7 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
     >
       <SvgUpload className='iui-template-icon' aria-hidden />
       <Box className='iui-template-text'>
-        <Box as='label' className='iui-anchor'>
+        <Anchor as='label'>
           <Box
             as='input'
             className='iui-browse-input'
@@ -76,7 +77,7 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
             accept={acceptType}
           />
           {label}
-        </Box>
+        </Anchor>
         <div>{subtitle}</div>
         {children}
       </Box>
