@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/utils.css';
 import { Box } from './Box.js';
 
 export type InputContainerProps<T extends React.ElementType = 'div'> = {

@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, VisuallyHidden } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
 
 type MenuItemSkeletonProps = {
   /**

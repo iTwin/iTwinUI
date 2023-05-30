@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { polymorphic } from '../utils/index.js';
-import '@itwin/itwinui-css/css/footer.css';
 
 /**
  * Footer item. Recommended to use inside `Footer.List`.
