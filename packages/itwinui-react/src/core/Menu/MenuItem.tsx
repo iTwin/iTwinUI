@@ -173,7 +173,7 @@ export const MenuItem = React.forwardRef((props, ref) => {
         </ListItem.Icon>
       )}
       <ListItem.Content>
-        {children}
+        <div>{children}</div>
         {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
       </ListItem.Content>
       {!endIcon && subMenuItems.length > 0 && (

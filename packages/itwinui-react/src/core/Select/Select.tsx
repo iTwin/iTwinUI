@@ -5,6 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Menu, MenuItem } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
   Popover,
@@ -20,7 +21,6 @@ import type {
 import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
-import type { MenuItemProps } from '../Menu/MenuItem.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -309,7 +309,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       const isSelected = isMultipleEnabled(value, multiple)
         ? value?.includes(option.value) ?? false
         : value === option.value;
-
       const menuItem: JSX.Element = itemRenderer ? (
         itemRenderer(option, { close: () => setIsOpen(false), isSelected })
       ) : (
@@ -487,6 +486,7 @@ const SingleSelectButton = <T,>({
   selectedItem,
   selectedItemRenderer,
 }: SingleSelectButtonProps<T>) => {
+  const startIcon = selectedItem?.startIcon ?? selectedItem?.icon;
   return (
     <>
       {selectedItem &&
@@ -494,9 +494,9 @@ const SingleSelectButton = <T,>({
         selectedItemRenderer(selectedItem)}
       {selectedItem && !selectedItemRenderer && (
         <>
-          {selectedItem.icon &&
-            React.cloneElement(selectedItem.icon, {
-              className: cx(selectedItem.icon.props.className, 'iui-icon'),
+          {startIcon &&
+            React.cloneElement(startIcon, {
+              className: cx(startIcon.props.className, 'iui-icon'),
             })}
           <Box as='span' className='iui-content'>
             {selectedItem.label}

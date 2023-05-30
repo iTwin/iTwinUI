@@ -181,6 +181,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu-icon {
   flex: 0 0 auto;
 
+  &.iui-skeleton,
   svg {
     @include mixins.iui-icon-style('m');
     fill: var(--_iui-list-item-icon-fill, var(--iui-color-icon));
