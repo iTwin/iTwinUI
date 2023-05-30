@@ -1,5 +1,4 @@
 .turbo
 node_modules
 dist
-!dist/styles.d.ts
 !styles.module.css

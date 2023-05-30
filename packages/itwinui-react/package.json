@@ -17,6 +17,7 @@
         "default": "./cjs/index.js"
       }
     },
+    "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
     "./esm": "./esm/index.js",
     "./cjs/core/utils": "./cjs/core/utils/index.js",
@@ -51,10 +52,10 @@
     "ux"
   ],
   "scripts": {
-    "build": "yarn clean:build && yarn build:styles && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
-    "build:styles": "vite build src/styles.js && yarn copy-styles:esm",
+    "build": "yarn clean:build && yarn build:styles && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && yarn copy-styles",
+    "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
-    "copy-styles:esm": "yarn swc src/styles.js/dist/styles.js -o esm/styles.js --no-swcrc --source-maps=false",
+    "copy-styles": "node ./scripts/copyStyles.mjs",
     "clean:build": "rimraf esm && rimraf cjs",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
@@ -67,7 +68,7 @@
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
-    "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles:esm\""
+    "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles\""
   },
   "dependencies": {
     "@itwin/itwinui-illustrations-react": "^2.0.0",
