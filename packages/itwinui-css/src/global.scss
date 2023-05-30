@@ -8,15 +8,13 @@
   line-height: 1.5;
   font-family: var(--iui-font-sans);
 
-  // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
-  :where([class*='iui-'], [class*='iui3-']) {
-    &:where(:not(.iui-root)),
-    * {
-      &,
-      &::before,
-      &::after {
-        box-sizing: border-box;
-      }
+  // border-box on iui-root, all iui- elements and their descendants under it, excluding any nested iui-root elements
+  &,
+  :where([class*='iui-'], [class*='iui3-']):where(:not(.iui-root)) {
+    &,
+    &::before,
+    &::after {
+      box-sizing: border-box;
     }
   }
 }
