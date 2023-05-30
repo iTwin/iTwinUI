@@ -52,7 +52,7 @@
     "ux"
   ],
   "scripts": {
-    "build": "yarn clean:build && yarn build:styles && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && yarn copy-styles",
+    "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && yarn build:styles",
     "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "copy-styles": "node ./scripts/copyStyles.mjs",
@@ -64,7 +64,7 @@
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
     "lint:fix": "yarn lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
-    "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn dev:styles\" \"yarn dev:types\"",
+    "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn build:styles --watch\" \"yarn dev:types\"",
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
