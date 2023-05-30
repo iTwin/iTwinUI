@@ -33,15 +33,9 @@ export const HeaderBasicButton = React.forwardRef((props, ref) => {
       style={style}
       {...rest}
     >
-      {startIcon &&
-        React.cloneElement(startIcon, {
-          className: startIcon.props.className,
-        })}
+      {startIcon}
       {children}
-      {endIcon &&
-        React.cloneElement(endIcon, {
-          className: endIcon.props.className,
-        })}
+      {endIcon}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonProps>;

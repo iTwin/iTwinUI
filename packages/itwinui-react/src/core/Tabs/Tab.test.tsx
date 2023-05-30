@@ -41,8 +41,8 @@ it('should render with icon', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-tab-icon' aria-hidden />);
-  expect(container.querySelector('.iui-tab-icon')).toEqual(placeholderIcon);
+  } = render(<SvgPlaceholder />);
+  expect(container.querySelector('.iui-tab-icon svg')).toEqual(placeholderIcon);
 });
 
 it('should render in disabled state', () => {

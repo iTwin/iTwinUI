@@ -109,12 +109,11 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         ref={refs}
         {...rest}
       />
-      {icon &&
-        size !== 'small' &&
-        React.cloneElement(icon, {
-          className: cx('iui-toggle-switch-icon', icon.props.className),
-          'aria-hidden': true,
-        })}
+      {icon && size !== 'small' && (
+        <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
+          {icon}
+        </Box>
+      )}
       {label && (
         <Box as='span' className='iui-toggle-switch-label'>
           {label}
