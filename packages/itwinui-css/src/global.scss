@@ -10,7 +10,7 @@
 
   // border-box on iui-root, all iui- elements and their descendants under it, excluding any nested iui-root elements
   &,
-  :where([class*='iui-'], [class*='iui3-']):where(:not(.iui-root)) {
+  :where([class*='iui-'], [class*='_iui3-']):where(:not(.iui-root)) {
     &,
     &::before,
     &::after {

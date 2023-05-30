@@ -39,7 +39,7 @@ export default defineConfig({
     modules: {
       // TODO: use proper hash in v4
       generateScopedName: (name) => {
-        return `iui3-${name.replace('iui-', '')}`;
+        return `_iui3-${name.replace('iui-', '')}`;
       },
     },
   },
