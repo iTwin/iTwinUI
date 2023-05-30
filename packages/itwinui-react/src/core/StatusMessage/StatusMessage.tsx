@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Box, StatusIconMap } from '../utils/index.js';
-import cx from 'classnames';
 
 type StatusMessageProps = {
   /**
@@ -33,22 +32,15 @@ export const StatusMessage = ({
   children,
   status,
 }: StatusMessageProps) => {
-  const StartIcon = () => {
-    const icon = userStartIcon ?? (status && StatusIconMap[status]());
-
-    if (!icon) {
-      return null;
-    }
-
-    return React.cloneElement(icon, {
-      className: cx('iui-input-icon', icon.props?.className),
-      'aria-hidden': true,
-    });
-  };
+  const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
   return (
     <>
-      <StartIcon />
+      {!!icon ? (
+        <Box as='span' className='iui-input-icon' aria-hidden>
+          {icon}
+        </Box>
+      ) : null}
       <Box className='iui-message'>{children}</Box>
     </>
   );

@@ -580,7 +580,7 @@ it('should render with custom icon', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
 });
 
 it('should render with message and status', () => {
