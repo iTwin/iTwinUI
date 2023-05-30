@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.3
+
+### Patch Changes
+
+- [#3](https://github.com/iTwin/iTwinUI/pull/3): `FileUpload`: fix missing anchor style
+
 ## 2.11.2
 
 ### Patch Changes
