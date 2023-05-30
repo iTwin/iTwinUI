@@ -139,6 +139,7 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  * <Alert type='informational'>
  *  <Alert.Icon />
  *  <Alert.Message>This is an informational alert.</Alert.Message>
+ *  <Alert.CloseButton onClick={() => {}} />
  * </Alert>
  * @example
  * <Alert type='positive'>
@@ -149,10 +150,8 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  *    This is an alert.
  *    <Alert.Action>This is clickable text.</Alert.Action>
  *  </Alert.Message>
- *  <Alert.CloseButton onClick={action('Close!')}>
- *    <Icon>
- *      <SvgCollapse />
- *    </Icon>
+ *  <Alert.CloseButton onClick={() => {}}>
+ *    <SvgCollapse />
  *  </Alert.CloseButton>
  * </Alert>
  */

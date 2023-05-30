@@ -5,7 +5,7 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Alert, Icon } from '@itwin/itwinui-react';
+import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 type AlertProps = React.ComponentProps<typeof Alert>;
 
@@ -191,9 +191,7 @@ export const CustomIcon: Story<AlertProps> = (args) => {
       </Alert.Icon>
       <Alert.Message>This is an info message with a custom icon.</Alert.Message>
       <Alert.CloseButton onClick={action('Close!')}>
-        <Icon>
-          <SvgPlaceholder />
-        </Icon>
+        <SvgPlaceholder />
       </Alert.CloseButton>
     </Alert>
   );
