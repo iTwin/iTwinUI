@@ -14,22 +14,20 @@ import {
 import type { Placement } from '@floating-ui/react';
 
 type TooltipOptions = {
-  initialOpen?: boolean;
   placement?: Placement;
-  open?: boolean;
-  onOpenChange?: (open: boolean) => void;
+  visible?: boolean;
+  toggleVisible?: (open: boolean) => void;
 };
 
 /**
  *
  */
 export const useTooltip = ({
-  initialOpen = false,
   placement = 'top',
-  open: controlledOpen,
-  onOpenChange: setControlledOpen,
+  visible: controlledOpen,
+  toggleVisible: setControlledOpen,
 }: TooltipOptions = {}) => {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = setControlledOpen ?? setUncontrolledOpen;
