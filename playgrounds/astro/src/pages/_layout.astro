@@ -1,5 +1,6 @@
 ---
 import { ThemeProvider } from '@itwin/itwinui-react';
+import '@itwin/itwinui-react/styles.css';
 ---
 
 <html lang='en'>
@@ -8,9 +9,11 @@ import { ThemeProvider } from '@itwin/itwinui-react';
     <meta name='viewport' content='width=device-width' />
     <title>iTwinUI-react + astro</title>
   </head>
-  <ThemeProvider as='body' theme='dark'>
-    <slot />
-  </ThemeProvider>
+  <body>
+    <ThemeProvider theme='dark' client:load>
+      <slot />
+    </ThemeProvider>
+  </body>
 
   <style is:global>
     * {
