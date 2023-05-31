@@ -2,5 +2,4 @@
 '@itwin/itwinui-react': major
 ---
 
-MenuItem: added `startIcon` prop to use instead of icon (icon is marked as deprecated); added `endIcon` to use instead of badge (badge is marked as deprecated);
-SelectOption: added `startIcon` to use instead of icon (icon is marked as deprecated);
+Deprecated MenuItem's `icon` and `badge` props in favor of new `startIcon` and `endIcon` props. Also affects `Select` and `ComboBox` options.
