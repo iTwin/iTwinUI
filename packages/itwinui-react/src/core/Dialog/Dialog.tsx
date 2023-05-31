@@ -35,6 +35,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
     isDraggable = false,
     isResizable = false,
     relativeTo = 'viewport',
+    position,
     className,
     ...rest
   } = props;
@@ -57,6 +58,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isResizable,
         relativeTo,
         dialogRootRef,
+        position,
       }}
     >
       <Box

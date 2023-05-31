@@ -277,3 +277,64 @@ export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
     </div>
   );
 };
+
+export const Position: Story = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
+
+  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
+    action('onClose', { depth: 1 })(event);
+    closeDialog();
+  };
+
+  const primaryButtonHandle = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    action('Primary button')(event);
+    closeDialog();
+  };
+
+  const secondaryButtonHandle = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ) => {
+    action('Secondary button')(event);
+    closeDialog();
+  };
+
+  return (
+    <>
+      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
+        Open Dialog
+      </Button>
+      <Dialog
+        isOpen={isOpen}
+        position={'top-left'}
+        onClose={onClose}
+        closeOnEsc
+        isDismissible
+      >
+        <Dialog.Main>
+          <Dialog.TitleBar titleText='Best dialog ever' />
+          <Dialog.Content>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in
+            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+            culpa qui officia deserunt mollit anim id est laborum.
+          </Dialog.Content>
+          <Dialog.ButtonBar>
+            <Button styleType='high-visibility' onClick={primaryButtonHandle}>
+              Primary
+            </Button>
+            <Button onClick={secondaryButtonHandle}>Secondary</Button>
+          </Dialog.ButtonBar>
+        </Dialog.Main>
+      </Dialog>
+    </>
+  );
+};
