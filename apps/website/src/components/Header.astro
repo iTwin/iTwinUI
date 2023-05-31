@@ -2,7 +2,7 @@
 import SkipLink from './utils/SkipLink.astro';
 import SidebarToggle from './SidebarToggle.astro';
 import VisuallyHidden from './utils/VisuallyHidden.astro';
-import { SearchModal } from './SearchModal/SearchModal.jsx';
+import AiChat from './AiChat.jsx';
 
 export type Props = { class?: string };
 
@@ -34,6 +34,14 @@ const { pathname } = Astro.url;
     </svg>
   </a>
 
+  <ai-chat-button>
+    <button type='button'>AI chat</button>
+
+    <dialog>
+      <AiChat client:load />
+    </dialog>
+  </ai-chat-button>
+
   <nav aria-label='Global site'>
     {pathname === '/' && <a href='/docs'>Documentation</a>}
 
@@ -46,28 +54,27 @@ const { pathname } = Astro.url;
         ></path>
       </svg>
     </a>
-
-    <button id='search-action-item' class='action-item'>
-      <VisuallyHidden>Search</VisuallyHidden>
-
-      <svg width='32' height='32' viewBox='0 0 24 24' fill='currentColor'>
-        <path
-          d='M11 9.7c.7-1 1.1-2.2 1.1-3.5.1-3.5-2.7-6.2-6-6.2C2.7 0 0 2.7 0 6.1s2.7 6.1 6.1 6.1c1.3 0 2.5-.4 3.5-1.1l4.9 4.9 1.4-1.4zm-5 .5c-2.3 0-4.1-1.8-4.1-4.1S3.7 2 6 2s4.1 1.8 4.1 4.1-1.8 4.1-4.1 4.1'
-        ></path>
-      </svg>
-    </button>
-
-    <SearchModal client:load />
   </nav>
 </header>
 
 <script>
-  import { isSearchOpen } from '~/stores/header.store.js';
+  customElements.define(
+    'ai-chat-button',
+    class extends HTMLElement {
+      connectedCallback() {
+        const button = this.querySelector('button');
+        const dialog = this.querySelector('dialog');
 
-  const button = document.getElementById('search-action-item');
-  button.addEventListener('click', () => {
-    isSearchOpen.set(!isSearchOpen.get());
-  });
+        button.addEventListener('click', () => {
+          dialog.showModal();
+        });
+
+        dialog.addEventListener('click', (e) => {
+          if (e.currentTarget === e.target) dialog.close();
+        });
+      }
+    }
+  );
 </script>
 
 <style lang='scss'>
@@ -80,10 +87,10 @@ const { pathname } = Astro.url;
     align-items: center;
     justify-content: center;
     border-bottom: 1px solid var(--color-line-2);
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
 
     @media (max-width: 50em) {
-      grid-template-columns: 1fr auto 1fr;
+      grid-template-columns: 1fr auto auto;
     }
   }
 
@@ -123,6 +130,7 @@ const { pathname } = Astro.url;
     color: var(--color-text);
     text-decoration: none;
     opacity: 0.9;
+    cursor: pointer;
 
     &:hover {
       opacity: 1;
@@ -130,15 +138,20 @@ const { pathname } = Astro.url;
     }
   }
 
-  .action-item {
-    display: flex;
-    border-radius: 9e9px;
-    padding: var(--space-2);
-    cursor: pointer;
+  dialog[open] {
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    width: unset;
+    height: unset;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+  }
 
-    svg {
-      width: 1.5em;
-      height: 1.5em;
-    }
+  dialog::backdrop {
+    background-color: hsl(0 0% 0% / 0.1);
+    backdrop-filter: blur(5px);
   }
 </style>

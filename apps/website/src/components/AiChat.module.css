@@ -1,0 +1,53 @@
+.wrapper {
+  max-inline-size: min(700px, 90vi);
+  block-size: min(600px, 70vb);
+  margin-inline: auto;
+  padding: var(--space-6);
+  background-color: var(--color-background-1);
+  border-radius: var(--border-radius-1);
+  border: 1px solid var(--color-line-2);
+  box-shadow: 0 0 3px black;
+  grid-template-rows: auto 1fr auto;
+  color: var(--color-text);
+}
+
+.wrapper,
+.header {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.chat {
+  overflow: auto;
+  scrollbar-gutter: stable both-edges;
+  margin-block: var(--space-3);
+}
+
+.chat ul {
+  list-style-type: disc;
+  padding-inline-start: var(--space-4);
+}
+
+.input {
+  font: inherit;
+  padding: var(--space-2) var(--space-3);
+  background-color: transparent;
+  border-radius: var(--border-radius-1);
+  border: 1px solid var(--color-line-1);
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+}
+
+.send {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--font-size-1);
+  color: var(--color-background-1);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius-1);
+  background: var(--color-highlight-gradient);
+}
