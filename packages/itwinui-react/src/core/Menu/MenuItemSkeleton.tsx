@@ -50,7 +50,7 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as='li'
-      className={cx('iui-list-item', 'iui-menu-item-skeleton', className)}
+      className={cx('iui-menu-item', 'iui-menu-item-skeleton', className)}
       data-iui-size={hasSublabel && 'large'}
       style={{
         ...{
@@ -61,10 +61,8 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       {...rest}
     >
-      {hasIcon && (
-        <Box className='iui-list-item-icon iui-skeleton' aria-hidden />
-      )}
-      <Box as='span' className='iui-list-item-content'>
+      {hasIcon && <Box className='iui-icon iui-skeleton' aria-hidden />}
+      <Box as='span' className='iui-content'>
         <Box className='iui-menu-label iui-skeleton' aria-hidden />
         {hasSublabel && (
           <Box className='iui-menu-description iui-skeleton' aria-hidden />

@@ -459,7 +459,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             onClickHandler(__originalIndex);
             customItem.props.onClick?.(e);
           },
-          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and iui-focused through context
+          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and focused through context
           // but we still need to pass them here for backwards compatibility with MenuItem
           focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
