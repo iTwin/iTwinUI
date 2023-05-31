@@ -66,9 +66,7 @@ const { pathname } = Astro.url;
 
   const button = document.getElementById('search-action-item');
   button.addEventListener('click', () => {
-    const isCurrentlyExpanded = button.getAttribute('aria-expanded') === 'true';
-    isSearchOpen.set(!isCurrentlyExpanded);
-    console.log('CLICKED');
+    isSearchOpen.set(!isSearchOpen.get());
   });
 </script>
 
