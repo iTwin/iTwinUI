@@ -494,9 +494,9 @@ const SingleSelectButton = <T,>({
         selectedItemRenderer(selectedItem)}
       {selectedItem && !selectedItemRenderer && (
         <>
-          {selectedItem.icon && (
+          {startIcon && (
             <Box as='span' className='iui-icon' aria-hidden>
-              {selectedItem.icon}
+              {startIcon}
             </Box>
           )}
           <Box as='span' className='iui-content'>
