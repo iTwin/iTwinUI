@@ -2,3 +2,4 @@
 node_modules
 dist
 !styles.module.css
+!unscoped.css
