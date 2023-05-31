@@ -7,8 +7,8 @@ describe('DropdownMenu', () => {
   const tests = [
     'Basic',
     'Submenu',
-    'With Badges',
-    'With Icons',
+    'With End Icons',
+    'With Start Icons',
     'With Content',
     'With Separator',
     'With Sublabels',

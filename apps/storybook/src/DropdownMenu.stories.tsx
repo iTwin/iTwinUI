@@ -72,7 +72,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
 // Body height is the same as Select component height therefore clicking outside would not close dropdown.
 Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
 
-export const WithIcons: Story<DropdownMenuProps> = (args) => {
+export const WithStartIcons: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
@@ -102,11 +102,11 @@ export const WithIcons: Story<DropdownMenuProps> = (args) => {
   );
 };
 
-WithIcons.decorators = [
+WithStartIcons.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
-export const WithBadges: Story<DropdownMenuProps> = (args) => {
+export const WithEndIcons: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
@@ -136,7 +136,7 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
   );
 };
 
-WithBadges.decorators = [
+WithEndIcons.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
