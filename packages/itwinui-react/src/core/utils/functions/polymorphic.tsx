@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useGlobals } from '../hooks/useGlobals.js';
+import styles from '../../../styles.js';
 
 const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
   defaultElement: As,
@@ -21,13 +22,12 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
           ref={ref}
           {...attrs}
           {...props}
-          className={cx(className, attrs?.className, props.className)}
+          className={getScopedClassName(
+            cx(className, attrs?.className, props.className),
+          )}
         />
       );
-    }) as PolymorphicForwardRefComponent<
-      NonNullable<typeof defaultElement>,
-      {} // eslint-disable-line
-    >;
+    }) as PolymorphicForwardRefComponent<NonNullable<typeof defaultElement>>;
 
     Comp.displayName = getDisplayNameFromClass(className);
 
@@ -71,4 +71,12 @@ export const polymorphic = new Proxy(_base('div'), {
 const getDisplayNameFromClass = (str: string) => {
   const camel = str.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
   return camel.substring(3);
+};
+
+// e.g. iui-button -> _iui3-button
+const getScopedClassName = (className = '') => {
+  return className
+    .split(' ')
+    .map((c) => (c in styles ? styles[c] : c))
+    .join(' ');
 };
