@@ -1,11 +1,15 @@
-import { Button } from '@itwin/itwinui-react';
+import { ExpandableBlock } from '@itwin/itwinui-react';
 
-const App = () => {
+export default () => {
   return (
-    <>
-      <Button>Hello world</Button>
-    </>
+    <div style={{ width: 'min(100%, 300px)' }}>
+      <ExpandableBlock
+        title='Expandable Block'
+        caption='caption'
+        disabled={true}
+      >
+        Content in block!
+      </ExpandableBlock>
+    </div>
   );
 };
-
-export default App;
