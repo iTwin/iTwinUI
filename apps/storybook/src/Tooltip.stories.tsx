@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Tooltip } from '@itwin/itwinui-react';
+import { NewTooltip } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 
-type TooltipProps = React.ComponentProps<typeof Tooltip>;
+type TooltipProps = React.ComponentProps<typeof NewTooltip>;
 
 export default {
   title: 'Core/Tooltip',
-  component: Tooltip,
+  component: NewTooltip,
   args: {
     content: 'Here I am!',
     children: (
@@ -35,23 +35,12 @@ export default {
   },
 } as Meta<TooltipProps>;
 
-export const Top: Story<TooltipProps> = () => {
+export const Top: Story<TooltipProps> = (args) => {
+  const { children, placement, ...rest } = args;
   return (
-    <Tooltip open={true}>
-      <Tooltip.Trigger>
-        <div
-          id='tooltip-target'
-          style={{
-            marginTop: 40,
-            marginLeft: 100,
-            width: 'fit-content',
-          }}
-        >
-          Please, try to hover me!
-        </div>
-      </Tooltip.Trigger>
-      <Tooltip.Content>My tooltip</Tooltip.Content>
-    </Tooltip>
+    <NewTooltip placement={placement} {...rest}>
+      {children}
+    </NewTooltip>
   );
 };
 
@@ -60,34 +49,31 @@ Top.args = { placement: 'top' };
 export const Right: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
-    <Tooltip placement={placement} {...rest}>
-      <Tooltip.Trigger>{children}</Tooltip.Trigger>
-      <Tooltip.Content>My tooltip</Tooltip.Content>
-    </Tooltip>
+    <NewTooltip placement={placement} {...rest}>
+      {children}
+    </NewTooltip>
   );
 };
 
 Right.args = { placement: 'right' };
 
 export const Bottom: Story<TooltipProps> = (args) => {
-  const { placement, children, ...rest } = args;
+  const { children, placement, ...rest } = args;
   return (
-    <Tooltip placement={placement} {...rest}>
-      <Tooltip.Trigger>{children}</Tooltip.Trigger>
-      <Tooltip.Content>My tooltip</Tooltip.Content>
-    </Tooltip>
+    <NewTooltip placement={placement} {...rest}>
+      {children}
+    </NewTooltip>
   );
 };
 
 Bottom.args = { placement: 'bottom' };
 
 export const Left: Story<TooltipProps> = (args) => {
-  const { placement, children, ...rest } = args;
+  const { children, placement, ...rest } = args;
   return (
-    <Tooltip placement={placement} {...rest}>
-      <Tooltip.Trigger>{children}</Tooltip.Trigger>
-      <Tooltip.Content>My tooltip</Tooltip.Content>
-    </Tooltip>
+    <NewTooltip placement={placement} {...rest}>
+      {children}
+    </NewTooltip>
   );
 };
 
@@ -96,20 +82,17 @@ Left.args = { placement: 'left' };
 export const Controlled: Story<TooltipProps> = (args) => {
   const { visible = true, ...rest } = args;
   return (
-    <Tooltip open={visible} {...rest}>
-      <Tooltip.Trigger>
-        <div
-          style={{
-            marginTop: 40,
-            marginLeft: 100,
-            width: 'fit-content',
-          }}
-        >
-          No need to hover me
-        </div>
-      </Tooltip.Trigger>
-      <Tooltip.Content>My tooltip</Tooltip.Content>
-    </Tooltip>
+    <NewTooltip visible={visible} {...rest}>
+      <div
+        style={{
+          marginTop: 40,
+          marginLeft: 100,
+          width: 'fit-content',
+        }}
+      >
+        No need to hover me
+      </div>
+    </NewTooltip>
   );
 };
 
