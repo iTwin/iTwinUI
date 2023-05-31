@@ -20,7 +20,7 @@ it('should render skeleton menu item with only label', () => {
   expect(label).toBeTruthy();
   expect(label.getAttribute('aria-hidden')).toBe('true');
 
-  expect(menuItem.querySelector('.iui-list-item-icon')).toBeFalsy();
+  expect(menuItem.querySelector('.iui-icon')).toBeFalsy();
   expect(menuItem.querySelector('.iui-menu-description')).toBeFalsy();
 
   expect(menuItem.textContent).toEqual('Loading…');
@@ -34,9 +34,7 @@ it('should render skeleton menu item with icon, label and sublabel', () => {
   ) as HTMLLIElement;
   expect(menuItem).toBeTruthy();
 
-  const icon = menuItem.querySelector(
-    '.iui-list-item-icon.iui-skeleton',
-  ) as HTMLElement;
+  const icon = menuItem.querySelector('.iui-icon.iui-skeleton') as HTMLElement;
   expect(icon).toBeTruthy();
   expect(icon.getAttribute('aria-hidden')).toBe('true');
 
