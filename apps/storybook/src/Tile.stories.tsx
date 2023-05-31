@@ -265,7 +265,7 @@ Condensed.args = {
 export const WithAvatar: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.Name>
+      <Tile.Name name='stuff'>
         <Tile.NameIcon />
         <Tile.NameLabel>Some User</Tile.NameLabel>
       </Tile.Name>

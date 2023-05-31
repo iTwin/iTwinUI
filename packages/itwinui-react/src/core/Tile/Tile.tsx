@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
-import React from 'react';
+import * as React from 'react';
 import cx from 'classnames';
 import {
   useSafeContext,
@@ -109,13 +109,6 @@ type TileOwnProps = {
   setActionable: React.Dispatch<React.SetStateAction<boolean>>;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
-
-//<Tile>
-//  <Tile.Thumbnail>
-//  <Tile.Name>
-//  <Tile.Content>  //has meta data
-//  <Tile.Buttons>
-//</Tile>
 
 const TileComponent = React.forwardRef((props, ref) => {
   const {
@@ -269,8 +262,18 @@ TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 
 // ----------------------------------------------------------------------------
 // Tile.Name component
+type TileNameOwnProps = {
+  name?: string;
+};
 
-const TileName = polymorphic.div('iui-tile-name');
+const TileName = React.forwardRef((props, ref) => {
+  const { className, children, name, ...rest } = props;
+  return (
+    <Box className={cx('iui-tile-name', className)} ref={ref} {...rest}>
+      {name ?? children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
 TileBadgeContainer.displayName = 'Tile.Name';
 
 // ----------------------------------------------------------------------------
@@ -279,6 +282,40 @@ TileBadgeContainer.displayName = 'Tile.Name';
 const TileNameIcon = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
   const { status, isLoading, isSelected, isNew } = useSafeContext(TileContext);
+
+  type TitleIconProps = {
+    isLoading?: boolean;
+    isSelected?: boolean;
+    isNew?: boolean;
+    status?: 'positive' | 'warning' | 'negative';
+  };
+
+  const TitleIcon = ({
+    isLoading = false,
+    isSelected = false,
+    isNew = false,
+    status,
+  }: TitleIconProps) => {
+    const StatusIcon = !!status && StatusIconMap[status];
+
+    let icon = null;
+
+    if (isLoading) {
+      icon = (
+        <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
+      );
+    }
+    if (isSelected) {
+      icon = <SvgCheckmark aria-hidden />;
+    }
+    if (isNew) {
+      icon = <SvgNew aria-hidden />;
+    }
+    if (StatusIcon) {
+      icon = <StatusIcon />;
+    }
+    return icon ? <Box className='iui-tile-status-icon'>{icon}</Box> : null;
+  };
 
   return (
     <Box className='iui-tile-name-icon' ref={ref} {...rest}>
@@ -339,9 +376,12 @@ TileMetadata.displayName = 'Tile.Metadata';
 
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
+type TileMoreOptionsOwnProps = {
+  onClick?: React.MouseEventHandler<HTMLElement>;
+};
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, children, onClick, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
@@ -375,13 +415,14 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
           styleType='borderless'
           size='small'
           aria-label='More options'
+          onClick={onClick}
         >
           <SvgMore />
         </IconButton>
       </Box>
     </DropdownMenu>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 TileMoreOptions.displayName = 'Tile.MoreOptions';
 
 // ----------------------------------------------------------------------------
@@ -389,40 +430,6 @@ TileMoreOptions.displayName = 'Tile.MoreOptions';
 
 const TileButtons = polymorphic.div('iui-tile-buttons');
 TileButtons.displayName = 'Tile.Buttons';
-
-type TitleIconProps = {
-  isLoading?: boolean;
-  isSelected?: boolean;
-  isNew?: boolean;
-  status?: 'positive' | 'warning' | 'negative';
-};
-
-const TitleIcon = ({
-  isLoading = false,
-  isSelected = false,
-  isNew = false,
-  status,
-}: TitleIconProps) => {
-  const StatusIcon = !!status && StatusIconMap[status];
-
-  let icon = null;
-
-  if (isLoading) {
-    icon = (
-      <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
-    );
-  }
-  if (isSelected) {
-    icon = <SvgCheckmark aria-hidden />;
-  }
-  if (isNew) {
-    icon = <SvgNew aria-hidden />;
-  }
-  if (StatusIcon) {
-    icon = <StatusIcon />;
-  }
-  return icon ? <Box className='iui-tile-status-icon'>{icon}</Box> : null;
-};
 
 /**
  * Tile with customizable Thumbnail, Name, Content and Buttons subcomponents
@@ -446,7 +453,6 @@ const TitleIcon = ({
  *    <Tile.Buttons/>
  * </Tile>
  */
-
 export const Tile = Object.assign(TileComponent, {
   /**
    *ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
