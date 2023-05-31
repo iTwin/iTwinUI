@@ -5,6 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import '@itwin/itwinui-css/css/utils.css';
+import { Box } from './Box.js';
 
 export type InputContainerProps<T extends React.ElementType = 'div'> = {
   as?: T;
@@ -29,7 +30,6 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
   props: InputContainerProps<T>,
 ) => {
   const {
-    as: Element = 'div',
     label,
     disabled,
     required,
@@ -47,10 +47,8 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
     ...rest
   } = props;
 
-  const LabelElement = inputId && Element !== 'label' ? 'label' : 'div';
-
   return (
-    <Element
+    <Box
       className={cx(
         'iui-input-container',
         {
@@ -67,7 +65,8 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
       {...rest}
     >
       {label && (
-        <LabelElement
+        <Box
+          as={inputId && props.as !== 'label' ? 'label' : 'div'}
           className={cx('iui-label', {
             'iui-required': required,
           })}
@@ -75,22 +74,23 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
           id={labelId}
         >
           {label}
-        </LabelElement>
+        </Box>
       )}
       {children}
       {statusMessage ? (
         statusMessage
       ) : (
         <>
-          {icon &&
-            React.cloneElement(icon, {
-              className: cx('iui-input-icon', icon.props?.className),
-            })}
+          {icon && (
+            <Box as='span' className='iui-input-icon' aria-hidden>
+              {icon}
+            </Box>
+          )}
           {message && !isLabelInline && (
-            <div className='iui-message'>{message}</div>
+            <Box className='iui-message'>{message}</Box>
           )}
         </>
       )}
-    </Element>
+    </Box>
   );
 };

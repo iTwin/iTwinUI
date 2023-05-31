@@ -7,12 +7,13 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import {
   TimePicker,
-  TimePickerProps,
   IconButton,
   LabeledInput,
   MeridiemType,
 } from '@itwin/itwinui-react';
 import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
+
+type TimePickerProps = React.ComponentProps<typeof TimePicker>;
 
 export default {
   title: 'Core/TimePicker',

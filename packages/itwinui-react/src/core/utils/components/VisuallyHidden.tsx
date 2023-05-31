@@ -4,12 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../hooks/index.js';
 import '@itwin/itwinui-css/css/utils.css';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../props.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
+import { Box } from './Box.js';
 
 type VisuallyHiddenOwnProps = {
   /**
@@ -20,11 +17,6 @@ type VisuallyHiddenOwnProps = {
    */
   unhideOnFocus?: boolean;
 };
-
-export type VisuallyHiddenProps = PolymorphicComponentProps<
-  'span',
-  VisuallyHiddenOwnProps
->;
 
 /**
  * Hides content visually but keeps it still accessible to screen readers
@@ -37,17 +29,11 @@ export type VisuallyHiddenProps = PolymorphicComponentProps<
  * @see https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
  */
 export const VisuallyHidden = React.forwardRef((props, ref) => {
-  const {
-    as: Element = 'span',
-    className,
-    unhideOnFocus = true,
-    ...rest
-  } = props;
-
-  useGlobals();
+  const { className, unhideOnFocus = true, ...rest } = props;
 
   return (
-    <Element
+    <Box
+      as='span'
       className={cx('iui-visually-hidden', className)}
       data-iui-unhide-on-focus={unhideOnFocus ? true : undefined}
       ref={ref}

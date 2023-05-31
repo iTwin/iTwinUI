@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import MenuItem from './MenuItem.js';
-import Menu, { type MenuProps } from './Menu.js';
+import Menu from './Menu.js';
 import { MenuDivider } from './MenuDivider.js';
 import { MenuExtraContent } from './MenuExtraContent.js';
 import { Checkbox } from '../Checkbox/index.js';
@@ -28,10 +28,10 @@ function assertBaseElement(
 }
 
 function renderComponent(
-  initialProps?: Partial<MenuProps>,
+  initialProps?: Partial<React.ComponentProps<typeof Menu>>,
   selectedIndex?: number,
 ) {
-  const props: MenuProps = {
+  const props = {
     children: testLabels.map((label, index) => (
       <MenuItem key={index} isSelected={selectedIndex === index}>
         {label}

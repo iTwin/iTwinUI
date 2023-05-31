@@ -4,15 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/utils.css';
 
-type LabelOwnProps<T extends React.ElementType = 'label'> = {
-  /**
-   * What element should the label be rendered as?
-   * @default 'label'
-   */
-  as?: T;
+type LabelOwnProps = {
   /**
    * Set the display style of the label.
    *   - 'block' - default, no extra spacing (label and input will be on separate lines)
@@ -27,10 +23,6 @@ type LabelOwnProps<T extends React.ElementType = 'label'> = {
   required?: boolean;
 };
 
-export type LabelProps<T extends React.ElementType = 'label'> =
-  LabelOwnProps<T> &
-    Omit<React.ComponentPropsWithoutRef<T>, keyof LabelOwnProps<T>>;
-
 /**
  * A standalone label to be used with input components (using `htmlFor`).
  * Can be rendered as any element, e.g. span, using the `as` prop.
@@ -38,11 +30,8 @@ export type LabelProps<T extends React.ElementType = 'label'> =
  * <Label htmlFor='name-input'>Name</Label>
  * <Input id='name-input' />
  */
-export const Label = <T extends React.ElementType = 'label'>(
-  props: LabelProps<T>,
-) => {
+export const Label = React.forwardRef((props, forwardedRef) => {
   const {
-    as: Element = 'label',
     displayStyle = 'block',
     required,
     className,
@@ -50,10 +39,9 @@ export const Label = <T extends React.ElementType = 'label'>(
     ...rest
   } = props;
 
-  useGlobals();
-
   return (
-    <Element
+    <Box
+      as='label'
       className={cx(
         'iui-input-label',
         {
@@ -62,11 +50,12 @@ export const Label = <T extends React.ElementType = 'label'>(
         },
         className,
       )}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
-    </Element>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'label', LabelOwnProps>;
 
 export default Label;

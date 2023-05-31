@@ -4,13 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import cx from 'classnames';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../props.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 import '@itwin/itwinui-css/css/input-container.css';
+import { Box } from './Box.js';
 
-type InputFlexContainerOwnProps = {
+export type InputFlexContainerProps = {
   isDisabled?: boolean;
   status?: 'positive' | 'warning' | 'negative';
 };
@@ -20,18 +18,10 @@ type InputFlexContainerOwnProps = {
  * @private
  */
 export const InputFlexContainer = React.forwardRef((props, ref) => {
-  const {
-    as: Element = 'div',
-    isDisabled,
-    status,
-    children,
-    className,
-    style,
-    ...rest
-  } = props;
+  const { isDisabled, status, children, className, style, ...rest } = props;
 
   return (
-    <Element
+    <Box
       className={cx('iui-input-flex-container', className)}
       data-iui-status={status}
       data-iui-disabled={isDisabled ? 'true' : undefined}
@@ -40,11 +30,6 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
       {...rest}
     >
       {children}
-    </Element>
+    </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', InputFlexContainerOwnProps>;
-
-export type InputFlexContainerProps = PolymorphicComponentProps<
-  'div',
-  InputFlexContainerOwnProps
->;
+}) as PolymorphicForwardRefComponent<'div', InputFlexContainerProps>;

@@ -5,9 +5,11 @@
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { useMemo, useCallback, useState } from '@storybook/addons';
-import { Text, Slider, SliderProps } from '@itwin/itwinui-react';
+import { Text, Slider } from '@itwin/itwinui-react';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+
+type SliderProps = React.ComponentProps<typeof Slider>;
 
 export default {
   title: 'Input/Slider',

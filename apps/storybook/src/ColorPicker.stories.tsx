@@ -6,7 +6,6 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   ColorPicker,
-  ColorPickerProps,
   IconButton,
   ColorSwatch,
   Button,
@@ -19,6 +18,8 @@ import {
 import { Popover } from '@itwin/itwinui-react/esm/core/utils';
 import { action } from '@storybook/addon-actions';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
+
+type ColorPickerProps = React.ComponentProps<typeof ColorPicker>;
 
 export default {
   component: ColorPicker,
