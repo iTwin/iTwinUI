@@ -12,6 +12,7 @@ import {
   SvgChevronRight,
   Icon,
 } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/expandable-block.css';
 
 export type ExpandableBlockProps = {
@@ -59,9 +60,10 @@ export type ExpandableBlockProps = {
   styleType?: 'default' | 'borderless';
   /**
    * Disables ExpandableBlock.
+   * @default false
    */
   disabled?: boolean;
-};
+} & Omit<CommonProps, 'title'>;
 
 /**
  * Container that allows content to be hidden behind a brief title and a caption.
@@ -108,6 +110,10 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
       return;
     }
 
+    if (disabled) {
+      return;
+    }
+
     if (
       event.key === 'Enter' ||
       event.key === ' ' ||
@@ -126,6 +132,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
           'iui-expanded': expanded,
           'iui-small': size === 'small',
           'iui-borderless': styleType === 'borderless',
+          'iui-disabled': disabled,
         },
         className,
       )}
@@ -137,7 +144,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         className='iui-header'
         aria-disabled={disabled}
         tabIndex={0}
-        onClick={handleToggle}
+        onClick={() => !disabled && handleToggle()}
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />

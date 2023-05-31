@@ -11,6 +11,7 @@ describe('ExpandableBlock', () => {
     'Small',
     'Status Icon',
     'With Caption',
+    'Disabled',
   ];
 
   tests.forEach((testName) => {
