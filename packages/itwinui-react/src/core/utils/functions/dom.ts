@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
+import styles from '../../../styles.js';
+
 /**
  * Get the container as a child of body, or create one if it doesn't exist.
  * Mostly used for dynamic components like Modal or Toast.
@@ -18,7 +20,9 @@ export const getContainer = (
   if (container == null && !!ownerDocument) {
     container = ownerDocument.createElement('div');
     container.setAttribute('id', containerId);
-    const root = ownerDocument.querySelector('.iui-root') ?? ownerDocument.body;
+    const root =
+      ownerDocument.querySelector(`.${styles['iui-root']}`) ??
+      ownerDocument.body;
     root.appendChild(container);
   }
   return container;
