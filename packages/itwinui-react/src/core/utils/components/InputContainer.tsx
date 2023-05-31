@@ -81,10 +81,11 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
         statusMessage
       ) : (
         <>
-          {icon &&
-            React.cloneElement(icon, {
-              className: cx('iui-input-icon', icon.props?.className),
-            })}
+          {icon && (
+            <Box as='span' className='iui-input-icon' aria-hidden>
+              {icon}
+            </Box>
+          )}
           {message && !isLabelInline && (
             <Box className='iui-message'>{message}</Box>
           )}
