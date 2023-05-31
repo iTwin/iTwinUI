@@ -170,7 +170,7 @@ export type { ThemeType } from './ThemeProvider/index.js';
 
 export { ToggleSwitch } from './ToggleSwitch/index.js';
 
-export { Tooltip } from './Tooltip/index.js';
+export { Tooltip, NewTooltip } from './Tooltip/index.js';
 
 export { Tree, TreeNode, TreeNodeExpander } from './Tree/index.js';
 export type { NodeData, NodeRenderProps } from './Tree/index.js';

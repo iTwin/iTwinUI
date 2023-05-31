@@ -4,7 +4,6 @@ import {
   autoUpdate,
   offset,
   flip,
-  shift,
   useHover,
   useFocus,
   useDismiss,
@@ -14,7 +13,7 @@ import {
 import type { Placement } from '@floating-ui/react';
 
 // Comment to test commits
-type TooltipOptions = {
+export type TooltipOptions = {
   placement?: Placement;
   visible?: boolean;
   toggleVisible?: (open: boolean) => void;
@@ -44,7 +43,6 @@ export const useTooltip = ({
         fallbackAxisSideDirection: 'start',
         padding: 5,
       }),
-      shift({ padding: 5 }),
     ],
   });
 

@@ -3,4 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Tooltip } from './Tooltip.js';
+export { NewTooltip } from './NewTooltip.js';
 export default './Tooltip';
