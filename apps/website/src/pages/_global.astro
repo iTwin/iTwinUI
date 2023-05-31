@@ -55,6 +55,13 @@ const { content = {} } = Astro.props;
         color: var(--color-highlight-2);
       }
 
+      :where(button) {
+        background-color: transparent;
+        border: none;
+        line-height: 1.5;
+        font-size: var(--type-0);
+      }
+
       :where(p, h1, h2, h3, h4, h5, h6) {
         font-weight: normal;
         padding: 0;
@@ -81,7 +88,7 @@ const { content = {} } = Astro.props;
         font-family: var(--font-mono);
       }
 
-      :where(ul:not(.content-wrapper *)) {
+      :where(ul:not(.content-wrapper *):not(.search-modal *)) {
         list-style: none;
         padding: 0;
       }
