@@ -8,6 +8,7 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/menu.css';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
+import type { ListItemOwnProps } from '../List/ListItem.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -75,7 +76,7 @@ export type MenuItemProps = {
    * Content of the menu item.
    */
   children?: React.ReactNode;
-};
+} & Pick<ListItemOwnProps, 'focused'>;
 
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
