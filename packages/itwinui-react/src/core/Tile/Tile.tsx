@@ -6,21 +6,23 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useSafeContext,
-  SvgMore,
   StatusIconMap,
-  SvgCheckmark,
+  SvgMore,
   SvgNew,
+  SvgCheckmark,
   LinkAction,
+  useSafeContext,
   supportsHas,
   polymorphic,
   Box,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tile.css';
-import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
+
+type TileProps = React.ComponentProps<typeof Tile>;
 
 const TileContext = React.createContext<
   | {
@@ -110,7 +112,7 @@ type TileOwnProps = {
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
-const TileComponent = React.forwardRef((props, ref) => {
+const TileComponent = React.forwardRef((props: TileProps, ref) => {
   const {
     className,
     status,
