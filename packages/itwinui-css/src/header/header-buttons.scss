@@ -42,9 +42,12 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-brand-icon {
-  @include mixins.iui-icon-style('l');
+  &,
+  > * {
+    @include mixins.iui-icon-style('l');
+    fill: var(--iui-color-icon);
+  }
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-color-icon);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -241,25 +244,42 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  @include mixins.iui-icon-style('l');
-  background-color: var(--iui-color-background-backdrop);
-  border-radius: var(--iui-border-radius-1);
-  display: inline-flex;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  padding: var(--iui-size-2xs);
-  fill: var(--iui-color-icon-muted);
-  will-change: transform;
+  &,
+  > * {
+    @include mixins.iui-icon-style('l');
+    flex-shrink: 0;
+    border-radius: var(--iui-border-radius-1);
+  }
   transform: var(--_iui-header-icon-scale);
+  will-change: transform;
   @media (prefers-reduced-motion: no-preference) {
     transition: transform var(--iui-duration-1) ease-out;
   }
-  @media (forced-colors: active) {
-    fill: LinkText;
+
+  > svg {
+    padding: var(--iui-size-2xs);
+    background-color: var(--iui-color-background-backdrop);
+    fill: var(--iui-color-icon-muted);
+    @media (forced-colors: active) {
+      fill: LinkText;
+    }
+
+    :is(.iui-active, [aria-current]) & {
+      background-color: var(--iui-color-background);
+      fill: currentColor;
+    }
+
+    :is(:disabled, [aria-disabled='true']) & {
+      background-color: var(--iui-color-background-backdrop);
+      fill: var(--iui-color-icon-disabled);
+
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
   }
 
-  &:is(img, div) {
-    padding: 0;
+  :is(img, span) {
     outline: 2px solid hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
     outline-offset: -2px;
     transition: filter var(--iui-duration-1) ease-out;
@@ -268,33 +288,17 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
   }
 
-  &:is(img) {
+  :is(img) {
     object-fit: cover;
   }
 
-  &:is(div) {
+  :is(span) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  .iui-active &,
-  [aria-current] & {
-    background-color: var(--iui-color-background);
-    fill: currentColor;
-  }
-
-  :disabled &,
-  [aria-disabled='true'] & {
-    background-color: var(--iui-color-background-backdrop);
-    fill: var(--iui-color-icon-disabled);
-
-    @media (forced-colors: active) {
-      fill: GrayText;
-    }
-  }
-
-  &:is(img, div) {
+  :is(img, span) {
     :disabled &,
     [aria-disabled='true'] & {
       filter: grayscale(1) opacity(0.7);

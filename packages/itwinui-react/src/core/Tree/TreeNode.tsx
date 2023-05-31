@@ -238,15 +238,15 @@ export const TreeNode = (props: TreeNodeProps) => {
           style={{ '--level': nodeDepth } as React.CSSProperties}
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
         >
-          {checkbox && React.isValidElement(checkbox)
-            ? React.cloneElement(checkbox, {
-                className: cx(
-                  'iui-tree-node-checkbox',
-                  checkbox.props.className,
-                ),
-                tabIndex: isFocused ? 0 : -1,
-              })
-            : checkbox}
+          {checkbox && (
+            <Box className='iui-tree-node-checkbox'>
+              {React.isValidElement(checkbox)
+                ? React.cloneElement(checkbox, {
+                    tabIndex: isFocused ? 0 : -1,
+                  })
+                : checkbox}
+            </Box>
+          )}
           <Box className='iui-tree-node-content'>
             {hasSubNodes && expander}
             {hasSubNodes && !expander && (
@@ -257,13 +257,11 @@ export const TreeNode = (props: TreeNodeProps) => {
                 tabIndex={isFocused ? 0 : -1}
               />
             )}
-            {icon &&
-              React.cloneElement(icon, {
-                className: cx(
-                  'iui-tree-node-content-icon',
-                  icon.props.className,
-                ),
-              })}
+            {icon && (
+              <Box as='span' className='iui-tree-node-content-icon' aria-hidden>
+                {icon}
+              </Box>
+            )}
             <Box className='iui-tree-node-content-label'>
               <Box className='iui-tree-node-content-title'>{label}</Box>
               {sublabel && (

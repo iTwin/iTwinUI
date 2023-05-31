@@ -88,7 +88,7 @@ it('should render node with a checkbox', () => {
   });
 
   expect(
-    container.querySelector('.iui-tree-node-checkbox.testClass'),
+    container.querySelector('.iui-tree-node-checkbox .testClass'),
   ).not.toBeDisabled();
 });
 
@@ -98,7 +98,7 @@ it('should render node with an icon', () => {
   });
 
   expect(
-    container.querySelector('.iui-tree-node-content-icon.testClass'),
+    container.querySelector('.iui-tree-node-content-icon .testClass'),
   ).toBeTruthy();
 });
 
@@ -181,7 +181,9 @@ it('should render disabled node', () => {
   expect(treeNode).toBeTruthy();
   expect(treeNode?.classList.contains('iui-disabled')).toBe(true);
 
-  expect(container.querySelector('.iui-tree-node-checkbox')).toBeDisabled();
+  expect(
+    container.querySelector('.iui-tree-node-checkbox input'),
+  ).toBeDisabled();
 
   const button = container.querySelector(
     '.iui-button[data-iui-variant="borderless"][data-iui-size="small"]',

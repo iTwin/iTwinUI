@@ -149,7 +149,7 @@ it('should take custom icon', () => {
   expect(
     container.querySelector('.iui-input-container.iui-inline-label'),
   ).toBeTruthy();
-  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
 });
 
 it('should render inline icon', () => {
@@ -166,5 +166,5 @@ it('should render inline icon', () => {
   expect(inputContainer).not.toHaveClass('iui-inline-label');
   expect(queryByText('some label')).toHaveClass('iui-label');
   expect(queryByText('My message')).toHaveClass('iui-message');
-  expect(container.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
 });

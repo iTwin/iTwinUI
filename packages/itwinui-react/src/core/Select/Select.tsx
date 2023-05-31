@@ -494,10 +494,11 @@ const SingleSelectButton = <T,>({
         selectedItemRenderer(selectedItem)}
       {selectedItem && !selectedItemRenderer && (
         <>
-          {startIcon &&
-            React.cloneElement(startIcon, {
-              className: cx(startIcon.props.className, 'iui-icon'),
-            })}
+          {selectedItem.icon && (
+            <Box as='span' className='iui-icon' aria-hidden>
+              {selectedItem.icon}
+            </Box>
+          )}
           <Box as='span' className='iui-content'>
             {selectedItem.label}
           </Box>

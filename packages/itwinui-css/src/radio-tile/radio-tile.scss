@@ -21,7 +21,7 @@
     z-index: 2;
     outline-color: var(--iui-color-border-hover);
 
-    .iui-radio-tile-icon {
+    .iui-radio-tile-icon svg {
       fill: var(--iui-color-icon-hover);
       @media (forced-colors: active) {
         fill: CanvasText;
@@ -57,7 +57,7 @@
       outline-color: Highlight;
     }
 
-    .iui-radio-tile-icon {
+    .iui-radio-tile-icon svg {
       fill: var(--iui-color-icon-accent);
       @media (forced-colors: active) {
         fill: Highlight;
@@ -91,7 +91,7 @@
       }
     }
 
-    .iui-radio-tile-icon {
+    .iui-radio-tile-icon svg {
       filter: mixins.$iui-icon-color-multicolor-disabled;
       fill: var(--iui-color-icon-disabled);
       @media (forced-colors: active) {
@@ -130,13 +130,19 @@
 }
 
 .iui-radio-tile-icon {
-  @include mixins.iui-icon-style('xl');
-  @include mixins.iui-icon-color;
   margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
-  fill: var(--iui-color-icon-muted);
-  transition: fill var(--iui-duration-1) ease-out;
-  @media (forced-colors: active) {
-    fill: CanvasText;
+
+  &,
+  svg {
+    @include mixins.iui-icon-style('xl');
+  }
+
+  svg {
+    fill: var(--iui-color-icon-muted);
+    transition: fill var(--iui-duration-1) ease-out;
+    @media (forced-colors: active) {
+      fill: CanvasText;
+    }
   }
 }
 
