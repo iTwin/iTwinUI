@@ -53,7 +53,6 @@ const AlertComponent = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='div'
       className={cx('iui-alert', className)}
       data-iui-status={type}
       data-iui-variant={isSticky ? 'sticky' : undefined}
