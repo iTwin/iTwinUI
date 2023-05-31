@@ -12,10 +12,13 @@ import {
   mergeEventHandlers,
   polymorphic,
   Box,
+  VisuallyHidden,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
+import { Anchor } from '../Typography/Anchor/Anchor.js';
+import '@itwin/itwinui-css/css/file-upload.css';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -107,18 +110,12 @@ FileUploadCardAction.displayName = 'FileUploadCard.Action';
 // FileUploadCard.InputLabel component
 
 const FileUploadCardInputLabel = React.forwardRef((props, ref) => {
-  const { children, className, ...rest } = props;
+  const { children, ...rest } = props;
   const { inputId } = useSafeContext(FileUploadCardContext);
   return (
-    <Box
-      as='label'
-      className={cx('iui-anchor', className)}
-      ref={ref}
-      htmlFor={inputId}
-      {...rest}
-    >
+    <Anchor as='label' ref={ref} htmlFor={inputId} {...rest}>
       {children}
-    </Box>
+    </Anchor>
   );
 }) as PolymorphicForwardRefComponent<'label'>;
 FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
@@ -127,7 +124,7 @@ FileUploadCardInputLabel.displayName = 'FileUploadCard.InputLabel';
 // FileUploadCard.Input component
 
 const FileUploadCardInput = React.forwardRef((props, ref) => {
-  const { children, className, onChange, id, ...rest } = props;
+  const { children, onChange, id, ...rest } = props;
   const { files, onFilesChange, setInternalFiles, inputId, setInputId } =
     useSafeContext(FileUploadCardContext);
 
@@ -155,9 +152,8 @@ const FileUploadCardInput = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <Box
+      <VisuallyHidden
         as='input'
-        className={cx('iui-visually-hidden', className)}
         type='file'
         onChange={mergeEventHandlers(onChange, (e) => {
           const _files = Array.from(e.currentTarget.files || []);

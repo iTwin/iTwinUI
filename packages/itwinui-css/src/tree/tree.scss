@@ -58,9 +58,16 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     padding-left: var(--iui-size-3xs);
 
     &-icon {
-      @include mixins.iui-icon-style('m');
-      @include mixins.iui-icon-color;
       margin: 0 $iui-expander-inline-padding;
+
+      &,
+      svg {
+        @include mixins.iui-icon-style('m');
+      }
+
+      svg {
+        @include mixins.iui-icon-color;
+      }
 
       &:first-child {
         margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
