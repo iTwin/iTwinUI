@@ -3,10 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-export const SvgCheckmark = (props: React.ComponentProps<'svg'>) => {
+import { Svg } from './Svg.js';
+
+export const SvgCheckmark = (props: React.ComponentPropsWithoutRef<'svg'>) => {
   return (
-    <svg viewBox='0 0 16 16' {...props}>
+    <Svg {...props}>
       <path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' />
-    </svg>
+    </Svg>
   );
 };
