@@ -91,22 +91,26 @@ export const AllProps: Story<TileProps> = (args) => {
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.TypeIndicator>
-          <IconButton
-            size='small'
-            styleType='borderless'
-            onClick={action('clicked right icon')}
-          >
-            <SvgStar />
-          </IconButton>
+          <Tile.ButtonIcon>
+            <IconButton
+              size='small'
+              styleType='borderless'
+              onClick={action('clicked right icon')}
+            >
+              <SvgStar />
+            </IconButton>
+          </Tile.ButtonIcon>
         </Tile.TypeIndicator>
         <Tile.QuickAction>
-          <IconButton
-            size='small'
-            styleType='borderless'
-            onClick={action('clicked left icon')}
-          >
-            <SvgInfo />
-          </IconButton>
+          <Tile.ButtonIcon>
+            <IconButton
+              size='small'
+              styleType='borderless'
+              onClick={action('clicked left icon')}
+            >
+              <SvgInfo />
+            </IconButton>
+          </Tile.ButtonIcon>
         </Tile.QuickAction>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>

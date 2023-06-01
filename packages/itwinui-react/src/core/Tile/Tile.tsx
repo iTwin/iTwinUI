@@ -255,6 +255,24 @@ const TileTypeIndicator = React.forwardRef((props, ref) => {
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
+// Tile.ButtonIcon component
+
+const TileButtonIcon = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+  return (
+    <Box
+      as='span'
+      className={cx('iui-button-icon', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'button'>;
+TileButtonIcon.displayName = 'Tile.ButtonIcon';
+
+// ----------------------------------------------------------------------------
 // Tile.Badge component
 
 const TileBadgeContainer = polymorphic.div(
@@ -505,6 +523,10 @@ export const Tile = Object.assign(TileComponent, {
    * `BadgeContainer` subcomponent shown on the bottom right of thumbnail.
    */
   BadgeContainer: TileBadgeContainer,
+  /**
+   * `ButtonIcon` subcomponent: custom icon for `QuickAction` and `TypeIndicator` buttons.
+   */
+  ButtonIcon: TileButtonIcon,
   /**
    * `Name` subcomponent under thumbnail or top of the Tile if no thumbnail present.
    */
