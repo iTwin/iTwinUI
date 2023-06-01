@@ -7,8 +7,8 @@ describe('DropdownMenu', () => {
   const tests = [
     'Basic',
     'Submenu',
-    'With Badges',
-    'With Icons',
+    'With End Icons',
+    'With Start Icons',
     'With Content',
     'With Separator',
     'With Sublabels',
@@ -22,7 +22,7 @@ describe('DropdownMenu', () => {
       cy.get('.iui-button').click();
 
       if (testName === 'Submenu') {
-        cy.get('.iui-menu-item').last().trigger('mouseenter');
+        cy.get('.iui-list-item').last().trigger('mouseenter');
       }
 
       cy.compareSnapshot(`${testName} (Open)`);

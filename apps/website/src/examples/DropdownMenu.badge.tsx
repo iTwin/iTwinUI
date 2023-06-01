@@ -8,13 +8,13 @@ import { SvgMore, SvgCrop, SvgClipboard, SvgMove } from '@itwin/itwinui-icons-re
 
 export default () => {
   const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={() => close()} badge={<SvgCrop />}>
+    <MenuItem key={1} onClick={() => close()} endIcon={<SvgCrop />}>
       Crop
     </MenuItem>,
-    <MenuItem key={2} onClick={() => close()} badge={<SvgClipboard />}>
+    <MenuItem key={2} onClick={() => close()} endIcon={<SvgClipboard />}>
       Paste
     </MenuItem>,
-    <MenuItem key={3} onClick={() => close()} badge={<SvgMove />}>
+    <MenuItem key={3} onClick={() => close()} endIcon={<SvgMove />}>
       Move
     </MenuItem>,
   ];
