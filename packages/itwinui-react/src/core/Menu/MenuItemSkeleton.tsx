@@ -49,12 +49,8 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as='li'
-      className={cx(
-        'iui-menu-item',
-        'iui-menu-item-skeleton',
-        { 'iui-large': hasSublabel },
-        className,
-      )}
+      className={cx('iui-menu-item-skeleton', className)}
+      data-iui-size={hasSublabel && 'large'}
       style={{
         ...{
           '--iui-menu-item-content-skeleton-max-width': contentWidth,

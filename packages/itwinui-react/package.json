@@ -27,6 +27,7 @@
   "files": [
     "cjs",
     "esm",
+    "styles.css",
     "CHANGELOG.md",
     "LICENSE.md"
   ],
@@ -129,8 +130,5 @@
     ]
   },
   "prettier": "configs/prettier-config",
-  "sideEffects": [
-    "**/*.scss",
-    "**/*.css"
-  ]
+  "sideEffects": false
 }

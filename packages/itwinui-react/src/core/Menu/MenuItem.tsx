@@ -3,15 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import cx from 'classnames';
-import {
-  Popover,
-  useMergedRefs,
-  SvgCaretRightSmall,
-  Box,
-} from '../utils/index.js';
+import { Popover, useMergedRefs, SvgCaretRightSmall } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
+import { ListItem } from '../List/ListItem.js';
+import type { ListItemOwnProps } from '../List/ListItem.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -51,8 +47,18 @@ export type MenuItemProps = {
   /**
    * SVG icon component shown on the left.
    */
+  startIcon?: JSX.Element;
+  /**
+   * @deprecated Use startIcon.
+   * SVG icon component shown on the left.
+   */
   icon?: JSX.Element;
   /**
+   * SVG icon component shown on the right.
+   */
+  endIcon?: JSX.Element;
+  /**
+   * @deprecated Use endIcon
    * SVG icon component shown on the right.
    */
   badge?: JSX.Element;
@@ -69,7 +75,7 @@ export type MenuItemProps = {
    * Content of the menu item.
    */
   children?: React.ReactNode;
-};
+} & Pick<ListItemOwnProps, 'focused'>;
 
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
@@ -83,10 +89,10 @@ export const MenuItem = React.forwardRef((props, ref) => {
     onClick,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
+    startIcon: startIconProp,
     icon,
+    endIcon: endIconProp,
     badge,
-    className,
-    style,
     role = 'menuitem',
     subMenuItems = [],
     ...rest
@@ -100,6 +106,9 @@ export const MenuItem = React.forwardRef((props, ref) => {
   const subMenuRef = React.useRef<HTMLUListElement>(null);
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+
+  const startIcon = startIconProp ?? icon;
+  const endIcon = endIconProp ?? badge;
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
     if (event.altKey) {
@@ -134,20 +143,13 @@ export const MenuItem = React.forwardRef((props, ref) => {
   };
 
   const listItem = (
-    <Box
-      as='li'
-      className={cx(
-        'iui-menu-item',
-        {
-          'iui-large': size === 'large',
-          'iui-active': isSelected,
-          'iui-disabled': disabled,
-        },
-        className,
-      )}
+    <ListItem
+      actionable
+      size={size}
+      active={isSelected}
+      disabled={disabled}
       onClick={() => !disabled && onClick?.(value)}
       ref={refs}
-      style={style}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
@@ -165,22 +167,26 @@ export const MenuItem = React.forwardRef((props, ref) => {
       }}
       {...rest}
     >
-      {icon &&
-        React.cloneElement(icon, {
-          className: cx(icon.props.className, 'iui-icon'),
-        })}
-      <Box as='span' className='iui-content'>
-        <Box className='iui-menu-label'>{children}</Box>
-        {sublabel && <Box className='iui-menu-description'>{sublabel}</Box>}
-      </Box>
-      {!badge && subMenuItems.length > 0 && (
-        <SvgCaretRightSmall className='iui-icon' />
+      {startIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {startIcon}
+        </ListItem.Icon>
       )}
-      {badge &&
-        React.cloneElement(badge, {
-          className: cx(badge.props.className, 'iui-icon'),
-        })}
-    </Box>
+      <ListItem.Content>
+        <div>{children}</div>
+        {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
+      </ListItem.Content>
+      {!endIcon && subMenuItems.length > 0 && (
+        <ListItem.Icon as='span' aria-hidden>
+          <SvgCaretRightSmall />
+        </ListItem.Icon>
+      )}
+      {endIcon && (
+        <ListItem.Icon as='span' aria-hidden>
+          {endIcon}
+        </ListItem.Icon>
+      )}
+    </ListItem>
   );
 
   return subMenuItems.length === 0 ? (

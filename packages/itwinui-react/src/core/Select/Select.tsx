@@ -70,9 +70,14 @@ export type SelectOption<T> = {
    */
   value: T;
   /**
-   * SVG icon component shown on the right.
+   * @deprecated Use startIcon
+   * SVG icon component shown on the left.
    */
   icon?: JSX.Element;
+  /**
+   * SVG icon component shown on the left.
+   */
+  startIcon?: JSX.Element;
   /**
    * Item is disabled.
    */
@@ -309,11 +314,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         <MenuItem>{option.label}</MenuItem>
       );
 
-      const { label, ...restOption } = option;
+      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+
+      const startIcon = startIconProp ?? icon;
 
       return React.cloneElement<MenuItemProps>(menuItem, {
         key: `${label}-${index}`,
         isSelected,
+        startIcon: startIcon,
         onClick: () => {
           if (option.disabled) {
             return;
@@ -477,6 +485,7 @@ const SingleSelectButton = <T,>({
   selectedItem,
   selectedItemRenderer,
 }: SingleSelectButtonProps<T>) => {
+  const startIcon = selectedItem?.startIcon ?? selectedItem?.icon;
   return (
     <>
       {selectedItem &&
@@ -484,9 +493,9 @@ const SingleSelectButton = <T,>({
         selectedItemRenderer(selectedItem)}
       {selectedItem && !selectedItemRenderer && (
         <>
-          {selectedItem.icon && (
+          {startIcon && (
             <Box as='span' className='iui-icon' aria-hidden>
-              {selectedItem.icon}
+              {startIcon}
             </Box>
           )}
           <Box as='span' className='iui-content'>
