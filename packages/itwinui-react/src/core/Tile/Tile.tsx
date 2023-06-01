@@ -174,7 +174,7 @@ export const TileAction = (props: PolymorphicForwardRefComponent<'a'>) => {
     }
   }, [setActionable]);
 
-  return <LinkAction {...props} />;
+  return <LinkAction as='a' {...props} />;
 };
 
 // ----------------------------------------------------------------------------
@@ -400,7 +400,7 @@ type TileMoreOptionsOwnProps = {
 };
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
-  const { className, children, menuOnClick, ...rest } = props;
+  const { className, children = [], menuOnClick, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
