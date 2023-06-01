@@ -12,8 +12,6 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
 
 export type ThemeOptions = {
   /**

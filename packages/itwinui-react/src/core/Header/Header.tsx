@@ -8,7 +8,6 @@ import { IconButton } from '../Buttons/index.js';
 
 import { SvgMoreVertical, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 
 type HeaderTranslations = {
