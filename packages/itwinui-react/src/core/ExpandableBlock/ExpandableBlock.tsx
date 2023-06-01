@@ -129,7 +129,6 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
           'iui-expanded': expanded,
           'iui-small': size === 'small',
           'iui-borderless': styleType === 'borderless',
-          'iui-disabled': disabled,
         },
         className,
       )}
