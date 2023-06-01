@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "2.11.3",
+  "version": "2.11.4",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "cjs/index.js",
