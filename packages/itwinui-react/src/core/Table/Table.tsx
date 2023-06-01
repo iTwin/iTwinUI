@@ -962,15 +962,13 @@ export const Table = <
                               <div className='iui-table-cell-end-icon'>
                                 {column.isSortedDesc ||
                                 (!column.isSorted && column.sortDescFirst) ? (
-                                  <SvgSortDown
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
+                                  <span className='iui-table-sort' aria-hidden>
+                                    <SvgSortDown />
+                                  </span>
                                 ) : (
-                                  <SvgSortUp
-                                    className='iui-table-sort'
-                                    aria-hidden
-                                  />
+                                  <span className='iui-table-sort' aria-hidden>
+                                    <SvgSortUp />
+                                  </span>
                                 )}
                               </div>
                             )}
