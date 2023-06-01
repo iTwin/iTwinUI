@@ -137,7 +137,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <div
+      <Box
         aria-expanded={expanded}
         className='iui-header'
         aria-disabled={disabled}
@@ -146,16 +146,16 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
-        <span className='iui-expandable-block-label'>
-          <div className='iui-title'>{title}</div>
-          {caption && <div className='iui-caption'>{caption}</div>}
-        </span>
+        <Box as='span' className='iui-expandable-block-label'>
+          <Box className='iui-title'>{title}</Box>
+          {caption && <Box className='iui-caption'>{caption}</Box>}
+        </Box>
         {icon && <Icon fill={status}>{icon}</Icon>}
-      </div>
+      </Box>
       <WithCSSTransition in={expanded}>
-        <div className='iui-expandable-content'>
+        <Box className='iui-expandable-content'>
           <div>{children}</div>
-        </div>
+        </Box>
       </WithCSSTransition>
     </Box>
   );
