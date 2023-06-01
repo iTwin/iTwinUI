@@ -3632,7 +3632,7 @@ it('should render empty action column with column manager', async () => {
 
   expect(document.querySelector('.iui-menu')).toBeTruthy();
 
-  const columnManagerColumns = document.querySelectorAll('.iui-menu-item');
+  const columnManagerColumns = document.querySelectorAll('.iui-list-item');
   expect(columnManagerColumns[0].textContent).toBe('Name');
   expect(columnManagerColumns[1].textContent).toBe('Description');
   expect(columnManagerColumns[2].textContent).toBe('View');
@@ -3776,7 +3776,7 @@ it('should hide column when deselected in column manager', async () => {
   const columnManager = container.querySelector('.iui-button') as HTMLElement;
   await userEvent.click(columnManager);
   const columnManagerColumns =
-    document.querySelectorAll<HTMLLIElement>('.iui-menu-item');
+    document.querySelectorAll<HTMLLIElement>('.iui-list-item');
   await userEvent.click(columnManagerColumns[1]);
 
   headerCells = container.querySelectorAll<HTMLDivElement>(
@@ -3816,7 +3816,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 
   await userEvent.click(columnManager);
   const columnManagerColumns =
-    document.querySelectorAll<HTMLLIElement>('.iui-menu-item');
+    document.querySelectorAll<HTMLLIElement>('.iui-list-item');
   expect(columnManagerColumns[0]).toHaveAttribute('aria-disabled', 'true');
 
   expect(
