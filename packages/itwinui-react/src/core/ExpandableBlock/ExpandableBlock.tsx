@@ -137,6 +137,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
       {...rest}
     >
       <Box
+        role='button'
         aria-expanded={expanded}
         className='iui-header'
         aria-disabled={disabled}
