@@ -34,13 +34,13 @@ function assertMenu(
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual('listbox');
   expect(menu.classList).toContain('iui-scroll');
-  const menuItems = menu.querySelectorAll('.iui-menu-item');
+  const menuItems = menu.querySelectorAll('.iui-list-item');
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
-    expect(!!item.querySelector('.iui-icon')).toBe(hasIcon);
-    expect(item.classList.contains('iui-active')).toBe(selectedIndex === index);
-    expect(item.classList.contains('iui-disabled')).toBe(
+    expect(!!item.querySelector('.iui-list-item-icon')).toBe(hasIcon);
+    expect(item.hasAttribute('data-iui-active')).toBe(selectedIndex === index);
+    expect(item.hasAttribute('data-iui-disabled')).toBe(
       disabledIndex === index,
     );
   });
@@ -397,7 +397,9 @@ it('should render large SelectOption', async () => {
     select.querySelector('.iui-select-button') as HTMLElement,
   );
 
-  const menuItems = document.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = document.querySelectorAll(
+    `.iui-list-item[data-iui-size='large']`,
+  );
   expect(menuItems.length).toEqual(3);
 });
 
@@ -415,12 +417,14 @@ it('should render sublabel', () => {
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
 
-  const menuItems = document.querySelectorAll('.iui-menu-item.iui-large');
+  const menuItems = document.querySelectorAll(
+    `.iui-list-item[data-iui-size='large']`,
+  );
   expect(menuItems.length).toEqual(3);
 
   menuItems.forEach((menuItem, index) => {
     const sublabel = menuItem.querySelector(
-      '.iui-content .iui-menu-description',
+      '.iui-list-item-content .iui-list-item-description',
     ) as HTMLElement;
     expect(sublabel).toBeTruthy();
     expect(sublabel.textContent).toEqual(`Sublabel ${index}`);
@@ -441,7 +445,7 @@ it('should pass custom props to menu item', () => {
 
   fireEvent.click(container.querySelector('.iui-select-button') as HTMLElement);
   const menuItem = document.querySelector(
-    '.iui-menu-item.test-class',
+    '.iui-list-item.test-class',
   ) as HTMLElement;
   expect(menuItem.getAttribute('data-value')).toBe('Test one');
 });
@@ -460,7 +464,7 @@ it('should select multiple items', () => {
   const menu = document.querySelector('.iui-menu') as HTMLUListElement;
   assertMenu(menu);
 
-  let menuItems = menu.querySelectorAll('.iui-menu-item');
+  let menuItems = menu.querySelectorAll('.iui-list-item');
   expect(menuItems.length).toBe(3);
   fireEvent.click(menuItems[1]);
   expect(onChange).toHaveBeenCalledWith(1, 'added');
@@ -478,9 +482,9 @@ it('should select multiple items', () => {
       onChange={onChange}
     />,
   );
-  menuItems = menu.querySelectorAll('.iui-menu-item');
-  expect(menuItems[1].classList).toContain('iui-active');
-  expect(menuItems[2].classList).toContain('iui-active');
+  menuItems = menu.querySelectorAll('.iui-list-item');
+  expect(menuItems[1]).toHaveAttribute('data-iui-active', 'true');
+  expect(menuItems[2]).toHaveAttribute('data-iui-active', 'true');
 
   const tagContainer = select.querySelector('.iui-select-tag-container');
   expect(tagContainer?.childNodes.length).toBe(2);
