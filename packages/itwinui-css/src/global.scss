@@ -7,16 +7,6 @@
   font-size: var(--iui-font-size-1);
   line-height: 1.5;
   font-family: var(--iui-font-sans);
-
-  // border-box on iui-root, all iui- elements and their descendants under it, excluding any nested iui-root elements
-  &,
-  :where([class*='iui-'], [class*='_iui3-']):where(:not(.iui-root)) {
-    &,
-    &::before,
-    &::after {
-      box-sizing: border-box;
-    }
-  }
 }
 
 // reset margin only for <body> element.
@@ -30,9 +20,14 @@
   background-color: var(--iui-color-background-backdrop);
 }
 
-// text selection and scrollbar styling on iui-root and all elements under it
-:where(.iui-root),
-:where(.iui-root *) {
+// box-sizing, text selection and scrollbar styling on iui-root and all elements under it
+:where(.iui-root, .iui-root *) {
   @include mixins.iui-text-selection;
   @include mixins.iui-scrollbar;
+
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
 }
