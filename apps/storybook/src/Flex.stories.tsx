@@ -65,11 +65,11 @@ export default {
         <style
           dangerouslySetInnerHTML={{
             __html: /* css */ `
-            :where(.demo-flex-wrapper .iui-flex) {
+            :where(.demo-flex-wrapper > *) {
               outline: 1px solid var(--iui-color-border);
               min-height: 100px;
             }
-            :where(.demo-flex-wrapper :not([class*='iui'])) {
+            :where(.demo-flex-wrapper :not([class*='_iui'])) {
               font-family: var(--iui-font-sans);
               color: var(--iui-color-text);
               padding: 1rem;
