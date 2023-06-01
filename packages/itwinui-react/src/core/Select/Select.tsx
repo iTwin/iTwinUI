@@ -72,11 +72,11 @@ export type SelectOption<T> = {
   value: T;
   /**
    * @deprecated Use startIcon
-   * SVG icon component shown on the right.
+   * SVG icon component shown on the left.
    */
   icon?: JSX.Element;
   /**
-   * SVG icon component shown on the right.
+   * SVG icon component shown on the left.
    */
   startIcon?: JSX.Element;
   /**
