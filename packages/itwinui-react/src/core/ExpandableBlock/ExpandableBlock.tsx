@@ -98,8 +98,11 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
-    !disabled && setExpanded(!expanded);
-    !disabled && onToggle?.(!expanded);
+    if (disabled) {
+      return;
+    }
+    setExpanded(!expanded);
+    onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
