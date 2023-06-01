@@ -11,7 +11,12 @@ import userEvent from '@testing-library/user-event';
 it('should pass down the props through DialogContext', async () => {
   const onClose = jest.fn();
   const { container } = render(
-    <Dialog isOpen={true} onClose={onClose} closeOnExternalClick>
+    <Dialog
+      isOpen={true}
+      onClose={onClose}
+      closeOnExternalClick
+      position={'top-left'}
+    >
       <Dialog.Backdrop />
       <Dialog.Main>
         <Dialog.TitleBar titleText='Test title' />
@@ -87,6 +92,28 @@ it('should have position correctly dependant on viewport', async () => {
   expect(backdropViewport).toHaveClass('iui-backdrop-fixed');
   expect(backdropContainer).not.toHaveClass('iui-backdrop-fixed');
 });
+
+it.each(['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const)(
+  'should position dialog to corners of page',
+  async (position) => {
+    const { container } = render(
+      <Dialog isOpen={true} position={position}>
+        <Dialog.Backdrop />
+        <Dialog.Main>
+          <Dialog.TitleBar titleText='Test title' />
+          <Dialog.Content>Here is my dialog content</Dialog.Content>
+          <Dialog.ButtonBar>
+            <Button styleType='high-visibility'>Confirm</Button>
+            <Button>Close</Button>
+          </Dialog.ButtonBar>
+        </Dialog.Main>
+      </Dialog>,
+    );
+
+    const dialog = container.querySelector('.iui-dialog') as HTMLElement;
+    expect(dialog).toHaveAttribute('data-iui-placement', position);
+  },
+);
 
 it('should not allow to close the dialog when isDismissible false', async () => {
   const onClose = jest.fn();
