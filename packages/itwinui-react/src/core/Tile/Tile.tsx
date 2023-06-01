@@ -166,9 +166,7 @@ TileComponent.displayName = 'Tile';
 // ----------------------------------------------------------------------------
 // Tile.Action component
 
-export const TileAction = (
-  props: PolymorphicComponentProps<'a', TileActionOwnProps>,
-) => {
+export const TileAction = (props: PolymorphicForwardRefComponent<'a'>) => {
   const { setActionable } = useSafeContext(TileContext);
   React.useEffect(() => {
     if (!supportsHas()) {
@@ -397,11 +395,12 @@ TileMetadata.displayName = 'Tile.Metadata';
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
 type TileMoreOptionsOwnProps = {
-  onClick?: React.MouseEventHandler<HTMLElement>;
+  menuOnClick?: React.MouseEventHandler<HTMLElement>;
+  children?: React.ReactElement[];
 };
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
-  const { className, children, onClick, ...rest } = props;
+  const { className, children, menuOnClick, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
@@ -409,7 +408,7 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
       onShow={React.useCallback(() => setIsMenuVisible(true), [])}
       onHide={React.useCallback(() => setIsMenuVisible(false), [])}
       menuItems={(close) =>
-        children.map((option: React.ReactElement) =>
+        children?.map((option: React.ReactElement) =>
           React.cloneElement(option, {
             onClick: (value: unknown) => {
               close();
@@ -435,7 +434,7 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
           styleType='borderless'
           size='small'
           aria-label='More options'
-          onClick={onClick}
+          onClick={menuOnClick}
         >
           <SvgMore />
         </IconButton>
