@@ -38,7 +38,7 @@ export default () => {
                     close();
                   };
                   return (
-                    <MenuItem key={index} onClick={onClick} icon={<SvgPlaceholder />}>
+                    <MenuItem key={index} onClick={onClick} startIcon={<SvgPlaceholder />}>
                       Button #{index}
                     </MenuItem>
                   );
