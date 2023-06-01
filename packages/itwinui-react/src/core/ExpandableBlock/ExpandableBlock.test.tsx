@@ -189,7 +189,7 @@ it('should respect disabled prop', () => {
     </ExpandableBlock>,
   );
   const header = getByRole('button');
-  expect(header).toBeDisabled();
+  expect(header).toHaveAttribute('aria-disabled', 'true');
   fireEvent.click(header);
   expect(onToggleMock).not.toHaveBeenCalled();
   expect(header).toHaveAttribute('aria-expanded', 'false');
