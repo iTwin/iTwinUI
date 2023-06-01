@@ -181,32 +181,16 @@ it('should render borderless', () => {
   );
 });
 
-it('should render disabled', () => {
-  const { container } = render(
-    <ExpandableBlock title='test title' disabled>
-      content
-    </ExpandableBlock>,
-  );
-  expect(container.querySelector('.iui-expandable-block')).toHaveClass(
-    'iui-disabled',
-  );
-});
-
-it('should not trigger onToggle when clicked  on header', () => {
+it('should respect disabled prop', () => {
   const onToggleMock = jest.fn();
-  const { container } = render(
-    <ExpandableBlock
-      title='test title'
-      onToggle={onToggleMock}
-      disabled
-      isExpanded={false}
-    >
+  const { getByRole } = render(
+    <ExpandableBlock title='test title' onToggle={onToggleMock} disabled>
       test content
     </ExpandableBlock>,
   );
-
-  const header = container.querySelector('.iui-title') as HTMLElement;
-  expect(header).toBeTruthy();
+  const header = getByRole('button');
+  expect(header).toBeDisabled();
   fireEvent.click(header);
-  expect(onToggleMock).toHaveBeenCalledTimes(0);
+  expect(onToggleMock).not.toHaveBeenCalled();
+  expect(header).toHaveAttribute('aria-expanded', 'false');
 });
