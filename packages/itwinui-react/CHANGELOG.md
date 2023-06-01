@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.4
+
+### Patch Changes
+
+- [#1319](https://github.com/iTwin/iTwinUI/pull/1319): DatePicker will no longer disable month and year navigation when the next/previous months are disabled.
+
 ## 2.11.3
 
 ### Patch Changes
