@@ -114,6 +114,7 @@ const TransferListListbox = React.forwardRef((props, ref) => {
       className={cx('iui-transfer-list-listbox', className)}
       onKeyDown={onKeyDown}
       role={'listbox'}
+      aria-multiselectable={true}
       aria-labelledby={labelId}
       tabIndex={0}
       ref={refs}
