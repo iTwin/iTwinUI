@@ -114,10 +114,10 @@ it('should render startIcon correctly', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-header-breadcrumb-button-icon' />);
-  expect(container.querySelector('.iui-header-breadcrumb-button-icon')).toEqual(
-    placeholderIcon,
-  );
+  } = render(<SvgPlaceholder />);
+  expect(
+    container.querySelector('.iui-header-breadcrumb-button-icon svg'),
+  ).toEqual(placeholderIcon);
 });
 
 it('should render menuItems correctly', async () => {

@@ -18,7 +18,7 @@ const renderComponent = (
   props?: Partial<ComboBoxProps<number>> & ComboboxMultipleTypeProps<number>,
 ) => {
   return render(
-    <ComboBox<number>
+    <ComboBox
       options={[
         { label: 'Item 0', value: 0 },
         { label: 'Item 1', value: 1 },
@@ -580,7 +580,7 @@ it('should render with custom icon', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer.querySelector('.iui-input-icon.my-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
 });
 
 it('should render with message and status', () => {

@@ -5,11 +5,11 @@
 import * as React from 'react';
 
 import cx from 'classnames';
-import { useTheme } from '../../utils/index.js';
-import type { CommonProps } from '../../utils/index.js';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 import '@itwin/itwinui-css/css/progress-indicator.css';
 
-export type ProgressLinearProps = {
+type ProgressLinearProps = {
   /**
    * Progress percentage. Should be a number between 0 and 100.
    * @default 0
@@ -33,7 +33,7 @@ export type ProgressLinearProps = {
    * Status of progress. Positive status always has 100% value.
    */
   status?: 'positive' | 'negative';
-} & CommonProps;
+};
 
 /**
  * Shows progress on a linear bar
@@ -50,7 +50,7 @@ export type ProgressLinearProps = {
  * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccessHollow />]} />
  * <ProgressLinear status='negative' />
  */
-export const ProgressLinear = (props: ProgressLinearProps) => {
+export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
     value = 0,
     indeterminate = false,
@@ -58,16 +58,13 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
     isAnimated = false,
     status,
     className,
-    style,
     ...rest
   } = props;
-
-  useTheme();
 
   const boundedValue = Math.min(100, Math.max(0, value));
 
   return (
-    <div
+    <Box
       className={cx(
         'iui-progress-indicator-linear',
         {
@@ -75,27 +72,27 @@ export const ProgressLinear = (props: ProgressLinearProps) => {
         },
         className,
       )}
-      style={style}
+      ref={forwardedRef}
       {...rest}
     >
-      <div className='iui-track'>
-        <div
+      <Box className='iui-track'>
+        <Box
           className={cx('iui-fill', {
             'iui-determinate': !indeterminate && isAnimated,
             'iui-indeterminate': indeterminate,
           })}
           style={{ width: indeterminate ? '100%' : `${boundedValue}%` }}
         />
-      </div>
+      </Box>
       {labels.length > 0 && (
-        <div className='iui-label'>
+        <Box className='iui-label'>
           {labels.map((label, index) => (
             <span key={index}>{label}</span>
           ))}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ProgressLinearProps>;
 
 export default ProgressLinear;

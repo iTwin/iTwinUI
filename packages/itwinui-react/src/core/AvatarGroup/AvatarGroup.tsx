@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/avatar.css';
 
-export type AvatarGroupProps = {
+type AvatarGroupProps = {
   /**
    * Max number of avatars unstacked.
    * @default 5
@@ -37,12 +37,7 @@ export type AvatarGroupProps = {
    * Count Avatar props.
    */
   countIconProps?: React.ComponentPropsWithRef<'div'>;
-} & Omit<CommonProps, 'title'>;
-
-/**
- * @deprecated Since v2, this has been renamed to `AvatarGroupProps` (Use with `AvatarGroup`)
- */
-export type UserIconGroupProps = AvatarGroupProps;
+};
 
 /**
  * Group Avatars together.
@@ -71,7 +66,7 @@ export type UserIconGroupProps = AvatarGroupProps;
  *  />
  * </AvatarGroup>
  */
-export const AvatarGroup = (props: AvatarGroupProps) => {
+export const AvatarGroup = React.forwardRef((props, ref) => {
   const maxLength = 99;
   const {
     children,
@@ -87,8 +82,6 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   const childrenArray = React.Children.toArray(children);
   const childrenLength = childrenArray.length;
 
-  useTheme();
-
   const getAvatarList = (count: number) => {
     return childrenArray.slice(0, count).map((child) =>
       React.cloneElement(child as JSX.Element, {
@@ -99,46 +92,43 @@ export const AvatarGroup = (props: AvatarGroupProps) => {
   };
 
   return (
-    <>
-      <div
-        className={cx(
-          'iui-avatar-list',
-          {
-            'iui-animated': animated,
-            'iui-stacked': stacked,
-          },
-          className,
-        )}
-        {...rest}
-      >
-        {childrenArray.length <= maxIcons + 1 && getAvatarList(maxIcons + 1)}
-        {childrenArray.length > maxIcons + 1 && (
-          <>
-            {getAvatarList(maxIcons)}
-            ​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
-            <div
-              {...countIconProps}
-              className={cx(
-                'iui-avatar',
-                { [`iui-${iconSize}`]: iconSize !== 'medium' },
-                'iui-avatar-count',
-                countIconProps?.className,
-              )}
-            >
-              <abbr className='iui-initials'>
-                {childrenLength <= maxLength
-                  ? `${childrenLength - maxIcons}`
-                  : `${maxLength}+`}
-              </abbr>
-              <span className='iui-stroke' />
-            </div>
-            ​
-          </>
-        )}
-      </div>
-    </>
+    <Box
+      className={cx(
+        'iui-avatar-list',
+        {
+          'iui-animated': animated,
+          'iui-stacked': stacked,
+        },
+        className,
+      )}
+      ref={ref}
+      {...rest}
+    >
+      {childrenArray.length <= maxIcons + 1 && getAvatarList(maxIcons + 1)}
+      {childrenArray.length > maxIcons + 1 && (
+        <>
+          {getAvatarList(maxIcons)}
+          <Box
+            {...countIconProps}
+            className={cx(
+              'iui-avatar',
+              { [`iui-${iconSize}`]: iconSize !== 'medium' },
+              'iui-avatar-count',
+              countIconProps?.className,
+            )}
+          >
+            <Box as='abbr' className='iui-initials'>
+              {childrenLength <= maxLength
+                ? `${childrenLength - maxIcons}`
+                : `${maxLength}+`}
+            </Box>
+            <Box className='iui-stroke' />
+          </Box>
+        </>
+      )}
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', AvatarGroupProps>;
 
 /**
  * @deprecated Since v2, this has been renamed to `AvatarGroup`

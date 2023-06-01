@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Menu } from '../Menu/index.js';
-import type { MenuProps } from '../Menu/index.js';
 import { Surface } from '../Surface/index.js';
 import {
   useSafeContext,
@@ -14,9 +13,13 @@ import {
   mergeRefs,
   getWindow,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
 
-type ComboBoxMenuProps = Omit<MenuProps, 'onClick'> &
+type ComboBoxMenuProps = Omit<
+  React.ComponentPropsWithoutRef<typeof Menu>,
+  'onClick'
+> &
   React.ComponentPropsWithoutRef<'ul'>;
 
 const isOverflowOverlaySupported = () =>
@@ -73,7 +76,7 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     } as React.CSSProperties;
 
     return (
-      <Surface style={surfaceStyles} {...rest}>
+      <Surface style={surfaceStyles}>
         <div {...outerProps}>
           <Menu
             id={`${id}-list`}
@@ -82,6 +85,7 @@ const VirtualizedComboBoxMenu = React.forwardRef(
             ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
             className={className}
             style={innerProps.style}
+            {...rest}
           >
             {visibleChildren}
           </Menu>
@@ -91,40 +95,38 @@ const VirtualizedComboBoxMenu = React.forwardRef(
   },
 );
 
-export const ComboBoxMenu = React.forwardRef(
-  (props: ComboBoxMenuProps, forwardedRef: React.Ref<HTMLUListElement>) => {
-    const { className, style, ...rest } = props;
-    const { minWidth, id, enableVirtualization } =
-      useSafeContext(ComboBoxStateContext);
-    const { menuRef } = useSafeContext(ComboBoxRefsContext);
+export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
+  const { className, style, ...rest } = props;
+  const { minWidth, id, enableVirtualization } =
+    useSafeContext(ComboBoxStateContext);
+  const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-    const refs = useMergedRefs(menuRef, forwardedRef);
+  const refs = useMergedRefs(menuRef, forwardedRef);
 
-    const styles = React.useMemo(
-      () => ({
-        minWidth,
-        maxWidth: `min(${minWidth * 2}px, 90vw)`,
-      }),
-      [minWidth],
-    );
+  const styles = React.useMemo(
+    () => ({
+      minWidth,
+      maxWidth: `min(${minWidth * 2}px, 90vw)`,
+    }),
+    [minWidth],
+  );
 
-    return (
-      <>
-        {!enableVirtualization ? (
-          <Menu
-            id={`${id}-list`}
-            style={{ ...styles, ...style }}
-            setFocus={false}
-            role='listbox'
-            ref={refs}
-            className={cx('iui-scroll', className)}
-            {...rest}
-          />
-        ) : (
-          <VirtualizedComboBoxMenu ref={forwardedRef} {...props} />
-        )}
-      </>
-    );
-  },
-);
+  return (
+    <>
+      {!enableVirtualization ? (
+        <Menu
+          id={`${id}-list`}
+          style={{ ...styles, ...style }}
+          setFocus={false}
+          role='listbox'
+          ref={refs}
+          className={cx('iui-scroll', className)}
+          {...rest}
+        />
+      ) : (
+        <VirtualizedComboBoxMenu ref={forwardedRef} {...props} />
+      )}
+    </>
+  );
+}) as PolymorphicForwardRefComponent<'ul', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

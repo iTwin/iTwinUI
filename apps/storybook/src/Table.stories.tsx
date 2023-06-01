@@ -19,7 +19,7 @@ import {
   MenuItem,
   IconButton,
   Table,
-  Leading,
+  Text,
   tableFilters,
   TableFilterValue,
   TableProps,
@@ -35,7 +35,6 @@ import {
   Input,
   Radio,
   ProgressRadial,
-  useTheme,
   BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
@@ -698,7 +697,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1103,7 +1102,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1492,7 +1491,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -2459,8 +2458,6 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
   );
 
   const CustomFilter = () => {
-    useTheme();
-
     const handleChange = (isChecked: boolean, filter: string) => {
       setFilter(isChecked ? filter : '');
       setIsLoading(true);
@@ -3461,7 +3458,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   const subComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>

@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { ProgressRadial } from './ProgressRadial.js';
-export type { ProgressRadialProps } from './ProgressRadial.js';
 export default './ProgressRadial';

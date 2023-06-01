@@ -2,6 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { Subheading } from './Subheading.js';
-export type { SubheadingProps } from './Subheading.js';
-export default './Subheading';
+import * as React from 'react';
+import type { ThemeOptions, ThemeType } from './ThemeProvider.js';
+
+export const ThemeContext = React.createContext<
+  | {
+      theme?: ThemeType;
+      themeOptions?: ThemeOptions;
+      rootRef: React.RefObject<HTMLElement>;
+    }
+  | undefined
+>(undefined);

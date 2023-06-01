@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getFocusableElements, useTheme } from '../utils/index.js';
+import { getFocusableElements, Box } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
 import { TreeNodeExpander } from './TreeNodeExpander.js';
 import { useTreeContext } from './TreeContext.js';
 
-export type TreeNodeProps = {
+type TreeNodeProps = {
   /**
    * Unique id of the node.
    * It has to be compatible with HTML id attribute.
@@ -111,7 +111,6 @@ export const TreeNode = (props: TreeNodeProps) => {
     expander,
     ...rest
   } = props;
-  useTheme();
 
   const {
     nodeDepth,
@@ -206,7 +205,8 @@ export const TreeNode = (props: TreeNodeProps) => {
   );
 
   return (
-    <li
+    <Box
+      as='li'
       role='treeitem'
       className={cx('iui-tree-item', className)}
       id={nodeId}
@@ -230,7 +230,7 @@ export const TreeNode = (props: TreeNodeProps) => {
       {...rest}
     >
       {
-        <div
+        <Box
           className={cx('iui-tree-node', {
             'iui-active': isSelected,
             'iui-disabled': isDisabled,
@@ -238,16 +238,16 @@ export const TreeNode = (props: TreeNodeProps) => {
           style={{ '--level': nodeDepth } as React.CSSProperties}
           onClick={() => !isDisabled && onSelected?.(nodeId, !isSelected)}
         >
-          {checkbox && React.isValidElement(checkbox)
-            ? React.cloneElement(checkbox, {
-                className: cx(
-                  'iui-tree-node-checkbox',
-                  checkbox.props.className,
-                ),
-                tabIndex: isFocused ? 0 : -1,
-              })
-            : checkbox}
-          <div className='iui-tree-node-content'>
+          {checkbox && (
+            <Box className='iui-tree-node-checkbox'>
+              {React.isValidElement(checkbox)
+                ? React.cloneElement(checkbox, {
+                    tabIndex: isFocused ? 0 : -1,
+                  })
+                : checkbox}
+            </Box>
+          )}
+          <Box className='iui-tree-node-content'>
             {hasSubNodes && expander}
             {hasSubNodes && !expander && (
               <TreeNodeExpander
@@ -257,31 +257,30 @@ export const TreeNode = (props: TreeNodeProps) => {
                 tabIndex={isFocused ? 0 : -1}
               />
             )}
-            {icon &&
-              React.cloneElement(icon, {
-                className: cx(
-                  'iui-tree-node-content-icon',
-                  icon.props.className,
-                ),
-              })}
-            <span className='iui-tree-node-content-label'>
-              <div className='iui-tree-node-content-title'>{label}</div>
+            {icon && (
+              <Box as='span' className='iui-tree-node-content-icon' aria-hidden>
+                {icon}
+              </Box>
+            )}
+            <Box className='iui-tree-node-content-label'>
+              <Box className='iui-tree-node-content-title'>{label}</Box>
               {sublabel && (
-                <div className='iui-tree-node-content-caption'>{sublabel}</div>
+                <Box className='iui-tree-node-content-caption'>{sublabel}</Box>
               )}
-            </span>
+            </Box>
             {children}
-          </div>
-        </div>
+          </Box>
+        </Box>
       }
       {hasSubNodes && (
-        <ul
+        <Box
+          as='ul'
           className='iui-sub-tree'
           role='group'
           aria-owns={subNodeIds.join(',')}
         />
       )}
-    </li>
+    </Box>
   );
 };
 

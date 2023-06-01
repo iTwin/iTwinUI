@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Text, TextProps } from '@itwin/itwinui-react';
+import { Text } from '@itwin/itwinui-react';
+
+type TextProps = React.ComponentProps<typeof Text>;
 
 export default {
   title: 'Typography/Text',

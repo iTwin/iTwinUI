@@ -4,8 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { List, ListItem, ListItemProps } from '@itwin/itwinui-react';
+import { List, ListItem } from '@itwin/itwinui-react';
 import { SvgCheckmark, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+
+type ListItemProps = React.ComponentProps<typeof ListItem>;
 
 export default {
   component: List,

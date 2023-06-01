@@ -28,7 +28,7 @@ import type {
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
-  useTheme,
+  useGlobals,
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
@@ -396,7 +396,7 @@ export const Table = <
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
 

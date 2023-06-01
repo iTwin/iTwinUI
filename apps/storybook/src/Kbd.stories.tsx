@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Kbd, KbdKeys, KbdProps } from '@itwin/itwinui-react';
+import { Kbd, KbdKeys } from '@itwin/itwinui-react';
+
+type KbdProps = React.ComponentProps<typeof Kbd>;
 
 export default {
   title: 'Typography/Keyboard Key',

@@ -5,14 +5,11 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import {
-  Footer,
-  type FooterProps,
-  type FooterElement,
-  defaultFooterElements,
-} from './Footer.js';
+import { Footer, type FooterElement, defaultFooterElements } from './Footer.js';
 
-const renderComponent = (props?: Partial<FooterProps>) => {
+const renderComponent = (
+  props?: Partial<React.ComponentProps<typeof Footer>>,
+) => {
   return render(<Footer {...props} />);
 };
 

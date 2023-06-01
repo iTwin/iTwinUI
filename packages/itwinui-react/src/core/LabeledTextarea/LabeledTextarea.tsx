@@ -3,18 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  StatusIconMap,
-  useTheme,
-  InputContainer,
-  useId,
-} from '../utils/index.js';
+import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
 import type { TextareaProps } from '../Textarea/Textarea.js';
-import type { LabeledInputProps } from '../LabeledInput/index.js';
+import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import '@itwin/itwinui-css/css/input.css';
 
-export type LabeledTextareaProps = {
+type LabeledTextareaProps = {
   /**
    * Label for the textarea.
    */
@@ -59,57 +55,53 @@ export type LabeledTextareaProps = {
  *  status='negative'
  * />
  */
-export const LabeledTextarea = React.forwardRef(
-  (props: LabeledTextareaProps, ref: React.RefObject<HTMLTextAreaElement>) => {
-    const uid = useId();
+export const LabeledTextarea = React.forwardRef((props, ref) => {
+  const uid = useId();
 
-    const {
-      className,
-      style,
-      disabled = false,
-      label,
-      message,
-      status,
-      textareaClassName,
-      textareaStyle,
-      displayStyle = 'default',
-      iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
-      svgIcon,
-      required = false,
-      id = uid,
-      ...textareaProps
-    } = props;
+  const {
+    className,
+    style,
+    disabled = false,
+    label,
+    message,
+    status,
+    textareaClassName,
+    textareaStyle,
+    displayStyle = 'default',
+    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
+    svgIcon,
+    required = false,
+    id = uid,
+    ...textareaProps
+  } = props;
 
-    useTheme();
+  const icon = svgIcon ?? (status && StatusIconMap[status]());
 
-    const icon = svgIcon ?? (status && StatusIconMap[status]());
-
-    return (
-      <InputContainer
-        label={label}
+  return (
+    <InputContainer
+      label={label}
+      disabled={disabled}
+      required={required}
+      status={status}
+      message={message}
+      icon={icon}
+      isLabelInline={displayStyle === 'inline'}
+      isIconInline={iconDisplayStyle === 'inline'}
+      className={className}
+      style={style}
+      inputId={id}
+    >
+      <Textarea
         disabled={disabled}
+        className={textareaClassName}
+        style={textareaStyle}
         required={required}
-        status={status}
-        message={message}
-        icon={icon}
-        isLabelInline={displayStyle === 'inline'}
-        isIconInline={iconDisplayStyle === 'inline'}
-        className={className}
-        style={style}
-        inputId={id}
-      >
-        <Textarea
-          disabled={disabled}
-          className={textareaClassName}
-          style={textareaStyle}
-          required={required}
-          id={id}
-          {...textareaProps}
-          ref={ref}
-        />
-      </InputContainer>
-    );
-  },
-);
+        id={id}
+        {...textareaProps}
+        ref={ref}
+      />
+    </InputContainer>
+  );
+}) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;
 
 export default LabeledTextarea;

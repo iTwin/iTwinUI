@@ -4,7 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Radio, RadioProps } from '@itwin/itwinui-react';
+import { Radio } from '@itwin/itwinui-react';
+
+type RadioProps = React.ComponentProps<typeof Radio>;
+
 export default {
   title: 'Input/Radio',
   component: Radio,
