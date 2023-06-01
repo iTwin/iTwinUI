@@ -75,8 +75,10 @@ const getDisplayNameFromClass = (str: string) => {
 
 // e.g. iui-button -> _iui3-button
 const getScopedClassName = (className = '') => {
-  return className
-    .split(' ')
-    .map((c) => (c in styles ? styles[c] : c))
-    .join(' ');
+  return (
+    className
+      .split(' ')
+      .map((c) => (c in styles ? styles[c] : c))
+      .join(' ') || null
+  );
 };
