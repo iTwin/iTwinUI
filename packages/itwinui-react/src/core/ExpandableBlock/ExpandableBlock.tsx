@@ -98,8 +98,8 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
-    setExpanded(!expanded);
-    onToggle?.(!expanded);
+    !disabled && setExpanded(!expanded);
+    !disabled && onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -142,7 +142,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
         className='iui-header'
         aria-disabled={disabled}
         tabIndex={0}
-        onClick={() => !disabled && handleToggle()}
+        onClick={() => handleToggle()}
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
