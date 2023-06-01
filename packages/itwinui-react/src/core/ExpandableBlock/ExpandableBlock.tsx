@@ -12,7 +12,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
 import '@itwin/itwinui-css/css/expandable-block.css';
 
 type ExpandableBlockProps = {
@@ -63,7 +62,7 @@ type ExpandableBlockProps = {
    * @default false
    */
   disabled?: boolean;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Container that allows content to be hidden behind a brief title and a caption.
