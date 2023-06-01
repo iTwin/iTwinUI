@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-DatePicker: allow year and month navigation in disabled range
+DatePicker will no longer disable month and year navigation when the next/previous months are disabled.
