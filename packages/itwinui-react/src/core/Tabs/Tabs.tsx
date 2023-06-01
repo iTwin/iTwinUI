@@ -14,6 +14,7 @@ import {
   Box,
 } from '../utils/index.js';
 import { Tab } from './Tab.js';
+import styles from '../../styles.js';
 
 export type OverflowOptions = {
   /**
@@ -244,7 +245,9 @@ export const Tabs = (props: TabsProps) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
+      const tab = tablistRef.current.querySelectorAll(`.${styles['iui-tab']}`)[
+        focusedIndex
+      ];
       (tab as HTMLElement)?.focus();
     }
   }, [focusedIndex]);
@@ -253,7 +256,9 @@ export const Tabs = (props: TabsProps) => {
   useIsomorphicLayoutEffect(() => {
     setHasSublabel(
       type !== 'pill' && // pill tabs should never have sublabels
-        !!tablistRef.current?.querySelector('.iui-tab-description'), // check directly for the sublabel class
+        !!tablistRef.current?.querySelector(
+          `.${styles['iui-tab-description']}`, // check directly for the sublabel class
+        ),
     );
   }, [type]);
 
