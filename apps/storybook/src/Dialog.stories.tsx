@@ -278,7 +278,7 @@ export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
   );
 };
 
-export const Position: Story = () => {
+export const Placement: Story = ({ ...rest }) => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -311,7 +311,8 @@ export const Position: Story = () => {
       </Button>
       <Dialog
         isOpen={isOpen}
-        position={'top-left'}
+        placement={'top-left'}
+        {...rest}
         onClose={onClose}
         closeOnEsc
         isDismissible

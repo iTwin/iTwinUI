@@ -9,7 +9,7 @@ describe('Dialog', () => {
     'Modal',
     'Draggable And Resizable',
     'Draggable Relative To Container',
-    'Position',
+    'Placement',
   ];
 
   tests.forEach((testName) => {
