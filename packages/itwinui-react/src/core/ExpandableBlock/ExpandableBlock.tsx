@@ -141,7 +141,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
         className='iui-header'
         aria-disabled={disabled}
         tabIndex={0}
-        onClick={() => handleToggle()}
+        onClick={handleToggle}
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
