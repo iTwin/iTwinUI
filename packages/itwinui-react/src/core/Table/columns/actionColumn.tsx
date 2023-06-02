@@ -93,7 +93,7 @@ export const ActionColumn = <T extends Record<string, unknown>>({
             return (
               <MenuItem
                 key={column.id}
-                icon={
+                startIcon={
                   <Checkbox
                     checked={checked}
                     disabled={column.disableToggleVisibility}
