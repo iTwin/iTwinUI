@@ -15,7 +15,7 @@ it('should pass down the props through DialogContext', async () => {
       isOpen={true}
       onClose={onClose}
       closeOnExternalClick
-      position={'top-left'}
+      placement={'top-left'}
     >
       <Dialog.Backdrop />
       <Dialog.Main>
@@ -95,9 +95,9 @@ it('should have position correctly dependant on viewport', async () => {
 
 it.each(['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const)(
   'should position dialog to corners of page',
-  async (position) => {
+  async (placement) => {
     const { container } = render(
-      <Dialog isOpen={true} position={position}>
+      <Dialog isOpen={true} placement={placement}>
         <Dialog.Backdrop />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Test title' />
@@ -111,7 +111,7 @@ it.each(['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const)(
     );
 
     const dialog = container.querySelector('.iui-dialog') as HTMLElement;
-    expect(dialog).toHaveAttribute('data-iui-placement', position);
+    expect(dialog).toHaveAttribute('data-iui-placement', placement);
   },
 );
 

@@ -69,7 +69,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     isDraggable = dialogContext.isDraggable,
     isResizable = dialogContext.isResizable,
     style: propStyle,
-    position = dialogContext.position,
+    placement = dialogContext.placement,
     ...rest
   } = props;
 
@@ -176,7 +176,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
       ref={refs}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
-      data-iui-placement={position}
+      data-iui-placement={placement}
       style={{
         transform,
         overflow: 'unset',
