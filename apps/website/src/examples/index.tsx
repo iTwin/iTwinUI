@@ -228,6 +228,8 @@ export { default as TextareaInlineExample } from './Textarea.inline';
 export { default as TextMainExample } from './Text.main';
 
 export { default as TileMainExample } from './Tile.main';
+export { default as TileActionableExample } from './Tile.actionable';
+export { default as TileAnchorlinkExample } from './Tile.anchorlink';
 
 export { default as ToastMainExample } from './Toast.main';
 

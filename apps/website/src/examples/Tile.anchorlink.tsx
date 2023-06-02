@@ -3,32 +3,33 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tile, TagContainer, Tag, IconButton } from '@itwin/itwinui-react';
-import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
+import { Tile, TagContainer, Tag, Badge } from '@itwin/itwinui-react';
+import { SvgTag } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile isSelected={false} isNew={false}>
-      <Tile.Name name='Tile name' />
+    <Tile>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>
+          <Tile.Action href='https://inclusive-components.design/cards/'>Stadium</Tile.Action>
+        </Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
+        <Tile.BadgeContainer>
+          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+        </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-        <Tile.TypeIndicator>
-          <IconButton styleType='borderless'>
-            <SvgInfo />
-          </IconButton>
-        </Tile.TypeIndicator>
-        <Tile.QuickAction>
-          <IconButton styleType='borderless'>
-            <SvgStar />
-          </IconButton>
-        </Tile.QuickAction>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
-        <Tile.Description>Tile description that takes upto 3 lines</Tile.Description>
+        <Tile.Description>
+          If you click on this stadium, it is going to open another page.
+        </Tile.Description>
         <Tile.Metadata>
+          <SvgTag />
           <TagContainer>
-            <Tag variant='basic'>Tag 1</Tag>
-            <Tag variant='basic'>Tag 2</Tag>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>

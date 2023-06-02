@@ -14,13 +14,25 @@ import * as AllExamples from '~/examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-tile' />
+{/* <Placeholder componentPageName='core-tile' /> */}
 
 <LiveExample src='Tile.main.tsx'>
   <AllExamples.TileMainExample client:load />
 </LiveExample>
 
 Tiles are containers that display content and actions pertaining to a single item or project. They should be easy to scan for relevant and actionable information. All text should be concise and placed in a way that clearly indicates informational hierarchy.
+
+x1
+
+<LiveExample src='Tile.actionable.tsx'>
+  <AllExamples.TileActionableExample cliend:load />
+</LiveExample>
+
+x2
+
+<LiveExample src='Tile.anchorlink.tsx'>
+  <AllExamples.TileAnchorlinkExample cliend:load />
+</LiveExample>
 
 ## Props
 
