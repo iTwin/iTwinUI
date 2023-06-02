@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "2.11.4",
+  "version": "3.0.0-dev.0",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "cjs/index.js",
@@ -67,7 +67,7 @@
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\""
   },
   "dependencies": {
-    "@itwin/itwinui-css": "^1.11.1",
+    "@itwin/itwinui-css": "^2.0.0-dev.0",
     "@itwin/itwinui-illustrations-react": "^2.0.0",
     "@itwin/itwinui-variables": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
