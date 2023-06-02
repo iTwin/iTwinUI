@@ -108,7 +108,7 @@ type TileOwnProps = {
    * @default false
    */
   isDisabled?: boolean;
-  setActionable: React.Dispatch<React.SetStateAction<boolean>>;
+  setActionable?: React.Dispatch<React.SetStateAction<boolean>>;
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
@@ -122,7 +122,6 @@ const TileComponent = React.forwardRef((props: TileProps, ref) => {
     isLoading,
     isActionable,
     isDisabled,
-    setActionable,
     onClick,
     ...rest
   } = props;
@@ -137,7 +136,7 @@ const TileComponent = React.forwardRef((props: TileProps, ref) => {
         isLoading,
         isActionable,
         isDisabled,
-        setActionable,
+        setActionable: () => {},
         onClick,
       }}
     >

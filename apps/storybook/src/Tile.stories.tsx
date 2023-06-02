@@ -95,7 +95,7 @@ export const AllProps: Story<TileProps> = (args) => {
             <IconButton
               size='small'
               styleType='borderless'
-              onClick={action('clicked right icon')}
+              onClick={action('clicked left icon')}
             >
               <SvgStar />
             </IconButton>
@@ -106,7 +106,7 @@ export const AllProps: Story<TileProps> = (args) => {
             <IconButton
               size='small'
               styleType='borderless'
-              onClick={action('clicked left icon')}
+              onClick={action('clicked right icon')}
             >
               <SvgInfo />
             </IconButton>
@@ -269,7 +269,7 @@ Condensed.args = {
 export const WithAvatar: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.Name name='stuff'>
+      <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Some User</Tile.NameLabel>
       </Tile.Name>
