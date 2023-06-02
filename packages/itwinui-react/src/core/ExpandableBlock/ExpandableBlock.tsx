@@ -106,11 +106,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    if (disabled) {
+    if (event.altKey || disabled) {
       return;
     }
 
