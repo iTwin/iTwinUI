@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Added ability to change positioning of `Dialog` with `data-iui-placement` in React.
+Added `placement` prop to `Dialog` to allow placing it at one of the corners.
