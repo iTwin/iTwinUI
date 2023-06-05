@@ -43,6 +43,7 @@
 }
 
 .send {
+  display: flex;
   cursor: pointer;
   font-family: inherit;
   font-size: var(--font-size-1);
@@ -50,4 +51,11 @@
   padding: var(--space-2) var(--space-4);
   border-radius: var(--border-radius-1);
   background: var(--color-highlight-gradient);
+}
+
+/* .send class with the disabled */
+.send[disabled] {
+  cursor: not-allowed;
+  background: var(--color-background-2);
+  color: var(--color-mutedtext);
 }
