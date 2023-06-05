@@ -197,7 +197,7 @@ export const CustomIcon: Story<AlertProps> = (args) => {
   );
 };
 
-Empty.args = {
-  children: 'This is empty info message.',
+CustomIcon.args = {
+  children: 'This is an info message with a custom icon.',
   type: 'informational',
 };

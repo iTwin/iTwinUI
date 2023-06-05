@@ -74,6 +74,23 @@ it('renders sticky alert correctly', () => {
   getByText('This is sticky alert.');
 });
 
+it('renders alert action as button', () => {
+  const { container } = render(
+    <Alert>
+      <Alert.Message>
+        This is an alert.
+        <Alert.Action>I am a clickable button</Alert.Action>
+      </Alert.Message>
+    </Alert>,
+  );
+
+  const alert = container.querySelector('.iui-alert') as HTMLElement;
+  expect(alert).toBeTruthy();
+
+  const alertButton = container.querySelector('.iui-alert-link') as HTMLElement;
+  expect(alertButton).toBeInstanceOf(HTMLButtonElement);
+});
+
 (
   ['informational', 'positive', 'warning', 'negative'] as Array<
     'informational' | 'positive' | 'warning' | 'negative'
