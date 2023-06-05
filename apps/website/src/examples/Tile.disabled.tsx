@@ -3,35 +3,37 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tile, TagContainer, Tag, Badge } from '@itwin/itwinui-react';
-import { SvgTag } from '@itwin/itwinui-icons-react';
+import { Tile, MenuItem, Badge, Button } from '@itwin/itwinui-react';
+import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [selected, setSelected] = React.useState(true);
   return (
-    <Tile isSelected={selected} isActionable={true} onClick={() => setSelected((prev) => !prev)}>
+    <Tile isDisabled={true}>
       <Tile.Name>
         <Tile.NameIcon />
-        <Tile.NameLabel>Stadium</Tile.NameLabel>
+        <Tile.NameLabel>Tile Name</Tile.NameLabel>
       </Tile.Name>
       <Tile.ThumbnailArea>
-        <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.BadgeContainer>
           <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
         </Tile.BadgeContainer>
+        <Tile.ThumbnailPicture>
+          <SvgImodelHollow />
+        </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
-        <Tile.Description>
-          If you click on this stadium, it is going to be selected.
-        </Tile.Description>
+        <Tile.Description>Description</Tile.Description>
+        <Tile.MoreOptions>
+          <MenuItem key={1}>Item 1</MenuItem>
+          <MenuItem key={2}>Item 2</MenuItem>
+        </Tile.MoreOptions>
         <Tile.Metadata>
-          <SvgTag />
-          <TagContainer>
-            <Tag variant='basic'>tag 1</Tag>
-            <Tag variant='basic'>tag 2</Tag>
-          </TagContainer>
+          <span>Loading tile</span>
         </Tile.Metadata>
       </Tile.ContentArea>
+      <Tile.Buttons>
+        <Button disabled>Button</Button>
+      </Tile.Buttons>
     </Tile>
   );
 };

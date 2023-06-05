@@ -8,7 +8,7 @@ import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile isSelected={false} isNew={false}>
+    <Tile>
       <Tile.Name name='Tile name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />

@@ -230,6 +230,12 @@ export { default as TextMainExample } from './Text.main';
 export { default as TileMainExample } from './Tile.main';
 export { default as TileActionableExample } from './Tile.actionable';
 export { default as TileAnchorlinkExample } from './Tile.anchorlink';
+export { default as TileCondensedExample } from './Tile.condensed';
+export { default as TileAvatarExample } from './Tile.avatar';
+export { default as TileFolderExample } from './Tile.folder';
+export { default as TileStatusExample } from './Tile.status';
+export { default as TileLoadingExample } from './Tile.loading';
+export { default as TileDisabledExample } from './Tile.disabled';
 
 export { default as ToastMainExample } from './Toast.main';
 
