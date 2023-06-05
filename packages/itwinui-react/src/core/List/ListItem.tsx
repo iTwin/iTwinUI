@@ -35,7 +35,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
 ListItemComponent.displayName = 'ListItem';
 
-type ListItemOwnProps = {
+export type ListItemOwnProps = {
   /**
    * Size of the ListItem. Can be explicitly specified to be 'large',
    * but if a description is included in addition to the label, then

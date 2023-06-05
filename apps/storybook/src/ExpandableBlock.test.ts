@@ -11,6 +11,7 @@ describe('ExpandableBlock', () => {
     'Small',
     'Status Icon',
     'With Caption',
+    'Disabled',
   ];
 
   tests.forEach((testName) => {
@@ -18,8 +19,10 @@ describe('ExpandableBlock', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-header').first().click();
-      cy.compareSnapshot(`${testName} (Open)`);
+      if (testName !== 'Disabled') {
+        cy.get('.iui-header').first().click();
+        cy.compareSnapshot(`${testName} (Open)`);
+      }
     });
   });
 });

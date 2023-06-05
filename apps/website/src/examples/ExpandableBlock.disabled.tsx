@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Svg } from './Svg.js';
+import { ExpandableBlock } from '@itwin/itwinui-react';
 
-export const SvgColumnManager = (
-  props: React.ComponentPropsWithoutRef<'svg'>,
-) => {
+export default () => {
   return (
-    <Svg {...props}>
-      <path d='m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2' />
-    </Svg>
+    <div style={{ width: 'min(100%, 300px)' }}>
+      <ExpandableBlock disabled title='Disabled expandable block'>
+        Content in block!
+      </ExpandableBlock>
+    </div>
   );
 };
