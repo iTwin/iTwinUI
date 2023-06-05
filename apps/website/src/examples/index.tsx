@@ -114,6 +114,7 @@ export { default as ExpandableBlockStatusExample } from './ExpandableBlock.statu
 export { default as ExpandableBlockSmallExample } from './ExpandableBlock.small';
 export { default as ExpandableBlockBorderlessExample } from './ExpandableBlock.borderless';
 export { default as ExpandableBlockFormExample } from './ExpandableBlock.form';
+export { default as ExpandableBlockDisabledExample } from './ExpandableBlock.disabled';
 
 export { default as FieldsetMainExample } from './Fieldset.main';
 export { default as FieldsetDisabledExample } from './Fieldset.disabled';
