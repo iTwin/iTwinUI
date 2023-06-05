@@ -38,7 +38,7 @@ it('renders clickable text with href correctly', () => {
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
   const link = container.querySelector(
-    '.iui-alert-message > .iui-alert-link',
+    '.iui-alert-message > a.iui-alert-link',
   ) as HTMLAnchorElement;
   expect(link).toBeTruthy();
   expect(link.textContent).toBe('I am a clickable text');
