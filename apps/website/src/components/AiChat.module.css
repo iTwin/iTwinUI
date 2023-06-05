@@ -55,7 +55,7 @@
 
 /* .send class with the disabled */
 .send[disabled] {
-  cursor: not-allowed;
+  cursor: wait;
   background: var(--color-background-2);
   color: var(--color-mutedtext);
 }
