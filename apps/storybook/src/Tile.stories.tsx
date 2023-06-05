@@ -127,13 +127,11 @@ export const AllProps: Story<TileProps> = (args) => {
           </MenuItem>
         </Tile.MoreOptions>
         <Tile.Metadata>
-          <>
-            <SvgTag />
-            <TagContainer>
-              <Tag variant='basic'>tag 1</Tag>
-              <Tag variant='basic'>tag 2</Tag>
-            </TagContainer>
-          </>
+          <SvgTag />
+          <TagContainer>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
+          </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
       <Tile.Buttons>
@@ -452,7 +450,11 @@ export const Disabled: Story<TileProps> = (args) => {
           </MenuItem>
         </Tile.MoreOptions>
         <Tile.Metadata>
-          <span>Loading tile</span>
+          <SvgTag />
+          <TagContainer>
+            <Tag variant='basic'>tag 1</Tag>
+            <Tag variant='basic'>tag 2</Tag>
+          </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
       <Tile.Buttons>
