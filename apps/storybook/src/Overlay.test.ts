@@ -2,8 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { ProgressLinear } from './ProgressLinear/index.js';
+describe('Overlay', () => {
+  const storyPath = 'Core/Overlay';
+  const tests = ['Basic'];
 
-export { ProgressRadial } from './ProgressRadial/index.js';
-
-export { Overlay } from './Overlay/index.js';
+  tests.forEach((testName) => {
+    it(testName, function () {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('iframe', { qs: { id } });
+      cy.compareSnapshot(testName);
+    });
+  });
+});

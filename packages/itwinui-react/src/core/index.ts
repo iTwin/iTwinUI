@@ -107,7 +107,11 @@ export { Modal, ModalButtonBar, ModalContent } from './Modal/index.js';
 
 export { NotificationMarker } from './NotificationMarker/index.js';
 
-export { ProgressLinear, ProgressRadial } from './ProgressIndicators/index.js';
+export {
+  ProgressLinear,
+  ProgressRadial,
+  Overlay,
+} from './ProgressIndicators/index.js';
 
 export { Radio } from './Radio/index.js';
 
