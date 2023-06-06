@@ -43,7 +43,7 @@ describe('Table', () => {
 
       switch (testName) {
         case 'Column Manager': {
-          cy.get('.iui-slot .iui-button').click();
+          cy.get('.iui-slot button').click();
           break;
         }
         case 'Condensed': {
@@ -51,7 +51,9 @@ describe('Table', () => {
           break;
         }
         case 'Custom Filter': {
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
+          cy.get('.iui-table-filter-button button')
+            .first()
+            .click({ force: true }); // force because the button is hidden
           break;
         }
         case 'Customized Columns': {
@@ -68,16 +70,20 @@ describe('Table', () => {
           break;
         }
         case 'Filters': {
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
+          cy.get('.iui-table-filter-button button')
+            .first()
+            .click({ force: true }); // force because the button is hidden
           break;
         }
         case 'Global Filter': {
-          cy.get('.iui-input').first().click().type('Description8');
+          cy.get('input').first().click().type('Description8');
           break;
         }
         case 'Localized': {
-          cy.get('.iui-checkbox').first().click();
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
+          cy.get('input').first().click();
+          cy.get('.iui-table-filter-button button')
+            .first()
+            .click({ force: true }); // force because the button is hidden
           break;
         }
       }

@@ -19,10 +19,12 @@ describe('DropdownMenu', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-button').click();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').click();
+      });
 
       if (testName === 'Submenu') {
-        cy.get('.iui-list-item').last().trigger('mouseenter');
+        cy.get('[role=option]').last().trigger('mouseenter');
       }
 
       cy.compareSnapshot(`${testName} (Open)`);
