@@ -26,7 +26,7 @@ export default () => {
             trapFocus
             setFocus
             isDismissible
-            placement
+            placement='top-left'
           >
             <Dialog.Backdrop />
             <Dialog.Main>
