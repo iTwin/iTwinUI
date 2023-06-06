@@ -13,7 +13,6 @@ import {
   useResizeObserver,
   Box,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab.js';
 
 export type OverflowOptions = {

@@ -8,7 +8,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
 import type { TextareaProps } from '../Textarea/Textarea.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
-import '@itwin/itwinui-css/css/input.css';
 
 type LabeledTextareaProps = {
   /**

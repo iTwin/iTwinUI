@@ -13,8 +13,6 @@ import {
   polymorphic,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-
-import '@itwin/itwinui-css/css/transfer-list.css';
 import { List, ListItem } from '../List/index.js';
 
 // ----------------------------------------------------------------------------

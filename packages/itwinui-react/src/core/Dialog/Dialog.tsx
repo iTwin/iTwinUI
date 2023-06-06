@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/dialog.css';
 import { DialogTitleBar } from './DialogTitleBar.js';
 import { DialogContent } from './DialogContent.js';
 import { DialogBackdrop } from './DialogBackdrop.js';

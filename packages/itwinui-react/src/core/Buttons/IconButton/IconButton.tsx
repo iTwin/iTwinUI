@@ -7,8 +7,6 @@ import * as React from 'react';
 import { VisuallyHidden, Popover, Box } from '../../utils/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/button.css';
-import '@itwin/itwinui-css/css/tooltip.css';
 
 export type IconButtonProps = {
   /**
