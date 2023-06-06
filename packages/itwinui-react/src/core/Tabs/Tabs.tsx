@@ -394,7 +394,7 @@ export const Tabs = (props: TabsProps) => {
         overflowOptions?.useOverflow &&
         currentActiveIndex !== undefined
       ) {
-        const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
+        const activeTab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
           currentActiveIndex
         ] as HTMLElement;
         const isVertical = orientation === 'vertical';
