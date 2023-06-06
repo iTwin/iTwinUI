@@ -12,6 +12,7 @@ import {
   Box,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
+import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons/index.js';
 
 const isMotionOk = () =>

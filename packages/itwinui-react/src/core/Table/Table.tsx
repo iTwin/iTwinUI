@@ -35,6 +35,7 @@ import {
   useIsomorphicLayoutEffect,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
+import '@itwin/itwinui-css/css/table.css';
 import { getCellStyle, getStickyStyle } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';

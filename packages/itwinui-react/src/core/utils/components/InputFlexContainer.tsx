@@ -5,6 +5,7 @@
 import React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
+import '@itwin/itwinui-css/css/input-container.css';
 import { Box } from './Box.js';
 
 export type InputFlexContainerProps = {

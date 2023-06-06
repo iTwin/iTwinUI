@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { InputGroup } from '../InputGroup/index.js';
+import '@itwin/itwinui-css/css/radio-tile.css';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 

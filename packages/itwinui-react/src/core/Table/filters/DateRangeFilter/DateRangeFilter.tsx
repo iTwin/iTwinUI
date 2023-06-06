@@ -8,6 +8,7 @@ import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
 import type { TableFilterProps } from '../types.js';
+import '@itwin/itwinui-css/css/table.css';
 import DatePickerInput from './DatePickerInput.js';
 
 export type DateRangeTranslation = {

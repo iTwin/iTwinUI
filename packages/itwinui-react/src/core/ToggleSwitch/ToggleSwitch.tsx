@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/toggle-switch.css';
 
 type ToggleSwitchProps = {
   /**

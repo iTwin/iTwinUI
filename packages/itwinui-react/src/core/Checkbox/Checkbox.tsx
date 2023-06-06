@@ -7,6 +7,7 @@ import * as React from 'react';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/checkbox.css';
 
 type CheckboxProps = {
   /**

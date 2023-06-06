@@ -9,6 +9,7 @@ import type {
   AnyString,
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
+import '@itwin/itwinui-css/css/badge.css';
 
 /**
  * Helper function that returns one of the preset badge color values.

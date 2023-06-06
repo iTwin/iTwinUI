@@ -1,6 +1,5 @@
 ---
 import { ThemeProvider } from '@itwin/itwinui-react';
-import '@itwin/itwinui-react/styles.css';
 ---
 
 <html lang='en'>
@@ -9,24 +8,18 @@ import '@itwin/itwinui-react/styles.css';
     <meta name='viewport' content='width=device-width' />
     <title>iTwinUI-react + astro</title>
   </head>
-  <body>
-    <ThemeProvider theme='dark' client:load className='app-wrapper'>
-      <slot />
-    </ThemeProvider>
-  </body>
+  <ThemeProvider as='body' theme='dark'>
+    <slot />
+  </ThemeProvider>
 
   <style is:global>
     * {
       box-sizing: border-box;
-    }
-    body {
       margin: 0;
     }
-  </style>
-  <style>
-    .app-wrapper {
+
+    body {
       padding: 2rem 1rem;
-      height: 100dvh;
     }
   </style>
 </html>

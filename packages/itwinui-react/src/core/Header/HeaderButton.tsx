@@ -8,6 +8,7 @@ import type { ButtonProps } from '../Buttons/Button/Button.js';
 
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/header.css';
 import { HeaderSplitButton } from './HeaderSplitButton.js';
 import { HeaderDropdownButton } from './HeaderDropdownButton.js';
 import type { DropdownButtonProps } from '../Buttons/DropdownButton/DropdownButton.js';

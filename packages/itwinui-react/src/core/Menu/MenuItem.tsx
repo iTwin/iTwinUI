@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Popover, useMergedRefs, SvgCaretRightSmall } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/menu.css';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';

@@ -7,6 +7,7 @@ import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 import cx from 'classnames';
+import '@itwin/itwinui-css/css/fieldset.css';
 
 type FieldsetProps = {
   /**

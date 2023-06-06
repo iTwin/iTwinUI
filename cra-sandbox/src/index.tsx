@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 import { IconButton, ThemeProvider } from '@itwin/itwinui-react';
-import '@itwin/itwinui-react/styles.css';
 import './styles.css';
 
 const rootElement = document.getElementById('root')!;

@@ -17,7 +17,6 @@
         "default": "./cjs/index.js"
       }
     },
-    "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
     "./esm": "./esm/index.js",
     "./cjs/core/utils": "./cjs/core/utils/index.js",
@@ -27,7 +26,6 @@
   "files": [
     "cjs",
     "esm",
-    "styles.css",
     "CHANGELOG.md",
     "LICENSE.md"
   ],
@@ -126,5 +124,8 @@
     ]
   },
   "prettier": "configs/prettier-config",
-  "sideEffects": false
+  "sideEffects": [
+    "**/*.scss",
+    "**/*.css"
+  ]
 }

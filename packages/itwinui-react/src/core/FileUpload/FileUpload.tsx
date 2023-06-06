@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, useMergedRefs } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/file-upload.css';
 
 type FileUploadProps = {
   /**

@@ -7,6 +7,7 @@ import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
 import { SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/information-panel.css';
 
 type InformationPanelHeaderProps = {
   /**

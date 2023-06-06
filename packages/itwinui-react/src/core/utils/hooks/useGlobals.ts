@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import '@itwin/itwinui-css/css/global.css';
+import '@itwin/itwinui-variables/index.css';
 import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 
 let isDev = false;

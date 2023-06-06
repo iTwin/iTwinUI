@@ -13,6 +13,7 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import { TimePicker } from '../TimePicker/index.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';

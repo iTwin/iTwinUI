@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Popover, Box } from '../utils/index.js';
 import type { CommonProps, PopoverProps } from '../utils/index.js';
+import '@itwin/itwinui-css/css/tooltip.css';
 
 export type TooltipProps = {
   /**

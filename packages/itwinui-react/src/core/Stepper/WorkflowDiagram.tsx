@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import '@itwin/itwinui-css/css/workflow-diagram.css';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
