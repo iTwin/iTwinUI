@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Overlay', () => {
   const storyPath = 'Core/Overlay';
-  const tests = ['Basic'];
+  const tests = ['Linear', 'Radial'];
 
   tests.forEach((testName) => {
     it(testName, function () {
