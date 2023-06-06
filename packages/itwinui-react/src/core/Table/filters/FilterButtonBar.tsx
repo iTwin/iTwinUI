@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/table.css';
 import { useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { Button } from '../../Buttons/index.js';
