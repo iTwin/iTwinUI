@@ -39,10 +39,13 @@ type ModalProps = {
    */
   onKeyDown?: React.KeyboardEventHandler;
   /**
-   * Element to render the modal into.
-   * By default, a <div> in the nearest ThemeProvider will be used.
+   * If true, the dialog be portaled into a <div> inside the nearest ThemeProvider.
+   *
+   * Can be set to an object with a `to` property to portal into a specific element.
+   *
+   * @default true
    */
-  portalTo?: HTMLElement;
+  portal?: boolean | { to: HTMLElement };
   /**
    * Content of the modal.
    */
@@ -79,7 +82,7 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
     onClose,
     title,
     children,
-    portalTo: portalToProp,
+    portal = true,
     ...rest
   } = props;
 
@@ -87,7 +90,9 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
   const isClient = useIsClient();
 
   const portalTo =
-    portalToProp ?? context?.portalContainerRef?.current ?? getDocument()?.body;
+    typeof portal !== 'boolean'
+      ? portal.to
+      : context?.portalContainerRef?.current ?? getDocument()?.body;
 
   return isClient && portalTo ? (
     ReactDOM.createPortal(
