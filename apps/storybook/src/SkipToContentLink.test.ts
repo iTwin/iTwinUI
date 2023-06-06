@@ -11,7 +11,7 @@ describe('SkipToContentLink', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.get('#storybook-root').within(() => {
-        cy.get('a').focus();
+        cy.get('a').first().focus();
       });
       cy.compareSnapshot(testName);
     });

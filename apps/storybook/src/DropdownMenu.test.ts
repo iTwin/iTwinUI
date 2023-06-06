@@ -20,7 +20,7 @@ describe('DropdownMenu', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       cy.get('#storybook-root').within(() => {
-        cy.get('button').click();
+        cy.get('button').first().click();
       });
 
       if (testName === 'Submenu') {
