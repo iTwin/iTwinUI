@@ -16,7 +16,7 @@
     "@astrojs/sitemap": "^1.0.1",
     "@fontsource/noto-sans": "^4.5.11",
     "@fontsource/noto-sans-mono": "^4.5.11",
-    "@itwin/itwinui-react": "*",
+    "@itwin/itwinui-react": "3.0.0-dev.0",
     "@jsdevtools/rehype-toc": "3.0.2",
     "@tippyjs/react": "4.2.6",
     "@types/react": "^18.0.0",
