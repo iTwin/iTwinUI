@@ -257,15 +257,10 @@ export const Tile = Object.assign(
                 React.cloneElement(thumbnail as JSX.Element, {
                   className: 'iui-tile-thumbnail-picture',
                 })
-              ) : React.isValidElement(thumbnail) ? (
-                React.cloneElement(thumbnail, {
-                  className: cx(
-                    'iui-thumbnail-icon',
-                    thumbnail.props.className,
-                  ),
-                })
               ) : (
-                thumbnail
+                <Box as='span' className='iui-thumbnail-icon'>
+                  {thumbnail}
+                </Box>
               )}
 
               {leftIcon &&
