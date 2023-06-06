@@ -5,8 +5,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  SvgCheckmarkSmall,
-  SvgImportantSmall,
+  // SvgCheckmarkSmall,
+  // SvgImportantSmall,
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -53,75 +53,29 @@ type ProgressRadialProps = {
  * Small
  * <ProgressRadial size={'small'} indeterminate/>
  */
-
 export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
   const {
-    value = 0,
-    indeterminate = false,
+    // value = 0,
+    // indeterminate = false,
     status,
-    children,
-    size = '',
+    size,
     className,
     ...rest
   } = props;
 
-  const statusMap = {
-    negative: <SvgImportantSmall aria-hidden />,
-    positive: <SvgCheckmarkSmall aria-hidden />,
-  };
-
-  const fillStyle: React.CSSProperties = {
-    strokeDashoffset:
-      status === 'positive'
-        ? 0
-        : 88 -
-          Math.min(88, Math.max(0, indeterminate ? 88 : (88 * value) / 100)),
-  };
+  // const statusMap = {
+  //   negative: <SvgImportantSmall aria-hidden />,
+  //   positive: <SvgCheckmarkSmall aria-hidden />,
+  // };
 
   return (
     <Box
-      className={cx(
-        'iui-progress-indicator-radial',
-        {
-          'iui-determinate': !indeterminate,
-          'iui-indeterminate': indeterminate,
-          [`iui-${size}`]: !!size,
-          [`iui-${status}`]: !!status,
-        },
-        className,
-      )}
+      className={cx('iui-progress-indicator-radial', className)}
+      data-iui-size={size}
+      data-iui-status={status}
       ref={forwardedRef}
       {...rest}
-    >
-      <Box
-        as='svg'
-        className='iui-radial'
-        viewBox='0 0 32 32'
-        aria-hidden='true'
-      >
-        <Box as='circle' className='iui-track' cx='16' cy='16' r='14' />
-        <Box
-          as='circle'
-          className='iui-fill'
-          cx='16'
-          cy='16'
-          r='14'
-          style={fillStyle}
-        />
-      </Box>
-      <>
-        {status && (
-          <Box as='span' className='iui-inner-content'>
-            {statusMap[status]}
-          </Box>
-        )}
-        {!status && children && (
-          <Box as='span' className='iui-inner-content'>
-            {children}
-          </Box>
-        )}
-      </>
-    </Box>
+    />
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
 
