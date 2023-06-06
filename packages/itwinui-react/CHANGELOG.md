@@ -1,5 +1,38 @@
 # Changelog
 
+## 3.0.0-dev.0
+
+### Major Changes
+
+- [#1296](https://github.com/iTwin/iTwinUI/pull/1296): Removed previously-deprecated typography components (`Body`, `Headline`, `Leading`, `Small`, `Subheading`, `Title`) which have been replaced by `Text`.
+- [#1265](https://github.com/iTwin/iTwinUI/pull/1265): Removed the deprecated `useTheme` hook. `<ThemeProvider>` is now always required to be wrapped around all iTwinUI components.
+- [#1278](https://github.com/iTwin/iTwinUI/pull/1278): Adjusted calculations in ButtonGroup's `overflowButton` callback, so that it respects `overflowPlacement` and considers the presence of the overflowButton itself.
+- [#1295](https://github.com/iTwin/iTwinUI/pull/1295): Deprecated MenuItem's `icon` and `badge` props in favor of new `startIcon` and `endIcon` props. Also affects `Select` and `ComboBox` options.
+- [#1298](https://github.com/iTwin/iTwinUI/pull/1298): `Props` types will no longer be exported for any component. Use `React.ComponentProps` instead.
+- [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
+- [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
+
+### Minor Changes
+
+- [#1298](https://github.com/iTwin/iTwinUI/pull/1298): Most components are now polymorphic and forward their rest props and ref.
+
+### Patch Changes
+
+- Updated dependencies:
+  - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.11.4
+
+### Patch Changes
+
+- [#1319](https://github.com/iTwin/iTwinUI/pull/1319): DatePicker will no longer disable month and year navigation when the next/previous months are disabled.
+
+## 2.11.3
+
+### Patch Changes
+
+- [#1309](https://github.com/iTwin/iTwinUI/pull/1309): Fixed missing CSS imports in `FileUploadCard` and `FileUpoadTemplate`.
+
 ## 2.11.2
 
 ### Patch Changes

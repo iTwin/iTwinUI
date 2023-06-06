@@ -5,9 +5,13 @@
 import * as React from 'react';
 import { Transition } from 'react-transition-group';
 import cx from 'classnames';
-import { getWindow, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
+import {
+  getWindow,
+  StatusIconMap,
+  SvgCloseSmall,
+  Box,
+} from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/toast.css';
 import { IconButton } from '../Buttons/index.js';
 
 const isMotionOk = () =>
@@ -204,7 +208,7 @@ export const Toast = (props: ToastProps) => {
       onExited={onRemove}
     >
       {
-        <div
+        <Box
           ref={thisElement}
           className='iui-toast-all'
           style={{
@@ -222,7 +226,7 @@ export const Toast = (props: ToastProps) => {
               onClose={close}
             />
           </div>
-        </div>
+        </Box>
       }
     </Transition>
   );
@@ -252,15 +256,15 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
   const StatusIcon = StatusIconMap[category];
 
   return (
-    <div className={cx(`iui-toast iui-${category}`, className)} {...rest}>
-      <div className='iui-status-area'>
+    <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
+      <Box className='iui-status-area'>
         {<StatusIcon className='iui-icon' />}
-      </div>
-      <div className='iui-message'>{content}</div>
+      </Box>
+      <Box className='iui-message'>{content}</Box>
       {link && (
-        <a className='iui-toast-anchor' onClick={link.onClick}>
+        <Box as='a' className='iui-toast-anchor' onClick={link.onClick}>
           {link.title}
-        </a>
+        </Box>
       )}
       {(type === 'persisting' || hasCloseButton) && (
         <IconButton
@@ -272,7 +276,7 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
           <SvgCloseSmall />
         </IconButton>
       )}
-    </div>
+    </Box>
   );
 };
 

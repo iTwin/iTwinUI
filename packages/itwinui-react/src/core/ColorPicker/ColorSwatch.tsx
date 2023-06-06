@@ -4,12 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/color-picker.css';
-import { useGlobals, ColorValue } from '../utils/index.js';
-import type { ColorType } from '../utils/index.js';
+import { ColorValue, Box } from '../utils/index.js';
+import type {
+  ColorType,
+  PolymorphicForwardRefComponent,
+} from '../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
 
-export type ColorSwatchProps = {
+type ColorSwatchProps = {
   /**
    * Color code.
    */
@@ -18,7 +20,7 @@ export type ColorSwatchProps = {
    * Is color selected.
    */
   isActive?: boolean;
-} & Omit<React.ComponentPropsWithRef<'div'>, 'color'>;
+};
 
 /**
  * ColorSwatch component to display within a color palette.
@@ -26,40 +28,33 @@ export type ColorSwatchProps = {
  * <ColorSwatch color='#23450b' onClick={onClick}/>
  * <ColorSwatch color={{ r: 255, g: 255, b: 0 }} onClick={onClick}/>
  */
-export const ColorSwatch = React.forwardRef<HTMLDivElement, ColorSwatchProps>(
-  (props, ref) => {
-    const { color, style, onClick, isActive, className, ...rest } = props;
-    useGlobals();
+export const ColorSwatch = React.forwardRef((props, ref) => {
+  const { color, style, onClick, isActive, className, ...rest } = props;
 
-    const colorString = React.useMemo(
-      () =>
-        typeof color === 'string'
-          ? color
-          : getColorValue(color).toHslString(true),
-      [color],
-    );
+  const colorString = React.useMemo(
+    () =>
+      typeof color === 'string'
+        ? color
+        : getColorValue(color).toHslString(true),
+    [color],
+  );
 
-    return (
-      <div
-        className={cx(
-          'iui-color-swatch',
-          { 'iui-active': isActive },
-          className,
-        )}
-        style={
-          {
-            '--iui-color-swatch-background': colorString,
-            ...style,
-          } as React.CSSProperties
-        }
-        onClick={onClick}
-        tabIndex={isActive ? 0 : -1}
-        aria-selected={isActive}
-        ref={ref}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Box
+      className={cx('iui-color-swatch', { 'iui-active': isActive }, className)}
+      style={
+        {
+          '--iui-color-swatch-background': colorString,
+          ...style,
+        } as React.CSSProperties
+      }
+      onClick={onClick}
+      tabIndex={isActive ? 0 : -1}
+      aria-selected={isActive}
+      ref={ref}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div', ColorSwatchProps>;
 
 export default ColorSwatch;

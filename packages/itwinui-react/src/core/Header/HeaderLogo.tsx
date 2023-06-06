@@ -6,12 +6,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useGlobals } from '../utils/index.js';
-import type {
-  PolymorphicForwardRefComponent,
-  PolymorphicComponentProps,
-} from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type HeaderLogoOwnProps = {
   /**
@@ -24,11 +20,6 @@ type HeaderLogoOwnProps = {
    */
   onClick?: (e: unknown) => void;
 };
-
-export type HeaderLogoProps = PolymorphicComponentProps<
-  'div',
-  HeaderLogoOwnProps
->;
 
 /**
  * Header Title section
@@ -44,28 +35,30 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     children,
     logo,
     onClick,
-    as: Element = !!onClick ? 'button' : 'div',
+    as = (!!onClick ? 'button' : 'div') as any, // eslint-disable-line @typescript-eslint/no-explicit-any
     ...rest
   } = props;
 
-  useGlobals();
-
   return (
-    <Element
+    <Box
       className={cx('iui-header-brand', className)}
+      as={as}
+      type={as === 'button' ? 'button' : undefined}
       onClick={onClick}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- TS complains here but it's ok; it is an implementation detail
-      // @ts-ignore
       ref={ref}
       {...rest}
     >
-      {React.isValidElement<{ className: string }>(logo)
-        ? React.cloneElement(logo, {
-            className: cx('iui-header-brand-icon', logo.props.className),
-          })
-        : undefined}
-      {children && <span className='iui-header-brand-label'>{children}</span>}
-    </Element>
+      {logo ? (
+        <Box as='span' className='iui-header-brand-icon' aria-hidden>
+          {logo}
+        </Box>
+      ) : null}
+      {children && (
+        <Box as='span' className='iui-header-brand-label'>
+          {children}
+        </Box>
+      )}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', HeaderLogoOwnProps>;
 

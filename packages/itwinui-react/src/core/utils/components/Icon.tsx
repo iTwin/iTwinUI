@@ -5,7 +5,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types.js';
-import '@itwin/itwinui-css/css/utils.css';
+import { Box } from './Box.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 
 export type IconProps = {
   /**
@@ -65,20 +66,19 @@ const getSizeValue = (size: string) => {
  *   <SvgStatusError />
  * </Icon>
  */
-export const Icon = React.forwardRef(
-  (props: IconProps, ref: React.RefObject<HTMLSpanElement>) => {
-    const { size = 'medium', fill = 'default', className, ...rest } = props;
+export const Icon = React.forwardRef((props, ref) => {
+  const { size = 'medium', fill = 'default', className, ...rest } = props;
 
-    return (
-      <span
-        className={cx('iui-svg-icon', className)}
-        data-iui-icon-size={getSizeValue(size)}
-        data-iui-icon-color={fill}
-        ref={ref}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Box
+      as='span'
+      className={cx('iui-svg-icon', className)}
+      data-iui-icon-size={getSizeValue(size)}
+      data-iui-icon-color={fill}
+      ref={ref}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'span', IconProps>;
 
 export default Icon;

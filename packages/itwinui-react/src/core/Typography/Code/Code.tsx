@@ -2,34 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
-import * as React from 'react';
-import { useGlobals } from '../../utils/index.js';
-import type { CommonProps } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/code.css';
-
-export type CodeProps = {
-  /**
-   * A piece of inline code.
-   */
-  children: React.ReactNode;
-} & CommonProps;
+import { polymorphic } from '../../utils/index.js';
 
 /**
  * Inline code element.
  * @example
  * <p>Some <Code>inline code</Code> in a paragraph</p>
  */
-export const Code = (props: CodeProps) => {
-  const { className, children, ...rest } = props;
-
-  useGlobals();
-
-  return (
-    <code className={cx('iui-code', className)} {...rest}>
-      {children}
-    </code>
-  );
-};
+export const Code = polymorphic.code('iui-code');
 
 export default Code;

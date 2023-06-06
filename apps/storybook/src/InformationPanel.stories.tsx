@@ -9,7 +9,6 @@ import { action } from '@storybook/addon-actions';
 import { SvgEdit } from '@itwin/itwinui-icons-react';
 import {
   InformationPanel,
-  InformationPanelProps,
   InformationPanelWrapper,
   InformationPanelHeader,
   InformationPanelBody,
@@ -22,6 +21,8 @@ import {
   Label,
   Textarea,
 } from '@itwin/itwinui-react';
+
+type InformationPanelProps = React.ComponentProps<typeof InformationPanel>;
 
 export default {
   component: InformationPanel,

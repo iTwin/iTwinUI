@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Blockquote, BlockquoteProps } from '@itwin/itwinui-react';
+import { Blockquote } from '@itwin/itwinui-react';
+
+type BlockquoteProps = React.ComponentProps<typeof Blockquote>;
 
 export default {
   title: 'Typography/Blockquote',

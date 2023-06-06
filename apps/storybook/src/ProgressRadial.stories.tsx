@@ -3,8 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { ProgressRadial, ProgressRadialProps } from '@itwin/itwinui-react';
+import { ProgressRadial } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
+
+type ProgressRadialProps = React.ComponentProps<typeof ProgressRadial>;
 
 export default {
   title: 'ProgressIndicators/ProgressRadial',

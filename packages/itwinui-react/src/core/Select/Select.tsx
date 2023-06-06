@@ -5,20 +5,19 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Menu, MenuItem } from '../Menu/index.js';
-import type { MenuItemProps } from '../Menu/index.js';
+import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
-  useGlobals,
   SvgCaretDownSmall,
   Popover,
   useId,
   AutoclearingHiddenLiveRegion,
+  Box,
 } from '../utils/index.js';
 import type {
   PopoverProps,
   PopoverInstance,
   CommonProps,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
 
@@ -71,9 +70,14 @@ export type SelectOption<T> = {
    */
   value: T;
   /**
-   * SVG icon component shown on the right.
+   * @deprecated Use startIcon
+   * SVG icon component shown on the left.
    */
   icon?: JSX.Element;
+  /**
+   * SVG icon component shown on the left.
+   */
+  startIcon?: JSX.Element;
   /**
    * Item is disabled.
    */
@@ -243,8 +247,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     ...rest
   } = props;
 
-  useGlobals();
-
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = popoverProps?.visible ?? isOpenState;
 
@@ -312,11 +314,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         <MenuItem>{option.label}</MenuItem>
       );
 
-      const { label, ...restOption } = option;
+      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+
+      const startIcon = startIconProp ?? icon;
 
       return React.cloneElement<MenuItemProps>(menuItem, {
         key: `${label}-${index}`,
         isSelected,
+        startIcon: startIcon,
         onClick: () => {
           if (option.disabled) {
             return;
@@ -369,7 +374,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   }, []);
 
   return (
-    <div
+    <Box
       className={cx('iui-input-with-icon', className)}
       style={style}
       {...rest}
@@ -402,7 +407,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           }
         }}
       >
-        <div
+        <Box
           tabIndex={0}
           role='combobox'
           ref={selectRef}
@@ -426,7 +431,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           )}
         >
           {(!selectedItems || selectedItems.length === 0) && (
-            <span className='iui-content'>{placeholder}</span>
+            <Box as='span' className='iui-content'>
+              {placeholder}
+            </Box>
           )}
           {isMultipleEnabled(selectedItems, multiple) ? (
             <MultipleSelectButton
@@ -446,9 +453,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               }
             />
           )}
-        </div>
+        </Box>
       </Popover>
-      <span
+      <Box
+        as='span'
         aria-hidden
         ref={toggleButtonRef}
         className={cx('iui-end-icon', {
@@ -459,12 +467,12 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         onClick={() => !disabled && setIsOpen((o) => !o)}
       >
         <SvgCaretDownSmall />
-      </span>
+      </Box>
 
       {multiple ? (
         <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
       ) : null}
-    </div>
+    </Box>
   );
 };
 
@@ -477,6 +485,7 @@ const SingleSelectButton = <T,>({
   selectedItem,
   selectedItemRenderer,
 }: SingleSelectButtonProps<T>) => {
+  const startIcon = selectedItem?.startIcon ?? selectedItem?.icon;
   return (
     <>
       {selectedItem &&
@@ -484,11 +493,14 @@ const SingleSelectButton = <T,>({
         selectedItemRenderer(selectedItem)}
       {selectedItem && !selectedItemRenderer && (
         <>
-          {selectedItem.icon &&
-            React.cloneElement(selectedItem.icon, {
-              className: cx(selectedItem.icon.props.className, 'iui-icon'),
-            })}
-          <span className='iui-content'>{selectedItem.label}</span>
+          {startIcon && (
+            <Box as='span' className='iui-icon' aria-hidden>
+              {startIcon}
+            </Box>
+          )}
+          <Box as='span' className='iui-content'>
+            {selectedItem.label}
+          </Box>
         </>
       )}
     </>
@@ -520,9 +532,9 @@ const MultipleSelectButton = <T,>({
         selectedItemsRenderer &&
         selectedItemsRenderer(selectedItems)}
       {selectedItems && !selectedItemsRenderer && (
-        <span className='iui-content'>
+        <Box as='span' className='iui-content'>
           <SelectTagContainer tags={selectedItemsElements} />
-        </span>
+        </Box>
       )}
     </>
   );

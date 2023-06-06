@@ -4,20 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/side-navigation.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type SidenavSubmenuHeaderProps = {
-  /**
-   * Content of the submenu header (e.g. label)
-   */
-  children?: React.ReactNode;
+type SidenavSubmenuHeaderProps = {
   /**
    * Actions shown at the end of the submenu label.
    */
   actions?: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Header content for `SidenavSubmenu`. Supports truncated label and actions buttons.
@@ -33,24 +28,23 @@ export type SidenavSubmenuHeaderProps = {
  *   <span>Documents</span>
  * </SidenavSubmenuHeader>
  */
-export const SidenavSubmenuHeader = (props: SidenavSubmenuHeaderProps) => {
+export const SidenavSubmenuHeader = React.forwardRef((props, forwardedRef) => {
   const { children, actions, className, ...rest } = props;
 
-  useGlobals();
-
   return (
-    <div
+    <Box
       className={cx('iui-side-navigation-submenu-header', className)}
+      ref={forwardedRef}
       {...rest}
     >
-      <div className='iui-side-navigation-submenu-header-label'>{children}</div>
+      <Box className='iui-side-navigation-submenu-header-label'>{children}</Box>
       {actions && (
-        <div className='iui-side-navigation-submenu-header-actions'>
+        <Box className='iui-side-navigation-submenu-header-actions'>
           {actions}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', SidenavSubmenuHeaderProps>;
 
 export default SidenavSubmenuHeader;

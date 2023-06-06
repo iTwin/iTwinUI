@@ -6,14 +6,8 @@ import * as React from 'react';
 
 import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
-import {
-  StatusIconMap,
-  useGlobals,
-  InputContainer,
-  useId,
-} from '../utils/index.js';
-import type { LabeledInputProps } from '../LabeledInput/index.js';
-import '@itwin/itwinui-css/css/input.css';
+import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 
 export type LabeledSelectProps<T> = {
   /**
@@ -100,8 +94,6 @@ export const LabeledSelect = <T,>(
     triggerProps,
     ...rest
   } = props;
-
-  useGlobals();
 
   const labelId = `${useId()}-label`;
 

@@ -4,57 +4,40 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { ButtonProps } from '../Buttons/index.js';
+import type { ButtonProps } from '../Buttons/Button/Button.js';
 
-export type HeaderBasicButtonProps = ButtonProps;
+export const HeaderBasicButton = React.forwardRef((props, ref) => {
+  const {
+    onClick,
+    className,
+    children,
+    style,
+    startIcon,
+    endIcon,
+    styleType,
+    size,
+    ...rest
+  } = props;
+  styleType; // To omit and prevent eslint error.
+  size; // To omit and prevent eslint error.
 
-type HeaderBasicButtonComponent = PolymorphicForwardRefComponent<
-  'button',
-  HeaderBasicButtonProps
->;
-
-export const HeaderBasicButton: HeaderBasicButtonComponent = React.forwardRef(
-  (props, ref) => {
-    const {
-      onClick,
-      className,
-      children,
-      style,
-      type = 'button',
-      startIcon,
-      endIcon,
-      as: Element = 'button',
-      styleType,
-      size,
-      ...rest
-    } = props;
-    styleType; // To omit and prevent eslint error.
-    size; // To omit and prevent eslint error.
-    useGlobals();
-
-    return (
-      <Element
-        className={cx('iui-header-breadcrumb-button', className)}
-        onClick={onClick}
-        ref={ref}
-        type={type}
-        style={style}
-        {...rest}
-      >
-        {startIcon &&
-          React.cloneElement(startIcon, {
-            className: startIcon.props.className,
-          })}
-        {children}
-        {endIcon &&
-          React.cloneElement(endIcon, {
-            className: endIcon.props.className,
-          })}
-      </Element>
-    );
-  },
-);
+  return (
+    <Box
+      as='button'
+      className={cx('iui-header-breadcrumb-button', className)}
+      onClick={onClick}
+      ref={ref}
+      type='button'
+      style={style}
+      {...rest}
+    >
+      {startIcon}
+      {children}
+      {endIcon}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'button', ButtonProps>;
 
 export default HeaderBasicButton;

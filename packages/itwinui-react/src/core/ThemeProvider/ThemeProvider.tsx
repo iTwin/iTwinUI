@@ -8,14 +8,10 @@ import {
   useMediaQuery,
   useMergedRefs,
   useIsThemeAlreadySet,
+  Box,
 } from '../utils/index.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
 
 export type ThemeOptions = {
   /**
@@ -26,9 +22,6 @@ export type ThemeOptions = {
 };
 
 export type ThemeType = 'light' | 'dark' | 'os';
-
-export type ThemeProviderProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, ThemeProviderOwnProps>;
 
 type RootProps = {
   /**
@@ -135,7 +128,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
     theme,
     children,
     themeOptions,
-    as: Element = 'div',
     className,
     isInheritingTheme,
     ...rest
@@ -153,7 +145,7 @@ const Root = React.forwardRef((props, forwardedRef) => {
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
   return (
-    <Element
+    <Box
       className={cx(
         'iui-root',
         { 'iui-root-background': shouldApplyBackground },
@@ -165,6 +157,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       {children}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;

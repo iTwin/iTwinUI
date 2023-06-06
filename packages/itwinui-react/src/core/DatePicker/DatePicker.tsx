@@ -5,17 +5,17 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   SvgChevronLeft,
   SvgChevronRight,
   SvgChevronLeftDouble,
   SvgChevronRightDouble,
   isBefore,
+  Box,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/date-picker.css';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import { TimePicker } from '../TimePicker/index.js';
-import type { TimePickerProps } from '../TimePicker/index.js';
+import type { TimePickerProps } from '../TimePicker/TimePicker.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -164,7 +164,7 @@ export type DateRangePickerProps =
       onChange?: (startDate: Date, endDate: Date) => void;
     };
 
-export type DatePickerProps = {
+type DatePickerProps = {
   /**
    * Selected date.
    */
@@ -202,13 +202,12 @@ export type DatePickerProps = {
  * @example
  * <DatePicker date={new Date()} onChange={(e) => console.log('New date value: ' + e)} />
  */
-export const DatePicker = (props: DatePickerProps): JSX.Element => {
+export const DatePicker = React.forwardRef((props, forwardedRef) => {
   const {
     date,
     onChange,
     localizedNames,
     className,
-    style,
     setFocus = false,
     showTime = false,
     use12Hours = false,
@@ -229,8 +228,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     isDateDisabled,
     ...rest
   } = props;
-
-  useGlobals();
 
   const monthNames = localizedNames?.months ?? defaultMonths;
   const shortDays = localizedNames?.shortDays ?? defaultShortDays;
@@ -434,22 +431,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
     }
   };
 
-  const isPreviousMonthDisabled = isDateDisabled?.(
-    new Date(displayedYear, displayedMonthIndex, 0),
-  );
-
-  const isNextMonthDisabled = isDateDisabled?.(
-    new Date(displayedYear, displayedMonthIndex + 1, 1),
-  );
-
-  const isPreviousYearDisabled = isDateDisabled?.(
-    new Date(displayedYear - 1, 11, 31),
-  );
-
-  const isNextYearDisabled = isDateDisabled?.(
-    new Date(displayedYear + 1, 0, 1),
-  );
-
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -465,9 +446,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowDown':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isNextMonthDisabled) {
-            return;
-          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -477,9 +455,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowUp':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isPreviousMonthDisabled) {
-            return;
-          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -489,9 +464,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowLeft':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isPreviousMonthDisabled) {
-            return;
-          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -501,9 +473,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
       case 'ArrowRight':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isNextMonthDisabled) {
-            return;
-          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -557,16 +526,19 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
   };
 
   return (
-    <div className={cx('iui-date-picker', className)} style={style} {...rest}>
+    <Box
+      className={cx('iui-date-picker', className)}
+      ref={forwardedRef as React.Ref<HTMLDivElement>}
+      {...rest}
+    >
       <div>
-        <div className='iui-calendar-month-year'>
+        <Box className='iui-calendar-month-year'>
           {showYearSelection && (
             <IconButton
               styleType='borderless'
               onClick={handleMoveToPreviousYear}
               aria-label='Previous year'
               size='small'
-              disabled={isPreviousYearDisabled}
             >
               <SvgChevronLeftDouble />
             </IconButton>
@@ -576,17 +548,17 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToPreviousMonth}
             aria-label='Previous month'
             size='small'
-            disabled={isPreviousMonthDisabled}
           >
             <SvgChevronLeft />
           </IconButton>
           <span aria-live='polite'>
-            <span
+            <Box
+              as='span'
               className='iui-calendar-month'
               title={monthNames[displayedMonthIndex]}
             >
               {monthNames[displayedMonthIndex]}
-            </span>
+            </Box>
             &nbsp;{displayedYear}
           </span>
           <IconButton
@@ -594,7 +566,6 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
             onClick={handleMoveToNextMonth}
             aria-label='Next month'
             size='small'
-            disabled={isNextMonthDisabled}
           >
             <SvgChevronRight />
           </IconButton>
@@ -604,23 +575,22 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
               onClick={handleMoveToNextYear}
               aria-label='Next year'
               size='small'
-              disabled={isNextYearDisabled}
             >
               <SvgChevronRightDouble />
             </IconButton>
           )}
-        </div>
-        <div className='iui-calendar-weekdays'>
+        </Box>
+        <Box className='iui-calendar-weekdays'>
           {shortDays.map((day, index) => (
             <div key={day} title={longDays[index]}>
               {day}
             </div>
           ))}
-        </div>
+        </Box>
         <div onKeyDown={handleCalendarKeyDown} role='listbox'>
           {weeks.map((weekDays, weekIndex) => {
             return (
-              <div
+              <Box
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
                 className='iui-calendar-week'
               >
@@ -628,7 +598,7 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
                   const dateValue = weekDay.getDate();
                   const isDisabled = isDateDisabled?.(weekDay);
                   return (
-                    <div
+                    <Box
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
                       className={getDayClass(weekDay)}
                       onClick={() => !isDisabled && onDayClick(weekDay)}
@@ -642,10 +612,10 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
                       }
                     >
                       {dateValue}
-                    </div>
+                    </Box>
                   );
                 })}
-              </div>
+              </Box>
             );
           })}
         </div>
@@ -688,8 +658,8 @@ export const DatePicker = (props: DatePickerProps): JSX.Element => {
           }
         />
       )}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', DatePickerProps>;
 
 export default DatePicker;

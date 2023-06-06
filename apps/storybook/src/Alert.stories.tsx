@@ -5,7 +5,9 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Alert, AlertProps } from '@itwin/itwinui-react';
+import { Alert } from '@itwin/itwinui-react';
+
+type AlertProps = React.ComponentProps<typeof Alert>;
 
 export default {
   title: 'Core/Alert',

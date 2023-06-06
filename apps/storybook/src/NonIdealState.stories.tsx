@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import {
-  Anchor,
-  Button,
-  NonIdealState,
-  NonIdealStateProps,
-} from '@itwin/itwinui-react';
+import { Anchor, Button, NonIdealState } from '@itwin/itwinui-react';
 import {
   Svg401,
   Svg403,
@@ -22,6 +17,8 @@ import {
   SvgTimedOut,
 } from '@itwin/itwinui-illustrations-react';
 import { action } from '@storybook/addon-actions';
+
+type NonIdealStateProps = React.ComponentProps<typeof NonIdealState>;
 
 export default {
   title: 'Core/NonIdealState',

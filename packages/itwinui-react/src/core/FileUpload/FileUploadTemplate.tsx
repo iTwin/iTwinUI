@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, SvgUpload } from '../utils/index.js';
-import '@itwin/itwinui-css/css/file-upload.css';
+import { SvgUpload, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Anchor } from '../Typography/Anchor/Anchor.js';
 
-export type FileUploadTemplateProps = {
+type FileUploadTemplateProps = {
   /**
    * Callback fired when a file is selected from the device.
    */
@@ -37,7 +38,7 @@ export type FileUploadTemplateProps = {
    * Optional children appended to the template.
    */
   children?: React.ReactNode;
-} & React.ComponentProps<'div'>;
+};
 
 /**
  * Default template to be used with the `FileUpload` wrapper component.
@@ -45,7 +46,7 @@ export type FileUploadTemplateProps = {
  * @example
  * <FileUploadTemplate onChange={(e) => console.log(e.target.files)} />
  */
-export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
+export const FileUploadTemplate = React.forwardRef((props, ref) => {
   const {
     onChange,
     acceptMultiple = true,
@@ -56,14 +57,18 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
     className,
     ...rest
   } = props;
-  useGlobals();
 
   return (
-    <div className={cx('iui-file-upload-template', className)} {...rest}>
+    <Box
+      className={cx('iui-file-upload-template', className)}
+      ref={ref}
+      {...rest}
+    >
       <SvgUpload className='iui-template-icon' aria-hidden />
-      <div className='iui-template-text'>
-        <label className='iui-anchor'>
-          <input
+      <Box className='iui-template-text'>
+        <Anchor as='label'>
+          <Box
+            as='input'
             className='iui-browse-input'
             type='file'
             onChange={onChange}
@@ -71,12 +76,12 @@ export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
             accept={acceptType}
           />
           {label}
-        </label>
+        </Anchor>
         <div>{subtitle}</div>
         {children}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', FileUploadTemplateProps>;
 
 export default FileUploadTemplate;

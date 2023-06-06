@@ -3,10 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-export const SvgColumnManager = (props: React.ComponentProps<'svg'>) => {
+import { Svg } from './Svg.js';
+
+export const SvgColumnManager = (
+  props: React.ComponentPropsWithoutRef<'svg'>,
+) => {
   return (
-    <svg viewBox='0 0 16 16' {...props}>
+    <Svg {...props}>
       <path d='m1 0h2v16h-2m6-16h2v16h-2m6-16h2v16h-2' />
-    </svg>
+    </Svg>
   );
 };

@@ -8,9 +8,10 @@ import {
   defaultFooterElements,
   Footer,
   FooterElement,
-  FooterProps,
 } from '@itwin/itwinui-react';
 import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
+
+type FooterProps = React.ComponentProps<typeof Footer>;
 
 export default {
   title: 'Core/Footer',

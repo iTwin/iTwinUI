@@ -3,9 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { polymorphic } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/anchor.css';
-
-export type AnchorProps = React.ComponentPropsWithoutRef<'a'>;
 
 /**
  * A consistently styled anchor component.

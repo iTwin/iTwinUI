@@ -4,20 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useGlobals,
-  useMergedRefs,
-  getFocusableElements,
-} from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
+import { useMergedRefs, getFocusableElements, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type MenuProps = {
-  /**
-   * ARIA role. For menu use 'menu', for select use 'listbox'.
-   * @default 'menu'
-   */
-  role?: string;
+type MenuProps = {
   /**
    * Menu items. Recommended to use `MenuItem` components.
    *
@@ -30,93 +20,80 @@ export type MenuProps = {
    * @default true
    */
   setFocus?: boolean;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * Basic menu component. Can be used for select or dropdown components.
  */
-export const Menu = React.forwardRef<HTMLUListElement, MenuProps>(
-  (props, ref) => {
-    const {
-      children,
-      role = 'menu',
-      setFocus = true,
-      className,
-      style,
-      ...rest
-    } = props;
+export const Menu = React.forwardRef((props, ref) => {
+  const { setFocus = true, className, ...rest } = props;
 
-    useGlobals();
+  const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
+  const menuRef = React.useRef<HTMLUListElement>(null);
+  const refs = useMergedRefs(menuRef, ref);
 
-    const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
-    const menuRef = React.useRef<HTMLUListElement>(null);
-    const refs = useMergedRefs(menuRef, ref);
+  const getFocusableNodes = React.useCallback(() => {
+    const focusableItems = getFocusableElements(menuRef.current);
+    // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
+    return focusableItems.filter(
+      (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
+    ) as HTMLElement[];
+  }, []);
 
-    const getFocusableNodes = React.useCallback(() => {
-      const focusableItems = getFocusableElements(menuRef.current);
-      // Filter out focusable elements that are inside each menu item, e.g. checkbox, anchor
-      return focusableItems.filter(
-        (i) => !focusableItems.some((p) => p.contains(i.parentElement)),
-      ) as HTMLElement[];
-    }, []);
+  React.useEffect(() => {
+    const items = getFocusableNodes();
+    if (focusedIndex != null) {
+      (items?.[focusedIndex] as HTMLLIElement)?.focus();
+      return;
+    }
 
-    React.useEffect(() => {
-      const items = getFocusableNodes();
-      if (focusedIndex != null) {
-        (items?.[focusedIndex] as HTMLLIElement)?.focus();
-        return;
-      }
-
-      const selectedIndex = items.findIndex(
-        (el) => el.getAttribute('aria-selected') === 'true',
-      );
-      if (setFocus) {
-        setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
-      }
-    }, [setFocus, focusedIndex, getFocusableNodes]);
-
-    const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-      if (event.altKey) {
-        return;
-      }
-
-      const items = getFocusableNodes();
-      if (!items?.length) {
-        return;
-      }
-
-      const currentIndex = focusedIndex ?? 0;
-      switch (event.key) {
-        case 'ArrowDown': {
-          setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
-          event.preventDefault();
-          event.stopPropagation();
-          break;
-        }
-        case 'ArrowUp': {
-          setFocusedIndex(Math.max(currentIndex - 1, 0));
-          event.preventDefault();
-          event.stopPropagation();
-          break;
-        }
-        default:
-          break;
-      }
-    };
-
-    return (
-      <ul
-        className={cx('iui-menu', className)}
-        style={style}
-        role={role}
-        onKeyDown={onKeyDown}
-        ref={refs}
-        {...rest}
-      >
-        {children}
-      </ul>
+    const selectedIndex = items.findIndex(
+      (el) => el.getAttribute('aria-selected') === 'true',
     );
-  },
-);
+    if (setFocus) {
+      setFocusedIndex(selectedIndex > -1 ? selectedIndex : 0);
+    }
+  }, [setFocus, focusedIndex, getFocusableNodes]);
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
+    const items = getFocusableNodes();
+    if (!items?.length) {
+      return;
+    }
+
+    const currentIndex = focusedIndex ?? 0;
+    switch (event.key) {
+      case 'ArrowDown': {
+        setFocusedIndex(Math.min(currentIndex + 1, items.length - 1));
+        event.preventDefault();
+        event.stopPropagation();
+        break;
+      }
+      case 'ArrowUp': {
+        setFocusedIndex(Math.max(currentIndex - 1, 0));
+        event.preventDefault();
+        event.stopPropagation();
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  return (
+    <Box
+      as='ul'
+      className={cx('iui-menu', className)}
+      role='menu'
+      onKeyDown={onKeyDown}
+      ref={refs}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'ul', MenuProps>;
 
 export default Menu;

@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, useMergedRefs } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/file-upload.css';
+import { Box, useMergedRefs } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type FileUploadProps = {
+type FileUploadProps = {
   /**
    * Content shown over `children` when file is being dragged onto the component.
    * Should always be used when drag content differs from `children` being wrapped.
@@ -24,7 +23,7 @@ export type FileUploadProps = {
    * Either pass `FileUploadTemplate` (for default state) or a different component to wrap.
    */
   children: React.ReactNode;
-} & CommonProps;
+};
 
 /**
  * File upload component to be wrapped around `FileUploadTemplate` or any arbitrary component.
@@ -33,72 +32,65 @@ export type FileUploadProps = {
  * <FileUpload onFileDropped={console.log}><FileUploadTemplate /></FileUpload>
  * <FileUpload dragContent='Drop file here' onFileDropped={console.log}><Textarea /></FileUpload>
  */
-export const FileUpload = React.forwardRef(
-  (props: FileUploadProps, ref: React.RefObject<HTMLDivElement>) => {
-    const { dragContent, children, onFileDropped, className, ...rest } = props;
-    useGlobals();
+export const FileUpload = React.forwardRef((props, ref) => {
+  const { dragContent, children, onFileDropped, className, ...rest } = props;
 
-    const [isDragActive, setIsDragActive] = React.useState(false);
-    const fileUploadRef = React.useRef<HTMLDivElement>(null);
-    const refs = useMergedRefs(fileUploadRef, ref);
+  const [isDragActive, setIsDragActive] = React.useState(false);
+  const fileUploadRef = React.useRef<HTMLDivElement>(null);
+  const refs = useMergedRefs(fileUploadRef, ref);
 
-    const onDragOverHandler = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
-    };
+  const onDragOverHandler = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+  };
 
-    const onDragEnterHandler = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const onDragEnterHandler = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      // only set active if a file is dragged over
-      if (!isDragActive && e.dataTransfer?.items?.[0]?.kind === 'file') {
-        setIsDragActive(true);
-      }
-    };
+    // only set active if a file is dragged over
+    if (!isDragActive && e.dataTransfer?.items?.[0]?.kind === 'file') {
+      setIsDragActive(true);
+    }
+  };
 
-    const onDragLeaveHandler = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const onDragLeaveHandler = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      // only set inactive if secondary target is outside the component
-      if (
-        isDragActive &&
-        !fileUploadRef.current?.contains(e.relatedTarget as Node)
-      ) {
-        setIsDragActive(false);
-      }
-    };
+    // only set inactive if secondary target is outside the component
+    if (
+      isDragActive &&
+      !fileUploadRef.current?.contains(e.relatedTarget as Node)
+    ) {
+      setIsDragActive(false);
+    }
+  };
 
-    const onDropHandler = (e: React.DragEvent) => {
-      e.preventDefault();
-      e.stopPropagation();
+  const onDropHandler = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-      if (isDragActive) {
-        setIsDragActive(false);
-        onFileDropped(e.dataTransfer?.files);
-      }
-    };
+    if (isDragActive) {
+      setIsDragActive(false);
+      onFileDropped(e.dataTransfer?.files);
+    }
+  };
 
-    return (
-      <div
-        className={cx(
-          'iui-file-upload',
-          { 'iui-drag': isDragActive },
-          className,
-        )}
-        onDragEnter={onDragEnterHandler}
-        onDragOver={onDragOverHandler}
-        onDragLeave={onDragLeaveHandler}
-        onDrop={onDropHandler}
-        ref={refs}
-        {...rest}
-      >
-        {dragContent ? children : <div className='iui-content'>{children}</div>}
-        {dragContent && <div className='iui-content'>{dragContent}</div>}
-      </div>
-    );
-  },
-);
+  return (
+    <Box
+      className={cx('iui-file-upload', { 'iui-drag': isDragActive }, className)}
+      onDragEnter={onDragEnterHandler}
+      onDragOver={onDragOverHandler}
+      onDragLeave={onDragLeaveHandler}
+      onDrop={onDropHandler}
+      ref={refs}
+      {...rest}
+    >
+      {dragContent ? children : <Box className='iui-content'>{children}</Box>}
+      {dragContent && <Box className='iui-content'>{dragContent}</Box>}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', FileUploadProps>;
 
 export default FileUpload;

@@ -5,12 +5,12 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 import { useGlobals, getDocument, useIsClient } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import '@itwin/itwinui-css/css/dialog.css';
 import { Dialog } from '../Dialog/index.js';
-import type { DialogMainProps } from '../Dialog/index.js';
+import type { DialogMainProps } from '../Dialog/DialogMain.js';
 
-export type ModalProps = {
+type ModalProps = {
   /**
    * Modal title.
    */
@@ -47,8 +47,7 @@ export type ModalProps = {
    * Content of the modal.
    */
   children: React.ReactNode;
-} & Pick<DialogMainProps, 'isOpen' | 'styleType'> &
-  Omit<CommonProps, 'title'>;
+} & Pick<DialogMainProps, 'isOpen' | 'styleType'>;
 
 /**
  * Modal component which can wrap any content.
@@ -71,7 +70,7 @@ export type ModalProps = {
  *   </ModalButtonBar>
  * </Modal>
  */
-export const Modal = (props: ModalProps) => {
+export const Modal = React.forwardRef((props, forwardedRef) => {
   const {
     isOpen = false,
     isDismissible = true,
@@ -101,6 +100,7 @@ export const Modal = (props: ModalProps) => {
         preventDocumentScroll
         trapFocus
         setFocus
+        ref={forwardedRef}
       >
         <Dialog.Backdrop />
         <Dialog.Main aria-modal {...rest}>
@@ -113,6 +113,6 @@ export const Modal = (props: ModalProps) => {
   ) : (
     <></>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ModalProps>;
 
 export default Modal;

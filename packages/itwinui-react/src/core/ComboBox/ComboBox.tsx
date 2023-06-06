@@ -3,14 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import cx from 'classnames';
-import type { InputProps } from '../Input/index.js';
 import { MenuExtraContent } from '../Menu/index.js';
 import type { SelectOption } from '../Select/index.js';
 import SelectTag from '../Select/SelectTag.js';
 import { Text } from '../Typography/index.js';
+import type { Input } from '../Input/Input.js';
 import {
-  useGlobals,
   getRandomValue,
   mergeRefs,
   useLatestRef,
@@ -19,10 +17,9 @@ import {
 } from '../utils/index.js';
 import type {
   PopoverProps,
-  CommonProps,
   InputContainerProps,
+  CommonProps,
 } from '../utils/index.js';
-import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
@@ -104,7 +101,7 @@ export type ComboBoxProps<T> = {
   /**
    * Native input element props.
    */
-  inputProps?: Omit<InputProps, 'setFocus'>;
+  inputProps?: Omit<React.ComponentProps<typeof Input>, 'setFocus'>;
   /**
    * Props to customize dropdown menu behavior.
    */
@@ -148,7 +145,7 @@ export type ComboBoxProps<T> = {
   onHide?: () => void;
 } & ComboboxMultipleTypeProps<T> &
   Pick<InputContainerProps, 'status'> &
-  Omit<CommonProps, 'title'>;
+  CommonProps;
 
 /** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
 const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
@@ -192,8 +189,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       (inputProps?.id && `${inputProps.id}-cb`) ??
       `iui-cb-${getRandomValue(10)}`,
   );
-
-  useGlobals();
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -444,6 +439,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     (option: SelectOption<T>, filteredIndex?: number) => {
       const optionId = getOptionId(option, id);
       const { __originalIndex } = optionsExtraInfoRef.current[optionId];
+      const { icon, startIcon: startIconProp, ...restOptions } = option;
+
+      const startIcon = startIconProp ?? icon;
 
       const customItem = itemRenderer
         ? itemRenderer(option, {
@@ -460,11 +458,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             onClickHandler(__originalIndex);
             customItem.props.onClick?.(e);
           },
-          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and iui-focused through context
+          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and focused through context
           // but we still need to pass them here for backwards compatibility with MenuItem
-          className: cx(customItem.props.className, {
-            'iui-focused': focusedIndex === __originalIndex,
-          }),
+          focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
           ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
@@ -477,7 +473,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         <ComboBoxMenuItem
           key={optionId}
           id={optionId}
-          {...option}
+          startIcon={startIcon}
+          {...restOptions}
           isSelected={isMenuItemSelected(__originalIndex)}
           onClick={() => {
             onClickHandler(__originalIndex);

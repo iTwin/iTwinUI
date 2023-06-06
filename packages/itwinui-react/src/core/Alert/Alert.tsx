@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import '@itwin/itwinui-css/css/alert.css';
-import { useGlobals, StatusIconMap, SvgCloseSmall } from '../utils/index.js';
-import type { CommonProps } from '../utils/props.js';
+import { StatusIconMap, SvgCloseSmall, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type AlertProps = {
+type AlertProps = {
   /**
    * Type of the alert.
    * @default 'informational'
@@ -35,7 +34,7 @@ export type AlertProps = {
    * Alert message text.
    */
   children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * A small box to quickly grab user attention and communicate a brief message
@@ -52,7 +51,7 @@ export type AlertProps = {
  *   This is a positive alert with a clickable text
  * </Alert>
  */
-export const Alert = (props: AlertProps) => {
+export const Alert = React.forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -60,50 +59,49 @@ export const Alert = (props: AlertProps) => {
     clickableText,
     clickableTextProps,
     onClose,
-    style,
     isSticky = false,
     ...rest
   } = props;
 
-  useGlobals();
-
   const StatusIcon = StatusIconMap[type];
 
   return (
-    <div
+    <Box
       className={cx('iui-alert', className)}
       data-iui-status={type}
       data-iui-variant={isSticky ? 'sticky' : undefined}
-      style={style}
+      ref={ref}
       {...rest}
     >
       <StatusIcon className='iui-alert-icon' />
-      <span className='iui-alert-message'>
+      <Box as='span' className='iui-alert-message'>
         {children}
         {clickableText && (
-          <a
+          <Box
+            as='a'
             {...clickableTextProps}
             className={cx('iui-alert-link', clickableTextProps?.className)}
           >
             {clickableText}
-          </a>
+          </Box>
         )}
-      </span>
+      </Box>
 
       {onClose && (
-        <button
+        <Box
+          as='button'
           onClick={onClose}
           aria-label='Close'
           type='button'
           className='iui-alert-button'
         >
-          <span className='iui-alert-button-icon' aria-hidden>
+          <Box as='span' className='iui-alert-button-icon' aria-hidden>
             <SvgCloseSmall />
-          </span>
-        </button>
+          </Box>
+        </Box>
       )}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', AlertProps>;
 
 export default Alert;

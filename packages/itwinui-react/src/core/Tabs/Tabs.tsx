@@ -5,15 +5,14 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useGlobals,
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
   useIsClient,
   useResizeObserver,
+  Box,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab.js';
 
 export type OverflowOptions = {
@@ -132,12 +131,12 @@ export type TabsProps = {
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
+type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
+type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
   type?: 'default' | 'borderless';
 };
 
@@ -203,7 +202,6 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
-  useGlobals();
   const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
@@ -555,9 +553,7 @@ export const Tabs = (props: TabsProps) => {
             />
           ) : (
             React.cloneElement(label, {
-              className: cx(label.props.className, {
-                'iui-active': index === currentActiveIndex,
-              }),
+              active: index === currentActiveIndex,
               'aria-selected': index === currentActiveIndex,
               tabIndex: index === currentActiveIndex ? 0 : -1,
               onClick: (args: unknown) => {
@@ -573,11 +569,12 @@ export const Tabs = (props: TabsProps) => {
   );
 
   return (
-    <div
+    <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
       style={stripeProperties}
     >
-      <ul
+      <Box
+        as='ul'
         className={cx(
           'iui-tabs',
           `iui-${type}`,
@@ -597,23 +594,23 @@ export const Tabs = (props: TabsProps) => {
         {...rest}
       >
         {labels.map((label, index) => createTab(label, index))}
-      </ul>
+      </Box>
 
       {actions && (
-        <div className='iui-tabs-actions-wrapper'>
-          <div className='iui-tabs-actions'>{actions}</div>
-        </div>
+        <Box className='iui-tabs-actions-wrapper'>
+          <Box className='iui-tabs-actions'>{actions}</Box>
+        </Box>
       )}
 
       {children && (
-        <div
+        <Box
           className={cx('iui-tabs-content', contentClassName)}
           role='tabpanel'
         >
           {children}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

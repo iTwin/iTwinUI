@@ -7,7 +7,6 @@ import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
-  DropdownMenuProps,
   IconButton,
   MenuExtraContent,
   MenuDivider,
@@ -23,6 +22,8 @@ import {
   SvgPlaceholder,
 } from '@itwin/itwinui-icons-react';
 import { useState } from '@storybook/addons';
+
+type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>;
 
 export default {
   title: 'Core/DropdownMenu',
@@ -71,54 +72,24 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
 // Body height is the same as Select component height therefore clicking outside would not close dropdown.
 Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
 
-export const WithIcons: Story<DropdownMenuProps> = (args) => {
+export const WithStartIcons: Story<DropdownMenuProps> = (args) => {
   const { menuItems, ...rest } = args;
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick('Crop', close)} icon={<SvgCrop />}>
-      Crop
-    </MenuItem>,
-    <MenuItem key={2} onClick={onClick('Paste', close)} icon={<SvgClipboard />}>
-      Paste
-    </MenuItem>,
-    <MenuItem key={3} onClick={onClick('Move', close)} icon={<SvgMove />}>
-      Move
-    </MenuItem>,
-  ];
-  return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
-      <IconButton>
-        <SvgMore />
-      </IconButton>
-    </DropdownMenu>
-  );
-};
-
-WithIcons.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
-
-export const WithBadges: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
-  const onClick = (actionName: string, close: () => void) => () => {
-    action(`${actionName} clicked!`)();
-    close();
-  };
-  const dropdownMenuItems = (close: () => void) => [
-    <MenuItem key={1} onClick={onClick('Crop', close)} badge={<SvgCrop />}>
+    <MenuItem key={1} onClick={onClick('Crop', close)} startIcon={<SvgCrop />}>
       Crop
     </MenuItem>,
     <MenuItem
       key={2}
       onClick={onClick('Paste', close)}
-      badge={<SvgClipboard />}
+      startIcon={<SvgClipboard />}
     >
       Paste
     </MenuItem>,
-    <MenuItem key={3} onClick={onClick('Move', close)} badge={<SvgMove />}>
+    <MenuItem key={3} onClick={onClick('Move', close)} startIcon={<SvgMove />}>
       Move
     </MenuItem>,
   ];
@@ -131,7 +102,41 @@ export const WithBadges: Story<DropdownMenuProps> = (args) => {
   );
 };
 
-WithBadges.decorators = [
+WithStartIcons.decorators = [
+  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
+];
+
+export const WithEndIcons: Story<DropdownMenuProps> = (args) => {
+  const { menuItems, ...rest } = args;
+  const onClick = (actionName: string, close: () => void) => () => {
+    action(`${actionName} clicked!`)();
+    close();
+  };
+  const dropdownMenuItems = (close: () => void) => [
+    <MenuItem key={1} onClick={onClick('Crop', close)} endIcon={<SvgCrop />}>
+      Crop
+    </MenuItem>,
+    <MenuItem
+      key={2}
+      onClick={onClick('Paste', close)}
+      endIcon={<SvgClipboard />}
+    >
+      Paste
+    </MenuItem>,
+    <MenuItem key={3} onClick={onClick('Move', close)} endIcon={<SvgMove />}>
+      Move
+    </MenuItem>,
+  ];
+  return (
+    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <IconButton>
+        <SvgMore />
+      </IconButton>
+    </DropdownMenu>
+  );
+};
+
+WithEndIcons.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
@@ -145,7 +150,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={1}
       onClick={onClick(1, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #1'
     >
       Item #1
@@ -153,7 +158,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={2}
       onClick={onClick(2, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #2'
     >
       Item #2
@@ -161,7 +166,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
     <MenuItem
       key={3}
       onClick={onClick(3, close)}
-      icon={<SvgPlaceholder />}
+      startIcon={<SvgPlaceholder />}
       sublabel='Sublabel #3'
     >
       Item #3

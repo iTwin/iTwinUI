@@ -4,16 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals, polymorphic } from '../utils/index.js';
-import type {
-  PolymorphicForwardRefComponent,
-  PolymorphicComponentProps,
-} from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
+import { polymorphic, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'li',
     size = 'default',
     disabled = false,
     active = false,
@@ -23,10 +18,9 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useGlobals();
-
   return (
-    <Element
+    <Box
+      as='li'
       className={cx('iui-list-item', className)}
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
@@ -40,7 +34,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
 ListItemComponent.displayName = 'ListItem';
 
-type ListItemOwnProps = {
+export type ListItemOwnProps = {
   /**
    * Size of the ListItem. Can be explicitly specified to be 'large',
    * but if a description is included in addition to the label, then
@@ -128,5 +122,3 @@ export const ListItem = Object.assign(ListItemComponent, {
    */
   Description: ListItemDescription,
 });
-
-export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;

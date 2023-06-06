@@ -15,32 +15,40 @@ npm install @itwin/itwinui-react
 yarn add @itwin/itwinui-react
 ```
 
+## Setup
+
+Wrap your application entrypoint in `ThemeProvider` and import `styles.css`.
+
+```jsx
+import { ThemeProvider } from '@itwin/itwinui-react';
+import '@itwin/itwinui-react/styles.css';
+
+export default function App() {
+  return (
+    <>
+      <ThemeProvider>{/* Your components go here. */}</ThemeProvider>
+    </>
+  );
+}
+```
+
+ThemeProvider has a `theme` prop which accepts one of the following values:
+
+- `light` (default)
+- `dark`
+- `os` (respects the color scheme of the operating system)
+- `inherit`
+
 ## Usage
 
-Import the component you want and start using it!
+After setting up ThemeProvider and styles, import the component you want and start using it!
 
 ```jsx
 import { Button } from '@itwin/itwinui-react';
 
-const App = () => <Button>Hello!</Button>;
+const Page = () => <Button>Hello!</Button>;
 ```
 
-## Theming
+Check out this template for a live interactive demo:
 
-By default, all components use the light theme, but we recommend wrapping your root element with `ThemeProvider`. You can pass one of the following values to its `theme` prop:
-
-- `light` (default)
-- `dark`
-- `os` (which respects the color scheme of the operating system)
-
-```jsx
-import { ThemeProvider } from '@itwin/itwinui-react';
-
-const App = () => (
-  <>
-    <ThemeProvider theme='dark'>
-      <>{/* Your components go here. */}</>
-    </ThemeProvider>
-  </>
-);
-```
+[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)

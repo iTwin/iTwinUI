@@ -3,34 +3,32 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useGlobals } from '../utils/index.js';
-import '@itwin/itwinui-css/css/workflow-diagram.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
-export type WorkflowDiagramProps = Pick<StepperProps, 'steps'>;
+type WorkflowDiagramProps = Pick<StepperProps, 'steps'>;
 
-export const WorkflowDiagram = React.forwardRef<
-  HTMLDivElement,
-  WorkflowDiagramProps
->((props, ref) => {
-  const { steps, ...rest } = props;
+export const WorkflowDiagram = React.forwardRef(
+  // TODO: Remove this ref cast. ref and rest props should be applied on the same element
+  (props, ref: React.Ref<HTMLDivElement>) => {
+    const { steps, ...rest } = props;
 
-  useGlobals();
-
-  return (
-    <div ref={ref}>
-      <ol className={'iui-workflow-diagram'} {...rest}>
-        {steps.map((s, index) => (
-          <WorkflowDiagramStep
-            key={index}
-            title={s.name}
-            description={s.description}
-          />
-        ))}
-      </ol>
-    </div>
-  );
-});
+    return (
+      <Box ref={ref}>
+        <Box as='ol' className={'iui-workflow-diagram'} {...rest}>
+          {steps.map((s, index) => (
+            <WorkflowDiagramStep
+              key={index}
+              title={s.name}
+              description={s.description}
+            />
+          ))}
+        </Box>
+      </Box>
+    );
+  },
+) as PolymorphicForwardRefComponent<'ol', WorkflowDiagramProps>;
 
 export default WorkflowDiagram;
