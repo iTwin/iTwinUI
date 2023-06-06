@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fixed a regression where `FileUploadCard.Input` was inadvertently showing when focused.
+Fixed an issue where the visually hidden `FileUploadCard.Input` was inadvertently showing when focused.
