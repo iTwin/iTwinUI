@@ -78,7 +78,7 @@ const getScopedClassName = (className = '') => {
   return (
     className
       .split(' ')
-      .map((c) => (styles.hasOwnProperty(c) ? styles[c] : c))
+      .map((c) => (c in styles ? styles[c] : c))
       .join(' ') || null
   );
 };

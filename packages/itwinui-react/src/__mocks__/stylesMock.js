@@ -5,9 +5,12 @@
 module.exports = new Proxy(
   {},
   {
-    // instead of returning scoped css modules, we will preserve the original classes
-    get: (...args) => {
-      return Reflect.get(...args);
+    get: (target, prop) => {
+      // instead of returning scoped css modules, we will preserve the original classes
+      if (prop.startsWith('iui')) {
+        return prop;
+      }
+      return Reflect.get(target, prop);
     },
   },
 );
