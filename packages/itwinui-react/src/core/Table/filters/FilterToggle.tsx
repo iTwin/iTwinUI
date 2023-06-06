@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
 import {
   useGlobals,
@@ -23,7 +24,7 @@ export type FilterToggleProps<T extends Record<string, unknown>> = {
 export const FilterToggle = <T extends Record<string, unknown>>(
   props: FilterToggleProps<T>,
 ) => {
-  const { column, ...rest } = props;
+  const { column, className, ...rest } = props;
 
   useGlobals();
 
@@ -55,20 +56,19 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           visible={isVisible}
           onClickOutside={close}
         >
-          <div className='iui-table-filter-button'>
-            <IconButton
-              styleType='borderless'
-              isActive={isVisible || isColumnFiltered}
-              onClick={(e) => {
-                setIsVisible((v) => !v);
-                // Prevents from triggering sort
-                e.stopPropagation();
-              }}
-              {...rest}
-            >
-              {isColumnFiltered ? <SvgFilter /> : <SvgFilterHollow />}
-            </IconButton>
-          </div>
+          <IconButton
+            styleType='borderless'
+            isActive={isVisible || isColumnFiltered}
+            className={cx('iui-table-filter-button', className)}
+            onClick={(e) => {
+              setIsVisible((v) => !v);
+              // Prevents from triggering sort
+              e.stopPropagation();
+            }}
+            {...rest}
+          >
+            {isColumnFiltered ? <SvgFilter /> : <SvgFilterHollow />}
+          </IconButton>
         </Popover>
       )}
     </>
