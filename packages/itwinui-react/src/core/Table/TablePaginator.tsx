@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/table.css';
 import { IconButton, Button, DropdownButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { MenuItem } from '../Menu/index.js';

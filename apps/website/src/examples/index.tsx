@@ -94,6 +94,7 @@ export { default as DialogFullPageExample } from './Dialog.fullpage';
 export { default as DialogMainExample } from './Dialog.main';
 export { default as DialogModalExample } from './Dialog.modal';
 export { default as DialogNonDismissibleExample } from './Dialog.nondismissible';
+export { default as DialogPlacementExample } from './Dialog.placement';
 
 export { default as DropdownButtonMainExample } from './DropdownButton.main';
 
@@ -240,6 +241,9 @@ export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgr
 
 export { default as TooltipMainExample } from './Tooltip.main';
 export { default as TooltipPlacementExample } from './Tooltip.placement';
+
+export { default as TransferListMainExample } from './TransferList.main';
+export { default as TransferListWithLabelExample } from './TransferList.withlabel';
 
 export { default as TreeMainExample } from './Tree.main';
 

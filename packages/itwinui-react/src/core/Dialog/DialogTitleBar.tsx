@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { SvgClose, mergeEventHandlers, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';
