@@ -20,6 +20,7 @@ export default function StoryWithDecorator(Story, context) {
       theme={theme}
       themeOptions={{ highContrast, applyBackground: false }}
       style={{ background }}
+      className='story-wrapper'
     >
       <Story />
     </ThemeProvider>
