@@ -69,7 +69,7 @@ export default {
               outline: 1px solid var(--iui-color-border);
               min-height: 100px;
             }
-            :where(.demo-flex-wrapper > * > div:not([class])) {
+            :where(.demo-flex-wrapper > * div:not([class])) {
               font-family: var(--iui-font-sans);
               color: var(--iui-color-text);
               padding: 1rem;
