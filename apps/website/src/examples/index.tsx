@@ -87,6 +87,13 @@ export { default as ComboBoxStatusExample } from './ComboBox.status';
 export { default as ComboBoxVirtualizedExample } from './ComboBox.virtualized';
 
 export { default as DatePickerMainExample } from './DatePicker.main';
+export { default as DatePickerBasicExample } from './DatePicker.basic';
+export { default as DatePickerWithTimeExample } from './DatePicker.withtime';
+export { default as DatePickerWithCombinedTimeExample } from './DatePicker.withcombinedtime';
+export { default as DatePickerDateRangeExample } from './DatePicker.daterange';
+export { default as DatePickerWithYearExample } from './DatePicker.withyear';
+export { default as DatePickerLocalizedExample } from './DatePicker.localized';
+export { default as DatePickerDatesDisabledExample } from './DatePicker.datesdisabled';
 
 export { default as DialogDismissibleExample } from './Dialog.dismissible';
 export { default as DialogDraggableExample } from './Dialog.draggable';
@@ -240,9 +247,6 @@ export { default as ToggleSwitchInputGroupExample } from './ToggleSwitch.inputgr
 
 export { default as TooltipMainExample } from './Tooltip.main';
 export { default as TooltipPlacementExample } from './Tooltip.placement';
-
-export { default as TransferListMainExample } from './TransferList.main';
-export { default as TransferListWithLabelExample } from './TransferList.withlabel';
 
 export { default as TreeMainExample } from './Tree.main';
 
