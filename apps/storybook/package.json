@@ -5,7 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-icons-react": "2",
-    "@itwin/itwinui-react": "*",
+    "@itwin/itwinui-react": "3.0.0-dev.0",
     "@storybook/addon-a11y": "~7.0.2",
     "@storybook/addon-actions": "~7.0.2",
     "@storybook/addon-essentials": "~7.0.2",
@@ -31,7 +31,7 @@
     "sb": "~7.0.2",
     "storybook-dark-mode": "^3.0.0",
     "typescript": "^4.6.3",
-    "vite": "^4.1.1"
+    "vite": "^4.1.5"
   },
   "scripts": {
     "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
