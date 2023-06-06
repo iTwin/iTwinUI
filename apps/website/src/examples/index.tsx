@@ -101,7 +101,6 @@ export { default as DialogFullPageExample } from './Dialog.fullpage';
 export { default as DialogMainExample } from './Dialog.main';
 export { default as DialogModalExample } from './Dialog.modal';
 export { default as DialogNonDismissibleExample } from './Dialog.nondismissible';
-export { default as DialogDraggableContainerExample } from './Dialog.draggablecontainer';
 
 export { default as DropdownButtonMainExample } from './DropdownButton.main';
 
