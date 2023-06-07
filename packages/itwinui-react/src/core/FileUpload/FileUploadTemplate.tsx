@@ -42,6 +42,10 @@ type FileUploadTemplateProps = {
 
 /**
  * @deprecated Use `FileUploadCard` instead.
+ * Default template to be used with the `FileUpload` wrapper component.
+ * Contains a hidden input with styled labels (customizable).
+ * @example
+ * <FileUploadTemplate onChange={(e) => console.log(e.target.files)} />
  */
 export const FileUploadTemplate = React.forwardRef((props, ref) => {
   const {
