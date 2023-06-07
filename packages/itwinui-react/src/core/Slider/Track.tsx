@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { Box } from '../utils/index.js';
 import type { SliderProps, TrackDisplayMode } from './Slider.js';
 
 function shouldDisplaySegment(segmentIndex: number, mode: TrackDisplayMode) {
@@ -79,7 +80,7 @@ export const Track = (props: TrackProps) => {
           return (
             <React.Fragment key={index}>
               {shouldDisplaySegment(index, trackDisplayMode) ? (
-                <div
+                <Box
                   className='iui-slider-track'
                   style={{
                     ...(orientation === 'horizontal'
