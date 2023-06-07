@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { OldTooltip } from '../Tooltip/index.js';
 import { Box, type CommonProps } from '../utils/index.js';
 import type { StepperStepProps } from './StepperStep.js';
-
+import { Tooltip } from '../Tooltip/index.js';
 export type WorkflowDiagramStepProps = Pick<
   StepperStepProps,
   'title' | 'description'
@@ -31,7 +30,7 @@ export const WorkflowDiagramStep = (props: WorkflowDiagramStepProps) => {
   );
 
   return description ? (
-    <OldTooltip content={description}>{stepShape}</OldTooltip>
+    <Tooltip content={description}>{stepShape}</Tooltip>
   ) : (
     stepShape
   );

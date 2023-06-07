@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { OldTooltip, Badge, Button } from '@itwin/itwinui-react';
+import { Tooltip, Badge, Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
@@ -16,18 +16,18 @@ export default () => {
         placeItems: 'center',
       }}
     >
-      <OldTooltip placement='left' content='left OldTooltip'>
+      <Tooltip placement='left' content='left Tooltip'>
         <Button>Left</Button>
-      </OldTooltip>
-      <OldTooltip placement='top' content='top OldTooltip'>
+      </Tooltip>
+      <Tooltip placement='top' content='top Tooltip'>
         <Button>Top</Button>
-      </OldTooltip>
-      <OldTooltip placement='bottom' content='bottom OldTooltip'>
+      </Tooltip>
+      <Tooltip placement='bottom' content='bottom Tooltip'>
         <Button>Bottom</Button>
-      </OldTooltip>
-      <OldTooltip placement='right' content='right OldTooltip'>
+      </Tooltip>
+      <Tooltip placement='right' content='right Tooltip'>
         <Button>Right</Button>
-      </OldTooltip>
+      </Tooltip>
     </div>
   );
 };

@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { NewTooltip } from '@itwin/itwinui-react';
+import { Tooltip } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
 
-type TooltipProps = React.ComponentProps<typeof NewTooltip>;
+type TooltipProps = React.ComponentProps<typeof Tooltip>;
 
 export default {
   title: 'Core/Tooltip',
-  component: NewTooltip,
+  component: Tooltip,
   args: {
     content: 'Here I am!',
     children: (
@@ -38,9 +38,9 @@ export default {
 export const Top: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
-    <NewTooltip placement={placement} {...rest}>
+    <Tooltip placement={placement} {...rest}>
       {children}
-    </NewTooltip>
+    </Tooltip>
   );
 };
 
@@ -49,9 +49,9 @@ Top.args = { placement: 'top' };
 export const Right: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
-    <NewTooltip placement={placement} {...rest}>
+    <Tooltip placement={placement} {...rest}>
       {children}
-    </NewTooltip>
+    </Tooltip>
   );
 };
 
@@ -60,9 +60,9 @@ Right.args = { placement: 'right' };
 export const Bottom: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
-    <NewTooltip placement={placement} {...rest}>
+    <Tooltip placement={placement} {...rest}>
       {children}
-    </NewTooltip>
+    </Tooltip>
   );
 };
 
@@ -71,9 +71,9 @@ Bottom.args = { placement: 'bottom' };
 export const Left: Story<TooltipProps> = (args) => {
   const { children, placement, ...rest } = args;
   return (
-    <NewTooltip placement={placement} {...rest}>
+    <Tooltip placement={placement} {...rest}>
       {children}
-    </NewTooltip>
+    </Tooltip>
   );
 };
 
@@ -82,7 +82,7 @@ Left.args = { placement: 'left' };
 export const Controlled: Story<TooltipProps> = (args) => {
   const { visible = true, ...rest } = args;
   return (
-    <NewTooltip visible={visible} {...rest}>
+    <Tooltip visible={visible} {...rest}>
       <div
         style={{
           marginTop: 40,
@@ -92,7 +92,7 @@ export const Controlled: Story<TooltipProps> = (args) => {
       >
         No need to hover me
       </div>
-    </NewTooltip>
+    </Tooltip>
   );
 };
 

@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { OldTooltip, Button } from '@itwin/itwinui-react';
+import { Tooltip, Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <OldTooltip placement='top' content='I am a tooltip'>
+    <Tooltip placement='top' content='I am a tooltip'>
       <Button>Please, hover me!</Button>
-    </OldTooltip>
+    </Tooltip>
   );
 };

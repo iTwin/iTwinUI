@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { OldTooltip } from '../Tooltip/index.js';
+import { Tooltip } from '../Tooltip/index.js';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
@@ -114,7 +114,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
   );
 
   return description ? (
-    <OldTooltip content={description}>{stepShape}</OldTooltip>
+    <Tooltip content={description}>{stepShape}</Tooltip>
   ) : (
     stepShape
   );

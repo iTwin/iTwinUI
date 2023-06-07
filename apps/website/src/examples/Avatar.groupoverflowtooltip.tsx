@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { AvatarGroup, Avatar, getUserColor, OldTooltip } from '@itwin/itwinui-react';
+import { AvatarGroup, Avatar, getUserColor, Tooltip } from '@itwin/itwinui-react';
 
 export default () => {
   const userNames = [
@@ -20,7 +20,7 @@ export default () => {
   ];
 
   /**
-   * Ref is set on the last avatar for OldTooltip positioning.
+   * Ref is set on the last avatar for Tooltip positioning.
    */
   const avatarRef = React.useRef<HTMLDivElement>(null);
 
@@ -44,7 +44,7 @@ export default () => {
           />
         ))}
       </AvatarGroup>
-      <OldTooltip
+      <Tooltip
         reference={avatarRef}
         content={tooltipContent}
         placement='right'
