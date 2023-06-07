@@ -5,7 +5,6 @@
 export { FileUpload } from './FileUpload.js';
 export default './FileUpload';
 
-
 export { FileUploadTemplate } from './FileUploadTemplate.js';
 
 export { FileUploadCard } from './FileUploadCard.js';
