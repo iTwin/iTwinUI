@@ -12,7 +12,6 @@ export type FileUploadProps = {
   /**
    * Content shown over `children` when file is being dragged onto the component.
    * Should always be used when drag content differs from `children` being wrapped.
-   * Can be skipped if wrapping `FileUploadTemplate`.
    */
   dragContent?: React.ReactNode;
   /**
@@ -21,16 +20,16 @@ export type FileUploadProps = {
   onFileDropped: (files: FileList) => void;
   /**
    * Component to wrap `FileUpload` around.
-   * Either pass `FileUploadTemplate` (for default state) or a different component to wrap.
+   * Either pass `FileUploadCard` (for default state) or a different component to wrap.
    */
   children: React.ReactNode;
 } & CommonProps;
 
 /**
- * File upload component to be wrapped around `FileUploadTemplate` or any arbitrary component.
+ * File upload component to be wrapped around `FileUploadCard` or any arbitrary component.
  * Provides support for dragging and dropping multiple files.
  * @example
- * <FileUpload onFileDropped={console.log}><FileUploadTemplate /></FileUpload>
+ * <FileUpload onFileDropped={console.log}><FileUploadCard /></FileUpload>
  * <FileUpload dragContent='Drop file here' onFileDropped={console.log}><Textarea /></FileUpload>
  */
 export const FileUpload = React.forwardRef(

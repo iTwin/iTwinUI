@@ -11,7 +11,6 @@ import {
   FileUploadCard,
   FileEmptyCard,
   FileUploadProps,
-  FileUploadTemplate,
   LabeledInput,
   IconButton,
 } from '@itwin/itwinui-react';
@@ -33,26 +32,6 @@ export default {
   },
   title: 'Core/FileUpload',
 } as Meta<FileUploadProps>;
-
-export const Default: Story<FileUploadProps> = (args) => {
-  const [files, setFiles] = useState<Array<File>>([]);
-
-  return (
-    <FileUpload
-      {...args}
-      onFileDropped={(files) => {
-        setFiles(Array.from(files));
-        action(`${files.length} files uploaded`)();
-      }}
-    >
-      <FileUploadTemplate
-        onChange={(e) => setFiles(Array.from(e.target.files || []))}
-      >
-        {files.map((f) => f.name).join(', ')}
-      </FileUploadTemplate>
-    </FileUpload>
-  );
-};
 
 export const WrappingInput: Story<FileUploadProps> = (args) => {
   const [files, setFiles] = useState<Array<File>>([]);

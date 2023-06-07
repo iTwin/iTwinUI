@@ -41,10 +41,7 @@ export type FileUploadTemplateProps = {
 } & React.ComponentProps<'div'>;
 
 /**
- * Default template to be used with the `FileUpload` wrapper component.
- * Contains a hidden input with styled labels (customizable).
- * @example
- * <FileUploadTemplate onChange={(e) => console.log(e.target.files)} />
+ * @deprecated Use `FileUploadCard` instead.
  */
 export const FileUploadTemplate = (props: FileUploadTemplateProps) => {
   const {

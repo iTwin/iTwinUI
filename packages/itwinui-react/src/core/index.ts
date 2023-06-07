@@ -102,13 +102,11 @@ export type { FieldsetProps } from './Fieldset/index.js';
 
 export {
   FileUpload,
-  FileUploadTemplate,
   FileUploadCard,
   FileEmptyCard,
 } from './FileUpload/index.js';
 export type {
   FileUploadProps,
-  FileUploadTemplateProps,
   FileUploadCardProps,
   FileUploadCardIconProps,
   FileUploadCardInfoProps,

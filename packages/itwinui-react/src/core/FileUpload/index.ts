@@ -6,9 +6,6 @@ export { FileUpload } from './FileUpload.js';
 export type { FileUploadProps } from './FileUpload.js';
 export default './FileUpload';
 
-export { FileUploadTemplate } from './FileUploadTemplate.js';
-export type { FileUploadTemplateProps } from './FileUploadTemplate.js';
-
 export { FileUploadCard } from './FileUploadCard.js';
 export type {
   FileUploadCardProps,
