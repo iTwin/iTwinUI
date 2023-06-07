@@ -12,7 +12,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/expandable-block.css';
 
 type ExpandableBlockProps = {
   /**
@@ -57,6 +56,11 @@ type ExpandableBlockProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
+  /**
+   * Disables ExpandableBlock.
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -81,6 +85,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
     status,
     size = 'default',
     styleType = 'default',
+    disabled = false,
     ...rest
   } = props;
 
@@ -92,12 +97,15 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
+    if (disabled) {
+      return;
+    }
     setExpanded(!expanded);
     onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
+    if (event.altKey || disabled) {
       return;
     }
 
@@ -127,8 +135,10 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
       {...rest}
     >
       <Box
+        role='button'
         aria-expanded={expanded}
         className='iui-header'
+        aria-disabled={disabled}
         tabIndex={0}
         onClick={handleToggle}
         onKeyDown={onKeyDown}

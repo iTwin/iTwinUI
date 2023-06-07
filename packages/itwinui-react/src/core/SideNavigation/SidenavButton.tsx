@@ -8,7 +8,6 @@ import * as React from 'react';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Button } from '../Buttons/index.js';
 import type { ButtonProps } from '../Buttons/Button/Button.js';
-import '@itwin/itwinui-css/css/side-navigation.css';
 
 type SidenavButtonProps = {
   /**

@@ -73,6 +73,8 @@ export {
 
 export { List, ListItem } from './List/index.js';
 
+export { TransferList } from './TransferList/index.js';
+
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
 
 export {

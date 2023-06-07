@@ -11,7 +11,6 @@ import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { Placement } from 'tippy.js';
 import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = ButtonProps & {
   /**
