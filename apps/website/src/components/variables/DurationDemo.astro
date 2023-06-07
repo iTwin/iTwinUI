@@ -40,6 +40,7 @@ const durations = ['1', '2', '3'];
       animation-name: duration;
       animation-duration: var(--duration);
       animation-iteration-count: infinite;
+      animation-direction: alternate;
     }
   }
 
@@ -47,11 +48,8 @@ const durations = ['1', '2', '3'];
     0% {
       width: 10%;
     }
-    50% {
-      width: 100%;
-    }
     100% {
-      width: 10%;
+      width: 100%;
     }
   }
 </style>
