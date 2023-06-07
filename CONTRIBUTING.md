@@ -252,7 +252,11 @@ Each component has a corresponding jest test inside of its directory. Be sure to
 
 Use `yarn test` to run the tests. Add `--watch` flag if you want tests to rerun after changes.
 
-We usually do not use `describe` block and our test case should start with 'should'.
+We usually do not use `describe` block and our test case should start with 'should'. To run unit tests for a single component,  
+
+use `yarn test [component_name].test.tsx`. Be sure to navigate to the `\itwinui-react\` directory when testing a single 
+
+component.
 
 ```jsx
 it('should be visible', () => {
