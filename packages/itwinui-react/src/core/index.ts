@@ -56,8 +56,8 @@ export { Fieldset } from './Fieldset/index.js';
 
 export {
   FileUpload,
-  FileUploadCard,
   FileUploadTemplate,
+  FileUploadCard,
   FileEmptyCard,
 } from './FileUpload/index.js';
 
