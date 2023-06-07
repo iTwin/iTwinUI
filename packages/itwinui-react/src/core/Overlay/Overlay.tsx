@@ -2,8 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-export { ProgressLinear } from './ProgressLinear/index.js';
+import { polymorphic } from '../utils/index.js';
 
-export { ProgressRadial } from './ProgressRadial/index.js';
-
-export { Overlay } from '../Overlay/index.js';
+export const Overlay = polymorphic('iui-progress-indicator-overlay');
+Overlay.displayName = 'Overlay';
