@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Tooltip } from '../Tooltip/index.js';
+import { OldTooltip } from '../Tooltip/index.js';
 import { Box, type CommonProps } from '../utils/index.js';
 import type { StepperStepProps } from './StepperStep.js';
 
@@ -31,7 +31,7 @@ export const WorkflowDiagramStep = (props: WorkflowDiagramStepProps) => {
   );
 
   return description ? (
-    <Tooltip content={description}>{stepShape}</Tooltip>
+    <OldTooltip content={description}>{stepShape}</OldTooltip>
   ) : (
     stepShape
   );

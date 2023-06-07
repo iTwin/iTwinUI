@@ -14,7 +14,7 @@ import {
   DropdownMenu,
   MenuItem,
   Input,
-  Tooltip,
+  OldTooltip,
 } from '@itwin/itwinui-react';
 import {
   SvgChevronRightDouble,
@@ -130,7 +130,10 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
           const previousBreadcrumb =
             visibleCount > 1 ? items.length - visibleCount : items.length - 2;
           return (
-            <Tooltip content={`Item ${previousBreadcrumb}`} placement='bottom'>
+            <OldTooltip
+              content={`Item ${previousBreadcrumb}`}
+              placement='bottom'
+            >
               <IconButton
                 aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
@@ -139,7 +142,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
               >
                 <SvgMore />
               </IconButton>
-            </Tooltip>
+            </OldTooltip>
           );
         }}
         {...args}

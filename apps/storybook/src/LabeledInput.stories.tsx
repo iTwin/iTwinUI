@@ -6,7 +6,7 @@ import { SvgCloseSmall, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledInput, Tooltip, IconButton } from '@itwin/itwinui-react';
+import { LabeledInput, OldTooltip, IconButton } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -165,7 +165,7 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
         iconDisplayStyle='inline'
         {...args}
       />
-      <Tooltip reference={ref} content='Placeholder' />
+      <OldTooltip reference={ref} content='Placeholder' />
     </>
   );
 };

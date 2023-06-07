@@ -31,7 +31,7 @@ export type TooltipProps = {
  * <Button ref={buttonRef} />
  * <Tooltip content='tooltip text' reference={buttonRef} />
  */
-export const Tooltip = (props: TooltipProps) => {
+export const OldTooltip = (props: TooltipProps) => {
   const { content, children, className, style, visible, ref, id, ...rest } =
     props;
 
@@ -58,4 +58,4 @@ export const Tooltip = (props: TooltipProps) => {
   );
 };
 
-export default Tooltip;
+export default OldTooltip;

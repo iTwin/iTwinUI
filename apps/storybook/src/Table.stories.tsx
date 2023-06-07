@@ -23,7 +23,7 @@ import {
   tableFilters,
   TableFilterValue,
   TableProps,
-  Tooltip,
+  OldTooltip,
   DefaultCell,
   EditableCell,
   TablePaginator,
@@ -1532,7 +1532,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         enableColumnReordering
         {...args}
       />
-      <Tooltip
+      <OldTooltip
         reference={rowRefMap.current[hoveredRowIndex]}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'

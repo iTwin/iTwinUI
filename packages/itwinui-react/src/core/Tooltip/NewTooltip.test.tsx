@@ -5,14 +5,14 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
 
-import { Tooltip } from './Tooltip.js';
+import { OldTooltip } from './Tooltip.js';
 
-it('should toggle the visibility of tooltip on hover', () => {
+it('should toggle the visibility of OldTooltip on hover', () => {
   jest.useFakeTimers();
   const { getByText, queryByText } = render(
-    <Tooltip content='some text'>
+    <OldTooltip content='some text'>
       <div>Hover Here</div>
-    </Tooltip>,
+    </OldTooltip>,
   );
 
   expect(queryByText('some text')).toBeNull();
@@ -29,9 +29,9 @@ it('should toggle the visibility of tooltip on hover', () => {
 
 it('should be visible', () => {
   const { getByText } = render(
-    <Tooltip content='some text' visible>
+    <OldTooltip content='some text' visible>
       <div>Visible!</div>
-    </Tooltip>,
+    </OldTooltip>,
   );
 
   getByText('some text');
@@ -39,9 +39,9 @@ it('should be visible', () => {
 
 it('should not be visible', () => {
   const { queryByText } = render(
-    <Tooltip content='some text' visible={false}>
+    <OldTooltip content='some text' visible={false}>
       <div>Visible!</div>
-    </Tooltip>,
+    </OldTooltip>,
   );
 
   expect(queryByText('some text')).toBeNull();
@@ -53,7 +53,7 @@ it('should allow button clicks and hovers', () => {
   const mouseLeaveHandler = jest.fn();
 
   const { getByText } = render(
-    <Tooltip content='Tooltip!'>
+    <OldTooltip content='OldTooltip!'>
       <button
         onClick={(event) => {
           clickHandler(event.clientX, event.clientY);
@@ -63,7 +63,7 @@ it('should allow button clicks and hovers', () => {
       >
         Click me!
       </button>
-    </Tooltip>,
+    </OldTooltip>,
   );
 
   fireEvent.click(getByText('Click me!'), {
@@ -80,9 +80,9 @@ it('should allow button clicks and hovers', () => {
 
 it('should override title attribute', () => {
   const { getByText } = render(
-    <Tooltip content='some text' visible>
+    <OldTooltip content='some text' visible>
       <div title='should override'>child</div>
-    </Tooltip>,
+    </OldTooltip>,
   );
 
   getByText('some text');

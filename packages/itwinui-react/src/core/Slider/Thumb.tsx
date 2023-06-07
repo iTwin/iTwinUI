@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Tooltip } from '../Tooltip/index.js';
+import { OldTooltip } from '../Tooltip/index.js';
 import type { TooltipProps } from '../Tooltip/Tooltip.js';
 import type { SliderProps } from './Slider.js';
 import { Box } from '../utils/index.js';
@@ -149,7 +149,7 @@ export const Thumb = (props: ThumbProps) => {
   const { style, className, ...rest } = thumbProps || {};
 
   return (
-    <Tooltip
+    <OldTooltip
       placement='top'
       trigger={
         tooltipProps?.visible == null ? 'mouseenter click focus' : undefined
@@ -181,6 +181,6 @@ export const Thumb = (props: ThumbProps) => {
         onKeyDown={(event) => handleOnKeyboardEvent(event, false)}
         onKeyUp={(event) => handleOnKeyboardEvent(event, true)}
       />
-    </Tooltip>
+    </OldTooltip>
   );
 };

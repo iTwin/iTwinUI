@@ -6,7 +6,7 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   getUserColor,
-  Tooltip,
+  OldTooltip,
   Avatar,
   AvatarGroup,
 } from '@itwin/itwinui-react';
@@ -206,7 +206,7 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
           />
         ))}
       </AvatarGroup>
-      <Tooltip
+      <OldTooltip
         reference={avatarRef}
         content={tooltipContent}
         placement='right'

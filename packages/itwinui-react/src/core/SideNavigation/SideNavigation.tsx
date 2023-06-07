@@ -7,7 +7,7 @@ import cx from 'classnames';
 import { WithCSSTransition, SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
-import { Tooltip } from '../Tooltip/index.js';
+import { OldTooltip } from '../Tooltip/index.js';
 
 type SideNavigationProps = {
   /**
@@ -120,13 +120,13 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
           <Box className='iui-top'>
             {items.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
-                <Tooltip
+                <OldTooltip
                   content={sidenavButton.props.children}
                   placement='right'
                   key={index}
                 >
                   {sidenavButton}
-                </Tooltip>
+                </OldTooltip>
               ) : (
                 sidenavButton
               ),
@@ -135,13 +135,13 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
           <Box className='iui-bottom'>
             {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
-                <Tooltip
+                <OldTooltip
                   content={sidenavButton.props.children}
                   placement='right'
                   key={index}
                 >
                   {sidenavButton}
-                </Tooltip>
+                </OldTooltip>
               ) : (
                 sidenavButton
               ),
