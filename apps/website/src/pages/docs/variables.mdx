@@ -15,8 +15,6 @@ import DurationDemo from '~/components/variables/DurationDemo.astro';
 
 <p>{frontmatter.description}</p>
 
-## Installation
-
 If you're using iTwinUI-react, the variables will be automatically included and imported into your application.
 If you want to use it standalone, you can install and import it manually:
 
@@ -28,17 +26,15 @@ npm install @itwin/itwinui-variables
 import '@itwin/itwinui-variables';
 ```
 
-## Variables
-
 We strongly encourage developers to use iTwinUI's CSS variables rather than hardcoding values. Many of our color values change depending on the theme or contrast settings. Because of this, we purposefully do not expose the variables' values on this site. However, if you need the variables values you can extrapolate those values from [the raw CSS file](https://unpkg.com/browse/@itwin/itwinui-variables@2.x.x/index.css).
 
-### Color
+## Color
 
 iTwinUI supplies many different color variables that are specific to their usecase. All colors, if applied correctly, are guaranteed to meet [WCAG AA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) in base themes and [WCAG AAA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced) in high contrast unless noted otherwise. All CSS variables are prefixed with `--iui-` followed by the category and ending with the value if applicable.
 
 Example: `--iui-color-background-backdrop`
 
-#### Background
+### Background
 
 There are several main background colors. These colors are used to build the backdrop of your website or application and are the most commonly used background colors.
 
@@ -135,7 +131,7 @@ These can be used like so:
 background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
 ```
 
-#### Border
+### Border
 
 There are also a few special named colors for borders or dividing lines.
 
@@ -169,7 +165,7 @@ You can also use border status colors in combination with status background colo
   ]}
 />
 
-#### Text
+### Text
 
 Text colors have been carefully selected to ensure you meet legal accessibility requirements. All of these text colors ensure a passing score except when paired with status background colors and soft background colors.
 
@@ -208,7 +204,7 @@ Similarly, there are text status colors and their hover states.
   ]}
 />
 
-#### Icon
+### Icon
 
 Icon colors have been carefully selected to ensure you meet legal accessibility requirements. All of these icon colors ensure a passing score except when paired with status background colors and soft background colors.
 
@@ -242,7 +238,7 @@ Similarly, there are icon status colors.
   ]}
 />
 
-### Size
+## Size
 
 iTwinUI's spacing scale follows t-shirt sizes as a naming convention. iTwinUI uses `REM` rather than `PX`, a relative sizing unit that adjusts based off the `font-size` declared on the `<html>` element.
 
@@ -252,13 +248,13 @@ If you are creating an input component, we have 3 variables for small, medium, a
 
 <SizesInputDemo />
 
-### Border radius
+## Border radius
 
 Most iTwinUI components use `var(--iui-border-radius-1)`. For pill-shaped components, iTwinUI also offers `var(--iui-border-radius-round)`.
 
 <BorderRadiusDemo />
 
-### Typography
+## Typography
 
 iTwinUI uses _Noto Sans_ for body text (`--iui-font-sans`) and _Noto Sans Mono_ for monospace text (`--iui-font-mono`).
 
@@ -270,19 +266,19 @@ There are four font weights available: light, normal, semibold, and bold.
 
 <FontsDemo weights />
 
-### Opacity
+## Opacity
 
 The opacity scale decreases from 1 to 6, with `--iui-opacity-1` being fully opaque.
 
 <OpacityDemo />
 
-### Shadow
+## Shadow
 
 iTwinUI offers a few shadows that increase in elevation from 0 to 5. These variables are typically used in combination with the [surface component](surface).
 
 <ShadowsDemo />
 
-### Duration
+## Duration
 
 If you need to animate anything, use one of the supplied duration variables. Please use these variables in combination with the [`prefers-reduced-motion` media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) for accessibility reasons. For most hover or click interactions we encourage using the fastest speed.
 
