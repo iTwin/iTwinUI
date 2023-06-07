@@ -11,7 +11,9 @@ describe('DropdownButton', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-button').click();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').click();
+      });
       cy.compareSnapshot(`${testName} (Open)`);
     });
   });

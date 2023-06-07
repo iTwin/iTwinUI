@@ -5,6 +5,7 @@
 import * as React from 'react';
 import type { CellRendererProps } from 'react-table';
 import cx from 'classnames';
+import { Box } from '../../utils/index.js';
 
 export type DefaultCellProps<T extends Record<string, unknown>> = {
   /**
@@ -56,7 +57,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
   } = props;
 
   return (
-    <div
+    <Box
       {...cellElementProps}
       {...rest}
       className={cx(cellElementClassName, className)}
@@ -65,11 +66,11 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       style={{ ...cellElementStyle, ...style }}
     >
       {startIcon && (
-        <div className='iui-table-cell-start-icon'>{startIcon}</div>
+        <Box className='iui-table-cell-start-icon'>{startIcon}</Box>
       )}
       {children}
-      {endIcon && <div className='iui-table-cell-end-icon'>{endIcon}</div>}
-    </div>
+      {endIcon && <Box className='iui-table-cell-end-icon'>{endIcon}</Box>}
+    </Box>
   );
 };
 
