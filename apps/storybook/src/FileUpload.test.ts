@@ -19,7 +19,7 @@ describe('FileUpload', () => {
         testName === 'Default File Upload Card' ||
         testName === 'Custom File Upload Card'
       ) {
-        cy.get('.iui-visually-hidden').selectFile(
+        cy.get('input').selectFile(
           {
             contents: Cypress.Buffer.from('file contents'),
             fileName: 'file.txt',

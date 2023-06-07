@@ -3,5 +3,4 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Anchor } from './Anchor.js';
-export type { AnchorProps } from './Anchor.js';
 export default './Anchor';

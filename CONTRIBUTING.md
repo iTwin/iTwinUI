@@ -118,8 +118,6 @@ If you are creating a new component, use this script:
 
 It ensures all needed imports are added and files are created.
 
-> Note: Every component needs to use `useTheme()` hook to ensure styling (theming) works fine. The `createComponent` script mentioned above adds it automatically.
-
 For a component named `Alert`, the `createComponent` script will add/modify the following files:
 
 - packages/itwinui-css/src/**alert/alert.scss**: framework-agnostic component styles

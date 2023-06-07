@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useIntersection, useMergedRefs } from '../utils/index.js';
+import { Box, useIntersection, useMergedRefs } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 
 type CarouselSlideProps = {
@@ -13,7 +14,7 @@ type CarouselSlideProps = {
    * Does not need to be manually specified because it will be set in parent (`CarouselSlider`).
    */
   index?: number;
-} & React.ComponentPropsWithoutRef<'li'>;
+};
 
 /**
  * `CarouselSlide` is used for the actual slide content. The content can be specified through `children`.
@@ -21,10 +22,7 @@ type CarouselSlideProps = {
  * It is recommended that the slide content bring its own dimensions (esp. height) and that
  * the dimensions should be the same for all slides.
  */
-export const CarouselSlide = React.forwardRef<
-  HTMLLIElement,
-  CarouselSlideProps
->((props, ref) => {
+export const CarouselSlide = React.forwardRef((props, ref) => {
   const { index, className, children, ...rest } = props;
 
   const context = React.useContext(CarouselContext);
@@ -50,7 +48,8 @@ export const CarouselSlide = React.forwardRef<
   const refs = useMergedRefs(intersectionRef, ref);
 
   return (
-    <li
+    <Box
+      as='li'
       className={cx('iui-carousel-slider-item', className)}
       role='tabpanel'
       aria-roledescription='slide'
@@ -58,6 +57,6 @@ export const CarouselSlide = React.forwardRef<
       {...rest}
     >
       {children}
-    </li>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'li', CarouselSlideProps>;

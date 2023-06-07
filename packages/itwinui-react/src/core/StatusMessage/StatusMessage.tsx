@@ -3,10 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useTheme } from '../utils/index.js';
-import cx from 'classnames';
+import { Box, StatusIconMap } from '../utils/index.js';
 
-export type StatusMessageProps = {
+type StatusMessageProps = {
   /**
    * Custom icon to be displayed at the beginning.
    * It will default to the `status` icon, if it's set.
@@ -33,25 +32,16 @@ export const StatusMessage = ({
   children,
   status,
 }: StatusMessageProps) => {
-  useTheme();
-
-  const StartIcon = () => {
-    const icon = userStartIcon ?? (status && StatusIconMap[status]());
-
-    if (!icon) {
-      return null;
-    }
-
-    return React.cloneElement(icon, {
-      className: cx('iui-input-icon', icon.props?.className),
-      'aria-hidden': true,
-    });
-  };
+  const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
   return (
     <>
-      <StartIcon />
-      <div className='iui-message'>{children}</div>
+      {!!icon ? (
+        <Box as='span' className='iui-input-icon' aria-hidden>
+          {icon}
+        </Box>
+      ) : null}
+      <Box className='iui-message'>{children}</Box>
     </>
   );
 };

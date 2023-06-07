@@ -6,11 +6,9 @@ import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
 import SvgWindows from '@itwin/itwinui-icons-react/cjs/icons/Windows';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import {
-  RadioTile,
-  RadioTileGroup,
-  RadioTileGroupProps,
-} from '@itwin/itwinui-react';
+import { RadioTile, RadioTileGroup } from '@itwin/itwinui-react';
+
+type RadioTileGroupProps = React.ComponentProps<typeof RadioTileGroup>;
 
 export default {
   title: 'Input/RadioTileGroup',

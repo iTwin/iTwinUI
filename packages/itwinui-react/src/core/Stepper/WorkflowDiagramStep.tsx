@@ -5,26 +5,29 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Tooltip } from '../Tooltip/index.js';
-import type { StylingProps } from '../utils/index.js';
+import { Box, type CommonProps } from '../utils/index.js';
 import type { StepperStepProps } from './StepperStep.js';
 
 export type WorkflowDiagramStepProps = Pick<
   StepperStepProps,
   'title' | 'description'
 > &
-  StylingProps;
+  Omit<CommonProps, 'title'>;
 
 export const WorkflowDiagramStep = (props: WorkflowDiagramStepProps) => {
   const { title, description, className, style, ...rest } = props;
 
   const stepShape = (
-    <li
+    <Box
+      as='li'
       className={cx('iui-workflow-diagram-step', className)}
       style={style}
       {...rest}
     >
-      <span className='iui-workflow-diagram-content'>{title}</span>
-    </li>
+      <Box as='span' className='iui-workflow-diagram-content'>
+        {title}
+      </Box>
+    </Box>
   );
 
   return description ? (

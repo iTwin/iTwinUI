@@ -6,8 +6,6 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Surface,
-  SurfaceProps,
-  SurfaceBodyProps,
   Code,
   Text,
   Divider,
@@ -17,6 +15,9 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgActivity, SvgSettings } from '@itwin/itwinui-icons-react';
+
+type SurfaceProps = React.ComponentProps<typeof Surface>;
+type SurfaceBodyProps = React.ComponentProps<typeof Surface.Body>;
 
 export default {
   component: Surface,

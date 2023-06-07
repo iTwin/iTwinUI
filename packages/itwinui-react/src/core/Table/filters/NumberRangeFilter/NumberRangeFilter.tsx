@@ -3,12 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../../../utils/index.js';
+import { useGlobals } from '../../../utils/index.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
 import type { TableFilterProps } from '../types.js';
-import '@itwin/itwinui-css/css/table.css';
 import { LabeledInput } from '../../../LabeledInput/index.js';
 
 export type NumberRangeTranslation = {
@@ -31,7 +30,7 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
 ) => {
   const { column, translatedLabels, setFilter, clearFilter } = props;
 
-  useTheme();
+  useGlobals();
 
   const translatedStrings = { ...defaultStrings, ...translatedLabels };
 

@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Flex, FlexProps } from '@itwin/itwinui-react';
+import { Flex } from '@itwin/itwinui-react';
+
+type FlexProps = React.ComponentProps<typeof Flex>;
 
 export default {
   component: Flex,
@@ -63,11 +65,11 @@ export default {
         <style
           dangerouslySetInnerHTML={{
             __html: /* css */ `
-            :where(.demo-flex-wrapper .iui-flex) {
+            :where(.demo-flex-wrapper > *) {
               outline: 1px solid var(--iui-color-border);
               min-height: 100px;
             }
-            :where(.demo-flex-wrapper :not([class*='iui'])) {
+            :where(.demo-flex-wrapper > * div:not([class])) {
               font-family: var(--iui-font-sans);
               color: var(--iui-color-text);
               padding: 1rem;
