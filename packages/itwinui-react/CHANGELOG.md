@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.5
+
+### Patch Changes
+
+- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fixed an issue where the visually hidden `FileUploadCard.Input` was inadvertently showing when focused.
+
 ## 2.11.4
 
 ### Patch Changes
