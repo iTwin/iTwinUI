@@ -12,7 +12,6 @@ import OpacityDemo from '~/components/variables/OpacityDemo.astro';
 import BorderRadiusDemo from '~/components/variables/BorderRadiusDemo.astro';
 import ShadowsDemo from '~/components/variables/ShadowsDemo.astro';
 import DurationDemo from '~/components/variables/DurationDemo.astro';
-import RelatedComponents from '~/components/RelatedComponents.astro';
 
 <p>{frontmatter.description}</p>
 
@@ -288,14 +287,3 @@ iTwinUI offers a few shadows that increase in elevation from 0 to 5. These varia
 If you need to animate anything, use one of the supplied duration variables. Please use these variables in combination with the [`prefers-reduced-motion` media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) for accessibility reasons. For most hover or click interactions we encourage using the fastest speed.
 
 <DurationDemo />
-
-## Resources
-
-<RelatedComponents
-  components={[
-    {
-      title: 'Variable values',
-      url: 'https://unpkg.com/browse/@itwin/itwinui-variables@2.x.x/index.css',
-    },
-  ]}
-/>
