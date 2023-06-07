@@ -151,9 +151,9 @@ export const Thumb = (props: ThumbProps) => {
   return (
     <Tooltip
       placement='top'
-      trigger={
-        tooltipProps?.visible == null ? 'mouseenter click focus' : undefined
-      }
+      // trigger={
+      //   tooltipProps?.visible == null ? 'mouseenter click focus' : undefined
+      // }
       {...tooltipProps}
     >
       <Box

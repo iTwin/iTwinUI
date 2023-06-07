@@ -168,3 +168,4 @@ const TooltipContent = React.forwardRef((props, propRef) => {
  *
  */
 export const Tooltip = TooltipComponent;
+export type TooltipProps = TooltipOwnProps & TooltipOptions;
