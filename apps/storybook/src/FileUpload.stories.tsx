@@ -10,7 +10,6 @@ import {
   FileUpload,
   FileUploadCard,
   FileEmptyCard,
-  FileUploadProps,
   LabeledInput,
   IconButton,
 } from '@itwin/itwinui-react';
