@@ -25,6 +25,7 @@ describe('Tabs', () => {
         cy.get('#storybook-root').within(() => {
           cy.get('[role=tab]').last().focus();
         });
+        cy.wait(500);
         cy.compareSnapshot(`${testName} (Scroll end)`);
 
         // cy somehow loses tabs list and does not focus on first element so getting it again.
@@ -32,6 +33,7 @@ describe('Tabs', () => {
         cy.get('#storybook-root').within(() => {
           cy.get('[role=tab]').first().focus();
         });
+        cy.wait(500);
         cy.compareSnapshot(`${testName} (Scroll start)`);
       }
     });
