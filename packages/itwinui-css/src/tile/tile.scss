@@ -306,7 +306,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   .iui-thumbnail-icon {
     place-self: center;
 
-    svg {
+    svg:not(.iui-radial) {
       @include mixins.iui-icon-style(3xl);
       @include mixins.iui-icon-color;
       transition: transform var(--iui-duration-2) ease;

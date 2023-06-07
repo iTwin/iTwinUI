@@ -2,4 +2,4 @@
 '@itwin/itwinui-css': major
 ---
 
-aa
+`iui-folder` is updated to use `display: grid`. `iui-tile-name` is now moved outside of `iui-tile-content` for folder variant.
