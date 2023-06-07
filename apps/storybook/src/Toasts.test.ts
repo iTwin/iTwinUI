@@ -17,7 +17,9 @@ describe('Toasts', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
-      cy.get('.iui-button').first().click();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').first().click();
+      });
       cy.compareSnapshot(testName);
     });
   });

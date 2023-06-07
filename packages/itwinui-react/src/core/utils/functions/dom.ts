@@ -3,6 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
+import styles from '../../../styles.js';
+
 /**
  * Get the container as a child of body, or create one if it doesn't exist.
  * Mostly used for dynamic components like Modal or Toast.
@@ -18,7 +20,9 @@ export const getContainer = (
   if (container == null && !!ownerDocument) {
     container = ownerDocument.createElement('div');
     container.setAttribute('id', containerId);
-    const root = ownerDocument.querySelector('.iui-root') ?? ownerDocument.body;
+    const root =
+      ownerDocument.querySelector(`.${styles['iui-root']}`) ??
+      ownerDocument.body;
     root.appendChild(container);
   }
   return container;
@@ -56,3 +60,20 @@ export const mergeEventHandlers =
       }
     }
   };
+
+/**
+ * Returns translate values as an array of a given element.
+ * @param element HTML element you want to get translate value of
+ * @returns Translate values in pixels in an array `[translateX, translateY]`
+ */
+export const getTranslateValues = (element: HTMLElement | null | undefined) => {
+  if (!element) {
+    return [];
+  }
+
+  const transformValue =
+    getComputedStyle(element).getPropertyValue('transform');
+  const matrix = new DOMMatrix(transformValue);
+
+  return [matrix.m41, matrix.m42];
+};

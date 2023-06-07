@@ -8,7 +8,6 @@ import * as React from 'react';
 
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 
 type HeaderLogoOwnProps = {
   /**

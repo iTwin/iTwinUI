@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/toggle-switch.css';
 
 type ToggleSwitchProps = {
   /**
@@ -79,7 +78,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-  const WrapperComponent = label ? 'label' : 'div';
 
   React.useEffect(() => {
     if (inputElementRef.current && setFocus) {
@@ -87,7 +85,8 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     }
   }, [setFocus]);
   return (
-    <WrapperComponent
+    <Box
+      as={label ? 'label' : 'div'}
       className={cx(
         'iui-toggle-switch-wrapper',
         {
@@ -119,7 +118,7 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
           {label}
         </Box>
       )}
-    </WrapperComponent>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', ToggleSwitchProps>;
 

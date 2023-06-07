@@ -10,7 +10,6 @@ import {
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/progress-indicator.css';
 
 type ProgressRadialProps = {
   /**

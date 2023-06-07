@@ -13,7 +13,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { CSSTransition } from 'react-transition-group';
@@ -69,6 +68,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     isDraggable = dialogContext.isDraggable,
     isResizable = dialogContext.isResizable,
     style: propStyle,
+    placement = dialogContext.placement,
     ...rest
   } = props;
 
@@ -175,6 +175,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
       ref={refs}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
+      data-iui-placement={placement}
       style={{
         transform,
         overflow: 'unset',
