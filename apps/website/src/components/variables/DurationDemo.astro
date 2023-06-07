@@ -1,0 +1,57 @@
+---
+import Wrapper from './_wrapper.astro';
+
+const durations = ['1', '2', '3'];
+---
+
+<Wrapper class='wrapper'>
+  {
+    durations.map((duration) => (
+      <div>
+        <span>{`--iui-duration-${duration}`}</span>
+        <span class='box' style={{ '--duration': `var(--iui-duration-${duration})` }} />
+      </div>
+    ))
+  }
+</Wrapper>
+
+<style>
+  .wrapper {
+    display: grid;
+    justify-content: unset;
+  }
+
+  div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  span {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-duration: var(--type-0);
+  }
+
+  .box {
+    height: 100%;
+    background-color: var(--iui-color-text-accent);
+    border-radius: var(--iui-border-radius);
+    @media (prefers-reduced-motion: no-preference) {
+      animation-name: duration;
+      animation-duration: var(--duration);
+      animation-iteration-count: infinite;
+    }
+  }
+
+  @keyframes duration {
+    0% {
+      width: 10%;
+    }
+    50% {
+      width: 100%;
+    }
+    100% {
+      width: 10%;
+    }
+  }
+</style>

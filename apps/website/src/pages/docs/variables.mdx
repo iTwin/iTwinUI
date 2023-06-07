@@ -2,15 +2,19 @@
 title: Variables
 description: Use iTwinUI-variables to integrate design tokens into your application.
 layout: ./_layout.astro
-toc: false
 ---
 
 import ColorList from '~/components/variables/ColorList.astro';
 import FontsDemo from '~/components/variables/FontsDemo.astro';
 import SizesDemo from '~/components/variables/SizesDemo.astro';
+import SizesInputDemo from '~/components/variables/SizesInputDemo.astro';
 import OpacityDemo from '~/components/variables/OpacityDemo.astro';
 import BorderRadiusDemo from '~/components/variables/BorderRadiusDemo.astro';
 import ShadowsDemo from '~/components/variables/ShadowsDemo.astro';
+import DurationDemo from '~/components/variables/DurationDemo.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+
+<p>{frontmatter.description}</p>
 
 ## Installation
 
@@ -27,56 +31,45 @@ import '@itwin/itwinui-variables';
 
 ## Variables
 
-### Background colors
+We strongly encourage developers to use iTwinUI's CSS variables rather than hardcoding values. Many of our color values change depending on the theme or contrast settings. Because of this, we purposefully do not expose the variables' values on this site. However, if you need the variables values you can extrapolate those values from [the raw CSS file](https://unpkg.com/browse/@itwin/itwinui-variables@2.x.x/index.css).
 
-There are several main background colors.
+### Color
 
-- `background-backdrop` should be used as the main body background.
-- `background` is for surface elements placed over the body.
-- `background-backdrop-hover` is for hove state of 'background-backdrop'.
-- `background-zebra` is a zebra striping for table rows, color is halfway between 'background-backdrop' and 'background'.
-- `background-transparent-hover` should be used by borderless elements hover state.
+iTwinUI supplies many different color variables that are specific to their usecase. All colors, if applied correctly, are guaranteed to meet [WCAG AA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) in base themes and [WCAG AAA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced) in high contrast unless noted otherwise. All CSS variables are prefixed with `--iui-` followed by the category and ending with the value if applicable.
+
+Example: `--iui-color-background-backdrop`
+
+#### Background
+
+There are several main background colors. These colors are used to build the backdrop of your website or application and are the most commonly used background colors.
+
+- `background`: for surface elements placed over the body. This will be the most commonly used background color.
+- `background-hover`: an element using `background` with a hover state.
+- `background-zebra`: an element using `background` with zebra striping, present in [table](table) rows and [tile](tile) thumbnail areas. This color is halfway between `background-backdrop` and `background` and should be used sparingly.
+- `background-disabled`: an element using `background` with a disabled state.
+- `background-transparent-hover`: an element using a transparent background with a hover state, present in [borderless buttons](button#borderless).
+- `background-backdrop`: the main body background. Most if not all content placed above this should use `background`.
+- `background-backdrop-hover`: an element using `background-backdrop` with a hover state.
 
 <ColorList
   colors={[
     'var(--iui-color-background)',
-    'var(--iui-color-background-zebra)',
     'var(--iui-color-background-hover)',
-    'var(--iui-color-background-backdrop)',
-    'var(--iui-color-background-backdrop-hover)',
+    'var(--iui-color-background-zebra)',
     'var(--iui-color-background-disabled)',
     'var(--iui-color-background-transparent-hover)',
+    'var(--iui-color-background-backdrop)',
+    'var(--iui-color-background-backdrop-hover)',
   ]}
 />
 
-There are also a few special named colors for some borders.
+Sometimes you may need to use colors to help convey some sort of status. These status background colors require icons and text to use `--iui-color-white` to pass accessibility requirements. The available options are:
 
-<ColorList
-  colors={[
-    'var(--iui-color-border)',
-    'var(--iui-color-border-subtle)',
-    'var(--iui-color-border-foreground)',
-    'var(--iui-color-border-foreground-hover)',
-    'var(--iui-color-border-disabled)',
-  ]}
-/>
-
-### Foreground colors
-
-`color-text` is the main text color.
-
-<ColorList
-  colors={[
-    'var(--iui-color-text)',
-    'var(--iui-color-text-muted)',
-    'var(--iui-color-text-disabled)',
-    'var(--iui-color-text-hover)',
-  ]}
-/>
-
-### Status backgrounds
-
-The status colors are used for indicating the status of an element: success, warning, error, or accent/informational.
+- `accent`: typically used for designating an active / on state. Uses the same color as `informational`, but can be changed by the development team to inject their own custom branding colors.
+- `informational`
+- `positive`
+- `warning`
+- `negative`
 
 <ColorList
   colors={[
@@ -94,12 +87,10 @@ The status colors are used for indicating the status of an element: success, war
       'var(--iui-color-background-warning-hover)',
       'var(--iui-color-background-negative-hover)',
     ],
-
-]}
+  ]}
 />
 
-Because the default status backgrounds feel so heavy and saturated, iTwinUI also offers a set of subtle background colors.
-These should be used when there is text on top of them.
+If you want to use color to help convey some sort of status, but don't want the color to be as strong or if you want to use normal text / icon colors above this background color, you can use the muted status background color palette.
 
 <ColorList
   colors={[
@@ -111,14 +102,67 @@ These should be used when there is text on top of them.
   ]}
 />
 
-### Status borders
+The soft background colors can be used to categorize things that may not be associated with a status. These soft background colors do not meet accessibility requirements when paired with text or icons, so use sparingly.
 
-There are some colors for border status.
+<ColorList
+  colors={[
+    'var(--iui-color-background-skyblue)',
+    'var(--iui-color-background-celery)',
+    'var(--iui-color-background-froly)',
+    'var(--iui-color-background-steelblue)',
+    'var(--iui-color-background-sunglow)',
+    'var(--iui-color-background-seabuckthorn)',
+    'var(--iui-color-background-montecarlo)',
+    'var(--iui-color-background-poloblue)',
+    'var(--iui-color-background-bouquet)',
+    'var(--iui-color-background-ash)',
+    'var(--iui-color-background-oak)',
+  ]}
+/>
+
+If you need to use a color in combination with an [opacity](#opacity), we have provided `HSL` specific variables.
+
+- `background-hsl`
+- `foreground-hsl`
+- `accent-hsl`
+- `informational-hsl`
+- `positive-hsl`
+- `warning-hsl`
+- `negative-hsl`
+
+These can be used like so:
+
+```css
+background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
+```
+
+#### Border
+
+There are also a few special named colors for borders or dividing lines.
+
+- `border`: a strong border color.
+- `border-subtle`: a less-strong border color, typically used for divider lines.
+- `border-foreground`: for input elements.
+- `border-foreground-hover`: for input elements with a hover state.
+- `border-disabled`: for elements with a disabled state.
+
+<ColorList
+  colors={[
+    'var(--iui-color-border)',
+    'var(--iui-color-border-subtle)',
+    'var(--iui-color-border-foreground)',
+    'var(--iui-color-border-foreground-hover)',
+    'var(--iui-color-border-disabled)',
+  ]}
+/>
+
+You can also use border status colors in combination with status background colors and muted status background colors.
 
 <ColorList
   colors={[
     [
       'var(--iui-color-border-accent)',
+      'var(--iui-color-border-informational)',
       'var(--iui-color-border-positive)',
       'var(--iui-color-border-warning)',
       'var(--iui-color-border-negative)',
@@ -126,9 +170,25 @@ There are some colors for border status.
   ]}
 />
 
-### Status foregrounds
+#### Text
 
-Similarly, there are foreground status colors and their hover states.
+Text colors have been carefully selected to ensure you meet legal accessibility requirements. All of these text colors ensure a passing score except when paired with status background colors and soft background colors.
+
+- `text`: the default text color.
+- `text-hover`: text using `text` with a hover state.
+- `text-disabled`: the disabled text color.
+- `text-muted`: lighter colored text that is not as important as / supplemental to `text`.
+
+<ColorList
+  colors={[
+    'var(--iui-color-text)',
+    'var(--iui-color-text-hover)',
+    'var(--iui-color-text-disabled)',
+    'var(--iui-color-text-muted)',
+  ]}
+/>
+
+Similarly, there are text status colors and their hover states.
 
 <ColorList
   colors={[
@@ -149,7 +209,15 @@ Similarly, there are foreground status colors and their hover states.
   ]}
 />
 
-### Icon colors
+#### Icon
+
+Icon colors have been carefully selected to ensure you meet legal accessibility requirements. All of these icon colors ensure a passing score except when paired with status background colors and soft background colors.
+
+- `icon`: an actionable icon color, such as an [icon within a button](button#icon-button).
+- `icon-hover`: an icon using `icon` with a hover state.
+- `icon-disabled`: the disabled icon color.
+- `icon-muted`: typically used for a non-actionable icon but sometimes can be used for an actionable icon.
+- `icon-muted-hover`: an icon using `icon-muted` with a hover state. This should be used sparingly.
 
 <ColorList
   colors={[
@@ -158,38 +226,32 @@ Similarly, there are foreground status colors and their hover states.
     'var(--iui-color-icon-disabled)',
     'var(--iui-color-icon-muted)',
     'var(--iui-color-icon-muted-hover)',
-    'var(--iui-color-icon-accent)',
-    'var(--iui-color-icon-positive)',
-    'var(--iui-color-icon-warning)',
-    'var(--iui-color-icon-negative)',
   ]}
 />
 
-### Soft backgrounds
-
-These soft backgrounds can be used for badges and avatars.
+Similarly, there are icon status colors.
 
 <ColorList
   colors={[
-    'var(--iui-color-background-skyblue)',
-    'var(--iui-color-background-celery)',
-    'var(--iui-color-background-froly)',
-    'var(--iui-color-background-steelblue)',
-    'var(--iui-color-background-sunglow)',
-    'var(--iui-color-background-seabuckthorn)',
-    'var(--iui-color-background-montecarlo)',
-    'var(--iui-color-background-poloblue)',
-    'var(--iui-color-background-bouquet)',
-    'var(--iui-color-background-ash)',
-    'var(--iui-color-background-oak)',
+    [
+      'var(--iui-color-icon-accent)',
+      'var(--iui-color-icon-informational)',
+      'var(--iui-color-icon-positive)',
+      'var(--iui-color-icon-warning)',
+      'var(--iui-color-icon-negative)',
+    ],
   ]}
 />
 
-### Sizes
+### Size
 
-iTwinUI's spacing scale follows t-shirt sizes as a naming convention, where `m` corresponds to `1rem`, with `3xs` being the smallest and `3xl` being the largest.
+iTwinUI's spacing scale follows t-shirt sizes as a naming convention. iTwinUI uses `REM` rather than `PX`, a relative sizing unit that adjusts based off the `font-size` declared on the `<html>` element.
 
 <SizesDemo />
+
+If you are creating an input component, we have 3 variables for small, medium, and large heights.
+
+<SizesInputDemo />
 
 ### Border radius
 
@@ -215,8 +277,25 @@ The opacity scale decreases from 1 to 6, with `--iui-opacity-1` being fully opaq
 
 <OpacityDemo />
 
-### Shadows
+### Shadow
 
-iTwinUI offers a few shadows that increase in elevation from 0 to 5. These should typically be used in combination with the `Surface` component.
+iTwinUI offers a few shadows that increase in elevation from 0 to 5. These variables are typically used in combination with the [surface component](surface).
 
 <ShadowsDemo />
+
+### Duration
+
+If you need to animate anything, use one of the supplied duration variables. Please use these variables in combination with the [`prefers-reduced-motion` media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) for accessibility reasons. For most hover or click interactions we encourage using the fastest speed.
+
+<DurationDemo />
+
+## Resources
+
+<RelatedComponents
+  components={[
+    {
+      title: 'Variable values',
+      url: 'https://unpkg.com/browse/@itwin/itwinui-variables@2.x.x/index.css',
+    },
+  ]}
+/>

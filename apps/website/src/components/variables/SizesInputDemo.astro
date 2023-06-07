@@ -1,0 +1,29 @@
+---
+import Wrapper from './_wrapper.astro';
+import Item from './_item.astro';
+---
+
+<Wrapper class='wrapper'>
+  <Item class='item'>small</Item>
+  <Item class='item'>medium</Item>
+  <Item class='item'>large</Item>
+</Wrapper>
+
+<style lang='scss'>
+  .wrapper {
+    align-items: center;
+  }
+
+  .item {
+    border-radius: var(--iui-border-radius-1);
+    height: var(--iui-component-height);
+
+    &:first-child {
+      height: var(--iui-component-height-small);
+    }
+
+    &:last-child {
+      height: var(--iui-component-height-large);
+    }
+  }
+</style>
