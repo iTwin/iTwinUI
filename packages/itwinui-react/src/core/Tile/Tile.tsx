@@ -133,7 +133,7 @@ const TileComponent = React.forwardRef((props, ref) => {
         isLoading,
         isActionable,
         isDisabled,
-        setActionable,
+        setActionable: () => {},
         onClick,
       }}
     >
