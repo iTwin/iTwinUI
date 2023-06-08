@@ -219,18 +219,7 @@ TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
-const TileQuickAction = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
-  return (
-    <Box
-      className={cx('iui-tile-thumbnail-quick-action', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div'>;
+const TileQuickAction = polymorphic.div('iui-tile-thumbnail-quick-action');
 TileQuickAction.displayName = 'Tile.QuickAction';
 
 // ----------------------------------------------------------------------------
