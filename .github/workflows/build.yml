@@ -65,7 +65,10 @@ jobs:
   build:
     name: Build and lint packages
     needs: install
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
@@ -75,7 +78,8 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Cache node_modules
+      - if: matrix.os == 'ubuntu-latest'
+        name: Cache node_modules
         uses: actions/cache@v3
         id: cache-node-modules
         with:
@@ -85,6 +89,9 @@ jobs:
             apps/*/node_modules
             playgrounds/*/node_modules
           key: modules-${{ hashFiles('yarn.lock') }}
+
+      - if: matrix.os == 'windows-latest'
+        run: yarn
 
       - run: yarn lint
       - run: yarn lint:copyright
