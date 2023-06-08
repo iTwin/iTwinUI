@@ -84,13 +84,17 @@ sections.set(
     padding-top: var(--space-7);
     max-height: 100vh;
     min-width: 220px;
-  }
 
-  .nav-groups > li + li:not(.nav-link) {
-    margin-top: var(--space-5);
+    > li:last-of-type {
+      padding-block-end: var(--space-7);
+    }
 
-    @media (max-width: 50em) {
-      margin-top: var(--space-7);
+    > li + li:not(.nav-link) {
+      margin-top: var(--space-5);
+
+      @media (max-width: 50em) {
+        margin-top: var(--space-7);
+      }
     }
   }
 

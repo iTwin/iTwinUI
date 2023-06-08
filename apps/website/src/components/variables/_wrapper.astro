@@ -1,4 +1,10 @@
-<article data-iui-theme='dark' {...Astro.props}>
+---
+import '@itwin/itwinui-variables';
+
+const { class: className, ...props } = Astro.props;
+---
+
+<article {...props} data-iui-theme='dark' class:list={['iui-root', className]}>
   <slot />
 </article>
 
