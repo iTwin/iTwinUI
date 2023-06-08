@@ -13,20 +13,9 @@ import BorderRadiusDemo from '~/components/variables/BorderRadiusDemo.astro';
 import ShadowsDemo from '~/components/variables/ShadowsDemo.astro';
 import DurationDemo from '~/components/variables/DurationDemo.astro';
 
-<p>{frontmatter.description}</p>
+iTwinUI offers an extensive set of handcrafted CSS variables. If you're using iTwinUI-react, these variables will be automatically included and imported into your application. If you want to use it standalone, you can manually `npm install @itwin/itwinui-variables`.
 
-If you're using iTwinUI-react, the variables will be automatically included and imported into your application.
-If you want to use it standalone, you can install and import it manually:
-
-```shell
-npm install @itwin/itwinui-variables
-```
-
-```js
-import '@itwin/itwinui-variables';
-```
-
-We strongly encourage developers to use iTwinUI's CSS variables rather than hardcoding values. Many of our color values change depending on the theme or contrast settings. Because of this, we purposefully do not expose the variables' values on this site. However, if you need a particular variable's value, you can extrapolate it from [the raw CSS file](https://unpkg.com/browse/@itwin/itwinui-variables@2.x.x/index.css).
+We strongly encourage the use iTwinUI's CSS variables rather than hardcoding values. Many of the color values change depending on the theme or contrast settings. Because of this, we purposefully do not expose the variables' values on this site. However, if you need a particular variable's value, you can extrapolate it from [the raw CSS file](https://unpkg.com/browse/@itwin/itwinui-variables/index.css).
 
 ## Color
 
