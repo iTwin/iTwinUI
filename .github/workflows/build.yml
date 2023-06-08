@@ -95,7 +95,7 @@ jobs:
 
       - run: yarn lint
       - run: yarn lint:copyright
-      - run: yarn build --filter={./packages/*}...
+      - run: yarn build --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
