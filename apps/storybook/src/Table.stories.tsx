@@ -1702,21 +1702,35 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     };
   }, []);
 
+  const [globalFilterValue, setGlobalFilterValue] = useState('');
+
   return (
-    <Table
-      columns={columns}
-      emptyTableContent='No data.'
-      isRowDisabled={isRowDisabled}
-      isSelectable
-      isSortable
-      isResizable
-      enableColumnReordering
-      {...args}
-      data={data}
-      style={{ height: '100%' }}
-      enableVirtualization
-      rowProps={rowProps}
-    />
+    <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: 'flex', margin: '8px 0' }}>
+        <Input
+          placeholder='Search...'
+          value={globalFilterValue}
+          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setGlobalFilterValue(e.target.value)
+          }
+        />
+      </div>
+      <Table
+        columns={columns}
+        emptyTableContent='No data.'
+        isRowDisabled={isRowDisabled}
+        isSelectable
+        isSortable
+        isResizable
+        enableColumnReordering
+        {...args}
+        data={data}
+        style={{ height: '100%' }}
+        enableVirtualization
+        rowProps={rowProps}
+        globalFilterValue={globalFilterValue}
+      />
+    </div>
   );
 };
 
