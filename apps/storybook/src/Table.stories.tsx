@@ -1702,21 +1702,47 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     };
   }, []);
 
+  const [globalFilterValue, setGlobalFilterValue] = useState('');
+
   return (
-    <Table
-      columns={columns}
-      emptyTableContent='No data.'
-      isRowDisabled={isRowDisabled}
-      isSelectable
-      isSortable
-      isResizable
-      enableColumnReordering
-      {...args}
-      data={data}
-      style={{ height: '100%' }}
-      enableVirtualization
-      rowProps={rowProps}
-    />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '1000px',
+        gap: '8px',
+      }}
+    >
+      <Input
+        placeholder='Search...'
+        value={globalFilterValue}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setGlobalFilterValue(e.target.value)
+        }
+      />
+      <div
+        style={{
+          height: '375px',
+          maxHeight: '90vh',
+        }}
+      >
+        <Table
+          columns={columns}
+          emptyTableContent='No data.'
+          isRowDisabled={isRowDisabled}
+          isSelectable
+          isSortable
+          isResizable
+          enableColumnReordering
+          {...args}
+          data={data}
+          style={{ height: '100%' }}
+          enableVirtualization
+          rowProps={rowProps}
+          globalFilterValue={globalFilterValue}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -1730,20 +1756,6 @@ Full2.args = {
 Full2.argTypes = {
   data: { control: { disable: true } },
 };
-
-Full2.decorators = [
-  (Story) => (
-    <div
-      style={{
-        height: '375px',
-        maxHeight: '90vh',
-        maxWidth: '1000px',
-      }}
-    >
-      <Story />
-    </div>
-  ),
-];
 
 export const Localized: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(

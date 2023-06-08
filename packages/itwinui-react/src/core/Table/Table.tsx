@@ -632,7 +632,7 @@ export const Table = <
     ) || !!globalFilterValue;
 
   const showFilterButton = (column: HeaderGroup<T>) =>
-    (data.length !== 0 || areFiltersSet) && column.canFilter;
+    (data.length !== 0 || areFiltersSet) && column.canFilter && !!column.Filter;
 
   const showSortButton = (column: HeaderGroup<T>) =>
     data.length !== 0 && column.canSort;
