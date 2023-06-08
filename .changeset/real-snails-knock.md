@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Table: fix action column header content alignment
+Table: fixed action column header content alignment when using globalFilterValue.
