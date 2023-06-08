@@ -225,18 +225,7 @@ TileQuickAction.displayName = 'Tile.QuickAction';
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
 
-const TileTypeIndicator = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
-  return (
-    <Box
-      className={cx('iui-tile-thumbnail-type-indicator', className)}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div'>;
+const TileTypeIndicator = polymorphic.div('iui-tile-thumbnail-type-indicator');
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
