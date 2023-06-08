@@ -12,7 +12,6 @@ import {
   useDismiss,
   useRole,
   useInteractions,
-  // safePolygon,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import { Box, type PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -133,6 +132,7 @@ const TooltipTrigger = React.forwardRef((props, propRef) => {
           ref,
           ...rest,
           ...children.props,
+          'aria-describedby': undefined,
         }),
       )
     : null;
@@ -156,6 +156,8 @@ const TooltipContent = React.forwardRef((props, propRef) => {
         ref={ref}
         style={context.floatingStyles}
         {...context.getFloatingProps(rest)}
+        // aria-labelledby={undefined}
+        // aria-describedby={undefined}
       >
         {children}
       </Box>
