@@ -51,7 +51,7 @@ export default defineConfig({
 
 // ----------------------------------------------------------------------------
 
-const root = path.resolve(path.join(__dirname, '..', '..'));
+const root = path.join(__dirname, '..', '..');
 const srcDir = path.join(root, 'src');
 const distDir = path.join(srcDir, 'styles.js', 'dist');
 const distEsmDir = path.join(distDir, 'esm');
