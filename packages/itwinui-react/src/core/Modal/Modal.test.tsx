@@ -198,15 +198,17 @@ it('should call onKeyDown when pressed any key inside modal', () => {
   );
 });
 
-it('should work with portal container properly', () => {
-  renderComponent({ modalRootId: 'test-id' });
+it('should work with custom portal container properly', () => {
+  const to = document.createElement('test-container');
+  document.body.appendChild(to);
+  renderComponent({ portal: { to } });
 
-  let container = document.querySelector('body > #test-id') as HTMLElement;
+  let container = document.body.querySelector('test-container') as HTMLElement;
   expect(container).toBeTruthy();
   expect(container.children.length).toBe(1);
 
-  renderComponent({ modalRootId: 'test-id' });
-  container = document.querySelector('body > #test-id') as HTMLElement;
+  renderComponent({ portal: { to } });
+  container = document.body.querySelector('test-container') as HTMLElement;
   // 2 modals under the same container
   expect(container.children.length).toBe(2);
 });
