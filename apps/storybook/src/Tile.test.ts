@@ -29,7 +29,7 @@ describe('Tile', () => {
         testName === 'Actionable' ||
         testName === 'Anchor Link'
       ) {
-        cy.get('.iui-tile-thumbnail-picture').hide();
+        cy.get('[style*=background-image]').hide();
       }
 
       cy.compareSnapshot(testName);

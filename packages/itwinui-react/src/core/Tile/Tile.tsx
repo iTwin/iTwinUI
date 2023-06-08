@@ -15,7 +15,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
@@ -258,15 +257,10 @@ export const Tile = Object.assign(
                 React.cloneElement(thumbnail as JSX.Element, {
                   className: 'iui-tile-thumbnail-picture',
                 })
-              ) : React.isValidElement(thumbnail) ? (
-                React.cloneElement(thumbnail, {
-                  className: cx(
-                    'iui-thumbnail-icon',
-                    thumbnail.props.className,
-                  ),
-                })
               ) : (
-                thumbnail
+                <Box as='span' className='iui-thumbnail-icon'>
+                  {thumbnail}
+                </Box>
               )}
 
               {leftIcon &&

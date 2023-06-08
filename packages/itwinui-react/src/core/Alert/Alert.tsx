@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import '@itwin/itwinui-css/css/alert.css';
 import { StatusIconMap, SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 

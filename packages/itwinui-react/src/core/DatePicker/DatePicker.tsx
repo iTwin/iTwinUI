@@ -13,7 +13,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/date-picker.css';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import { TimePicker } from '../TimePicker/index.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';
@@ -432,22 +431,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const isPreviousMonthDisabled = isDateDisabled?.(
-    new Date(displayedYear, displayedMonthIndex, 0),
-  );
-
-  const isNextMonthDisabled = isDateDisabled?.(
-    new Date(displayedYear, displayedMonthIndex + 1, 1),
-  );
-
-  const isPreviousYearDisabled = isDateDisabled?.(
-    new Date(displayedYear - 1, 11, 31),
-  );
-
-  const isNextYearDisabled = isDateDisabled?.(
-    new Date(displayedYear + 1, 0, 1),
-  );
-
   const handleCalendarKeyDown = (
     event: React.KeyboardEvent<HTMLDivElement>,
   ) => {
@@ -463,9 +446,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       case 'ArrowDown':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isNextMonthDisabled) {
-            return;
-          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -475,9 +455,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       case 'ArrowUp':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 7);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isPreviousMonthDisabled) {
-            return;
-          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -487,9 +464,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       case 'ArrowLeft':
         adjustedFocusedDay.setDate(focusedDay.getDate() - 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isPreviousMonthDisabled) {
-            return;
-          }
           handleMoveToPreviousMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -499,9 +473,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       case 'ArrowRight':
         adjustedFocusedDay.setDate(focusedDay.getDate() + 1);
         if (adjustedFocusedDay.getMonth() !== displayedMonthIndex) {
-          if (isNextMonthDisabled) {
-            return;
-          }
           handleMoveToNextMonth();
         }
         setFocusedDay(adjustedFocusedDay);
@@ -568,7 +539,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
               onClick={handleMoveToPreviousYear}
               aria-label='Previous year'
               size='small'
-              disabled={isPreviousYearDisabled}
             >
               <SvgChevronLeftDouble />
             </IconButton>
@@ -578,7 +548,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
             onClick={handleMoveToPreviousMonth}
             aria-label='Previous month'
             size='small'
-            disabled={isPreviousMonthDisabled}
           >
             <SvgChevronLeft />
           </IconButton>
@@ -597,7 +566,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
             onClick={handleMoveToNextMonth}
             aria-label='Next month'
             size='small'
-            disabled={isNextMonthDisabled}
           >
             <SvgChevronRight />
           </IconButton>
@@ -607,7 +575,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
               onClick={handleMoveToNextYear}
               aria-label='Next year'
               size='small'
-              disabled={isNextYearDisabled}
             >
               <SvgChevronRightDouble />
             </IconButton>

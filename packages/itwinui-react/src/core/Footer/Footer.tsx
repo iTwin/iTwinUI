@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/footer.css';
 import { FooterItem } from './FooterItem.js';
 import { FooterSeparator } from './FooterSeparator.js';
 import { FooterList } from './FooterList.js';

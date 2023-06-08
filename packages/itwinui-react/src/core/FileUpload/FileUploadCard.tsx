@@ -18,7 +18,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
 import { Anchor } from '../Typography/Anchor/Anchor.js';
-import '@itwin/itwinui-css/css/file-upload.css';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -155,6 +154,7 @@ const FileUploadCardInput = React.forwardRef((props, ref) => {
       <VisuallyHidden
         as='input'
         type='file'
+        unhideOnFocus={false}
         onChange={mergeEventHandlers(onChange, (e) => {
           const _files = Array.from(e.currentTarget.files || []);
           onFilesChange?.(_files);

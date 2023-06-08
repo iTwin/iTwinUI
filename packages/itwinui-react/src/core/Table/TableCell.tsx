@@ -14,6 +14,7 @@ import { getCellStyle, getStickyStyle } from './utils.js';
 import { SubRowExpander } from './SubRowExpander.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { DefaultCell } from './cells/index.js';
+import { Box } from '../utils/index.js';
 
 export type TableCellProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;
@@ -106,11 +107,11 @@ export const TableCell = <T extends Record<string, unknown>>(
         {cellContent}
         {cell.column.sticky === 'left' &&
           tableInstance.state.sticky.isScrolledToRight && (
-            <div className='iui-table-cell-shadow-right' />
+            <Box className='iui-table-cell-shadow-right' />
           )}
         {cell.column.sticky === 'right' &&
           tableInstance.state.sticky.isScrolledToLeft && (
-            <div className='iui-table-cell-shadow-left' />
+            <Box className='iui-table-cell-shadow-left' />
           )}
       </>
     ),

@@ -8,8 +8,7 @@
 @use './colors';
 
 // global vars shared between all themes
-.iui-root,
-[data-iui-theme] {
+:where(.iui-root) {
   @include spacing;
   @include component-heights;
   @include border-radii;
@@ -20,19 +19,21 @@
   @include colors.unthemed;
 }
 
+:where(
 .iui-root, // default to light theme on root if data attribute not set
-[data-iui-theme='light'] {
+.iui-root[data-iui-theme='light']
+) {
   @include themes.light-theme;
 
-  &[data-iui-contrast='high'] {
+  &:where([data-iui-contrast='high']) {
     @include themes.light-hc-theme;
   }
 }
 
-[data-iui-theme='dark'] {
+:where(.iui-root[data-iui-theme='dark']) {
   @include themes.dark-theme;
 
-  &[data-iui-contrast='high'] {
+  &:where([data-iui-contrast='high']) {
     @include themes.dark-hc-theme;
   }
 }

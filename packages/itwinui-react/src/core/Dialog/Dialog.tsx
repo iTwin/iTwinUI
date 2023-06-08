@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/dialog.css';
 import { DialogTitleBar } from './DialogTitleBar.js';
 import { DialogContent } from './DialogContent.js';
 import { DialogBackdrop } from './DialogBackdrop.js';
@@ -35,6 +34,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
     isDraggable = false,
     isResizable = false,
     relativeTo = 'viewport',
+    placement,
     className,
     ...rest
   } = props;
@@ -57,6 +57,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isResizable,
         relativeTo,
         dialogRootRef,
+        placement,
       }}
     >
       <Box

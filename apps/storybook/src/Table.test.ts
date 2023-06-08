@@ -41,46 +41,48 @@ describe('Table', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
 
-      switch (testName) {
-        case 'Column Manager': {
-          cy.get('.iui-slot .iui-button').click();
-          break;
+      cy.get('#storybook-root').within(() => {
+        switch (testName) {
+          case 'Column Manager': {
+            cy.get('[role=columnheader] button').last().click();
+            break;
+          }
+          case 'Condensed': {
+            cy.get('[role=rowgroup] button').first().click();
+            break;
+          }
+          case 'Custom Filter': {
+            cy.get('button').first().click({ force: true }); // force because the button is hidden
+            break;
+          }
+          case 'Customized Columns': {
+            cy.get('[role=rowgroup] button').last().click();
+            break;
+          }
+          case 'Expandable':
+          case 'Expandable Subrows': {
+            cy.get('[role=rowgroup] button').first().click();
+            break;
+          }
+          case 'Editable': {
+            cy.get('[contenteditable]').first().click().type('Test');
+            break;
+          }
+          case 'Filters': {
+            cy.get('button').first().click({ force: true }); // force because the button is hidden
+            break;
+          }
+          case 'Global Filter': {
+            cy.get('input').first().click().type('Description8');
+            break;
+          }
+          case 'Localized': {
+            cy.get('input').first().click();
+            cy.get('button').first().click({ force: true }); // force because the button is hidden
+            break;
+          }
         }
-        case 'Condensed': {
-          cy.get('.iui-table-row-expander').first().click();
-          break;
-        }
-        case 'Custom Filter': {
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
-          break;
-        }
-        case 'Customized Columns': {
-          cy.get('.iui-table-row-expander').last().click();
-          break;
-        }
-        case 'Expandable':
-        case 'Expandable Subrows': {
-          cy.get('.iui-table-row-expander').first().click();
-          break;
-        }
-        case 'Editable': {
-          cy.get('[contenteditable]').first().click().type('Test');
-          break;
-        }
-        case 'Filters': {
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
-          break;
-        }
-        case 'Global Filter': {
-          cy.get('.iui-input').first().click().type('Description8');
-          break;
-        }
-        case 'Localized': {
-          cy.get('.iui-checkbox').first().click();
-          cy.get('.iui-table-filter-button').first().click({ force: true }); // force because the button is hidden
-          break;
-        }
-      }
+      });
 
       cy.compareSnapshot(testName);
     });

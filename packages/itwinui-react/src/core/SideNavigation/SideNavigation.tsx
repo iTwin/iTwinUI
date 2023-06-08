@@ -8,7 +8,6 @@ import { WithCSSTransition, SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
-import '@itwin/itwinui-css/css/side-navigation.css';
 
 type SideNavigationProps = {
   /**
