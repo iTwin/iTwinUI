@@ -31,7 +31,33 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
+  install-windows:
+    name: Install node modules (windows)
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 18.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
@@ -58,14 +84,17 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn audit
 
   build:
     name: Build and lint packages
-    needs: install
-    runs-on: ubuntu-latest
+    needs: [install, install-windows]
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v3
@@ -84,11 +113,11 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn lint
       - run: yarn lint:copyright
-      - run: yarn build --filter={./packages/*}...
+      - run: yarn build --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
@@ -112,7 +141,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn build --filter=website --filter="{./playgrounds/*}..."
 
@@ -144,7 +173,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Build html test pages
         run: yarn build --filter=itwinui-css
@@ -233,7 +262,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn workspace @itwin/itwinui-react test --coverage
 
@@ -268,7 +297,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: yarn test --filter=itwinui-css
         uses: nick-fields/retry@v2
@@ -336,7 +365,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn test --filter=storybook
 

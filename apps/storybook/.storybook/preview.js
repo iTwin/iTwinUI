@@ -12,7 +12,6 @@ const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 export default {
   parameters: {
     darkMode: {
-      classTarget: '.iui-root',
       dark: { ...themes.dark, ...darkTheme },
       light: { ...themes.light, ...lightTheme },
     },

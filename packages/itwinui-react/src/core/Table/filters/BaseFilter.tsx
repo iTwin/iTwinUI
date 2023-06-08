@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useGlobals } from '../../utils/index.js';
+import { Box, useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 
 export type BaseFilterProps = {
@@ -34,7 +34,7 @@ export const BaseFilter = (props: BaseFilterProps) => {
   useGlobals();
 
   return (
-    <div
+    <Box
       className={cx('iui-table-column-filter', className)}
       style={style}
       // Prevents from triggering sort
@@ -44,6 +44,6 @@ export const BaseFilter = (props: BaseFilterProps) => {
       id={id}
     >
       {children}
-    </div>
+    </Box>
   );
 };

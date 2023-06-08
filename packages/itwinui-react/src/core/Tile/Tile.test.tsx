@@ -88,10 +88,8 @@ it('should render thumbnail correctly (svg)', () => {
   const { container } = render(
     <Tile name='test-name' thumbnail={<SvgPlaceholder />} />,
   );
-  const { container: placeholderIcon } = render(
-    <SvgPlaceholder className='iui-thumbnail-icon' />,
-  );
-  expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
+  const { container: placeholderIcon } = render(<SvgPlaceholder />);
+  expect(container.querySelector('.iui-tile-thumbnail svg')).toBeTruthy();
   const svg = container.querySelector('svg') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(placeholderIcon.firstChild);

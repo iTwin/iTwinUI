@@ -154,6 +154,7 @@ const FileUploadCardInput = React.forwardRef((props, ref) => {
       <VisuallyHidden
         as='input'
         type='file'
+        unhideOnFocus={false}
         onChange={mergeEventHandlers(onChange, (e) => {
           const _files = Array.from(e.currentTarget.files || []);
           onFilesChange?.(_files);
