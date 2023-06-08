@@ -34,6 +34,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     className='demo-iui-wrapper'
     theme='dark'
     themeOptions={{ applyBackground: false }}
+    client:load
   >
     <slot />
   </ThemeProvider>
@@ -97,9 +98,10 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     height: 100%;
     width: 100%;
     overflow: auto;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-items: center;
   }
 
   .sandbox-link {

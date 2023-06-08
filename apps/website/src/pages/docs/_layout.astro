@@ -76,7 +76,6 @@ const currentPage = new URL(Astro.request.url).pathname;
     align-items: start;
     justify-content: center;
     padding: var(--space-7);
-    padding-block-end: calc(2 * var(--space-7));
     grid-template:
       'h1' auto
       'toc' auto
@@ -89,6 +88,13 @@ const currentPage = new URL(Astro.request.url).pathname;
         '. main . toc' 1fr
         '. aftermain . toc' / 1fr var(--_content-width) 1fr auto;
       position: relative;
+
+      // using pseudo-element to work around firefox bug
+      &:global(::after) {
+        content: '';
+        grid-row: aftermain-end;
+        padding-block-end: var(--space-7);
+      }
 
       > :global(.toc-wrapper) {
         position: sticky;
