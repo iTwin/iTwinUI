@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import fs from 'node:fs';
 import path from 'node:path';
-import { resolve } from 'path';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
-const __dirname = path.dirname(new URL(import.meta.url).pathname);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -15,7 +15,7 @@ export default defineConfig({
     minify: false,
     cssMinify: false,
     lib: {
-      entry: resolve(__dirname, './classes.mjs'),
+      entry: path.resolve(__dirname, './classes.mjs'),
       fileName: (format) => `${format}/styles.js`,
       formats: ['esm', 'cjs'],
     },
@@ -52,12 +52,12 @@ export default defineConfig({
 // ----------------------------------------------------------------------------
 
 const root = path.join(__dirname, '..', '..');
-const srcDir = path.resolve(root, 'src');
-const distDir = path.resolve(srcDir, 'styles.js', 'dist');
-const distEsmDir = path.resolve(distDir, 'esm');
-const distCjsDir = path.resolve(distDir, 'cjs');
-const outCjsDir = path.resolve(root, 'cjs');
-const outEsmDir = path.resolve(root, 'esm');
+const srcDir = path.join(root, 'src');
+const distDir = path.join(srcDir, 'styles.js', 'dist');
+const distEsmDir = path.join(distDir, 'esm');
+const distCjsDir = path.join(distDir, 'cjs');
+const outCjsDir = path.join(root, 'cjs');
+const outEsmDir = path.join(root, 'esm');
 
 const copyBuildOutput = async () => {
   // create cjs/ and esm/ directories if they don't exist
