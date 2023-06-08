@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import type { CellProps, Row, TableInstance, TableState } from 'react-table';
 import {
+  Box,
   useIntersection,
   useMergedRefs,
   WithCSSTransition,
@@ -103,7 +104,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
 
   return (
     <>
-      <div
+      <Box
         {...mergedProps}
         ref={refs}
         onClick={(event) => {
@@ -125,15 +126,15 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
             />
           );
         })}
-      </div>
+      </Box>
       {subComponent && (
         <WithCSSTransition in={row.isExpanded}>
-          <div
+          <Box
             className={cx('iui-table-row', 'iui-table-expanded-content')}
             aria-disabled={isDisabled}
           >
             {subComponent(row)}
-          </div>
+          </Box>
         </WithCSSTransition>
       )}
     </>

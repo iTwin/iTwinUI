@@ -10,8 +10,10 @@ describe('TimePicker', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
-      cy.get('.iui-button').last().click();
-      cy.get('.iui-input-container').hide();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').last().click();
+        cy.get('input').parent().hide();
+      });
       cy.compareSnapshot(testName);
     });
   });

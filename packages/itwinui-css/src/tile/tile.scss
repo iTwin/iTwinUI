@@ -304,6 +304,12 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-thumbnail-icon {
+    &,
+    > svg {
+      @include mixins.iui-icon-style(3xl);
+      @include mixins.iui-icon-color;
+    }
+    transition: transform var(--iui-duration-2) ease;
     place-self: center;
 
     svg:not(.iui-radial) {
@@ -326,13 +332,16 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   ~ .iui-thumbnail-icon {
-    cursor: pointer;
-    transition: fill var(--iui-duration-1) ease;
-    fill: rgba(255, 255, 255, var(--iui-opacity-3));
-    filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
+    &,
+    > svg {
+      cursor: pointer;
+      transition: fill var(--iui-duration-1) ease;
+      fill: rgba(255, 255, 255, var(--iui-opacity-3));
+      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
-    &:hover {
-      fill: rgba(255, 255, 255, var(--iui-opacity-2));
+      &:hover {
+        fill: rgba(255, 255, 255, var(--iui-opacity-2));
+      }
     }
   }
 }

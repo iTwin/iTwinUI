@@ -126,7 +126,7 @@ it('should render thumbnail correctly (svg)', () => {
     </Tile>,
   );
   const { container: placeholderIcon } = render(<SvgPlaceholder />);
-  expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
+  expect(container.querySelector('.iui-tile-thumbnail svg')).toBeTruthy();
   const svg = container.querySelector('svg') as SVGSVGElement;
   expect(svg).toBeTruthy();
   expect(svg).toEqual(placeholderIcon.firstChild);
