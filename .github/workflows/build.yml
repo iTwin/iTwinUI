@@ -12,10 +12,33 @@ on:
 jobs:
   install:
     name: Install node modules
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 18.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
+  install-windows:
+    name: Install node modules (windows)
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -67,7 +90,7 @@ jobs:
 
   build:
     name: Build and lint packages
-    needs: install
+    needs: [install, install-windows]
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
