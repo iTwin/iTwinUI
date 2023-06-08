@@ -111,7 +111,7 @@ type TileOwnProps = {
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
-const TileComponent = React.forwardRef((props: TileProps, ref) => {
+const TileComponent = React.forwardRef((props, ref) => {
   const {
     className,
     status,
