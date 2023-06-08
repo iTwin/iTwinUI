@@ -7,5 +7,6 @@
   },
   "module": {
     "type": "es6"
-  }
+  },
+  "exclude": ["src/styles.js", "src/styles.d.ts"]
 }

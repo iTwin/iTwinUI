@@ -8,7 +8,6 @@ import { SvgChevronRight } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import type { IconButtonProps } from '../Buttons/IconButton/IconButton.js';
-import '@itwin/itwinui-css/css/tree.css';
 
 type TreeNodeExpanderProps = {
   isExpanded?: boolean;

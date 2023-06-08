@@ -12,7 +12,9 @@ describe('Stepper', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName.includes('Tooltip')) {
-        cy.get('.iui-stepper-step').first().trigger('mouseenter'); // trigger tooltip
+        cy.get('#storybook-root').within(() => {
+          cy.get('li').first().trigger('mouseenter'); // trigger tooltip
+        });
       }
 
       cy.compareSnapshot(testName);

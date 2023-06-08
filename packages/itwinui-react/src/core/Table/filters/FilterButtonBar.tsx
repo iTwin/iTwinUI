@@ -4,8 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/table.css';
-import { useGlobals } from '../../utils/index.js';
+import { Box, useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { Button } from '../../Buttons/index.js';
 
@@ -59,12 +58,12 @@ export const FilterButtonBar = (props: FilterButtonBarProps) => {
   useGlobals();
 
   return (
-    <div className={cx('iui-button-bar', className)} style={style} id={id}>
+    <Box className={cx('iui-button-bar', className)} style={style} id={id}>
       {children}
       <Button styleType='high-visibility' onClick={setFilter}>
         {translatedStrings.filter}
       </Button>
       <Button onClick={clearFilter}>{translatedStrings.clear}</Button>
-    </div>
+    </Box>
   );
 };

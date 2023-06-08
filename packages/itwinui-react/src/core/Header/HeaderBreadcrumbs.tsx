@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 
 type HeaderBreadcrumbsProps = {
   /**

@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { getRandomValue, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/carousel.css';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
 import { CarouselSlide } from './CarouselSlide.js';

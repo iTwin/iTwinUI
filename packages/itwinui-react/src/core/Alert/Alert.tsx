@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import '@itwin/itwinui-css/css/alert.css';
 import {
   Icon,
   useSafeContext,
@@ -13,7 +12,7 @@ import {
   SvgCloseSmall,
   Box,
 } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/props.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 
 const AlertContext = React.createContext<

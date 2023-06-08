@@ -7,7 +7,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/progress-indicator.css';
 
 type ProgressLinearProps = {
   /**

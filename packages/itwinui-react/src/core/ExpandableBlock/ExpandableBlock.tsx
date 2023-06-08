@@ -12,7 +12,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/expandable-block.css';
 
 type ExpandableBlockProps = {
   /**

@@ -70,6 +70,10 @@ export type DialogContextProps = {
    * Dialog root ref. For internal use.
    */
   dialogRootRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * Determines the positioning of Dialog on page.
+   */
+  placement?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 };
 
 export const DialogContext = React.createContext<
