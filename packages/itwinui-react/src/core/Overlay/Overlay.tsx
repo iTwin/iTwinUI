@@ -6,3 +6,5 @@ import { polymorphic } from '../utils/index.js';
 
 export const Overlay = polymorphic('iui-progress-indicator-overlay');
 Overlay.displayName = 'Overlay';
+
+export default './Overlay';

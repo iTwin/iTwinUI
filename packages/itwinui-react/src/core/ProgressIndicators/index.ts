@@ -5,5 +5,3 @@
 export { ProgressLinear } from './ProgressLinear/index.js';
 
 export { ProgressRadial } from './ProgressRadial/index.js';
-
-export { Overlay } from '../Overlay/index.js';
