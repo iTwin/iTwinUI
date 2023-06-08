@@ -35,6 +35,12 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.11.6
+
+### Patch Changes
+
+- [#1341](https://github.com/iTwin/iTwinUI/pull/1341): Table: fixed action column header content alignment when using globalFilterValue.
+
 ## 2.11.5
 
 ### Patch Changes
