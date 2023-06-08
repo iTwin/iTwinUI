@@ -286,7 +286,7 @@ const TileName = React.forwardRef((props, ref) => {
   const { className, children, name, ...rest } = props;
   return (
     <Box className={cx('iui-tile-name', className)} ref={ref} {...rest}>
-      {name ?? children}
+      {children ?? name}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
