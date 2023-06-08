@@ -21,8 +21,6 @@ import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 
-type TileProps = React.ComponentProps<typeof Tile>;
-
 const TileContext = React.createContext<
   | {
       status: 'positive' | 'warning' | 'negative' | undefined;
@@ -135,7 +133,7 @@ const TileComponent = React.forwardRef((props, ref) => {
         isLoading,
         isActionable,
         isDisabled,
-        setActionable: () => {},
+        setActionable,
         onClick,
       }}
     >
@@ -164,7 +162,7 @@ TileComponent.displayName = 'Tile';
 // ----------------------------------------------------------------------------
 // Tile.Action component
 
-export const TileAction = (props: PolymorphicForwardRefComponent<'a'>) => {
+const TileAction = React.forwardRef((props, forwardedRef) => {
   const { setActionable } = useSafeContext(TileContext);
   React.useEffect(() => {
     if (!supportsHas()) {
@@ -172,8 +170,9 @@ export const TileAction = (props: PolymorphicForwardRefComponent<'a'>) => {
     }
   }, [setActionable]);
 
-  return <LinkAction as='a' {...props} />;
-};
+  return <LinkAction ref={forwardedRef} {...props} />;
+}) as PolymorphicForwardRefComponent<'a'>;
+TileAction.displayName = 'Tile.Action';
 
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
@@ -277,51 +276,27 @@ const TileNameIcon = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
   const { status, isLoading, isSelected, isNew } = useSafeContext(TileContext);
 
-  type TitleIconProps = {
-    isLoading?: boolean;
-    isSelected?: boolean;
-    isNew?: boolean;
-    status?: 'positive' | 'warning' | 'negative';
-  };
+  const StatusIcon = !!status && StatusIconMap[status];
+  let icon;
 
-  const TitleIcon = ({
-    isLoading = false,
-    isSelected = false,
-    isNew = false,
-    status,
-  }: TitleIconProps) => {
-    const StatusIcon = !!status && StatusIconMap[status];
+  if (isLoading) {
+    icon = <ProgressRadial aria-hidden indeterminate />;
+  }
+  if (isSelected) {
+    icon = <SvgCheckmark aria-hidden />;
+  }
+  if (isNew) {
+    icon = <SvgNew aria-hidden />;
+  }
+  if (StatusIcon) {
+    icon = <StatusIcon aria-hidden />;
+  }
 
-    let icon = null;
-
-    if (isLoading) {
-      icon = (
-        <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
-      );
-    }
-    if (isSelected) {
-      icon = <SvgCheckmark aria-hidden />;
-    }
-    if (isNew) {
-      icon = <SvgNew aria-hidden />;
-    }
-    if (StatusIcon) {
-      icon = <StatusIcon />;
-    }
-    return icon ? <Box className='iui-tile-status-icon'>{icon}</Box> : null;
-  };
-
-  return (
-    <Box className='iui-tile-name-icon' ref={ref} {...rest}>
-      <TitleIcon
-        isLoading={isLoading}
-        isSelected={isSelected}
-        isNew={isNew}
-        status={status}
-      />
-      {!(isLoading || isSelected || isNew) && children}
+  return children || icon ? (
+    <Box className='iui-tile-status-icon' ref={ref} {...rest}>
+      {children ?? icon}
     </Box>
-  );
+  ) : null;
 }) as PolymorphicForwardRefComponent<'div'>;
 TileNameIcon.displayName = 'Tile.NameIcon';
 
@@ -371,12 +346,12 @@ TileMetadata.displayName = 'Tile.Metadata';
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
 type TileMoreOptionsOwnProps = {
-  menuOnClick?: React.MouseEventHandler<HTMLElement>;
+  onButtonClick?: React.MouseEventHandler<HTMLElement>;
   children?: React.ReactElement[];
 };
 
 const TileMoreOptions = React.forwardRef((props, ref) => {
-  const { className, children = [], menuOnClick, ...rest } = props;
+  const { className, children = [], onButtonClick, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
@@ -410,7 +385,7 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
           styleType='borderless'
           size='small'
           aria-label='More options'
-          onClick={menuOnClick}
+          onClick={onButtonClick}
         >
           <SvgMore />
         </IconButton>

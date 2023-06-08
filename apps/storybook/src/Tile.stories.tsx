@@ -23,10 +23,12 @@ import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
 
+type TileProps = React.ComponentProps<typeof Tile>;
+
 export default {
   component: Tile,
   argTypes: {
-    classNameIcon: { control: { disable: true } },
+    className: { control: { disable: true } },
     style: { control: { disable: true } },
     id: { control: { disable: true } },
     variant: { control: 'radio', options: ['default', 'folder'] },
@@ -43,13 +45,10 @@ export default {
 export const Basic: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Stadium</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Stadium' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </Tile.ThumbnailArea>
@@ -87,7 +86,7 @@ export const AllProps: Story<TileProps> = (args) => {
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.TypeIndicator>
@@ -170,7 +169,7 @@ export const Actionable: Story<TileProps> = (args) => {
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
@@ -207,7 +206,7 @@ export const AnchorLink: Story<TileProps> = (args) => {
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </Tile.ThumbnailArea>
@@ -273,7 +272,7 @@ export const WithAvatar: Story<TileProps> = (args) => {
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture>
           <Avatar
@@ -433,7 +432,7 @@ export const Disabled: Story<TileProps> = (args) => {
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />
