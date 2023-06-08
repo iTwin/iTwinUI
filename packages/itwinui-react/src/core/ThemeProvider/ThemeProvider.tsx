@@ -92,16 +92,14 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
 export const ThemeProvider = React.forwardRef((props, ref) => {
   const { theme: themeProp, children, themeOptions, ...rest } = props;
 
-  const rootRef = React.useRef<HTMLElement>(null);
   const portalContainerRef = React.useRef<HTMLDivElement>(null);
-
   const parentContext = React.useContext(ThemeContext);
 
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef, portalContainerRef }),
+    () => ({ theme, themeOptions, portalContainerRef }),
     [theme, themeOptions],
   );
 
@@ -110,7 +108,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       theme={theme}
       isInheritingTheme={themeProp === 'inherit'}
       themeOptions={themeOptions}
-      ref={useMergedRefs(rootRef, ref)}
+      ref={ref}
       {...rest}
     >
       <ThemeContext.Provider value={contextValue}>

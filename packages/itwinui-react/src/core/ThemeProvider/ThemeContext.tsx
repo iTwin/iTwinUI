@@ -9,7 +9,6 @@ export const ThemeContext = React.createContext<
   | {
       theme?: ThemeType;
       themeOptions?: ThemeOptions;
-      rootRef: React.RefObject<HTMLElement>;
       portalContainerRef?: React.RefObject<HTMLElement>;
     }
   | undefined
