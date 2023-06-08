@@ -1,3 +1,7 @@
+/*---------------------------------------------------------------------------------------------
+ * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+ * See LICENSE.md in the project root for license terms and full copyright notice.
+ *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
 import {
@@ -18,7 +22,7 @@ import { Box, type PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from '../ThemeProvider/ThemeContext.js';
 
 // Comment to test commits
-export type TooltipOptions = {
+type TooltipOptions = {
   placement?: Placement;
   visible?: boolean;
   toggleVisible?: (open: boolean) => void;
@@ -56,7 +60,6 @@ export const useTooltip = ({
   const hover = useHover(context, {
     move: false,
     enabled: controlledOpen == null,
-    // handleClose: safePolygon(),
   });
   const focus = useFocus(context, {
     enabled: controlledOpen == null,
@@ -77,7 +80,7 @@ export const useTooltip = ({
   );
 };
 
-export type TooltipOwnProps = {
+type TooltipOwnProps = {
   /**
    * Content of the tooltip.
    */
@@ -132,7 +135,7 @@ const TooltipTrigger = React.forwardRef((props, propRef) => {
           ref,
           ...rest,
           ...children.props,
-          'aria-describedby': undefined,
+          // 'aria-describedby': undefined,
         }),
       )
     : null;
