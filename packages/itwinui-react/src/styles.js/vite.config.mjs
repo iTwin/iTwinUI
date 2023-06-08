@@ -52,12 +52,12 @@ export default defineConfig({
 // ----------------------------------------------------------------------------
 
 const root = path.join(__dirname, '..', '..');
-const srcDir = path.resolve(root, 'src');
-const distDir = path.resolve(srcDir, 'styles.js', 'dist');
-const distEsmDir = path.resolve(distDir, 'esm');
-const distCjsDir = path.resolve(distDir, 'cjs');
-const outCjsDir = path.resolve(root, 'cjs');
-const outEsmDir = path.resolve(root, 'esm');
+const srcDir = path.join(root, 'src');
+const distDir = path.join(srcDir, 'styles.js', 'dist');
+const distEsmDir = path.join(distDir, 'esm');
+const distCjsDir = path.join(distDir, 'cjs');
+const outCjsDir = path.join(root, 'cjs');
+const outEsmDir = path.join(root, 'esm');
 
 const copyBuildOutput = async () => {
   // create cjs/ and esm/ directories if they don't exist
