@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#3](https://github.com/iTwin/iTwinUI/pull/3): Table: fixed action column header content alignment when using globalFilterValue.
+- [#1341](https://github.com/iTwin/iTwinUI/pull/1341): Table: fixed action column header content alignment when using globalFilterValue.
 
 ## 2.11.5
 
