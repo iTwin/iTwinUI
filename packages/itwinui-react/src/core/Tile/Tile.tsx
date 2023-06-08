@@ -269,7 +269,7 @@ const TileButtonIcon = React.forwardRef((props, ref) => {
 TileButtonIcon.displayName = 'Tile.ButtonIcon';
 
 // ----------------------------------------------------------------------------
-// Tile.Badge component
+// Tile.BadgeContainer component
 
 const TileBadgeContainer = polymorphic.div(
   'iui-tile-thumbnail-badge-container',
