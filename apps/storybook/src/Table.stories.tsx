@@ -1706,17 +1706,20 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
 
   return (
     <div
-      style={{ display: 'flex', flexDirection: 'column', maxWidth: '1000px' }}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '1000px',
+        gap: '8px',
+      }}
     >
-      <div style={{ display: 'flex', margin: '8px 0' }}>
-        <Input
-          placeholder='Search...'
-          value={globalFilterValue}
-          onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setGlobalFilterValue(e.target.value)
-          }
-        />
-      </div>
+      <Input
+        placeholder='Search...'
+        value={globalFilterValue}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setGlobalFilterValue(e.target.value)
+        }
+      />
       <div
         style={{
           height: '375px',
