@@ -31,7 +31,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
@@ -58,7 +58,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn audit
 
@@ -78,8 +78,7 @@ jobs:
         with:
           node-version: 18.x
 
-      - if: matrix.os == 'ubuntu-latest'
-        name: Cache node_modules
+      - name: Cache node_modules
         uses: actions/cache@v3
         id: cache-node-modules
         with:
@@ -88,10 +87,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
-
-      - if: matrix.os == 'windows-latest'
-        run: yarn
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn lint
       - run: yarn lint:copyright
@@ -119,7 +115,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn build --filter=website --filter="{./playgrounds/*}..."
 
@@ -151,7 +147,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Build html test pages
         run: yarn build --filter=itwinui-css
@@ -240,7 +236,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn workspace @itwin/itwinui-react test --coverage
 
@@ -275,7 +271,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: yarn test --filter=itwinui-css
         uses: nick-fields/retry@v2
@@ -343,7 +339,7 @@ jobs:
             packages/*/node_modules
             apps/*/node_modules
             playgrounds/*/node_modules
-          key: modules-${{ hashFiles('yarn.lock') }}
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - run: yarn test --filter=storybook
 
