@@ -6,11 +6,5 @@
   "exports": {
     ".": "./src/index.tsx",
     "./*": "./*"
-  },
-  "scripts": {
-    "build": "tsup src/index.tsx"
-  },
-  "devDependencies": {
-    "tsup": "^6.7.0"
   }
 }
