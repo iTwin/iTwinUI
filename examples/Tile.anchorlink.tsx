@@ -10,7 +10,6 @@ export default () => {
   return (
     <Tile>
       <Tile.Name>
-        <Tile.NameIcon />
         <Tile.NameLabel>
           <Tile.Action href='https://inclusive-components.design/cards/'>
             Stadium
@@ -19,7 +18,7 @@ export default () => {
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
       </Tile.ThumbnailArea>

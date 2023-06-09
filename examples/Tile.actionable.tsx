@@ -14,10 +14,7 @@ export default () => {
       isActionable={true}
       onClick={() => setSelected((prev) => !prev)}
     >
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Stadium</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Stadium' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.BadgeContainer>

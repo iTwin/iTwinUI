@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tile, TagContainer, Tag, IconButton } from '@itwin/itwinui-react';
+import { Tile, TagContainer, Tag } from '@itwin/itwinui-react';
 import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -13,14 +13,14 @@ export default () => {
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.TypeIndicator>
-          <IconButton styleType='borderless'>
-            <SvgInfo />
-          </IconButton>
+          <Tile.IconButton>
+            <SvgStar />
+          </Tile.IconButton>
         </Tile.TypeIndicator>
         <Tile.QuickAction>
-          <IconButton styleType='borderless'>
-            <SvgStar />
-          </IconButton>
+          <Tile.IconButton>
+            <SvgInfo />
+          </Tile.IconButton>
         </Tile.QuickAction>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>

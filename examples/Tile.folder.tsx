@@ -14,10 +14,7 @@ export default () => {
           <SvgFolder />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Folder Name</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Folder Name' />
       <Tile.ContentArea>
         <Tile.Description>Folder description</Tile.Description>
         <Tile.MoreOptions>

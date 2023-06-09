@@ -117,11 +117,14 @@ const TileComponent = React.forwardRef((props, ref) => {
     isNew,
     isSelected,
     isLoading,
-    isActionable,
+    isActionable: isActionableProp,
     isDisabled,
     onClick,
     ...rest
   } = props;
+  const [localActionable, setLocalActionable] =
+    React.useState(isActionableProp);
+  const isActionable = isActionableProp ?? localActionable;
 
   return (
     <TileContext.Provider
@@ -133,7 +136,7 @@ const TileComponent = React.forwardRef((props, ref) => {
         isLoading,
         isActionable,
         isDisabled,
-        setActionable: () => {},
+        setActionable: setLocalActionable,
         onClick,
       }}
     >
@@ -228,22 +231,26 @@ const TileTypeIndicator = polymorphic.div('iui-tile-thumbnail-type-indicator');
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
-// Tile.ButtonIcon component
+// Tile.IconButton component
 
-const TileButtonIcon = React.forwardRef((props, ref) => {
+const TileIconButton = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   return (
-    <Box
-      as='span'
-      className={cx('iui-button-icon', className)}
+    <IconButton
+      className={className}
+      styleType='borderless'
+      size='small'
       ref={ref}
       {...rest}
     >
       {children}
-    </Box>
+    </IconButton>
   );
-}) as PolymorphicForwardRefComponent<'button'>;
-TileButtonIcon.displayName = 'Tile.ButtonIcon';
+}) as PolymorphicForwardRefComponent<
+  'button',
+  React.ComponentPropsWithoutRef<typeof IconButton>
+>;
+TileIconButton.displayName = 'Tile.IconButton';
 
 // ----------------------------------------------------------------------------
 // Tile.BadgeContainer component
@@ -279,6 +286,9 @@ const TileNameIcon = React.forwardRef((props, ref) => {
   const StatusIcon = !!status && StatusIconMap[status];
   let icon;
 
+  if (StatusIcon) {
+    icon = <StatusIcon aria-hidden />;
+  }
   if (isLoading) {
     icon = (
       <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
@@ -289,9 +299,6 @@ const TileNameIcon = React.forwardRef((props, ref) => {
   }
   if (isNew) {
     icon = <SvgNew aria-hidden />;
-  }
-  if (StatusIcon) {
-    icon = <StatusIcon aria-hidden />;
   }
 
   return children || icon ? (
@@ -476,9 +483,9 @@ export const Tile = Object.assign(TileComponent, {
    */
   BadgeContainer: TileBadgeContainer,
   /**
-   * `ButtonIcon` subcomponent: custom icon for `QuickAction` and `TypeIndicator` buttons.
+   * `IconButton` subcomponent: custom icon for `QuickAction` and `TypeIndicator` buttons.
    */
-  ButtonIcon: TileButtonIcon,
+  IconButton: TileIconButton,
   /**
    * `Name` subcomponent under thumbnail or top of the Tile if no thumbnail present.
    */

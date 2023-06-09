@@ -9,10 +9,7 @@ import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <Tile status='positive'>
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Tile Name</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Tile Name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />

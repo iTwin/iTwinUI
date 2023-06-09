@@ -9,7 +9,6 @@ import {
   Badge,
   Button,
   getUserColor,
-  IconButton,
   MenuItem,
   Tag,
   TagContainer,
@@ -90,26 +89,14 @@ export const AllProps: Story<TileProps> = (args) => {
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.TypeIndicator>
-          <Tile.ButtonIcon>
-            <IconButton
-              size='small'
-              styleType='borderless'
-              onClick={action('clicked left icon')}
-            >
-              <SvgStar />
-            </IconButton>
-          </Tile.ButtonIcon>
+          <Tile.IconButton>
+            <SvgStar />
+          </Tile.IconButton>
         </Tile.TypeIndicator>
         <Tile.QuickAction>
-          <Tile.ButtonIcon>
-            <IconButton
-              size='small'
-              styleType='borderless'
-              onClick={action('clicked right icon')}
-            >
-              <SvgInfo />
-            </IconButton>
-          </Tile.ButtonIcon>
+          <Tile.IconButton>
+            <SvgInfo />
+          </Tile.IconButton>
         </Tile.QuickAction>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>

@@ -9,10 +9,7 @@ import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <Tile>
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Condensed</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Condensed' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgImodelHollow />

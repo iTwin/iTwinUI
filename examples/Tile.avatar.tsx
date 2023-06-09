@@ -14,13 +14,10 @@ import {
 export default () => {
   return (
     <Tile>
-      <Tile.Name>
-        <Tile.NameIcon />
-        <Tile.NameLabel>Some User</Tile.NameLabel>
-      </Tile.Name>
+      <Tile.Name name='Some User' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
         <Tile.ThumbnailPicture>
           <Avatar
