@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
+import { Tooltip } from '../Tooltip/index.js';
 import { Box, type CommonProps } from '../utils/index.js';
 import type { StepperStepProps } from './StepperStep.js';
-import { Tooltip } from '../Tooltip/index.js';
+
 export type WorkflowDiagramStepProps = Pick<
   StepperStepProps,
   'title' | 'description'

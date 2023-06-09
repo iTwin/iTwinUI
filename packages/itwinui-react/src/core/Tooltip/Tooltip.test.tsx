@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
+
 import { Tooltip } from './Tooltip.js';
 
-it('should toggle the visibility of Tooltip on hover', () => {
+it('should toggle the visibility of tooltip on hover', () => {
   jest.useFakeTimers();
   const { getByText, queryByText } = render(
     <Tooltip content='some text'>

@@ -16,16 +16,16 @@ export default () => {
         placeItems: 'center',
       }}
     >
-      <Tooltip placement='left' content='left Tooltip'>
+      <Tooltip placement='left' content='left tooltip'>
         <Button>Left</Button>
       </Tooltip>
-      <Tooltip placement='top' content='top Tooltip'>
+      <Tooltip placement='top' content='top tooltip'>
         <Button>Top</Button>
       </Tooltip>
-      <Tooltip placement='bottom' content='bottom Tooltip'>
+      <Tooltip placement='bottom' content='bottom tooltip'>
         <Button>Bottom</Button>
       </Tooltip>
-      <Tooltip placement='right' content='right Tooltip'>
+      <Tooltip placement='right' content='right tooltip'>
         <Button>Right</Button>
       </Tooltip>
     </div>

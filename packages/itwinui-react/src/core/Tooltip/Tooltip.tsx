@@ -193,4 +193,3 @@ const TooltipContent = React.forwardRef((props, propRef) => {
  * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
  */
 export const Tooltip = TooltipComponent;
-export type TooltipProps = TooltipOwnProps & TooltipOptions;
