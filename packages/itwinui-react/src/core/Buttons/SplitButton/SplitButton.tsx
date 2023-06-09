@@ -5,17 +5,12 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { Button } from '../Button/index.js';
-import type { ButtonProps } from '../Button/index.js';
+import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { Placement } from 'tippy.js';
-import {
-  SvgCaretDownSmall,
-  SvgCaretUpSmall,
-  useTheme,
-} from '../../utils/index.js';
+import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/button.css';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -35,11 +30,6 @@ export type SplitButtonProps = ButtonProps & {
   children: React.ReactNode;
 };
 
-type SplitButtonComponent = PolymorphicForwardRefComponent<
-  'button',
-  SplitButtonProps
->;
-
 /**
  * Split button component with a DropdownMenu.
  *
@@ -54,70 +44,62 @@ type SplitButtonComponent = PolymorphicForwardRefComponent<
  * <SplitButton onClick={onClick} menuItems={menuItems}>Default</SplitButton>
  * <SplitButton onClick={onClick} menuItems={menuItems} styleType='high-visibility'>High visibility</SplitButton>
  */
-export const SplitButton: SplitButtonComponent = React.forwardRef(
-  (props, forwardedRef) => {
-    const {
-      onClick,
-      menuItems,
-      className,
-      menuPlacement = 'bottom-end',
-      styleType = 'default',
-      size,
-      children,
-      style,
-      title,
-      ...rest
-    } = props;
+export const SplitButton = React.forwardRef((props, forwardedRef) => {
+  const {
+    onClick,
+    menuItems,
+    className,
+    menuPlacement = 'bottom-end',
+    styleType = 'default',
+    size,
+    children,
+    style,
+    title,
+    ...rest
+  } = props;
 
-    useTheme();
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [menuWidth, setMenuWidth] = React.useState(0);
+  const ref = React.useRef<HTMLDivElement>(null);
 
-    const [menuWidth, setMenuWidth] = React.useState(0);
-    const ref = React.useRef<HTMLSpanElement>(null);
+  React.useEffect(() => {
+    if (ref.current) {
+      setMenuWidth(ref.current.offsetWidth);
+    }
+  }, [children, size]);
 
-    React.useEffect(() => {
-      if (ref.current) {
-        setMenuWidth(ref.current.offsetWidth);
-      }
-    }, [children, size]);
-
-    return (
-      <span
-        className={cx(className, 'iui-button-split', {
-          'iui-disabled': props.disabled,
-        })}
-        style={style}
-        title={title}
-        ref={ref}
+  return (
+    <Box
+      className={cx(className, 'iui-button-split', {
+        'iui-disabled': props.disabled,
+      })}
+      style={style}
+      title={title}
+      ref={ref}
+    >
+      <Button
+        styleType={styleType}
+        size={size}
+        onClick={onClick}
+        ref={forwardedRef}
+        {...rest}
       >
-        <Button
-          styleType={styleType}
-          size={size}
-          onClick={onClick}
-          ref={forwardedRef}
-          {...rest}
-        >
-          {children}
-        </Button>
-        <DropdownMenu
-          placement={menuPlacement}
-          menuItems={menuItems}
-          style={{ minWidth: menuWidth }}
-          onShow={React.useCallback(() => setIsMenuOpen(true), [])}
-          onHide={React.useCallback(() => setIsMenuOpen(false), [])}
-        >
-          <IconButton
-            styleType={styleType}
-            size={size}
-            disabled={props.disabled}
-          >
-            {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
-          </IconButton>
-        </DropdownMenu>
-      </span>
-    );
-  },
-);
+        {children}
+      </Button>
+      <DropdownMenu
+        placement={menuPlacement}
+        menuItems={menuItems}
+        style={{ minWidth: menuWidth }}
+        onShow={React.useCallback(() => setIsMenuOpen(true), [])}
+        onHide={React.useCallback(() => setIsMenuOpen(false), [])}
+      >
+        <IconButton styleType={styleType} size={size} disabled={props.disabled}>
+          {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+        </IconButton>
+      </DropdownMenu>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;
 
 export default SplitButton;

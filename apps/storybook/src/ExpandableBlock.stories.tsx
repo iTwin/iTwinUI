@@ -6,7 +6,9 @@ import { action } from '@storybook/addon-actions';
 import { useEffect, useState } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { ExpandableBlock, ExpandableBlockProps } from '@itwin/itwinui-react';
+import { ExpandableBlock } from '@itwin/itwinui-react';
+
+type ExpandableBlockProps = React.ComponentProps<typeof ExpandableBlock>;
 
 export default {
   title: 'Core/ExpandableBlock',
@@ -131,4 +133,17 @@ export const Borderless: Story<Partial<ExpandableBlockProps>> = (args) => {
 Borderless.args = {
   title: 'Basic Block',
   styleType: 'borderless',
+};
+
+export const Disabled: Story<Partial<ExpandableBlockProps>> = (args) => {
+  return (
+    <ExpandableBlock title='Disabled Block' disabled {...args}>
+      {args.children}
+    </ExpandableBlock>
+  );
+};
+
+Disabled.args = {
+  title: 'Disabled Block',
+  isExpanded: false,
 };

@@ -5,14 +5,10 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { useTheme } from '../../utils/index.js';
-import type {
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../../utils/index.js';
-import '@itwin/itwinui-css/css/button.css';
+import { Box } from '../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
-type ButtonOwnProps = {
+export type ButtonProps = {
   /**
    * Modify size of the button.
    */
@@ -31,16 +27,7 @@ type ButtonOwnProps = {
    * Icon shown after the main button content.
    */
   endIcon?: JSX.Element;
-  /**
-   * Content of the button.
-   */
-  children?: React.ReactNode;
 };
-
-export type ButtonProps<T extends React.ElementType = 'button'> =
-  PolymorphicComponentProps<T, ButtonOwnProps>;
-
-type ButtonComponent = PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
 
 /**
  * Generic button component
@@ -51,7 +38,7 @@ type ButtonComponent = PolymorphicForwardRefComponent<'button', ButtonOwnProps>;
  * <Button size='small' styleType='cta'>This is a small call to action button</Button>
  * <Button startIcon={<SvgAdd />}>New</Button>
  */
-export const Button: ButtonComponent = React.forwardRef((props, ref) => {
+export const Button = React.forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -61,14 +48,12 @@ export const Button: ButtonComponent = React.forwardRef((props, ref) => {
     type = 'button',
     startIcon,
     endIcon,
-    as: Element = 'button',
     ...rest
   } = props;
 
-  useTheme();
-
   return (
-    <Element
+    <Box
+      as='button'
       ref={ref}
       className={cx('iui-button', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
@@ -78,20 +63,20 @@ export const Button: ButtonComponent = React.forwardRef((props, ref) => {
       {...rest}
     >
       {startIcon && (
-        <span className='iui-button-icon' aria-hidden>
+        <Box as='span' className='iui-button-icon' aria-hidden>
           {startIcon}
-        </span>
+        </Box>
       )}
 
       {children && <span>{children}</span>}
 
       {endIcon && (
-        <span className='iui-button-icon' aria-hidden>
+        <Box as='span' className='iui-button-icon' aria-hidden>
           {endIcon}
-        </span>
+        </Box>
       )}
-    </Element>
+    </Box>
   );
-});
+}) as PolymorphicForwardRefComponent<'button', ButtonProps>;
 
 export default Button;

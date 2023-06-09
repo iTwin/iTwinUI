@@ -20,7 +20,9 @@ describe('SearchBox', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(testName);
       if (!testName.includes('Basic') && testName !== 'Small') {
-        cy.get('.iui-searchbox-open-button').first().click();
+        cy.get('#storybook-root').within(() => {
+          cy.get('button').first().click();
+        });
         cy.compareSnapshot(`${testName} (Open)`);
       }
     });

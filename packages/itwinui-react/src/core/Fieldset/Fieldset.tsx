@@ -3,17 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/fieldset.css';
 
-export type FieldsetProps = {
+type FieldsetProps = {
   /**
    * The caption or title for the fieldset.
    */
   legend?: React.ReactNode;
-} & React.ComponentPropsWithoutRef<'fieldset'>;
+};
 
 /**
  * Fieldset component to group several inputs, controls and labels within a form.
@@ -26,15 +26,15 @@ export type FieldsetProps = {
  *   </InputGroup>
  * </Fieldset>
  */
-export const Fieldset = (props: FieldsetProps) => {
+export const Fieldset = React.forwardRef((props, ref) => {
   const { children, className, disabled, legend, ...rest } = props;
 
-  useTheme();
-
   return (
-    <fieldset
+    <Box
+      as='fieldset'
       className={cx('iui-fieldset', className)}
       disabled={disabled}
+      ref={ref}
       {...rest}
     >
       {legend && <legend>{legend}</legend>}
@@ -46,8 +46,8 @@ export const Fieldset = (props: FieldsetProps) => {
               : child,
           )
         : children}
-    </fieldset>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'fieldset', FieldsetProps>;
 
 export default Fieldset;

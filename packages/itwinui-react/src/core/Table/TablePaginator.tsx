@@ -4,17 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/table.css';
 import { IconButton, Button, DropdownButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { MenuItem } from '../Menu/index.js';
 import {
   getBoundedValue,
-  useTheme,
+  useGlobals,
   useOverflow,
   useContainerWidth,
   SvgChevronLeft,
   SvgChevronRight,
+  Box,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -135,7 +135,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const localization = React.useMemo(
     () => ({ ...defaultLocalization, ...userLocalization }),
@@ -170,7 +170,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const pageButton = React.useCallback(
     (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
-      <button
+      <Box
+        as='button'
         key={index}
         type='button'
         className={cx('iui-table-paginator-page-button', {
@@ -183,7 +184,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         tabIndex={tabIndex}
       >
         {index + 1}
-      </button>
+      </Box>
     ),
     [focusedIndex, currentPage, localization, buttonSize, onPageChange],
   );
@@ -263,13 +264,14 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     pageSizeList && !!onPageSizeChange && !!totalRowsCount;
 
   const ellipsis = (
-    <span
+    <Box
+      as='span'
       className={cx('iui-table-paginator-ellipsis', {
         'iui-table-paginator-ellipsis-small': size === 'small',
       })}
     >
       …
-    </span>
+    </Box>
   );
 
   const noRowsContent = (
@@ -289,18 +291,18 @@ export const TablePaginator = (props: TablePaginatorProps) => {
   }
 
   return (
-    <div
+    <Box
       className={cx('iui-table-paginator', className)}
       ref={paginatorResizeRef}
       {...rest}
     >
-      <div className='iui-left'>
+      <Box className='iui-left'>
         {totalSelectedRowsCount > 0 && (
           <span>{localization.rowsSelectedLabel(totalSelectedRowsCount)}</span>
         )}
-      </div>
+      </Box>
       {showPagesList && (
-        <div className='iui-center' ref={overflowRef}>
+        <Box className='iui-center' ref={overflowRef}>
           <IconButton
             styleType='borderless'
             disabled={currentPage === 0}
@@ -310,7 +312,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
           >
             <SvgChevronLeft />
           </IconButton>
-          <span
+          <Box
+            as='span'
             className='iui-table-paginator-pages-group'
             onKeyDown={onKeyDown}
             ref={pageListRef}
@@ -346,7 +349,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
                 </>
               );
             })()}
-          </span>
+          </Box>
           <IconButton
             styleType='borderless'
             disabled={currentPage === totalPagesCount - 1 || hasNoRows}
@@ -356,16 +359,16 @@ export const TablePaginator = (props: TablePaginatorProps) => {
           >
             <SvgChevronRight />
           </IconButton>
-        </div>
+        </Box>
       )}
-      <div className='iui-right'>
+      <Box className='iui-right'>
         {showPageSizeList && (
           <>
             {localization.rowsPerPageLabel !== null &&
               paginatorWidth >= 1024 && (
-                <span className='iui-table-paginator-page-size-label'>
+                <Box as='span' className='iui-table-paginator-page-size-label'>
                   {localization.rowsPerPageLabel}
-                </span>
+                </Box>
               )}
             <DropdownButton
               styleType='borderless'
@@ -394,8 +397,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
             </DropdownButton>
           </>
         )}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

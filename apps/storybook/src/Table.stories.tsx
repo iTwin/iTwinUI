@@ -19,7 +19,7 @@ import {
   MenuItem,
   IconButton,
   Table,
-  Leading,
+  Text,
   tableFilters,
   TableFilterValue,
   TableProps,
@@ -35,7 +35,6 @@ import {
   Input,
   Radio,
   ProgressRadial,
-  useTheme,
   BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
@@ -698,7 +697,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1103,7 +1102,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1492,7 +1491,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1702,21 +1701,47 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     };
   }, []);
 
+  const [globalFilterValue, setGlobalFilterValue] = useState('');
+
   return (
-    <Table
-      columns={columns}
-      emptyTableContent='No data.'
-      isRowDisabled={isRowDisabled}
-      isSelectable
-      isSortable
-      isResizable
-      enableColumnReordering
-      {...args}
-      data={data}
-      style={{ height: '100%' }}
-      enableVirtualization
-      rowProps={rowProps}
-    />
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '1000px',
+        gap: '8px',
+      }}
+    >
+      <Input
+        placeholder='Search...'
+        value={globalFilterValue}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setGlobalFilterValue(e.target.value)
+        }
+      />
+      <div
+        style={{
+          height: '375px',
+          maxHeight: '90vh',
+        }}
+      >
+        <Table
+          columns={columns}
+          emptyTableContent='No data.'
+          isRowDisabled={isRowDisabled}
+          isSelectable
+          isSortable
+          isResizable
+          enableColumnReordering
+          {...args}
+          data={data}
+          style={{ height: '100%' }}
+          enableVirtualization
+          rowProps={rowProps}
+          globalFilterValue={globalFilterValue}
+        />
+      </div>
+    </div>
   );
 };
 
@@ -1730,20 +1755,6 @@ Full2.args = {
 Full2.argTypes = {
   data: { control: { disable: true } },
 };
-
-Full2.decorators = [
-  (Story) => (
-    <div
-      style={{
-        height: '375px',
-        maxHeight: '90vh',
-        maxWidth: '1000px',
-      }}
-    >
-      <Story />
-    </div>
-  ),
-];
 
 export const Localized: Story<Partial<TableProps>> = (args) => {
   const columns = useMemo(
@@ -2459,8 +2470,6 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
   );
 
   const CustomFilter = () => {
-    useTheme();
-
     const handleChange = (isChecked: boolean, filter: string) => {
       setFilter(isChecked ? filter : '');
       setIsLoading(true);
@@ -3461,7 +3470,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   const subComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>

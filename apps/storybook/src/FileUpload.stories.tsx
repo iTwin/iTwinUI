@@ -3,14 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { useState } from '@storybook/client-api';
+import { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   FileUpload,
   FileUploadCard,
   FileEmptyCard,
-  FileUploadProps,
   FileUploadTemplate,
   LabeledInput,
   IconButton,
@@ -20,6 +19,8 @@ import {
   SvgSmileyHappyVery,
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
+
+type FileUploadProps = React.ComponentProps<typeof FileUpload>;
 
 export default {
   component: FileUpload,

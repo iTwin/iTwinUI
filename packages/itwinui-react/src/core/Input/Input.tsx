@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/input.css';
+import { useMergedRefs, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type InputProps = {
   /**
@@ -17,7 +17,7 @@ export type InputProps = {
    * Modify size of the input.
    */
   size?: 'small' | 'large';
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>;
+};
 
 /**
  * Basic input component
@@ -26,28 +26,26 @@ export type InputProps = {
  * <Input disabled />
  * <Input size='small' />
  */
-export const Input = React.forwardRef(
-  (props: InputProps, ref: React.RefObject<HTMLInputElement>) => {
-    const { setFocus = false, size, className, ...rest } = props;
-    useTheme();
-    const inputRef = React.useRef<HTMLInputElement>(null);
-    const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
+export const Input = React.forwardRef((props, ref) => {
+  const { setFocus = false, size, className, ...rest } = props;
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 
-    React.useEffect(() => {
-      if (inputRef.current && setFocus) {
-        inputRef.current.focus();
-      }
-    }, [setFocus]);
+  React.useEffect(() => {
+    if (inputRef.current && setFocus) {
+      inputRef.current.focus();
+    }
+  }, [setFocus]);
 
-    return (
-      <input
-        className={cx('iui-input', className)}
-        data-iui-size={size}
-        ref={refs}
-        {...rest}
-      />
-    );
-  },
-);
+  return (
+    <Box
+      as='input'
+      className={cx('iui-input', className)}
+      data-iui-size={size}
+      ref={refs}
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'input', InputProps>;
 
 export default Input;

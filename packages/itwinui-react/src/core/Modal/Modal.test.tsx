@@ -5,7 +5,7 @@
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import * as React from 'react';
 
-import { Modal, type ModalProps } from './Modal.js';
+import { Modal } from './Modal.js';
 
 function assertBaseElement(
   backdrop: HTMLElement,
@@ -31,7 +31,7 @@ function assertBaseElement(
   expect(dialog.textContent).toContain('Body');
 }
 
-function renderComponent(props?: Partial<ModalProps>) {
+function renderComponent(props?: Partial<React.ComponentProps<typeof Modal>>) {
   return render(
     <Modal isOpen={true} title='Modal Title' {...props}>
       Body
@@ -198,15 +198,17 @@ it('should call onKeyDown when pressed any key inside modal', () => {
   );
 });
 
-it('should work with portal container properly', () => {
-  renderComponent({ modalRootId: 'test-id' });
+it('should work with custom portal container properly', () => {
+  const to = document.createElement('test-container');
+  document.body.appendChild(to);
+  renderComponent({ portal: { to } });
 
-  let container = document.querySelector('body > #test-id') as HTMLElement;
+  let container = document.body.querySelector('test-container') as HTMLElement;
   expect(container).toBeTruthy();
   expect(container.children.length).toBe(1);
 
-  renderComponent({ modalRootId: 'test-id' });
-  container = document.querySelector('body > #test-id') as HTMLElement;
+  renderComponent({ portal: { to } });
+  container = document.body.querySelector('test-container') as HTMLElement;
   // 2 modals under the same container
   expect(container.children.length).toBe(2);
 });

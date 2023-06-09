@@ -3,8 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Checkbox, CheckboxProps } from '@itwin/itwinui-react';
+import { Checkbox } from '@itwin/itwinui-react';
 import { Meta, Story } from '@storybook/react';
+
+type CheckboxProps = React.ComponentProps<typeof Checkbox>;
 
 export default {
   title: 'Input/Checkbox',

@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @forward 'icon';
-@forward '../input-container/input-container'; // forwarded here in utils to avoid breaking
 @forward 'notification-marker';
 @forward 'popover';
 @forward 'divider';

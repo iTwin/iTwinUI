@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/radio-tile.css';
+import { useMergedRefs, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type RadioTileProps = {
+type RadioTileProps = {
   /**
    * Icon to be used.
    */
@@ -25,57 +25,55 @@ export type RadioTileProps = {
    * @default false
    */
   setFocus?: boolean;
-} & Omit<React.InputHTMLAttributes<HTMLInputElement>, 'type'>;
+};
 
 /**
  * RadioTile component to be used in RadioTileGroup component
  * @example
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
-export const RadioTile = React.forwardRef(
-  (props: RadioTileProps, ref: React.RefObject<HTMLInputElement>) => {
-    const {
-      icon,
-      label,
-      description,
-      setFocus = false,
-      className,
-      style,
-      ...rest
-    } = props;
+export const RadioTile = React.forwardRef((props, ref) => {
+  const {
+    icon,
+    label,
+    description,
+    setFocus = false,
+    className,
+    style,
+    ...rest
+  } = props;
 
-    useTheme();
+  const inputElementRef = React.useRef<HTMLInputElement>(null);
+  const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
-    const inputElementRef = React.useRef<HTMLInputElement>(null);
-    const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
+  React.useEffect(() => {
+    if (inputElementRef.current && setFocus) {
+      inputElementRef.current.focus();
+    }
+  }, [setFocus]);
 
-    React.useEffect(() => {
-      if (inputElementRef.current && setFocus) {
-        inputElementRef.current.focus();
-      }
-    }, [setFocus]);
-
-    return (
-      <label className={cx('iui-radio-tile', className)} style={style}>
-        <input
-          className='iui-radio-tile-input'
-          type='radio'
-          ref={refs}
-          {...rest}
-        />
-        <div className='iui-radio-tile-content'>
-          {icon &&
-            React.cloneElement(icon, {
-              className: cx('iui-radio-tile-icon', icon.props.className),
-            })}
-          {label && <div className='iui-radio-tile-label'>{label}</div>}
-          {description && (
-            <div className='iui-radio-tile-sublabel'>{description}</div>
-          )}
-        </div>
-      </label>
-    );
-  },
-);
+  return (
+    <Box as='label' className={cx('iui-radio-tile', className)} style={style}>
+      <Box
+        as='input'
+        className='iui-radio-tile-input'
+        type='radio'
+        ref={refs}
+        {...rest}
+      />
+      <Box className='iui-radio-tile-content'>
+        {icon && (
+          <Box as='span' className='iui-radio-tile-icon' aria-hidden>
+            {icon}
+          </Box>
+        )}
+        {label && <Box className='iui-radio-tile-label'>{label}</Box>}
+        {description && (
+          <Box className='iui-radio-tile-sublabel'>{description}</Box>
+        )}
+      </Box>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
 
 export default RadioTile;

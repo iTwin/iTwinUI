@@ -24,7 +24,7 @@ describe('ComboBox', () => {
       cy.compareSnapshot(`${testName} (Closed)`);
       cy.get('input').focus();
       if (testName === 'Multiple Select') {
-        cy.get('.iui-menu-item').then((els) => {
+        cy.get('[role=option]').then((els) => {
           const items = Array.from(els, (el) => el);
           items[3].click();
         });
