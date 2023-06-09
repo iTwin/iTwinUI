@@ -1,11 +1,11 @@
 ---
-import baseUrl from '__dirname';
 import fs from 'node:fs';
-import path from 'node:path';
 import OpenInCodesandbox from './OpenInCodesandbox.astro';
 import Code from 'astro/components/Code.astro';
 import nightOwl from '../../nightOwl.mjs';
 import { ThemeProvider } from '@itwin/itwinui-react';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
 
 export type Props = {
   /** name of the file to read code example from, should be located in ~/examples folder */
@@ -20,7 +20,7 @@ export type Props = {
 
 const { src, truncate = true } = Astro.props;
 
-const codePath = path.join(baseUrl, `./src/examples/${src}`);
+const codePath = require.resolve(`examples/${src}`);
 let code = await fs.promises.readFile(codePath, 'utf8');
 
 // strip copyright header (first 4 lines)
