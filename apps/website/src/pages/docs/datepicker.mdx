@@ -1,9 +1,9 @@
 ---
-title: DatePicker
+title: Date picker
 description: Used for selecting dates on a calendar to set timeframes, deadlines, and more.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/DatePicker/DatePicker.d.ts'
-thumbnail: DatePicker
+thumbnail: Date picker
 group: core
 ---
 
@@ -30,7 +30,7 @@ The basic date picker allows the user to pick a date from the calendar and skip 
   <AllExamples.DatePickerBasicExample client:load />
 </LiveExample>
 
-This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters.
+This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters in Table.
 
 ### Localized
 
@@ -80,8 +80,10 @@ To improve user experience, date pickers support year skipping buttons. Clicking
 
 ## Usage
 
-A DatePicker can be featured on your page in multiple ways. One can be added directly to your page so that it is visible as soon as the page loads. Additionally, a DatePicker can be added to a menu button on your page so that the user can toggle its visibility.
-
-## Props
+A date picker can be featured on your page in multiple ways. One can be added directly to your page so that it is visible as soon as the page loads. Additionally, a date picker can be added to a menu button on your page so that the user can toggle its visibility.
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'Table', url: 'table' }]} />
