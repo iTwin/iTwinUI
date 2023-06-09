@@ -14,11 +14,14 @@ export default () => {
       isActionable={true}
       onClick={() => setSelected((prev) => !prev)}
     >
-      <Tile.Name name='Stadium' />
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Stadium</Tile.NameLabel>
+      </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.BadgeContainer>
-          <Badge backgroundColor='hsl(197, 71%, 83%)'>Badge</Badge>
+          <Badge backgroundColor='skyblue'>Badge</Badge>
         </Tile.BadgeContainer>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
