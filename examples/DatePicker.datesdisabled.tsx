@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { DatePicker } from '@itwin/itwinui-react';
-import { action } from 'nanostores';
 
 export default () => {
   const startDate = new Date(2023, 6, 5, 14, 55, 22);
