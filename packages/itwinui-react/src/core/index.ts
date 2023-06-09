@@ -109,7 +109,11 @@ export { Modal, ModalButtonBar, ModalContent } from './Modal/index.js';
 
 export { NotificationMarker } from './NotificationMarker/index.js';
 
-export { Overlay } from './Overlay/index.js';
+export {
+  Overlay,
+  OverlayMessage,
+  OverlayHiddenContent,
+} from './Overlay/index.js';
 
 export { ProgressLinear, ProgressRadial } from './ProgressIndicators/index.js';
 

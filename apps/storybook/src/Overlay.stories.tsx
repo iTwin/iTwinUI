@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
-import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
+import {
+  Overlay,
+  OverlayMessage,
+  OverlayHiddenContent,
+  ProgressLinear,
+  ProgressRadial,
+} from '@itwin/itwinui-react';
 
 type OverlayProps = React.ComponentProps<typeof Overlay>;
 
@@ -24,9 +30,13 @@ export const Linear: Story<OverlayProps> = () => {
     marginBottom: '12px',
   } as React.CSSProperties;
 
+  // main div -> <Overlay>
+  // div with text -> <Overlay.HiddenContent> (no class name. needs inert HTML prop) <div inert>{children}</div>
+  // current Overlay -> <Overlay.Message> (add iui-progress-indicator-overlay classname to the div)
+
   return (
-    <div style={wrapperStyle}>
-      <div style={{ padding: '12px' }}>
+    <Overlay style={wrapperStyle}>
+      <OverlayHiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -36,11 +46,11 @@ export const Linear: Story<OverlayProps> = () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </div>
-      <Overlay>
+      </OverlayHiddenContent>
+      <OverlayMessage>
         <ProgressLinear indeterminate={true} />
-      </Overlay>
-    </div>
+      </OverlayMessage>
+    </Overlay>
   );
 };
 
@@ -52,8 +62,8 @@ export const Radial: Story<OverlayProps> = () => {
   } as React.CSSProperties;
 
   return (
-    <div style={wrapperStyle}>
-      <div style={{ padding: '12px' }}>
+    <Overlay style={wrapperStyle}>
+      <OverlayHiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -63,11 +73,11 @@ export const Radial: Story<OverlayProps> = () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </div>
-      <Overlay>
+      </OverlayHiddenContent>
+      <OverlayMessage>
         <ProgressRadial indeterminate={true} />
-      </Overlay>
-    </div>
+      </OverlayMessage>
+    </Overlay>
   );
 };
 Linear.args = {};

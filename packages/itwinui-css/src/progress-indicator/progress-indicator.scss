@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'linear';
 @use 'radial';
-@use 'overlay';
+@use '../overlay/overlay.scss';
 
 .iui-progress-indicator-linear {
   @include linear.iui-progress-indicator-linear;

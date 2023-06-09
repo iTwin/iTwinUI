@@ -159,6 +159,8 @@ export { default as NonIdealStateTimeoutExample } from './NonIdealState.timeout'
 export { default as NonIdealStateUnauthorizedExample } from './NonIdealState.unauthorized';
 export { default as NonIdealStateErrorExample } from './NonIdealState.error';
 
+export { default as OverlayExample } from './Overlay.main';
+
 export { default as ProgressLinearMainExample } from './ProgressLinear.main';
 export { default as ProgressRadialMainExample } from './ProgressRadial.main';
 
