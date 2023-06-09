@@ -20,6 +20,7 @@ export const OverlayHiddenContent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
 
 // return a div with iui-progress-indicator-overlay
 
@@ -34,5 +35,6 @@ export const Overlay = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
+Overlay.displayName = 'Overlay';
 
 export default Overlay;
