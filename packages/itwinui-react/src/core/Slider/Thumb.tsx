@@ -149,13 +149,7 @@ export const Thumb = (props: ThumbProps) => {
   const { style, className, ...rest } = thumbProps || {};
 
   return (
-    <Tooltip
-      placement='top'
-      // trigger={
-      //   tooltipProps?.visible == null ? 'mouseenter click focus' : undefined
-      // }
-      {...tooltipProps}
-    >
+    <Tooltip placement='top' followTrigger {...tooltipProps}>
       <Box
         {...rest}
         data-index={index}

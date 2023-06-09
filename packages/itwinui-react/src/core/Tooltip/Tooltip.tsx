@@ -6,78 +6,43 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   useMergeRefs,
-  FloatingPortal,
   useFloating,
   autoUpdate,
   offset,
   flip,
+  shift,
   useHover,
   useFocus,
   useDismiss,
   useRole,
   useInteractions,
+  useClick,
+  FloatingPortal,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import { Box, type PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from '../ThemeProvider/ThemeContext.js';
+import ReactDOM from 'react-dom';
 
-// Comment to test commits
 type TooltipOptions = {
+  /**
+   * Placement of the Tooltip
+   * @default 'top'
+   */
   placement?: Placement;
+  /**
+   * Property for manual visibility control
+   */
   visible?: boolean;
+  /**
+   * Function that allows users to control Tooltip visibility
+   */
   toggleVisible?: (open: boolean) => void;
-};
-
-/**
- *
- */
-export const useTooltip = ({
-  placement = 'top',
-  visible: controlledOpen,
-  toggleVisible: setControlledOpen,
-}: TooltipOptions = {}) => {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
-
-  const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;
-
-  const data = useFloating({
-    placement,
-    open,
-    onOpenChange: setOpen,
-    whileElementsMounted: autoUpdate,
-    middleware: [
-      offset(5),
-      flip({
-        fallbackAxisSideDirection: 'start',
-        padding: 5,
-      }),
-    ],
-  });
-
-  const context = data.context;
-
-  const hover = useHover(context, {
-    move: false,
-    enabled: controlledOpen == null,
-  });
-  const focus = useFocus(context, {
-    enabled: controlledOpen == null,
-  });
-  const dismiss = useDismiss(context);
-  const role = useRole(context, { role: 'tooltip' });
-
-  const interactions = useInteractions([hover, focus, dismiss, role]);
-
-  return React.useMemo(
-    () => ({
-      open,
-      setOpen,
-      ...interactions,
-      ...data,
-    }),
-    [open, setOpen, interactions, data],
-  );
+  /**
+   * Use this if you want Tooltip to follow moving trigger element
+   * @default false;
+   */
+  followTrigger?: boolean;
 };
 
 type TooltipOwnProps = {
@@ -90,8 +55,57 @@ type TooltipOwnProps = {
    * If not specified, the `reference` prop should be used instead.
    */
   children?: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  appendTo?: any;
+  /**
+   * Element to append tooltip to.
+   * Appends to ThemeProvider portalContainerRef by default.
+   */
+  appendTo?: HTMLElement;
+};
+
+const useTooltip = ({
+  placement = 'top',
+  visible: controlledOpen,
+  toggleVisible: setControlledOpen,
+  followTrigger = false,
+}: TooltipOptions = {}) => {
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
+
+  const open = controlledOpen ?? uncontrolledOpen;
+  const setOpen = setControlledOpen ?? setUncontrolledOpen;
+
+  const data = useFloating({
+    placement,
+    open,
+    onOpenChange: setOpen,
+    whileElementsMounted: (referenceEl, floatingEl, update) =>
+      autoUpdate(referenceEl, floatingEl, update, {
+        animationFrame: followTrigger,
+      }),
+    middleware: [offset(5), flip(), shift()],
+  });
+
+  const context = data.context;
+
+  const hover = useHover(context);
+  const focus = useFocus(context, {
+    enabled: controlledOpen == null,
+  });
+  const click = useClick(context);
+
+  const dismiss = useDismiss(context);
+  const role = useRole(context, { role: 'tooltip' });
+
+  const interactions = useInteractions([hover, focus, click, dismiss, role]);
+
+  return React.useMemo(
+    () => ({
+      open,
+      setOpen,
+      ...interactions,
+      ...data,
+    }),
+    [open, setOpen, interactions, data],
+  );
 };
 
 const TooltipContext = React.createContext<
@@ -135,7 +149,6 @@ const TooltipTrigger = React.forwardRef((props, propRef) => {
           ref,
           ...rest,
           ...children.props,
-          // 'aria-describedby': undefined,
         }),
       )
     : null;
@@ -148,29 +161,36 @@ const TooltipContent = React.forwardRef((props, propRef) => {
   const themeInfo = React.useContext(ThemeContext);
   const ref = useMergeRefs([context.refs.setFloating, propRef]);
 
+  const contentBox = (
+    <Box
+      className={cx('iui-tooltip', className)}
+      ref={ref}
+      style={context.floatingStyles}
+      {...context.getFloatingProps(rest)}
+    >
+      {children}
+    </Box>
+  );
+
   if (!context.open) {
     return null;
   }
 
-  return (
-    <FloatingPortal root={context.appendTo ?? themeInfo?.rootRef.current}>
-      <Box
-        className={cx('iui-tooltip', className)}
-        ref={ref}
-        style={context.floatingStyles}
-        {...context.getFloatingProps(rest)}
-        // aria-labelledby={undefined}
-        // aria-describedby={undefined}
-      >
-        {children}
-      </Box>
-    </FloatingPortal>
+  const portalRoot = context.appendTo ?? themeInfo?.portalContainerRef?.current;
+
+  return portalRoot ? (
+    ReactDOM.createPortal(contentBox, portalRoot)
+  ) : (
+    <FloatingPortal>{contentBox}</FloatingPortal>
   );
   // eslint-disable-next-line @typescript-eslint/ban-types
 }) as PolymorphicForwardRefComponent<'div', {}>;
 
 /**
- *
+ * Basic tooltip component to display informative content when an element is hovered or focused.
+ * Uses [FloatingUI](https://floating-ui.com/).
+ * @example
+ * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
  */
 export const Tooltip = TooltipComponent;
 export type TooltipProps = TooltipOwnProps & TooltipOptions;
