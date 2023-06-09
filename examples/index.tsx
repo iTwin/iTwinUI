@@ -87,6 +87,7 @@ export { default as ComboBoxStatusExample } from './ComboBox.status';
 export { default as ComboBoxVirtualizedExample } from './ComboBox.virtualized';
 
 export { default as DatePickerMainExample } from './DatePicker.main';
+export { default as DatePickerMenuExample } from './DatePicker.menu';
 export { default as DatePickerBasicExample } from './DatePicker.basic';
 export { default as DatePickerWithTimeExample } from './DatePicker.withtime';
 export { default as DatePickerWithCombinedTimeExample } from './DatePicker.withcombinedtime';
