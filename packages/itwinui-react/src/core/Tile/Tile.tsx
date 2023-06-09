@@ -280,7 +280,9 @@ const TileNameIcon = React.forwardRef((props, ref) => {
   let icon;
 
   if (isLoading) {
-    icon = <ProgressRadial aria-hidden indeterminate />;
+    icon = (
+      <ProgressRadial style={{ height: '100%' }} aria-hidden indeterminate />
+    );
   }
   if (isSelected) {
     icon = <SvgCheckmark aria-hidden />;
