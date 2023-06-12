@@ -56,6 +56,11 @@ type TooltipOwnProps = {
    */
   children?: React.ReactNode;
   /**
+   * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
+   * If not specified, the `children` prop should be used instead.
+   */
+  reference?: React.RefObject<Element> | null;
+  /**
    * Element to portal tooltip to.
    * Portals to ThemeProvider portalContainerRef by default.
    */
@@ -81,7 +86,7 @@ const useTooltip = ({
       autoUpdate(referenceEl, floatingEl, update, {
         animationFrame: followTrigger,
       }),
-    middleware: [offset(5), flip(), shift()],
+    middleware: [offset(4), flip(), shift()],
   });
 
   const context = data.context;
@@ -126,11 +131,12 @@ const TooltipComponent = ({
   content,
   children,
   portal,
+  reference,
   ...options
 }: TooltipOwnProps & TooltipOptions) => {
   const tooltip = useTooltip(options);
   return (
-    <TooltipContext.Provider value={{ ...tooltip, portal }}>
+    <TooltipContext.Provider value={{ ...tooltip, content, reference, portal }}>
       <TooltipTrigger>{children}</TooltipTrigger>
       <TooltipContent>{content}</TooltipContent>
     </TooltipContext.Provider>
@@ -139,13 +145,19 @@ const TooltipComponent = ({
 
 const TooltipTrigger = React.forwardRef((props, propRef) => {
   const { children, ...rest } = props;
-  const context = useTooltipContext();
-  const ref = useMergedRefs(context.refs.setReference, propRef);
+  const { refs, reference, getReferenceProps } = useTooltipContext();
+  const ref = useMergedRefs(refs.setReference, propRef);
+
+  if (reference?.current) {
+    return React.isValidElement(reference.current)
+      ? React.cloneElement(reference.current, ref)
+      : null;
+  }
 
   return React.isValidElement(children)
     ? React.cloneElement(
         children,
-        context.getReferenceProps({
+        getReferenceProps({
           ref,
           ...rest,
           ...children.props,

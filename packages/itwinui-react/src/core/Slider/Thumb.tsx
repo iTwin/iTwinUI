@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Tooltip } from '../Tooltip/index.js';
-import type { TooltipProps } from '../Tooltip/Tooltip.js';
 import type { SliderProps } from './Slider.js';
 import { Box } from '../utils/index.js';
 
@@ -61,7 +60,7 @@ type ThumbProps = {
   /**
    * Additional tooltip props.
    */
-  tooltipProps: Omit<TooltipProps, 'children'>;
+  tooltipProps: Omit<React.ComponentProps<typeof Tooltip>, 'children'>;
   /**
    * Additional props for Thumb.
    */
