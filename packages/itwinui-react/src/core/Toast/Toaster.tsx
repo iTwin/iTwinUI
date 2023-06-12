@@ -3,13 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { getContainer, getDocument } from '../utils/index.js';
+import cx from 'classnames';
+import { Box, useSafeContext } from '../utils/index.js';
+import { Toast } from './Toast.js';
 import type { ToastCategory, ToastProps } from './Toast.js';
-import { ToastWrapper } from './ToastWrapper.js';
-import type { ToastWrapperHandle } from './ToastWrapper.js';
-
-const TOASTS_CONTAINER_ID = 'iui-toasts-container';
 
 export type ToasterSettings = {
   /**
@@ -18,13 +15,13 @@ export type ToasterSettings = {
 
    * When `placement` is set to a top value, order defaults to 'descending', otherwise 'ascending'.
    */
-  order?: 'descending' | 'ascending';
+  order: 'descending' | 'ascending';
   /**
    * Placement of toasts.
    * Changes placement of toasts. Start indicates left side of viewport. End - right side of viewport.
    * @default 'top'
    */
-  placement?:
+  placement:
     | 'top'
     | 'top-start'
     | 'top-end'
@@ -35,143 +32,144 @@ export type ToasterSettings = {
 
 export type ToastOptions = Omit<
   ToastProps,
-  'category' | 'isVisible' | 'id' | 'content'
+  'category' | 'isVisible' | 'id' | 'content' | 'placementPosition'
 >;
 
-export default class Toaster {
-  private toasts: ToastProps[] = [];
-  private lastId = 0;
-  private settings: ToasterSettings = {
-    order: 'descending',
-    placement: 'top',
-  };
-  private toastsRef = React.createRef<ToastWrapperHandle>();
-  private isInitialized = false;
+// ----------------------------------------------------------------------------
 
-  // Create container on demand.
-  // Cannot do it in constructor, because SSG/SSR apps would fail.
-  private asyncInit = async () => {
-    if (this.isInitialized) {
-      return;
-    }
+export const useToaster = () => {
+  const dispatch = useSafeContext(ToastDispatchContext);
 
-    const container = getContainer(TOASTS_CONTAINER_ID) ?? getDocument()?.body;
-    if (!container) {
-      return;
-    }
-    this.isInitialized = true;
+  const showToast = React.useCallback(
+    (category: ToastCategory) =>
+      (content: React.ReactNode, options?: ToastOptions) => {
+        const id = nextId();
 
-    const toastWrapper = <ToastWrapper ref={this.toastsRef} />;
+        dispatch({
+          type: 'add',
+          toast: { ...options, id, content, category },
+        });
 
-    const _ReactDOM = ReactDOM as any; // eslint-disable-line @typescript-eslint/no-explicit-any
-
-    // v18 mode
-    if (_ReactDOM.createRoot) {
-      const _ReactDOMInternals =
-        _ReactDOM.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
-
-      // suppress warning about importing createRoot from react-dom/client
-      if (_ReactDOMInternals) {
-        _ReactDOMInternals.usingClientEntryPoint = true;
-      }
-
-      const root = _ReactDOM.createRoot(container);
-      root.render(toastWrapper);
-      // revert suppression, not to influence users app
-      if (_ReactDOMInternals) {
-        _ReactDOMInternals.usingClientEntryPoint = false;
-      }
-    } else {
-      // v17 and before
-      ReactDOM.render(toastWrapper, container);
-    }
-  };
-
-  /**
-   * Set global Toaster settings for toasts order and placement.
-   * Settings will be applied to new toasts on the page.
-   */
-  public setSettings(newSettings: ToasterSettings) {
-    newSettings.placement ??= this.settings.placement;
-    newSettings.order ??= newSettings.placement?.startsWith('bottom')
-      ? 'ascending'
-      : 'descending';
-    this.settings = newSettings;
-    this.asyncInit().then(() => {
-      this.toastsRef.current?.setPlacement(this.settings.placement ?? 'top');
-    });
-  }
-
-  public positive(content: React.ReactNode, options?: ToastOptions) {
-    return this.createToast(content, 'positive', options);
-  }
-
-  public informational(content: React.ReactNode, options?: ToastOptions) {
-    return this.createToast(content, 'informational', options);
-  }
-
-  public negative(content: React.ReactNode, options?: ToastOptions) {
-    return this.createToast(content, 'negative', options);
-  }
-
-  public warning(content: React.ReactNode, options?: ToastOptions) {
-    return this.createToast(content, 'warning', options);
-  }
-
-  private createToast(
-    content: React.ReactNode,
-    category: ToastCategory,
-    options?: ToastOptions,
-  ) {
-    ++this.lastId;
-    const currentId = this.lastId;
-    this.toasts = [
-      ...(this.settings.order === 'ascending' ? this.toasts : []),
-      {
-        ...options,
-        content,
-        category,
-        onRemove: () => {
-          this.removeToast(currentId);
-          options?.onRemove?.();
-        },
-        id: currentId,
-        isVisible: true,
+        return { close: () => dispatch({ type: 'remove', id }) };
       },
-      ...(this.settings.order === 'descending' ? this.toasts : []),
-    ];
-    this.updateView();
-    return { close: () => this.closeToast(currentId) };
+    [dispatch],
+  );
+
+  return {
+    positive: showToast('positive'),
+    informational: showToast('informational'),
+    negative: showToast('negative'),
+    warning: showToast('warning'),
+    closeAll: () => {
+      dispatch({ type: 'close-all' });
+    },
+    setSettings: (settings: Partial<ToasterSettings>) => {
+      dispatch({ type: 'settings', settings });
+    },
+  };
+};
+
+// ----------------------------------------------------------------------------
+
+export const Toaster = () => {
+  const { toasts, placement } = useSafeContext(ToastStateContext);
+
+  return (
+    <Box className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
+      {toasts.map((toastProps) => {
+        return <Toast key={toastProps.id} {...toastProps} />;
+      })}
+    </Box>
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
+  const [toasterState, dispatch] = React.useReducer(toastReducer, {
+    toasts: [],
+    placement: 'top',
+    settings: {
+      order: 'descending',
+      placement: 'top',
+    },
+  });
+
+  return (
+    <ToastDispatchContext.Provider value={dispatch}>
+      <ToastStateContext.Provider value={toasterState}>
+        {children}
+      </ToastStateContext.Provider>
+    </ToastDispatchContext.Provider>
+  );
+};
+
+const toastReducer = (state: ToasterState, action: ToasterAction) => {
+  if (action.type === 'add') {
+    return {
+      ...state,
+      toasts: [
+        ...(state.settings.order === 'ascending' ? state.toasts : []),
+        action.toast,
+        ...(state.settings.order === 'descending' ? state.toasts : []),
+      ],
+    };
   }
 
-  private removeToast(id: number) {
-    this.toasts = this.toasts.filter((toast) => toast.id !== id);
-    this.updateView();
+  if (action.type === 'remove') {
+    return {
+      ...state,
+      toasts: state.toasts.filter((toast) => toast.id !== action.id),
+    };
   }
 
-  private updateView() {
-    this.asyncInit().then(() => {
-      this.toastsRef.current?.setToasts(this.toasts);
-    });
+  if (action.type === 'close-all') {
+    return {
+      ...state,
+      toasts: state.toasts.map((toast) => ({ ...toast, isVisible: false })),
+    };
   }
 
-  private closeToast(toastId: number): void {
-    this.toasts = this.toasts.map((toast) => {
-      return {
-        ...toast,
-        isVisible: toast.id !== toastId,
-      };
-    });
-    this.updateView();
+  if (action.type === 'settings') {
+    return {
+      ...state,
+      settings: { ...state.settings, ...action.settings },
+      placement: action.settings.placement ?? state.placement,
+    };
   }
 
-  public closeAll(): void {
-    this.toasts = this.toasts.map((toast) => {
-      return {
-        ...toast,
-        isVisible: false,
-      };
-    });
-    this.updateView();
-  }
-}
+  return state;
+};
+
+// ----------------------------------------------------------------------------
+
+export const ToastStateContext = React.createContext<ToasterState | undefined>(
+  undefined,
+);
+ToastStateContext.displayName = 'ToastStateContext';
+
+type ToasterState = {
+  toasts: ToastProps[];
+  placement: ToasterSettings['placement'];
+  settings: ToasterSettings;
+};
+
+// ----------------------------------------------------------------------------
+
+const ToastDispatchContext = React.createContext<
+  React.Dispatch<ToasterAction> | undefined
+>(undefined);
+ToastDispatchContext.displayName = 'ToastDispatchContext';
+
+type ToasterAction =
+  | { type: 'add'; toast: ToastProps }
+  | { type: 'remove'; id: number }
+  | { type: 'close-all' }
+  | { type: 'settings'; settings: Partial<ToasterSettings> };
+
+// ----------------------------------------------------------------------------
+
+const nextId = (() => {
+  let count = 0;
+  return () => ++count;
+})();
