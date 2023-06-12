@@ -4,13 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
-import {
-  Overlay,
-  OverlayMessage,
-  OverlayHiddenContent,
-  ProgressLinear,
-  ProgressRadial,
-} from '@itwin/itwinui-react';
+import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 
 type OverlayProps = React.ComponentProps<typeof Overlay>;
 
@@ -36,7 +30,7 @@ export const Linear: Story<OverlayProps> = () => {
 
   return (
     <Overlay style={wrapperStyle}>
-      <OverlayHiddenContent style={{ padding: '12px' }}>
+      <Overlay.HiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -46,10 +40,10 @@ export const Linear: Story<OverlayProps> = () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </OverlayHiddenContent>
-      <OverlayMessage>
+      </Overlay.HiddenContent>
+      <Overlay.Message>
         <ProgressLinear indeterminate={true} />
-      </OverlayMessage>
+      </Overlay.Message>
     </Overlay>
   );
 };
@@ -63,7 +57,7 @@ export const Radial: Story<OverlayProps> = () => {
 
   return (
     <Overlay style={wrapperStyle}>
-      <OverlayHiddenContent style={{ padding: '12px' }}>
+      <Overlay.HiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
@@ -73,10 +67,10 @@ export const Radial: Story<OverlayProps> = () => {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
-      </OverlayHiddenContent>
-      <OverlayMessage>
+      </Overlay.HiddenContent>
+      <Overlay.Message>
         <ProgressRadial indeterminate={true} />
-      </OverlayMessage>
+      </Overlay.Message>
     </Overlay>
   );
 };
