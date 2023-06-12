@@ -13,7 +13,6 @@ import {
   Tag,
   TagContainer,
   Tile,
-  TileProps,
   Avatar,
 } from '@itwin/itwinui-react';
 import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
