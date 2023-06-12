@@ -11,6 +11,7 @@ describe('Alert', () => {
     'Informational',
     'Empty',
     'Sticky',
+    'Custom Icon',
   ];
 
   tests.forEach((testName) => {

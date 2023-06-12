@@ -1,35 +1,31 @@
 ---
-import ColorList from './ColorList';
-import '@itwin/itwinui-variables';
+import Wrapper from './_wrapper.astro';
+import ColorListR from './ColorList';
 
 type Props = { colors: string[] | string[][] } & astroHTML.JSX.HTMLAttributes;
 
 const { colors, ...rest } = Astro.props;
 ---
 
-<article class:list={[{ 'color-list-wrapper': Array.isArray(colors[0]) }]} {...rest}>
+<Wrapper class='color-list-wrapper' {...rest}>
   {
     Array.isArray(colors[0]) ? (
       <>
         {colors.map((_colors) => (
-          <ColorList client:visible colors={_colors} />
+          <ColorListR client:visible colors={_colors} />
         ))}
       </>
     ) : (
-      <ColorList client:visible colors={colors as string[]} />
+      <ColorListR client:visible colors={colors as string[]} />
     )
   }
-</article>
+</Wrapper>
 
 <style>
-  article {
-    border-radius: var(--space-2);
-    border: 1px solid var(--color-line-2);
-    padding: var(--space-3);
+  .color-list-wrapper {
     display: grid;
     grid-auto-flow: column;
     gap: var(--space-5);
-    justify-content: center;
   }
 </style>
 

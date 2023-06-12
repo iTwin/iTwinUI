@@ -8,32 +8,37 @@ import * as React from 'react';
 import { Alert } from './Alert.js';
 
 it('renders correctly in its default state', () => {
-  const { container } = render(<Alert>This is an alert.</Alert>);
+  const { container } = render(
+    <Alert>
+      <Alert.Message>This is an alert.</Alert.Message>
+    </Alert>,
+  );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon')).toBeFalsy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.querySelector('a')).toBeNull();
   expect(message.textContent).toBe('This is an alert.');
-  expect(container.querySelector('button > .iui-alert-button-icon')).toBeNull();
+  expect(container.querySelector('button > .iui-button-icon')).toBeNull();
 });
 
 it('renders clickable text with href correctly', () => {
   const mockHref = 'https://www.example.com/';
   const { container, getByText } = render(
-    <Alert
-      clickableText='I am a clickable text'
-      clickableTextProps={{ href: mockHref, className: 'my-link' }}
-    >
-      This is an alert.
+    <Alert>
+      <Alert.Message>
+        This is an alert.
+        <Alert.Action href={mockHref} className={'my-link'}>
+          I am a clickable text
+        </Alert.Action>
+      </Alert.Message>
     </Alert>,
   );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
-  expect(container.querySelector('.iui-alert-icon')).toBeTruthy();
   const link = container.querySelector(
-    '.iui-alert-message > .iui-alert-link',
+    '.iui-alert-message > a.iui-alert-link',
   ) as HTMLAnchorElement;
   expect(link).toBeTruthy();
   expect(link.textContent).toBe('I am a clickable text');
@@ -45,7 +50,7 @@ it('renders clickable text with href correctly', () => {
 it('takes a className and style correctly', () => {
   const { container, getByText } = render(
     <Alert className='custom-alert' style={{ width: 100 }}>
-      This is an alert.
+      <Alert.Message>This is an alert.</Alert.Message>
     </Alert>,
   );
 
@@ -58,13 +63,32 @@ it('takes a className and style correctly', () => {
 
 it('renders sticky alert correctly', () => {
   const { container, getByText } = render(
-    <Alert isSticky>This is sticky alert.</Alert>,
+    <Alert isSticky>
+      <Alert.Message>This is sticky alert.</Alert.Message>
+    </Alert>,
   );
 
   const alert = container.querySelector('.iui-alert') as HTMLElement;
   expect(alert).toBeTruthy();
   expect(alert).toHaveAttribute('data-iui-variant', 'sticky');
   getByText('This is sticky alert.');
+});
+
+it('renders alert action as button', () => {
+  const { container } = render(
+    <Alert>
+      <Alert.Message>
+        This is an alert.
+        <Alert.Action>I am a clickable button</Alert.Action>
+      </Alert.Message>
+    </Alert>,
+  );
+
+  const alert = container.querySelector('.iui-alert') as HTMLElement;
+  expect(alert).toBeTruthy();
+
+  const alertButton = container.querySelector('.iui-alert-link') as HTMLElement;
+  expect(alertButton).toBeInstanceOf(HTMLButtonElement);
 });
 
 (
@@ -75,19 +99,25 @@ it('renders sticky alert correctly', () => {
   it(`renders ${type} correctly`, () => {
     const closeMock = jest.fn();
     const { container, getByText } = render(
-      <Alert type={type} onClose={closeMock}>
-        This is an alert.
+      <Alert type={type}>
+        <Alert.Icon />
+        <Alert.Message>This is an alert.</Alert.Message>
+        <Alert.CloseButton onClick={closeMock} />
       </Alert>,
     );
     const alert = container.querySelector('.iui-alert') as HTMLElement;
     expect(alert).toBeTruthy();
     expect(alert).toHaveAttribute('data-iui-status', `${type}`);
-    expect(container.querySelector(`.iui-alert-icon`)).toBeTruthy();
+
+    const icon = container.querySelector('.iui-svg-icon') as HTMLElement;
+    expect(icon).toBeTruthy();
+    expect(icon).toHaveAttribute('data-iui-icon-color', `${type}`);
+
     expect(
       container.querySelector('.iui-alert-message > .iui-alert-link'),
     ).toBeNull();
     const close = container.querySelector(
-      'button > .iui-alert-button-icon',
+      'button > .iui-button-icon',
     ) as HTMLElement;
     expect(close).toBeTruthy();
     fireEvent.click(close);
