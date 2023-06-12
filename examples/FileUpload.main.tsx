@@ -9,7 +9,6 @@ export default () => {
   const [files, setFiles] = React.useState<Array<File>>([]);
   return (
     <FileUpload
-      style={{ position: 'absolute' }}
       onFileDropped={(files) => {
         setFiles(files);
       }}
