@@ -75,6 +75,7 @@
     "@itwin/itwinui-illustrations-react": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
+    "@floating-ui/react": "^0.24.1",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
     "react-transition-group": "^4.4.2",
@@ -82,7 +83,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@floating-ui/react": "^0.24.1",
     "@itwin/itwinui-css": "^2.0.0-dev.1",
     "@itwin/itwinui-variables": "2.1.0-dev.0",
     "@swc/cli": "^0.1.57",

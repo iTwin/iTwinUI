@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import {
-  useMergeRefs,
   useFloating,
   autoUpdate,
   offset,
@@ -20,7 +19,8 @@ import {
   FloatingPortal,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import { Box, type PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Box, useMergedRefs } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from '../ThemeProvider/ThemeContext.js';
 import ReactDOM from 'react-dom';
 
@@ -49,17 +49,17 @@ type TooltipOwnProps = {
   /**
    * Content of the tooltip.
    */
-  content?: React.ReactNode;
+  content: React.ReactNode;
   /**
    * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
    * If not specified, the `reference` prop should be used instead.
    */
   children?: React.ReactNode;
   /**
-   * Element to append tooltip to.
-   * Appends to ThemeProvider portalContainerRef by default.
+   * Element to portal tooltip to.
+   * Portals to ThemeProvider portalContainerRef by default.
    */
-  appendTo?: HTMLElement;
+  portal?: { to: HTMLElement };
 };
 
 const useTooltip = ({
@@ -125,12 +125,12 @@ const useTooltipContext = () => {
 const TooltipComponent = ({
   content,
   children,
-  appendTo,
+  portal,
   ...options
 }: TooltipOwnProps & TooltipOptions) => {
   const tooltip = useTooltip(options);
   return (
-    <TooltipContext.Provider value={{ ...tooltip, appendTo }}>
+    <TooltipContext.Provider value={{ ...tooltip, portal }}>
       <TooltipTrigger>{children}</TooltipTrigger>
       <TooltipContent>{content}</TooltipContent>
     </TooltipContext.Provider>
@@ -140,7 +140,7 @@ const TooltipComponent = ({
 const TooltipTrigger = React.forwardRef((props, propRef) => {
   const { children, ...rest } = props;
   const context = useTooltipContext();
-  const ref = useMergeRefs([context.refs.setReference, propRef]);
+  const ref = useMergedRefs(context.refs.setReference, propRef);
 
   return React.isValidElement(children)
     ? React.cloneElement(
@@ -152,14 +152,13 @@ const TooltipTrigger = React.forwardRef((props, propRef) => {
         }),
       )
     : null;
-  // eslint-disable-next-line @typescript-eslint/ban-types
-}) as PolymorphicForwardRefComponent<'div', {}>;
+}) as PolymorphicForwardRefComponent<'div'>;
 
 const TooltipContent = React.forwardRef((props, propRef) => {
   const { children, className, ...rest } = props;
   const context = useTooltipContext();
   const themeInfo = React.useContext(ThemeContext);
-  const ref = useMergeRefs([context.refs.setFloating, propRef]);
+  const ref = useMergedRefs(context.refs.setFloating, propRef);
 
   const contentBox = (
     <Box
@@ -176,15 +175,15 @@ const TooltipContent = React.forwardRef((props, propRef) => {
     return null;
   }
 
-  const portalRoot = context.appendTo ?? themeInfo?.portalContainerRef?.current;
+  const portalRoot =
+    context.portal?.to ?? themeInfo?.portalContainerRef?.current;
 
   return portalRoot ? (
     ReactDOM.createPortal(contentBox, portalRoot)
   ) : (
     <FloatingPortal>{contentBox}</FloatingPortal>
   );
-  // eslint-disable-next-line @typescript-eslint/ban-types
-}) as PolymorphicForwardRefComponent<'div', {}>;
+}) as PolymorphicForwardRefComponent<'div'>;
 
 /**
  * Basic tooltip component to display informative content when an element is hovered or focused.
