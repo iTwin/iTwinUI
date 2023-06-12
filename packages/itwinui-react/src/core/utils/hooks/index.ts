@@ -13,6 +13,5 @@ export * from './useMediaQuery.js';
 export * from './useSafeContext.js';
 export * from './useLatestRef.js';
 export * from './useIsomorphicLayoutEffect.js';
-export * from './useIsThemeAlreadySet.js';
 export * from './useIsClient.js';
 export * from './useId.js';
