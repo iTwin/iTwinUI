@@ -43,7 +43,7 @@ export default {
 export const Basic: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.Name name='Stadium' />
+      <Tile.Name>Stadium</Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
@@ -143,14 +143,14 @@ AllProps.args = {
 export const Actionable: Story<TileProps> = (args) => {
   const [selected, setSelected] = React.useState(false);
   return (
-    <Tile
-      isSelected={selected}
-      onClick={() => setSelected((prev) => !prev)}
-      {...args}
-    >
+    <Tile isSelected={selected} {...args}>
       <Tile.Name>
         <Tile.NameIcon />
-        <Tile.NameLabel>Stadium</Tile.NameLabel>
+        <Tile.NameLabel>
+          <Tile.Action onClick={() => setSelected((prev) => !prev)}>
+            Stadium
+          </Tile.Action>
+        </Tile.NameLabel>
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />

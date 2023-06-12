@@ -58,7 +58,6 @@ const TileContext = React.createContext<
        */
       isDisabled?: boolean;
       setActionable: React.Dispatch<React.SetStateAction<boolean>>;
-      onClick?: React.MouseEventHandler<HTMLElement>;
     }
   | undefined
 >(undefined);
@@ -106,7 +105,6 @@ type TileOwnProps = {
    */
   isDisabled?: boolean;
   setActionable?: React.Dispatch<React.SetStateAction<boolean>>;
-  onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
 const TileComponent = React.forwardRef((props, ref) => {
@@ -119,7 +117,6 @@ const TileComponent = React.forwardRef((props, ref) => {
     isLoading,
     isActionable: isActionableProp,
     isDisabled,
-    onClick,
     ...rest
   } = props;
   const [localActionable, setLocalActionable] =
@@ -137,7 +134,6 @@ const TileComponent = React.forwardRef((props, ref) => {
         isActionable,
         isDisabled,
         setActionable: setLocalActionable,
-        onClick,
       }}
     >
       <Box
@@ -165,15 +161,25 @@ TileComponent.displayName = 'Tile';
 // ----------------------------------------------------------------------------
 // Tile.Action component
 
-const TileAction = React.forwardRef((props, forwardedRef) => {
-  const { setActionable } = useSafeContext(TileContext);
+const TileAction = React.forwardRef((props, ref) => {
+  const { onClick, children, href } = props;
+  const { setActionable, isDisabled } = useSafeContext(TileContext);
   React.useEffect(() => {
     if (!supportsHas()) {
       setActionable(true);
     }
   }, [setActionable]);
 
-  return <LinkAction ref={forwardedRef} {...props} />;
+  return (
+    <LinkAction
+      href={href}
+      onClick={!isDisabled ? onClick : undefined}
+      aria-disabled={isDisabled}
+      ref={ref}
+    >
+      {children}
+    </LinkAction>
+  );
 }) as PolymorphicForwardRefComponent<'a'>;
 TileAction.displayName = 'Tile.Action';
 
@@ -312,26 +318,7 @@ TileNameIcon.displayName = 'Tile.NameIcon';
 // ----------------------------------------------------------------------------
 // Tile.NameLabel component
 
-const TileNameLabel = React.forwardRef((props, ref) => {
-  const { children, ...rest } = props;
-  const { isActionable, isDisabled, onClick } = useSafeContext(TileContext);
-
-  return (
-    <Box as='span' className='iui-tile-name-label' ref={ref} {...rest}>
-      {isActionable && onClick ? (
-        <LinkAction
-          as='button'
-          onClick={!isDisabled ? onClick : undefined}
-          aria-disabled={isDisabled}
-        >
-          {children}
-        </LinkAction>
-      ) : (
-        children
-      )}
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div'>;
+const TileNameLabel = polymorphic.span('iui-tile-name-label');
 TileNameLabel.displayName = 'Tile.NameLabel';
 
 // ----------------------------------------------------------------------------
