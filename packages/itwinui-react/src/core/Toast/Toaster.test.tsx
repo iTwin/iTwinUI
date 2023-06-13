@@ -2,179 +2,193 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as React from 'react';
+import {
+  act,
+  fireEvent,
+  renderHook,
+  screen,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
+import type { ToastCategory } from './Toast.js';
+import {
+  Toaster,
+  ToastProvider,
+  useToaster,
+  type ToastOptions,
+} from './Toaster.js';
 
-// TODO
-export {};
+const mockOnClick = jest.fn();
 
-// import { act, screen, waitForElementToBeRemoved } from '@testing-library/react';
-// import type { ToastCategory, ToastProps } from './Toast.js';
-// import { useToaster, type ToastOptions } from './Toaster.js';
+function toasterContraption() {
+  const { result } = renderHook(() => useToaster(), {
+    wrapper: ({ children }) => (
+      <ToastProvider>
+        {children}
+        <Toaster />
+      </ToastProvider>
+    ),
+  });
+  return () => result.current;
+}
 
-// const mockOnClick = jest.fn();
+function mockedOptions(): ToastOptions {
+  return {
+    duration: 2000,
+    hasCloseButton: true,
+    type: 'temporary',
+    link: {
+      title: 'mockTitle',
+      onClick: mockOnClick,
+    },
+  };
+}
 
-// function mockedOptions(): ToastOptions {
-//   return {
-//     duration: 2000,
-//     hasCloseButton: true,
-//     type: 'temporary',
-//     link: {
-//       title: 'mockTitle',
-//       onClick: mockOnClick,
-//     },
-//   };
-// }
+function assertAddedToast(
+  content: string,
+  status: ToastCategory,
+  options: ToastOptions,
+) {
+  const toast = screen.getByText(content).closest('.iui-toast');
+  expect(toast).toBeInTheDocument();
+  expect(toast).toHaveClass(`iui-${status}`);
 
-// function assertAddedToast(
-//   toast: ToastProps,
-//   category: ToastCategory,
-//   content: string,
-//   id: number,
-//   options = mockedOptions(),
-// ) {
-//   expect(toast).toEqual(
-//     expect.objectContaining({
-//       ...options,
-//       id: id,
-//       content: content,
-//       isVisible: true,
-//       category: category,
-//     }),
-//   );
-// }
+  if (options.link) {
+    const link = screen.getByText(options.link.title);
+    expect(link).toBeInTheDocument();
+    act(() => {
+      fireEvent.click(link);
+    });
+    expect(mockOnClick).toHaveBeenCalled();
+  }
 
-// function assertRemovedToast(
-//   toast: ToastProps,
-//   category: ToastCategory,
-//   content: string,
-//   id: number,
-//   options = mockedOptions(),
-// ) {
-//   expect(toast).toEqual(
-//     expect.objectContaining({
-//       ...options,
-//       id: id,
-//       content: content,
-//       isVisible: false,
-//       category: category,
-//     }),
-//   );
-// }
+  if (options.hasCloseButton) {
+    const closeButton = screen.getByRole('button', { name: 'Close' });
+    expect(closeButton).toBeInTheDocument();
+  }
+}
 
-// it.each(['positive', 'negative', 'informational', 'warning'] as const)(
-//   'should add toast with %s',
-//   async (status) => {
-//     act(() => {
-//       toaster[status]('mockContent', mockedOptions());
-//     });
-//     expect(await screen.findByText('mockContent')).toBeInTheDocument();
-//     expect(toaster['toasts'].length).toBe(1);
-//     assertAddedToast(toaster['toasts'][0], status, 'mockContent', 1);
-//   },
-// );
+function assertRemovedToast(content: string) {
+  jest.runAllTimers();
+  const maybeToast = screen.queryByText(content);
+  if (maybeToast) {
+    waitForElementToBeRemoved(maybeToast);
+  }
+}
 
-// it('should add toasts and remove all', async () => {
-//   act(() => {
-//     toaster.informational('mockContent', mockedOptions());
-//   });
-//   expect(await screen.findByText('mockContent')).toBeInTheDocument();
-//   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
+beforeEach(() => {
+  jest.useFakeTimers();
+});
+afterEach(() => {
+  jest.useRealTimers();
+  mockOnClick.mockReset();
+});
 
-//   act(() => {
-//     toaster.positive('mockContentPositive', mockedOptions());
-//   });
-//   expect(await screen.findByText('mockContentPositive')).toBeInTheDocument();
-//   assertAddedToast(toaster['toasts'][0], 'positive', 'mockContentPositive', 2);
+it.each(['positive', 'negative', 'informational', 'warning'] as const)(
+  'should add toast with %s',
+  async (status) => {
+    const toaster = toasterContraption();
+    act(() => {
+      toaster()[status]('mockContent', mockedOptions());
+    });
+    assertAddedToast('mockContent', status, mockedOptions());
+    // assertRemovedToast('mockContent'); // TODO: fix this
+  },
+);
 
-//   toaster.closeAll();
-//   waitForElementToBeRemoved(screen.queryByText('mockContent'));
-//   assertRemovedToast(toaster['toasts'][1], 'informational', 'mockContent', 1);
-//   assertRemovedToast(
-//     toaster['toasts'][0],
-//     'positive',
-//     'mockContentPositive',
-//     2,
-//   );
+it('should add toasts and remove all', async () => {
+  const toaster = toasterContraption();
+  const options = {
+    ...mockedOptions(),
+    link: undefined,
+    hasCloseButton: false,
+  };
+  act(() => {
+    toaster().informational('mockContentInfo', options);
+  });
+  assertAddedToast('mockContentInfo', 'informational', options);
 
-//   expect(
-//     document.querySelector('.iui-toast-wrapper.iui-placement-top'),
-//   ).toBeTruthy();
-// });
+  act(() => {
+    toaster().positive('mockContentPositive', options);
+  });
+  assertAddedToast('mockContentPositive', 'positive', options);
 
-// it('should add toast and remove using return function', async () => {
-//   let close: () => void = () => {};
-//   act(() => {
-//     ({ close } = toaster.informational('mockContent', {
-//       ...mockedOptions(),
-//       type: 'persisting',
-//     }));
-//   });
-//   expect(await screen.findByText('mockContent')).toBeInTheDocument();
-//   assertAddedToast(
-//     toaster['toasts'][0],
-//     'informational',
-//     'mockContent',
+  act(() => {
+    toaster().closeAll();
+  });
+  // assertRemovedToast('mockContentInfo');
+  // assertRemovedToast('mockContentPositive');
+});
 
-//     1,
-//     {
-//       ...mockedOptions(),
-//       type: 'persisting',
-//     },
-//   );
+it('should add toast and remove using return function', async () => {
+  const toaster = toasterContraption();
+  let close = () => {};
+  act(() => {
+    ({ close } = toaster().informational('mockContent', {
+      ...mockedOptions(),
+      type: 'persisting',
+    }));
+  });
 
-//   close();
-//   waitForElementToBeRemoved(screen.queryByText('mockContent'));
-//   assertRemovedToast(
-//     toaster['toasts'][0],
-//     'informational',
-//     'mockContent',
+  assertAddedToast('mockContent', 'informational', {
+    ...mockedOptions(),
+    type: 'persisting',
+  });
 
-//     1,
-//     {
-//       ...mockedOptions(),
-//       type: 'persisting',
-//     },
-//   );
+  act(() => close());
+  assertRemovedToast('mockContent');
+});
 
-//   expect(
-//     document.querySelector('.iui-toast-wrapper.iui-placement-top'),
-//   ).toBeTruthy();
-// });
+it.each(['descending', 'ascending'] as const)(
+  'should respect order (%s)',
+  async (order) => {
+    const toaster = toasterContraption();
+    const options = {
+      ...mockedOptions(),
+      link: undefined,
+      hasCloseButton: false,
+    };
+    act(() => {
+      toaster().setSettings({ placement: 'top', order });
+    });
+    act(() => {
+      toaster().informational('mockContentInfo', options);
+    });
+    act(() => {
+      toaster().positive('mockContentPositive', options);
+    });
+    assertAddedToast('mockContentInfo', 'informational', options);
+    assertAddedToast('mockContentPositive', 'positive', options);
 
-// it('should change order to bottom to top', async () => {
-//   act(() => {
-//     toaster.setSettings({ placement: 'top', order: 'ascending' });
-//   });
-//   act(() => {
-//     toaster.informational('mockContent', mockedOptions());
-//   });
-//   expect(await screen.findByText('mockContent')).toBeInTheDocument();
-//   assertAddedToast(toaster['toasts'][0], 'informational', 'mockContent', 1);
+    const toasts = await screen.findAllByText(/mockContent/);
 
-//   act(() => {
-//     toaster.positive('mockContentPositive', mockedOptions());
-//   });
-//   expect(await screen.findByText('mockContentPositive')).toBeInTheDocument();
-//   assertAddedToast(toaster['toasts'][1], 'positive', 'mockContentPositive', 2);
-// });
+    if (order === 'descending') {
+      expect(toasts[1]).toHaveTextContent('mockContentInfo');
+      expect(toasts[0]).toHaveTextContent('mockContentPositive');
+    } else {
+      expect(toasts[0]).toHaveTextContent('mockContentInfo');
+      expect(toasts[1]).toHaveTextContent('mockContentPositive');
+    }
+  },
+);
 
-// it.each([
-//   'top-start',
-//   'top',
-//   'top-end',
-//   'bottom-start',
-//   'bottom',
-//   'bottom-end',
-// ] as const)('should change placement to %s', async (placement) => {
-//   act(() => {
-//     toaster.setSettings({
-//       placement: placement,
-//     });
-//   });
-//   act(() => {
-//     toaster.informational('mockContent', mockedOptions());
-//   });
-//   expect(await screen.findByText('mockContent'));
-//   expect(document.querySelector('.iui-toast-wrapper')).toHaveClass(
-//     `iui-placement-${placement}`,
-//   );
-// });
+it.each([
+  'top-start',
+  'top',
+  'top-end',
+  'bottom-start',
+  'bottom',
+  'bottom-end',
+] as const)('should change placement to %s', async (placement) => {
+  const toaster = toasterContraption();
+  act(() => {
+    toaster().setSettings({ placement });
+  });
+  act(() => {
+    toaster().informational('mockContent', mockedOptions());
+  });
+  expect(await screen.findByText('mockContent'));
+  expect(document.querySelector('.iui-toast-wrapper')).toHaveClass(
+    `iui-placement-${placement}`,
+  );
+});
