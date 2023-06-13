@@ -11,7 +11,7 @@ it('should render in its most basic state', () => {
   const { container } = render(<Overlay />);
 
   const overlay = container.querySelector(
-    '.iui-progress-indicator-overlay',
+    '.iui-overlay-wrapper',
   ) as HTMLElement;
   expect(overlay).toBeTruthy();
 });
