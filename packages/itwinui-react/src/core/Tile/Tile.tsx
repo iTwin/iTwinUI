@@ -271,7 +271,7 @@ TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 // ----------------------------------------------------------------------------
 // Tile.Name component
 type TileNameOwnProps = {
-  name?: string;
+  name?: React.ReactNode;
 };
 
 const TileName = React.forwardRef((props, forwardedRef) => {
