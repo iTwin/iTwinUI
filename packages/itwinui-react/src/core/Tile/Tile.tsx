@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-
 import * as React from 'react';
 import cx from 'classnames';
 import {
@@ -23,7 +22,7 @@ import { ProgressRadial } from '../ProgressIndicators/index.js';
 
 const TileContext = React.createContext<
   | {
-      status: 'positive' | 'warning' | 'negative' | undefined;
+      status?: 'positive' | 'warning' | 'negative';
       /**
        * Whether the tile is selected or in "active" state.
        * Gets highlighted and shows a checkmark icon near tile name.
@@ -107,7 +106,7 @@ type TileOwnProps = {
   setActionable?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const TileComponent = React.forwardRef((props, ref) => {
+const TileComponent = React.forwardRef((props, forwardedRef) => {
   const {
     className,
     status,
@@ -150,7 +149,7 @@ const TileComponent = React.forwardRef((props, ref) => {
           className,
         )}
         aria-disabled={isDisabled}
-        ref={ref}
+        ref={forwardedRef}
         {...rest}
       />
     </TileContext.Provider>
@@ -161,8 +160,8 @@ TileComponent.displayName = 'Tile';
 // ----------------------------------------------------------------------------
 // Tile.Action component
 
-const TileAction = React.forwardRef((props, ref) => {
-  const { onClick, children, href } = props;
+const TileAction = React.forwardRef((props, forwardedRef) => {
+  const { onClick, children, href, ...rest } = props;
   const { setActionable, isDisabled } = useSafeContext(TileContext);
   React.useEffect(() => {
     if (!supportsHas()) {
@@ -172,10 +171,12 @@ const TileAction = React.forwardRef((props, ref) => {
 
   return (
     <LinkAction
+      as={(!!props.href ? 'a' : 'button') as 'a'}
       href={href}
       onClick={!isDisabled ? onClick : undefined}
       aria-disabled={isDisabled}
-      ref={ref}
+      ref={forwardedRef}
+      {...rest}
     >
       {children}
     </LinkAction>
@@ -186,7 +187,7 @@ TileAction.displayName = 'Tile.Action';
 // ----------------------------------------------------------------------------
 // Tile.ThumbnailArea component
 
-const TileThumbnailArea = polymorphic.div('iui-tile-thumbnail');
+const TileThumbnailArea = polymorphic('iui-tile-thumbnail');
 TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
 
 // ----------------------------------------------------------------------------
@@ -199,24 +200,27 @@ type TileThumbnailPictureOwnProps =
       children?: React.ReactNode;
     };
 
-const TileThumbnailPicture = React.forwardRef((props, ref) => {
+const TileThumbnailPicture = React.forwardRef((props, forwardedRef) => {
   const { className, url, children, ...rest } = props;
   if (url) {
     return (
       <Box
         className={cx('iui-tile-thumbnail-picture', className)}
         style={{
-          backgroundImage:
-            url && typeof url === 'string' ? `url(${url})` : undefined,
+          backgroundImage: typeof url === 'string' ? `url(${url})` : undefined,
         }}
-        ref={ref}
+        ref={forwardedRef}
         {...rest}
       />
     );
   }
 
   return (
-    <Box className={cx('iui-thumbnail-icon', className)} ref={ref} {...rest}>
+    <Box
+      className={cx('iui-thumbnail-icon', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children}
     </Box>
   );
@@ -227,26 +231,26 @@ TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
 // ----------------------------------------------------------------------------
 // Tile.QuickAction component
 
-const TileQuickAction = polymorphic.div('iui-tile-thumbnail-quick-action');
+const TileQuickAction = polymorphic('iui-tile-thumbnail-quick-action');
 TileQuickAction.displayName = 'Tile.QuickAction';
 
 // ----------------------------------------------------------------------------
 // Tile.TypeIndicator component
 
-const TileTypeIndicator = polymorphic.div('iui-tile-thumbnail-type-indicator');
+const TileTypeIndicator = polymorphic('iui-tile-thumbnail-type-indicator');
 TileTypeIndicator.displayName = 'Tile.TypeIndicator';
 
 // ----------------------------------------------------------------------------
 // Tile.IconButton component
 
-const TileIconButton = React.forwardRef((props, ref) => {
+const TileIconButton = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
   return (
     <IconButton
       className={className}
       styleType='borderless'
       size='small'
-      ref={ref}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
@@ -261,9 +265,7 @@ TileIconButton.displayName = 'Tile.IconButton';
 // ----------------------------------------------------------------------------
 // Tile.BadgeContainer component
 
-const TileBadgeContainer = polymorphic.div(
-  'iui-tile-thumbnail-badge-container',
-);
+const TileBadgeContainer = polymorphic('iui-tile-thumbnail-badge-container');
 TileBadgeContainer.displayName = 'Tile.BadgeContainer';
 
 // ----------------------------------------------------------------------------
@@ -272,10 +274,14 @@ type TileNameOwnProps = {
   name?: string;
 };
 
-const TileName = React.forwardRef((props, ref) => {
+const TileName = React.forwardRef((props, forwardedRef) => {
   const { className, children, name, ...rest } = props;
   return (
-    <Box className={cx('iui-tile-name', className)} ref={ref} {...rest}>
+    <Box
+      className={cx('iui-tile-name', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children ?? name}
     </Box>
   );
@@ -285,8 +291,8 @@ TileBadgeContainer.displayName = 'Tile.Name';
 // ----------------------------------------------------------------------------
 // Tile.NameIcon component
 
-const TileNameIcon = React.forwardRef((props, ref) => {
-  const { children, ...rest } = props;
+const TileNameIcon = React.forwardRef((props, forwardedRef) => {
+  const { children, className, ...rest } = props;
   const { status, isLoading, isSelected, isNew } = useSafeContext(TileContext);
 
   const StatusIcon = !!status && StatusIconMap[status];
@@ -308,7 +314,11 @@ const TileNameIcon = React.forwardRef((props, ref) => {
   }
 
   return children || icon ? (
-    <Box className='iui-tile-status-icon' ref={ref} {...rest}>
+    <Box
+      className={cx('iui-tile-status-icon', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children ?? icon}
     </Box>
   ) : null;
@@ -324,19 +334,19 @@ TileNameLabel.displayName = 'Tile.NameLabel';
 // ----------------------------------------------------------------------------
 // Tile.ContentArea component
 
-const TileContentArea = polymorphic.div('iui-tile-content');
+const TileContentArea = polymorphic('iui-tile-content');
 TileContentArea.displayName = 'Tile.ContentArea';
 
 // ----------------------------------------------------------------------------
 // Tile.Description component
 
-const TileDescription = polymorphic.div('iui-tile-description');
+const TileDescription = polymorphic('iui-tile-description');
 TileDescription.displayName = 'Tile.Description';
 
 // ----------------------------------------------------------------------------
 // Tile.Metadata component
 
-const TileMetadata = polymorphic.div('iui-tile-metadata');
+const TileMetadata = polymorphic('iui-tile-metadata');
 TileMetadata.displayName = 'Tile.Metadata';
 
 // ----------------------------------------------------------------------------
@@ -346,7 +356,7 @@ type TileMoreOptionsOwnProps = {
   children?: React.ReactElement[];
 };
 
-const TileMoreOptions = React.forwardRef((props, ref) => {
+const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const { className, children = [], onButtonClick, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
@@ -373,11 +383,10 @@ const TileMoreOptions = React.forwardRef((props, ref) => {
           },
           className,
         )}
-        ref={ref}
+        ref={forwardedRef}
         {...rest}
       >
         <IconButton
-          as='button'
           styleType='borderless'
           size='small'
           aria-label='More options'
@@ -394,7 +403,7 @@ TileMoreOptions.displayName = 'Tile.MoreOptions';
 // ----------------------------------------------------------------------------
 // Tile.Buttons component
 
-const TileButtons = polymorphic.div('iui-tile-buttons');
+const TileButtons = polymorphic('iui-tile-buttons');
 TileButtons.displayName = 'Tile.Buttons';
 
 /**
@@ -481,9 +490,9 @@ export const Tile = Object.assign(TileComponent, {
    * `NameIcon` next to name of the tile. Goes under <Tile.Name>
    * @example
    * <Tile>
-   * <Tile.Name>
-   *  <Tile.NameIcon/>
-   * </Tile.Name>
+   *  <Tile.Name>
+   *    <Tile.NameIcon/>
+   *  </Tile.Name>
    * <Tile/>
    */
   NameIcon: TileNameIcon,
@@ -491,9 +500,9 @@ export const Tile = Object.assign(TileComponent, {
    * `NameLabel` of the tile
    * @example
    * <Tile>
-   * <Tile.Name>
-   *  <Tile.NameLabel> Tile Name <Tile.NameLabel/>
-   * </Tile.Name/>
+   *  <Tile.Name>
+   *    <Tile.NameLabel> Tile Name <Tile.NameLabel/>
+   *  </Tile.Name/>
    * <Tile/>
    */
   NameLabel: TileNameLabel,
