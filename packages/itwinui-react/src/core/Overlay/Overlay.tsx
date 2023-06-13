@@ -14,7 +14,7 @@ import cx from 'classnames';
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
   const { as: Box = 'div', children, ...rest } = props;
   return (
-    <Box ref={ref} {...rest}>
+    <Box custom-attribute='inert' ref={ref} {...rest}>
       {children}
     </Box>
   );
