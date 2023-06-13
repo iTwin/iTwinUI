@@ -30,14 +30,9 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 ---
 
 <div class='demo-box'>
-  <ThemeProvider
-    className='demo-iui-wrapper'
-    theme='dark'
-    themeOptions={{ applyBackground: false }}
-    client:load
-  >
+  <div class='demo-iui-wrapper'>
     <slot />
-  </ThemeProvider>
+  </div>
   <OpenInCodesandbox class='sandbox-link' code={code} />
 </div>
 <demo-code>

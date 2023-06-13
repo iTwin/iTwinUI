@@ -5,35 +5,26 @@
 import * as React from 'react';
 import { MenuItem, Select } from '@itwin/itwinui-react';
 
-export default (args) => {
-  const {
-    options = [
-      {
-        value: 'yellow',
-        label: 'Yellow',
-      },
-      {
-        value: 'green',
-        label: 'Green',
-      },
-      {
-        value: 'red',
-        label: 'Red',
-      },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
-  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
-    undefined,
-  );
+export default () => {
+  const options = [
+    {
+      value: 'yellow',
+      label: 'Yellow',
+    },
+    {
+      value: 'green',
+      label: 'Green',
+    },
+    {
+      value: 'red',
+      label: 'Red',
+    },
+  ];
+
   return (
     <Select<string>
-      {...rest}
       options={options}
-      value={selectedValue}
-      onChange={setSelectedValue}
-      placeholder={placeholder}
+      placeholder={'Placeholder text'}
       itemRenderer={(option) => (
         <MenuItem
           style={{
