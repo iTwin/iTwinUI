@@ -68,11 +68,13 @@ function assertAddedToast(
   }
 }
 
-function assertRemovedToast(content: string) {
-  jest.runAllTimers();
+async function assertRemovedToast(content: string) {
+  act(() => {
+    jest.runAllTimers();
+  });
   const maybeToast = screen.queryByText(content);
   if (maybeToast) {
-    waitForElementToBeRemoved(maybeToast);
+    await waitForElementToBeRemoved(maybeToast);
   }
 }
 
@@ -92,7 +94,7 @@ it.each(['positive', 'negative', 'informational', 'warning'] as const)(
       toaster()[status]('mockContent', mockedOptions());
     });
     assertAddedToast('mockContent', status, mockedOptions());
-    // assertRemovedToast('mockContent'); // TODO: fix this
+    await assertRemovedToast('mockContent');
   },
 );
 
@@ -116,8 +118,8 @@ it('should add toasts and remove all', async () => {
   act(() => {
     toaster().closeAll();
   });
-  // assertRemovedToast('mockContentInfo');
-  // assertRemovedToast('mockContentPositive');
+  await assertRemovedToast('mockContentInfo');
+  await assertRemovedToast('mockContentPositive');
 });
 
 it('should add toast and remove using return function', async () => {
