@@ -1,0 +1,13 @@
+{
+  "name": "playwright-testing",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./index.tsx",
+    "./*": "./*"
+  },
+  "dependencies": {
+    "playwright": "^1.35.0"
+  }
+}

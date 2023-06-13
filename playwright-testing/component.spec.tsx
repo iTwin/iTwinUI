@@ -3,7 +3,7 @@ import * as React from 'react';
 import { test, expect } from '@playwright/experimental-ct-react';
 import AxeBuilder from '@axe-core/playwright';
 import type { HooksConfig } from '@playwright/test';
-import type { Page } from 'playwright';
+// might need to import Page type - can't find 'playwright' module
 
 // Alert Test
 
@@ -15,7 +15,7 @@ test('Alert should meet WCAG criteria', async ({
     jsx: JSX.Element,
     config?: { hooksConfig?: HooksConfig },
   ) => Promise<void>;
-  page: Page;
+  page: any;
 }) => {
   await mount(
     <>
