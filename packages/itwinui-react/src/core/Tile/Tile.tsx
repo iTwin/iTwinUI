@@ -38,6 +38,7 @@ const TileContext = React.createContext<
        */
       variant?: 'default' | 'folder';
       /**
+       * @deprecated since v3. Use `<Tile.Action>` subcomponent for actionable tile.
        * Whether the tile is expected to be interactive (i.e. `onClick`).
        * It becomes focusable and gets on hover styling.
        */
