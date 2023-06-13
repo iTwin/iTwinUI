@@ -152,6 +152,7 @@
 
   &-anchor {
     &:where(button) {
+      font-family: inherit;
       border: none;
       background: transparent;
       padding: 0;
