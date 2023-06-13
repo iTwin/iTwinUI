@@ -14,7 +14,7 @@ import {
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
-import { ToastStateContext } from './Toaster.js';
+import { ToasterStateContext } from './Toaster.js';
 
 const isMotionOk = () =>
   getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
@@ -98,7 +98,7 @@ export const Toast = (props: ToastProps) => {
   } = props;
 
   const closeTimeout = React.useRef(0);
-  const { placement } = useSafeContext(ToastStateContext);
+  const { placement } = useSafeContext(ToasterStateContext);
   const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
 
   const [visible, setVisible] = React.useState(isVisibleProp ?? true);

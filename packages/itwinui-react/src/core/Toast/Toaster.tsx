@@ -32,13 +32,13 @@ export type ToasterSettings = {
 
 export type ToastOptions = Omit<
   ToastProps,
-  'category' | 'isVisible' | 'id' | 'content' | 'placementPosition'
+  'category' | 'isVisible' | 'id' | 'content'
 >;
 
 // ----------------------------------------------------------------------------
 
 export const useToaster = () => {
-  const dispatch = useSafeContext(ToastDispatchContext);
+  const dispatch = useSafeContext(ToasterDispatchContext);
 
   const showToast = React.useCallback(
     (category: ToastCategory) =>
@@ -72,7 +72,7 @@ export const useToaster = () => {
 // ----------------------------------------------------------------------------
 
 export const Toaster = () => {
-  const { toasts, placement } = useSafeContext(ToastStateContext);
+  const { toasts, placement } = useSafeContext(ToasterStateContext);
 
   return (
     <Box className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
@@ -96,11 +96,11 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   return (
-    <ToastDispatchContext.Provider value={dispatch}>
-      <ToastStateContext.Provider value={toasterState}>
+    <ToasterDispatchContext.Provider value={dispatch}>
+      <ToasterStateContext.Provider value={toasterState}>
         {children}
-      </ToastStateContext.Provider>
-    </ToastDispatchContext.Provider>
+      </ToasterStateContext.Provider>
+    </ToasterDispatchContext.Provider>
   );
 };
 
@@ -143,10 +143,10 @@ const toastReducer = (state: ToasterState, action: ToasterAction) => {
 
 // ----------------------------------------------------------------------------
 
-export const ToastStateContext = React.createContext<ToasterState | undefined>(
-  undefined,
-);
-ToastStateContext.displayName = 'ToastStateContext';
+export const ToasterStateContext = React.createContext<
+  ToasterState | undefined
+>(undefined);
+ToasterStateContext.displayName = 'ToasterStateContext';
 
 type ToasterState = {
   toasts: ToastProps[];
@@ -156,10 +156,10 @@ type ToasterState = {
 
 // ----------------------------------------------------------------------------
 
-const ToastDispatchContext = React.createContext<
+const ToasterDispatchContext = React.createContext<
   React.Dispatch<ToasterAction> | undefined
 >(undefined);
-ToastDispatchContext.displayName = 'ToastDispatchContext';
+ToasterDispatchContext.displayName = 'ToasterDispatchContext';
 
 type ToasterAction =
   | { type: 'add'; toast: ToastProps }
