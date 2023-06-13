@@ -69,8 +69,7 @@
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
-    "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles\"",
-    "test-ct": "playwright test -c playwright-ct.config.ts"
+    "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles\""
   },
   "dependencies": {
     "@itwin/itwinui-illustrations-react": "^2.0.0",
