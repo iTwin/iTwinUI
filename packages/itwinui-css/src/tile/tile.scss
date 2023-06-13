@@ -159,6 +159,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     'thumbnail name'
     'thumbnail content';
   grid-template-columns: 3fr 7fr;
+  grid-template-rows: 1.5fr 2.5fr;
 
   > :where(:first-child) {
     border-top-left-radius: inherit;
@@ -312,11 +313,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     transition: transform var(--iui-duration-2) ease;
     place-self: center;
 
-    // svg:not(.iui-radial) {
-    // @include mixins.iui-icon-style(3xl);
-    // @include mixins.iui-icon-color;
-    // transition: transform var(--iui-duration-2) ease;
-    // }
+    svg:not(.iui-radial) {
+      @include mixins.iui-icon-style(3xl);
+      @include mixins.iui-icon-color;
+      transition: transform var(--iui-duration-2) ease;
+    }
   }
 }
 
