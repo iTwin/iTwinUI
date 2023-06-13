@@ -43,6 +43,18 @@ type TooltipOptions = {
    * @default false;
    */
   followTrigger?: boolean;
+  /**
+   *
+   */
+  middleware?: {
+    offset?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    flip?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    shift?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
+    size?: any; //  eslint-disable-line @typescript-eslint/no-explicit-any
+    autoPlacement?: any; //  eslint-disable-line @typescript-eslint/no-explicit-any
+    hide?: any; //  eslint-disable-line @typescript-eslint/no-explicit-any
+    inline?: any; //  eslint-disable-line @typescript-eslint/no-explicit-any
+  };
 };
 
 type TooltipOwnProps = {
