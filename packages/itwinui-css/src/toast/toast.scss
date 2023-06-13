@@ -162,6 +162,8 @@
     cursor: pointer;
     font-size: var(--iui-font-size-0);
     margin-right: var(--iui-size-m);
+    user-select: none;
+    white-space: nowrap;
   }
 
   > .iui-button {
