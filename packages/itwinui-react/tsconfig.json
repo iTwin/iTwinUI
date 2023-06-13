@@ -1,7 +1,7 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "target": "es2018",
+    "target": "es2020",
     "lib": ["es6", "dom"],
     "declaration": true,
     "esModuleInterop": true,
