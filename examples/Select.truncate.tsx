@@ -6,27 +6,23 @@ import * as React from 'react';
 import { MenuItem, MiddleTextTruncation, Select } from '@itwin/itwinui-react';
 import { useCallback, useState } from 'react';
 
-export default (args) => {
-  const {
-    options = [
-      {
-        value:
-          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
-        label:
-          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
-      },
-      {
-        value: 'ShortNameFile.jpg',
-        label: 'ShortNameFile.jpg',
-      },
-      {
-        value: 'SomeOtherFile.dgn',
-        label: 'SomeOtherFile.dgn',
-      },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+export default () => {
+  const options = [
+    {
+      value:
+        'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+      label:
+        'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+    },
+    {
+      value: 'ShortNameFile.jpg',
+      label: 'ShortNameFile.jpg',
+    },
+    {
+      value: 'SomeOtherFile.dgn',
+      label: 'SomeOtherFile.dgn',
+    },
+  ];
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     options[0].value,
   );
@@ -39,12 +35,11 @@ export default (args) => {
     [],
   );
   return (
-    <Select<string>
-      {...rest}
+    <Select
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
-      placeholder={placeholder}
+      placeholder={'Placeholder text'}
       itemRenderer={(option) => (
         <MenuItem>
           <MiddleTextTruncation
