@@ -3,20 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { FileUpload, FileUploadCard } from '@itwin/itwinui-react';
+import { DatePicker } from '@itwin/itwinui-react';
 
 export default () => {
-  const [files, setFiles] = React.useState<Array<File>>([]);
+  const startDate = new Date(2023, 6, 5, 14, 55, 22);
+  const endDate = new Date(2023, 6, 12, 14, 55, 27);
+
   return (
-    <FileUpload
-      onFileDropped={(files) => {
-        setFiles(files);
-      }}
-    >
-      <FileUploadCard
-        files={files}
-        onFilesChange={(files) => setFiles(files)}
-      />
-    </FileUpload>
+    <DatePicker
+      enableRangeSelect={true}
+      startDate={startDate}
+      endDate={endDate}
+    />
   );
 };

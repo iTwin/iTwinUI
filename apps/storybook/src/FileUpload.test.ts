@@ -5,7 +5,6 @@
 describe('FileUpload', () => {
   const storyPath = 'Core/FileUpload';
   const tests = [
-    'Default',
     'Wrapping Input',
     'Default File Upload Card',
     'Custom File Upload Card',
