@@ -16,12 +16,10 @@ import {
   useRole,
   useInteractions,
   useClick,
-  FloatingPortal,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import { Box, useMergedRefs } from '../utils/index.js';
+import { Box, getDocument, useGlobals, useMergedRefs } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { ThemeContext } from '../ThemeProvider/ThemeContext.js';
 import ReactDOM from 'react-dom';
 
 type TooltipOptions = {
@@ -147,9 +145,30 @@ const TooltipComponent = ({
   ...options
 }: TooltipOwnProps & TooltipOptions) => {
   const tooltip = useTooltip(options);
+  // const context = useGlobals();
+
+  // const portalTo =
+  //   portal?.to ?? context?.portalContainerRef?.current ?? getDocument()?.body;
+
+  // const contentBox = (
+  //   <Box
+  //     className={cx('iui-tooltip')}
+  //     ref={tooltip.refs.setFloating}
+  //     style={tooltip.floatingStyles}
+  //     {...tooltip.getFloatingProps()}
+  //   >
+  //     {children}
+  //   </Box>
+  // );
+
   return (
     <TooltipContext.Provider value={{ ...tooltip, content, reference, portal }}>
       <TooltipTrigger>{children}</TooltipTrigger>
+      {/* {tooltip.open
+        ? portalTo
+          ? ReactDOM.createPortal(contentBox, portalTo)
+          : contentBox
+        : null} */}
       <TooltipContent>{content}</TooltipContent>
     </TooltipContext.Provider>
   );
@@ -157,14 +176,8 @@ const TooltipComponent = ({
 
 const TooltipTrigger = React.forwardRef((props, propRef) => {
   const { children, ...rest } = props;
-  const { refs, reference, getReferenceProps } = useTooltipContext();
+  const { refs, getReferenceProps } = useTooltipContext();
   const ref = useMergedRefs(refs.setReference, propRef);
-
-  if (reference?.current) {
-    return React.isValidElement(reference.current)
-      ? React.cloneElement(reference.current, ref)
-      : null;
-  }
 
   return React.isValidElement(children)
     ? React.cloneElement(
@@ -180,33 +193,28 @@ const TooltipTrigger = React.forwardRef((props, propRef) => {
 
 const TooltipContent = React.forwardRef((props, propRef) => {
   const { children, className, ...rest } = props;
-  const context = useTooltipContext();
-  const themeInfo = React.useContext(ThemeContext);
-  const ref = useMergedRefs(context.refs.setFloating, propRef);
+  const { getFloatingProps, refs, open, floatingStyles } = useTooltipContext();
+  const context = useGlobals();
+  const ref = useMergedRefs(refs.setFloating, propRef);
 
   const contentBox = (
     <Box
       className={cx('iui-tooltip', className)}
       ref={ref}
-      style={context.floatingStyles}
-      {...context.getFloatingProps(rest)}
+      style={floatingStyles}
+      {...getFloatingProps(rest)}
     >
       {children}
     </Box>
   );
 
-  if (!context.open) {
+  if (!open) {
     return null;
   }
 
-  const portalRoot =
-    context.portal?.to ?? themeInfo?.portalContainerRef?.current;
+  const portalTo = context?.portalContainerRef?.current ?? getDocument()?.body;
 
-  return portalRoot ? (
-    ReactDOM.createPortal(contentBox, portalRoot)
-  ) : (
-    <FloatingPortal>{contentBox}</FloatingPortal>
-  );
+  return portalTo ? ReactDOM.createPortal(contentBox, portalTo) : contentBox;
 }) as PolymorphicForwardRefComponent<'div'>;
 
 /**
