@@ -7,6 +7,7 @@ import cx from 'classnames';
 import { useMediaQuery, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
+import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 
 export type ThemeOptions = {
   /**
@@ -110,8 +111,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
         ref={ref}
         {...rest}
       >
-        {children}
-        <div ref={portalContainerRef} />
+        <ToastProvider>
+          {children}
+          <div ref={portalContainerRef}>
+            <Toaster />
+          </div>
+        </ToastProvider>
       </Root>
     </ThemeContext.Provider>
   );
