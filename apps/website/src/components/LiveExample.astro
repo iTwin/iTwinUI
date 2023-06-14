@@ -30,14 +30,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 ---
 
 <div class='demo-box'>
-  <ThemeProvider
-    className='demo-iui-wrapper'
-    theme='dark'
-    themeOptions={{ applyBackground: false }}
-    client:load
-  >
-    <slot />
-  </ThemeProvider>
+  <slot />
   <OpenInCodesandbox class='sandbox-link' code={code} />
 </div>
 <demo-code>
@@ -94,7 +87,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     border-radius: var(--border-radius-1);
   }
 
-  .demo-iui-wrapper {
+  .demo-box :global([data-iui-theme]) {
     height: 100%;
     width: 100%;
     overflow: auto;
