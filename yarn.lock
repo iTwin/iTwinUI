@@ -1890,6 +1890,11 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
+"@itwin/itwinui-css@^1.11.1":
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-css/-/itwinui-css-1.11.1.tgz#3c87100464b03107d55bb4daf8d495447514ed96"
+  integrity sha512-DognbSMegpA4fPwhSC8U75zcpAJw5HKt0lRuMzk+d8nmzzTYR9nhtZm7GbHffXHdSR9kIXMNk3DRU9nds+3eUA==
+
 "@itwin/itwinui-icons-elements@0.2.0":
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-elements/-/itwinui-icons-elements-0.2.0.tgz#b6444503e71468ee407b6c61f05931443a5d7737"
@@ -1904,6 +1909,26 @@
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-2.0.1.tgz#6e1be28ea924c0b73e2816f7b7bd1ac578603cdc"
   integrity sha512-uUrr/O3hpL8r0ZSSRExZ68RTxLbR7mlZFytpCLa9qwJqxvdWgTJaZhR3rSOad6HBfqk6KOGlOGz569BuWrD9Lw==
+
+"@itwin/itwinui-react@*":
+  version "2.11.6"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-react/-/itwinui-react-2.11.6.tgz#d17f9881760879145e1eb74728b75dd0e261481c"
+  integrity sha512-T8M0zZXMKu0rSJeT+ifvwWkcL7qGlAJdWh0Y7e4E54lgSyuUSK7aTfz6H6ifJ0VZjw3WZqPjvF3dsLhWqkwSCg==
+  dependencies:
+    "@itwin/itwinui-css" "^1.11.1"
+    "@itwin/itwinui-illustrations-react" "^2.0.0"
+    "@itwin/itwinui-variables" "^2.0.0"
+    "@tippyjs/react" "^4.2.6"
+    "@types/react-table" "^7.0.18"
+    classnames "^2.2.6"
+    react-table "^7.1.0"
+    react-transition-group "^4.4.2"
+    tippy.js "^6.3.7"
+
+"@itwin/itwinui-variables@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-variables/-/itwinui-variables-2.0.0.tgz#76ff93163924dbfb81492d28aa46dab3e1f9f4e4"
+  integrity sha512-fifv56z4pIVNA7KucfFiDdLThOFOLUF7MYY6VQclfF5uju0Jzl3JmnlTbmBiYlOo9oVn3drtHsA356UWIKclNQ==
 
 "@jest/console@^28.1.0":
   version "28.1.0"
@@ -11609,24 +11634,12 @@ pkg-dir@^5.0.0:
   dependencies:
     find-up "^5.0.0"
 
-playwright-core@1.33.0:
-  version "1.33.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.33.0.tgz#269efe29a927cd6d144d05f3c2d2f72bd72447a1"
-  integrity sha512-aizyPE1Cj62vAECdph1iaMILpT0WUDCq3E6rW6I+dleSbBoGbktvJtzS6VHkZ4DKNEOG9qJpiom/ZxO+S15LAw==
-
 playwright-core@1.35.0:
   version "1.35.0"
   resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.35.0.tgz#b7871b742b4a5c8714b7fa2f570c280a061cb414"
   integrity sha512-muMXyPmIx/2DPrCHOD1H1ePT01o7OdKxKj2ebmCAYvqhUy+Y1bpal7B0rdoxros7YrXI294JT/DWw2LqyiqTPA==
 
-playwright@^1.32.1:
-  version "1.33.0"
-  resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.33.0.tgz#88df1cffe97718ab8a02303e12c9133681ec7fab"
-  integrity sha512-+zzU3V2TslRX2ETBRgQKsKytYBkJeLZ2xzUj4JohnZnxQnivoUvOvNbRBYWSYykQTO0Y4zb8NwZTYFUO+EpPBQ==
-  dependencies:
-    playwright-core "1.33.0"
-
-playwright@^1.35.0:
+playwright@^1.32.1, playwright@^1.35.0:
   version "1.35.0"
   resolved "https://registry.yarnpkg.com/playwright/-/playwright-1.35.0.tgz#4e3b3ea2495d6fd671700f77b2f97b3adedf80f1"
   integrity sha512-xhFhsoBmKPQfj3dM+HbIiFVlqRCZp2rwdJd/QFd9YBuidabo3TkVv0iuxPQ4vZoMwtSI7qzjY93f5ohdC97hww==
