@@ -14,8 +14,6 @@ export default {
   argTypes: {
     className: { control: { disable: true } },
     style: { control: { disable: true } },
-    title: { control: { disable: true } },
-    id: { control: { disable: true } },
   },
   args: {
     value: 50,
