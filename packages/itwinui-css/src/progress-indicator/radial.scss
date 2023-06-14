@@ -67,6 +67,7 @@
 
   &[data-iui-size='small'] {
     --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
+    font-size: var(--iui-font-size-0);
   }
 
   &[data-iui-size='large'] {
