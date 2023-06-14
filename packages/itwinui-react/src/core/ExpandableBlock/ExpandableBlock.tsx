@@ -164,7 +164,7 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     <ExpandableBlockContext.Provider
       value={{
         status,
-        isExpanded,
+        isExpanded: expanded,
         onToggle,
         size,
         styleType,
@@ -311,10 +311,10 @@ ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
 
 const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
+  const { isExpanded } = useSafeContext(ExpandableBlockContext);
 
-  // const { isExpanded } = useSafeContext(ExpandableBlockContext);
   return (
-    <WithCSSTransition in={true}>
+    <WithCSSTransition in={isExpanded}>
       <Box
         className={cx('iui-expandable-content', className)}
         ref={forwardedRef}
