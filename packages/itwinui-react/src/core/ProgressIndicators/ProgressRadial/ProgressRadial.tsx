@@ -14,7 +14,6 @@ import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 type ProgressRadialProps = {
   /**
    * Progress percentage. Should be a number between 0 and 100.
-   * @default 0
    */
   value?: number;
   /**
