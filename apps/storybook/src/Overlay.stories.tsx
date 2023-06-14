@@ -24,12 +24,8 @@ export const Linear: Story<OverlayProps> = () => {
     marginBottom: '12px',
   } as React.CSSProperties;
 
-  // main div -> <Overlay>
-  // div with text -> <Overlay.HiddenContent> (no class name. needs inert HTML prop) <div inert>{children}</div>
-  // current Overlay -> <Overlay.Message> (add iui-progress-indicator-overlay classname to the div)
-
   return (
-    <Overlay style={wrapperStyle}>
+    <Overlay.Wrapper style={wrapperStyle}>
       <Overlay.HiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -44,7 +40,7 @@ export const Linear: Story<OverlayProps> = () => {
       <Overlay.Message>
         <ProgressLinear indeterminate={true} />
       </Overlay.Message>
-    </Overlay>
+    </Overlay.Wrapper>
   );
 };
 
@@ -56,7 +52,7 @@ export const Radial: Story<OverlayProps> = () => {
   } as React.CSSProperties;
 
   return (
-    <Overlay style={wrapperStyle}>
+    <Overlay.Wrapper style={wrapperStyle}>
       <Overlay.HiddenContent style={{ padding: '12px' }}>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -71,7 +67,7 @@ export const Radial: Story<OverlayProps> = () => {
       <Overlay.Message>
         <ProgressRadial indeterminate={true} />
       </Overlay.Message>
-    </Overlay>
+    </Overlay.Wrapper>
   );
 };
 Linear.args = {};

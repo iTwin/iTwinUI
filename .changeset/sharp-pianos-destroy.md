@@ -2,4 +2,8 @@
 '@itwin/itwinui-react': minor
 ---
 
-Added Overlay component to Progress Indicators
+Created new Overlay component with customizable subcomponents:
+
+- OverlayWrapper
+- OverlayHiddenContent
+- OverlayMessage

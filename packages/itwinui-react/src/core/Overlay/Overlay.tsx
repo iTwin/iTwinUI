@@ -9,7 +9,33 @@ import {
 } from '../utils/index.js';
 import cx from 'classnames';
 
-// return a box with no class name that has inert
+export type OverlayComponentProps = {
+  /**
+   * The sub-component elements of Overlay.
+   */
+  children?: React.ReactNode;
+  /**
+   * Placeholder for Progress Indicator in Overlay
+   */
+  content?: React.ReactNode;
+};
+
+// --------------------------------------------------------------------------------
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const OverlayComponent = React.forwardRef((props, forwardedRef) => {
+  const { content, children, ...rest } = props;
+
+  return (
+    <OverlayWrapper {...rest}>
+      <OverlayMessage>{content}</OverlayMessage>
+      <OverlayHiddenContent>{children}</OverlayHiddenContent>
+    </OverlayWrapper>
+  );
+}) as PolymorphicForwardRefComponent<'div', OverlayComponentProps>;
+OverlayComponent.displayName = 'Overlay';
+
+// --------------------------------------------------------------------------------
 
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
   const { as: Box = 'div', children, ...rest } = props;
@@ -21,12 +47,12 @@ const OverlayHiddenContent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div'>;
 OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
 
-// return a div with iui-progress-indicator-overlay
+// --------------------------------------------------------------------------------
 
 const OverlayMessage = polymorphic('iui-overlay');
 OverlayMessage.displayName = 'Overlay.Message';
 
-// return a div with iui-overlay-wrapper and children
+// --------------------------------------------------------------------------------
 
 const OverlayWrapper = React.forwardRef((props, ref) => {
   const { as: Box = 'div', children, className, ...rest } = props;
@@ -39,23 +65,29 @@ const OverlayWrapper = React.forwardRef((props, ref) => {
 OverlayWrapper.displayName = 'Overlay.Wrapper';
 
 // --------------------------------------------------------------------------------
+
 /**
  *
- * This is an Overlay Component. The main component is a wrapper to hold
- * the Overlay HiddenContent and Overlay Message.
+ * This is an Overlay Component.
  *
  * @example
  * <OverlayWrapper>
  *  <Overlay.Message>
  *    loading...
  *  <Overlay.Message>
- *  <Overlay.HiddenComponent>
+ *  <Overlay.HiddenContent>
  *    content beneath the overlay... (text, img, etc.)
- *  <Overlay.HiddenComponent />
+ *  <Overlay.HiddenContent />
  * </OverlayWrapper>
  *
  */
-export const Overlay = Object.assign(OverlayWrapper, {
+export const Overlay = Object.assign(OverlayComponent, {
+  /**
+   *
+   * The main component is a wrapper to hold the
+   * Overlay HiddenContent and Overlay Message.
+   */
+  Wrapper: OverlayWrapper,
   /**
    * HiddenContent houses page elements that are blurred by the
    * Overlay.
