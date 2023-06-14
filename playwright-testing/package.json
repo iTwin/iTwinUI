@@ -12,7 +12,7 @@
     "@axe-core/playwright": "^4.7.3",
     "@playwright/experimental-ct-react": "^1.35.0",
     "@playwright/test": "^1.35.0",
-    "@itwin/itwinui-react": "*",
+    "@itwin/itwinui-react": "3.0.0-dev.2",
     "examples": "*"
   }
 }
