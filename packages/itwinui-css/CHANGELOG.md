@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-dev.3
+
+### Patch Changes
+
+- [#1351](https://github.com/iTwin/iTwinUI/pull/1351): `.iui-toast-anchor` can now be applied on a `<button>`.
+
 ## 2.0.0-dev.2
 
 ### Major Changes
