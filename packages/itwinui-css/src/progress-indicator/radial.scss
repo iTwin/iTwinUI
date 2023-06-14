@@ -4,10 +4,12 @@
 @use '../mixins';
 
 @mixin iui-progress-indicator-radial {
-  position: relative;
-  display: inline-flex;
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
-
+  position: relative;
+  vertical-align: middle;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
   width: var(--_iui-progress-indicator-radial-size);
   height: var(--_iui-progress-indicator-radial-size);
   border-radius: 50%;
@@ -26,16 +28,14 @@
   }
 
   &::after {
-    animation: rotate-indeterminate 0.8s linear infinite;
-    background-color: var(--iui-color-border-accent);
-    mask: conic-gradient(#0000, #000), linear-gradient(#000 0 0) content-box;
     mask-composite: subtract;
+    mask-clip: border-box, content-box;
+    background-color: var(--iui-color-border-accent);
+  }
 
-    @keyframes rotate-indeterminate {
-      100% {
-        transform: rotate(360deg);
-      }
-    }
+  .iui-inner-content :is(svg, img) {
+    @include mixins.iui-icon-style('m');
+    fill: var(--iui-color-icon);
   }
 
   @each $status in positive, negative {
@@ -45,149 +45,61 @@
       &::after {
         background-color: var(--iui-color-border-#{$status});
       }
-    }
-  }
 
-  @each $size in x-small, small, large {
-    &[data-iui-size='#{$size}'] {
-      --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, $size)};
-
-      &::before,
-      &::after {
-        border-width: var(--iui-size-2xs); // change this
+      .iui-inner-content :is(svg, img) {
+        fill: var(--iui-color-border-#{$status});
       }
     }
   }
 
-  // > .iui-radial {
-  //   height: 100%;
-  //   width: 100%;
+  &[data-iui-size='x-small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, m)};
 
-  //   > circle.iui-fill {
-  //     stroke: var(--iui-color-border-accent);
-  //     fill: none;
-  //     stroke-width: var(--iui-size-2xs);
-  //   }
+    &::before,
+    &::after {
+      border-width: var(--iui-size-3xs);
+    }
 
-  //   > circle.iui-track {
-  //     stroke: var(--iui-color-border);
-  //     fill: none;
-  //     stroke-width: var(--iui-size-2xs);
-  //   }
-  // }
+    .iui-inner-content {
+      display: none;
+    }
+  }
 
-  // .iui-inner-content {
-  //   position: absolute;
-  //   display: flex;
-  //   width: calc(100% - #{var(--iui-size-xs)});
-  //   height: calc(100% - #{var(--iui-size-xs)});
-  //   left: 50%;
-  //   top: 50%;
-  //   transform: translate(-50%, -50%);
-  //   align-items: center;
-  //   justify-content: center;
-  //   font-size: var(--iui-font-size-0);
-  //   user-select: none;
-  //   overflow: hidden;
+  &[data-iui-size='small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
+  }
 
-  //   svg,
-  //   img {
-  //     @include mixins.iui-icon-style('m');
-  //     fill: var(--iui-color-icon);
+  &[data-iui-size='large'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
+    font-size: var(--iui-font-size-2);
 
-  //     &:hover {
-  //       fill: var(--iui-color-icon-hover);
-  //     }
-  //   }
-  // }
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-2xs) * 1.5);
+    }
 
-  // &.iui-positive {
-  //   color: var(--iui-color-text-positive);
-
-  //   svg.iui-radial {
-  //     circle.iui-fill,
-  //     circle.iui-track {
-  //       stroke: var(--iui-color-border-positive);
-  //     }
-  //   }
-
-  //   .iui-inner-content svg {
-  //     fill: var(--iui-color-icon-positive);
-  //   }
-  // }
-
-  // &.iui-negative {
-  //   color: var(--iui-color-text-negative);
-
-  //   svg.iui-radial circle.iui-fill {
-  //     stroke: var(--iui-color-border-negative);
-  //   }
-
-  //   .iui-inner-content svg {
-  //     fill: var(--iui-color-icon-negative);
-  //   }
-  // }
-
-  // &.iui-x-small {
-  //   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, m)};
-
-  //   .iui-inner-content {
-  //     display: none;
-  //   }
-  // }
-
-  // &.iui-small {
-  //   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
-  // }
-
-  // &.iui-large {
-  //   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
-
-  //   .iui-inner-content {
-  //     font-size: var(--iui-font-size-2);
-
-  //     svg,
-  //     img {
-  //       @include mixins.iui-icon-style('l');
-  //     }
-  //   }
-  // }
+    .iui-inner-content :is(svg, img) {
+      @include mixins.iui-icon-style('l');
+    }
+  }
 }
 
 @mixin iui-progress-indicator-radial-determinate {
-  // svg.iui-radial {
-  //   transform: rotate(-90deg);
-
-  //   circle.iui-fill {
-  //     // C = 2πR
-  //     stroke-dasharray: 88;
-  //     transition: stroke-dashoffset 0.5s ease-in-out;
-  //   }
-  // }
+  &::after {
+    $percentage: var(--iui-progress-percentage, 100%);
+    mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
+  }
 }
 
 @mixin iui-progress-indicator-radial-indeterminate {
-  // svg.iui-radial {
-  //   animation: rotate-indeterminate 2s linear infinite;
+  &::after {
+    mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
+    animation: rotate-indeterminate 0.8s linear infinite;
 
-  //   circle.iui-fill {
-  //     animation: dash-indeterminate 1.5s ease-in-out infinite;
-  //   }
-  // }
-
-  // @keyframes dash-indeterminate {
-  //   0% {
-  //     stroke-dasharray: 1, 88;
-  //   }
-
-  //   50% {
-  //     stroke-dasharray: 88, 88;
-  //     stroke-dashoffset: -22;
-  //   }
-
-  //   100% {
-  //     stroke-dasharray: 88, 88;
-  //     stroke-dashoffset: -88;
-  //   }
-  // }
+    @keyframes rotate-indeterminate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
 }

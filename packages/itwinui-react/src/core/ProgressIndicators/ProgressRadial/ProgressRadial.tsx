@@ -5,8 +5,8 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  // SvgCheckmarkSmall,
-  // SvgImportantSmall,
+  SvgCheckmarkSmall,
+  SvgImportantSmall,
   Box,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
@@ -19,7 +19,8 @@ type ProgressRadialProps = {
   value?: number;
   /**
    * Progress variant. If true, value will be ignored.
-   * @default false
+   *
+   * @default false if value is provided, true otherwise
    */
   indeterminate?: boolean;
   /**
@@ -54,27 +55,48 @@ type ProgressRadialProps = {
  */
 export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
   const {
-    // value = 0,
-    // indeterminate = false,
+    value,
+    indeterminate = value === undefined,
     status,
     size,
     className,
+    style,
+    children,
     ...rest
   } = props;
 
-  // const statusMap = {
-  //   negative: <SvgImportantSmall aria-hidden />,
-  //   positive: <SvgCheckmarkSmall aria-hidden />,
-  // };
+  const statusMap = {
+    negative: <SvgImportantSmall aria-hidden />,
+    positive: <SvgCheckmarkSmall aria-hidden />,
+  };
+
+  const innerContent = children ?? (!!status ? statusMap[status] : null);
 
   return (
     <Box
-      className={cx('iui-progress-indicator-radial', className)}
+      className={cx(
+        'iui-progress-indicator-radial',
+        {
+          'iui-indeterminate': indeterminate,
+          'iui-determinate': !indeterminate,
+        },
+        className,
+      )}
       data-iui-size={size}
       data-iui-status={status}
       ref={forwardedRef}
+      style={{
+        ...(value !== undefined && { '--iui-progress-value': `${value}%` }),
+        ...style,
+      }}
       {...rest}
-    />
+    >
+      {innerContent && (
+        <Box as='span' className='iui-inner-content'>
+          {innerContent}
+        </Box>
+      )}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
 
