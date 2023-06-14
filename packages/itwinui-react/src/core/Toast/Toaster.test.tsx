@@ -141,9 +141,14 @@ it('should add toast and remove using return function', async () => {
   assertRemovedToast('mockContent');
 });
 
-it.each(['descending', 'ascending'] as const)(
-  'should respect order (%s)',
-  async (order) => {
+it.each([
+  ['descending', 'top'],
+  ['ascending', 'top'],
+  ['auto', 'top'],
+  ['auto', 'bottom'],
+] as const)(
+  'should respect order (%s) and placement (%s)',
+  async (order, placement) => {
     const toaster = toasterContraption();
     const options = {
       ...mockedOptions(),
@@ -151,7 +156,7 @@ it.each(['descending', 'ascending'] as const)(
       hasCloseButton: false,
     };
     act(() => {
-      toaster().setSettings({ placement: 'top', order });
+      toaster().setSettings({ placement, order });
     });
     act(() => {
       toaster().informational('mockContentInfo', options);
@@ -164,7 +169,7 @@ it.each(['descending', 'ascending'] as const)(
 
     const toasts = await screen.findAllByText(/mockContent/);
 
-    if (order === 'descending') {
+    if (order === 'descending' || (order === 'auto' && placement === 'top')) {
       expect(toasts[1]).toHaveTextContent('mockContentInfo');
       expect(toasts[0]).toHaveTextContent('mockContentPositive');
     } else {

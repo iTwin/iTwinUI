@@ -12,10 +12,12 @@ export type ToasterSettings = {
   /**
    * Order of toasts.
    * When set to 'descending', most recent toasts are on top. When set to 'ascending', most recent toasts are on bottom.
-
-   * When `placement` is set to a top value, order defaults to 'descending', otherwise 'ascending'.
+   *
+   * When set to `auto`, it will behave like 'descending' when `placement` is set to a top value, otherwise 'ascending'.
+   *
+   * @default 'auto'
    */
-  order: 'descending' | 'ascending';
+  order: 'descending' | 'ascending' | 'auto';
   /**
    * Placement of toasts.
    * Changes placement of toasts. Start indicates left side of viewport. End - right side of viewport.
@@ -91,7 +93,7 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasterState, dispatch] = React.useReducer(toastReducer, {
     toasts: [],
     settings: {
-      order: 'descending',
+      order: 'auto',
       placement: 'top',
     },
   });
@@ -107,12 +109,19 @@ export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
 
 const toastReducer = (state: ToasterState, action: ToasterAction) => {
   if (action.type === 'add') {
+    let order = state.settings.order;
+    if (order === 'auto') {
+      order = state.settings.placement.startsWith('top')
+        ? 'descending'
+        : 'ascending';
+    }
+
     return {
       ...state,
       toasts: [
-        ...(state.settings.order === 'ascending' ? state.toasts : []),
+        ...(order === 'ascending' ? state.toasts : []),
         action.toast,
-        ...(state.settings.order === 'descending' ? state.toasts : []),
+        ...(order === 'descending' ? state.toasts : []),
       ],
     };
   }
@@ -132,11 +141,7 @@ const toastReducer = (state: ToasterState, action: ToasterAction) => {
   }
 
   if (action.type === 'settings') {
-    return {
-      ...state,
-      settings: { ...state.settings, ...action.settings },
-      placement: action.settings.placement,
-    };
+    return { ...state, settings: { ...state.settings, ...action.settings } };
   }
 
   return state;
