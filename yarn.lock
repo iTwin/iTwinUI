@@ -1905,6 +1905,19 @@
   resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-2.0.1.tgz#6e1be28ea924c0b73e2816f7b7bd1ac578603cdc"
   integrity sha512-uUrr/O3hpL8r0ZSSRExZ68RTxLbR7mlZFytpCLa9qwJqxvdWgTJaZhR3rSOad6HBfqk6KOGlOGz569BuWrD9Lw==
 
+"@itwin/itwinui-react@3.0.0-dev.2":
+  version "3.0.0-dev.2"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-react/-/itwinui-react-3.0.0-dev.2.tgz#fca2dad947be96cf1ca97e2ece3bd23926b1a17b"
+  integrity sha512-ve+/oUDhnBle41fECkJRS6iXcEBAAR5GVUwZscI+VKWTZAjjwvae0Y6+18jnGN5vnqS/ClksWH1T2f/2+Z2ahw==
+  dependencies:
+    "@itwin/itwinui-illustrations-react" "^2.0.0"
+    "@tippyjs/react" "^4.2.6"
+    "@types/react-table" "^7.0.18"
+    classnames "^2.2.6"
+    react-table "^7.1.0"
+    react-transition-group "^4.4.2"
+    tippy.js "^6.3.7"
+
 "@jest/console@^28.1.0":
   version "28.1.0"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-28.1.0.tgz#db78222c3d3b0c1db82f1b9de51094c2aaff2176"
