@@ -27,6 +27,9 @@
     "@itwin/itwinui-css#test": {
       "dependsOn": ["build"]
     },
+    "playwright-testing#test": {
+      "dependsOn": ["^build"]
+    },
     "lint": {
       "outputs": []
     },
