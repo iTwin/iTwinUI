@@ -9,7 +9,7 @@
       "playgrounds/*",
       "internal/*",
       "examples",
-      "playwright-testing"
+      "testing/*"
     ]
   },
   "lint-staged": {
