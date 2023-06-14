@@ -86,7 +86,9 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
       data-iui-status={status}
       ref={forwardedRef}
       style={{
-        ...(value !== undefined && { '--iui-progress-value': `${value}%` }),
+        ...(value !== undefined && {
+          '--iui-progress-percentage': `${value}%`,
+        }),
         ...style,
       }}
       {...rest}
