@@ -10,36 +10,27 @@ import {
   SvgSmileyNeutral,
 } from '@itwin/itwinui-icons-react';
 
-export default (args) => {
-  const {
-    options = [
-      {
-        value: 'happy',
-        label: 'Happy',
-        icon: <SvgSmileyHappy />,
-      },
-      {
-        value: 'neutral',
-        label: 'Neutral',
-        icon: <SvgSmileyNeutral />,
-      },
-      {
-        value: 'sad',
-        label: 'Sad',
-        icon: <SvgSmileySad />,
-      },
-    ],
-    placeholder = 'How are you today?',
-    ...rest
-  } = args;
-  const [value, setValue] = React.useState<string | undefined>(undefined);
+export default () => {
   return (
-    <Select<string>
-      {...rest}
-      options={options}
-      value={value}
-      onChange={setValue}
-      placeholder={placeholder}
+    <Select
+      options={[
+        {
+          value: 'happy',
+          label: 'Happy',
+          icon: <SvgSmileyHappy />,
+        },
+        {
+          value: 'neutral',
+          label: 'Neutral',
+          icon: <SvgSmileyNeutral />,
+        },
+        {
+          value: 'sad',
+          label: 'Sad',
+          icon: <SvgSmileySad />,
+        },
+      ]}
+      placeholder={'How are you today?'}
     />
   );
 };
