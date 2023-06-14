@@ -1,55 +1,47 @@
 ---
 import Wrapper from './_wrapper.astro';
-
-const durations = ['1', '2', '3'];
+const durations = ['0', '1', '2', '3'];
 ---
 
 <Wrapper class='wrapper'>
   {
     durations.map((duration) => (
-      <div>
-        <span>{`--iui-duration-${duration}`}</span>
-        <span class='box' style={{ '--duration': `var(--iui-duration-${duration})` }} />
-      </div>
+      <button
+        aria-label={`var(--iui-duration-${duration})`}
+        class='duration-list-item'
+        style={{ '--duration': `var(--iui-duration-${duration})` }}
+      >
+        {`${duration}`}
+      </button>
     ))
   }
 </Wrapper>
 
 <style>
-  .wrapper {
-    display: grid;
-    justify-content: unset;
-  }
+  .duration-list-item {
+    border: none;
+    padding: var(--space-3);
+    width: var(--space-8);
+    height: var(--space-8);
+    border-radius: var(--space-1);
+    box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-foreground-2);
+    opacity: 1;
 
-  div {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
+    &:not(:active) {
+      transition: opacity var(--duration);
+    }
 
-  span {
-    display: inline-block;
-    font-family: var(--font-mono);
-    font-duration: var(--type-0);
-  }
-
-  .box {
-    height: 100%;
-    background-color: var(--iui-color-text-accent);
-    border-radius: var(--iui-border-radius);
+    &:active {
+      opacity: 0;
+    }
     @media (prefers-reduced-motion: no-preference) {
       animation-name: duration;
       animation-duration: var(--duration);
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
-    }
-  }
-
-  @keyframes duration {
-    0% {
-      width: 10%;
-    }
-    100% {
-      width: 100%;
     }
   }
 </style>
