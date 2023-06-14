@@ -79,6 +79,11 @@
     --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
     font-size: var(--iui-font-size-2);
 
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-2xs) * 1.5);
+    }
+
     .iui-inner-content :is(svg, img) {
       @include mixins.iui-icon-style('l');
     }
