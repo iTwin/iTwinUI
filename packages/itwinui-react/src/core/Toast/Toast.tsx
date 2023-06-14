@@ -10,9 +10,11 @@ import {
   StatusIconMap,
   SvgCloseSmall,
   Box,
+  useSafeContext,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
+import { ToasterStateContext } from './Toaster.js';
 
 const isMotionOk = () =>
   getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
@@ -44,10 +46,9 @@ export type ToastProps = {
    */
   type?: 'persisting' | 'temporary';
   /**
-   * Boolean indicating when the toast is visible.
-   * When false, will close the Toast and call onRemove when finished closing.
+   * Controlled boolean prop indicating whether the toast is visible.
    */
-  isVisible: boolean;
+  isVisible?: boolean;
   /**
    * Duration of the toast in millisecond.
    * @default 7000
@@ -59,9 +60,12 @@ export type ToastProps = {
    */
   hasCloseButton?: boolean;
   /**
-   * A Callback that can be used to add additional information to a Toast
+   * Props for a button/link that can be used to perform an action
+   * (e.g. to show additional information).
    */
-  link?: { onClick: () => void; title: string };
+  link?: {
+    title: string;
+  } & Omit<React.ComponentPropsWithoutRef<'button'>, 'children'>;
   /**
    * Function called when the toast is all the way closed.
    */
@@ -70,10 +74,6 @@ export type ToastProps = {
    * Element to which the toast will animate out to.
    */
   animateOutTo?: HTMLElement | null;
-  /**
-   * Parent toaster placement position for smoother animation.
-   */
-  placementPosition?: 'top' | 'bottom';
 };
 
 /**
@@ -89,18 +89,21 @@ export const Toast = (props: ToastProps) => {
     content,
     category,
     type = 'temporary',
-    isVisible,
+    isVisible: isVisibleProp,
     link,
     duration = 7000,
     hasCloseButton,
     onRemove,
     animateOutTo,
-    placementPosition = 'top',
   } = props;
 
   const closeTimeout = React.useRef(0);
+  const { placement } = useSafeContext(ToasterStateContext).settings;
+  const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
 
-  const [visible, setVisible] = React.useState(isVisible);
+  const [visible, setVisible] = React.useState(isVisibleProp ?? true);
+  const isVisible = isVisibleProp ?? visible;
+
   const [height, setHeight] = React.useState(0);
   const thisElement = React.useRef<HTMLDivElement>(null);
   const [margin, setMargin] = React.useState(0);
@@ -122,10 +125,6 @@ export const Toast = (props: ToastProps) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [duration, type]);
-
-  React.useEffect(() => {
-    setVisible(isVisible);
-  }, [isVisible]);
 
   React.useEffect(() => {
     // if we don't have animateOutTo point and not isVisible, set negative margin to move other toasts up.
@@ -180,7 +179,7 @@ export const Toast = (props: ToastProps) => {
   return (
     <Transition
       timeout={{ enter: 240, exit: animateOutTo ? 400 : 120 }}
-      in={visible}
+      in={isVisible}
       appear={true}
       unmountOnExit={true}
       onEnter={(node: HTMLElement) => {
@@ -207,27 +206,25 @@ export const Toast = (props: ToastProps) => {
       }}
       onExited={onRemove}
     >
-      {
-        <Box
-          ref={thisElement}
-          className='iui-toast-all'
-          style={{
-            height,
-            ...marginStyle(),
-          }}
-        >
-          <div ref={onRef}>
-            <ToastPresentation
-              category={category}
-              content={content}
-              link={link}
-              type={type}
-              hasCloseButton={hasCloseButton}
-              onClose={close}
-            />
-          </div>
-        </Box>
-      }
+      <Box
+        ref={thisElement}
+        className='iui-toast-all'
+        style={{
+          height,
+          ...marginStyle(),
+        }}
+      >
+        <div ref={onRef}>
+          <ToastPresentation
+            category={category}
+            content={content}
+            link={link}
+            type={type}
+            hasCloseButton={hasCloseButton}
+            onClose={close}
+          />
+        </div>
+      </Box>
     </Transition>
   );
 };
@@ -262,7 +259,12 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
       </Box>
       <Box className='iui-message'>{content}</Box>
       {link && (
-        <Box as='a' className='iui-toast-anchor' onClick={link.onClick}>
+        <Box
+          as='button'
+          className='iui-toast-anchor'
+          {...link}
+          title={undefined}
+        >
           {link.title}
         </Box>
       )}
