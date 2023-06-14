@@ -104,22 +104,6 @@ The soft background colors can be used to categorize things that may not be asso
   ]}
 />
 
-If you need to use a color in combination with an [opacity](#opacity), we have provided `HSL` specific variables.
-
-- `background-hsl`
-- `foreground-hsl`
-- `accent-hsl`
-- `informational-hsl`
-- `positive-hsl`
-- `warning-hsl`
-- `negative-hsl`
-
-These can be used like so:
-
-```css
-background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
-```
-
 ### Border
 
 There are also a few special named colors for borders or dividing lines.
@@ -153,6 +137,24 @@ You can also use border status colors in combination with status background colo
     ],
   ]}
 />
+
+### Color & opacity
+
+If you need to use a color in combination with an [opacity](#opacity), we have provided `HSL` specific variables. Note that when pairing colors with opacity that you will need to verify you are meeting color contrast requirements.
+
+- `background-hsl`
+- `foreground-hsl`
+- `accent-hsl`
+- `informational-hsl`
+- `positive-hsl`
+- `warning-hsl`
+- `negative-hsl`
+
+These can be used like so:
+
+```css
+background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
+```
 
 ### Text
 
