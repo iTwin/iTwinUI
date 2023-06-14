@@ -37,7 +37,7 @@ export const StatusMessage = ({
   return (
     <>
       {!!icon ? (
-        <Box as='span' className='iui-input-icon' aria-hidden>
+        <Box as='span' className='iui-message-icon' aria-hidden>
           {icon}
         </Box>
       ) : null}

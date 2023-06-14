@@ -6,7 +6,12 @@ import { SvgCloseSmall, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledInput, Tooltip, IconButton } from '@itwin/itwinui-react';
+import {
+  LabeledInput,
+  Tooltip,
+  IconButton,
+  FancyInput,
+} from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -27,13 +32,18 @@ export default {
   },
 } as Meta<LabeledInputProps>;
 
-export const Basic: Story<LabeledInputProps> = (args) => {
+export const Basic: Story<LabeledInputProps> = () => {
   return (
-    <LabeledInput
-      placeholder='Enter text here...'
-      label='This is a label'
-      {...args}
-    />
+    <FancyInput>
+      <FancyInput.Label>Label</FancyInput.Label>
+      <FancyInput.Wrapper>
+        <FancyInput.Input />
+        <FancyInput.Button>
+          <SvgCloseSmall />
+        </FancyInput.Button>
+      </FancyInput.Wrapper>
+      <FancyInput.Message startIcon={<SvgCamera />}>Message</FancyInput.Message>
+    </FancyInput>
   );
 };
 

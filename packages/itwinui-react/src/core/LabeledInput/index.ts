@@ -3,4 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { LabeledInput } from './LabeledInput.js';
+export { FancyInput } from './FancyInput.js';
 export default './LabeledInput';
