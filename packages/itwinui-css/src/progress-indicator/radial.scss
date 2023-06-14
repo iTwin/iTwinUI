@@ -13,6 +13,7 @@
   width: var(--_iui-progress-indicator-radial-size);
   height: var(--_iui-progress-indicator-radial-size);
   border-radius: 50%;
+  font-size: var(--iui-font-size-0);
 
   &::before,
   &::after {
@@ -67,7 +68,6 @@
 
   &[data-iui-size='small'] {
     --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
-    font-size: var(--iui-font-size-0);
   }
 
   &[data-iui-size='large'] {
