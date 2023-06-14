@@ -98,7 +98,7 @@ export const Toast = (props: ToastProps) => {
   } = props;
 
   const closeTimeout = React.useRef(0);
-  const { placement } = useSafeContext(ToasterStateContext);
+  const { placement } = useSafeContext(ToasterStateContext).settings;
   const placementPosition = placement.startsWith('top') ? 'top' : 'bottom';
 
   const [visible, setVisible] = React.useState(isVisibleProp ?? true);

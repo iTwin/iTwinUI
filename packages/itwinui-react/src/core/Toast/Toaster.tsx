@@ -72,10 +72,12 @@ export const useToaster = () => {
 // ----------------------------------------------------------------------------
 
 export const Toaster = () => {
-  const { toasts, placement } = useSafeContext(ToasterStateContext);
+  const { toasts, settings } = useSafeContext(ToasterStateContext);
 
   return (
-    <Box className={cx(`iui-toast-wrapper`, `iui-placement-${placement}`)}>
+    <Box
+      className={cx(`iui-toast-wrapper`, `iui-placement-${settings.placement}`)}
+    >
       {toasts.map((toastProps) => {
         return <Toast key={toastProps.id} {...toastProps} />;
       })}
@@ -88,7 +90,6 @@ export const Toaster = () => {
 export const ToastProvider = ({ children }: { children: React.ReactNode }) => {
   const [toasterState, dispatch] = React.useReducer(toastReducer, {
     toasts: [],
-    placement: 'top',
     settings: {
       order: 'descending',
       placement: 'top',
@@ -134,7 +135,7 @@ const toastReducer = (state: ToasterState, action: ToasterAction) => {
     return {
       ...state,
       settings: { ...state.settings, ...action.settings },
-      placement: action.settings.placement ?? state.placement,
+      placement: action.settings.placement,
     };
   }
 
@@ -148,11 +149,7 @@ export const ToasterStateContext = React.createContext<
 >(undefined);
 ToasterStateContext.displayName = 'ToasterStateContext';
 
-type ToasterState = {
-  toasts: ToastProps[];
-  placement: ToasterSettings['placement'];
-  settings: ToasterSettings;
-};
+type ToasterState = { toasts: ToastProps[]; settings: ToasterSettings };
 
 // ----------------------------------------------------------------------------
 
