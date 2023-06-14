@@ -1,5 +1,24 @@
 # Changelog
 
+## 3.0.0-dev.3
+
+### Major Changes
+
+- [#1330](https://github.com/iTwin/iTwinUI/pull/1330): Deprecated `FileUploadTemplate`. Removed all of its references.
+- [#1351](https://github.com/iTwin/iTwinUI/pull/1351): `toaster` import has been removed and replaced with `useToaster` which returns a toaster object with the same API.
+
+## 3.0.0-dev.2
+
+### Major Changes
+
+- [#1300](https://github.com/iTwin/iTwinUI/pull/1300): `modalRootId` and `ownerDocument` props have been removed from `Modal`, in favor of the new `portal` prop (also available in `Dialog`).
+- [#1247](https://github.com/iTwin/iTwinUI/pull/1247): Alert composition has been updated such that it is now made up of customizable subcomponents, thus removing the `onClose`, `clickableText`, and `clickableTextProps` props from `Alert`.
+- [#1346](https://github.com/iTwin/iTwinUI/pull/1346): The build now targets `es2020` instead of `es2018`.
+
+### Patch Changes
+
+- [#1347](https://github.com/iTwin/iTwinUI/pull/1347): Fixed an issue where ThemeProvider warning was always logged even when using ThemeProvider.
+
 ## 3.0.0-dev.1
 
 ### Major Changes
@@ -34,6 +53,12 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.11.6
+
+### Patch Changes
+
+- [#1341](https://github.com/iTwin/iTwinUI/pull/1341): Table: fixed action column header content alignment when using globalFilterValue.
 
 ## 2.11.5
 

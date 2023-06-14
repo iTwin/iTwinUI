@@ -1,5 +1,5 @@
 ---
-title: DatePicker
+title: Date picker
 description: Used for selecting dates on a calendar to set timeframes, deadlines, and more.
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/DatePicker/DatePicker.d.ts'
@@ -9,12 +9,10 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
-import * as AllExamples from '~/examples';
+import RelatedComponents from '~/components/RelatedComponents.astro';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='core-datepicker' />
 
 <LiveExample src='DatePicker.main.tsx' truncate={false}>
   <AllExamples.DatePickerMainExample client:load />
@@ -22,36 +20,74 @@ import * as AllExamples from '~/examples';
 
 When a user needs to schedule deadlines, timeframes, or for age verification purposes, we provide them with a date picker. It behaves much like a select menu. We currently have three different types of date pickers.
 
-## Appearance
+## Variants
 
-### Default
+### Basic
 
-The default date picker is a default menu button from which an interactive calendar expands on click. This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters.
+The basic date picker allows the user to pick a date from the calendar and skip a month at a time.
 
-### Text field
+<LiveExample src='DatePicker.basic.tsx' truncate={true}>
+  <AllExamples.DatePickerBasicExample client:load />
+</LiveExample>
 
-There are two ways to select a date with the text field date picker; clicking on the button and selecting a date, or typing it out using the format shown in the help message underneath the field (DD-MM-YYYY). The date automatically fills the text field when directly selected in the calendar and is editable. It’s a more convenient way to offer editing in a context where the user might need to change the date often, or enter different dates for several items in a workflow.
+This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters in [Table](table).
 
-### Inline
+### Localized
 
-The inline date picker was styled to be used in forms. The horizontally centered label helps the component belong in a form without breaking the flow.
+You are able to create a localized version of the date picker that uses local names for week days and months.
 
-### With time
+<LiveExample src='DatePicker.localized.tsx' truncate={true}>
+  <AllExamples.DatePickerLocalizedExample client:load />
+</LiveExample>
 
-If you need to include the time, there are multiple ways to do so. If it is only required to select a time within 15 minute increments, it is suggested to combine the time picker with the date picker.
+### Date + time selection
 
-You may choose to display the time in military format and exclude the period picker.
+If you need to include the time, there are multiple ways to do so. Below is the default variant, which uses twenty-four hour time.
 
-If the user needs the ability to enter a specific time, we suggest displaying the time within it’s own select menu within close proximity of the date picker. The user can select a time from the dropdown menu or manually enter a specific time.
+<LiveExample src='DatePicker.withtime.tsx' truncate={true}>
+  <AllExamples.DatePickerWithTimeExample client:load />
+</LiveExample>
 
-### Date spans
+And here is the variant that uses twelve-hour time with meridiem:
 
-There may be some cases where you need to display a span of dates. When this occurs, the selection box spans the entirety of the date span.
+<LiveExample src='DatePicker.withcombinedtime.tsx' truncate={true}>
+  <AllExamples.DatePickerWithCombinedTimeExample client:load />
+</LiveExample>
+
+### Date range
+
+There may be some cases where you need to display a range of dates. When this occurs, the selection box spans the entirety of the date range.
+
+<LiveExample src='DatePicker.daterange.tsx' truncate={true}>
+  <AllExamples.DatePickerDateRangeExample client:load />
+</LiveExample>
+
+### Some dates disabled
+
+You might also need to have certain dates disabled, in case the range of dates that can be selected for your purpose is limited.
+
+<LiveExample src='DatePicker.datesdisabled.tsx' truncate={true}>
+  <AllExamples.DatePickerDatesDisabledExample client:load />
+</LiveExample>
 
 ### Year skipping
 
 To improve user experience, date pickers support year skipping buttons. Clicking on the double chevron icon will move the calendar a full year forward or back.
 
-## Props
+<LiveExample src='DatePicker.withyear.tsx' truncate={true}>
+  <AllExamples.DatePickerWithYearExample client:load />
+</LiveExample>
+
+## Usage
+
+A date picker can be featured on your page in multiple ways. One can be added directly to your page so that it is visible as soon as the page loads. Additionally, a date picker can be added to a menu button on your page so that the user can toggle its visibility.
+
+<LiveExample src='DatePicker.menu.tsx' truncate={true}>
+  <AllExamples.DatePickerMenuExample client:load />
+</LiveExample>
 
 <PropsTable path={frontmatter.propsPath} />
+
+## Related components
+
+<RelatedComponents components={[{ title: 'Table', url: 'table' }]} />
