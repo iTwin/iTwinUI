@@ -6,7 +6,7 @@
   "scripts": {
     "test": "playwright test -c playwright-ct.config.ts",
     "report": "playwright show-report",
-    "clean": "turbo run clean && rimraf node_modules"
+    "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
     "playwright": "^1.35.0",
