@@ -164,8 +164,7 @@ export { Tile } from './Tile/index.js';
 export { TimePicker } from './TimePicker/index.js';
 export type { MeridiemType } from './TimePicker/index.js';
 
-export { default as toaster } from './Toast/index.js';
-export type { ToastOptions } from './Toast/index.js';
+export { useToaster } from './Toast/index.js';
 
 export { ThemeProvider } from './ThemeProvider/index.js';
 export type { ThemeType } from './ThemeProvider/index.js';

@@ -5,34 +5,25 @@
 import * as React from 'react';
 import { Select } from '@itwin/itwinui-react';
 
-export default (args) => {
-  const {
-    options = [
-      {
-        value: 1,
-        label: 'Item #1',
-      },
-      {
-        value: 2,
-        label: 'Item #2',
-      },
-      {
-        value: 3,
-        label: 'Item #3',
-      },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
-  const [value, setValue] = React.useState<number | undefined>(undefined);
+export default () => {
   return (
     <Select<number>
       disabled
-      {...rest}
-      options={options}
-      value={value}
-      onChange={setValue}
-      placeholder={placeholder}
+      options={[
+        {
+          value: 1,
+          label: 'Item #1',
+        },
+        {
+          value: 2,
+          label: 'Item #2',
+        },
+        {
+          value: 3,
+          label: 'Item #3',
+        },
+      ]}
+      placeholder={'Placeholder text'}
     />
   );
 };
