@@ -20,7 +20,7 @@ it('should add className and style props correctly', () => {
     <ProgressRadial className='custom-class' style={{ fill: 'hotpink' }} />,
   );
   const spinner = container.querySelector('.iui-progress-indicator-radial');
-  expect(spinner).toHaveClass('custom class');
+  expect(spinner).toHaveClass('custom-class');
   expect(spinner).toHaveStyle('fill: hotpink');
 });
 
