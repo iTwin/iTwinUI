@@ -151,6 +151,12 @@
   }
 
   &-anchor {
+    &:where(button) {
+      font-family: inherit;
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
     @include anchor.iui-anchor-underline('on-initial');
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;

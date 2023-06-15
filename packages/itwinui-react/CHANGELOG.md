@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0-dev.3
+
+### Major Changes
+
+- [#1330](https://github.com/iTwin/iTwinUI/pull/1330): Deprecated `FileUploadTemplate`. Removed all of its references.
+- [#1351](https://github.com/iTwin/iTwinUI/pull/1351): `toaster` import has been removed and replaced with `useToaster` which returns a toaster object with the same API.
+
 ## 3.0.0-dev.2
 
 ### Major Changes
