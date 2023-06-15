@@ -34,7 +34,7 @@
     background-color: var(--iui-color-border-accent);
   }
 
-  .iui-inner-content :is(svg, img) {
+  :is(svg, img) {
     @include mixins.iui-icon-style('m');
     fill: var(--iui-color-icon);
   }
@@ -47,7 +47,7 @@
         background-color: var(--iui-color-border-#{$status});
       }
 
-      .iui-inner-content :is(svg, img) {
+      :is(svg, img) {
         fill: var(--iui-color-border-#{$status});
       }
     }
@@ -61,7 +61,7 @@
       border-width: var(--iui-size-3xs);
     }
 
-    .iui-inner-content {
+    > * {
       display: none;
     }
   }
@@ -84,7 +84,7 @@
       border-width: calc(var(--iui-size-2xs) * 1.5);
     }
 
-    .iui-inner-content :is(svg, img) {
+    :is(svg, img) {
       @include mixins.iui-icon-style('l');
     }
   }

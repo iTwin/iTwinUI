@@ -69,8 +69,6 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
     positive: <SvgCheckmarkSmall aria-hidden />,
   };
 
-  const innerContent = children ?? (!!status ? statusMap[status] : null);
-
   return (
     <Box
       className={cx(
@@ -92,11 +90,9 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
       }}
       {...rest}
     >
-      {innerContent && (
-        <Box as='span' className='iui-inner-content'>
-          {innerContent}
-        </Box>
-      )}
+      {size !== 'x-small'
+        ? children ?? (!!status ? statusMap[status] : null)
+        : null}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
