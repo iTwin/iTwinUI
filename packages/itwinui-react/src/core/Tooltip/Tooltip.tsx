@@ -16,6 +16,7 @@ import {
   useRole,
   useInteractions,
   useClick,
+  safePolygon,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import { Box, getDocument, useGlobals } from '../utils/index.js';
@@ -100,7 +101,14 @@ const useTooltip = ({
 
   const context = data.context;
 
-  const hover = useHover(context);
+  const hover = useHover(context, {
+    // enabled: false,
+    delay: {
+      open: 20,
+      close: 300,
+    },
+    handleClose: safePolygon(),
+  });
   const focus = useFocus(context, {
     enabled: controlledOpen == null,
   });
