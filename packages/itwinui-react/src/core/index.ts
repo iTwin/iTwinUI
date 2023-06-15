@@ -89,7 +89,11 @@ export { Input } from './Input/index.js';
 
 export { Label } from './Label/index.js';
 
-export { LabeledInput, FancyInput } from './LabeledInput/index.js';
+export {
+  LabeledInput,
+  FancyInput,
+  InputWrapper,
+} from './LabeledInput/index.js';
 
 export { InputGroup } from './InputGroup/index.js';
 

@@ -9,6 +9,7 @@ import {
   useSafeContext,
   useMergedRefs,
   useId,
+  polymorphic,
 } from '../utils/index.js';
 import cx from 'classnames';
 import {
@@ -132,6 +133,10 @@ const FancyInputLabel = React.forwardRef((props, ref) => {
 
 //-------------------------------------------------------------------------------
 
+const FancyInputMiddlePart = polymorphic('iui-fancy-input-wrapper');
+
+//-------------------------------------------------------------------------------
+
 const FancyInputWrapper = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
   const { size, status, disabled } = useSafeContext(FancyInputContext);
@@ -248,11 +253,14 @@ const FancyInputMessage = React.forwardRef((props, ref) => {
  */
 export const FancyInput = Object.assign(FancyInputComponent, {
   Label: FancyInputLabel,
-  Wrapper: FancyInputWrapper,
+  MiddlePart: FancyInputMiddlePart,
+  Message: FancyInputMessage,
+});
+
+export const InputWrapper = Object.assign(FancyInputWrapper, {
   Input: FancyInputInput,
   Icon: FancyInputIcon,
   Button: FancyInputButton,
-  Message: FancyInputMessage,
 });
 
 export default FancyInput;

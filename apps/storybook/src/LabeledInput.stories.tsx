@@ -11,6 +11,7 @@ import {
   Tooltip,
   IconButton,
   FancyInput,
+  InputWrapper,
 } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
@@ -36,12 +37,14 @@ export const Basic: Story<LabeledInputProps> = () => {
   return (
     <FancyInput>
       <FancyInput.Label>Label</FancyInput.Label>
-      <FancyInput.Wrapper>
-        <FancyInput.Input />
-        <FancyInput.Button>
-          <SvgCloseSmall />
-        </FancyInput.Button>
-      </FancyInput.Wrapper>
+      <FancyInput.MiddlePart>
+        <InputWrapper>
+          <InputWrapper.Input />
+          <InputWrapper.Button>
+            <SvgCloseSmall />
+          </InputWrapper.Button>
+        </InputWrapper>
+      </FancyInput.MiddlePart>
       <FancyInput.Message startIcon={<SvgCamera />}>Message</FancyInput.Message>
     </FancyInput>
   );
