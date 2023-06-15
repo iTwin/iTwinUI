@@ -5,10 +5,10 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  // StatusIconMap,
+  StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
-  // Icon,
+  Icon,
   Box,
   useSafeContext,
   polymorphic,
@@ -47,6 +47,7 @@ const ExpandableBlockContext = React.createContext<
        * @default false
        */
       disabled?: boolean;
+      setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
     }
   | undefined
 >(undefined);
@@ -57,23 +58,10 @@ ExpandableBlockContext.displayName = 'ExpandableBlockContext';
 
 type ExpandableBlockOwnProps = {
   /**
-   * The main text displayed on the block, regardless of state.
-   */
-  // title: React.ReactNode;
-  /**
-   * Small note displayed above title, regardless of state.
-   */
-  // caption?: React.ReactNode;
-  /**
    * Status of the block.
    * When set, a colored status icon is shown at the end of the main text.
    */
   status?: 'positive' | 'negative' | 'warning' | 'informational';
-  /**
-   * Svg icon displayed at the end of the main text.
-   * Will override status icon if specified.
-   */
-  // endIcon?: JSX.Element;
   /**
    * Whether or not to show the block's content.
    * @default false
@@ -105,25 +93,13 @@ type ExpandableBlockOwnProps = {
   disabled?: boolean;
 };
 
-/**
- * Container that allows content to be hidden behind a brief title and a caption.
- * @example
- * <ExpandableBlock title='Basic Block'>Content in block!</ExpandableBlock>
- * <ExpandableBlock title='Basic Block' caption='basic caption'>Content in block!</ExpandableBlock>
- * <ExpandableBlock title='Default Expanded Block' caption='basic caption' isExpanded={true}>Content in block!</ExpandableBlock>
- * <ExpandableBlock title='Positive status' status='positive'>Content</ExpandableBlock>
- * <ExpandableBlock title='Block with icon' endIcon={<SvgPlaceholder />}>Content</ExpandableBlock>
- */
 const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
   const {
-    // caption,
     children,
     className,
-    // title,
     onToggle,
     style,
     isExpanded,
-    // endIcon,
     status,
     size = 'default',
     styleType = 'default',
@@ -131,19 +107,60 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  // const icon = endIcon ?? (status && StatusIconMap[status]());
-
   const [expanded, setExpanded] = React.useState(isExpanded);
   React.useEffect(() => {
     setExpanded(isExpanded);
   }, [isExpanded]);
 
+  return (
+    <ExpandableBlockContext.Provider
+      value={{
+        status,
+        isExpanded: expanded,
+        onToggle,
+        size,
+        styleType,
+        disabled,
+        setExpanded,
+      }}
+    >
+      <Box
+        className={cx(
+          'iui-expandable-block',
+          {
+            'iui-expanded': expanded,
+            'iui-small': size === 'small',
+            'iui-borderless': styleType === 'borderless',
+          },
+          className,
+        )}
+        style={style}
+        aria-expanded={expanded}
+        ref={forwardedRef}
+        {...rest}
+      >
+        {children}
+      </Box>
+    </ExpandableBlockContext.Provider>
+  );
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
+ExpandableBlockComponent.displayName = 'ExpandableBlock';
+
+// ----------------------------------------------------------------------------
+// ExpandableBlock.Header component
+
+const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
+  const { className, children, ...rest } = props;
+  const { isExpanded, setExpanded, disabled, onToggle } = useSafeContext(
+    ExpandableBlockContext,
+  );
+
   const handleToggle = () => {
     if (disabled) {
       return;
     }
-    setExpanded(!expanded);
-    onToggle?.(!expanded);
+    setExpanded(!isExpanded);
+    onToggle?.(!isExpanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -161,103 +178,14 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
   };
 
   return (
-    <ExpandableBlockContext.Provider
-      value={{
-        status,
-        isExpanded: expanded,
-        onToggle,
-        size,
-        styleType,
-        disabled,
-      }}
-    >
-      <Box
-        className={cx(
-          'iui-expandable-block',
-          {
-            'iui-expanded': expanded,
-            'iui-small': size === 'small',
-            'iui-borderless': styleType === 'borderless',
-          },
-          className,
-        )}
-        style={style}
-        aria-expanded={expanded}
-        onClick={handleToggle}
-        onKeyDown={onKeyDown}
-        ref={forwardedRef}
-        {...rest}
-      >
-        {children}
-        {/* <Box
-          role='button'
-          aria-expanded={expanded}
-          className='iui-header'
-          aria-disabled={disabled}
-          tabIndex={0}
-          onClick={handleToggle}
-          onKeyDown={onKeyDown}
-        > */}
-        {/* <SvgChevronRight className='iui-icon' aria-hidden /> */}
-        {/* <Box as='span' className='iui-expandable-block-label'>
-            <Box className='iui-title'>{title}</Box>
-            {caption && <Box className='iui-caption'>{caption}</Box>}
-          </Box>
-          {icon && <Icon fill={status}>{icon}</Icon>} */}
-        {/* </Box> */}
-        {/* <WithCSSTransition in={expanded}>
-          <Box className='iui-expandable-content'>
-            <div>{children}</div>
-          </Box>
-        </WithCSSTransition> */}
-      </Box>
-    </ExpandableBlockContext.Provider>
-  );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
-ExpandableBlockComponent.displayName = 'ExpandableBlock';
-
-// ----------------------------------------------------------------------------
-// ExpandableBlock.Header component
-
-const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
-  const { className, children, ...rest } = props;
-  const { disabled } = useSafeContext(ExpandableBlockContext);
-
-  // const [expanded, setExpanded] = React.useState(isExpanded);
-  // React.useEffect(() => {
-  //   setExpanded(isExpanded);
-  // }, [isExpanded]);
-
-  // const handleToggle = () => {
-  //   if (disabled) {
-  //     return;
-  //   }
-  //   setExpanded(!expanded);
-  //   onToggle?.(!expanded);
-  // };
-
-  // const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-  //   if (event.altKey || disabled) {
-  //     return;
-  //   }
-
-  //   if (
-  //     event.key === 'Enter' ||
-  //     event.key === ' ' ||
-  //     event.key === 'Spacebar'
-  //   ) {
-  //     handleToggle();
-  //   }
-  // };
-  return (
     <Box
       className={cx('iui-header', className)}
       role='button'
-      // aria-expanded={expanded}
+      aria-expanded={isExpanded}
       aria-disabled={disabled}
       tabIndex={0}
-      // onClick={handleToggle}
-      // onKeyDown={onKeyDown}
+      onClick={handleToggle}
+      onKeyDown={onKeyDown}
       ref={forwardedRef}
       {...rest}
     >
@@ -298,12 +226,18 @@ ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
 
 const ExpandableBlockEndIcon = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
+  const { status } = useSafeContext(ExpandableBlockContext);
+
+  const icon = children ?? (status && StatusIconMap[status]());
   return (
-    <Box className={cx('iui-title', className)} ref={forwardedRef} {...rest}>
-      {children}
-    </Box>
+    <Icon className={className} fill={status} ref={forwardedRef} {...rest}>
+      {icon}
+    </Icon>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<
+  'span',
+  React.ComponentPropsWithoutRef<typeof Icon>
+>;
 ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
 
 // ----------------------------------------------------------------------------
@@ -320,7 +254,7 @@ const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
         ref={forwardedRef}
         {...rest}
       >
-        {children}
+        <Box>{children}</Box>
       </Box>
     </WithCSSTransition>
   );
@@ -328,31 +262,61 @@ const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
 ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
 
 /**
- * jsdocs here
+ * Expandable block with customizable Title, Caption, Content and EndIcon subcomponents.
+ * @example
+ *  <ExpandableBlock>
+ *    <ExpandableBlock.Header>
+ *      <ExpandableBlock.LabelArea>
+ *        <ExpandableBlock/>
+ *        <ExpandableBlock.Caption/>
+ *      </ExpandableBlock.LabelArea>
+ *      <ExpandableBlock.EndIcon/>
+ *    </ExpandableBlock.Header>
+ *    <ExpandableBlock.Content/>
+ *  </ExpandableBlock>
  */
 export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
   /**
-   * stuf n things
+   * `Header` container that contains `LabelArea` and `EndIcon` subcomponents
+   * @example
+   * <ExpandableBlock.Header>
+   *    <ExpandableBlock.LabelArea/>
+   *    <ExpandableBlock.EndIcon/>
+   * </ExpandableBlock.Header>
    */
   Header: ExpandableBlockHeader,
   /**
-   * stuf n things
+   * `LabelArea` subcomponent that contains `Title` and `Caption`
+   * @example
+   * <ExpandableBlock.LabelArea>
+   *    <ExpandableBLock.Title> Title </ExpandableBlock.Title>
+   *    <ExpandableBlock.Caption> Caption </ExpandableBlock.Caption>
+   * </ExpandableBlock.LabelArea>
    */
   LabelArea: ExpandableBlockLabelArea,
   /**
-   * stuf n things
+   * The main text displayed on the block header, regardless of state.
    */
   Title: ExpandableBlockTitle,
   /**
-   * stuf n things
+   * Small note displayed below title, regardless of state.
    */
   Caption: ExpandableBlockCaption,
   /**
-   * stuf n things
+   * Svg icon displayed at the end of the main text.
+   * Will override status icon if specified. Used inside `Header` subcomponent.
+   * @example
+   * <ExpandableBlock.Header>
+   *    <ExpandableBlock.EndIcon> <SvgIcon/> </ExpandableBlock.EndIcon>
+   * <ExpandableBlock.Header/>
    */
   EndIcon: ExpandableBlockEndIcon,
   /**
-   * stuf n things
+   * Content shown in the block's body when fully expanded.
+   * @example
+   * <ExpandableBlock>
+   *    <ExpandableBlock.Content> Content </ExpandableBlock.Content>
+   * </ExpandableBlock>
    */
   Content: ExpandableBlockContent,
 });
