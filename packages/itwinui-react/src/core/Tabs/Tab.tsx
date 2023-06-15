@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tabs.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type TabProps = {
+type TabProps = {
   /**
    * The main label shown in the tab.
    */
@@ -28,7 +28,13 @@ export type TabProps = {
    * Custom content appended to the tab.
    */
   children?: React.ReactNode;
-} & React.HTMLAttributes<HTMLButtonElement>;
+  /**
+   * Whether the tab has active styling.
+   *
+   * This will be automatically set by the parent `Tabs` component.
+   */
+  active?: boolean;
+};
 
 /**
  * Individual tab component to be used in the `labels` prop of `Tabs`.
@@ -38,32 +44,40 @@ export type TabProps = {
  *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
  * ];
  */
-export const Tab = (props: TabProps) => {
-  const { label, sublabel, startIcon, children, className, ...rest } = props;
-
-  useTheme();
+export const Tab = React.forwardRef((props, forwardedRef) => {
+  const {
+    label,
+    sublabel,
+    startIcon,
+    children,
+    active = false,
+    className,
+    ...rest
+  } = props;
 
   return (
-    <button
-      className={cx('iui-tab', className)}
+    <Box
+      as='button'
+      className={cx('iui-tab', { 'iui-active': active }, className)}
       role='tab'
       tabIndex={-1}
+      ref={forwardedRef}
       {...rest}
     >
-      {startIcon &&
-        React.cloneElement(startIcon, {
-          className: 'iui-tab-icon',
-          'aria-hidden': true,
-        })}
+      {!!startIcon ? (
+        <Box as='span' className='iui-tab-icon' aria-hidden>
+          {startIcon}
+        </Box>
+      ) : null}
       {label && (
-        <span className='iui-tab-label'>
+        <Box as='span' className='iui-tab-label'>
           <div>{label}</div>
-          {sublabel && <div className='iui-tab-description'>{sublabel}</div>}
-        </span>
+          {sublabel && <Box className='iui-tab-description'>{sublabel}</Box>}
+        </Box>
       )}
       {children}
-    </button>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'button', TabProps>;
 
 export default TabProps;

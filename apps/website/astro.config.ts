@@ -29,6 +29,7 @@ export default defineConfig({
         '@tippyjs/react',
         '@itwin/itwinui-react',
         !isDev && '@itwin/itwinui-icons-react',
+        'examples',
       ].filter(Boolean),
     },
   },

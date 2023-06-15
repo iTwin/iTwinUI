@@ -22,6 +22,8 @@
 
   > .iui-checkbox-label,
   > .iui-radio-label {
+    line-height: var(--iui-size-l);
+
     svg {
       @include mixins.iui-icon-style('m');
       vertical-align: middle;

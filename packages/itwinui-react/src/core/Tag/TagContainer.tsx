@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tag.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type TagContainerProps = {
+type TagContainerProps = {
   /**
    * Tags inside the container.
    */
@@ -24,7 +23,7 @@ export type TagContainerProps = {
    * @default 'none'
    */
   background?: 'none' | 'filled';
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * TagContainer for grouping tags.
@@ -32,12 +31,11 @@ export type TagContainerProps = {
  * <TagContainer><Tag>Tag 1</Tag><Tag>Tag 2</Tag></TagContainer>
  * <TagContainer><Tag variant='basic'>Basic tag</Tag><Tag variant='basic'>Basic tag 2</Tag></TagContainer>
  */
-export const TagContainer = (props: TagContainerProps) => {
+export const TagContainer = React.forwardRef((props, forwardedRef) => {
   const { className, children, overflow, background = 'none', ...rest } = props;
-  useTheme();
 
   return (
-    <div
+    <Box
       className={cx(
         'iui-tag-container',
         {
@@ -46,11 +44,12 @@ export const TagContainer = (props: TagContainerProps) => {
         },
         className,
       )}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', TagContainerProps>;
 
 export default TagContainer;

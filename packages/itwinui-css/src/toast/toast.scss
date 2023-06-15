@@ -143,7 +143,6 @@
     margin-bottom: calc(var(--iui-size-s) * 0.5);
     margin-right: var(--iui-size-l);
     margin-left: var(--iui-size-m);
-    line-height: var(--iui-size-l);
     font-weight: var(--iui-font-weight-normal);
     font-style: normal;
     color: var(--iui-color-text);
@@ -152,6 +151,12 @@
   }
 
   &-anchor {
+    &:where(button) {
+      font-family: inherit;
+      border: none;
+      background: transparent;
+      padding: 0;
+    }
     @include anchor.iui-anchor-underline('on-initial');
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;

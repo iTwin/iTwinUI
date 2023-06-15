@@ -3,15 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { useState } from '@storybook/client-api';
+import { useState } from 'react';
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   FileUpload,
   FileUploadCard,
   FileEmptyCard,
-  FileUploadProps,
-  FileUploadTemplate,
   LabeledInput,
   IconButton,
 } from '@itwin/itwinui-react';
@@ -20,6 +18,8 @@ import {
   SvgSmileyHappyVery,
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
+
+type FileUploadProps = React.ComponentProps<typeof FileUpload>;
 
 export default {
   component: FileUpload,
@@ -33,26 +33,6 @@ export default {
   },
   title: 'Core/FileUpload',
 } as Meta<FileUploadProps>;
-
-export const Default: Story<FileUploadProps> = (args) => {
-  const [files, setFiles] = useState<Array<File>>([]);
-
-  return (
-    <FileUpload
-      {...args}
-      onFileDropped={(files) => {
-        setFiles(Array.from(files));
-        action(`${files.length} files uploaded`)();
-      }}
-    >
-      <FileUploadTemplate
-        onChange={(e) => setFiles(Array.from(e.target.files || []))}
-      >
-        {files.map((f) => f.name).join(', ')}
-      </FileUploadTemplate>
-    </FileUpload>
-  );
-};
 
 export const WrappingInput: Story<FileUploadProps> = (args) => {
   const [files, setFiles] = useState<Array<File>>([]);

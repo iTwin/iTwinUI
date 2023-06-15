@@ -10,7 +10,6 @@ import {
   Button,
   IconButton,
   Breadcrumbs,
-  BreadcrumbsProps,
   DropdownButton,
   DropdownMenu,
   MenuItem,
@@ -22,6 +21,8 @@ import {
   SvgFolder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
+
+type BreadcrumbsProps = React.ComponentProps<typeof Breadcrumbs>;
 
 export default {
   component: Breadcrumbs,

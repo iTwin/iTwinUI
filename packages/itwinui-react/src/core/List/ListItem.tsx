@@ -4,16 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
-import type {
-  PolymorphicForwardRefComponent,
-  PolymorphicComponentProps,
-} from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
+import { polymorphic, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
-    as: Element = 'li',
     size = 'default',
     disabled = false,
     active = false,
@@ -23,10 +18,9 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  useTheme();
-
   return (
-    <Element
+    <Box
+      as='li'
       className={cx('iui-list-item', className)}
       data-iui-active={active ? 'true' : undefined}
       data-iui-disabled={disabled ? 'true' : undefined}
@@ -38,8 +32,9 @@ const ListItemComponent = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
+ListItemComponent.displayName = 'ListItem';
 
-type ListItemOwnProps = {
+export type ListItemOwnProps = {
   /**
    * Size of the ListItem. Can be explicitly specified to be 'large',
    * but if a description is included in addition to the label, then
@@ -70,51 +65,18 @@ type ListItemOwnProps = {
 
 // ----------------------------------------------------------------------------
 
-const ListItemIcon = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-icon', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemIconOwnProps>;
-
-type ListItemIconOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemIcon = polymorphic('iui-list-item-icon');
+ListItemIcon.displayName = 'ListItem.Icon';
 
 // ----------------------------------------------------------------------------
 
-const ListItemContent = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-content', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemContentOwnProps>;
-
-type ListItemContentOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemContent = polymorphic('iui-list-item-content');
+ListItemContent.displayName = 'ListItem.Content';
 
 // ----------------------------------------------------------------------------
 
-const ListItemDescription = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', className, ...rest } = props;
-
-  return (
-    <Element
-      className={cx('iui-list-item-description', className)}
-      ref={ref}
-      {...rest}
-    />
-  );
-}) as PolymorphicForwardRefComponent<'div', ListItemDescriptionOwnProps>;
-
-type ListItemDescriptionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+const ListItemDescription = polymorphic('iui-list-item-description');
+ListItemDescription.displayName = 'ListItem.Description';
 
 // ----------------------------------------------------------------------------
 // Exported compound component
@@ -160,17 +122,3 @@ export const ListItem = Object.assign(ListItemComponent, {
    */
   Description: ListItemDescription,
 });
-
-export type ListItemProps = PolymorphicComponentProps<'li', ListItemOwnProps>;
-export type ListItemIconProps = PolymorphicComponentProps<
-  'li',
-  ListItemIconOwnProps
->;
-export type ListItemContentProps = PolymorphicComponentProps<
-  'li',
-  ListItemContentOwnProps
->;
-export type ListItemDescriptionProps = PolymorphicComponentProps<
-  'li',
-  ListItemDescriptionOwnProps
->;

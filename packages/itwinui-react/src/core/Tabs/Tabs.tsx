@@ -5,16 +5,16 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useTheme,
   useMergedRefs,
   getBoundedValue,
   useContainerWidth,
   useIsomorphicLayoutEffect,
   useIsClient,
   useResizeObserver,
+  Box,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tabs.css';
 import { Tab } from './Tab.js';
+import styles from '../../styles.js';
 
 export type OverflowOptions = {
   /**
@@ -132,12 +132,12 @@ export type TabsProps = {
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
+type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
 
 /**
  * @deprecated Since v2, use `TabProps` with `Tabs`
  */
-export type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
+type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
   type?: 'default' | 'borderless';
 };
 
@@ -203,7 +203,6 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
-  useTheme();
   const isClient = useIsClient();
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
@@ -246,7 +245,9 @@ export const Tabs = (props: TabsProps) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.querySelectorAll('.iui-tab')[focusedIndex];
+      const tab = tablistRef.current.querySelectorAll(`.${styles['iui-tab']}`)[
+        focusedIndex
+      ];
       (tab as HTMLElement)?.focus();
     }
   }, [focusedIndex]);
@@ -255,7 +256,9 @@ export const Tabs = (props: TabsProps) => {
   useIsomorphicLayoutEffect(() => {
     setHasSublabel(
       type !== 'pill' && // pill tabs should never have sublabels
-        !!tablistRef.current?.querySelector('.iui-tab-description'), // check directly for the sublabel class
+        !!tablistRef.current?.querySelector(
+          `.${styles['iui-tab-description']}`, // check directly for the sublabel class
+        ),
     );
   }, [type]);
 
@@ -391,7 +394,7 @@ export const Tabs = (props: TabsProps) => {
         overflowOptions?.useOverflow &&
         currentActiveIndex !== undefined
       ) {
-        const activeTab = ownerDoc.querySelectorAll('.iui-tab')[
+        const activeTab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
           currentActiveIndex
         ] as HTMLElement;
         const isVertical = orientation === 'vertical';
@@ -555,9 +558,7 @@ export const Tabs = (props: TabsProps) => {
             />
           ) : (
             React.cloneElement(label, {
-              className: cx(label.props.className, {
-                'iui-active': index === currentActiveIndex,
-              }),
+              active: index === currentActiveIndex,
               'aria-selected': index === currentActiveIndex,
               tabIndex: index === currentActiveIndex ? 0 : -1,
               onClick: (args: unknown) => {
@@ -573,11 +574,12 @@ export const Tabs = (props: TabsProps) => {
   );
 
   return (
-    <div
+    <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
       style={stripeProperties}
     >
-      <ul
+      <Box
+        as='ul'
         className={cx(
           'iui-tabs',
           `iui-${type}`,
@@ -597,23 +599,23 @@ export const Tabs = (props: TabsProps) => {
         {...rest}
       >
         {labels.map((label, index) => createTab(label, index))}
-      </ul>
+      </Box>
 
       {actions && (
-        <div className='iui-tabs-actions-wrapper'>
-          <div className='iui-tabs-actions'>{actions}</div>
-        </div>
+        <Box className='iui-tabs-actions-wrapper'>
+          <Box className='iui-tabs-actions'>{actions}</Box>
+        </Box>
       )}
 
       {children && (
-        <div
+        <Box
           className={cx('iui-tabs-content', contentClassName)}
           role='tabpanel'
         >
           {children}
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

@@ -23,6 +23,7 @@
   color: var(--iui-color-text);
   background-color: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-foreground);
+  line-height: var(--iui-size-l);
   @include iui-select-size;
 
   &.iui-disabled {
@@ -32,7 +33,7 @@
     cursor: not-allowed;
   }
 
-  .iui-icon {
+  .iui-icon svg {
     @include menu.iui-menu-icon;
     fill: currentColor;
   }
@@ -105,7 +106,6 @@
 
   .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
-    line-height: calc(var(--iui-size-s) * 1.5);
   }
 }
 
@@ -121,7 +121,6 @@
 
   .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
-    line-height: calc(var(--iui-size-s) * 1.5);
   }
 }
 

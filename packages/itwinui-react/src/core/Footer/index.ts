@@ -3,9 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Footer, defaultFooterElements } from './Footer.js';
-export type {
-  FooterElement,
-  FooterProps,
-  TitleTranslations,
-} from './Footer.js';
+export type { FooterElement, TitleTranslations } from './Footer.js';
 export default './Footer';

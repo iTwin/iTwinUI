@@ -19,10 +19,6 @@ describe('Breadcrumbs', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
 
-      if (testName === 'Custom Overflow Back Button') {
-        cy.get('.iui-button').eq(1).trigger('mouseenter');
-      }
-
       cy.compareSnapshot(testName);
     });
   });

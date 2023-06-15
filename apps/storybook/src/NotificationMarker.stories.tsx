@@ -7,11 +7,12 @@ import React from 'react';
 import {
   Text,
   NotificationMarker,
-  NotificationMarkerProps,
   Button,
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgNotification } from '@itwin/itwinui-icons-react';
+
+type NotificationMarkerProps = React.ComponentProps<typeof NotificationMarker>;
 
 export default {
   component: NotificationMarker,

@@ -13,6 +13,7 @@ import type {
   TableKeyedProps,
   TableState,
 } from 'react-table';
+import styles from '../../../styles.js';
 
 const REORDER_ACTIONS = {
   columnDragStart: 'columnDragStart',
@@ -55,12 +56,12 @@ const defaultGetDragAndDropProps =
       position?: 'left' | 'right',
     ) => {
       const columnElement = event.currentTarget as HTMLElement;
-      columnElement.classList.remove('iui-table-reorder-column-right');
-      columnElement.classList.remove('iui-table-reorder-column-left');
+      columnElement.classList.remove(styles['iui-table-reorder-column-right']);
+      columnElement.classList.remove(styles['iui-table-reorder-column-left']);
       if (position === 'left') {
-        columnElement.classList.add('iui-table-reorder-column-left');
+        columnElement.classList.add(styles['iui-table-reorder-column-left']);
       } else if (position === 'right') {
-        columnElement.classList.add('iui-table-reorder-column-right');
+        columnElement.classList.add(styles['iui-table-reorder-column-right']);
       }
     };
 

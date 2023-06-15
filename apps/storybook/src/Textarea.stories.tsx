@@ -4,7 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Textarea, TextareaProps } from '@itwin/itwinui-react';
+import { Textarea } from '@itwin/itwinui-react';
+
+type TextareaProps = React.ComponentProps<typeof Textarea>;
 
 export default {
   title: 'Input/Textarea',

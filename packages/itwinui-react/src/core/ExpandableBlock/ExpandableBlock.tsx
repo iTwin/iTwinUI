@@ -4,18 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-
 import {
-  useTheme,
   StatusIconMap,
   WithCSSTransition,
   SvgChevronRight,
   Icon,
+  Box,
 } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/expandable-block.css';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type ExpandableBlockProps = {
+type ExpandableBlockProps = {
   /**
    * The main text displayed on the block, regardless of state.
    */
@@ -58,7 +56,12 @@ export type ExpandableBlockProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
-} & Omit<CommonProps, 'title'>;
+  /**
+   * Disables ExpandableBlock.
+   * @default false
+   */
+  disabled?: boolean;
+};
 
 /**
  * Container that allows content to be hidden behind a brief title and a caption.
@@ -69,7 +72,7 @@ export type ExpandableBlockProps = {
  * <ExpandableBlock title='Positive status' status='positive'>Content</ExpandableBlock>
  * <ExpandableBlock title='Block with icon' endIcon={<SvgPlaceholder />}>Content</ExpandableBlock>
  */
-export const ExpandableBlock = (props: ExpandableBlockProps) => {
+export const ExpandableBlock = React.forwardRef((props, ref) => {
   const {
     caption,
     children,
@@ -82,10 +85,9 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     status,
     size = 'default',
     styleType = 'default',
+    disabled = false,
     ...rest
   } = props;
-
-  useTheme();
 
   const icon = endIcon ?? (status && StatusIconMap[status]());
 
@@ -95,12 +97,15 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
+    if (disabled) {
+      return;
+    }
     setExpanded(!expanded);
     onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
+    if (event.altKey || disabled) {
       return;
     }
 
@@ -114,7 +119,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   };
 
   return (
-    <div
+    <Box
       className={cx(
         'iui-expandable-block',
         {
@@ -126,29 +131,32 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
         className,
       )}
       style={style}
+      ref={ref}
       {...rest}
     >
-      <div
+      <Box
+        role='button'
         aria-expanded={expanded}
         className='iui-header'
+        aria-disabled={disabled}
         tabIndex={0}
         onClick={handleToggle}
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
-        <span className='iui-expandable-block-label'>
-          <div className='iui-title'>{title}</div>
-          {caption && <div className='iui-caption'>{caption}</div>}
-        </span>
+        <Box as='span' className='iui-expandable-block-label'>
+          <Box className='iui-title'>{title}</Box>
+          {caption && <Box className='iui-caption'>{caption}</Box>}
+        </Box>
         {icon && <Icon fill={status}>{icon}</Icon>}
-      </div>
+      </Box>
       <WithCSSTransition in={expanded}>
-        <div className='iui-expandable-content'>
+        <Box className='iui-expandable-content'>
           <div>{children}</div>
-        </div>
+        </Box>
       </WithCSSTransition>
-    </div>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockProps>;
 
 export default ExpandableBlock;

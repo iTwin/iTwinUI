@@ -2,15 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
-
-export type MenuExtraContentProps = {
-  children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+import { polymorphic } from '../utils/index.js';
 
 /**
  * Component that allows to have any additional content inside `Menu`.
@@ -32,18 +24,8 @@ export type MenuExtraContentProps = {
  *   ]}
  * </Menu>
  */
-export const MenuExtraContent = (props: MenuExtraContentProps) => {
-  const { children, className, ...rest } = props;
-  useTheme();
-  return (
-    <li
-      className={cx('iui-menu-content', className)}
-      role='presentation'
-      {...rest}
-    >
-      {children}
-    </li>
-  );
-};
+export const MenuExtraContent = polymorphic.li('iui-menu-content', {
+  role: 'presentation',
+});
 
 export default MenuExtraContent;

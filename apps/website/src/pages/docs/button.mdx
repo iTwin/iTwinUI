@@ -5,8 +5,8 @@ layout: ./_layout.astro
 propsPathDefault: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
 propsPathSplitButton: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitButton.d.ts'
 propsPathIconButton: '@itwin/itwinui-react/esm/core/Buttons/IconButton/IconButton.d.ts'
-propsPathIdeasButton: '@itwin/itwinui-react/src/core/Buttons/IdeasButton/IdeasButton.tsx'
-propsPathDropdownButton: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
+propsPathIdeasButton: '@itwin/itwinui-react/esm/core/Buttons/IdeasButton/IdeasButton.d.ts'
+propsPathDropdownButton: '@itwin/itwinui-react/esm/core/Buttons/DropdownButton/DropdownButton.d.ts'
 thumbnail: Button
 group: buttons
 ---
@@ -14,7 +14,7 @@ group: buttons
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
 import Placeholder from '~/components/Placeholder.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 

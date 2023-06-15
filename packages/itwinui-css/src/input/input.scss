@@ -75,6 +75,7 @@
 }
 
 @mixin textarea {
+  line-height: inherit;
   resize: vertical;
 
   &[disabled],

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { CellRendererProps } from 'react-table';
-import { getRandomValue } from '../../utils/index.js';
+import { Box, getRandomValue } from '../../utils/index.js';
 
 export type EditableCellProps<T extends Record<string, unknown>> =
   CellRendererProps<T> & {
@@ -67,7 +67,7 @@ export const EditableCell = <T extends Record<string, unknown>>(
   const [isDirty, setIsDirty] = React.useState(false);
 
   return (
-    <div
+    <Box
       {...cellElementProps}
       contentEditable
       suppressContentEditableWarning
@@ -114,7 +114,7 @@ export const EditableCell = <T extends Record<string, unknown>>(
       }}
     >
       {children}
-    </div>
+    </Box>
   );
 };
 

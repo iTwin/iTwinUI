@@ -5,19 +5,18 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
-import '@itwin/itwinui-css/css/table.css';
 import {
-  useTheme,
+  useGlobals,
   Popover,
   SvgFilterHollow,
   SvgFilter,
 } from '../../utils/index.js';
-import type { StylingProps } from '../../utils/index.js';
+import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {
   column: HeaderGroup<T>;
-} & StylingProps;
+} & CommonProps;
 
 /**
  * Handles showing filter icon and opening filter component.
@@ -27,7 +26,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
 ) => {
   const { column, className, ...rest } = props;
 
-  useTheme();
+  useGlobals();
 
   const [isVisible, setIsVisible] = React.useState(false);
   const close = React.useCallback(() => setIsVisible(false), []);

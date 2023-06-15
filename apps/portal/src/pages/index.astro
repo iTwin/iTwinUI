@@ -1,25 +1,15 @@
 ---
 const isDev = import.meta.env.DEV;
 
-const title = isDev ? 'iTwinUI (local)' : 'iTwinUI';
+const titleSuffix = isDev ? ' (local)' : ' (v3)';
 const faviconHref = isDev ? 'favicon-dev.svg' : 'favicon.svg';
 
 const links = [
-  {
-    name: 'html pages (current)',
-    href: isDev ? 'http://localhost:5173' : 'css',
-  },
-  {
-    name: 'storybook (current)',
-    href: isDev ? 'http://localhost:6006' : 'react',
-  },
-  {
-    name: 'docs website (wip)',
-    href: isDev ? 'http://localhost:1700' : 'https://itwinui.bentley.com',
-  },
-  ...(!isDev ? [{ name: 'next major version (v3)', href: 'dev' }] : []),
+  { name: 'html pages', href: isDev ? 'http://localhost:5173' : 'css' },
+  { name: 'storybook', href: isDev ? 'http://localhost:6006' : 'react' },
   ...(isDev
     ? [
+        { name: 'docs website', href: 'http://localhost:1700' },
         { name: 'vite playground', href: 'http://localhost:1701' },
         { name: 'next playground', href: 'http://localhost:1702' },
         { name: 'astro playground', href: 'http://localhost:1703' },
@@ -33,7 +23,7 @@ const links = [
     <meta charset='utf-8' />
     <link rel='icon' type='image/svg+xml' href={faviconHref} />
     <meta name='viewport' content='width=device-width' />
-    <title>{title}</title>
+    <title>iTwinUI{titleSuffix}</title>
 
     <style is:global>
       @import '@itwin/itwinui-variables';
@@ -43,7 +33,9 @@ const links = [
   </head>
 
   <body class='iui-root'>
-    <h1 class='iui-text-headline'>{title}</h1>
+    <h1 class='iui-text-title'>
+      <span class='iui-visually-hidden'>iTwinUI</span>{titleSuffix}
+    </h1>
 
     <ul>
       {
@@ -61,6 +53,18 @@ const links = [
       body {
         padding: 1.5rem;
         font-size: 1rem;
+      }
+      h1::before {
+        content: '';
+        display: inline-block;
+        --svg: url('/logo.svg');
+        -webkit-mask-image: var(--svg);
+        mask: var(--svg) no-repeat center;
+        background-color: currentColor;
+        height: 3rem;
+        width: 8rem;
+        transform: translateY(-2px);
+        vertical-align: middle;
       }
     </style>
   </body>

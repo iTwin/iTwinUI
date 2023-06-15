@@ -180,3 +180,17 @@ it('should render borderless', () => {
     'iui-borderless',
   );
 });
+
+it('should respect disabled prop', () => {
+  const onToggleMock = jest.fn();
+  const { getByRole } = render(
+    <ExpandableBlock title='test title' onToggle={onToggleMock} disabled>
+      test content
+    </ExpandableBlock>,
+  );
+  const header = getByRole('button');
+  expect(header).toHaveAttribute('aria-disabled', 'true');
+  fireEvent.click(header);
+  expect(onToggleMock).not.toHaveBeenCalled();
+  expect(header).toHaveAttribute('aria-expanded', 'false');
+});

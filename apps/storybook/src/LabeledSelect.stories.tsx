@@ -4,9 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
-import { LabeledSelect, LabeledSelectProps } from '@itwin/itwinui-react';
+import { LabeledSelect } from '@itwin/itwinui-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { useState } from '@storybook/addons';
+
+type LabeledSelectProps = React.ComponentProps<typeof LabeledSelect>;
 
 export default {
   title: 'Input/LabeledSelect',

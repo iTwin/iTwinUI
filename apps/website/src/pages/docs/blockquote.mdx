@@ -2,14 +2,14 @@
 title: Blockquote
 description: Indicates the quotation of a large selection of text from another source.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/src/core/Typography/Blockquote/Blockquote.tsx'
+propsPath: '@itwin/itwinui-react/esm/core/Typography/Blockquote/Blockquote.d.ts'
 thumbnail: Blockquote
 group: typography
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -26,7 +26,6 @@ Blockquotes are used to isolate and highlight a large quotation made by a source
 </LiveExample>
 
 If the citation was pulled from a website, you can provide the URL using the 'cite' tag for best practice purposes, but the blockquote does not provide a hyperlink to that location.
-
 
 ## Props
 

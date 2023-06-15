@@ -1,6 +1,7 @@
 ---
 // This file should contain all the global styles and markup shared between layouts.
 
+import '@itwin/itwinui-react/styles.css';
 import HeadSEO from '~/components/HeadSEO.astro';
 import MoveOnVisible from '~/components/utils/MoveOnVisible.astro';
 import '@fontsource/noto-sans';
@@ -235,7 +236,7 @@ const { content = {} } = Astro.props;
     </style>
   </head>
 
-  <body class='iui-root' data-iui-theme='dark'>
+  <body class='_iui3-root' data-iui-theme='dark'>
     <slot />
 
     <!-- Util classes/styles and scripts -->
