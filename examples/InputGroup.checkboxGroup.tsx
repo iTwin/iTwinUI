@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { InputGroup, Checkbox } from '@itwin/itwinui-react';
 
-export default (args) => {
+export default () => {
   const option1Label = 'Football';
   const option2Label = 'Hockey';
   const [option1, setOption1] = React.useState(true);
@@ -33,32 +33,22 @@ export default (args) => {
     setOption2(value);
   };
   return (
-    <InputGroup
-      label='Select your hobbies'
-      message='Choose some hobbies'
-      {...args}
-    >
+    <InputGroup label='Select your hobbies' message='Choose some hobbies'>
       <Checkbox
         onChange={(event) => onAllChange(event.target.checked)}
         label='Select all'
         indeterminate={isIndeterminate}
         checked={allOptions}
-        disabled={args.disabled}
-        required={args.required}
       />
       <Checkbox
         onChange={(event) => setOption1(event.target.checked)}
         label={option1Label}
         checked={option1}
-        disabled={args.disabled}
-        required={args.required}
       />
       <Checkbox
         onChange={(event) => setOption2(event.target.checked)}
         label={option2Label}
         checked={option2}
-        disabled={args.disabled}
-        required={args.required}
       />
     </InputGroup>
   );

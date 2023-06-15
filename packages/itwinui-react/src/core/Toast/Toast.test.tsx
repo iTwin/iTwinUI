@@ -12,6 +12,7 @@ import {
   SvgStatusWarning,
 } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
+import { ToastProvider } from './Toaster.js';
 
 it('renders the category classes & icons correctly', () => {
   const categories: Array<ToastCategory> = [
@@ -22,13 +23,15 @@ it('renders the category classes & icons correctly', () => {
   ];
   categories.forEach((category) => {
     const { container } = render(
-      <Toast
-        isVisible={true}
-        type='persisting'
-        content='Job Processing Completed'
-        category={category}
-        id={1}
-      />,
+      <ToastProvider>
+        <Toast
+          isVisible={true}
+          type='persisting'
+          content='Job Processing Completed'
+          category={category}
+          id={1}
+        />
+      </ToastProvider>,
     );
 
     expect(container.querySelector(`.iui-toast.iui-${category}`)).toBeTruthy();
@@ -58,13 +61,15 @@ it('renders the category classes & icons correctly', () => {
 
 it('renders the message correctly', () => {
   const { getByText } = render(
-    <Toast
-      isVisible={true}
-      type='persisting'
-      content='Job Processing Completed'
-      category='positive'
-      id={1}
-    />,
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        id={1}
+      />
+    </ToastProvider>,
   );
 
   getByText('Job Processing Completed');
@@ -73,17 +78,19 @@ it('renders the message correctly', () => {
 it('renders a report message Link correctly', async () => {
   const mockedFn = jest.fn();
   const { container } = render(
-    <Toast
-      isVisible={true}
-      type='persisting'
-      content='Job Processing Completed'
-      category='positive'
-      link={{
-        title: 'View Message Function',
-        onClick: mockedFn,
-      }}
-      id={1}
-    />,
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        link={{
+          title: 'View Message Function',
+          onClick: mockedFn,
+        }}
+        id={1}
+      />
+    </ToastProvider>,
   );
 
   const link = container.querySelector('.iui-toast-anchor') as HTMLElement;
@@ -94,13 +101,15 @@ it('renders a report message Link correctly', async () => {
 
 it('renders the close icon correctly', () => {
   const { container } = render(
-    <Toast
-      isVisible={true}
-      type='persisting'
-      content='Job Processing Completed'
-      category='positive'
-      id={1}
-    />,
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        id={1}
+      />
+    </ToastProvider>,
   );
 
   expect(
@@ -110,13 +119,15 @@ it('renders the close icon correctly', () => {
 
 it('not render close icon in temporary', () => {
   const { container } = render(
-    <Toast
-      isVisible={true}
-      type='temporary'
-      content='Job Processing Completed'
-      category='positive'
-      id={1}
-    />,
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='temporary'
+        content='Job Processing Completed'
+        category='positive'
+        id={1}
+      />
+    </ToastProvider>,
   );
 
   expect(
@@ -126,14 +137,16 @@ it('not render close icon in temporary', () => {
 
 it('renders the close icon when hasCloseButton', () => {
   const { container } = render(
-    <Toast
-      isVisible={true}
-      hasCloseButton={true}
-      type='temporary'
-      content='Job Processing Completed'
-      category='positive'
-      id={1}
-    />,
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        hasCloseButton={true}
+        type='temporary'
+        content='Job Processing Completed'
+        category='positive'
+        id={1}
+      />
+    </ToastProvider>,
   );
 
   expect(
@@ -146,14 +159,15 @@ it('should close temporary toast after 7s', () => {
 
   const mockedFn = jest.fn();
   const { container } = render(
-    <Toast
-      isVisible={true}
-      type='temporary'
-      content='Job Processing Completed'
-      category='informational'
-      id={1}
-      onRemove={mockedFn}
-    />,
+    <ToastProvider>
+      <Toast
+        type='temporary'
+        content='Job Processing Completed'
+        category='informational'
+        id={1}
+        onRemove={mockedFn}
+      />
+    </ToastProvider>,
   );
 
   expect(container.querySelector('.iui-toast-all')).toBeTruthy();
