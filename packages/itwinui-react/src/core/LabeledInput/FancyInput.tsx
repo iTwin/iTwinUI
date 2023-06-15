@@ -19,7 +19,7 @@ import { StatusMessage } from '../StatusMessage/index.js';
 import { Label } from '../Label/Label.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 
-type FancyInputProps = {
+type FancyInputOwnProps = {
   /**
    * Context prop for sizing subcomponents
    */
@@ -33,18 +33,6 @@ type FancyInputProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   * Id to pass to input
-   */
-  inputId?: string;
-  /**
-   * Callback to set inputID
-   */
-  setInputId?: (inputId: string) => void;
-  /**
-   * Ref for input subcomponent
-   */
-  inputRef?: React.RefObject<HTMLInputElement>;
-  /**
    * Set display style of label.
    * Supported values:
    * - 'default' - label appears above input.
@@ -52,17 +40,43 @@ type FancyInputProps = {
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
+  required?: boolean;
 };
 
 const FancyInputContext = React.createContext<
-  Omit<FancyInputProps, 'displayStyle'> | undefined
+  | Omit<
+      FancyInputOwnProps & {
+        /**
+         * Id to pass to input
+         */
+        inputId: string;
+        /**
+         * Callback to set inputID
+         */
+        setInputId: (inputId: string) => void;
+        /**
+         * Ref for input subcomponent
+         */
+        inputRef: React.RefObject<HTMLInputElement>;
+      },
+      'displayStyle'
+    >
+  | undefined
 >(undefined);
 
 //-------------------------------------------------------------------------------
 
 const FancyInputComponent = React.forwardRef((props, ref) => {
-  const { children, className, size, disabled, displayStyle, status, ...rest } =
-    props;
+  const {
+    children,
+    className,
+    size,
+    disabled,
+    required,
+    displayStyle,
+    status,
+    ...rest
+  } = props;
 
   const uid = useId();
   const [inputId, setInputId] = React.useState(uid);
@@ -70,7 +84,15 @@ const FancyInputComponent = React.forwardRef((props, ref) => {
 
   return (
     <FancyInputContext.Provider
-      value={{ size, disabled, status, inputId, setInputId, inputRef }}
+      value={{
+        size,
+        disabled,
+        status,
+        inputId,
+        setInputId,
+        inputRef,
+        required,
+      }}
     >
       <Box
         className={cx(
@@ -87,17 +109,18 @@ const FancyInputComponent = React.forwardRef((props, ref) => {
       </Box>
     </FancyInputContext.Provider>
   );
-}) as PolymorphicForwardRefComponent<'div', FancyInputProps>;
+}) as PolymorphicForwardRefComponent<'div', FancyInputOwnProps>;
 
 //-------------------------------------------------------------------------------
 
 const FancyInputLabel = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
-  const { inputId, disabled } = useSafeContext(FancyInputContext);
+  const { inputId, disabled, required } = useSafeContext(FancyInputContext);
 
   return (
     <Label
       className={cx({ 'iui-disabled': disabled }, className)}
+      required={required}
       {...rest}
       htmlFor={inputId}
       ref={ref}
@@ -133,7 +156,7 @@ const FancyInputWrapper = React.forwardRef((props, ref) => {
 const FancyInputInput = React.forwardRef((props, ref) => {
   const { id: idProp, ...rest } = props;
 
-  const { inputId, setInputId, disabled, inputRef } =
+  const { inputId, setInputId, disabled, inputRef, required } =
     useSafeContext(FancyInputContext);
 
   React.useEffect(() => {
@@ -148,6 +171,7 @@ const FancyInputInput = React.forwardRef((props, ref) => {
       id={idProp ?? inputId}
       ref={useMergedRefs(ref, inputRef)}
       disabled={disabled}
+      required={required}
       {...rest}
     />
   );
