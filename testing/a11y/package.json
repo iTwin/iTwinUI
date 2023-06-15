@@ -10,9 +10,7 @@
   },
   "dependencies": {
     "cypress": "^12.14.0",
-    "examples": "*"
-  },
-  "devDependencies": {
+    "examples": "*",
     "@itwin/itwinui-react": "3.0.0-dev.3"
   }
 }
