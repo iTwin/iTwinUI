@@ -17,6 +17,12 @@ iTwinUI offers an extensive set of handcrafted CSS variables. If you're using iT
 
 We strongly encourage the use iTwinUI's CSS variables rather than hardcoding values. Many of the color values change depending on the theme or contrast settings. Because of this, we purposefully do not expose the variables' values on this site. However, if you need a particular variable's value, you can extrapolate it from [the raw CSS file](https://cdn.jsdelivr.net/npm/@itwin/itwinui-variables/index.css).
 
+## Border radius
+
+Most iTwinUI components use `var(--iui-border-radius-1)`. For pill-shaped components, iTwinUI also offers `var(--iui-border-radius-round)`.
+
+<BorderRadiusDemo />
+
 ## Color
 
 iTwinUI supplies many different color variables, with each variable being specific to its own use case. All colors, if applied correctly, are guaranteed to meet [WCAG AA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html) in base themes and [WCAG AAA](https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced) in high contrast unless noted otherwise. All CSS variables are prefixed with `--iui-` followed by the category and ending with the value if applicable.
@@ -156,6 +162,40 @@ These can be used like so:
 background-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-5));
 ```
 
+### Icon
+
+Icon colors have been carefully selected to ensure you meet legal accessibility requirements. All of these icon colors ensure a passing score except when paired with status background colors and soft background colors.
+
+- `icon`: an actionable icon color, such as an [icon within a button](button#icon-button).
+- `icon-hover`: an icon using `icon` with a hover state.
+- `icon-disabled`: the disabled icon color.
+- `icon-muted`: typically used for a non-actionable icon but sometimes can be used for an actionable icon.
+- `icon-muted-hover`: an icon using `icon-muted` with a hover state. This should be used sparingly.
+
+<ColorList
+  colors={[
+    'var(--iui-color-icon)',
+    'var(--iui-color-icon-hover)',
+    'var(--iui-color-icon-disabled)',
+    'var(--iui-color-icon-muted)',
+    'var(--iui-color-icon-muted-hover)',
+  ]}
+/>
+
+Similarly, there are icon status colors.
+
+<ColorList
+  colors={[
+    [
+      'var(--iui-color-icon-accent)',
+      'var(--iui-color-icon-informational)',
+      'var(--iui-color-icon-positive)',
+      'var(--iui-color-icon-warning)',
+      'var(--iui-color-icon-negative)',
+    ],
+  ]}
+/>
+
 ### Text
 
 Text colors have been carefully selected to ensure you meet legal accessibility requirements. All of these text colors ensure a passing score except when paired with status background colors and soft background colors.
@@ -195,39 +235,27 @@ Similarly, there are text status colors and their hover states.
   ]}
 />
 
-### Icon
+## Duration
 
-Icon colors have been carefully selected to ensure you meet legal accessibility requirements. All of these icon colors ensure a passing score except when paired with status background colors and soft background colors.
+If you need to animate anything, use one of the supplied duration variables. The duration scale ranges from 0 to 3, where `--iui-duration-0` has no duration and `--iui-duration-3` is the slowest. For most hover or click interactions, we encourage using the fastest speed.
 
-- `icon`: an actionable icon color, such as an [icon within a button](button#icon-button).
-- `icon-hover`: an icon using `icon` with a hover state.
-- `icon-disabled`: the disabled icon color.
-- `icon-muted`: typically used for a non-actionable icon but sometimes can be used for an actionable icon.
-- `icon-muted-hover`: an icon using `icon-muted` with a hover state. This should be used sparingly.
+Try clicking on these buttons to play a small animation and get a sense of how quick each duration is.
 
-<ColorList
-  colors={[
-    'var(--iui-color-icon)',
-    'var(--iui-color-icon-hover)',
-    'var(--iui-color-icon-disabled)',
-    'var(--iui-color-icon-muted)',
-    'var(--iui-color-icon-muted-hover)',
-  ]}
-/>
+<DurationDemo />
 
-Similarly, there are icon status colors.
+Please use these variables in combination with the [`prefers-reduced-motion` media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) for accessibility reasons.
 
-<ColorList
-  colors={[
-    [
-      'var(--iui-color-icon-accent)',
-      'var(--iui-color-icon-informational)',
-      'var(--iui-color-icon-positive)',
-      'var(--iui-color-icon-warning)',
-      'var(--iui-color-icon-negative)',
-    ],
-  ]}
-/>
+## Opacity
+
+The opacity scale ranges from 1 to 6, where `--iui-opacity-1` is fully opaque and `--iui-opacity-6` is the most transparent, although not fully transparent.
+
+<OpacityDemo />
+
+## Shadow
+
+iTwinUI offers a few shadows that increase in elevation from 0 to 5. These variables are typically used in combination with the [surface component](surface).
+
+<ShadowsDemo />
 
 ## Size
 
@@ -243,12 +271,6 @@ If you are creating an input component, we have 3 variables:
 
 <SizesInputDemo />
 
-## Border radius
-
-Most iTwinUI components use `var(--iui-border-radius-1)`. For pill-shaped components, iTwinUI also offers `var(--iui-border-radius-round)`.
-
-<BorderRadiusDemo />
-
 ## Typography
 
 iTwinUI uses _Noto Sans_ for body text (`--iui-font-sans`) and _Noto Sans Mono_ for monospace text (`--iui-font-mono`).
@@ -260,25 +282,3 @@ The font scale increases in size from 0 to 5, with `--iui-font-size-1` being the
 There are four font weights available: light, normal, semibold, and bold.
 
 <FontsDemo weights />
-
-## Opacity
-
-The opacity scale ranges from 1 to 6, where `--iui-opacity-1` is fully opaque and `--iui-opacity-6` is the most transparent, although not fully transparent.
-
-<OpacityDemo />
-
-## Shadow
-
-iTwinUI offers a few shadows that increase in elevation from 0 to 5. These variables are typically used in combination with the [surface component](surface).
-
-<ShadowsDemo />
-
-## Duration
-
-If you need to animate anything, use one of the supplied duration variables. The duration scale ranges from 0 to 3, where `--iui-duration-0` has no duration and `--iui-duration-3` is the slowest. For most hover or click interactions, we encourage using the fastest speed.
-
-Try clicking on these buttons to play a small animation and get a sense of how quick each duration is.
-
-<DurationDemo />
-
-Please use these variables in combination with the [`prefers-reduced-motion` media feature](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion) for accessibility reasons.
