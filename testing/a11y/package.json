@@ -9,7 +9,6 @@
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
-    "@axe-core/playwright": "^4.7.3",
     "@itwin/itwinui-react": "3.0.0-dev.3",
     "cypress": "^12.14.0",
     "examples": "*"
