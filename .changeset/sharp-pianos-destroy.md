@@ -4,6 +4,6 @@
 
 Created new Overlay component with customizable subcomponents:
 
-- OverlayWrapper
-- OverlayHiddenContent
-- OverlayMessage
+- Overlay.Wrapper
+- Overlay.HiddenContent
+- Overlay.Overlay

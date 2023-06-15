@@ -16,9 +16,9 @@ const wrapperStyle = {
 export default () => {
   return (
     <Overlay.Wrapper style={wrapperStyle}>
-      <Overlay.Message>
+      <Overlay.Overlay>
         <ProgressLinear indeterminate={true} />
-      </Overlay.Message>
+      </Overlay.Overlay>
       <Overlay.HiddenContent>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

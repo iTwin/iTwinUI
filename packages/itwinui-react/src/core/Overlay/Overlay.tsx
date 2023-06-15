@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import {
+  Box,
   polymorphic,
   type PolymorphicForwardRefComponent,
 } from '../utils/index.js';
 import cx from 'classnames';
 
-export type OverlayComponentProps = {
+type OverlayComponentProps = {
   /**
    * The sub-component elements of Overlay.
    */
@@ -38,9 +39,9 @@ OverlayComponent.displayName = 'Overlay';
 // --------------------------------------------------------------------------------
 
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
-  const { as: Box = 'div', children, ...rest } = props;
+  const { children, ...rest } = props;
   return (
-    <Box custom-attribute='inert' ref={ref} {...rest}>
+    <Box {...{ inert: '', loading: 'lazy' }} ref={ref} {...rest}>
       {children}
     </Box>
   );
@@ -50,7 +51,7 @@ OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
 // --------------------------------------------------------------------------------
 
 const OverlayMessage = polymorphic('iui-overlay');
-OverlayMessage.displayName = 'Overlay.Message';
+OverlayMessage.displayName = 'Overlay.Overlay';
 
 // --------------------------------------------------------------------------------
 
@@ -72,9 +73,9 @@ OverlayWrapper.displayName = 'Overlay.Wrapper';
  *
  * @example
  * <OverlayWrapper>
- *  <Overlay.Message>
+ *  <Overlay.Overlay>
  *    loading...
- *  <Overlay.Message>
+ *  <Overlay.Overlay>
  *  <Overlay.HiddenContent>
  *    content beneath the overlay... (text, img, etc.)
  *  <Overlay.HiddenContent />
@@ -97,5 +98,5 @@ export const Overlay = Object.assign(OverlayComponent, {
    *  Message contains the progress indicator and loading message
    *  for the Overlay. It sits on top of the HiddenContent.
    */
-  Message: OverlayMessage,
+  Overlay: OverlayMessage,
 });

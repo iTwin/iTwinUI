@@ -37,9 +37,9 @@ export const Linear: Story<OverlayProps> = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Overlay.HiddenContent>
-      <Overlay.Message>
+      <Overlay.Overlay>
         <ProgressLinear indeterminate={true} />
-      </Overlay.Message>
+      </Overlay.Overlay>
     </Overlay.Wrapper>
   );
 };
@@ -64,9 +64,9 @@ export const Radial: Story<OverlayProps> = () => {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </Overlay.HiddenContent>
-      <Overlay.Message>
+      <Overlay.Overlay>
         <ProgressRadial indeterminate={true} />
-      </Overlay.Message>
+      </Overlay.Overlay>
     </Overlay.Wrapper>
   );
 };
