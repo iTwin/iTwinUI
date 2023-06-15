@@ -156,7 +156,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
           { 'iui-expandable-searchbox': expandable },
           className,
         )}
-        data-iui-size={size}
+        size={size}
         isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
         {...rest}
