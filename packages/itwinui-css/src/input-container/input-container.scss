@@ -5,30 +5,26 @@
 .iui-input-container {
   @include iui-input-container;
 
-  .iui-input-label {
-    @include iui-input-label;
-  }
-
-  .iui-message-icon {
-    @include iui-message-icon;
-  }
-
-  .iui-message {
-    @include iui-input-message;
+  > .iui-label {
+    @include iui-input-container-label;
   }
 
   .iui-input-icon {
     @include iui-input-icon;
   }
 
-  &.iui-inline-label {
-    .iui-input-label {
-      @include iui-input-label-inline;
-    }
+  .iui-message {
+    @include iui-input-message;
   }
 
-  .iui-input-flex-container {
-    grid-area: inputs;
+  &.iui-inline-icon > .iui-input-icon {
+    @include iui-input-icon-inline;
+  }
+
+  &.iui-inline-label {
+    > .iui-label {
+      @include iui-input-label-inline;
+    }
   }
 
   @each $status in positive, warning, negative {
@@ -36,6 +32,10 @@
       @include iui-input-status($status: $status);
     }
   }
+}
+
+.iui-input-label {
+  @include iui-input-label;
 }
 
 // ----------------------------------------------------------------------------

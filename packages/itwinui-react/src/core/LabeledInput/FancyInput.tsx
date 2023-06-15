@@ -3,12 +3,38 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { polymorphic, Box, Icon } from '../utils/index.js';
+import { polymorphic, Box, Icon, useSafeContext } from '../utils/index.js';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { StatusMessage } from '../StatusMessage/index.js';
 import { Label } from '../Label/Label.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
+
+const FancyInputContext = React.createContext<
+  | {
+      // /**
+      //  * Context prop for sizing subcomponents
+      //  */
+      // size?: 'small' | 'large';
+      /**
+       * Context prop for disabling subcomponents
+       */
+      disabled?: boolean;
+      /**
+       * Status of the input.
+       */
+      status?: 'positive' | 'warning' | 'negative';
+      /**
+       * Id to pass to input
+       */
+      inputId?: string;
+      /**
+       * Callback to set inputID
+       */
+      setInputId?: (inputId: string) => void;
+    }
+  | undefined
+>(undefined);
 
 //-------------------------------------------------------------------------------
 
@@ -16,22 +42,21 @@ const FancyInputComponent = React.forwardRef((props, ref) => {
   const { children, className, disabled, isLabelInline, status, ...rest } =
     props;
   return (
-    <Box
-      className={cx(
-        'iui-input-container',
-        'iui-with-message',
-        {
-          'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
-          'iui-inline-label': isLabelInline,
-        },
-        className,
-      )}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Box>
+    <FancyInputContext.Provider value={{ disabled, status }}>
+      <Box
+        className={cx(
+          'iui-fancy-input',
+          {
+            'iui-inline-label': isLabelInline,
+          },
+          className,
+        )}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Box>
+    </FancyInputContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<
   'div',
@@ -101,8 +126,14 @@ const FancyInputButton = React.forwardRef((props, ref) => {
 
 const FancyInputMessage = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
+  const { status } = useSafeContext(FancyInputContext);
   return (
-    <StatusMessage ref={ref} {...rest}>
+    <StatusMessage
+      className='iui-input-message'
+      ref={ref}
+      status={status}
+      {...rest}
+    >
       {children}
     </StatusMessage>
   );

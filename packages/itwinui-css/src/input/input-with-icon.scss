@@ -37,7 +37,7 @@
 }
 
 @mixin iui-end-icon {
-  @include input-container.iui-input-icon;
+  @include input-container.iui-input-icon-inline;
   display: flex;
   grid-area: 1 / -1;
 }

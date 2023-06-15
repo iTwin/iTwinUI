@@ -1,0 +1,56 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+.iui-message-content {
+  font-size: var(--iui-font-size-0);
+  margin-top: var(--iui-size-2xs);
+  color: var(--iui-color-text-muted);
+
+  a {
+    user-select: none;
+  }
+}
+
+.iui-message-icon {
+  @include mixins.iui-icon-style('m');
+  grid-area: icon;
+  align-self: center;
+
+  &:not(:last-child) {
+    margin-right: var(--iui-size-2xs);
+  }
+
+  svg:where(:not(.iui-button svg)) {
+    @include mixins.iui-icon-color;
+  }
+}
+
+.iui-message {
+  display: flex;
+
+  @each $status in positive, warning, negative {
+    &[data-iui-status='#{$status}'] {
+      .iui-message-content {
+        color: var(--iui-color-text-#{$status});
+
+        a {
+          text-decoration: underline;
+          color: var(--iui-color-text-#{$status});
+        }
+
+        a:hover {
+          text-decoration: none;
+          color: var(--iui-color-text-#{$status}-hover);
+        }
+      }
+
+      .iui-message-icon {
+        &,
+        svg {
+          fill: var(--iui-color-icon-#{$status});
+        }
+      }
+    }
+  }
+}

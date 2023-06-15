@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, StatusIconMap } from '../utils/index.js';
+import {
+  Box,
+  StatusIconMap,
+  type PolymorphicForwardRefComponent,
+} from '../utils/index.js';
+import cx from 'classnames';
 
 type StatusMessageProps = {
   /**
@@ -27,23 +32,25 @@ type StatusMessageProps = {
  * <StatusMessage>This is the text</StatusMessage>
  * <StatusMessage startIcon={<SvgStar />}>This is the text</StatusMessage>
  */
-export const StatusMessage = ({
-  startIcon: userStartIcon,
-  children,
-  status,
-}: StatusMessageProps) => {
+export const StatusMessage = React.forwardRef((props, ref) => {
+  const { children, startIcon: userStartIcon, status, className } = props;
+
   const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <>
+    <Box
+      className={cx('iui-message', className)}
+      data-iui-status={status}
+      ref={ref}
+    >
       {!!icon ? (
         <Box as='span' className='iui-message-icon' aria-hidden>
           {icon}
         </Box>
       ) : null}
-      <Box className='iui-message'>{children}</Box>
-    </>
+      <Box className='iui-message-content'>{children}</Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
 
 export default StatusMessage;

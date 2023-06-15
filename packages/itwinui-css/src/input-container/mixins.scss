@@ -123,6 +123,14 @@
   }
 }
 
+/// Label inside the input-container grid.
+@mixin iui-input-container-label {
+  @include iui-input-label-styling;
+  grid-area: label;
+  align-self: center;
+  cursor: pointer;
+}
+
 /// Independent label outside the grid.
 /// Supports .iui-inline modifier to place it inline.
 @mixin iui-input-label {
@@ -150,7 +158,7 @@
 }
 
 /// Icon to be shown near a message.
-@mixin iui-message-icon {
+@mixin iui-input-icon {
   @include mixins.iui-icon-style('m');
   grid-area: icon;
   align-self: center;
@@ -164,8 +172,34 @@
   }
 }
 
-@mixin iui-input-icon {
-  margin: 0 var(--iui-size-s);
+/// Modifier on iui-input-icon to place it at the end of input.
+@mixin iui-input-icon-inline {
+  $margin-end: calc(var(--iui-size-xs) + 1px);
+
+  grid-area: inputs;
+  justify-self: end;
+  margin: 0 #{$margin-end} 0 0;
+  position: relative;
+  height: 100%;
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+
+  svg:where(:not(.iui-button svg)) {
+    @include mixins.iui-icon-style('m');
+  }
+
+  &,
+  .iui-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+  }
+
+  .iui-button {
+    margin-right: calc(-1 * $margin-end);
+  }
 
   &.iui-actionable {
     align-items: center;
@@ -178,13 +212,21 @@
 
     @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
-    svg {
+    svg:where(:not(.iui-button svg)) {
       fill: var(--iui-color-icon);
       transition: transform var(--iui-duration-1) ease-out;
     }
 
     &.iui-open svg {
       transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    svg {
+      fill: var(--iui-color-icon-disabled);
     }
   }
 }

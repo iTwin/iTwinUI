@@ -34,7 +34,7 @@ export default {
 
 export const Basic: Story<LabeledInputProps> = () => {
   return (
-    <FancyInput>
+    <FancyInput isLabelInline status='positive'>
       <FancyInput.Label>Label</FancyInput.Label>
       <FancyInput.Wrapper>
         <FancyInput.Input />
