@@ -8,6 +8,7 @@ import {
   SvgCheckmarkSmall,
   SvgImportantSmall,
   Box,
+  getBoundedValue,
 } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -84,7 +85,7 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       style={{
         ...(value !== undefined && {
-          '--iui-progress-percentage': `${value}%`,
+          '--iui-progress-percentage': `${getBoundedValue(value, 0, 100)}%`,
         }),
         ...style,
       }}
