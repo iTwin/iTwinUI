@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Button, toaster, ProgressRadial } from '@itwin/itwinui-react';
+import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
 import { ToastProps } from '@itwin/itwinui-react/esm/core/Toast/Toast';
 import { ToasterSettings } from '@itwin/itwinui-react/esm/core/Toast/Toaster';
 
@@ -87,6 +87,8 @@ export const Positive: Story<ToastProps & ToasterSettings> = ({
   placement,
   order,
 }) => {
+  const toaster = useToaster();
+
   const displayPositiveToast = () => {
     toaster.setSettings({
       placement: placement ?? 'top',
@@ -130,6 +132,8 @@ export const Negative: Story<ToastProps & ToasterSettings> = ({
   placement,
   order,
 }) => {
+  const toaster = useToaster();
+
   const displayNegativeToast = () => {
     toaster.setSettings({
       placement: placement ?? 'top',
@@ -173,6 +177,8 @@ export const Informational: Story<ToastProps & ToasterSettings> = ({
   placement,
   order,
 }) => {
+  const toaster = useToaster();
+
   const displayInformationalToast = () => {
     toaster.setSettings({
       placement: placement ?? 'top',
@@ -212,6 +218,8 @@ export const Warning: Story<ToastProps & ToasterSettings> = ({
   order,
   ...options
 }) => {
+  const toaster = useToaster();
+
   const displayWarningToast = () => {
     toaster.setSettings({
       placement: placement ?? 'top',
@@ -245,6 +253,8 @@ export const PositionChanged: Story<ToastProps & ToasterSettings> = ({
   order,
   ...options
 }) => {
+  const toaster = useToaster();
+
   const displayPositionChangedToast = () => {
     toaster.setSettings({
       placement: placement ?? 'bottom-end',
@@ -283,6 +293,8 @@ export const AnchorToButton: Story<ToastProps & ToasterSettings> = ({
   placement,
   order,
 }) => {
+  const toaster = useToaster();
+
   const buttonRef = React.useRef(null);
   const displayPositiveToast = () => {
     toaster.setSettings({
@@ -331,6 +343,8 @@ export const CloseIndividual: Story<ToastProps & ToasterSettings> = ({
   placement,
   order,
 }) => {
+  const toaster = useToaster();
+
   const displayProcessToast = () => {
     toaster.setSettings({
       placement: placement ?? 'top',

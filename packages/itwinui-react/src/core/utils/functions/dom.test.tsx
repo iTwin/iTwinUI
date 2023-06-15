@@ -4,38 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
-import {
-  getContainer,
-  getDocument,
-  getWindow,
-  mergeEventHandlers,
-} from './dom.js';
-
-describe('getContainer', () => {
-  it('should create container', () => {
-    const container = getContainer('test-id');
-    expect(document.getElementById('test-id')).toBeTruthy();
-    expect(getContainer('test-id')).toBe(container);
-  });
-
-  it('should respect ownerDocument arg', () => {
-    const mockDocument = new DOMParser().parseFromString(
-      `<!DOCTYPE html><html><body></body></html>`,
-      'text/html',
-    );
-
-    const container = getContainer('test-id', mockDocument);
-    expect(mockDocument.getElementById('test-id')).toBeTruthy();
-    expect(getContainer('test-id', mockDocument)).toBe(container);
-    expect(getContainer('test-id', document)).not.toBe(container);
-  });
-
-  it('should append to iui-root if it exists', () => {
-    document.body.innerHTML = `<div class="iui-root"></div>`;
-    getContainer('test-id');
-    expect(document.querySelector('.iui-root > #test-id')).toBeTruthy();
-  });
-});
+import { getDocument, getWindow, mergeEventHandlers } from './dom.js';
 
 describe('getDocument', () => {
   it('should get document when it is defined', () => {
