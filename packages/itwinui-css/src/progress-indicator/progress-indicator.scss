@@ -19,11 +19,11 @@
 .iui-progress-indicator-radial {
   @include radial.iui-progress-indicator-radial;
 
-  &.iui-determinate:not(.iui-positive) {
+  &.iui-determinate {
     @include radial.iui-progress-indicator-radial-determinate;
   }
 
-  &.iui-indeterminate:not(.iui-negative):not(.iui-positive) {
+  &.iui-indeterminate {
     @include radial.iui-progress-indicator-radial-indeterminate;
   }
 }
