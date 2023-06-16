@@ -112,7 +112,7 @@
 
 @mixin iui-progress-indicator-radial-indeterminate {
   &::after {
-    mask-image: conic-gradient(#000, #0000), linear-gradient(#000 0 0);
+    mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
     animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
 
     @keyframes rotate-indeterminate {
