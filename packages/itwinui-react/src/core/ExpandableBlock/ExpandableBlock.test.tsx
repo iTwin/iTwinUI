@@ -11,11 +11,7 @@ import { ExpandableBlock } from './ExpandableBlock.js';
 it('should render correctly in its most basic state', () => {
   const { container } = render(
     <ExpandableBlock>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
@@ -75,11 +71,7 @@ it('should trigger onToggle when clicked only on header', () => {
   const onToggleMock = jest.fn();
   const { container } = render(
     <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
@@ -101,11 +93,7 @@ it('should trigger onToggle when clicked with Enter or Spacebar', () => {
   const onToggleMock = jest.fn();
   const { container } = render(
     <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
@@ -187,11 +175,7 @@ it('should render with custom endIcon', () => {
 it('should render small size', () => {
   const { container } = render(
     <ExpandableBlock size='small'>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
@@ -205,11 +189,7 @@ it('should render small size', () => {
 it('should render borderless', () => {
   const { container } = render(
     <ExpandableBlock styleType='borderless'>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
@@ -222,11 +202,7 @@ it('should respect disabled prop', () => {
   const onToggleMock = jest.fn();
   const { getByRole } = render(
     <ExpandableBlock onToggle={onToggleMock} disabled>
-      <ExpandableBlock.Header>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
-      </ExpandableBlock.Header>
+      <ExpandableBlock.Header label='test title' />
       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );

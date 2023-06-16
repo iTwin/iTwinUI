@@ -148,9 +148,12 @@ ExpandableBlockComponent.displayName = 'ExpandableBlock';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Header component
+type ExpandableBlockHeaderOwnProps = {
+  label?: React.ReactNode;
+};
 
 const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
-  const { className, children, ...rest } = props;
+  const { className, children, label, ...rest } = props;
   const { isExpanded, setExpanded, disabled, onToggle } = useSafeContext(
     ExpandableBlockContext,
   );
@@ -190,10 +193,14 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <SvgChevronRight className='iui-icon' aria-hidden />
-      {children}
+      {children ?? (
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockHeaderOwnProps>;
 ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
 
 // ----------------------------------------------------------------------------

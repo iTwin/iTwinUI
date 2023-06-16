@@ -8,12 +8,14 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock
-        size='small'
-        title='Expandable Block'
-        caption='With caption!'
-      >
-        Content in block!
+      <ExpandableBlock size='small'>
+        <ExpandableBlock.Header>
+          <ExpandableBlock.LabelArea>
+            <ExpandableBlock.Title>Expandable Block</ExpandableBlock.Title>
+            <ExpandableBlock.Caption>With caption!</ExpandableBlock.Caption>
+          </ExpandableBlock.LabelArea>
+        </ExpandableBlock.Header>
+        <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
     </div>
   );
