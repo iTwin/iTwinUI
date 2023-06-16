@@ -3,9 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { toaster, Button } from '@itwin/itwinui-react';
+import { useToaster, Button } from '@itwin/itwinui-react';
 
 export default () => {
+  const toaster = useToaster();
+
   return (
     <Button
       onClick={() => {
