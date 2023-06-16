@@ -1,3 +1,6 @@
 # build output
 dist/
 .output/
+
+# Environment variables
+.env

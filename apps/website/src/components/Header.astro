@@ -36,6 +36,8 @@ const { pathname } = Astro.url;
   <nav aria-label='Global site'>
     {pathname === '/' && <a href='/docs'>Documentation</a>}
 
+    {pathname.startsWith('/docs') && <algolia-searchbox />}
+
     <a href='https://www.github.com/iTwin/iTwinUI' class='github-link'>
       <VisuallyHidden>GitHub</VisuallyHidden>
 
@@ -86,10 +88,6 @@ const { pathname } = Astro.url;
     gap: var(--space-2);
     align-items: center;
     margin-left: auto;
-
-    @media (max-width: 50em) {
-      display: none;
-    }
   }
 
   a {

@@ -233,6 +233,7 @@ const { content = {} } = Astro.props;
         font-size: var(--type-0);
       }
     </style>
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@docsearch/css@3' />
   </head>
 
   <body class='iui-root' data-iui-theme='dark'>
@@ -250,5 +251,16 @@ const { content = {} } = Astro.props;
         element.setAttribute('tabindex', '0');
       });
     </script> -->
+
+    <script is:inline src='https://cdn.jsdelivr.net/npm/@docsearch/js@3'></script>
+    <script type='text/javascript'>
+      docsearch({
+        appId: import.meta.env.ALGOLIA_APP_ID,
+        apiKey: import.meta.env.ALGOLIA_API_KEY,
+        indexName: import.meta.env.ALGOLIA_INDEX_NAME,
+        container: 'algolia-searchbox',
+        debug: false, // Set debug to true if you want to inspect the modal
+      });
+    </script>
   </body>
 </html>
