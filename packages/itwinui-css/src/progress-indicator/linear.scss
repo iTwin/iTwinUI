@@ -2,88 +2,80 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-@mixin iui-progress-indicator-linear($height: var(--iui-size-2xs)) {
-  @include mixins.iui-reset;
-  text-align: left;
-  display: block;
+@mixin iui-progress-indicator-linear-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-2xs);
 
-  > .iui-track {
-    width: 100%;
-    height: $height;
-    overflow: hidden;
-    background-color: var(--iui-color-border);
-
-    > .iui-fill {
-      display: inline-block;
-      height: 100%;
-      vertical-align: top;
-      background-color: var(--iui-color-border-accent);
-    }
-  }
-
-  > .iui-label {
-    align-items: center;
-    width: 100%;
-    overflow: hidden;
-    margin-top: var(--iui-size-2xs);
-    display: flex;
-    font-size: var(--iui-font-size-0);
-    justify-content: space-between;
-
-    > :only-child {
-      margin: 0 auto;
-    }
-
-    > :last-child:not(:first-child) {
-      user-select: none;
-    }
-
-    svg {
-      @include mixins.iui-icon-style('m');
-    }
-  }
-
-  &.iui-positive {
-    > .iui-track,
-    > .iui-track > * {
-      background-color: var(--iui-color-border-positive);
-    }
-
-    > .iui-label {
-      color: var(--iui-color-text-positive);
-
-      svg {
-        fill: var(--iui-color-icon-positive);
-      }
-
-      > span {
-        @include mixins.iui-text-selection(positive);
+  @supports selector(:has(*)) {
+    @each $status in positive, negative {
+      &:has([data-iui-status='#{$status}']) {
+        --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
+        --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
+        @include mixins.iui-text-selection($status);
       }
     }
   }
+}
 
-  &.iui-negative {
-    > .iui-track > * {
-      width: 100%;
-      background-color: var(--iui-color-border-negative);
-    }
+@mixin iui-progress-indicator-linear-wrapper-label {
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  font-size: var(--iui-font-size-0);
+  justify-content: space-between;
+  color: var(--_iui-progress-indicator-linear-wrapper-label-color);
 
-    > .iui-label {
-      color: var(--iui-color-text-negative);
+  > :only-child {
+    margin: 0 auto;
+  }
 
-      svg {
-        fill: var(--iui-color-icon-negative);
+  > :last-child:not(:first-child) {
+    user-select: none;
+  }
+
+  svg {
+    @include mixins.iui-icon-style('m');
+    fill: var(--_iui-progress-indicator-linear-wrapper-label-fill);
+  }
+}
+
+@mixin iui-progress-indicator-linear {
+  width: 100%;
+  height: var(--iui-size-2xs);
+  overflow: hidden;
+  background-color: var(--iui-color-border);
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    width: var(--iui-progress-percentage, 100%);
+    background-color: var(--iui-color-border-accent);
+  }
+
+  @each $status in positive, negative {
+    &[data-iui-status='#{$status}'] {
+      &::after {
+        background-color: var(--iui-color-border-#{$status});
       }
 
-      > span {
-        @include mixins.iui-text-selection(negative);
+      @supports not selector(:has(*)) {
+        + .iui-progress-indicator-linear-wrapper-label {
+          --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
+          --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
+          @include mixins.iui-text-selection($status);
+        }
       }
     }
   }
 }
 
 @mixin iui-progress-indicator-linear-determinate($speed: 2s) {
-  transition: width $speed ease-in-out;
+  &::after {
+    transition: width $speed ease-in-out;
+  }
 }
 
 @mixin iui-progress-indicator-linear-indeterminate() {
@@ -100,6 +92,9 @@
       transform: translateX(100%) scaleX(0.5);
     }
   }
-  width: 100%;
-  animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+
+  &::after {
+    width: 100%;
+    animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+  }
 }

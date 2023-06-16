@@ -5,16 +5,13 @@
 
 @mixin iui-progress-indicator-radial {
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
-  position: relative;
   vertical-align: middle;
-  display: inline-flex;
   justify-content: center;
   align-items: center;
   width: var(--_iui-progress-indicator-radial-size);
   height: var(--_iui-progress-indicator-radial-size);
   border-radius: var(--iui-border-radius-round);
   font-size: var(--iui-font-size-0);
-  flex-shrink: 0;
 
   &::before,
   &::after {
