@@ -23,6 +23,7 @@
     inset: 0;
     border-radius: 50%;
     border: var(--iui-size-2xs) solid transparent;
+    forced-color-adjust: none;
   }
 
   &::before {
@@ -33,6 +34,17 @@
     mask-composite: subtract;
     mask-clip: border-box, content-box;
     background-color: var(--iui-color-border-accent);
+
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
+  }
+
+  &::before,
+  &::after {
+    @media (forced-colors: active) {
+      border-color: transparent;
+    }
   }
 
   :is(svg, img) {
@@ -100,7 +112,7 @@
 
 @mixin iui-progress-indicator-radial-indeterminate {
   &::after {
-    mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
+    mask-image: conic-gradient(#000, #0000), linear-gradient(#000 0 0);
     animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
 
     @keyframes rotate-indeterminate {
