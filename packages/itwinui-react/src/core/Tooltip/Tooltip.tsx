@@ -32,10 +32,7 @@ type TooltipOptions = {
    * Property for manual visibility control
    */
   visible?: boolean;
-  /**
-   * Function that allows users to control Tooltip visibility
-   */
-  toggleVisible?: (open: boolean) => void;
+
   /**
    * Use this if you want Tooltip to follow moving trigger element
    * @default false;
@@ -77,21 +74,20 @@ type TooltipOwnProps = {
   portal?: boolean | { to: HTMLElement };
 };
 
-const useTooltip = ({
-  placement = 'top',
-  visible: controlledOpen,
-  toggleVisible: setControlledOpen,
-  followTrigger = false,
-}: TooltipOptions = {}) => {
+const useTooltip = (options: TooltipOptions = {}) => {
+  const {
+    placement = 'top',
+    followTrigger = false,
+    visible: controlledOpen,
+  } = options;
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
   const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setControlledOpen ?? setUncontrolledOpen;
 
   const data = useFloating({
     placement,
     open,
-    onOpenChange: setOpen,
+    onOpenChange: setUncontrolledOpen,
     whileElementsMounted: (referenceEl, floatingEl, update) =>
       autoUpdate(referenceEl, floatingEl, update, {
         animationFrame: followTrigger,
@@ -102,12 +98,12 @@ const useTooltip = ({
   const context = data.context;
 
   const hover = useHover(context, {
-    // enabled: false,
+    enabled: controlledOpen == null,
     delay: {
-      open: 20,
-      close: 300,
+      open: 50,
+      close: 250,
     },
-    handleClose: safePolygon(),
+    handleClose: safePolygon({ buffer: -Infinity }),
   });
   const focus = useFocus(context, {
     enabled: controlledOpen == null,
@@ -122,11 +118,11 @@ const useTooltip = ({
   return React.useMemo(
     () => ({
       open,
-      setOpen,
+      setUncontrolledOpen,
       ...interactions,
       ...data,
     }),
-    [open, setOpen, interactions, data],
+    [open, interactions, data],
   );
 };
 
@@ -134,9 +130,12 @@ const TooltipComponent = ({
   content,
   children,
   portal = false,
-  ...options
+  placement = 'top',
+  followTrigger = false,
+  visible: controlledOpen,
+  ...rest
 }: TooltipOwnProps & TooltipOptions) => {
-  const tooltip = useTooltip(options);
+  const tooltip = useTooltip({ placement, controlledOpen, followTrigger });
   const context = useGlobals();
 
   const portalTo =
@@ -152,6 +151,7 @@ const TooltipComponent = ({
       ref={tooltip.refs.setFloating}
       style={tooltip.floatingStyles}
       {...tooltip.getFloatingProps()}
+      {...rest}
     >
       {content}
     </Box>
