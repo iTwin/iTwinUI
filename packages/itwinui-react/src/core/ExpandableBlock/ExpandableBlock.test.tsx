@@ -10,7 +10,14 @@ import { ExpandableBlock } from './ExpandableBlock.js';
 
 it('should render correctly in its most basic state', () => {
   const { container } = render(
-    <ExpandableBlock title='test title'>content</ExpandableBlock>,
+    <ExpandableBlock>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
+    </ExpandableBlock>,
   );
 
   const expandableBlock = container.querySelector(
@@ -25,14 +32,18 @@ it('should render correctly in its most basic state', () => {
 
 it('should render with caption', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' caption='test caption'>
-      content
+    <ExpandableBlock>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+          <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
-  const expandableBlock = container.querySelector(
-    '.iui-expandable-block.iui-with-caption',
-  );
+  const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
   expect(
     container.querySelector('.iui-expandable-block-label .iui-title'),
@@ -44,8 +55,8 @@ it('should render with caption', () => {
 
 it('should render content when expanded', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' isExpanded={true}>
-      test content
+    <ExpandableBlock isExpanded={true}>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
@@ -63,12 +74,13 @@ it('should render content when expanded', () => {
 it('should trigger onToggle when clicked only on header', () => {
   const onToggleMock = jest.fn();
   const { container } = render(
-    <ExpandableBlock
-      title='test title'
-      onToggle={onToggleMock}
-      isExpanded={true}
-    >
-      test content
+    <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
@@ -88,12 +100,13 @@ it('should trigger onToggle when clicked only on header', () => {
 it('should trigger onToggle when clicked with Enter or Spacebar', () => {
   const onToggleMock = jest.fn();
   const { container } = render(
-    <ExpandableBlock
-      title='test title'
-      onToggle={onToggleMock}
-      isExpanded={true}
-    >
-      test content
+    <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
@@ -122,8 +135,14 @@ it.each(['positive', 'negative', 'warning', 'informational'] as const)(
   'should set %s status',
   (status) => {
     const { container, queryByText } = render(
-      <ExpandableBlock title='test title' status={status}>
-        content
+      <ExpandableBlock status={status}>
+        <ExpandableBlock.Header>
+          <ExpandableBlock.LabelArea>
+            <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+          </ExpandableBlock.LabelArea>
+          <ExpandableBlock.EndIcon />
+        </ExpandableBlock.Header>
+        <ExpandableBlock.Content>content</ExpandableBlock.Content>
       </ExpandableBlock>,
     );
     expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
@@ -142,8 +161,16 @@ it.each(['positive', 'negative', 'warning', 'informational'] as const)(
 
 it('should render with custom endIcon', () => {
   const { container, queryByText } = render(
-    <ExpandableBlock title='test title' endIcon={<SvgPlaceholder />}>
-      content
+    <ExpandableBlock>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+        <ExpandableBlock.EndIcon>
+          <SvgPlaceholder />
+        </ExpandableBlock.EndIcon>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
@@ -159,8 +186,13 @@ it('should render with custom endIcon', () => {
 
 it('should render small size', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' size='small'>
-      content
+    <ExpandableBlock size='small'>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   const expandableBlock = container.querySelector(
@@ -172,8 +204,13 @@ it('should render small size', () => {
 
 it('should render borderless', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' styleType='borderless'>
-      content
+    <ExpandableBlock styleType='borderless'>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   expect(container.querySelector('.iui-expandable-block')).toHaveClass(
@@ -184,8 +221,13 @@ it('should render borderless', () => {
 it('should respect disabled prop', () => {
   const onToggleMock = jest.fn();
   const { getByRole } = render(
-    <ExpandableBlock title='test title' onToggle={onToggleMock} disabled>
-      test content
+    <ExpandableBlock onToggle={onToggleMock} disabled>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   const header = getByRole('button');
