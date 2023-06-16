@@ -19,7 +19,8 @@ import {
   safePolygon,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import { Box, getDocument, useGlobals } from '../utils/index.js';
+import { Box, getDocument, useGlobals, useMergedRefs } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import ReactDOM from 'react-dom';
 
 type TooltipOptions = {
@@ -126,16 +127,25 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 };
 
-const TooltipComponent = ({
-  content,
-  children,
-  portal = false,
-  placement = 'top',
-  followTrigger = false,
-  visible: controlledOpen,
-  ...rest
-}: TooltipOwnProps & TooltipOptions) => {
-  const tooltip = useTooltip({ placement, controlledOpen, followTrigger });
+/**
+ * Basic tooltip component to display informative content when an element is hovered or focused.
+ * Uses [FloatingUI](https://floating-ui.com/).
+ * @example
+ * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
+ */
+export const Tooltip = React.forwardRef((props, ref) => {
+  const {
+    content,
+    children,
+    portal = false,
+    placement = 'top',
+    followTrigger = false,
+    style,
+    className,
+    visible,
+    ...rest
+  } = props;
+  const tooltip = useTooltip({ placement, visible, followTrigger });
   const context = useGlobals();
 
   const portalTo =
@@ -147,9 +157,9 @@ const TooltipComponent = ({
 
   const contentBox = (
     <Box
-      className={cx('iui-tooltip')}
-      ref={tooltip.refs.setFloating}
-      style={tooltip.floatingStyles}
+      className={cx('iui-tooltip', className)}
+      ref={useMergedRefs(tooltip.refs.setFloating, ref)}
+      style={{ ...tooltip.floatingStyles, ...style }}
       {...tooltip.getFloatingProps()}
       {...rest}
     >
@@ -175,12 +185,6 @@ const TooltipComponent = ({
         : null}
     </>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
 
-/**
- * Basic tooltip component to display informative content when an element is hovered or focused.
- * Uses [FloatingUI](https://floating-ui.com/).
- * @example
- * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
- */
-export const Tooltip = TooltipComponent;
+export default Tooltip;
