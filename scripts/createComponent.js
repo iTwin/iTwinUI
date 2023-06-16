@@ -231,7 +231,7 @@ const demoHtmlFactory = (directory, componentName) => {
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
   </head>
-  <body class="iui-root">
+  <body class="iui-root" data-iui-theme>
     <theme-button></theme-button>
     <h1>${componentName}</h1>
     <hr />
