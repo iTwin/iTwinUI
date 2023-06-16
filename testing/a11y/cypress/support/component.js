@@ -28,4 +28,9 @@ import { mount } from 'cypress/react18';
 Cypress.Commands.add('mount', mount);
 
 // Example use:
-// cy.mount(<MyComponent />)
+// cy.mount(<MyComponent />)\
+
+// Importing CSS
+
+import '@itwin/itwinui-css/global';
+import '@itwin/itwinui-variables';

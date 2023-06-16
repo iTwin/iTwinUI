@@ -11,6 +11,8 @@
   "dependencies": {
     "cypress": "^12.14.0",
     "examples": "*",
-    "@itwin/itwinui-react": "3.0.0-dev.3"
+    "@itwin/itwinui-react": "3.0.0-dev.3",
+    "@itwin/itwinui-css": "2.0.0-dev.3",
+    "@itwin/itwinui-variables": "2.1.0-dev.0"
   }
 }
