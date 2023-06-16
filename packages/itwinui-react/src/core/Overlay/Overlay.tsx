@@ -3,12 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import {
-  Box,
-  polymorphic,
-  type PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+import { Box, polymorphic } from '../utils/index.js';
 import cx from 'classnames';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type OverlayComponentProps = {
   /**
@@ -23,12 +20,11 @@ type OverlayComponentProps = {
 
 // --------------------------------------------------------------------------------
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const OverlayComponent = React.forwardRef((props, forwardedRef) => {
   const { content, children, ...rest } = props;
 
   return (
-    <OverlayWrapper {...rest}>
+    <OverlayWrapper ref={forwardedRef} {...rest}>
       <OverlayMessage>{content}</OverlayMessage>
       <OverlayHiddenContent>{children}</OverlayHiddenContent>
     </OverlayWrapper>
@@ -40,8 +36,9 @@ OverlayComponent.displayName = 'Overlay';
 
 const OverlayHiddenContent = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
+  useInertPolyfill();
   return (
-    <Box {...{ inert: '', loading: 'lazy' }} ref={ref} {...rest}>
+    <Box {...{ inert: '' }} ref={ref} {...rest}>
       {children}
     </Box>
   );
@@ -100,3 +97,19 @@ export const Overlay = Object.assign(OverlayComponent, {
    */
   Overlay: OverlayMessage,
 });
+
+const useInertPolyfill = () => {
+  const loaded = React.useRef(false);
+  const modulePath = 'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2';
+
+  React.useEffect(() => {
+    async () => {
+      if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
+        await import(modulePath).catch((error) => {
+          console.log(error);
+        });
+        loaded.current = true;
+      }
+    };
+  }, []);
+};

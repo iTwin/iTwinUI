@@ -16,16 +16,6 @@ it('should render in its most basic state', () => {
   expect(overlay).toBeTruthy();
 });
 
-// it('should respect inert attribute', () => {
-//   render(<Overlay.HiddenContent>content</Overlay.HiddenContent>);
-//   expect(screen.getByRole('overlay')).toHaveAttribute('inert');
-// });
-
-// it('should respect overlay attribute', () => {
-//   render(<Overlay.Overlay>message</Overlay.Overlay>);
-//   expect(screen.getByRole('overlay')).toHaveAttribute('iui-overlay');
-// });
-
 it('should work with subcomponents', () => {
   render(
     <Overlay.Wrapper>
