@@ -179,7 +179,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx('iui-expandable-header', className)}
+      className={cx('iui-header', className)}
       role='button'
       aria-expanded={isExpanded}
       aria-disabled={disabled}

@@ -186,7 +186,7 @@
 .iui-expandable-block {
   @include iui-expandable-block;
 
-  > .iui-expandable-header {
+  > .iui-header {
     @include iui-expandable-block-header;
 
     > .iui-icon {
