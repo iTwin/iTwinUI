@@ -148,7 +148,11 @@ export const Thumb = (props: ThumbProps) => {
   const { style, className, ...rest } = thumbProps || {};
 
   return (
-    <Tooltip placement='top' followTrigger {...tooltipProps}>
+    <Tooltip
+      placement='top'
+      updateOptions={{ animationFrame: true }}
+      {...tooltipProps}
+    >
       <Box
         {...rest}
         data-index={index}
