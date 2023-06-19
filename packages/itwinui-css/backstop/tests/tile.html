@@ -109,7 +109,10 @@
     </script>
   </head>
 
-  <body class="iui-root">
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
     <theme-button></theme-button>
     <h1>Tile</h1>
     <hr />
@@ -1363,26 +1366,10 @@
 
       <div class="iui-tile iui-loading">
         <div class="iui-tile-name">
-          <div class="iui-progress-indicator-radial iui-determinate iui-tile-status-icon">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 40 40"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="20"
-                cy="20"
-                r="15.91549"
-              ></circle>
-              <circle
-                class="iui-fill"
-                cx="20"
-                cy="20"
-                r="15.91549"
-                style="stroke-dashoffset: 20"
-              ></circle>
-            </svg>
+          <div
+            class="iui-progress-indicator-radial iui-indeterminate iui-tile-status-icon"
+            data-iui-size="x-small"
+          >
           </div>
           <span class="iui-tile-name-label">alpha.dgn</span>
         </div>
@@ -1640,26 +1627,10 @@
 
         <div class="iui-tile-content ">
           <div class="iui-tile-name">
-            <div class="iui-progress-indicator-radial iui-determinate iui-tile-status-icon">
-              <svg
-                class="iui-radial"
-                viewBox="0 0 40 40"
-                aria-hidden="true"
-              >
-                <circle
-                  class="iui-track"
-                  cx="20"
-                  cy="20"
-                  r="15.91549"
-                ></circle>
-                <circle
-                  class="iui-fill"
-                  cx="20"
-                  cy="20"
-                  r="15.91549"
-                  style="stroke-dashoffset: 20"
-                ></circle>
-              </svg>
+            <div
+              class="iui-progress-indicator-radial iui-indeterminate iui-tile-status-icon"
+              data-iui-size="x-small"
+            >
             </div>
             <span class="iui-tile-name-label">Folder name</span>
           </div>
