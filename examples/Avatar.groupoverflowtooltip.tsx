@@ -25,7 +25,7 @@ export default () => {
   ];
 
   /**
-   * Ref is set on the last avatar for Tooltip positioning.
+   * Ref is set on the last avatar for tooltip positioning.
    */
   const avatarRef = React.useRef<HTMLDivElement>(null);
 
