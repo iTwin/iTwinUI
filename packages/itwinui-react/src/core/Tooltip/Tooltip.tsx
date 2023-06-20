@@ -10,6 +10,7 @@ import {
   offset,
   flip,
   shift,
+  useClick,
   useHover,
   useFocus,
   useDismiss,
@@ -75,6 +76,7 @@ type TooltipOwnProps = {
   /**
    * Element to portal tooltip to.
    * Portals to ThemeProvider portalContainerRef by default.
+   * @default true;
    */
   portal?: boolean | { to: HTMLElement };
 };
@@ -127,13 +129,17 @@ const useTooltip = (options: TooltipOptions = {}) => {
     enabled: controlledOpen == null,
   });
 
+  const click = useClick(context, {
+    enabled: controlledOpen == null,
+  });
+
   const dismiss = useDismiss(context, {
     enabled: controlledOpen == null,
   });
 
   const role = useRole(context, { role: 'tooltip' });
 
-  const interactions = useInteractions([hover, focus, dismiss, role]);
+  const interactions = useInteractions([click, hover, focus, dismiss, role]);
 
   return React.useMemo(
     () => ({
