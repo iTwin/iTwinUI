@@ -39,7 +39,7 @@ type CheckboxProps = {
   /**
    * Input props for wrapper.
    */
-  wrapperProps?: React.ComponentProps<'input'>;
+  wrapperProps?: React.ComponentProps<'label'>;
 };
 
 /**
