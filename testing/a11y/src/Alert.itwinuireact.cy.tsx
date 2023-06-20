@@ -1,8 +1,9 @@
 import React from 'react';
 import { Alert } from '@itwin/itwinui-react';
+import 'cypress-axe';
 
 describe('Alert', () => {
-  it('mounts', () => {
+  it('is a11y compliant', () => {
     // see: https://on.cypress.io/mounting-react
     cy.mount(
       <Alert type='informational' style={{ minWidth: 'min(100%, 350px)' }}>
@@ -16,5 +17,8 @@ describe('Alert', () => {
         <Alert.CloseButton onClick={() => console.log('CLOSED')} />
       </Alert>,
     );
+    // A11Y Tests
+    cy.injectAxe();
+    cy.checkA11y();
   });
 });
