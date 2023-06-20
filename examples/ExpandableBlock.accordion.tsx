@@ -9,15 +9,15 @@ export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Block #1' />
+        <ExpandableBlock.Header label='Block #1' expandIcon />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Block #2' />
+        <ExpandableBlock.Header label='Block #2' expandIcon />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Block #3' />
+        <ExpandableBlock.Header label='Block #3' expandIcon />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
     </div>

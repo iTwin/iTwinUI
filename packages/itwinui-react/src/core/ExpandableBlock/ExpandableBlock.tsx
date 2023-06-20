@@ -150,10 +150,11 @@ ExpandableBlockComponent.displayName = 'ExpandableBlock';
 // ExpandableBlock.Header component
 type ExpandableBlockHeaderOwnProps = {
   label?: React.ReactNode;
+  expandIcon?: React.ReactNode;
 };
 
 const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
-  const { className, children, label, ...rest } = props;
+  const { className, children, label, expandIcon, ...rest } = props;
   const { isExpanded, setExpanded, disabled, onToggle } = useSafeContext(
     ExpandableBlockContext,
   );
@@ -192,16 +193,31 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       {...rest}
     >
-      <SvgChevronRight className='iui-icon' aria-hidden />
       {children ?? (
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
-        </ExpandableBlock.LabelArea>
+        <>
+          {expandIcon && <ExpandableBlock.ExpandIcon />}
+          <ExpandableBlock.LabelArea>
+            <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
+          </ExpandableBlock.LabelArea>
+        </>
       )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockHeaderOwnProps>;
 ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
+
+// ----------------------------------------------------------------------------
+// ExpandableBlock.ExpandIcon component
+
+const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
+  const { className, children, ...rest } = props;
+  return (
+    <Box className={cx('iui-icon', className)} ref={forwardedRef} {...rest}>
+      {children ?? <SvgChevronRight aria-hidden />}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div'>;
+ExpandableBlockExpandIcon.displayName = 'ExpandableBlock.ExpandIcon';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.LabelArea component
@@ -273,6 +289,7 @@ ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
  * @example
  *  <ExpandableBlock>
  *    <ExpandableBlock.Header>
+ *    <ExpandableBlock.ExpandIcon/>
  *      <ExpandableBlock.LabelArea>
  *        <ExpandableBlock/>
  *        <ExpandableBlock.Caption/>
@@ -292,6 +309,10 @@ export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
    * </ExpandableBlock.Header>
    */
   Header: ExpandableBlockHeader,
+  /**
+   * The expanding icon on the left of header
+   */
+  ExpandIcon: ExpandableBlockExpandIcon,
   /**
    * `LabelArea` subcomponent that contains `Title` and `Caption`
    * @example

@@ -29,7 +29,7 @@ export default {
 export const Basic: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock {...args}>
-      <ExpandableBlock.Header label='Basic Block' />
+      <ExpandableBlock.Header label='Basic Block' expandIcon />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
@@ -43,6 +43,7 @@ export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock {...args}>
       <ExpandableBlock.Header>
+        <ExpandableBlock.ExpandIcon />
         <ExpandableBlock.LabelArea>
           <ExpandableBlock.Title>Basic Block</ExpandableBlock.Title>
           <ExpandableBlock.Caption>basic caption</ExpandableBlock.Caption>
@@ -83,7 +84,10 @@ export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
           onToggle={(isExpanding) => toggleHandler(isExpanding, index)}
           {...args}
         >
-          <ExpandableBlock.Header label={`Basic Block #${index + 1}`} />
+          <ExpandableBlock.Header
+            label={`Basic Block #${index + 1}`}
+            expandIcon
+          />
           <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
         </ExpandableBlock>
       ))}
@@ -100,6 +104,7 @@ export const StatusIcon: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock status='positive' {...args}>
       <ExpandableBlock.Header>
+        <ExpandableBlock.ExpandIcon />
         <ExpandableBlock.LabelArea>
           <ExpandableBlock.Title>Basic Block With Status</ExpandableBlock.Title>
         </ExpandableBlock.LabelArea>
@@ -118,7 +123,7 @@ StatusIcon.args = {
 export const Small: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock size='small' {...args}>
-      <ExpandableBlock.Header label='Basic Block' />
+      <ExpandableBlock.Header label='Basic Block' expandIcon />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
@@ -131,7 +136,7 @@ Small.args = {
 export const Borderless: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock styleType='borderless' {...args}>
-      <ExpandableBlock.Header label='Basic Block' />
+      <ExpandableBlock.Header label='Basic Block' expandIcon />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
@@ -144,7 +149,7 @@ Borderless.args = {
 export const Disabled: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock disabled {...args}>
-      <ExpandableBlock.Header label='Disabled Block' />
+      <ExpandableBlock.Header label='Disabled Block' expandIcon />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );

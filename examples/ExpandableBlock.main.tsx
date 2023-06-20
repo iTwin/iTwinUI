@@ -9,7 +9,7 @@ export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Expandable Block' />
+        <ExpandableBlock.Header label='Expandable Block' expandIcon />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
     </div>

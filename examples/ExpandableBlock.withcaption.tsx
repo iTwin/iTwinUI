@@ -10,6 +10,7 @@ export default () => {
     <div style={{ width: 'min(100%, 300px)' }}>
       <ExpandableBlock size='small'>
         <ExpandableBlock.Header>
+          <ExpandableBlock.ExpandIcon />
           <ExpandableBlock.LabelArea>
             <ExpandableBlock.Title>Expandable Block</ExpandableBlock.Title>
             <ExpandableBlock.Caption>With caption!</ExpandableBlock.Caption>
