@@ -41,7 +41,6 @@ type TooltipOptions = {
     ancestorScroll?: boolean;
     ancestorResize?: boolean;
     elementResize?: boolean;
-    layoutShift?: boolean;
     /**
      * Use this if you want Tooltip to follow moving trigger element
      * @default false;
@@ -84,12 +83,12 @@ type TooltipOwnProps = {
 const useTooltip = (options: TooltipOptions = {}) => {
   const {
     placement,
-    updateOptions = {},
     visible: controlledOpen,
     middleware = {
       flip: true,
       shift: true,
     },
+    updateOptions = {},
   } = options;
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
@@ -102,6 +101,9 @@ const useTooltip = (options: TooltipOptions = {}) => {
     whileElementsMounted: (referenceEl, floatingEl, update) =>
       autoUpdate(referenceEl, floatingEl, update, {
         animationFrame: updateOptions.animationFrame,
+        ancestorScroll: updateOptions.ancestorScroll,
+        ancestorResize: updateOptions.ancestorResize,
+        elementResize: updateOptions.elementResize,
       }),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),

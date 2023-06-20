@@ -7,6 +7,7 @@ import {
   render,
   waitForElementToBeRemoved,
   fireEvent,
+  act,
 } from '@testing-library/react';
 import * as React from 'react';
 import { WorkflowDiagram } from './WorkflowDiagram.js';
@@ -65,6 +66,7 @@ it('should display tooltip upon hovering step if description provided', async ()
   expect(document.querySelector('.iui-tooltip')).toBeNull();
   expect(screen.queryByText('Step one tooltip')).toBeNull();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
+  act(() => void jest.advanceTimersByTime(50));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
   expect(tooltip).toBeVisible();
   expect(tooltip).toHaveTextContent('Step one tooltip');
@@ -73,6 +75,7 @@ it('should display tooltip upon hovering step if description provided', async ()
   await waitForElementToBeRemoved(tooltip);
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
+  act(() => void jest.advanceTimersByTime(50));
   expect(document.querySelector('.iui-tooltip')).toBeNull();
 
   jest.useRealTimers();
