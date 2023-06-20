@@ -32,6 +32,12 @@
       @include radial.iui-progress-indicator-radial-indeterminate;
     }
   }
+
+  &::after {
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
+  }
 }
 
 .iui-progress-indicator-linear-wrapper {

@@ -31,10 +31,6 @@
     mask-composite: subtract;
     mask-clip: border-box, content-box;
     background-color: var(--iui-color-border-accent);
-
-    @media (forced-colors: active) {
-      background-color: CanvasText;
-    }
   }
 
   &::before,

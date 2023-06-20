@@ -47,12 +47,17 @@
   overflow: hidden;
   background-color: var(--iui-color-border);
 
+  @media (forced-colors: active) {
+    border: 1px solid;
+  }
+
   &::after {
     content: '';
     position: absolute;
     inset: 0;
     width: var(--iui-progress-percentage, 100%);
     background-color: var(--iui-color-border-accent);
+    forced-color-adjust: none;
   }
 
   @each $status in positive, negative {
