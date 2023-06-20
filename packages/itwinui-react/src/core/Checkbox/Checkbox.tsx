@@ -36,6 +36,10 @@ type CheckboxProps = {
    * @default false
    */
   isLoading?: boolean;
+  /**
+   * Input props for wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'input'>;
 };
 
 /**
@@ -60,6 +64,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
     variant = 'default',
     setFocus,
     isLoading = false,
+    wrapperProps = {},
     style,
     ...rest
   } = props;
@@ -104,6 +109,12 @@ export const Checkbox = React.forwardRef((props, ref) => {
     </>
   );
 
+  const {
+    className: wrapperClassName,
+    style: wrapperStyle,
+    ...restWrapperProps
+  } = wrapperProps;
+
   return !label ? (
     checkbox
   ) : (
@@ -116,9 +127,10 @@ export const Checkbox = React.forwardRef((props, ref) => {
           [`iui-${status}`]: !!status,
           'iui-loading': isLoading,
         },
-        className,
+        wrapperClassName,
       )}
-      style={style}
+      style={wrapperStyle}
+      {...restWrapperProps}
     >
       {checkbox}
       {label && (
