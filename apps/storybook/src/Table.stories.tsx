@@ -4041,7 +4041,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
             startIcon={props.cellProps.row.original.startIcon}
             endIcon={
               props.cellProps.row.original.isLoading ? (
-                <ProgressRadial value={40} />
+                <ProgressRadial value={40} size='small' />
               ) : (
                 props.cellProps.row.original.endIcon
               )
