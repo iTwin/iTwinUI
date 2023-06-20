@@ -9,8 +9,11 @@
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
+    "@itwin/itwinui-react": "3.0.0-dev.3",
     "cypress": "^12.14.0",
-    "examples": "*",
-    "@itwin/itwinui-react": "3.0.0-dev.3"
+    "examples": "*"
+  },
+  "devDependencies": {
+    "cypress-axe": "^1.4.0"
   }
 }
