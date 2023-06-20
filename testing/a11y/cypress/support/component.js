@@ -32,5 +32,6 @@ Cypress.Commands.add('mount', mount);
 
 // Importing CSS
 
+import '@itwin/itwinui-css';
 import '@itwin/itwinui-react/styles.css';
 import '@itwin/itwinui-variables';
