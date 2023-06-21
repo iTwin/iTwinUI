@@ -183,7 +183,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx('iui-header', className)}
+      className={cx('iui-expandable-header', className)}
       role='button'
       aria-expanded={isExpanded ?? !disabled}
       aria-disabled={disabled}
@@ -212,7 +212,11 @@ ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
 const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
   return (
-    <Box className={cx('iui-icon', className)} ref={forwardedRef} {...rest}>
+    <Box
+      className={cx('iui-expandable-block-icon', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children ?? <SvgChevronRight aria-hidden />}
     </Box>
   );

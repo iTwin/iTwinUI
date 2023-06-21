@@ -186,10 +186,10 @@
 .iui-expandable-block {
   @include iui-expandable-block;
 
-  > .iui-header {
+  > .iui-expandable-header {
     @include iui-expandable-block-header;
 
-    > .iui-icon {
+    > .iui-expandable-block-icon {
       @include iui-expandable-block-header-icons('expander');
     }
 
