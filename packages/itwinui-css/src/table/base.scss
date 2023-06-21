@@ -265,7 +265,7 @@
       color: var(--iui-color-text-disabled);
 
       img,
-      svg:not(.iui-radial),
+      svg,
       .iui-avatar {
         filter: var(--_iui-table-cell-image-filter);
       }
@@ -459,7 +459,7 @@
     justify-content: center;
     fill: var(--_iui-table-cell-icon-fill);
 
-    svg:not(.iui-radial) {
+    svg {
       @include mixins.iui-icon-style('m');
     }
   }
@@ -474,7 +474,7 @@
     margin-right: var(--iui-size-s);
     margin-left: auto;
 
-    :where(svg:not(.iui-radial)) {
+    :where(svg) {
       fill: var(--_iui-table-cell-icon-fill);
     }
   }
