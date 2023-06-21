@@ -429,7 +429,7 @@ TileButtons.displayName = 'Tile.Buttons';
  */
 export const Tile = Object.assign(TileComponent, {
   /**
-   *ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
+   * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
    * @example
    * <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture/>
