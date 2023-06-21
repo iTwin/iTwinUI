@@ -80,8 +80,9 @@
   }
 
   &.iui-truncate {
-    @include mixins.iui-line-clamp(1);
-    color: var(--iui-color-text-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &.iui-scroll {
