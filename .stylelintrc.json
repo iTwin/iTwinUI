@@ -3,7 +3,7 @@
   "plugins": ["stylelint-use-logical"],
   "rules": {
     "color-hex-case": "upper",
-    "csstools/use-logical": "(always || true) || (ignore || false || null)",
+    "csstools/use-logical": "always",
     "declaration-block-semicolon-newline-after": "always-multi-line",
     "declaration-property-value-disallowed-list": {
       "border": ["/^0/"],
