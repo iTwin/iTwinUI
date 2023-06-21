@@ -81,6 +81,7 @@
 
   &.iui-truncate {
     @include mixins.iui-line-clamp(1);
+    color: var(--iui-color-text-muted);
   }
 
   &.iui-scroll {
