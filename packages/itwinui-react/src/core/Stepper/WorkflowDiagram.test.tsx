@@ -2,13 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import {
-  screen,
-  render,
-  waitForElementToBeRemoved,
-  fireEvent,
-  act,
-} from '@testing-library/react';
+import { screen, render, fireEvent, act } from '@testing-library/react';
 import * as React from 'react';
 import { WorkflowDiagram } from './WorkflowDiagram.js';
 
@@ -72,7 +66,7 @@ it('should display tooltip upon hovering step if description provided', async ()
   expect(tooltip).toHaveTextContent('Step one tooltip');
 
   fireEvent.mouseLeave(screen.getByText('Step One'), { bubbles: true });
-  await waitForElementToBeRemoved(tooltip);
+  act(() => void jest.advanceTimersByTime(250));
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
   act(() => void jest.advanceTimersByTime(50));
