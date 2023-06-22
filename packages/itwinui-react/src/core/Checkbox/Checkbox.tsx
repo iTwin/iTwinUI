@@ -40,10 +40,6 @@ type CheckboxProps = {
    * Input props for Checkbox wrapper.
    */
   wrapperProps?: React.ComponentProps<'label'>;
-  /**
-   * Input props for Checkbox box.
-   */
-  boxProps?: React.ComponentProps<'input'>;
 };
 
 /**
@@ -60,7 +56,7 @@ type CheckboxProps = {
  */
 export const Checkbox = React.forwardRef((props, ref) => {
   const {
-    // className,
+    className,
     disabled = false,
     indeterminate = false,
     label,
@@ -69,9 +65,8 @@ export const Checkbox = React.forwardRef((props, ref) => {
     setFocus,
     isLoading = false,
     wrapperProps = {},
-    boxProps = {},
-    // style,
-    // ...rest
+    style,
+    ...rest
   } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
@@ -92,13 +87,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
     }
   });
 
-  const {
-    className: boxClassName,
-    style: boxStyle,
-    disabled: boxDisabled,
-    ...restBoxProps
-  } = boxProps;
-
   const checkbox = (
     <>
       <Box
@@ -109,13 +97,13 @@ export const Checkbox = React.forwardRef((props, ref) => {
             'iui-checkbox-visibility': variant === 'eyeball',
             'iui-loading': isLoading,
           },
-          boxClassName && { [boxClassName]: !label },
+          className && { [className]: !label },
         )}
-        style={boxStyle}
-        disabled={boxDisabled || isLoading}
+        style={!label ? style : undefined}
+        disabled={disabled || isLoading}
         type='checkbox'
         ref={refs}
-        {...restBoxProps}
+        {...rest}
       />
       {isLoading && <ProgressRadial size='x-small' indeterminate />}
     </>
