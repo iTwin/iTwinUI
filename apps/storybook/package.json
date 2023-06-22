@@ -31,7 +31,7 @@
     "sb": "~7.0.2",
     "storybook-dark-mode": "^3.0.0",
     "typescript": "^4.6.3",
-    "vite": "^4.1.1"
+    "vite": "^4.1.5"
   },
   "scripts": {
     "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
