@@ -187,6 +187,19 @@ it('renders correctly with visibility checkbox', () => {
   expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
 });
 
+// wrapperProps test
+
+it('correctly passes className through wrapperProps', () => {
+  const { container } = render(
+    <Checkbox label='some label' wrapperProps={{ className: 'some-box' }} />,
+  );
+
+  assertBaseElements(container);
+  expect(container.querySelector('label')).toHaveClass(
+    'iui-checkbox-wrapper some-box',
+  );
+});
+
 it.each(['', 'not'] as const)(
   'should %s stop propagation correctly if %s used with label',
   async (labelPresent) => {
