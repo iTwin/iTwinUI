@@ -115,6 +115,7 @@ it.each(['label', 'input'] as const)(
     const { container } = render(
       <Checkbox
         label={el === 'label' ? 'Some label' : undefined}
+        wrapperProps={{ style: { color: 'blue' } }}
         style={{ color: 'blue' }}
       />,
     );
