@@ -9,8 +9,8 @@
     background-color: transparent;
 
     &::after {
-      bottom: 0;
-      right: 0;
+      inset-block-end: 0;
+      inset-inline-end: 0;
     }
 
     &:hover {
@@ -23,15 +23,15 @@
   }
 
   .iui-horizontal & ~ .iui-tabs-content {
-    margin-top: calc(0px - var(--iui-size-3xs));
-    border-top: var(--iui-size-3xs) solid var(--iui-color-border);
+    margin-block-start: calc(0px - var(--iui-size-3xs));
+    border-block-start: var(--iui-size-3xs) solid var(--iui-color-border);
   }
 
   .iui-vertical & ~ .iui-tabs-content {
-    margin-left: calc(0px - var(--iui-size-3xs));
-    padding-left: var(--iui-size-s);
-    padding-right: var(--iui-size-s);
-    border-left: var(--iui-size-3xs) solid var(--iui-color-border);
+    margin-inline-start: calc(0px - var(--iui-size-3xs));
+    padding-inline: var(--iui-size-s);
+    border-inline-start: var(--iui-size-s);
+    min-block-size: var(--iui-size-3xs) solid var(--iui-color-border);
   }
 
   &.iui-green {
@@ -42,7 +42,7 @@
 
   &.iui-large {
     .iui-tab {
-      min-height: calc(var(--iui-size-m) * 3.5);
+      min-block-size: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {

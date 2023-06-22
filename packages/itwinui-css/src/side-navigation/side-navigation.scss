@@ -11,9 +11,9 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   display: inline-flex;
   flex: 0 0 auto;
   flex-direction: column;
-  height: 100%;
+  block-size: 100%;
   background-color: var(--iui-color-background);
-  border-right: 2px solid var(--iui-color-border);
+  border-inline-end: 2px solid var(--iui-color-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width var(--iui-duration-1) ease-out;
   }
@@ -22,7 +22,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    width: 100%;
+    inline-size: 100%;
 
     > .iui-top,
     > .iui-bottom {
@@ -33,11 +33,11 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     > .iui-top {
       .iui-sidenav-button:first-of-type {
-        border-top: none;
+        border-block-start: none;
       }
 
       .iui-sidenav-button:not(:last-of-type) {
-        border-bottom: none;
+        border-block-end: none;
       }
     }
 
@@ -45,13 +45,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       justify-content: flex-end;
 
       .iui-sidenav-button {
-        border-bottom: none;
+        border-block-end: none;
       }
     }
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      border-top: 1px solid var(--iui-color-border);
+      border-block-start: 1px solid var(--iui-color-border);
     }
   }
 
@@ -60,15 +60,15 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     $icon-large: map.get(mixins.$iui-icon-sizes, l);
 
-    min-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
-    max-width: calc($icon-large + $iui-side-navigation-icon-margins * 2);
+    min-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
+    max-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
 
     // iPhone notch support
     @supports (min-width: string.unquote('max(0px)')) {
-      min-width: string.unquote(
+      min-inline-size: string.unquote(
         'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
-      max-width: string.unquote(
+      max-inline-size: string.unquote(
         'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
       );
     }
@@ -76,7 +76,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
   &.iui-expanded,
   > .iui-sidenav-content {
-    max-width: calc(var(--iui-size-3xl) * 3);
+    max-inline-size: calc(var(--iui-size-3xl) * 3);
 
     > .iui-sidenav-button.iui-expand > .iui-button-icon {
       transform: scaleX(-1);
@@ -86,8 +86,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   .iui-sidenav-button {
     gap: $iui-side-navigation-icon-margins;
     border-radius: 0;
-    border-left: none;
-    border-right: none;
+    border-inline-start: none;
+    border-inline-end: none;
     isolation: isolate;
     justify-content: flex-start;
 
@@ -95,10 +95,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     --_iui-button-active-stripe-inset: 0 -2px 0 100%;
 
     &:not(.iui-expand) {
-      height: calc(var(--iui-size-s) * 5);
+      block-size: calc(var(--iui-size-s) * 5);
       // iPhone notch support
       @supports (padding: string.unquote('max(0px)')) {
-        padding-left: string.unquote(
+        padding-inline-start: string.unquote(
           'max(#{$iui-side-navigation-icon-margins}, #{$iui-side-navigation-icon-margins} + env(safe-area-inset-left))'
         );
       }
@@ -148,7 +148,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       --_iui-button-min-height: var(--iui-size-l);
       justify-content: center;
       border: none;
-      border-bottom: 1px solid var(--iui-color-border);
+      border-block-end: 1px solid var(--iui-color-border);
 
       > .iui-button-icon svg {
         @include mixins.iui-icon-style('s');
@@ -162,15 +162,15 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 .iui-side-navigation-submenu {
-  min-width: calc(var(--iui-size-3xl) * 2);
-  max-width: 50vw;
-  height: 100%;
+  min-inline-size: calc(var(--iui-size-3xl) * 2);
+  max-inline-size: 50vw;
+  block-size: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   overflow-y: overlay;
   resize: horizontal;
   background-color: var(--iui-color-background);
-  border-right: 1px solid var(--iui-color-border);
+  border-inline-end: 1px solid var(--iui-color-border);
 
   @include mixins.iui-transition-group;
 
@@ -185,7 +185,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   &-header {
-    height: calc(var(--iui-size-s) * 5);
+    block-size: calc(var(--iui-size-s) * 5);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -209,7 +209,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     &-actions {
       flex-shrink: 0;
-      margin-left: var(--iui-size-xs);
+      margin-inline-start: var(--iui-size-xs);
     }
   }
 }
@@ -217,5 +217,5 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 .iui-side-navigation-wrapper {
   display: flex;
   position: relative;
-  height: 100%;
+  block-size: 100%;
 }

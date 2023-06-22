@@ -8,7 +8,7 @@
   cursor: pointer;
 
   > .iui-location-marker-data-rich-body {
-    min-width: var(--iui-size-xl);
+    min-inline-size: var(--iui-size-xl);
     border-radius: var(--iui-border-radius-1);
     text-align: center;
     font-size: var(--iui-font-size-2);
@@ -23,11 +23,10 @@
       content: '';
       position: absolute;
       display: block;
-      width: 0;
-      height: 0;
-      bottom: -9px;
-      left: 0;
-      right: 0;
+      inline-size: 0;
+      block-size: 0;
+      inset-block-end: -9px;
+      inset-inline: 0;
       margin: auto;
       border-width: var(--iui-size-2xs);
       border-style: solid;

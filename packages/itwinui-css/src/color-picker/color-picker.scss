@@ -37,7 +37,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   user-select: none;
   overflow-y: auto;
   flex-direction: column;
-  max-height: calc(var(--iui-size-s) * 42);
+  max-block-size: calc(var(--iui-size-s) * 42);
   @supports (overflow-y: overlay) {
     overflow-y: overlay;
   }
@@ -47,8 +47,8 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 .iui-color-swatch {
   --iui-color-swatch-background: initial;
 
-  height: var(--iui-size-l);
-  width: var(--iui-size-l);
+  block-size: var(--iui-size-l);
+  inline-size: var(--iui-size-l);
   cursor: pointer;
   border-radius: $iui-color-swatch-border-radius;
   position: relative;
@@ -59,10 +59,10 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   &::after {
     content: '';
     position: absolute;
-    left: 0;
-    top: 0;
-    width: inherit;
-    height: inherit;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: inherit;
+    block-size: inherit;
     border-radius: inherit;
     background-color: inherit;
     box-shadow: $iui-inset-box-shadow;
@@ -89,15 +89,15 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   flex-wrap: wrap;
   align-content: flex-start;
   align-items: center;
-  min-height: var(--iui-size-l);
-  min-width: var(--iui-size-l);
+  min-block-size: var(--iui-size-l);
+  min-inline-size: var(--iui-size-l);
   gap: var(--iui-size-xs);
 
   &-wrapper {
-    max-width: $iui-color-picker-content-width;
+    max-inline-size: $iui-color-picker-content-width;
 
     &:only-child {
-      max-width: $iui-color-picker-max-width;
+      max-inline-size: $iui-color-picker-max-width;
     }
   }
 }
@@ -107,16 +107,16 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   align-items: center;
 
   &-wrapper {
-    max-width: $iui-color-picker-content-width;
+    max-inline-size: $iui-color-picker-content-width;
   }
 
   .iui-button {
-    margin-right: var(--iui-size-2xs);
+    margin-inline-end: var(--iui-size-2xs);
   }
 
   &-fields {
     display: flex;
-    width: 100%;
+    inline-size: 100%;
     gap: var(--iui-size-3xs);
 
     > * {
@@ -129,7 +129,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
     input[type='number'] {
       appearance: textfield;
-      text-align: right;
+      text-align: end;
 
       &::-webkit-inner-spin-button {
         appearance: none;
@@ -139,7 +139,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 }
 
 .iui-color-picker-section-label {
-  margin-bottom: calc(var(--iui-size-s) * 0.5);
+  margin-block-end: calc(var(--iui-size-s) * 0.5);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -149,7 +149,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 .iui-color-selection-wrapper {
   display: flex;
   flex-direction: column;
-  min-width: $iui-color-picker-content-width;
+  min-inline-size: $iui-color-picker-content-width;
 }
 
 .iui-color-field {
@@ -157,14 +157,14 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
   position: relative;
   cursor: crosshair;
-  width: 100%;
-  height: calc(var(--iui-size-s) * 17);
+  inline-size: 100%;
+  block-size: calc(var(--iui-size-s) * 17);
   forced-color-adjust: none;
   background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
     linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
 
   &:not(:last-child) {
-    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    margin-block-end: calc(var(--iui-size-s) * 0.5);
   }
 }
 
@@ -176,7 +176,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
   .iui-slider-container {
     .iui-slider-rail {
-      height: var(--iui-size-xs);
+      block-size: var(--iui-size-xs);
       forced-color-adjust: none;
       background: linear-gradient(
         to right,
@@ -191,7 +191,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     }
 
     .iui-slider-thumb {
-      top: 7px;
+      inset-block-start: 7px;
     }
   }
 }
@@ -199,21 +199,21 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 .iui-opacity-slider {
   .iui-slider-container {
     .iui-slider-rail {
-      height: var(--iui-size-xs);
+      block-size: var(--iui-size-xs);
       forced-color-adjust: none;
       @include iui-transparent-background($size: var(--iui-size-xs));
 
       &::before {
         display: block;
         content: '';
-        width: 100%;
-        height: 100%;
+        inline-size: 100%;
+        block-size: 100%;
         background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
       }
     }
 
     .iui-slider-thumb {
-      top: 7px;
+      inset-block-start: 7px;
     }
   }
 }
@@ -223,8 +223,8 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
   position: absolute;
   inset: var(--iui-color-dot-inset);
-  width: var(--iui-size-m);
-  height: var(--iui-size-m);
+  inline-size: var(--iui-size-m);
+  block-size: var(--iui-size-m);
   border-radius: 50%;
   transform: translate(calc(0px - var(--iui-size-xs)), calc(0px - var(--iui-size-xs)));
   cursor: crosshair;

@@ -40,8 +40,8 @@
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    width: var(--iui-size-xs);
-    height: var(--iui-size-xs);
+    inline-size: var(--iui-size-xs);
+    block-size: var(--iui-size-xs);
   }
 
   &::-webkit-scrollbar-thumb {
@@ -159,8 +159,8 @@
   overflow: hidden !important;
   position: absolute !important;
   white-space: nowrap !important;
-  height: 1px !important;
-  width: 1px !important;
+  block-size: 1px !important;
+  inline-size: 1px !important;
 }
 
 // setup for toggling values at runtime using the css var space toggle technique
@@ -205,8 +205,8 @@ $iui-icon-sizes: (
   flex-shrink: 0;
 
   $icon-size: map.get($iui-icon-sizes, $size);
-  width: $icon-size;
-  height: $icon-size;
+  inline-size: $icon-size;
+  block-size: $icon-size;
 }
 
 /// @arg $color Can be one of: default, informational, positive, warning, negative

@@ -9,7 +9,7 @@
 
   display: flex;
   flex-direction: column;
-  width: 100%;
+  inline-size: 100%;
   border-radius: var(--iui-border-radius-1);
 
   &:where(.iui-expanded) {
@@ -76,12 +76,12 @@
   user-select: none;
   color: var(--iui-color-text);
   font-family: inherit;
-  text-align: left;
+  text-align: start;
   background-color: var(--_iui-expandable-block-background-color);
   border: var(--_iui-expandable-block-border);
   border-radius: inherit;
-  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
-  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-end-start-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-end-end-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
   transition: background-color var(--iui-duration-1) ease-out;
   @media (forced-colors: active) {
     --_iui-expandable-block-expander-icon-fill: CanvasText;
@@ -127,8 +127,8 @@
   @include mixins.iui-icon-style('m');
 
   @if $type == 'expander' {
-    width: var(--_iui-expandable-block-expander-icon-size);
-    height: var(--_iui-expandable-block-expander-icon-size);
+    inline-size: var(--_iui-expandable-block-expander-icon-size);
+    block-size: var(--_iui-expandable-block-expander-icon-size);
     fill: var(--_iui-expandable-block-expander-icon-fill);
     transform: var(--_iui-expandable-block-expander-icon-transform, none);
     transition: fill var(--iui-duration-1) ease-out;
@@ -142,7 +142,7 @@
   display: flex;
   flex-direction: column;
   flex: auto;
-  min-width: 0;
+  min-inline-size: 0;
   font-size: var(--iui-font-size-2);
   color: var(--_iui-expandable-block-header-label-color, inherit);
 }
@@ -166,11 +166,11 @@
 @mixin iui-expandable-block-content {
   overflow: hidden;
   background-color: var(--_iui-expandable-block-background-color);
-  border-bottom: var(--_iui-expandable-block-border);
-  border-right: var(--_iui-expandable-block-border);
-  border-left: var(--_iui-expandable-block-border);
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
+  border-block-end: var(--_iui-expandable-block-border);
+  border-inline-end: var(--_iui-expandable-block-border);
+  border-inline-start: var(--_iui-expandable-block-border);
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
 
   @include mixins.iui-transition-group;
 

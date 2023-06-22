@@ -11,7 +11,7 @@
   @include mixins.iui-reset;
   display: flex;
   align-items: center;
-  height: var(--_iui-breadcrumbs-height);
+  block-size: var(--_iui-breadcrumbs-height);
 }
 
 @mixin iui-breadcrumbs-list {
@@ -20,16 +20,16 @@
   align-items: center;
   list-style-type: none;
   user-select: none;
-  height: 100%;
+  block-size: 100%;
 }
 
 @mixin iui-breadcrumbs-item {
   display: flex;
   align-items: center;
-  height: 100%;
+  block-size: 100%;
 
   > * {
-    max-width: 26ch;
+    max-inline-size: 26ch;
   }
 }
 

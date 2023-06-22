@@ -20,17 +20,17 @@
   }
   display: flex;
   flex-shrink: 0;
-  border-top-left-radius: var(--iui-border-radius-1);
-  border-top-right-radius: var(--iui-border-radius-1);
+  border-start-start-radius: var(--iui-border-radius-1);
+  border-start-end-radius: var(--iui-border-radius-1);
 }
 
 @mixin iui-table-header {
   display: flex;
   user-select: none;
-  min-width: 100%;
+  min-inline-size: 100%;
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
-  border-bottom: 1px solid var(--iui-color-border);
+  border-block-end: 1px solid var(--iui-color-border);
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -54,11 +54,11 @@
     }
 
     > .iui-table-resizer {
-      height: 100%;
-      width: var(--iui-size-m);
+      block-size: 100%;
+      inline-size: var(--iui-size-m);
       position: absolute;
-      top: 0;
-      right: 0;
+      inset-block-start: 0;
+      inset-inline-end: 0;
       transform: translateX(50%);
       touch-action: none;
       cursor: ew-resize;
@@ -66,15 +66,15 @@
       opacity: 0;
 
       > .iui-table-resizer-bar {
-        height: 100%;
-        width: var(--iui-size-3xs);
+        block-size: 100%;
+        inline-size: var(--iui-size-3xs);
         margin: 0 auto;
         transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-border);
       }
 
       &:hover > .iui-table-resizer-bar {
-        width: var(--iui-size-2xs);
+        inline-size: var(--iui-size-2xs);
         background-color: var(--iui-color-border-accent);
       }
     }
@@ -97,19 +97,19 @@
 
   .iui-table-reorder-bar {
     position: absolute;
-    height: 100%;
-    width: var(--iui-size-3xs);
+    block-size: 100%;
+    inline-size: var(--iui-size-3xs);
   }
 
   .iui-table-reorder-column-right {
     > .iui-table-reorder-bar {
-      right: 0;
+      inset-inline-end: 0;
     }
   }
 
   .iui-table-reorder-column-left {
     > .iui-table-reorder-bar {
-      left: 0;
+      inset-inline-start: 0;
     }
   }
 
@@ -140,7 +140,7 @@
 @mixin iui-table-row {
   --_iui-table-cell-icon-fill: var(--iui-color-icon-muted);
 
-  min-width: 100%;
+  min-inline-size: 100%;
   display: flex;
 
   &:last-of-type {
@@ -153,9 +153,9 @@
 
   .iui-table-body & {
     .iui-table-cell {
-      border-top: solid 1px transparent;
-      border-bottom: solid 1px transparent;
-      border-bottom-color: var(--iui-color-border);
+      border-block-start: solid 1px transparent;
+      border-block-end: solid 1px transparent;
+      border-block-end-color: var(--iui-color-border);
       background-color: var(--iui-color-background);
       transition: border var(--iui-duration-1) ease-out;
     }
@@ -182,9 +182,9 @@
       overflow: hidden;
 
       .iui-table-cell {
-        border-left-color: var(--iui-color-border);
-        border-right-color: var(--iui-color-border);
-        border-bottom-color: transparent;
+        border-inline-start-color: var(--iui-color-border);
+        border-inline-end-color: var(--iui-color-border);
+        border-block-end-color: transparent;
       }
 
       .iui-table-row-expander > .iui-button-icon {
@@ -192,16 +192,16 @@
       }
 
       + .iui-table-expanded-content {
-        border-left-color: var(--iui-color-border);
-        border-right-color: var(--iui-color-border);
+        border-inline-start-color: var(--iui-color-border);
+        border-inline-end-color: var(--iui-color-border);
       }
     }
 
     &.iui-table-expanded-content {
       overflow: hidden;
-      border-left: 1px solid transparent;
-      border-right: 1px solid transparent;
-      border-bottom: 1px solid var(--iui-color-border);
+      border-inline-start: 1px solid transparent;
+      border-inline-end: 1px solid transparent;
+      border-block-end: 1px solid var(--iui-color-border);
       flex-shrink: 0;
       @include mixins.iui-transition-group;
     }
@@ -209,7 +209,7 @@
     // #region Selection
     &:not([aria-selected='true']) + [aria-selected='true'] .iui-table-cell,
     &[aria-selected='true']:first-child .iui-table-cell {
-      border-bottom-color: transparent;
+      border-block-end-color: transparent;
     }
 
     &[aria-selected='true'] {
@@ -219,25 +219,25 @@
       }
 
       + [aria-selected='true'] .iui-table-cell {
-        border-bottom-color: transparent;
-        border-top-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-4));
+        border-block-end-color: transparent;
+        border-block-start-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-4));
       }
 
       &:last-child .iui-table-cell {
-        border-bottom-color: var(--iui-color-border-accent);
+        border-block-end-color: var(--iui-color-border-accent);
       }
 
       /* stylelint-disable-next-line selector-max-compound-selectors */
       + :not([aria-selected='true']) .iui-table-cell,
       + .iui-table-expanded-content + .iui-table-row:not([aria-selected='true']) .iui-table-cell {
-        border-top-color: var(--iui-color-border-accent);
+        border-block-start-color: var(--iui-color-border-accent);
       }
 
       + .iui-table-expanded-content {
         border-color: transparent var(--iui-color-border-accent);
 
         &:last-child {
-          border-bottom-color: var(--iui-color-border-accent);
+          border-block-end-color: var(--iui-color-border-accent);
         }
       }
     }
@@ -250,7 +250,7 @@
       > .iui-main-column::before {
         content: '•';
         position: absolute;
-        left: 0;
+        inset-inline-start: 0;
         font-size: var(--iui-font-size-4);
         color: var(--iui-color-icon-positive);
       }
@@ -306,14 +306,13 @@
   align-items: center;
   flex-wrap: wrap;
   justify-content: flex-end;
-  margin-right: var(--iui-size-s);
+  margin-inline-end: var(--iui-size-s);
 
   .iui-table-cell-end-icon {
     // Hardcoded size of the borderless button so that the icons are centered
-    width: 28px;
-    height: 28px;
-    margin-right: initial;
-    margin-left: auto;
+    inline-size: 28px;
+    block-size: 28px;
+    margin-inline: auto initial;
   }
 }
 
@@ -329,8 +328,8 @@
   background-color: var(--iui-color-background);
 
   &:last-child {
-    border-bottom-left-radius: var(--iui-border-radius-1);
-    border-bottom-right-radius: var(--iui-border-radius-1);
+    border-end-start-radius: var(--iui-border-radius-1);
+    border-end-end-radius: var(--iui-border-radius-1);
   }
 
   &.iui-zebra-striping .iui-table-row:nth-child(even):not([aria-selected='true']) .iui-table-cell {
@@ -360,26 +359,26 @@
   align-items: center;
   display: flex;
   flex-grow: 1;
-  min-width: var(--iui-size-2xl);
-  padding-left: var(--iui-size-m);
+  min-inline-size: var(--iui-size-2xl);
+  padding-inline-start: var(--iui-size-m);
   flex-basis: var(--iui-size-2xl);
   position: relative;
   word-break: break-word;
 
   &:first-of-type {
-    border-left: solid 1px transparent;
-    border-bottom-left-radius: inherit;
+    border-inline-start: solid 1px transparent;
+    border-end-start-radius: inherit;
   }
 
   &:last-of-type {
-    border-right: solid 1px transparent;
+    border-inline-end: solid 1px transparent;
   }
 
   &.iui-slot {
-    width: calc(var(--iui-size-l) * 2);
+    inline-size: calc(var(--iui-size-l) * 2);
     padding: 0;
     flex-grow: 0;
-    min-width: 0;
+    min-inline-size: 0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -392,12 +391,11 @@
   &.iui-table-cell-sticky {
     position: sticky;
     z-index: 1;
-    left: var(--iui-table-sticky-left, initial);
-    right: var(--iui-table-sticky-right, initial);
+    inset-inline: var(--iui-table-sticky-left, initial) var(--iui-table-sticky-right, initial);
   }
 
   &:not(.iui-slot):last-child {
-    padding-right: var(--iui-size-m);
+    padding-inline-end: var(--iui-size-m);
   }
 
   &[data-iui-status='positive'] {
@@ -465,14 +463,13 @@
   }
 
   .iui-table-cell-start-icon {
-    margin-right: var(--iui-size-xs);
+    margin-inline-end: var(--iui-size-xs);
   }
 
   .iui-table-cell-end-icon {
-    width: var(--iui-size-l);
-    height: var(--iui-size-l);
-    margin-right: var(--iui-size-s);
-    margin-left: auto;
+    inline-size: var(--iui-size-l);
+    block-size: var(--iui-size-l);
+    margin-inline: auto var(--iui-size-s);
 
     :where(svg) {
       fill: var(--_iui-table-cell-icon-fill);
@@ -482,16 +479,14 @@
 
 @mixin iui-table-cell-shadow-base {
   position: absolute;
-  top: -1px;
-  bottom: -1px;
-  width: var(--iui-size-l);
+  inset-block: -1px;
+  inline-size: var(--iui-size-l);
   pointer-events: none;
 
   // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
   // makes content to overflow
   .iui-table-header & {
-    top: 0;
-    bottom: 0;
+    inset-block: 0;
   }
 }
 
@@ -499,12 +494,12 @@
 @mixin iui-table-cell-shadow($side) {
   @include iui-table-cell-shadow-base;
   @if $side == left {
-    left: 0;
+    inset-inline-start: 0;
     transform: translate(-100%);
     box-shadow: inset -10px 0 5px -10px var(--iui-shadow-color);
   }
   @if $side == right {
-    right: 0;
+    inset-inline-end: 0;
     transform: translate(100%);
     box-shadow: inset 10px 0 5px -10px var(--iui-shadow-color);
   }

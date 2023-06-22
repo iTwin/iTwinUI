@@ -11,8 +11,8 @@
     border: 1px solid var(--iui-color-border);
 
     &::after {
-      top: 0;
-      left: 0;
+      inset-block-start: 0;
+      inset-inline-start: 0;
     }
 
     &:hover {
@@ -35,43 +35,43 @@
 
   .iui-horizontal & {
     .iui-tab.iui-active {
-      border-bottom-color: transparent;
+      border-block-end-color: transparent;
     }
 
     :not(:first-child) .iui-tab {
-      border-left: none;
+      border-inline-start: none;
     }
 
     ~ .iui-tabs-content {
-      margin-top: -1px;
+      margin-block-start: -1px;
     }
 
     :where(.iui-button) {
-      height: 100%;
+      block-size: 100%;
     }
   }
 
   .iui-vertical & {
     .iui-tab.iui-active {
-      border-right-color: transparent;
+      border-inline-end-color: transparent;
     }
 
     :not(:first-child) .iui-tab {
-      border-top: none;
+      border-block-start: none;
     }
 
     ~ .iui-tabs-content {
-      margin-left: -1px;
+      margin-inline-start: -1px;
     }
 
     :where(.iui-button) {
-      width: 100%;
+      inline-size: 100%;
     }
   }
 
   &.iui-large {
     .iui-tab {
-      min-height: calc(var(--iui-size-m) * 3.5);
+      min-block-size: calc(var(--iui-size-m) * 3.5);
     }
 
     .iui-tab-description {
@@ -84,8 +84,8 @@
   }
 
   ~ .iui-tabs-content {
-    padding-left: var(--iui-size-m);
-    padding-right: var(--iui-size-m);
+    padding-inline: var(--iui-size-m);
+    padding-inline-end: var(--iui-size-m);
     background-color: var(--iui-color-background);
     border: 1px solid var(--iui-color-border);
   }

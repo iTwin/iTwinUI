@@ -19,8 +19,8 @@ $icon-sizes: (
 
   &,
   svg {
-    width: var(--_iui-svg-size);
-    height: var(--_iui-svg-size);
+    inline-size: var(--_iui-svg-size);
+    block-size: var(--_iui-svg-size);
     fill: var(--_iui-svg-fill);
   }
 }
