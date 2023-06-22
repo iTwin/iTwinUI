@@ -131,6 +131,7 @@ it.each(['label', 'input'] as const)(
       <Checkbox
         label={el === 'label' ? 'Some label' : undefined}
         className='customClass'
+        wrapperProps={{ className: 'customClass' }}
       />,
     );
 
@@ -211,6 +212,7 @@ it.each(['', 'not'] as const)(
         <Checkbox
           label={labelPresent && 'label'}
           className='my-checkbox'
+          wrapperProps={{ className: 'my-checkbox' }}
           onClick={(e) => e.stopPropagation()}
           onChange={checkboxOnChange}
         />
