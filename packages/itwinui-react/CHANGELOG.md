@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.7
+
+### Patch Changes
+
+- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fix issue where a nested expandable block's expander icon would always display as expanded.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.2
+
 ## 2.11.6
 
 ### Patch Changes
