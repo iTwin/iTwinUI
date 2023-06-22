@@ -72,6 +72,7 @@
     "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles\""
   },
   "dependencies": {
+    "@floating-ui/react": "^0.24.3",
     "@itwin/itwinui-illustrations-react": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
