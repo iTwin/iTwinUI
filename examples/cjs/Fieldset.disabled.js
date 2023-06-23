@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Fieldset, LabeledInput, Flex } from '@itwin/itwinui-react';
+import { Fieldset, LabeledInput } from '@itwin/itwinui-react';
 export default () => {
   return React.createElement(
     Fieldset,

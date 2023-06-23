@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./cjs/index.js",
-    "./*": "./cjs/*"
+    ".": "./src/index.tsx",
+    "./*": "./src/*"
   }
 }
