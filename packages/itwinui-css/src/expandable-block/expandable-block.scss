@@ -214,11 +214,11 @@
 .iui-expandable-block-label {
   @include iui-expandable-block-header-label;
 
-  .iui-title {
+  .iui-expandable-block-title {
     @include iui-expandable-block-header-label-text('label');
   }
 
-  .iui-caption {
+  .iui-expandable-block-caption {
     @include iui-expandable-block-header-label-text('sublabel');
   }
 }

@@ -235,7 +235,11 @@ ExpandableBlockLabelArea.displayName = 'ExpandableBlock.LabelArea';
 const ExpandableBlockTitle = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
   return (
-    <Box className={cx('iui-title', className)} ref={forwardedRef} {...rest}>
+    <Box
+      className={cx('iui-expandable-block-title', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       {children}
     </Box>
   );
@@ -245,7 +249,7 @@ ExpandableBlockTitle.displayName = 'ExpandableBlock.Title';
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Caption component
 
-const ExpandableBlockCaption = polymorphic('iui-caption');
+const ExpandableBlockCaption = polymorphic('iui-expandable-block-caption');
 ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
 
 // ----------------------------------------------------------------------------
