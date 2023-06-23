@@ -312,7 +312,8 @@
     // Hardcoded size of the borderless button so that the icons are centered
     inline-size: 28px;
     block-size: 28px;
-    margin-inline: auto initial;
+    margin-inline: initial;
+    margin-inline-start: auto;
   }
 }
 
@@ -391,7 +392,8 @@
   &.iui-table-cell-sticky {
     position: sticky;
     z-index: 1;
-    inset-inline: var(--iui-table-sticky-left, initial) var(--iui-table-sticky-right, initial);
+    inset-inline: var(--iui-table-sticky-left, initial);
+    inset-inline-end: var(--iui-table-sticky-right, initial);
   }
 
   &:not(.iui-slot):last-child {
@@ -469,7 +471,8 @@
   .iui-table-cell-end-icon {
     inline-size: var(--iui-size-l);
     block-size: var(--iui-size-l);
-    margin-inline: auto var(--iui-size-s);
+    margin-inline: var(--iui-size-s);
+    margin-inline-start: auto;
 
     :where(svg) {
       fill: var(--_iui-table-cell-icon-fill);
