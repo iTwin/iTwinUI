@@ -4,7 +4,7 @@ description: Overlays hide content from the user with a blur effect and loading 
 layout: ./_layout.astro
 propsPath: '@itwin/itwinui-react/esm/core/Overlay/Overlay.d.ts'
 thumbnail: Overlay
-group: inputs
+group: core
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
@@ -13,7 +13,7 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Overlay.main.tsx' truncate={false}>
+<LiveExample src='Overlay.main.tsx' 
   <AllExamples.OverlayMainExample client:load />
 </LiveExample>
 
@@ -21,7 +21,7 @@ Typically the Overlay is displayed with either a `linear` or `radial` progress i
 
 ### Customizable Overlay
 
-<LiveExample src='Overlay.sub.tsx' truncate={false}>
+<LiveExample src='Overlay.sub.tsx' 
   <AllExamples.OverlaySubExample client:load />
 </LiveExample>
 
