@@ -100,7 +100,7 @@ export const Overlay = Object.assign(OverlayComponent, {
 
 const useInertPolyfill = () => {
   const loaded = React.useRef(false);
-  const modulePath = 'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2';
+  const modulePath = 'https://unpkg.com/wicg-inert@3.1.2/dist/inert.min.js';
 
   React.useEffect(() => {
     async () => {
