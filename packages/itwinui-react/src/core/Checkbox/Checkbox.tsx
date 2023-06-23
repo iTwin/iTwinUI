@@ -37,7 +37,7 @@ type CheckboxProps = {
    */
   isLoading?: boolean;
   /**
-   * Input props for Checkbox wrapper.
+   * Passes properties for Checkbox wrapper.
    */
   wrapperProps?: React.ComponentProps<'label'>;
 };
