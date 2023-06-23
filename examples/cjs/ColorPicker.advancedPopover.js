@@ -1,34 +1,31 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var utils_1 = require('@itwin/itwinui-react/esm/core/utils');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  var _a;
-  var _b = React.useState(false),
-    isOpen = _b[0],
-    setIsOpen = _b[1];
-  var _c = React.useState(
-      itwinui_react_1.ColorValue.create({ h: 0, s: 100, l: 50 }),
-    ),
-    selectedColor = _c[0],
-    setSelectedColor = _c[1];
-  var formats = ['hsl', 'rgb', 'hex'];
-  var _d = React.useState(formats[0]),
-    currentFormat = _d[0],
-    setCurrentFormat = _d[1];
-  var onColorChanged = function (color) {
+import * as React from 'react';
+import {
+  ColorBuilder,
+  ColorPalette,
+  ColorPicker,
+  ColorValue,
+  ButtonGroup,
+  ColorSwatch,
+  IconButton,
+  Button,
+} from '@itwin/itwinui-react';
+import { Popover } from '@itwin/itwinui-react/esm/core/utils';
+import { SvgSwap } from '@itwin/itwinui-icons-react';
+export default () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedColor, setSelectedColor] = React.useState(
+    ColorValue.create({ h: 0, s: 100, l: 50 }),
+  );
+  const formats = ['hsl', 'rgb', 'hex'];
+  const [currentFormat, setCurrentFormat] = React.useState(formats[0]);
+  const onColorChanged = (color) => {
     setSelectedColor(color);
   };
-  var getDisplayString = function (color) {
-    if (color === void 0) {
-      color = selectedColor;
-    }
+  const getDisplayString = (color = selectedColor) => {
     switch (currentFormat) {
       case 'hsl':
         return color.toHslString(true);
@@ -38,63 +35,60 @@ exports['default'] = function () {
         return color.toHexString(true);
     }
   };
-  return (
-    <>
-      <itwinui_react_1.ButtonGroup>
-        <utils_1.Popover
-          content={
-            <itwinui_react_1.ColorPicker
-              selectedColor={selectedColor}
-              onChangeComplete={onColorChanged}
-            >
-              <itwinui_react_1.ColorBuilder />
-              <itwinui_react_1.ColorPalette
-                label='Saved Colors'
-                colors={[
-                  { h: 0, s: 100, l: 50 },
-                  { r: 255, g: 98, b: 0 },
-                  '#fec134',
-                  '#5A6973',
-                  { h: 95, s: 83, v: 72 },
-                  { h: 250, s: 100, l: 59 },
-                ]}
-              />
-            </itwinui_react_1.ColorPicker>
-          }
-          appendTo={function () {
-            return document.body;
-          }}
-          visible={isOpen}
-          placement='bottom-start'
-        >
-          <itwinui_react_1.IconButton
-            onClick={function () {
-              return setIsOpen(function (open) {
-                return !open;
-              });
-            }}
-          >
-            <itwinui_react_1.ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
-              color={selectedColor}
-            />
-          </itwinui_react_1.IconButton>
-        </utils_1.Popover>
-        <itwinui_react_1.Button
-          onClick={function () {
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(
+      ButtonGroup,
+      null,
+      React.createElement(
+        Popover,
+        {
+          content: React.createElement(
+            ColorPicker,
+            { selectedColor: selectedColor, onChangeComplete: onColorChanged },
+            React.createElement(ColorBuilder, null),
+            React.createElement(ColorPalette, {
+              label: 'Saved Colors',
+              colors: [
+                { h: 0, s: 100, l: 50 },
+                { r: 255, g: 98, b: 0 },
+                '#fec134',
+                '#5A6973',
+                { h: 95, s: 83, v: 72 },
+                { h: 250, s: 100, l: 59 },
+              ],
+            }),
+          ),
+          appendTo: () => document.body,
+          visible: isOpen,
+          placement: 'bottom-start',
+        },
+        React.createElement(
+          IconButton,
+          { onClick: () => setIsOpen((open) => !open) },
+          React.createElement(ColorSwatch, {
+            style: { pointerEvents: 'none', margin: 0 },
+            color: selectedColor,
+          }),
+        ),
+      ),
+      React.createElement(
+        Button,
+        {
+          onClick: () => {
             setCurrentFormat(
               formats[(formats.indexOf(currentFormat) + 1) % formats.length],
             );
-          }}
-          endIcon={<itwinui_icons_react_1.SvgSwap />}
-        >
-          <div style={{ width: 200 }}>
-            {(_a = getDisplayString()) !== null && _a !== void 0
-              ? _a
-              : 'No color selected.'}
-          </div>
-        </itwinui_react_1.Button>
-      </itwinui_react_1.ButtonGroup>
-    </>
+          },
+          endIcon: React.createElement(SvgSwap, null),
+        },
+        React.createElement(
+          'div',
+          { style: { width: 200 } },
+          getDisplayString() ?? 'No color selected.',
+        ),
+      ),
+    ),
   );
 };

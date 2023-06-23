@@ -1,17 +1,15 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.Breadcrumbs>
-      <a href='#'>Home</a>
-      <a href='#'>Support</a>
-      <span>Contact us</span>
-    </itwinui_react_1.Breadcrumbs>
+import * as React from 'react';
+import { Breadcrumbs } from '@itwin/itwinui-react';
+export default () => {
+  return React.createElement(
+    Breadcrumbs,
+    null,
+    React.createElement('a', { href: '#' }, 'Home'),
+    React.createElement('a', { href: '#' }, 'Support'),
+    React.createElement('span', null, 'Contact us'),
   );
 };

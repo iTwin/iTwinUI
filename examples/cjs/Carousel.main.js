@@ -1,13 +1,11 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var gradients = [
+import * as React from 'react';
+import { Carousel } from '@itwin/itwinui-react';
+export default () => {
+  const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
     { from: '#2193b0', to: '#6dd5ed' },
@@ -19,33 +17,35 @@ exports['default'] = function () {
     { from: '#b79891', to: '#94716b' },
     { from: '#acb6e5', to: '#86fde8' },
   ];
-  return (
-    <itwinui_react_1.Carousel style={{ maxWidth: '100%' }}>
-      <itwinui_react_1.Carousel.Slider>
-        {gradients.map(function (_a, index) {
-          var from = _a.from,
-            to = _a.to;
-          return (
-            <itwinui_react_1.Carousel.Slide key={index}>
-              <div
-                style={{
-                  background: 'linear-gradient(to right, '
-                    .concat(from, ', ')
-                    .concat(to, ')'),
-                  height: '200px',
-                  display: 'grid',
-                  placeItems: 'center',
-                }}
-              >
-                <div style={{ fontSize: 48, color: 'hsl(0deg 0% 100% / 0.7)' }}>
-                  {index + 1}
-                </div>
-              </div>
-            </itwinui_react_1.Carousel.Slide>
-          );
-        })}
-      </itwinui_react_1.Carousel.Slider>
-      <itwinui_react_1.Carousel.Navigation />
-    </itwinui_react_1.Carousel>
+  return React.createElement(
+    Carousel,
+    { style: { maxWidth: '100%' } },
+    React.createElement(
+      Carousel.Slider,
+      null,
+      gradients.map(({ from, to }, index) =>
+        React.createElement(
+          Carousel.Slide,
+          { key: index },
+          React.createElement(
+            'div',
+            {
+              style: {
+                background: `linear-gradient(to right, ${from}, ${to})`,
+                height: '200px',
+                display: 'grid',
+                placeItems: 'center',
+              },
+            },
+            React.createElement(
+              'div',
+              { style: { fontSize: 48, color: 'hsl(0deg 0% 100% / 0.7)' } },
+              index + 1,
+            ),
+          ),
+        ),
+      ),
+    ),
+    React.createElement(Carousel.Navigation, null),
   );
 };

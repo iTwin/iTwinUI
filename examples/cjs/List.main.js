@@ -1,17 +1,15 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.List>
-      <itwinui_react_1.ListItem>Milk</itwinui_react_1.ListItem>
-      <itwinui_react_1.ListItem>Cheese</itwinui_react_1.ListItem>
-      <itwinui_react_1.ListItem>Yogurt</itwinui_react_1.ListItem>
-    </itwinui_react_1.List>
+import * as React from 'react';
+import { List, ListItem } from '@itwin/itwinui-react';
+export default () => {
+  return React.createElement(
+    List,
+    null,
+    React.createElement(ListItem, null, 'Milk'),
+    React.createElement(ListItem, null, 'Cheese'),
+    React.createElement(ListItem, null, 'Yogurt'),
   );
 };

@@ -7,7 +7,7 @@ import { Anchor } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Anchor as='button' onClick={console.log('Button clicked!')}>
+    <Anchor as='button' onClick={() => console.log('Button clicked!')}>
       Anchor as a button
     </Anchor>
   );

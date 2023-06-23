@@ -1,25 +1,22 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_illustrations_react_1 = require('@itwin/itwinui-illustrations-react');
-exports['default'] = function () {
-  return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
-      <itwinui_react_1.NonIdealState
-        svg={<itwinui_illustrations_react_1.Svg500 />}
-        heading='Internal Server Error'
-        description={
-          <>
-            Please retry again. If this continues to happen, please contact our
-            support team.
-          </>
-        }
-      />
-    </div>
+import * as React from 'react';
+import { NonIdealState } from '@itwin/itwinui-react';
+import { Svg500 } from '@itwin/itwinui-illustrations-react';
+export default () => {
+  return React.createElement(
+    'div',
+    { style: { position: 'relative', minHeight: 400 } },
+    React.createElement(NonIdealState, {
+      svg: React.createElement(Svg500, null),
+      heading: 'Internal Server Error',
+      description: React.createElement(
+        React.Fragment,
+        null,
+        'Please retry again. If this continues to happen, please contact our support team.',
+      ),
+    }),
   );
 };

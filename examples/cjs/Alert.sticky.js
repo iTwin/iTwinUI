@@ -1,33 +1,31 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  return (
-    <div>
-      <itwinui_react_1.Alert isSticky>
-        <itwinui_react_1.Alert.Icon />
-        <itwinui_react_1.Alert.Message>
-          This is a sticky alert
-          <itwinui_react_1.Alert.Action
-            onClick={function () {
-              return console.log('Clicked more info!');
-            }}
-          >
-            Learn more
-          </itwinui_react_1.Alert.Action>
-        </itwinui_react_1.Alert.Message>
-        <itwinui_react_1.Alert.CloseButton
-          onClick={function () {
-            return console.log('CLOSED');
-          }}
-        />
-      </itwinui_react_1.Alert>
-      <p>Page content.</p>
-    </div>
+import * as React from 'react';
+import { Alert } from '@itwin/itwinui-react';
+export default () => {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      Alert,
+      { isSticky: true },
+      React.createElement(Alert.Icon, null),
+      React.createElement(
+        Alert.Message,
+        null,
+        'This is a sticky alert',
+        React.createElement(
+          Alert.Action,
+          { onClick: () => console.log('Clicked more info!') },
+          'Learn more',
+        ),
+      ),
+      React.createElement(Alert.CloseButton, {
+        onClick: () => console.log('CLOSED'),
+      }),
+    ),
+    React.createElement('p', null, 'Page content.'),
   );
 };

@@ -1,25 +1,25 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.Flex>
-      <itwinui_react_1.Button>Default</itwinui_react_1.Button>
-      <itwinui_react_1.Button disabled>Disabled</itwinui_react_1.Button>
-      <itwinui_react_1.Button startIcon={<itwinui_icons_react_1.SvgAdd />}>
-        With startIcon
-      </itwinui_react_1.Button>
-      <itwinui_react_1.Button
-        endIcon={<itwinui_icons_react_1.SvgCheckmarkSmall />}
-      >
-        With endIcon
-      </itwinui_react_1.Button>
-    </itwinui_react_1.Flex>
+import * as React from 'react';
+import { Button, Flex } from '@itwin/itwinui-react';
+import { SvgAdd, SvgCheckmarkSmall } from '@itwin/itwinui-icons-react';
+export default () => {
+  return React.createElement(
+    Flex,
+    null,
+    React.createElement(Button, null, 'Default'),
+    React.createElement(Button, { disabled: true }, 'Disabled'),
+    React.createElement(
+      Button,
+      { startIcon: React.createElement(SvgAdd, null) },
+      'With startIcon',
+    ),
+    React.createElement(
+      Button,
+      { endIcon: React.createElement(SvgCheckmarkSmall, null) },
+      'With endIcon',
+    ),
   );
 };

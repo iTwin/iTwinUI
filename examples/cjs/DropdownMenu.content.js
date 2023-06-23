@@ -1,65 +1,63 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  var _a = React.useState('User'),
-    userType = _a[0],
-    setUserType = _a[1];
-  var dropdownMenuItems = function (close) {
-    return [
-      <itwinui_react_1.MenuExtraContent key={0}>
-        <>
-          <itwinui_react_1.Text variant='leading'>
-            Terry Rivers
-          </itwinui_react_1.Text>
-          <itwinui_react_1.Text isMuted>
-            terry.rivers@email.com
-          </itwinui_react_1.Text>
-          <itwinui_react_1.Select
-            options={[
-              { value: 'User', label: 'User' },
-              { value: 'Moderator', label: 'Moderator' },
-              { value: 'Administrator', label: 'Administrator' },
-            ]}
-            value={userType}
-            onChange={function (type) {
-              return setUserType(type);
-            }}
-          />
-        </>
-      </itwinui_react_1.MenuExtraContent>,
-      <itwinui_react_1.MenuDivider key={1} />,
-      <itwinui_react_1.MenuItem
-        key={2}
-        onClick={function () {
-          return close();
-        }}
-      >
-        View profile
-      </itwinui_react_1.MenuItem>,
-      <itwinui_react_1.MenuItem
-        key={3}
-        onClick={function () {
-          return close();
-        }}
-      >
-        Sign out
-      </itwinui_react_1.MenuItem>,
-    ];
-  };
-  return (
-    <>
-      <itwinui_react_1.DropdownMenu menuItems={dropdownMenuItems}>
-        <itwinui_react_1.IconButton aria-label='More options'>
-          <itwinui_icons_react_1.SvgMore />
-        </itwinui_react_1.IconButton>
-      </itwinui_react_1.DropdownMenu>
-    </>
+import * as React from 'react';
+import {
+  Text,
+  MenuExtraContent,
+  MenuDivider,
+  MenuItem,
+  DropdownMenu,
+  IconButton,
+  Select,
+} from '@itwin/itwinui-react';
+import { SvgMore } from '@itwin/itwinui-icons-react';
+export default () => {
+  const [userType, setUserType] = React.useState('User');
+  const dropdownMenuItems = (close) => [
+    React.createElement(
+      MenuExtraContent,
+      { key: 0 },
+      React.createElement(
+        React.Fragment,
+        null,
+        React.createElement(Text, { variant: 'leading' }, 'Terry Rivers'),
+        React.createElement(Text, { isMuted: true }, 'terry.rivers@email.com'),
+        React.createElement(Select, {
+          options: [
+            { value: 'User', label: 'User' },
+            { value: 'Moderator', label: 'Moderator' },
+            { value: 'Administrator', label: 'Administrator' },
+          ],
+          value: userType,
+          onChange: (type) => setUserType(type),
+        }),
+      ),
+    ),
+    React.createElement(MenuDivider, { key: 1 }),
+    React.createElement(
+      MenuItem,
+      { key: 2, onClick: () => close() },
+      'View profile',
+    ),
+    React.createElement(
+      MenuItem,
+      { key: 3, onClick: () => close() },
+      'Sign out',
+    ),
+  ];
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(
+      DropdownMenu,
+      { menuItems: dropdownMenuItems },
+      React.createElement(
+        IconButton,
+        { 'aria-label': 'More options' },
+        React.createElement(SvgMore, null),
+      ),
+    ),
   );
 };

@@ -1,13 +1,16 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var ColorsList = [
+import * as React from 'react';
+import {
+  ColorPalette,
+  ColorPicker,
+  ColorValue,
+  ColorSwatch,
+} from '@itwin/itwinui-react';
+export default () => {
+  const ColorsList = [
     { color: '#ffffff', name: 'WHITE' },
     { color: '#5a6973', name: 'GREY' },
     { color: '#00121d', name: 'KURETAKE BLACK MANGA' },
@@ -39,40 +42,34 @@ exports['default'] = function () {
     { color: '#ff6300', name: 'SAFETY ORANGE' },
     { color: '#ffc335', name: 'RISE-N-SHINE' },
   ];
-  var _a = React.useState(ColorsList[5]),
-    activeColor = _a[0],
-    setActiveColor = _a[1];
-  var _b = React.useState(ColorsList[5].name),
-    colorName = _b[0],
-    setColorName = _b[1];
-  var onColorChanged = function (color) {
-    var hexString = color.toHexString();
-    var index = ColorsList.findIndex(function (swatch) {
-      return swatch.color === hexString.toLowerCase();
-    });
+  const [activeColor, setActiveColor] = React.useState(ColorsList[5]);
+  const [colorName, setColorName] = React.useState(ColorsList[5].name);
+  const onColorChanged = (color) => {
+    const hexString = color.toHexString();
+    const index = ColorsList.findIndex(
+      (swatch) => swatch.color === hexString.toLowerCase(),
+    );
     setActiveColor(ColorsList[index]);
     setColorName(ColorsList[index].name);
   };
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
-        <itwinui_react_1.ColorSwatch
-          style={{ pointerEvents: 'none', margin: 0 }}
-          color={activeColor.color}
-        />
-        <span>{colorName}</span>
-      </div>
-      <itwinui_react_1.ColorPicker
-        selectedColor={activeColor.color}
-        onChangeComplete={onColorChanged}
-      >
-        <itwinui_react_1.ColorPalette
-          colors={ColorsList.map(function (_a) {
-            var color = _a.color;
-            return color;
-          })}
-        />
-      </itwinui_react_1.ColorPicker>
-    </div>
+  return React.createElement(
+    'div',
+    { style: { display: 'flex', flexDirection: 'column', gap: 10 } },
+    React.createElement(
+      'div',
+      { style: { display: 'flex', flexDirection: 'row', gap: 10 } },
+      React.createElement(ColorSwatch, {
+        style: { pointerEvents: 'none', margin: 0 },
+        color: activeColor.color,
+      }),
+      React.createElement('span', null, colorName),
+    ),
+    React.createElement(
+      ColorPicker,
+      { selectedColor: activeColor.color, onChangeComplete: onColorChanged },
+      React.createElement(ColorPalette, {
+        colors: ColorsList.map(({ color }) => color),
+      }),
+    ),
   );
 };

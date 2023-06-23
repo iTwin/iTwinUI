@@ -1,13 +1,11 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var gradients = [
+import * as React from 'react';
+import { Carousel } from '@itwin/itwinui-react';
+export default () => {
+  const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
     { from: '#2193b0', to: '#6dd5ed' },
@@ -19,83 +17,79 @@ exports['default'] = function () {
     { from: '#b79891', to: '#94716b' },
     { from: '#acb6e5', to: '#86fde8' },
   ];
-  var id = 'my-custom-carousel';
-  var _a = React.useState(0),
-    current = _a[0],
-    setCurrent = _a[1];
-  return (
-    <section
-      aria-roledescription='carousel'
-      tabIndex={0}
-      onKeyUp={function (_a) {
-        var key = _a.key;
-        var diff = key === 'ArrowRight' ? 1 : key === 'ArrowLeft' ? -1 : 0;
-        setCurrent(function (prev) {
-          return (gradients.length + prev + diff) % gradients.length;
-        });
-      }}
-      style={{ display: 'inline-grid', width: 'min(200px, 50vw)' }}
-    >
-      <ol
-        style={{
+  const id = 'my-custom-carousel';
+  const [current, setCurrent] = React.useState(0);
+  return React.createElement(
+    'section',
+    {
+      'aria-roledescription': 'carousel',
+      tabIndex: 0,
+      onKeyUp: ({ key }) => {
+        const diff = key === 'ArrowRight' ? 1 : key === 'ArrowLeft' ? -1 : 0;
+        setCurrent(
+          (prev) => (gradients.length + prev + diff) % gradients.length,
+        );
+      },
+      style: { display: 'inline-grid', width: 'min(200px, 50vw)' },
+    },
+    React.createElement(
+      'ol',
+      {
+        style: {
           listStyle: 'none',
           margin: 0,
           padding: 0,
           display: 'grid',
-          grid: '[slide] 1fr / [slide] 1fr',
-        }}
-      >
-        {gradients.map(function (_a, index) {
-          var from = _a.from,
-            to = _a.to;
-          return (
-            <li
-              key={index}
-              role='tabpanel'
-              id={''.concat(id, '-slide-').concat(index)}
-              onClick={function (_a) {
-                var clientWidth = _a.currentTarget.clientWidth,
-                  offsetX = _a.nativeEvent.offsetX;
-                var diff = clientWidth - offsetX > clientWidth / 2 ? -1 : +1;
-                setCurrent(function (prev) {
-                  return (gradients.length + prev + diff) % gradients.length;
-                });
-              }}
-              style={{
-                gridArea: 'slide',
-                opacity: current === index ? 1 : 0,
-                pointerEvents: current === index ? 'auto' : 'none',
-                transition: 'opacity 0.5s',
-                cursor: 'pointer',
-              }}
-            >
-              <div
-                style={{
-                  background: 'linear-gradient(to right, '
-                    .concat(from, ', ')
-                    .concat(to, ')'),
-                  height: 'min(200px, 50vw)',
-                  display: 'grid',
-                  placeItems: 'center',
-                  fontSize: 48,
-                  color: 'hsl(0deg 0% 100% / 0.7)',
-                }}
-              >
-                {index + 1}
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-      <itwinui_react_1.Carousel.DotsList
-        id={id}
-        length={gradients.length}
-        currentIndex={current}
-        onSlideChange={function (_i) {
-          return setCurrent(_i);
-        }}
-        style={{ justifySelf: 'center', maxWidth: 'min(200px, 50vw)' }}
-      />
-    </section>
+          grid: `[slide] 1fr / [slide] 1fr`,
+        },
+      },
+      gradients.map(({ from, to }, index) =>
+        React.createElement(
+          'li',
+          {
+            key: index,
+            role: 'tabpanel',
+            id: `${id}-slide-${index}`,
+            onClick: ({
+              currentTarget: { clientWidth },
+              nativeEvent: { offsetX },
+            }) => {
+              const diff = clientWidth - offsetX > clientWidth / 2 ? -1 : +1;
+              setCurrent(
+                (prev) => (gradients.length + prev + diff) % gradients.length,
+              );
+            },
+            style: {
+              gridArea: 'slide',
+              opacity: current === index ? 1 : 0,
+              pointerEvents: current === index ? 'auto' : 'none',
+              transition: 'opacity 0.5s',
+              cursor: 'pointer',
+            },
+          },
+          React.createElement(
+            'div',
+            {
+              style: {
+                background: `linear-gradient(to right, ${from}, ${to})`,
+                height: 'min(200px, 50vw)',
+                display: 'grid',
+                placeItems: 'center',
+                fontSize: 48,
+                color: 'hsl(0deg 0% 100% / 0.7)',
+              },
+            },
+            index + 1,
+          ),
+        ),
+      ),
+    ),
+    React.createElement(Carousel.DotsList, {
+      id: id,
+      length: gradients.length,
+      currentIndex: current,
+      onSlideChange: (_i) => setCurrent(_i),
+      style: { justifySelf: 'center', maxWidth: 'min(200px, 50vw)' },
+    }),
   );
 };

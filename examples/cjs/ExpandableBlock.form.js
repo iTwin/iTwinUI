@@ -1,65 +1,81 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var nameSection = (
-    <>
-      <itwinui_react_1.Label htmlFor='name' required>
-        Name
-      </itwinui_react_1.Label>
-      <itwinui_react_1.Input id='name' key='name' placeholder='Enter name' />
-      <itwinui_react_1.Label htmlFor='occupation'>
-        Occupation
-      </itwinui_react_1.Label>
-      <itwinui_react_1.Input
-        id='occupation'
-        key='occupation'
-        placeholder='Enter occupation'
-      />
-    </>
+import * as React from 'react';
+import {
+  ExpandableBlock,
+  Label,
+  Input,
+  InputGroup,
+  Radio,
+} from '@itwin/itwinui-react';
+export default () => {
+  const nameSection = React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(Label, { htmlFor: 'name', required: true }, 'Name'),
+    React.createElement(Input, {
+      id: 'name',
+      key: 'name',
+      placeholder: 'Enter name',
+    }),
+    React.createElement(Label, { htmlFor: 'occupation' }, 'Occupation'),
+    React.createElement(Input, {
+      id: 'occupation',
+      key: 'occupation',
+      placeholder: 'Enter occupation',
+    }),
   );
-  var colorSection = (
-    <itwinui_react_1.InputGroup
-      key='color'
-      label='Choose your favorite color'
-      required
-    >
-      <itwinui_react_1.Radio name='color' value='Red' label='Red' />
-      <itwinui_react_1.Radio name='color' value='Orange' label='Orange' />
-      <itwinui_react_1.Radio name='color' value='Yellow' label='Yellow' />
-      <itwinui_react_1.Radio name='color' value='Green' label='Green' />
-      <itwinui_react_1.Radio name='color' value='Blue' label='Blue' />
-      <itwinui_react_1.Radio name='color' value='Purple' label='Purple' />
-    </itwinui_react_1.InputGroup>
+  const colorSection = React.createElement(
+    InputGroup,
+    { key: 'color', label: 'Choose your favorite color', required: true },
+    React.createElement(Radio, { name: 'color', value: 'Red', label: 'Red' }),
+    React.createElement(Radio, {
+      name: 'color',
+      value: 'Orange',
+      label: 'Orange',
+    }),
+    React.createElement(Radio, {
+      name: 'color',
+      value: 'Yellow',
+      label: 'Yellow',
+    }),
+    React.createElement(Radio, {
+      name: 'color',
+      value: 'Green',
+      label: 'Green',
+    }),
+    React.createElement(Radio, { name: 'color', value: 'Blue', label: 'Blue' }),
+    React.createElement(Radio, {
+      name: 'color',
+      value: 'Purple',
+      label: 'Purple',
+    }),
   );
-  var reasonSection = (
-    <>
-      <itwinui_react_1.Label htmlFor='explanation' required>
-        Why is this your favorite color
-      </itwinui_react_1.Label>
-      <itwinui_react_1.Input
-        id='explanation'
-        key='explanation'
-        placeholder='Enter text here...'
-      />
-    </>
+  const reasonSection = React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(
+      Label,
+      { htmlFor: 'explanation', required: true },
+      'Why is this your favorite color',
+    ),
+    React.createElement(Input, {
+      id: 'explanation',
+      key: 'explanation',
+      placeholder: 'Enter text here...',
+    }),
   );
-  return (
-    <div style={{ width: 'min(100%, 300px)' }}>
-      <itwinui_react_1.ExpandableBlock title='Name'>
-        {nameSection}
-      </itwinui_react_1.ExpandableBlock>
-      <itwinui_react_1.ExpandableBlock title='Favorite Color'>
-        {colorSection}
-      </itwinui_react_1.ExpandableBlock>
-      <itwinui_react_1.ExpandableBlock title='Reasoning'>
-        {reasonSection}
-      </itwinui_react_1.ExpandableBlock>
-    </div>
+  return React.createElement(
+    'div',
+    { style: { width: 'min(100%, 300px)' } },
+    React.createElement(ExpandableBlock, { title: 'Name' }, nameSection),
+    React.createElement(
+      ExpandableBlock,
+      { title: 'Favorite Color' },
+      colorSection,
+    ),
+    React.createElement(ExpandableBlock, { title: 'Reasoning' }, reasonSection),
   );
 };

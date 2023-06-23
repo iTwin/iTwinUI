@@ -1,26 +1,28 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.Flex flexDirection='column' alignItems='flex-start'>
-      <itwinui_react_1.Radio name='Options' label='Default' />
-      <itwinui_react_1.Radio
-        name='Options'
-        label='Positive'
-        status='positive'
-      />
-      <itwinui_react_1.Radio name='Options' label='Warning' status='warning' />
-      <itwinui_react_1.Radio
-        name='Options'
-        label='Negative'
-        status='negative'
-      />
-    </itwinui_react_1.Flex>
+import * as React from 'react';
+import { Radio, Flex } from '@itwin/itwinui-react';
+export default () => {
+  return React.createElement(
+    Flex,
+    { flexDirection: 'column', alignItems: 'flex-start' },
+    React.createElement(Radio, { name: 'Options', label: 'Default' }),
+    React.createElement(Radio, {
+      name: 'Options',
+      label: 'Positive',
+      status: 'positive',
+    }),
+    React.createElement(Radio, {
+      name: 'Options',
+      label: 'Warning',
+      status: 'warning',
+    }),
+    React.createElement(Radio, {
+      name: 'Options',
+      label: 'Negative',
+      status: 'negative',
+    }),
   );
 };

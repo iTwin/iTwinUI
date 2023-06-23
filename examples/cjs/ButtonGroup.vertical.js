@@ -1,27 +1,38 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.ButtonGroup orientation='vertical'>
-      <itwinui_react_1.IconButton onClick={function () {}}>
-        <itwinui_icons_react_1.SvgAdd />
-      </itwinui_react_1.IconButton>
-      <itwinui_react_1.IconButton onClick={function () {}} isActive>
-        <itwinui_icons_react_1.SvgEdit />
-      </itwinui_react_1.IconButton>
-      <itwinui_react_1.IconButton disabled onClick={function () {}}>
-        <itwinui_icons_react_1.SvgDelete />
-      </itwinui_react_1.IconButton>
-      <itwinui_react_1.IconButton onClick={function () {}}>
-        <itwinui_icons_react_1.SvgUndo />
-      </itwinui_react_1.IconButton>
-    </itwinui_react_1.ButtonGroup>
+import * as React from 'react';
+import { ButtonGroup, IconButton } from '@itwin/itwinui-react';
+import {
+  SvgAdd,
+  SvgEdit,
+  SvgDelete,
+  SvgUndo,
+} from '@itwin/itwinui-icons-react';
+export default () => {
+  return React.createElement(
+    ButtonGroup,
+    { orientation: 'vertical' },
+    React.createElement(
+      IconButton,
+      { onClick: () => {} },
+      React.createElement(SvgAdd, null),
+    ),
+    React.createElement(
+      IconButton,
+      { onClick: () => {}, isActive: true },
+      React.createElement(SvgEdit, null),
+    ),
+    React.createElement(
+      IconButton,
+      { disabled: true, onClick: () => {} },
+      React.createElement(SvgDelete, null),
+    ),
+    React.createElement(
+      IconButton,
+      { onClick: () => {} },
+      React.createElement(SvgUndo, null),
+    ),
   );
 };

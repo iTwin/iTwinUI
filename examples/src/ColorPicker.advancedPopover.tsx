@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   ColorBuilder,
-  ColorInputPanel,
   ColorPalette,
   ColorPicker,
   ColorValue,

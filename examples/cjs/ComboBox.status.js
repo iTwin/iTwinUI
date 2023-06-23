@@ -1,17 +1,13 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var _a = React.useState(''),
-    value = _a[0],
-    setValue = _a[1];
-  var options = React.useMemo(function () {
-    return [
+import * as React from 'react';
+import { ComboBox } from '@itwin/itwinui-react';
+export default () => {
+  const [value, setValue] = React.useState('');
+  const options = React.useMemo(
+    () => [
       { label: 'Alabama', value: 'AL' },
       { label: 'Alaska', value: 'AK' },
       { label: 'Arizona', value: 'AZ' },
@@ -62,16 +58,15 @@ exports['default'] = function () {
       { label: 'West Virginia', value: 'WV' },
       { label: 'Wisconsin', value: 'WI' },
       { label: 'Wyoming', value: 'WY' },
-    ];
-  }, []);
-  return (
-    <itwinui_react_1.ComboBox
-      options={options}
-      inputProps={{ placeholder: 'Select your state' }}
-      onChange={setValue}
-      value={value}
-      status={value === '' ? 'negative' : 'positive'}
-      message={value === '' ? 'Required' : ''}
-    />
+    ],
+    [],
   );
+  return React.createElement(ComboBox, {
+    options: options,
+    inputProps: { placeholder: 'Select your state' },
+    onChange: setValue,
+    value: value,
+    status: value === '' ? 'negative' : 'positive',
+    message: value === '' ? 'Required' : '',
+  });
 };

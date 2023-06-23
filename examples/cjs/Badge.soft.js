@@ -1,52 +1,36 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  return (
-    <div
-      style={{
+import * as React from 'react';
+import { Badge } from '@itwin/itwinui-react';
+export default () => {
+  return React.createElement(
+    'div',
+    {
+      style: {
         display: 'flex',
         columnGap: 4,
         placeItems: 'center',
         flexWrap: 'wrap',
         justifyContent: 'center',
         margin: '10px',
-      }}
-    >
-      <itwinui_react_1.Badge backgroundColor='skyblue'>
-        Skyblue
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='celery'>
-        Celery
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='froly'>
-        Froly
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='steelblue'>
-        Steelblue
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='sunglow'>
-        Sunglow
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='seabuckthorn'>
-        Seabuckthorn
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='montecarlo'>
-        Montecarlo
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='poloblue'>
-        Poloblue
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='bouquet'>
-        Bouquet
-      </itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='ash'>Ash</itwinui_react_1.Badge>
-      <itwinui_react_1.Badge backgroundColor='oak'>Oak</itwinui_react_1.Badge>
-    </div>
+      },
+    },
+    React.createElement(Badge, { backgroundColor: 'skyblue' }, 'Skyblue'),
+    React.createElement(Badge, { backgroundColor: 'celery' }, 'Celery'),
+    React.createElement(Badge, { backgroundColor: 'froly' }, 'Froly'),
+    React.createElement(Badge, { backgroundColor: 'steelblue' }, 'Steelblue'),
+    React.createElement(Badge, { backgroundColor: 'sunglow' }, 'Sunglow'),
+    React.createElement(
+      Badge,
+      { backgroundColor: 'seabuckthorn' },
+      'Seabuckthorn',
+    ),
+    React.createElement(Badge, { backgroundColor: 'montecarlo' }, 'Montecarlo'),
+    React.createElement(Badge, { backgroundColor: 'poloblue' }, 'Poloblue'),
+    React.createElement(Badge, { backgroundColor: 'bouquet' }, 'Bouquet'),
+    React.createElement(Badge, { backgroundColor: 'ash' }, 'Ash'),
+    React.createElement(Badge, { backgroundColor: 'oak' }, 'Oak'),
   );
 };

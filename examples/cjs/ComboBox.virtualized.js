@@ -1,17 +1,13 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var _a = React.useState(''),
-    value = _a[0],
-    setValue = _a[1];
-  var options = React.useMemo(function () {
-    return [
+import * as React from 'react';
+import { ComboBox } from '@itwin/itwinui-react';
+export default () => {
+  const [value, setValue] = React.useState('');
+  const options = React.useMemo(
+    () => [
       { label: 'Afghanistan', value: 'AF' },
       { label: 'Åland Islands', value: 'AX' },
       { label: 'Albania', value: 'AL' },
@@ -255,15 +251,14 @@ exports['default'] = function () {
       { label: 'Yemen', value: 'YE' },
       { label: 'Zambia', value: 'ZM' },
       { label: 'Zimbabwe', value: 'ZW' },
-    ];
-  }, []);
-  return (
-    <itwinui_react_1.ComboBox
-      options={options}
-      inputProps={{ placeholder: 'Select a country' }}
-      onChange={setValue}
-      value={value}
-      enableVirtualization
-    />
+    ],
+    [],
   );
+  return React.createElement(ComboBox, {
+    options: options,
+    inputProps: { placeholder: 'Select a country' },
+    onChange: setValue,
+    value: value,
+    enableVirtualization: true,
+  });
 };

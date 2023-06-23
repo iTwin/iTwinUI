@@ -1,13 +1,11 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var options = [
+import * as React from 'react';
+import { Select } from '@itwin/itwinui-react';
+export default () => {
+  const options = [
     {
       value: 1,
       label: 'Item #1',
@@ -24,11 +22,9 @@ exports['default'] = function () {
       sublabel: 'Sublabel #3',
     },
   ];
-  return (
-    <itwinui_react_1.Select
-      options={options}
-      placeholder={'Placeholder text'}
-      size={'large'}
-    />
-  );
+  return React.createElement(Select, {
+    options: options,
+    placeholder: 'Placeholder text',
+    size: 'large',
+  });
 };

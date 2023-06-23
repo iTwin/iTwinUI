@@ -1,21 +1,19 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  return (
-    <itwinui_react_1.Flex>
-      <itwinui_react_1.IconButton>
-        <itwinui_icons_react_1.SvgAdd />
-      </itwinui_react_1.IconButton>
-      <itwinui_react_1.IconButton styleType='borderless'>
-        <itwinui_icons_react_1.SvgClose />
-      </itwinui_react_1.IconButton>
-    </itwinui_react_1.Flex>
+import * as React from 'react';
+import { IconButton, Flex } from '@itwin/itwinui-react';
+import { SvgAdd, SvgClose } from '@itwin/itwinui-icons-react';
+export default () => {
+  return React.createElement(
+    Flex,
+    null,
+    React.createElement(IconButton, null, React.createElement(SvgAdd, null)),
+    React.createElement(
+      IconButton,
+      { styleType: 'borderless' },
+      React.createElement(SvgClose, null),
+    ),
   );
 };

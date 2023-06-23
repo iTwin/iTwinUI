@@ -1,25 +1,15 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var generateItem = React.useCallback(function (index, parentRow, depth) {
-    if (parentRow === void 0) {
-      parentRow = '';
-    }
-    if (depth === void 0) {
-      depth = 0;
-    }
-    var keyValue = parentRow
-      ? ''.concat(parentRow, '.').concat(index + 1)
-      : ''.concat(index + 1);
-    var rating = Math.round(Math.random() * 5);
+import * as React from 'react';
+import { Table, DefaultCell } from '@itwin/itwinui-react';
+export default () => {
+  const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {
+    const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
+    const rating = Math.round(Math.random() * 5);
     return {
-      product: 'Product '.concat(keyValue),
+      product: `Product ${keyValue}`,
       price: ((index % 10) + 1) * 15,
       quantity: ((index % 10) + 1) * 150,
       rating: rating,
@@ -28,24 +18,19 @@ exports['default'] = function () {
         depth < 1
           ? Array(Math.round(index % 2))
               .fill(null)
-              .map(function (_, index) {
-                return generateItem(index, keyValue, depth + 1);
-              })
+              .map((_, index) => generateItem(index, keyValue, depth + 1))
           : [],
     };
   }, []);
-  var data = React.useMemo(
-    function () {
-      return Array(3)
+  const data = React.useMemo(
+    () =>
+      Array(3)
         .fill(null)
-        .map(function (_, index) {
-          return generateItem(index);
-        });
-    },
+        .map((_, index) => generateItem(index)),
     [generateItem],
   );
-  var columns = React.useMemo(function () {
-    return [
+  const columns = React.useMemo(
+    () => [
       {
         id: 'product',
         Header: 'Product',
@@ -56,41 +41,40 @@ exports['default'] = function () {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: function (props) {
-          return <>${props.value}</>;
+        Cell: (props) => {
+          return React.createElement(React.Fragment, null, '$', props.value);
         },
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
-        cellRenderer: function (props) {
-          return (
-            <itwinui_react_1.DefaultCell
-              {...props}
-              status={props.cellProps.row.original.status}
-            >
-              {props.cellProps.row.original.rating}/5
-            </itwinui_react_1.DefaultCell>
+        cellRenderer: (props) => {
+          return React.createElement(
+            DefaultCell,
+            { ...props, status: props.cellProps.row.original.status },
+            props.cellProps.row.original.rating,
+            '/5',
           );
         },
       },
-    ];
-  }, []);
-  var rowProps = React.useCallback(function (row) {
+    ],
+    [],
+  );
+  const rowProps = React.useCallback((row) => {
     return {
       status: row.original.status,
     };
   }, []);
-  return (
-    <div style={{ minWidth: 'min(100%, 350px)' }}>
-      <itwinui_react_1.Table
-        columns={columns}
-        emptyTableContent='No data.'
-        data={data}
-        rowProps={rowProps}
-        density='condensed'
-      />
-    </div>
+  return React.createElement(
+    'div',
+    { style: { minWidth: 'min(100%, 350px)' } },
+    React.createElement(Table, {
+      columns: columns,
+      emptyTableContent: 'No data.',
+      data: data,
+      rowProps: rowProps,
+      density: 'condensed',
+    }),
   );
 };

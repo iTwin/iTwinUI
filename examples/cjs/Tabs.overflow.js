@@ -1,16 +1,12 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var _a = React.useState(0),
-    index = _a[0],
-    setIndex = _a[1];
-  var getContent = function () {
+import * as React from 'react';
+import { Tabs, Tab } from '@itwin/itwinui-react';
+export default () => {
+  const [index, setIndex] = React.useState(0);
+  const getContent = () => {
     switch (index) {
       case 0:
         return 'Bentley Systems, Incorporated, is an American-based software development company that develops, manufactures, licenses, sells and supports computer software and services for the design, construction, and operation of infrastructure.';
@@ -30,26 +26,28 @@ exports['default'] = function () {
         return 'They introduced the commercial version of PseudoStation in 1985, which allowed users of Intergraphs VAX systems to use low-cost graphics terminals to view and modify the designs on their Intergraph IGDS (Interactive Graphics Design System) installations.';
     }
   };
-  var labels = [
-    <itwinui_react_1.Tab key={1} label='Bentley Overview' />,
-    <itwinui_react_1.Tab key={2} label='Markets' />,
-    <itwinui_react_1.Tab key={3} label='Uses' />,
-    <itwinui_react_1.Tab key={4} label='Reinvestment' />,
-    <itwinui_react_1.Tab key={5} label='Location' />,
-    <itwinui_react_1.Tab key={6} label='Revenue' />,
-    <itwinui_react_1.Tab key={7} label='Founders' />,
-    <itwinui_react_1.Tab key={8} label='History' />,
+  const labels = [
+    React.createElement(Tab, { key: 1, label: 'Bentley Overview' }),
+    React.createElement(Tab, { key: 2, label: 'Markets' }),
+    React.createElement(Tab, { key: 3, label: 'Uses' }),
+    React.createElement(Tab, { key: 4, label: 'Reinvestment' }),
+    React.createElement(Tab, { key: 5, label: 'Location' }),
+    React.createElement(Tab, { key: 6, label: 'Revenue' }),
+    React.createElement(Tab, { key: 7, label: 'Founders' }),
+    React.createElement(Tab, { key: 8, label: 'History' }),
   ];
-  return (
-    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
-      <itwinui_react_1.Tabs
-        labels={labels}
-        overflowOptions={{ useOverflow: true }}
-        onTabSelected={setIndex}
-        activeIndex={index}
-      >
-        {getContent()}
-      </itwinui_react_1.Tabs>
-    </div>
+  return React.createElement(
+    'div',
+    { style: { maxWidth: 425, border: '1px solid lightpink', padding: 8 } },
+    React.createElement(
+      Tabs,
+      {
+        labels: labels,
+        overflowOptions: { useOverflow: true },
+        onTabSelected: setIndex,
+        activeIndex: index,
+      },
+      getContent(),
+    ),
   );
 };

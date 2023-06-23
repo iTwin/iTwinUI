@@ -1,62 +1,65 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-var itwinui_icons_react_1 = require('@itwin/itwinui-icons-react');
-exports['default'] = function () {
-  var items = Array(10)
+import * as React from 'react';
+import {
+  Breadcrumbs,
+  Button,
+  DropdownMenu,
+  MenuItem,
+  IconButton,
+} from '@itwin/itwinui-react';
+import { SvgMore } from '@itwin/itwinui-icons-react';
+export default () => {
+  const items = Array(10)
     .fill(null)
-    .map(function (_, index) {
-      return (
-        <itwinui_react_1.Button key={index}>
-          Item {index}
-        </itwinui_react_1.Button>
-      );
-    });
-  return (
-    <div
-      style={{
+    .map((_, index) =>
+      React.createElement(Button, { key: index }, 'Item ', index),
+    );
+  return React.createElement(
+    'div',
+    {
+      style: {
         width: '75%',
         minWidth: 150,
         maxWidth: 425,
         border: '1px solid lightpink',
         padding: 8,
-      }}
-    >
-      <itwinui_react_1.Breadcrumbs
-        overflowButton={function (visibleCount) {
-          return (
-            <itwinui_react_1.DropdownMenu
-              menuItems={function (close) {
-                return Array(items.length - visibleCount)
+      },
+    },
+    React.createElement(
+      Breadcrumbs,
+      {
+        overflowButton: (visibleCount) =>
+          React.createElement(
+            DropdownMenu,
+            {
+              menuItems: (close) =>
+                Array(items.length - visibleCount)
                   .fill(null)
-                  .map(function (_, _index) {
-                    var index = visibleCount > 1 ? _index + 1 : _index;
-                    var onClick = function () {
+                  .map((_, _index) => {
+                    const index = visibleCount > 1 ? _index + 1 : _index;
+                    const onClick = () => {
                       // open breadcrumb
                       close();
                     };
-                    return (
-                      <itwinui_react_1.MenuItem key={index} onClick={onClick}>
-                        Item {index}
-                      </itwinui_react_1.MenuItem>
+                    return React.createElement(
+                      MenuItem,
+                      { key: index, onClick: onClick },
+                      'Item ',
+                      index,
                     );
-                  });
-              }}
-            >
-              <itwinui_react_1.IconButton aria-label='Dropdown with more breadcrumbs'>
-                <itwinui_icons_react_1.SvgMore />
-              </itwinui_react_1.IconButton>
-            </itwinui_react_1.DropdownMenu>
-          );
-        }}
-      >
-        {items}
-      </itwinui_react_1.Breadcrumbs>
-    </div>
+                  }),
+            },
+            React.createElement(
+              IconButton,
+              { 'aria-label': 'Dropdown with more breadcrumbs' },
+              React.createElement(SvgMore, null),
+            ),
+          ),
+      },
+      items,
+    ),
   );
 };

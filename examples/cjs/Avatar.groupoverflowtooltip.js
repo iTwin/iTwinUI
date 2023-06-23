@@ -1,13 +1,16 @@
-'use strict';
-exports.__esModule = true;
 /*---------------------------------------------------------------------------------------------
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-var React = require('react');
-var itwinui_react_1 = require('@itwin/itwinui-react');
-exports['default'] = function () {
-  var userNames = [
+import * as React from 'react';
+import {
+  AvatarGroup,
+  Avatar,
+  getUserColor,
+  Tooltip,
+} from '@itwin/itwinui-react';
+export default () => {
+  const userNames = [
     'Terry Rivers',
     'Robin Mercer',
     'Morgan Vera',
@@ -22,40 +25,38 @@ exports['default'] = function () {
   /**
    * Ref is set on the last avatar for tooltip positioning.
    */
-  var avatarRef = React.useRef(null);
-  var maxIcons = 3;
-  var arrayLength = maxIcons;
-  var usersSubArray = userNames.slice(arrayLength);
-  var tooltipContent = usersSubArray.join('\n');
-  return (
-    <>
-      <itwinui_react_1.AvatarGroup
-        iconSize='x-large'
-        maxIcons={maxIcons}
-        countIconProps={{ ref: avatarRef }}
-      >
-        {userNames.map(function (name, index) {
-          return (
-            <itwinui_react_1.Avatar
-              key={''.concat(name, '-').concat(index)}
-              abbreviation={name
-                .split(' ')
-                .map(function (token) {
-                  return token[0];
-                })
-                .join('')}
-              backgroundColor={(0, itwinui_react_1.getUserColor)(name)}
-              title={name}
-            />
-          );
-        })}
-      </itwinui_react_1.AvatarGroup>
-      <itwinui_react_1.Tooltip
-        reference={avatarRef}
-        content={tooltipContent}
-        placement='right'
-        style={{ whiteSpace: 'pre' }}
-      />
-    </>
+  const avatarRef = React.useRef(null);
+  const maxIcons = 3;
+  const arrayLength = maxIcons;
+  const usersSubArray = userNames.slice(arrayLength);
+  const tooltipContent = usersSubArray.join(`\n`);
+  return React.createElement(
+    React.Fragment,
+    null,
+    React.createElement(
+      AvatarGroup,
+      {
+        iconSize: 'x-large',
+        maxIcons: maxIcons,
+        countIconProps: { ref: avatarRef },
+      },
+      userNames.map((name, index) =>
+        React.createElement(Avatar, {
+          key: `${name}-${index}`,
+          abbreviation: name
+            .split(' ')
+            .map((token) => token[0])
+            .join(''),
+          backgroundColor: getUserColor(name),
+          title: name,
+        }),
+      ),
+    ),
+    React.createElement(Tooltip, {
+      reference: avatarRef,
+      content: tooltipContent,
+      placement: 'right',
+      style: { whiteSpace: 'pre' },
+    }),
   );
 };
