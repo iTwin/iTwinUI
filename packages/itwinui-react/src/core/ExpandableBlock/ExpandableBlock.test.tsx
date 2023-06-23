@@ -22,7 +22,9 @@ it('should render correctly in its most basic state', () => {
   expect(expandableBlock).toBeTruthy();
   expect(expandableBlock.classList).not.toContain('iui-with-caption');
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-title'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-title',
+    ),
   ).toHaveTextContent('test title');
 });
 
@@ -42,10 +44,14 @@ it('should render with caption', () => {
   const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-title'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-title',
+    ),
   ).toHaveTextContent('test title');
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-caption'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-caption',
+    ),
   ).toHaveTextContent('test caption');
 });
 
@@ -76,7 +82,9 @@ it('should trigger onToggle when clicked only on header', () => {
     </ExpandableBlock>,
   );
 
-  const header = container.querySelector('.iui-title') as HTMLElement;
+  const header = container.querySelector(
+    '.iui-expandable-block-title',
+  ) as HTMLElement;
   expect(header).toBeTruthy();
   fireEvent.click(header);
   expect(onToggleMock).toHaveBeenCalledTimes(1);
@@ -98,7 +106,9 @@ it('should trigger onToggle when clicked with Enter or Spacebar', () => {
     </ExpandableBlock>,
   );
 
-  const header = container.querySelector('.iui-title') as HTMLElement;
+  const header = container.querySelector(
+    '.iui-expandable-block-title',
+  ) as HTMLElement;
   expect(header).toBeTruthy();
   fireEvent.keyDown(header, {
     key: 'Enter',
