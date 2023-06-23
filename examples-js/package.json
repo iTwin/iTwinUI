@@ -1,10 +1,10 @@
 {
-  "name": "examples",
+  "name": "examples-js",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "exports": {
-    ".": "./index.tsx",
+    ".": "./index.js",
     "./*": "./*"
   }
 }
