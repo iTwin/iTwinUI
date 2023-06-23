@@ -9,6 +9,7 @@
       "playgrounds/*",
       "internal/*",
       "examples",
+      "examples-js",
       "testing/*"
     ]
   },

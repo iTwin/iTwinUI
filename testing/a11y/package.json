@@ -11,7 +11,8 @@
   "dependencies": {
     "@itwin/itwinui-react": "3.0.0-dev.3",
     "cypress": "^12.14.0",
-    "examples": "*"
+    "examples": "*",
+    "examples-js": "*"
   },
   "devDependencies": {
     "cypress-axe": "^1.4.0"

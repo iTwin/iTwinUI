@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertInformationalExample } from 'examples';
+import { AlertInformationalExample } from 'examples-js';
 
 describe('AlertInformationalExample', () => {
   it('mounts', () => {
