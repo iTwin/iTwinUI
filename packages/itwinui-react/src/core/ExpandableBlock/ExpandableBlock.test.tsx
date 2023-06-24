@@ -144,7 +144,7 @@ it.each(['positive', 'negative', 'warning', 'informational'] as const)(
       </ExpandableBlock>,
     );
     expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
-    expect(queryByText('test title')).toHaveClass('iui-title');
+    expect(queryByText('test title')).toHaveClass('iui-expandable-block-title');
 
     const statusIconWrapper = container.querySelector('.iui-svg-icon');
     expect(statusIconWrapper).toHaveAttribute('data-iui-icon-color', status);
@@ -172,7 +172,7 @@ it('should render with custom endIcon', () => {
     </ExpandableBlock>,
   );
   expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
-  expect(queryByText('test title')).toHaveClass('iui-title');
+  expect(queryByText('test title')).toHaveClass('iui-expandable-block-title');
 
   const {
     container: { firstChild: placeholderIcon },
