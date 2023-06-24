@@ -349,7 +349,7 @@
     </section>
 
     <script>
-      document.querySelectorAll('.iui-header:not([aria-disabled="true"])').forEach((el) => {
+      document.querySelectorAll('.iui-expandable-header:not([aria-disabled="true"])').forEach((el) => {
         el.addEventListener('click', (event) => {
           event.currentTarget.parentElement.classList.toggle('iui-expanded');
           if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
