@@ -16,39 +16,9 @@ import {
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 const ExpandableBlockContext = React.createContext<
-  | {
-      /**
-       * Status of the block.
-       * When set, a colored status icon is shown at the end of the main text.
-       */
-      status?: 'positive' | 'negative' | 'warning' | 'informational';
-      /**
-       * Whether or not to show the block's content.
-       * @default false
-       */
-      isExpanded?: boolean;
-      /**
-       * Callback function for toggling an expansion state.
-       */
-      onToggle?: (isExpanding: boolean) => void;
-      /**
-       * Modify size of the ExpandableBlock.
-       * @default 'default'
-       */
-      size?: 'default' | 'small';
-      /**
-       * Style of the ExpandableBlock.
-       * Use 'borderless' to hide outline.
-       * @default 'default'
-       */
-      styleType?: 'default' | 'borderless';
-      /**
-       * Disables ExpandableBlock.
-       * @default false
-       */
-      disabled?: boolean;
+  | ({
       setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
-    }
+    } & ExpandableBlockOwnProps)
   | undefined
 >(undefined);
 ExpandableBlockContext.displayName = 'ExpandableBlockContext';
@@ -122,6 +92,7 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
         styleType,
         disabled,
         setExpanded,
+        children,
       }}
     >
       <Box
