@@ -25,14 +25,14 @@ module.exports = [
 
   // Hover states
   scenario('State hover', {
-    actions: [hover('#demo-captions .iui-expanded .iui-header')],
+    actions: [hover('#demo-captions .iui-expanded .iui-expandable-header')],
     selectors: ['#demo-captions'],
     viewports: [{ width: 800, height: 600 }],
   }),
 
   // Focus states
   scenario('State focus', {
-    actions: [focus('#demo-captions .iui-expanded .iui-header')],
+    actions: [focus('#demo-captions .iui-expanded .iui-expandable-header')],
     selectors: ['#demo-captions'],
     viewports: [{ width: 800, height: 600 }],
   }),
