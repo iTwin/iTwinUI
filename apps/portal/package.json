@@ -13,6 +13,6 @@
   "dependencies": {
     "@itwin/itwinui-css": "*",
     "@itwin/itwinui-variables": "*",
-    "astro": "2"
+    "astro": "~2.3.0"
   }
 }
