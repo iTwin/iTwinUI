@@ -9,7 +9,7 @@
 
 // global vars shared between all themes
 :where([data-iui-theme]) {
-  color-scheme: light dark;
+  // color-scheme: light dark;
   @include spacing;
   @include component-heights;
   @include border-radii;
@@ -21,7 +21,7 @@
 }
 
 :where([data-iui-theme='light']) {
-  color-scheme: light;
+  // color-scheme: light;
   @include themes.light-theme;
 
   &:where([data-iui-contrast='high']) {
@@ -30,7 +30,7 @@
 }
 
 :where([data-iui-theme='dark']) {
-  color-scheme: dark;
+  // color-scheme: dark;
   @include themes.dark-theme;
 
   &:where([data-iui-contrast='high']) {
