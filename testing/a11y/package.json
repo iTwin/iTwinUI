@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "playwright run video=false --component",
+    "test": "cypress run --component",
+    "open": "cypress run --component",
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
