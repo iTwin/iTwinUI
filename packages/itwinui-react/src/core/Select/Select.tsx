@@ -395,10 +395,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             {menuItems}
           </Menu>
         }
-        placement='bottom-start'
-        aria={{ content: null }}
         onShow={onShowHandler}
         onHide={onHideHandler}
+        placement='bottom-start'
         {...popoverProps}
         visible={isOpen}
         onClickOutside={(_, { target }) => {
