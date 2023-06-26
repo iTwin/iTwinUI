@@ -4,17 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "playwright test -c playwright-ct.config.ts",
-    "report": "playwright show-report",
+    "test": "playwright run video=false --component",
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
     "@itwin/itwinui-react": "3.0.0-dev.3",
     "cypress": "^12.14.0",
+    "cypress-axe": "^1.4.0",
+    "axe-core": "^4.7.2",
     "examples": "*",
     "examples-js": "*"
-  },
-  "devDependencies": {
-    "cypress-axe": "^1.4.0"
   }
 }
