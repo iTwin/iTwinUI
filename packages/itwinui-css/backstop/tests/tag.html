@@ -24,7 +24,7 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       /* Forces grouped tags to display on 1 line, can be set by the dev team. */
-      #demo-default-container, #demo-basic {
+      #demo-default-container, #demo-truncate {
         width: 445px;
       }
     </style>
@@ -721,6 +721,58 @@
 
     <h2>Basic tag containers</h2>
     <section id="demo-basic">
+      <div class="iui-tag-container">
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+        <span class="iui-tag-basic">tags</span>
+        <span class="iui-tag-basic">go</span>
+        <span class="iui-tag-basic">here</span>
+      </div>
+
+      <div class="iui-tag-container">
+        <a
+          href="#"
+          class="iui-tag-basic"
+          id="test-tag-3"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          tags
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          go
+        </a>
+        <a
+          href="#"
+          class="iui-tag-basic"
+        >
+          here
+        </a>
+      </div>
+    </section>
+
+    <h2>Truncate basic tag containers</h2>
+    <section id="demo-truncate">
       <div class="iui-tag-container iui-truncate">
         <span class="iui-tag-basic">tags</span>
         <span class="iui-tag-basic">go</span>
