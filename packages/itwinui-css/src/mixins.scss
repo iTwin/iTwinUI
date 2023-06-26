@@ -40,8 +40,8 @@
   scrollbar-width: thin;
 
   &::-webkit-scrollbar {
-    inline-size: var(--iui-size-xs);
-    block-size: var(--iui-size-xs);
+    max-inline-size: var(--iui-size-xs);
+    max-block-size: var(--iui-size-xs);
   }
 
   &::-webkit-scrollbar-thumb {

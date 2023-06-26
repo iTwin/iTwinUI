@@ -135,7 +135,10 @@
   > .iui-message {
     flex-grow: 1;
     font-size: var(--iui-font-size-1);
-    margin: logical calc(var(--iui-size-s) * 0.5) var(--iui-size-m) calc(var(--iui-size-s) * 0.5) var(--iui-size-l);
+    margin-block-start: calc(var(--iui-size-s) * 0.5);
+    margin-block-end: calc(var(--iui-size-s) * 0.5);
+    margin-inline-end: var(--iui-size-l);
+    margin-inline-start: var(--iui-size-m);
     font-weight: var(--iui-font-weight-normal);
     font-style: normal;
     color: var(--iui-color-text);
