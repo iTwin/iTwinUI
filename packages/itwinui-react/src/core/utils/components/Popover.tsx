@@ -13,6 +13,8 @@ import {
   useRole,
   useInteractions,
   type Placement,
+  size,
+  autoUpdate,
 } from '@floating-ui/react';
 import ReactDOM from 'react-dom';
 import {
@@ -23,28 +25,41 @@ import {
 } from '../index.js';
 
 type PopoverOptions = {
-  initialOpen?: boolean;
   placement?: Placement;
   modal?: boolean;
   visible?: boolean;
+  onToggleVisible?: (open: boolean) => void;
 };
 
 function usePopover({
-  initialOpen = false,
   placement = 'bottom',
   modal,
   visible: controlledOpen,
+  onToggleVisible,
 }: PopoverOptions = {}) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(initialOpen);
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
 
   const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = setUncontrolledOpen;
+  const setOpen = onToggleVisible ?? setUncontrolledOpen;
 
   const data = useFloating({
     placement,
     open,
     onOpenChange: setOpen,
-    middleware: [],
+    whileElementsMounted: (referenceEl, floatingEl, update) =>
+      autoUpdate(referenceEl, floatingEl, update, {
+        animationFrame: true,
+      }),
+    middleware: [
+      size({
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        apply({ rects, elements }: any) {
+          Object.assign(elements.floating.style, {
+            width: `${rects.reference.width}px`,
+          });
+        },
+      }),
+    ],
   });
 
   const context = data.context;
@@ -97,13 +112,24 @@ type PopoverOwnProps = {
  * @private
  */
 export const Popover = React.forwardRef((props, ref) => {
-  const { children, content, className, style, portal = true, ...rest } = props;
+  const {
+    children,
+    content,
+    className,
+    style,
+    portal = true,
+    placement,
+    modal,
+    visible,
+    onToggleVisible,
+    ...rest
+  } = props;
   const themeInfo = React.useContext(ThemeContext);
 
-  const popover = usePopover();
+  const popover = usePopover({ placement, modal, visible, onToggleVisible });
 
-  const tippyRef = React.useRef<Element>(null);
-  const refs = useMergedRefs(tippyRef, ref);
+  const refs = useMergedRefs(popover.refs.setFloating, ref);
+  const triggerRef = popover.refs.setReference;
 
   const contentBox = (
     <Box
@@ -129,7 +155,7 @@ export const Popover = React.forwardRef((props, ref) => {
         ? React.cloneElement(
             children,
             popover.getReferenceProps({
-              ref: popover.refs.setReference,
+              ref: triggerRef,
               ...children.props,
             }),
           )
@@ -141,49 +167,49 @@ export const Popover = React.forwardRef((props, ref) => {
         : null}
     </>
   );
-}) as PolymorphicForwardRefComponent<'div', PopoverOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', PopoverOwnProps & PopoverOptions>;
 
 /**
  * Plugin to hide Popover when either Esc key is pressed,
  * or when the content inside is not tabbable and Tab key is pressed.
  */
-export const hideOnEscOrTab = {
-  fn(instance: Instance) {
-    /** @returns true if none of the children are tabbable */
-    const shouldHideOnTab = () => {
-      const descendents = Array.from<HTMLElement>(
-        instance.popper.querySelectorAll('*'),
-      );
-      return !descendents.some((el) => el?.tabIndex >= 0);
-    };
+// export const hideOnEscOrTab = {
+//   fn(instance: Instance) {
+//     /** @returns true if none of the children are tabbable */
+//     const shouldHideOnTab = () => {
+//       const descendents = Array.from<HTMLElement>(
+//         instance.popper.querySelectorAll('*'),
+//       );
+//       return !descendents.some((el) => el?.tabIndex >= 0);
+//     };
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.altKey) {
-        return;
-      }
+//     const onKeyDown = (event: KeyboardEvent) => {
+//       if (event.altKey) {
+//         return;
+//       }
 
-      switch (event.key) {
-        case 'Escape':
-          instance.hide();
-          break;
-        case 'Tab':
-          if (shouldHideOnTab()) {
-            event.shiftKey && event.preventDefault(); // focus popover target on Shift+Tab
-            instance.hide();
-          }
-          break;
-      }
-    };
+//       switch (event.key) {
+//         case 'Escape':
+//           instance.hide();
+//           break;
+//         case 'Tab':
+//           if (shouldHideOnTab()) {
+//             event.shiftKey && event.preventDefault(); // focus popover target on Shift+Tab
+//             instance.hide();
+//           }
+//           break;
+//       }
+//     };
 
-    return {
-      onShow() {
-        instance.popper.addEventListener('keydown', onKeyDown);
-      },
-      onHide() {
-        instance.popper.removeEventListener('keydown', onKeyDown);
-      },
-    };
-  },
-};
+//     return {
+//       onShow() {
+//         instance.popper.addEventListener('keydown', onKeyDown);
+//       },
+//       onHide() {
+//         instance.popper.removeEventListener('keydown', onKeyDown);
+//       },
+//     };
+//   },
+// };
 
 export default Popover;

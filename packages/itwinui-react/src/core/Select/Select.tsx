@@ -13,11 +13,7 @@ import {
   AutoclearingHiddenLiveRegion,
   Box,
 } from '../utils/index.js';
-import type {
-  PopoverProps,
-  PopoverInstance,
-  CommonProps,
-} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
 
@@ -239,8 +235,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     style,
     menuClassName,
     menuStyle,
-    onShow,
-    onHide,
+    // onShow,
+    // onHide,
     popoverProps,
     multiple = false,
     triggerProps,
@@ -250,28 +246,28 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = popoverProps?.visible ?? isOpenState;
 
-  const [minWidth, setMinWidth] = React.useState(0);
+  // const [minWidth, setMinWidth] = React.useState(0);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
-  const onShowHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsOpen(true);
-      onShow?.(instance);
-    },
-    [onShow],
-  );
+  // const onShowHandler = React.useCallback(
+  //   (instance: PopoverInstance) => {
+  //     setIsOpen(true);
+  //     onShow?.(instance);
+  //   },
+  //   [onShow],
+  // );
 
-  const onHideHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsOpen(false);
-      selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-      onHide?.(instance);
-    },
-    [onHide],
-  );
+  // const onHideHandler = React.useCallback(
+  //   (instance: PopoverInstance) => {
+  //     setIsOpen(false);
+  //     selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
+  //     onHide?.(instance);
+  //   },
+  //   [onHide],
+  // );
 
   React.useEffect(() => {
     if (selectRef.current && !disabled && setFocus) {
@@ -279,11 +275,11 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     }
   }, [setFocus, disabled]);
 
-  React.useEffect(() => {
-    if (selectRef.current) {
-      setMinWidth(selectRef.current.offsetWidth);
-    }
-  }, [isOpen]);
+  // React.useEffect(() => {
+  //   if (selectRef.current) {
+  //     setMinWidth(selectRef.current.offsetWidth);
+  //   }
+  // }, [isOpen]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey) {
@@ -385,8 +381,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
             style={{
-              minWidth,
-              maxWidth: `min(${minWidth * 2}px, 90vw)`,
               ...menuStyle,
             }}
             id={`${uid}-menu`}
@@ -395,16 +389,13 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             {menuItems}
           </Menu>
         }
-        onShow={onShowHandler}
-        onHide={onHideHandler}
-        placement='bottom-start'
-        {...popoverProps}
+        // onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
         visible={isOpen}
-        onClickOutside={(_, { target }) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            setIsOpen(false);
-          }
-        }}
+        // onClickOutside={(_, { target }) => {
+        //   if (!toggleButtonRef.current?.contains(target as Element)) {
+        //     setIsOpen(false);
+        //   }
+        // }}
       >
         <Box
           tabIndex={0}
