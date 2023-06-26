@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "cypress run --component",
-    "open": "cypress run --component",
+    "open": "cypress open --component",
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {

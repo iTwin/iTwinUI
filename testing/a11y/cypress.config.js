@@ -4,6 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { defineConfig } from 'cypress';
 import react from '@vitejs/plugin-react';
+import { createRequire } from 'node:module';
+const require = createRequire(import.meta.url);
+
+const axeCorePath = require.resolve('axe-core');
 
 export default defineConfig({
   component: {
@@ -14,6 +18,7 @@ export default defineConfig({
         plugins: [react()],
       },
     },
+    env: { axeCorePath },
     video: false,
     screenshotOnRunFailure: false,
   },
