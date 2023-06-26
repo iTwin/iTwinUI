@@ -36,6 +36,12 @@
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
 
+## 1.11.2
+
+### Patch Changes
+
+- [#1376](https://github.com/iTwin/iTwinUI/pull/1376): Fix issue where a nested expandable block's expander icon would always display as expanded.
+
 ## 1.11.1
 
 ### Patch Changes
