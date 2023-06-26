@@ -4,6 +4,7 @@
 
 @mixin iui-expandable-block {
   --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon);
+  --_iui-expandable-block-expander-icon-transform: none;
   @include iui-expandable-block-variant;
   @include iui-expandable-block-size;
 
@@ -130,7 +131,7 @@
     inline-size: var(--_iui-expandable-block-expander-icon-size);
     block-size: var(--_iui-expandable-block-expander-icon-size);
     fill: var(--_iui-expandable-block-expander-icon-fill);
-    transform: var(--_iui-expandable-block-expander-icon-transform, none);
+    transform: var(--_iui-expandable-block-expander-icon-transform);
     transition: fill var(--iui-duration-1) ease-out;
     @media (prefers-reduced-motion: no-preference) {
       transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
