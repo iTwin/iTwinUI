@@ -5,7 +5,9 @@ layout: ./_layout.astro
 toc: false
 ---
 
-## Installation
+## For developers
+
+### Installation
 
 ```shell
 npm install @itwin/itwinui-react
@@ -15,7 +17,7 @@ npm install @itwin/itwinui-react
 yarn add @itwin/itwinui-react
 ```
 
-## Setup
+### Setup
 
 Wrap your application entrypoint in `ThemeProvider` and import `styles.css`.
 
@@ -39,7 +41,7 @@ ThemeProvider has a `theme` prop which accepts one of the following values:
 - `os` (respects the color scheme of the operating system)
 - `inherit`
 
-## Usage
+### Usage
 
 After setting up ThemeProvider and styles, import the component you want and start using it!
 
@@ -52,3 +54,16 @@ const Page = () => <Button>Hello!</Button>;
 Check out this template for a live interactive demo:
 
 [![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)
+
+## For designers
+
+### UI kit
+
+Download the iTwinUI design kits and start creating experiences. These UI kits are available via [the iTwinUI Figma Community page](https://www.figma.com/@itwinui).
+
+### Fonts
+
+iTwinUI uses the Noto Sans font family, created in collaboration by Adobe and Google. We suggest these two methods of downloading the font family:
+
+- If you use Adobe Creative Cloud, you can sync the fonts using [Adobe Fonts](https://fonts.adobe.com/fonts/noto-sans).
+- If you do not use Adobe Creative Cloud, you can download the files from [Google Fonts](https://fonts.google.com/noto/specimen/Noto+Sans).
