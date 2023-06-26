@@ -105,9 +105,7 @@ const useInertPolyfill = () => {
   React.useEffect(() => {
     async () => {
       if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
-        await import(modulePath).catch((error) => {
-          console.log(error);
-        });
+        await import(modulePath);
         loaded.current = true;
       }
     };
