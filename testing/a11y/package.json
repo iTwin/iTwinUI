@@ -12,7 +12,6 @@
     "cypress": "^12.14.0",
     "cypress-axe": "^1.4.0",
     "axe-core": "^4.7.2",
-    "examples": "*",
-    "examples-js": "*"
+    "examples": "*"
   }
 }
