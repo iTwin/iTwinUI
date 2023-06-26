@@ -21,5 +21,17 @@ export default defineConfig({
     env: { axeCorePath },
     video: false,
     screenshotOnRunFailure: false,
+    setupNodeEvents(on, config) {
+      on('task', {
+        log(message) {
+          console.log(message);
+          return null;
+        },
+        table(message) {
+          console.table(message);
+          return null;
+        },
+      });
+    },
   },
 });
