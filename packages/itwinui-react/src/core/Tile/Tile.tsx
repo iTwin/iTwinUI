@@ -104,7 +104,6 @@ type TileOwnProps = {
    * @default false
    */
   isDisabled?: boolean;
-  setActionable?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const TileComponent = React.forwardRef((props, forwardedRef) => {

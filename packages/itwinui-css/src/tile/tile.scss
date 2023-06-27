@@ -172,7 +172,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-tile-thumbnail {
-    height: calc(var(--iui-size-s) * 10);
+    height: calc(var(--iui-size-s) * 9);
     grid-area: thumbnail;
     flex: 1;
     border-bottom: none;
@@ -226,7 +226,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   font-size: var(--iui-font-size-2);
   user-select: all;
   color: var(--_iui-tile-title-text-color);
-  overflow: hidden;
   padding-inline: var(--iui-size-s);
 }
 
