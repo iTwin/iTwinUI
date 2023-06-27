@@ -367,6 +367,7 @@ const TitleIcon = ({
         className='iui-tile-status-icon'
         aria-hidden
         indeterminate
+        size='x-small'
       />
     );
   }

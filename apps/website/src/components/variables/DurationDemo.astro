@@ -1,0 +1,48 @@
+---
+import Wrapper from './_wrapper.astro';
+const durations = ['0', '1', '2', '3'];
+---
+
+<Wrapper class='wrapper'>
+  {
+    durations.map((duration) => (
+      <duration-item duration={`--iui-duration-${duration}`}>
+        <button>{duration}</button>
+      </duration-item>
+    ))
+  }
+</Wrapper>
+
+<script>
+  customElements.define(
+    'duration-item',
+    class extends HTMLElement {
+      connectedCallback() {
+        const duration = getComputedStyle(this).getPropertyValue(this.getAttribute('duration'));
+        const durationMs = Math.max(0.001, parseFloat(duration) * 1000);
+        const button = this.querySelector('button');
+
+        button.addEventListener('click', () => {
+          button.animate([{ opacity: 0 }], { duration: durationMs });
+        });
+      }
+    }
+  );
+</script>
+
+<style>
+  duration-item button {
+    border: none;
+    padding: var(--space-3);
+    width: var(--space-8);
+    height: var(--space-8);
+    border-radius: var(--space-1);
+    box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-foreground-2);
+    cursor: pointer;
+  }
+</style>
