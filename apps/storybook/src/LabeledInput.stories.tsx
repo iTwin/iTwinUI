@@ -12,6 +12,7 @@ import {
   IconButton,
   FancyInput,
   InputWrapper,
+  Input,
 } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
@@ -50,14 +51,17 @@ export const Basic: Story<LabeledInputProps> = () => {
   );
 };
 
-export const WithMessage: Story<LabeledInputProps> = (args) => {
+export const WithMessage: Story<LabeledInputProps> = () => {
   return (
-    <LabeledInput
-      placeholder='Enter text here...'
-      message='This is a message'
-      label='This is a label'
-      {...args}
-    />
+    <FancyInput>
+      <FancyInput.Label>This is a label</FancyInput.Label>
+      <FancyInput.MiddlePart>
+        <Input placeholder='Enter text here...' />
+      </FancyInput.MiddlePart>
+      <FancyInput.Message startIcon={<SvgCamera />}>
+        This is a message
+      </FancyInput.Message>
+    </FancyInput>
   );
 };
 
