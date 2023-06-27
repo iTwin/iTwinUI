@@ -172,7 +172,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-tile-thumbnail {
-    height: calc(var(--iui-size-s) * 9);
+    height: calc(var(--iui-size-s) * 10);
     grid-area: thumbnail;
     flex: 1;
     border-bottom: none;
