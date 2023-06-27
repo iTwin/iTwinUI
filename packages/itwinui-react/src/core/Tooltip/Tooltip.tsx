@@ -78,6 +78,10 @@ type TooltipOwnProps = {
    * @default true;
    */
   portal?: boolean | { to: HTMLElement };
+  /**
+   *
+   */
+  setReference?: (setTooltipReference: (ref: HTMLElement) => void) => void;
 };
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -171,10 +175,15 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     style,
     className,
     visible,
+    setReference,
     ...rest
   } = props;
   const tooltip = useTooltip({ placement, visible, updateOptions, middleware });
   const context = useGlobals();
+
+  React.useEffect(() => {
+    setReference && setReference(tooltip.refs.setReference);
+  }, [setReference, tooltip.refs.setReference]);
 
   const portalTo =
     typeof portal !== 'boolean'
