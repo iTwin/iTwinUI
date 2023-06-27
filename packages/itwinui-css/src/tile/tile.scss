@@ -158,8 +158,8 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   grid-template-areas:
     'thumbnail name'
     'thumbnail content';
-  grid-template-columns: 3fr 7fr;
-  grid-template-rows: 1.5fr 2.5fr;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
 
   > :where(:first-child) {
     border-top-left-radius: inherit;
