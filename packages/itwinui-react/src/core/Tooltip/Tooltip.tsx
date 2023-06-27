@@ -37,6 +37,10 @@ type TooltipOptions = {
    * Property for manual visibility control
    */
   visible?: boolean;
+  /**
+   * autoUpdate options
+   * https://floating-ui.com/docs/autoUpdate#options
+   */
   updateOptions?: {
     ancestorScroll?: boolean;
     ancestorResize?: boolean;
@@ -69,7 +73,7 @@ type TooltipOwnProps = {
   content: React.ReactNode;
   /**
    * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
-   * If not specified, the `reference` prop should be used instead.
+   * If not specified, the `setReference` prop should be used instead.
    */
   children?: React.ReactNode;
   /**
@@ -79,7 +83,19 @@ type TooltipOwnProps = {
    */
   portal?: boolean | { to: HTMLElement };
   /**
+   * Function that sets reference point to user provided element.
+   * @example
+   * const ref = React.useRef(null);
+   * const setReference = (setTooltipRef: (ref: HTMLElement) => void) => {
+   *  ref.current && setTooltipRef(ref.current);
+   * };
    *
+   * return (
+   *   <>
+   *      <Button ref={ref}>Reference</Button>
+   *      <Tooltip content='Tooltip' setReference={(refFunction) => setReference(refFunction)}/>
+   *   </>
+   * );
    */
   setReference?: (setTooltipReference: (ref: HTMLElement) => void) => void;
 };
@@ -102,7 +118,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange: setUncontrolledOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    whileElementsMounted: (referenceEl: any, floatingEl: any, update: any) =>
       autoUpdate(referenceEl, floatingEl, update, {
         animationFrame: updateOptions.animationFrame,
         ancestorScroll: updateOptions.ancestorScroll,
