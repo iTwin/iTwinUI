@@ -204,13 +204,19 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     </Box>
   );
 
+  const childrenRef = useMergedRefs(
+    tooltip.refs.setReference,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (children as any).ref,
+  );
+
   return (
     <>
       {React.isValidElement(children)
         ? React.cloneElement(
             children,
             tooltip.getReferenceProps({
-              ref: tooltip.refs.setReference,
+              ref: childrenRef,
               ...children.props,
             }),
           )
