@@ -1,3 +1,4 @@
+/* stylelint-disable csstools/use-logical */
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../anchor/mixins' as anchor;
@@ -40,8 +41,8 @@
   &:where([data-iui-variant='sticky']) {
     border-radius: 0;
     position: sticky;
-    inset-block-start: 0;
-    inset-inline-start: 0;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -57,7 +58,7 @@
   @include anchor.iui-anchor-underline('on-initial');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
-  margin-inline-start: var(--iui-size-xs);
+  margin-left: var(--iui-size-xs);
   user-select: none;
   white-space: nowrap;
 }
