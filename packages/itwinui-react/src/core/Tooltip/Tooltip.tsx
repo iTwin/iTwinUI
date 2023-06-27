@@ -221,11 +221,14 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     </Box>
   );
 
-  const childrenRef = useMergedRefs(
-    tooltip.refs.setReference,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (children as any).ref,
-  );
+  const childrenRef =
+    React.isValidElement(children) &&
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useMergedRefs(
+      tooltip.refs.setReference,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      (children as any).ref,
+    );
 
   return (
     <>
