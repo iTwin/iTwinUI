@@ -1517,6 +1517,14 @@ export const Full: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
+  const setReference = React.useCallback(
+    (setTooltipRef: (ref: HTMLElement) => void) => {
+      rowRefMap.current[hoveredRowIndex] &&
+        setTooltipRef(rowRefMap.current[hoveredRowIndex]);
+    },
+    [hoveredRowIndex],
+  );
+
   return (
     <>
       <Table
@@ -1533,7 +1541,8 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         {...args}
       />
       <Tooltip
-        reference={rowRefMap.current[hoveredRowIndex]}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setReference={(refFunction: any) => setReference(refFunction)}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />

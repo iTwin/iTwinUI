@@ -28,6 +28,9 @@ export default () => {
    * Ref is set on the last avatar for tooltip positioning.
    */
   const avatarRef = React.useRef<HTMLDivElement>(null);
+  const setReference = (setTooltipRef: (ref: HTMLElement) => void) => {
+    avatarRef.current && setTooltipRef(avatarRef.current);
+  };
 
   const maxIcons = 3;
   const arrayLength = maxIcons;
@@ -54,7 +57,7 @@ export default () => {
         ))}
       </AvatarGroup>
       <Tooltip
-        reference={avatarRef}
+        setReference={(refFunction) => setReference(refFunction)}
         content={tooltipContent}
         placement='right'
         style={{ whiteSpace: 'pre' }}

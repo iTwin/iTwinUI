@@ -151,6 +151,11 @@ Inline.args = {
 
 export const HybridLayout: Story<LabeledInputProps> = (args) => {
   const ref = React.useRef(null);
+
+  const setReference = (setTooltipRef: (ref: HTMLElement) => void) => {
+    ref.current && setTooltipRef(ref.current);
+  };
+
   return (
     <>
       <LabeledInput
@@ -165,7 +170,11 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
         iconDisplayStyle='inline'
         {...args}
       />
-      <Tooltip reference={ref} content='Placeholder' />
+      <Tooltip
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        setReference={(refFunction: any) => setReference(refFunction)}
+        content='Placeholder'
+      />
     </>
   );
 };
