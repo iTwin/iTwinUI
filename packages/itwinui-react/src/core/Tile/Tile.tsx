@@ -86,11 +86,6 @@ type TileOwnProps = {
    */
   variant?: 'default' | 'folder';
   /**
-   * Whether the tile is expected to be interactive (i.e. `onClick`).
-   * It becomes focusable and gets on hover styling.
-   */
-  isActionable?: boolean;
-  /**
    * Display a loading state.
    * @default false
    */
@@ -114,13 +109,11 @@ const TileComponent = React.forwardRef((props, forwardedRef) => {
     isNew,
     isSelected,
     isLoading,
-    isActionable: isActionableProp,
     isDisabled,
     ...rest
   } = props;
-  const [localActionable, setLocalActionable] =
-    React.useState(isActionableProp);
-  const isActionable = isActionableProp ?? localActionable;
+  const [localActionable, setLocalActionable] = React.useState(false);
+  const isActionable = localActionable;
 
   return (
     <TileContext.Provider
