@@ -49,8 +49,6 @@ type TooltipOptions = {
    * to its reference element, such as when scrolling
    * and resizing the screen
    *
-   * By default everything is false.
-   *
    * https://floating-ui.com/docs/autoUpdate#options
    */
   autoUpdateOptions?: {
@@ -61,6 +59,7 @@ type TooltipOptions = {
      * Use this if you want Tooltip to follow moving trigger element
      */
     animationFrame?: boolean;
+    layoutShift?: boolean;
   };
   /**
    * Tooltip middleware options.
@@ -96,13 +95,10 @@ type TooltipOwnProps = {
   /**
    * Sets reference point to user provided element.
    * @example
-   * const ref = React.useRef(null);
-   * return (
-   *   <>
-   *      <Button ref={ref}>Reference</Button>
-   *      <Tooltip content='Tooltip' setReference={ref.current}/>
-   *   </>
-   * );
+   * const buttonRef = React.useRef();
+   * ...
+   * <Button ref={buttonRef} />
+   * <Tooltip content='tooltip text' reference={buttonRef} />
    */
   reference?: React.RefObject<HTMLElement>;
 };
@@ -125,13 +121,13 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange: setUncontrolledOpen,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    whileElementsMounted: (referenceEl: any, floatingEl: any, update: any) =>
+    whileElementsMounted: (referenceEl, floatingEl, update) =>
       autoUpdate(referenceEl, floatingEl, update, {
         animationFrame: autoUpdateOptions.animationFrame,
         ancestorScroll: autoUpdateOptions.ancestorScroll,
         ancestorResize: autoUpdateOptions.ancestorResize,
         elementResize: autoUpdateOptions.elementResize,
+        layoutShift: autoUpdateOptions.layoutShift,
       }),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
@@ -219,8 +215,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     if (reference) {
       tooltip.refs.setReference(reference.current);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reference]);
+  }, [reference, tooltip.refs]);
 
   const portalTo =
     typeof portal !== 'boolean'
@@ -256,8 +251,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
             children,
             tooltip.getReferenceProps({
               ref: childrenRef,
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
-              ...(children as any).props,
+              ...children.props,
             }),
           )
         : null}
