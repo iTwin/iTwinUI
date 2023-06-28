@@ -350,12 +350,11 @@ TileMetadata.displayName = 'Tile.Metadata';
 // ----------------------------------------------------------------------------
 // Tile.MoreOptions component
 type TileMoreOptionsOwnProps = {
-  onButtonClick?: React.MouseEventHandler<HTMLElement>;
-  children?: React.ReactElement[];
+  buttonProps?: React.ComponentPropsWithoutRef<typeof IconButton>;
 };
 
 const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
-  const { className, children = [], onButtonClick, ...rest } = props;
+  const { className, children = [], buttonProps, ...rest } = props;
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
@@ -388,7 +387,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
           styleType='borderless'
           size='small'
           aria-label='More options'
-          onClick={onButtonClick}
+          {...buttonProps}
         >
           <SvgMore />
         </IconButton>
