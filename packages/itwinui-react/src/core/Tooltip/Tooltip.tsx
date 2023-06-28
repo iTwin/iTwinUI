@@ -44,7 +44,13 @@ type TooltipOptions = {
    */
   visible?: boolean;
   /**
-   * autoUpdate options
+   * autoUpdate options that recalculates position
+   * to ensure the floating element remains anchored
+   * to its reference element, such as when scrolling
+   * and resizing the screen
+   *
+   * By default everything is false.
+   *
    * https://floating-ui.com/docs/autoUpdate#options
    */
   autoUpdateOptions?: {
@@ -53,7 +59,6 @@ type TooltipOptions = {
     elementResize?: boolean;
     /**
      * Use this if you want Tooltip to follow moving trigger element
-     * @default false;
      */
     animationFrame?: boolean;
   };
@@ -79,7 +84,7 @@ type TooltipOwnProps = {
   content: React.ReactNode;
   /**
    * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
-   * If not specified, the `setReference` prop should be used instead.
+   * If not specified, the `reference` prop should be used instead.
    */
   children?: React.ReactNode;
   /**
@@ -89,7 +94,7 @@ type TooltipOwnProps = {
    */
   portal?: boolean | { to: HTMLElement };
   /**
-   * Function that sets reference point to user provided element.
+   * Sets reference point to user provided element.
    * @example
    * const ref = React.useRef(null);
    * return (
@@ -182,6 +187,11 @@ const useTooltip = (options: TooltipOptions = {}) => {
  * Uses [FloatingUI](https://floating-ui.com/).
  * @example
  * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
+ * @example
+ * const buttonRef = React.useRef();
+ * ...
+ * <Button ref={buttonRef} />
+ * <Tooltip content='tooltip text' reference={buttonRef} />
  */
 export const Tooltip = React.forwardRef((props, forwardRef) => {
   const {
@@ -206,7 +216,6 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
   const context = useGlobals();
 
   React.useEffect(() => {
-    console.log(reference);
     if (reference) {
       tooltip.refs.setReference(reference.current);
     }
