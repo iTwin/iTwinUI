@@ -41,11 +41,7 @@ const assertBaseElement = (
 
     const item = breadcrumb.firstElementChild;
     expect(item).toBeTruthy();
-    expect(item).toHaveClass('iui-breadcrumbs-button');
-
-    const text = item?.firstElementChild;
-    expect(text).toBeTruthy();
-    expect(text).toHaveClass('iui-breadcrumbs-text');
+    expect(item).toHaveClass('iui-breadcrumbs-action');
 
     if (index === currentIndex) {
       expect(item?.getAttribute('aria-current')).toEqual('location');
@@ -87,7 +83,7 @@ it('should render breadcrumbs item as anchor elements', () => {
       Anchor 1
     </Breadcrumbs.Item>,
   );
-  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-text');
+  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-action');
 });
 
 it('should render custom separators', () => {
