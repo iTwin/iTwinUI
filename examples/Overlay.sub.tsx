@@ -8,9 +8,6 @@ import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 const wrapperStyle = {
   border: '1px solid var(--iui-color-border)',
   position: 'relative',
-  marginBottom: '12px',
-  maxWidth: '600px',
-  maxHeight: '400px',
 } as React.CSSProperties;
 
 export default () => {
