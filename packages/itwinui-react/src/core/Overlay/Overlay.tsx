@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Box, polymorphic } from '../utils/index.js';
-import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type OverlayComponentProps = {
@@ -93,7 +92,8 @@ export const Overlay = Object.assign(OverlayComponent, {
 
 const useInertPolyfill = () => {
   const loaded = React.useRef(false);
-  const modulePath = 'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
+  const modulePath =
+    'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
 
   React.useEffect(() => {
     async () => {
