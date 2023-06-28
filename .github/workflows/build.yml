@@ -400,4 +400,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test --filter=a11y
+      - uses: cypress-io/github-action@v5
+        with:
+          build: yarn build --filter=itwinui-react
+          working-directory: testing/a11y
