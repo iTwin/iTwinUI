@@ -136,7 +136,6 @@ AllProps.argTypes = {
 };
 AllProps.args = {
   ...Basic.args,
-  isActionable: true,
   isSelected: true,
 };
 
@@ -176,7 +175,6 @@ export const Actionable: Story<TileProps> = (args) => {
 Actionable.argTypes = { ...Basic.argTypes };
 Actionable.args = {
   ...Basic.args,
-  isActionable: true,
 };
 
 export const AnchorLink: Story<TileProps> = (args) => {
@@ -214,7 +212,6 @@ export const AnchorLink: Story<TileProps> = (args) => {
 AnchorLink.argTypes = { ...Basic.argTypes };
 AnchorLink.args = {
   ...Basic.args,
-  isActionable: true,
 };
 
 export const Condensed: Story<TileProps> = (args) => {
