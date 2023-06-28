@@ -273,8 +273,12 @@ it('should propagate misc props correctly', () => {
 
 it('should render actionable tile', () => {
   const { container } = render(
-    <Tile isActionable>
-      <Tile.Name name='test-name' />
+    <Tile>
+      <Tile.Name>
+        <Tile.NameLabel>
+          <Tile.Action>test-name</Tile.Action>
+        </Tile.NameLabel>
+      </Tile.Name>
     </Tile>,
   );
   expect(container.querySelector('.iui-tile.iui-actionable')).toBeTruthy();
