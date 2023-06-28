@@ -56,7 +56,6 @@ type CheckboxProps = {
  */
 export const Checkbox = React.forwardRef((props, ref) => {
   const {
-    className,
     disabled = false,
     indeterminate = false,
     label,
@@ -91,14 +90,10 @@ export const Checkbox = React.forwardRef((props, ref) => {
     <>
       <Box
         as='input'
-        className={cx(
-          'iui-checkbox',
-          {
-            'iui-checkbox-visibility': variant === 'eyeball',
-            'iui-loading': isLoading,
-          },
-          className && { [className]: !label },
-        )}
+        className={cx('iui-checkbox', {
+          'iui-checkbox-visibility': variant === 'eyeball',
+          'iui-loading': isLoading,
+        })}
         style={!label ? style : undefined}
         disabled={disabled || isLoading}
         type='checkbox'
@@ -125,7 +120,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
         },
         wrapperClassName,
       )}
-      style={wrapperStyle}
       {...restWrapperProps}
     >
       {checkbox}
