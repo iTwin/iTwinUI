@@ -150,7 +150,7 @@ export const Thumb = (props: ThumbProps) => {
   return (
     <Tooltip
       placement='top'
-      updateOptions={{ animationFrame: true }}
+      autoUpdateOptions={{ animationFrame: true }}
       {...tooltipProps}
     >
       <Box

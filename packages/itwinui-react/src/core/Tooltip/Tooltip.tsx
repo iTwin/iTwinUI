@@ -23,7 +23,13 @@ import {
   inline,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import { Box, getDocument, useGlobals, useMergedRefs } from '../utils/index.js';
+import {
+  Box,
+  getDocument,
+  mergeRefs,
+  useGlobals,
+  useMergedRefs,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import ReactDOM from 'react-dom';
 
@@ -41,7 +47,7 @@ type TooltipOptions = {
    * autoUpdate options
    * https://floating-ui.com/docs/autoUpdate#options
    */
-  updateOptions?: {
+  autoUpdateOptions?: {
     ancestorScroll?: boolean;
     ancestorResize?: boolean;
     elementResize?: boolean;
@@ -86,18 +92,14 @@ type TooltipOwnProps = {
    * Function that sets reference point to user provided element.
    * @example
    * const ref = React.useRef(null);
-   * const setReference = (setTooltipRef: (ref: HTMLElement) => void) => {
-   *  ref.current && setTooltipRef(ref.current);
-   * };
-   *
    * return (
    *   <>
    *      <Button ref={ref}>Reference</Button>
-   *      <Tooltip content='Tooltip' setReference={(refFunction) => setReference(refFunction)}/>
+   *      <Tooltip content='Tooltip' setReference={ref.current}/>
    *   </>
    * );
    */
-  setReference?: (setTooltipReference: (ref: HTMLElement) => void) => void;
+  reference?: React.RefObject<HTMLElement>;
 };
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -108,7 +110,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
       flip: true,
       shift: true,
     },
-    updateOptions = {},
+    autoUpdateOptions = {},
   } = options;
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
@@ -121,10 +123,10 @@ const useTooltip = (options: TooltipOptions = {}) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     whileElementsMounted: (referenceEl: any, floatingEl: any, update: any) =>
       autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: updateOptions.animationFrame,
-        ancestorScroll: updateOptions.ancestorScroll,
-        ancestorResize: updateOptions.ancestorResize,
-        elementResize: updateOptions.elementResize,
+        animationFrame: autoUpdateOptions.animationFrame,
+        ancestorScroll: autoUpdateOptions.ancestorScroll,
+        ancestorResize: autoUpdateOptions.ancestorResize,
+        elementResize: autoUpdateOptions.elementResize,
       }),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
@@ -187,20 +189,29 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     children,
     portal = true,
     placement = 'top',
-    updateOptions,
+    autoUpdateOptions,
     middleware,
     style,
     className,
     visible,
-    setReference,
+    reference,
     ...rest
   } = props;
-  const tooltip = useTooltip({ placement, visible, updateOptions, middleware });
+  const tooltip = useTooltip({
+    placement,
+    visible,
+    autoUpdateOptions,
+    middleware,
+  });
   const context = useGlobals();
 
   React.useEffect(() => {
-    setReference && setReference(tooltip.refs.setReference);
-  }, [setReference, tooltip.refs.setReference]);
+    console.log(reference);
+    if (reference) {
+      tooltip.refs.setReference(reference.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reference]);
 
   const portalTo =
     typeof portal !== 'boolean'
@@ -223,8 +234,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
 
   const childrenRef =
     React.isValidElement(children) &&
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useMergedRefs(
+    mergeRefs(
       tooltip.refs.setReference,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       (children as any).ref,
@@ -237,7 +247,8 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
             children,
             tooltip.getReferenceProps({
               ref: childrenRef,
-              ...children.props,
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              ...(children as any).props,
             }),
           )
         : null}

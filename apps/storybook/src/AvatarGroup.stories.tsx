@@ -6,9 +6,9 @@ import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   getUserColor,
+  Tooltip,
   Avatar,
   AvatarGroup,
-  Tooltip,
 } from '@itwin/itwinui-react';
 
 type AvatarGroupProps = React.ComponentProps<typeof AvatarGroup>;
@@ -191,10 +191,6 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
   const usersSubArray = userNames.slice(arrayLength);
   const tooltipContent = usersSubArray.join(`\n`) as string;
 
-  const setReference = (setTooltipRef: (ref: HTMLElement) => void) => {
-    avatarRef.current && setTooltipRef(avatarRef.current);
-  };
-
   return (
     <>
       <AvatarGroup {...args} countIconProps={{ ref: avatarRef }}>
@@ -211,8 +207,7 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
         ))}
       </AvatarGroup>
       <Tooltip
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        setReference={(refFunction: any) => setReference(refFunction)}
+        reference={avatarRef}
         content={tooltipContent}
         placement='right'
         style={{ whiteSpace: 'pre' }}
