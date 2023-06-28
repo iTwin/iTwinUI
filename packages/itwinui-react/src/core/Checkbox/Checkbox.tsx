@@ -109,11 +109,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
     </>
   );
 
-  const {
-    className: wrapperClassName,
-    style: wrapperStyle,
-    ...restWrapperProps
-  } = wrapperProps;
+  const { className: wrapperClassName, ...restWrapperProps } = wrapperProps;
 
   return !label ? (
     checkbox
