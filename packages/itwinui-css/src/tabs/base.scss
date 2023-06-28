@@ -112,12 +112,13 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   ~ .iui-tabs-content {
-    padding-block: var(--iui-size-s);
+    padding-block-start: var(--iui-size-s);
+    padding-block-end: var(--iui-size-s);
   }
 }
 
 @mixin iui-tab-label {
-  text-align: start;
+  text-align: inset-inline-start;
   max-inline-size: 60ch;
 
   > * {

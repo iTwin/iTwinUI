@@ -28,7 +28,7 @@
   }
 
   .iui-vertical & ~ .iui-tabs-content {
-    margin-inline: calc(0px - var(--iui-size-3xs));
+    margin-inline-start: calc(0px - var(--iui-size-3xs));
     padding-inline-start: var(--iui-size-s);
     padding-inline-end: var(--iui-size-s);
     border-inline-start: var(--iui-size-3xs) solid var(--iui-color-border);
