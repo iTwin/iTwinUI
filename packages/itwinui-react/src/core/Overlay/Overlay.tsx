@@ -52,14 +52,7 @@ OverlayMessage.displayName = 'Overlay.Overlay';
 
 // --------------------------------------------------------------------------------
 
-const OverlayWrapper = React.forwardRef((props, ref) => {
-  const { as: Box = 'div', children, className, ...rest } = props;
-  return (
-    <Box className={cx('iui-overlay-wrapper', className)} ref={ref} {...rest}>
-      {children}
-    </Box>
-  );
-}) as PolymorphicForwardRefComponent<'div'>;
+const OverlayWrapper = polymorphic('iui-overlay-wrapper');
 OverlayWrapper.displayName = 'Overlay.Wrapper';
 
 // --------------------------------------------------------------------------------
