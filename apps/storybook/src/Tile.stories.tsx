@@ -43,7 +43,7 @@ export default {
 export const Basic: Story<TileProps> = (args) => {
   return (
     <Tile {...args}>
-      <Tile.Name>Stadium</Tile.Name>
+      <Tile.Name name='Stadium' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
           <Badge backgroundColor='skyblue'>Badge</Badge>
