@@ -51,7 +51,7 @@ function rehypeToc() {
 
     // ideally we would check if the frontmatter has a toc: false, but that is not available
     // so we will hardcode the files we don't want a toc for
-    if (['index.mdx', 'variables.mdx'].includes(file.history[0].split('/').pop()!)) {
+    if (['index.mdx'].includes(file.history[0].split('/').pop()!)) {
       showTOC = false;
     }
 
