@@ -189,8 +189,6 @@ it('renders correctly with visibility checkbox', () => {
   expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
 });
 
-// wrapperProps test
-
 it('correctly passes className through wrapperProps', () => {
   const { container } = render(
     <Checkbox label='some label' wrapperProps={{ className: 'some-box' }} />,
