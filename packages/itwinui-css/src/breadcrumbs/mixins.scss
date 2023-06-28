@@ -39,6 +39,14 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: var(--iui-component-height);
+}
+
+@mixin iui-breadcrumbs-action {
+  padding: 0 var(--iui-size-xs);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: var(--iui-component-height);
 
   &:is(a) {
     @include anchor.iui-anchor;
@@ -47,17 +55,17 @@
       outline-offset: -1px;
     }
   }
-}
 
-@mixin iui-breadcrumbs-button {
-  @include base.iui-button;
-  @include borderless.iui-button-borderless;
-  padding: 0;
-  border: none;
-  color: var(--iui-color-text-accent);
+  &:is(button) {
+    @include base.iui-button;
+    @include borderless.iui-button-borderless;
+    // justify-content: left;
+    border: none;
+    color: var(--iui-color-text-accent);
 
-  &[aria-current] {
-    color: var(--iui-color-text);
+    &[aria-current] {
+      color: var(--iui-color-text);
+    }
   }
 }
 
