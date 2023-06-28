@@ -9,14 +9,14 @@ import { SvgTag } from '@itwin/itwinui-icons-react';
 export default () => {
   const [selected, setSelected] = React.useState(true);
   return (
-    <Tile
-      isSelected={selected}
-      isActionable={true}
-      onClick={() => setSelected((prev) => !prev)}
-    >
+    <Tile isSelected={selected}>
       <Tile.Name>
         <Tile.NameIcon />
-        <Tile.NameLabel>Stadium</Tile.NameLabel>
+        <Tile.NameLabel>
+          <Tile.Action onClick={() => setSelected((prev) => !prev)}>
+            Stadium
+          </Tile.Action>
+        </Tile.NameLabel>
       </Tile.Name>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
