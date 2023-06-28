@@ -43,6 +43,9 @@ const assertBaseElement = (
     expect(item).toBeTruthy();
     expect(item).toHaveClass('iui-breadcrumbs-action');
 
+    const text = item?.querySelector('span');
+    expect(text).toBeTruthy();
+
     if (index === currentIndex) {
       expect(item?.getAttribute('aria-current')).toEqual('location');
     } else {

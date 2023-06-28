@@ -214,7 +214,16 @@ const BreadcrumbsItem = React.forwardRef((props, forwardRef) => {
   } else if (!!props.href) {
     itemType = 'a';
   } else if (!!props.onClick) {
-    itemType = 'button';
+    return (
+      <Box
+        as={'button' as 'a'}
+        className={cx('iui-breadcrumbs-action', className)}
+        ref={forwardRef}
+        {...rest}
+      >
+        <Box as='span'>{children}</Box>
+      </Box>
+    );
   }
 
   return (

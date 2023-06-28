@@ -42,11 +42,7 @@
 }
 
 @mixin iui-breadcrumbs-action {
-  padding: 0 var(--iui-size-xs);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  line-height: var(--iui-component-height);
+  @include iui-breadcrumbs-text;
 
   &:where(a) {
     @include anchor.iui-anchor;
@@ -60,11 +56,16 @@
     @include base.iui-button;
     @include borderless.iui-button-borderless;
     border: none;
-    display: inline-block;
     color: var(--iui-color-text-accent);
 
     &[aria-current] {
       color: var(--iui-color-text);
+    }
+
+    > * {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 }
