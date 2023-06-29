@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox, SelectOption } from '@itwin/itwinui-react';
+import type { SelectOption } from '@itwin/itwinui-react';
+import { ComboBox } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState('');

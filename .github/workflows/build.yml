@@ -376,3 +376,33 @@ jobs:
         with:
           name: 'cypress-visual-screenshots'
           path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'
+  a11y:
+    name: Test for a11y violations
+    needs: install
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Use Node 18.X
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Cache node_modules
+        uses: actions/cache@v3
+        id: cache-node-modules
+        with:
+          path: |
+            node_modules
+            packages/*/node_modules
+            apps/*/node_modules
+            playgrounds/*/node_modules
+          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn build --filter=itwinui-react
+
+      - uses: cypress-io/github-action@v5
+        with:
+          working-directory: testing/a11y
+          component: true
