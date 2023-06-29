@@ -12,6 +12,7 @@ import {
   Box,
   useSafeContext,
   polymorphic,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
@@ -121,42 +122,33 @@ type ExpandableBlockHeaderOwnProps = {
 };
 
 const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
-  const { className, children, label, expandIcon, ...rest } = props;
+  const {
+    className,
+    children,
+    label,
+    onClick: onClickProp,
+    expandIcon,
+    ...rest
+  } = props;
   const { isExpanded, setExpanded, disabled, onToggle } = useSafeContext(
     ExpandableBlockContext,
   );
 
-  const handleToggle = () => {
-    if (disabled) {
-      return;
-    }
-    setExpanded(!isExpanded);
-    onToggle?.(!isExpanded);
-  };
-
-  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.altKey || disabled) {
-      return;
-    }
-
-    if (
-      event.key === 'Enter' ||
-      event.key === ' ' ||
-      event.key === 'Spacebar'
-    ) {
-      handleToggle();
-    }
-  };
-
   return (
     <Box
       as='button'
+      type='button'
       className={cx('iui-expandable-header', className)}
-      aria-expanded={isExpanded ?? !disabled}
+      aria-expanded={isExpanded}
       aria-disabled={disabled}
       tabIndex={0}
-      onClick={handleToggle}
-      onKeyDown={onKeyDown}
+      onClick={mergeEventHandlers(onClickProp, () => {
+        if (disabled) {
+          return;
+        }
+        setExpanded(!isExpanded);
+        onToggle?.(!isExpanded);
+      })}
       ref={forwardedRef}
       {...rest}
     >
@@ -240,9 +232,12 @@ ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Content component
+type ExpandableBlockContentOwnProps = {
+  innerProps: React.HTMLAttributes<HTMLDivElement>;
+};
 
 const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
-  const { className, children, ...rest } = props;
+  const { className, children, innerProps, ...rest } = props;
   const { isExpanded } = useSafeContext(ExpandableBlockContext);
 
   return (
@@ -252,11 +247,11 @@ const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
         ref={forwardedRef}
         {...rest}
       >
-        <Box>{children}</Box>
+        <Box {...innerProps}>{children}</Box>
       </Box>
     </WithCSSTransition>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
 ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
 
 /**
