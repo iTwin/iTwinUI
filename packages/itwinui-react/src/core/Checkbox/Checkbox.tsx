@@ -94,7 +94,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
           'iui-checkbox-visibility': variant === 'eyeball',
           'iui-loading': isLoading,
         })}
-        style={!label ? style : undefined}
+        style={style}
         disabled={disabled || isLoading}
         type='checkbox'
         ref={refs}
