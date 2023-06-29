@@ -185,13 +185,8 @@ export {
   Text,
 } from './Typography/index.js';
 
-export { Wizard, Stepper, WorkflowDiagram } from './Stepper/index.js';
-export type {
-  StepProperties,
-  WizardType,
-  WizardLocalization,
-  StepperLocalization,
-} from './Stepper/index.js';
+export { Stepper, WorkflowDiagram } from './Stepper/index.js';
+export type { StepProperties, StepperLocalization } from './Stepper/index.js';
 
 export { SearchBox } from './SearchBox/index.js';
 
