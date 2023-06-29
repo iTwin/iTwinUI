@@ -141,7 +141,6 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       className={cx('iui-expandable-header', className)}
       aria-expanded={isExpanded}
       aria-disabled={disabled}
-      tabIndex={0}
       onClick={mergeEventHandlers(onClickProp, () => {
         if (disabled) {
           return;
@@ -233,7 +232,7 @@ ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Content component
 type ExpandableBlockContentOwnProps = {
-  innerProps: React.HTMLAttributes<HTMLDivElement>;
+  innerProps: React.ComponentPropsWithoutRef<'div'>;
 };
 
 const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
