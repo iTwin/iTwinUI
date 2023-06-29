@@ -163,7 +163,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     >
       {children ?? (
         <>
-          {expandIcon && <ExpandableBlock.ExpandIcon />}
+          {expandIcon ?? <ExpandableBlock.ExpandIcon />}
           <ExpandableBlock.LabelArea>
             <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
           </ExpandableBlock.LabelArea>
