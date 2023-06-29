@@ -118,7 +118,7 @@ $borderless-horizontal-tab-min-height: calc(
 }
 
 @mixin iui-tab-label {
-  text-align: inset-inline-start;
+  text-align: start;
   max-inline-size: 60ch;
 
   > * {
