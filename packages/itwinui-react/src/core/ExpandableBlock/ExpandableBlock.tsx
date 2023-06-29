@@ -77,8 +77,7 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [expandedState, setExpanded] = React.useState(isExpanded);
-  const expanded = isExpanded ?? expandedState;
+  const [expanded, setExpanded] = React.useState(isExpanded);
 
   return (
     <ExpandableBlockContext.Provider
@@ -135,7 +134,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     onToggle?.(!isExpanded);
   };
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.altKey || disabled) {
       return;
     }
@@ -151,8 +150,8 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
+      as='button'
       className={cx('iui-expandable-header', className)}
-      role='button'
       aria-expanded={isExpanded ?? !disabled}
       aria-disabled={disabled}
       tabIndex={0}
@@ -163,7 +162,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     >
       {children ?? (
         <>
-          {expandIcon ?? <ExpandableBlock.ExpandIcon />}
+          {expandIcon && <ExpandableBlock.ExpandIcon />}
           <ExpandableBlock.LabelArea>
             <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
           </ExpandableBlock.LabelArea>
@@ -171,7 +170,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', ExpandableBlockHeaderOwnProps>;
+}) as PolymorphicForwardRefComponent<'button', ExpandableBlockHeaderOwnProps>;
 ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
 
 // ----------------------------------------------------------------------------
