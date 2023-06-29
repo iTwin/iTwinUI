@@ -5,14 +5,12 @@
 import * as React from 'react';
 import { Overlay } from '@itwin/itwinui-react';
 
-const wrapperStyle = {
-  border: '1px solid var(--iui-color-border)',
-  position: 'relative',
-} as React.CSSProperties;
-
 export default () => {
   return (
-    <Overlay content={'loading...'} style={wrapperStyle}>
+    <Overlay
+      content={'loading...'}
+      style={{ border: '1px solid var(--iui-color-border)' }}
+    >
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

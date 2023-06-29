@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Box, polymorphic } from '../utils/index.js';
+import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type OverlayComponentProps = {
@@ -51,7 +52,14 @@ OverlayMessage.displayName = 'Overlay.Overlay';
 
 // --------------------------------------------------------------------------------
 
-const OverlayWrapper = polymorphic('iui-overlay-wrapper');
+const OverlayWrapper = React.forwardRef((props, ref) => {
+  const { as: Box = 'div', children, className, ...rest } = props;
+  return (
+    <Box className={cx('iui-overlay-wrapper', className)} ref={ref} {...rest}>
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div'>;
 OverlayWrapper.displayName = 'Overlay.Wrapper';
 
 // --------------------------------------------------------------------------------

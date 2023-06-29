@@ -5,14 +5,9 @@
 import * as React from 'react';
 import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 
-const wrapperStyle = {
-  border: '1px solid var(--iui-color-border)',
-  position: 'relative',
-} as React.CSSProperties;
-
 export default () => {
   return (
-    <Overlay.Wrapper style={wrapperStyle}>
+    <Overlay.Wrapper style={{ border: '1px solid var(--iui-color-border)' }}>
       <Overlay.Overlay>
         <ProgressLinear indeterminate={true} />
       </Overlay.Overlay>
