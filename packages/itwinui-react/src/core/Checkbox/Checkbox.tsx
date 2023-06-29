@@ -40,6 +40,10 @@ type CheckboxProps = {
    * Passes properties for Checkbox wrapper.
    */
   wrapperProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for checkbox label
+   */
+  labelProps?: React.ComponentProps<'label'>;
 };
 
 /**
@@ -65,6 +69,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
     setFocus,
     isLoading = false,
     wrapperProps = {},
+    labelProps = {},
     style,
     ...rest
   } = props;
@@ -108,6 +113,8 @@ export const Checkbox = React.forwardRef((props, ref) => {
 
   const { className: wrapperClassName, ...restWrapperProps } = wrapperProps;
 
+  const { className: labelClassName, ...restLabelProps } = labelProps;
+
   return !label ? (
     checkbox
   ) : (
@@ -126,7 +133,11 @@ export const Checkbox = React.forwardRef((props, ref) => {
     >
       {checkbox}
       {label && (
-        <Box as='span' className='iui-checkbox-label'>
+        <Box
+          as='span'
+          className={(cx('iui-checkbox-label'), labelClassName)}
+          {...restLabelProps}
+        >
           {label}
         </Box>
       )}
