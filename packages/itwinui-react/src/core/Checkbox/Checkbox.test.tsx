@@ -19,7 +19,7 @@ it('renders correctly with label', () => {
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toHaveClass('iui-checkbox-wrapper');
-  expect(screen.getByText('Some checkbox')).toHaveClass('iui-checkbox-label');
+  expect(container.querySelector('label')).toHaveTextContent('Some checkbox');
 });
 
 it('renders correctly indeterminate state', () => {
