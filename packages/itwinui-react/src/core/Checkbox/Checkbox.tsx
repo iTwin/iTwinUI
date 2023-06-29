@@ -56,6 +56,7 @@ type CheckboxProps = {
  */
 export const Checkbox = React.forwardRef((props, ref) => {
   const {
+    className,
     disabled = false,
     indeterminate = false,
     label,
@@ -93,6 +94,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
         className={cx('iui-checkbox', {
           'iui-checkbox-visibility': variant === 'eyeball',
           'iui-loading': isLoading,
+          className,
         })}
         style={style}
         disabled={disabled || isLoading}
