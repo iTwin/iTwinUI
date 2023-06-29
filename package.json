@@ -72,7 +72,8 @@
     "loader-utils": "2.0.4",
     "autoprefixer": "10.4.13",
     "yaml": "^2.2.2",
-    "semver": "^7.5.2"
+    "semver": "^7.5.2",
+    "optionator": "~0.9.3"
   },
   "engines": {
     "npm": ">=7.0.0",
