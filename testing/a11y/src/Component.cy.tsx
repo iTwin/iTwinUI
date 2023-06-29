@@ -18,14 +18,11 @@ describe('Should have no WCAG violations', () => {
         axeCorePath: Cypress.env('axeCorePath'),
       });
       cy.checkA11y(undefined, undefined, (violations) => {
-        const violationData = violations.map(
-          ({ id, impact, description, nodes }) => ({
-            id,
-            impact,
-            description,
-            nodes: nodes.length,
-          }),
-        );
+        const violationData = violations.map(({ id, help }) => ({
+          Component: name,
+          'Rule ID': id,
+          Description: help,
+        }));
         cy.task('table', violationData);
       });
     });
