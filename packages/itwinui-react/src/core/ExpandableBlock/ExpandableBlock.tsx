@@ -106,7 +106,6 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
           className,
         )}
         style={style}
-        aria-expanded={expanded}
         ref={forwardedRef}
         {...rest}
       >
