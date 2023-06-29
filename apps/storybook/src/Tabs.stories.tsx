@@ -5,7 +5,7 @@
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
-import { Button, Tab, Tabs } from '@itwin/itwinui-react';
+import { Button, Tab, Tabs, NewTabs } from '@itwin/itwinui-react';
 
 type TabsProps = React.ComponentProps<typeof Tabs>;
 
@@ -433,3 +433,24 @@ Vertical.argTypes = {
   type: { options: ['default', 'borderless'] },
   orientation: { control: { disable: true } },
 };
+
+export const NewDefaultTabs: Story<Partial<TabsProps>> = (args) => {
+  return (
+    <NewTabs defaultValue='tab1' {...args}>
+      <NewTabs.TabList>
+        <NewTabs.Tab value='tab1'>Tab 1</NewTabs.Tab>
+
+        <NewTabs.Tab value='tab2'>Tab 2</NewTabs.Tab>
+
+        <NewTabs.Tab value='tab3'>Tab 3</NewTabs.Tab>
+      </NewTabs.TabList>
+
+      <NewTabs.Panel value='tab1'>This is the content for tab 1</NewTabs.Panel>
+
+      <NewTabs.Panel value='tab2'>This is the content for tab 2</NewTabs.Panel>
+
+      <NewTabs.Panel value='tab3'>This is the content for tab 3</NewTabs.Panel>
+    </NewTabs>
+  );
+};
+NewDefaultTabs.args = {};
