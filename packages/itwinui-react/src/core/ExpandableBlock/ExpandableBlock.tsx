@@ -77,10 +77,8 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [expanded, setExpanded] = React.useState(isExpanded);
-  React.useEffect(() => {
-    setExpanded(isExpanded);
-  }, [isExpanded]);
+  const [expandedState, setExpanded] = React.useState(isExpanded);
+  const expanded = isExpanded ?? expandedState;
 
   return (
     <ExpandableBlockContext.Provider
