@@ -10,8 +10,8 @@ import {
   LabeledInput,
   Tooltip,
   IconButton,
-  FancyInput,
-  InputWrapper,
+  InputGrid,
+  InputWithDecorations,
   Input,
 } from '@itwin/itwinui-react';
 
@@ -36,32 +36,32 @@ export default {
 
 export const Basic: Story<LabeledInputProps> = () => {
   return (
-    <FancyInput>
-      <FancyInput.Label>Label</FancyInput.Label>
-      <FancyInput.MiddlePart>
-        <InputWrapper>
-          <InputWrapper.Input />
-          <InputWrapper.Button>
-            <SvgCloseSmall />
-          </InputWrapper.Button>
-        </InputWrapper>
-      </FancyInput.MiddlePart>
-      <FancyInput.Message startIcon={<SvgCamera />}>Message</FancyInput.Message>
-    </FancyInput>
+    <InputGrid displayStyle='inline'>
+      <InputGrid.Label>Label</InputGrid.Label>
+
+      <InputWithDecorations>
+        <InputWithDecorations.Input />
+        <InputWithDecorations.Button>
+          <SvgCloseSmall />
+        </InputWithDecorations.Button>
+      </InputWithDecorations>
+
+      <InputGrid.Message startIcon={<SvgCamera />}>Message</InputGrid.Message>
+    </InputGrid>
   );
 };
 
 export const WithMessage: Story<LabeledInputProps> = () => {
   return (
-    <FancyInput>
-      <FancyInput.Label>This is a label</FancyInput.Label>
-      <FancyInput.MiddlePart>
-        <Input placeholder='Enter text here...' />
-      </FancyInput.MiddlePart>
-      <FancyInput.Message startIcon={<SvgCamera />}>
+    <InputGrid>
+      <InputGrid.Label>This is a label</InputGrid.Label>
+
+      <Input placeholder='Enter text here...' />
+
+      <InputGrid.Message startIcon={<SvgCamera />}>
         This is a message
-      </FancyInput.Message>
-    </FancyInput>
+      </InputGrid.Message>
+    </InputGrid>
   );
 };
 
@@ -89,6 +89,7 @@ Disabled.args = {
 export const Positive: Story<LabeledInputProps> = (args) => {
   return (
     <LabeledInput
+      required
       placeholder='Enter text here...'
       label='This is a label'
       message='This is a message'

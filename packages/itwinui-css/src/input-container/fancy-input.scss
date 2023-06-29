@@ -1,18 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use '../mixins';
+@use '../mixins' as *;
 
 .iui-fancy-input {
   display: grid;
-  grid-template:
-    'label label'
-    'inputs inputs'
-    'message message' / auto 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
 
   &.iui-inline-label {
-    grid-template:
-      'label inputs inputs'
-      '. message message' / auto auto 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto 1fr;
   }
 
   .iui-input-label {
@@ -20,7 +17,6 @@
     margin-bottom: var(--iui-size-2xs);
     color: var(--_iui-input-label-color);
 
-    grid-area: label;
     display: block;
     align-self: center;
 
@@ -49,7 +45,7 @@
   }
 
   .iui-input-message {
-    grid-area: message;
+    grid-column-end: -1;
   }
 
   .iui-input-icon {
@@ -64,7 +60,7 @@
       cursor: pointer;
       box-sizing: content-box;
 
-      @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
+      @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
       svg {
         fill: var(--iui-color-icon);
@@ -85,9 +81,5 @@
         margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
       }
     }
-  }
-
-  .iui-fancy-input-wrapper {
-    grid-area: inputs;
   }
 }

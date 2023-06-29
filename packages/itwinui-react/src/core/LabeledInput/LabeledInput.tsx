@@ -5,8 +5,10 @@
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
 import type { InputProps } from '../Input/Input.js';
-import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import { StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { InputGrid } from '../InputGrid/index.js';
+import { InputWithDecorations } from '../InputWithDecorations/index.js';
 
 export type LabeledInputProps = {
   /**
@@ -83,29 +85,64 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <InputContainer
-      label={label}
+    // <InputContainer
+
+    //   icon={icon}
+    //   isIconInline={iconDisplayStyle === 'inline'}
+    //   inputId={id}
+    // >
+    //   <Input
+    //     disabled={disabled}
+    //     className={inputClassName}
+    //     style={inputStyle}
+    //     required={required}
+    //     ref={ref}
+    //     id={id}
+    //     {...rest}
+    //   />
+    // </InputContainer>
+    <InputGrid
+      displayStyle={displayStyle}
+      status={status}
       disabled={disabled}
       required={required}
-      status={status}
-      message={message}
-      icon={icon}
-      isLabelInline={displayStyle === 'inline'}
-      isIconInline={iconDisplayStyle === 'inline'}
       className={className}
       style={style}
-      inputId={id}
     >
-      <Input
-        disabled={disabled}
-        className={inputClassName}
-        style={inputStyle}
-        required={required}
-        ref={ref}
-        id={id}
-        {...rest}
-      />
-    </InputContainer>
+      {label && <InputGrid.Label htmlFor={id}>{label}</InputGrid.Label>}
+      {icon && iconDisplayStyle === 'inline' ? (
+        <InputWithDecorations>
+          <InputWithDecorations.Input
+            disabled={disabled}
+            className={inputClassName}
+            style={inputStyle}
+            required={required}
+            ref={ref}
+            id={id}
+            {...rest}
+          />
+          <InputWithDecorations.Icon>{icon}</InputWithDecorations.Icon>
+        </InputWithDecorations>
+      ) : (
+        <Input
+          disabled={disabled}
+          className={inputClassName}
+          style={inputStyle}
+          required={required}
+          ref={ref}
+          id={id}
+          {...rest}
+        />
+      )}
+      {message && (
+        <InputGrid.Message
+          startIcon={iconDisplayStyle !== 'inline' ? icon : undefined}
+        >
+          {message}
+        </InputGrid.Message>
+      )}
+      <></>
+    </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'input', LabeledInputProps>;
 
