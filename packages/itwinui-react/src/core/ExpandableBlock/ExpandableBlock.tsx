@@ -228,7 +228,7 @@ ExpandableBlockEndIcon.displayName = 'ExpandableBlock.EndIcon';
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Content component
 type ExpandableBlockContentOwnProps = {
-  innerProps: React.ComponentPropsWithoutRef<'div'>;
+  innerProps?: React.ComponentPropsWithoutRef<'div'>;
 };
 
 const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
