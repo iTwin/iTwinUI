@@ -135,6 +135,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
                 onClick={() => {
                   action(`Visit breadcrumb ${previousBreadcrumb}`)();
                 }}
+                styleType='borderless'
               >
                 <SvgMore />
               </IconButton>
@@ -194,6 +195,7 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
             <IconButton
               aria-label='Dropdown with more breadcrumbs'
               onClick={() => action('Clicked on overflow icon')()}
+              styleType='borderless'
             >
               <SvgMore />
             </IconButton>

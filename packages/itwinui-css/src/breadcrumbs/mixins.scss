@@ -33,16 +33,12 @@
   }
 }
 
-@mixin iui-breadcrumbs-text {
+@mixin iui-breadcrumbs-content {
   padding: 0 var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: var(--iui-component-height);
-}
-
-@mixin iui-breadcrumbs-action {
-  @include iui-breadcrumbs-text;
 
   &:where(a) {
     @include anchor.iui-anchor;

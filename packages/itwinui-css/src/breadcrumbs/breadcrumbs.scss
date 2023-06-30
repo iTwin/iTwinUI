@@ -14,12 +14,8 @@
   @include iui-breadcrumbs-item;
 }
 
-.iui-breadcrumbs-text {
-  @include iui-breadcrumbs-text;
-}
-
-.iui-breadcrumbs-action {
-  @include iui-breadcrumbs-action;
+.iui-breadcrumbs-content {
+  @include iui-breadcrumbs-content;
 }
 
 .iui-breadcrumbs-separator {

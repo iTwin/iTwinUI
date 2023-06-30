@@ -41,7 +41,7 @@ const assertBaseElement = (
 
     const item = breadcrumb.firstElementChild;
     expect(item).toBeTruthy();
-    expect(item).toHaveClass('iui-breadcrumbs-action');
+    expect(item).toHaveClass('iui-breadcrumbs-content');
 
     const text = item?.querySelector('span');
     expect(text).toBeTruthy();
@@ -77,7 +77,9 @@ it('should render all elements in default state', () => {
 
 it('should render breadcrumbs item as span element by default', () => {
   const { container } = render(<Breadcrumbs.Item>Span 1</Breadcrumbs.Item>);
-  expect(container.querySelector('span')).toHaveClass('iui-breadcrumbs-text');
+  expect(container.querySelector('span')).toHaveClass(
+    'iui-breadcrumbs-content',
+  );
 });
 
 it('should render breadcrumbs item as anchor elements', () => {
@@ -86,7 +88,7 @@ it('should render breadcrumbs item as anchor elements', () => {
       Anchor 1
     </Breadcrumbs.Item>,
   );
-  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-action');
+  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
 });
 
 it('should render custom separators', () => {

@@ -143,7 +143,7 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
               {overflowButton ? (
                 overflowButton(visibleCount)
               ) : (
-                <Box as='span' className='iui-breadcrumbs-text'>
+                <Box as='span' className='iui-breadcrumbs-content'>
                   …
                 </Box>
               )}
@@ -204,36 +204,18 @@ const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
   </Box>
 );
 
-const BreadcrumbsItem = React.forwardRef((props, forwardRef) => {
-  const { as, children, className, ...rest } = props;
+const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
+  const { children: childrenProp, className, ...rest } = props;
 
-  let itemType = 'span';
-
-  if (as) {
-    itemType = as;
-  } else if (!!props.href) {
-    itemType = 'a';
-  } else if (!!props.onClick) {
-    return (
-      <Box
-        as={'button' as 'a'}
-        className={cx('iui-breadcrumbs-action', className)}
-        ref={forwardRef}
-        {...rest}
-      >
-        <Box as='span'>{children}</Box>
-      </Box>
-    );
-  }
+  const defaultAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
+  const children =
+    defaultAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
 
   return (
     <Box
-      as={itemType as 'a'}
-      className={cx(
-        `iui-breadcrumbs-${itemType === 'span' ? 'text' : 'action'}`,
-        className,
-      )}
-      ref={forwardRef}
+      as={defaultAs as 'a'}
+      className={cx('iui-breadcrumbs-content', className)}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
