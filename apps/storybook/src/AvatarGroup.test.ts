@@ -19,6 +19,7 @@ describe('AvatarGroup', () => {
 
       if (testName.includes('Tooltip')) {
         cy.get('abbr').contains('3').parent().trigger('mouseenter');
+        cy.wait(50);
       }
 
       cy.compareSnapshot(testName);

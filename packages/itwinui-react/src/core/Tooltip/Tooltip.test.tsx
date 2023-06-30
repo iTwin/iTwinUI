@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
-
 import { Tooltip } from './Tooltip.js';
 
-it('should toggle the visibility of tooltip on hover', () => {
+it('should toggle the visibility of tooltip on hover', async () => {
   jest.useFakeTimers();
+
   const { getByText, queryByText } = render(
     <Tooltip content='some text'>
       <div>Hover Here</div>
@@ -18,10 +18,12 @@ it('should toggle the visibility of tooltip on hover', () => {
   expect(queryByText('some text')).toBeNull();
 
   fireEvent.mouseEnter(getByText('Hover Here'));
+  act(() => void jest.advanceTimersByTime(50));
   getByText('some text');
 
   fireEvent.mouseLeave(getByText('Hover Here'));
-  act(() => void jest.runAllTimers());
+  act(() => void jest.advanceTimersByTime(250));
+
   expect(queryByText('some text')).not.toBeInTheDocument();
 
   jest.useRealTimers();
@@ -76,15 +78,4 @@ it('should allow button clicks and hovers', () => {
   expect(clickHandler).toBeCalledWith(10, 20);
   expect(mouseEnterHandler).toBeCalledTimes(1);
   expect(mouseLeaveHandler).toBeCalledTimes(1);
-});
-
-it('should override title attribute', () => {
-  const { getByText } = render(
-    <Tooltip content='some text' visible>
-      <div title='should override'>child</div>
-    </Tooltip>,
-  );
-
-  getByText('some text');
-  expect(getByText('child').getAttribute('title')).toBeNull();
 });

@@ -11,6 +11,7 @@ describe('Tooltip', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.get('#tooltip-target').trigger('mouseenter');
+      cy.wait(50);
       cy.compareSnapshot(testName);
     });
   });
