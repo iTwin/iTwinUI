@@ -78,7 +78,8 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [expanded, setExpanded] = React.useState(isExpanded);
+  const [expandedState, setExpanded] = React.useState(isExpanded);
+  const expanded = isExpanded ?? expandedState;
 
   return (
     <ExpandableBlockContext.Provider
@@ -153,7 +154,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     >
       {children ?? (
         <>
-          {expandIcon && <ExpandableBlock.ExpandIcon />}
+          {expandIcon ?? <ExpandableBlock.ExpandIcon />}
           <ExpandableBlock.LabelArea>
             <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
           </ExpandableBlock.LabelArea>
@@ -214,12 +215,12 @@ ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
 // ExpandableBlock.EndIcon component
 
 const ExpandableBlockEndIcon = React.forwardRef((props, forwardedRef) => {
-  const { className, children, ...rest } = props;
+  const { children, ...rest } = props;
   const { status } = useSafeContext(ExpandableBlockContext);
 
   const icon = children ?? (status && StatusIconMap[status]());
   return (
-    <Icon className={className} fill={status} ref={forwardedRef} {...rest}>
+    <Icon fill={status} ref={forwardedRef} {...rest}>
       {icon}
     </Icon>
   );

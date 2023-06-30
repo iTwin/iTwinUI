@@ -50,15 +50,15 @@ export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Name' expandIcon />
+        <ExpandableBlock.Header label='Name' />
         <ExpandableBlock.Content>{nameSection}</ExpandableBlock.Content>
       </ExpandableBlock>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Favorite Color' expandIcon />
+        <ExpandableBlock.Header label='Favorite Color' />
         <ExpandableBlock.Content>{colorSection}</ExpandableBlock.Content>
       </ExpandableBlock>
       <ExpandableBlock>
-        <ExpandableBlock.Header label='Reasoning' expandIcon />
+        <ExpandableBlock.Header label='Reasoning' />
         <ExpandableBlock.Content>{reasonSection}</ExpandableBlock.Content>
       </ExpandableBlock>
     </div>

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { useEffect, useState } from '@storybook/addons';
+import { useEffect } from '@storybook/addons';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
@@ -29,14 +29,10 @@ export default {
 export const Basic: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock {...args}>
-      <ExpandableBlock.Header label='Basic Block' expandIcon />
+      <ExpandableBlock.Header label='Basic Block' />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
-};
-
-Basic.args = {
-  isExpanded: false,
 };
 
 export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
@@ -54,23 +50,7 @@ export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
   );
 };
 
-WithCaption.args = {
-  isExpanded: false,
-};
-
 export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
-  const [openedBlock, setOpenedBlock] = useState<number | undefined>(undefined);
-  const toggleHandler = (isExpanding: boolean, id: number) => {
-    action(`isExpanding: ${isExpanding}, id: ${id}`, {
-      clearOnStoryChange: false,
-    })();
-    if (isExpanding) {
-      setOpenedBlock(id);
-    } else {
-      setOpenedBlock(undefined);
-    }
-  };
-
   useEffect(() => {
     return () => action('', { clearOnStoryChange: true })();
   }, []);
@@ -78,16 +58,8 @@ export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <>
       {[...Array(3).fill(null)].map((_, index) => (
-        <ExpandableBlock
-          key={index}
-          isExpanded={openedBlock === index}
-          onToggle={(isExpanding) => toggleHandler(isExpanding, index)}
-          {...args}
-        >
-          <ExpandableBlock.Header
-            label={`Basic Block #${index + 1}`}
-            expandIcon
-          />
+        <ExpandableBlock key={index} {...args}>
+          <ExpandableBlock.Header label={`Basic Block #${index + 1}`} />
           <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
         </ExpandableBlock>
       ))}
@@ -116,14 +88,13 @@ export const StatusIcon: Story<Partial<ExpandableBlockProps>> = (args) => {
 };
 
 StatusIcon.args = {
-  isExpanded: false,
   status: 'positive',
 };
 
 export const Small: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock size='small' {...args}>
-      <ExpandableBlock.Header label='Basic Block' expandIcon />
+      <ExpandableBlock.Header label='Basic Block' />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
@@ -136,7 +107,7 @@ Small.args = {
 export const Borderless: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock styleType='borderless' {...args}>
-      <ExpandableBlock.Header label='Basic Block' expandIcon />
+      <ExpandableBlock.Header label='Basic Block' />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
@@ -149,12 +120,8 @@ Borderless.args = {
 export const Disabled: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <ExpandableBlock disabled {...args}>
-      <ExpandableBlock.Header label='Disabled Block' expandIcon />
+      <ExpandableBlock.Header label='Disabled Block' />
       <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
     </ExpandableBlock>
   );
-};
-
-Disabled.args = {
-  isExpanded: false,
 };
