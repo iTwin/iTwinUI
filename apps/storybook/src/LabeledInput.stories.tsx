@@ -13,6 +13,8 @@ import {
   InputGrid,
   InputWithDecorations,
   Input,
+  StatusMessage,
+  Label,
 } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
@@ -37,7 +39,7 @@ export default {
 export const Basic: Story<LabeledInputProps> = () => {
   return (
     <InputGrid displayStyle='inline'>
-      <InputGrid.Label>Label</InputGrid.Label>
+      <Label>Label</Label>
 
       <InputWithDecorations>
         <InputWithDecorations.Input />
@@ -46,7 +48,7 @@ export const Basic: Story<LabeledInputProps> = () => {
         </InputWithDecorations.Button>
       </InputWithDecorations>
 
-      <InputGrid.Message startIcon={<SvgCamera />}>Message</InputGrid.Message>
+      <StatusMessage startIcon={<SvgCamera />}>Message</StatusMessage>
     </InputGrid>
   );
 };
@@ -54,13 +56,11 @@ export const Basic: Story<LabeledInputProps> = () => {
 export const WithMessage: Story<LabeledInputProps> = () => {
   return (
     <InputGrid>
-      <InputGrid.Label>This is a label</InputGrid.Label>
+      <Label>Label</Label>
 
       <Input placeholder='Enter text here...' />
 
-      <InputGrid.Message startIcon={<SvgCamera />}>
-        This is a message
-      </InputGrid.Message>
+      <StatusMessage startIcon={<SvgCamera />}>Message</StatusMessage>
     </InputGrid>
   );
 };

@@ -9,6 +9,8 @@ import { StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
 import { InputWithDecorations } from '../InputWithDecorations/index.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
+import { Label } from '../Label/Label.js';
 
 export type LabeledInputProps = {
   /**
@@ -85,31 +87,12 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
-    // <InputContainer
-
-    //   icon={icon}
-    //   isIconInline={iconDisplayStyle === 'inline'}
-    //   inputId={id}
-    // >
-    //   <Input
-    //     disabled={disabled}
-    //     className={inputClassName}
-    //     style={inputStyle}
-    //     required={required}
-    //     ref={ref}
-    //     id={id}
-    //     {...rest}
-    //   />
-    // </InputContainer>
-    <InputGrid
-      displayStyle={displayStyle}
-      status={status}
-      disabled={disabled}
-      required={required}
-      className={className}
-      style={style}
-    >
-      {label && <InputGrid.Label htmlFor={id}>{label}</InputGrid.Label>}
+    <InputGrid displayStyle={displayStyle} className={className} style={style}>
+      {label && (
+        <Label required={required} htmlFor={id}>
+          {label}
+        </Label>
+      )}
       {icon && iconDisplayStyle === 'inline' ? (
         <InputWithDecorations>
           <InputWithDecorations.Input
@@ -135,11 +118,12 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         />
       )}
       {message && (
-        <InputGrid.Message
+        <StatusMessage
+          status={status}
           startIcon={iconDisplayStyle !== 'inline' ? icon : undefined}
         >
           {message}
-        </InputGrid.Message>
+        </StatusMessage>
       )}
       <></>
     </InputGrid>
