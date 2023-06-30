@@ -44,10 +44,6 @@ type CheckboxProps = {
    * Passes properties for checkbox label.
    */
   labelProps?: React.ComponentProps<'label'>;
-  /**
-   * Passes properties for checkbox input.
-   */
-  inputProps?: React.ComponentProps<'input'>;
 };
 
 /**
@@ -74,7 +70,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
     isLoading = false,
     wrapperProps = {},
     labelProps = {},
-    inputProps = {},
     style,
     ...rest
   } = props;
@@ -97,8 +92,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
     }
   });
 
-  const { className: inputClassName, ...restInputProps } = inputProps;
-
   const checkbox = (
     <>
       <Box
@@ -109,9 +102,8 @@ export const Checkbox = React.forwardRef((props, ref) => {
             'iui-checkbox-visibility': variant === 'eyeball',
             'iui-loading': isLoading,
           },
-          inputClassName ? inputClassName : className,
+          className,
         )}
-        {...restInputProps}
         style={style}
         disabled={disabled || isLoading}
         type='checkbox'
