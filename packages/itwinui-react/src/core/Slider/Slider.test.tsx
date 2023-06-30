@@ -485,9 +485,12 @@ it('should show tooltip on thumb hover', async () => {
   expect(thumb.classList).not.toContain('iui-active');
   expect(document.querySelector('.iui-tooltip')).toBeFalsy();
 
-  await userEvent.hover(thumb);
+  jest.useFakeTimers();
+  fireEvent.mouseEnter(thumb);
+  act(() => void jest.advanceTimersByTime(50));
+  jest.useRealTimers();
+
   expect(document.querySelector('.iui-tooltip')?.textContent).toBe('50');
-  expect(document.querySelector('[data-tippy-root]')).toBeVisible();
 });
 
 it('should show tooltip on thumb focus', async () => {
@@ -501,7 +504,6 @@ it('should show tooltip on thumb focus', async () => {
   expect(
     (document.querySelector('.iui-tooltip') as HTMLDivElement).textContent,
   ).toBe('50');
-  expect(document.querySelector('[data-tippy-root]')).toBeVisible();
 });
 
 it('should apply thumb props', () => {

@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 export { Alert } from './Alert/index.js';
 
-export { Avatar, UserIcon } from './Avatar/index.js';
+export { Avatar } from './Avatar/index.js';
 
-export { AvatarGroup, UserIconGroup } from './AvatarGroup/index.js';
+export { AvatarGroup } from './AvatarGroup/index.js';
 
 export { Backdrop } from './Backdrop/index.js';
 
