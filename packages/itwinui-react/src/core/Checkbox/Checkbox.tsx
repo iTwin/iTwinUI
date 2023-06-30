@@ -37,13 +37,17 @@ type CheckboxProps = {
    */
   isLoading?: boolean;
   /**
-   * Passes properties for Checkbox wrapper.
+   * Passes properties for checkbox wrapper.
    */
   wrapperProps?: React.ComponentProps<'label'>;
   /**
-   * Passes properties for checkbox label
+   * Passes properties for checkbox label.
    */
   labelProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for checkbox input.
+   */
+  inputProps?: React.ComponentProps<'input'>;
 };
 
 /**
@@ -70,6 +74,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
     isLoading = false,
     wrapperProps = {},
     labelProps = {},
+    inputProps = {},
     style,
     ...rest
   } = props;
@@ -92,15 +97,21 @@ export const Checkbox = React.forwardRef((props, ref) => {
     }
   });
 
+  const { className: inputClassName, ...restInputProps } = inputProps;
+
   const checkbox = (
     <>
       <Box
         as='input'
-        className={cx('iui-checkbox', {
-          'iui-checkbox-visibility': variant === 'eyeball',
-          'iui-loading': isLoading,
-          className,
-        })}
+        className={cx(
+          'iui-checkbox',
+          {
+            'iui-checkbox-visibility': variant === 'eyeball',
+            'iui-loading': isLoading,
+          },
+          inputClassName ? inputClassName : className,
+        )}
+        {...restInputProps}
         style={style}
         disabled={disabled || isLoading}
         type='checkbox'
@@ -127,7 +138,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
           [`iui-${status}`]: !!status,
           'iui-loading': isLoading,
         },
-        wrapperClassName,
+        wrapperClassName ? wrapperClassName : className,
       )}
       {...restWrapperProps}
     >
@@ -135,7 +146,10 @@ export const Checkbox = React.forwardRef((props, ref) => {
       {label && (
         <Box
           as='span'
-          className={(cx('iui-checkbox-label'), labelClassName)}
+          className={
+            (cx('iui-checkbox-label'),
+            labelClassName ? labelClassName : className)
+          }
           {...restLabelProps}
         >
           {label}
