@@ -1490,7 +1490,7 @@ it('should show empty filtered table content with global filter', async () => {
 });
 
 it('should not show empty filtered table content when global filter is empty', async () => {
-  const mockedColumns: Column<typeof data[number]>[] = [
+  const mockedColumns: Column<(typeof data)[number]>[] = [
     {
       id: 'name',
       Header: 'Name',
