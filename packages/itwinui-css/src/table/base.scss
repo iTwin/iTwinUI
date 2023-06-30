@@ -392,7 +392,7 @@
   &.iui-table-cell-sticky {
     position: sticky;
     z-index: 1;
-    inset-inline: var(--iui-table-sticky-left, initial);
+    inset-inline-start: var(--iui-table-sticky-left, initial);
     inset-inline-end: var(--iui-table-sticky-right, initial);
   }
 
