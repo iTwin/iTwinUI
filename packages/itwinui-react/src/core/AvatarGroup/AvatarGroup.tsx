@@ -129,9 +129,4 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'div', AvatarGroupProps>;
 
-/**
- * @deprecated Since v2, this has been renamed to `AvatarGroup`
- */
-export const UserIconGroup = AvatarGroup;
-
 export default AvatarGroup;
