@@ -248,10 +248,10 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     <>
       {React.isValidElement(children)
         ? React.cloneElement(
-            children,
+            children as JSX.Element,
             tooltip.getReferenceProps({
               ref: childrenRef,
-              ...children.props,
+              ...(children as JSX.Element).props,
             }),
           )
         : null}

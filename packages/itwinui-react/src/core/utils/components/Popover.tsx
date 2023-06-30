@@ -29,7 +29,8 @@ export type PopoverProps = {
    * @see [tippy.js placement prop](https://atomiks.github.io/tippyjs/v6/all-props/#placement).
    */
   placement?: Placement;
-} & Omit<TippyProps, 'placement' | 'trigger' | 'visible'>;
+  children?: JSX.Element;
+} & Omit<TippyProps, 'placement' | 'trigger' | 'visible' | 'children'>;
 
 /**
  * Wrapper around [tippy.js](https://atomiks.github.io/tippyjs)
@@ -104,12 +105,12 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     // Tippy uses react Portal, which propagates events by react tree, not dom tree.
     // Read more: https://reactjs.org/docs/portals.html#event-bubbling-through-portals
     const clonedContent = React.isValidElement(props.content)
-      ? React.cloneElement(props.content, {
+      ? (React.cloneElement(props.content, {
           onClick: (e: MouseEvent) => {
             e.stopPropagation();
             (props.content as JSX.Element).props.onClick?.(e);
           },
-        })
+        }) as JSX.Element)
       : props.content;
     computedProps.content = mounted ? clonedContent : '';
   }

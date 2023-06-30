@@ -195,7 +195,7 @@ const ListItem = ({
       className={'iui-breadcrumbs-item iui-breadcrumbs-item-overrides'}
     >
       {React.isValidElement(item)
-        ? React.cloneElement(item, {
+        ? React.cloneElement(item as JSX.Element, {
             'aria-current':
               item.props['aria-current'] ?? isActive ? 'location' : undefined,
           })

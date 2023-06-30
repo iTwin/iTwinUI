@@ -2,9 +2,6 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "outDir": "cjs",
-    "module": "commonjs",
-
-    // reverting this back because not supported in CJS
-    "preserveValueImports": false
+    "module": "commonjs"
   }
 }

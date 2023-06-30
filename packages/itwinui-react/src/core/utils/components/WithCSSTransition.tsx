@@ -44,13 +44,17 @@ export const WithCSSTransition = (
       classNames='iui'
       {...rest}
     >
-      {React.cloneElement(children, {
-        ref: (el: HTMLElement) => {
-          if (el) {
-            expandedSize.current = el.getBoundingClientRect()[dimension];
-          }
-        },
-      })}
+      {React.isValidElement(children) ? (
+        React.cloneElement(children, {
+          ref: (el: HTMLElement) => {
+            if (el) {
+              expandedSize.current = el.getBoundingClientRect()[dimension];
+            }
+          },
+        })
+      ) : (
+        <></>
+      )}
     </CSSTransition>
   );
 };

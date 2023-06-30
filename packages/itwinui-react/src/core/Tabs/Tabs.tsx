@@ -557,7 +557,7 @@ export const Tabs = (props: TabsProps) => {
               aria-selected={index === currentActiveIndex}
             />
           ) : (
-            React.cloneElement(label, {
+            React.cloneElement(label as JSX.Element, {
               active: index === currentActiveIndex,
               'aria-selected': index === currentActiveIndex,
               tabIndex: index === currentActiveIndex ? 0 : -1,
