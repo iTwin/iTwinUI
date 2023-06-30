@@ -192,10 +192,6 @@
     > .iui-expandable-block-icon {
       @include iui-expandable-block-header-icons('expander');
     }
-
-    > .iui-status-icon {
-      @include iui-expandable-block-header-icons('status');
-    }
   }
 
   .iui-expandable-content {
