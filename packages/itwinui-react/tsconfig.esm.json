@@ -2,7 +2,6 @@
   "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "outDir": "esm",
-    "module": "esnext",
-    "verbatimModuleSyntax": true
+    "module": "esnext"
   }
 }

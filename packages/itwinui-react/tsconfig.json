@@ -16,9 +16,10 @@
     "noImplicitAny": true,
     "importHelpers": false,
     "strictNullChecks": true,
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "skipLibCheck": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }
