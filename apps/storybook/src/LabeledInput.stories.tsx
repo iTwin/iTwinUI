@@ -2,20 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgCloseSmall, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import {
-  LabeledInput,
-  Tooltip,
-  IconButton,
-  InputGrid,
-  InputWithDecorations,
-  Input,
-  StatusMessage,
-  Label,
-} from '@itwin/itwinui-react';
+import { LabeledInput, Tooltip } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -36,32 +27,24 @@ export default {
   },
 } as Meta<LabeledInputProps>;
 
-export const Basic: Story<LabeledInputProps> = () => {
+export const Basic: Story<LabeledInputProps> = (args) => {
   return (
-    <InputGrid displayStyle='inline'>
-      <Label>Label</Label>
-
-      <InputWithDecorations>
-        <InputWithDecorations.Input />
-        <InputWithDecorations.Button>
-          <SvgCloseSmall />
-        </InputWithDecorations.Button>
-      </InputWithDecorations>
-
-      <StatusMessage startIcon={<SvgCamera />}>Message</StatusMessage>
-    </InputGrid>
+    <LabeledInput
+      placeholder='Enter text here...'
+      label='This is a label'
+      {...args}
+    />
   );
 };
 
-export const WithMessage: Story<LabeledInputProps> = () => {
+export const WithMessage: Story<LabeledInputProps> = (args) => {
   return (
-    <InputGrid>
-      <Label>Label</Label>
-
-      <Input placeholder='Enter text here...' />
-
-      <StatusMessage startIcon={<SvgCamera />}>Message</StatusMessage>
-    </InputGrid>
+    <LabeledInput
+      placeholder='Enter text here...'
+      message='This is a message'
+      label='This is a label'
+      {...args}
+    />
   );
 };
 
@@ -89,7 +72,6 @@ Disabled.args = {
 export const Positive: Story<LabeledInputProps> = (args) => {
   return (
     <LabeledInput
-      required
       placeholder='Enter text here...'
       label='This is a label'
       message='This is a message'
@@ -191,26 +173,4 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
 HybridLayout.args = {
   iconDisplayStyle: 'inline',
   message: 'Block layout with inline icon',
-};
-
-export const HybridLayoutWithButton: Story<LabeledInputProps> = (args) => {
-  return (
-    <LabeledInput
-      placeholder='Enter text here...'
-      label='This is a label'
-      svgIcon={
-        <IconButton styleType='borderless'>
-          <SvgCloseSmall />
-        </IconButton>
-      }
-      message='Block layout with inline borderless button'
-      iconDisplayStyle='inline'
-      {...args}
-    />
-  );
-};
-
-HybridLayoutWithButton.args = {
-  message: 'Block layout with inline borderless button',
-  iconDisplayStyle: 'inline',
 };
