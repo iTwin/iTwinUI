@@ -10,7 +10,7 @@ import {
   Flex,
   Button,
 } from '@itwin/itwinui-react';
-import { SvgSearch, SvgAdd } from '@itwin/itwinui-icons-react';
+import { SvgSearch } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
