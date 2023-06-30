@@ -71,7 +71,10 @@
 
       <br />
 
-      <div class="iui-expandable-block iui-expanded">
+      <div
+        class="iui-expandable-block"
+        data-iui-expanded="true"
+      >
         <div
           aria-expanded="true"
           class="iui-expandable-header"
@@ -123,7 +126,10 @@
 
       <br />
 
-      <div class="iui-expandable-block iui-expanded">
+      <div
+        class="iui-expandable-block"
+        data-iui-expanded="true"
+      >
         <button
           aria-expanded="true"
           class="iui-expandable-header"
@@ -202,7 +208,10 @@
 
     <h2>Small</h2>
     <section id="demo-small">
-      <div class="iui-expandable-block iui-small">
+      <div
+        class="iui-expandable-block"
+        data-iui-size="small"
+      >
         <div
           aria-expanded="false"
           class="iui-expandable-header"
@@ -226,7 +235,11 @@
 
       <br />
 
-      <div class="iui-expandable-block iui-expanded iui-small">
+      <div
+        class="iui-expandable-block"
+        data-iui-expanded="true"
+        data-iui-size="small"
+      >
         <div
           aria-expanded="true"
           class="iui-expandable-header"
@@ -262,7 +275,10 @@
 
     <h2>Borderless</h2>
     <section id="demo-borderless">
-      <div class="iui-expandable-block iui-borderless">
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+      >
         <div
           aria-expanded="false"
           class="iui-expandable-header"
@@ -286,7 +302,11 @@
 
       <br />
 
-      <div class="iui-expandable-block iui-expanded iui-borderless">
+      <div
+        class="iui-expandable-block"
+        data-iui-expanded="true"
+        data-iui-variant="borderless"
+      >
         <div
           aria-expanded="true"
           class="iui-expandable-header"
@@ -320,7 +340,10 @@
 
       <br />
 
-      <div class="iui-expandable-block iui-borderless">
+      <div
+        class="iui-expandable-block"
+        data-iui-variant="borderless"
+      >
         <div
           class="iui-expandable-header"
           aria-disabled="true"
@@ -351,7 +374,7 @@
     <script>
       document.querySelectorAll('.iui-expandable-header:not([aria-disabled="true"])').forEach((el) => {
         el.addEventListener('click', (event) => {
-          event.currentTarget.parentElement.classList.toggle('iui-expanded');
+          event.currentTarget.parentElement.classList.toggle('[data-iui-expanded="true"]');
           if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
             el.nextElementSibling.remove();
           } else {

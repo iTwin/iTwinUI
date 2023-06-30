@@ -95,15 +95,10 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
       }}
     >
       <Box
-        className={cx(
-          'iui-expandable-block',
-          {
-            'iui-expanded': expanded,
-            'iui-small': size === 'small',
-            'iui-borderless': styleType === 'borderless',
-          },
-          className,
-        )}
+        className={cx('iui-expandable-block', className)}
+        data-iui-expanded={expanded}
+        data-iui-size={size}
+        data-iui-variant={styleType !== 'default' ? styleType : undefined}
         style={style}
         ref={forwardedRef}
         {...rest}

@@ -62,10 +62,9 @@ it('should render content when expanded', () => {
     </ExpandableBlock>,
   );
 
-  const expandableBlock = container.querySelector(
-    '.iui-expandable-block.iui-expanded',
-  );
+  const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
+  expect(expandableBlock).toHaveAttribute('data-iui-expanded', 'true');
   const content = container.querySelector(
     '.iui-expandable-content',
   ) as HTMLElement;
@@ -193,7 +192,7 @@ it('should render small size', () => {
     '.iui-expandable-block',
   ) as HTMLElement;
   expect(expandableBlock).toBeTruthy();
-  expect(expandableBlock.classList).toContain('iui-small');
+  expect(expandableBlock).toHaveAttribute('data-iui-size', 'small');
 });
 
 it('should render borderless', () => {
@@ -203,8 +202,9 @@ it('should render borderless', () => {
       <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
-  expect(container.querySelector('.iui-expandable-block')).toHaveClass(
-    'iui-borderless',
+  expect(container.querySelector('.iui-expandable-block')).toHaveAttribute(
+    'data-iui-variant',
+    'borderless',
   );
 });
 
