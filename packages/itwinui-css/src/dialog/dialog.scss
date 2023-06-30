@@ -94,8 +94,9 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
 .iui-dialog-full-page {
   border-radius: 0;
   block-size: 100vh;
-  block-size: 100dvh;
+  block-size: 100dvb;
   inline-size: 100vw;
+  inline-size: 100vi;
   inset-block-start: 0;
   inset-inline-start: 0;
   will-change: transform;
