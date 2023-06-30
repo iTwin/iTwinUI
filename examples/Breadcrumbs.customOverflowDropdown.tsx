@@ -50,7 +50,10 @@ export default () => {
                 })
             }
           >
-            <IconButton aria-label='Dropdown with more breadcrumbs'>
+            <IconButton
+              aria-label='Dropdown with more breadcrumbs'
+              styleType='borderless'
+            >
               <SvgMore />
             </IconButton>
           </DropdownMenu>
