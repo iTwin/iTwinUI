@@ -59,8 +59,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn
+      - name: yarn
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 3
+          command: yarn
 
   audit:
     name: Audit node modules

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 
 import { SideNavigation } from './SideNavigation.js';
 import { SidenavButton } from './SidenavButton.js';
@@ -185,7 +185,10 @@ it('should only add tooltips to items when collapsed', async () => {
     expect(
       queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
     ).toBeFalsy();
+    jest.useFakeTimers();
     fireEvent.mouseEnter(item);
+    act(() => void jest.advanceTimersByTime(50));
+    jest.useRealTimers();
     getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' });
   });
 
