@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 export { Alert } from './Alert/index.js';
 
-export { Avatar, UserIcon } from './Avatar/index.js';
+export { Avatar } from './Avatar/index.js';
 
-export { AvatarGroup, UserIconGroup } from './AvatarGroup/index.js';
+export { AvatarGroup } from './AvatarGroup/index.js';
 
 export { Backdrop } from './Backdrop/index.js';
 
@@ -187,13 +187,8 @@ export {
   Text,
 } from './Typography/index.js';
 
-export { Wizard, Stepper, WorkflowDiagram } from './Stepper/index.js';
-export type {
-  StepProperties,
-  WizardType,
-  WizardLocalization,
-  StepperLocalization,
-} from './Stepper/index.js';
+export { Stepper, WorkflowDiagram } from './Stepper/index.js';
+export type { StepProperties, StepperLocalization } from './Stepper/index.js';
 
 export { SearchBox } from './SearchBox/index.js';
 
