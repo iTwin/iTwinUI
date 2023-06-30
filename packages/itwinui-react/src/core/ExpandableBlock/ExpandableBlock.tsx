@@ -98,9 +98,9 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
         className={cx(
           'iui-expandable-block',
           {
-            'iui-expandable-block-expanded': expanded,
-            'iui-expandable-block-small': size === 'small',
-            'iui-expandable-block-borderless': styleType === 'borderless',
+            'iui-expanded': expanded,
+            'iui-small': size === 'small',
+            'iui-borderless': styleType === 'borderless',
           },
           className,
         )}
