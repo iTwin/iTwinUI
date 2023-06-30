@@ -115,9 +115,4 @@ export const Avatar = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'span', AvatarProps>;
 
-/**
- * @deprecated Since v2, this has been renamed to `Avatar`
- */
-export const UserIcon = Avatar;
-
 export default Avatar;
