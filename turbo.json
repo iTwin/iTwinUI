@@ -27,6 +27,9 @@
     "@itwin/itwinui-css#test": {
       "dependsOn": ["build"]
     },
+    "a11y#test": {
+      "dependsOn": ["^build"]
+    },
     "lint": {
       "outputs": []
     },

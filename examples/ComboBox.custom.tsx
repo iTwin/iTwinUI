@@ -24,7 +24,10 @@ export default () => {
   }, []);
 
   const itemRenderer = React.useCallback(
-    ({ value, label }, { isSelected, id }) => (
+    (
+      { value, label }: { value: string; label: string },
+      { isSelected, id }: { isSelected: boolean; id: string },
+    ) => (
       <MenuItem key={id} id={id} isSelected={isSelected} value={value}>
         <em
           style={{
