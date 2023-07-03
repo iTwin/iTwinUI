@@ -209,7 +209,6 @@ it.each(['', 'not'] as const)(
         <Checkbox
           label={labelPresent && 'label'}
           className='my-checkbox'
-          wrapperProps={{ className: 'my-checkbox' }}
           onClick={(e) => e.stopPropagation()}
           onChange={checkboxOnChange}
         />
