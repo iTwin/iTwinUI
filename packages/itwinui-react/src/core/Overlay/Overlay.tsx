@@ -98,7 +98,7 @@ const useInertPolyfill = () => {
   React.useEffect(() => {
     async () => {
       if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
-        await import(modulePath);
+        await import(modulePath /* @vite-ignore */);
         loaded.current = true;
       }
     };
