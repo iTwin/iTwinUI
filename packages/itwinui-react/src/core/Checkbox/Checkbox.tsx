@@ -43,7 +43,7 @@ type CheckboxProps = {
   /**
    * Passes properties for checkbox label.
    */
-  labelProps?: React.ComponentProps<'label'>;
+  labelProps?: React.ComponentProps<'span'>;
 };
 
 /**
