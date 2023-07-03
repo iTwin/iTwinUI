@@ -135,7 +135,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       as='button'
       type='button'
       className={cx('iui-expandable-header', className)}
-      aria-expanded={isExpanded}
+      aria-expanded={isExpanded ?? !disabled}
       aria-disabled={disabled}
       onClick={mergeEventHandlers(onClickProp, () => {
         if (disabled) {
