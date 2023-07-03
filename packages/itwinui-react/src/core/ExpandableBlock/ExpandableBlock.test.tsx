@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils/index.js';
 
@@ -96,7 +97,7 @@ it('should trigger onToggle when clicked only on header', () => {
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 });
 
-it('should trigger onToggle when clicked with Enter or Spacebar', () => {
+it('should trigger onToggle when clicked with Enter or Spacebar', async () => {
   const onToggleMock = jest.fn();
   const { container } = render(
     <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
@@ -106,26 +107,17 @@ it('should trigger onToggle when clicked with Enter or Spacebar', () => {
   );
 
   const header = container.querySelector(
-    '.iui-expandable-block-title',
+    '.iui-expandable-header',
   ) as HTMLElement;
+
   expect(header).toBeTruthy();
-  fireEvent.keyDown(header, {
-    key: 'Enter',
-    charCode: 13,
-  });
+
+  header.focus();
+  await userEvent.keyboard('{Enter}');
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 
-  fireEvent.keyDown(header, {
-    key: ' ',
-    charCode: 32,
-  });
+  await userEvent.keyboard(' ');
   expect(onToggleMock).toHaveBeenCalledTimes(2);
-
-  fireEvent.keyDown(header, {
-    key: 'Spacebar',
-    charCode: 32,
-  });
-  expect(onToggleMock).toHaveBeenCalledTimes(3);
 });
 
 it.each(['positive', 'negative', 'warning', 'informational'] as const)(
