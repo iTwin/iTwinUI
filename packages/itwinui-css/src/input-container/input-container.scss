@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './mixins' as *;
+@use '../mixins' as *;
 
 .iui-input-container {
   @include iui-input-container;
@@ -136,6 +137,31 @@
       &:hover {
         --_iui-input-border-color: var(--iui-color-border-#{$status});
       }
+    }
+  }
+}
+
+.iui-input-decorator-icon {
+  margin: 0 var(--iui-size-s);
+
+  &.iui-actionable {
+    align-items: center;
+    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-right: 2px; // shift 2px from the right to avoid overlapping with border/outline
+    border-radius: var(--iui-border-radius-1);
+    padding-inline: calc(var(--iui-size-xs) + 1px);
+    cursor: pointer;
+    box-sizing: content-box;
+
+    @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
+
+    svg {
+      fill: var(--iui-color-icon);
+      transition: transform var(--iui-duration-1) ease-out;
+    }
+
+    &.iui-open svg {
+      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
     }
   }
 }

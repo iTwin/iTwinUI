@@ -52,7 +52,7 @@ const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
     <Icon
       {...rest}
       className={cx(
-        'iui-input-icon',
+        'iui-input-decorator-icon',
         { 'iui-actionable': isActionable },
         className,
       )}

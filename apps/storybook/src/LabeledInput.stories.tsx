@@ -164,6 +164,7 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
         message='Block layout with inline icon'
         iconDisplayStyle='inline'
         {...args}
+        status='negative'
       />
       <Tooltip reference={ref} content='Placeholder' />
     </>

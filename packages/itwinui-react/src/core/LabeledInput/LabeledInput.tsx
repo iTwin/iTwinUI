@@ -94,7 +94,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         </Label>
       )}
       {icon && iconDisplayStyle === 'inline' ? (
-        <InputWithDecorations>
+        <InputWithDecorations status={status}>
           <InputWithDecorations.Input
             disabled={disabled}
             className={inputClassName}
