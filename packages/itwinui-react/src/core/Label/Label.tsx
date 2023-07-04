@@ -20,6 +20,11 @@ type LabelOwnProps = {
    * This adds an asterisk next to the label text.
    */
   required?: boolean;
+  /**
+   * Disables label.
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -33,6 +38,7 @@ export const Label = React.forwardRef((props, forwardedRef) => {
   const {
     displayStyle = 'block',
     required,
+    disabled,
     className,
     children,
     ...rest
@@ -46,6 +52,7 @@ export const Label = React.forwardRef((props, forwardedRef) => {
         {
           'iui-inline': displayStyle === 'inline',
           'iui-required': required,
+          'iui-disabled': disabled,
         },
         className,
       )}

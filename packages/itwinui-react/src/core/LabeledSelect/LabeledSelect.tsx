@@ -113,7 +113,7 @@ export const LabeledSelect = <T,>(
   return (
     <InputGrid displayStyle={displayStyle} className={className} style={style}>
       {label && (
-        <Label required={required} id={labelId}>
+        <Label required={required} disabled={disabled} id={labelId}>
           {label}
         </Label>
       )}

@@ -90,7 +90,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   return (
     <InputGrid displayStyle={displayStyle} className={className} style={style}>
       {label && (
-        <Label required={required} htmlFor={id}>
+        <Label required={required} disabled={disabled} htmlFor={id}>
           {label}
         </Label>
       )}
