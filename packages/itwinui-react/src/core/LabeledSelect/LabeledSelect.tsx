@@ -6,8 +6,11 @@ import * as React from 'react';
 
 import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
-import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import { StatusIconMap, useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
+import StatusMessage from '../StatusMessage/StatusMessage.js';
+import InputGrid from '../InputGrid/InputGrid.js';
+import Label from '../Label/Label.js';
 
 export type LabeledSelectProps<T> = {
   /**
@@ -108,18 +111,12 @@ export const LabeledSelect = <T,>(
   };
 
   return (
-    <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={displayStyle === 'default' ? icon() : undefined}
-      isLabelInline={displayStyle === 'inline'}
-      className={className}
-      style={style}
-      labelId={labelId}
-    >
+    <InputGrid displayStyle={displayStyle} className={className} style={style}>
+      {label && (
+        <Label required={required} id={labelId}>
+          {label}
+        </Label>
+      )}
       <Select
         disabled={disabled}
         className={selectClassName}
@@ -130,7 +127,16 @@ export const LabeledSelect = <T,>(
           ...triggerProps,
         }}
       />
-    </InputContainer>
+      {message && (
+        <StatusMessage
+          status={status}
+          startIcon={displayStyle === 'default' ? icon() : undefined}
+        >
+          {message}
+        </StatusMessage>
+      )}
+      <></>
+    </InputGrid>
   );
 };
 

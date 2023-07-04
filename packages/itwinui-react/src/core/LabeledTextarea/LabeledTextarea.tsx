@@ -3,11 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import { StatusIconMap, useId, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
 import type { TextareaProps } from '../Textarea/Textarea.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
+import { InputGrid } from '../InputGrid/InputGrid.js';
+import { Label } from '../Label/Label.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
+import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 
 type LabeledTextareaProps = {
   /**
@@ -75,31 +79,53 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
   } = props;
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
+  const iconFill = !svgIcon ? status : undefined;
 
   return (
-    <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={icon}
-      isLabelInline={displayStyle === 'inline'}
-      isIconInline={iconDisplayStyle === 'inline'}
-      className={className}
-      style={style}
-      inputId={id}
-    >
-      <Textarea
-        disabled={disabled}
-        className={textareaClassName}
-        style={textareaStyle}
-        required={required}
-        id={id}
-        {...textareaProps}
-        ref={ref}
-      />
-    </InputContainer>
+    <InputGrid displayStyle={displayStyle} className={className} style={style}>
+      {label && (
+        <Label required={required} htmlFor={id}>
+          {label}
+        </Label>
+      )}
+      {iconDisplayStyle === 'inline' ? (
+        <InputWithDecorations status={status}>
+          <Box
+            as='textarea'
+            className={textareaClassName}
+            style={textareaStyle}
+            required={required}
+            disabled={disabled}
+            rows={3}
+            {...textareaProps}
+            ref={ref}
+          />
+          <InputWithDecorations.Icon fill={iconFill}>
+            {icon}
+          </InputWithDecorations.Icon>
+        </InputWithDecorations>
+      ) : (
+        <Textarea
+          disabled={disabled}
+          className={textareaClassName}
+          style={textareaStyle}
+          required={required}
+          id={id}
+          {...textareaProps}
+          ref={ref}
+        />
+      )}
+
+      {message && (
+        <StatusMessage
+          status={status}
+          startIcon={displayStyle === 'default' ? icon : undefined}
+        >
+          {message}
+        </StatusMessage>
+      )}
+      <></>
+    </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;
 

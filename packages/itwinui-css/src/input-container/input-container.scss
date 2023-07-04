@@ -55,7 +55,7 @@
   border-radius: var(--iui-border-radius-1);
   color: var(--_iui-input-text-color);
   position: relative;
-  height: var(--_iui-input-min-height);
+  min-height: var(--_iui-input-min-height);
   width: 100%;
   isolation: isolate;
 
@@ -73,7 +73,8 @@
     --_iui-input-border-color: var(--iui-color-border-foreground-hover);
   }
 
-  &:has(input:focus-visible) {
+  &:has(input:focus-visible),
+  &:has(textarea:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
 
@@ -95,7 +96,8 @@
     }
   }
 
-  input {
+  input,
+  textarea {
     all: unset;
     z-index: 2;
     min-width: var(--_iui-input-min-height);
@@ -105,6 +107,10 @@
     &:is(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
     }
+  }
+
+  textarea {
+    padding-block: var(--_iui-input-padding-block);
   }
 
   &[data-iui-disabled='true'] {
