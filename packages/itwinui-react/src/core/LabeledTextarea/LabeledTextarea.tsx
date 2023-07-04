@@ -96,6 +96,7 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
             style={textareaStyle}
             required={required}
             disabled={disabled}
+            data-iui-status={status}
             rows={3}
             {...textareaProps}
             ref={ref}
@@ -110,6 +111,7 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
           className={textareaClassName}
           style={textareaStyle}
           required={required}
+          status={status}
           id={id}
           {...textareaProps}
           ref={ref}

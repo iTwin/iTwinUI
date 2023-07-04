@@ -121,6 +121,7 @@ export const LabeledSelect = <T,>(
         disabled={disabled}
         className={selectClassName}
         style={selectStyle}
+        status={status}
         {...rest}
         triggerProps={{
           'aria-labelledby': labelId,

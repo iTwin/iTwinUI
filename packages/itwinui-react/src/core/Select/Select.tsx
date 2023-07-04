@@ -138,6 +138,10 @@ export type SelectProps<T> = {
    */
   size?: 'small' | 'large';
   /**
+   * Status of select.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Set focus on select.
    * @default false
    */
@@ -244,6 +248,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     popoverProps,
     multiple = false,
     triggerProps,
+    status,
     ...rest
   } = props;
 
@@ -412,6 +417,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           role='combobox'
           ref={selectRef}
           data-iui-size={size}
+          data-iui-status={status}
           onClick={() => !disabled && setIsOpen((o) => !o)}
           onKeyDown={(e) => !disabled && onKeyDown(e)}
           aria-disabled={disabled}

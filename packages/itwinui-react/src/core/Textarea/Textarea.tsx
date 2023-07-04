@@ -13,6 +13,10 @@ export type TextareaProps = {
    * @default false
    */
   setFocus?: boolean;
+  /**
+   * Status of textarea.
+   */
+  status?: 'positive' | 'warning' | 'negative';
 };
 
 /**
@@ -22,7 +26,7 @@ export type TextareaProps = {
  * <Textarea disabled={true} placeholder='This is a disabled textarea' />
  */
 export const Textarea = React.forwardRef((props, ref) => {
-  const { className, rows = 3, setFocus = false, ...rest } = props;
+  const { className, rows = 3, setFocus = false, status, ...rest } = props;
 
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
   const refs = useMergedRefs<HTMLTextAreaElement>(ref, textAreaRef);
@@ -37,6 +41,7 @@ export const Textarea = React.forwardRef((props, ref) => {
     <Box
       as='textarea'
       className={cx('iui-input', className)}
+      data-iui-status={status}
       rows={rows}
       ref={refs}
       {...rest}
