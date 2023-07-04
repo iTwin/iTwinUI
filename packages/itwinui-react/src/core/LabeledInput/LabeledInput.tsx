@@ -85,6 +85,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   } = props;
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
+  const iconFill = !svgIcon ? status : undefined;
 
   return (
     <InputGrid displayStyle={displayStyle} className={className} style={style}>
@@ -104,7 +105,9 @@ export const LabeledInput = React.forwardRef((props, ref) => {
             id={id}
             {...rest}
           />
-          <InputWithDecorations.Icon>{icon}</InputWithDecorations.Icon>
+          <InputWithDecorations.Icon fill={iconFill}>
+            {icon}
+          </InputWithDecorations.Icon>
         </InputWithDecorations>
       ) : (
         <Input
@@ -112,6 +115,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           className={inputClassName}
           style={inputStyle}
           required={required}
+          status={status}
           ref={ref}
           id={id}
           {...rest}

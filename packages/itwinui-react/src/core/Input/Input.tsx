@@ -17,6 +17,10 @@ export type InputProps = {
    * Modify size of the input.
    */
   size?: 'small' | 'large';
+  /**
+   * Status of input.
+   */
+  status?: 'positive' | 'warning' | 'negative';
 };
 
 /**
@@ -27,7 +31,7 @@ export type InputProps = {
  * <Input size='small' />
  */
 export const Input = React.forwardRef((props, ref) => {
-  const { setFocus = false, size, className, ...rest } = props;
+  const { setFocus = false, size, className, status, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 
@@ -42,6 +46,7 @@ export const Input = React.forwardRef((props, ref) => {
       as='input'
       className={cx('iui-input', className)}
       data-iui-size={size}
+      data-iui-status={status}
       ref={refs}
       {...rest}
     />
