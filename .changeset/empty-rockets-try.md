@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': major
 ---
 
-Added wrapperProps to allow for styling of CheckBox wrapper.
+Added wrapperProps and labelProps to allow for styling of CheckBox wrapper and label elements.
