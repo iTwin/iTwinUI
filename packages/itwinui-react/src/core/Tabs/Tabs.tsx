@@ -130,18 +130,6 @@ export type TabsProps = {
   TabsOverflowProps;
 
 /**
- * @deprecated Since v2, use `TabProps` with `Tabs`
- */
-type HorizontalTabsProps = Omit<TabsProps, 'orientation'>;
-
-/**
- * @deprecated Since v2, use `TabProps` with `Tabs`
- */
-type VerticalTabsProps = Omit<TabsProps, 'orientation' | 'type'> & {
-  type?: 'default' | 'borderless';
-};
-
-/**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
  * const tabs = [
@@ -618,37 +606,5 @@ export const Tabs = (props: TabsProps) => {
     </Box>
   );
 };
-
-/**
- * @deprecated Since v2, directly use `Tabs` with `orientation: 'horizontal'`
- *
- * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
- * @example
- * const tabs = [
- *   <Tab label='Label 1' sublabel='First tab' />,
- *   <Tab label='Label 2' sublabel='Active tab' />,
- *   <Tab label='Label 3' sublabel='Disabled tab' disabled icon={<SvgPlaceholder />} />,
- * ];
- * <HorizontalTabs labels={tabs} activeIndex={1}>Tabpanel content</HorizontalTabs>
- */
-export const HorizontalTabs = (props: HorizontalTabsProps) => (
-  <Tabs orientation='horizontal' {...props} />
-);
-
-/**
- * @deprecated Since v2, directly use `Tabs` with `orientation: 'vertical'`
- *
- * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
- * @example
- * const tabs = [
- *   <Tab label='Label 1' sublabel='First tab' />,
- *   <Tab label='Label 2' sublabel='Active tab' />,
- *   <Tab label='Label 3' sublabel='Disabled tab' disabled icon={<SvgPlaceholder />} />,
- * ];
- * <VerticalTabs labels={tabs} activeIndex={1}>Tabpanel content</VerticalTabs>
- */
-export const VerticalTabs = (props: VerticalTabsProps) => (
-  <Tabs orientation='vertical' {...props} />
-);
 
 export default Tabs;
