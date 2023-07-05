@@ -20,7 +20,6 @@ $bg-400: hsl(203 $bg-saturation ($bg-lightness-gap * 4));
 $bg-500: hsl(203 $bg-saturation ($bg-lightness-gap * 5));
 $bg-550: hsl(203 $bg-saturation ($bg-lightness-gap * 5.5));
 $bg-600: hsl(203 $bg-saturation ($bg-lightness-gap * 6));
-$bg-650: hsl(203 $bg-saturation ($bg-lightness-gap * 6.5));
 $bg-700: hsl(203 $bg-saturation ($bg-lightness-gap * 7));
 $bg-800: hsl(203 $bg-saturation ($bg-lightness-gap * 8));
 $bg-900: hsl(203 $bg-saturation ($bg-lightness-gap * 9));
@@ -113,7 +112,6 @@ $opacities: (
   --iui-color-background-negative-hover: #{hex($bg-negative-2)};
   --iui-color-background-negative-muted: #{hex($bg-negative-0)};
   --iui-color-background-transparent-hover: #{hsl(0 0% 100% / 0.085)};
-  --iui-color-background-gray: #{hex($bg-650)};
   // #endregion
   // #region Border variables
   --iui-color-border-subtle: #{hex($bg-800)};

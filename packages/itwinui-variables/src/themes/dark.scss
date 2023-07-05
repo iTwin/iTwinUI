@@ -113,16 +113,28 @@ $opacities: (
   --iui-color-background-negative-hover: #{hex($bg-negative-2)};
   --iui-color-background-negative-muted: #{hex($bg-negative-0)};
   --iui-color-background-transparent-hover: #{hsl(0 0% 100% / 0.065)};
-  --iui-color-background-gray: #{hex($bg-1000)};
-  --iui-color-background-red: #{hex(hsl(7 91% 30%))};
-  --iui-color-background-orange: #{hex(hsl(31 94% 23%))};
-  --iui-color-background-yellow: #{hex(hsl(60 56% 19%))};
-  --iui-color-background-green: #{hex(hsl(118 62% 20%))};
-  --iui-color-background-cyan: #{hex(hsl(181 57% 21%))};
-  --iui-color-background-blue: #{hex(hsl(226 88% 41%))};
-  --iui-color-background-pink: #{hex(hsl(301 92% 27%))};
-  --iui-color-background-violet: #{hex(hsl(301 31% 32%))};
-  --iui-color-background-brown: #{hex(hsl(31 34% 27%))};
+  // --iui-color-background-gray: #{hex($bg-1000)};
+  // --iui-color-background-red: #{hex(hsl(7 91% 30%))};
+  // --iui-color-background-orange: #{hex(hsl(31 94% 23%))};
+  // --iui-color-background-yellow: #{hex(hsl(60 56% 19%))};
+  // --iui-color-background-green: #{hex(hsl(118 62% 20%))};
+  // --iui-color-background-cyan: #{hex(hsl(181 57% 21%))};
+  // --iui-color-background-blue: #{hex(hsl(226 88% 41%))};
+  // --iui-color-background-pink: #{hex(hsl(301 92% 27%))};
+  // --iui-color-background-violet: #{hex(hsl(301 31% 32%))};
+  // --iui-color-background-brown: #{hex(hsl(31 34% 27%))};
+
+  --iui-color-background-froly: #{hex(hsl(7 91% 30%))};
+  --iui-color-background-oak: #{hex(hsl(31 34% 27%))};
+  --iui-color-background-seabuckthorn: #{hex(hsl(31 94% 23%))};
+  --iui-color-background-ash: #{hex(hsl(43 5% 28%))};
+  --iui-color-background-sunglow: #{hex(hsl(60 56% 19%))};
+  --iui-color-background-celery: #{hex(hsl(118 62% 20%))};
+  --iui-color-background-montecarlo: #{hex(hsl(181 57% 21%))};
+  --iui-color-background-skyblue: #{hex(hsl(208 100% 27%))};
+  --iui-color-background-steelblue: #{hex(hsl(235 80% 30%))};
+  --iui-color-background-poloblue: #{hex(hsl(263 88% 41%))};
+  --iui-color-background-bouquet: #{hex(hsl(301 31% 32%))};
   // #endregion
   // #region Border variables
   --iui-color-border-subtle: #{hex($bg-900)};

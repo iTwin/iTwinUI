@@ -11,12 +11,12 @@ const persons = {
   1: {
     title: 'Robin Mercer',
     abbr: 'RM',
-    color: 'var(--iui-color-background-green)',
+    color: 'var(--iui-color-background-celery)',
   },
   2: {
     title: 'Terry Rivers',
     abbr: 'TR',
-    color: 'var(--iui-color-background-blue)',
+    color: 'var(--iui-color-background-skyblue)',
   },
 };
 

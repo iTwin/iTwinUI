@@ -3,7 +3,7 @@
 @use '../mixins';
 
 .iui-badge {
-  --iui-badge-background-color: var(--iui-color-background-gray);
+  --iui-badge-background-color: var(--iui-color-background);
   --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: var(--iui-color-text);
   --_iui-badge-padding-inline: var(--iui-size-2xs);
