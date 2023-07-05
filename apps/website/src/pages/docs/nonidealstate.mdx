@@ -48,59 +48,59 @@ Potential causes other than invalid credentials;
 - Page loaded incorrectly;
 - Mistake on the site owner’s side.
 
+A 403 error means the client encountering it is completely forbidden from accessing the page. In this case, the user cannot do much to resolve it, as the resource is accessible only by the authorized parties.
+
 <LiveExample src='NonIdealState.forbidden.tsx' truncate={false}>
   <AllExamples.NonIdealStateForbiddenExample client:load />
 </LiveExample>
 
-A 403 error means the client encountering it is completely forbidden from accessing the page. In this case, the user cannot do much to resolve it, as the resource is accessible only by the authorized parties.
-
 ### Error 500
+
+Also called Internal Server Error, a 500 error code means something went wrong with the website’s server, but it is unable to identify what caused the issue. More often than not, the error is on the user’s side.
 
 <LiveExample src='NonIdealState.internalerror.tsx' truncate={false}>
   <AllExamples.NonIdealStateInternalErrorExample client:load />
 </LiveExample>
 
-Also called Internal Server Error, a 500 error code means something went wrong with the website’s server, but it is unable to identify what caused the issue. More often than not, the error is on the user’s side.
-
 ### Error 502
+
+Error code 502 is a Bad Gateway error. This means the communication between two servers resulted in an error, leading to a deadend. The user has no control over this error as it happens when there is a miscommunication between online servers.
 
 <LiveExample src='NonIdealState.badgateway.tsx' truncate={false}>
   <AllExamples.NonIdealStateBadgatewayExample client:load />
 </LiveExample>
 
-Error code 502 is a Bad Gateway error. This means the communication between two servers resulted in an error, leading to a deadend. The user has no control over this error as it happens when there is a miscommunication between online servers.
-
 ### Error 503
+
+Service Unavailable is the issue you get from a 503 error. It means the online server has encountered a problem because the network is unavailable (internet connection was interrupted), and thus cannot fulfill the request. The user cannot do anything about this issue.
 
 <LiveExample src='NonIdealState.serviceunavailable.tsx' truncate={false}>
   <AllExamples.NonIdealStateServiceunavailableExample client:load />
 </LiveExample>
 
-Service Unavailable is the issue you get from a 503 error. It means the online server has encountered a problem because the network is unavailable (internet connection was interrupted), and thus cannot fulfill the request. The user cannot do anything about this issue.
-
 ### Timed out
+
+For security reasons, certain web sessions will automatically sign a user out when they remain inactive for a few minutes. The user must then renew the session. This process may or may not require that they re-enter their credentials to resume; this is at developer’s discretion.
 
 <LiveExample src='NonIdealState.timeout.tsx' truncate={false}>
   <AllExamples.NonIdealStateTimeoutExample client:load />
 </LiveExample>
 
-For security reasons, certain web sessions will automatically sign a user out when they remain inactive for a few minutes. The user must then renew the session. This process may or may not require that they re-enter their credentials to resume; this is at developer’s discretion.
-
 ### Generic error
+
+Used in any error that isn’t discussed above. This error can also be used if you disagree that an illustration doesn’t properly convey your specific error.
 
 <LiveExample src='NonIdealState.error.tsx' truncate={false}>
   <AllExamples.NonIdealStateErrorExample client:load />
 </LiveExample>
 
-Used in any error that isn’t discussed above. This error can also be used if you disagree that an illustration doesn’t properly convey your specific error.
-
 ### Redirection notice
+
+This one isn’t technically an error, but more of an information page that requires an action from the user. If a clickable link has more than one potential destination, take the user to this page so they can decide where they want to land. A Remember my choice checkbox can be shown below so if the link is used more than once, the user won’t need to select a button every time.
 
 <LiveExample src='NonIdealState.redirect.tsx' truncate={false}>
   <AllExamples.NonIdealStateRedirectExample client:load />
 </LiveExample>
-
-This one isn’t technically an error, but more of an information page that requires an action from the user. If a clickable link has more than one potential destination, take the user to this page so they can decide where they want to land. A Remember my choice checkbox can be shown below so if the link is used more than once, the user won’t need to select a button every time.
 
 If the two destinations offered have the exact same relevance, use hollow buttons for both. If one destination is more likely to be selected than the other based on the user’s goal upon clicking the original link, use a high-visibility button for the most relevant destination, and a hollow button for the other. Always put the high-visibility button on the left.
 
