@@ -75,7 +75,7 @@ const { content = {} } = Astro.props;
         font-size: var(--type-4);
       }
 
-      :where(h2) {
+      :where(h2:not(left-sidebar *)) {
         font-size: var(--type-3);
         padding-block-start: 4rem;
       }
