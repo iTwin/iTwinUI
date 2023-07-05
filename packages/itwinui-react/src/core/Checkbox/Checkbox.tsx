@@ -138,7 +138,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
       {label && (
         <Box
           as='span'
-          className={(cx('iui-checkbox-label'), labelClassName)}
+          className={cx('iui-checkbox-label', labelClassName)}
           {...restLabelProps}
         >
           {label}
