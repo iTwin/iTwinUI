@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
 import { Checkbox } from './Checkbox.js';
@@ -124,20 +123,13 @@ it.each(['label', 'input'] as const)(
     expect(container.querySelector(el)).toHaveStyle('color: blue;');
   },
 );
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply class on %s',
-  (el) => {
-    const { container } = render(
-      <Checkbox
-        label={el === 'label' ? 'Some label' : undefined}
-        className='customClass'
-      />,
-    );
 
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveClass('customClass');
-  },
-);
+it('should isomorphically apply class on input', () => {
+  const { container } = render(<Checkbox className='customClass' />);
+
+  assertBaseElements(container);
+  expect(container.querySelector('input')).toHaveClass('customClass');
+});
 
 it('should set focus', () => {
   let element: HTMLInputElement | null = null;
@@ -199,31 +191,13 @@ it('correctly passes className through wrapperProps', () => {
   );
 });
 
-it.each(['', 'not'] as const)(
-  'should %s stop propagation correctly if %s used with label',
-  async (labelPresent) => {
-    const wrapperOnClick = jest.fn();
-    const checkboxOnChange = jest.fn();
-    const { container } = render(
-      <div onClick={wrapperOnClick}>
-        <Checkbox
-          label={labelPresent && 'label'}
-          className='my-checkbox'
-          onClick={(e) => e.stopPropagation()}
-          onChange={checkboxOnChange}
-        />
-      </div>,
-    );
-    const checkboxComponent = container.querySelector(
-      '.my-checkbox',
-    ) as HTMLElement;
-    await userEvent.click(checkboxComponent);
+it('correctly passes className through labelProps', () => {
+  const { container } = render(
+    <Checkbox label='some label' labelProps={{ className: 'some-box' }} />,
+  );
 
-    expect(checkboxOnChange).toBeCalled();
-    if (labelPresent) {
-      expect(wrapperOnClick).toBeCalled();
-    } else {
-      expect(wrapperOnClick).not.toBeCalled();
-    }
-  },
-);
+  assertBaseElements(container);
+  expect(container.querySelector('span')).toHaveClass(
+    'iui-checkbox-label some-box',
+  );
+});
