@@ -63,12 +63,12 @@ const { content = {} } = Astro.props;
       }
 
       :where(p) {
-        padding-block-start: 0.5;
-        padding-block-end: 1.5rem;
+        padding-block-start: 0.5rem;
+        padding-block-end: 0.5rem;
       }
 
-      :where(h1, h2) {
-        line-height: 1.2;
+      :where(h1, h2, h3) {
+        line-height: 1;
       }
 
       :where(h1) {
@@ -77,10 +77,12 @@ const { content = {} } = Astro.props;
 
       :where(h2) {
         font-size: var(--type-3);
+        padding-block-start: 4rem;
       }
 
       :where(h3) {
         font-size: var(--type-2);
+        padding-block-start: 4rem;
       }
 
       :where(code, pre) {
