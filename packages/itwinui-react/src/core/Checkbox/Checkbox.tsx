@@ -130,7 +130,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
           [`iui-${status}`]: !!status,
           'iui-loading': isLoading,
         },
-        wrapperClassName ? wrapperClassName : className,
+        wrapperClassName,
       )}
       {...restWrapperProps}
     >
@@ -138,10 +138,7 @@ export const Checkbox = React.forwardRef((props, ref) => {
       {label && (
         <Box
           as='span'
-          className={
-            (cx('iui-checkbox-label'),
-            labelClassName ? labelClassName : className)
-          }
+          className={(cx('iui-checkbox-label'), labelClassName)}
           {...restLabelProps}
         >
           {label}
