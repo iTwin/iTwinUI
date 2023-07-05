@@ -9,14 +9,7 @@ import {
   IconButton,
   MenuItem,
 } from '@itwin/itwinui-react';
-import {
-  SvgAdd,
-  SvgEdit,
-  SvgDelete,
-  SvgUndo,
-  SvgMore,
-  SvgPlaceholder,
-} from '@itwin/itwinui-icons-react';
+import { SvgMore, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const buttons = Array(12)
