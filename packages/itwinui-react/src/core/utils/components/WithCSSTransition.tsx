@@ -45,7 +45,7 @@ export const WithCSSTransition = (
       {...rest}
     >
       {React.isValidElement(children) ? (
-        React.cloneElement(children, {
+        React.cloneElement(children as JSX.Element, {
           ref: (el: HTMLElement) => {
             if (el) {
               expandedSize.current = el.getBoundingClientRect()[dimension];
