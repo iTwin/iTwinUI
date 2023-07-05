@@ -136,7 +136,6 @@ export const LabeledSelect = <T,>(
           {message}
         </StatusMessage>
       )}
-      <></>
     </InputGrid>
   );
 };

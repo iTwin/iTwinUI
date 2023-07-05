@@ -129,7 +129,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           {message}
         </StatusMessage>
       )}
-      <></>
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'input', LabeledInputProps>;

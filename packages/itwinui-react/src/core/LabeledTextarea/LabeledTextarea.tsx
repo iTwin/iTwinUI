@@ -126,7 +126,6 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
           {message}
         </StatusMessage>
       )}
-      <></>
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;

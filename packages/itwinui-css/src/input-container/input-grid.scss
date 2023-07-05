@@ -10,13 +10,7 @@
   &.iui-inline-label {
     grid-template-rows: 1fr auto;
     grid-template-columns: auto 1fr;
-  }
 
-  .iui-message {
-    grid-column-end: -1;
-  }
-
-  &.iui-inline-label {
     .iui-input-label {
       margin: 0 var(--iui-size-m) 0 0;
 
@@ -24,5 +18,9 @@
         margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
       }
     }
+  }
+
+  .iui-message {
+    grid-column-end: -1;
   }
 }
