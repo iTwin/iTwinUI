@@ -124,13 +124,6 @@ it.each(['label', 'input'] as const)(
   },
 );
 
-it('should isomorphically apply class on input', () => {
-  const { container } = render(<Checkbox className='customClass' />);
-
-  assertBaseElements(container);
-  expect(container.querySelector('input')).toHaveClass('customClass');
-});
-
 it('should set focus', () => {
   let element: HTMLInputElement | null = null;
   const onRef = (ref: HTMLInputElement) => {
@@ -180,23 +173,19 @@ it('renders correctly with visibility checkbox', () => {
   expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
 });
 
-it('correctly passes className through wrapperProps', () => {
+it('correctly passes className through wrapperProps and labelProps', () => {
   const { container } = render(
-    <Checkbox label='some label' wrapperProps={{ className: 'some-box' }} />,
+    <Checkbox
+      label='some label'
+      wrapperProps={{ className: 'some-box' }}
+      labelProps={{ className: 'some-box' }}
+    />,
   );
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toHaveClass(
     'iui-checkbox-wrapper some-box',
   );
-});
-
-it('correctly passes className through labelProps', () => {
-  const { container } = render(
-    <Checkbox label='some label' labelProps={{ className: 'some-box' }} />,
-  );
-
-  assertBaseElements(container);
   expect(container.querySelector('span')).toHaveClass(
     'iui-checkbox-label some-box',
   );
