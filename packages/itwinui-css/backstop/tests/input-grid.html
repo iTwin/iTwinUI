@@ -1,0 +1,350 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
+      import "@itwin/itwinui-icons-elements/close-small";
+      import "@itwin/itwinui-icons-elements/info-circular";
+      import "@itwin/itwinui-icons-elements/chevron-up";
+      import "@itwin/itwinui-icons-elements/chevron-down";
+      import "@itwin/itwinui-icons-elements/search";
+    </script>
+    <title>Input grid | iTwinUI</title>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      #block-labels > .iui-input-container {
+        margin-bottom: 12px;
+      }
+
+      #inline-labels {
+        display: grid;
+        row-gap: 12px;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+      }
+
+      #inline-labels > .iui-input-label {
+        justify-self: end;
+      }
+    </style>
+  </head>
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
+    <theme-button></theme-button>
+    <h1>Input grid</h1>
+    <hr />
+
+    <h2>Default</h2>
+    <section id="demo-default">
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label"
+          for="input-01"
+        >This is label</label>
+        <input
+          class="iui-input"
+          id="input-01"
+          placeholder="Input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label"
+          for="input-02"
+        >This is label</label>
+        <input
+          class="iui-input"
+          id="input-02"
+          placeholder="Input..."
+          value="With value"
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label iui-disabled"
+          for="input-03"
+        >This is label</label>
+        <input
+          class="iui-input"
+          disabled
+          id="input-03"
+          placeholder="Disabled input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label iui-disabled"
+          for="input-04"
+        >This is label</label>
+        <input
+          class="iui-input"
+          disabled
+          id="input-04"
+          placeholder="Input..."
+          value="Disabled value"
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid ">
+        <label
+          class="iui-input-label iui-required"
+          for="input-05"
+        >This is required label</label>
+        <input
+          class="iui-input"
+          required
+          id="input-05"
+          placeholder="Required input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label"
+          for="input-06"
+        >This is positive label</label>
+        <input
+          class="iui-input"
+          id="input-06"
+          placeholder="Positive input..."
+          data-iui-status="positive"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label"
+          for="input-07"
+        >This is warning label</label>
+        <input
+          class="iui-input"
+          id="input-07"
+          placeholder="Warning input..."
+          data-iui-status="warning"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid">
+        <label
+          class="iui-input-label"
+          for="input-08"
+        >This is negative label</label>
+        <input
+          class="iui-input"
+          id="input-08"
+          placeholder="Negative input..."
+          data-iui-status="negative"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <br />
+
+    <h2>Inline</h2>
+    <section id="demo-default">
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label"
+          for="input-inline-01"
+        >This is label</label>
+        <input
+          class="iui-input"
+          id="input-inline-01"
+          placeholder="Input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label"
+          for="input-inline-02"
+        >This is label</label>
+        <input
+          class="iui-input"
+          id="input-inline-02"
+          placeholder="Input..."
+          value="With value"
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label iui-disabled"
+          for="input-inline-03"
+        >This is label</label>
+        <input
+          class="iui-input"
+          disabled
+          id="input-inline-03"
+          placeholder="Disabled input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label iui-disabled"
+          for="input-inline-04"
+        >This is label</label>
+        <input
+          class="iui-input"
+          disabled
+          id="input-inline-04"
+          placeholder="Input..."
+          value="Disabled value"
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label iui-required"
+          for="input-inline-05"
+        >This is required label</label>
+        <input
+          class="iui-input"
+          required
+          id="input-inline-05"
+          placeholder="Required input..."
+        />
+        <div class="iui-message">
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label"
+          for="input-inline-06"
+        >This is positive label</label>
+        <input
+          class="iui-input"
+          id="input-inline-06"
+          placeholder="Positive input..."
+          data-iui-status="positive"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label"
+          for="input-inline-07"
+        >This is warning label</label>
+        <input
+          class="iui-input"
+          id="input-inline-07"
+          placeholder="Warning input..."
+          data-iui-status="warning"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+      <div class="iui-input-grid iui-inline-label">
+        <label
+          class="iui-input-label"
+          for="input-inline-08"
+        >This is negative label</label>
+        <input
+          class="iui-input"
+          id="input-inline-08"
+          placeholder="Negative input..."
+          data-iui-status="negative"
+        />
+        <div
+          class="iui-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-message-content">This is message</div>
+        </div>
+      </div>
+
+
+    </section>
+
+  </body>
+</html>
