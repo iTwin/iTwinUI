@@ -10,7 +10,7 @@ group: core
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
 import RelatedComponents from '~/components/RelatedComponents.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -60,6 +60,14 @@ The borderless expandable block is useful in tighter areas where using a default
 
 <LiveExample src='ExpandableBlock.borderless.tsx'>
   <AllExamples.ExpandableBlockBorderlessExample client:load />
+</LiveExample>
+
+### Disabled
+
+An expandable block can be disabled by using the `disabled` prop.
+
+<LiveExample src='ExpandableBlock.disabled.tsx'>
+  <AllExamples.ExpandableBlockDisabledExample client:load />
 </LiveExample>
 
 ## Usage

@@ -9,7 +9,6 @@ import { Input } from '../Input/index.js';
 import { ColorValue, InputContainer, SvgSwap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
-import '@itwin/itwinui-css/css/color-picker.css';
 
 type ColorInputPanelProps = {
   /**

@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { SvgUpload, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/file-upload.css';
 import { Anchor } from '../Typography/Anchor/Anchor.js';
 
 type FileUploadTemplateProps = {
@@ -42,6 +41,7 @@ type FileUploadTemplateProps = {
 };
 
 /**
+ * @deprecated Use `FileUploadCard` instead.
  * Default template to be used with the `FileUpload` wrapper component.
  * Contains a hidden input with styled labels (customizable).
  * @example

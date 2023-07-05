@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { StatusIconMap, InputContainer, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/utils.css';
 
 type InputGroupProps = {
   /**

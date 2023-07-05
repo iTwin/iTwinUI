@@ -167,9 +167,7 @@ it('displays a spinner when isLoading is set to true', () => {
     container.querySelector('input[type="checkbox"].iui-loading'),
   ).toBeDisabled();
   expect(
-    container.querySelector(
-      '.iui-progress-indicator-radial.iui-x-small.iui-indeterminate',
-    ),
+    container.querySelector('.iui-progress-indicator-radial'),
   ).toBeTruthy();
 });
 

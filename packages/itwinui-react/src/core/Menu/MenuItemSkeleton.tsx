@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, VisuallyHidden } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
 
 type MenuItemSkeletonProps = {
   /**
@@ -50,12 +49,8 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as='li'
-      className={cx(
-        'iui-menu-item',
-        'iui-menu-item-skeleton',
-        { 'iui-large': hasSublabel },
-        className,
-      )}
+      className={cx('iui-menu-item-skeleton', className)}
+      data-iui-size={hasSublabel && 'large'}
       style={{
         ...{
           '--iui-menu-item-content-skeleton-max-width': contentWidth,

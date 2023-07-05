@@ -18,7 +18,8 @@ describe('AvatarGroup', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName.includes('Tooltip')) {
-        cy.get('.iui-avatar-count').trigger('mouseenter'); // trigger tooltip
+        cy.get('abbr').contains('3').parent().trigger('mouseenter');
+        cy.wait(50);
       }
 
       cy.compareSnapshot(testName);

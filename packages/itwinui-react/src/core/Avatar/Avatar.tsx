@@ -6,7 +6,6 @@ import cx from 'classnames';
 import * as React from 'react';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/avatar.css';
 
 export type AvatarStatus = 'online' | 'busy' | 'away' | 'offline';
 
@@ -115,10 +114,5 @@ export const Avatar = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', AvatarProps>;
-
-/**
- * @deprecated Since v2, this has been renamed to `Avatar`
- */
-export const UserIcon = Avatar;
 
 export default Avatar;

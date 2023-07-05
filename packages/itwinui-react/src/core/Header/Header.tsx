@@ -8,7 +8,6 @@ import { IconButton } from '../Buttons/index.js';
 
 import { SvgMoreVertical, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 
 type HeaderTranslations = {
@@ -38,11 +37,8 @@ type HeaderProps = {
   breadcrumbs?: React.ReactNode;
   /**
    * Content displayed to the left of the `menuItems`
-   * (expects array of `IconButton`, potentially wrapped in a `DropdownMenu`)
+   * (expects array of icons/avatars wrapped in `IconButton` and/or `DropdownMenu`).
    *
-   * Since v2, `userIcon` is deprecated.
-   * The new recommendation is to add `Avatar` (Called `UserIcon` before v2) to the end of `actions`.
-   * `Avatar` can be wrapped in `IconButton` and `DropdownMenu` if needed.
    * @example
    * [
    *  <IconButton><SvgNotification /></IconButton>,
@@ -63,22 +59,6 @@ type HeaderProps = {
    * Children is put in the center of the Header.
    */
   children?: React.ReactNode;
-  /**
-   * @deprecated Since v2, add your `UserIcon` (called `Avatar` since v2) to the end of `actions` itself
-   *
-   * User icon
-   *
-   * It's size and transition will be handled between slim/not slim state of the
-   * Header
-   * (expects `UserIcon`, can be wrapped in `IconButton` and `DropdownMenu` if needed)
-   * @example
-   * <DropdownMenu menuItems={...}>
-   *   <IconButton styleType='borderless'>
-   *     <UserIcon ... />
-   *   </IconButton>
-   * </DropdownMenu>
-   */
-  userIcon?: React.ReactNode;
   /**
    * Items in the more dropdown menu.
    * Pass a function that takes the `close` argument (to close the menu),
@@ -133,7 +113,6 @@ export const Header = React.forwardRef((props, forwardedRef) => {
     breadcrumbs,
     isSlim = false,
     actions,
-    userIcon,
     menuItems,
     translatedStrings,
     className,
@@ -158,7 +137,6 @@ export const Header = React.forwardRef((props, forwardedRef) => {
       {children && <Box className='iui-page-header-center'>{children}</Box>}
       <Box className='iui-page-header-right'>
         {actions}
-        {userIcon}
         {menuItems && (
           <DropdownMenu menuItems={menuItems}>
             <IconButton

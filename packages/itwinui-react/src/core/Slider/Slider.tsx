@@ -5,11 +5,10 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { getBoundedValue, useEventListener, Box } from '../utils/index.js';
-import '@itwin/itwinui-css/css/slider.css';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { TooltipProps } from '../Tooltip/Tooltip.js';
 import { Track } from './Track.js';
 import { Thumb } from './Thumb.js';
+import type { Tooltip } from '../Tooltip/index.js';
 
 /**
  * Determines which segments are shown with color.
@@ -19,6 +18,8 @@ export type TrackDisplayMode =
   | 'none'
   | 'odd-segments'
   | 'even-segments';
+
+type TooltipProps = React.ComponentProps<typeof Tooltip>;
 
 const getPercentageOfRectangle = (
   rect: DOMRect,

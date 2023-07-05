@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import cx from 'classnames';
 import { MenuExtraContent } from '../Menu/index.js';
 import type { SelectOption } from '../Select/index.js';
 import SelectTag from '../Select/SelectTag.js';
@@ -21,7 +20,6 @@ import type {
   InputContainerProps,
   CommonProps,
 } from '../utils/index.js';
-import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
@@ -441,6 +439,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     (option: SelectOption<T>, filteredIndex?: number) => {
       const optionId = getOptionId(option, id);
       const { __originalIndex } = optionsExtraInfoRef.current[optionId];
+      const { icon, startIcon: startIconProp, ...restOptions } = option;
+
+      const startIcon = startIconProp ?? icon;
 
       const customItem = itemRenderer
         ? itemRenderer(option, {
@@ -457,11 +458,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             onClickHandler(__originalIndex);
             customItem.props.onClick?.(e);
           },
-          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and iui-focused through context
+          // ComboBox.MenuItem handles scrollIntoView, data-iui-index and focused through context
           // but we still need to pass them here for backwards compatibility with MenuItem
-          className: cx(customItem.props.className, {
-            'iui-focused': focusedIndex === __originalIndex,
-          }),
+          focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
           ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
@@ -474,7 +473,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         <ComboBoxMenuItem
           key={optionId}
           id={optionId}
-          {...option}
+          startIcon={startIcon}
+          {...restOptions}
           isSelected={isMenuItemSelected(__originalIndex)}
           onClick={() => {
             onClickHandler(__originalIndex);

@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { polymorphic } from '../utils/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
 
 /**
  * Dialog title bar. Recommended to be used as a child of `Dialog`.

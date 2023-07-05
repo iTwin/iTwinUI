@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/avatar.css';
 
 type AvatarGroupProps = {
   /**
@@ -129,10 +128,5 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', AvatarGroupProps>;
-
-/**
- * @deprecated Since v2, this has been renamed to `AvatarGroup`
- */
-export const UserIconGroup = AvatarGroup;
 
 export default AvatarGroup;

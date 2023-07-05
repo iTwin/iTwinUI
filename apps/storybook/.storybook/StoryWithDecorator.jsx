@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 import { ThemeProvider } from '@itwin/itwinui-react';
+import '@itwin/itwinui-react/styles.css';
 
 export default function StoryWithDecorator(Story, context) {
   const theme = useDarkMode() ? 'dark' : 'light';
@@ -19,6 +20,7 @@ export default function StoryWithDecorator(Story, context) {
       theme={theme}
       themeOptions={{ highContrast, applyBackground: false }}
       style={{ background }}
+      className='story-wrapper'
     >
       <Story />
     </ThemeProvider>

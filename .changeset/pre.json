@@ -11,7 +11,35 @@
     "@itwin/itwinui-variables": "2.0.0",
     "astro-playground": "0.0.1",
     "next-playground": "0.1.0",
-    "vite-playground": "0.0.0"
+    "vite-playground": "0.0.0",
+    "examples": "0.0.0"
   },
-  "changesets": []
+  "changesets": [
+    "beige-suits-jam",
+    "big-ducks-confess",
+    "brave-suits-exercise",
+    "calm-owls-shout",
+    "cold-needles-know",
+    "gorgeous-boxes-smell",
+    "happy-walls-nail",
+    "late-tips-beam",
+    "loud-adults-deny",
+    "many-actors-tell",
+    "nine-clocks-compare",
+    "ninety-keys-double",
+    "ninety-phones-deny",
+    "odd-crabs-approve",
+    "quick-dodos-hang",
+    "real-wombats-fly",
+    "rich-garlics-love",
+    "rotten-buckets-leave",
+    "rude-timers-lick",
+    "silver-coats-eat",
+    "smart-guests-play",
+    "spicy-tools-tell",
+    "thick-goats-work",
+    "thirty-lemons-tie",
+    "twelve-olives-roll",
+    "young-beds-matter"
+  ]
 }

@@ -5,7 +5,6 @@
 describe('FileUpload', () => {
   const storyPath = 'Core/FileUpload';
   const tests = [
-    'Default',
     'Wrapping Input',
     'Default File Upload Card',
     'Custom File Upload Card',
@@ -20,7 +19,7 @@ describe('FileUpload', () => {
         testName === 'Default File Upload Card' ||
         testName === 'Custom File Upload Card'
       ) {
-        cy.get('.iui-visually-hidden').selectFile(
+        cy.get('input').selectFile(
           {
             contents: Cypress.Buffer.from('file contents'),
             fileName: 'file.txt',

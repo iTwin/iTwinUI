@@ -12,7 +12,7 @@ import userEvent from '@testing-library/user-event';
 function assertBaseElement(menu: HTMLUListElement, role = 'menu') {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual(role);
-  const menuItems = menu.querySelectorAll('.iui-menu-item');
+  const menuItems = menu.querySelectorAll('.iui-list-item');
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
@@ -63,7 +63,7 @@ it('should close menu after menu item click', () => {
   assertBaseElement(menu);
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  const menuItem = menu.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = menu.querySelector('.iui-list-item') as HTMLLIElement;
   expect(menuItem).toBeTruthy();
   fireEvent.click(menuItem);
 
