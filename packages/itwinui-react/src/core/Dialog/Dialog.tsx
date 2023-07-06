@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
-import '@itwin/itwinui-css/css/dialog.css';
 import { DialogTitleBar } from './DialogTitleBar.js';
 import { DialogContent } from './DialogContent.js';
 import { DialogBackdrop } from './DialogBackdrop.js';
@@ -12,7 +12,13 @@ import { DialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
-import { useMergedRefs, Box } from '../utils/index.js';
+import {
+  useMergedRefs,
+  Box,
+  useGlobals,
+  getDocument,
+  useIsClient,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type DialogProps = {
@@ -35,12 +41,31 @@ const DialogComponent = React.forwardRef((props, ref) => {
     isDraggable = false,
     isResizable = false,
     relativeTo = 'viewport',
+    placement,
     className,
+    portal = false,
     ...rest
   } = props;
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(ref, dialogRootRef);
+  const context = useGlobals();
+  const isClient = useIsClient();
+
+  const portalTo =
+    typeof portal !== 'boolean'
+      ? portal.to
+      : portal
+      ? context?.portalContainerRef?.current ?? getDocument()?.body
+      : null;
+
+  const dialog = (
+    <Box
+      className={cx('iui-dialog-wrapper', className)}
+      data-iui-relative={relativeTo === 'container'}
+      ref={useMergedRefs(ref, dialogRootRef)}
+      {...rest}
+    />
+  );
 
   return (
     <DialogContext.Provider
@@ -57,14 +82,10 @@ const DialogComponent = React.forwardRef((props, ref) => {
         isResizable,
         relativeTo,
         dialogRootRef,
+        placement,
       }}
     >
-      <Box
-        className={cx('iui-dialog-wrapper', className)}
-        data-iui-relative={relativeTo === 'container'}
-        ref={refs}
-        {...rest}
-      />
+      {portalTo && isClient ? ReactDOM.createPortal(dialog, portalTo) : dialog}
     </DialogContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;

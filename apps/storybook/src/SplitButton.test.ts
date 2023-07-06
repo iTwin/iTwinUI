@@ -11,7 +11,9 @@ describe('SplitButton', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-button').last().click();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').last().click();
+      });
       cy.compareSnapshot(`${testName} (Open)`);
     });
   });

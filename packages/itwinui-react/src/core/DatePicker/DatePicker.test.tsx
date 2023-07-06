@@ -491,9 +491,32 @@ it('should prevent selecting disabled dates', async () => {
   await userEvent.keyboard('{Enter}');
   expect(onClick).not.toHaveBeenCalled();
 
-  // next month/year button should be disabled
-  expect(screen.getByLabelText('Previous year')).not.toBeDisabled();
-  expect(screen.getByLabelText('Previous month')).not.toBeDisabled();
-  expect(screen.getByLabelText('Next month')).toBeDisabled();
-  expect(screen.getByLabelText('Next year')).toBeDisabled();
+  // next month/year button should be enabled, but should not allow to choose the day
+  const nextYearButton = screen.getByLabelText('Next year');
+  expect(nextYearButton).toBeEnabled();
+  await userEvent.click(nextYearButton);
+  assertMonthYear(container, 'June', '2021');
+  await userEvent.click(getByText('22'));
+  expect(onClick).not.toHaveBeenCalled();
+
+  const nextMonthButton = screen.getByLabelText('Next month');
+  expect(nextMonthButton).toBeEnabled();
+  await userEvent.click(nextMonthButton);
+  assertMonthYear(container, 'July', '2021');
+  await userEvent.click(getByText('11'));
+  expect(onClick).not.toHaveBeenCalled();
+
+  const previousYearButton = screen.getByLabelText('Previous year');
+  expect(previousYearButton).toBeEnabled();
+  await userEvent.click(previousYearButton);
+  assertMonthYear(container, 'July', '2020');
+  await userEvent.click(getByText('10'));
+  expect(onClick).not.toHaveBeenCalled();
+
+  const previousMonthButton = screen.getByLabelText('Previous month');
+  expect(previousMonthButton).toBeEnabled();
+  await userEvent.click(previousMonthButton);
+  assertMonthYear(container, 'June', '2020');
+  await userEvent.click(getByText('24'));
+  expect(onClick).not.toHaveBeenCalled();
 });

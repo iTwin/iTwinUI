@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types.js';
-import '@itwin/itwinui-css/css/utils.css';
 import { Box } from './Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 

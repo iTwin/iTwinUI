@@ -39,6 +39,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
     }
+
+    > :where(.iui-tile-name) {
+      margin-bottom: calc(var(--iui-size-s) * 0.5);
+    }
   }
 
   &:not(:hover, :focus-within) {
@@ -150,9 +154,12 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-folder {
-  display: inline-flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-areas:
+    'thumbnail name'
+    'thumbnail content';
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto 1fr;
 
   > :where(:first-child) {
     border-top-left-radius: inherit;
@@ -166,15 +173,22 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   .iui-tile-thumbnail {
     height: calc(var(--iui-size-s) * 10);
+    grid-area: thumbnail;
     flex: 1;
     border-bottom: none;
     border-right: 1px solid var(--iui-color-border);
     margin: 0;
   }
 
+  .iui-tile-name {
+    grid-area: name;
+    margin-top: calc(var(--iui-size-xs));
+  }
+
   .iui-tile-content {
-    flex: 2;
+    grid-area: content;
     padding: var(--iui-size-s);
+    padding-top: 0;
 
     > * {
       padding: 0;
@@ -212,9 +226,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   font-size: var(--iui-font-size-2);
   user-select: all;
   color: var(--_iui-tile-title-text-color);
-  overflow: hidden;
   padding-inline: var(--iui-size-s);
-  margin-bottom: calc(var(--iui-size-s) * 0.5);
 }
 
 @mixin iui-tile-status-icon {
@@ -292,8 +304,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-thumbnail-icon {
-    @include mixins.iui-icon-style(3xl);
-    @include mixins.iui-icon-color;
+    &,
+    > svg {
+      @include mixins.iui-icon-style(3xl);
+      @include mixins.iui-icon-color;
+    }
     transition: transform var(--iui-duration-2) ease;
     place-self: center;
   }
@@ -311,13 +326,16 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   ~ .iui-thumbnail-icon {
-    cursor: pointer;
-    transition: fill var(--iui-duration-1) ease;
-    fill: rgba(255, 255, 255, var(--iui-opacity-3));
-    filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
+    &,
+    > svg {
+      cursor: pointer;
+      transition: fill var(--iui-duration-1) ease;
+      fill: rgba(255, 255, 255, var(--iui-opacity-3));
+      filter: drop-shadow(0 2px 1px rgba(0, 1, 5, var(--iui-opacity-5)));
 
-    &:hover {
-      fill: rgba(255, 255, 255, var(--iui-opacity-2));
+      &:hover {
+        fill: rgba(255, 255, 255, var(--iui-opacity-2));
+      }
     }
   }
 }

@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 export { Alert } from './Alert/index.js';
 
-export { Avatar, UserIcon } from './Avatar/index.js';
+export { Avatar } from './Avatar/index.js';
 
-export { AvatarGroup, UserIconGroup } from './AvatarGroup/index.js';
+export { AvatarGroup } from './AvatarGroup/index.js';
 
 export { Backdrop } from './Backdrop/index.js';
 
@@ -72,6 +72,8 @@ export {
 } from './Header/index.js';
 
 export { List, ListItem } from './List/index.js';
+
+export { TransferList } from './TransferList/index.js';
 
 export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
 
@@ -162,8 +164,7 @@ export { Tile } from './Tile/index.js';
 export { TimePicker } from './TimePicker/index.js';
 export type { MeridiemType } from './TimePicker/index.js';
 
-export { default as toaster } from './Toast/index.js';
-export type { ToastOptions } from './Toast/index.js';
+export { useToaster } from './Toast/index.js';
 
 export { ThemeProvider } from './ThemeProvider/index.js';
 export type { ThemeType } from './ThemeProvider/index.js';
@@ -184,13 +185,8 @@ export {
   Text,
 } from './Typography/index.js';
 
-export { Wizard, Stepper, WorkflowDiagram } from './Stepper/index.js';
-export type {
-  StepProperties,
-  WizardType,
-  WizardLocalization,
-  StepperLocalization,
-} from './Stepper/index.js';
+export { Stepper, WorkflowDiagram } from './Stepper/index.js';
+export type { StepProperties, StepperLocalization } from './Stepper/index.js';
 
 export { SearchBox } from './SearchBox/index.js';
 

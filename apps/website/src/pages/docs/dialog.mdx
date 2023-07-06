@@ -9,7 +9,7 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -78,6 +78,19 @@ A full page dialog appears on top of the content and occupy the entire page’s 
 The two buttons at the bottom right are always pinned in that same area, regardless of content. If there is more content than there is available space in the content area, a scrollbar can be included to make the content area scrollable.
 
 As specified earlier, full-page dialogs will house various settings options as shown in the example below.
+
+### Placement
+
+Using the `placement` prop, a dialog can be adjusted to sit in one of the four corners of the page. Accepted values:
+
+- `top-left`
+- `top-right`
+- `bottom-left`
+- `bottom-right`
+
+<LiveExample src='Dialog.placement.tsx'>
+  <AllExamples.DialogPlacementExample client:load />
+</LiveExample>
 
 ## Usage guidelines
 

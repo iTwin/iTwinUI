@@ -7,8 +7,8 @@ describe('DropdownMenu', () => {
   const tests = [
     'Basic',
     'Submenu',
-    'With Badges',
-    'With Icons',
+    'With End Icons',
+    'With Start Icons',
     'With Content',
     'With Separator',
     'With Sublabels',
@@ -19,10 +19,12 @@ describe('DropdownMenu', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-button').click();
+      cy.get('#storybook-root').within(() => {
+        cy.get('button').first().click();
+      });
 
       if (testName === 'Submenu') {
-        cy.get('.iui-menu-item').last().trigger('mouseenter');
+        cy.get('li[aria-expanded=false]').trigger('mouseenter');
       }
 
       cy.compareSnapshot(`${testName} (Open)`);

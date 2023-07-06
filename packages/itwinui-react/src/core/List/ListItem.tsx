@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { polymorphic, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
@@ -35,7 +34,7 @@ const ListItemComponent = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'li', ListItemOwnProps>;
 ListItemComponent.displayName = 'ListItem';
 
-type ListItemOwnProps = {
+export type ListItemOwnProps = {
   /**
    * Size of the ListItem. Can be explicitly specified to be 'large',
    * but if a description is included in addition to the label, then

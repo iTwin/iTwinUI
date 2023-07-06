@@ -1,5 +1,11 @@
 # @itwin/itwinui-variables
 
+## 2.1.0-dev.0
+
+### Minor Changes
+
+- [#1302](https://github.com/iTwin/iTwinUI/pull/1302): All selectors have been wrapped with `:where` to nullify specificity.
+
 ## 2.0.0
 
 ### Major Changes

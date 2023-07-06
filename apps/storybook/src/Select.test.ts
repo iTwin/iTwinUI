@@ -34,17 +34,17 @@ describe('Select', () => {
       }
 
       cy.compareSnapshot(`${testName} (Closed)`);
-      cy.get('.iui-select-button').click();
+      cy.get('[role=combobox]').click();
       cy.compareSnapshot(`${testName} (Open)`);
 
       if (testName.includes('Multi')) {
-        cy.get('.iui-menu-item').first().click();
-        cy.get('.iui-menu-item').eq(1).click();
+        cy.get('[role=option]').first().click();
+        cy.get('[role=option]').eq(1).click();
         cy.compareSnapshot(`${testName} (Multi selected)`);
       }
 
       if (testName === 'Custom') {
-        cy.get('.iui-menu-item').first().click();
+        cy.get('[role=option]').first().click();
         cy.compareSnapshot(`${testName} (Closed With Value)`);
       }
     });

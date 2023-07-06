@@ -4,16 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  useMediaQuery,
-  useMergedRefs,
-  useIsThemeAlreadySet,
-  Box,
-} from '../utils/index.js';
+import { useMediaQuery, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
+import { ToastProvider, Toaster } from '../Toast/Toaster.js';
 
 export type ThemeOptions = {
   /**
@@ -54,10 +48,9 @@ type RootProps = {
     applyBackground?: boolean;
   };
   /**
-   * Whether theme was set to `'inherit'`.
-   * This will be used to determine if applyBackground will default to false.
+   * This will be used to determine if background will be applied.
    */
-  isInheritingTheme?: boolean;
+  shouldApplyBackground?: boolean;
 };
 
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
@@ -94,32 +87,38 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
 export const ThemeProvider = React.forwardRef((props, ref) => {
   const { theme: themeProp, children, themeOptions, ...rest } = props;
 
-  const rootRef = React.useRef<HTMLElement>(null);
-  const mergedRefs = useMergedRefs(rootRef, ref);
-
+  const portalContainerRef = React.useRef<HTMLDivElement>(null);
   const parentContext = React.useContext(ThemeContext);
 
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
+  const shouldApplyBackground =
+    themeOptions?.applyBackground ??
+    (themeProp === 'inherit' ? false : !parentContext);
+
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef }),
+    () => ({ theme, themeOptions, portalContainerRef }),
     [theme, themeOptions],
   );
 
-  // now that we know there are children, we can render the root and provide the context value
   return (
-    <Root
-      theme={theme}
-      isInheritingTheme={themeProp === 'inherit'}
-      themeOptions={themeOptions}
-      ref={mergedRefs}
-      {...rest}
-    >
-      <ThemeContext.Provider value={contextValue}>
-        {children}
-      </ThemeContext.Provider>
-    </Root>
+    <ThemeContext.Provider value={contextValue}>
+      <Root
+        theme={theme}
+        shouldApplyBackground={shouldApplyBackground}
+        themeOptions={themeOptions}
+        ref={ref}
+        {...rest}
+      >
+        <ToastProvider>
+          {children}
+          <div ref={portalContainerRef}>
+            <Toaster />
+          </div>
+        </ToastProvider>
+      </Root>
+    </ThemeContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 
@@ -130,8 +129,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
     theme,
     children,
     themeOptions,
+    shouldApplyBackground,
     className,
-    isInheritingTheme,
     ...rest
   } = props;
 
@@ -141,10 +140,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
   const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
-  const isThemeAlreadySet = useIsThemeAlreadySet(ref.current?.ownerDocument);
-  const shouldApplyBackground =
-    themeOptions?.applyBackground ??
-    (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
   return (
     <Box

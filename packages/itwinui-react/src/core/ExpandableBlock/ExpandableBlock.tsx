@@ -12,7 +12,6 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/expandable-block.css';
 
 type ExpandableBlockProps = {
   /**
@@ -57,6 +56,11 @@ type ExpandableBlockProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
+  /**
+   * Disables ExpandableBlock.
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -81,6 +85,7 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
     status,
     size = 'default',
     styleType = 'default',
+    disabled = false,
     ...rest
   } = props;
 
@@ -92,12 +97,15 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
+    if (disabled) {
+      return;
+    }
     setExpanded(!expanded);
     onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
+    if (event.altKey || disabled) {
       return;
     }
 
@@ -126,24 +134,26 @@ export const ExpandableBlock = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <div
+      <Box
+        role='button'
         aria-expanded={expanded}
         className='iui-header'
+        aria-disabled={disabled}
         tabIndex={0}
         onClick={handleToggle}
         onKeyDown={onKeyDown}
       >
         <SvgChevronRight className='iui-icon' aria-hidden />
-        <span className='iui-expandable-block-label'>
-          <div className='iui-title'>{title}</div>
-          {caption && <div className='iui-caption'>{caption}</div>}
-        </span>
+        <Box as='span' className='iui-expandable-block-label'>
+          <Box className='iui-title'>{title}</Box>
+          {caption && <Box className='iui-caption'>{caption}</Box>}
+        </Box>
         {icon && <Icon fill={status}>{icon}</Icon>}
-      </div>
+      </Box>
       <WithCSSTransition in={expanded}>
-        <div className='iui-expandable-content'>
+        <Box className='iui-expandable-content'>
           <div>{children}</div>
-        </div>
+        </Box>
       </WithCSSTransition>
     </Box>
   );

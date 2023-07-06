@@ -12,101 +12,61 @@ import {
   LinkAction,
   useSafeContext,
   supportsHas,
+  polymorphic,
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tile.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 
 const TileContext = React.createContext<
   | {
+      status?: 'positive' | 'warning' | 'negative';
+      /**
+       * Whether the tile is selected or in "active" state.
+       * Gets highlighted and shows a checkmark icon near tile name.
+       */
+      isSelected?: boolean;
+      /**
+       * Whether the tile is "new". Tile name becomes bold and gets a new status icon.
+       */
+      isNew?: boolean;
+      /**
+       * Default tile variant or the folder layout.
+       * @default 'default'
+       */
+      variant?: 'default' | 'folder';
+      /**
+       * @deprecated since v3. Use `<Tile.Action>` subcomponent for actionable tile.
+       * Whether the tile is expected to be interactive (i.e. `onClick`).
+       * It becomes focusable and gets on hover styling.
+       */
+      isActionable?: boolean;
+      /**
+       * Display a loading state.
+       * @default false
+       */
+      isLoading?: boolean;
+      /**
+       * Flag whether the tile is disabled.
+       *
+       * Note: This only affects the tile. You need to manually disable
+       * the buttons and other interactive elements inside the tile.
+       *
+       * @default false
+       */
+      isDisabled?: boolean;
       setActionable: React.Dispatch<React.SetStateAction<boolean>>;
     }
   | undefined
 >(undefined);
+TileContext.displayName = 'TileContext';
 
-/**
- * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
- * Renders `a` element by default.
- * @example
- * <Tile
- *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
- * />
- */
-export const TileAction = React.forwardRef((props, forwardedRef) => {
-  const tileContext = useSafeContext(TileContext);
-  React.useEffect(() => {
-    if (!supportsHas()) {
-      tileContext.setActionable(true);
-    }
-  }, [tileContext]);
+// ----------------------------------------------------------------------------
+// Main Tile component
 
-  return <LinkAction ref={forwardedRef} {...props} />;
-}) as PolymorphicForwardRefComponent<'a'>;
-
-type TileProps = {
-  /**
-   * Name or title of the tile.
-   */
-  name: React.ReactNode;
-  /**
-   * Description text of the tile.
-   * Gets truncated if it can't fit in the tile.
-   */
-  description?: React.ReactNode;
-  /**
-   * Metadata section located below description.
-   * @example
-   * <Tile
-   *  // ...
-   *  metadata='basic metadata'
-   *  // or
-   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
-   *  // or
-   *  metadata={<>
-   *    <SvgTag2 />
-   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
-   *  </>}
-   * />
-   */
-  metadata?: React.ReactNode;
-  /**
-   * Thumbnail image url, a custom component or an svg.
-   * @example
-   * <Tile
-   *  // ...
-   *  thumbnail='/url/to/image.jpg'
-   *  // or
-   *  thumbnail={<Avatar image={<img src='icon.png' />} />}
-   *  // or
-   *  thumbnail={<SvgImodelHollow />}
-   * />
-   */
-  thumbnail?: string | React.ReactNode;
-  /**
-   * `Badge` shown on the bottom right of thumbnail.
-   */
-  badge?: React.ReactNode;
-  /**
-   * Icon shown on top left of the tile. Also known as "type indicator".
-   * Recommended to use an invisible `IconButton`.
-   */
-  leftIcon?: React.ReactNode;
-  /**
-   * Icon shown on top right of the tile. Also known as "quick action".
-   * Recommended to use an invisible `IconButton`.
-   */
-  rightIcon?: React.ReactNode;
-  /**
-   * Upto two buttons shown at the bottom of the tile.
-   */
-  buttons?: [React.ReactNode?, React.ReactNode?];
-  /**
-   * Dropdown menu containing `MenuItem`s.
-   */
-  moreOptions?: React.ReactNode[];
+type TileOwnProps = {
   /**
    * Status of the tile.
    */
@@ -126,15 +86,6 @@ type TileProps = {
    */
   variant?: 'default' | 'folder';
   /**
-   * Any custom nodes that will be appended to the tile's main content.
-   */
-  children?: React.ReactNode;
-  /**
-   * Whether the tile is expected to be interactable (i.e. `onClick`).
-   * It becomes focusable and gets on hover styling.
-   */
-  isActionable?: boolean;
-  /**
    * Display a loading state.
    * @default false
    */
@@ -148,244 +99,456 @@ type TileProps = {
    * @default false
    */
   isDisabled?: boolean;
-  onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
-/**
- * Tile component that displays content and actions in a card-like format.
- * @example
- * <Tile
- *  name='Tile name'
- *  description='Tile description that takes upto 3 lines'
- *  metadata={<TagContainer><Tag variant='basic'>Tag 1</Tag></TagContainer>}
- *  thumbnail='/url/to/image.jpg'
- *  badge={<Badge backgroundColor='blue'>Badge label</Badge>}
- *  buttons={[<Button>Button 1</Button>, <Button>Button 2</Button>]}
- *  moreOptions={[<MenuItem>Item 1</MenuItem>, <MenuItem>Item 2</MenuItem>]}
- *  leftIcon={<IconButton><SvgInfo /></IconButton>}
- *  rightIcon={<IconButton><SvgStar /></IconButton>}
- *  isSelected={true}
- *  isNew={false}
- * />
- */
-export const Tile = Object.assign(
-  React.forwardRef((props, forwardedRef) => {
-    const {
-      className,
-      name,
-      description,
-      metadata,
-      thumbnail,
-      buttons,
-      leftIcon,
-      rightIcon,
-      badge,
-      isNew,
-      isSelected,
-      moreOptions,
-      variant = 'default',
-      children,
-      isActionable: isActionableProp,
-      status,
-      isLoading = false,
-      isDisabled = false,
-      onClick,
-      ...rest
-    } = props;
+const TileComponent = React.forwardRef((props, forwardedRef) => {
+  const {
+    className,
+    status,
+    variant,
+    isNew,
+    isSelected,
+    isLoading,
+    isDisabled,
+    ...rest
+  } = props;
+  const [localActionable, setLocalActionable] = React.useState(false);
+  const isActionable = localActionable;
 
-    const [isMenuVisible, setIsMenuVisible] = React.useState(false);
-    const showMenu = React.useCallback(() => setIsMenuVisible(true), []);
-    const hideMenu = React.useCallback(() => setIsMenuVisible(false), []);
-    const [localActionable, setLocalActionable] =
-      React.useState(isActionableProp);
+  return (
+    <TileContext.Provider
+      value={{
+        status,
+        variant,
+        isNew,
+        isSelected,
+        isLoading,
+        isActionable,
+        isDisabled,
+        setActionable: setLocalActionable,
+      }}
+    >
+      <Box
+        className={cx(
+          'iui-tile',
+          {
+            'iui-folder': variant === 'folder',
+            'iui-new': isNew,
+            'iui-selected': isSelected,
+            'iui-actionable': isActionable,
+            [`iui-${status}`]: !!status,
+            'iui-loading': isLoading,
+          },
+          className,
+        )}
+        aria-disabled={isDisabled}
+        ref={forwardedRef}
+        {...rest}
+      />
+    </TileContext.Provider>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileOwnProps>;
+TileComponent.displayName = 'Tile';
 
-    const isActionable = isActionableProp ?? localActionable;
+// ----------------------------------------------------------------------------
+// Tile.Action component
 
-    const tileName = (
-      <Box className='iui-tile-name'>
-        <TitleIcon
-          isLoading={isLoading}
-          isSelected={isSelected}
-          isNew={isNew}
-          status={status}
-        />
+const TileAction = React.forwardRef((props, forwardedRef) => {
+  const { onClick, children, href, ...rest } = props;
+  const { setActionable, isDisabled } = useSafeContext(TileContext);
+  React.useEffect(() => {
+    if (!supportsHas()) {
+      setActionable(true);
+    }
+  }, [setActionable]);
 
-        <Box as='span' className='iui-tile-name-label'>
-          {isActionable && onClick ? (
-            <LinkAction
-              as='button'
-              onClick={!isDisabled ? onClick : undefined}
-              aria-disabled={isDisabled}
-            >
-              {name}
-            </LinkAction>
-          ) : (
-            name
-          )}
-        </Box>
-      </Box>
-    );
+  return (
+    <LinkAction
+      as={(!!props.href ? 'a' : 'button') as 'a'}
+      href={href}
+      onClick={!isDisabled ? onClick : undefined}
+      aria-disabled={isDisabled}
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children}
+    </LinkAction>
+  );
+}) as PolymorphicForwardRefComponent<'a'>;
+TileAction.displayName = 'Tile.Action';
 
+// ----------------------------------------------------------------------------
+// Tile.ThumbnailArea component
+
+const TileThumbnailArea = polymorphic('iui-tile-thumbnail');
+TileThumbnailArea.displayName = 'Tile.ThumbnailArea';
+
+// ----------------------------------------------------------------------------
+// Tile.ThumbnailPicture component
+
+type TileThumbnailPictureOwnProps =
+  | { url?: string }
+  | {
+      url?: never; //no url for custom children component but needed to extract from props
+      children?: React.ReactNode;
+    };
+
+const TileThumbnailPicture = React.forwardRef((props, forwardedRef) => {
+  const { className, url, children, ...rest } = props;
+  if (url) {
     return (
-      <TileContext.Provider value={{ setActionable: setLocalActionable }}>
-        <Box
-          className={cx(
-            'iui-tile',
-            {
-              'iui-folder': variant === 'folder',
-              'iui-new': isNew,
-              'iui-selected': isSelected,
-              'iui-actionable': isActionable,
-              [`iui-${status}`]: !!status,
-              'iui-loading': isLoading,
-            },
-            className,
-          )}
-          aria-disabled={isDisabled}
-          ref={forwardedRef}
-          {...rest}
-        >
-          {variant !== 'folder' ? tileName : null}
-
-          {thumbnail && (
-            <Box className='iui-tile-thumbnail'>
-              {typeof thumbnail === 'string' ? (
-                <Box
-                  className='iui-tile-thumbnail-picture'
-                  style={{ backgroundImage: `url(${thumbnail})` }}
-                />
-              ) : thumbnail && (thumbnail as JSX.Element).type === 'img' ? (
-                React.cloneElement(thumbnail as JSX.Element, {
-                  className: 'iui-tile-thumbnail-picture',
-                })
-              ) : React.isValidElement(thumbnail) ? (
-                React.cloneElement(thumbnail, {
-                  className: cx(
-                    'iui-thumbnail-icon',
-                    thumbnail.props.className,
-                  ),
-                })
-              ) : (
-                thumbnail
-              )}
-
-              {leftIcon &&
-                React.cloneElement(leftIcon as React.ReactElement, {
-                  className: 'iui-tile-thumbnail-type-indicator',
-                  'data-iui-size': 'small',
-                })}
-
-              {rightIcon &&
-                React.cloneElement(rightIcon as React.ReactElement, {
-                  className: 'iui-tile-thumbnail-quick-action',
-                  'data-iui-size': 'small',
-                })}
-
-              {badge && (
-                <Box className='iui-tile-thumbnail-badge-container'>
-                  {badge}
-                </Box>
-              )}
-            </Box>
-          )}
-
-          <Box className='iui-tile-content'>
-            {variant === 'folder' ? tileName : null}
-
-            {description != undefined && (
-              <Box className='iui-tile-description'>{description}</Box>
-            )}
-
-            {metadata != undefined && (
-              <Box className='iui-tile-metadata'>{metadata}</Box>
-            )}
-
-            {moreOptions && (
-              <DropdownMenu
-                onShow={showMenu}
-                onHide={hideMenu}
-                menuItems={(close) =>
-                  moreOptions.map((option: React.ReactElement) =>
-                    React.cloneElement(option, {
-                      onClick: (value: unknown) => {
-                        close();
-                        option.props.onClick?.(value);
-                      },
-                    }),
-                  )
-                }
-              >
-                <Box
-                  className={cx('iui-tile-more-options', {
-                    'iui-visible': isMenuVisible,
-                  })}
-                >
-                  <IconButton
-                    styleType='borderless'
-                    size='small'
-                    aria-label='More options'
-                  >
-                    <SvgMore />
-                  </IconButton>
-                </Box>
-              </DropdownMenu>
-            )}
-
-            {children}
-          </Box>
-
-          {buttons && <Box className='iui-tile-buttons'>{buttons}</Box>}
-        </Box>
-      </TileContext.Provider>
-    );
-  }) as PolymorphicForwardRefComponent<'div', TileProps>,
-  {
-    /**
-     * Polymorphic Tile action component. Recommended to be used in a "name" of `Tile`.
-     * Renders `a` element by default.
-     * @example
-     * <Tile
-     *   name={<Tile.Action href='/new-page'>Tile name<Tile.Action/>}
-     * />
-     */
-    Action: TileAction,
-  },
-);
-
-type TitleIconProps = {
-  isLoading?: boolean;
-  isSelected?: boolean;
-  isNew?: boolean;
-  status?: 'positive' | 'warning' | 'negative';
-};
-
-const TitleIcon = ({
-  isLoading = false,
-  isSelected = false,
-  isNew = false,
-  status,
-}: TitleIconProps) => {
-  const StatusIcon = !!status && StatusIconMap[status];
-
-  if (isLoading) {
-    return (
-      <ProgressRadial
-        className='iui-tile-status-icon'
-        aria-hidden
-        indeterminate
+      <Box
+        className={cx('iui-tile-thumbnail-picture', className)}
+        style={{
+          backgroundImage: typeof url === 'string' ? `url(${url})` : undefined,
+        }}
+        ref={forwardedRef}
+        {...rest}
       />
     );
   }
+
+  return (
+    <Box
+      className={cx('iui-thumbnail-icon', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileThumbnailPictureOwnProps>;
+
+TileThumbnailPicture.displayName = 'Tile.TileThumbnailPicture';
+
+// ----------------------------------------------------------------------------
+// Tile.QuickAction component
+
+const TileQuickAction = polymorphic('iui-tile-thumbnail-quick-action');
+TileQuickAction.displayName = 'Tile.QuickAction';
+
+// ----------------------------------------------------------------------------
+// Tile.TypeIndicator component
+
+const TileTypeIndicator = polymorphic('iui-tile-thumbnail-type-indicator');
+TileTypeIndicator.displayName = 'Tile.TypeIndicator';
+
+// ----------------------------------------------------------------------------
+// Tile.IconButton component
+
+const TileIconButton = React.forwardRef((props, forwardedRef) => {
+  const { className, children, ...rest } = props;
+  return (
+    <IconButton
+      className={className}
+      styleType='borderless'
+      size='small'
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children}
+    </IconButton>
+  );
+}) as PolymorphicForwardRefComponent<
+  'button',
+  React.ComponentPropsWithoutRef<typeof IconButton>
+>;
+TileIconButton.displayName = 'Tile.IconButton';
+
+// ----------------------------------------------------------------------------
+// Tile.BadgeContainer component
+
+const TileBadgeContainer = polymorphic('iui-tile-thumbnail-badge-container');
+TileBadgeContainer.displayName = 'Tile.BadgeContainer';
+
+// ----------------------------------------------------------------------------
+// Tile.Name component
+type TileNameOwnProps = {
+  name?: React.ReactNode;
+};
+
+const TileName = React.forwardRef((props, forwardedRef) => {
+  const { className, children, name, ...rest } = props;
+  return (
+    <Box
+      className={cx('iui-tile-name', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children ?? name}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileNameOwnProps>;
+TileBadgeContainer.displayName = 'Tile.Name';
+
+// ----------------------------------------------------------------------------
+// Tile.NameIcon component
+
+const TileNameIcon = React.forwardRef((props, forwardedRef) => {
+  const { children, className, ...rest } = props;
+  const { status, isLoading, isSelected, isNew } = useSafeContext(TileContext);
+
+  const StatusIcon = !!status && StatusIconMap[status];
+  let icon;
+
+  if (StatusIcon) {
+    icon = <StatusIcon aria-hidden />;
+  }
+  if (isLoading) {
+    icon = <ProgressRadial size='x-small' aria-hidden indeterminate />;
+  }
   if (isSelected) {
-    return <SvgCheckmark className='iui-tile-status-icon' aria-hidden />;
+    icon = <SvgCheckmark aria-hidden />;
   }
   if (isNew) {
-    return <SvgNew className='iui-tile-status-icon' aria-hidden />;
+    icon = <SvgNew aria-hidden />;
   }
-  if (StatusIcon) {
-    return <StatusIcon className='iui-tile-status-icon' />;
-  }
-  return null;
+
+  return children || icon ? (
+    <Box
+      className={cx('iui-tile-status-icon', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      {children ?? icon}
+    </Box>
+  ) : null;
+}) as PolymorphicForwardRefComponent<'div'>;
+TileNameIcon.displayName = 'Tile.NameIcon';
+
+// ----------------------------------------------------------------------------
+// Tile.NameLabel component
+
+const TileNameLabel = polymorphic.span('iui-tile-name-label');
+TileNameLabel.displayName = 'Tile.NameLabel';
+
+// ----------------------------------------------------------------------------
+// Tile.ContentArea component
+
+const TileContentArea = polymorphic('iui-tile-content');
+TileContentArea.displayName = 'Tile.ContentArea';
+
+// ----------------------------------------------------------------------------
+// Tile.Description component
+
+const TileDescription = polymorphic('iui-tile-description');
+TileDescription.displayName = 'Tile.Description';
+
+// ----------------------------------------------------------------------------
+// Tile.Metadata component
+
+const TileMetadata = polymorphic('iui-tile-metadata');
+TileMetadata.displayName = 'Tile.Metadata';
+
+// ----------------------------------------------------------------------------
+// Tile.MoreOptions component
+type TileMoreOptionsOwnProps = {
+  buttonProps?: React.ComponentPropsWithoutRef<typeof IconButton>;
+  children?: React.ReactElement[];
 };
+
+const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
+  const { className, children = [], buttonProps, ...rest } = props;
+  const [isMenuVisible, setIsMenuVisible] = React.useState(false);
+
+  return (
+    <DropdownMenu
+      onShow={React.useCallback(() => setIsMenuVisible(true), [])}
+      onHide={React.useCallback(() => setIsMenuVisible(false), [])}
+      menuItems={(close) =>
+        children?.map((option: React.ReactElement) =>
+          React.cloneElement(option, {
+            onClick: (value: unknown) => {
+              close();
+              option.props.onClick?.(value);
+            },
+          }),
+        )
+      }
+    >
+      <Box
+        className={cx(
+          'iui-tile-more-options',
+          {
+            'iui-visible': isMenuVisible,
+          },
+          className,
+        )}
+        ref={forwardedRef}
+        {...rest}
+      >
+        <IconButton
+          styleType='borderless'
+          size='small'
+          aria-label='More options'
+          {...buttonProps}
+        >
+          <SvgMore />
+        </IconButton>
+      </Box>
+    </DropdownMenu>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
+TileMoreOptions.displayName = 'Tile.MoreOptions';
+
+// ----------------------------------------------------------------------------
+// Tile.Buttons component
+
+const TileButtons = polymorphic('iui-tile-buttons');
+TileButtons.displayName = 'Tile.Buttons';
+
+/**
+ * Tile with customizable Thumbnail, Name, Content and Buttons subcomponents
+ * @example
+ * <Tile>
+ *    <Tile.ThumbnailArea>
+ *      <Tile.ThumbnailPicture/>
+ *      <Tile.Badge/>
+ *      <Tile.TypeIndicator/>
+ *      <Tile.QuickAction/>
+ *    </Tile.ThumbnailArea>
+ *    <Tile.Name>
+ *      <Tile.NameIcon/>
+ *      <Tile.NameLabel/>
+ *    <Tile.Name/>
+ *    <Tile.ContentArea>
+ *      <Tile.Description />
+ *      <Tile.Metadata/>
+ *      <Tile.MoreOptions/>
+ *    </Tile.ContentArea>
+ *    <Tile.Buttons/>
+ * </Tile>
+ */
+export const Tile = Object.assign(TileComponent, {
+  /**
+   * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
+   * @example
+   * <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailPicture/>
+   *    // or
+   *    <Tile.ThumbnailAvatar/>
+   *    <Tile.QuickAction/>
+   *    <Tile.TypeIndicator/>
+   *    <Tile.BadgeContainer/>
+   * </Tile.ThumbnailArea>
+   */
+  ThumbnailArea: TileThumbnailArea,
+  /**
+   * Thumbnail image url, a custom component or an svg for thumbnail avatar.
+   * @example
+   * <Tile>
+   *  // ...
+   *  <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailPicture url = '/url/to/image.jpg'/>
+   *  </Tile.ThumbnailArea>
+   * </Tile>
+   * or
+   * <Tile>
+   *  // ...
+   *  <Tile.ThumbnailArea>
+   *    <Tile.ThumbnailPicture>
+   *      {<Avatar image={<img src='icon.png' />} />}
+   *      // or
+   *      {<SvgImodelHollow />}
+   *    </Tile.ThumbnailPicture>
+   *   </Tile.ThumbnailArea>
+   * /Tile>
+   */
+  ThumbnailPicture: TileThumbnailPicture,
+  /**
+   * `QuickAction` subcomponent shown on top left of the tile.
+   * Recommended to use an invisible `IconButton`.
+   */
+  QuickAction: TileQuickAction,
+  /**
+   * `TypeIndicator` subcomponent shown on top left of the tile.
+   * Recommended to use an invisible `IconButton`.
+   */
+  TypeIndicator: TileTypeIndicator,
+  /**
+   * `BadgeContainer` subcomponent shown on the bottom right of thumbnail.
+   */
+  BadgeContainer: TileBadgeContainer,
+  /**
+   * `IconButton` subcomponent: custom icon for `QuickAction` and `TypeIndicator` buttons.
+   */
+  IconButton: TileIconButton,
+  /**
+   * `Name` subcomponent under thumbnail or top of the Tile if no thumbnail present.
+   */
+  Name: TileName,
+  /**
+   * `NameIcon` next to name of the tile. Goes under <Tile.Name>
+   * @example
+   * <Tile>
+   *  <Tile.Name>
+   *    <Tile.NameIcon/>
+   *  </Tile.Name>
+   * <Tile/>
+   */
+  NameIcon: TileNameIcon,
+  /*
+   * `NameLabel` of the tile
+   * @example
+   * <Tile>
+   *  <Tile.Name>
+   *    <Tile.NameLabel> Tile Name <Tile.NameLabel/>
+   *  </Tile.Name/>
+   * <Tile/>
+   */
+  NameLabel: TileNameLabel,
+  /**
+   * Polymorphic Tile action component. Recommended to be used in `Tile.NameLabel` subcomponent.
+   * Renders `a` element by default.
+   * @example
+   * <Tile.Name>
+   *  <Tile.NameLabel>
+   *   {<Tile.Action href='/new-page'>Tile Name<Tile.Action/>}
+   *  <Tile.NameLabel/>
+   * </Tile.Name>
+   */
+  Action: TileAction,
+  /**
+   * Tile content area that contains `Description`, `Metadata` and `MoreOptions` Tile subcomponents
+   * @example
+   * <Tile>
+   *  <Tile.ContentArea>
+   *    <Tile.Description/>
+   *    <Tile.Metadata/>
+   *    <Tile.MoreOptions/>
+   *  </Tile.ContentArea>
+   * </Tile>
+   */
+  ContentArea: TileContentArea,
+  /**
+   * Description text of the tile.
+   * Gets truncated if it can't fit in the tile.
+   */
+  Description: TileDescription,
+  /**
+   * Metadata section located below description.
+   * @example
+   * <Tile.Metadata>
+   *  // ...
+   *  'basic metadata'
+   *  // or
+   *  {<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
+   *  // or
+   *  {<>
+   *    <SvgTag2 />
+   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
+   *  </>}
+   * </Tile.Metadata>
+   */
+  Metadata: TileMetadata,
+  /**
+   * Dropdown menu containing `MenuItem`s.
+   */
+  MoreOptions: TileMoreOptions,
+  /**
+   * Upto two buttons shown at the bottom of the tile.
+   */
+  Buttons: TileButtons,
+});
 
 export default Tile;

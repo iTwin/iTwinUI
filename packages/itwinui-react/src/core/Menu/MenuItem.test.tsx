@@ -21,32 +21,37 @@ function assertBaseElement(
   expect(menuItem).toBeTruthy();
   expect(menuItem.getAttribute('tabindex')).toEqual(disabled ? null : '-1');
   expect(menuItem.getAttribute('role')).toEqual(role);
-  expect(menuItem.classList.contains('iui-active')).toBe(isSelected);
-  expect(menuItem.classList.contains('iui-disabled')).toBe(disabled);
+  expect(menuItem.hasAttribute(`data-iui-active`)).toBe(isSelected);
+  expect(menuItem.hasAttribute(`data-iui-disabled`)).toBe(disabled);
   expect(menuItem.textContent).toContain('Test item');
-  const content = menuItem.querySelector('.iui-content') as HTMLElement;
-  const label = content.querySelector('.iui-menu-label') as HTMLElement;
-  expect(label).toBeTruthy();
-  expect(label.textContent).toContain('Test item');
+  const content = menuItem.querySelector(
+    '.iui-list-item-content',
+  ) as HTMLElement;
+  expect(content).toBeTruthy();
+  expect(content.textContent).toContain('Test item');
   expect(
-    (menuItem.firstChild as HTMLElement).classList.contains('iui-icon'),
+    (menuItem.firstChild as HTMLElement).classList.contains(
+      'iui-list-item-icon',
+    ),
   ).toBe(hasIcon);
   expect(
-    (menuItem.lastChild as HTMLElement).classList.contains('iui-icon'),
+    (menuItem.lastChild as HTMLElement).classList.contains(
+      'iui-list-item-icon',
+    ),
   ).toBe(hasBadge);
 }
 
 it('should render content', () => {
   const { container } = render(<MenuItem>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 });
 
 it('should render as selected', () => {
   const { container } = render(<MenuItem isSelected>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { isSelected: true });
 });
 
@@ -58,35 +63,35 @@ it('should render as disabled', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { disabled: true });
 
   fireEvent.click(menuItem);
   expect(mockedOnClick).toHaveBeenCalledTimes(0);
 });
 
-it('should render with an icon', () => {
+it('should render with an startIcon', () => {
   const { container } = render(
-    <MenuItem icon={<SvgSmileyHappy />}>Test item</MenuItem>,
+    <MenuItem startIcon={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasIcon: true });
 });
 
-it('should render with a badge', () => {
+it('should render with a endIcon', () => {
   const { container } = render(
-    <MenuItem badge={<SvgSmileyHappy />}>Test item</MenuItem>,
+    <MenuItem endIcon={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasBadge: true });
 });
 
 it('should render with custom role', () => {
   const { container } = render(<MenuItem role='option'>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { role: 'option' });
 });
 
@@ -98,7 +103,7 @@ it('should handle click', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 
   fireEvent.click(menuItem);
@@ -113,7 +118,7 @@ it('should handle key press', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
 
   fireEvent.keyDown(menuItem, { key: 'Enter', altKey: true });
@@ -132,7 +137,7 @@ it('should add custom className', () => {
     <MenuItem className='test-className'>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
   expect(menuItem.classList).toContain('test-className');
 });
@@ -142,7 +147,7 @@ it('should add custom style', () => {
     <MenuItem style={{ color: 'red' }}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
   expect(menuItem.style.color).toEqual('red');
 });
@@ -150,10 +155,9 @@ it('should add custom style', () => {
 it('should render large size', () => {
   const { container } = render(<MenuItem size='large'>Test item</MenuItem>);
 
-  const menuItem = container.querySelector(
-    '.iui-menu-item.iui-large',
-  ) as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
+  expect(menuItem).toHaveAttribute('data-iui-size', 'large');
 });
 
 it('should render sublabel', () => {
@@ -161,13 +165,12 @@ it('should render sublabel', () => {
     <MenuItem sublabel='Test sublabel'>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector(
-    '.iui-menu-item.iui-large',
-  ) as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem);
+  expect(menuItem).toHaveAttribute('data-iui-size', 'large');
 
   const sublabel = menuItem.querySelector(
-    '.iui-content .iui-menu-description',
+    '.iui-list-item-content .iui-list-item-description',
   ) as HTMLElement;
   expect(sublabel).toBeTruthy();
   expect(sublabel.textContent).toEqual('Test sublabel');
@@ -200,13 +203,13 @@ it('should show sub menu on hover', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasBadge: true });
 
   // hover over menu item
   fireEvent.mouseOver(menuItem);
   const subMenu = container.querySelectorAll(
-    '[data-tippy-root] .iui-menu-item',
+    '[data-tippy-root] .iui-list-item',
   )[0] as HTMLLIElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
@@ -214,7 +217,7 @@ it('should show sub menu on hover', () => {
   // hover over sub menu item
   fireEvent.mouseOver(subMenu);
   const subSubMenu = container.querySelectorAll(
-    '[data-tippy-root] .iui-menu-item',
+    '[data-tippy-root] .iui-list-item',
   )[1] as HTMLLIElement;
   expect(subSubMenu.textContent).toBe('Test sub sub');
   expect(container.ownerDocument.activeElement).toEqual(subSubMenu);
@@ -241,14 +244,14 @@ it('should handle key press with sub menus', async () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-menu-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
   assertBaseElement(menuItem, { hasBadge: true });
 
   // go right to open sub menu
   menuItem.focus();
   await userEvent.keyboard('{ArrowRight}');
   const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
-  const subMenu = subTippy.querySelector('.iui-menu-item') as HTMLLIElement;
+  const subMenu = subTippy.querySelector('.iui-list-item') as HTMLLIElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
 

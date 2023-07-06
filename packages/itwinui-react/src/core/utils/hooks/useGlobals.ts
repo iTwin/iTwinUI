@@ -3,8 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
 import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 
 let isDev = false;
@@ -21,19 +19,23 @@ const didLogWarning = {
 
 /**
  * Hook used in every component for any shared setup and side effects.
+ * Returns the nearest ThemeContext.
  *
  * @private
  */
 export const useGlobals = () => {
-  useThemeProviderWarning();
+  const themeContext = React.useContext(ThemeContext);
+  useThemeProviderWarning(themeContext);
   useRootFontSizeWarning();
+  return themeContext;
 };
 
 // ----------------------------------------------------------------------------
 
 /** Shows console error if ThemeProvider is not used */
-export const useThemeProviderWarning = () => {
-  const themeContext = React.useContext(ThemeContext);
+export const useThemeProviderWarning = (
+  themeContext: React.ContextType<typeof ThemeContext>,
+) => {
   React.useEffect(() => {
     if (isDev && !didLogWarning.themeProvider && !themeContext) {
       console.error(
