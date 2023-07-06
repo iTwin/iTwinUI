@@ -8,9 +8,9 @@ import { Breadcrumbs } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Breadcrumbs>
-      <a href='#'>Home</a>
-      <a href='#'>Support</a>
-      <span>Contact us</span>
+      <Breadcrumbs.Item href='#'>Home</Breadcrumbs.Item>
+      <Breadcrumbs.Item href='#'>Support</Breadcrumbs.Item>
+      <Breadcrumbs.Item>Contact us</Breadcrumbs.Item>
     </Breadcrumbs>
   );
 };

@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   Breadcrumbs,
-  Button,
   DropdownMenu,
   MenuItem,
   IconButton,
@@ -15,7 +14,11 @@ import { SvgMore } from '@itwin/itwinui-icons-react';
 export default () => {
   const items = Array(10)
     .fill(null)
-    .map((_, index) => <Button key={index}>Item {index}</Button>);
+    .map((_, index) => (
+      <Breadcrumbs.Item onClick={() => {}} key={index}>
+        Item {index}
+      </Breadcrumbs.Item>
+    ));
 
   return (
     <div
@@ -47,7 +50,10 @@ export default () => {
                 })
             }
           >
-            <IconButton aria-label='Dropdown with more breadcrumbs'>
+            <IconButton
+              aria-label='Dropdown with more breadcrumbs'
+              styleType='borderless'
+            >
               <SvgMore />
             </IconButton>
           </DropdownMenu>
