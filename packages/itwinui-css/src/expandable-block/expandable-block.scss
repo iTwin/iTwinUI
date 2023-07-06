@@ -164,23 +164,6 @@
   }
 }
 
-@mixin iui-expandable-block-content {
-  overflow: hidden;
-  background-color: var(--_iui-expandable-block-background-color);
-  border-bottom: var(--_iui-expandable-block-border);
-  border-right: var(--_iui-expandable-block-border);
-  border-left: var(--_iui-expandable-block-border);
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
-
-  // @include mixins.iui-transition-group;
-
-  // padding should be in a separate div because otherwise it messes up height transition
-  > div {
-    padding: var(--_iui-expandable-block-content-padding);
-  }
-}
-
 // ----------------------------------------------------------------------------
 
 .iui-expandable-block {
@@ -195,16 +178,25 @@
   }
 
   .iui-expandable-content {
-    @include iui-expandable-block-content;
+    overflow: hidden;
+    background-color: var(--_iui-expandable-block-background-color);
+    border-bottom: var(--_iui-expandable-block-border);
+    border-right: var(--_iui-expandable-block-border);
+    border-left: var(--_iui-expandable-block-border);
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
     display: grid;
     grid-template-rows: 0fr;
     overflow: hidden;
-    transition: grid-template-rows 0.2s, visibility 0.2s;
+    transition: grid-template-rows 0.5s, visibility 0.5s;
 
     > div {
       min-height: 0;
       visibility: hidden;
-      transition: visibility 0.2s;
+      transition: visibility 0.5s;
+      transform: translateY(-100%);
+      z-index: -1;
     }
   }
 
@@ -212,7 +204,11 @@
     grid-template-rows: 1fr;
 
     > div {
+      // padding should be in a separate div because otherwise it messes up height transition
+      padding: var(--_iui-expandable-block-content-padding);
       visibility: visible;
+      transform: translateY(0);
+      z-index: auto;
     }
   }
 
