@@ -78,7 +78,7 @@ OverlayWrapper.displayName = 'Overlay.Wrapper';
  *  <Overlay.HiddenContent>
  *    content beneath the overlay... (text, img, etc.)
  *  <Overlay.HiddenContent />
- * </OverlayWrapper>
+ * </Overlay.Wrapper>
  *
  *
  */
