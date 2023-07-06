@@ -254,9 +254,9 @@ ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
  * @example
  *  <ExpandableBlock>
  *    <ExpandableBlock.Header>
- *    <ExpandableBlock.ExpandIcon/>
+ *      <ExpandableBlock.ExpandIcon/>
  *      <ExpandableBlock.LabelArea>
- *        <ExpandableBlock/>
+ *        <ExpandableBlock.Title/>
  *        <ExpandableBlock.Caption/>
  *      </ExpandableBlock.LabelArea>
  *      <ExpandableBlock.EndIcon/>
@@ -266,9 +266,10 @@ ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
  */
 export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
   /**
-   * `Header` container that contains `LabelArea` and `EndIcon` subcomponents
+   * `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents
    * @example
    * <ExpandableBlock.Header>
+   *    <ExpandableBlock.ExpandIcon/>
    *    <ExpandableBlock.LabelArea/>
    *    <ExpandableBlock.EndIcon/>
    * </ExpandableBlock.Header>
