@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import {
-  Button,
   Breadcrumbs,
   DropdownButton,
   MenuItem,
@@ -24,7 +23,7 @@ export default () => {
   const breadcrumbItems = React.useMemo(
     () =>
       items.slice(0, lastIndex + 1).map((item, index) => (
-        <Button
+        <Breadcrumbs.Item
           key={`Breadcrumb${index}`}
           onClick={() => {
             if (lastIndex !== index) {
@@ -35,7 +34,7 @@ export default () => {
           }}
         >
           {item}
-        </Button>
+        </Breadcrumbs.Item>
       )),
     [items, lastIndex],
   );

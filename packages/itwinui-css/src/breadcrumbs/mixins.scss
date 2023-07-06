@@ -33,75 +33,36 @@
   }
 }
 
-@mixin iui-breadcrumbs-item-overrides {
-  > * {
-    padding: 0 var(--iui-size-xs);
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    &:not(.iui-button) {
-      color: var(--iui-color-text);
-    }
-  }
-
-  > :any-link {
-    @include anchor.iui-anchor;
-    box-sizing: border-box;
-    line-height: var(--iui-component-height);
-
-    &:focus {
-      outline-offset: -1px;
-    }
-  }
-
-  .iui-button {
-    &.iui-button {
-      @include borderless.iui-button-borderless;
-      border: none;
-    }
-
-    > span {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-    }
-
-    &:not([aria-current]) {
-      &,
-      &:hover,
-      &:active {
-        --_iui-button-text-color: var(--iui-color-text-accent);
-      }
-    }
-  }
-}
-
-@mixin iui-breadcrumbs-text {
+@mixin iui-breadcrumbs-content {
   padding: 0 var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   line-height: var(--iui-component-height);
 
-  &:is(a) {
+  &:where(a) {
     @include anchor.iui-anchor;
 
     &:focus {
       outline-offset: -1px;
     }
   }
-}
 
-@mixin iui-breadcrumbs-button {
-  @include base.iui-button;
-  @include borderless.iui-button-borderless;
-  padding: 0;
-  border: none;
-  color: var(--iui-color-text-accent);
+  &:where(button) {
+    @include base.iui-button;
+    @include borderless.iui-button-borderless;
+    border: none;
+    color: var(--iui-color-text-accent);
 
-  &[aria-current] {
-    color: var(--iui-color-text);
+    &[aria-current] {
+      color: var(--iui-color-text);
+    }
+
+    > * {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 }
 
