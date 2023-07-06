@@ -25,17 +25,17 @@ export const isSoftBackground = (
 };
 
 const USER_COLORS = [
-  '#6AB9EC',
-  '#B1C854',
-  '#F7706C',
-  '#4585A5',
-  '#FFC335',
-  '#F7963E',
-  '#73C7C1',
-  '#85A9CF',
-  '#A3779F',
-  '#C8C2B4',
-  '#A47854',
+  'var(--iui-color-background-skyblue)',
+  'var(--iui-color-background-celery)',
+  'var(--iui-color-background-froly)',
+  'var(--iui-color-background-steelblue)',
+  'var(--iui-color-background-sunglow)',
+  'var(--iui-color-background-seabuckthorn)',
+  'var(--iui-color-background-montecarlo)',
+  'var(--iui-color-background-poloblue)',
+  'var(--iui-color-background-bouquet)',
+  'var(--iui-color-background-ash)',
+  'var(--iui-color-background-oak)',
 ];
 
 /**
