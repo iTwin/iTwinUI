@@ -20,6 +20,7 @@ export default defineConfig({
     },
     env: { axeCorePath },
     video: false,
+    numTestsKeptInMemory: 205,
     screenshotOnRunFailure: false,
     setupNodeEvents(on, config) {
       on('task', {
