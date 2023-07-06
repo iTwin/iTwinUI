@@ -43,6 +43,7 @@
     "clean": "turbo run clean && rimraf node_modules",
     "release": "yarn build --filter={./packages/*}... && changeset publish"
   },
+  "dependencies": {},
   "devDependencies": {
     "@changesets/cli": "^2.26.0",
     "chokidar-cli": "^3.0.0",
@@ -53,8 +54,6 @@
     "patch-package": "~6.5.1",
     "prettier": "2.8.0",
     "rimraf": "^3.0.2",
-    "stylelint": "^14.16.1",
-    "stylelint-use-logical": "^2.1.0",
     "turbo": "~1.6.3"
   },
   "resolutions": {
