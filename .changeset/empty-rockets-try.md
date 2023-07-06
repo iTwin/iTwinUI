@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': major
 ---
 
-Added wrapperProps and labelProps to allow for styling of CheckBox wrapper and label elements.
+Checkbox: `className` and `style` will now always be applied on the checkbox input element. Added new `wrapperProps` and `labelProps` to allow for styling of wrapper and label elements.
