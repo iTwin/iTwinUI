@@ -108,22 +108,6 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply style on %s',
-  (el) => {
-    const { container } = render(
-      <Checkbox
-        label={el === 'label' ? 'Some label' : undefined}
-        wrapperProps={{ style: { color: 'blue' } }}
-        style={{ color: 'blue' }}
-      />,
-    );
-
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveStyle('color: blue;');
-  },
-);
-
 it('should set focus', () => {
   let element: HTMLInputElement | null = null;
   const onRef = (ref: HTMLInputElement) => {
@@ -193,4 +177,20 @@ it('correctly passes className through wrapperProps and labelProps', () => {
   expect(container.querySelector('.iui-checkbox')).toHaveClass(
     'iui-checkbox some-input',
   );
+});
+
+it('correctly passes style through wrapperProps and labelProps', () => {
+  const { container } = render(
+    <Checkbox
+      label='some label'
+      wrapperProps={{ style: { color: 'blue' } }}
+      labelProps={{ style: { color: 'orange' } }}
+      style={{ color: 'yellow' }}
+    />,
+  );
+
+  assertBaseElements(container);
+  expect(container.querySelector('label')).toHaveStyle('color: blue');
+  expect(container.querySelector('span')).toHaveStyle('color: orange');
+  expect(container.querySelector('.iui-checkbox')).toHaveStyle('color: yellow');
 });
