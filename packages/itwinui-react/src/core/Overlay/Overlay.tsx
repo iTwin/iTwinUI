@@ -60,8 +60,18 @@ OverlayWrapper.displayName = 'Overlay.Wrapper';
  *
  * This is an Overlay Component.
  *
+ *
  * @example
- * <OverlayWrapper>
+ * <Overlay content="loading">
+ * content beneath the overlay... (text, img, etc.)
+ * </Overlay>
+ *
+ *
+ * This is an Overlay Component using subcomponents.
+ *
+ *
+ * @example
+ * <Overlay.Wrapper>
  *  <Overlay.Overlay>
  *    loading...
  *  <Overlay.Overlay>
@@ -69,6 +79,7 @@ OverlayWrapper.displayName = 'Overlay.Wrapper';
  *    content beneath the overlay... (text, img, etc.)
  *  <Overlay.HiddenContent />
  * </OverlayWrapper>
+ *
  *
  */
 export const Overlay = Object.assign(OverlayComponent, {
