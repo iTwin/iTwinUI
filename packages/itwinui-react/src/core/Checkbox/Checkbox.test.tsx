@@ -177,20 +177,20 @@ it('correctly passes className through wrapperProps and labelProps', () => {
   const { container } = render(
     <Checkbox
       label='some label'
-      wrapperProps={{ className: 'some-box' }}
-      labelProps={{ className: 'some-box' }}
-      className='some-box'
+      wrapperProps={{ className: 'some-wrapper' }}
+      labelProps={{ className: 'some-label' }}
+      className='some-input'
     />,
   );
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toHaveClass(
-    'iui-checkbox-wrapper some-box',
+    'iui-checkbox-wrapper some-wrapper',
   );
   expect(container.querySelector('span')).toHaveClass(
-    'iui-checkbox-label some-box',
+    'iui-checkbox-label some-label',
   );
   expect(container.querySelector('.iui-checkbox')).toHaveClass(
-    'iui-checkbox some-box',
+    'iui-checkbox some-input',
   );
 });
