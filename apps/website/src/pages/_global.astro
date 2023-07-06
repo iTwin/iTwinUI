@@ -82,7 +82,11 @@ const { content = {} } = Astro.props;
 
       :where(h3) {
         font-size: var(--type-2);
-        padding-block-start: 4rem;
+        padding-block-start: 1rem;
+      }
+
+      :where(code) {
+        padding-block-end: 1rem;
       }
 
       :where(code, pre) {
