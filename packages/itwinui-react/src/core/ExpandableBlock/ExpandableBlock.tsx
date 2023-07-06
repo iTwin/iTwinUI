@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import {
   StatusIconMap,
-  WithCSSTransition,
+  // WithCSSTransition,
   SvgChevronRight,
   Icon,
   Box,
@@ -233,18 +233,18 @@ type ExpandableBlockContentOwnProps = {
 
 const ExpandableBlockContent = React.forwardRef((props, forwardedRef) => {
   const { className, children, innerProps, ...rest } = props;
-  const { isExpanded } = useSafeContext(ExpandableBlockContext);
+  // const { isExpanded } = useSafeContext(ExpandableBlockContext);
 
   return (
-    <WithCSSTransition in={isExpanded}>
-      <Box
-        className={cx('iui-expandable-content', className)}
-        ref={forwardedRef}
-        {...rest}
-      >
-        <Box {...innerProps}>{children}</Box>
-      </Box>
-    </WithCSSTransition>
+    // <WithCSSTransition in={isExpanded}>
+    <Box
+      className={cx('iui-expandable-content', className)}
+      ref={forwardedRef}
+      {...rest}
+    >
+      <Box {...innerProps}>{children}</Box>
+    </Box>
+    // </WithCSSTransition>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockContentOwnProps>;
 ExpandableBlockContent.displayName = 'ExpandableBlock.Content';

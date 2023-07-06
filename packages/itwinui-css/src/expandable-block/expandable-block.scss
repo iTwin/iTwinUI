@@ -173,7 +173,7 @@
   border-bottom-left-radius: inherit;
   border-bottom-right-radius: inherit;
 
-  @include mixins.iui-transition-group;
+  // @include mixins.iui-transition-group;
 
   // padding should be in a separate div because otherwise it messes up height transition
   > div {
@@ -195,6 +195,21 @@
   }
 
   .iui-expandable-content {
+    display: grid;
+  }
+
+  &[data-iui-expanded='false'] .iui-expandable-content {
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.2s, visibility 0.2s;
+    min-height: 0;
+    visibility: hidden;
+    @include iui-expandable-block-content;
+  }
+
+  &[data-iui-expanded='true'] .iui-expandable-content {
+    grid-template-rows: 1fr;
+    visibility: visible;
     @include iui-expandable-block-content;
   }
 
