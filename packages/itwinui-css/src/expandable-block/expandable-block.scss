@@ -180,7 +180,6 @@
   .iui-expandable-content {
     overflow: hidden;
     background-color: var(--_iui-expandable-block-background-color);
-    border-bottom: var(--_iui-expandable-block-border);
     border-right: var(--_iui-expandable-block-border);
     border-left: var(--_iui-expandable-block-border);
     border-bottom-left-radius: inherit;
@@ -192,6 +191,8 @@
     transition: grid-template-rows 0.5s, visibility 0.5s;
 
     > div {
+      // padding should be in a separate div because otherwise it messes up height transition
+      padding: var(--_iui-expandable-block-content-padding);
       min-height: 0;
       visibility: hidden;
       transition: visibility 0.5s;
@@ -202,10 +203,9 @@
 
   &[data-iui-expanded='true'] .iui-expandable-content {
     grid-template-rows: 1fr;
+    border-bottom: var(--_iui-expandable-block-border);
 
     > div {
-      // padding should be in a separate div because otherwise it messes up height transition
-      padding: var(--_iui-expandable-block-content-padding);
       visibility: visible;
       transform: translateY(0);
       z-index: auto;
