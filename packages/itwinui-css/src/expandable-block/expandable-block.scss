@@ -195,22 +195,25 @@
   }
 
   .iui-expandable-content {
+    @include iui-expandable-block-content;
     display: grid;
-  }
-
-  &[data-iui-expanded='false'] .iui-expandable-content {
     grid-template-rows: 0fr;
     overflow: hidden;
     transition: grid-template-rows 0.2s, visibility 0.2s;
-    min-height: 0;
-    visibility: hidden;
-    @include iui-expandable-block-content;
+
+    > div {
+      min-height: 0;
+      visibility: hidden;
+      transition: visibility 0.2s;
+    }
   }
 
   &[data-iui-expanded='true'] .iui-expandable-content {
     grid-template-rows: 1fr;
-    visibility: visible;
-    @include iui-expandable-block-content;
+
+    > div {
+      visibility: visible;
+    }
   }
 
   &[data-iui-size='small'] {

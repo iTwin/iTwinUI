@@ -78,7 +78,7 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [expandedState, setExpanded] = React.useState(isExpanded);
+  const [expandedState, setExpanded] = React.useState(isExpanded ?? false);
   const expanded = isExpanded ?? expandedState;
 
   return (
@@ -135,7 +135,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
       as='button'
       type='button'
       className={cx('iui-expandable-header', className)}
-      aria-expanded={isExpanded ?? !disabled}
+      aria-expanded={isExpanded}
       aria-disabled={disabled}
       onClick={mergeEventHandlers(onClickProp, () => {
         if (disabled) {
