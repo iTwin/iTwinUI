@@ -1,5 +1,25 @@
 # Changelog
 
+## 3.0.0-dev.4
+
+### Major Changes
+
+- [#1383](https://github.com/iTwin/iTwinUI/pull/1383): Removed previously-deprecated `UserIcon` and `UserIconGroup` components. Also removed `userIcon` prop from `Header`.
+- [#1384](https://github.com/iTwin/iTwinUI/pull/1384): Removed previously-deprecated `Wizard` component (replaced by `Stepper` and `WorkflowDiagram`).
+- [#1255](https://github.com/iTwin/iTwinUI/pull/1255): Updated Tile component to be composition of customizable subcomponents: `Tile.Name`, `Tile.NameIcon`, `Tile.NameLabel`, `Tile.Action`, `Tile.ThumbnailArea`, `Tile.ThumbnailPicture`, `Tile.BadgeContainer`, `Tile.TypeIndicator`, `Tile.QuickAction`, `Tile.ContentArea`, `Tile.Description`, `Tile.MoreOptions`, `Tile.Metadata`, `Tile.Buttons`. Certain props have been removed as they are now subcomponents: `name`, `description`, `metadata`, `thumbnail`, `badge`, `leftIcon`, `rightIcon`, `button`, `moreOptions`, `isActionable` props have been removed.
+
+- [#1356](https://github.com/iTwin/iTwinUI/pull/1356): ProgressRadial has been refactored to be a single `<div>` instead of using a nested svg. Also it is recommended to explicitly set `size` when using in other components.
+- [#1311](https://github.com/iTwin/iTwinUI/pull/1311): - Removed Tippy.js as dependency in Tooltip. Using FloatingUI instead.
+- [#1388](https://github.com/iTwin/iTwinUI/pull/1388): Removed deprecated `HorizontalTabs` and `VerticalTabs` (replaced by `orientation` prop in `Tabs`).
+
+### Minor Changes
+
+- [#1362](https://github.com/iTwin/iTwinUI/pull/1362): All elements under the root will now get a default focus styling matching `--iui-color-border-accent`.
+
+### Patch Changes
+
+- [#1360](https://github.com/iTwin/iTwinUI/pull/1360): The `color-scheme` property will now be correctly set for dark theme, resulting in better theming of built-in html elements.
+
 ## 3.0.0-dev.3
 
 ### Major Changes
