@@ -179,6 +179,7 @@ it('correctly passes className through wrapperProps and labelProps', () => {
       label='some label'
       wrapperProps={{ className: 'some-box' }}
       labelProps={{ className: 'some-box' }}
+      className='some-box'
     />,
   );
 
@@ -188,5 +189,8 @@ it('correctly passes className through wrapperProps and labelProps', () => {
   );
   expect(container.querySelector('span')).toHaveClass(
     'iui-checkbox-label some-box',
+  );
+  expect(container.querySelector('.iui-checkbox')).toHaveClass(
+    'iui-checkbox some-box',
   );
 });
