@@ -35,12 +35,7 @@
     "bentley systems",
     "itwin"
   ],
-  "dependencies": {
-    "stylelint": "^15.10.1",
-    "stylelint-csstree-validator": "^3.0.0",
-    "stylelint-scss": "^5.0.1",
-    "stylelint-use-logical": "^2.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-icons-elements": "0.2.0",
     "autoprefixer": "^10.4.1",
@@ -54,8 +49,11 @@
     "sass": "^1.54.4",
     "sass-embedded": "^1.49.9",
     "serve": "^14.0.1",
-    "stylelint": "^14.2.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-csstree-validator": "^3.0.0",
+    "stylelint-scss": "^5.0.1",
+    "stylelint-use-logical": "^2.1.0",
     "vite": "^4.1.5"
   },
   "scripts": {

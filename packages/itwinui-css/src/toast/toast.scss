@@ -51,12 +51,12 @@
   justify-content: center;
   z-index: 99999;
 
-  @media screen and (max-width: 400px) {
+  @media screen and (max-inline-size: 400px) {
     inline-size: calc(100vw - 36px);
     margin-block-start: var(--iui-size-s);
   }
 
-  @media screen and (min-width: 401px) {
+  @media screen and (min-inline-size: 401px) {
     min-inline-size: 400px;
     max-inline-size: 640px;
     margin: var(--iui-size-l) 0;

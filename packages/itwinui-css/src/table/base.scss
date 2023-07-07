@@ -486,7 +486,7 @@
   inline-size: var(--iui-size-l);
   pointer-events: none;
 
-  // Prevents scrollbar from appearing because `top: -1px` and `bottom: -1px`
+  // Prevents scrollbar from appearing because `inset-block: -1px`
   // makes content to overflow
   .iui-table-header & {
     inset-block: 0;
