@@ -9,18 +9,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type InputGridOwnProps = {
   /**
-   * Context prop for sizing subcomponents
-   */
-  size?: 'small' | 'large';
-  /**
-   * Context prop for disabling subcomponents
-   */
-  disabled?: boolean;
-  /**
-   * Status of the input.
-   */
-  status?: 'positive' | 'warning' | 'negative';
-  /**
    * Set display style of label.
    * Supported values:
    * - 'default' - label appears above input.
@@ -28,18 +16,22 @@ type InputGridOwnProps = {
    * @default 'default'
    */
   labelPlacement?: 'default' | 'inline';
-  /**
-   *
-   */
-  required?: boolean;
 };
 
 //-------------------------------------------------------------------------------
 
 /**
- * Fancy labeled input component
+ * InputGrid component is used to display inputs (input, textarea, select)
+ * with label and/or status message
+ *
+ * @usage
+ *
+ * <InputGrid>
+ *   <Label>This is label</Label>
+ *   <Input />
+ *   <StatusMessage>This is message</StatusMessage>
+ * </InputGrid>
  */
-
 export const InputGrid = React.forwardRef((props, ref) => {
   const { children, className, labelPlacement = undefined, ...rest } = props;
 
