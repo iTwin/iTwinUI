@@ -204,7 +204,6 @@
     border-bottom: var(--_iui-expandable-block-border);
 
     > div {
-      transition: grid-template-rows 0.2s, visibility 0.2s, transform 0.2s;
       visibility: visible;
     }
   }
