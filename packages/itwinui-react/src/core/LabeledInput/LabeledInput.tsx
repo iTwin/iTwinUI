@@ -88,7 +88,11 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   const iconFill = !svgIcon ? status : undefined;
 
   return (
-    <InputGrid displayStyle={displayStyle} className={className} style={style}>
+    <InputGrid
+      labelPlacement={displayStyle}
+      className={className}
+      style={style}
+    >
       {label && (
         <Label required={required} disabled={disabled} htmlFor={id}>
           {label}

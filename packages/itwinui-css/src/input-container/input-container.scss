@@ -171,3 +171,28 @@
     }
   }
 }
+
+// input-grid to replace input-container
+.iui-input-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+
+  &[data-iui-label-placement='inline'] {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto 1fr;
+
+    .iui-input-label {
+      margin: 0 var(--iui-size-m) 0 0;
+
+      &.iui-required {
+        margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
+      }
+    }
+  }
+
+  .iui-message {
+    grid-column-end: -1;
+  }
+}

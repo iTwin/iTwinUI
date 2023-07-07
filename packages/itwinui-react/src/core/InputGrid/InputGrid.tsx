@@ -27,7 +27,7 @@ type InputGridOwnProps = {
    * - 'inline' - appears in the same line as input.
    * @default 'default'
    */
-  displayStyle?: 'default' | 'inline';
+  labelPlacement?: 'default' | 'inline';
   /**
    *
    */
@@ -41,17 +41,12 @@ type InputGridOwnProps = {
  */
 
 export const InputGrid = React.forwardRef((props, ref) => {
-  const { children, className, displayStyle, ...rest } = props;
+  const { children, className, labelPlacement = undefined, ...rest } = props;
 
   return (
     <Box
-      className={cx(
-        'iui-input-grid',
-        {
-          'iui-inline-label': displayStyle,
-        },
-        className,
-      )}
+      className={cx('iui-input-grid', className)}
+      data-iui-label-placement={labelPlacement}
       ref={ref}
       {...rest}
     >

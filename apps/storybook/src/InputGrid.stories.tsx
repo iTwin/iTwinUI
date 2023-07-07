@@ -76,7 +76,7 @@ export const WithSelect: Story<IconProps> = () => {
 
 export const WithSearch: Story<IconProps> = () => {
   return (
-    <InputGrid displayStyle='inline'>
+    <InputGrid labelPlacement='inline'>
       <Label>This is label</Label>
       <SearchBox />
       <StatusMessage>This is message</StatusMessage>

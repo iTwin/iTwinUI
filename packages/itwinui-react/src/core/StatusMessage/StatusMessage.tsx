@@ -7,6 +7,7 @@ import {
   Box,
   StatusIconMap,
   type PolymorphicForwardRefComponent,
+  Icon,
 } from '../utils/index.js';
 import cx from 'classnames';
 
@@ -44,9 +45,9 @@ export const StatusMessage = React.forwardRef((props, ref) => {
       ref={ref}
     >
       {!!icon ? (
-        <Box as='span' className='iui-message-icon' aria-hidden>
+        <Icon className='iui-message-icon' aria-hidden>
           {icon}
-        </Box>
+        </Icon>
       ) : null}
       <Box className='iui-message-content'>{children}</Box>
     </Box>

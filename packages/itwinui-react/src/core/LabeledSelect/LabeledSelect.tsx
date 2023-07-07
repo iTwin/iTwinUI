@@ -111,9 +111,13 @@ export const LabeledSelect = <T,>(
   };
 
   return (
-    <InputGrid displayStyle={displayStyle} className={className} style={style}>
+    <InputGrid
+      labelPlacement={displayStyle}
+      className={className}
+      style={style}
+    >
       {label && (
-        <Label required={required} disabled={disabled} id={labelId}>
+        <Label as='div' required={required} disabled={disabled} id={labelId}>
           {label}
         </Label>
       )}
