@@ -178,8 +178,8 @@
   }
 
   .iui-expandable-content {
-    overflow: hidden;
     background-color: var(--_iui-expandable-block-background-color);
+    border-bottom: var(--_iui-expandable-block-border);
     border-right: var(--_iui-expandable-block-border);
     border-left: var(--_iui-expandable-block-border);
     border-bottom-left-radius: inherit;
@@ -187,21 +187,20 @@
 
     display: grid;
     grid-template-rows: 0fr;
+    overflow: hidden;
+    z-index: -1;
     transition: grid-template-rows 0.2s, visibility 0.2s, transform 0.2s;
 
     > div {
-      // padding should be in a separate div because otherwise it messes up height transition
-      padding: var(--_iui-expandable-block-content-padding);
       min-height: 0;
       visibility: hidden;
       transition: visibility 0.2s;
-      transform: translateY(-100%);
+      padding: var(--_iui-expandable-block-content-padding);
     }
   }
 
   &[data-iui-expanded='true'] .iui-expandable-content {
     grid-template-rows: 1fr;
-    border-bottom: var(--_iui-expandable-block-border);
 
     > div {
       visibility: visible;
@@ -209,7 +208,6 @@
   }
 
   &:not([data-iui-expanded='true']) .iui-expandable-content {
-    z-index: -1;
     transform: translateY(-100%);
   }
 
