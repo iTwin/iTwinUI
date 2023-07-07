@@ -187,7 +187,6 @@
 
     display: grid;
     grid-template-rows: 0fr;
-    z-index: -1;
     transition: grid-template-rows 0.2s, visibility 0.2s, transform 0.2s;
 
     > div {
@@ -205,11 +204,13 @@
     border-bottom: var(--_iui-expandable-block-border);
 
     > div {
+      transition: grid-template-rows 0.2s, visibility 0.2s, transform 0.2s;
       visibility: visible;
     }
   }
 
   &:not([data-iui-expanded='true']) .iui-expandable-content {
+    z-index: -1;
     transform: translateY(-100%);
   }
 
