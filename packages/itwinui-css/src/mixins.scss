@@ -230,3 +230,33 @@ $iui-icon-sizes: (
     fill: var(--iui-color-icon-negative);
   }
 }
+
+// mixin to include status border in inputs (input, select)
+@mixin iui-input-status-border {
+  @each $statusColor in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$statusColor}']) {
+      padding-bottom: calc(var(--iui-size-2xs) - 1px);
+
+      &[data-iui-size='small'] {
+        padding-bottom: 0;
+      }
+
+      &[data-iui-size='large'] {
+        padding-bottom: calc(var(--iui-size-xs) - 1px);
+      }
+      // #endregion
+
+      border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+
+      &:focus {
+        border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+        outline: 2px solid var(--iui-color-text-#{$statusColor});
+        outline-offset: -2px;
+      }
+
+      &:hover {
+        --_iui-input-border-color: var(--iui-color-border-#{$statusColor});
+      }
+    }
+  }
+}

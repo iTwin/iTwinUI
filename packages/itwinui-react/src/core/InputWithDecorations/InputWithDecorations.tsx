@@ -41,18 +41,12 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
 //-------------------------------------------------------------------------------
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
-  const { id: idProp, size, setFocus = false, ...rest } = props;
+  const { id: idProp, size, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
   const { size: contextSize, isDisabled } = useSafeContext(
     InputWithDecorationsContext,
   );
-
-  React.useEffect(() => {
-    if (inputRef.current && setFocus) {
-      inputRef.current.focus();
-    }
-  }, [setFocus]);
 
   return (
     <Box
@@ -64,7 +58,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'input', InputProps>;
+}) as PolymorphicForwardRefComponent<'input', Omit<InputProps, 'setFocus'>>;
 
 //-------------------------------------------------------------------------------
 
