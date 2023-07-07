@@ -36,16 +36,16 @@ export const StatusMessage = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      className={cx('iui-message', className)}
+      className={cx('iui-status-message', className)}
       data-iui-status={status}
       ref={ref}
     >
       {!!icon ? (
-        <Icon className='iui-message-icon' aria-hidden>
+        <Icon className='iui-status-message-icon' aria-hidden>
           {icon}
         </Icon>
       ) : null}
-      <Box className='iui-message-content'>{children}</Box>
+      <Box className='iui-status-message-content'>{children}</Box>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;

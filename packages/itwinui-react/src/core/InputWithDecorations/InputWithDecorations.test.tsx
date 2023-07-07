@@ -5,53 +5,87 @@
 import { render } from '@testing-library/react';
 import * as React from 'react';
 
-import { Input } from './InputWithDecorations.js';
+import { InputWithDecorations } from './InputWithDecorations.js';
 
 const assertBaseElement = (container: HTMLElement) => {
-  expect(container.querySelector('.iui-input')).toBeTruthy();
+  expect(container.querySelector('div')).toHaveClass(
+    'iui-input-flex-container',
+  );
 };
 
 it('should render correctly in its most basic state', () => {
-  const { container } = render(<Input />);
+  const { container } = render(
+    <InputWithDecorations>
+      <InputWithDecorations.Input />
+      <InputWithDecorations.Button>+</InputWithDecorations.Button>
+    </InputWithDecorations>,
+  );
   assertBaseElement(container);
+  expect(container.querySelector('input')).toBeTruthy();
+  expect(container.querySelector('button')).toBeTruthy();
 });
 
 it('should render disabled component', () => {
-  const { container } = render(<Input disabled />);
-  assertBaseElement(container);
-  expect((container.querySelector('input') as HTMLInputElement).disabled).toBe(
-    true,
+  const { container } = render(
+    <InputWithDecorations isDisabled>
+      <InputWithDecorations.Input />
+      <InputWithDecorations.Button>+</InputWithDecorations.Button>
+    </InputWithDecorations>,
   );
-});
-
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(<Input ref={onRef} setFocus />);
   assertBaseElement(container);
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
+  expect(container.querySelector('input')).toBeDisabled();
+  expect(container.querySelector('button')).toBeDisabled();
 });
 
 it('should take class and style', () => {
   const { container } = render(
-    <Input className='my-class' style={{ width: 50 }} />,
+    <InputWithDecorations className='my-class' style={{ width: 50 }}>
+      <InputWithDecorations.Input />
+      <InputWithDecorations.Button>+</InputWithDecorations.Button>
+    </InputWithDecorations>,
   );
   assertBaseElement(container);
-  const input = container.querySelector('input.my-class') as HTMLElement;
-  expect(input).toBeTruthy();
-  expect(input.style.width).toBe('50px');
+  const inputContainer = container.querySelector(
+    '.iui-input-flex-container.my-class',
+  ) as HTMLElement;
+  expect(inputContainer).toBeTruthy();
+  expect(inputContainer.style.width).toBe('50px');
 });
 
 it.each(['small', 'large'] as const)(
   'should render small and large sizes',
   (size) => {
-    const { container } = render(<Input size={size} />);
-    expect(container.querySelector(`.iui-input`)).toHaveAttribute(
+    const { container } = render(
+      <InputWithDecorations size={size}>
+        <InputWithDecorations.Input />
+        <InputWithDecorations.Button>+</InputWithDecorations.Button>
+      </InputWithDecorations>,
+    );
+    expect(
+      container.querySelector(`.iui-input-flex-container`),
+    ).toHaveAttribute('data-iui-size', size);
+    expect(container.querySelector(`input`)).toHaveAttribute(
       'data-iui-size',
       size,
     );
+    expect(container.querySelector(`button`)).toHaveAttribute(
+      'data-iui-size',
+      size,
+    );
+  },
+);
+
+it.each(['positive', 'warning', 'negative'] as const)(
+  'should render $status status',
+  (status) => {
+    const { container } = render(
+      <InputWithDecorations status={status}>
+        <InputWithDecorations.Input />
+        <InputWithDecorations.Button>+</InputWithDecorations.Button>
+      </InputWithDecorations>,
+    );
+    expect(
+      container.querySelector(`.iui-input-flex-container`),
+    ).toHaveAttribute('data-iui-status', status);
   },
 );

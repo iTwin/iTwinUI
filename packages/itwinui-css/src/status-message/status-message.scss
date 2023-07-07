@@ -2,13 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-.iui-message-content {
+.iui-status-message-content {
   font-size: var(--iui-font-size-0);
   margin-top: var(--iui-size-2xs);
   color: var(--iui-color-text-muted);
 }
 
-.iui-message-icon {
+.iui-status-message-icon {
   align-self: center;
 
   &:not(:last-child) {
@@ -20,12 +20,12 @@
   }
 }
 
-.iui-message {
+.iui-status-message {
   display: flex;
 
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
-      .iui-message-content {
+      .iui-status-message-content {
         color: var(--iui-color-text-#{$status});
 
         a {
@@ -39,7 +39,7 @@
         }
       }
 
-      .iui-message-icon {
+      .iui-status-message-icon {
         &,
         svg {
           fill: var(--iui-color-icon-#{$status});
