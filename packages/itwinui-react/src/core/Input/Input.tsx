@@ -44,7 +44,7 @@ export const Input = React.forwardRef((props, ref) => {
   return (
     <Box
       as='input'
-      className={cx('iui-input', className)}
+      className={cx('iui-input', { 'iui-input-status': !!status }, className)}
       data-iui-size={size}
       data-iui-status={status}
       ref={refs}

@@ -96,8 +96,6 @@
   &[data-iui-size='large'] {
     @include iui-input-size(large);
   }
-
-  @include mixins.iui-input-status-border;
 }
 
 .iui-input-with-icon.iui-input-with-icon {

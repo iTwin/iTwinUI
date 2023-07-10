@@ -40,7 +40,7 @@ export const Textarea = React.forwardRef((props, ref) => {
   return (
     <Box
       as='textarea'
-      className={cx('iui-input', className)}
+      className={cx('iui-input', { 'iui-input-status': !!status }, className)}
       data-iui-status={status}
       rows={rows}
       ref={refs}
