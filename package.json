@@ -8,7 +8,8 @@
       "packages/*",
       "playgrounds/*",
       "internal/*",
-      "examples"
+      "examples",
+      "testing/*"
     ]
   },
   "lint-staged": {
