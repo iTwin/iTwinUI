@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': major
 ---
 
-Aria-label removed from Avatar.tsx to make component a11y compliant.
+Avatar will no longer incorrectly set aria-label on the status dot.
