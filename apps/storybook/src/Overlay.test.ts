@@ -2,15 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import * as React from 'react';
-import { Breadcrumbs } from '@itwin/itwinui-react';
+describe('Overlay', () => {
+  const storyPath = 'Core/Overlay';
+  const tests = ['Linear', 'Radial'];
 
-export default () => {
-  return (
-    <Breadcrumbs>
-      <Breadcrumbs.Item href='#'>Home</Breadcrumbs.Item>
-      <Breadcrumbs.Item href='#'>Support</Breadcrumbs.Item>
-      <Breadcrumbs.Item>Contact us</Breadcrumbs.Item>
-    </Breadcrumbs>
-  );
-};
+  tests.forEach((testName) => {
+    it(testName, function () {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('iframe', { qs: { id } });
+      cy.compareSnapshot(testName);
+    });
+  });
+});

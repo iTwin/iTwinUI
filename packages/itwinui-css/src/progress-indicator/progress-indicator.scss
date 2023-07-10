@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'linear';
 @use 'radial';
-@use 'overlay';
 
 .iui-progress-indicator-linear {
   @include linear.iui-progress-indicator-linear;
@@ -26,12 +25,4 @@
   &.iui-indeterminate {
     @include radial.iui-progress-indicator-radial-indeterminate;
   }
-}
-
-.iui-progress-indicator-overlay {
-  @include overlay.iui-progress-indicator-overlay;
-}
-
-.iui-progress-indicator-overlay .iui-overlay-exiting {
-  @include overlay.iui-progress-overlay-exiting;
 }
