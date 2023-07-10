@@ -123,7 +123,9 @@
     > div {
       min-height: 0;
       visibility: hidden;
-      transition: visibility 0.2s;
+      padding-inline: var(--_iui-expandable-block-content-padding);
+      transition: visibility 0.2s ease-out;
+      align-self: start;
     }
   }
 
@@ -131,7 +133,7 @@
     grid-template-rows: 1fr;
 
     > div {
-      padding: var(--_iui-expandable-block-content-padding);
+      padding-block: var(--_iui-expandable-block-content-padding);
       border-bottom: var(--_iui-expandable-block-border);
       visibility: visible;
     }
