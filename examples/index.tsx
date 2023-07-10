@@ -725,6 +725,16 @@ export { NonIdealStateErrorExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as OverlayMainExampleRaw } from './Overlay.main';
+const OverlayMainExample = withThemeProvider(OverlayMainExampleRaw);
+export { OverlayMainExample };
+
+import { default as OverlaySubExampleRaw } from './Overlay.sub';
+const OverlaySubExample = withThemeProvider(OverlaySubExampleRaw);
+export { OverlaySubExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as ProgressLinearMainExampleRaw } from './ProgressLinear.main';
 const ProgressLinearMainExample = withThemeProvider(
   ProgressLinearMainExampleRaw,
