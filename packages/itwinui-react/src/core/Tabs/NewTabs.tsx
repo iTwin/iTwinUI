@@ -252,7 +252,12 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
       {children.map((child, index) => {
         return (
           <NewTabsContext.Provider
-            value={{ index, currentActiveIndex, setCurrentActiveIndex }}
+            value={{
+              index,
+              currentActiveIndex,
+              setCurrentActiveIndex,
+              onTabSelected: onTabClick,
+            }}
             key={index}
           >
             {child}
@@ -273,7 +278,7 @@ type NewTabsTabOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-type
 const NewTabsTab = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { index, currentActiveIndex, setCurrentActiveIndex } =
+  const { index, currentActiveIndex, onTabSelected } =
     useSafeContext(NewTabsContext);
 
   return (
@@ -287,9 +292,7 @@ const NewTabsTab = React.forwardRef((props, ref) => {
       role='tab'
       tabIndex={index === currentActiveIndex ? 0 : -1}
       onClick={() =>
-        setCurrentActiveIndex &&
-        index !== undefined &&
-        setCurrentActiveIndex(index)
+        onTabSelected && index !== undefined && onTabSelected(index)
       }
       ref={ref}
       {...rest}
