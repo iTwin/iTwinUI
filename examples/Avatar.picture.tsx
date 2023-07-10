@@ -13,7 +13,7 @@ export default () => {
     <Avatar
       abbreviation='RR'
       backgroundColor={getUserColor('Robbie Robot')}
-      image={<img src={imgSrc} alt='Profile picture of Robbie Robot.' />}
+      image={<img src={imgSrc} alt='' />}
       size='x-large'
       title='Robbie Robot'
     />
