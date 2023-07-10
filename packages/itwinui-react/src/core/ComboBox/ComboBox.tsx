@@ -113,6 +113,10 @@ export type ComboBoxProps<T> = {
    */
   emptyStateMessage?: React.ReactNode;
   /**
+   * Passes custom props to ComboBox menu.
+   */
+  menuProps?: React.ComponentProps<'ul'>;
+  /**
    * A custom item renderer can be specified to control the rendering.
    *
    * For keyboard navigation to work, the returned element should use the `id` provided by this function.
@@ -173,6 +177,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     filterFunction,
     inputProps,
     dropdownMenuProps,
+    // menuProps,
     emptyStateMessage = 'No options found',
     itemRenderer,
     enableVirtualization = false,
@@ -512,6 +517,12 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [emptyStateMessage],
   );
 
+  // const { className: menuClassName, ...restMenuProps } = menuProps;
+
+  /**
+   * Above code returns error: Property 'className' does not exist on type 'DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement> | undefined'.ts(2339)
+   */
+
   return (
     <ComboBoxRefsContext.Provider
       value={{ inputRef, menuRef, toggleButtonRef, optionsExtraInfoRef }}
@@ -559,7 +570,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             onShow={onShow}
             onHide={onHide}
           >
-            <ComboBoxMenu>
+            <ComboBoxMenu as='ul' className='custom Menu class'>
               {filteredOptions.length > 0 && !enableVirtualization
                 ? filteredOptions.map(getMenuItem)
                 : emptyContent}
