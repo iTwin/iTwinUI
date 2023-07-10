@@ -9,8 +9,12 @@ import {
   Box,
   polymorphic,
   useIsClient,
+  getBoundedValue,
+  useIsomorphicLayoutEffect,
+  useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import styles from '../../styles.js';
 
 // ----------------------------------------------------------------------------
 // NewTabsComponent
@@ -39,12 +43,22 @@ type NewTabsComponentOwnProps = {
   /**
    * The value of the tab that should be active when initially rendered
    */
-  defaultValue: string;
+  activeIndex?: number;
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
   /**
    * Color of the bar on the active tab.
    * @default 'blue'
    */
   color?: 'blue' | 'green';
+  /**
+   * Handler for activating a tab.
+   */
+  onTabSelected?: (index: number) => void;
 } & TabsOrientationProps;
 
 const NewTabsComponent = React.forwardRef((props, ref) => {
@@ -54,11 +68,13 @@ const NewTabsComponent = React.forwardRef((props, ref) => {
     orientation = 'horizontal',
     type = 'default',
     color = 'blue',
-    defaultValue,
+    activeIndex,
+    focusActivationMode,
+    onTabSelected,
     ...rest
   } = props;
 
-  const [activeValue, setActiveValue] = React.useState<string>(defaultValue);
+  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
 
   return (
     <Box
@@ -67,7 +83,16 @@ const NewTabsComponent = React.forwardRef((props, ref) => {
       {...rest}
     >
       <NewTabsContext.Provider
-        value={{ type, color, activeValue, setActiveValue }}
+        value={{
+          orientation,
+          type,
+          color,
+          activeIndex,
+          focusActivationMode,
+          currentActiveIndex,
+          setCurrentActiveIndex,
+          onTabSelected,
+        }}
       >
         {children}
       </NewTabsContext.Provider>
@@ -79,14 +104,131 @@ NewTabsComponent.displayName = 'NewTabs';
 // ----------------------------------------------------------------------------
 // NewTabs.TabList component
 
-type NewTabsTabListOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+type NewTabsTabListOwnProps = {
+  /**
+   * Breadcrumb items.
+   */
+  children: React.ReactNode[];
+};
 
 const NewTabsTabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
+  const tablistRef = React.useRef<HTMLUListElement>(null);
+  const refs = useMergedRefs(tablistRef, ref);
+
   const isClient = useIsClient();
 
-  const { type, color } = useSafeContext(NewTabsContext);
+  const {
+    orientation,
+    type,
+    color,
+    activeIndex,
+    focusActivationMode,
+    currentActiveIndex,
+    setCurrentActiveIndex,
+    onTabSelected,
+  } = useSafeContext(NewTabsContext);
+
+  if (setCurrentActiveIndex && activeIndex != null) {
+    setCurrentActiveIndex(getBoundedValue(activeIndex, 0, children.length - 1));
+  }
+  useIsomorphicLayoutEffect(() => {
+    if (
+      activeIndex != null &&
+      currentActiveIndex !== activeIndex &&
+      setCurrentActiveIndex
+    ) {
+      setCurrentActiveIndex(
+        getBoundedValue(activeIndex, 0, children.length - 1),
+      );
+    }
+  }, [activeIndex, currentActiveIndex, children.length]);
+
+  const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
+  React.useEffect(() => {
+    if (tablistRef.current && focusedIndex !== undefined) {
+      const tab = tablistRef.current.querySelectorAll(`.${styles['iui-tab']}`)[
+        focusedIndex
+      ];
+      (tab as HTMLElement)?.focus();
+    }
+  }, [focusedIndex]);
+
+  const onTabClick = React.useCallback(
+    (index: number) => {
+      if (onTabSelected) {
+        onTabSelected(index);
+      }
+      setCurrentActiveIndex && setCurrentActiveIndex(index);
+    },
+    [onTabSelected, setCurrentActiveIndex],
+  );
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+    // alt + arrow keys are used by browser / assistive technologies
+    if (event.altKey) {
+      return;
+    }
+
+    const isTabDisabled = (index: number) => {
+      const tab = children[index];
+      return React.isValidElement(tab) && tab.props.disabled;
+    };
+
+    let newIndex = focusedIndex ?? currentActiveIndex ?? 0;
+
+    /** focus next tab if delta is +1, previous tab if -1 */
+    const focusTab = (delta = +1) => {
+      do {
+        newIndex = (newIndex + delta + children.length) % children.length;
+      } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
+      setFocusedIndex(newIndex);
+      focusActivationMode === 'auto' && onTabClick(newIndex);
+    };
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        if (orientation === 'vertical') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowRight': {
+        if (orientation === 'horizontal') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        if (orientation === 'vertical') {
+          focusTab(-1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        if (orientation === 'horizontal') {
+          focusTab(-1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': {
+        event.preventDefault();
+        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
+          onTabClick(focusedIndex);
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
 
   return (
     <Box
@@ -102,11 +244,21 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
         },
         className,
       )}
-      ref={ref}
+      onKeyDown={onKeyDown}
+      ref={refs}
       {...rest}
     >
       {/* <TransferListContext.Provider value={{ labelId, setLabelId }}> */}
-      {children}
+      {children.map((child, index) => {
+        return (
+          <NewTabsContext.Provider
+            value={{ index, currentActiveIndex, setCurrentActiveIndex }}
+            key={index}
+          >
+            {child}
+          </NewTabsContext.Provider>
+        );
+      })}
       {/* </TransferListContext.Provider> */}
     </Box>
   );
@@ -116,29 +268,29 @@ NewTabsTabList.displayName = 'NewTabs.TabList';
 // ----------------------------------------------------------------------------
 // NewTabs.Tab component
 
-type NewTabsTabOwnProps = {
-  /**
-   * A unique value that associates the Tab with the Panel
-   */
-  value: string;
-};
+type NewTabsTabOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const NewTabsTab = React.forwardRef((props, ref) => {
-  const { value, className, children, ...rest } = props;
+  const { className, children, ...rest } = props;
 
-  const { activeValue, setActiveValue } = useSafeContext(NewTabsContext);
+  const { index, currentActiveIndex, setCurrentActiveIndex } =
+    useSafeContext(NewTabsContext);
 
   return (
     <Box
       as='button'
       className={cx(
         'iui-tab',
-        { 'iui-active': value === activeValue },
+        { 'iui-active': index === currentActiveIndex },
         className,
       )}
       role='tab'
-      tabIndex={value === activeValue ? 0 : -1}
-      onClick={() => setActiveValue && setActiveValue(value)}
+      tabIndex={index === currentActiveIndex ? 0 : -1}
+      onClick={() =>
+        setCurrentActiveIndex &&
+        index !== undefined &&
+        setCurrentActiveIndex(index)
+      }
       ref={ref}
       {...rest}
     >
@@ -189,21 +341,39 @@ const NewTabsAction = polymorphic('iui-tabs-actions');
 NewTabsAction.displayName = 'NewTabs.Action';
 
 // ----------------------------------------------------------------------------
+// NewTabs.Panels component
+
+const NewTabsPanels = ({ children }: { children: React.ReactNode[] }) => {
+  const { currentActiveIndex } = useSafeContext(NewTabsContext);
+
+  return (
+    <>
+      {children.map((child, index) => {
+        return (
+          <NewTabsContext.Provider
+            value={{ index, currentActiveIndex }}
+            key={index}
+          >
+            {child}
+          </NewTabsContext.Provider>
+        );
+      })}
+    </>
+  );
+};
+NewTabsPanels.displayName = 'NewTabs.Panels';
+
+// ----------------------------------------------------------------------------
 // NewTabs.Panel component
 
-type NewTabsPanelOwnProps = {
-  /**
-   * A unique value that associates the Tab with the Panel
-   */
-  value: string;
-};
+type NewTabsPanelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const NewTabsPanel = React.forwardRef((props, ref) => {
-  const { value, className, children, ...rest } = props;
+  const { className, children, ...rest } = props;
 
-  const { activeValue } = useSafeContext(NewTabsContext);
+  const { index, currentActiveIndex } = useSafeContext(NewTabsContext);
 
-  if (activeValue === value) {
+  if (index === currentActiveIndex) {
     return (
       <Box
         className={cx('iui-tabs-content', className)}
@@ -274,11 +444,20 @@ export const NewTabs = Object.assign(NewTabsComponent, {
   /**
    * 	TransferList toolbar subcomponent
    */
+  Panels: NewTabsPanels,
+  /**
+   * 	TransferList toolbar subcomponent
+   */
   Panel: NewTabsPanel,
 });
 
 export const NewTabsContext = React.createContext<
   | {
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal' | 'vertical';
       /**
        * Id to set to label and set 'aria-labelledby' prop of the listbox
        */
@@ -291,11 +470,29 @@ export const NewTabsContext = React.createContext<
       /**
        * Handler for activating a tab.
        */
-      activeValue?: string;
+      activeIndex?: number;
+      /**
+       * Control whether focusing tabs (using arrow keys) should automatically select them.
+       * Use 'manual' if tab panel content is not preloaded.
+       * @default 'auto'
+       */
+      focusActivationMode?: 'auto' | 'manual';
       /**
        * Handler for activating a tab.
        */
-      setActiveValue?: (value: string) => void;
+      currentActiveIndex?: number;
+      /**
+       * Handler for activating a tab.
+       */
+      setCurrentActiveIndex?: (value: number) => void;
+      /**
+       * Handler for activating a tab.
+       */
+      index?: number;
+      /**
+       * Handler for activating a tab.
+       */
+      onTabSelected?: (index: number) => void;
     }
   | undefined
 >(undefined);

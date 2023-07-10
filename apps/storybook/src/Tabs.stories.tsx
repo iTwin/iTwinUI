@@ -436,13 +436,13 @@ Vertical.argTypes = {
 
 export const NewDefaultTabs: Story<Partial<TabsProps>> = (args) => {
   return (
-    <NewTabs defaultValue='tab1' {...args}>
+    <NewTabs {...args}>
       <NewTabs.TabList>
-        <NewTabs.Tab value='tab1'>Tab 1</NewTabs.Tab>
+        <NewTabs.Tab>Tab 1</NewTabs.Tab>
 
-        <NewTabs.Tab value='tab2'>Tab 2</NewTabs.Tab>
+        <NewTabs.Tab>Tab 2</NewTabs.Tab>
 
-        <NewTabs.Tab value='tab3'>Tab 3</NewTabs.Tab>
+        <NewTabs.Tab>Tab 3</NewTabs.Tab>
       </NewTabs.TabList>
 
       <NewTabs.Actions>
@@ -451,11 +451,13 @@ export const NewDefaultTabs: Story<Partial<TabsProps>> = (args) => {
         </NewTabs.Action>
       </NewTabs.Actions>
 
-      <NewTabs.Panel value='tab1'>This is the content for tab 1</NewTabs.Panel>
+      <NewTabs.Panels>
+        <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
 
-      <NewTabs.Panel value='tab2'>This is the content for tab 2</NewTabs.Panel>
+        <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
 
-      <NewTabs.Panel value='tab3'>This is the content for tab 3</NewTabs.Panel>
+        <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+      </NewTabs.Panels>
     </NewTabs>
   );
 };
