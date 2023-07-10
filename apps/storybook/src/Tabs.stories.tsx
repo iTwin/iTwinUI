@@ -445,6 +445,12 @@ export const NewDefaultTabs: Story<Partial<TabsProps>> = (args) => {
         <NewTabs.Tab value='tab3'>Tab 3</NewTabs.Tab>
       </NewTabs.TabList>
 
+      <NewTabs.Actions>
+        <NewTabs.Action>
+          <Button key={'Normal'}>Normal size button</Button>,
+        </NewTabs.Action>
+      </NewTabs.Actions>
+
       <NewTabs.Panel value='tab1'>This is the content for tab 1</NewTabs.Panel>
 
       <NewTabs.Panel value='tab2'>This is the content for tab 2</NewTabs.Panel>

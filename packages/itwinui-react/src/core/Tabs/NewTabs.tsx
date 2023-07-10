@@ -121,25 +121,23 @@ type NewTabsTabOwnProps = {
    * A unique value that associates the Tab with the Panel
    */
   value: string;
-  /**
-   * Whether the tab has active styling.
-   *
-   * This will be automatically set by the parent `Tabs` component.
-   */
-  active?: boolean;
 };
 
 const NewTabsTab = React.forwardRef((props, ref) => {
-  const { value, active, className, children, ...rest } = props;
+  const { value, className, children, ...rest } = props;
 
-  const { setActiveValue } = useSafeContext(NewTabsContext);
+  const { activeValue, setActiveValue } = useSafeContext(NewTabsContext);
 
   return (
     <Box
       as='button'
-      className={cx('iui-tab', { 'iui-active': active }, className)}
+      className={cx(
+        'iui-tab',
+        { 'iui-active': value === activeValue },
+        className,
+      )}
       role='tab'
-      tabIndex={-1}
+      tabIndex={value === activeValue ? 0 : -1}
       onClick={() => setActiveValue && setActiveValue(value)}
       ref={ref}
       {...rest}
