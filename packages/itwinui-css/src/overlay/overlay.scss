@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-@mixin iui-progress-indicator-overlay {
+.iui-overlay {
   inline-size: 100%;
   block-size: 100%;
   position: absolute;
@@ -22,17 +22,21 @@
   }
 }
 
-// Fade out on completion
-@keyframes closeAnimation {
-  from {
-    opacity: var(--iui-opacity-1);
-  }
-
-  to {
-    opacity: 0;
-  }
+.iui-overlay-wrapper {
+  position: relative;
 }
 
-@mixin iui-progress-overlay-exiting {
+.iui-overlay-exiting {
   animation: closeAnimation var(--iui-duration-1) linear;
+
+  // Fade out on completion
+  @keyframes closeAnimation {
+    from {
+      opacity: var(--iui-opacity-1);
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
 }
