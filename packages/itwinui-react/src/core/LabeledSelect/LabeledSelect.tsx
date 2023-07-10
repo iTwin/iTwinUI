@@ -132,7 +132,7 @@ export const LabeledSelect = <T,>(
           ...triggerProps,
         }}
       />
-      {message && (
+      {(message || icon()) && (
         <StatusMessage
           status={status}
           startIcon={displayStyle === 'default' ? icon() : undefined}

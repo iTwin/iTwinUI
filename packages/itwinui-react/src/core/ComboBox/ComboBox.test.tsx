@@ -541,7 +541,7 @@ it('should render with message', () => {
   });
   assertBaseElement(container);
   const message = container.querySelector(
-    '.iui-message > .my-message',
+    '.iui-status-message-content > .my-message',
   ) as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
@@ -552,7 +552,7 @@ it('should render with message as string', () => {
     message: 'My message as string',
   });
   assertBaseElement(container);
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('My message as string');
 });
@@ -563,7 +563,7 @@ it('should render with message as string and status', () => {
     status: 'warning',
   });
   assertBaseElement(container);
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('My message as string');
   const inputContainer = container.querySelector(
@@ -571,7 +571,7 @@ it('should render with message as string and status', () => {
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveClass('iui-warning');
-  expect(inputContainer.querySelector('.iui-input-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
 });
 
 it('should render with custom icon', () => {
@@ -587,7 +587,9 @@ it('should render with custom icon', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
+  expect(
+    inputContainer.querySelector('.iui-status-message-icon .my-icon'),
+  ).toBeTruthy();
 });
 
 it('should render with message and status', () => {
@@ -601,8 +603,8 @@ it('should render with message and status', () => {
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveClass('iui-positive');
-  expect(inputContainer.querySelector('.iui-input-icon')).toBeTruthy();
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message.textContent).toBe('Text here');
 });
 

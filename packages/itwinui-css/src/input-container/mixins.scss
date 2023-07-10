@@ -147,14 +147,7 @@
 
 /// Message shown below input
 @mixin iui-input-message {
-  font-size: var(--iui-font-size-0);
   grid-area: message;
-  margin-top: var(--iui-size-2xs);
-  color: var(--iui-color-text-muted);
-
-  a {
-    user-select: none;
-  }
 }
 
 /// Icon to be shown near a message.

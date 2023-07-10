@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { prettyDOM, render } from '@testing-library/react';
 import { LabeledSelect } from './LabeledSelect.js';
 import type { LabeledSelectProps } from './LabeledSelect.js';
 import type { SelectMultipleTypeProps } from '../Select/Select.js';
 
 const assertBaseElement = (inputContainer: HTMLElement) => {
   expect(inputContainer).toBeTruthy();
-  const label = inputContainer.querySelector('.iui-label') as HTMLElement;
+  const label = inputContainer.querySelector('.iui-input-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toEqual('Test label');
   const select = inputContainer.querySelector(
@@ -38,14 +38,14 @@ it('should render correctly in its most basic state', () => {
   const { container } = renderComponent();
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
 });
 
 it('should have correct accessible name', () => {
   const { container } = renderComponent();
-  const label = container.querySelector('.iui-label') as HTMLElement;
+  const label = container.querySelector('.iui-input-label') as HTMLElement;
   expect(container.querySelector('[role=combobox]')).toHaveAttribute(
     'aria-labelledby',
     `${label.id}`,
@@ -58,11 +58,11 @@ it('should render message', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   const message = container.querySelector(
-    '.iui-message > .my-message',
+    '.iui-status-message-content > .my-message',
   ) as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
@@ -77,14 +77,13 @@ it.each(['positive', 'warning', 'negative'] as const)(
     });
 
     const inputContainer = container.querySelector(
-      '.iui-input-container',
+      '.iui-input-grid',
     ) as HTMLElement;
     assertBaseElement(inputContainer);
-    expect(
-      container.querySelector(`.iui-input-container.iui-${status}`),
-    ).toBeTruthy();
-    expect(container.querySelector('.iui-input-icon')).toBeTruthy();
-    expect(container.querySelector('.iui-message')).toBeTruthy();
+    const select = container.querySelector(`.iui-select-button`) as HTMLElement;
+    expect(select).toHaveAttribute('data-iui-status', status);
+    expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-status-message')).toBeTruthy();
   },
 );
 
@@ -94,10 +93,14 @@ it('should render with custom icon', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
-  expect(inputContainer.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
+  const icon = inputContainer.querySelector(
+    '.iui-status-message-icon > .my-icon',
+  );
+  console.log(prettyDOM(container));
+  expect(icon).toBeTruthy();
 });
 
 it('should render inline style', () => {
@@ -106,17 +109,17 @@ it('should render inline style', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container.iui-inline-label',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
-  expect(inputContainer.querySelector('.iui-message')).toBeFalsy();
+  expect(inputContainer.querySelector('.iui-status-message')).toBeFalsy();
 });
 
 it('should render with custom className on container', () => {
   const { container } = renderComponent({ className: 'test-className' });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   expect(inputContainer.classList).toContain('test-className');
@@ -126,7 +129,7 @@ it('should render with custom style on container', () => {
   const { container } = renderComponent({ style: { color: 'red' } });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   expect(inputContainer.style.color).toEqual('red');
@@ -136,7 +139,7 @@ it('should render with custom className on select', () => {
   const { container } = renderComponent({ selectClassName: 'test-className' });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   const select = inputContainer.querySelector(
@@ -152,7 +155,7 @@ it('should render with custom style on select', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   const select = inputContainer.querySelector(
@@ -164,9 +167,7 @@ it('should render with custom style on select', () => {
 
 it('should handle required attribute', () => {
   const { container } = renderComponent({ required: true });
-  assertBaseElement(
-    container.querySelector('.iui-input-container') as HTMLElement,
-  );
+  assertBaseElement(container.querySelector('.iui-input-grid') as HTMLElement);
 
-  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+  expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
 });
