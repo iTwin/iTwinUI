@@ -104,12 +104,10 @@ export const Avatar = React.forwardRef((props, ref) => {
       {status && (
         <Box
           as='span'
-          role='status'
           title={statusTitles[status]}
           className={cx('iui-status', {
             [`iui-${status}`]: !!status,
           })}
-          aria-label={statusTitles[status]}
         />
       )}
     </Box>
