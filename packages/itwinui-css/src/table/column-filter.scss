@@ -11,18 +11,18 @@
   gap: var(--iui-size-s);
 
   > .iui-input-container:not(.iui-inline-label) {
-    width: 100%;
+    inline-size: 100%;
   }
 
   > .iui-button-bar {
     display: flex;
-    width: 100%;
+    inline-size: 100%;
     align-content: center;
     gap: var(--iui-size-xs);
 
     > .iui-button {
       &:first-of-type {
-        margin-left: auto;
+        margin-inline-start: auto;
       }
     }
   }

@@ -33,7 +33,7 @@
 }
 
 @mixin iui-bottom-placement {
-  bottom: 0;
+  inset-block-end: 0;
 
   .iui-toast {
     margin: var(--iui-size-s) var(--iui-size-m) 0 var(--iui-size-m);
@@ -52,13 +52,13 @@
   z-index: 99999;
 
   @media screen and (max-width: 400px) {
-    width: calc(100vw - 36px);
-    margin-top: var(--iui-size-s);
+    inline-size: calc(100vw - 36px);
+    margin-block-start: var(--iui-size-s);
   }
 
   @media screen and (min-width: 401px) {
-    min-width: 400px;
-    max-width: 640px;
+    min-inline-size: 400px;
+    max-inline-size: 640px;
     margin: var(--iui-size-l) 0;
   }
 
@@ -69,42 +69,38 @@
   }
 
   &.iui-placement-top {
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    top: 0;
-    right: 0;
+    margin-inline: auto;
+    inset-inline: 0;
+    inset-block-start: 0;
   }
 
   &.iui-placement-top-start {
-    left: 0;
-    top: 0;
+    inset-inline-start: 0;
+    inset-block-start: 0;
     align-items: flex-start;
   }
 
   &.iui-placement-top-end {
-    right: 0;
-    top: 0;
+    inset-inline-end: 0;
+    inset-block-start: 0;
     align-items: flex-end;
   }
 
   &.iui-placement-bottom {
     @include iui-bottom-placement;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
+    margin-inline: auto;
+    inset-inline: 0;
   }
 
   &.iui-placement-bottom-start {
     @include iui-bottom-placement;
-    left: 0;
+    inset-inline-start: 0;
     align-items: flex-start;
   }
 
   &.iui-placement-bottom-end {
     @include iui-bottom-placement;
-    right: 0;
+    inset-inline-end: 0;
     align-items: flex-end;
   }
 }
@@ -115,7 +111,7 @@
   align-items: center;
   pointer-events: all;
   margin: 0 var(--iui-size-m) var(--iui-size-s) var(--iui-size-m);
-  min-height: calc(var(--iui-size-s) * 4);
+  min-block-size: calc(var(--iui-size-s) * 4);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
   border: 1px solid var(--iui-color-border);
@@ -127,7 +123,7 @@
     align-self: stretch;
     justify-content: center;
     align-items: center;
-    width: calc(var(--iui-size-l) * 2);
+    inline-size: calc(var(--iui-size-l) * 2);
     flex-shrink: 0;
 
     > .iui-icon {
@@ -139,10 +135,10 @@
   > .iui-message {
     flex-grow: 1;
     font-size: var(--iui-font-size-1);
-    margin-top: calc(var(--iui-size-s) * 0.5);
-    margin-bottom: calc(var(--iui-size-s) * 0.5);
-    margin-right: var(--iui-size-l);
-    margin-left: var(--iui-size-m);
+    margin-block-start: calc(var(--iui-size-s) * 0.5);
+    margin-block-end: calc(var(--iui-size-s) * 0.5);
+    margin-inline-end: var(--iui-size-l);
+    margin-inline-start: var(--iui-size-m);
     font-weight: var(--iui-font-weight-normal);
     font-style: normal;
     color: var(--iui-color-text);
@@ -161,22 +157,22 @@
     border-radius: var(--iui-border-radius-1);
     cursor: pointer;
     font-size: var(--iui-font-size-0);
-    margin-right: var(--iui-size-m);
+    margin-inline-end: var(--iui-size-m);
     user-select: none;
     white-space: nowrap;
   }
 
   > .iui-button {
-    margin-right: var(--iui-size-xs);
+    margin-inline-end: var(--iui-size-xs);
   }
 
   @media screen and (max-width: 400px) {
-    width: calc(100vw - 36px);
+    inline-size: calc(100vw - 36px);
   }
 
   @media screen and (min-width: 401px) {
-    min-width: 400px;
-    max-width: 640px;
+    min-inline-size: 400px;
+    max-inline-size: 640px;
   }
 
   &.iui-informational {

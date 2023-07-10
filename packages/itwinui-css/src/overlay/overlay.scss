@@ -3,22 +3,22 @@
 @use '../mixins';
 
 .iui-overlay {
-  width: 100%;
-  height: 100%;
+  inline-size: 100%;
+  block-size: 100%;
   position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0;
-  left: 0;
+  inset-block-start: 0;
+  inset-inline-start: 0;
   z-index: 10000;
 
   // Blur fallback
   @include mixins.iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
 
   .iui-progress-indicator-linear {
-    width: 50%;
-    max-width: 33vw;
+    inline-size: 50%;
+    max-inline-size: 33vw;
   }
 }
 

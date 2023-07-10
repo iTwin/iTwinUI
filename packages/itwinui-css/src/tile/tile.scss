@@ -16,7 +16,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   @include surface.iui-surface;
   display: inline-flex;
   flex-direction: column;
-  width: calc(var(--iui-size-3xl) * 3);
+  inline-size: calc(var(--iui-size-3xl) * 3);
   backface-visibility: hidden;
   isolation: isolate;
   position: relative;
@@ -31,17 +31,17 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   &:where(:not(.iui-folder)) {
     > :where(.iui-tile-thumbnail) {
-      border-top-left-radius: inherit;
-      border-top-right-radius: inherit;
+      border-start-start-radius: inherit;
+      border-start-end-radius: inherit;
     }
 
     > :where(:last-child) {
-      border-bottom-left-radius: inherit;
-      border-bottom-right-radius: inherit;
+      border-end-start-radius: inherit;
+      border-end-end-radius: inherit;
     }
 
     > :where(.iui-tile-name) {
-      margin-bottom: calc(var(--iui-size-s) * 0.5);
+      margin-block-end: calc(var(--iui-size-s) * 0.5);
     }
   }
 
@@ -54,7 +54,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   &:hover,
   &:focus-within {
     .iui-tile-metadata:not(:last-child) {
-      width: calc(100% - #{var(--iui-size-xl)});
+      inline-size: calc(100% - #{var(--iui-size-xl)});
     }
   }
 
@@ -162,33 +162,33 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   grid-template-rows: auto 1fr;
 
   > :where(:first-child) {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
+    border-start-start-radius: inherit;
+    border-end-start-radius: inherit;
   }
 
   > :where(:last-child) {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
+    border-start-end-radius: inherit;
+    border-end-end-radius: inherit;
   }
 
   .iui-tile-thumbnail {
-    height: calc(var(--iui-size-s) * 10);
+    block-size: calc(var(--iui-size-s) * 10);
     grid-area: thumbnail;
     flex: 1;
-    border-bottom: none;
-    border-right: 1px solid var(--iui-color-border);
+    border-block-end: none;
+    border-inline-end: 1px solid var(--iui-color-border);
     margin: 0;
   }
 
   .iui-tile-name {
     grid-area: name;
-    margin-top: calc(var(--iui-size-xs));
+    margin-block-start: calc(var(--iui-size-xs));
   }
 
   .iui-tile-content {
     grid-area: content;
     padding: var(--iui-size-s);
-    padding-top: 0;
+    padding-block-start: 0;
 
     > * {
       padding: 0;
@@ -196,25 +196,25 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-tile-description {
-    height: 100%;
-    max-height: 3em;
-    max-height: 2lh;
-    margin-bottom: 0;
+    block-size: 100%;
+    max-block-size: 3em;
+    max-block-size: 2lh;
+    margin-block-end: 0;
     -webkit-line-clamp: 2;
   }
 }
 
 @mixin iui-tile-content {
-  padding-bottom: var(--iui-size-s);
+  padding-block-end: var(--iui-size-s);
   display: grid;
   grid-template-rows: auto 1fr auto;
   flex-grow: 2;
-  min-width: 0;
+  min-inline-size: 0;
 
   > * {
     grid-column: 1;
-    max-width: 100%;
-    margin-bottom: calc(var(--iui-size-s) * 0.5);
+    max-inline-size: 100%;
+    margin-block-end: calc(var(--iui-size-s) * 0.5);
     padding-inline: var(--iui-size-s);
   }
 }
@@ -231,14 +231,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 @mixin iui-tile-status-icon {
   @include mixins.iui-icon-style('m');
-  margin-right: var(--iui-size-xs);
+  margin-inline-end: var(--iui-size-xs);
   fill: var(--_iui-tile-status-icon-fill);
 }
 
 @mixin iui-tile-name-label {
   &,
   > .iui-link-action {
-    width: 100%;
+    inline-size: 100%;
     z-index: 1;
     overflow: hidden;
     white-space: nowrap;
@@ -247,11 +247,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-description {
-  margin-bottom: var(--iui-size-s);
+  margin-block-end: var(--iui-size-s);
   font-size: var(--iui-font-size-1);
-  height: 100%;
-  max-height: 4.5em;
-  max-height: 3lh;
+  block-size: 100%;
+  max-block-size: 4.5em;
+  max-block-size: 3lh;
   @include mixins.iui-line-clamp(3);
   color: var(--_iui-tile-body-text-color);
 }
@@ -261,19 +261,18 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   flex-shrink: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-  height: var(--iui-size-l);
-  width: 100%;
+  block-size: var(--iui-size-l);
+  inline-size: 100%;
   display: flex;
   align-items: center;
-  margin-top: auto;
-  margin-bottom: 0;
+  margin-block: auto 0;
   color: var(--_iui-tile-body-text-color);
 
   > svg,
   .iui-tile-metadata-icon {
     @include mixins.iui-icon-style('m');
     fill: var(--iui-color-icon-muted);
-    margin-right: var(--iui-size-xs);
+    margin-inline-end: var(--iui-size-xs);
   }
 
   > * {
@@ -286,13 +285,13 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-thumbnail {
   order: -1;
   box-sizing: content-box;
-  height: calc(var(--iui-size-s) * 13);
+  block-size: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
   overflow: hidden;
   display: grid;
   background-color: var(--iui-color-background-zebra);
-  border-bottom: 1px solid var(--iui-color-border);
-  margin-bottom: var(--iui-size-s);
+  border-block-end: 1px solid var(--iui-color-border);
+  margin-block-end: var(--iui-size-s);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -346,7 +345,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   @include iui-button-size(small, borderless);
   z-index: 2;
   border-radius: 50%;
-  margin-top: calc(var(--iui-size-s) * 0.5);
+  margin-block-start: calc(var(--iui-size-s) * 0.5);
   margin-inline: var(--iui-size-xs);
   place-self: start;
 
@@ -378,9 +377,9 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 @mixin iui-tile-thumbnail-badge {
   place-self: end;
-  margin-bottom: calc(var(--iui-size-s) * 0.5);
-  width: calc(100% - 2 * #{var(--iui-size-s)});
-  margin-right: var(--iui-size-s);
+  margin-block-end: calc(var(--iui-size-s) * 0.5);
+  inline-size: calc(100% - 2 * #{var(--iui-size-s)});
+  margin-inline-end: var(--iui-size-s);
   display: flex;
   justify-content: flex-end;
   overflow: hidden;
@@ -399,7 +398,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   > .iui-button {
     font-size: var(--iui-font-size-1);
     flex: 1;
-    height: auto;
+    block-size: auto;
     padding: var(--iui-size-s) var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
@@ -411,13 +410,13 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
     &,
     &:hover {
-      border-top: 1px solid var(--iui-color-border);
+      border-block-start: 1px solid var(--iui-color-border);
       border-color: var(--iui-color-border);
     }
   }
 
   > button:not(:last-child) {
-    border-right: 1px solid var(--iui-color-border);
+    border-inline-end: 1px solid var(--iui-color-border);
   }
 }
 
@@ -430,20 +429,20 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   margin: 0;
 
   // visual adjustment to counteract invisible padding from borderless button
-  margin-right: calc(-1 * var(--iui-size-2xs));
+  margin-inline-end: calc(-1 * var(--iui-size-2xs));
 
   // safari doesn't support grid + position:absolute, so we will hardcode the values
   @include mixins.safari-only {
-    bottom: var(--iui-size-s);
-    right: 0;
+    inset-block-end: var(--iui-size-s);
+    inset-inline-end: 0;
     margin: 0;
 
     :where(.iui-tile.iui-folder) & {
-      right: var(--iui-size-xs);
+      inset-inline-end: var(--iui-size-xs);
     }
 
     :where(.iui-tile:has(.iui-tile-buttons)) & {
-      bottom: 3.25rem;
+      inset-block-end: 3.25rem;
     }
   }
 }
