@@ -17,7 +17,7 @@ import {
   SvgTimedOut,
 } from '@itwin/itwinui-illustrations-react';
 
-describe(ErrorPage, () => {
+describe('ErrorPage', () => {
   const defaultTests = [
     {
       errorType: '300',
