@@ -1,5 +1,6 @@
 ---
 '@itwin/itwinui-css': minor
+'@itwin/itwinui-react': minor
 ---
 
-Installation for stylelint-use-logical CSS property rule, converted all physical properties in .SCSS files to their logical equivalent.
+Converted all physical CSS properties to their logical equivalents.
