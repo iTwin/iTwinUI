@@ -109,7 +109,6 @@
 
   .iui-expandable-content {
     background-color: var(--_iui-expandable-block-background-color);
-    border-bottom: var(--_iui-expandable-block-border);
     border-right: var(--_iui-expandable-block-border);
     border-left: var(--_iui-expandable-block-border);
     border-bottom-left-radius: inherit;
@@ -125,7 +124,6 @@
       min-height: 0;
       visibility: hidden;
       transition: visibility 0.2s;
-      padding: var(--_iui-expandable-block-content-padding);
     }
   }
 
@@ -133,6 +131,8 @@
     grid-template-rows: 1fr;
 
     > div {
+      padding: var(--_iui-expandable-block-content-padding);
+      border-bottom: var(--_iui-expandable-block-border);
       visibility: visible;
     }
   }
