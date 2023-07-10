@@ -5,18 +5,38 @@
 import * as React from 'react';
 import { Button } from '../Buttons/Button/index.js';
 import { NonIdealState } from './NonIdealState.js';
-import type { CommonProps } from '../utils/index.js';
-import {
-  Svg401,
-  Svg403,
-  Svg404,
-  Svg500,
-  Svg502,
-  Svg503,
-  SvgError,
-  SvgRedirect,
-  SvgTimedOut,
-} from '@itwin/itwinui-illustrations-react';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+
+const Svg401 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/401.js'),
+);
+const Svg403 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/403.js'),
+);
+const Svg404 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/404.js'),
+);
+const Svg500 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/500.js'),
+);
+const Svg502 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/502.js'),
+);
+const Svg503 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/503.js'),
+);
+const SvgError = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/Error.js'),
+);
+const SvgRedirect = React.lazy(
+  () =>
+    import('@itwin/itwinui-illustrations-react/esm/illustrations/Redirect.js'),
+);
+const SvgTimedOut = React.lazy(
+  () =>
+    import('@itwin/itwinui-illustrations-react/esm/illustrations/TimedOut.js'),
+);
 
 /** @deprecated Use `NonIdealState` instead. */
 export type ErrorPageType =
@@ -51,8 +71,7 @@ export type ErrorTypeTranslations = {
   unauthorized: string;
 };
 
-/** @deprecated Use `NonIdealState` instead. */
-export type ErrorPageProps = {
+type ErrorPageProps = {
   /**
    * Type of error controls image and default text
    */
@@ -94,7 +113,7 @@ export type ErrorPageProps = {
    * Used to translate default error messages, if no specific @errorName passed in
    */
   translatedErrorMessages?: ErrorTypeTranslations;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * @deprecated Use `NonIdealState` instead for a smaller client bundle.
@@ -103,7 +122,7 @@ export type ErrorPageProps = {
  * @example
  * <ErrorPage errorType='401' />
  */
-export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
+export const ErrorPage = React.forwardRef((props, forwardedRef) => {
   const {
     errorType,
     errorName,
@@ -255,13 +274,18 @@ export const ErrorPage = (props: ErrorPageProps): JSX.Element => {
 
   return (
     <NonIdealState
-      svg={getErrorIcon()}
+      svg={
+        <React.Suspense fallback={<ProgressRadial />}>
+          {getErrorIcon()}
+        </React.Suspense>
+      }
       heading={getHeadingMessage()}
       description={errorMessage}
       actions={getActions()}
+      ref={forwardedRef}
       {...rest}
     />
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ErrorPageProps>;
 
 export default ErrorPage;

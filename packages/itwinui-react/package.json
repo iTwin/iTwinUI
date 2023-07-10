@@ -72,7 +72,6 @@
     "dev:styles": "concurrently \"yarn build:styles --watch\" \"yarn copy-styles\""
   },
   "dependencies": {
-    "@itwin/itwinui-illustrations-react": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
     "@floating-ui/react": "^0.24.3",
@@ -84,6 +83,7 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@itwin/itwinui-css": "^2.0.0-dev.4",
+    "@itwin/itwinui-illustrations-react": "^2.0.0",
     "@itwin/itwinui-variables": "3.0.0-dev.1",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.21",
@@ -120,6 +120,9 @@
   "peerDependencies": {
     "react": ">=16.8.6 < 19.0.0",
     "react-dom": ">=16.8.6 < 19.0.0"
+  },
+  "optionalDependencies": {
+    "@itwin/itwinui-illustrations-react": "^2.0.0"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
