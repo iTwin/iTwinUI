@@ -21,11 +21,11 @@
   }
 
   > .iui-location-marker-me-dot {
-    width: var(--iui-size-s);
-    height: var(--iui-size-s);
+    inline-size: var(--iui-size-s);
+    block-size: var(--iui-size-s);
     position: absolute;
-    top: calc(var(--iui-size-2xs) * 1.5);
-    left: calc(var(--iui-size-2xs) * 1.5);
+    inset-block-start: calc(var(--iui-size-2xs) * 1.5);
+    inset-inline-start: calc(var(--iui-size-2xs) * 1.5);
     border-radius: 50%;
     border: 1px solid var(--iui-color-white);
     background-color: var(--iui-color-icon-accent);

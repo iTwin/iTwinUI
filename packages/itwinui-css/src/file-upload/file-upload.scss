@@ -14,10 +14,10 @@
   > .iui-content {
     visibility: hidden;
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     display: grid;
     align-content: center;
     place-items: center;
@@ -47,7 +47,7 @@
     }
 
     .iui-template-text {
-      margin-left: var(--iui-size-l);
+      margin-inline-start: var(--iui-size-l);
       display: grid;
       gap: var(--iui-size-2xs);
 
@@ -93,7 +93,7 @@
   background-color: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-subtle);
   color: var(--iui-color-text);
-  width: 100%;
+  inline-size: 100%;
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
@@ -129,7 +129,7 @@
 }
 
 .iui-file-card-action {
-  margin-left: auto;
+  margin-inline-start: auto;
   font-weight: var(--iui-font-weight-bold);
 }
 
@@ -143,7 +143,7 @@
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
   border: 1px solid var(--iui-color-border);
-  width: 100%;
+  inline-size: 100%;
 
   &:focus-within {
     outline: 2px solid var(--iui-color-text-accent);
