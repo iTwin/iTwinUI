@@ -122,7 +122,7 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
         />
       )}
 
-      {(message || icon) && (
+      {(message || (icon && iconDisplayStyle !== 'inline')) && (
         <StatusMessage
           status={status}
           startIcon={displayStyle === 'default' ? icon : undefined}

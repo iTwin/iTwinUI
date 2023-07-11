@@ -58,6 +58,8 @@
   block-size: var(--_iui-input-min-height);
   inline-size: 100%;
   isolation: isolate;
+  min-block-size: var(--_iui-input-min-height);
+  block-size: fit-content;
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
@@ -192,7 +194,7 @@
     }
   }
 
-  .iui-message {
+  .iui-status-message {
     grid-column-end: -1;
   }
 }

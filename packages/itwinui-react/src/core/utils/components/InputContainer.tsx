@@ -79,16 +79,20 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
       {statusMessage ? (
         statusMessage
       ) : (
-        <>
+        <Box className='iui-status-message'>
           {icon && (
-            <Box as='span' className='iui-input-icon' aria-hidden>
+            <Box
+              as='span'
+              className='iui-status-message-icon iui-input-icon'
+              aria-hidden
+            >
               {icon}
             </Box>
           )}
           {message && !isLabelInline && (
-            <Box className='iui-message'>{message}</Box>
+            <Box className='iui-status-message-content'>{message}</Box>
           )}
-        </>
+        </Box>
       )}
     </Box>
   );
