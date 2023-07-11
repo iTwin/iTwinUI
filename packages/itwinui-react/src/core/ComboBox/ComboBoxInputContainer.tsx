@@ -31,7 +31,7 @@ export const ComboBoxInputContainer = React.forwardRef(
             <StatusMessage status={status}>{message}</StatusMessage>
           ) : (
             React.isValidElement(message) &&
-            React.cloneElement(message, { status })
+            React.cloneElement(message as JSX.Element, { status })
           )
         }
         ref={forwardedRef}
