@@ -32,106 +32,6 @@
   width: 100%;
   border-radius: var(--iui-border-radius-1);
 
-  .iui-expandable-header {
-    @include mixins.iui-reset;
-    @include mixins.iui-focus(
-      $offset: var(--_iui-expandable-block-header-focus-offset),
-      $thickness: var(--_iui-expandable-block-header-focus-thickness)
-    );
-    display: flex;
-    gap: var(--_iui-expandable-block-header-gap);
-    align-items: center;
-    padding: var(--_iui-expandable-block-header-padding);
-    cursor: pointer;
-    user-select: none;
-    color: var(--iui-color-text);
-    font-family: inherit;
-    text-align: left;
-    z-index: 1;
-    background-color: var(--_iui-expandable-block-background-color);
-    border: var(--_iui-expandable-block-border);
-    border-radius: inherit;
-    border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
-    border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
-    transition: background-color var(--iui-duration-1) ease-out;
-    @media (forced-colors: active) {
-      --_iui-expandable-block-expander-icon-fill: CanvasText;
-    }
-
-    &:where(:hover) {
-      --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-hover);
-      --_iui-expandable-block-header-caption-color: var(--iui-color-text-hover);
-      --_iui-expandable-block-header-label-color: var(--iui-color-text-hover);
-
-      background-color: var(--_iui-expandable-block-header-background-color-hover);
-
-      @media (forced-colors: active) {
-        --_iui-expandable-block-expander-icon-fill: Highlight;
-        --_iui-expandable-block-header-caption-color: Highlight;
-        --_iui-expandable-block-header-label-color: Highlight;
-        border-color: Highlight;
-      }
-    }
-
-    &[disabled],
-    &:disabled,
-    &[aria-disabled='true'] {
-      --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-disabled);
-      --_iui-expandable-block-header-caption-color: var(--iui-color-text-disabled);
-      --_iui-expandable-block-header-label-color: var(--iui-color-text-disabled);
-
-      cursor: not-allowed;
-      background-color: var(--_iui-expandable-block-header-background-color-disabled);
-      border-color: var(--iui-color-border-disabled);
-
-      @media (forced-colors: active) {
-        --_iui-expandable-block-expander-icon-fill: GrayText;
-        --_iui-expandable-block-header-caption-color: GrayText;
-        --_iui-expandable-block-header-label-color: GrayText;
-        border-color: GrayText;
-      }
-    }
-
-    .iui-expandable-block-icon {
-      @include mixins.iui-icon-style('m');
-      width: var(--_iui-expandable-block-expander-icon-size);
-      height: var(--_iui-expandable-block-expander-icon-size);
-      fill: var(--_iui-expandable-block-expander-icon-fill);
-      transform: var(--_iui-expandable-block-expander-icon-transform);
-      transition: fill var(--iui-duration-1) ease-out;
-      @media (prefers-reduced-motion: no-preference) {
-        transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
-      }
-    }
-  }
-
-  .iui-expandable-content {
-    background-color: var(--_iui-expandable-block-background-color);
-    border-right: var(--_iui-expandable-block-border);
-    border-left: var(--_iui-expandable-block-border);
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-
-    display: grid;
-    grid-template-rows: 0fr;
-    overflow: hidden;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: grid-template-rows var(--iui-duration-1), visibility var(--iui-duration-1),
-        transform var(--iui-duration-1);
-      transition-timing-function: ease-out;
-    }
-
-    > div {
-      min-height: 0;
-      visibility: hidden;
-      padding-inline: var(--_iui-expandable-block-content-padding);
-      @media (prefers-reduced-motion: no-preference) {
-        transition: visibility var(--iui-duration-1) ease-out;
-      }
-      align-self: end;
-    }
-  }
-
   &[data-iui-expanded='true'] .iui-expandable-content {
     grid-template-rows: 1fr;
 
@@ -167,6 +67,79 @@
   }
 }
 
+.iui-expandable-header {
+  @include mixins.iui-reset;
+  @include mixins.iui-focus(
+    $offset: var(--_iui-expandable-block-header-focus-offset),
+    $thickness: var(--_iui-expandable-block-header-focus-thickness)
+  );
+  display: flex;
+  gap: var(--_iui-expandable-block-header-gap);
+  align-items: center;
+  padding: var(--_iui-expandable-block-header-padding);
+  cursor: pointer;
+  user-select: none;
+  color: var(--iui-color-text);
+  font-family: inherit;
+  text-align: left;
+  z-index: 1;
+  background-color: var(--_iui-expandable-block-background-color);
+  border: var(--_iui-expandable-block-border);
+  border-radius: inherit;
+  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  transition: background-color var(--iui-duration-1) ease-out;
+  @media (forced-colors: active) {
+    --_iui-expandable-block-expander-icon-fill: CanvasText;
+  }
+
+  &:where(:hover) {
+    --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-hover);
+    --_iui-expandable-block-header-caption-color: var(--iui-color-text-hover);
+    --_iui-expandable-block-header-label-color: var(--iui-color-text-hover);
+
+    background-color: var(--_iui-expandable-block-header-background-color-hover);
+
+    @media (forced-colors: active) {
+      --_iui-expandable-block-expander-icon-fill: Highlight;
+      --_iui-expandable-block-header-caption-color: Highlight;
+      --_iui-expandable-block-header-label-color: Highlight;
+      border-color: Highlight;
+    }
+  }
+
+  &[disabled],
+  &:disabled,
+  &[aria-disabled='true'] {
+    --_iui-expandable-block-expander-icon-fill: var(--iui-color-icon-disabled);
+    --_iui-expandable-block-header-caption-color: var(--iui-color-text-disabled);
+    --_iui-expandable-block-header-label-color: var(--iui-color-text-disabled);
+
+    cursor: not-allowed;
+    background-color: var(--_iui-expandable-block-header-background-color-disabled);
+    border-color: var(--iui-color-border-disabled);
+
+    @media (forced-colors: active) {
+      --_iui-expandable-block-expander-icon-fill: GrayText;
+      --_iui-expandable-block-header-caption-color: GrayText;
+      --_iui-expandable-block-header-label-color: GrayText;
+      border-color: GrayText;
+    }
+  }
+
+  .iui-expandable-block-icon {
+    @include mixins.iui-icon-style('m');
+    width: var(--_iui-expandable-block-expander-icon-size);
+    height: var(--_iui-expandable-block-expander-icon-size);
+    fill: var(--_iui-expandable-block-expander-icon-fill);
+    transform: var(--_iui-expandable-block-expander-icon-transform);
+    transition: fill var(--iui-duration-1) ease-out;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
+    }
+  }
+}
+
 .iui-expandable-block-label {
   display: flex;
   flex-direction: column;
@@ -195,5 +168,32 @@
     }
     font-size: var(--iui-font-size-0);
     color: var(--_iui-expandable-block-header-caption-color, var(--iui-color-text-muted));
+  }
+}
+
+.iui-expandable-content {
+  background-color: var(--_iui-expandable-block-background-color);
+  border-right: var(--_iui-expandable-block-border);
+  border-left: var(--_iui-expandable-block-border);
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+
+  display: grid;
+  grid-template-rows: 0fr;
+  overflow: hidden;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: grid-template-rows var(--iui-duration-1), visibility var(--iui-duration-1),
+      transform var(--iui-duration-1);
+    transition-timing-function: ease-out;
+  }
+
+  > div {
+    min-height: 0;
+    visibility: hidden;
+    padding-inline: var(--_iui-expandable-block-content-padding);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility var(--iui-duration-1) ease-out;
+    }
+    align-self: end;
   }
 }
