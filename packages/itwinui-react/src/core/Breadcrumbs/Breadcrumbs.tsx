@@ -189,7 +189,7 @@ const ListItem = ({
   return (
     <Box as='li' className={'iui-breadcrumbs-item'}>
       {React.isValidElement(item)
-        ? React.cloneElement(item, {
+        ? React.cloneElement(item as JSX.Element, {
             'aria-current':
               item.props['aria-current'] ?? isActive ? 'location' : undefined,
           })
