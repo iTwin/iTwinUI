@@ -155,6 +155,16 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
     }
   }, [focusedIndex]);
 
+  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
+  useIsomorphicLayoutEffect(() => {
+    setHasSublabel(
+      type !== 'pill' && // pill tabs should never have sublabels
+        !!tablistRef.current?.querySelector(
+          `.${styles['iui-tab-description']}`, // check directly for the sublabel class
+        ),
+    );
+  }, [type]);
+
   const onTabClick = React.useCallback(
     (index: number) => {
       if (onTabSelected) {
@@ -240,7 +250,7 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
           'iui-green': color === 'green',
           'iui-animated': type !== 'default' && isClient,
           'iui-not-animated': type !== 'default' && !isClient,
-          // 'iui-large': hasSublabel,
+          'iui-large': hasSublabel,
         },
         className,
       )}
@@ -435,7 +445,7 @@ export const NewTabs = Object.assign(NewTabsComponent, {
   /**
    * 	TransferList toolbar subcomponent
    */
-  Description: NewTabsTabDescription,
+  TabDescription: NewTabsTabDescription,
   /**
    * 	TransferList toolbar subcomponent
    */
