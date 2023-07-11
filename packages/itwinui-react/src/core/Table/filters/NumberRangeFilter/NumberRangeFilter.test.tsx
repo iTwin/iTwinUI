@@ -26,17 +26,15 @@ const renderComponent = (
 it('should render correctly', () => {
   const { container } = renderComponent();
 
-  const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label',
-  );
+  const labeledInputs = container.querySelectorAll('.iui-input-grid');
   expect(labeledInputs.length).toBe(2);
 
-  expect(labeledInputs[0].querySelector('.iui-label')?.textContent).toEqual(
-    'From',
-  );
-  expect(labeledInputs[1].querySelector('.iui-label')?.textContent).toEqual(
-    'To',
-  );
+  expect(
+    labeledInputs[0].querySelector('.iui-input-label')?.textContent,
+  ).toEqual('From');
+  expect(
+    labeledInputs[1].querySelector('.iui-input-label')?.textContent,
+  ).toEqual('To');
 
   screen.getByText('Filter');
   screen.getByText('Clear');
@@ -51,7 +49,7 @@ it('should render correctly with set filter value', () => {
   });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -64,7 +62,7 @@ it('should set filter when both values entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -81,7 +79,7 @@ it('should set filter when only From is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -97,7 +95,7 @@ it('should set filter when only To is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -113,7 +111,7 @@ it('should set filter when both values entered and Enter is pressed', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -133,7 +131,7 @@ it('should set filter with empty values when invalid number is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-grid input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 

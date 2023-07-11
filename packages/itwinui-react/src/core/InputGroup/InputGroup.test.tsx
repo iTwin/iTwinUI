@@ -67,7 +67,7 @@ it('should render message', () => {
   expect(container.querySelector('.iui-input-container')).toBeTruthy();
   getByText('some label');
   const message = container.querySelector(
-    '.iui-message > .my-message',
+    '.iui-status-message-content > .my-message',
   ) as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
