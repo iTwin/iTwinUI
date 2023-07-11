@@ -1949,10 +1949,10 @@
   resolved "https://registry.npmjs.org/@itwin/itwinui-icons-react/-/itwinui-icons-react-2.1.0.tgz"
   integrity sha512-WQQNxyGWNwSGRF4AKtGfHNSKFoXJdvBAx+rvVD456BoNAAMj4QgvQqg+clvL/AhZ2Ec2g7JdYJtsSiWlZNSEZg==
 
-"@itwin/itwinui-illustrations-react@^2.0.0":
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-2.0.1.tgz"
-  integrity sha512-uUrr/O3hpL8r0ZSSRExZ68RTxLbR7mlZFytpCLa9qwJqxvdWgTJaZhR3rSOad6HBfqk6KOGlOGz569BuWrD9Lw==
+"@itwin/itwinui-illustrations-react@^2.1.0-dev.0":
+  version "2.1.0-dev.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-illustrations-react/-/itwinui-illustrations-react-2.1.0-dev.0.tgz#452929639ddfb600ff52cf8297a6b8937db1d62a"
+  integrity sha512-mscerFaBX5rnCH6yt9dZMzT3HTxuUnFebbaCVPaTggVGlF4RT9DgGVsX0LCjArjPi3NXHhwwMJrETdtpHx6evg==
 
 "@jest/console@^29.5.0":
   version "29.5.0"
