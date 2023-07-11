@@ -12,11 +12,11 @@
   @include mixins.iui-reset;
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  height: var(--_iui-header-height);
+  inline-size: 100%;
+  block-size: var(--_iui-header-height);
   user-select: none;
   background-color: var(--iui-color-background);
-  border-bottom: 2px solid var(--iui-color-border);
+  border-block-end: 2px solid var(--iui-color-border);
   color: var(--iui-color-text);
   padding: env(safe-area-inset-top) env(safe-area-inset-right) 0 env(safe-area-inset-left); // iPhone notch support
   @media (prefers-reduced-motion: no-preference) {
@@ -39,12 +39,12 @@
 
 .iui-page-header-right {
   .iui-button {
-    height: 100%;
+    block-size: 100%;
     border-radius: 0;
     flex-shrink: 0;
     @media (forced-colors: active) {
-      border-top-width: 0;
-      border-bottom-width: 0;
+      border-block-start-width: 0;
+      border-block-end-width: 0;
     }
 
     &:hover {
@@ -64,8 +64,8 @@
 }
 
 .iui-page-header-divider {
-  height: calc(var(--iui-size-s) * 2);
-  border-left: 2px solid var(--iui-color-border);
+  block-size: calc(var(--iui-size-s) * 2);
+  border-inline-start: 2px solid var(--iui-color-border);
   @media (forced-colors: active) {
     display: none;
   }
@@ -96,8 +96,8 @@
 .iui-header-breadcrumbs-list {
   overflow: hidden;
   box-sizing: content-box;
-  margin-bottom: calc(0px - var(--iui-size-2xs));
-  padding-bottom: var(--iui-size-2xs);
+  margin-block-end: calc(0px - var(--iui-size-2xs));
+  padding-block-end: var(--iui-size-2xs);
 }
 
 .iui-header-breadcrumb-button {

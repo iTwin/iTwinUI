@@ -4,18 +4,18 @@
 
 @mixin iui-progress-indicator-linear($height: var(--iui-size-2xs)) {
   @include mixins.iui-reset;
-  text-align: left;
+  text-align: start;
   display: block;
 
   > .iui-track {
-    width: 100%;
-    height: $height;
+    inline-size: 100%;
+    block-size: $height;
     overflow: hidden;
     background-color: var(--iui-color-border);
 
     > .iui-fill {
       display: inline-block;
-      height: 100%;
+      block-size: 100%;
       vertical-align: top;
       background-color: var(--iui-color-border-accent);
     }
@@ -23,9 +23,9 @@
 
   > .iui-label {
     align-items: center;
-    width: 100%;
+    inline-size: 100%;
     overflow: hidden;
-    margin-top: var(--iui-size-2xs);
+    margin-block-start: var(--iui-size-2xs);
     display: flex;
     font-size: var(--iui-font-size-0);
     justify-content: space-between;
@@ -64,7 +64,7 @@
 
   &.iui-negative {
     > .iui-track > * {
-      width: 100%;
+      inline-size: 100%;
       background-color: var(--iui-color-border-negative);
     }
 
@@ -100,6 +100,6 @@
       transform: translateX(100%) scaleX(0.5);
     }
   }
-  width: 100%;
+  inline-size: 100%;
   animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
 }

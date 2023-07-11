@@ -13,7 +13,7 @@ $surface-padding: var(--iui-size-2xs);
   flex-shrink: 0;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--iui-surface-border-color);
+  border-block-end: 1px solid var(--iui-surface-border-color);
   padding: $surface-padding;
   scrollbar-gutter: stable both-edges;
 }
