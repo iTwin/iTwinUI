@@ -73,7 +73,9 @@
           id="test-default-singular"
           required
         />
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message">
@@ -82,7 +84,9 @@
           value="A value"
           class="iui-input"
         />
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message">
@@ -92,7 +96,9 @@
           value="A read-only value"
           class="iui-input"
         />
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
@@ -102,7 +108,9 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
@@ -112,7 +120,9 @@
           value="A value"
           class="iui-input"
         />
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label
@@ -125,12 +135,17 @@
           class="iui-input"
           id="test-status-singular"
         />
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
-        <div class="iui-message">
-          Positive message.
+        <div
+          class="iui-status-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-success
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-success>
+          </div>
+          <div class="iui-status-message-content">Positive message.</div>
         </div>
       </label>
 
@@ -140,12 +155,17 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
-        <div class="iui-message">
-          Warning message.
+        <div
+          class="iui-status-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-warning
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-warning>
+          </div>
+          <div class="iui-status-message-content">Warning message.</div>
         </div>
       </label>
 
@@ -155,12 +175,17 @@
           placeholder="Placeholder…"
           class="iui-input"
         />
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
-        <div class="iui-message">
-          Negative message.
+        <div
+          class="iui-status-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-error
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-error>
+          </div>
+          <div class="iui-status-message-content">Negative message.</div>
         </div>
       </label>
 
@@ -276,8 +301,8 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-info-circular>
-        <div class="iui-message">
-          Block layout with inline icon.
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Block layout with inline icon.</div>
         </div>
       </label>
 
@@ -291,8 +316,8 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-info-circular>
-        <div class="iui-message">
-          Inline label and icon with message below.
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Inline label and icon with message below.</div>
         </div>
       </label>
 
@@ -306,8 +331,8 @@
           class="iui-input-icon"
           aria-hidden="true"
         ></svg-info-circular>
-        <div class="iui-message">
-          Inline label with icon and message below.
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Inline label with icon and message below.</div>
         </div>
       </label>
     </section>

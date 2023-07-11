@@ -85,7 +85,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message">
@@ -100,7 +102,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
       <label class="iui-input-container iui-with-message">
         <div class="iui-label">ComboBox multiselect label</div>
@@ -130,7 +134,9 @@
             <multi-select-tag value="+5 more"></multi-select-tag>
           </div>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
       <label class="iui-input-container iui-with-message iui-disabled">
         <div class="iui-label">Disabled ComboBox label</div>
@@ -145,7 +151,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message">
@@ -162,7 +170,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message">
@@ -187,7 +197,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
@@ -201,7 +213,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-disabled">
@@ -219,7 +233,9 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class="iui-status-message-content">Help message.</div>
+        </div>
       </label>
 
       <label class="iui-input-container iui-with-message iui-positive">
@@ -236,12 +252,17 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
-        <div class="iui-message">
-          Positive message.
+        <div
+          class="iui-status-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-success
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-success>
+          </div>
+          <div class="iui-status-message-content">Positive message.</div>
         </div>
       </label>
 
@@ -259,12 +280,17 @@
             aria-hidden="true"
           ></svg-caret-down-small>
         </div>
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
-        <div class="iui-message">
-          Warning message.
+        <div
+          class="iui-status-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-warning
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-warning>
+          </div>
+          <div class="iui-status-message-content">Warning message.</div>
         </div>
       </label>
 
@@ -283,12 +309,17 @@
           >
           </svg-caret-down-small>
         </div>
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
-        <div class="iui-message">
-          Negative message.
+        <div
+          class="iui-status-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-status-message-icon">
+            <svg-status-error
+              class="iui-input-icon"
+              aria-hidden="true"
+            ></svg-status-error>
+          </div>
+          <div class="iui-status-message-content">Negative message.</div>
         </div>
       </label>
 
