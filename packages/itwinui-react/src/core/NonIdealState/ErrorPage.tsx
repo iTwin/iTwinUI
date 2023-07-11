@@ -6,36 +6,41 @@ import * as React from 'react';
 import { Button } from '../Buttons/Button/index.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial/index.js';
+import { dynamicImport } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-const Svg401 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/401.js'),
+const Svg401 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/401.js'),
 );
-const Svg403 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/403.js'),
+const Svg403 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/403.js'),
 );
-const Svg404 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/404.js'),
+const Svg404 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/404.js'),
 );
-const Svg500 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/500.js'),
+const Svg500 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/500.js'),
 );
-const Svg502 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/502.js'),
+const Svg502 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/502.js'),
 );
-const Svg503 = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/503.js'),
+const Svg503 = React.lazy(() =>
+  dynamicImport('@itwin/itwinui-illustrations-react/esm/illustrations/503.js'),
 );
-const SvgError = React.lazy(
-  () => import('@itwin/itwinui-illustrations-react/esm/illustrations/Error.js'),
+const SvgError = React.lazy(() =>
+  dynamicImport(
+    '@itwin/itwinui-illustrations-react/esm/illustrations/Error.js',
+  ),
 );
-const SvgRedirect = React.lazy(
-  () =>
-    import('@itwin/itwinui-illustrations-react/esm/illustrations/Redirect.js'),
+const SvgRedirect = React.lazy(() =>
+  dynamicImport(
+    '@itwin/itwinui-illustrations-react/esm/illustrations/Redirect.js',
+  ),
 );
-const SvgTimedOut = React.lazy(
-  () =>
-    import('@itwin/itwinui-illustrations-react/esm/illustrations/TimedOut.js'),
+const SvgTimedOut = React.lazy(() =>
+  dynamicImport(
+    '@itwin/itwinui-illustrations-react/esm/illustrations/TimedOut.js',
+  ),
 );
 
 /** @deprecated Use `NonIdealState` instead. */
