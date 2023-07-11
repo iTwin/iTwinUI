@@ -1,6 +1,6 @@
 ---
-'@itwin/itwinui-react': minor
-'@itwin/itwinui-css': minor
+'@itwin/itwinui-react': patch
+'@itwin/itwinui-css': patch
 ---
 
-Expandable block animation now uses pure css for transitioning and `WithCSSTransition` has been removed.
+Expandable block animation now uses pure css instead of javascript for transitioning.
