@@ -125,8 +125,6 @@
 
 /// @arg $type Can be one of: expander, status
 @mixin iui-expandable-block-header-icons($type) {
-  @include mixins.iui-icon-style('m');
-
   @if $type == 'expander' {
     width: var(--_iui-expandable-block-expander-icon-size);
     height: var(--_iui-expandable-block-expander-icon-size);

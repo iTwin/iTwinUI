@@ -166,15 +166,16 @@ ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
 const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
   const { className, children, ...rest } = props;
   return (
-    <Box
+    <Icon
       className={cx('iui-expandable-block-icon', className)}
+      size='medium'
       ref={forwardedRef}
       {...rest}
     >
       {children ?? <SvgChevronRight aria-hidden />}
-    </Box>
+    </Icon>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'span'>;
 ExpandableBlockExpandIcon.displayName = 'ExpandableBlock.ExpandIcon';
 
 // ----------------------------------------------------------------------------
