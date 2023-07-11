@@ -126,17 +126,17 @@
       border-color: GrayText;
     }
   }
+}
 
-  .iui-expandable-block-icon {
-    @include mixins.iui-icon-style('m');
-    width: var(--_iui-expandable-block-expander-icon-size);
-    height: var(--_iui-expandable-block-expander-icon-size);
-    fill: var(--_iui-expandable-block-expander-icon-fill);
-    transform: var(--_iui-expandable-block-expander-icon-transform);
-    transition: fill var(--iui-duration-1) ease-out;
-    @media (prefers-reduced-motion: no-preference) {
-      transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
-    }
+.iui-expandable-block-icon {
+  @include mixins.iui-icon-style('m');
+  width: var(--_iui-expandable-block-expander-icon-size);
+  height: var(--_iui-expandable-block-expander-icon-size);
+  fill: var(--_iui-expandable-block-expander-icon-fill);
+  transform: var(--_iui-expandable-block-expander-icon-transform);
+  transition: fill var(--iui-duration-1) ease-out;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
   }
 }
 
@@ -147,28 +147,28 @@
   min-width: 0;
   font-size: var(--iui-font-size-2);
   color: var(--_iui-expandable-block-header-label-color, inherit);
+}
 
-  .iui-expandable-block-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: color var(--iui-duration-1) ease;
-    @media (forced-colors: active) {
-      transition: none;
-    }
+.iui-expandable-block-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--iui-duration-1) ease;
+  @media (forced-colors: active) {
+    transition: none;
   }
+}
 
-  .iui-expandable-block-caption {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    transition: color var(--iui-duration-1) ease;
-    @media (forced-colors: active) {
-      transition: none;
-    }
-    font-size: var(--iui-font-size-0);
-    color: var(--_iui-expandable-block-header-caption-color, var(--iui-color-text-muted));
+.iui-expandable-block-caption {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color var(--iui-duration-1) ease;
+  @media (forced-colors: active) {
+    transition: none;
   }
+  font-size: var(--iui-font-size-0);
+  color: var(--_iui-expandable-block-header-caption-color, var(--iui-color-text-muted));
 }
 
 .iui-expandable-content {
