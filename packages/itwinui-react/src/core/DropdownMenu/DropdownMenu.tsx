@@ -16,7 +16,7 @@ export type DropdownMenuProps = {
    * List of menu items. Recommended to use MenuItem component.
    * You can pass function that takes argument `close` that closes the dropdown menu.
    */
-  menuItems: (close: () => void) => JSX.Element[];
+  menuItems: (close: () => void) => JSX.Element[] | JSX.Element[];
   /**
    * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
    * @default 'menu'
@@ -95,7 +95,10 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     <Popover
       content={
         <Menu className={className} style={style} role={role} id={id}>
-          {React.useMemo(() => menuItems(close), [menuItems, close])}
+          {typeof menuItems === 'function'
+            ? // eslint-disable-next-line react-hooks/rules-of-hooks
+              React.useMemo(() => menuItems(close), [menuItems, close])
+            : menuItems}
         </Menu>
       }
       visible={trigger === undefined ? isVisible : undefined}
