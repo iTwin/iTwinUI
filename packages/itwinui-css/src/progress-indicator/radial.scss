@@ -10,8 +10,8 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: var(--_iui-progress-indicator-radial-size);
-  height: var(--_iui-progress-indicator-radial-size);
+  inline-size: var(--_iui-progress-indicator-radial-size);
+  block-size: var(--_iui-progress-indicator-radial-size);
   border-radius: var(--iui-border-radius-round);
   font-size: var(--iui-font-size-0);
   flex-shrink: 0;

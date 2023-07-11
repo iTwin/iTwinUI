@@ -42,7 +42,7 @@ export const Fieldset = React.forwardRef((props, ref) => {
       {disabled
         ? React.Children.map(children, (child) =>
             React.isValidElement(child)
-              ? React.cloneElement(child, { disabled: true })
+              ? React.cloneElement(child as JSX.Element, { disabled: true })
               : child,
           )
         : children}
