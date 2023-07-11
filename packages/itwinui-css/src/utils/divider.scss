@@ -15,11 +15,11 @@
   }
 
   &:not([aria-orientation='vertical']) {
-    height: 1px;
+    block-size: 1px;
   }
 
   &[aria-orientation='vertical'] {
-    width: 1px;
-    min-height: 100%;
+    inline-size: 1px;
+    min-block-size: 100%;
   }
 }

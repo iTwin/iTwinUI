@@ -19,8 +19,8 @@ $default-fill: var(--iui-color-icon-muted);
 
   &,
   svg {
-    width: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
-    height: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
+    inline-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
+    block-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
     fill: var(--iui-svg-fill, var(--_iui-svg-fill, #{$default-fill}));
   }
 

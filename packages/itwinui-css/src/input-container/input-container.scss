@@ -55,8 +55,8 @@
   border-radius: var(--iui-border-radius-1);
   color: var(--_iui-input-text-color);
   position: relative;
-  min-height: var(--_iui-input-min-height);
-  width: 100%;
+  block-size: var(--_iui-input-min-height);
+  inline-size: 100%;
   isolation: isolate;
 
   // Adding before pseudo-element to make inner elements more centered
@@ -100,7 +100,7 @@
   textarea {
     all: unset;
     z-index: 2;
-    min-width: var(--_iui-input-min-height);
+    min-inline-size: var(--_iui-input-min-height);
     flex: 999;
     padding-inline-start: var(--iui-size-s);
 
@@ -136,8 +136,8 @@
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
 
       &::before {
-        border-bottom-width: var(--iui-size-3xs);
-        border-bottom-color: var(--_iui-input-accent-border-color);
+        border-block-end-width: var(--iui-size-3xs);
+        border-block-end-color: var(--_iui-input-accent-border-color);
       }
 
       &:hover {
@@ -152,8 +152,8 @@
 
   &.iui-actionable {
     align-items: center;
-    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
-    margin-right: 2px; // shift 2px from the right to avoid overlapping with border/outline
+    block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-inline-end: 2px; // shift 2px from the right to avoid overlapping with border/outline
     border-radius: var(--iui-border-radius-1);
     padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
@@ -187,7 +187,7 @@
       margin: 0 var(--iui-size-m) 0 0;
 
       &.iui-required {
-        margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
+        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
       }
     }
   }
@@ -202,21 +202,21 @@
 .iui-select-button.iui-input-status {
   @each $statusColor in informational, positive, warning, negative {
     &:where([data-iui-status='#{$statusColor}']) {
-      padding-bottom: calc(var(--iui-size-2xs) - 1px);
+      padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
       &[data-iui-size='small'] {
-        padding-bottom: 0;
+        padding-block-end: 0;
       }
 
       &[data-iui-size='large'] {
-        padding-bottom: calc(var(--iui-size-xs) - 1px);
+        padding-block-end: calc(var(--iui-size-xs) - 1px);
       }
       // #endregion
 
-      border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+      border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
 
       &:focus {
-        border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
         outline: 2px solid var(--iui-color-text-#{$statusColor});
         outline-offset: -2px;
       }
