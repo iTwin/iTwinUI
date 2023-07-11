@@ -118,11 +118,14 @@
     "vite": "^4.3.8"
   },
   "peerDependencies": {
+    "@itwin/itwinui-illustrations-react": "^2.0.0",
     "react": ">=16.8.6 < 19.0.0",
     "react-dom": ">=16.8.6 < 19.0.0"
   },
-  "optionalDependencies": {
-    "@itwin/itwinui-illustrations-react": "^2.0.0"
+  "peerDependenciesMeta": {
+    "@itwin/itwinui-illustrations-react": {
+      "optional": true
+    }
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
