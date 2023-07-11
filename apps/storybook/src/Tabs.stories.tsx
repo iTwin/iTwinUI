@@ -462,3 +462,32 @@ export const NewDefaultTabs: Story<Partial<TabsProps>> = (args) => {
   );
 };
 NewDefaultTabs.args = {};
+
+export const NewBorderlessTabs: Story<Partial<TabsProps>> = (args) => {
+  return (
+    <NewTabs type='borderless' {...args}>
+      <NewTabs.TabList>
+        <NewTabs.Tab>Tab 1</NewTabs.Tab>
+
+        <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+        <NewTabs.Tab>Tab 3</NewTabs.Tab>
+      </NewTabs.TabList>
+
+      <NewTabs.Actions>
+        <NewTabs.Action>
+          <Button key={'Normal'}>Normal size button</Button>,
+        </NewTabs.Action>
+      </NewTabs.Actions>
+
+      <NewTabs.Panels>
+        <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+
+        <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
+
+        <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+      </NewTabs.Panels>
+    </NewTabs>
+  );
+};
+NewBorderlessTabs.args = {};

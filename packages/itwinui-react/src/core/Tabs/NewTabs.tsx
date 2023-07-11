@@ -12,6 +12,7 @@ import {
   getBoundedValue,
   useIsomorphicLayoutEffect,
   useMergedRefs,
+  useContainerWidth,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
@@ -75,11 +76,37 @@ const NewTabsComponent = React.forwardRef((props, ref) => {
   } = props;
 
   const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
+  const tabWrapperRef = React.useRef<HTMLDivElement>(null);
+  const [tabsWidth] = useContainerWidth(type !== 'default');
+  const refs = useMergedRefs(tabWrapperRef, ref);
+
+  // CSS custom properties to place the active stripe
+  const [stripeProperties, setStripeProperties] = React.useState({});
+  useIsomorphicLayoutEffect(() => {
+    if (type !== 'default' && tabWrapperRef.current != undefined) {
+      const activeTab = tabWrapperRef.current.children[0].children[
+        currentActiveIndex
+      ] as HTMLElement;
+      const activeTabRect = activeTab.getBoundingClientRect();
+
+      setStripeProperties({
+        ...(orientation === 'horizontal' && {
+          '--stripe-width': `${activeTabRect.width}px`,
+          '--stripe-left': `${activeTab.offsetLeft}px`,
+        }),
+        ...(orientation === 'vertical' && {
+          '--stripe-height': `${activeTabRect.height}px`,
+          '--stripe-top': `${activeTab.offsetTop}px`,
+        }),
+      });
+    }
+  }, [currentActiveIndex, type, orientation, tabsWidth]);
 
   return (
     <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
-      ref={ref}
+      style={stripeProperties}
+      ref={refs}
       {...rest}
     >
       <NewTabsContext.Provider
@@ -130,9 +157,6 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
     onTabSelected,
   } = useSafeContext(NewTabsContext);
 
-  if (setCurrentActiveIndex && activeIndex != null) {
-    setCurrentActiveIndex(getBoundedValue(activeIndex, 0, children.length - 1));
-  }
   useIsomorphicLayoutEffect(() => {
     if (
       activeIndex != null &&
