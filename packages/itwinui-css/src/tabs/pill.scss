@@ -23,13 +23,13 @@
   .iui-tab {
     padding: var(--iui-size-2xs);
     background-color: transparent;
-    width: 100%;
+    inline-size: 100%;
     justify-content: center;
     border-radius: var(--iui-border-radius-1);
 
     &::after {
-      bottom: 0;
-      left: 0;
+      inset-block-end: 0;
+      inset-inline-start: 0;
     }
 
     &:hover {

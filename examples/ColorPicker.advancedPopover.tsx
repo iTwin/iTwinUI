@@ -24,7 +24,7 @@ export default () => {
 
   const formats = ['hsl', 'rgb', 'hex'] as const;
   const [currentFormat, setCurrentFormat] = React.useState<
-    typeof formats[number]
+    (typeof formats)[number]
   >(formats[0]);
 
   const onColorChanged = (color: ColorValue) => {

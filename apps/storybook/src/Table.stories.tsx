@@ -2877,7 +2877,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -2889,7 +2889,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2910,7 +2910,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3318,7 +3318,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -3336,7 +3336,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3454,16 +3454,16 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const isCheckboxDisabled = useCallback((rowData: typeof data[number]) => {
+  const isCheckboxDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name1';
   }, []);
-  const isExpanderDisabled = useCallback((rowData: typeof data[number]) => {
+  const isExpanderDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name2';
   }, []);
-  const isCellDisabled = useCallback((rowData: typeof data[number]) => {
+  const isCellDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name3';
   }, []);
-  const isRowDisabled = useCallback((rowData: typeof data[number]) => {
+  const isRowDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name4';
   }, []);
 
@@ -3480,7 +3480,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
       }),
@@ -3865,7 +3865,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
   }, []);
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -3878,7 +3878,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 150,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -3900,7 +3900,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{props.value} day(s)</>;
         },
       },

@@ -11,10 +11,10 @@
   padding: var(--iui-size-s) var(--iui-size-m);
   margin: var(--iui-size-s) 0;
   text-align: justify;
-  border-left: var(--iui-size-xs) solid var(--iui-color-border);
+  border-inline-start: var(--iui-size-xs) solid var(--iui-color-border);
 
   > footer {
-    text-align: right;
+    text-align: end;
     color: var(--iui-color-text-muted);
 
     > cite {

@@ -623,7 +623,7 @@ export const Table = <
       }
       return result;
     },
-    {} as Record<string, string>,
+    {} as Record<string, unknown>,
   );
 
   const areFiltersSet =

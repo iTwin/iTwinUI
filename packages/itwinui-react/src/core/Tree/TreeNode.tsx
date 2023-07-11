@@ -240,7 +240,7 @@ export const TreeNode = (props: TreeNodeProps) => {
           {checkbox && (
             <Box className='iui-tree-node-checkbox'>
               {React.isValidElement(checkbox)
-                ? React.cloneElement(checkbox, {
+                ? React.cloneElement(checkbox as JSX.Element, {
                     tabIndex: isFocused ? 0 : -1,
                   })
                 : checkbox}

@@ -54,8 +54,8 @@
   border-radius: var(--iui-border-radius-1);
   color: var(--_iui-input-text-color);
   position: relative;
-  height: var(--_iui-input-min-height);
-  width: 100%;
+  block-size: var(--_iui-input-min-height);
+  inline-size: 100%;
   isolation: isolate;
 
   // Adding before pseudo-element to make inner elements more centered
@@ -97,7 +97,7 @@
   input {
     all: unset;
     z-index: 2;
-    min-width: var(--_iui-input-min-height);
+    min-inline-size: var(--_iui-input-min-height);
     flex: 999;
     padding-inline-start: var(--iui-size-s);
 
@@ -129,8 +129,8 @@
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
 
       &::before {
-        border-bottom-width: var(--iui-size-3xs);
-        border-bottom-color: var(--_iui-input-accent-border-color);
+        border-block-end-width: var(--iui-size-3xs);
+        border-block-end-color: var(--_iui-input-accent-border-color);
       }
 
       &:hover {

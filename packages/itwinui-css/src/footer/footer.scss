@@ -7,7 +7,7 @@
   @include mixins.iui-reset;
 
   text-align: center;
-  width: 100%;
+  inline-size: 100%;
   padding: var(--iui-size-s) 0;
   font-size: var(--iui-font-size-0);
 }
@@ -42,8 +42,8 @@
 
 .iui-legal-footer-separator {
   margin: 0 var(--iui-size-xs);
-  width: 1px;
-  height: var(--iui-size-s);
+  inline-size: 1px;
+  block-size: var(--iui-size-s);
   background-color: var(--iui-color-border);
 }
 

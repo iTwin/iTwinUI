@@ -28,12 +28,12 @@ export const useResizeObserver = <T extends HTMLElement>(
         return;
       }
 
-      resizeObserver.current?.disconnect();
+      resizeObserver.current?.disconnect?.();
       if (element) {
         resizeObserver.current = new ResizeObserver(([{ contentRect }]) =>
           onResize(contentRect),
         );
-        resizeObserver.current?.observe(element);
+        resizeObserver.current?.observe?.(element);
       }
     },
     [onResize],
