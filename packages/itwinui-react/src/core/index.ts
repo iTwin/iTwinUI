@@ -75,7 +75,7 @@ export { List, ListItem } from './List/index.js';
 
 export { TransferList } from './TransferList/index.js';
 
-export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
+export { Tabs, Tab } from './Tabs/index.js';
 
 export {
   InformationPanel,
@@ -108,6 +108,8 @@ export {
 export { Modal, ModalButtonBar, ModalContent } from './Modal/index.js';
 
 export { NotificationMarker } from './NotificationMarker/index.js';
+
+export { Overlay } from './Overlay/index.js';
 
 export { ProgressLinear, ProgressRadial } from './ProgressIndicators/index.js';
 

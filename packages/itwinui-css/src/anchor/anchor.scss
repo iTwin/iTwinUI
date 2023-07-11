@@ -11,9 +11,9 @@
     &::after {
       content: '';
       display: inline-block;
-      width: 1.5ch;
-      height: 1.5ch;
-      margin-left: 0.5ch;
+      inline-size: 1.5ch;
+      block-size: 1.5ch;
+      margin-inline-start: 0.5ch;
       vertical-align: -0.1ch;
       background-color: currentColor;
       mask: var(--_iui-anchor-external-svg);

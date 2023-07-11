@@ -25,7 +25,7 @@
   @include surface.iui-surface($elevation: none);
   overflow-y: auto;
   overflow-y: overlay;
-  height: calc((var(--iui-component-height) - 1px) * 4.5);
+  block-size: calc((var(--iui-component-height) - 1px) * 4.5);
 }
 
 .iui-transfer-list-toolbar {

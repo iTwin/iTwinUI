@@ -25,21 +25,21 @@ There are two different styles of stepper, depending on the amount of steps requ
 
 ### Short Stepper
 
+In the default "short" stepper, each step is named under a circle.
+
 <LiveExample src='Stepper.short.tsx'>
   <AllExamples.StepperShortExample client:load />
 </LiveExample>
-
-In the default "short" stepper, each step is named under a circle.
 
 Designers should confirm the display is acceptable due to the number of steps and labels at various resolutions. If text wrapping occurs or the stepper's visual quality decreases significantly when the window is re-sized, use the [long stepper](#long-stepper) instead.
 
 ### Long Stepper
 
+In the long stepper, there are no labels underneath the step indicators to save space. Instead, the label for the step currently in progress appears under the diagram along with ‘Step X of X’. This allocates more space for longer step names, as well as allowing more step indicators to be contained within the diagram.
+
 <LiveExample src='Stepper.long.tsx'>
   <AllExamples.StepperLongExample client:load />
 </LiveExample>
-
-In the long stepper, there are no labels underneath the step indicators to save space. Instead, the label for the step currently in progress appears under the diagram along with ‘Step X of X’. This allocates more space for longer step names, as well as allowing more step indicators to be contained within the diagram.
 
 ## Usage
 
@@ -53,25 +53,21 @@ In the long stepper, there are no labels underneath the step indicators to save 
 
 ### Tooltip
 
+Additional (optional) information can be displayed within a [tooltip](tooltip) when hovering over a step indicator.
+
 <LiveExample src='Stepper.tooltip.tsx'>
   <AllExamples.StepperTooltipExample client:load />
 </LiveExample>
 
-Additional (optional) information can be displayed within a [tooltip](tooltip) when hovering over a step indicator.
-
 ### Localization
+
+The ‘Step X of X’ label that appears in the default long stepper can be replaced with a localized string.
 
 <LiveExample src='Stepper.localization.tsx'>
   <AllExamples.StepperLocalizationExample client:load />
 </LiveExample>
 
-The ‘Step X of X’ label that appears in the default long stepper can be replaced with a localized string.
-
 ### Layout
-
-<LiveExample src='Stepper.layout.tsx'>
-  <AllExamples.StepperLayoutExample client:load />
-</LiveExample>
 
 We recommend the following layout:
 
@@ -82,6 +78,10 @@ We recommend the following layout:
 3. **Content**
 
 4. [**Buttons**](button): A [call-to-action button](button#call-to-action) for progress & one or two [default](button#default) buttons for canceling and/or going back one step. If the user has not completed a required task, the call-to-action button may be disabled. If the stepper is in a full screen page, the buttons can be placed within a sticky footer.
+
+<LiveExample src='Stepper.layout.tsx'>
+  <AllExamples.StepperLayoutExample client:load />
+</LiveExample>
 
 ## Props
 

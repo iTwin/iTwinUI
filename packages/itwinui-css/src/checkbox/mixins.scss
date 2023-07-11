@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   font-size: var(--iui-font-size-1);
-  width: fit-content;
+  inline-size: fit-content;
   user-select: none;
   position: relative;
   cursor: pointer;

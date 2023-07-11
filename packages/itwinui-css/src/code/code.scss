@@ -22,15 +22,15 @@
     border-radius: var(--iui-border-radius-1) var(--iui-border-radius-1) 0 0;
     background-color: var(--iui-color-background);
     border: 1px solid var(--iui-color-border);
-    border-bottom: none;
+    border-block-end: none;
 
     > .iui-title {
-      margin-left: var(--iui-size-s);
+      margin-inline-start: var(--iui-size-s);
       user-select: all;
     }
 
     > .iui-button {
-      margin-left: auto;
+      margin-inline-start: auto;
     }
   }
 
@@ -47,7 +47,7 @@
 
     > code {
       display: block;
-      width: 100%;
+      inline-size: 100%;
       white-space: nowrap;
       hyphens: auto;
       counter-increment: section;
@@ -60,10 +60,10 @@
 
       &::before {
         content: counter(section);
-        text-align: right;
+        text-align: end;
         display: inline-block;
         padding: 0 var(--iui-size-xs);
-        width: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
+        inline-size: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
         background-color: var(--iui-color-background-backdrop);
         color: var(--iui-color-text-muted);
       }
