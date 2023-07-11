@@ -46,16 +46,16 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   border-radius: var(--iui-border-radius-1);
 
   &-checkbox {
-    margin-right: var(--iui-size-xs);
+    margin-inline-end: var(--iui-size-xs);
   }
 
   &-content {
     display: flex;
     align-items: center;
-    min-height: calc(var(--iui-size-s) * 3);
-    margin-left: calc(#{$iui-expander-button-width} * (var(--level, 0)));
+    min-block-size: calc(var(--iui-size-s) * 3);
+    margin-inline-start: calc(#{$iui-expander-button-width} * (var(--level, 0)));
     overflow: hidden;
-    padding-left: var(--iui-size-3xs);
+    padding-inline-start: var(--iui-size-3xs);
 
     &-icon {
       margin: 0 $iui-expander-inline-padding;
@@ -70,7 +70,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
       }
 
       &:first-child {
-        margin-left: calc($iui-expander-button-width + $iui-expander-inline-padding);
+        margin-inline-start: calc($iui-expander-button-width + $iui-expander-inline-padding);
       }
     }
 
@@ -85,11 +85,11 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     }
 
     &-label {
-      min-width: 0;
-      padding-left: $iui-expander-inline-padding;
+      min-inline-size: 0;
+      padding-inline-start: $iui-expander-inline-padding;
 
       &:first-child {
-        margin-left: $iui-expander-button-width;
+        margin-inline-start: $iui-expander-button-width;
       }
     }
 

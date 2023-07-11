@@ -40,8 +40,8 @@
   &:where([data-iui-variant='sticky']) {
     border-radius: 0;
     position: sticky;
-    top: 0;
-    left: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
   }
 }
 
@@ -57,7 +57,7 @@
   @include anchor.iui-anchor-underline('on-initial');
   border-radius: var(--iui-border-radius-1);
   cursor: pointer;
-  margin-left: var(--iui-size-xs);
+  margin-inline-start: var(--iui-size-xs);
   user-select: none;
   white-space: nowrap;
 }

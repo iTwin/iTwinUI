@@ -72,8 +72,8 @@
   align-items: center;
   border-radius: var(--iui-border-radius-round);
   display: flex;
-  width: var(--iui-size-l);
-  height: var(--iui-size-l);
+  inline-size: var(--iui-size-l);
+  block-size: var(--iui-size-l);
   justify-content: center;
   overflow-wrap: break-word;
   user-select: none;
@@ -106,12 +106,12 @@
 @mixin iui-stepper-track-content {
   display: flex;
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
 
   &::before,
   &::after {
     content: '';
-    height: var(--iui-size-3xs);
+    block-size: var(--iui-size-3xs);
     flex: 1 2 auto;
   }
 
@@ -138,7 +138,7 @@
 
 @mixin iui-stepper-steps-label-count {
   user-select: none;
-  margin-right: var(--iui-size-xs);
+  margin-inline-end: var(--iui-size-xs);
   color: var(--iui-color-text-muted);
 }
 

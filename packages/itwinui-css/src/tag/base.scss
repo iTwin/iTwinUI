@@ -20,7 +20,7 @@
 
 @mixin iui-tag {
   @include iui-tag-base;
-  height: calc(var(--iui-size-s) * 3);
+  block-size: calc(var(--iui-size-s) * 3);
   margin-block: var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-round);
   padding: 0 var(--iui-size-3xs);
@@ -72,7 +72,7 @@
   }
 
   > *:not(last-child) {
-    margin-right: var(--iui-size-2xs);
+    margin-inline-end: var(--iui-size-2xs);
   }
 
   > .iui-tag-basic:not(:last-child)::after {

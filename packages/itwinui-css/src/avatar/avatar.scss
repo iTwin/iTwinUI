@@ -11,18 +11,18 @@
   position: relative;
   margin: 0;
   user-select: none;
-  width: var(--_iui-avatar-size);
-  height: var(--_iui-avatar-size);
+  inline-size: var(--_iui-avatar-size);
+  block-size: var(--_iui-avatar-size);
   background-color: hsl(72, 51%, 56%);
   border-radius: 50%;
 
   > .iui-stroke {
     display: block;
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     margin: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
@@ -33,10 +33,10 @@
     justify-content: center;
     align-items: center;
     position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     margin: 0;
     border-radius: 50%;
     font-style: normal;
@@ -52,12 +52,12 @@
 
   svg {
     display: inline-flex;
-    width: 50%;
-    height: 50%;
+    inline-size: 50%;
+    block-size: 50%;
     position: absolute;
     fill: var(--iui-color-white);
-    left: 50%;
-    top: 50%;
+    inset-inline-start: 50%;
+    inset-block-start: 50%;
     transform: translate(-50%, -50%);
   }
 
@@ -65,10 +65,10 @@
     display: block;
     position: absolute;
     object-fit: cover;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
+    inset-inline-start: 0;
+    inset-block-start: 0;
+    inline-size: 100%;
+    block-size: 100%;
     border-width: 0;
     border-radius: 50%;
     background-color: var(--iui-color-background);
@@ -80,18 +80,18 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    right: calc(0px - var(--iui-size-3xs));
-    bottom: calc(0px - var(--iui-size-3xs));
-    width: 25%;
-    height: 25%;
+    inset-inline-end: calc(0px - var(--iui-size-3xs));
+    inset-block-end: calc(0px - var(--iui-size-3xs));
+    inline-size: 25%;
+    block-size: 25%;
     border-radius: 50%;
     border: var(--iui-size-3xs) solid var(--iui-color-background);
     background-color: var(--iui-color-border);
 
     &::after {
       content: '';
-      width: var(--_iui-avatar-status-size, var(--iui-size-xs));
-      height: var(--_iui-avatar-status-size, var(--iui-size-xs));
+      inline-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
+      block-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
     }
 
     &.iui-online {
@@ -184,14 +184,14 @@
 
   &.iui-stacked {
     .iui-avatar:not(:first-child) {
-      margin-left: calc(0px - var(--iui-size-2xs));
+      margin-inline-start: calc(0px - var(--iui-size-2xs));
 
       .iui-initials {
         box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
       }
 
       &.iui-small {
-        margin-left: calc(0px - var(--iui-size-3xs));
+        margin-inline-start: calc(0px - var(--iui-size-3xs));
 
         .iui-initials {
           box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
@@ -199,11 +199,11 @@
       }
 
       &.iui-large {
-        margin-left: calc(0px - var(--iui-size-xs));
+        margin-inline-start: calc(0px - var(--iui-size-xs));
       }
 
       &.iui-x-large {
-        margin-left: calc(0px - var(--iui-size-s));
+        margin-inline-start: calc(0px - var(--iui-size-s));
       }
     }
 
