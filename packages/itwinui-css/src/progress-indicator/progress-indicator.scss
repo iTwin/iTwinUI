@@ -171,7 +171,7 @@
   }
 }
 
-.iui-progress-indicator-linear[data-iui-variant='linear'] {
+.iui-progress-indicator:where([data-iui-variant='linear']) {
   inline-size: 100%;
   block-size: var(--iui-size-2xs);
   overflow: hidden;
