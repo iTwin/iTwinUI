@@ -2,7 +2,21 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-@mixin iui-progress-indicator-radial {
+.iui-progress-indicator {
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+
+  &::after {
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+.iui-progress-indicator:where([data-iui-variant='radial']) {
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
   vertical-align: middle;
   justify-content: center;
@@ -93,23 +107,23 @@
       @include mixins.iui-icon-style('l');
     }
   }
-}
 
-@mixin iui-progress-indicator-radial-determinate {
-  &::after {
-    $percentage: var(--iui-progress-percentage, 100%);
-    mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
+  &:where(:not([data-iui-indeterminate])) {
+    &::after {
+      $percentage: var(--iui-progress-percentage, 100%);
+      mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
+    }
   }
-}
 
-@mixin iui-progress-indicator-radial-indeterminate {
-  &::after {
-    mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
-    animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
+  &:where([data-iui-indeterminate]) {
+    &::after {
+      mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
+      animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
 
-    @keyframes rotate-indeterminate {
-      100% {
-        transform: rotate(360deg);
+      @keyframes rotate-indeterminate {
+        100% {
+          transform: rotate(360deg);
+        }
       }
     }
   }
@@ -117,7 +131,7 @@
 
 // ----------------------------------------------------------------------------
 
-@mixin iui-progress-indicator-linear-wrapper {
+.iui-progress-indicator-linear-wrapper {
   display: flex;
   flex-direction: column;
   gap: var(--iui-size-2xs);
@@ -133,7 +147,7 @@
   }
 }
 
-@mixin iui-progress-indicator-linear-wrapper-label {
+.iui-progress-indicator-linear-wrapper-label {
   align-items: center;
   inline-size: 100%;
   overflow: hidden;
@@ -156,7 +170,7 @@
   }
 }
 
-@mixin iui-progress-indicator-linear {
+.iui-progress-indicator-linear[data-iui-variant='linear'] {
   inline-size: 100%;
   block-size: var(--iui-size-2xs);
   overflow: hidden;
@@ -190,77 +204,31 @@
       }
     }
   }
-}
 
-@mixin iui-progress-indicator-linear-determinate($speed: 2s) {
-  &::after {
-    transition: inline-size $speed ease-in-out;
-  }
-}
-
-@mixin iui-progress-indicator-linear-indeterminate() {
-  @keyframes iui-progress-indicator-linear-animate-indeterminate {
-    0% {
-      transform: translateX(-60%) scaleX(0);
-    }
-
-    40% {
-      transform: translateX(-40%) scaleX(0.4);
-    }
-
-    100% {
-      transform: translateX(100%) scaleX(0.5);
+  &:where(:not([data-iui-indeterminate])) {
+    &::after {
+      transition: inline-size 2s ease-in-out;
     }
   }
 
-  &::after {
-    inline-size: 100%;
-    animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
-  }
-}
+  &:where([data-iui-indeterminate]) {
+    @keyframes iui-progress-indicator-linear-animate-indeterminate {
+      0% {
+        transform: translateX(-60%) scaleX(0);
+      }
 
-// ----------------------------------------------------------------------------
+      40% {
+        transform: translateX(-40%) scaleX(0.4);
+      }
 
-.iui-progress-indicator {
-  position: relative;
-  display: inline-flex;
-  flex-shrink: 0;
-
-  &:where([data-iui-variant='linear']) {
-    @include iui-progress-indicator-linear;
-
-    &:where(:not([data-iui-indeterminate])) {
-      @include iui-progress-indicator-linear-determinate;
+      100% {
+        transform: translateX(100%) scaleX(0.5);
+      }
     }
 
-    &:where([data-iui-indeterminate]) {
-      @include iui-progress-indicator-linear-indeterminate;
+    &::after {
+      inline-size: 100%;
+      animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
     }
   }
-
-  &:where([data-iui-variant='radial']) {
-    @include iui-progress-indicator-radial;
-
-    &:where(:not([data-iui-indeterminate])) {
-      @include iui-progress-indicator-radial-determinate;
-    }
-
-    &:where([data-iui-indeterminate]) {
-      @include iui-progress-indicator-radial-indeterminate;
-    }
-  }
-
-  &::after {
-    @media (forced-colors: active) {
-      background-color: CanvasText;
-    }
-  }
-}
-
-.iui-progress-indicator-linear {
-  @include iui-progress-indicator-linear-wrapper;
-}
-
-.iui-progress-indicator-linear-wrapper-label {
-  @include iui-progress-indicator-linear-wrapper-label;
 }
