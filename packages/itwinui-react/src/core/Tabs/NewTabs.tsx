@@ -13,12 +13,42 @@ import {
   useIsomorphicLayoutEffect,
   useMergedRefs,
   useContainerWidth,
+  useResizeObserver,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
 
 // ----------------------------------------------------------------------------
 // NewTabsComponent
+
+type OverflowOptions = {
+  /**
+   * Whether to allow tabs list to scroll when there is overflow,
+   * i.e. when there is not enough space to fit all the tabs.
+   *
+   * Not applicable to types `pill` and `borderless`.
+   */
+  useOverflow?: boolean;
+};
+
+type TabsOverflowProps =
+  | {
+      /**
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
+      /**
+       * Type of the tabs.
+       *
+       * If `type = 'pill' | 'borderless'`, `overflowOptions` is not applicable.
+       * @default 'default'
+       */
+      type?: 'default';
+    }
+  | {
+      overflowOptions?: undefined;
+      type: 'pill' | 'borderless';
+    };
 
 type TabsOrientationProps =
   | {
@@ -60,9 +90,22 @@ type NewTabsComponentOwnProps = {
    * Handler for activating a tab.
    */
   onTabSelected?: (index: number) => void;
-} & TabsOrientationProps;
+} & TabsOrientationProps &
+  TabsOverflowProps;
 
 const NewTabsComponent = React.forwardRef((props, ref) => {
+  // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
+  let overflowOptions: OverflowOptions | undefined;
+  if (
+    props.type !== 'borderless' &&
+    props.type !== 'pill' &&
+    props.overflowOptions
+  ) {
+    overflowOptions = props.overflowOptions;
+    props = { ...props };
+    delete props.overflowOptions;
+  }
+
   const {
     className,
     children,
@@ -119,6 +162,7 @@ const NewTabsComponent = React.forwardRef((props, ref) => {
           currentActiveIndex,
           setCurrentActiveIndex,
           onTabSelected,
+          overflowOptions,
         }}
       >
         {children}
@@ -133,7 +177,7 @@ NewTabsComponent.displayName = 'NewTabs';
 
 type NewTabsTabListOwnProps = {
   /**
-   * Breadcrumb items.
+   * Tab items.
    */
   children: React.ReactNode[];
 };
@@ -155,6 +199,7 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
     currentActiveIndex,
     setCurrentActiveIndex,
     onTabSelected,
+    overflowOptions,
   } = useSafeContext(NewTabsContext);
 
   useIsomorphicLayoutEffect(() => {
@@ -188,6 +233,207 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
         ),
     );
   }, [type]);
+
+  const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    let scrollLeft = ownerDoc?.scrollLeft ?? 0;
+    if (e.deltaY > 0 || e.deltaX > 0) {
+      scrollLeft += 25;
+    } else if (e.deltaY < 0 || e.deltaX < 0) {
+      scrollLeft -= 25;
+    }
+    ownerDoc.scrollLeft = scrollLeft;
+  }, []);
+
+  // allow normal mouse wheels to scroll horizontally for horizontal overflow
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow || orientation === 'vertical') {
+      ownerDoc.removeEventListener('wheel', enableHorizontalScroll);
+      return;
+    }
+
+    ownerDoc.addEventListener('wheel', enableHorizontalScroll);
+  }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
+
+  const isTabHidden = (activeTab: HTMLElement, isVertical: boolean) => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const fadeBuffer = isVertical
+      ? ownerDoc.offsetHeight * 0.05
+      : ownerDoc.offsetWidth * 0.05;
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
+    const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
+    const tabEnd = isVertical
+      ? activeTab.offsetTop + activeTab.offsetHeight
+      : activeTab.offsetLeft + activeTab.offsetWidth;
+
+    if (
+      tabStart > visibleStart + fadeBuffer &&
+      tabEnd < visibleEnd - fadeBuffer
+    ) {
+      return 0; // tab is visible
+    } else if (tabStart < visibleStart + fadeBuffer) {
+      return -1; // tab is before visible section
+    } else {
+      return 1; // tab is after visible section
+    }
+  };
+
+  const easeInOutQuad = (
+    time: number,
+    beginning: number,
+    change: number,
+    duration: number,
+  ) => {
+    if ((time /= duration / 2) < 1) {
+      return (change / 2) * time * time + beginning;
+    }
+    return (-change / 2) * (--time * (time - 2) - 1) + beginning;
+  };
+
+  const scrollToTab = React.useCallback(
+    (
+      list: HTMLUListElement,
+      activeTab: HTMLElement,
+      duration: number,
+      isVertical: boolean,
+      tabPlacement: number,
+    ) => {
+      const start = isVertical ? list.scrollTop : list.scrollLeft;
+      let change = 0;
+      let currentTime = 0;
+      const increment = 20;
+      const fadeBuffer = isVertical
+        ? list.offsetHeight * 0.05
+        : list.offsetWidth * 0.05;
+
+      if (tabPlacement < 0) {
+        // if tab is before visible section
+        change = isVertical
+          ? activeTab.offsetTop - list.scrollTop
+          : activeTab.offsetLeft - list.scrollLeft;
+        change -= fadeBuffer; // give some space so the active tab isn't covered by the fade
+      } else {
+        // tab is after visible section
+        change = isVertical
+          ? activeTab.offsetTop -
+            (list.scrollTop + list.offsetHeight) +
+            activeTab.offsetHeight
+          : activeTab.offsetLeft -
+            (list.scrollLeft + list.offsetWidth) +
+            activeTab.offsetWidth;
+        change += fadeBuffer; // give some space so the active tab isn't covered by the fade
+      }
+
+      const animateScroll = () => {
+        currentTime += increment;
+        const val = easeInOutQuad(currentTime, start, change, duration);
+        if (isVertical) {
+          list.scrollTop = val;
+        } else {
+          list.scrollLeft = val;
+        }
+        if (currentTime < duration) {
+          setTimeout(animateScroll, increment);
+        }
+      };
+      animateScroll();
+    },
+    [],
+  );
+
+  // scroll to active tab if it is not visible with overflow
+  useIsomorphicLayoutEffect(() => {
+    setTimeout(() => {
+      const ownerDoc = tablistRef.current;
+      if (
+        ownerDoc !== null &&
+        overflowOptions?.useOverflow &&
+        currentActiveIndex !== undefined
+      ) {
+        const activeTab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
+          currentActiveIndex
+        ] as HTMLElement;
+        const isVertical = orientation === 'vertical';
+        const tabPlacement = isTabHidden(activeTab, isVertical);
+
+        if (tabPlacement) {
+          scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
+        }
+      }
+    }, 50);
+  }, [
+    overflowOptions?.useOverflow,
+    currentActiveIndex,
+    focusedIndex,
+    orientation,
+    scrollToTab,
+  ]);
+
+  const [scrollingPlacement, setScrollingPlacement] = React.useState<
+    string | undefined
+  >(undefined);
+  const determineScrollingPlacement = React.useCallback(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    const isVertical = orientation === 'vertical';
+    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
+    const visibleEnd = isVertical
+      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
+      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
+    const totalTabsSpace = isVertical
+      ? ownerDoc.scrollHeight
+      : ownerDoc.scrollWidth;
+
+    if (
+      Math.abs(visibleStart - 0) < 1 &&
+      Math.abs(visibleEnd - totalTabsSpace) < 1
+    ) {
+      setScrollingPlacement(undefined);
+    } else if (Math.abs(visibleStart - 0) < 1) {
+      setScrollingPlacement('start');
+    } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
+      setScrollingPlacement('end');
+    } else {
+      setScrollingPlacement('center');
+    }
+  }, [orientation, setScrollingPlacement]);
+  // apply correct mask when tabs list is resized
+  const [resizeRef] = useResizeObserver(determineScrollingPlacement);
+  resizeRef(tablistRef?.current);
+
+  // check if overflow tabs are scrolled to far edges
+  React.useEffect(() => {
+    const ownerDoc = tablistRef.current;
+    if (ownerDoc === null) {
+      return;
+    }
+
+    if (!overflowOptions?.useOverflow) {
+      ownerDoc.removeEventListener('scroll', determineScrollingPlacement);
+      return;
+    }
+
+    ownerDoc.addEventListener('scroll', determineScrollingPlacement);
+  }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
 
   const onTabClick = React.useCallback(
     (index: number) => {
@@ -278,11 +524,13 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
         },
         className,
       )}
+      data-iui-overflow={overflowOptions?.useOverflow}
+      data-iui-scroll-placement={scrollingPlacement}
+      role='tablist'
       onKeyDown={onKeyDown}
       ref={refs}
       {...rest}
     >
-      {/* <TransferListContext.Provider value={{ labelId, setLabelId }}> */}
       {children.map((child, index) => {
         return (
           <NewTabsContext.Provider
@@ -298,7 +546,6 @@ const NewTabsTabList = React.forwardRef((props, ref) => {
           </NewTabsContext.Provider>
         );
       })}
-      {/* </TransferListContext.Provider> */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'ul', NewTabsTabListOwnProps>;
@@ -331,9 +578,7 @@ const NewTabsTab = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {/* <TransferListContext.Provider value={{ labelId, setLabelId }}> */}
       {children}
-      {/* </TransferListContext.Provider> */}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', NewTabsTabOwnProps>;
@@ -368,13 +613,49 @@ NewTabsTabDescription.displayName = 'NewTabs.TabDescription';
 // ----------------------------------------------------------------------------
 // NewTabs.Actions component
 
-const NewTabsActions = polymorphic('iui-tabs-actions-wrapper');
+type NewTabsActionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const NewTabsActions = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type } = useSafeContext(NewTabsContext);
+
+  if (type !== 'pill') {
+    return (
+      <Box
+        className={cx('iui-tabs-actions-wrapper', className)}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div', NewTabsActionsOwnProps>;
 NewTabsActions.displayName = 'NewTabs.Actions';
 
 // ----------------------------------------------------------------------------
 // NewTabs.Action component
 
-const NewTabsAction = polymorphic('iui-tabs-actions');
+type NewTabsActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const NewTabsAction = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type } = useSafeContext(NewTabsContext);
+
+  if (type !== 'pill') {
+    return (
+      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div', NewTabsActionOwnProps>;
 NewTabsAction.displayName = 'NewTabs.Action';
 
 // ----------------------------------------------------------------------------
@@ -418,9 +699,7 @@ const NewTabsPanel = React.forwardRef((props, ref) => {
         ref={ref}
         {...rest}
       >
-        {/* <TransferListContext.Provider value={{ labelId, setLabelId }}> */}
         {children}
-        {/* </TransferListContext.Provider> */}
       </Box>
     );
   } else {
@@ -430,60 +709,91 @@ const NewTabsPanel = React.forwardRef((props, ref) => {
 NewTabsPanel.displayName = 'NewTabs.Panel';
 
 /**
- * The TransferList component is used to display a list within a box
+ * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
- * <TransferList>
- *   <TransferList.ListboxWrapper>
- *     <TransferList.Listbox>
- *       <TransferList.Item>Item 1</TransferList.Item>
- *       <TransferList.Item>Item 2</TransferList.Item>
- *       <TransferList.Item>Item 3</TransferList.Item>
- *       <TransferList.Item>Item 4</TransferList.Item>
- *       <TransferList.Item>Item 5</TransferList.Item>
- *       <TransferList.Item>Item 6</TransferList.Item>
- *     </TransferList.Listbox>
- *   </TransferList.ListboxWrapper>
- * </TransferList>
+ * <NewTabs>
+ *   <NewTabs.Tab>
+ *     <NewTabs.TabInfo>
+ *       <NewTabs.TabLabel>Label 1</NewTabs.TabLabel>
+ *     </NewTabs.TabInfo>
+ *   </NewTabs.Tab>
+ *   <NewTabs.Tab>
+ *     <NewTabs.TabInfo>
+ *       <NewTabs.TabLabel>Label 2</NewTabs.TabLabel>
+ *     </NewTabs.TabInfo>
+ *   </NewTabs.Tab>
+ *   <NewTabs.Tab>
+ *     <NewTabs.TabInfo>
+ *       <NewTabs.TabLabel>Label 3</NewTabs.TabLabel>
+ *     </NewTabs.TabInfo>
+ *   </NewTabs.Tab>
+ *   <NewTabs.Actions>
+ *     <NewTabs.Action>
+ *       <Button>Sample Button</Button>,
+ *     </NewTabs.Action>
+ *   </NewTabs.Actions>
+ *   <NewTabs.Panels>
+ *     <NewTabs.Panel>Content 1</NewTabs.Panel>
+ *     <NewTabs.Panel>Content 2</NewTabs.Panel>
+ *     <NewTabs.Panel>Content 3</NewTabs.Panel>
+ *   </NewTabs.Panels>
+ * </NewTabs>
+ *
+ * @example
+ * <NewTabs orientation='vertical'/>
+ *
+ * @example
+ * <NewTabs.Tab>
+ *   <NewTabs.TabInfo>
+ *     <NewTabs.TabIcon>
+ *       <SvgPlaceholder />
+ *     </NewTabs.TabIcon>
+ *     <NewTabs.TabLabel>Sample Label</NewTabs.TabLabel>
+ *     <NewTabs.TabDescription>Sample Description</NewTabs.TabDescription>
+ *   </NewTabs.TabInfo>
+ * </NewTabs.Tab>
+ *
  */
+
 export const NewTabs = Object.assign(NewTabsComponent, {
   /**
-   * 	TransferList listbox wrapper subcomponent
+   * 	Tab list subcomponent
    */
   TabList: NewTabsTabList,
   /**
-   * 	TransferList listbox subcomponent
+   * 	Tab subcomponent
    */
   Tab: NewTabsTab,
   /**
-   * 	TransferList item subcomponent
+   *  Tab icon subcomponent
    */
   TabIcon: NewTabsTabIcon,
   /**
-   * 	TransferList listbox label subcomponent
+   * 	Tab info subcomponent
    */
   TabInfo: NewTabsTabInfo,
   /**
-   * 	TransferList listbox label subcomponent
+   * 	Tab label subcomponent
    */
   TabLabel: NewTabsTabLabel,
   /**
-   * 	TransferList toolbar subcomponent
+   * 	Tab description subcomponent
    */
   TabDescription: NewTabsTabDescription,
   /**
-   * 	TransferList toolbar subcomponent
+   * 	Tab actions subcomponent
    */
   Actions: NewTabsActions,
   /**
-   * 	TransferList toolbar subcomponent
+   * 	Tab action subcomponent
    */
   Action: NewTabsAction,
   /**
-   * 	TransferList toolbar subcomponent
+   * 	Tab panels subcomponent
    */
   Panels: NewTabsPanels,
   /**
-   * 	TransferList toolbar subcomponent
+   * 	Tab panel subcomponent
    */
   Panel: NewTabsPanel,
 });
@@ -496,7 +806,7 @@ export const NewTabsContext = React.createContext<
        */
       orientation?: 'horizontal' | 'vertical';
       /**
-       * Id to set to label and set 'aria-labelledby' prop of the listbox
+       * Type of the tabs.
        */
       type?: string;
       /**
@@ -505,7 +815,7 @@ export const NewTabsContext = React.createContext<
        */
       color?: 'blue' | 'green';
       /**
-       * Handler for activating a tab.
+       * The index of the tab that should be active when initially rendered.
        */
       activeIndex?: number;
       /**
@@ -515,21 +825,25 @@ export const NewTabsContext = React.createContext<
        */
       focusActivationMode?: 'auto' | 'manual';
       /**
-       * Handler for activating a tab.
+       * The current active index.
        */
       currentActiveIndex?: number;
       /**
-       * Handler for activating a tab.
+       * Handler for setting the current active index.
        */
       setCurrentActiveIndex?: (value: number) => void;
       /**
-       * Handler for activating a tab.
+       * The index value passed for each of the tabs in the tab list.
        */
       index?: number;
       /**
        * Handler for activating a tab.
        */
       onTabSelected?: (index: number) => void;
+      /**
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
     }
   | undefined
 >(undefined);

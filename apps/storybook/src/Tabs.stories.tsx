@@ -491,3 +491,86 @@ export const NewBorderlessTabs: Story<Partial<TabsProps>> = (args) => {
   );
 };
 NewBorderlessTabs.args = {};
+
+export const NewHorizontalOverflowTabs: Story<Partial<TabsProps>> = (args) => {
+  return (
+    <div
+      style={{
+        width: '50%',
+        maxWidth: 800,
+        minWidth: 250,
+        border: '1px solid lightpink',
+        padding: 8,
+      }}
+    >
+      <NewTabs
+        overflowOptions={{ useOverflow: true }}
+        activeIndex={10}
+        {...args}
+      >
+        <NewTabs.TabList>
+          <NewTabs.Tab>Tab 1</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 2</NewTabs.Tab>
+
+          <NewTabs.Tab>Tab 3</NewTabs.Tab>
+        </NewTabs.TabList>
+
+        <NewTabs.Actions>
+          <NewTabs.Action>
+            <Button key={'Normal'}>Normal size button</Button>,
+          </NewTabs.Action>
+        </NewTabs.Actions>
+
+        <NewTabs.Panels>
+          <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 2</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 3</NewTabs.Panel>
+
+          <NewTabs.Panel>This is the content for tab 1</NewTabs.Panel>
+        </NewTabs.Panels>
+      </NewTabs>
+    </div>
+  );
+};
+NewDefaultTabs.args = {};
