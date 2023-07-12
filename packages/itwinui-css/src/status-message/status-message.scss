@@ -4,7 +4,7 @@
 
 .iui-status-message-content {
   font-size: var(--iui-font-size-0);
-  margin-top: var(--iui-size-2xs);
+  margin-block-start: var(--iui-size-2xs);
   color: var(--iui-color-text-muted);
 }
 
@@ -12,7 +12,7 @@
   align-self: center;
 
   &:not(:last-child) {
-    margin-right: var(--iui-size-2xs);
+    margin-inline-end: var(--iui-size-2xs);
   }
 
   svg:where(:not(.iui-button svg)) {
