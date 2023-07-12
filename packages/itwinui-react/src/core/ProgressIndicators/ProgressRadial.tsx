@@ -72,16 +72,10 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx(
-        'iui-progress-indicator-radial',
-        {
-          'iui-indeterminate': indeterminate,
-          'iui-determinate': !indeterminate,
-        },
-        className,
-      )}
+      className={cx('iui-progress-indicator-radial', className)}
       data-iui-size={size}
       data-iui-status={status}
+      data-iui-indeterminate={indeterminate ? 'true' : undefined}
       ref={forwardedRef}
       style={{
         ...(value !== undefined && {
