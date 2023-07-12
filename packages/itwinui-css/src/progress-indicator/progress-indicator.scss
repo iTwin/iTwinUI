@@ -3,7 +3,7 @@
 @use 'sass:map';
 @use '../mixins';
 
-.iui-progress-indicator {
+:is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
   position: relative;
   display: inline-flex;
   flex-shrink: 0;
@@ -17,7 +17,7 @@
 
 // ----------------------------------------------------------------------------
 
-.iui-progress-indicator:where([data-iui-variant='radial']) {
+.iui-progress-indicator-radial {
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
   vertical-align: middle;
   justify-content: center;
@@ -171,7 +171,7 @@
   }
 }
 
-.iui-progress-indicator:where([data-iui-variant='linear']) {
+.iui-progress-indicator-linear {
   inline-size: 100%;
   block-size: var(--iui-size-2xs);
   overflow: hidden;
