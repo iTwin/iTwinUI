@@ -3,103 +3,55 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-
 import { render, screen } from '@testing-library/react';
 import { ProgressLinear } from './ProgressLinear.js';
 
-it('renders empty ProgressLinear', () => {
-  const { container } = render(<ProgressLinear />);
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('0%');
-  expect(container.querySelector('.iui-label')).toBeNull();
-});
-
-it('renders filled ProgressLinear', () => {
+it('renders determinate ProgressLinear', () => {
   const { container } = render(<ProgressLinear value={40} />);
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('40%');
-  expect(container.querySelector('.iui-label')).toBeNull();
+  const progress = container.querySelector('div');
+  expect(progress).toHaveClass('iui-progress-indicator-linear');
+  expect(progress).not.toHaveAttribute('data-iui-indeterminate');
+  expect(progress).not.toHaveAttribute('data-iui-animated');
+  expect(progress).toHaveStyle('--iui-progress-percentage: 40%;');
 });
 
 it('renders filled ProgressLinear with min value', () => {
   const { container } = render(<ProgressLinear value={-12} />);
-
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('0%');
+  const progress = container.querySelector('div');
+  expect(progress).toHaveStyle('--iui-progress-percentage: 0%;');
 });
 
 it('renders filled ProgressLinear with max value', () => {
   const { container } = render(<ProgressLinear value={300} />);
-
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('100%');
+  const progress = container.querySelector('div');
+  expect(progress).toHaveStyle('--iui-progress-percentage: 100%;');
 });
 
 it('renders indeterminate ProgressLinear', () => {
-  const { container } = render(<ProgressLinear indeterminate value={40} />);
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('100%');
-  expect(fill.className).toContain('iui-indeterminate');
-  expect(container.querySelector('.iui-label')).toBeNull();
+  const { container } = render(<ProgressLinear />);
+  const progress = container.querySelector('div');
+  expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
 });
 
 it('renders animated determinate ProgressLinear', () => {
   const { container } = render(<ProgressLinear isAnimated value={40} />);
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('40%');
-  expect(fill.className).toContain('iui-determinate');
-  expect(container.querySelector('.iui-label')).toBeNull();
+  const progress = container.querySelector('div');
+  expect(progress).not.toHaveAttribute('data-iui-indeterminate');
+  expect(progress).toHaveAttribute('data-iui-animated', 'true');
 });
 
 it('renders positive ProgressLinear', () => {
   const { container } = render(<ProgressLinear status='positive' />);
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear.iui-positive',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
+  const progress = container.querySelector('div');
+  expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
+  expect(progress).toHaveAttribute('data-iui-status', 'positive');
 });
 
 it('renders negative ProgressLinear', () => {
-  const { container } = render(
-    <ProgressLinear isAnimated value={40} status='negative' />,
-  );
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear.iui-negative',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const fill = container.querySelector('.iui-track > .iui-fill') as HTMLElement;
-  expect(fill).toBeTruthy();
-  expect(fill.style.width).toBe('40%');
+  const { container } = render(<ProgressLinear value={40} status='negative' />);
+  const progress = container.querySelector('div');
+  expect(progress).not.toHaveAttribute('data-iui-indeterminate');
+  expect(progress).toHaveAttribute('data-iui-status', 'negative');
 });
 
 it('renders ProgressLinear with single label', () => {
@@ -107,9 +59,12 @@ it('renders ProgressLinear with single label', () => {
     <ProgressLinear value={40} labels={['Loading...']} />,
   );
 
-  const labels = container.querySelector('.iui-label') as HTMLElement;
-  expect(labels).toBeTruthy();
-  screen.getByText('Loading...');
+  const progress = container.querySelector('div') as HTMLElement;
+  expect(progress).toHaveClass('iui-progress-indicator-linear');
+
+  const labels = progress.querySelector('div');
+  expect(labels).toHaveClass('iui-progress-indicator-linear-label');
+  expect(labels).toHaveTextContent('Loading...');
 });
 
 it('renders ProgressLinear with 2 labels', () => {
@@ -117,29 +72,12 @@ it('renders ProgressLinear with 2 labels', () => {
     <ProgressLinear value={40} labels={['Processing...', 'test.dgn']} />,
   );
 
-  const labels = container.querySelector('.iui-label') as HTMLElement;
-  expect(labels).toBeTruthy();
-  expect(labels.children.length).toBe(2);
-  screen.getByText('Processing...');
-  screen.getByText('test.dgn');
-});
+  const progress = container.querySelector('div') as HTMLElement;
+  expect(progress).toHaveClass('iui-progress-indicator-linear');
 
-it('renders positive ProgressLinear with 2 labels', () => {
-  const { container } = render(
-    <ProgressLinear
-      value={40}
-      status='positive'
-      labels={['Processing...', 'test.dgn']}
-    />,
-  );
-
-  const bar = container.querySelector(
-    '.iui-progress-indicator-linear.iui-positive',
-  ) as HTMLElement;
-  expect(bar).toBeTruthy();
-  const labels = container.querySelector('.iui-label') as HTMLElement;
-  expect(labels).toBeTruthy();
-  expect(labels.children.length).toBe(2);
+  const labels = progress.querySelector('div');
+  expect(labels).toHaveClass('iui-progress-indicator-linear-label');
+  expect(labels?.children).toHaveLength(2);
   screen.getByText('Processing...');
   screen.getByText('test.dgn');
 });

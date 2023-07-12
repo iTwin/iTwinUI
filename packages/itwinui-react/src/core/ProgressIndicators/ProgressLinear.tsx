@@ -67,7 +67,7 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       data-iui-status={status}
       data-iui-indeterminate={indeterminate ? 'true' : undefined}
-      data-iui-animated={isAnimated}
+      data-iui-animated={isAnimated ? 'true' : undefined}
       style={
         {
           '--iui-progress-percentage': `${boundedValue}%`,
