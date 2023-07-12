@@ -14,6 +14,7 @@
     "@astrojs/mdx": "^0.17.0",
     "@astrojs/react": "^2.0.2",
     "@astrojs/sitemap": "^1.0.1",
+    "@docsearch/css": "3",
     "@fontsource/noto-sans": "^4.5.11",
     "@fontsource/noto-sans-mono": "^4.5.11",
     "@itwin/itwinui-react": "*",

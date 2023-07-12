@@ -10,6 +10,8 @@ import '@fontsource/noto-sans/600.css';
 import '@fontsource/noto-sans/300.css';
 import '@fontsource/noto-sans/800.css';
 
+import '@docsearch/css';
+
 const { content = {} } = Astro.props;
 ---
 
@@ -213,6 +215,14 @@ const { content = {} } = Astro.props;
         --border-radius-1: var(--space-1);
         --transition-speed: 0.2s;
         --transition-speed-slow: 0.4s;
+
+        // Algolia DocSearch: https://docsearch.algolia.com/docs/styling/
+        --docsearch-primary-color: var(--color-highlight-4) !important;
+        --docsearch-searchbox-background: var(--color-background-1) !important;
+        --docsearch-searchbox-focus-background: var(--color-background-1) !important;
+        --docsearch-hit-background: var(--color-background-2) !important;
+        --docsearch-modal-background: var(--color-background-2) !important;
+        --docsearch-footer-background: var(--color-background-2) !important;
       }
     </style>
 
@@ -233,7 +243,6 @@ const { content = {} } = Astro.props;
         font-size: var(--type-0);
       }
     </style>
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/@docsearch/css@3' />
   </head>
 
   <body class='iui-root' data-iui-theme='dark'>
@@ -253,7 +262,7 @@ const { content = {} } = Astro.props;
     </script> -->
 
     <script is:inline src='https://cdn.jsdelivr.net/npm/@docsearch/js@3'></script>
-    <script type="text/javascript">
+    <script type='text/javascript'>
       docsearch({
         appId: import.meta.env.ALGOLIA_APP_ID,
         apiKey: import.meta.env.ALGOLIA_API_KEY,
