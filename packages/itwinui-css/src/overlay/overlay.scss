@@ -16,7 +16,7 @@
   // Blur fallback
   @include mixins.iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
 
-  .iui-progress-indicator-linear-wrapper {
+  .iui-progress-indicator-linear {
     inline-size: 50%;
     max-inline-size: 33vw;
   }
