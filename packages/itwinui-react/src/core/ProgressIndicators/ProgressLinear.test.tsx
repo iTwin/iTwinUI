@@ -28,7 +28,7 @@ it('renders filled ProgressLinear with max value', () => {
 });
 
 it('renders indeterminate ProgressLinear', () => {
-  const { container } = render(<ProgressLinear />);
+  const { container } = render(<ProgressLinear indeterminate />);
   const progress = container.querySelector('div');
   expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
 });
