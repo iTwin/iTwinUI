@@ -2,21 +2,26 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import React from 'react';
 import cx from 'classnames';
-import * as React from 'react';
 import {
-  useMergedRefs,
-  getBoundedValue,
-  useContainerWidth,
-  useIsomorphicLayoutEffect,
-  useIsClient,
-  useResizeObserver,
+  useSafeContext,
   Box,
+  polymorphic,
+  useIsClient,
+  getBoundedValue,
+  useIsomorphicLayoutEffect,
+  useMergedRefs,
+  useContainerWidth,
+  useResizeObserver,
 } from '../utils/index.js';
-import { Tab } from './Tab.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
 
-export type OverflowOptions = {
+// ----------------------------------------------------------------------------
+// TabsComponent
+
+type OverflowOptions = {
   /**
    * Whether to allow tabs list to scroll when there is overflow,
    * i.e. when there is not enough space to fit all the tabs.
@@ -35,12 +40,13 @@ type TabsOverflowProps =
       /**
        * Type of the tabs.
        *
-       * If `orientation = 'vertical'`, `pill` is not applicable.
+       * If `type = 'pill' | 'borderless'`, `overflowOptions` is not applicable.
        * @default 'default'
        */
       type?: 'default';
     }
   | {
+      overflowOptions?: undefined;
       type: 'pill' | 'borderless';
     };
 
@@ -64,38 +70,9 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
-type TabsTypeProps =
-  | {
-      /**
-       * Type of the tabs.
-       *
-       * If `orientation = 'vertical'`, `pill` is not applicable.
-       * @default 'default'
-       */
-      type?: 'default' | 'borderless';
-      /**
-       * Content displayed to the right/bottom of the horizontal/vertical tabs
-       *
-       * If `type = 'pill'`, `actions` is not applicable.
-       */
-      actions?: React.ReactNode[];
-    }
-  | {
-      type: 'pill';
-    };
-
-export type TabsProps = {
+type TabsComponentOwnProps = {
   /**
-   * Elements shown for each tab.
-   * Recommended to pass an array of `Tab` components.
-   */
-  labels: React.ReactNode[];
-  /**
-   * Handler for activating a tab.
-   */
-  onTabSelected?: (index: number) => void;
-  /**
-   * Index of the active tab.
+   * The value of the tab that should be active when initially rendered
    */
   activeIndex?: number;
   /**
@@ -110,60 +87,13 @@ export type TabsProps = {
    */
   color?: 'blue' | 'green';
   /**
-   * Custom CSS class name for tabs.
+   * Handler for activating a tab.
    */
-  tabsClassName?: string;
-  /**
-   * Custom CSS class name for tab panel.
-   */
-  contentClassName?: string;
-  /**
-   * Custom CSS class name for the tabs wrapper.
-   */
-  wrapperClassName?: string;
-  /**
-   * Content inside the tab panel.
-   */
-  children?: React.ReactNode;
+  onTabSelected?: (index: number) => void;
 } & TabsOrientationProps &
-  TabsTypeProps &
   TabsOverflowProps;
 
-/**
- * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
- * @example
- * const tabs = [
- *   <Tab label='Label 1' />,
- *   <Tab label='Label 2' />,
- *   <Tab label='Label 3' />,
- * ];
- * <Tabs labels={tabs} />
- *
- * @example
- * <Tabs orientation='vertical' labels={tabs} />
- *
- * @example
- * const tabsWithSublabels = [
- *   <Tab label='Label 1' sublabel='First tab' />,
- *   <Tab label='Label 2' sublabel='Active tab' />,
- * ];
- * <Tabs labels={tabsWithSublabels} activeIndex={1} />
- *
- * @example
- * const tabsWithIcons = [
- *   <Tab label='Label 1' icon={<SvgPlaceholder />} />,
- *   <Tab label='Label 2' icon={<SvgPlaceholder />} />,
- * ];
- * <Tabs labels={tabsWithIcons} type='pill' />
- */
-export const Tabs = (props: TabsProps) => {
-  // Separate actions from props to avoid adding it to the DOM (using {...rest})
-  let actions: Array<React.ReactNode> | undefined;
-  if (props.type !== 'pill' && props.actions) {
-    actions = props.actions;
-    props = { ...props };
-    delete props.actions;
-  }
+const TabsComponent = React.forwardRef((props, ref) => {
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
   if (
@@ -177,42 +107,27 @@ export const Tabs = (props: TabsProps) => {
   }
 
   const {
-    labels,
-    activeIndex,
-    onTabSelected,
-    focusActivationMode = 'auto',
+    className,
+    children,
+    orientation = 'horizontal',
     type = 'default',
     color = 'blue',
-    orientation = 'horizontal',
-    tabsClassName,
-    contentClassName,
-    wrapperClassName,
-    children,
+    activeIndex,
+    focusActivationMode,
+    onTabSelected,
     ...rest
   } = props;
 
-  const isClient = useIsClient();
-
-  const tablistRef = React.useRef<HTMLUListElement>(null);
-  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
-  const refs = useMergedRefs(tablistRef, tablistSizeRef);
-
-  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>
-    activeIndex != null
-      ? getBoundedValue(activeIndex, 0, labels.length - 1)
-      : 0,
-  );
-  useIsomorphicLayoutEffect(() => {
-    if (activeIndex != null && currentActiveIndex !== activeIndex) {
-      setCurrentActiveIndex(getBoundedValue(activeIndex, 0, labels.length - 1));
-    }
-  }, [activeIndex, currentActiveIndex, labels.length]);
+  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
+  const tabWrapperRef = React.useRef<HTMLDivElement>(null);
+  const [tabsWidth] = useContainerWidth(type !== 'default');
+  const refs = useMergedRefs(tabWrapperRef, ref);
 
   // CSS custom properties to place the active stripe
   const [stripeProperties, setStripeProperties] = React.useState({});
   useIsomorphicLayoutEffect(() => {
-    if (type !== 'default' && tablistRef.current != undefined) {
-      const activeTab = tablistRef.current.children[
+    if (type !== 'default' && tabWrapperRef.current != undefined) {
+      const activeTab = tabWrapperRef.current.children[0].children[
         currentActiveIndex
       ] as HTMLElement;
       const activeTabRect = activeTab.getBoundingClientRect();
@@ -229,6 +144,75 @@ export const Tabs = (props: TabsProps) => {
       });
     }
   }, [currentActiveIndex, type, orientation, tabsWidth]);
+
+  return (
+    <Box
+      className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
+      style={stripeProperties}
+      ref={refs}
+      {...rest}
+    >
+      <TabsContext.Provider
+        value={{
+          orientation,
+          type,
+          color,
+          activeIndex,
+          focusActivationMode,
+          currentActiveIndex,
+          setCurrentActiveIndex,
+          onTabSelected,
+          overflowOptions,
+        }}
+      >
+        {children}
+      </TabsContext.Provider>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsComponentOwnProps>;
+TabsComponent.displayName = 'Tabs';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabList component
+
+type TabsTabListOwnProps = {
+  /**
+   * Tab items.
+   */
+  children: React.ReactNode[];
+};
+
+const TabsTabList = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const tablistRef = React.useRef<HTMLUListElement>(null);
+  const refs = useMergedRefs(tablistRef, ref);
+
+  const isClient = useIsClient();
+
+  const {
+    orientation,
+    type,
+    color,
+    activeIndex,
+    focusActivationMode,
+    currentActiveIndex,
+    setCurrentActiveIndex,
+    onTabSelected,
+    overflowOptions,
+  } = useSafeContext(TabsContext);
+
+  useIsomorphicLayoutEffect(() => {
+    if (
+      activeIndex != null &&
+      currentActiveIndex !== activeIndex &&
+      setCurrentActiveIndex
+    ) {
+      setCurrentActiveIndex(
+        getBoundedValue(activeIndex, 0, children.length - 1),
+      );
+    }
+  }, [activeIndex, currentActiveIndex, children.length]);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
@@ -456,9 +440,9 @@ export const Tabs = (props: TabsProps) => {
       if (onTabSelected) {
         onTabSelected(index);
       }
-      setCurrentActiveIndex(index);
+      setCurrentActiveIndex && setCurrentActiveIndex(index);
     },
-    [onTabSelected],
+    [onTabSelected, setCurrentActiveIndex],
   );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
@@ -468,16 +452,16 @@ export const Tabs = (props: TabsProps) => {
     }
 
     const isTabDisabled = (index: number) => {
-      const tab = labels[index];
+      const tab = children[index];
       return React.isValidElement(tab) && tab.props.disabled;
     };
 
-    let newIndex = focusedIndex ?? currentActiveIndex;
+    let newIndex = focusedIndex ?? currentActiveIndex ?? 0;
 
     /** focus next tab if delta is +1, previous tab if -1 */
     const focusTab = (delta = +1) => {
       do {
-        newIndex = (newIndex + delta + labels.length) % labels.length;
+        newIndex = (newIndex + delta + children.length) % children.length;
       } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
       setFocusedIndex(newIndex);
       focusActivationMode === 'auto' && onTabClick(newIndex);
@@ -526,85 +510,347 @@ export const Tabs = (props: TabsProps) => {
     }
   };
 
-  const createTab = React.useCallback(
-    (label: React.ReactNode, index: number) => {
-      const onClick = () => {
-        setFocusedIndex(index);
-        onTabClick(index);
-      };
-      return (
-        <li key={index}>
-          {!React.isValidElement(label) ? (
-            <Tab
-              label={label}
-              className={cx({
-                'iui-active': index === currentActiveIndex,
-              })}
-              tabIndex={index === currentActiveIndex ? 0 : -1}
-              onClick={onClick}
-              aria-selected={index === currentActiveIndex}
-            />
-          ) : (
-            React.cloneElement(label as JSX.Element, {
-              active: index === currentActiveIndex,
-              'aria-selected': index === currentActiveIndex,
-              tabIndex: index === currentActiveIndex ? 0 : -1,
-              onClick: (args: unknown) => {
-                onClick();
-                label.props.onClick?.(args);
-              },
-            })
-          )}
-        </li>
-      );
-    },
-    [currentActiveIndex, onTabClick],
+  return (
+    <Box
+      as='ul'
+      className={cx(
+        'iui-tabs',
+        `iui-${type}`,
+        {
+          'iui-green': color === 'green',
+          'iui-animated': type !== 'default' && isClient,
+          'iui-not-animated': type !== 'default' && !isClient,
+          'iui-large': hasSublabel,
+        },
+        className,
+      )}
+      data-iui-overflow={overflowOptions?.useOverflow}
+      data-iui-scroll-placement={scrollingPlacement}
+      role='tablist'
+      onKeyDown={onKeyDown}
+      ref={refs}
+      {...rest}
+    >
+      {children.map((child, index) => {
+        return (
+          <li key={index}>
+            <TabsContext.Provider
+              value={{
+                index,
+                currentActiveIndex,
+                setCurrentActiveIndex,
+                onTabSelected: onTabClick,
+              }}
+              key={index}
+            >
+              {child}
+            </TabsContext.Provider>
+          </li>
+        );
+      })}
+    </Box>
   );
+}) as PolymorphicForwardRefComponent<'ul', TabsTabListOwnProps>;
+TabsTabList.displayName = 'Tabs.TabList';
+
+// ----------------------------------------------------------------------------
+// Tabs.Tab component
+
+type TabsTabOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TabsTab = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { index, currentActiveIndex, onTabSelected } =
+    useSafeContext(TabsContext);
+
+  console.log('currentActiveIndex in Tab: ', currentActiveIndex);
 
   return (
     <Box
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
-      style={stripeProperties}
+      as='button'
+      className={cx(
+        'iui-tab',
+        { 'iui-active': index === currentActiveIndex },
+        className,
+      )}
+      role='tab'
+      tabIndex={index === currentActiveIndex ? 0 : -1}
+      onClick={() =>
+        onTabSelected && index !== undefined && onTabSelected(index)
+      }
+      aria-selected={index === currentActiveIndex}
+      ref={ref}
+      {...rest}
     >
-      <Box
-        as='ul'
-        className={cx(
-          'iui-tabs',
-          `iui-${type}`,
-          {
-            'iui-green': color === 'green',
-            'iui-animated': type !== 'default' && isClient,
-            'iui-not-animated': type !== 'default' && !isClient,
-            'iui-large': hasSublabel,
-          },
-          tabsClassName,
-        )}
-        data-iui-overflow={overflowOptions?.useOverflow}
-        data-iui-scroll-placement={scrollingPlacement}
-        role='tablist'
-        ref={refs}
-        onKeyDown={onKeyDown}
-        {...rest}
-      >
-        {labels.map((label, index) => createTab(label, index))}
-      </Box>
-
-      {actions && (
-        <Box className='iui-tabs-actions-wrapper'>
-          <Box className='iui-tabs-actions'>{actions}</Box>
-        </Box>
-      )}
-
-      {children && (
-        <Box
-          className={cx('iui-tabs-content', contentClassName)}
-          role='tabpanel'
-        >
-          {children}
-        </Box>
-      )}
+      {children}
     </Box>
   );
+}) as PolymorphicForwardRefComponent<'button', TabsTabOwnProps>;
+TabsTab.displayName = 'Tabs.Tab';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabIcon component
+
+const TabsTabIcon = polymorphic.span('iui-tab-icon', {
+  'aria-hidden': true,
+});
+TabsTabIcon.displayName = 'Tabs.TabIcon';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabInfo component
+
+const TabsTabInfo = polymorphic.span('iui-tab-label');
+TabsTabInfo.displayName = 'Tabs.TabInfo';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabLabel component
+
+const TabsTabLabel = polymorphic('');
+TabsTabLabel.displayName = 'Tabs.TabLabel';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabDescription component
+
+const TabsTabDescription = polymorphic('iui-tab-description');
+TabsTabDescription.displayName = 'Tabs.TabDescription';
+
+// ----------------------------------------------------------------------------
+// Tabs.Actions component
+
+type TabsActionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TabsActions = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type } = useSafeContext(TabsContext);
+
+  if (type !== 'pill') {
+    return (
+      <Box
+        className={cx('iui-tabs-actions-wrapper', className)}
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div', TabsActionsOwnProps>;
+TabsActions.displayName = 'Tabs.Actions';
+
+// ----------------------------------------------------------------------------
+// Tabs.Action component
+
+type TabsActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TabsAction = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type } = useSafeContext(TabsContext);
+
+  if (type !== 'pill') {
+    return (
+      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div', TabsActionOwnProps>;
+TabsAction.displayName = 'Tabs.Action';
+
+// ----------------------------------------------------------------------------
+// Tabs.Panels component
+
+const TabsPanels = ({ children }: { children: React.ReactNode[] }) => {
+  const { currentActiveIndex } = useSafeContext(TabsContext);
+
+  return (
+    <>
+      {children.map((child, index) => {
+        return (
+          <TabsContext.Provider
+            value={{ index, currentActiveIndex }}
+            key={index}
+          >
+            {child}
+          </TabsContext.Provider>
+        );
+      })}
+    </>
+  );
 };
+TabsPanels.displayName = 'Tabs.Panels';
+
+// ----------------------------------------------------------------------------
+// Tabs.Panel component
+
+type TabsPanelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
+
+const TabsPanel = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { index, currentActiveIndex } = useSafeContext(TabsContext);
+
+  if (index === currentActiveIndex) {
+    return (
+      <Box
+        className={cx('iui-tabs-content', className)}
+        role='tabpanel'
+        ref={ref}
+        {...rest}
+      >
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
+TabsPanel.displayName = 'Tabs.Panel';
+
+/**
+ * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+ * @example
+ * <Tabs>
+ *   <Tabs.Tab>
+ *     <Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 1</Tabs.TabLabel>
+ *     </Tabs.TabInfo>
+ *   </Tabs.Tab>
+ *   <Tabs.Tab>
+ *     <Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 2</Tabs.TabLabel>
+ *     </Tabs.TabInfo>
+ *   </Tabs.Tab>
+ *   <Tabs.Tab>
+ *     <Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
+ *     </Tabs.TabInfo>
+ *   </Tabs.Tab>
+ *   <Tabs.Actions>
+ *     <Tabs.Action>
+ *       <Button>Sample Button</Button>,
+ *     </Tabs.Action>
+ *   </Tabs.Actions>
+ *   <Tabs.Panels>
+ *     <Tabs.Panel>Content 1</Tabs.Panel>
+ *     <Tabs.Panel>Content 2</Tabs.Panel>
+ *     <Tabs.Panel>Content 3</Tabs.Panel>
+ *   </Tabs.Panels>
+ * </Tabs>
+ *
+ * @example
+ * <Tabs orientation='vertical'/>
+ *
+ * @example
+ * <Tabs.Tab>
+ *   <Tabs.TabIcon>
+ *     <SvgPlaceholder />
+ *   </Tabs.TabIcon>
+ *   <Tabs.TabInfo>
+ *     <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
+ *     <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
+ *   </Tabs.TabInfo>
+ * </Tabs.Tab>
+ *
+ */
+
+export const Tabs = Object.assign(TabsComponent, {
+  /**
+   * 	Tab list subcomponent
+   */
+  TabList: TabsTabList,
+  /**
+   * 	Tab subcomponent
+   */
+  Tab: TabsTab,
+  /**
+   *  Tab icon subcomponent
+   */
+  TabIcon: TabsTabIcon,
+  /**
+   * 	Tab info subcomponent
+   */
+  TabInfo: TabsTabInfo,
+  /**
+   * 	Tab label subcomponent
+   */
+  TabLabel: TabsTabLabel,
+  /**
+   * 	Tab description subcomponent
+   */
+  TabDescription: TabsTabDescription,
+  /**
+   * 	Tab actions subcomponent
+   */
+  Actions: TabsActions,
+  /**
+   * 	Tab action subcomponent
+   */
+  Action: TabsAction,
+  /**
+   * 	Tab panels subcomponent
+   */
+  Panels: TabsPanels,
+  /**
+   * 	Tab panel subcomponent
+   */
+  Panel: TabsPanel,
+});
+
+export const TabsContext = React.createContext<
+  | {
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal' | 'vertical';
+      /**
+       * Type of the tabs.
+       */
+      type?: string;
+      /**
+       * Color of the bar on the active tab.
+       * @default 'blue'
+       */
+      color?: 'blue' | 'green';
+      /**
+       * The index of the tab that should be active when initially rendered.
+       */
+      activeIndex?: number;
+      /**
+       * Control whether focusing tabs (using arrow keys) should automatically select them.
+       * Use 'manual' if tab panel content is not preloaded.
+       * @default 'auto'
+       */
+      focusActivationMode?: 'auto' | 'manual';
+      /**
+       * The current active index.
+       */
+      currentActiveIndex?: number;
+      /**
+       * Handler for setting the current active index.
+       */
+      setCurrentActiveIndex?: (value: number) => void;
+      /**
+       * The index value passed for each of the tabs in the tab list.
+       */
+      index?: number;
+      /**
+       * Handler for activating a tab.
+       */
+      onTabSelected?: (index: number) => void;
+      /**
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
+    }
+  | undefined
+>(undefined);
 
 export default Tabs;
