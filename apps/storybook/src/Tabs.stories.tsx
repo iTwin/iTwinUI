@@ -26,7 +26,7 @@ export default {
 
 export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs activeIndex={1} {...args}>
+    <Tabs {...args}>
       <Tabs.TabList>
         <Tabs.Tab>
           <Tabs.TabInfo>
@@ -50,7 +50,7 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
-          <Button key={'Normal'}>Normal size button</Button>,
+          <Button key={'Normal'}>Normal size button</Button>
         </Tabs.Action>
       </Tabs.Actions>
 
@@ -117,7 +117,7 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
-          <Button key={'Normal'}>Normal size button</Button>,
+          <Button key={'Normal'}>Normal size button</Button>
         </Tabs.Action>
       </Tabs.Actions>
 
@@ -230,8 +230,8 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
             <SvgStar />
           </Tabs.TabIcon>
           <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
+            <Tabs.TabLabel>Item0</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
           </Tabs.TabInfo>
         </Tabs.Tab>
 
@@ -240,8 +240,8 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
             <SvgStar />
           </Tabs.TabIcon>
           <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
+            <Tabs.TabLabel>Item1</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
           </Tabs.TabInfo>
         </Tabs.Tab>
 
@@ -250,8 +250,8 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
             <SvgStar />
           </Tabs.TabIcon>
           <Tabs.TabInfo>
-            <Tabs.TabLabel>Item3</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 3</Tabs.TabDescription>
+            <Tabs.TabLabel>Item2</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
           </Tabs.TabInfo>
         </Tabs.Tab>
       </Tabs.TabList>
@@ -261,7 +261,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
-          <Button key={'Normal'}>Normal size button</Button>,
+          <Button key={'Normal'}>Normal size button</Button>
         </Tabs.Action>
       </Tabs.Actions>
 
@@ -567,6 +567,16 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
             <SvgStar />
           </Tabs.TabIcon>
           <Tabs.TabInfo>
+            <Tabs.TabLabel>Item0</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+
+        <Tabs.Tab>
+          <Tabs.TabIcon>
+            <SvgStar />
+          </Tabs.TabIcon>
+          <Tabs.TabInfo>
             <Tabs.TabLabel>Item1</Tabs.TabLabel>
             <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
           </Tabs.TabInfo>
@@ -581,16 +591,6 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
             <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
           </Tabs.TabInfo>
         </Tabs.Tab>
-
-        <Tabs.Tab disabled>
-          <Tabs.TabIcon>
-            <SvgStar />
-          </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item3</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 3</Tabs.TabDescription>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -598,7 +598,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
-          <Button key={'Normal'}>Normal size button</Button>,
+          <Button key={'Normal'}>Normal size button</Button>
         </Tabs.Action>
       </Tabs.Actions>
 

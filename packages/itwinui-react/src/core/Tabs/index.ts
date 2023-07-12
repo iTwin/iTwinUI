@@ -3,3 +3,5 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Tabs } from './Tabs.js';
+
+export { Tab } from './Tab.js';
