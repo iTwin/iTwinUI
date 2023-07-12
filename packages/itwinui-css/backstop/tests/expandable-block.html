@@ -374,7 +374,8 @@
     <script>
       document.querySelectorAll('.iui-expandable-header:not([aria-disabled="true"])').forEach((el) => {
         el.addEventListener('click', (event) => {
-          event.currentTarget.parentElement.classList.toggle('[data-iui-expanded="true"]');
+          const expandedValue = el.parentElement.getAttribute('data-iui-expanded') === 'true';
+          event.currentTarget.parentElement.setAttribute('data-iui-expanded', !expandedValue);
           if (el.nextElementSibling?.classList.contains('iui-expandable-content')) {
             el.nextElementSibling.remove();
           } else {
