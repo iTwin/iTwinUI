@@ -44,6 +44,22 @@ type NonIdealStateProps = {
    * />
    */
   actions?: React.ReactNode;
+  /**
+   *  Allows props to be passed for non-ideal-state-illustration
+   */
+  illustrationProps?: React.ComponentProps<'div'>;
+  /**
+   *  Allows props to be passed for non-ideal-state-title
+   */
+  titleProps?: React.ComponentProps<'div'>;
+  /**
+   *  Allows props to be passed for non-ideal-state-description
+   */
+  descriptionProps?: React.ComponentProps<'div'>;
+  /**
+   *  Allows props to be passed for non-ideal-state-action
+   */
+  actionsProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -54,20 +70,59 @@ type NonIdealStateProps = {
  * <NonIdealState svg={<Svg404 />} heading='Not found' />
  */
 export const NonIdealState = React.forwardRef((props, forwardedRef) => {
-  const { className, svg, heading, description, actions, ...rest } = props;
+  const {
+    className,
+    svg,
+    heading,
+    description,
+    actions,
+    illustrationProps = {},
+    titleProps = {},
+    descriptionProps = {},
+    actionsProps = {},
+    ...rest
+  } = props;
 
   return (
     <Box
-      className={cx('iui-non-ideal-state', className)}
+      className={cx('iui-non-ideal-state', illustrationProps)}
       ref={forwardedRef}
       {...rest}
     >
-      <Box className='iui-non-ideal-state-illustration'>{svg}</Box>
-      {heading && <Box className='iui-non-ideal-state-title'>{heading}</Box>}
-      {description && (
-        <Box className='iui-non-ideal-state-description'>{description}</Box>
+      <Box
+        className={cx('iui-non-ideal-state-illustration', titleProps)}
+        ref={forwardedRef}
+        {...rest}
+      >
+        {svg}
+      </Box>
+      {heading && (
+        <Box
+          className={cx('iui-non-ideal-state-title', descriptionProps)}
+          ref={forwardedRef}
+          {...rest}
+        >
+          {heading}
+        </Box>
       )}
-      {actions && <Box className='iui-non-ideal-state-actions'>{actions}</Box>}
+      {description && (
+        <Box
+          className={cx('iui-non-ideal-state-description', actionsProps)}
+          ref={forwardedRef}
+          {...rest}
+        >
+          {description}
+        </Box>
+      )}
+      {actions && (
+        <Box
+          className={cx('iui-non-ideal-state-actions', className)}
+          ref={forwardedRef}
+          {...rest}
+        >
+          {actions}
+        </Box>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', NonIdealStateProps>;
