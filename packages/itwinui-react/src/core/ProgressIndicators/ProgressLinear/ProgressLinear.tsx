@@ -64,27 +64,24 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx(
-        'iui-progress-indicator-linear',
-        {
-          [`iui-${status}`]: !!status,
-        },
-        className,
-      )}
+      className={cx('iui-progress-indicator-linear-wrapper', className)}
       ref={forwardedRef}
       {...rest}
     >
-      <Box className='iui-track'>
-        <Box
-          className={cx('iui-fill', {
-            'iui-determinate': !indeterminate && isAnimated,
-            'iui-indeterminate': indeterminate,
-          })}
-          style={{ width: indeterminate ? '100%' : `${boundedValue}%` }}
-        />
-      </Box>
+      <Box
+        className='iui-progress-indicator-linear'
+        data-iui-status={status}
+        data-iui-indeterminate={
+          indeterminate && !isAnimated ? 'true' : undefined
+        }
+        style={
+          {
+            '--iui-progress-percentage': `${boundedValue}%`,
+          } as React.CSSProperties
+        }
+      />
       {labels.length > 0 && (
-        <Box className='iui-label'>
+        <Box className='iui-progress-indicator-linear-wrapper-label'>
           {labels.map((label, index) => (
             <span key={index}>{label}</span>
           ))}
