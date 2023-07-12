@@ -4,18 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box } from '../utils/index.js';
+import { Box, getBoundedValue } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ProgressLinearProps = {
   /**
    * Progress percentage. Should be a number between 0 and 100.
-   * @default 0
    */
   value?: number;
   /**
-   * Progress variant. If true, value will be ignored.
-   * @default false
+   * Progress variant. If true, `value` will be ignored.
+   *
+   * Defaults to true if `value` is passed, otherwise false.
    */
   indeterminate?: boolean;
   /**
@@ -50,8 +50,8 @@ type ProgressLinearProps = {
  */
 export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
-    value = 0,
-    indeterminate = false,
+    value,
+    indeterminate = value !== undefined,
     labels = [],
     isAnimated = false,
     status,
@@ -59,7 +59,7 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const boundedValue = Math.min(100, Math.max(0, value));
+  const boundedValue = getBoundedValue(value ?? 100, 0, 100);
 
   return (
     <Box
