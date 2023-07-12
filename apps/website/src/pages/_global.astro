@@ -63,8 +63,8 @@ const { content = {} } = Astro.props;
       }
 
       :where(p) {
-        padding-block-start: var(--space-2);
-        padding-block-end: var(--space-2);
+        padding-block-start: var(--space-0);
+        padding-block-end: var(--space-0);
       }
 
       :where(h1, h2, h3) {
@@ -75,6 +75,10 @@ const { content = {} } = Astro.props;
         font-size: var(--type-4);
       }
 
+      :where(h2) {
+        font-size: var(--type-3);
+      }
+
       :where(h2:not(left-sidebar *)) {
         font-size: var(--type-3);
         padding-block-start: var(--space-8);
@@ -82,7 +86,7 @@ const { content = {} } = Astro.props;
 
       :where(h3) {
         font-size: var(--type-2);
-        padding-block-start: var(--space-5);
+        padding-block-start: var(--space-3);
       }
 
       :where(code, pre) {
