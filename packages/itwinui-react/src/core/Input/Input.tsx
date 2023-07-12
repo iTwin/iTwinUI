@@ -9,11 +9,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type InputProps = {
   /**
-   * Set focus on input element.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * Modify size of the input.
    */
   size?: 'small' | 'large';
@@ -27,15 +22,9 @@ export type InputProps = {
  * <Input size='small' />
  */
 export const Input = React.forwardRef((props, ref) => {
-  const { setFocus = false, size, className, ...rest } = props;
+  const { size, className, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
-
-  React.useEffect(() => {
-    if (inputRef.current && setFocus) {
-      inputRef.current.focus();
-    }
-  }, [setFocus]);
 
   return (
     <Box

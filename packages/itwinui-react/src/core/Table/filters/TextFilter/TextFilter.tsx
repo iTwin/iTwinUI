@@ -40,7 +40,6 @@ export const TextFilter = <T extends Record<string, unknown>>(
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={onKeyDown}
-        setFocus
       />
       <FilterButtonBar
         setFilter={() => setFilter(text)}

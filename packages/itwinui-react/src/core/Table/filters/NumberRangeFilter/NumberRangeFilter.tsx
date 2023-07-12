@@ -64,7 +64,6 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
         onKeyDown={onKeyDown}
         type='number'
         displayStyle='inline'
-        setFocus
       />
       <LabeledInput
         label={translatedStrings.to}
