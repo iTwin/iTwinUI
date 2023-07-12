@@ -1,7 +1,225 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use 'linear';
-@use 'radial';
+@use '../mixins';
+
+@mixin iui-progress-indicator-radial {
+  --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  inline-size: var(--_iui-progress-indicator-radial-size);
+  block-size: var(--_iui-progress-indicator-radial-size);
+  border-radius: var(--iui-border-radius-round);
+  font-size: var(--iui-font-size-0);
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: var(--iui-size-2xs) solid transparent;
+    forced-color-adjust: none;
+  }
+
+  &::before {
+    border-color: var(--iui-color-border);
+  }
+
+  &::after {
+    mask-composite: subtract;
+    mask-clip: border-box, content-box;
+    background-color: var(--iui-color-border-accent);
+  }
+
+  &::before,
+  &::after {
+    @media (forced-colors: active) {
+      border-color: transparent;
+    }
+  }
+
+  :is(svg, img) {
+    @include mixins.iui-icon-style('m');
+    fill: var(--iui-color-icon);
+  }
+
+  @each $status in positive, negative {
+    &[data-iui-status='#{$status}'] {
+      color: var(--iui-color-text-#{$status});
+
+      &::after {
+        background-color: var(--iui-color-border-#{$status});
+      }
+
+      :is(svg, img) {
+        fill: var(--iui-color-border-#{$status});
+      }
+    }
+  }
+
+  &[data-iui-size='x-small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, m)};
+
+    &::before,
+    &::after {
+      border-width: var(--iui-size-3xs);
+    }
+
+    > * {
+      display: none;
+    }
+  }
+
+  &[data-iui-size='small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
+
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-3xs) * 1.5);
+    }
+  }
+
+  &[data-iui-size='large'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
+    font-size: var(--iui-font-size-2);
+
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-2xs) * 1.5);
+    }
+
+    :is(svg, img) {
+      @include mixins.iui-icon-style('l');
+    }
+  }
+}
+
+@mixin iui-progress-indicator-radial-determinate {
+  &::after {
+    $percentage: var(--iui-progress-percentage, 100%);
+    mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
+  }
+}
+
+@mixin iui-progress-indicator-radial-indeterminate {
+  &::after {
+    mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
+    animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
+
+    @keyframes rotate-indeterminate {
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+
+@mixin iui-progress-indicator-linear-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-2xs);
+
+  @supports selector(:has(*)) {
+    @each $status in positive, negative {
+      &:has([data-iui-status='#{$status}']) {
+        --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
+        --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
+        @include mixins.iui-text-selection($status);
+      }
+    }
+  }
+}
+
+@mixin iui-progress-indicator-linear-wrapper-label {
+  align-items: center;
+  inline-size: 100%;
+  overflow: hidden;
+  display: flex;
+  font-size: var(--iui-font-size-0);
+  justify-content: space-between;
+  color: var(--_iui-progress-indicator-linear-wrapper-label-color);
+
+  > :only-child {
+    margin-inline: auto;
+  }
+
+  > :last-child:not(:first-child) {
+    user-select: none;
+  }
+
+  svg {
+    @include mixins.iui-icon-style('m');
+    fill: var(--_iui-progress-indicator-linear-wrapper-label-fill);
+  }
+}
+
+@mixin iui-progress-indicator-linear {
+  inline-size: 100%;
+  block-size: var(--iui-size-2xs);
+  overflow: hidden;
+  background-color: var(--iui-color-border);
+
+  @media (forced-colors: active) {
+    border: 1px solid;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    inline-size: var(--iui-progress-percentage, 100%);
+    background-color: var(--iui-color-border-accent);
+    forced-color-adjust: none;
+  }
+
+  @each $status in positive, negative {
+    &[data-iui-status='#{$status}'] {
+      &::after {
+        background-color: var(--iui-color-border-#{$status});
+      }
+
+      @supports not selector(:has(*)) {
+        + .iui-progress-indicator-linear-wrapper-label {
+          --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
+          --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
+          @include mixins.iui-text-selection($status);
+        }
+      }
+    }
+  }
+}
+
+@mixin iui-progress-indicator-linear-determinate($speed: 2s) {
+  &::after {
+    transition: inline-size $speed ease-in-out;
+  }
+}
+
+@mixin iui-progress-indicator-linear-indeterminate() {
+  @keyframes iui-progress-indicator-linear-animate-indeterminate {
+    0% {
+      transform: translateX(-60%) scaleX(0);
+    }
+
+    40% {
+      transform: translateX(-40%) scaleX(0.4);
+    }
+
+    100% {
+      transform: translateX(100%) scaleX(0.5);
+    }
+  }
+
+  &::after {
+    inline-size: 100%;
+    animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
+  }
+}
+
+// ----------------------------------------------------------------------------
 
 .iui-progress-indicator {
   position: relative;
@@ -9,26 +227,26 @@
   flex-shrink: 0;
 
   &:where([data-iui-variant='linear']) {
-    @include linear.iui-progress-indicator-linear;
+    @include iui-progress-indicator-linear;
 
     &:where(:not([data-iui-indeterminate])) {
-      @include linear.iui-progress-indicator-linear-determinate;
+      @include iui-progress-indicator-linear-determinate;
     }
 
     &:where([data-iui-indeterminate]) {
-      @include linear.iui-progress-indicator-linear-indeterminate;
+      @include iui-progress-indicator-linear-indeterminate;
     }
   }
 
   &:where([data-iui-variant='radial']) {
-    @include radial.iui-progress-indicator-radial;
+    @include iui-progress-indicator-radial;
 
     &:where(:not([data-iui-indeterminate])) {
-      @include radial.iui-progress-indicator-radial-determinate;
+      @include iui-progress-indicator-radial-determinate;
     }
 
     &:where([data-iui-indeterminate]) {
-      @include radial.iui-progress-indicator-radial-indeterminate;
+      @include iui-progress-indicator-radial-indeterminate;
     }
   }
 
@@ -39,10 +257,10 @@
   }
 }
 
-.iui-progress-indicator-linear-wrapper {
-  @include linear.iui-progress-indicator-linear-wrapper;
+.iui-progress-indicator-linear {
+  @include iui-progress-indicator-linear-wrapper;
 }
 
 .iui-progress-indicator-linear-wrapper-label {
-  @include linear.iui-progress-indicator-linear-wrapper-label;
+  @include iui-progress-indicator-linear-wrapper-label;
 }
