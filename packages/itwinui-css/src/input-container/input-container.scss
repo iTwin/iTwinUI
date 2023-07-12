@@ -200,8 +200,7 @@
 }
 
 // attribute to include status border in inputs (input, select)
-.iui-input-status,
-.iui-select-button.iui-input-status {
+:where(.iui-input, .iui-select-button, .iui-input-flex-container) {
   @each $statusColor in informational, positive, warning, negative {
     &:where([data-iui-status='#{$statusColor}']) {
       padding-block-end: calc(var(--iui-size-2xs) - 1px);

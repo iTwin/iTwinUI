@@ -432,7 +432,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
               'iui-placeholder':
                 (!selectedItems || selectedItems.length === 0) && !!placeholder,
               'iui-disabled': disabled,
-              'iui-input-status': !!status,
             },
             triggerProps?.className,
           )}
