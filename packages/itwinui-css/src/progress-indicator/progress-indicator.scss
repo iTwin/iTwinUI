@@ -1,25 +1,15 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
+@use 'sass:string';
 @use '../mixins';
-
-:is(.iui-progress-indicator-linear, .iui-progress-indicator-radial) {
-  position: relative;
-  display: inline-flex;
-  flex-shrink: 0;
-
-  &::after {
-    @media (forced-colors: active) {
-      background-color: CanvasText;
-    }
-  }
-}
-
-// ----------------------------------------------------------------------------
 
 .iui-progress-indicator-radial {
   --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
   vertical-align: middle;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   inline-size: var(--_iui-progress-indicator-radial-size);
@@ -118,10 +108,11 @@
 
   &:where([data-iui-indeterminate]) {
     &::after {
+      $_keyframe-name: iui-#{string.unique-id()};
       mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
-      animation: rotate-indeterminate 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
+      animation: $_keyframe-name 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
 
-      @keyframes rotate-indeterminate {
+      @keyframes #{$_keyframe-name} {
         100% {
           transform: rotate(360deg);
         }
@@ -132,104 +123,79 @@
 
 // ----------------------------------------------------------------------------
 
-.iui-progress-indicator-linear-wrapper {
+.iui-progress-indicator-linear-label {
   display: flex;
-  flex-direction: column;
-  gap: var(--iui-size-2xs);
-
-  @supports selector(:has(*)) {
-    @each $status in positive, negative {
-      &:has([data-iui-status='#{$status}']) {
-        --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
-        --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
-        @include mixins.iui-text-selection($status);
-      }
-    }
-  }
-}
-
-.iui-progress-indicator-linear-wrapper-label {
   align-items: center;
-  inline-size: 100%;
-  overflow: hidden;
-  display: flex;
   font-size: var(--iui-font-size-0);
   justify-content: space-between;
-  color: var(--_iui-progress-indicator-linear-wrapper-label-color);
+  color: var(--_iui-progress-indicator-linear-label-color);
+  --iui-svg-fill: var(--_iui-progress-indicator-linear-label-fill);
 
   > :only-child {
     margin-inline: auto;
   }
-
-  > :last-child:not(:first-child) {
-    user-select: none;
-  }
-
-  svg {
-    @include mixins.iui-icon-style('m');
-    fill: var(--_iui-progress-indicator-linear-wrapper-label-fill);
-  }
 }
 
 .iui-progress-indicator-linear {
-  inline-size: 100%;
-  block-size: var(--iui-size-2xs);
-  overflow: hidden;
-  background-color: var(--iui-color-border);
+  position: relative;
+  display: grid;
+  gap: var(--iui-size-2xs);
 
-  @media (forced-colors: active) {
-    border: 1px solid;
-  }
-
-  &::after {
+  &::before {
     content: '';
-    position: absolute;
-    inset: 0;
-    inline-size: var(--iui-progress-percentage, 100%);
-    background-color: var(--iui-color-border-accent);
+    block-size: var(--iui-size-2xs);
+    $percentage: var(--iui-progress-percentage, 100%);
+    $fill: var(--_iui-progress-indicator-track-fill, var(--iui-color-border-accent));
+
+    background-color: var(--iui-color-border);
+    background-image: linear-gradient(90deg, $fill 0% 100%);
+    background-repeat: no-repeat;
+    background-size: $percentage 100%;
     forced-color-adjust: none;
+
+    @media (forced-colors: active) {
+      border: solid 0.5px;
+      background-color: transparent;
+      background-image: linear-gradient(90deg, CanvasText 0% 100%);
+    }
   }
 
   @each $status in positive, negative {
     &[data-iui-status='#{$status}'] {
-      &::after {
-        background-color: var(--iui-color-border-#{$status});
-      }
+      --_iui-progress-indicator-track-fill: #{var(--iui-color-border-#{$status})};
+      --_iui-progress-indicator-linear-label-color: var(--iui-color-text-#{$status});
+      --_iui-progress-indicator-linear-label-fill: var(--iui-color-icon-#{$status});
+      @include mixins.iui-text-selection($status);
+    }
+  }
 
-      @supports not selector(:has(*)) {
-        + .iui-progress-indicator-linear-wrapper-label {
-          --_iui-progress-indicator-linear-wrapper-label-color: var(--iui-color-text-#{$status});
-          --_iui-progress-indicator-linear-wrapper-label-fill: var(--iui-color-icon-#{$status});
-          @include mixins.iui-text-selection($status);
+  &:where([data-iui-animated='true']:not([data-iui-indeterminate='true'])) {
+    &::before {
+      transition: background-size 1s ease-in-out;
+    }
+  }
+
+  &:where([data-iui-indeterminate='true']) {
+    &::before {
+      $_keyframe-name: iui-#{string.unique-id()};
+      animation: $_keyframe-name 1.5s infinite linear;
+
+      @keyframes #{$_keyframe-name} {
+        0% {
+          background-position: -60% 0%;
+          background-size: 30% 100%;
+        }
+
+        40% {
+          background-position: -40% 0%;
+          background-size: 40% 100%;
+        }
+
+        100% {
+          background-position: 200% 0%;
+          background-size: 50% 100%;
         }
       }
-    }
-  }
-
-  &:where(:not([data-iui-indeterminate])) {
-    &::after {
-      transition: inline-size 2s ease-in-out;
-    }
-  }
-
-  &:where([data-iui-indeterminate]) {
-    @keyframes iui-progress-indicator-linear-animate-indeterminate {
-      0% {
-        transform: translateX(-60%) scaleX(0);
-      }
-
-      40% {
-        transform: translateX(-40%) scaleX(0.4);
-      }
-
-      100% {
-        transform: translateX(100%) scaleX(0.5);
-      }
-    }
-
-    &::after {
-      inline-size: 100%;
-      animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
     }
   }
 }
