@@ -99,14 +99,14 @@
     }
   }
 
-  &:where(:not([data-iui-indeterminate])) {
+  &:where(:not([data-iui-indeterminate='true'])) {
     &::after {
       $percentage: var(--iui-progress-percentage, 100%);
       mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
     }
   }
 
-  &:where([data-iui-indeterminate]) {
+  &:where([data-iui-indeterminate='true']) {
     &::after {
       $_keyframe-name: iui-#{string.unique-id()};
       mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
@@ -137,7 +137,6 @@
 }
 
 .iui-progress-indicator-linear {
-  position: relative;
   display: grid;
   gap: var(--iui-size-2xs);
 
