@@ -8,14 +8,14 @@
   background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
   background-size: $size $size;
   background-image: repeating-linear-gradient(
-      45deg,
-      #c7ccd1 25%,
-      transparent 25%,
-      transparent 75%,
-      #c7ccd1 75%,
-      #c7ccd1
-    ),
-    repeating-linear-gradient(45deg, #c7ccd1 25%, #edeff2 25%, #edeff2 75%, #c7ccd1 75%, #c7ccd1);
+    45deg,
+    #C7CCD1 25%,
+    transparent 25%,
+    transparent 75%,
+    #C7CCD1 75%,
+    #C7CCD1
+  ),
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 }
 
 // ----------------------------------------------------------------------------
@@ -169,10 +169,10 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 }
 
 .iui-hue-slider {
-  $red: #f00;
-  $yellow: #ff0;
-  $blue: #03f;
-  $magenta: #c3f;
+  $red: #F00;
+  $yellow: #FF0;
+  $blue: #03F;
+  $magenta: #C3F;
 
   .iui-slider-container {
     .iui-slider-rail {
