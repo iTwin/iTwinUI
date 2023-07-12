@@ -20,7 +20,7 @@
 
 @mixin iui-progress-indicator-linear-wrapper-label {
   align-items: center;
-  width: 100%;
+  inline-size: 100%;
   overflow: hidden;
   display: flex;
   font-size: var(--iui-font-size-0);
@@ -28,7 +28,7 @@
   color: var(--_iui-progress-indicator-linear-wrapper-label-color);
 
   > :only-child {
-    margin: 0 auto;
+    margin-inline: auto;
   }
 
   > :last-child:not(:first-child) {
@@ -42,8 +42,8 @@
 }
 
 @mixin iui-progress-indicator-linear {
-  width: 100%;
-  height: var(--iui-size-2xs);
+  inline-size: 100%;
+  block-size: var(--iui-size-2xs);
   overflow: hidden;
   background-color: var(--iui-color-border);
 
@@ -55,7 +55,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    width: var(--iui-progress-percentage, 100%);
+    inline-size: var(--iui-progress-percentage, 100%);
     background-color: var(--iui-color-border-accent);
     forced-color-adjust: none;
   }
@@ -79,7 +79,7 @@
 
 @mixin iui-progress-indicator-linear-determinate($speed: 2s) {
   &::after {
-    transition: width $speed ease-in-out;
+    transition: inline-size $speed ease-in-out;
   }
 }
 
@@ -99,7 +99,7 @@
   }
 
   &::after {
-    width: 100%;
+    inline-size: 100%;
     animation: iui-progress-indicator-linear-animate-indeterminate 1.5s infinite linear;
   }
 }

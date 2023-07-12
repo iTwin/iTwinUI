@@ -27,53 +27,53 @@ A checkbox is not interchangeable with a [radio](radio). A radio must have at mi
 
 ### Default
 
+The default checkboxes are used to turn on and off one or multiple options.
+
 <LiveExample src='Checkbox.indeterminate.tsx'>
   <AllExamples.CheckboxIndeterminateExample client:load />
 </LiveExample>
 
-The default checkboxes are used to turn on and off one or multiple options.
-
 ### Visibility
+
+Often times checkboxes are used to visibly turn on and off a layer within a view. If the checkboxes are used for visibility you can use the eyeball variant which uses an eyeball icon instead of a checkmark to reinforce that something is being shown or hidden.
 
 <LiveExample src='Checkbox.visibility.tsx'>
   <AllExamples.CheckboxVisibilityExample client:load />
 </LiveExample>
 
-Often times checkboxes are used to visibly turn on and off a layer within a view. If the checkboxes are used for visibility you can use the eyeball variant which uses an eyeball icon instead of a checkmark to reinforce that something is being shown or hidden.
-
 ## Usage
 
 ### With input group
+
+Checkboxes are often paired with the [input group](inputgroup) which gives many additional options.
 
 <LiveExample src='Checkbox.inputgroup.tsx'>
   <AllExamples.CheckboxInputGroupExample client:load />
 </LiveExample>
 
-Checkboxes are often paired with the [input group](inputgroup) which gives many additional options.
-
 ### Indeterminate
+
+When a main option has associated sub-options, parent-child checkboxes are used. They make selecting/unselecting the entirety of a list of options easier if all or neither of them apply to a user’s choice. If some, but not all, child checkboxes are checked, the parent checkbox becomes an indeterminate checkbox.
 
 <LiveExample src='Checkbox.indeterminate.tsx'>
   <AllExamples.CheckboxIndeterminateExample client:load />
 </LiveExample>
 
-When a main option has associated sub-options, parent-child checkboxes are used. They make selecting/unselecting the entirety of a list of options easier if all or neither of them apply to a user’s choice. If some, but not all, child checkboxes are checked, the parent checkbox becomes an indeterminate checkbox.
-
 ### Loading
+
+If the checkbox is performing an action immediately after being checked, it may take the user interface some time before reflecting that change. While waiting for that change to occur you can display a loading checkbox so the user understands that the action taken has yet to be applied.
 
 <LiveExample src='Checkbox.loading.tsx'>
   <AllExamples.CheckboxLoadingExample client:load />
 </LiveExample>
 
-If the checkbox is performing an action immediately after being checked, it may take the user interface some time before reflecting that change. While waiting for that change to occur you can display a loading checkbox so the user understands that the action taken has yet to be applied.
-
 ### Statuses
+
+If you ever need to display the status or severity of a single checkbox, you can apply a status on the checkbox. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
 
 <LiveExample src='Checkbox.statuses.tsx'>
   <AllExamples.CheckboxStatusesExample client:load />
 </LiveExample>
-
-If you ever need to display the status or severity of a single checkbox, you can apply a status on the checkbox. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
 
 ## Props
 

@@ -2,7 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'linear';
 @use 'radial';
-@use 'overlay';
 
 .iui-progress-indicator {
   position: relative;
@@ -46,12 +45,4 @@
 
 .iui-progress-indicator-linear-wrapper-label {
   @include linear.iui-progress-indicator-linear-wrapper-label;
-}
-
-.iui-progress-indicator-overlay {
-  @include overlay.iui-progress-indicator-overlay;
-}
-
-.iui-progress-indicator-overlay .iui-overlay-exiting {
-  @include overlay.iui-progress-overlay-exiting;
 }

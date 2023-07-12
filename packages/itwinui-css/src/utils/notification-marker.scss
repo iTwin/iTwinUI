@@ -15,10 +15,10 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
   &::before {
     content: '';
     position: absolute;
-    width: $iui-notification-marker-size;
-    height: $iui-notification-marker-size;
-    top: 0;
-    right: 0;
+    inline-size: $iui-notification-marker-size;
+    block-size: $iui-notification-marker-size;
+    inset-block-start: 0;
+    inset-inline-end: 0;
     transform: translate(50%, -50%);
 
     border-radius: 100%;

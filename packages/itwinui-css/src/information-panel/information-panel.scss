@@ -4,57 +4,57 @@
 @use '../input-container/mixins' as input-container;
 
 @mixin iui-information-panel-vertical {
-  top: 0;
-  right: 0;
-  width: calc(var(--iui-size-3xl) * 4);
-  min-width: calc(var(--iui-size-3xl) * 2);
-  height: 100%;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  inline-size: calc(var(--iui-size-3xl) * 4);
+  min-inline-size: calc(var(--iui-size-3xl) * 2);
+  block-size: 100%;
 
   > .iui-resizer {
-    height: 100%;
-    width: var(--iui-size-m);
-    top: 0;
+    block-size: 100%;
+    inline-size: var(--iui-size-m);
+    inset-block-start: 0;
     cursor: ew-resize;
     justify-content: center;
 
     > .iui-resizer-bar {
-      height: 100%;
-      width: 1px;
+      block-size: 100%;
+      inline-size: 1px;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
       }
     }
 
     &:hover > .iui-resizer-bar {
-      width: var(--iui-size-2xs);
+      inline-size: var(--iui-size-2xs);
     }
   }
 }
 
 @mixin iui-information-panel-horizontal {
-  left: 0;
-  bottom: 0;
-  height: calc(var(--iui-size-3xl) * 4);
-  min-height: calc(var(--iui-size-3xl) * 2);
-  width: 100%;
+  inset-inline-start: 0;
+  inset-block-end: 0;
+  block-size: calc(var(--iui-size-3xl) * 4);
+  min-block-size: calc(var(--iui-size-3xl) * 2);
+  inline-size: 100%;
 
   > .iui-resizer {
-    width: 100%;
-    height: var(--iui-size-m);
-    left: 0;
+    inline-size: 100%;
+    block-size: var(--iui-size-m);
+    inset-inline-start: 0;
     cursor: ns-resize;
     align-items: center;
 
     > .iui-resizer-bar {
-      width: 100%;
-      height: 1px;
+      inline-size: 100%;
+      block-size: 1px;
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out;
       }
     }
 
     &:hover > .iui-resizer-bar {
-      height: var(--iui-size-2xs);
+      block-size: var(--iui-size-2xs);
     }
   }
 }
@@ -73,8 +73,8 @@
   visibility: hidden;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
-  max-height: 100%;
+  max-inline-size: 100%;
+  max-block-size: 100%;
   background-color: var(--iui-color-background);
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility var(--iui-duration-0) var(--iui-duration-1) ease-in, transform var(--iui-duration-1) ease-out,
@@ -97,18 +97,17 @@
 
   .iui-information-header,
   .iui-information-body {
-    padding-left: var(--iui-size-s);
-    padding-right: var(--iui-size-s);
+    padding-inline: var(--iui-size-s);
   }
 
   .iui-information-header {
-    height: calc(var(--iui-size-s) * 5);
+    block-size: calc(var(--iui-size-s) * 5);
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: var(--iui-color-background);
-    border-bottom: 1px solid var(--iui-color-border);
+    border-block-end: 1px solid var(--iui-color-border);
 
     .iui-information-header-label {
       display: flex;
@@ -125,20 +124,19 @@
       svg {
         @include mixins.iui-icon-style('l');
         @include mixins.iui-icon-color;
-        margin-right: var(--iui-size-xs);
+        margin-inline-end: var(--iui-size-xs);
       }
     }
 
     .iui-information-header-actions {
       flex-shrink: 0;
-      margin-left: var(--iui-size-xs);
+      margin-inline-start: var(--iui-size-xs);
     }
   }
 
   .iui-information-body {
-    padding-top: var(--iui-size-s);
-    padding-bottom: var(--iui-size-s);
-    height: 100%;
+    padding-block: var(--iui-size-s);
+    block-size: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     overflow-y: overlay;
@@ -155,7 +153,7 @@
     clip-path: inset(0 0 0 -15px); // show box-shadow only on the left
 
     > .iui-resizer {
-      left: calc(var(--iui-size-m) * -0.5);
+      inset-inline-start: calc(var(--iui-size-m) * -0.5);
     }
   }
 
@@ -166,7 +164,7 @@
     clip-path: inset(-15px 0 0 0); // show box-shadow only on top
 
     > .iui-resizer {
-      top: calc(var(--iui-size-m) * -0.5);
+      inset-block-start: calc(var(--iui-size-m) * -0.5);
     }
   }
 
@@ -197,7 +195,7 @@
   &:not(.iui-inline) {
     // add bottom margin between pairs of label+input
     > *:nth-child(even):not(:last-child) {
-      margin-bottom: var(--iui-size-s);
+      margin-block-end: var(--iui-size-s);
     }
   }
 

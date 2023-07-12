@@ -5,6 +5,6 @@
     "module": "commonjs",
 
     // reverting this back because not supported in CJS
-    "preserveValueImports": false
+    "verbatimModuleSyntax": false
   }
 }
