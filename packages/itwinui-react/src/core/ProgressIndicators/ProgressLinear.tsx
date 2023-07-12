@@ -51,7 +51,7 @@ type ProgressLinearProps = {
 export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
     value,
-    indeterminate = value !== undefined,
+    indeterminate = value === undefined,
     labels = [],
     isAnimated = false,
     status,
@@ -63,7 +63,7 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx('iui-progress-indicator-linear-wrapper', className)}
+      className={cx('iui-progress-indicator-linear', className)}
       ref={forwardedRef}
       data-iui-status={status}
       data-iui-indeterminate={indeterminate ? 'true' : undefined}
