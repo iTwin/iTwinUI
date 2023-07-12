@@ -9,8 +9,8 @@ import {
   SvgImportantSmall,
   Box,
   getBoundedValue,
-} from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+} from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ProgressRadialProps = {
   /**
