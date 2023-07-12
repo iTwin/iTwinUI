@@ -125,6 +125,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         placeholder={placeholder}
         selectedDate={to}
         isFromOrTo='from'
+        setFocus
       />
       <DatePickerInput
         label={translatedStrings.to}

@@ -21,6 +21,11 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
+  /**
+   * Set focus.
+   * @default false
+   */
+  setFocus?: boolean;
 } & Omit<
   React.ComponentProps<typeof LabeledInput>,
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
@@ -34,6 +39,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     formatDate,
     isFromOrTo,
     selectedDate,
+    setFocus = false,
     ...rest
   } = props;
 
@@ -82,6 +88,14 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     [onChange, parseInput],
   );
 
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (inputRef.current && setFocus) {
+      inputRef.current.focus();
+    }
+  }, [setFocus]);
+
   return (
     <Popover
       content={
@@ -102,6 +116,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
       appendTo='parent'
     >
       <LabeledInput
+        ref={inputRef}
         displayStyle='inline'
         value={inputValue}
         onChange={onInputChange}

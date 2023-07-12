@@ -34,6 +34,14 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
 
   const translatedStrings = { ...defaultStrings, ...translatedLabels };
 
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const [from, setFrom] = React.useState<string | undefined>(
     column.filterValue?.[0] ?? '',
   );
@@ -58,6 +66,7 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
   return (
     <BaseFilter>
       <LabeledInput
+        ref={inputRef}
         label={translatedStrings.from}
         value={from}
         onChange={(e) => setFrom(e.target.value)}
