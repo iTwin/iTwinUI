@@ -29,7 +29,7 @@
   display: flex;
   flex-direction: column;
   isolation: isolate;
-  width: 100%;
+  inline-size: 100%;
   border-radius: var(--iui-border-radius-1);
 
   &[data-iui-size='small'] {
@@ -67,13 +67,13 @@
   user-select: none;
   color: var(--iui-color-text);
   font-family: inherit;
-  text-align: left;
   z-index: 1;
+  text-align: start;
   background-color: var(--_iui-expandable-block-background-color);
   border: var(--_iui-expandable-block-border);
   border-radius: inherit;
-  border-bottom-left-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
-  border-bottom-right-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-end-start-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
+  border-end-end-radius: var(--_iui-expandable-block-header-bottom-border-radius, inherit);
   transition: background-color var(--iui-duration-1) ease-out;
   @media (forced-colors: active) {
     --_iui-expandable-block-expander-icon-fill: CanvasText;
@@ -115,9 +115,8 @@
 }
 
 .iui-expandable-block-icon {
-  @include mixins.iui-icon-style('m');
-  width: var(--_iui-expandable-block-expander-icon-size);
-  height: var(--_iui-expandable-block-expander-icon-size);
+  inline-size: var(--_iui-expandable-block-expander-icon-size);
+  block-size: var(--_iui-expandable-block-expander-icon-size);
   fill: var(--_iui-expandable-block-expander-icon-fill);
   transform: var(--_iui-expandable-block-expander-icon-transform);
   transition: fill var(--iui-duration-1) ease-out;
@@ -130,7 +129,7 @@
   display: flex;
   flex-direction: column;
   flex: auto;
-  min-width: 0;
+  min-inline-size: 0;
   font-size: var(--iui-font-size-2);
   color: var(--_iui-expandable-block-header-label-color, inherit);
 }
@@ -159,10 +158,10 @@
 
 .iui-expandable-content {
   background-color: var(--_iui-expandable-block-background-color);
-  border-right: var(--_iui-expandable-block-border);
-  border-left: var(--_iui-expandable-block-border);
-  border-bottom-left-radius: inherit;
-  border-bottom-right-radius: inherit;
+  border-inline-end: var(--_iui-expandable-block-border);
+  border-inline-start: var(--_iui-expandable-block-border);
+  border-end-start-radius: inherit;
+  border-end-end-radius: inherit;
 
   display: grid;
   grid-template-rows: 0fr;
@@ -174,7 +173,7 @@
   }
 
   > div {
-    min-height: 0;
+    min-block-size: 0;
     visibility: hidden;
     padding-inline: var(--_iui-expandable-block-content-padding);
     @media (prefers-reduced-motion: no-preference) {
@@ -188,7 +187,7 @@
 
     > div {
       padding-block: var(--_iui-expandable-block-content-padding);
-      border-bottom: var(--_iui-expandable-block-border);
+      border-block-end: var(--_iui-expandable-block-border);
       visibility: visible;
     }
   }

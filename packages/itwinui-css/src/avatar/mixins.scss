@@ -5,18 +5,18 @@
 
 @mixin iui-avatar-margins {
   .iui-avatar:not(:first-child) {
-    margin-left: var(--iui-size-2xs);
+    margin-inline-start: var(--iui-size-2xs);
 
     &.iui-small {
-      margin-left: var(--iui-size-3xs);
+      margin-inline-start: var(--iui-size-3xs);
     }
 
     &.iui-large {
-      margin-left: var(--iui-size-xs);
+      margin-inline-start: var(--iui-size-xs);
     }
 
     &.iui-x-large {
-      margin-left: var(--iui-size-s);
+      margin-inline-start: var(--iui-size-s);
     }
   }
 }

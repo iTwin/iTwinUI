@@ -24,19 +24,19 @@ Tags are user-generated keywords used to label, categorize, or organize items an
 
 ### Default
 
+Default tags can be added and removed by a user. Tags adapt their size to the length of the label inside, making it easier to tell them apart due to their different sizes.
+
 <LiveExample src='Tag.default.tsx'>
   <AllExamples.TagDefaultExample client:load />
 </LiveExample>
 
-Default tags can be added and removed by a user. Tags adapt their size to the length of the label inside, making it easier to tell them apart due to their different sizes.
-
 ### Basic
+
+Tags in the basic state are static and cannot be removed or edited by the user. No new tags can be added through this state either. This state is commonly seen in [tile](tile) metadata.
 
 <LiveExample src='Tag.basic.tsx'>
   <AllExamples.TagBasicExample client:load />
 </LiveExample>
-
-Tags in the basic state are static and cannot be removed or edited by the user. No new tags can be added through this state either. This state is commonly seen in [tile](tile) metadata.
 
 ## Props
 
@@ -44,35 +44,35 @@ Tags in the basic state are static and cannot be removed or edited by the user. 
 
 ## Tag container
 
+Tag containers may be used to group tags, depending on the page layout and usage.
+
 <LiveExample src='TagContainer.main.tsx'>
   <AllExamples.TagContainerMainExample client:load />
 </LiveExample>
 
-Tag containers may be used to group tags, depending on the page layout and usage.
-
 ### Wrapping
+
+The wrapping container wraps tags around to the following line when the maximum width is reached on the previous line. This allows display of the full tags without label truncation.
 
 <LiveExample src='TagContainer.wrap.tsx'>
   <AllExamples.TagContainerWrapExample client:load />
 </LiveExample>
 
-The wrapping container wraps tags around to the following line when the maximum width is reached on the previous line. This allows display of the full tags without label truncation.
-
 ### Truncating
+
+The truncating container has fixed height, so it only displays tags that fit on a single line, and truncates tags that exceeds the maximum width. It uses ellipsis (…) to inform the user that there are hidden extra tags beyond what is currently shown.
 
 <LiveExample src='TagContainer.truncate.tsx'>
   <AllExamples.TagContainerTruncateExample client:load />
 </LiveExample>
 
-The truncating container has fixed height, so it only displays tags that fit on a single line, and truncates tags that exceeds the maximum width. It uses ellipsis (…) to inform the user that there are hidden extra tags beyond what is currently shown.
-
 ### Scrollable
+
+The scrollable container is much like the truncating container, except it allows the user to horizontally scroll to reveal the tags that go beyond the maximum width. The tag that extends past the width is cut off, to hint at the scrolling possibility.
 
 <LiveExample src='TagContainer.scroll.tsx'>
   <AllExamples.TagContainerScrollExample client:load />
 </LiveExample>
-
-The scrollable container is much like the truncating container, except it allows the user to horizontally scroll to reveal the tags that go beyond the maximum width. The tag that extends past the width is cut off, to hint at the scrolling possibility.
 
 ### Props
 

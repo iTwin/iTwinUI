@@ -23,10 +23,10 @@ const sizeTokens = [
 /**
  * String literal shorthands that correspond to the size tokens in [itwinui-variables](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/src/sizes.scss).
  */
-type SizeToken = typeof sizeTokens[number];
+type SizeToken = (typeof sizeTokens)[number];
 
 const getValueForToken = (token?: string) => {
-  if (sizeTokens.includes(token as typeof sizeTokens[number])) {
+  if (sizeTokens.includes(token as (typeof sizeTokens)[number])) {
     return `var(--iui-size-${token})`;
   }
   return token;

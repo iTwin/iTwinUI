@@ -24,7 +24,7 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   color: var(--_iui-badge-text-color);
   text-transform: uppercase;
   user-select: none;
-  max-width: calc(20ch + $iui-badge-horizontal-padding * 2);
+  max-inline-size: calc(20ch + $iui-badge-horizontal-padding * 2);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

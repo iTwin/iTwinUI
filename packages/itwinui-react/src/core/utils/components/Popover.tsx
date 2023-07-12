@@ -104,7 +104,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     // Tippy uses react Portal, which propagates events by react tree, not dom tree.
     // Read more: https://reactjs.org/docs/portals.html#event-bubbling-through-portals
     const clonedContent = React.isValidElement(props.content)
-      ? React.cloneElement(props.content, {
+      ? React.cloneElement(props.content as JSX.Element, {
           onClick: (e: MouseEvent) => {
             e.stopPropagation();
             (props.content as JSX.Element).props.onClick?.(e);

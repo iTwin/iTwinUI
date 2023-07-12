@@ -86,8 +86,8 @@ $tick-height: var(--iui-size-s); // 12px
 .iui-slider-thumb {
   box-sizing: content-box;
   position: absolute;
-  height: $thumb-height;
-  width: $thumb-height;
+  block-size: $thumb-height;
+  inline-size: $thumb-height;
   border-radius: 100%;
   z-index: 1;
   cursor: grab;
@@ -107,7 +107,7 @@ $tick-height: var(--iui-size-s); // 12px
 .iui-slider-track {
   pointer-events: none;
   position: absolute;
-  top: var(--iui-size-s);
+  inset-block-start: var(--iui-size-s);
   background-color: var(--iui-color-border-accent);
   @media (forced-colors: active) {
     background-color: Highlight;
@@ -138,115 +138,115 @@ $tick-height: var(--iui-size-s); // 12px
 }
 
 .iui-slider-horizontal {
-  min-height: calc(var(--iui-size-s) * 2);
+  min-block-size: calc(var(--iui-size-s) * 2);
 
   .iui-slider-rail {
-    width: 100%;
-    height: $track-height;
-    top: var(--iui-size-s);
+    inline-size: 100%;
+    block-size: $track-height;
+    inset-block-start: var(--iui-size-s);
   }
 
   .iui-slider-thumb {
-    top: calc($track-height + 1px); // position center of thumb in center of track
+    inset-block-start: calc($track-height + 1px); // position center of thumb in center of track
     transform: translateX(-50%);
   }
 
   .iui-slider-track {
-    height: $track-height;
-    left: 0;
+    block-size: $track-height;
+    inset-inline-start: 0;
   }
 
   .iui-slider-ticks {
-    padding-top: var(--iui-size-m);
+    padding-block-start: var(--iui-size-m);
 
     .iui-slider-tick {
       flex-direction: column;
-      width: 1px;
+      inline-size: 1px;
 
       &::before {
         content: '';
-        width: 1px;
-        height: $tick-height;
+        inline-size: 1px;
+        block-size: $tick-height;
       }
     }
   }
 
   .iui-slider-min,
   .iui-slider-max {
-    margin-top: var(--iui-size-3xs);
-    min-width: var(--iui-size-l);
+    margin-block-start: var(--iui-size-3xs);
+    min-inline-size: var(--iui-size-l);
     flex-direction: row;
 
     svg {
-      margin-top: var(--iui-size-2xs);
+      margin-block-start: var(--iui-size-2xs);
     }
   }
 
   .iui-slider-min {
-    margin-right: var(--iui-size-s);
-    text-align: right;
+    margin-inline-end: var(--iui-size-s);
+    text-align: end;
   }
 
   .iui-slider-max {
-    margin-left: var(--iui-size-s);
+    margin-inline-start: var(--iui-size-s);
   }
 }
 
 .iui-slider-vertical {
   flex-direction: column-reverse;
-  min-width: calc(var(--iui-size-s) * 2);
-  height: 100%;
+  min-inline-size: calc(var(--iui-size-s) * 2);
+  block-size: 100%;
 
   .iui-slider-rail {
-    width: $track-height;
-    height: 100%;
-    left: var(--iui-size-s);
+    inline-size: $track-height;
+    block-size: 100%;
+    inset-inline-start: var(--iui-size-s);
   }
 
   .iui-slider-thumb {
     transform: translateY(50%);
-    left: calc($track-height + 1px);
+    inset-inline-start: calc($track-height + 1px);
   }
 
   .iui-slider-track {
-    width: $track-height;
-    bottom: 0;
-    left: var(--iui-size-s);
+    inline-size: $track-height;
+    inset-block-end: 0;
+    inset-inline-start: var(--iui-size-s);
   }
 
   .iui-slider-ticks {
-    padding-left: var(--iui-size-m);
+    padding-inline-start: var(--iui-size-m);
     flex-direction: column-reverse;
     align-items: flex-start;
-    height: 100%;
+    block-size: 100%;
 
     .iui-slider-tick {
       flex: row;
-      height: 1px;
+      block-size: 1px;
 
       &::before {
         content: '';
-        width: $tick-height;
-        height: 1px;
-        margin-right: $tick-height;
+        inline-size: $tick-height;
+        block-size: 1px;
+        margin-inline-end: $tick-height;
       }
     }
   }
 
   .iui-slider-min,
   .iui-slider-max {
-    margin-left: calc(var(--iui-size-3xs) + var(--iui-size-s));
+    margin-inline-start: calc(var(--iui-size-3xs) + var(--iui-size-s));
     text-align: center;
     transform: translate(-50%, 0);
-    min-height: var(--iui-size-l);
+    min-block-size: var(--iui-size-l);
     flex-direction: column;
   }
 
   .iui-slider-min {
-    margin-top: var(--iui-size-s);
+    margin-block-start: var(--iui-size-s);
   }
 
   .iui-slider-max {
-    margin-bottom: var(--iui-size-s);
+    margin-block-end: var(--iui-size-s);
   }
 }
