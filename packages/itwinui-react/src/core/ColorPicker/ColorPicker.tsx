@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  ColorValue,
-  getTabbableElements,
-  useMergedRefs,
-  Box,
-} from '../utils/index.js';
+import { ColorValue, useMergedRefs, Box } from '../utils/index.js';
 import type {
   ColorType,
   HsvColor,
@@ -48,11 +43,6 @@ type ColorPickerProps = {
    */
   onChangeComplete?: (color: ColorValue) => void;
   /**
-   * If true, the first focusable element in the color picker will automatically be focused.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * If true, ColorBuilder will show the alpha slider and ColorInputPanel will show an alpha input.
    * @default false
    */
@@ -79,20 +69,11 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
     selectedColor,
     onChange,
     onChangeComplete,
-    setFocus = false,
     showAlpha = false,
     ...rest
   } = props;
 
   const ref = React.useRef<HTMLDivElement>(null);
-
-  // set focus on the first tabbable element
-  React.useEffect(() => {
-    if (ref.current && setFocus) {
-      const tabbableElements = getTabbableElements(ref.current);
-      (tabbableElements[0] as HTMLElement).focus();
-    }
-  }, [setFocus]);
 
   const inColor = React.useMemo(
     () => getColorValue(selectedColor),

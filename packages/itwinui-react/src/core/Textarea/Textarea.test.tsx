@@ -64,13 +64,3 @@ it('should have passed value', () => {
   expect(textarea).toBeTruthy();
   expect(textarea.value).toEqual('test-value');
 });
-
-it('should set focus', () => {
-  const { container } = render(<Textarea setFocus={true} />);
-
-  const textarea = container.querySelector(
-    'textarea.iui-input',
-  ) as HTMLTextAreaElement;
-  expect(textarea).toBeTruthy();
-  expect(document.activeElement).toEqual(textarea);
-});
