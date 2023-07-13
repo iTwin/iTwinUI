@@ -48,13 +48,12 @@ it('should render radio tile with icon', () => {
 it('should take class and style', () => {
   const { container } = render(
     <RadioTile
-      className='my-class'
-      style={{ width: 80 }}
+      tileProps={{ className: 'tile-class', style: { width: 80 } }}
       icon={<SvgPlaceholder />}
     />,
   );
   const element = container.querySelector(
-    '.iui-radio-tile.my-class',
+    '.iui-radio-tile.tile-class',
   ) as HTMLElement;
   expect(element).toBeTruthy();
   expect(element.style.width).toBe('80px');
