@@ -88,7 +88,7 @@
   &:is(label) {
     cursor: pointer;
 
-    &.iui-disabled {
+    &[data-iui-disabled='true'] {
       cursor: not-allowed;
     }
   }
@@ -109,7 +109,7 @@
     }
   }
 
-  &.iui-disabled {
+  &[data-iui-disabled='true'] {
     --_iui-input-label-color: var(--iui-color-text-disabled);
   }
 }

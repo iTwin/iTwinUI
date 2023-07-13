@@ -52,10 +52,10 @@ export const Label = React.forwardRef((props, forwardedRef) => {
         {
           'iui-inline': displayStyle === 'inline',
           'iui-required': required,
-          'iui-disabled': disabled,
         },
         className,
       )}
+      data-iui-disabled={disabled ? true : undefined}
       ref={forwardedRef}
       {...rest}
     >
