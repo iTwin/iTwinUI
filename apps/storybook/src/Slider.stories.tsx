@@ -146,7 +146,6 @@ CustomTooltip.args = {
   tooltipProps: (index, val) => {
     return { placement: 'right', content: `\$${val}.00` };
   },
-  setFocus: true,
 };
 
 export const CustomTickNoTooltip: Story<SliderProps> = (args) => {
