@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fixed an issue in `Tabs` where tabs-list was becoming too tall when the tabpanel didn't have enough content inside.
+- [#1410](https://github.com/iTwin/iTwinUI/pull/1410): Fixed an issue in `Tabs` where tabs-list was becoming too tall when the tabpanel didn't have enough content inside.
 
 ## 1.11.2
 
