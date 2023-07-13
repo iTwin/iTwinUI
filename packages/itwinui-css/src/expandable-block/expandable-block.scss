@@ -116,10 +116,10 @@
 
 .iui-expandable-block-icon {
   inline-size: var(--_iui-expandable-block-expander-icon-size);
+  block-size: var(--_iui-expandable-block-expander-icon-size);
   fill: var(--_iui-expandable-block-expander-icon-fill);
   transform: var(--_iui-expandable-block-expander-icon-transform);
   transition: fill var(--iui-duration-1) ease-out;
-  flex-shrink: 0;
   @media (prefers-reduced-motion: no-preference) {
     transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
   }
