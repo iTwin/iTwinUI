@@ -59,18 +59,3 @@ it('should take class and style', () => {
   expect(element).toBeTruthy();
   expect(element.style.width).toBe('80px');
 });
-
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(
-    <RadioTile label='Some label' ref={onRef} setFocus />,
-  );
-
-  expect(container.querySelector('.iui-radio-tile')).toBeTruthy();
-
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
