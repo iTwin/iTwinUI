@@ -106,16 +106,20 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       trigger={visible === undefined ? trigger : undefined}
       {...rest}
     >
-      {React.cloneElement(children as JSX.Element, {
-        ref: mergeRefs(
-          targetRef,
-          (props.children as React.FunctionComponentElement<HTMLElement>).ref,
-        ),
-        onClick: (args: unknown) => {
-          trigger === undefined && (isVisible ? close() : open());
-          (children as JSX.Element).props.onClick?.(args);
-        },
-      })}
+      {React.isValidElement(children) ? (
+        React.cloneElement(children as JSX.Element, {
+          ref: mergeRefs(
+            targetRef,
+            (props.children as React.FunctionComponentElement<HTMLElement>).ref,
+          ),
+          onClick: (args: unknown) => {
+            trigger === undefined && (isVisible ? close() : open());
+            (children as JSX.Element).props.onClick?.(args);
+          },
+        })
+      ) : (
+        <></>
+      )}
     </Popover>
   );
 };

@@ -168,6 +168,78 @@ export const Popover = React.forwardRef((props, ref) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverOwnProps & PopoverOptions>;
+  // Plugin to allow lazy mounting. See https://github.com/atomiks/tippyjs-react#lazy-mounting
+  const lazyLoad = {
+    fn: () => ({
+      onShow: () => setMounted(true),
+      onHidden: () => setMounted(false),
+    }),
+  };
+
+  // Plugin to remove tabindex from tippy, to prevent focus ring from unintentionally showing.
+  const removeTabIndex = {
+    fn: () => ({
+      onCreate: (instance: Instance) => {
+        instance.popper.firstElementChild?.removeAttribute('tabindex');
+      },
+    }),
+  };
+
+  const computedProps: Partial<TippyProps> = {
+    allowHTML: true,
+    animation: false,
+    appendTo: (el) =>
+      themeInfo?.portalContainerRef?.current || el.ownerDocument.body,
+    arrow: false,
+    duration: 0,
+    interactive: true,
+    role: '',
+    offset: [0, 0],
+    maxWidth: '',
+    zIndex: 99999,
+    ...props,
+    className: cx('iui-popover', props.className),
+    // add additional check for isDomAvailable when using in controlled mode,
+    // because rootRef is not available in first render
+    visible:
+      props.visible !== undefined ? props.visible && isDomAvailable : undefined,
+    plugins: [
+      lazyLoad,
+      removeTabIndex,
+      hideOnEscOrTab,
+      ...(props.plugins || []),
+    ],
+    popperOptions: {
+      strategy: 'fixed',
+      ...props.popperOptions,
+      modifiers: [
+        { name: 'flip' },
+        { name: 'preventOverflow', options: { padding: 0 } },
+        ...(props.popperOptions?.modifiers || []),
+      ],
+    },
+  };
+
+  if (props.render) {
+    const render = props.render;
+    computedProps.render = (...args) => (mounted ? render(...args) : '');
+  } else {
+    // Fixing issue where elements below Popover gets click events.
+    // Tippy uses react Portal, which propagates events by react tree, not dom tree.
+    // Read more: https://reactjs.org/docs/portals.html#event-bubbling-through-portals
+    const clonedContent = React.isValidElement(props.content)
+      ? React.cloneElement(props.content as JSX.Element, {
+          onClick: (e: MouseEvent) => {
+            e.stopPropagation();
+            (props.content as JSX.Element).props.onClick?.(e);
+          },
+        })
+      : props.content;
+    computedProps.content = mounted ? clonedContent : '';
+  }
+
+  return <Tippy {...computedProps} ref={refs} />;
+});
 
 /**
  * Plugin to hide Popover when either Esc key is pressed,

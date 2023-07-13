@@ -8,9 +8,9 @@
 
 @mixin iui-select-button {
   @include mixins.iui-focus($offset: -2px, $thickness: 2px);
-  width: 100%;
+  inline-size: 100%;
   border-radius: var(--iui-border-radius-1);
-  min-height: var(--_iui-select-min-height);
+  min-block-size: var(--_iui-select-min-height);
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
   gap: var(--iui-size-xs);
@@ -42,7 +42,7 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    min-height: var(--iui-size-l);
+    min-block-size: var(--iui-size-l);
   }
 
   &.iui-placeholder {
@@ -74,16 +74,16 @@
   position: absolute;
   // align wth Select's padding
   inset: 0 calc(var(--iui-size-m) + var(--iui-size-l)) 0 var(--iui-size-s);
-  height: 100%;
+  block-size: 100%;
   display: flex;
   align-items: center;
   gap: var(--iui-size-2xs);
   overflow: hidden;
 
   > * + * {
-    margin-left: var(--iui-size-2xs);
+    margin-inline-start: var(--iui-size-2xs);
     @supports (gap: var(--iui-size-2xs)) {
-      margin-left: 0;
+      margin-inline-start: 0;
     }
   }
 }
@@ -91,12 +91,11 @@
 @mixin iui-select-tag {
   @include tag.iui-tag;
   // Override hardcoded Tag margin
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-block: 0;
   display: inline-flex;
   align-items: center;
-  height: 80%;
-  max-height: calc(var(--iui-size-s) * 3);
+  block-size: 80%;
+  max-block-size: calc(var(--iui-size-s) * 3);
 }
 
 @mixin iui-select-tag-label {
@@ -114,9 +113,9 @@
   @include borderless.iui-button-borderless;
   @include tag.iui-tag-button;
   padding: 0 var(--iui-size-2xs);
-  min-height: unset;
-  min-width: unset;
-  height: 100%;
+  min-block-size: unset;
+  min-inline-size: unset;
+  block-size: 100%;
   aspect-ratio: 1 / 1;
 
   .iui-select-button[data-iui-size='small'] & {
