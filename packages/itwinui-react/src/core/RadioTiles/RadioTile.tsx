@@ -65,7 +65,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
     labelProps = {},
     subLabelProps = {},
   } = props;
-  const { icon, label, description, className, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -81,6 +80,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
   const { className: iconClassName, ...restIconProps } = iconProps;
   const { className: labelClassName, ...restLabelProps } = labelProps;
   const { className: subLabelClassName, ...restSubLabelProps } = subLabelProps;
+
   return (
     <Box
       as='label'
