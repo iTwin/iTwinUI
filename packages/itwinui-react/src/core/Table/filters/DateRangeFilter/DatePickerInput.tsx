@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import {
+  Popover,
+  SvgCalendar,
+  isBefore,
+  type PolymorphicForwardRefComponent,
+} from '../../../utils/index.js';
 import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
 import { IconButton } from '../../../Buttons/index.js';
@@ -21,17 +26,12 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
-  /**
-   * Set focus.
-   * @default false
-   */
-  setFocus?: boolean;
 } & Omit<
   React.ComponentProps<typeof LabeledInput>,
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
 >;
 
-const DatePickerInput = (props: DatePickerInputProps) => {
+const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   const {
     onChange,
     date,
@@ -39,7 +39,6 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     formatDate,
     isFromOrTo,
     selectedDate,
-    setFocus = false,
     ...rest
   } = props;
 
@@ -88,14 +87,6 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     [onChange, parseInput],
   );
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
-  React.useEffect(() => {
-    if (inputRef.current && setFocus) {
-      inputRef.current.focus();
-    }
-  }, [setFocus]);
-
   return (
     <Popover
       content={
@@ -116,7 +107,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
       appendTo='parent'
     >
       <LabeledInput
-        ref={inputRef}
+        ref={forwardedRef}
         displayStyle='inline'
         value={inputValue}
         onChange={onInputChange}
@@ -134,6 +125,6 @@ const DatePickerInput = (props: DatePickerInputProps) => {
       />
     </Popover>
   );
-};
+}) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
 
 export default DatePickerInput;
