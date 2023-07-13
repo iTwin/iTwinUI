@@ -88,11 +88,6 @@ const focusThumb = (sliderContainer: HTMLDivElement, activeIndex: number) => {
 
 export type SliderProps = {
   /**
-   * Set focus on first thumb in slider element.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * Minimum slider value.
    * @default 0
    */
@@ -192,7 +187,7 @@ export type SliderProps = {
  * @example
  * <Slider values={[10]} min={0} max={60} disabled />
  * <Slider values={[10, 20]} min={0} max={50} step={2} />
- * <Slider values={[10, 20, 30, 40]} min={0} max={60} setFocus
+ * <Slider values={[10, 20, 30, 40]} min={0} max={60}
  *   thumbMode='allow-crossing' />
  */
 export const Slider = React.forwardRef((props, ref) => {
@@ -201,7 +196,6 @@ export const Slider = React.forwardRef((props, ref) => {
     max = 100,
     values,
     step = 1,
-    setFocus = false,
     tooltipProps,
     disabled = false,
     tickLabels,
@@ -245,12 +239,6 @@ export const Slider = React.forwardRef((props, ref) => {
   }, [trackDisplayMode, currentValues]);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (containerRef.current && setFocus) {
-      focusThumb(containerRef.current, 0);
-    }
-  }, [setFocus]);
 
   const getNumDecimalPlaces = React.useMemo(() => {
     const stepString = step.toString();

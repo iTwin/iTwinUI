@@ -123,13 +123,14 @@ it('should render disabled select', async () => {
 
 it('should set focus on select and call onBlur', () => {
   const onBlur = jest.fn();
-  const { container } = renderComponent({ setFocus: true, onBlur });
+  const { container } = renderComponent({ onBlur });
 
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   assertSelect(select);
   const selectButton = container.querySelector(
     '.iui-select-button',
   ) as HTMLElement;
+  selectButton.focus();
   expect(selectButton).toBeTruthy();
   expect(selectButton.getAttribute('tabIndex')).toBe('0');
   expect(selectButton).toHaveFocus();
