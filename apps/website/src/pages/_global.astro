@@ -11,8 +11,6 @@ import '@fontsource/noto-sans/600.css';
 import '@fontsource/noto-sans/300.css';
 import '@fontsource/noto-sans/800.css';
 
-import '@docsearch/css';
-
 const { content = {} } = Astro.props;
 ---
 
@@ -216,14 +214,6 @@ const { content = {} } = Astro.props;
         --border-radius-1: var(--space-1);
         --transition-speed: 0.2s;
         --transition-speed-slow: 0.4s;
-
-        // Algolia DocSearch: https://docsearch.algolia.com/docs/styling/
-        --docsearch-primary-color: var(--color-highlight-4) !important;
-        --docsearch-searchbox-background: var(--color-background-1) !important;
-        --docsearch-searchbox-focus-background: var(--color-background-1) !important;
-        --docsearch-hit-background: var(--color-background-2) !important;
-        --docsearch-modal-background: var(--color-background-2) !important;
-        --docsearch-footer-background: var(--color-background-2) !important;
       }
     </style>
 
@@ -261,16 +251,5 @@ const { content = {} } = Astro.props;
         element.setAttribute('tabindex', '0');
       });
     </script> -->
-    <script>
-      import docsearch from '@docsearch/js';
-
-      docsearch({
-        appId: import.meta.env.PUBLIC_ALGOLIA_APP_ID,
-        apiKey: import.meta.env.PUBLIC_ALGOLIA_API_KEY,
-        indexName: import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME,
-        container: 'algolia-searchbox',
-        debug: false, // Set debug to true if you want to inspect the modal
-      });
-    </script>
   </body>
 </html>

@@ -2,6 +2,7 @@
 import SkipLink from './utils/SkipLink.astro';
 import SidebarToggle from './SidebarToggle.astro';
 import VisuallyHidden from './utils/VisuallyHidden.astro';
+import AlgoliaSearch from './AlgoliaSearch.astro';
 
 export type Props = { class?: string };
 
@@ -36,7 +37,7 @@ const { pathname } = Astro.url;
   <nav aria-label='Global site'>
     {pathname === '/' && <a href='/docs'>Documentation</a>}
 
-    {pathname.startsWith('/docs') && <algolia-searchbox />}
+    {pathname.startsWith('/docs') && <AlgoliaSearch />}
 
     <a href='https://www.github.com/iTwin/iTwinUI' class='github-link'>
       <VisuallyHidden>GitHub</VisuallyHidden>

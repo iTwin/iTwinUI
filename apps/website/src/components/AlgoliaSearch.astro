@@ -1,0 +1,31 @@
+---
+---
+
+<algolia-searchbox></algolia-searchbox>
+
+<script>
+  import docsearch from '@docsearch/js';
+
+  docsearch({
+    appId: import.meta.env.PUBLIC_ALGOLIA_APP_ID,
+    apiKey: import.meta.env.PUBLIC_ALGOLIA_API_KEY,
+    indexName: import.meta.env.PUBLIC_ALGOLIA_INDEX_NAME,
+    container: 'algolia-searchbox',
+    // debug: false, // Set debug to true if you want to inspect the modal
+  });
+</script>
+
+<style lang='scss'>
+  @import '@docsearch/css' layer(algolia);
+
+  :root {
+    // Algolia DocSearch: https://docsearch.algolia.com/docs/styling/
+    --docsearch-primary-color: var(--color-highlight-4) !important;
+    --docsearch-searchbox-background: var(--color-background-1) !important;
+    --docsearch-searchbox-focus-background: var(--color-background-1) !important;
+    --docsearch-hit-background: var(--color-background-2) !important;
+    --docsearch-modal-background: var(--color-background-2) !important;
+    --docsearch-footer-background: var(--color-background-2) !important;
+    --qqqqqqqqqqqq: var(--color-background-2) !important;
+  }
+</style>
