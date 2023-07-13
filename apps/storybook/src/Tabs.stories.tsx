@@ -303,6 +303,7 @@ SublabelsAndIcons.args = {
 };
 
 export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
+  const [activeIndex, setActiveIndex] = React.useState(10);
   return (
     <div
       style={{
@@ -313,7 +314,12 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         padding: 8,
       }}
     >
-      <Tabs overflowOptions={{ useOverflow: true }} activeIndex={10} {...args}>
+      <Tabs
+        overflowOptions={{ useOverflow: true }}
+        activeIndex={activeIndex}
+        onTabSelected={setActiveIndex}
+        {...args}
+      >
         <Tabs.TabList>
           <Tabs.Tab>
             <Tabs.TabInfo>
@@ -428,6 +434,7 @@ HorizontalOverflow.argTypes = {
 };
 
 export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
+  const [activeIndex, setActiveIndex] = React.useState(10);
   return (
     <div
       style={{
@@ -441,7 +448,8 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
       <Tabs
         orientation='vertical'
         overflowOptions={{ useOverflow: true }}
-        activeIndex={10}
+        activeIndex={activeIndex}
+        onTabSelected={setActiveIndex}
         {...args}
       >
         <Tabs.TabList>

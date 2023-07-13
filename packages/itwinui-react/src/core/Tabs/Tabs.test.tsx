@@ -4,22 +4,44 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import { Tab } from './Tab.js';
-import { Tabs, type TabsProps } from './Tabs.js';
+import { Tabs } from './Tabs.js';
+import { SvgMore as SvgPlaceholder } from '../utils/index.js';
+
+type TabsProps = React.ComponentProps<typeof Tabs>;
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
   initialChildren?: React.ReactNode,
 ) => {
-  const defaultProps: TabsProps = {
-    labels: [
-      <Tab key={1} label='Label 1' />,
-      <Tab key={2} label='Label 2' />,
-      <Tab key={3} label='Label 3' />,
-    ],
-  };
-  const props: TabsProps = { ...defaultProps, ...initialProps } as TabsProps;
-  const children = initialChildren ?? 'Test content';
+  const defaultChildren = (
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={1}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={2}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={3}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+      </Tabs.Panels>
+    </>
+  );
+  const props: TabsProps = { ...initialProps } as TabsProps;
+  const children = initialChildren ?? defaultChildren;
   return render(<Tabs {...props}>{children}</Tabs>);
 };
 
@@ -34,7 +56,7 @@ it('should render tabs', () => {
   expect(tabContainer).toBeTruthy();
   expect(tabContainer).toHaveClass('iui-default');
   expect(tabContainer.querySelectorAll('.iui-tab').length).toBe(3);
-  screen.getByText('Test content');
+  screen.getByText('Test Content 1');
 });
 
 it('should render animated borderless tabs', () => {
@@ -55,45 +77,84 @@ it('should render pill tabs', () => {
 });
 
 it('should render vertical tabs', () => {
-  const { container, queryByText } = render(
-    <Tabs
-      orientation='vertical'
-      labels={[
-        <Tab key={1} label='Label 1' />,
-        <Tab key={2} label='Label 2' />,
-        <Tab key={3} label='Label 3' />,
-      ]}
-    >
-      Test content
-    </Tabs>,
-  );
+  const { container, queryByText } = renderComponent({
+    orientation: 'vertical',
+  });
 
   expect(
     container.querySelector('.iui-tabs-wrapper.iui-vertical'),
   ).toBeTruthy();
   expect(container.querySelector('.iui-tabs')).toBeTruthy();
   expect(container.querySelector('.iui-tab')).toBeTruthy();
-  expect(queryByText('Test content')).toHaveClass('iui-tabs-content');
+  expect(queryByText('Test Content 1')).toHaveClass('iui-tabs-content');
 });
 
 it('should allow horizontal scrolling when overflowOptions useOverflow is true', () => {
-  const { container } = render(
-    <Tabs
-      overflowOptions={{ useOverflow: true }}
-      labels={[
-        <Tab key={1} label='Label 1' />,
-        <Tab key={2} label='Label 2' />,
-        <Tab key={3} label='Label 3' />,
-        <Tab key={4} label='Label 4' />,
-        <Tab key={5} label='Label 5' />,
-        <Tab key={6} label='Label 6' />,
-        <Tab key={7} label='Label 7' />,
-        <Tab key={8} label='Label 8' />,
-        <Tab key={9} label='Label 9' />,
-      ]}
-    >
-      Test content
-    </Tabs>,
+  const { container } = renderComponent(
+    {
+      overflowOptions: { useOverflow: true },
+    },
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={1}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={2}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={3}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={4}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 4</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={5}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 5</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={6}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 6</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={7}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 7</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={8}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 8</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={9}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 9</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+        <Tabs.Panel>Test Content 4</Tabs.Panel>
+        <Tabs.Panel>Test Content 5</Tabs.Panel>
+        <Tabs.Panel>Test Content 6</Tabs.Panel>
+        <Tabs.Panel>Test Content 7</Tabs.Panel>
+        <Tabs.Panel>Test Content 8</Tabs.Panel>
+        <Tabs.Panel>Test Content 9</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
   );
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
@@ -105,24 +166,72 @@ it('should allow horizontal scrolling when overflowOptions useOverflow is true',
 });
 
 it('should allow vertical scrolling when overflowOptions useOverflow is true', () => {
-  const { container } = render(
-    <Tabs
-      overflowOptions={{ useOverflow: true }}
-      orientation='vertical'
-      labels={[
-        <Tab key={1} label='Label 1' />,
-        <Tab key={2} label='Label 2' />,
-        <Tab key={3} label='Label 3' />,
-        <Tab key={4} label='Label 4' />,
-        <Tab key={5} label='Label 5' />,
-        <Tab key={6} label='Label 6' />,
-        <Tab key={7} label='Label 7' />,
-        <Tab key={8} label='Label 8' />,
-        <Tab key={9} label='Label 9' />,
-      ]}
-    >
-      Test content
-    </Tabs>,
+  const { container } = renderComponent(
+    {
+      orientation: 'vertical',
+      overflowOptions: { useOverflow: true },
+    },
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={1}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={2}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={3}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={4}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 4</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={5}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 5</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={6}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 6</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={7}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 7</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={8}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 8</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={9}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Label 9</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+        <Tabs.Panel>Test Content 4</Tabs.Panel>
+        <Tabs.Panel>Test Content 5</Tabs.Panel>
+        <Tabs.Panel>Test Content 6</Tabs.Panel>
+        <Tabs.Panel>Test Content 7</Tabs.Panel>
+        <Tabs.Panel>Test Content 8</Tabs.Panel>
+        <Tabs.Panel>Test Content 9</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
   );
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
@@ -171,28 +280,38 @@ it('should not fail with invalid active tab and set the closest one', () => {
   expect(tabs[2].className).toContain('iui-tab iui-active'); // 2 is closest to 100
 });
 
-it('should render strings in child component', () => {
-  const { container } = renderComponent({
-    labels: ['item0', 'item1', 'item2'],
-  });
-
-  const tabs = container.querySelectorAll('.iui-tab');
-  expect(tabs.length).toBe(3);
-  tabs.forEach((tab, index) => {
-    const label = tab.querySelector('.iui-tab-label') as HTMLElement;
-    expect(label).toBeTruthy();
-    expect(label.firstElementChild?.textContent).toEqual(`item${index}`);
-  });
-});
-
 it('should add .iui-large if tabs have sublabel', () => {
-  const { container } = renderComponent({
-    labels: [
-      <Tab key={0} label='item0' sublabel='Sublabel0' />,
-      <Tab key={1} label='item1' sublabel='Sublabel1' />,
-      <Tab key={2} label='item2' sublabel='Sublabel2' />,
-    ],
-  });
+  const { container } = renderComponent(
+    {},
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={0}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>item0</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel0</Tabs.TabDescription>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={1}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>item1</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel1</Tabs.TabDescription>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+        <Tabs.Tab key={2}>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>item2</Tabs.TabLabel>
+            <Tabs.TabDescription>Sublabel2</Tabs.TabDescription>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
+  );
   expect(container.querySelector('.iui-tabs.iui-large')).toBeTruthy();
 
   const tabs = container.querySelectorAll('.iui-tab');
@@ -203,27 +322,9 @@ it('should add .iui-large if tabs have sublabel', () => {
   });
 });
 
-it('should add custom classnames', () => {
-  const { container } = renderComponent({
-    tabsClassName: 'customTabsClassName',
-    contentClassName: 'customContentClassName',
-    wrapperClassName: 'customWrapperClassName',
-  });
-
-  expect(container.querySelector('.iui-tabs-wrapper')).toHaveClass(
-    'customWrapperClassName',
-  );
-  expect(container.querySelector('ul.iui-tabs')).toHaveClass(
-    'customTabsClassName',
-  );
-  expect(container.querySelector('.iui-tabs-content')).toHaveClass(
-    'customContentClassName',
-  );
-});
-
 it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
-  (orientation) => {
+  async (orientation) => {
     const mockOnTabSelected = jest.fn();
     const { container } = renderComponent({
       onTabSelected: mockOnTabSelected,
@@ -267,7 +368,7 @@ it.each(['horizontal', 'vertical'] as const)(
   },
 );
 
-it('should handle keypresses when focusActivationMode is manual', () => {
+it('should handle keypresses when focusActivationMode is manual', async () => {
   const mockOnTabSelected = jest.fn();
   const { container } = renderComponent({
     focusActivationMode: 'manual',
@@ -312,4 +413,95 @@ it('should set focused index when tab is clicked', () => {
   fireEvent.keyDown(tablist, { key: 'ArrowRight' });
   expect(mockOnTabSelected).toBeCalledWith(2);
   expect(document.activeElement).toBe(tabs[2]);
+});
+
+it('should render a Tab in its most basic state', () => {
+  const { container } = render(
+    <Tabs>
+      <Tabs.TabList>
+        <Tabs.Tab>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+    </Tabs>,
+  );
+  expect(container.querySelector('button.iui-tab')).toBeTruthy();
+
+  const label = container.querySelector('.iui-tab-label > div') as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.textContent).toBe('Tab label');
+});
+
+it('should render with sublabel', () => {
+  const { container } = render(
+    <Tabs>
+      <Tabs.TabList>
+        <Tabs.Tab>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+            <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+    </Tabs>,
+  );
+  expect(container.querySelector('button.iui-tab')).toBeTruthy();
+
+  const label = container.querySelector('.iui-tab-label') as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.firstElementChild?.textContent).toBe('Tab label');
+
+  const sublabel = label.querySelector('.iui-tab-description') as HTMLElement;
+  expect(sublabel.textContent).toEqual('Sub-label');
+});
+
+it('should render with icon', () => {
+  const { container } = render(
+    <Tabs>
+      <Tabs.TabList>
+        <Tabs.Tab>
+          <Tabs.TabIcon>
+            <SvgPlaceholder />
+          </Tabs.TabIcon>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+    </Tabs>,
+  );
+  expect(container.querySelector('button.iui-tab')).toBeTruthy();
+
+  const label = container.querySelector('.iui-tab-label > div') as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.textContent).toBe('Tab label');
+
+  const {
+    container: { firstChild: placeholderIcon },
+  } = render(<SvgPlaceholder />);
+  expect(container.querySelector('.iui-tab-icon svg')).toEqual(placeholderIcon);
+});
+
+it('should render in disabled state', () => {
+  const { container } = render(
+    <Tabs>
+      <Tabs.TabList>
+        <Tabs.Tab disabled>
+          <Tabs.TabInfo>
+            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          </Tabs.TabInfo>
+        </Tabs.Tab>
+      </Tabs.TabList>
+    </Tabs>,
+  );
+
+  const tab = container.querySelector('button.iui-tab') as HTMLButtonElement;
+  expect(tab).toBeTruthy();
+  expect(tab.disabled).toBeTruthy();
+
+  const label = container.querySelector('.iui-tab-label > div') as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.textContent).toBe('Tab label');
 });

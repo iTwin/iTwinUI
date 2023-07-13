@@ -113,7 +113,7 @@ const TabsComponent = React.forwardRef((props, ref) => {
     type = 'default',
     color = 'blue',
     activeIndex,
-    focusActivationMode,
+    focusActivationMode = 'auto',
     onTabSelected,
     ...rest
   } = props;
@@ -179,11 +179,13 @@ type TabsTabListOwnProps = {
   /**
    * Tab items.
    */
-  children: React.ReactNode[];
+  children: React.ReactNode[] | React.ReactNode;
 };
 
 const TabsTabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
+
+  const items = Array.isArray(children) ? children : [children];
 
   const tablistRef = React.useRef<HTMLUListElement>(null);
   const refs = useMergedRefs(tablistRef, ref);
@@ -208,11 +210,9 @@ const TabsTabList = React.forwardRef((props, ref) => {
       currentActiveIndex !== activeIndex &&
       setCurrentActiveIndex
     ) {
-      setCurrentActiveIndex(
-        getBoundedValue(activeIndex, 0, children.length - 1),
-      );
+      setCurrentActiveIndex(getBoundedValue(activeIndex, 0, items.length - 1));
     }
-  }, [activeIndex, currentActiveIndex, children.length]);
+  }, [activeIndex, currentActiveIndex, items.length]);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
@@ -452,7 +452,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
     }
 
     const isTabDisabled = (index: number) => {
-      const tab = children[index];
+      const tab = items[index];
       return React.isValidElement(tab) && tab.props.disabled;
     };
 
@@ -461,7 +461,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
     /** focus next tab if delta is +1, previous tab if -1 */
     const focusTab = (delta = +1) => {
       do {
-        newIndex = (newIndex + delta + children.length) % children.length;
+        newIndex = (newIndex + delta + items.length) % items.length;
       } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
       setFocusedIndex(newIndex);
       focusActivationMode === 'auto' && onTabClick(newIndex);
@@ -531,7 +531,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
       ref={refs}
       {...rest}
     >
-      {children.map((child, index) => {
+      {items.map((item, index) => {
         return (
           <li key={index}>
             <TabsContext.Provider
@@ -540,10 +540,11 @@ const TabsTabList = React.forwardRef((props, ref) => {
                 currentActiveIndex,
                 setCurrentActiveIndex,
                 onTabSelected: onTabClick,
+                setFocusedIndex,
               }}
               key={index}
             >
-              {child}
+              {item}
             </TabsContext.Provider>
           </li>
         );
@@ -561,11 +562,15 @@ type TabsTabOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 const TabsTab = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { index, currentActiveIndex, onTabSelected } =
+  const { index, currentActiveIndex, onTabSelected, setFocusedIndex } =
     useSafeContext(TabsContext);
 
-  console.log('currentActiveIndex in Tab: ', currentActiveIndex);
-
+  const onClick = () => {
+    if (index !== undefined) {
+      setFocusedIndex && setFocusedIndex(index);
+      onTabSelected && onTabSelected(index);
+    }
+  };
   return (
     <Box
       as='button'
@@ -576,9 +581,7 @@ const TabsTab = React.forwardRef((props, ref) => {
       )}
       role='tab'
       tabIndex={index === currentActiveIndex ? 0 : -1}
-      onClick={() =>
-        onTabSelected && index !== undefined && onTabSelected(index)
-      }
+      onClick={onClick}
       aria-selected={index === currentActiveIndex}
       ref={ref}
       {...rest}
@@ -849,6 +852,10 @@ export const TabsContext = React.createContext<
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
       overflowOptions?: OverflowOptions;
+      /**
+       * Handler for setting the focused tab index.
+       */
+      setFocusedIndex?: (index: number) => void;
     }
   | undefined
 >(undefined);
