@@ -76,12 +76,22 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
     heading,
     description,
     actions,
-    illustrationProps,
-    titleProps,
-    descriptionProps,
-    actionsProps,
+    illustrationProps = {},
+    titleProps = {},
+    descriptionProps = {},
+    actionsProps = {},
     ...rest
   } = props;
+
+  const { className: illustrationClassName, ...restIllustrationProps } =
+    illustrationProps;
+
+  const { className: titleClassName, ...restTitleProps } = titleProps;
+
+  const { className: descriptionClassName, ...restDescriptionProps } =
+    descriptionProps;
+
+  const { className: actionsClassName, ...restActionsProps } = actionsProps;
 
   return (
     <Box
@@ -90,7 +100,11 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <Box
-        className={cx('iui-non-ideal-state-illustration', illustrationProps)}
+        className={cx(
+          'iui-non-ideal-state-illustration',
+          illustrationClassName,
+        )}
+        {...restIllustrationProps}
         ref={forwardedRef}
         {...rest}
       >
@@ -98,7 +112,8 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       </Box>
       {heading && (
         <Box
-          className={cx('iui-non-ideal-state-title', titleProps)}
+          className={cx('iui-non-ideal-state-title', titleClassName)}
+          {...restTitleProps}
           ref={forwardedRef}
           {...rest}
         >
@@ -107,7 +122,11 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       )}
       {description && (
         <Box
-          className={cx('iui-non-ideal-state-description', descriptionProps)}
+          className={cx(
+            'iui-non-ideal-state-description',
+            descriptionClassName,
+          )}
+          {...restDescriptionProps}
           ref={forwardedRef}
           {...rest}
         >
@@ -116,7 +135,8 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       )}
       {actions && (
         <Box
-          className={cx('iui-non-ideal-state-actions', actionsProps)}
+          className={cx('iui-non-ideal-state-actions', actionsClassName)}
+          {...restActionsProps}
           ref={forwardedRef}
           {...rest}
         >
