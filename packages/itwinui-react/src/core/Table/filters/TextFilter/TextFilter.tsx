@@ -24,6 +24,14 @@ export const TextFilter = <T extends Record<string, unknown>>(
 
   const [text, setText] = React.useState(column.filterValue ?? '');
 
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
+
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.altKey) {
       return;
@@ -37,10 +45,10 @@ export const TextFilter = <T extends Record<string, unknown>>(
   return (
     <BaseFilter>
       <Input
+        ref={inputRef}
         value={text}
         onChange={(e) => setText(e.target.value)}
         onKeyDown={onKeyDown}
-        setFocus
       />
       <FilterButtonBar
         setFilter={() => setFilter(text)}
