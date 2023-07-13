@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { useTheme, SvgUpload } from '../utils/index.js';
-import '@itwin/itwinui-css/css/file-upload.css';
 import { Anchor } from '../Typography/Anchor/Anchor.js';
 
 export type FileUploadTemplateProps = {

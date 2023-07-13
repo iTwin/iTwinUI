@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types.js';
-import '@itwin/itwinui-css/css/utils.css';
 
 export type IconProps = {
   /**

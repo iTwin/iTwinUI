@@ -11,7 +11,6 @@ import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 
 type HeaderLogoOwnProps = {
   /**

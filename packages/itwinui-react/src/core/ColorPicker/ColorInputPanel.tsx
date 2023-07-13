@@ -14,7 +14,6 @@ import {
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
-import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorInputPanelProps = {
   /**

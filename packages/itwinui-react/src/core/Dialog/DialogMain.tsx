@@ -12,7 +12,6 @@ import {
   useTheme,
   useIsomorphicLayoutEffect,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { CSSTransition } from 'react-transition-group';

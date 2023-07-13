@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
 import { useTheme, SvgCloseSmall } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/information-panel.css';
 
 export type InformationPanelHeaderProps = {
   /**

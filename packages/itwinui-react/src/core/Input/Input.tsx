@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { useMergedRefs, useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/input.css';
 
 export type InputProps = {
   /**

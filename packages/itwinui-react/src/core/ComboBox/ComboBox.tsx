@@ -22,7 +22,6 @@ import type {
   CommonProps,
   InputContainerProps,
 } from '../utils/index.js';
-import 'tippy.js/animations/shift-away.css';
 import {
   ComboBoxActionContext,
   comboBoxReducer,

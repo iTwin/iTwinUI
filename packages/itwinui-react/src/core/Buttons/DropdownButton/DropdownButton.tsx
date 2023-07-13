@@ -14,7 +14,6 @@ import {
   useTheme,
   useMergedRefs,
 } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/button.css';
 
 export type DropdownButtonProps = {
   /**

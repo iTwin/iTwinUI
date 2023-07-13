@@ -6,7 +6,6 @@ import cx from 'classnames';
 import * as React from 'react';
 import { useTheme } from '../utils/index.js';
 import type { ClassNameProps, StylingProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/time-picker.css';
 
 const isSameHour = (
   date1: Date,

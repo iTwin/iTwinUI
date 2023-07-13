@@ -23,7 +23,6 @@ import type {
 } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import type { IconButtonProps } from '../Buttons/IconButton/index.js';
-import '@itwin/itwinui-css/css/searchbox.css';
 
 const SearchBoxContext = React.createContext<
   | {

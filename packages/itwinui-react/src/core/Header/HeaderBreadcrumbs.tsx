@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useTheme, SvgChevronRight } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 
 export type HeaderBreadcrumbsProps = {
   /**

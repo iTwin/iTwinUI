@@ -9,7 +9,6 @@ import type {
   PolymorphicForwardRefComponent,
   PolymorphicComponentProps,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
 
 export const List = React.forwardRef((props, ref) => {
   const { as: Element = 'ul', className, ...rest } = props;
