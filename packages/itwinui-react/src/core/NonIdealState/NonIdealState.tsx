@@ -76,21 +76,21 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
     heading,
     description,
     actions,
-    illustrationProps = {},
-    titleProps = {},
-    descriptionProps = {},
-    actionsProps = {},
+    illustrationProps,
+    titleProps,
+    descriptionProps,
+    actionsProps,
     ...rest
   } = props;
 
   return (
     <Box
-      className={cx('iui-non-ideal-state', illustrationProps)}
+      className={cx('iui-non-ideal-state', className)}
       ref={forwardedRef}
       {...rest}
     >
       <Box
-        className={cx('iui-non-ideal-state-illustration', titleProps)}
+        className={cx('iui-non-ideal-state-illustration', illustrationProps)}
         ref={forwardedRef}
         {...rest}
       >
@@ -98,7 +98,7 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       </Box>
       {heading && (
         <Box
-          className={cx('iui-non-ideal-state-title', descriptionProps)}
+          className={cx('iui-non-ideal-state-title', titleProps)}
           ref={forwardedRef}
           {...rest}
         >
@@ -107,7 +107,7 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       )}
       {description && (
         <Box
-          className={cx('iui-non-ideal-state-description', actionsProps)}
+          className={cx('iui-non-ideal-state-description', descriptionProps)}
           ref={forwardedRef}
           {...rest}
         >
@@ -116,7 +116,7 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       )}
       {actions && (
         <Box
-          className={cx('iui-non-ideal-state-actions', className)}
+          className={cx('iui-non-ideal-state-actions', actionsProps)}
           ref={forwardedRef}
           {...rest}
         >
