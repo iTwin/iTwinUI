@@ -16,8 +16,7 @@ import type {
   ThemeOptions,
   ThemeType,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
+import { useStyles } from '../utils/hooks/useStyles.js';
 
 export type ThemeProviderProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, ThemeProviderOwnProps>;
@@ -168,6 +167,8 @@ const Root = React.forwardRef((props, forwardedRef) => {
     themeOptions?.applyBackground ??
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
 
+  useStyles({ withLayer: true, document: () => ref.current?.ownerDocument });
+
   return (
     <Element
       className={cx(
@@ -189,6 +190,7 @@ const ThemeLogicWrapper = (props: {
   theme?: ThemeType;
   themeOptions?: ThemeOptions;
 }) => {
+  useStyles({ withLayer: true });
   const { theme, themeOptions } = props;
   useTheme(theme, themeOptions);
   return <></>;
