@@ -20,6 +20,9 @@ describe('Slider', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('iframe', { qs: { id } });
+      if (testName === 'Custom Tooltip') {
+        cy.get('[role=slider').focus();
+      }
       cy.compareSnapshot(testName);
     });
   });
