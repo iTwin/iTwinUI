@@ -65,6 +65,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
     labelProps = {},
     subLabelProps = {},
   } = props;
+  const { icon, label, description, className, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);

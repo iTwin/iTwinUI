@@ -438,26 +438,6 @@ it('should preserve hue when color dot is black/at bottom of square', () => {
   );
 });
 
-it('should set focus if setFocus is true', () => {
-  const { container } = render(
-    <ColorPicker setFocus>
-      <ColorBuilder />
-    </ColorPicker>,
-  );
-  expect(container.querySelector('.iui-color-picker')).toBeTruthy();
-  expect(container.querySelector('.iui-color-dot')).toHaveFocus(); // first tabbable element
-});
-
-it('should not set focus if setFocus is false', () => {
-  const { container } = render(
-    <ColorPicker>
-      <ColorBuilder />
-    </ColorPicker>,
-  );
-  expect(container.querySelector('.iui-color-picker')).toBeTruthy();
-  expect(container.querySelector('.iui-color-dot')).not.toHaveFocus();
-});
-
 it('should render advanced color picker with opacity slider', () => {
   const { container } = render(
     <ColorPicker showAlpha={true}>

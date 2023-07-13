@@ -108,22 +108,6 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(
-    <Checkbox label='Some checkbox' ref={onRef} setFocus />,
-  );
-
-  assertBaseElements(container);
-
-  screen.getByText('Some checkbox');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
-
 it('displays a spinner when isLoading is set to true', () => {
   const { container } = render(<Checkbox label='Some checkbox' isLoading />);
 

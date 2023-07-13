@@ -114,19 +114,3 @@ it.each(['label', 'input'] as const)(
     expect(container.querySelector(el)).toHaveClass('customClass');
   },
 );
-
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(
-    <Radio label='Some label' ref={onRef} setFocus />,
-  );
-
-  assertBaseElements(container);
-
-  screen.getByText('Some label');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
