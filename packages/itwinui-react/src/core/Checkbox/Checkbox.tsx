@@ -28,10 +28,6 @@ type CheckboxProps = {
    */
   variant?: 'default' | 'eyeball';
   /**
-   * Set focus on checkbox.
-   */
-  setFocus?: boolean;
-  /**
    * Display a loading state.
    * @default false
    */
@@ -66,7 +62,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
     label,
     status,
     variant = 'default',
-    setFocus,
     isLoading = false,
     wrapperProps = {},
     labelProps = {},
@@ -76,12 +71,6 @@ export const Checkbox = React.forwardRef((props, ref) => {
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
 
   React.useEffect(() => {
     if (inputElementRef.current) {

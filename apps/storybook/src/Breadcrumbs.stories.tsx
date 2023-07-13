@@ -259,7 +259,6 @@ export const FolderNavigation: Story<BreadcrumbsProps> = (args) => {
       />
       {isEditing ? (
         <Input
-          setFocus
           defaultValue={items.slice(0, lastIndex + 1).join('/')}
           onChange={({ target: { value } }) => {
             const lastItem = value.substring(
