@@ -75,7 +75,7 @@ export { List, ListItem } from './List/index.js';
 
 export { TransferList } from './TransferList/index.js';
 
-export { Tabs, Tab } from './Tabs/index.js';
+export { Tabs } from './Tabs/index.js';
 
 export {
   InformationPanel,

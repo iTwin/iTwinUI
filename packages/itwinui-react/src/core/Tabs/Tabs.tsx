@@ -72,7 +72,8 @@ type TabsOrientationProps =
 
 type TabsComponentOwnProps = {
   /**
-   * The value of the tab that should be active when initially rendered
+   * The value of the tab that should be active when initially rendered.
+   * if this prop is used, use the `onTabSelected` prop to keep track of the active index.
    */
   activeIndex?: number;
   /**
@@ -669,18 +670,24 @@ TabsAction.displayName = 'Tabs.Action';
 // ----------------------------------------------------------------------------
 // Tabs.Panels component
 
-const TabsPanels = ({ children }: { children: React.ReactNode[] }) => {
+const TabsPanels = ({
+  children,
+}: {
+  children: React.ReactNode[] | React.ReactNode;
+}) => {
   const { currentActiveIndex } = useSafeContext(TabsContext);
+
+  const items = Array.isArray(children) ? children : [children];
 
   return (
     <>
-      {children.map((child, index) => {
+      {items.map((item, index) => {
         return (
           <TabsContext.Provider
             value={{ index, currentActiveIndex }}
             key={index}
           >
-            {child}
+            {item}
           </TabsContext.Provider>
         );
       })}
