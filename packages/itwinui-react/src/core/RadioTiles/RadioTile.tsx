@@ -37,6 +37,10 @@ type RadioTileProps = {
    * Passes props for tile label.
    */
   labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for tile sublabel.
+   */
+  subLabelProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -54,6 +58,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
     tileProps = {},
     inputProps = {},
     labelProps = {},
+    subLabelProps = {},
   } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
@@ -68,7 +73,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
   const { className: tileClassName, ...restTileProps } = tileProps;
   const { className: inputClassName, ...restInputProps } = inputProps;
   const { className: labelClassName, ...restLabelProps } = labelProps;
-
+  const { className: subLabelClassName, ...restSubLabelProps } = subLabelProps;
   return (
     <Box
       as='label'
@@ -99,7 +104,13 @@ export const RadioTile = React.forwardRef((props, ref) => {
           </Box>
         )}
         {description && (
-          <Box className='iui-radio-tile-sublabel'>{description}</Box>
+          <Box
+            as='div'
+            className={cx('iui-radio-tile-sublabel', subLabelClassName)}
+            {...restSubLabelProps}
+          >
+            {description}
+          </Box>
         )}
       </Box>
     </Box>
