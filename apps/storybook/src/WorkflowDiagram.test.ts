@@ -12,7 +12,10 @@ describe('WorkflowDiagram', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName.includes('Tooltip')) {
-        cy.get('.iui-workflow-diagram-step').first().trigger('mouseenter'); // trigger tooltip
+        cy.get('#storybook-root').within(() => {
+          cy.get('li').first().trigger('mouseenter'); // trigger tooltip
+          cy.wait(50);
+        });
       }
 
       cy.compareSnapshot(testName);

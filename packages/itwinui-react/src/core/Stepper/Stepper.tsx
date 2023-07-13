@@ -3,8 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/stepper.css';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { StepperStep } from './StepperStep.js';
 
 export type StepperLocalization = {
@@ -51,54 +51,47 @@ const defaultStepperLocalization: StepperLocalization = {
     `Step ${currentStep} of ${totalSteps}:`,
 };
 
-export const Stepper = React.forwardRef(
-  (props: StepperProps, ref: React.Ref<HTMLDivElement>) => {
-    const {
-      currentStep,
-      steps,
-      type = 'default',
-      localization = defaultStepperLocalization,
-      onStepClick,
-      ...rest
-    } = props;
+export const Stepper = React.forwardRef((props, ref) => {
+  const {
+    currentStep,
+    steps,
+    type = 'default',
+    localization = defaultStepperLocalization,
+    onStepClick,
+    ...rest
+  } = props;
 
-    const boundedCurrentStep = Math.min(
-      Math.max(0, currentStep ?? 0),
-      steps.length - 1,
-    );
+  const boundedCurrentStep = Math.min(
+    Math.max(0, currentStep ?? 0),
+    steps.length - 1,
+  );
 
-    useTheme();
-
-    return (
-      <div className={'iui-stepper'} ref={ref} {...rest}>
-        <ol>
-          {steps.map((s, index) => (
-            <StepperStep
-              key={index}
-              index={index}
-              title={type === 'long' ? '' : s.name}
-              currentStepNumber={boundedCurrentStep}
-              totalSteps={steps.length}
-              type={type}
-              onClick={onStepClick}
-              description={s.description}
-            />
-          ))}
-        </ol>
-        {type === 'long' && (
-          <div className='iui-stepper-steps-label'>
-            <span className='iui-stepper-steps-label-count'>
-              {localization.stepsCountLabel(
-                boundedCurrentStep + 1,
-                steps.length,
-              )}
-            </span>
-            {steps[boundedCurrentStep].name}
-          </div>
-        )}
-      </div>
-    );
-  },
-);
+  return (
+    <Box className={'iui-stepper'} ref={ref} {...rest}>
+      <ol>
+        {steps.map((s, index) => (
+          <StepperStep
+            key={index}
+            index={index}
+            title={type === 'long' ? '' : s.name}
+            currentStepNumber={boundedCurrentStep}
+            totalSteps={steps.length}
+            type={type}
+            onClick={onStepClick}
+            description={s.description}
+          />
+        ))}
+      </ol>
+      {type === 'long' && (
+        <Box className='iui-stepper-steps-label'>
+          <Box as='span' className='iui-stepper-steps-label-count'>
+            {localization.stepsCountLabel(boundedCurrentStep + 1, steps.length)}
+          </Box>
+          {steps[boundedCurrentStep].name}
+        </Box>
+      )}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', StepperProps>;
 
 export default Stepper;

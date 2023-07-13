@@ -12,8 +12,8 @@
   padding: calc(var(--iui-size-s) * 0.75) var(--iui-size-m);
   position: fixed;
   text-align: center;
-  left: 50%;
-  top: calc(var(--iui-size-s) * 2);
+  inset-inline-start: 50%;
+  inset-block-start: calc(var(--iui-size-s) * 2);
   opacity: 0;
   z-index: 99;
   transform: translateX(-50%) translateY(-170%);

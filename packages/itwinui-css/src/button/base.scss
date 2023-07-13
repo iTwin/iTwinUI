@@ -22,8 +22,8 @@
   background: var(--_iui-button-background-color);
   color: var(--_iui-button-text-color);
   gap: var(--_iui-button-gap);
-  min-height: var(--_iui-button-min-height);
-  min-width: var(--_iui-button-min-height);
+  min-block-size: var(--_iui-button-min-height);
+  min-inline-size: var(--_iui-button-min-height);
   padding-block: var(--_iui-button-padding-block);
   padding-inline: var(--_iui-button-padding-inline);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
@@ -68,15 +68,15 @@
 
 @mixin iui-button-dropdown($size: default) {
   @if $size == small {
-    padding-right: calc(var(--iui-size-2xs) - 1px);
+    padding-inline-end: calc(var(--iui-size-2xs) - 1px);
   }
 
   @if $size == default {
-    padding-right: calc(var(--iui-size-xs) - 1px);
+    padding-inline-end: calc(var(--iui-size-xs) - 1px);
   }
 
   @if $size == large {
-    padding-right: calc(var(--iui-size-s) - 1px);
+    padding-inline-end: calc(var(--iui-size-s) - 1px);
   }
 }
 

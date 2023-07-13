@@ -5,7 +5,7 @@
 $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-brand {
-  height: 100%;
+  block-size: 100%;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
@@ -20,8 +20,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     transition: background-color var(--iui-duration-1) ease-out;
     @media (forced-colors: active) {
       border: 1px solid CanvasText;
-      border-top-width: 0;
-      border-bottom-width: 0;
+      border-block-start-width: 0;
+      border-block-end-width: 0;
     }
 
     // #region resets for button
@@ -42,9 +42,12 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-brand-icon {
-  @include mixins.iui-icon-style('l');
+  &,
+  > * {
+    @include mixins.iui-icon-style('l');
+    fill: var(--iui-color-icon);
+  }
   margin: 0 $iui-side-navigation-icon-margins;
-  fill: var(--iui-color-icon);
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -53,7 +56,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-brand-label {
-  margin-right: var(--iui-size-s);
+  margin-inline-end: var(--iui-size-s);
   font-size: var(--_iui-header-brand-label-font-size);
   @media (prefers-reduced-motion: no-preference) {
     transition: font-size var(--iui-duration-1) ease-out;
@@ -64,9 +67,9 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-breadcrumb-item {
-  max-width: 25vw;
+  max-inline-size: 25vw;
   transition: background-color var(--iui-duration-1) ease-out;
-  height: 100%;
+  block-size: 100%;
   display: flex;
   overflow: hidden;
   position: relative;
@@ -89,7 +92,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     color: var(--iui-color-text-accent);
     @media (forced-colors: active) {
       color: LinkText;
-      border-bottom: 3px solid LinkText;
+      border-block-end: 3px solid LinkText;
     }
   }
 
@@ -105,14 +108,14 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       background-color: var(--iui-color-background-backdrop);
 
       @media (forced-colors: active) {
-        border-bottom: 3px solid GrayText;
+        border-block-end: 3px solid GrayText;
       }
     }
   }
 }
 
 @mixin iui-header-breadcrumb-button-wrapper {
-  width: 100%;
+  inline-size: 100%;
   overflow: hidden;
   display: flex;
 }
@@ -124,12 +127,11 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   align-items: center;
   vertical-align: middle;
   justify-content: center;
-  height: 100%;
+  block-size: 100%;
   border-radius: 0;
-  max-width: 25vw;
+  max-inline-size: 25vw;
   overflow: hidden;
-  padding-left: var(--iui-size-s);
-  padding-right: var(--iui-size-s);
+  padding-inline: var(--iui-size-s);
   box-sizing: border-box;
   font-family: inherit;
   -webkit-tap-highlight-color: transparent;
@@ -139,11 +141,11 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   cursor: pointer;
   @media (forced-colors: active) {
     border: 1px solid;
-    border-top-width: 0;
-    border-bottom-width: 0;
+    border-block-start-width: 0;
+    border-block-end-width: 0;
 
     &:not(:last-child) {
-      border-right-width: 0;
+      border-inline-end-width: 0;
     }
   }
 
@@ -162,7 +164,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-breadcrumb-button-split {
   padding: 0 var(--iui-size-xs);
-  margin-left: calc(0px - var(--iui-size-xs));
+  margin-inline-start: calc(0px - var(--iui-size-xs));
   flex-shrink: 0;
 
   &:hover {
@@ -187,10 +189,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   @include mixins.iui-icon-style('m');
   fill: currentColor;
   flex-shrink: 0;
-  margin-right: calc(0px - var(--iui-size-2xs));
+  margin-inline-end: calc(0px - var(--iui-size-2xs));
 
   .iui-header-breadcrumb-button-split & {
-    margin-right: 0;
+    margin-inline-end: 0;
   }
 
   :disabled &,
@@ -206,7 +208,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   flex-direction: column;
   justify-content: center;
   font-size: var(--iui-font-size-1);
-  text-align: left;
+  text-align: start;
   overflow: hidden;
   transition: color var(--iui-duration-1) ease-out;
 
@@ -234,32 +236,49 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     [data-iui-size='slim'] & {
       visibility: hidden;
       opacity: 0;
-      height: 0;
-      width: 0;
+      block-size: 0;
+      inline-size: 0;
     }
   }
 }
 
 @mixin iui-header-breadcrumb-button-icon {
-  @include mixins.iui-icon-style('l');
-  background-color: var(--iui-color-background-backdrop);
-  border-radius: var(--iui-border-radius-1);
-  display: inline-flex;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  padding: var(--iui-size-2xs);
-  fill: var(--iui-color-icon-muted);
-  will-change: transform;
+  &,
+  > * {
+    @include mixins.iui-icon-style('l');
+    flex-shrink: 0;
+    border-radius: var(--iui-border-radius-1);
+  }
   transform: var(--_iui-header-icon-scale);
+  will-change: transform;
   @media (prefers-reduced-motion: no-preference) {
     transition: transform var(--iui-duration-1) ease-out;
   }
-  @media (forced-colors: active) {
-    fill: LinkText;
+
+  > svg {
+    padding: var(--iui-size-2xs);
+    background-color: var(--iui-color-background-backdrop);
+    fill: var(--iui-color-icon-muted);
+    @media (forced-colors: active) {
+      fill: LinkText;
+    }
+
+    :is(.iui-active, [aria-current]) & {
+      background-color: var(--iui-color-background);
+      fill: currentColor;
+    }
+
+    :is(:disabled, [aria-disabled='true']) & {
+      background-color: var(--iui-color-background-backdrop);
+      fill: var(--iui-color-icon-disabled);
+
+      @media (forced-colors: active) {
+        fill: GrayText;
+      }
+    }
   }
 
-  &:is(img, div) {
-    padding: 0;
+  :is(img, span) {
     outline: 2px solid hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-6));
     outline-offset: -2px;
     transition: filter var(--iui-duration-1) ease-out;
@@ -268,33 +287,17 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
   }
 
-  &:is(img) {
+  :is(img) {
     object-fit: cover;
   }
 
-  &:is(div) {
+  :is(span) {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
-  .iui-active &,
-  [aria-current] & {
-    background-color: var(--iui-color-background);
-    fill: currentColor;
-  }
-
-  :disabled &,
-  [aria-disabled='true'] & {
-    background-color: var(--iui-color-background-backdrop);
-    fill: var(--iui-color-icon-disabled);
-
-    @media (forced-colors: active) {
-      fill: GrayText;
-    }
-  }
-
-  &:is(img, div) {
+  :is(img, span) {
     :disabled &,
     [aria-disabled='true'] & {
       filter: grayscale(1) opacity(0.7);

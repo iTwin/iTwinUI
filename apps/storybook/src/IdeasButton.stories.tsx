@@ -5,7 +5,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import { IdeasButton, IdeasButtonProps } from '@itwin/itwinui-react';
+import { IdeasButton } from '@itwin/itwinui-react';
+
+type IdeasButtonProps = React.ComponentProps<typeof IdeasButton>;
 
 export default {
   title: 'Buttons/IdeasButton',

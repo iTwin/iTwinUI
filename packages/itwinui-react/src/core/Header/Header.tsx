@@ -6,19 +6,18 @@ import cx from 'classnames';
 import * as React from 'react';
 import { IconButton } from '../Buttons/index.js';
 
-import { useTheme, SvgMoreVertical } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
+import { SvgMoreVertical, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 
-export type HeaderTranslations = {
+type HeaderTranslations = {
   /**
    * 'More' menu button aria-label.
    */
   moreOptions: string;
 };
 
-export type HeaderProps = {
+type HeaderProps = {
   /**
    * Application logo.
    * (expects `HeaderLogo`)
@@ -38,11 +37,8 @@ export type HeaderProps = {
   breadcrumbs?: React.ReactNode;
   /**
    * Content displayed to the left of the `menuItems`
-   * (expects array of `IconButton`, potentially wrapped in a `DropdownMenu`)
+   * (expects array of icons/avatars wrapped in `IconButton` and/or `DropdownMenu`).
    *
-   * Since v2, `userIcon` is deprecated.
-   * The new recommendation is to add `Avatar` (Called `UserIcon` before v2) to the end of `actions`.
-   * `Avatar` can be wrapped in `IconButton` and `DropdownMenu` if needed.
    * @example
    * [
    *  <IconButton><SvgNotification /></IconButton>,
@@ -64,22 +60,6 @@ export type HeaderProps = {
    */
   children?: React.ReactNode;
   /**
-   * @deprecated Since v2, add your `UserIcon` (called `Avatar` since v2) to the end of `actions` itself
-   *
-   * User icon
-   *
-   * It's size and transition will be handled between slim/not slim state of the
-   * Header
-   * (expects `UserIcon`, can be wrapped in `IconButton` and `DropdownMenu` if needed)
-   * @example
-   * <DropdownMenu menuItems={...}>
-   *   <IconButton styleType='borderless'>
-   *     <UserIcon ... />
-   *   </IconButton>
-   * </DropdownMenu>
-   */
-  userIcon?: React.ReactNode;
-  /**
    * Items in the more dropdown menu.
    * Pass a function that takes the `close` argument (to close the menu),
    * and returns a list of `MenuItem` components.
@@ -94,7 +74,7 @@ export type HeaderProps = {
    * Provide localized strings.
    */
   translatedStrings?: HeaderTranslations;
-} & Omit<CommonProps, 'title'>;
+};
 
 const defaultTranslations: HeaderTranslations = {
   moreOptions: 'More options',
@@ -127,36 +107,36 @@ const defaultTranslations: HeaderTranslations = {
  *  isSlim
  * />
  */
-export const Header = (props: HeaderProps) => {
+export const Header = React.forwardRef((props, forwardedRef) => {
   const {
     appLogo,
     breadcrumbs,
     isSlim = false,
     actions,
-    userIcon,
     menuItems,
     translatedStrings,
     className,
     children,
     ...rest
   } = props;
-  useTheme();
+
   const headerTranslations = { ...defaultTranslations, ...translatedStrings };
   return (
-    <header
+    <Box
+      as='header'
       className={cx('iui-page-header', className)}
       data-iui-size={isSlim ? 'slim' : undefined}
+      ref={forwardedRef}
       {...rest}
     >
-      <div className='iui-page-header-left'>
+      <Box className='iui-page-header-left'>
         {appLogo}
-        {breadcrumbs && <div className='iui-page-header-divider' />}
+        {breadcrumbs && <Box className='iui-page-header-divider' />}
         {breadcrumbs}
-      </div>
-      {children && <div className='iui-page-header-center'>{children}</div>}
-      <div className='iui-page-header-right'>
+      </Box>
+      {children && <Box className='iui-page-header-center'>{children}</Box>}
+      <Box className='iui-page-header-right'>
         {actions}
-        {userIcon}
         {menuItems && (
           <DropdownMenu menuItems={menuItems}>
             <IconButton
@@ -167,9 +147,9 @@ export const Header = (props: HeaderProps) => {
             </IconButton>
           </DropdownMenu>
         )}
-      </div>
-    </header>
+      </Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'header', HeaderProps>;
 
 export default Header;

@@ -1,5 +1,53 @@
 # Changelog
 
+## 2.0.0-dev.4
+
+### Major Changes
+
+- [#1255](https://github.com/iTwin/iTwinUI/pull/1255): `iui-folder` is updated to use `display: grid`. `iui-tile-name` is now moved outside of `iui-tile-content` for folder variant.
+- [#1356](https://github.com/iTwin/iTwinUI/pull/1356): `iui-progress-radial` has been refactored to be a single `<div>` instead of using a nested svg. Size and status have been moved to data attributes. Also it is recommended to explicitly set `size` when using in other components.
+
+### Minor Changes
+
+- [#1362](https://github.com/iTwin/iTwinUI/pull/1362): All elements under the root will now get a default focus styling matching `--iui-color-border-accent`.
+- [#1363](https://github.com/iTwin/iTwinUI/pull/1363): `iui-svg-icon` now supports controlling size and fill using `--iui-svg-size` and `--iui-svg-fill` custom properties.
+
+## 2.0.0-dev.3
+
+### Patch Changes
+
+- [#1351](https://github.com/iTwin/iTwinUI/pull/1351): `.iui-toast-anchor` can now be applied on a `<button>`.
+
+## 2.0.0-dev.2
+
+### Major Changes
+
+- [#1247](https://github.com/iTwin/iTwinUI/pull/1247): Replaced the `iui-alert-icon`, `iui-alert-button`, and `iui-alert-button-icon` class names with `iui-svg-icon`, `iui-button`, and `iui-button-icon` respectively.
+
+### Patch Changes
+
+- [#1310](https://github.com/iTwin/iTwinUI/pull/1310): Fix vertical centering for some inputs after unitless `line-height` change.
+
+## 2.0.0-dev.1
+
+### Major Changes
+
+- [#1322](https://github.com/iTwin/iTwinUI/pull/1322): Removed input-container code from `utils.css` in favor of `input-container.css`.
+- [#1302](https://github.com/iTwin/iTwinUI/pull/1302): `border-box` will now be set for _all_ elements under `iui-root`.
+
+### Minor Changes
+
+- [#1073](https://github.com/iTwin/iTwinUI/pull/1073): Added new `TransferList` component which is used to move one or more items between lists. Added the following subcomponents: `TransferList.ListWrapper`, `TransferList.ListboxWrapper`, `TransferList.ListboxLabel`, `TransferList.Listbox`, `TransferList.Item`, and `TransferList.Toolbar`
+
+## 2.0.0-dev.0
+
+### Major Changes
+
+- [#1295](https://github.com/iTwin/iTwinUI/pull/1295): `iui-menu-item` and `iui-menu-description` classes were removed.
+- [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
+- [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
+- [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
 ## 1.11.2
 
 ### Patch Changes

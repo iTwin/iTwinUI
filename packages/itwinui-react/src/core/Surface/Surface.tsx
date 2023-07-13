@@ -4,13 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useSafeContext, useTheme, supportsHas } from '../utils/index.js';
-import type {
-  CommonProps,
-  PolymorphicComponentProps,
-  PolymorphicForwardRefComponent,
-} from '../utils/index.js';
-import '@itwin/itwinui-css/css/surface.css';
+import { useSafeContext, supportsHas, Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 /**
  * Helper function that returns one of the preset surface elevation values.
@@ -37,13 +32,8 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
 // ----------------------------------------------------------------------------
 // Surface.Header component
 
-type SurfaceHeaderOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
-export type SurfaceHeaderProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, SurfaceHeaderOwnProps>;
-
 const SurfaceHeader = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', children, className, ...rest } = props;
+  const { children, className, ...rest } = props;
   const { setHasLayout } = useSafeContext(SurfaceContext);
 
   React.useEffect(() => {
@@ -53,15 +43,11 @@ const SurfaceHeader = React.forwardRef((props, ref) => {
   }, [setHasLayout]);
 
   return (
-    <Element
-      className={cx('iui-surface-header', className)}
-      ref={ref}
-      {...rest}
-    >
+    <Box className={cx('iui-surface-header', className)} ref={ref} {...rest}>
       {children}
-    </Element>
+    </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', SurfaceHeaderOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 
 // ----------------------------------------------------------------------------
 // Surface.Body component
@@ -73,11 +59,8 @@ type SurfaceBodyOwnProps = {
   isPadded?: boolean;
 };
 
-export type SurfaceBodyProps<T extends React.ElementType = 'div'> =
-  PolymorphicComponentProps<T, SurfaceBodyOwnProps>;
-
 const SurfaceBody = React.forwardRef((props, ref) => {
-  const { as: Element = 'div', children, className, isPadded, ...rest } = props;
+  const { children, className, isPadded, ...rest } = props;
   const { setHasLayout } = useSafeContext(SurfaceContext);
 
   React.useEffect(() => {
@@ -86,18 +69,18 @@ const SurfaceBody = React.forwardRef((props, ref) => {
     }
   }, [setHasLayout]);
   return (
-    <Element
+    <Box
       className={cx('iui-surface-body', className)}
       ref={ref}
       data-iui-padded={isPadded ? 'true' : undefined}
       {...rest}
     >
       {children}
-    </Element>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SurfaceBodyOwnProps>;
 
-export type SurfaceProps = {
+type SurfaceProps = {
   /**
    * Sets the elevation of the surface
    */
@@ -106,7 +89,7 @@ export type SurfaceProps = {
    * Content in the surface.
    */
   children: React.ReactNode;
-} & Omit<CommonProps, 'title'>;
+};
 
 /**
  * The Surface container allows content to appear elevated through the use of a drop shadow
@@ -119,32 +102,29 @@ export type SurfaceProps = {
  * </Surface>
  */
 export const Surface = Object.assign(
-  React.forwardRef(
-    (props: SurfaceProps, ref: React.RefObject<HTMLDivElement>) => {
-      const { elevation, className, style, children, ...rest } = props;
-      useTheme();
+  React.forwardRef((props, ref) => {
+    const { elevation, className, style, children, ...rest } = props;
 
-      const [hasLayout, setHasLayout] = React.useState(false);
+    const [hasLayout, setHasLayout] = React.useState(false);
 
-      const _style = {
-        '--iui-surface-elevation': getSurfaceElevationValue(elevation),
-        ...style,
-      };
-      return (
-        <div
-          className={cx('iui-surface', className)}
-          style={_style}
-          ref={ref}
-          data-iui-layout={hasLayout ? 'true' : undefined}
-          {...rest}
-        >
-          <SurfaceContext.Provider value={{ setHasLayout }}>
-            {children}
-          </SurfaceContext.Provider>
-        </div>
-      );
-    },
-  ),
+    const _style = {
+      '--iui-surface-elevation': getSurfaceElevationValue(elevation),
+      ...style,
+    };
+    return (
+      <Box
+        className={cx('iui-surface', className)}
+        style={_style}
+        ref={ref}
+        data-iui-layout={hasLayout ? 'true' : undefined}
+        {...rest}
+      >
+        <SurfaceContext.Provider value={{ setHasLayout }}>
+          {children}
+        </SurfaceContext.Provider>
+      </Box>
+    );
+  }) as PolymorphicForwardRefComponent<'div', SurfaceProps>,
   {
     /**
      * 	Surface header subcomponent

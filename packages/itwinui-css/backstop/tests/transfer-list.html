@@ -1,0 +1,193 @@
+<!--
+  Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+  See LICENSE.md in the project root for license terms and full copyright notice.
+-->
+<!DOCTYPE html>
+<html
+  lang="en-US"
+  id="theme"
+>
+  <head>
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
+    <title>TransferList | iTwinUI</title>
+    <script type="module">
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/chevron-left";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/chevron-up";
+      import "@itwin/itwinui-icons-elements/chevron-down";
+      import "@itwin/itwinui-icons-elements/checkmark";
+      import "@itwin/itwinui-icons-elements/search";
+    </script>
+    <style>
+      @import url("./assets/demo.css") layer(demo);
+      @import url('@itwin/itwinui-variables') layer(variables);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
+      section[id^='demo'] {
+        --_iui-listbox-menu-height: 200px;
+        width: auto;
+        margin-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
+    <theme-button></theme-button>
+    <h1>TransferList</h1>
+    <hr />
+
+    <section id="demo-default">
+
+      <div class="iui-transfer-list-wrapper">
+
+        <div class="iui-transfer-list-listbox-wrapper">
+          <div class="iui-transfer-list-listbox-label">Options</div>
+          <ul
+            class="iui-list iui-transfer-list-listbox"
+            role="listbox"
+            aria-multiselectable="true"
+            aria-labelledby="options"
+          >
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 1</span>
+              </span>
+            </li>
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 2</span>
+              </span>
+            </li>
+            <li class="iui-list-item iui-disabled">
+              <span class="iui-content">
+                <span class="iui-list-label">Option 3</span>
+              </span>
+            </li>
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 4</span>
+              </span>
+            </li>
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 5</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="iui-transfer-list-toolbar"
+          role="toolbar"
+          aria-label="Actions"
+        >
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-up
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-up>
+          </button>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-right
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-right>
+          </button>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-left
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-left>
+          </button>
+          <button
+            class="iui-button"
+            data-iui-variant="borderless"
+          >
+            <svg-chevron-down
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-down>
+          </button>
+        </div>
+
+        <div class="iui-transfer-list-listbox-wrapper">
+          <div class="iui-transfer-list-listbox-label">Applied</div>
+          <ul
+            class="iui-list iui-transfer-list-listbox"
+            role="listbox"
+            aria-multiselectable="true"
+            aria-labelledby="applied"
+          >
+            <li
+              class="iui-list-item"
+              role="option"
+              aria-checked="false"
+              tabindex="0"
+            >
+              <span class="iui-content">
+                <span class="iui-list-label">Option 7</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <label class="iui-checkbox-wrapper">
+          <input
+            class="iui-checkbox"
+            type="checkbox"
+            checked
+          />
+          <span class="iui-checkbox-label">Models above will be grouped automatically.</span>
+        </label>
+
+      </div>
+
+    </section>
+
+    <script>
+      window.onload = () => {
+        // Clicking on menu-item should toggle selection
+        document.querySelectorAll('.iui-list-item:not(.iui-disabled)').forEach((item) => {
+          item.addEventListener('click', () => {
+            item.classList.toggle('iui-active');
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

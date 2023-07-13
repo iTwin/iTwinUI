@@ -13,8 +13,8 @@
   },
   "dependencies": {
     "@astrojs/react": "^2.0.2",
-    "@itwin/itwinui-react": "2.11.7",
-    "astro": "~2.3.0",
+    "@itwin/itwinui-react": "3.0.0-dev.4",
+    "astro": "^2.0.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

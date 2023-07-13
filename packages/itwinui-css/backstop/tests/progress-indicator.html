@@ -46,7 +46,10 @@
       }
     </style>
   </head>
-  <body class="iui-root">
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
     <theme-button></theme-button>
     <h1>Progress indicator</h1>
     <hr />
@@ -222,148 +225,51 @@
         <h3>Determinate</h3>
 
         <p class="iui-text-small iui-text-muted">
-          For determinate radial progress indicators, percentage is set by
-          stroke-dashoffset: (88 - 88 * target / 100).
-          <br />
-          So 25% is stroke-dashoffset: 66; or stroke-dashoffset: calc(88 - 88
-          * 25 / 100);
+          For determinate variants, percentage is set by
+          <code>--iui-progress-percentage</code>.
         </p>
         <br />
 
         <div id="radial-size-large">
-          <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
+          <!-- Large determinate -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="large"
+          >
           </div>
 
           <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">60</span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="large"
+          >
+            60
           </div>
 
-          <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
-            </span>
+          <!-- Large determinate with center icon -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="large"
+          >
+            <svg-pause aria-hidden="true"></svg-pause>
           </div>
 
-          <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large iui-positive">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(0);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-            </span>
+          <!-- Large determinate with center icon & success -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="large"
+            data-iui-status="positive"
+          >
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </div>
 
-          <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-large iui-negative">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
-            </span>
+          <!-- Large determinate with center icon & error -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="large"
+            data-iui-status="negative"
+          >
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </div>
         </div>
 
@@ -372,137 +278,32 @@
         <div id="radial-size-default">
           <!-- Determinate -->
           <div class="iui-progress-indicator-radial iui-determinate">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
           </div>
 
           <!-- Determinate with center content -->
           <div class="iui-progress-indicator-radial iui-determinate">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">60</span>
+            60
           </div>
 
           <!-- Determinate with center icon -->
           <div class="iui-progress-indicator-radial iui-determinate">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
-            </span>
+            <svg-pause aria-hidden="true"></svg-pause>
           </div>
 
           <!-- Determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-positive">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(0);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-            </span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-status="positive"
+          >
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </div>
 
           <!-- Determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-negative">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
-            </span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-status="negative"
+          >
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </div>
         </div>
 
@@ -510,277 +311,89 @@
 
         <div id="radial-size-small">
           <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="small"
+          >
           </div>
 
           <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">60</span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="small"
+          >
+            60
           </div>
 
           <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
-            </span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="small"
+          >
+            <svg-pause aria-hidden="true"></svg-pause>
           </div>
 
           <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-positive">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(0);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-            </span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="small"
+            data-iui-status="positive"
+          >
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </div>
 
           <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-small iui-negative">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
-            </span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="small"
+            data-iui-status="negative"
+          >
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </div>
         </div>
 
         <br />
 
         <div id="radial-size-x-small">
-          <!-- Small determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
+          <!-- x-Small determinate -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="x-small"
+          >
           </div>
 
           <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">60</span>
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="x-small"
+          >
+            <span>60</span>
           </div>
 
-          <!-- Small determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-pause aria-hidden="true"></svg-pause>
-            </span>
+          <!-- x-Small determinate with center icon -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="x-small"
+          >
+            <svg-pause aria-hidden="true"></svg-pause>
           </div>
 
-          <!-- Small determinate with center icon & success -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small iui-positive">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(0);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-            </span>
+          <!-- x-Small determinate with center icon & success -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="x-small"
+            data-iui-status="positive"
+          >
+            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
           </div>
 
-          <!-- Small determinate with center icon & error -->
-          <div class="iui-progress-indicator-radial iui-determinate iui-x-small iui-negative">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-                style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-              >
-              </circle>
-            </svg>
-            <span class="iui-inner-content">
-              <svg-important-small aria-hidden="true"></svg-important-small>
-            </span>
+          <!-- x-Small determinate with center icon & error -->
+          <div
+            class="iui-progress-indicator-radial iui-determinate"
+            data-iui-size="x-small"
+            data-iui-status="negative"
+          >
+            <svg-important-small aria-hidden="true"></svg-important-small>
           </div>
         </div>
       </div>
@@ -795,243 +408,65 @@
         <br />
         <!-- Indeterminate -->
         <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
         </div>
 
         <!-- Indeterminate with center content -->
         <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">&hellip;</span>
+          &hellip;
         </div>
 
         <!-- Indeterminate with center icon -->
         <div class="iui-progress-indicator-radial iui-indeterminate">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
+          <svg-pause aria-hidden="true"></svg-pause>
         </div>
 
         <!-- Indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-positive">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
         </div>
 
         <!-- Indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-negative">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </span>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
         </div>
 
         <!-- Small indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-          </svg>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-size="small"
+        >
         </div>
 
         <!-- Small indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </span>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-size="small"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
         </div>
 
         <!-- Small indeterminate with center icon & success -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-positive">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(0);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </span>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-size="small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
         </div>
 
         <!-- Small indeterminate with center icon & error -->
-        <div class="iui-progress-indicator-radial iui-indeterminate iui-small iui-negative">
-          <svg
-            class="iui-radial"
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-          >
-            <circle
-              class="iui-track"
-              cx="16"
-              cy="16"
-              r="14"
-            >
-            </circle>
-            <circle
-              class="iui-fill"
-              cx="16"
-              cy="16"
-              r="14"
-              style="stroke-dashoffset: calc(88 - 88 * 60 / 100);"
-            >
-            </circle>
-          </svg>
-          <span class="iui-inner-content">
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </span>
+        <div
+          class="iui-progress-indicator-radial iui-indeterminate"
+          data-iui-size="small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
         </div>
       </div>
     </section>
@@ -1052,7 +487,7 @@
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
           est laborum.
         </div>
-        <div class="iui-progress-indicator-overlay">
+        <div class="iui-overlay">
           <!-- Linear indeterminate with label -->
           <div class="iui-progress-indicator-linear">
             <div class="iui-track">
@@ -1077,29 +512,9 @@
           est laborum.
         </div>
 
-        <div class="iui-progress-indicator-overlay">
+        <div class="iui-overlay">
           <!-- Radial indeterminate -->
           <div class="iui-progress-indicator-radial iui-indeterminate">
-            <svg
-              class="iui-radial"
-              viewBox="0 0 32 32"
-              aria-hidden="true"
-            >
-              <circle
-                class="iui-track"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-              <circle
-                class="iui-fill"
-                cx="16"
-                cy="16"
-                r="14"
-              >
-              </circle>
-            </svg>
           </div>
         </div>
       </div>

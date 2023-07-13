@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Icon, IconProps, Slider } from '@itwin/itwinui-react';
+import { Icon, Slider } from '@itwin/itwinui-react';
 import {
   SvgInfoCircular,
   SvgPlaceholder,
@@ -12,6 +12,8 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+
+type IconProps = React.ComponentProps<typeof Icon>;
 
 export default {
   component: Icon,

@@ -2,14 +2,14 @@
 title: Select
 description: A select, also known as a dropdown menu, displays a list of selectable choices and options.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/src/core/LabeledSelect/LabeledSelect.tsx'
+propsPath: '@itwin/itwinui-react/esm/core/LabeledSelect/LabeledSelect.d.ts'
 thumbnail: Select
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -45,11 +45,11 @@ The default appearance of the collapsed select menu can either display placehold
 
 ### Sublabels
 
+If the options have sub-labels, but the field is default-sized, omit the sub-label in the field when it displays a selected option (as shown above).
+
 <LiveExample src='Select.sublabels.tsx'>
   <AllExamples.SelectSublabelsExample client:load />
 </LiveExample>
-
-If the options have sub-labels, but the field is default-sized, omit the sub-label in the field when it displays a selected option (as shown above).
 
 ### Statuses
 
@@ -59,11 +59,11 @@ If the options have sub-labels, but the field is default-sized, omit the sub-lab
 
 ### Truncation
 
+Ideally, truncation in select menus should be avoided as much as possible. It is recommended that the collapsed select be wide enough to fit 24 characters, plus the ellipsis symbol. There may be cases where this cannot be followed, so it is only our best recommendation.
+
 <LiveExample src='Select.truncate.tsx'>
   <AllExamples.SelectTruncateExample client:load />
 </LiveExample>
-
-Ideally, truncation in select menus should be avoided as much as possible. It is recommended that the collapsed select be wide enough to fit 24 characters, plus the ellipsis symbol. There may be cases where this cannot be followed, so it is only our best recommendation.
 
 In certain situations, text truncation is inevitable. This may happen in a select menu containing files or folders that were named by the user.
 

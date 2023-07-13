@@ -6,7 +6,6 @@ import React from 'react';
 import {
   Button,
   ButtonGroup,
-  ButtonGroupProps,
   DropdownMenu,
   IconButton,
   Input,
@@ -23,6 +22,8 @@ import {
 } from '@itwin/itwinui-icons-react';
 import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
+type ButtonGroupProps = React.ComponentProps<typeof ButtonGroup>;
 
 export default {
   title: 'Buttons/ButtonGroup',
@@ -55,16 +56,11 @@ export const WithIcons: Story<ButtonGroupProps> = (args) => {
 };
 
 export const Overflow: Story<ButtonGroupProps> = (args) => {
-  const buttons = Array(10)
-    .fill(null)
-    .map((_, index) => (
-      <IconButton
-        key={index}
-        onClick={() => action(`Clicked on button ${index + 1}`)()}
-      >
-        <SvgPlaceholder />
-      </IconButton>
-    ));
+  const items = Array.from({ length: 10 }, (_, index) => (
+    <IconButton key={index} label={`Item #${index}`}>
+      <SvgPlaceholder />
+    </IconButton>
+  ));
 
   return (
     <>
@@ -80,37 +76,42 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
       >
         <ButtonGroup
           orientation='horizontal'
-          overflowButton={(overflowStart) => (
-            <DropdownMenu
-              menuItems={(close) =>
-                Array(buttons.length - overflowStart + 1)
-                  .fill(null)
-                  .map((_, _index) => {
-                    const index = overflowStart + _index;
-                    const onClick = () => {
-                      action(`Clicked button ${index} (overflow)`)();
-                      close();
-                    };
+          overflowButton={(overflowStart) => {
+            return (
+              <DropdownMenu
+                menuItems={(close) => {
+                  const length =
+                    args.overflowPlacement === 'start'
+                      ? overflowStart + 1
+                      : items.length - overflowStart;
+
+                  return Array.from({ length }, (_, _index) => {
+                    const index =
+                      args.overflowPlacement === 'start'
+                        ? _index
+                        : overflowStart + _index;
+
                     return (
                       <MenuItem
                         key={index}
-                        onClick={onClick}
+                        onClick={close}
                         icon={<SvgPlaceholder />}
                       >
-                        Button #{index}
+                        Item #{index}
                       </MenuItem>
                     );
-                  })
-              }
-            >
-              <IconButton onClick={() => action('Clicked on overflow icon')()}>
-                <SvgMore />
-              </IconButton>
-            </DropdownMenu>
-          )}
+                  });
+                }}
+              >
+                <IconButton label='More'>
+                  <SvgMore />
+                </IconButton>
+              </DropdownMenu>
+            );
+          }}
           {...args}
         >
-          {buttons}
+          {items}
         </ButtonGroup>
       </div>
     </>

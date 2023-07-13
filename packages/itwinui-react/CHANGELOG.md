@@ -1,5 +1,79 @@
 # Changelog
 
+## 3.0.0-dev.4
+
+### Major Changes
+
+- [#1383](https://github.com/iTwin/iTwinUI/pull/1383): Removed previously-deprecated `UserIcon` and `UserIconGroup` components. Also removed `userIcon` prop from `Header`.
+- [#1384](https://github.com/iTwin/iTwinUI/pull/1384): Removed previously-deprecated `Wizard` component (replaced by `Stepper` and `WorkflowDiagram`).
+- [#1255](https://github.com/iTwin/iTwinUI/pull/1255): Updated Tile component to be composition of customizable subcomponents: `Tile.Name`, `Tile.NameIcon`, `Tile.NameLabel`, `Tile.Action`, `Tile.ThumbnailArea`, `Tile.ThumbnailPicture`, `Tile.BadgeContainer`, `Tile.TypeIndicator`, `Tile.QuickAction`, `Tile.ContentArea`, `Tile.Description`, `Tile.MoreOptions`, `Tile.Metadata`, `Tile.Buttons`. Certain props have been removed as they are now subcomponents: `name`, `description`, `metadata`, `thumbnail`, `badge`, `leftIcon`, `rightIcon`, `button`, `moreOptions`, `isActionable` props have been removed.
+
+- [#1356](https://github.com/iTwin/iTwinUI/pull/1356): ProgressRadial has been refactored to be a single `<div>` instead of using a nested svg. Also it is recommended to explicitly set `size` when using in other components.
+- [#1311](https://github.com/iTwin/iTwinUI/pull/1311): - Removed Tippy.js as dependency in Tooltip. Using FloatingUI instead.
+- [#1388](https://github.com/iTwin/iTwinUI/pull/1388): Removed deprecated `HorizontalTabs` and `VerticalTabs` (replaced by `orientation` prop in `Tabs`).
+
+### Minor Changes
+
+- [#1362](https://github.com/iTwin/iTwinUI/pull/1362): All elements under the root will now get a default focus styling matching `--iui-color-border-accent`.
+
+### Patch Changes
+
+- [#1360](https://github.com/iTwin/iTwinUI/pull/1360): The `color-scheme` property will now be correctly set for dark theme, resulting in better theming of built-in html elements.
+
+## 3.0.0-dev.3
+
+### Major Changes
+
+- [#1330](https://github.com/iTwin/iTwinUI/pull/1330): Deprecated `FileUploadTemplate`. Removed all of its references.
+- [#1351](https://github.com/iTwin/iTwinUI/pull/1351): `toaster` import has been removed and replaced with `useToaster` which returns a toaster object with the same API.
+
+## 3.0.0-dev.2
+
+### Major Changes
+
+- [#1300](https://github.com/iTwin/iTwinUI/pull/1300): `modalRootId` and `ownerDocument` props have been removed from `Modal`, in favor of the new `portal` prop (also available in `Dialog`).
+- [#1247](https://github.com/iTwin/iTwinUI/pull/1247): Alert composition has been updated such that it is now made up of customizable subcomponents, thus removing the `onClose`, `clickableText`, and `clickableTextProps` props from `Alert`.
+- [#1346](https://github.com/iTwin/iTwinUI/pull/1346): The build now targets `es2020` instead of `es2018`.
+
+### Patch Changes
+
+- [#1347](https://github.com/iTwin/iTwinUI/pull/1347): Fixed an issue where ThemeProvider warning was always logged even when using ThemeProvider.
+
+## 3.0.0-dev.1
+
+### Major Changes
+
+- [#1302](https://github.com/iTwin/iTwinUI/pull/1302): The dependencies on `@itwin/itwinui-css` and `@itwin/itwinui-variable` have been removed. This means `@itwin/itwinui-react` will bring its own stylesheet.
+- [#1322](https://github.com/iTwin/iTwinUI/pull/1322): All css imports within components have been removed. `@itwin/itwinui-react/styles.css` must now be manually imported at the entrypoint.
+- [#1302](https://github.com/iTwin/iTwinUI/pull/1302): All elements have had their class names changed to prevent conflict with older versions. It is strongly recommended to switch these internal classes with your own classes or data attributes.
+
+### Minor Changes
+
+- [#1321](https://github.com/iTwin/iTwinUI/pull/1321): Added `disabled` prop to ExpandableBlock component. When activated, it triggers the "disabled" CSS styling for the ExpandableBlock and disables user interaction with it.
+- [#1073](https://github.com/iTwin/iTwinUI/pull/1073): Added new `TransferList` component which is used to move one or more items between lists. Added the following subcomponents: `TransferList.ListWrapper`, `TransferList.ListboxWrapper`, `TransferList.ListboxLabel`, `TransferList.Listbox`, `TransferList.Item`, and `TransferList.Toolbar`
+- [#1323](https://github.com/iTwin/iTwinUI/pull/1323): Added `placement` prop to `Dialog` to allow placing it at one of the corners.
+
+## 3.0.0-dev.0
+
+### Major Changes
+
+- [#1296](https://github.com/iTwin/iTwinUI/pull/1296): Removed previously-deprecated typography components (`Body`, `Headline`, `Leading`, `Small`, `Subheading`, `Title`) which have been replaced by `Text`.
+- [#1265](https://github.com/iTwin/iTwinUI/pull/1265): Removed the deprecated `useTheme` hook. `<ThemeProvider>` is now always required to be wrapped around all iTwinUI components.
+- [#1278](https://github.com/iTwin/iTwinUI/pull/1278): Adjusted calculations in ButtonGroup's `overflowButton` callback, so that it respects `overflowPlacement` and considers the presence of the overflowButton itself.
+- [#1295](https://github.com/iTwin/iTwinUI/pull/1295): Deprecated MenuItem's `icon` and `badge` props in favor of new `startIcon` and `endIcon` props. Also affects `Select` and `ComboBox` options.
+- [#1298](https://github.com/iTwin/iTwinUI/pull/1298): `Props` types will no longer be exported for any component. Use `React.ComponentProps` instead.
+- [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
+- [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
+
+### Minor Changes
+
+- [#1298](https://github.com/iTwin/iTwinUI/pull/1298): Most components are now polymorphic and forward their rest props and ref.
+
+### Patch Changes
+
+- Updated dependencies:
+  - @itwin/itwinui-css@2.0.0-dev.0
+
 ## 2.11.7
 
 ### Patch Changes

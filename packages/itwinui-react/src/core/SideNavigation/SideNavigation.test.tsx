@@ -3,15 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, act } from '@testing-library/react';
 
-import { SideNavigation, type SideNavigationProps } from './SideNavigation.js';
+import { SideNavigation } from './SideNavigation.js';
 import { SidenavButton } from './SidenavButton.js';
 import { SidenavSubmenu } from './SidenavSubmenu.js';
 import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils//index.js';
 import userEvent from '@testing-library/user-event';
 
-function renderComponent(props?: Partial<SideNavigationProps>) {
+function renderComponent(
+  props?: Partial<React.ComponentProps<typeof SideNavigation>>,
+) {
   return render(
     <SideNavigation
       items={[
@@ -183,7 +185,10 @@ it('should only add tooltips to items when collapsed', async () => {
     expect(
       queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
     ).toBeFalsy();
+    jest.useFakeTimers();
     fireEvent.mouseEnter(item);
+    act(() => void jest.advanceTimersByTime(50));
+    jest.useRealTimers();
     getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' });
   });
 

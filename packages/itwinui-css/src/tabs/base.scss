@@ -35,8 +35,8 @@ $borderless-horizontal-tab-min-height: calc(
     display: flex;
     align-items: center;
     font-size: var(--iui-font-size-1);
-    min-height: calc(var(--iui-size-m) * 2.5);
-    height: 100%;
+    min-block-size: calc(var(--iui-size-m) * 2.5);
+    block-size: 100%;
     cursor: pointer;
     color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
@@ -44,7 +44,7 @@ $borderless-horizontal-tab-min-height: calc(
     &.iui-active {
       color: var(--iui-color-text-accent);
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: currentColor;
       }
 
@@ -61,7 +61,7 @@ $borderless-horizontal-tab-min-height: calc(
         color: inherit;
       }
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: var(--iui-color-icon-disabled);
       }
     }
@@ -70,12 +70,18 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-icon {
-    @include mixins.iui-icon-style('m');
-    fill: var(--iui-color-icon);
-    transition: fill var(--iui-duration-1) ease-out;
+    &,
+    svg {
+      @include mixins.iui-icon-style('m');
+    }
+
+    svg {
+      fill: var(--iui-color-icon);
+      transition: fill var(--iui-duration-1) ease-out;
+    }
 
     + .iui-tab-label {
-      margin-left: var(--iui-size-xs);
+      margin-inline-start: var(--iui-size-xs);
     }
   }
 
@@ -93,7 +99,7 @@ $borderless-horizontal-tab-min-height: calc(
     &.iui-active {
       color: var(--iui-color-text-positive);
 
-      .iui-tab-icon {
+      .iui-tab-icon svg {
         fill: currentColor;
       }
     }
@@ -106,14 +112,14 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   ~ .iui-tabs-content {
-    padding-top: var(--iui-size-s);
-    padding-bottom: var(--iui-size-s);
+    padding-block-start: var(--iui-size-s);
+    padding-block-end: var(--iui-size-s);
   }
 }
 
 @mixin iui-tab-label {
-  text-align: left;
-  max-width: 60ch;
+  text-align: start;
+  max-inline-size: 60ch;
 
   > * {
     @include mixins.iui-line-clamp(3);
@@ -128,7 +134,7 @@ $borderless-horizontal-tab-min-height: calc(
     display: flex;
 
     &.iui-borderless {
-      min-height: $borderless-horizontal-tab-min-height;
+      min-block-size: $borderless-horizontal-tab-min-height;
     }
 
     &[data-iui-overflow='true'] {
@@ -162,12 +168,12 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tab {
     &::after {
-      width: 100%;
-      height: 0;
+      inline-size: 100%;
+      block-size: 0;
     }
 
     &.iui-active::after {
-      height: var(--iui-size-3xs);
+      block-size: var(--iui-size-3xs);
     }
   }
 }
@@ -176,12 +182,12 @@ $borderless-horizontal-tab-min-height: calc(
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
   grid-template-columns: auto 1fr;
   grid-template-rows: 1fr auto;
-  height: 100%;
+  block-size: 100%;
 
   .iui-tabs {
     li,
     .iui-tab {
-      width: 100%;
+      inline-size: 100%;
       white-space: nowrap;
     }
 
@@ -192,7 +198,7 @@ $borderless-horizontal-tab-min-height: calc(
 
     &[data-iui-overflow='true'] {
       overflow-y: overlay;
-      min-width: min-content;
+      min-inline-size: min-content;
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -216,12 +222,12 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tab {
     &::after {
-      width: 0;
-      height: 100%;
+      inline-size: 0;
+      block-size: 100%;
     }
 
     &.iui-active::after {
-      width: var(--iui-size-3xs);
+      inline-size: var(--iui-size-3xs);
     }
   }
 }
@@ -256,20 +262,20 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-horizontal &::after {
-    top: calc(100% - #{var(--iui-size-3xs)});
-    height: var(--iui-size-3xs);
-    left: var(--stripe-left);
-    width: var(--stripe-width);
+    inset-block-start: calc(100% - #{var(--iui-size-3xs)});
+    block-size: var(--iui-size-3xs);
+    inset-inline-start: var(--stripe-left);
+    inline-size: var(--stripe-width);
     @media (prefers-reduced-motion: no-preference) {
       transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
     }
   }
 
   .iui-vertical &::after {
-    left: calc(100% - #{var(--iui-size-3xs)});
-    width: var(--iui-size-3xs);
-    top: var(--stripe-top);
-    height: var(--stripe-height);
+    inset-inline-start: calc(100% - #{var(--iui-size-3xs)});
+    inline-size: var(--iui-size-3xs);
+    inset-block-start: var(--stripe-top);
+    block-size: var(--stripe-height);
     @media (prefers-reduced-motion: no-preference) {
       transition: top var(--iui-duration-1) ease-out;
     }
@@ -283,7 +289,7 @@ $borderless-horizontal-tab-min-height: calc(
   justify-content: center;
 
   :where(.iui-tabs-wrapper.iui-horizontal) & {
-    margin-left: $tabs-actions-gap;
+    margin-inline-start: $tabs-actions-gap;
 
     &::before,
     &::after {
@@ -295,19 +301,19 @@ $borderless-horizontal-tab-min-height: calc(
   // Smaller min content-actions spacing for default horizontal tabs
   :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-default) + & {
     &::after {
-      min-height: $content-actions-min-gap-default-horizontal-tabs;
+      min-block-size: $content-actions-min-gap-default-horizontal-tabs;
     }
   }
 
   // Larger min content-actions spacing for borderless horizontal tabs
   :where(.iui-tabs-wrapper.iui-horizontal) :where(.iui-tabs.iui-borderless) + & {
     &::after {
-      min-height: $content-actions-min-gap-borderless-horizontal-tabs;
+      min-block-size: $content-actions-min-gap-borderless-horizontal-tabs;
     }
   }
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
-    margin-top: $tabs-actions-gap;
+    margin-block-start: $tabs-actions-gap;
     padding: 0 $content-actions-gap-vertical-tabs;
   }
 }

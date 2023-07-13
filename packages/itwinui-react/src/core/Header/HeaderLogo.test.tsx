@@ -19,8 +19,8 @@ it('renders default correctly', () => {
 
   const {
     container: { firstChild: placeholderIcon },
-  } = render(<SvgPlaceholder className='iui-header-brand-icon' />);
-  expect(container.querySelector('.iui-header-brand-icon')).toEqual(
+  } = render(<SvgPlaceholder />);
+  expect(container.querySelector('.iui-header-brand-icon svg')).toEqual(
     placeholderIcon,
   );
 
@@ -76,20 +76,4 @@ it('renders with no children correctly', () => {
     '.iui-header-brand-label',
   ) as HTMLSpanElement;
   expect(label).toBeNull();
-});
-
-it('trashes wrong logo type (JS only)', () => {
-  const { container } = render(
-    <HeaderLogo logo={'myLogo' as unknown as JSX.Element}>
-      Application
-    </HeaderLogo>,
-  );
-
-  const root = container.querySelector('.iui-header-brand') as HTMLDivElement;
-  expect(root).toBeTruthy();
-
-  const label = container.querySelector(
-    '.iui-header-brand-label:only-child',
-  ) as HTMLSpanElement;
-  expect(label).toBeTruthy();
 });

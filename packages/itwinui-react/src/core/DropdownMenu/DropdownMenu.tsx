@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useTheme, Popover, mergeRefs } from '../utils/index.js';
+import { Popover, mergeRefs } from '../utils/index.js';
 import type {
   CommonProps,
   PopoverProps,
@@ -91,8 +91,6 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     [onHide],
   );
 
-  useTheme();
-
   return (
     <Popover
       content={
@@ -108,16 +106,20 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       trigger={visible === undefined ? trigger : undefined}
       {...rest}
     >
-      {React.cloneElement(children as JSX.Element, {
-        ref: mergeRefs(
-          targetRef,
-          (props.children as React.FunctionComponentElement<HTMLElement>).ref,
-        ),
-        onClick: (args: unknown) => {
-          trigger === undefined && (isVisible ? close() : open());
-          (children as JSX.Element).props.onClick?.(args);
-        },
-      })}
+      {React.isValidElement(children) ? (
+        React.cloneElement(children as JSX.Element, {
+          ref: mergeRefs(
+            targetRef,
+            (props.children as React.FunctionComponentElement<HTMLElement>).ref,
+          ),
+          onClick: (args: unknown) => {
+            trigger === undefined && (isVisible ? close() : open());
+            (children as JSX.Element).props.onClick?.(args);
+          },
+        })
+      ) : (
+        <></>
+      )}
     </Popover>
   );
 };

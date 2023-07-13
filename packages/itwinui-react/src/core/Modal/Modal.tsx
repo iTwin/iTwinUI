@@ -3,14 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import ReactDOM from 'react-dom';
-import { useTheme, getContainer, getDocument } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Dialog } from '../Dialog/index.js';
-import type { DialogMainProps } from '../Dialog/index.js';
+import type { DialogMainProps } from '../Dialog/DialogMain.js';
 
-export type ModalProps = {
+type ModalProps = {
   /**
    * Modal title.
    */
@@ -39,22 +36,18 @@ export type ModalProps = {
    */
   onKeyDown?: React.KeyboardEventHandler;
   /**
-   * Id of the root where the modal will be rendered in.
-   * @default 'iui-react-portal-container'
+   * If true, the dialog will be portaled into a <div> inside the nearest `ThemeProvider`.
+   *
+   * Can be set to an object with a `to` property to portal into a specific element.
+   *
+   * @default true
    */
-  modalRootId?: string;
-  /**
-   * Document where the modal will be rendered.
-   * Can be specified to render in a different document (e.g. a popup window).
-   * @default document
-   */
-  ownerDocument?: Document;
+  portal?: boolean | { to: HTMLElement };
   /**
    * Content of the modal.
    */
   children: React.ReactNode;
-} & Pick<DialogMainProps, 'isOpen' | 'styleType'> &
-  Omit<CommonProps, 'title'>;
+} & Pick<DialogMainProps, 'isOpen' | 'styleType'>;
 
 /**
  * Modal component which can wrap any content.
@@ -77,7 +70,7 @@ export type ModalProps = {
  *   </ModalButtonBar>
  * </Modal>
  */
-export const Modal = (props: ModalProps) => {
+export const Modal = React.forwardRef((props, forwardedRef) => {
   const {
     isOpen = false,
     isDismissible = true,
@@ -86,42 +79,30 @@ export const Modal = (props: ModalProps) => {
     onClose,
     title,
     children,
-    modalRootId = 'iui-react-portal-container',
-    ownerDocument = getDocument(),
+    portal = true,
     ...rest
   } = props;
 
-  useTheme();
-
-  const [container, setContainer] = React.useState<HTMLElement>();
-  React.useEffect(() => {
-    setContainer(getContainer(modalRootId, ownerDocument));
-    return () => setContainer(undefined);
-  }, [ownerDocument, modalRootId]);
-
-  return !!container ? (
-    ReactDOM.createPortal(
-      <Dialog
-        isOpen={isOpen}
-        closeOnEsc={closeOnEsc}
-        closeOnExternalClick={closeOnExternalClick}
-        isDismissible={isDismissible}
-        onClose={onClose}
-        preventDocumentScroll
-        trapFocus
-        setFocus
-      >
-        <Dialog.Backdrop />
-        <Dialog.Main aria-modal {...rest}>
-          <Dialog.TitleBar titleText={title} />
-          {children}
-        </Dialog.Main>
-      </Dialog>,
-      container,
-    )
-  ) : (
-    <></>
+  return (
+    <Dialog
+      isOpen={isOpen}
+      closeOnEsc={closeOnEsc}
+      closeOnExternalClick={closeOnExternalClick}
+      isDismissible={isDismissible}
+      onClose={onClose}
+      preventDocumentScroll
+      trapFocus
+      setFocus
+      ref={forwardedRef}
+      portal={portal}
+    >
+      <Dialog.Backdrop />
+      <Dialog.Main aria-modal {...rest}>
+        <Dialog.TitleBar titleText={title} />
+        {children}
+      </Dialog.Main>
+    </Dialog>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ModalProps>;
 
 export default Modal;

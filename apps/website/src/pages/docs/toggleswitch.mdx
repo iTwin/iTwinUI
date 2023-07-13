@@ -2,14 +2,14 @@
 title: Toggle switch
 description: The toggle switch is a high contrast component used for toggling settings that only have two states.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/src/core/ToggleSwitch/ToggleSwitch.tsx'
+propsPath: '@itwin/itwinui-react/esm/core/ToggleSwitch/ToggleSwitch.d.ts'
 thumbnail: ToggleSwitch
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -25,35 +25,35 @@ It fulfills a role similar to that of a [checkbox](checkbox), though they are no
 
 ### Sizes
 
+There are two sizes available.
+
 <LiveExample src='ToggleSwitch.sizes.tsx'>
   <AllExamples.ToggleSwitchSizesExample client:load />
 </LiveExample>
 
-There are two sizes available.
-
 ### Label placement
+
+A toggle switch's label can be placed on the right (default), left, or not used at all although it is strongly recommended that a label should be used.
 
 <LiveExample src='ToggleSwitch.labels.tsx'>
   <AllExamples.ToggleSwitchLabelsExample client:load />
 </LiveExample>
 
-A toggle switch's label can be placed on the right (default), left, or not used at all although it is strongly recommended that a label should be used.
-
 ### With icon
+
+A toggle switch can optionally show an icon when in the checked state. Note that the [small size toggle switch](#sizes) does not support icons.
 
 <LiveExample src='ToggleSwitch.icon.tsx'>
   <AllExamples.ToggleSwitchIconExample client:load />
 </LiveExample>
 
-A toggle switch can optionally show an icon when in the checked state. Note that the [small size toggle switch](#sizes) does not support icons.
-
 ### With input group
+
+Toggle switches can be paired with the [input group](inputgroup) which gives many additional options.
 
 <LiveExample src='ToggleSwitch.inputgroup.tsx'>
   <AllExamples.ToggleSwitchInputGroupExample client:load />
 </LiveExample>
-
-Toggle switches can be paired with the [input group](inputgroup) which gives many additional options.
 
 ## Props
 

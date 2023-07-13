@@ -3,17 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
-import { Story, Meta } from '@storybook/react';
-import {
-  MenuItem,
-  Select,
-  MiddleTextTruncation,
-  SelectProps,
-} from '@itwin/itwinui-react';
+import { StoryFn, Meta } from '@storybook/react';
+import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
 import { useState } from '@storybook/addons';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+
+type SelectProps = React.ComponentProps<typeof Select>;
 
 export default {
   title: 'Input/Select',
@@ -37,9 +34,9 @@ export default {
         </div>
       ),
   ],
-} as Meta<SelectProps<unknown>>;
+} as Meta<SelectProps>;
 
-export const Basic: Story<SelectProps<number>> = (args) => {
+export const Basic: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1' },
@@ -70,7 +67,7 @@ Basic.args = {
   ],
 };
 
-export const WithIcons: Story<SelectProps<string>> = (args) => {
+export const WithIcons: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 'happy', label: 'Happy', icon: <SvgSmileyHappy /> },
@@ -101,7 +98,7 @@ WithIcons.args = {
   ],
 };
 
-export const WithSelectedValue: Story<SelectProps<number>> = (args) => {
+export const WithSelectedValue: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1' },
@@ -135,7 +132,7 @@ WithSelectedValue.args = {
   popoverProps: { visible: true },
 };
 
-export const Disabled: Story<SelectProps<number>> = (args) => {
+export const Disabled: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1' },
@@ -169,7 +166,7 @@ Disabled.args = {
   ],
 };
 
-export const DisabledWithSelectedValue: Story<SelectProps<number>> = (args) => {
+export const DisabledWithSelectedValue: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1' },
@@ -203,7 +200,7 @@ DisabledWithSelectedValue.args = {
   ],
 };
 
-export const ManyItems: Story<SelectProps<number>> = (args) => {
+export const ManyItems: StoryFn<SelectProps> = (args) => {
   const { placeholder = 'Placeholder text', options, ...rest } = args;
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
@@ -231,7 +228,7 @@ ManyItems.argTypes = {
   options: { control: { disable: true } },
 };
 
-export const Sublabels: Story<SelectProps<number>> = (args) => {
+export const Sublabels: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 1, label: 'Item #1', sublabel: 'Sublabel #1' },
@@ -265,7 +262,7 @@ Sublabels.args = {
   ],
 };
 
-export const Custom: Story<SelectProps<string>> = (args) => {
+export const Custom: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       { value: 'yellow', label: 'Yellow' },
@@ -304,7 +301,7 @@ Custom.args = {
   ],
 };
 
-export const TruncateMiddleText: Story<SelectProps<string>> = (args) => {
+export const TruncateMiddleText: StoryFn<SelectProps> = (args) => {
   const {
     options = [
       {
@@ -354,7 +351,7 @@ export const TruncateMiddleText: Story<SelectProps<string>> = (args) => {
   );
 };
 
-export const Multi: Story<SelectProps<number>> = (args) => {
+export const Multi: StoryFn<SelectProps> = (args) => {
   const { placeholder = 'Placeholder text', ...rest } = args;
   const [value, setValue] = useState<number[]>([]);
   return (
@@ -388,7 +385,7 @@ Multi.argTypes = {
   options: { control: { disable: true } },
 };
 
-export const MultiCustomRenderer: Story<SelectProps<number>> = (args) => {
+export const MultiCustomRenderer: StoryFn<SelectProps> = (args) => {
   const { placeholder = 'Placeholder text', ...rest } = args;
   const [value, setValue] = useState<number[]>([]);
 

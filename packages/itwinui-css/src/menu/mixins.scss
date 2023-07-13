@@ -13,7 +13,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 @mixin iui-menu {
   @include surface.iui-surface;
-  max-height: var(--iui-menu-max-height);
+  max-block-size: var(--iui-menu-max-height);
   border-radius: var(--iui-border-radius-1);
 
   &.iui-scroll {
@@ -42,7 +42,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   padding-block: var(--iui-size-2xs);
   padding-inline: var(--iui-size-s);
   min-block-size: var(--iui-component-height);
-  line-height: normal;
   color: var(--iui-color-text);
   border-radius: var(--iui-border-radius-1);
   list-style-type: none;
@@ -64,13 +63,13 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &:where(.iui-active, [data-iui-active='true']) {
     @supports selector(:has(+ *)) {
       &:where(:has(+ #{&})) {
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
+        border-end-start-radius: 0;
+        border-end-end-radius: 0;
       }
 
       + :where(#{&}) {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
+        border-start-start-radius: 0;
+        border-start-end-radius: 0;
       }
     }
 

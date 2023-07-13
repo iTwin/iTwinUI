@@ -2,14 +2,14 @@
 title: Radio
 description: Allows the user to choose only one of a predefined set of mutually exclusive options.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/src/core/Radio/Radio.tsx'
+propsPath: '@itwin/itwinui-react/esm/core/Radio/Radio.d.ts'
 thumbnail: Radio
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -23,11 +23,11 @@ A radio is not interchangeable with a [checkbox](checkbox). A radio must have at
 
 ### Statuses
 
+If you ever need to display the status or severity of a single radio, you can apply a status on the radio. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
+
 <LiveExample src='Radio.statuses.tsx'>
   <AllExamples.RadioStatusesExample client:load />
 </LiveExample>
-
-If you ever need to display the status or severity of a single radio, you can apply a status on the radio. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
 
 ## Props
 

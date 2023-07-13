@@ -58,7 +58,8 @@ const reactComponentFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.tsx`,
     template: `${copyrightBannerJs}
 import * as React from 'react';
-import { useTheme } from '../utils';
+import { Box } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type ${componentName}Props = {};
 
@@ -67,11 +68,10 @@ export type ${componentName}Props = {};
  * @example
  * Example usages go here!
  */
-export const ${componentName} = (props: ${componentName}Props) => {
+export const ${componentName} = React.forwardRef((props, forwardedRef) => {
   const { ...rest } = props;
-  useTheme();
-  return <div {...rest} />;
-};
+  return <Box ref={forwardedRef} {...rest} />;
+}) as Polymorphic.ForwardRefComponent<'div', ${componentName}Props>;
 
 export default ${componentName};
 `,
@@ -231,7 +231,7 @@ const demoHtmlFactory = (directory, componentName) => {
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
     </style>
   </head>
-  <body class="iui-root">
+  <body class="iui-root" data-iui-theme>
     <theme-button></theme-button>
     <h1>${componentName}</h1>
     <hr />

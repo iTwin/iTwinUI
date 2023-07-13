@@ -5,7 +5,9 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { Story, Meta } from '@storybook/react';
-import { MenuItem, SplitButton, SplitButtonProps } from '@itwin/itwinui-react';
+import { MenuItem, SplitButton } from '@itwin/itwinui-react';
+
+type SplitButtonProps = React.ComponentProps<typeof SplitButton>;
 
 export default {
   title: 'Buttons/SplitButton',

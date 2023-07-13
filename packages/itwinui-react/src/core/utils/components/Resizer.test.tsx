@@ -5,9 +5,9 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import Resizer, { type ResizerProps } from './Resizer.js';
-import * as Styles from '../functions/styles.js';
+import * as DomUtils from '../functions/dom.js';
 
-jest.spyOn(Styles, 'getTranslateValues').mockReturnValue([100, 100]);
+jest.spyOn(DomUtils, 'getTranslateValues').mockReturnValue([100, 100]);
 jest.spyOn(window, 'getComputedStyle').mockReturnValue({
   minWidth: '50px',
   minHeight: '50px',

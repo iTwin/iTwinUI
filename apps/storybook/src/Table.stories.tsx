@@ -19,7 +19,7 @@ import {
   MenuItem,
   IconButton,
   Table,
-  Leading,
+  Text,
   tableFilters,
   TableFilterValue,
   TableProps,
@@ -35,7 +35,6 @@ import {
   Input,
   Radio,
   ProgressRadial,
-  useTheme,
   BaseFilter,
 } from '@itwin/itwinui-react';
 import { Story, Meta } from '@storybook/react';
@@ -698,7 +697,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1103,7 +1102,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -1492,7 +1491,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   const expandedSubComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -2471,8 +2470,6 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
   );
 
   const CustomFilter = () => {
-    useTheme();
-
     const handleChange = (isChecked: boolean, filter: string) => {
       setFilter(isChecked ? filter : '');
       setIsLoading(true);
@@ -2880,7 +2877,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -2892,7 +2889,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2913,7 +2910,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3321,7 +3318,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -3339,7 +3336,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3457,23 +3454,23 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  const isCheckboxDisabled = useCallback((rowData: typeof data[number]) => {
+  const isCheckboxDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name1';
   }, []);
-  const isExpanderDisabled = useCallback((rowData: typeof data[number]) => {
+  const isExpanderDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name2';
   }, []);
-  const isCellDisabled = useCallback((rowData: typeof data[number]) => {
+  const isCellDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name3';
   }, []);
-  const isRowDisabled = useCallback((rowData: typeof data[number]) => {
+  const isRowDisabled = useCallback((rowData: (typeof data)[number]) => {
     return rowData.name === 'Name4';
   }, []);
 
   const subComponent = useCallback(
     (row: Row) => (
       <div style={{ padding: 16 }}>
-        <Leading>Extra information</Leading>
+        <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
         </pre>
@@ -3483,7 +3480,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
       }),
@@ -3868,7 +3865,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
   }, []);
 
   const columns = useMemo(
-    (): Column<typeof data[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -3881,7 +3878,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 150,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -3903,7 +3900,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<typeof data[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{props.value} day(s)</>;
         },
       },
@@ -4044,7 +4041,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
             startIcon={props.cellProps.row.original.startIcon}
             endIcon={
               props.cellProps.row.original.isLoading ? (
-                <ProgressRadial value={40} />
+                <ProgressRadial value={40} size='small' />
               ) : (
                 props.cellProps.row.original.endIcon
               )

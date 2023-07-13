@@ -7,6 +7,6 @@
   border-radius: var(--iui-border-radius-round);
   box-shadow: var(--iui-shadow-5);
   position: fixed;
-  bottom: var(--iui-size-s);
-  right: var(--iui-size-m);
+  inset-block-end: var(--iui-size-s);
+  inset-inline-end: var(--iui-size-m);
 }

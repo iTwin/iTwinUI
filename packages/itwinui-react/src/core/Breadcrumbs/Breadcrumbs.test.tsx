@@ -5,17 +5,22 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 
-import { Breadcrumbs, type BreadcrumbsProps } from './Breadcrumbs.js';
-import { Button } from '../Buttons/index.js';
+import { Breadcrumbs } from './Breadcrumbs.js';
 import { SvgChevronRight, SvgMore } from '../utils/index.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 
-const renderComponent = (props?: Partial<BreadcrumbsProps>) => {
+const renderComponent = (
+  props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
+) => {
+  const onClickMock = jest.fn();
+
   return render(
     <Breadcrumbs {...props}>
       {[...Array(3)].map((_, index) => (
-        <Button key={index}>Item {index}</Button>
+        <Breadcrumbs.Item key={index} onClick={onClickMock}>
+          Item {index}
+        </Breadcrumbs.Item>
       ))}
     </Breadcrumbs>,
   );
@@ -36,6 +41,10 @@ const assertBaseElement = (
 
     const item = breadcrumb.firstElementChild;
     expect(item).toBeTruthy();
+    expect(item).toHaveClass('iui-breadcrumbs-content');
+
+    const text = item?.querySelector('span');
+    expect(text).toBeTruthy();
 
     if (index === currentIndex) {
       expect(item?.getAttribute('aria-current')).toEqual('location');
@@ -64,6 +73,22 @@ it('should render all elements in default state', () => {
     expect(separator.getAttribute('aria-hidden')).toBeTruthy();
     expect(separator.firstElementChild).toEqual(chevron.firstChild);
   });
+});
+
+it('should render breadcrumbs item as span element by default', () => {
+  const { container } = render(<Breadcrumbs.Item>Span 1</Breadcrumbs.Item>);
+  expect(container.querySelector('span')).toHaveClass(
+    'iui-breadcrumbs-content',
+  );
+});
+
+it('should render breadcrumbs item as anchor elements', () => {
+  const { container } = render(
+    <Breadcrumbs.Item href='https://www.example.com/'>
+      Anchor 1
+    </Breadcrumbs.Item>,
+  );
+  expect(container.querySelector('a')).toHaveClass('iui-breadcrumbs-content');
 });
 
 it('should render custom separators', () => {

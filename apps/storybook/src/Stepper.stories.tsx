@@ -5,11 +5,9 @@
 import { action } from '@storybook/addon-actions';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import {
-  Stepper,
-  StepperLocalization,
-  StepperProps,
-} from '@itwin/itwinui-react';
+import { Stepper, StepperLocalization } from '@itwin/itwinui-react';
+
+type StepperProps = React.ComponentProps<typeof Stepper>;
 
 export default {
   title: 'Core/Stepper',

@@ -12,7 +12,7 @@
   align-items: center;
   gap: var(--iui-size-xs);
   font-size: var(--iui-font-size-1);
-  width: fit-content;
+  inline-size: fit-content;
   user-select: none;
   cursor: pointer;
   isolation: isolate;
@@ -60,8 +60,8 @@
   position: relative;
   cursor: pointer;
   appearance: none;
-  width: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
-  height: calc(
+  inline-size: calc((var(--_iui-toggle-switch-handle-size) + var(--_iui-toggle-switch-handle-offset) * 2) * 2);
+  block-size: calc(
     var(--_iui-toggle-switch-handle-size) + (var(--_iui-toggle-switch-handle-offset) * 2) +
     ($iui-toggle-switch-border-thickness * 2)
   );
@@ -76,8 +76,8 @@
 
   &::after {
     content: '';
-    height: var(--_iui-toggle-switch-handle-size);
-    width: var(--_iui-toggle-switch-handle-size);
+    block-size: var(--_iui-toggle-switch-handle-size);
+    inline-size: var(--_iui-toggle-switch-handle-size);
     margin: var(--_iui-toggle-switch-handle-offset);
     aspect-ratio: 1 / 1;
     border-radius: var(--iui-border-radius-round);
@@ -167,7 +167,10 @@
 
     ~ .iui-toggle-switch-icon {
       opacity: 0;
-      fill: var(--iui-color-icon);
+
+      svg {
+        fill: var(--iui-color-icon);
+      }
     }
 
     &:checked {
@@ -183,9 +186,14 @@
 
       ~ .iui-toggle-switch-icon {
         opacity: var(--iui-opacity-5);
+
         @media (forced-colors: active) {
-          fill: Canvas;
           opacity: 0.75;
+
+          /* stylelint-disable-next-line max-nesting-depth */
+          svg {
+            fill: Canvas;
+          }
         }
       }
     }
@@ -195,17 +203,24 @@
   &-icon {
     opacity: 0;
     grid-area: toggle;
-    width: var(--_iui-toggle-switch-handle-size);
-    height: var(--_iui-toggle-switch-handle-size);
-    padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
     margin: calc(var(--_iui-toggle-switch-handle-offset) + $iui-toggle-switch-border-thickness);
-    display: flex;
     z-index: 1;
     transition: opacity var(--iui-duration-1) ease-out;
     pointer-events: none;
-    fill: var(--iui-color-white);
-    @media (forced-colors: active) {
-      fill: HighlightText;
+
+    &,
+    svg {
+      display: flex;
+      inline-size: var(--_iui-toggle-switch-handle-size);
+      block-size: var(--_iui-toggle-switch-handle-size);
+    }
+
+    svg {
+      padding: calc(var(--_iui-toggle-switch-handle-size) * 0.125);
+      fill: var(--iui-color-white);
+      @media (forced-colors: active) {
+        fill: HighlightText;
+      }
     }
   }
 }

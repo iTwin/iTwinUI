@@ -28,14 +28,14 @@ import type {
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
-  useTheme,
+  useGlobals,
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
   useIsomorphicLayoutEffect,
+  Box,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/table.css';
 import { getCellStyle, getStickyStyle } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
@@ -396,7 +396,7 @@ export const Table = <
     ...rest
   } = props;
 
-  useTheme();
+  useGlobals();
 
   const ownerDocument = React.useRef<Document | undefined>();
 
@@ -623,7 +623,7 @@ export const Table = <
       }
       return result;
     },
-    {} as Record<string, string>,
+    {} as Record<string, unknown>,
   );
 
   const areFiltersSet =
@@ -860,7 +860,7 @@ export const Table = <
 
   return (
     <>
-      <div
+      <Box
         ref={(element) => {
           ownerDocument.current = element?.ownerDocument;
           if (isResizable) {
@@ -889,7 +889,7 @@ export const Table = <
             className: 'iui-table-row',
           });
           return (
-            <div
+            <Box
               className='iui-table-header-wrapper'
               ref={headerRef}
               onScroll={() => {
@@ -900,8 +900,8 @@ export const Table = <
               }}
               key={headerGroupProps.key}
             >
-              <div className='iui-table-header'>
-                <div {...headerGroupProps}>
+              <Box className='iui-table-header'>
+                <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
                     const { onClick, ...restSortProps } =
                       column.getSortByToggleProps();
@@ -923,7 +923,7 @@ export const Table = <
                       },
                     });
                     return (
-                      <div
+                      <Box
                         {...columnProps}
                         {...column.getDragAndDropProps()}
                         key={columnProps.key}
@@ -955,12 +955,12 @@ export const Table = <
                         {column.render('Header')}
                         {(showFilterButton(column) ||
                           showSortButton(column)) && (
-                          <div className='iui-table-header-actions-container'>
+                          <Box className='iui-table-header-actions-container'>
                             {showFilterButton(column) && (
                               <FilterToggle column={column} />
                             )}
                             {showSortButton(column) && (
-                              <div className='iui-table-cell-end-icon'>
+                              <Box className='iui-table-cell-end-icon'>
                                 {column.isSortedDesc ||
                                 (!column.isSorted && column.sortDescFirst) ? (
                                   <SvgSortDown
@@ -973,42 +973,42 @@ export const Table = <
                                     aria-hidden
                                   />
                                 )}
-                              </div>
+                              </Box>
                             )}
-                          </div>
+                          </Box>
                         )}
                         {isResizable &&
                           column.isResizerVisible &&
                           (index !== headerGroup.headers.length - 1 ||
                             columnResizeMode === 'expand') && (
-                            <div
+                            <Box
                               {...column.getResizerProps()}
                               className='iui-table-resizer'
                             >
-                              <div className='iui-table-resizer-bar' />
-                            </div>
+                              <Box className='iui-table-resizer-bar' />
+                            </Box>
                           )}
                         {enableColumnReordering &&
                           !column.disableReordering && (
-                            <div className='iui-table-reorder-bar' />
+                            <Box className='iui-table-reorder-bar' />
                           )}
                         {column.sticky === 'left' &&
                           state.sticky.isScrolledToRight && (
-                            <div className='iui-table-cell-shadow-right' />
+                            <Box className='iui-table-cell-shadow-right' />
                           )}
                         {column.sticky === 'right' &&
                           state.sticky.isScrolledToLeft && (
-                            <div className='iui-table-cell-shadow-left' />
+                            <Box className='iui-table-cell-shadow-left' />
                           )}
-                      </div>
+                      </Box>
                     );
                   })}
-                </div>
-              </div>
-            </div>
+                </Box>
+              </Box>
+            </Box>
           );
         })}
-        <div
+        <Box
           {...getTableBodyProps({
             className: cx('iui-table-body', {
               'iui-zebra-striping': styleType === 'zebra-rows',
@@ -1041,13 +1041,13 @@ export const Table = <
             </>
           )}
           {isLoading && data.length === 0 && (
-            <div className='iui-table-empty'>
+            <Box className='iui-table-empty'>
               <ProgressRadial indeterminate={true} />
-            </div>
+            </Box>
           )}
           {isLoading && data.length !== 0 && (
-            <div className='iui-table-row'>
-              <div
+            <Box className='iui-table-row'>
+              <Box
                 className='iui-table-cell'
                 style={{ justifyContent: 'center' }}
               >
@@ -1056,24 +1056,24 @@ export const Table = <
                   size='small'
                   style={{ float: 'none', marginLeft: 0 }}
                 />
-              </div>
-            </div>
+              </Box>
+            </Box>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
-            <div className='iui-table-empty'>
+            <Box className='iui-table-empty'>
               <div>{emptyTableContent}</div>
-            </div>
+            </Box>
           )}
           {!isLoading &&
             (data.length === 0 || rows.length === 0) &&
             areFiltersSet && (
-              <div className='iui-table-empty'>
+              <Box className='iui-table-empty'>
                 <div>{emptyFilteredTableContent}</div>
-              </div>
+              </Box>
             )}
-        </div>
+        </Box>
         {paginatorRenderer?.(paginatorRendererProps)}
-      </div>
+      </Box>
     </>
   );
 };

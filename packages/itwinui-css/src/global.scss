@@ -2,34 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'mixins';
 
-// reset anything that may have been set by v1
-:where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
-  :where([class*='iui-']:not(.iui-root, svg *)) {
-    &,
-    &::before,
-    &::after {
-      all: revert;
-    }
-  }
-}
-
 :where(.iui-root) {
   color: var(--iui-color-text);
   font-size: var(--iui-font-size-1);
-  line-height: var(--iui-size-l);
+  line-height: 1.5;
   font-family: var(--iui-font-sans);
-
-  // border-box on all iui- elements and their descendants under iui-root, excluding any nested iui-root elements
-  :where([class*='iui-']) {
-    &:where(:not(.iui-root)),
-    * {
-      &,
-      &::before,
-      &::after {
-        box-sizing: border-box;
-      }
-    }
-  }
 }
 
 // reset margin only for <body> element.
@@ -43,10 +20,18 @@
   background-color: var(--iui-color-background-backdrop);
 }
 
-// text selection and scrollbar styling on [data-iui-theme], iui-root and all elements under it
-:where([data-iui-theme]),
-:where(.iui-root),
-:where(.iui-root *) {
+// box-sizing, text selection and scrollbar styling on iui-root and all elements under it
+:where(.iui-root, .iui-root *) {
   @include mixins.iui-text-selection;
   @include mixins.iui-scrollbar;
+
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+
+  &:where(:focus-visible) {
+    outline: 2px solid var(--iui-color-border-accent);
+  }
 }

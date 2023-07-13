@@ -5,8 +5,8 @@ layout: ./_layout.astro
 propsPathDefault: '@itwin/itwinui-react/esm/core/Buttons/Button/Button.d.ts'
 propsPathSplitButton: '@itwin/itwinui-react/esm/core/Buttons/SplitButton/SplitButton.d.ts'
 propsPathIconButton: '@itwin/itwinui-react/esm/core/Buttons/IconButton/IconButton.d.ts'
-propsPathIdeasButton: '@itwin/itwinui-react/src/core/Buttons/IdeasButton/IdeasButton.tsx'
-propsPathDropdownButton: '@itwin/itwinui-react/src/core/Buttons/DropdownButton/DropdownButton.tsx'
+propsPathIdeasButton: '@itwin/itwinui-react/esm/core/Buttons/IdeasButton/IdeasButton.d.ts'
+propsPathDropdownButton: '@itwin/itwinui-react/esm/core/Buttons/DropdownButton/DropdownButton.d.ts'
 thumbnail: Button
 group: buttons
 ---
@@ -14,7 +14,7 @@ group: buttons
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
 import Placeholder from '~/components/Placeholder.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -29,48 +29,48 @@ In some cases, buttons can also be used in place of href links to draw special a
 
 ### Default
 
+The default button should be used in most circumstances. If you are unsure as to what button to use, use this button!
+
 <LiveExample src='Button.default.tsx'>
   <AllExamples.ButtonDefaultExample client:load />
 </LiveExample>
 
-The default button should be used in most circumstances. If you are unsure as to what button to use, use this button!
-
 ### High visibility
+
+This is the button to emphasize an action applicable to an area of the page or a [dialog](dialog). High visibility buttons are used to draw the user’s attention to the main action of the page.
+There should only be one high visibility button per area of the user interface.
 
 <LiveExample src='Button.highvisibility.tsx'>
   <AllExamples.ButtonHighVisibilityExample client:load />
 </LiveExample>
 
-This is the button to emphasize an action applicable to an area of the page or a [dialog](dialog). High visibility buttons are used to draw the user’s attention to the main action of the page.
-There should only be one high visibility button per area of the user interface.
-
 ### Call-to-action
+
+The call-to-action button, also referred to as the CTA, is the button that is used for most full page layouts and whole-page overlays (think Next in [stepper](stepper) interactions). This is the biggest and most noticeable button.
+One call-to-action button per visible page is the rule. Treat it as a large, “CLICK HERE” guide for the user.
 
 <LiveExample src='Button.cta.tsx'>
   <AllExamples.ButtonCTAExample client:load />
 </LiveExample>
 
-The call-to-action button, also referred to as the CTA, is the button that is used for most full page layouts and whole-page overlays (think Next in [stepper](stepper) interactions). This is the biggest and most noticeable button.
-One call-to-action button per visible page is the rule. Treat it as a large, “CLICK HERE” guide for the user.
-
 ### Borderless
+
+The borderless button is useful in tighter areas where using a default button would visibly cause too many boxes.
 
 <LiveExample src='Button.borderless.tsx'>
   <AllExamples.ButtonBorderlessExample client:load />
 </LiveExample>
-
-The borderless button is useful in tighter areas where using a default button would visibly cause too many boxes.
 
 The borderless button is often used by actionable icons in relation to another component.
 They are commonly used within [table](table) rows and widgets.
 
 ### Size
 
+There are 3 different sizes available, which can be applied to any button. The medium size is a default and should always be the first choice, unless there are good reasons to use the small or large version.
+
 <LiveExample src='Button.size.tsx'>
   <AllExamples.ButtonSizeExample client:load />
 </LiveExample>
-
-There are 3 different sizes available, which can be applied to any button. The medium size is a default and should always be the first choice, unless there are good reasons to use the small or large version.
 
 ## Button props
 
@@ -78,11 +78,11 @@ There are 3 different sizes available, which can be applied to any button. The m
 
 ## Split button
 
+Pressing the left side of this button will commit the action. Pressing the right side of the button will open a menu.
+
 <LiveExample src='SplitButton.main.tsx'>
   <AllExamples.SplitButtonMainExample client:load />
 </LiveExample>
-
-Pressing the left side of this button will commit the action. Pressing the right side of the button will open a menu.
 
 ### Props
 
@@ -90,11 +90,11 @@ Pressing the left side of this button will commit the action. Pressing the right
 
 ## Dropdown button
 
+Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The menu button should only be styled as default buttons and borderless buttons.
+
 <LiveExample src='DropdownButton.main.tsx'>
   <AllExamples.DropdownButtonMainExample client:load />
 </LiveExample>
-
-Pressing this button will always open a menu. Upon selecting an option from the menu, the action immediately takes place. The menu button should only be styled as default buttons and borderless buttons.
 
 ### Props
 
@@ -102,11 +102,11 @@ Pressing this button will always open a menu. Upon selecting an option from the 
 
 ## Icon button
 
+Icon button gives the icon the correct styling as well as adds some clickable padding within the button, ensuring icons meet the necessary touch target size.
+
 <LiveExample src='IconButton.main.tsx'>
   <AllExamples.IconButtonMainExample client:load />
 </LiveExample>
-
-Icon button gives the icon the correct styling as well as adds some clickable padding within the button, ensuring icons meet the necessary touch target size.
 
 ### Props
 
@@ -114,11 +114,11 @@ Icon button gives the icon the correct styling as well as adds some clickable pa
 
 ## Ideas button
 
+The Ideas button is unique and should only be used under certain circumstances. You will need to perform an audit of your application to ensure that the feedback button does not cover / obscure any tools.
+
 <LiveExample src='IdeasButton.main.tsx'>
   <AllExamples.IdeasButtonMainExample client:load />
 </LiveExample>
-
-The Ideas button is unique and should only be used under certain circumstances. You will need to perform an audit of your application to ensure that the feedback button does not cover / obscure any tools.
 
 If the button does obscure anything important, we suggest adding empty space at the bottom of the page so the user can scroll far enough down that the button doesn’t overlap the underlying tools.
 

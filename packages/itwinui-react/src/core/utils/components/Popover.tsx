@@ -10,8 +10,7 @@ import type { TippyProps } from '@tippyjs/react';
 import type { Placement, Instance } from 'tippy.js';
 import { useMergedRefs, useIsClient } from '../hooks/index.js';
 export type PopoverInstance = Instance;
-import '@itwin/itwinui-css/css/utils.css';
-import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
+import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 
 export type PopoverProps = {
   /**
@@ -65,7 +64,8 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
   const computedProps: Partial<TippyProps> = {
     allowHTML: true,
     animation: false,
-    appendTo: (el) => themeInfo?.rootRef.current || el.ownerDocument.body,
+    appendTo: (el) =>
+      themeInfo?.portalContainerRef?.current || el.ownerDocument.body,
     arrow: false,
     duration: 0,
     interactive: true,
@@ -104,7 +104,7 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
     // Tippy uses react Portal, which propagates events by react tree, not dom tree.
     // Read more: https://reactjs.org/docs/portals.html#event-bubbling-through-portals
     const clonedContent = React.isValidElement(props.content)
-      ? React.cloneElement(props.content, {
+      ? React.cloneElement(props.content as JSX.Element, {
           onClick: (e: MouseEvent) => {
             e.stopPropagation();
             (props.content as JSX.Element).props.onClick?.(e);

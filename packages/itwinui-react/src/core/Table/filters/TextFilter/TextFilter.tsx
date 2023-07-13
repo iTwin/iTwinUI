@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import '@itwin/itwinui-css/css/table.css';
-import { useTheme } from '../../../utils/index.js';
+import { useGlobals } from '../../../utils/index.js';
 import { Input } from '../../../Input/index.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
@@ -21,7 +20,7 @@ export const TextFilter = <T extends Record<string, unknown>>(
 ) => {
   const { column, translatedLabels, setFilter, clearFilter } = props;
 
-  useTheme();
+  useGlobals();
 
   const [text, setText] = React.useState(column.filterValue ?? '');
 

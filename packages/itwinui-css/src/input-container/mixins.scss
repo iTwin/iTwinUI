@@ -13,10 +13,10 @@
 
   &.iui-inline-icon {
     > .iui-input {
-      padding-right: var(--iui-component-height);
+      padding-inline-end: var(--iui-component-height);
 
       &:last-child {
-        padding-right: var(--iui-size-s);
+        padding-inline-end: var(--iui-size-s);
       }
     }
   }
@@ -29,7 +29,7 @@
 
     // add margin to the icon if it is below input
     &:not(.iui-inline-icon) > .iui-input-icon {
-      margin-top: var(--iui-size-2xs);
+      margin-block-start: var(--iui-size-2xs);
     }
   }
 
@@ -58,7 +58,7 @@
   // Appropriate spacing even if no text label is given
   .iui-checkbox-wrapper,
   .iui-radio-wrapper {
-    min-height: var(--iui-size-l);
+    min-block-size: var(--iui-size-l);
   }
 
   &.iui-inline-label {
@@ -75,7 +75,7 @@
       gap: var(--iui-size-m);
 
       &:not(:last-child) {
-        margin-right: var(--iui-size-m);
+        margin-inline-end: var(--iui-size-m);
       }
     }
   }
@@ -98,13 +98,13 @@
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
   font-weight: var(--iui-font-weight-semibold);
-  margin-bottom: var(--iui-size-2xs);
+  margin-block-end: var(--iui-size-2xs);
   color: var(--_iui-input-label-color);
 
   &.iui-required {
     &::after {
       content: '*';
-      margin-left: var(--iui-size-2xs);
+      margin-inline-start: var(--iui-size-2xs);
       color: var(--iui-color-text-negative);
     }
   }
@@ -119,7 +119,7 @@
   margin: 0 var(--iui-size-m) 0 0;
 
   &.iui-required {
-    margin-right: calc(var(--iui-size-2xs) * 1.5 - 1px);
+    margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
   }
 }
 
@@ -149,7 +149,7 @@
 @mixin iui-input-message {
   font-size: var(--iui-font-size-0);
   grid-area: message;
-  margin-top: var(--iui-size-2xs);
+  margin-block-start: var(--iui-size-2xs);
   color: var(--iui-color-text-muted);
 
   a {
@@ -160,40 +160,51 @@
 /// Icon to be shown near a message.
 @mixin iui-input-icon {
   @include mixins.iui-icon-style('m');
-  @include mixins.iui-icon-color;
   grid-area: icon;
   align-self: center;
 
   &:not(:last-child) {
-    margin-right: var(--iui-size-2xs);
+    margin-inline-end: var(--iui-size-2xs);
+  }
+
+  svg:where(:not(.iui-button svg)) {
+    @include mixins.iui-icon-color;
   }
 }
 
 /// Modifier on iui-input-icon to place it at the end of input.
 @mixin iui-input-icon-inline {
+  $margin-end: calc(var(--iui-size-xs) + 1px);
+
   grid-area: inputs;
   justify-self: end;
-  margin: 0 calc(var(--iui-size-xs) + 1px) 0 0;
+  margin: 0 #{$margin-end} 0 0;
   position: relative;
+  block-size: 100%;
+  inline-size: fit-content;
+  display: inline-flex;
+  align-items: center;
 
-  svg {
+  svg:where(:not(.iui-button svg)) {
     @include mixins.iui-icon-style('m');
   }
 
-  &.iui-button {
-    height: 100%;
-    width: fit-content;
-    margin-right: 0;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
+  &,
+  .iui-button {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: inherit;
+    border-end-end-radius: inherit;
+  }
+
+  .iui-button {
+    margin-inline-end: calc(-1 * $margin-end);
   }
 
   &.iui-actionable {
     align-items: center;
-    height: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
-    margin-right: 2px; // shift 2px from the right to avoid overlapping with border/outline
+    block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-inline-end: 2px; // shift 2px from the right to avoid overlapping with border/outline
     border-radius: var(--iui-border-radius-1);
     padding-inline: calc(var(--iui-size-xs) + 1px);
     cursor: pointer;
@@ -201,7 +212,7 @@
 
     @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
-    svg {
+    svg:where(:not(.iui-button svg)) {
       fill: var(--iui-color-icon);
       transition: transform var(--iui-duration-1) ease-out;
     }
@@ -222,9 +233,9 @@
 
 /// Mixin for applying status colors to input container.
 /// @arg status - must be one of: positive, negative, warning
-/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon
+/// @arg iconSelector - selector to apply status fill on. Defaults to .iui-input-icon svg
 /// @arg textSelector - selector to apply text color on. Defaults to .iui-message
-@mixin iui-input-status($status, $iconSelector: '.iui-input-icon', $textSelector: '.iui-message') {
+@mixin iui-input-status($status, $iconSelector: '.iui-input-icon svg', $textSelector: '.iui-message') {
   @include mixins.iui-text-selection($status);
 
   #{$iconSelector} {
@@ -247,21 +258,21 @@
 
   .iui-input {
     // #region Bottom padding to accomodate for status stripe
-    padding-bottom: calc(var(--iui-size-2xs) - 1px);
+    padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
     &[data-iui-size='small'] {
-      padding-bottom: 0;
+      padding-block-end: 0;
     }
 
     &[data-iui-size='large'] {
-      padding-bottom: calc(var(--iui-size-xs) - 1px);
+      padding-block-end: calc(var(--iui-size-xs) - 1px);
     }
     // #endregion
 
-    border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+    border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
     &:focus {
-      border-bottom: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+      border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
       outline: 2px solid var(--iui-color-text-#{$status});
       outline-offset: -2px;
     }
@@ -277,15 +288,15 @@
   }
 
   .iui-select-button {
-    border-bottom: transparent;
+    border-block-end: transparent;
 
     &::after {
       content: '';
-      width: 100%;
+      inline-size: 100%;
       position: absolute;
-      bottom: 0;
-      left: 0;
-      height: var(--iui-size-3xs);
+      inset-block-end: 0;
+      inset-inline-start: 0;
+      block-size: var(--iui-size-3xs);
       background-color: var(--iui-color-border-#{$status});
     }
   }

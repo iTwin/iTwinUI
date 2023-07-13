@@ -1,0 +1,37 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../input-container/mixins';
+@use '../surface/base' as surface;
+
+.iui-transfer-list-wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: 1fr auto;
+  column-gap: var(--iui-size-xs);
+}
+
+.iui-transfer-list-listbox-label {
+  @include mixins.iui-input-label-styling;
+}
+
+.iui-transfer-list-listbox-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--iui-size-2xs);
+}
+
+.iui-transfer-list-listbox {
+  @include surface.iui-surface($elevation: none);
+  overflow-y: auto;
+  overflow-y: overlay;
+  block-size: calc((var(--iui-component-height) - 1px) * 4.5);
+}
+
+.iui-transfer-list-toolbar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: var(--iui-size-2xs);
+  justify-content: flex-end;
+}

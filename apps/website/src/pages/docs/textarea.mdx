@@ -2,46 +2,46 @@
 title: Textarea
 description: A multiline text box.
 layout: ./_layout.astro
-propsPath: '@itwin/itwinui-react/src/core/LabeledTextarea/LabeledTextarea.tsx'
+propsPath: '@itwin/itwinui-react/esm/core/LabeledTextarea/LabeledTextarea.d.ts'
 thumbnail: TextArea
 group: inputs
 ---
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import * as AllExamples from '~/examples';
+import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
+
+Textarea (or multi-line fields) are larger text field that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
 
 <LiveExample src='Textarea.main.tsx' truncate={false}>
   <AllExamples.TextareaMainExample client:load />
 </LiveExample>
 
-Textarea (or multi-line fields) are larger text field that can accommodate more text. It is vertically resizable and wraps text to the next line when maximum line length is reached. It automatically scrolls down to allow more text to be input when the bottom is reached. This type of text field implies that a larger input of text is possible and encouraged.
+If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for textarea without a resizing handle, to avoid making text editing tedious.
 
 <LiveExample src='Textarea.scroll.tsx'>
   <AllExamples.TextareaScrollExample client:load />
 </LiveExample>
 
-If the area is shrunk to a size smaller than the amount of text within, a scrollbar appears to keep navigation possible. This behavior is especially important for textarea without a resizing handle, to avoid making text editing tedious.
-
 ## Variants
 
 ### Status
+
+If status messages are required, the styling is similar to [inputs](input). For the default textarea, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
 
 <LiveExample src='Textarea.status.tsx'>
   <AllExamples.TextareaStatusExample client:load />
 </LiveExample>
 
-If status messages are required, the styling is similar to [inputs](input). For the default textarea, the bottom border gains the color of the alert level, as well as the corresponding icon and message.
-
 ### Inline
+
+It's possible to use textarea inline. This could be useful in styling forms.
 
 <LiveExample src='Textarea.inline.tsx'>
   <AllExamples.TextareaInlineExample client:load />
 </LiveExample>
-
-It's possible to use textarea inline. This could be useful in styling forms.
 
 ## Usage
 

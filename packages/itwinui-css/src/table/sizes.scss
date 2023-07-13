@@ -21,10 +21,10 @@
 
   .iui-table-header,
   .iui-table-paginator {
-    min-height: var(--_iui-table-header-size);
+    min-block-size: var(--_iui-table-header-size);
   }
 
   .iui-table-body .iui-table-cell {
-    min-height: var(--_iui-table-row-size);
+    min-block-size: var(--_iui-table-row-size);
   }
 }

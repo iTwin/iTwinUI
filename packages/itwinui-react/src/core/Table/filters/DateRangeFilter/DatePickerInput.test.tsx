@@ -28,7 +28,7 @@ it('should render correctly', async () => {
   expect(labeledInput).toBeTruthy();
 
   const iconButton = container.querySelector(
-    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
+    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
@@ -92,7 +92,7 @@ it('should call onChange when selected day from calendar', async () => {
   });
 
   const iconButton = container.querySelector(
-    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
+    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   await userEvent.click(iconButton);
@@ -114,7 +114,7 @@ it('should call onChange with undefined when input field is cleared', async () =
   });
 
   const iconButton = container.querySelector(
-    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
+    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   await userEvent.click(iconButton);
@@ -155,9 +155,7 @@ it('should disable dates after "to" date when using "from" date picker', async (
     selectedDate: toDate,
   });
 
-  const iconButton = container.querySelector(
-    '.iui-input-icon.iui-button[data-iui-variant="borderless"]',
-  ) as HTMLButtonElement;
+  const iconButton = container.querySelector('button') as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
   await userEvent.click(iconButton);
