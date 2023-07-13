@@ -200,7 +200,8 @@
 }
 
 // attribute to include status border in inputs (input, select)
-:where(.iui-input, .iui-select-button, .iui-input-flex-container) {
+.iui-input,
+.iui-input-with-icon > .iui-select-button {
   @each $statusColor in informational, positive, warning, negative {
     &:where([data-iui-status='#{$statusColor}']) {
       padding-block-end: calc(var(--iui-size-2xs) - 1px);
@@ -224,6 +225,7 @@
 
       &:hover {
         --_iui-input-border-color: var(--iui-color-border-#{$statusColor});
+        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$statusColor});
       }
     }
   }
