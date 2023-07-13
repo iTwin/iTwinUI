@@ -17,11 +17,6 @@ type RadioProps = {
    * Status of the radio.
    */
   status?: 'positive' | 'warning' | 'negative';
-  /**
-   * Set focus on radio element.
-   * @default false
-   */
-  setFocus?: boolean;
 };
 
 /**
@@ -35,24 +30,10 @@ type RadioProps = {
  * <Radio status='negative' label='Negative' />
  */
 export const Radio = React.forwardRef((props, ref) => {
-  const {
-    className,
-    disabled = false,
-    label,
-    status,
-    style,
-    setFocus = false,
-    ...rest
-  } = props;
+  const { className, disabled = false, label, status, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
 
   const radio = (
     <Box

@@ -9,8 +9,8 @@ import {
   useMergedRefs,
   useContainerWidth,
   mergeEventHandlers,
-  type PolymorphicForwardRefComponent,
 } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
 import {
   ComboBoxStateContext,

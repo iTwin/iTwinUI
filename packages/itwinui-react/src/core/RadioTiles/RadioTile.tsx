@@ -20,11 +20,6 @@ type RadioTileProps = {
    * Additional description, if needed.
    */
   description?: React.ReactNode;
-  /**
-   * Set focus on radio tile element.
-   * @default false
-   */
-  setFocus?: boolean;
 };
 
 /**
@@ -33,24 +28,10 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const {
-    icon,
-    label,
-    description,
-    setFocus = false,
-    className,
-    style,
-    ...rest
-  } = props;
+  const { icon, label, description, className, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
 
   return (
     <Box as='label' className={cx('iui-radio-tile', className)} style={style}>
