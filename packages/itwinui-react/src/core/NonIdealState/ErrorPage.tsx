@@ -10,31 +10,31 @@ import { dynamicImport } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 const Svg401 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/401'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg401'),
 );
 const Svg403 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/403'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg403'),
 );
 const Svg404 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/404'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg404'),
 );
 const Svg500 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/500'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg500'),
 );
 const Svg502 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/502'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg502'),
 );
 const Svg503 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/503'),
+  dynamicImport('@itwin/itwinui-illustrations-react/Svg503'),
 );
 const SvgError = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Error'),
+  dynamicImport('@itwin/itwinui-illustrations-react/SvgError'),
 );
 const SvgRedirect = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Redirect'),
+  dynamicImport('@itwin/itwinui-illustrations-react/SvgRedirect'),
 );
 const SvgTimedOut = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/TimedOut'),
+  dynamicImport('@itwin/itwinui-illustrations-react/SvgTimedOut'),
 );
 
 /** @deprecated Use `NonIdealState` instead. */
