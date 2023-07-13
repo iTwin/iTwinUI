@@ -3,12 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Popover,
-  SvgCalendar,
-  isBefore,
-  type PolymorphicForwardRefComponent,
-} from '../../../utils/index.js';
+import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
 import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
 import { IconButton } from '../../../Buttons/index.js';
