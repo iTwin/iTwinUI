@@ -36,7 +36,7 @@ type RadioTileProps = {
   /**
    * Passes props for tile label.
    */
-  labelProps?: React.ComponentProps<'label'>;
+  labelProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -91,7 +91,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
         )}
         {label && (
           <Box
-            as='label'
+            as='div'
             className={cx('iui-radio-tile-label', labelClassName)}
             {...restLabelProps}
           >
