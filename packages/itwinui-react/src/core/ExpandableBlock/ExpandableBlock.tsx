@@ -167,7 +167,6 @@ const ExpandableBlockExpandIcon = React.forwardRef((props, forwardedRef) => {
   return (
     <Icon
       className={cx('iui-expandable-block-icon', className)}
-      size='medium'
       ref={forwardedRef}
       {...rest}
     >

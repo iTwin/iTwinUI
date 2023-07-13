@@ -115,9 +115,8 @@
 }
 
 .iui-expandable-block-icon {
-  inline-size: var(--_iui-expandable-block-expander-icon-size);
-  block-size: var(--_iui-expandable-block-expander-icon-size);
-  fill: var(--_iui-expandable-block-expander-icon-fill);
+  --iui-svg-size: var(--_iui-expandable-block-expander-icon-size);
+  --iui-svg-fill: var(--_iui-expandable-block-expander-icon-fill);
   transform: var(--_iui-expandable-block-expander-icon-transform);
   transition: fill var(--iui-duration-1) ease-out;
   @media (prefers-reduced-motion: no-preference) {
