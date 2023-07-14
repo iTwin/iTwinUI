@@ -14,7 +14,7 @@ import { Menu } from '../Menu/index.js';
 export type DropdownMenuProps = {
   /**
    * List of menu items. Recommended to use MenuItem component.
-   * You can pass function that takes argument `close` that closes the dropdown menu.
+   * You can pass function that takes argument `close` that closes the dropdown menu, or a list of MenuItems.
    */
   menuItems: (close: () => void) => JSX.Element[] | JSX.Element[] | JSX.Element;
   /**
@@ -44,6 +44,7 @@ export type DropdownMenuProps = {
  *     Item #3
  *   </MenuItem>,
  * ];
+ *
  * <DropdownMenu menuItems={menuItems}>
  *   <Button>Menu</Button>
  * </DropdownMenu>
