@@ -14,16 +14,16 @@ import {
 export default () => {
   return (
     <ButtonGroup>
-      <IconButton onClick={() => {}} aria-label='add'>
+      <IconButton onClick={() => {}} label='add'>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={() => {}} aria-label='edit' isActive>
+      <IconButton onClick={() => {}} label='edit' isActive>
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={() => {}} aria-label='delete'>
+      <IconButton disabled onClick={() => {}} label='delete'>
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={() => {}} aria-label='undo'>
+      <IconButton onClick={() => {}} label='undo'>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
