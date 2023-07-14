@@ -27,7 +27,9 @@ it('should render disabled component', () => {
   );
   assertBaseElement(container);
   expect(container.querySelector('.iui-input')).toBeTruthy();
-  expect(container.querySelector('.iui-input-label.iui-disabled')).toBeTruthy();
+  const label = container.querySelector('.iui-input-label');
+  expect(label).toBeTruthy();
+  expect(label).toHaveAttribute('data-iui-disabled', 'true');
   getByText('some label');
   expect((container.querySelector('input') as HTMLInputElement).disabled).toBe(
     true,
