@@ -1,0 +1,11 @@
+# Data
+_data/
+
+# venv/conda
+.conda/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# node_modules/
+node_modules/

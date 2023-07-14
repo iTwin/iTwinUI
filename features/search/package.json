@@ -1,0 +1,14 @@
+{
+  "name": "search",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "create_chunks": "node scripts/create_chunks.mjs"
+  },
+  "dependencies": {
+    "@octokit/core": "^4.2.4",
+    "dotenv": "^16.3.1",
+    "globby": "^13.1.4"
+  }
+}

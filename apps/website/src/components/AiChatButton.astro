@@ -1,0 +1,74 @@
+---
+import AiChat from './AiChat.jsx';
+---
+
+<ai-chat-button>
+  <button type='button'>AI chat</button>
+
+  <dialog>
+    <AiChat client:load />
+  </dialog>
+</ai-chat-button>
+
+<script>
+  customElements.define(
+    'ai-chat-button',
+    class extends HTMLElement {
+      connectedCallback() {
+        const button = this.querySelector('button');
+        const dialog = this.querySelector('dialog');
+
+        button.addEventListener('click', () => {
+          dialog.showModal();
+        });
+
+        dialog.addEventListener('click', (e) => {
+          if (e.currentTarget === e.target) dialog.close();
+        });
+      }
+    }
+  );
+</script>
+
+<style>
+  ai-chat-button {
+    justify-self: end;
+  }
+
+  button {
+    font: inherit;
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    opacity: 0.9;
+
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: var(--font-size-1);
+    color: var(--color-background-1);
+    border-radius: var(--border-radius-1);
+    background: var(--color-highlight-gradient);
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  dialog[open] {
+    inset: 0;
+    margin: 0;
+    padding: 0;
+    width: unset;
+    height: unset;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: none;
+  }
+
+  dialog::backdrop {
+    background-color: hsl(0 0% 0% / 0.1);
+    backdrop-filter: blur(5px);
+  }
+</style>

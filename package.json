@@ -9,7 +9,8 @@
       "playgrounds/*",
       "internal/*",
       "examples",
-      "testing/*"
+      "testing/*",
+      "features/*"
     ]
   },
   "lint-staged": {
