@@ -60,9 +60,22 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
         themeOptions?: RootProps['themeOptions'];
+        styleOptions?: {
+          /**
+           * If true, all styles will be wrapped in a cascade layer named `itwinui`.
+           * This helps avoid specificity battles with application styles.
+           *
+           * @default true
+           */
+          withLayer?: boolean;
+        };
         children: Required<React.ReactNode>;
       }
-    | { themeOptions?: ThemeOptions; children?: undefined }
+    | {
+        themeOptions?: ThemeOptions;
+        styleOptions?: never;
+        children?: undefined;
+      }
   );
 
 /**
@@ -92,7 +105,13 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
  * </ThemeProvider>
  */
 export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme: themeProp, children, themeOptions, ...rest } = props;
+  const {
+    theme: themeProp,
+    children,
+    themeOptions,
+    styleOptions = { withLayer: true },
+    ...rest
+  } = props;
 
   const rootRef = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(rootRef, ref);
@@ -102,6 +121,9 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
+
+  const { withLayer } = styleOptions;
+  useStyles({ withLayer, document: () => rootRef.current?.ownerDocument });
 
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, rootRef }),
@@ -166,8 +188,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground =
     themeOptions?.applyBackground ??
     (isInheritingTheme ? false : !isThemeAlreadySet.current);
-
-  useStyles({ withLayer: true, document: () => ref.current?.ownerDocument });
 
   return (
     <Element
