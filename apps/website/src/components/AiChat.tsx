@@ -5,14 +5,15 @@
 import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import styles from './AiChat.module.css';
+import { InputGroup, Radio } from '@itwin/itwinui-react';
+
+type ResponseType = 'only_code' | 'only_text' | 'code_and_text';
 
 export default function AiChat() {
   const [responseAwaiting, setResponseAwaiting] = React.useState(false);
 
   const [message, setMessage] = React.useState('');
-  const [responseType, setResponseType] = React.useState<
-    'only_code' | 'only_text' | 'code_and_text'
-  >('only_code'); // ['only_code', 'only_text', 'code_and_text']
+  const [responseType, setResponseType] = React.useState<ResponseType>('only_text');
 
   const [answer, setAnswer] = React.useState('');
 
@@ -38,6 +39,10 @@ export default function AiChat() {
     setResponseAwaiting(false);
   };
 
+  const onRadioChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setResponseType(e.target.value as ResponseType);
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
@@ -56,6 +61,22 @@ export default function AiChat() {
           fetchAnswer();
         }}
       >
+        <InputGroup label='What type of answers should I return?' displayStyle='inline'>
+          <Radio
+            name='choice'
+            defaultChecked
+            value='only_text'
+            label={'Only Text'}
+            onChange={onRadioChange}
+          />
+          <Radio name='choice' value='only_code' label={'Only Code'} onChange={onRadioChange} />
+          <Radio
+            name='choice'
+            value='code_and_text'
+            label={'Both Text and Code'}
+            onChange={onRadioChange}
+          />
+        </InputGroup>
         <div className={styles['input-div']}>
           <textarea
             className={styles.input}
