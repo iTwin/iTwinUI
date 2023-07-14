@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Popover, SvgCalendar, isBefore, useId } from '../../../utils/index.js';
 import type { LabeledInput } from '../../../LabeledInput/index.js';
+import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
 import { InputGrid } from '../../../InputGrid/index.js';
 import { Label } from '../../../Label/index.js';
@@ -28,9 +29,8 @@ export type DatePickerInputProps = {
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
 >;
 
-const DatePickerInput = (props: DatePickerInputProps) => {
+const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   const uid = useId();
-
   const {
     onChange,
     date,
@@ -115,6 +115,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
         </Label>
         <InputWithDecorations>
           <InputWithDecorations.Input
+            ref={forwardedRef}
             id={id}
             value={inputValue}
             onChange={onInputChange}
@@ -133,6 +134,6 @@ const DatePickerInput = (props: DatePickerInputProps) => {
       </InputGrid>
     </Popover>
   );
-};
+}) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
 
 export default DatePickerInput;

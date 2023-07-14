@@ -9,11 +9,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 export type TextareaProps = {
   /**
-   * Set focus on textarea element.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * Status of textarea.
    */
   status?: 'positive' | 'warning' | 'negative';
@@ -22,20 +17,14 @@ export type TextareaProps = {
 /**
  * Basic textarea component
  * @example
- * <Textarea setFocus={true} placeholder='This is a textarea' />
+ * <Textarea placeholder='This is a textarea' />
  * <Textarea disabled={true} placeholder='This is a disabled textarea' />
  */
 export const Textarea = React.forwardRef((props, ref) => {
-  const { className, rows = 3, setFocus = false, status, ...rest } = props;
+  const { className, rows = 3, status, ...rest } = props;
 
   const textAreaRef = React.useRef<HTMLTextAreaElement>(null);
   const refs = useMergedRefs<HTMLTextAreaElement>(ref, textAreaRef);
-
-  React.useEffect(() => {
-    if (textAreaRef.current && setFocus) {
-      textAreaRef.current.focus();
-    }
-  }, [setFocus]);
 
   return (
     <Box

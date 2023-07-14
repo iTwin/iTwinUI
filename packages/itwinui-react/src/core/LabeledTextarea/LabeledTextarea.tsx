@@ -6,7 +6,6 @@ import * as React from 'react';
 import { StatusIconMap, useId, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
-import type { TextareaProps } from '../Textarea/Textarea.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
@@ -34,8 +33,7 @@ type LabeledTextareaProps = {
    * Custom style for textarea.
    */
   textareaStyle?: React.CSSProperties;
-} & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'> &
-  TextareaProps;
+} & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'>;
 
 /**
  * Textarea wrapper that allows for additional styling and labelling

@@ -75,20 +75,6 @@ it.each(['positive', 'negative', 'warning'] as const)(
   },
 );
 
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container, getByText } = render(
-    <LabeledInput label='some label' ref={onRef} setFocus />,
-  );
-  assertBaseElement(container);
-  getByText('some label');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
-
 it('should take class and style on container', () => {
   const { container, getByText } = render(
     <LabeledInput
