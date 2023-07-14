@@ -190,7 +190,6 @@ const ThemeLogicWrapper = (props: {
   theme?: ThemeType;
   themeOptions?: ThemeOptions;
 }) => {
-  useStyles({ withLayer: true });
   const { theme, themeOptions } = props;
   useTheme(theme, themeOptions);
   return <></>;

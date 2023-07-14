@@ -22,7 +22,7 @@ const useIsomorphicInsertionEffect =
 export const useStyles = ({
   withLayer = true,
   document = () => getDocument(),
-}) => {
+} = {}) => {
   const loaded = _React.useRef(false);
 
   useIsomorphicInsertionEffect(() => {

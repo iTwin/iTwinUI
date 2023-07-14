@@ -6,6 +6,7 @@ import * as React from 'react';
 import { getDocument, getWindow } from '../functions/index.js';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { useIsThemeAlreadySet } from './useIsThemeAlreadySet.js';
+import { useStyles } from './useStyles.js';
 
 export type ThemeOptions = {
   /**
@@ -52,6 +53,8 @@ export const useTheme = (
 ) => {
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
   const isThemeAlreadySet = useIsThemeAlreadySet(ownerDocument);
+
+  useStyles();
 
   useCorrectRootFontSize();
 
