@@ -18,7 +18,7 @@ export default () => {
       <ButtonGroup>
         <Button>Button 1</Button>
         <Input />
-        <IconButton>
+        <IconButton label='search'>
           <SvgSearch />
         </IconButton>
       </ButtonGroup>
