@@ -19,8 +19,19 @@ const rawCssText =
   (await readPackageOnDisk('@itwin/itwinui-variables')) +
   (await readPackageOnDisk('@itwin/itwinui-css'));
 
-const outEsmPath = path.join(__dirname, '..', 'esm', 'styles.js');
-const outCjsPath = path.join(__dirname, '..', 'cjs', 'styles.js');
+const outEsmDir = path.join(__dirname, '..', 'esm');
+const outEsmPath = path.join(outEsmDir, 'styles.js');
+
+const outCjsDir = path.join(__dirname, '..', 'cjs');
+const outCjsPath = path.join(outCjsDir, 'styles.js');
+
+if (!fs.existsSync(outEsmDir)) {
+  await fs.promises.mkdir(outEsmDir);
+}
+
+if (!fs.existsSync(outCjsDir)) {
+  await fs.promises.mkdir(outCjsDir);
+}
 
 if (fs.existsSync(outEsmPath)) {
   await fs.promises.unlink(outEsmPath);
