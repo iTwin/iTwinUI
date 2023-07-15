@@ -76,7 +76,8 @@ export default function AiChat() {
                   <br />
                   <ul>
                     <li>
-                      <b>Both Text and Code</b> - Both text and code answers will be returned.
+                      <b>Balanced Text and Code</b> - Balanced text and code answers will be
+                      returned.
                     </li>
                     <li>
                       <b>Mainly Text</b> - Better text answers will be returned. May produce
@@ -95,7 +96,7 @@ export default function AiChat() {
           displayStyle='inline'
         >
           {[
-            { value: 'code_and_text', label: 'Both Text and Code' },
+            { value: 'code_and_text', label: 'Balanced Text and Code' },
             { value: 'only_text', label: 'Mainly Text' },
             { value: 'only_code', label: 'Mainly Code' },
           ].map(({ value, label }) => (
