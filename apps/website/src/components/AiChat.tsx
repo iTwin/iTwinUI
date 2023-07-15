@@ -13,7 +13,7 @@ export default function AiChat() {
   const [responseAwaiting, setResponseAwaiting] = React.useState(false);
 
   const [message, setMessage] = React.useState('');
-  const [responseType, setResponseType] = React.useState<ResponseType>('only_text');
+  const [responseType, setResponseType] = React.useState<ResponseType>('code_and_text');
 
   const [answer, setAnswer] = React.useState('');
 
@@ -62,20 +62,19 @@ export default function AiChat() {
         }}
       >
         <InputGroup label='What type of answers should I return?' displayStyle='inline'>
-          <Radio
-            name='choice'
-            defaultChecked
-            value='only_text'
-            label={'Only Text'}
-            onChange={onRadioChange}
-          />
-          <Radio name='choice' value='only_code' label={'Only Code'} onChange={onRadioChange} />
-          <Radio
-            name='choice'
-            value='code_and_text'
-            label={'Both Text and Code'}
-            onChange={onRadioChange}
-          />
+          {[
+            { value: 'code_and_text', label: 'Both Text and Code' },
+            { value: 'only_text', label: 'Only Text' },
+            { value: 'only_code', label: 'Only Code' },
+          ].map(({ value, label }) => (
+            <Radio
+              name='choice'
+              defaultChecked={value === 'code_and_text'}
+              value={value}
+              label={label}
+              onChange={onRadioChange}
+            />
+          ))}
         </InputGroup>
         <div className={styles['input-div']}>
           <textarea
