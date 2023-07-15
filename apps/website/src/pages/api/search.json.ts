@@ -95,8 +95,6 @@ const readAllEmbeddings = async () => {
         })
       )
       .on('data', function (row) {
-        console.log('readAllEmbeddings HERE 0');
-
         row['embedding'] = eval(row['embedding']);
 
         allEmbeddingsRows.push(row);
