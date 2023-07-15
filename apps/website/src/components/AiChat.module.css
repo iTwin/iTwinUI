@@ -43,34 +43,20 @@
   gap: var(--space-2);
 }
 
-/* .form .radio-input-group { */
-  /* background-color: red; */
-/* } */
-
 .form .radio-input-group-label {
   display: flex;
   align-items: center;
   column-gap: var(--space-1);
-  /* align-items: center;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: var(--font-size-1);
-  color: var(--color-text);
-  padding: var(--space-2) var(--space-4);
-  border-radius: var(--border-radius-1);
-  background: var(--color-background-2); */
 }
 
 .form .radio-input-group-label {
   display: flex;
 }
 
-/* When .question-mark-div is hovered, .question-mark-content should appear as a tooltip with more information */
 .form .question-mark-div .question-mark-content {
   display: none;
   position: absolute;
   z-index: 1;
-  max-width: 5rem;
   background-color: var(--color-background-1);
   color: var(--color-text);
   padding: var(--space-2);
