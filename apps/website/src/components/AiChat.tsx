@@ -76,13 +76,15 @@ export default function AiChat() {
                   <br />
                   <ul>
                     <li>
-                      <b>Both Text and Code</b> - Both text and code answers will be returned
+                      <b>Both Text and Code</b> - Both text and code answers will be returned.
                     </li>
                     <li>
-                      <b>Only Text</b> - Only text answers will be returned
+                      <b>Mainly Text</b> - Better text answers will be returned. May produce
+                      incorrect code.
                     </li>
                     <li>
-                      <b>Only Code</b> - Only code answers will be returned
+                      <b>Mainly Code</b> - Better code answers will be returned. May produce
+                      incorrect text explanations.
                     </li>
                   </ul>
                 </div>
@@ -94,8 +96,8 @@ export default function AiChat() {
         >
           {[
             { value: 'code_and_text', label: 'Both Text and Code' },
-            { value: 'only_text', label: 'Only Text' },
-            { value: 'only_code', label: 'Only Code' },
+            { value: 'only_text', label: 'Mainly Text' },
+            { value: 'only_code', label: 'Mainly Code' },
           ].map(({ value, label }) => (
             <Radio
               key={value}
