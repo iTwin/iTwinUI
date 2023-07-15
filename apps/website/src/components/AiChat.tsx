@@ -116,6 +116,12 @@ export default function AiChat() {
             placeholder='Send a message...'
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                fetchAnswer();
+              }
+            }}
           />
           <button className={styles.send} type='submit' disabled={responseAwaiting}>
             Send
