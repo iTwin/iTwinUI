@@ -80,11 +80,11 @@ export default function AiChat() {
                       returned.
                     </li>
                     <li>
-                      <b>Mainly Text</b> - Better text answers will be returned. May produce
+                      <b>Better Text</b> - Better text answers will be returned. May produce
                       incorrect code.
                     </li>
                     <li>
-                      <b>Mainly Code</b> - Better code answers will be returned. May produce
+                      <b>Better Code</b> - Better code answers will be returned. May produce
                       incorrect text explanations.
                     </li>
                   </ul>
@@ -97,8 +97,8 @@ export default function AiChat() {
         >
           {[
             { value: 'code_and_text', label: 'Balanced Text and Code' },
-            { value: 'only_text', label: 'Mainly Text' },
-            { value: 'only_code', label: 'Mainly Code' },
+            { value: 'only_text', label: 'Better Text' },
+            { value: 'only_code', label: 'Better Code' },
           ].map(({ value, label }) => (
             <Radio
               key={value}
