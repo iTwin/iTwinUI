@@ -6,6 +6,7 @@ import * as React from 'react';
 import ReactMarkdown from 'react-markdown';
 import styles from './AiChat.module.css';
 import { InputGroup, Radio } from '@itwin/itwinui-react';
+import { SvgHelpCircularHollow } from '@itwin/itwinui-icons-react';
 
 type ResponseType = 'only_code' | 'only_text' | 'code_and_text';
 
@@ -61,13 +62,43 @@ export default function AiChat() {
           fetchAnswer();
         }}
       >
-        <InputGroup label='What type of answers should I return?' displayStyle='inline'>
+        <InputGroup
+          // label={<a href='#'>What type of answers should I return?</a>}
+          className={styles['radio-input-group']}
+          label={
+            <div className={styles['radio-input-group-label']}>
+              <p>What type of answers should I return?</p>
+              {/* Question mark that upon hovered shows more information */}
+              <div className={styles['question-mark-div']}>
+                <SvgHelpCircularHollow className={styles['question-mark-svg']} />
+                <div className={styles['question-mark-content']}>
+                  <p>Try modifying this if you feel the results are not satisfactory.</p>
+                  <br />
+                  <ul>
+                    <li>
+                      <b>Both Text and Code</b> - Both text and code answers will be returned
+                    </li>
+                    <li>
+                      <b>Only Text</b> - Only text answers will be returned
+                    </li>
+                    <li>
+                      <b>Only Code</b> - Only code answers will be returned
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          }
+          // label={'What type of answers should I return?'}
+          displayStyle='inline'
+        >
           {[
             { value: 'code_and_text', label: 'Both Text and Code' },
             { value: 'only_text', label: 'Only Text' },
             { value: 'only_code', label: 'Only Code' },
           ].map(({ value, label }) => (
             <Radio
+              key={value}
               name='choice'
               defaultChecked={value === 'code_and_text'}
               value={value}
