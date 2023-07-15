@@ -179,6 +179,31 @@ Your answer in markdown (include code whenever possible):
 `;
 };
 
+const addToQueryHistory = async (
+  query: string,
+  response_type: ResponseType,
+  top_chunks: Array<any>,
+  response: string
+) => {
+  const queryHistory = JSON.parse(
+    await fs.promises.readFile(import.meta.env.QUERY_HISTORY_PATH_FROM_WEBSITE_ROOT, 'utf8')
+  );
+
+  queryHistory.push({
+    query: query,
+    response_type: response_type,
+    top_chunks: top_chunks,
+    response: response,
+    timestamp: new Date().toISOString(),
+  });
+
+  await fs.promises.writeFile(
+    import.meta.env.QUERY_HISTORY_PATH_FROM_WEBSITE_ROOT,
+    JSON.stringify(queryHistory, null, 2),
+    'utf8'
+  );
+};
+
 /**
  * The `/search.json` API route for the iTwinUI AiChat.
  * Example request: `/search.json?query=How to use create an iTwinUI button?`
@@ -204,6 +229,8 @@ export const post: APIRoute = async ({ request }) => {
       continue;
     }
   }
+
+  addToQueryHistory(query, response_type, topChunks, textCompletion);
 
   return new Response(
     JSON.stringify({
