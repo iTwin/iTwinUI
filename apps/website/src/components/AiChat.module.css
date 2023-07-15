@@ -47,10 +47,12 @@
   display: flex;
   align-items: center;
   column-gap: var(--space-1);
+  cursor: auto;
 }
 
 .form .radio-input-group-label {
   display: flex;
+  align-items: center;
 }
 
 .form .question-mark-div .question-mark-content {
