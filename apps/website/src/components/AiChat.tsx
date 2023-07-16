@@ -67,7 +67,7 @@ export default function AiChat() {
           className={styles['radio-input-group']}
           label={
             <div className={styles['radio-input-group-label']}>
-              <p>What type of answers should I return?</p>
+              <p>Response Mode</p>
               {/* Question mark that upon hovered shows more information */}
               <div className={styles['question-mark-div']}>
                 <SvgHelpCircularHollow className={styles['question-mark-svg']} />
@@ -76,8 +76,7 @@ export default function AiChat() {
                   <br />
                   <ul>
                     <li>
-                      <b>Balanced Text and Code</b> - Balanced text and code answers will be
-                      returned.
+                      <b>Balanced</b> - Balanced text and code answers will be returned.
                     </li>
                     <li>
                       <b>Better Text</b> - Better text answers will be returned. May produce
@@ -96,7 +95,7 @@ export default function AiChat() {
           displayStyle='inline'
         >
           {[
-            { value: 'code_and_text', label: 'Balanced Text and Code' },
+            { value: 'code_and_text', label: 'Balanced' },
             { value: 'only_text', label: 'Better Text' },
             { value: 'only_code', label: 'Better Code' },
           ].map(({ value, label }) => (
