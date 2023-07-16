@@ -55,6 +55,11 @@
   align-items: center;
 }
 
+.form .question-mark-div {
+  display: flex;
+  align-items: center;
+}
+
 .form .question-mark-div .question-mark-content {
   display: none;
   position: absolute;
