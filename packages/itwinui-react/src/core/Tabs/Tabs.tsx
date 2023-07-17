@@ -127,23 +127,25 @@ const TabsComponent = React.forwardRef((props, ref) => {
   // CSS custom properties to place the active stripe
   const [stripeProperties, setStripeProperties] = React.useState({});
   useIsomorphicLayoutEffect(() => {
-    if (type !== 'default' && tabWrapperRef.current != undefined) {
-      const activeTab = tabWrapperRef.current.children[0].children[
-        currentActiveIndex
-      ] as HTMLElement;
-      const activeTabRect = activeTab.getBoundingClientRect();
+    setTimeout(() => {
+      if (type !== 'default' && tabWrapperRef.current != undefined) {
+        const activeTab = tabWrapperRef.current.children[0].children[
+          currentActiveIndex
+        ] as HTMLElement;
+        const activeTabRect = activeTab.getBoundingClientRect();
 
-      setStripeProperties({
-        ...(orientation === 'horizontal' && {
-          '--stripe-width': `${activeTabRect.width}px`,
-          '--stripe-left': `${activeTab.offsetLeft}px`,
-        }),
-        ...(orientation === 'vertical' && {
-          '--stripe-height': `${activeTabRect.height}px`,
-          '--stripe-top': `${activeTab.offsetTop}px`,
-        }),
-      });
-    }
+        setStripeProperties({
+          ...(orientation === 'horizontal' && {
+            '--stripe-width': `${activeTabRect.width}px`,
+            '--stripe-left': `${activeTab.offsetLeft}px`,
+          }),
+          ...(orientation === 'vertical' && {
+            '--stripe-height': `${activeTabRect.height}px`,
+            '--stripe-top': `${activeTab.offsetTop}px`,
+          }),
+        });
+      }
+    }, 50);
   }, [currentActiveIndex, type, orientation, tabsWidth]);
 
   return (
