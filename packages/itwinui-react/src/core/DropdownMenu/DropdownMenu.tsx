@@ -44,7 +44,6 @@ export type DropdownMenuProps = {
  *     Item #3
  *   </MenuItem>,
  * ];
- *
  * <DropdownMenu menuItems={menuItems}>
  *   <Button>Menu</Button>
  * </DropdownMenu>
