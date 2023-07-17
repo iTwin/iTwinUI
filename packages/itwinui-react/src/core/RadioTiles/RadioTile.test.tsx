@@ -104,6 +104,7 @@ it('should take icon class and style', () => {
 it('should take label class and style', () => {
   const { container } = render(
     <RadioTile
+      label='Tile Label'
       labelProps={{ className: 'label-class', style: { width: 80 } }}
       icon={<SvgPlaceholder />}
     />,
@@ -118,6 +119,7 @@ it('should take label class and style', () => {
 it('should take sublabel class and style', () => {
   const { container } = render(
     <RadioTile
+      description='Tile Description'
       subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
       icon={<SvgPlaceholder />}
     />,
