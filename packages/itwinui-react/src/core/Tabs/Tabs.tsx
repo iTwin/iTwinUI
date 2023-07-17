@@ -560,8 +560,6 @@ TabsTabList.displayName = 'Tabs.TabList';
 // ----------------------------------------------------------------------------
 // Tabs.Tab component
 
-type TabsTabOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 const TabsTab = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
@@ -592,7 +590,7 @@ const TabsTab = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'button', TabsTabOwnProps>;
+}) as PolymorphicForwardRefComponent<'button'>;
 TabsTab.displayName = 'Tabs.Tab';
 
 // ----------------------------------------------------------------------------
@@ -624,8 +622,6 @@ TabsTabDescription.displayName = 'Tabs.TabDescription';
 // ----------------------------------------------------------------------------
 // Tabs.Actions component
 
-type TabsActionsOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 const TabsActions = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
@@ -644,13 +640,11 @@ const TabsActions = React.forwardRef((props, ref) => {
   } else {
     return <></>;
   }
-}) as PolymorphicForwardRefComponent<'div', TabsActionsOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TabsActions.displayName = 'Tabs.Actions';
 
 // ----------------------------------------------------------------------------
 // Tabs.Action component
-
-type TabsActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 
 const TabsAction = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
@@ -666,7 +660,7 @@ const TabsAction = React.forwardRef((props, ref) => {
   } else {
     return <></>;
   }
-}) as PolymorphicForwardRefComponent<'div', TabsActionOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TabsAction.displayName = 'Tabs.Action';
 
 // ----------------------------------------------------------------------------
@@ -701,8 +695,6 @@ TabsPanels.displayName = 'Tabs.Panels';
 // ----------------------------------------------------------------------------
 // Tabs.Panel component
 
-type TabsPanelOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
-
 const TabsPanel = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
@@ -722,7 +714,7 @@ const TabsPanel = React.forwardRef((props, ref) => {
   } else {
     return <></>;
   }
-}) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
+}) as PolymorphicForwardRefComponent<'div'>;
 TabsPanel.displayName = 'Tabs.Panel';
 
 /**
