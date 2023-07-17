@@ -101,30 +101,30 @@ it('should take icon class and style', () => {
   expect(element.style.width).toBe('80px');
 });
 
-// it('should take label class and style', () => {
-//   const { container } = render(
-//     <RadioTile
-//       labelProps={{ className: 'label-class', style: { width: 80 } }}
-//       icon={<SvgPlaceholder />}
-//     />,
-//   );
-//   const element = container.querySelector(
-//     '.iui-radio-tile-label.label-class',
-//   ) as HTMLElement;
-//   expect(element).toBeTruthy();
-//   expect(element.style.width).toBe('80px');
-// });
+it('should take label class and style', () => {
+  const { container } = render(
+    <RadioTile
+      labelProps={{ className: 'label-class', style: { width: 80 } }}
+      icon={<SvgPlaceholder />}
+    />,
+  );
+  const element = container.querySelector(
+    '.iui-radio-tile-label.label-class',
+  ) as HTMLElement;
+  expect(element).toBeTruthy();
+  expect(element.style.width).toBe('80px');
+});
 
-// it('should take sublabel class and style', () => {
-//   const { container } = render(
-//     <RadioTile
-//       subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
-//       icon={<SvgPlaceholder />}
-//     />,
-//   );
-//   const element = container.querySelector(
-//     '.iui-radio-tile-sublabel.sublabel-class',
-//   ) as HTMLElement;
-//   expect(element).toBeTruthy();
-//   expect(element.style.width).toBe('80px');
-// });
+it('should take sublabel class and style', () => {
+  const { container } = render(
+    <RadioTile
+      subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
+      icon={<SvgPlaceholder />}
+    />,
+  );
+  const element = container.querySelector(
+    '.iui-radio-tile-sublabel.sublabel-class',
+  ) as HTMLElement;
+  expect(element).toBeTruthy();
+  expect(element.style.width).toBe('80px');
+});
