@@ -74,6 +74,14 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.11.8
+
+### Patch Changes
+
+- [#1410](https://github.com/iTwin/iTwinUI/pull/1410): Fixed an issue in `Tabs` where tabs-list was becoming too tall when the tabpanel didn't have enough content inside.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.3
+
 ## 2.11.7
 
 ### Patch Changes

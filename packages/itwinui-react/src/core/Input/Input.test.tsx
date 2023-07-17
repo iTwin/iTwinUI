@@ -24,17 +24,6 @@ it('should render disabled component', () => {
   );
 });
 
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(<Input ref={onRef} setFocus />);
-  assertBaseElement(container);
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
-
 it('should take class and style', () => {
   const { container } = render(
     <Input className='my-class' style={{ width: 50 }} />,

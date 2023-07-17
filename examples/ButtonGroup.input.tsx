@@ -17,13 +17,16 @@ export default () => {
     <Flex flexDirection='column' gap='m'>
       <ButtonGroup>
         <Button>Button 1</Button>
-        <Input />
-        <IconButton>
+        <Input aria-label='Search bar' />
+        <IconButton label='Search'>
           <SvgSearch />
         </IconButton>
       </ButtonGroup>
       <ButtonGroup>
-        <Input value='https://itwinui.bentley.com/docs/buttongroup' />
+        <Input
+          aria-label='URL'
+          value='https://itwinui.bentley.com/docs/buttongroup'
+        />
         <Button styleType='high-visibility'>Copy</Button>
       </ButtonGroup>
     </Flex>

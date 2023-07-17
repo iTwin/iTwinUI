@@ -17,11 +17,6 @@ type ToggleSwitchProps = {
    * @default 'right'
    */
   labelPosition?: 'left' | 'right';
-  /**
-   * Set focus on toggle.
-   * @default false
-   */
-  setFocus?: boolean;
 } & (
   | {
       /**
@@ -69,7 +64,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     disabled = false,
     labelPosition = 'right',
     label,
-    setFocus = false,
     className,
     style,
     size = 'default',
@@ -79,11 +73,6 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
   return (
     <Box
       as={label ? 'label' : 'div'}

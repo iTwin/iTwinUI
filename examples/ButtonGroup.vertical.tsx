@@ -14,16 +14,16 @@ import {
 export default () => {
   return (
     <ButtonGroup orientation='vertical'>
-      <IconButton onClick={() => {}}>
+      <IconButton onClick={() => {}} label='Add'>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={() => {}} isActive>
+      <IconButton onClick={() => {}} label='Edit' isActive>
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={() => {}}>
+      <IconButton disabled onClick={() => {}} label='Delete'>
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={() => {}}>
+      <IconButton onClick={() => {}} label='Undo'>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
