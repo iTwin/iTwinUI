@@ -62,13 +62,8 @@ const { content = {} } = Astro.props;
         max-width: 75ch;
       }
 
-      :where(p) {
-        padding-block-start: var(--space-0);
-        padding-block-end: var(--space-0);
-      }
-
-      :where(h1, h2, h3) {
-        line-height: 1;
+      :where(h1, h2) {
+        line-height: 1.2;
       }
 
       :where(h1) {
@@ -79,14 +74,17 @@ const { content = {} } = Astro.props;
         font-size: var(--type-3);
       }
 
-      :where(h2:not(left-sidebar *)) {
-        font-size: var(--type-3);
+      :where(h2:not(.astro-4EWMQMN4 or left-sidebar)) {
+        border-top: 1px double var(--color-line-2);
+        inline-size: 100%;
+        border-bottom: 1px solid rgb(245 245 245 / 0%);
+        border-left: 1px solid rgb(245 245 245 / 0%);
+        border-right: 1px solid rgb(245 245 245 / 0%);
         padding-block-start: var(--space-8);
       }
 
       :where(h3) {
         font-size: var(--type-2);
-        padding-block-start: var(--space-3);
       }
 
       :where(code, pre) {
