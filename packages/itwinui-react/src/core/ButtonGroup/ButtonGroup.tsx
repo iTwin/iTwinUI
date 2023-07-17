@@ -98,8 +98,6 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
         },
         className,
       )}
-      aria-orientation={orientation}
-      aria-role='toolbar'
       ref={refs}
       {...rest}
     >
