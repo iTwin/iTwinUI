@@ -127,6 +127,18 @@ const getFormattedFileLines = async (fileContent) => {
             const propTableValues = getPropsTableValuesFromTypesFile(
               getRelativePath(propsPathValue),
             );
+
+            // If defaultValue or description is null/empty, remove those keys from propTableValues
+            // This is to make the props chunk smaller
+            for (const propTableValue of propTableValues) {
+              if (!propTableValue.defaultValue) {
+                delete propTableValue.defaultValue;
+              }
+              if (!propTableValue.description) {
+                delete propTableValue.description;
+              }
+            }
+
             newLines.push(JSON.stringify(propTableValues));
           } else {
             newLines.push(line);
