@@ -16,7 +16,7 @@ export default () => {
     .fill(null)
     .map((_, _index) => {
       return (
-        <IconButton label='placeholder'>
+        <IconButton label='Placeholder'>
           <SvgPlaceholder />
         </IconButton>
       );
