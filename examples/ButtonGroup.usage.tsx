@@ -20,22 +20,22 @@ export default () => {
         New
       </Button>
       <ButtonGroup>
-        <IconButton label='edit'>
+        <IconButton label='Edit'>
           <SvgEdit />
         </IconButton>
-        <IconButton disabled label='delete'>
+        <IconButton disabled label='Delete'>
           <SvgDelete />
         </IconButton>
-        <IconButton label='undo'>
+        <IconButton label='Undo'>
           <SvgUndo />
         </IconButton>
       </ButtonGroup>
       <Flex.Spacer />
       <ButtonGroup>
-        <IconButton isActive label='filter'>
+        <IconButton isActive label='Filter'>
           <SvgFilter />
         </IconButton>
-        <IconButton label='search'>
+        <IconButton label='Search'>
           <SvgSearch />
         </IconButton>
       </ButtonGroup>

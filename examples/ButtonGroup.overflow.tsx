@@ -47,7 +47,7 @@ export default () => {
                 })
             }
           >
-            <IconButton label='more'>
+            <IconButton label='More'>
               <SvgMore />
             </IconButton>
           </DropdownMenu>
