@@ -162,6 +162,7 @@
   border-end-start-radius: inherit;
   border-end-end-radius: inherit;
 
+  // using transition technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
