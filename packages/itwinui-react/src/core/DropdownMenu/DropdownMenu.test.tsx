@@ -150,3 +150,42 @@ it('should close menu on pressing escape or tab key', async () => {
   await userEvent.tab();
   expect(menu).not.toBeVisible();
 });
+
+it('should render menu from list', () => {
+  renderComponent({
+    menuItems: [
+      <MenuItem key={0}>Test0</MenuItem>,
+      <MenuItem key={1}>Test1</MenuItem>,
+      <MenuItem key={2}>Test2</MenuItem>,
+    ],
+  });
+
+  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  expect(menu).toBeFalsy();
+
+  const button = screen.getByText('Click here');
+  fireEvent.click(button);
+
+  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  assertBaseElement(menu);
+});
+
+it('should render menu from element', () => {
+  renderComponent({
+    menuItems: (
+      <>
+        <MenuItem key={0}>Test0</MenuItem>,<MenuItem key={1}>Test1</MenuItem>,
+        <MenuItem key={2}>Test2</MenuItem>,
+      </>
+    ),
+  });
+
+  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  expect(menu).toBeFalsy();
+
+  const button = screen.getByText('Click here');
+  fireEvent.click(button);
+
+  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  assertBaseElement(menu);
+});
