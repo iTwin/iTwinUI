@@ -51,7 +51,6 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
     <Box
       as='li'
       className={cx('iui-carousel-slider-item', className)}
-      role='tabpanel'
       aria-roledescription='slide'
       ref={refs}
       {...rest}
