@@ -66,7 +66,7 @@
   cursor: pointer;
   user-select: none;
   color: var(--iui-color-text);
-  font-family: inherit;
+  font: inherit;
   z-index: 1;
   text-align: start;
   background-color: var(--_iui-expandable-block-background-color);
@@ -161,6 +161,7 @@
   border-inline-start: var(--_iui-expandable-block-border);
   border-end-start-radius: inherit;
   border-end-end-radius: inherit;
+  line-height: var(--iui-size-l);
 
   // using transition technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
   display: grid;
