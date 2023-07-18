@@ -62,7 +62,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
     label,
     style,
     description,
-    setFocus = false,
     tileProps = {},
     inputProps = {},
     contentProps = {},
@@ -73,12 +72,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
 
   const { className: tileClassName, ...restTileProps } = tileProps;
   const { className: inputClassName, ...restInputProps } = inputProps;
