@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { useMergedRefs, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type RadioTileProps = {
@@ -47,7 +47,7 @@ type RadioTileProps = {
  * @example
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
-export const RadioTile = React.forwardRef((props, ref) => {
+export const RadioTile = React.forwardRef((props) => {
   const {
     icon,
     label,
@@ -62,15 +62,11 @@ export const RadioTile = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const labelElementRef = React.useRef<HTMLLabelElement>(null);
-  const refs = useMergedRefs<HTMLLabelElement>(labelElementRef, ref);
-
   return (
     <Box
       as='label'
       className={cx('iui-radio-tile', className)}
       style={style}
-      ref={refs}
       {...rest}
     >
       <Box
