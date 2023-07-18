@@ -4,17 +4,19 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { Input, InputWithDecorations } from '@itwin/itwinui-react';
+import { InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
-type InputProps = React.ComponentProps<typeof Input>;
+type InputWithDecorationsProps = React.ComponentProps<
+  typeof InputWithDecorations
+>;
 
 export default {
   title: 'Input/InputWithDecorations',
-  component: Input,
-} as Meta<InputProps>;
+  component: InputWithDecorations,
+} as Meta<InputWithDecorationsProps>;
 
-export const Basic: Story<InputProps> = () => {
+export const Basic: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations>
       <InputWithDecorations.Icon>
@@ -28,7 +30,7 @@ export const Basic: Story<InputProps> = () => {
   );
 };
 
-export const Disabled: Story<InputProps> = () => {
+export const Disabled: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations isDisabled>
       <InputWithDecorations.Icon>
@@ -42,7 +44,7 @@ export const Disabled: Story<InputProps> = () => {
   );
 };
 
-export const Small: Story<InputProps> = () => {
+export const Small: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations size='small'>
       <InputWithDecorations.Icon>
@@ -56,7 +58,7 @@ export const Small: Story<InputProps> = () => {
   );
 };
 
-export const Status: Story<InputProps> = () => {
+export const Status: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations status='positive'>
       <InputWithDecorations.Icon>

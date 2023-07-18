@@ -5,7 +5,6 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
-  Icon,
   Input,
   InputGrid,
   InputWithDecorations,
@@ -16,15 +15,15 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
-type IconProps = React.ComponentProps<typeof Icon>;
+type InputGridProps = React.ComponentProps<typeof InputGrid>;
 
 export default {
-  component: Icon,
+  component: InputGrid,
   title: 'Utilities/InputGrid',
   argTypes: {},
-} as Meta<IconProps>;
+} as Meta<InputGridProps>;
 
-export const WithInput: Story<IconProps> = () => {
+export const WithInput: Story<InputGridProps> = () => {
   return (
     <InputGrid>
       <Label>This is label</Label>
@@ -34,7 +33,7 @@ export const WithInput: Story<IconProps> = () => {
   );
 };
 
-export const WithInputWithDecorations: Story<IconProps> = () => {
+export const WithInputWithDecorations: Story<InputGridProps> = () => {
   return (
     <InputGrid>
       <Label>This is label</Label>
@@ -52,7 +51,7 @@ export const WithInputWithDecorations: Story<IconProps> = () => {
   );
 };
 
-export const WithSelect: Story<IconProps> = () => {
+export const WithSelect: Story<InputGridProps> = () => {
   const options = [
     { value: 1, label: 'Bali' },
     { value: 2, label: 'Hawaii' },
@@ -74,7 +73,7 @@ export const WithSelect: Story<IconProps> = () => {
   );
 };
 
-export const WithSearch: Story<IconProps> = () => {
+export const WithSearch: Story<InputGridProps> = () => {
   return (
     <InputGrid labelPlacement='inline'>
       <Label>This is label</Label>
