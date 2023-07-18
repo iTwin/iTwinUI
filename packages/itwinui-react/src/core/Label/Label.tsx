@@ -21,7 +21,7 @@ type LabelOwnProps = {
    */
   required?: boolean;
   /**
-   * Disables label.
+   * Adds disabled styling to a label.
    * @default false
    */
   disabled?: boolean;
