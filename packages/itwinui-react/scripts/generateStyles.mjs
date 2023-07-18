@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { copyrightBannerJs } from '../../../scripts/copyrightLinter.js';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -17,7 +18,10 @@ const readPackageOnDisk = (pkg) =>
 const rawCssText =
   '@charset "utf-8";\n' +
   (await readPackageOnDisk('@itwin/itwinui-variables')) +
-  (await readPackageOnDisk('@itwin/itwinui-css'));
+  (await readPackageOnDisk('@itwin/itwinui-css')).replace(
+    copyrightBannerJs,
+    '',
+  );
 
 const outEsmDir = path.join(__dirname, '..', 'esm');
 const outEsmPath = path.join(outEsmDir, 'styles.js');
@@ -43,9 +47,9 @@ if (fs.existsSync(outCjsPath)) {
 
 await fs.promises.writeFile(
   outEsmPath,
-  `export default String.raw\`${rawCssText}\`;`,
+  `${copyrightBannerJs}\nexport default String.raw\`${rawCssText}\`;`,
 );
 await fs.promises.writeFile(
   outCjsPath,
-  `module.exports=String.raw\`${rawCssText}\`;`,
+  `${copyrightBannerJs}\nmodule.exports=String.raw\`${rawCssText}\`;`,
 );
