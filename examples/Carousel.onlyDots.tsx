@@ -46,7 +46,7 @@ export default () => {
         {gradients.map(({ from, to }, index) => (
           <li
             key={index}
-            id={`${id}-slide-${index}`}
+            id={`${id}--slide-${index}`}
             onClick={({
               currentTarget: { clientWidth },
               nativeEvent: { offsetX },
