@@ -28,7 +28,7 @@ type ProgressLinearProps = {
    */
   isAnimated?: boolean;
   /**
-   * Status of progress. Positive status always has 100% value.
+   * Status of progress.
    */
   status?: 'positive' | 'negative';
 };
