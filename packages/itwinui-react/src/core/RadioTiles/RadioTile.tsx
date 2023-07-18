@@ -21,15 +21,6 @@ type RadioTileProps = {
    */
   description?: React.ReactNode;
   /**
-   * Set focus on radio tile element.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
-   * Passes props for tile.
-   */
-  tileProps?: React.ComponentProps<'label'>;
-  /**
    * Passes props for tile input.
    */
   inputProps?: React.ComponentProps<'input'>;
@@ -62,67 +53,61 @@ export const RadioTile = React.forwardRef((props, ref) => {
     label,
     style,
     description,
-    tileProps = {},
-    inputProps = {},
-    contentProps = {},
-    iconProps = {},
-    labelProps = {},
-    subLabelProps = {},
+    className,
+    inputProps,
+    contentProps,
+    iconProps,
+    labelProps,
+    subLabelProps,
+    ...rest
   } = props;
 
-  const inputElementRef = React.useRef<HTMLInputElement>(null);
-  const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  const { className: tileClassName, ...restTileProps } = tileProps;
-  const { className: inputClassName, ...restInputProps } = inputProps;
-  const { className: contentClassName, ...restContentProps } = contentProps;
-  const { className: iconClassName, ...restIconProps } = iconProps;
-  const { className: labelClassName, ...restLabelProps } = labelProps;
-  const { className: subLabelClassName, ...restSubLabelProps } = subLabelProps;
+  const labelElementRef = React.useRef<HTMLLabelElement>(null);
+  const refs = useMergedRefs<HTMLLabelElement>(labelElementRef, ref);
 
   return (
     <Box
       as='label'
-      className={cx('iui-radio-tile', tileClassName)}
+      className={cx('iui-radio-tile', className)}
       style={style}
-      {...restTileProps}
+      ref={refs}
+      {...rest}
     >
       <Box
+        {...inputProps}
         as='input'
-        className={cx('iui-radio-tile-input', inputClassName)}
+        className={cx('iui-radio-tile-input', inputProps?.className)}
         type='radio'
-        ref={refs}
-        {...restInputProps}
       />
       <Box
+        {...contentProps}
         as='div'
-        className={cx('iui-radio-tile-content', contentClassName)}
-        {...restContentProps}
+        className={cx('iui-radio-tile-content', contentProps?.className)}
       >
         {icon && (
           <Box
+            {...iconProps}
             as='span'
-            className={cx('iui-radio-tile-icon', iconClassName)}
+            className={cx('iui-radio-tile-icon', iconProps?.className)}
             aria-hidden
-            {...restIconProps}
           >
             {icon}
           </Box>
         )}
         {label && (
           <Box
+            {...labelProps}
             as='div'
-            className={cx('iui-radio-tile-label', labelClassName)}
-            {...restLabelProps}
+            className={cx('iui-radio-tile-label', labelProps?.className)}
           >
             {label}
           </Box>
         )}
         {description && (
           <Box
+            {...subLabelProps}
             as='div'
-            className={cx('iui-radio-tile-sublabel', subLabelClassName)}
-            {...restSubLabelProps}
+            className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
           >
             {description}
           </Box>
@@ -130,6 +115,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
       </Box>
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
+}) as PolymorphicForwardRefComponent<'label', RadioTileProps>;
 
 export default RadioTile;
