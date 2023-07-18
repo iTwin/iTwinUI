@@ -220,22 +220,12 @@ const TabsTabList = React.forwardRef((props, ref) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.querySelectorAll(`.${styles['iui-tab']}`)[
-        focusedIndex
-      ];
+      const tab = tablistRef.current.children[focusedIndex].children[0];
       (tab as HTMLElement)?.focus();
     }
   }, [focusedIndex]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
-  useIsomorphicLayoutEffect(() => {
-    setHasSublabel(
-      type !== 'pill' && // pill tabs should never have sublabels
-        !!tablistRef.current?.querySelector(
-          `.${styles['iui-tab-description']}`, // check directly for the sublabel class
-        ),
-    );
-  }, [type]);
 
   const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
     const ownerDoc = tablistRef.current;
@@ -544,6 +534,8 @@ const TabsTabList = React.forwardRef((props, ref) => {
                 setCurrentActiveIndex,
                 onTabSelected: onTabClick,
                 setFocusedIndex,
+                hasSublabel,
+                setHasSublabel,
               }}
               key={index}
             >
@@ -616,7 +608,25 @@ TabsTabLabel.displayName = 'Tabs.TabLabel';
 // ----------------------------------------------------------------------------
 // Tabs.TabDescription component
 
-const TabsTabDescription = polymorphic('iui-tab-description');
+const TabsTabDescription = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type, hasSublabel, setHasSublabel } = useSafeContext(TabsContext);
+
+  useIsomorphicLayoutEffect(() => {
+    type !== 'pill' && !hasSublabel && setHasSublabel && setHasSublabel(true);
+  }, []);
+
+  if (type !== 'pill') {
+    return (
+      <Box className={cx('iui-tab-description', className)} ref={ref} {...rest}>
+        {children}
+      </Box>
+    );
+  } else {
+    return <></>;
+  }
+}) as PolymorphicForwardRefComponent<'div'>;
 TabsTabDescription.displayName = 'Tabs.TabDescription';
 
 // ----------------------------------------------------------------------------
@@ -857,6 +867,15 @@ export const TabsContext = React.createContext<
        * Handler for setting the focused tab index.
        */
       setFocusedIndex?: (index: number) => void;
+      /**
+       * Flag whether any of the tabs have a sublabel.
+       * Used for determining tab size.
+       */
+      hasSublabel?: boolean;
+      /**
+       * Handler for setting the hasSublabel flag.
+       */
+      setHasSublabel?: (hasSublabel: boolean) => void;
     }
   | undefined
 >(undefined);
