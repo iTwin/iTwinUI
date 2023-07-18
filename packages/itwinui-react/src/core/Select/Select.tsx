@@ -8,7 +8,7 @@ import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
-  Popover,
+  PopoverCopy,
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
@@ -149,16 +149,10 @@ export type SelectProps<T> = {
    */
   menuStyle?: React.CSSProperties;
   /**
-   * Props to customize {@link Popover} behavior.
-   * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
-   */
-  popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
-  /**
    * Props to pass to the select button (trigger) element.
    */
   triggerProps?: React.ComponentPropsWithoutRef<'div'>;
 } & SelectMultipleTypeProps<T> &
-  Pick<PopoverProps, 'onShow' | 'onHide'> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
     'size' | 'disabled' | 'placeholder' | 'onChange'
@@ -229,16 +223,13 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     style,
     menuClassName,
     menuStyle,
-    // onShow,
-    // onHide,
-    popoverProps,
     multiple = false,
     triggerProps,
     ...rest
   } = props;
 
   const [isOpenState, setIsOpen] = React.useState(false);
-  const isOpen = popoverProps?.visible ?? isOpenState;
+  const isOpen = isOpenState;
 
   // const [minWidth, setMinWidth] = React.useState(0);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
@@ -246,22 +237,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const selectRef = React.useRef<HTMLDivElement>(null);
   const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
-  // const onShowHandler = React.useCallback(
-  //   (instance: PopoverInstance) => {
-  //     setIsOpen(true);
-  //     onShow?.(instance);
-  //   },
-  //   [onShow],
-  // );
+  const onShowHandler = React.useCallback(() => {
+    setIsOpen(true);
+  }, []);
 
-  // const onHideHandler = React.useCallback(
-  //   (instance: PopoverInstance) => {
-  //     setIsOpen(false);
-  //     selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-  //     onHide?.(instance);
-  //   },
-  //   [onHide],
-  // );
+  const onHideHandler = React.useCallback(() => {
+    // (instance: PopoverInstance) => {
+    setIsOpen(false);
+    selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
+    // onHide?.(instance);
+  }, []);
 
   // React.useEffect(() => {
   //   if (selectRef.current) {
@@ -363,7 +348,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       style={style}
       {...rest}
     >
-      <Popover
+      <PopoverCopy
+        applyBackground={false}
         content={
           <Menu
             role='listbox'
@@ -377,13 +363,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             {menuItems}
           </Menu>
         }
-        // onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
+        onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
         visible={isOpen}
-        // onClickOutside={(_, { target }) => {
-        //   if (!toggleButtonRef.current?.contains(target as Element)) {
-        //     setIsOpen(false);
-        //   }
-        // }}
       >
         <Box
           tabIndex={0}
@@ -432,7 +413,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </Box>
-      </Popover>
+      </PopoverCopy>
       <Box
         as='span'
         aria-hidden

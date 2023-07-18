@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export * from './Popover.js';
+export * from './PopoverCopy.js';
 export * from './Resizer.js';
 export * from './FocusTrap.js';
 export * from './InputContainer.js';

@@ -1,21 +1,16 @@
-/* stylelint-disable selector-class-pattern */
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-// tippy.js helper class to hide Popover when it is scrolled out of view
 .iui-popover {
-  &.tippy-box {
-    &[data-reference-hidden] {
-      visibility: hidden;
-      pointer-events: none;
-    }
-
-    // Resets tippy.js default stylings that interfere with our own
-    all: revert;
+  &[data-reference-hidden] {
+    visibility: hidden;
+    pointer-events: none;
   }
 
-  // Resets tippy.js default stylings that interfere with our own
-  .tippy-content {
-    all: revert;
+  &[data-iui-apply-background='true'] {
+    background-color: var(--iui-color-background);
+    border: 1px solid var(--iui-color-border-subtle);
+    border-radius: var(--iui-border-radius-1);
+    box-shadow: var(--iui-shadow-1);
   }
 }
