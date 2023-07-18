@@ -46,7 +46,6 @@ export default () => {
         {gradients.map(({ from, to }, index) => (
           <li
             key={index}
-            role='tabpanel'
             id={`${id}-slide-${index}`}
             onClick={({
               currentTarget: { clientWidth },
