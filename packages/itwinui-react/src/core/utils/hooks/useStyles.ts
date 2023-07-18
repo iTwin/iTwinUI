@@ -64,6 +64,7 @@ const loadStyles = ({ withLayer = true, document = () => getDocument() }) => {
     _document.adoptedStyleSheets = [..._document.adoptedStyleSheets, sheet];
   } else {
     const style = _document.createElement('style');
+    style.setAttribute('data-iui-styles', '');
     style.textContent = cssText;
     _document.head.appendChild(style);
   }
