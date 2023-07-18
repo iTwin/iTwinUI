@@ -47,7 +47,7 @@ type RadioTileProps = {
  * @example
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
-export const RadioTile = React.forwardRef((props) => {
+export const RadioTile = React.forwardRef((props, ref) => {
   const {
     icon,
     label,
@@ -67,6 +67,7 @@ export const RadioTile = React.forwardRef((props) => {
       as='label'
       className={cx('iui-radio-tile', className)}
       style={style}
+      ref={ref}
       {...rest}
     >
       <Box
