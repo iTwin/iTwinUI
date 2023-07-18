@@ -41,5 +41,11 @@ if (fs.existsSync(outCjsPath)) {
   await fs.promises.unlink(outCjsPath);
 }
 
-await fs.promises.writeFile(outEsmPath, `export default \`${rawCssText}\`;`);
-await fs.promises.writeFile(outCjsPath, `module.exports=\`${rawCssText}\`;`);
+await fs.promises.writeFile(
+  outEsmPath,
+  `export default String.raw\`${rawCssText}\`;`,
+);
+await fs.promises.writeFile(
+  outCjsPath,
+  `module.exports=String.raw\`${rawCssText}\`;`,
+);
