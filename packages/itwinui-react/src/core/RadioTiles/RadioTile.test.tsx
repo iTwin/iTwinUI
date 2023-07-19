@@ -48,7 +48,8 @@ it('should render radio tile with icon', () => {
 it('should take tile class and style', () => {
   const { container } = render(
     <RadioTile
-      tileProps={{ className: 'tile-class', style: { width: 80 } }}
+      className='tile-class'
+      style={{ width: 80 }}
       icon={<SvgPlaceholder />}
     />,
   );
