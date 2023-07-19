@@ -45,89 +45,56 @@ it('should render radio tile with icon', () => {
   expect(container.querySelector('.iui-radio-tile-icon')).toBeTruthy();
 });
 
-it('should take tile class and style', () => {
-  const { container } = render(
-    <RadioTile
-      className='tile-class'
-      style={{ width: 80 }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile.tile-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
-});
+it('should render and style each DOM node', () => {
+  const testData = [
+    {
+      props: {
+        className: 'tile-class',
+        style: { width: 80 },
+      },
+      selector: '.iui-radio-tile.tile-class',
+    },
+    {
+      props: {
+        inputProps: { className: 'input-class', style: { width: 80 } },
+      },
+      selector: '.iui-radio-tile-input.input-class',
+    },
+    {
+      props: {
+        contentProps: { className: 'content-class', style: { width: 80 } },
+      },
+      selector: '.iui-radio-tile-content.content-class',
+    },
+    {
+      props: {
+        iconProps: { className: 'icon-class', style: { width: 80 } },
+      },
+      selector: '.iui-radio-tile-icon.icon-class',
+    },
+    {
+      props: {
+        label: 'Tile Label',
+        labelProps: { className: 'label-class', style: { width: 80 } },
+      },
+      selector: '.iui-radio-tile-label.label-class',
+    },
+    {
+      props: {
+        description: 'Tile Description',
+        subLabelProps: { className: 'sublabel-class', style: { width: 80 } },
+      },
+      selector: '.iui-radio-tile-sublabel.sublabel-class',
+    },
+  ];
 
-it('should take input class and style', () => {
-  const { container } = render(
-    <RadioTile
-      inputProps={{ className: 'input-class', style: { width: 80 } }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile-input.input-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
-});
+  testData.forEach(({ props, selector }) => {
+    const { container } = render(
+      <RadioTile icon={<SvgPlaceholder />} {...props} />,
+    );
 
-it('should take content class and style', () => {
-  const { container } = render(
-    <RadioTile
-      contentProps={{ className: 'content-class', style: { width: 80 } }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile-content.content-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
-});
-
-it('should take icon class and style', () => {
-  const { container } = render(
-    <RadioTile
-      iconProps={{ className: 'icon-class', style: { width: 80 } }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile-icon.icon-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
-});
-
-it('should take label class and style', () => {
-  const { container } = render(
-    <RadioTile
-      label='Tile Label'
-      labelProps={{ className: 'label-class', style: { width: 80 } }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile-label.label-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
-});
-
-it('should take sublabel class and style', () => {
-  const { container } = render(
-    <RadioTile
-      description='Tile Description'
-      subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
-      icon={<SvgPlaceholder />}
-    />,
-  );
-  const element = container.querySelector(
-    '.iui-radio-tile-sublabel.sublabel-class',
-  ) as HTMLElement;
-  expect(element).toBeTruthy();
-  expect(element.style.width).toBe('80px');
+    const element = container.querySelector(selector) as HTMLElement;
+    expect(element).toBeTruthy();
+    expect(element.style.width).toBe('80px');
+  });
 });
