@@ -65,36 +65,36 @@ export const RadioTile = React.forwardRef((props, ref) => {
   return (
     <Box
       as='label'
-      className={cx('iui-radio-tile', className)}
       style={style}
       ref={ref}
       {...rest}
+      className={cx('iui-radio-tile', className)}
     >
       <Box
-        {...inputProps}
         as='input'
-        className={cx('iui-radio-tile-input', inputProps?.className)}
         type='radio'
+        {...inputProps}
+        className={cx('iui-radio-tile-input', inputProps?.className)}
       />
       <Box
-        {...contentProps}
         as='div'
+        {...contentProps}
         className={cx('iui-radio-tile-content', contentProps?.className)}
       >
         {icon && (
           <Box
-            {...iconProps}
             as='span'
-            className={cx('iui-radio-tile-icon', iconProps?.className)}
             aria-hidden
+            {...iconProps}
+            className={cx('iui-radio-tile-icon', iconProps?.className)}
           >
             {icon}
           </Box>
         )}
         {label && (
           <Box
-            {...labelProps}
             as='div'
+            {...labelProps}
             className={cx('iui-radio-tile-label', labelProps?.className)}
           >
             {label}
@@ -102,8 +102,8 @@ export const RadioTile = React.forwardRef((props, ref) => {
         )}
         {description && (
           <Box
-            {...subLabelProps}
             as='div'
+            {...subLabelProps}
             className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
           >
             {description}
