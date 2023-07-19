@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils/index.js';
 
@@ -10,7 +11,10 @@ import { ExpandableBlock } from './ExpandableBlock.js';
 
 it('should render correctly in its most basic state', () => {
   const { container } = render(
-    <ExpandableBlock title='test title'>content</ExpandableBlock>,
+    <ExpandableBlock>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
+    </ExpandableBlock>,
   );
 
   const expandableBlock = container.querySelector(
@@ -19,40 +23,49 @@ it('should render correctly in its most basic state', () => {
   expect(expandableBlock).toBeTruthy();
   expect(expandableBlock.classList).not.toContain('iui-with-caption');
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-title'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-title',
+    ),
   ).toHaveTextContent('test title');
 });
 
 it('should render with caption', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' caption='test caption'>
-      content
+    <ExpandableBlock>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+          <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
+        </ExpandableBlock.LabelArea>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
-  const expandableBlock = container.querySelector(
-    '.iui-expandable-block.iui-with-caption',
-  );
+  const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-title'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-title',
+    ),
   ).toHaveTextContent('test title');
   expect(
-    container.querySelector('.iui-expandable-block-label .iui-caption'),
+    container.querySelector(
+      '.iui-expandable-block-label .iui-expandable-block-caption',
+    ),
   ).toHaveTextContent('test caption');
 });
 
 it('should render content when expanded', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' isExpanded={true}>
-      test content
+    <ExpandableBlock isExpanded={true}>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
-  const expandableBlock = container.querySelector(
-    '.iui-expandable-block.iui-expanded',
-  );
+  const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
+  expect(expandableBlock).toHaveAttribute('data-iui-expanded', 'true');
   const content = container.querySelector(
     '.iui-expandable-content',
   ) as HTMLElement;
@@ -63,16 +76,15 @@ it('should render content when expanded', () => {
 it('should trigger onToggle when clicked only on header', () => {
   const onToggleMock = jest.fn();
   const { container } = render(
-    <ExpandableBlock
-      title='test title'
-      onToggle={onToggleMock}
-      isExpanded={true}
-    >
-      test content
+    <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
-  const header = container.querySelector('.iui-title') as HTMLElement;
+  const header = container.querySelector(
+    '.iui-expandable-block-title',
+  ) as HTMLElement;
   expect(header).toBeTruthy();
   fireEvent.click(header);
   expect(onToggleMock).toHaveBeenCalledTimes(1);
@@ -85,49 +97,45 @@ it('should trigger onToggle when clicked only on header', () => {
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 });
 
-it('should trigger onToggle when clicked with Enter or Spacebar', () => {
+it('should trigger onToggle when clicked with Enter or Spacebar', async () => {
   const onToggleMock = jest.fn();
   const { container } = render(
-    <ExpandableBlock
-      title='test title'
-      onToggle={onToggleMock}
-      isExpanded={true}
-    >
-      test content
+    <ExpandableBlock onToggle={onToggleMock} isExpanded={true}>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
 
-  const header = container.querySelector('.iui-title') as HTMLElement;
+  const header = container.querySelector(
+    '.iui-expandable-header',
+  ) as HTMLElement;
+
   expect(header).toBeTruthy();
-  fireEvent.keyDown(header, {
-    key: 'Enter',
-    charCode: 13,
-  });
+
+  header.focus();
+  await userEvent.keyboard('{Enter}');
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 
-  fireEvent.keyDown(header, {
-    key: ' ',
-    charCode: 32,
-  });
+  await userEvent.keyboard(' ');
   expect(onToggleMock).toHaveBeenCalledTimes(2);
-
-  fireEvent.keyDown(header, {
-    key: 'Spacebar',
-    charCode: 32,
-  });
-  expect(onToggleMock).toHaveBeenCalledTimes(3);
 });
 
 it.each(['positive', 'negative', 'warning', 'informational'] as const)(
   'should set %s status',
   (status) => {
     const { container, queryByText } = render(
-      <ExpandableBlock title='test title' status={status}>
-        content
+      <ExpandableBlock status={status}>
+        <ExpandableBlock.Header>
+          <ExpandableBlock.LabelArea>
+            <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+          </ExpandableBlock.LabelArea>
+          <ExpandableBlock.EndIcon />
+        </ExpandableBlock.Header>
+        <ExpandableBlock.Content>content</ExpandableBlock.Content>
       </ExpandableBlock>,
     );
     expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
-    expect(queryByText('test title')).toHaveClass('iui-title');
+    expect(queryByText('test title')).toHaveClass('iui-expandable-block-title');
 
     const statusIconWrapper = container.querySelector('.iui-svg-icon');
     expect(statusIconWrapper).toHaveAttribute('data-iui-icon-color', status);
@@ -142,12 +150,20 @@ it.each(['positive', 'negative', 'warning', 'informational'] as const)(
 
 it('should render with custom endIcon', () => {
   const { container, queryByText } = render(
-    <ExpandableBlock title='test title' endIcon={<SvgPlaceholder />}>
-      content
+    <ExpandableBlock>
+      <ExpandableBlock.Header>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+        </ExpandableBlock.LabelArea>
+        <ExpandableBlock.EndIcon>
+          <SvgPlaceholder />
+        </ExpandableBlock.EndIcon>
+      </ExpandableBlock.Header>
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   expect(container.querySelector('.iui-expandable-block')).toBeTruthy();
-  expect(queryByText('test title')).toHaveClass('iui-title');
+  expect(queryByText('test title')).toHaveClass('iui-expandable-block-title');
 
   const {
     container: { firstChild: placeholderIcon },
@@ -159,33 +175,37 @@ it('should render with custom endIcon', () => {
 
 it('should render small size', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' size='small'>
-      content
+    <ExpandableBlock size='small'>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   const expandableBlock = container.querySelector(
     '.iui-expandable-block',
   ) as HTMLElement;
   expect(expandableBlock).toBeTruthy();
-  expect(expandableBlock.classList).toContain('iui-small');
+  expect(expandableBlock).toHaveAttribute('data-iui-size', 'small');
 });
 
 it('should render borderless', () => {
   const { container } = render(
-    <ExpandableBlock title='test title' styleType='borderless'>
-      content
+    <ExpandableBlock styleType='borderless'>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
-  expect(container.querySelector('.iui-expandable-block')).toHaveClass(
-    'iui-borderless',
+  expect(container.querySelector('.iui-expandable-block')).toHaveAttribute(
+    'data-iui-variant',
+    'borderless',
   );
 });
 
 it('should respect disabled prop', () => {
   const onToggleMock = jest.fn();
   const { getByRole } = render(
-    <ExpandableBlock title='test title' onToggle={onToggleMock} disabled>
-      test content
+    <ExpandableBlock onToggle={onToggleMock} disabled>
+      <ExpandableBlock.Header label='test title' />
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock>,
   );
   const header = getByRole('button');
