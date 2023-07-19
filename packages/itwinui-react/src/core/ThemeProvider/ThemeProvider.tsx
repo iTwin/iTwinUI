@@ -122,9 +122,6 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
-  const { withLayer } = styleOptions;
-  useStyles({ withLayer, document: () => rootRef.current?.ownerDocument });
-
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, rootRef }),
     [theme, themeOptions],
@@ -149,6 +146,10 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       ref={mergedRefs}
       {...rest}
     >
+      <Styles
+        withLayer={styleOptions.withLayer}
+        document={() => rootRef.current?.ownerDocument}
+      />
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
@@ -213,4 +214,19 @@ const ThemeLogicWrapper = (props: {
   const { theme, themeOptions } = props;
   useTheme(theme, themeOptions);
   return <></>;
+};
+
+/**
+ * Wrapper around `useStyles` hook.
+ *
+ * Must be the first thing rendered by `ThemeProvider`, to ensure that its
+ * `useStyles` is called before any subsequent `useStyles` calls from child components.
+ */
+const Styles = (props: {
+  withLayer?: boolean;
+  document: () => Document | undefined;
+}) => {
+  const { withLayer, document } = props;
+  useStyles({ withLayer, document });
+  return null;
 };
