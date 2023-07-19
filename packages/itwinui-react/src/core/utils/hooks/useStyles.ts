@@ -19,10 +19,11 @@ const useIsomorphicInsertionEffect =
  * Dynamically loads the iTwinUI styles as a constructed stylesheet,
  * falling back to a regular `<style>` tag in `<head>`.
  */
-export const useStyles = ({
-  withLayer = true,
-  document = () => getDocument(),
-} = {}) => {
+export const useStyles = (options?: {
+  withLayer?: boolean;
+  document?: () => Document | undefined;
+}) => {
+  const { withLayer = true, document = () => getDocument() } = options ?? {};
   const loaded = _React.useRef(false);
 
   useIsomorphicInsertionEffect(() => {
@@ -30,7 +31,7 @@ export const useStyles = ({
       loadStyles({ withLayer, document });
       loaded.current = true;
     }
-  }, []);
+  }, [document, loaded, withLayer]);
 };
 
 // ----------------------------------------------------------------------------
