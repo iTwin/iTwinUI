@@ -7,7 +7,7 @@ import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErr
 import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { ProgressLinear } from '@itwin/itwinui-react';
+import { ProgressLinear, Icon } from '@itwin/itwinui-react';
 
 type ProgressLinearProps = React.ComponentProps<typeof ProgressLinear>;
 
@@ -73,7 +73,12 @@ LabeledLeftRight.args = {
 export const Positive: Story<ProgressLinearProps> = (args) => {
   const {
     value = 100,
-    labels = ['Upload done!', <SvgStatusSuccessHollow />],
+    labels = [
+      'Upload done!',
+      <Icon>
+        <SvgStatusSuccessHollow />
+      </Icon>,
+    ],
     status = 'positive',
     ...rest
   } = args;
@@ -83,7 +88,12 @@ export const Positive: Story<ProgressLinearProps> = (args) => {
 };
 
 Positive.args = {
-  labels: ['Upload done!', <SvgStatusSuccessHollow />],
+  labels: [
+    'Upload done!',
+    <Icon>
+      <SvgStatusSuccessHollow />
+    </Icon>,
+  ],
   status: 'positive',
   value: 100,
 };
@@ -91,7 +101,12 @@ Positive.args = {
 export const Negative: Story<ProgressLinearProps> = (args) => {
   const {
     value = 45,
-    labels = ['Upload failed', <SvgStatusErrorHollow />],
+    labels = [
+      'Upload failed',
+      <Icon>
+        <SvgStatusErrorHollow />
+      </Icon>,
+    ],
     status = 'negative',
     ...rest
   } = args;
@@ -101,7 +116,12 @@ export const Negative: Story<ProgressLinearProps> = (args) => {
 };
 
 Negative.args = {
-  labels: ['Upload failed', <SvgStatusErrorHollow />],
+  labels: [
+    'Upload failed',
+    <Icon>
+      <SvgStatusErrorHollow />
+    </Icon>,
+  ],
   status: 'negative',
   value: 45,
 };

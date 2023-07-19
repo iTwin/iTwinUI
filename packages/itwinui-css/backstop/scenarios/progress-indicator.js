@@ -6,15 +6,15 @@ const { scenario } = require('../scenarioHelper');
 
 module.exports = [
   // Progress indicator types
-  scenario('linear', {
-    selectors: ['#demo-linear'],
-    hideSelectors: ['h3'],
+  scenario('Type Linear Determinate', {
+    selectors: ['#demo-linear-determinate'],
+    viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('radial', {
-    selectors: ['#demo-radial'],
-    hideSelectors: ['h3', 'p'],
+  scenario('Type Radial Determinate', {
+    selectors: ['#demo-radial-determinate'],
   }),
-  scenario('overlay', {
+  scenario('Type Overlay', {
     selectors: ['#demo-overlay'],
+    viewports: [{ width: 800, height: 600 }],
   }),
 ];
