@@ -21,6 +21,10 @@ type RadioTileProps = {
    */
   description?: React.ReactNode;
   /**
+   *  Assigns disabled styling to component.
+   */
+  disabled?: boolean;
+  /**
    * Passes props for tile input.
    */
   inputProps?: React.ComponentProps<'input'>;
@@ -53,6 +57,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
     label,
     style,
     description,
+    disabled,
     className,
     inputProps,
     contentProps,
@@ -74,6 +79,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
         as='input'
         type='radio'
         {...inputProps}
+        disabled={disabled}
         className={cx('iui-radio-tile-input', inputProps?.className)}
       />
       <Box
