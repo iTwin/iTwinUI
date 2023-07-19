@@ -3,20 +3,19 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-
 import cx from 'classnames';
-import { Box } from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { Box, getBoundedValue } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ProgressLinearProps = {
   /**
    * Progress percentage. Should be a number between 0 and 100.
-   * @default 0
    */
   value?: number;
   /**
-   * Progress variant. If true, value will be ignored.
-   * @default false
+   * Progress variant. If true, `value` will be ignored.
+   *
+   * Defaults to true if `value` is passed, otherwise false.
    */
   indeterminate?: boolean;
   /**
@@ -29,7 +28,7 @@ type ProgressLinearProps = {
    */
   isAnimated?: boolean;
   /**
-   * Status of progress. Positive status always has 100% value.
+   * Status of progress.
    */
   status?: 'positive' | 'negative';
 };
@@ -51,8 +50,8 @@ type ProgressLinearProps = {
  */
 export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
-    value = 0,
-    indeterminate = false,
+    value,
+    indeterminate = value === undefined,
     labels = [],
     isAnimated = false,
     status,
@@ -60,31 +59,24 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const boundedValue = Math.min(100, Math.max(0, value));
+  const boundedValue = getBoundedValue(value ?? 100, 0, 100);
 
   return (
     <Box
-      className={cx(
-        'iui-progress-indicator-linear',
-        {
-          [`iui-${status}`]: !!status,
-        },
-        className,
-      )}
+      className={cx('iui-progress-indicator-linear', className)}
       ref={forwardedRef}
+      data-iui-status={status}
+      data-iui-indeterminate={indeterminate ? 'true' : undefined}
+      data-iui-animated={isAnimated ? 'true' : undefined}
+      style={
+        {
+          '--iui-progress-percentage': `${boundedValue}%`,
+        } as React.CSSProperties
+      }
       {...rest}
     >
-      <Box className='iui-track'>
-        <Box
-          className={cx('iui-fill', {
-            'iui-determinate': !indeterminate && isAnimated,
-            'iui-indeterminate': indeterminate,
-          })}
-          style={{ width: indeterminate ? '100%' : `${boundedValue}%` }}
-        />
-      </Box>
       {labels.length > 0 && (
-        <Box className='iui-label'>
+        <Box className='iui-progress-indicator-linear-label'>
           {labels.map((label, index) => (
             <span key={index}>{label}</span>
           ))}
