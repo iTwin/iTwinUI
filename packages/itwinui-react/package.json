@@ -69,9 +69,7 @@
     "dev:styles": "chokidar \"esm/**/*.js\" -c \"yarn build:styles\" --initial -i \"**/styles.js\""
   },
   "dependencies": {
-    "@itwin/itwinui-css": "^1.11.3",
     "@itwin/itwinui-illustrations-react": "^2.0.0",
-    "@itwin/itwinui-variables": "^2.0.0",
     "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
@@ -81,6 +79,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
+    "@itwin/itwinui-css": "^1.11.3",
+    "@itwin/itwinui-variables": "^2.0.0",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.21",
     "@testing-library/jest-dom": "^5.16.4",
