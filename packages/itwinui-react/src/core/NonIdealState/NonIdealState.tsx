@@ -90,45 +90,41 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <Box
+        as='div'
         {...illustrationProps}
         className={cx(
           'iui-non-ideal-state-illustration',
           illustrationProps?.className,
         )}
-        ref={forwardedRef}
-        {...rest}
       >
         {svg}
       </Box>
       {heading && (
         <Box
+          as='div'
           {...titleProps}
           className={cx('iui-non-ideal-state-title', titleProps?.className)}
-          ref={forwardedRef}
-          {...rest}
         >
           {heading}
         </Box>
       )}
       {description && (
         <Box
+          as='div'
           {...descriptionProps}
           className={cx(
             'iui-non-ideal-state-description',
             descriptionProps?.className,
           )}
-          ref={forwardedRef}
-          {...rest}
         >
           {description}
         </Box>
       )}
       {actions && (
         <Box
+          as='div'
           {...actionsProps}
           className={cx('iui-non-ideal-state-actions', actionsProps?.className)}
-          ref={forwardedRef}
-          {...rest}
         >
           {actions}
         </Box>
