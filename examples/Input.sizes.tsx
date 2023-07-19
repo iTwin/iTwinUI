@@ -8,9 +8,9 @@ import { Input, Flex } from '@itwin/itwinui-react';
 export default () => {
   return (
     <Flex flexDirection='column'>
-      <Input placeholder='Small' size='small' />
+      <Input placeholder='Small' localSize='small' />
       <Input placeholder='Medium' />
-      <Input placeholder='Large' size='large' />
+      <Input placeholder='Large' localSize='large' />
     </Flex>
   );
 };

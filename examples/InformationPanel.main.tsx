@@ -50,7 +50,7 @@ export default () => {
           <InformationPanelContent displayStyle='inline'>
             <Label htmlFor='name-input'>File name</Label>
             <Input
-              size='small'
+              localSize='small'
               id='name-input'
               value={`Row ${openRowIndex ?? 0}`}
               readOnly
@@ -58,14 +58,19 @@ export default () => {
 
             <Label htmlFor='author-input'>Author</Label>
             <Input
-              size='small'
+              localSize='small'
               id='author-input'
               defaultValue='DJ Terry'
               readOnly
             />
 
             <Label htmlFor='year-input'>Year</Label>
-            <Input size='small' id='year-input' defaultValue='2021' readOnly />
+            <Input
+              localSize='small'
+              id='year-input'
+              defaultValue='2021'
+              readOnly
+            />
           </InformationPanelContent>
         </InformationPanelBody>
       </InformationPanel>

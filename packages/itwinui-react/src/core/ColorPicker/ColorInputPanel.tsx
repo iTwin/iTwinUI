@@ -171,7 +171,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
   const hexInputField = (
     <InputContainer status={validHexInput ? undefined : 'negative'}>
       <Input
-        size='small'
+        localSize='small'
         maxLength={showAlpha ? 9 : 7}
         minLength={1}
         placeholder='HEX'
@@ -206,7 +206,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='359'
@@ -238,7 +238,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='100'
@@ -270,7 +270,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='100'
@@ -303,7 +303,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           }
         >
           <Input
-            size='small'
+            localSize='small'
             type='number'
             min='0'
             max='1'
@@ -341,7 +341,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='255'
@@ -372,7 +372,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='255'
@@ -403,7 +403,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }
       >
         <Input
-          size='small'
+          localSize='small'
           type='number'
           min='0'
           max='255'
@@ -435,7 +435,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           }
         >
           <Input
-            size='small'
+            localSize='small'
             type='number'
             min='0'
             max='1'
