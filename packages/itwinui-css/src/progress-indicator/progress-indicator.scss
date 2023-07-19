@@ -1,28 +1,200 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use 'linear';
-@use 'radial';
+@use 'sass:map';
+@use 'sass:string';
+@use '../mixins';
 
-.iui-progress-indicator-linear {
-  @include linear.iui-progress-indicator-linear;
+.iui-progress-indicator-radial {
+  --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, xl)};
+  vertical-align: middle;
+  position: relative;
+  display: inline-flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  inline-size: var(--_iui-progress-indicator-radial-size);
+  block-size: var(--_iui-progress-indicator-radial-size);
+  border-radius: var(--iui-border-radius-round);
+  font-size: var(--iui-font-size-0);
 
-  > .iui-track > .iui-determinate {
-    @include linear.iui-progress-indicator-linear-determinate;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: var(--iui-size-2xs) solid transparent;
+    forced-color-adjust: none;
   }
 
-  &:not(.iui-negative):not(.iui-positive) > .iui-track > .iui-indeterminate {
-    @include linear.iui-progress-indicator-linear-indeterminate;
+  &::before {
+    border-color: var(--iui-color-border);
+  }
+
+  &::after {
+    mask-composite: subtract;
+    mask-clip: border-box, content-box;
+    background-color: var(--iui-color-border-accent);
+  }
+
+  &::before,
+  &::after {
+    @media (forced-colors: active) {
+      border-color: transparent;
+    }
+  }
+
+  :is(svg, img) {
+    @include mixins.iui-icon-style('m');
+    fill: var(--iui-color-icon);
+  }
+
+  @each $status in positive, negative {
+    &[data-iui-status='#{$status}'] {
+      color: var(--iui-color-text-#{$status});
+
+      &::after {
+        background-color: var(--iui-color-border-#{$status});
+      }
+
+      :is(svg, img) {
+        fill: var(--iui-color-border-#{$status});
+      }
+    }
+  }
+
+  &[data-iui-size='x-small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, m)};
+
+    &::before,
+    &::after {
+      border-width: var(--iui-size-3xs);
+    }
+
+    > * {
+      display: none;
+    }
+  }
+
+  &[data-iui-size='small'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, l)};
+
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-3xs) * 1.5);
+    }
+  }
+
+  &[data-iui-size='large'] {
+    --_iui-progress-indicator-radial-size: #{map.get(mixins.$iui-icon-sizes, 2xl)};
+    font-size: var(--iui-font-size-2);
+
+    &::before,
+    &::after {
+      border-width: calc(var(--iui-size-2xs) * 1.5);
+    }
+
+    :is(svg, img) {
+      @include mixins.iui-icon-style('l');
+    }
+  }
+
+  &:where(:not([data-iui-indeterminate='true'])) {
+    &::after {
+      $percentage: var(--iui-progress-percentage, 100%);
+      mask-image: conic-gradient(#000 $percentage, #0000 $percentage), linear-gradient(#000 0 0);
+    }
+  }
+
+  &:where([data-iui-indeterminate='true']) {
+    &::after {
+      $_keyframe-name: iui-#{string.unique-id()};
+      mask-image: conic-gradient(#0000, #000), linear-gradient(#000 0 0);
+      animation: $_keyframe-name 0.8s cubic-bezier(0.6, 0.4, 0.4, 0.6) infinite;
+
+      @keyframes #{$_keyframe-name} {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    }
   }
 }
 
-.iui-progress-indicator-radial {
-  @include radial.iui-progress-indicator-radial;
+// ----------------------------------------------------------------------------
 
-  &.iui-determinate {
-    @include radial.iui-progress-indicator-radial-determinate;
+.iui-progress-indicator-linear-label {
+  display: flex;
+  align-items: center;
+  font-size: var(--iui-font-size-0);
+  justify-content: space-between;
+  color: var(--_iui-progress-indicator-linear-label-color);
+  --iui-svg-fill: var(--_iui-progress-indicator-linear-label-fill);
+
+  > :only-child {
+    margin-inline: auto;
+  }
+}
+
+.iui-progress-indicator-linear {
+  display: grid;
+  gap: var(--iui-size-2xs);
+
+  &::before {
+    content: '';
+    block-size: var(--iui-size-2xs);
+    $percentage: var(--iui-progress-percentage, 100%);
+    $fill: var(--_iui-progress-indicator-track-fill, var(--iui-color-border-accent));
+
+    background-color: var(--iui-color-border);
+    background-image: linear-gradient(90deg, $fill 0% 100%);
+    background-repeat: no-repeat;
+    background-size: $percentage 100%;
+    forced-color-adjust: none;
+
+    @media (forced-colors: active) {
+      border: solid 0.5px;
+      background-color: transparent;
+      background-image: linear-gradient(90deg, CanvasText 0% 100%);
+    }
   }
 
-  &.iui-indeterminate {
-    @include radial.iui-progress-indicator-radial-indeterminate;
+  @each $status in positive, negative {
+    &[data-iui-status='#{$status}'] {
+      --_iui-progress-indicator-track-fill: #{var(--iui-color-border-#{$status})};
+      --_iui-progress-indicator-linear-label-color: var(--iui-color-text-#{$status});
+      --_iui-progress-indicator-linear-label-fill: var(--iui-color-icon-#{$status});
+      @include mixins.iui-text-selection($status);
+    }
+  }
+
+  &:where([data-iui-animated='true']:not([data-iui-indeterminate='true'])) {
+    &::before {
+      transition: background-size 1s ease-in-out;
+    }
+  }
+
+  &:where([data-iui-indeterminate='true']) {
+    &::before {
+      $_keyframe-name: iui-#{string.unique-id()};
+      animation: $_keyframe-name 1.5s infinite linear;
+
+      @keyframes #{$_keyframe-name} {
+        0% {
+          background-position: -60% 0%;
+          background-size: 30% 100%;
+        }
+
+        40% {
+          background-position: -40% 0%;
+          background-size: 40% 100%;
+        }
+
+        100% {
+          background-position: 200% 0%;
+          background-size: 50% 100%;
+        }
+      }
+    }
   }
 }
