@@ -45,56 +45,61 @@ it('should render radio tile with icon', () => {
   expect(container.querySelector('.iui-radio-tile-icon')).toBeTruthy();
 });
 
-it('should render and style each DOM node', () => {
-  const testData = [
-    {
-      props: {
-        className: 'tile-class',
-        style: { width: 80 },
-      },
-      selector: '.iui-radio-tile.tile-class',
-    },
-    {
-      props: {
-        inputProps: { className: 'input-class', style: { width: 80 } },
-      },
-      selector: '.iui-radio-tile-input.input-class',
-    },
-    {
-      props: {
-        contentProps: { className: 'content-class', style: { width: 80 } },
-      },
-      selector: '.iui-radio-tile-content.content-class',
-    },
-    {
-      props: {
-        iconProps: { className: 'icon-class', style: { width: 80 } },
-      },
-      selector: '.iui-radio-tile-icon.icon-class',
-    },
-    {
-      props: {
-        label: 'Tile Label',
-        labelProps: { className: 'label-class', style: { width: 80 } },
-      },
-      selector: '.iui-radio-tile-label.label-class',
-    },
-    {
-      props: {
-        description: 'Tile Description',
-        subLabelProps: { className: 'sublabel-class', style: { width: 80 } },
-      },
-      selector: '.iui-radio-tile-sublabel.sublabel-class',
-    },
-  ];
+it('should apply class and style to different parts of the RadioTile component', () => {
+  const { container } = render(
+    <RadioTile
+      className='tile-class'
+      style={{ width: 80 }}
+      inputProps={{ className: 'input-class', style: { width: 80 } }}
+      contentProps={{ className: 'content-class', style: { width: 80 } }}
+      iconProps={{ className: 'icon-class', style: { width: 80 } }}
+      label='Tile Label'
+      labelProps={{ className: 'label-class', style: { width: 80 } }}
+      description='Tile Description'
+      subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
+      icon={<SvgPlaceholder />}
+    />,
+  );
 
-  testData.forEach(({ props, selector }) => {
-    const { container } = render(
-      <RadioTile icon={<SvgPlaceholder />} {...props} />,
-    );
+  // Test for RadioTile container
+  const tileElement = container.querySelector(
+    '.iui-radio-tile.tile-class',
+  ) as HTMLElement;
+  expect(tileElement).toBeTruthy();
+  expect(tileElement.style.width).toBe('80px');
 
-    const element = container.querySelector(selector) as HTMLElement;
-    expect(element).toBeTruthy();
-    expect(element.style.width).toBe('80px');
-  });
+  // Test for RadioTile input
+  const inputElement = container.querySelector(
+    '.iui-radio-tile-input.input-class',
+  ) as HTMLElement;
+  expect(inputElement).toBeTruthy();
+  expect(inputElement.style.width).toBe('80px');
+
+  // Test for RadioTile content
+  const contentElement = container.querySelector(
+    '.iui-radio-tile-content.content-class',
+  ) as HTMLElement;
+  expect(contentElement).toBeTruthy();
+  expect(contentElement.style.width).toBe('80px');
+
+  // Test for RadioTile icon
+  const iconElement = container.querySelector(
+    '.iui-radio-tile-icon.icon-class',
+  ) as HTMLElement;
+  expect(iconElement).toBeTruthy();
+  expect(iconElement.style.width).toBe('80px');
+
+  // Test for RadioTile label
+  const labelElement = container.querySelector(
+    '.iui-radio-tile-label.label-class',
+  ) as HTMLElement;
+  expect(labelElement).toBeTruthy();
+  expect(labelElement.style.width).toBe('80px');
+
+  // Test for RadioTile sublabel
+  const sublabelElement = container.querySelector(
+    '.iui-radio-tile-sublabel.sublabel-class',
+  ) as HTMLElement;
+  expect(sublabelElement).toBeTruthy();
+  expect(sublabelElement.style.width).toBe('80px');
 });
