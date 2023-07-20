@@ -41,6 +41,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
     disabled,
     isFromOrTo,
     selectedDate,
+    inputProps,
     id = uid,
     ...rest
   } = props;
@@ -109,20 +110,19 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       }}
       appendTo='parent'
     >
-      <InputGrid labelPlacement='inline'>
+      <InputGrid labelPlacement='inline' ref={forwardedRef} {...rest}>
         <Label required={required} disabled={disabled} htmlFor={id}>
           {label}
         </Label>
         <InputWithDecorations>
           <InputWithDecorations.Input
-            ref={forwardedRef}
             id={id}
             value={inputValue}
             onChange={onInputChange}
             onClick={close}
             required={required}
             disabled={disabled}
-            {...rest}
+            {...inputProps}
           />
           <InputWithDecorations.Button
             onClick={() => setIsVisible((v) => !v)}

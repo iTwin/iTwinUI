@@ -66,21 +66,26 @@ export const NumberRangeFilter = <T extends Record<string, unknown>>(
   return (
     <BaseFilter>
       <LabeledInput
-        ref={inputRef}
         label={translatedStrings.from}
-        value={from}
-        onChange={(e) => setFrom(e.target.value)}
-        onKeyDown={onKeyDown}
-        type='number'
+        inputProps={{
+          ref: inputRef,
+          onChange: (e) => setFrom(e.target.value),
+          value: from,
+          onKeyDown: onKeyDown,
+          type: 'number',
+        }}
         displayStyle='inline'
       />
       <LabeledInput
         label={translatedStrings.to}
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-        type='number'
+        inputProps={{
+          ref: inputRef,
+          onChange: (e) => setTo(e.target.value),
+          value: to,
+          onKeyDown: onKeyDown,
+          type: 'number',
+        }}
         displayStyle='inline'
-        onKeyDown={onKeyDown}
       />
       <FilterButtonBar
         setFilter={() =>

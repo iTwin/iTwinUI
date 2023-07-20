@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import type { InputProps } from '../Input/Input.js';
 import { StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
@@ -30,13 +29,9 @@ export type LabeledInputProps = {
    */
   svgIcon?: JSX.Element;
   /**
-   * Custom CSS class name for the input element.
-   */
-  inputClassName?: string;
-  /**
    * Custom CSS Style for the input element.
    */
-  inputStyle?: React.CSSProperties;
+  inputProps?: React.ComponentProps<typeof Input>;
   /**
    * Set display style of label.
    * Supported values:
@@ -54,7 +49,7 @@ export type LabeledInputProps = {
    * Defaults to 'block' if `displayStyle` is `default`, else 'inline'.
    */
   iconDisplayStyle?: 'block' | 'inline';
-} & InputProps;
+} & React.ComponentProps<typeof InputGrid>;
 
 /**
  * Basic labeled input component
@@ -75,8 +70,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     status,
     svgIcon,
     style,
-    inputClassName,
-    inputStyle,
+    inputProps,
     displayStyle = 'default',
     iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     required = false,
@@ -85,46 +79,35 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   } = props;
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
-  const iconFill = !svgIcon ? status : undefined;
 
   return (
     <InputGrid
       labelPlacement={displayStyle}
       className={className}
       style={style}
+      ref={ref}
+      {...rest}
     >
       {label && (
         <Label required={required} disabled={disabled} htmlFor={id}>
           {label}
         </Label>
       )}
-      {icon && iconDisplayStyle === 'inline' ? (
-        <InputWithDecorations status={status}>
-          <InputWithDecorations.Input
-            disabled={disabled}
-            className={inputClassName}
-            style={inputStyle}
-            required={required}
-            ref={ref}
-            id={id}
-            {...rest}
-          />
-          <InputWithDecorations.Icon fill={iconFill}>
+
+      <InputWithDecorations status={status}>
+        <InputWithDecorations.Input
+          disabled={disabled}
+          required={required}
+          id={id}
+          {...inputProps}
+        />
+        {icon && iconDisplayStyle === 'inline' && (
+          <InputWithDecorations.Icon fill={!svgIcon ? status : undefined}>
             {icon}
           </InputWithDecorations.Icon>
-        </InputWithDecorations>
-      ) : (
-        <Input
-          disabled={disabled}
-          className={inputClassName}
-          style={inputStyle}
-          required={required}
-          status={status}
-          ref={ref}
-          id={id}
-          {...rest}
-        />
-      )}
+        )}
+      </InputWithDecorations>
+
       {(message || (icon && iconDisplayStyle !== 'inline')) && (
         <StatusMessage
           status={status}

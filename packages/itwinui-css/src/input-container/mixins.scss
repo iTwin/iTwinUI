@@ -98,7 +98,6 @@
 /// Supports .iui-required modifier to show red asterisk.
 @mixin iui-input-label-styling {
   font-weight: var(--iui-font-weight-semibold);
-  margin-block-end: var(--iui-size-2xs);
   color: var(--_iui-input-label-color);
 
   &.iui-required {

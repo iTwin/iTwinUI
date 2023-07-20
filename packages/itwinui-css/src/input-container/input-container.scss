@@ -177,6 +177,7 @@
 // input-grid to replace input-container
 .iui-input-grid {
   display: grid;
+  row-gap: var(--iui-size-2xs);
   grid-template-columns: 1fr;
   grid-template-rows: auto;
   align-items: center;

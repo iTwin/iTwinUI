@@ -21,6 +21,14 @@ type StatusMessageProps = {
    * Status of the message.
    */
   status?: 'positive' | 'warning' | 'negative';
+  /**
+   *
+   */
+  iconProps?: React.ComponentProps<typeof Icon>;
+  /**
+   *
+   */
+  contentProps?: React.ComponentPropsWithRef<'div'>;
 };
 
 /**
@@ -30,7 +38,15 @@ type StatusMessageProps = {
  * <StatusMessage startIcon={<SvgStar />}>This is the text</StatusMessage>
  */
 export const StatusMessage = React.forwardRef((props, ref) => {
-  const { children, startIcon: userStartIcon, status, className } = props;
+  const {
+    children,
+    startIcon: userStartIcon,
+    status,
+    className,
+    iconProps,
+    contentProps,
+    ...rest
+  } = props;
 
   const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
@@ -39,13 +55,16 @@ export const StatusMessage = React.forwardRef((props, ref) => {
       className={cx('iui-status-message', className)}
       data-iui-status={status}
       ref={ref}
+      {...rest}
     >
       {!!icon ? (
-        <Icon className='iui-status-message-icon' aria-hidden>
+        <Icon className='iui-status-message-icon' aria-hidden {...iconProps}>
           {icon}
         </Icon>
       ) : null}
-      <Box className='iui-status-message-content'>{children}</Box>
+      <Box className='iui-status-message-content' {...contentProps}>
+        {children}
+      </Box>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
