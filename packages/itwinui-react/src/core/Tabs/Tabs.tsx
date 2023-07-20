@@ -120,37 +120,13 @@ const TabsComponent = React.forwardRef((props, ref) => {
   } = props;
 
   const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
-  const tabWrapperRef = React.useRef<HTMLDivElement>(null);
-  const [tabsWidth] = useContainerWidth(type !== 'default');
-  const refs = useMergedRefs(tabWrapperRef, ref);
-
-  // CSS custom properties to place the active stripe
   const [stripeProperties, setStripeProperties] = React.useState({});
-  useIsomorphicLayoutEffect(() => {
-    if (type !== 'default' && tabWrapperRef.current != undefined) {
-      const activeTab = tabWrapperRef.current.children[0].children[
-        currentActiveIndex
-      ] as HTMLElement;
-      const activeTabRect = activeTab.getBoundingClientRect();
-
-      setStripeProperties({
-        ...(orientation === 'horizontal' && {
-          '--stripe-width': `${activeTabRect.width}px`,
-          '--stripe-left': `${activeTab.offsetLeft}px`,
-        }),
-        ...(orientation === 'vertical' && {
-          '--stripe-height': `${activeTabRect.height}px`,
-          '--stripe-top': `${activeTab.offsetTop}px`,
-        }),
-      });
-    }
-  }, [currentActiveIndex, type, orientation, tabsWidth]);
 
   return (
     <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
       style={stripeProperties}
-      ref={refs}
+      ref={ref}
       {...rest}
     >
       <TabsContext.Provider
@@ -164,6 +140,7 @@ const TabsComponent = React.forwardRef((props, ref) => {
           setCurrentActiveIndex,
           onTabSelected,
           overflowOptions,
+          setStripeProperties,
         }}
       >
         {children}
@@ -186,13 +163,6 @@ type TabsTabListOwnProps = {
 const TabsTabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const items = Array.isArray(children) ? children : [children];
-
-  const tablistRef = React.useRef<HTMLUListElement>(null);
-  const refs = useMergedRefs(tablistRef, ref);
-
-  const isClient = useIsClient();
-
   const {
     orientation,
     type,
@@ -203,7 +173,14 @@ const TabsTabList = React.forwardRef((props, ref) => {
     setCurrentActiveIndex,
     onTabSelected,
     overflowOptions,
+    setStripeProperties,
   } = useSafeContext(TabsContext);
+
+  const items = Array.isArray(children) ? children : [children];
+  const isClient = useIsClient();
+  const tablistRef = React.useRef<HTMLUListElement>(null);
+  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
+  const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
 
   useIsomorphicLayoutEffect(() => {
     if (
@@ -214,6 +191,31 @@ const TabsTabList = React.forwardRef((props, ref) => {
       setCurrentActiveIndex(getBoundedValue(activeIndex, 0, items.length - 1));
     }
   }, [activeIndex, currentActiveIndex, items.length]);
+
+  // CSS custom properties to place the active stripe
+  useIsomorphicLayoutEffect(() => {
+    if (
+      type !== 'default' &&
+      tablistRef.current != undefined &&
+      currentActiveIndex != undefined
+    ) {
+      const activeTab = tablistRef.current.children[
+        currentActiveIndex
+      ] as HTMLElement;
+      const activeTabRect = activeTab.getBoundingClientRect();
+      setStripeProperties &&
+        setStripeProperties({
+          ...(orientation === 'horizontal' && {
+            '--stripe-width': `${activeTabRect.width}px`,
+            '--stripe-left': `${activeTab.offsetLeft}px`,
+          }),
+          ...(orientation === 'vertical' && {
+            '--stripe-height': `${activeTabRect.height}px`,
+            '--stripe-top': `${activeTab.offsetTop}px`,
+          }),
+        });
+    }
+  }, [currentActiveIndex, type, orientation, tabsWidth]);
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
@@ -874,6 +876,10 @@ export const TabsContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setHasSublabel?: (hasSublabel: boolean) => void;
+      /**
+       * Handler for setting the hasSublabel flag.
+       */
+      setStripeProperties?: (stripeProperties: object) => void;
     }
   | undefined
 >(undefined);
