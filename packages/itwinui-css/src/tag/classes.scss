@@ -3,7 +3,7 @@
 @import './tag';
 @import '../anchor/index';
 
-@layer itwinui-v1 {
+@layer itwinui.v1 {
   .iui-tag {
     @include iui-tag;
   }

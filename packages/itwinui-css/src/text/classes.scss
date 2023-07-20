@@ -3,7 +3,7 @@
 @import './index';
 @import './mixins';
 
-@layer itwinui-v1 {
+@layer itwinui.v1 {
   .iui-text-headline {
     @include iui-text(headline);
   }

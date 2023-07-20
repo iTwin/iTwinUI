@@ -3,7 +3,7 @@
 @import './index';
 @import '../surface/index';
 
-@layer itwinui-v1 {
+@layer itwinui.v1 {
   .iui-menu {
     @include iui-surface;
     @include iui-list-menu;

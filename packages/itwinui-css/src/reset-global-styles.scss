@@ -3,7 +3,7 @@
 @import './style/index';
 @import './text/mixins';
 
-@layer itwinui-v1 {
+@layer itwinui.v1 {
   html,
   body {
     @include iui-font-family;
