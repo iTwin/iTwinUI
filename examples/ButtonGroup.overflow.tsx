@@ -16,7 +16,7 @@ export default () => {
     .fill(null)
     .map((_, _index) => {
       return (
-        <IconButton>
+        <IconButton label='Placeholder'>
           <SvgPlaceholder />
         </IconButton>
       );
@@ -47,7 +47,7 @@ export default () => {
                 })
             }
           >
-            <IconButton>
+            <IconButton label='More'>
               <SvgMore />
             </IconButton>
           </DropdownMenu>
