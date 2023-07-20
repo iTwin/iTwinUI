@@ -24,6 +24,12 @@ it('should render disabled component', () => {
   );
 });
 
+it('should render with size prop using htmlSize', () => {
+  const { container } = render(<Input htmlSize='10' />);
+  assertBaseElement(container);
+  expect((container.querySelector('input') as HTMLInputElement).size).toBe(10);
+});
+
 it('should take class and style', () => {
   const { container } = render(
     <Input className='my-class' style={{ width: 50 }} />,
@@ -37,7 +43,7 @@ it('should take class and style', () => {
 it.each(['small', 'large'] as const)(
   'should render small and large sizes',
   (size) => {
-    const { container } = render(<Input localSize={size} />);
+    const { container } = render(<Input size={size} />);
     expect(container.querySelector(`.iui-input`)).toHaveAttribute(
       'data-iui-size',
       size,

@@ -88,7 +88,7 @@ export const Basic: Story<InformationPanelProps> = (args) => {
           <InformationPanelContent displayStyle='inline'>
             <Label htmlFor='name-input'>File name</Label>
             <Input
-              localSize='small'
+              size='small'
               id='name-input'
               defaultValue={`Row ${openRowIndex ?? 0}`}
               readOnly
@@ -96,23 +96,18 @@ export const Basic: Story<InformationPanelProps> = (args) => {
 
             <Label htmlFor='author-input'>Author</Label>
             <Input
-              localSize='small'
+              size='small'
               id='author-input'
               defaultValue='DJ Terry'
               readOnly
             />
 
             <Label htmlFor='year-input'>Year</Label>
-            <Input
-              localSize='small'
-              id='year-input'
-              defaultValue='2021'
-              readOnly
-            />
+            <Input size='small' id='year-input' defaultValue='2021' readOnly />
 
             <Label htmlFor='path-input'>Path</Label>
             <Input
-              localSize='small'
+              size='small'
               id='path-input'
               defaultValue='/Shared/Music/'
               readOnly
@@ -175,7 +170,7 @@ export const Horizontal: Story<InformationPanelProps> = (args) => {
           <InformationPanelContent displayStyle='inline'>
             <Label htmlFor='name-input'>File name</Label>
             <Input
-              localSize='small'
+              size='small'
               id='name-input'
               defaultValue={`Row ${openRowIndex ?? 0}`}
               readOnly
@@ -183,23 +178,18 @@ export const Horizontal: Story<InformationPanelProps> = (args) => {
 
             <Label htmlFor='author-input'>Author</Label>
             <Input
-              localSize='small'
+              size='small'
               id='author-input'
               defaultValue='DJ Terry'
               readOnly
             />
 
             <Label htmlFor='year-input'>Year</Label>
-            <Input
-              localSize='small'
-              id='year-input'
-              defaultValue='2021'
-              readOnly
-            />
+            <Input size='small' id='year-input' defaultValue='2021' readOnly />
 
             <Label htmlFor='path-input'>Path</Label>
             <Input
-              localSize='small'
+              size='small'
               id='path-input'
               defaultValue='/Shared/Music/'
               readOnly

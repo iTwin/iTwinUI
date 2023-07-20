@@ -32,10 +32,10 @@ Disabled.args = {
 };
 
 export const Small: Story<InputProps> = (args) => {
-  return <Input placeholder='Small Input' localSize='small' {...args} />;
+  return <Input placeholder='Small Input' size='small' {...args} />;
 };
 
 Small.args = {
   placeholder: 'Small Input',
-  localSize: 'small',
+  size: 'small',
 };

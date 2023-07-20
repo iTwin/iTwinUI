@@ -11,7 +11,11 @@ export type InputProps = {
   /**
    * Modify size of the input.
    */
-  localSize?: 'small' | 'large';
+  size?: 'small' | 'large';
+  /**
+   * Modify the `size` attribute of the `<input>` element.
+   */
+  htmlSize?: number;
 };
 
 /**
@@ -19,10 +23,10 @@ export type InputProps = {
  * @example
  * <Input setFocus />
  * <Input disabled />
- * <Input localSize='small' />
+ * <Input size='small' />
  */
 export const Input = React.forwardRef((props, ref) => {
-  const { localSize, className, ...rest } = props;
+  const { size, htmlSize, className, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 
@@ -30,7 +34,8 @@ export const Input = React.forwardRef((props, ref) => {
     <Box
       as='input'
       className={cx('iui-input', className)}
-      data-iui-size={localSize}
+      data-iui-size={size}
+      size={htmlSize}
       ref={refs}
       {...rest}
     />
