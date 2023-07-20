@@ -32,12 +32,12 @@ it('should render in its most basic state', () => {
   expect(root).toHaveClass('iui-carousel');
   expect(root).toHaveAttribute('aria-roledescription', 'carousel');
 
-  const slider = container.querySelector('ol') as HTMLElement;
+  const slider = container.querySelector('div') as HTMLElement;
   expect(slider).toHaveClass('iui-carousel-slider');
 
   slider.childNodes.forEach((slide, index) => {
     expect(slide).toHaveClass('iui-carousel-slider-item');
-    expect(slide).toHaveAttribute('role', 'tabpanel');
+    expect(slide).toHaveAttribute('role', 'group');
     expect(slide).toHaveAttribute('aria-roledescription', 'slide');
     expect(slide).toHaveTextContent(`${index + 1}`);
     expect(slide).toHaveAttribute('id', `testcarousel--slide-${index}`);
