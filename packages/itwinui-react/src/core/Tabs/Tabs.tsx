@@ -552,8 +552,16 @@ TabsTabList.displayName = 'Tabs.TabList';
 // ----------------------------------------------------------------------------
 // Tabs.Tab component
 
+type TabsTabOwnProps = {
+  /**
+   * Tab label used for simple Tab construction.
+   * Cannot be used with tabs that have icons or descriptions.
+   */
+  label?: string | React.ReactNode;
+};
+
 const TabsTab = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { className, children, label, ...rest } = props;
 
   const { index, currentActiveIndex, onTabSelected, setFocusedIndex } =
     useSafeContext(TabsContext);
@@ -579,10 +587,16 @@ const TabsTab = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {children}
+      {label ? (
+        <Tabs.TabInfo>
+          <Tabs.TabLabel>{label}</Tabs.TabLabel>
+        </Tabs.TabInfo>
+      ) : (
+        children
+      )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'button'>;
+}) as PolymorphicForwardRefComponent<'button', TabsTabOwnProps>;
 TabsTab.displayName = 'Tabs.Tab';
 
 // ----------------------------------------------------------------------------

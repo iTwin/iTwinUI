@@ -28,21 +28,9 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
   return (
     <Tabs {...args}>
       <Tabs.TabList>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab label='Item1' />
+        <Tabs.Tab label='Item2' />
+        <Tabs.Tab label='Item3' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -95,21 +83,9 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
   return (
     <Tabs type='borderless' {...args}>
       <Tabs.TabList>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab label='Item1' />
+        <Tabs.Tab label='Item2' />
+        <Tabs.Tab label='Item3' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -321,83 +297,19 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         {...args}
       >
         <Tabs.TabList>
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 1</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 2</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 3</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 4</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 5</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab disabled>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 6</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 7</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 8</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab disabled>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 9</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 10</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 11</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 12</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Very long item number thirteen</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
+          <Tabs.Tab label='Item 1' />
+          <Tabs.Tab label='Item 2' />
+          <Tabs.Tab label='Item 3' />
+          <Tabs.Tab label='Item 4' />
+          <Tabs.Tab label='Item 5' />
+          <Tabs.Tab disabled label='Item 6' />
+          <Tabs.Tab label='Item 7' />
+          <Tabs.Tab label='Item 8' />
+          <Tabs.Tab disabled label='Item 9' />
+          <Tabs.Tab label='Item 10' />
+          <Tabs.Tab label='Item 11' />
+          <Tabs.Tab label='Item 12' />
+          <Tabs.Tab label='Very long item number thirteen' />
         </Tabs.TabList>
 
         <Tabs.Actions>
@@ -453,83 +365,19 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         {...args}
       >
         <Tabs.TabList>
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 1</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 2</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 3</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 4</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 5</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab disabled>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 6</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 7</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 8</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab disabled>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 9</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 10</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 11</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Item 12</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Very long item number thirteen</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
+          <Tabs.Tab label='Item 1' />
+          <Tabs.Tab label='Item 2' />
+          <Tabs.Tab label='Item 3' />
+          <Tabs.Tab label='Item 4' />
+          <Tabs.Tab label='Item 5' />
+          <Tabs.Tab disabled label='Item 6' />
+          <Tabs.Tab label='Item 7' />
+          <Tabs.Tab label='Item 8' />
+          <Tabs.Tab disabled label='Item 9' />
+          <Tabs.Tab label='Item 10' />
+          <Tabs.Tab label='Item 11' />
+          <Tabs.Tab label='Item 12' />
+          <Tabs.Tab label='Very long item number thirteen' />
         </Tabs.TabList>
 
         <Tabs.Actions>

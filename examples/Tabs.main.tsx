@@ -9,21 +9,9 @@ export default () => {
   return (
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab label='Item1' />
+        <Tabs.Tab label='Item2' />
+        <Tabs.Tab label='Item3' />
       </Tabs.TabList>
 
       <Tabs.Panels>

@@ -16,21 +16,9 @@ const renderComponent = (
   const defaultChildren = (
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={1}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={2}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={3}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab key={1} label='Label 1' />
+        <Tabs.Tab key={2} label='Label 2' />
+        <Tabs.Tab key={3} label='Label 3' />
       </Tabs.TabList>
 
       <Tabs.Panels>
@@ -96,51 +84,15 @@ it('should allow horizontal scrolling when overflowOptions useOverflow is true',
     },
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={1}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={2}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={3}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={4}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 4</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={5}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 5</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={6}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 6</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={7}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 7</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={8}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 8</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={9}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 9</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab key={1} label='Label 1' />
+        <Tabs.Tab key={2} label='Label 2' />
+        <Tabs.Tab key={3} label='Label 3' />
+        <Tabs.Tab key={4} label='Label 4' />
+        <Tabs.Tab key={5} label='Label 5' />
+        <Tabs.Tab key={6} label='Label 6' />
+        <Tabs.Tab key={7} label='Label 7' />
+        <Tabs.Tab key={8} label='Label 8' />
+        <Tabs.Tab key={9} label='Label 9' />
       </Tabs.TabList>
 
       <Tabs.Panels>
@@ -173,51 +125,15 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
     },
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={1}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 1</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={2}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 2</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={3}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 3</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={4}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 4</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={5}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 5</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={6}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 6</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={7}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 7</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={8}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 8</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
-        <Tabs.Tab key={9}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Label 9</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab key={1} label='Label 1' />
+        <Tabs.Tab key={2} label='Label 2' />
+        <Tabs.Tab key={3} label='Label 3' />
+        <Tabs.Tab key={4} label='Label 4' />
+        <Tabs.Tab key={5} label='Label 5' />
+        <Tabs.Tab key={6} label='Label 6' />
+        <Tabs.Tab key={7} label='Label 7' />
+        <Tabs.Tab key={8} label='Label 8' />
+        <Tabs.Tab key={9} label='Label 9' />
       </Tabs.TabList>
 
       <Tabs.Panels>
@@ -419,11 +335,7 @@ it('should render a Tab in its most basic state', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab label='Tab label' />
       </Tabs.TabList>
     </Tabs>,
   );
@@ -488,11 +400,7 @@ it('should render in disabled state', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab disabled>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
-          </Tabs.TabInfo>
-        </Tabs.Tab>
+        <Tabs.Tab disabled label='Tab label' />
       </Tabs.TabList>
     </Tabs>,
   );

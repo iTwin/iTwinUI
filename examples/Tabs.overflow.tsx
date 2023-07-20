@@ -15,53 +15,14 @@ export default () => {
         onTabSelected={setActiveIndex}
       >
         <Tabs.TabList>
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Bentley Overview</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Markets</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Uses</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Reinvestment</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Location</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Revenue</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>Founders</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
-
-          <Tabs.Tab>
-            <Tabs.TabInfo>
-              <Tabs.TabLabel>History</Tabs.TabLabel>
-            </Tabs.TabInfo>
-          </Tabs.Tab>
+          <Tabs.Tab label='Bentley Overview' />
+          <Tabs.Tab label='Markets' />
+          <Tabs.Tab label='Uses' />
+          <Tabs.Tab label='Reinvestment' />
+          <Tabs.Tab label='Location' />
+          <Tabs.Tab label='Revenue' />
+          <Tabs.Tab label='Founders' />
+          <Tabs.Tab label='History' />
         </Tabs.TabList>
 
         <Tabs.Panels>
