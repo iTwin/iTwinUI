@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { Button } from '../Buttons/Button/index.js';
 import { NonIdealState } from './NonIdealState.js';
-import { ProgressRadial } from '../ProgressIndicators/ProgressRadial/index.js';
+import { ProgressRadial } from '../ProgressIndicators/index.js';
 import { dynamicImport } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
