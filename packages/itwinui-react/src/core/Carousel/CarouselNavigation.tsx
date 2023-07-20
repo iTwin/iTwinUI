@@ -54,7 +54,7 @@ const PreviousButton = React.forwardRef((props, ref) => {
 
   return (
     <IconButton
-      label='Previous'
+      aria-label='Previous'
       styleType='borderless'
       size='small'
       tabIndex={-1}
@@ -93,7 +93,7 @@ const NextButton = React.forwardRef((props, ref) => {
 
   return (
     <IconButton
-      label='Next'
+      aria-label='Next'
       styleType='borderless'
       size='small'
       tabIndex={-1}
