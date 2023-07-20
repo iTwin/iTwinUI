@@ -3,14 +3,23 @@
 @use 'mixins';
 
 // reset anything that may have been set by v1
-:where(.iui-body, [class*='iui-theme-']) :where(.iui-root, [data-iui-theme]) {
-  :where([class*='iui-']:not(.iui-root, svg *)) {
-    &,
-    &::before,
-    &::after {
-      all: revert;
+@mixin revert-v1-styles {
+  :where(.iui-body, [class*='iui-theme-']) :where(.iui-root) {
+    * {
+      &,
+      &::before,
+      &::after {
+        all: revert-layer;
+      }
     }
   }
+}
+
+@layer itwinui-v1 {
+  @include revert-v1-styles;
+}
+@layer itwinui.v1 {
+  @include revert-v1-styles;
 }
 
 :where(.iui-root) {
