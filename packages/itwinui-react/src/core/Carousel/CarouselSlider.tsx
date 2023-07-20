@@ -44,7 +44,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     setSlideCount(items.length);
   }, [items.length, setSlideCount]);
 
-  const sliderRef = React.useRef<HTMLOListElement>(null);
+  const sliderRef = React.useRef<HTMLDivElement>(null);
   const refs = useMergedRefs(sliderRef, ref);
 
   scrollToSlide.current = (
@@ -86,7 +86,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='ol'
+      as='div'
       aria-live='polite'
       className={cx('iui-carousel-slider', className)}
       ref={refs}
@@ -96,4 +96,4 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
       {items}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'ol'>;
+}) as PolymorphicForwardRefComponent<'div'>;

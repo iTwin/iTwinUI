@@ -49,8 +49,9 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='li'
+      as='div'
       className={cx('iui-carousel-slider-item', className)}
+      role='group'
       aria-roledescription='slide'
       ref={refs}
       {...rest}
@@ -58,4 +59,4 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', CarouselSlideProps>;
+}) as PolymorphicForwardRefComponent<'div', CarouselSlideProps>;
