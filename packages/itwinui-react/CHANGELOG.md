@@ -1,5 +1,34 @@
 # Changelog
 
+## 3.0.0-dev.5
+
+### Major Changes
+
+- [#1370](https://github.com/iTwin/iTwinUI/pull/1370): ProgressLinear has been refactored to be a single `<div>`.
+- [#1371](https://github.com/iTwin/iTwinUI/pull/1371): Checkbox: `className` and `style` will now always be applied on the checkbox input element. Added new `wrapperProps` and `labelProps` to allow for styling of wrapper and label elements.
+- [#1389](https://github.com/iTwin/iTwinUI/pull/1389): iTwinUI now correctly supports both ESM and CJS environments.
+- [#1369](https://github.com/iTwin/iTwinUI/pull/1369): Added new `Breadcrumbs.Item` subcomponent to use for custom `a` and `button` elements within the `Breadcrumbs`
+- [#1400](https://github.com/iTwin/iTwinUI/pull/1400): `ErrorPage` will now dynamically import illustrations. The peer dependency on `@itwin/itwinui-illustrations-react` will need to be manually installed if using `ErrorPage`.
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Updated Expandable Block component to be composition of customizable subcomponents: <ExpandableBlock.Header/>, <ExpandableBlock.ExpandIcon/>, <ExpandableBlock.LabelArea/>, <ExpandableBlock.Title/>, <ExpandableBlock.Caption/>, <ExpandableBlock.EndIcon/>, <ExpandableBlock.Content/>
+
+  The following props have been removed as they are now subcomponents: `title`, `caption`, `endIcon`
+
+- [#1406](https://github.com/iTwin/iTwinUI/pull/1406): Removed `setFocus` prop from Checkbox, ColorPicker, ComboBox, Input, LabeledInput, LabeledTextarea, Radio, RadioTile, Select, Slider, ToggleSwitch. Users can use `ref` to focus the element.
+
+### Minor Changes
+
+- [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
+- [#1328](https://github.com/iTwin/iTwinUI/pull/1328): Created new Overlay component with customizable subcomponents: Overlay.Wrapper, Overlay.HiddenContent, Overlay.Overlay
+- [#1403](https://github.com/iTwin/iTwinUI/pull/1403): Updated `DropdownMenu` to additionally accept list of JSX elements or a JSX fragment for `menuItems` prop,
+- [#1407](https://github.com/iTwin/iTwinUI/pull/1407): Adding the ability for each node element in `NonIdealState` to have a custom `className`.
+
+### Patch Changes
+
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Expandable block animation now uses pure css instead of javascript for transitioning.
+- [#1389](https://github.com/iTwin/iTwinUI/pull/1389): The build output is now more readable, using a combination of `prettier` for formatting and `tslib` for import helpers.
+- [#1397](https://github.com/iTwin/iTwinUI/pull/1397): Avatar will no longer incorrectly set aria-label on the status dot.
+- [#1404](https://github.com/iTwin/iTwinUI/pull/1404): `aria-orientation` attribute removed from ButtonGroup to meet accessibility requirements.
+
 ## 3.0.0-dev.4
 
 ### Major Changes
