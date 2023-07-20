@@ -21,6 +21,10 @@ type RadioTileProps = {
    */
   description?: React.ReactNode;
   /**
+   * Passes props for tile wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'label'>;
+  /**
    * Passes props for tile icon.
    */
   iconProps?: React.ComponentProps<'span'>;
@@ -46,6 +50,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
     description,
     className,
     style,
+    wrapperProps,
     iconProps,
     labelProps,
     subLabelProps,
@@ -61,6 +66,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
       className={cx('iui-radio-tile', className)}
       style={style}
       data-iui-disabled={props.disabled ? 'true' : undefined}
+      {...wrapperProps}
     >
       <Box
         as='input'
