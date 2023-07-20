@@ -34,7 +34,12 @@ export const RadioTile = React.forwardRef((props, ref) => {
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
   return (
-    <Box as='label' className={cx('iui-radio-tile', className)} style={style}>
+    <Box
+      as='label'
+      className={cx('iui-radio-tile', className)}
+      style={style}
+      data-iui-disabled={props.disabled ? 'true' : undefined}
+    >
       <Box
         as='input'
         className='iui-radio-tile-input'
@@ -42,17 +47,15 @@ export const RadioTile = React.forwardRef((props, ref) => {
         ref={refs}
         {...rest}
       />
-      <Box className='iui-radio-tile-content'>
-        {icon && (
-          <Box as='span' className='iui-radio-tile-icon' aria-hidden>
-            {icon}
-          </Box>
-        )}
-        {label && <Box className='iui-radio-tile-label'>{label}</Box>}
-        {description && (
-          <Box className='iui-radio-tile-sublabel'>{description}</Box>
-        )}
-      </Box>
+      {icon && (
+        <Box as='span' className='iui-radio-tile-icon' aria-hidden>
+          {icon}
+        </Box>
+      )}
+      {label && <Box className='iui-radio-tile-label'>{label}</Box>}
+      {description && (
+        <Box className='iui-radio-tile-sublabel'>{description}</Box>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
