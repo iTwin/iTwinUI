@@ -3,8 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, InputContainer, Box } from '../utils/index.js';
+import { StatusIconMap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { InputGrid } from '../InputGrid/index.js';
+import { Label } from '../Label/index.js';
+import { StatusMessage } from '../StatusMessage/index.js';
 
 type InputGroupProps = {
   /**
@@ -85,19 +88,19 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
   };
 
   return (
-    <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={icon()}
-      isLabelInline={displayStyle === 'inline'}
-      ref={forwardedRef}
-      {...rest}
-    >
+    <InputGrid labelPlacement={displayStyle} ref={forwardedRef} {...rest}>
+      {label && (
+        <Label required={required} disabled={disabled}>
+          {label}
+        </Label>
+      )}
       <Box className='iui-input-group'>{children}</Box>
-    </InputContainer>
+      {message && (
+        <StatusMessage startIcon={icon()} status={status}>
+          {message}
+        </StatusMessage>
+      )}
+    </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
 

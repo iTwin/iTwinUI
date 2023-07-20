@@ -73,6 +73,7 @@
   transition: outline-color var(--iui-duration-1) ease-out;
   outline: solid 1px var(--_iui-checkbox-border-color);
   outline-offset: -1px;
+  align-self: center;
 
   // increase tap target size to 24x24 by default and allow adjusting through CSS var
   &::before {
