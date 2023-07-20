@@ -20,6 +20,18 @@ type RadioTileProps = {
    * Additional description, if needed.
    */
   description?: React.ReactNode;
+  /**
+   * Passes props for tile icon.
+   */
+  iconProps?: React.ComponentProps<'span'>;
+  /**
+   * Passes props for tile label.
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for tile sublabel.
+   */
+  subLabelProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -28,7 +40,17 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const { icon, label, description, className, style, ...rest } = props;
+  const {
+    icon,
+    label,
+    description,
+    className,
+    style,
+    iconProps,
+    labelProps,
+    subLabelProps,
+    ...rest
+  } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -48,13 +70,24 @@ export const RadioTile = React.forwardRef((props, ref) => {
         {...rest}
       />
       {icon && (
-        <Box as='span' className='iui-radio-tile-icon' aria-hidden>
+        <Box
+          as='span'
+          className='iui-radio-tile-icon'
+          aria-hidden
+          {...iconProps}
+        >
           {icon}
         </Box>
       )}
-      {label && <Box className='iui-radio-tile-label'>{label}</Box>}
+      {label && (
+        <Box as='div' className='iui-radio-tile-label' {...labelProps}>
+          {label}
+        </Box>
+      )}
       {description && (
-        <Box className='iui-radio-tile-sublabel'>{description}</Box>
+        <Box as='div' className='iui-radio-tile-sublabel' {...subLabelProps}>
+          {description}
+        </Box>
       )}
     </Box>
   );
