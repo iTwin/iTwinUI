@@ -20,6 +20,10 @@ type RadioTileProps = {
    * Additional description, if needed.
    */
   description?: React.ReactNode;
+  /**
+   * Passes props to tile wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'label'>;
 };
 
 /**
@@ -28,7 +32,8 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const { icon, label, description, className, style, ...rest } = props;
+  const { icon, label, description, wrapperProps, className, style, ...rest } =
+    props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -39,6 +44,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
       className={cx('iui-radio-tile', className)}
       style={style}
       data-iui-disabled={props.disabled ? 'true' : undefined}
+      {...wrapperProps}
     >
       <Box
         as='input'
