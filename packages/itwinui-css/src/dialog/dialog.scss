@@ -4,6 +4,7 @@
 
 $iui-dialog-width: 380px;
 $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
+$iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + button width x 2
 
 .iui-dialog-wrapper {
   position: fixed;
@@ -118,6 +119,11 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
   min-height: $iui-dialogue-resizable-min-height;
+}
+
+.iui-dialog-resizable {
+  min-height: $iui-dialogue-resizable-min-height;
+  min-width: $iui-dialogue-resizable-min-width;
 }
 
 .iui-dialog-animation {

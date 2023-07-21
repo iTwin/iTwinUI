@@ -174,6 +174,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
             'iui-dialog-full-page': styleType === 'fullPage',
             'iui-dialog-visible': isOpen,
             'iui-dialog-draggable': isDraggable,
+            'iui-dialog-resizable': isResizable,
           },
           className,
         )}
