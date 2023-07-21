@@ -10,6 +10,16 @@
     &::after {
       all: revert;
     }
+
+    // add back attribute styles that get reverted (see #1421)
+
+    &:where([draggable]) {
+      -webkit-user-drag: element;
+    }
+
+    &:where([contenteditable]) {
+      -webkit-user-modify: read-write;
+    }
   }
 }
 
