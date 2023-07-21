@@ -20,22 +20,6 @@ type RadioTileProps = {
    * Additional description, if needed.
    */
   description?: React.ReactNode;
-  /**
-   * Passes props for tile wrapper.
-   */
-  wrapperProps?: React.ComponentProps<'label'>;
-  /**
-   * Passes props for tile icon.
-   */
-  iconProps?: React.ComponentProps<'span'>;
-  /**
-   * Passes props for tile label.
-   */
-  labelProps?: React.ComponentProps<'div'>;
-  /**
-   * Passes props for tile sublabel.
-   */
-  subLabelProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -44,18 +28,7 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const {
-    icon,
-    label,
-    description,
-    className,
-    style,
-    wrapperProps,
-    iconProps,
-    labelProps,
-    subLabelProps,
-    ...rest
-  } = props;
+  const { icon, label, description, className, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -66,7 +39,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
       className={cx('iui-radio-tile', className)}
       style={style}
       data-iui-disabled={props.disabled ? 'true' : undefined}
-      {...wrapperProps}
     >
       <Box
         as='input'
@@ -76,24 +48,13 @@ export const RadioTile = React.forwardRef((props, ref) => {
         {...rest}
       />
       {icon && (
-        <Box
-          as='span'
-          className='iui-radio-tile-icon'
-          aria-hidden
-          {...iconProps}
-        >
+        <Box as='span' className='iui-radio-tile-icon' aria-hidden>
           {icon}
         </Box>
       )}
-      {label && (
-        <Box as='div' className='iui-radio-tile-label' {...labelProps}>
-          {label}
-        </Box>
-      )}
+      {label && <Box className='iui-radio-tile-label'>{label}</Box>}
       {description && (
-        <Box as='div' className='iui-radio-tile-sublabel' {...subLabelProps}>
-          {description}
-        </Box>
+        <Box className='iui-radio-tile-sublabel'>{description}</Box>
       )}
     </Box>
   );
