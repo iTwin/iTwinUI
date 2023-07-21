@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "2.11.8",
+  "version": "2.11.9",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "cjs/index.js",
@@ -79,7 +79,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
-    "@itwin/itwinui-css": "^1.11.3",
+    "@itwin/itwinui-css": "^1.11.4",
     "@itwin/itwinui-variables": "^2.0.0",
     "@swc/cli": "^0.1.57",
     "@swc/core": "^1.3.21",
