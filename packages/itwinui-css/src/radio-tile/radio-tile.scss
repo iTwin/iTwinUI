@@ -3,13 +3,11 @@
 @use '../mixins';
 
 .iui-radio-tile {
-  cursor: pointer;
+  display: grid;
+  align-content: center;
+  justify-items: center;
   -webkit-tap-highlight-color: hsl(var(--iui-color-accent-hsl) / var(--iui-opacity-6));
-}
-
-.iui-radio-tile-content {
   inline-size: calc(var(--iui-size-xl) * 5);
-  block-size: 100%;
   padding: var(--iui-size-xs);
   position: relative;
   z-index: 1;
@@ -17,16 +15,18 @@
   background-color: var(--iui-color-background);
   transition: outline-color var(--iui-duration-1) ease-out;
 
-  &:hover {
+  &:where(:hover) {
     z-index: 2;
     outline-color: var(--iui-color-border-hover);
 
     .iui-radio-tile-icon svg {
       fill: var(--iui-color-icon-hover);
-      @media (forced-colors: active) {
-        fill: CanvasText;
-      }
     }
+  }
+
+  &:where(:has(input:disabled), [data-iui-disabled='true']) {
+    outline-color: var(--iui-color-border-disabled);
+    background-color: var(--iui-color-background-disabled);
   }
 }
 
@@ -41,23 +41,23 @@
 }
 
 .iui-radio-tile-input {
-  inline-size: 0;
-  block-size: 0;
+  z-index: 1;
   appearance: none;
-  opacity: 0;
+  margin: 0;
   position: absolute;
+  inset: 0;
+  cursor: pointer;
 
-  &:checked + * {
-    padding: var(--iui-size-xs);
+  &:checked {
     z-index: 3;
-    outline: var(--iui-size-3xs) solid var(--iui-color-border-accent);
-    outline-offset: -1px;
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -2px;
 
     @media (forced-colors: active) {
       outline-color: Highlight;
     }
 
-    .iui-radio-tile-icon svg {
+    + .iui-radio-tile-icon svg {
       fill: var(--iui-color-icon-accent);
       @media (forced-colors: active) {
         fill: Highlight;
@@ -68,8 +68,8 @@
       @include mixins.iui-icon-style('m');
       content: '';
       position: absolute;
-      inset-block-start: var(--iui-size-xs);
       inset-inline-end: var(--iui-size-xs);
+      inset-block-start: var(--iui-size-xs);
       mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6,14L0,8l2-2l4,4l8-8l2,2L6,14z" /></svg>');
       background-color: var(--iui-color-icon-accent);
       @media (forced-colors: active) {
@@ -78,11 +78,8 @@
     }
   }
 
-  &:disabled + * {
+  &:disabled {
     cursor: not-allowed;
-    z-index: 0;
-    outline-color: var(--iui-color-border-disabled);
-    background-color: var(--iui-color-background-disabled);
 
     &::after {
       background-color: var(--iui-color-icon-disabled);
@@ -91,7 +88,7 @@
       }
     }
 
-    .iui-radio-tile-icon svg {
+    + .iui-radio-tile-icon svg {
       filter: mixins.$iui-icon-color-multicolor-disabled;
       fill: var(--iui-color-icon-disabled);
       @media (forced-colors: active) {
@@ -99,8 +96,7 @@
       }
     }
 
-    .iui-radio-tile-label,
-    .iui-radio-tile-sublabel {
+    ~ :is(.iui-radio-tile-label, .iui-radio-tile-sublabel) {
       color: var(--iui-color-text-disabled);
       @media (forced-colors: active) {
         color: GrayText;
@@ -108,7 +104,7 @@
     }
   }
 
-  &:disabled:checked + * {
+  &:disabled:checked {
     z-index: 3;
     outline: var(--iui-size-3xs) solid var(--iui-color-border);
     @media (forced-colors: active) {
@@ -116,33 +112,21 @@
     }
   }
 
-  @include mixins.focus-visible {
-    + * {
-      // outline for checkmark
-      z-index: 2;
-      outline-offset: calc(0px - var(--iui-size-3xs));
-      outline: 3px solid var(--iui-color-border-accent);
-      @media (forced-colors: active) {
-        outline-color: Highlight;
-      }
-    }
+  &:focus-visible {
+    outline-offset: -3px;
+    outline-width: 3px;
   }
 }
 
 .iui-radio-tile-icon {
-  margin: calc(var(--iui-size-s) * 0.5) auto var(--iui-size-s);
+  margin-block-start: calc(var(--iui-size-s) * 0.5);
+  margin-block-end: var(--iui-size-s);
 
   &,
   svg {
     @include mixins.iui-icon-style('xl');
-  }
-
-  svg {
-    fill: var(--iui-color-icon-muted);
+    @include mixins.iui-icon-color;
     transition: fill var(--iui-duration-1) ease-out;
-    @media (forced-colors: active) {
-      fill: CanvasText;
-    }
   }
 }
 
