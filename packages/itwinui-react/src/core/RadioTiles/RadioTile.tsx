@@ -32,8 +32,7 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const { icon, label, description, wrapperProps, className, style, ...rest } =
-    props;
+  const { icon, label, description, wrapperProps, style, ...rest } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -41,13 +40,13 @@ export const RadioTile = React.forwardRef((props, ref) => {
   return (
     <Box
       as='label'
-      className='iui-radio-tile'
+      className={cx('iui-radio-tile', wrapperProps?.className)}
       data-iui-disabled={props.disabled ? 'true' : undefined}
       {...wrapperProps}
     >
       <Box
         as='input'
-        className={cx('iui-radio-tile-input', className)}
+        className={cx('iui-radio-tile-input')}
         style={style}
         type='radio'
         ref={refs}
