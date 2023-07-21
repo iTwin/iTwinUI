@@ -131,6 +131,43 @@ describe('Stepper step (default)', () => {
     expect(container.querySelector('.iui-stepper-track-content')).toBeTruthy();
   });
 
+  it('should correctly pass custom className through stepProps, trackContentProps, circleProps, and nameProps', () => {
+    const mockedClick = jest.fn();
+    const step = (
+      <StepperStep
+        title='First step'
+        index={0}
+        currentStepNumber={1}
+        totalSteps={3}
+        type='default'
+        onClick={mockedClick}
+        stepProps={{ className: 'some-class' }}
+        trackContentProps={{ className: 'some-content' }}
+        circleProps={{ className: 'some-circle' }}
+        nameProps={{ className: 'some-name' }}
+      />
+    );
+
+    const { container } = render(step);
+
+    expect(container.querySelector('.iui-stepper-step')).toHaveClass(
+      'iui-stepper-step',
+      'some-class',
+    );
+    expect(container.querySelector('.iui-stepper-track-content')).toHaveClass(
+      'iui-stepper-track-content',
+      'some-content',
+    );
+    expect(container.querySelector('.iui-stepper-circle')).toHaveClass(
+      'iui-stepper-circle',
+      'some-circle',
+    );
+    expect(container.querySelector('.iui-stepper-step-name')).toHaveClass(
+      'iui-stepper-step-name',
+      'some-name',
+    );
+  });
+
   it('should set dynamic inline width based on total steps', () => {
     const { container: container1 } = render(
       <StepperStep
