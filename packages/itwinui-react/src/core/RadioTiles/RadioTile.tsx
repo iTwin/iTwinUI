@@ -42,13 +42,13 @@ export const RadioTile = React.forwardRef((props, ref) => {
     <Box
       as='label'
       className={cx('iui-radio-tile', className)}
-      style={style}
       data-iui-disabled={props.disabled ? 'true' : undefined}
       {...wrapperProps}
     >
       <Box
         as='input'
         className='iui-radio-tile-input'
+        style={style}
         type='radio'
         ref={refs}
         {...rest}
