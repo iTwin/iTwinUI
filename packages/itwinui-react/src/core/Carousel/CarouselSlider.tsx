@@ -86,7 +86,6 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='div'
       aria-live='polite'
       className={cx('iui-carousel-slider', className)}
       ref={refs}
