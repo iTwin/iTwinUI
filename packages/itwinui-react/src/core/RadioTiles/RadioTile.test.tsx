@@ -45,12 +45,15 @@ it('should render radio tile with icon', () => {
   expect(container.querySelector('.iui-radio-tile-icon')).toBeTruthy();
 });
 
-it('should apply class and style to RadioTile component', () => {
+it('should apply class and style to different parts of the RadioTile component', () => {
   const { container } = render(
     <RadioTile
       className='tile-class'
       style={{ width: 80 }}
       wrapperProps={{ className: 'wrapper-class', style: { width: 80 } }}
+      iconProps={{ className: 'icon-class', style: { width: 80 } }}
+      labelProps={{ className: 'label-class', style: { width: 80 } }}
+      subLabelProps={{ className: 'sublabel-class', style: { width: 80 } }}
       label='Tile Label'
       description='Tile Description'
       icon={<SvgPlaceholder />}
@@ -63,4 +66,33 @@ it('should apply class and style to RadioTile component', () => {
   ) as HTMLElement;
   expect(wrapperElement).toBeTruthy();
   expect(wrapperElement.style.width).toBe('80px');
+
+  // Test for RadioTile icon
+  const iconElement = container.querySelector('.icon-class') as HTMLElement;
+  expect(iconElement).toBeTruthy();
+  expect(iconElement.style.width).toBe('80px');
+
+  // Test for RadioTile label
+  const labelElement = container.querySelector('.label-class') as HTMLElement;
+  expect(labelElement).toBeTruthy();
+  expect(labelElement.style.width).toBe('80px');
+
+  // Test for RadioTile sublabel
+  const sublabelElement = container.querySelector(
+    '.sublabel-class',
+  ) as HTMLElement;
+  expect(sublabelElement).toBeTruthy();
+  expect(sublabelElement.style.width).toBe('80px');
 });
+
+const { debug } = render(
+  <RadioTile
+    className='tile-class'
+    style={{ width: 80 }}
+    wrapperProps={{ className: 'wrapper-class', style: { width: 80 } }}
+    label='Tile Label'
+    description='Tile Description'
+    icon={<SvgPlaceholder />}
+  />,
+);
+debug();
