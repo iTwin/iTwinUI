@@ -36,6 +36,11 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
     border: 1px solid;
   }
 
+  &:where(:has(.iui-dialog-content), [data-iui-flex='true']) {
+    display: flex;
+    flex-direction: column;
+  }
+
   &:not(.iui-dialog-visible) {
     visibility: hidden;
     opacity: 0;
