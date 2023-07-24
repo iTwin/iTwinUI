@@ -206,8 +206,8 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          top: -4,
-          left: -4,
+          top: 0,
+          left: 0,
           width: 12,
           height: 12,
           cursor: 'nw-resize',
@@ -218,7 +218,7 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          top: -4,
+          top: 0,
           left: 8,
           right: 8,
           height: 8,
@@ -230,8 +230,8 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          top: -4,
-          right: -4,
+          top: 0,
+          right: 0,
           width: 12,
           height: 12,
           cursor: 'ne-resize',
@@ -243,7 +243,7 @@ export const Resizer = (props: ResizerProps) => {
         style={{
           position: 'absolute',
           top: 8,
-          right: -4,
+          right: 0,
           bottom: 8,
           width: 8,
           cursor: 'e-resize',
@@ -254,8 +254,8 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          bottom: -4,
-          right: -4,
+          bottom: 0,
+          right: 0,
           width: 12,
           height: 12,
           cursor: 'se-resize',
@@ -266,7 +266,7 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          bottom: -4,
+          bottom: 0,
           left: 8,
           right: 8,
           height: 8,
@@ -278,8 +278,8 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{
           position: 'absolute',
-          bottom: -4,
-          left: -4,
+          bottom: 0,
+          left: 0,
           width: 12,
           height: 12,
           cursor: 'sw-resize',
@@ -291,7 +291,7 @@ export const Resizer = (props: ResizerProps) => {
         style={{
           position: 'absolute',
           top: 8,
-          left: -4,
+          left: 0,
           bottom: 8,
           width: 8,
           cursor: 'w-resize',

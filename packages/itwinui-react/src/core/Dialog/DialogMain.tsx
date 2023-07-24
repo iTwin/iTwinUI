@@ -182,7 +182,6 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         tabIndex={-1}
         style={{
           transform,
-          overflow: 'unset',
           ...style,
           ...propStyle,
         }}
