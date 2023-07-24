@@ -14,7 +14,7 @@ export type InputProps = {
   size?: 'small' | 'large';
   /**
    * Modify the native `size` attribute of the `<input>` element.
-   * The `width` or `inline-size` attributes must be unset in order to use this prop.
+   * The `width` or `inline-size` property must be unset in order to use this prop.
    */
   htmlSize?: number;
 };
