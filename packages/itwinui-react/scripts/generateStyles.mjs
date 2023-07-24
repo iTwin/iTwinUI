@@ -26,7 +26,6 @@ const removeIfExists = async (_path) => {
 };
 
 const rawCssText =
-  '@charset "utf-8";\n' +
   (await readPackageOnDisk('@itwin/itwinui-variables')) +
   (await readPackageOnDisk('@itwin/itwinui-css')).replace(
     copyrightBannerJs,

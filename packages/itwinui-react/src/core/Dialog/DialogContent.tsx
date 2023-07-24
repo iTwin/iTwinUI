@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useTheme } from '../utils/index.js';
+import { supportsHas, useMergedRefs, useTheme } from '../utils/index.js';
 
 export type DialogContentProps = {
   /**
@@ -25,10 +25,26 @@ export const DialogContent = React.forwardRef<
   DialogContentProps
 >((props, ref) => {
   const { children, className, ...rest } = props;
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
   useTheme();
+
+  React.useEffect(() => {
+    // firefox hack for adding data-iui-flex in absence of :has
+    if (!supportsHas()) {
+      const dialog = contentRef.current?.closest('[role=dialog]');
+      if (dialog instanceof HTMLElement) {
+        dialog.dataset.iuiFlex = 'true';
+      }
+    }
+  }, []);
+
   return (
-    <div className={cx('iui-dialog-content', className)} ref={ref} {...rest}>
+    <div
+      className={cx('iui-dialog-content', className)}
+      ref={useMergedRefs(contentRef, ref)}
+      {...rest}
+    >
       {children}
     </div>
   );

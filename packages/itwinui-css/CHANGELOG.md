@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.4
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
+
 ## 1.11.3
 
 ### Patch Changes
