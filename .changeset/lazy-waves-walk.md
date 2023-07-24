@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-react': major
 ---
 
-'wrapperProps', 'iconProps', 'labelProps', 'subLabelProps' added to RadioTile to individually customize each part of the component.'
+`RadioTile`'s `className` and `style` props will now be applied on the `<input>` element instead of the wrapper. Added `wrapperProps`, `iconProps`, `labelProps`, `subLabelProps` to individually customize each part of the component.
