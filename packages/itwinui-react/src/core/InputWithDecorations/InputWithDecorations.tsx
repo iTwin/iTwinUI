@@ -20,15 +20,10 @@ const InputWithDecorationsContext = React.createContext<
 >(undefined);
 
 const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
-  const { children, size, isDisabled, ...rest } = props;
+  const { children, size, disabled, ...rest } = props;
   return (
-    <InputWithDecorationsContext.Provider value={{ size, isDisabled }}>
-      <InputFlexContainer
-        isDisabled={isDisabled}
-        size={size}
-        ref={ref}
-        {...rest}
-      >
+    <InputWithDecorationsContext.Provider value={{ size, disabled }}>
+      <InputFlexContainer disabled={disabled} size={size} ref={ref} {...rest}>
         {children}
       </InputFlexContainer>
     </InputWithDecorationsContext.Provider>
@@ -44,7 +39,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   const { id: idProp, size, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
-  const { size: contextSize, isDisabled } = useSafeContext(
+  const { size: contextSize, disabled } = useSafeContext(
     InputWithDecorationsContext,
   );
 
@@ -53,7 +48,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
       as='input'
       ref={refs}
       data-iui-size={size ?? contextSize}
-      disabled={isDisabled}
+      disabled={disabled}
       id={idProp}
       {...rest}
     />
@@ -86,7 +81,7 @@ const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
 
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   const { children, size, ...rest } = props;
-  const { size: contextSize, isDisabled } = useSafeContext(
+  const { size: contextSize, disabled } = useSafeContext(
     InputWithDecorationsContext,
   );
 
@@ -95,7 +90,7 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
       ref={ref}
       size={size ?? contextSize}
       styleType='borderless'
-      disabled={isDisabled}
+      disabled={disabled}
       {...rest}
     >
       {children}

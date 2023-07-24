@@ -27,11 +27,11 @@ import {
   ComboBoxStateContext,
 } from './helpers.js';
 import { ComboBoxDropdown } from './ComboBoxDropdown.js';
-import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 import { ComboBoxInput } from './ComboBoxInput.js';
-import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
+import { InputGrid } from '../InputGrid/index.js';
+import { StatusMessage } from '../StatusMessage/index.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -179,6 +179,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     multiple = false,
     onShow,
     onHide,
+    message,
+    status,
     ...rest
   } = props;
 
@@ -530,30 +532,36 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             multiple,
           }}
         >
-          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
-            <>
-              <ComboBoxInput
-                value={inputValue}
-                {...inputProps}
-                onChange={handleOnInput}
-                selectTags={
-                  isMultipleEnabled(selected, multiple)
-                    ? selected.map((index) => {
-                        const item = optionsRef.current[index];
-                        return (
-                          <SelectTag key={item.label} label={item.label} />
-                        );
-                      })
-                    : undefined
-                }
-              />
-            </>
-            <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
+          <InputGrid>
+            <ComboBoxInput
+              status={status}
+              disabled={inputProps?.disabled}
+              value={inputValue}
+              {...inputProps}
+              onChange={handleOnInput}
+              selectTags={
+                isMultipleEnabled(selected, multiple)
+                  ? selected.map((index) => {
+                      const item = optionsRef.current[index];
+                      return <SelectTag key={item.label} label={item.label} />;
+                    })
+                  : undefined
+              }
+              {...rest}
+            />
 
             {multiple ? (
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
             ) : null}
-          </ComboBoxInputContainer>
+
+            {message && typeof message === 'string' ? (
+              <StatusMessage status={status}>{message}</StatusMessage>
+            ) : (
+              React.isValidElement(message) &&
+              React.cloneElement(message as JSX.Element, { status })
+            )}
+          </InputGrid>
+
           <ComboBoxDropdown
             {...dropdownMenuProps}
             onShow={onShow}

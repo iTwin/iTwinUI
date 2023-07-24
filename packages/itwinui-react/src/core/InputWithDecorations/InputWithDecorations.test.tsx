@@ -27,7 +27,7 @@ it('should render correctly in its most basic state', () => {
 
 it('should render disabled component', () => {
   const { container } = render(
-    <InputWithDecorations isDisabled>
+    <InputWithDecorations disabled>
       <InputWithDecorations.Input />
       <InputWithDecorations.Button>+</InputWithDecorations.Button>
     </InputWithDecorations>,

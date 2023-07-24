@@ -8,7 +8,7 @@ import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 
 export type InputFlexContainerProps = {
-  isDisabled?: boolean;
+  disabled?: boolean;
   status?: 'positive' | 'warning' | 'negative';
   size?: 'small' | 'large';
 };
@@ -18,15 +18,14 @@ export type InputFlexContainerProps = {
  * @private
  */
 export const InputFlexContainer = React.forwardRef((props, ref) => {
-  const { isDisabled, status, children, className, size, style, ...rest } =
-    props;
+  const { disabled, status, children, className, size, style, ...rest } = props;
 
   return (
     <Box
       className={cx('iui-input-flex-container', className)}
       data-iui-status={status}
       data-iui-size={size}
-      data-iui-disabled={isDisabled ? 'true' : undefined}
+      data-iui-disabled={disabled ? 'true' : undefined}
       ref={ref}
       style={style}
       {...rest}
