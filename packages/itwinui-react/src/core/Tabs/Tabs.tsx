@@ -745,21 +745,23 @@ TabsPanel.displayName = 'Tabs.Panel';
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
  * <Tabs>
- *   <Tabs.Tab>
- *     <Tabs.TabInfo>
- *       <Tabs.TabLabel>Label 1</Tabs.TabLabel>
- *     </Tabs.TabInfo>
- *   </Tabs.Tab>
- *   <Tabs.Tab>
- *     <Tabs.TabInfo>
- *       <Tabs.TabLabel>Label 2</Tabs.TabLabel>
- *     </Tabs.TabInfo>
- *   </Tabs.Tab>
- *   <Tabs.Tab>
- *     <Tabs.TabInfo>
- *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
- *     </Tabs.TabInfo>
- *   </Tabs.Tab>
+ *   <Tabs.TabList>
+ *     <Tabs.Tab>
+ *       <Tabs.TabInfo>
+ *         <Tabs.TabLabel>Label 1</Tabs.TabLabel>
+ *       </Tabs.TabInfo>
+ *     </Tabs.Tab>
+ *     <Tabs.Tab>
+ *       <Tabs.TabInfo>
+ *         <Tabs.TabLabel>Label 2</Tabs.TabLabel>
+ *       </Tabs.TabInfo>
+ *     </Tabs.Tab>
+ *     <Tabs.Tab>
+ *       <Tabs.TabInfo>
+ *         <Tabs.TabLabel>Label 3</Tabs.TabLabel>
+ *       </Tabs.TabInfo>
+ *     </Tabs.Tab>
+ *   </Tabs.TabList>
  *   <Tabs.Actions>
  *     <Tabs.Action>
  *       <Button>Sample Button</Button>,
