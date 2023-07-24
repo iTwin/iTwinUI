@@ -48,7 +48,7 @@ it('should render radio tile with icon', () => {
 it('should apply class and style to different parts of the RadioTile component', () => {
   const { container } = render(
     <RadioTile
-      className='tile-class'
+      className='custom-class'
       style={{ width: 80 }}
       wrapperProps={{ className: 'wrapper-class', style: { width: 80 } }}
       iconProps={{ className: 'icon-class', style: { width: 80 } }}
@@ -62,37 +62,36 @@ it('should apply class and style to different parts of the RadioTile component',
 
   // Test for RadioTile wrapper
   const wrapperElement = container.querySelector(
-    '.wrapper-class',
+    '.iui-radio-tile.wrapper-class',
   ) as HTMLElement;
   expect(wrapperElement).toBeTruthy();
   expect(wrapperElement.style.width).toBe('80px');
 
+  // Test for RadioTile input
+  const inputElement = container.querySelector(
+    '.iui-radio-tile-input.custom-class',
+  ) as HTMLElement;
+  expect(inputElement).toBeTruthy();
+  expect(inputElement.style.width).toBe('80px');
+
   // Test for RadioTile icon
-  const iconElement = container.querySelector('.icon-class') as HTMLElement;
+  const iconElement = container.querySelector(
+    '.iui-radio-tile-icon.icon-class',
+  ) as HTMLElement;
   expect(iconElement).toBeTruthy();
   expect(iconElement.style.width).toBe('80px');
 
   // Test for RadioTile label
-  const labelElement = container.querySelector('.label-class') as HTMLElement;
+  const labelElement = container.querySelector(
+    '.iui-radio-tile-label.label-class',
+  ) as HTMLElement;
   expect(labelElement).toBeTruthy();
   expect(labelElement.style.width).toBe('80px');
 
   // Test for RadioTile sublabel
   const sublabelElement = container.querySelector(
-    '.sublabel-class',
+    '.iui-radio-tile-sublabel.sublabel-class',
   ) as HTMLElement;
   expect(sublabelElement).toBeTruthy();
   expect(sublabelElement.style.width).toBe('80px');
 });
-
-const { debug } = render(
-  <RadioTile
-    className='tile-class'
-    style={{ width: 80 }}
-    wrapperProps={{ className: 'wrapper-class', style: { width: 80 } }}
-    label='Tile Label'
-    description='Tile Description'
-    icon={<SvgPlaceholder />}
-  />,
-);
-debug();

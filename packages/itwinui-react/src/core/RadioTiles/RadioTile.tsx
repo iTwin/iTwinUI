@@ -48,6 +48,7 @@ export const RadioTile = React.forwardRef((props, ref) => {
     icon,
     label,
     description,
+    className,
     wrapperProps,
     iconProps,
     labelProps,
@@ -62,24 +63,24 @@ export const RadioTile = React.forwardRef((props, ref) => {
   return (
     <Box
       as='label'
-      className={cx('iui-radio-tile', wrapperProps?.className)}
       data-iui-disabled={props.disabled ? 'true' : undefined}
       {...wrapperProps}
+      className={cx('iui-radio-tile', wrapperProps?.className)}
     >
       <Box
         as='input'
-        className={cx('iui-radio-tile-input')}
+        ref={refs}
+        className={cx('iui-radio-tile-input', className)}
         style={style}
         type='radio'
-        ref={refs}
         {...rest}
       />
       {icon && (
         <Box
           as='span'
-          className={cx('iui-radio-tile-icon', iconProps?.className)}
           aria-hidden
           {...iconProps}
+          className={cx('iui-radio-tile-icon', iconProps?.className)}
         >
           {icon}
         </Box>
@@ -87,8 +88,8 @@ export const RadioTile = React.forwardRef((props, ref) => {
       {label && (
         <Box
           as='div'
-          className={cx('iui-radio-tile-label', labelProps?.className)}
           {...labelProps}
+          className={cx('iui-radio-tile-label', labelProps?.className)}
         >
           {label}
         </Box>
@@ -96,8 +97,8 @@ export const RadioTile = React.forwardRef((props, ref) => {
       {description && (
         <Box
           as='div'
-          className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
           {...subLabelProps}
+          className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
         >
           {description}
         </Box>
