@@ -15,11 +15,7 @@ import {
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
 } from '../utils/index.js';
-import type {
-  PopoverProps,
-  InputContainerProps,
-  CommonProps,
-} from '../utils/index.js';
+import type { PopoverProps, CommonProps } from '../utils/index.js';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
@@ -144,7 +140,7 @@ export type ComboBoxProps<T> = {
    */
   onHide?: () => void;
 } & ComboboxMultipleTypeProps<T> &
-  Pick<InputContainerProps, 'status'> &
+  Pick<React.ComponentProps<typeof Input>, 'status'> &
   CommonProps;
 
 /** Returns either `option.id` or derives a stable id using `idPrefix` and `option.label` (without whitespace) */
