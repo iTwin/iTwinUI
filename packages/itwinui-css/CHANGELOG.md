@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.0.0-dev.5
+
+### Major Changes
+
+- [#1369](https://github.com/iTwin/iTwinUI/pull/1369): The `iui-breadcrumbs-item-overrides` class name has been removed. Breadcrumbs items now use the `iui-breadcrumbs-content` class name.
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): The following class names have been updated:
+
+  - `iui-header` -> `iui-expandable-header`
+  - `iui-icon` -> `iui-expandable-block-icon`
+  - `iui-title` -> `iui-expandable-block-title`
+  - `iui-caption` -> `iui-expandable-block-caption`
+
+  The following class names have been removed and updated to be data attributes:
+
+  - `iui-expanded` -> `data-iui-expanded` (boolean)
+  - `iui-small` -> `data-iui-size` (default or small)
+  - `iui-borderless` -> `data-iui-variant` (default or borderless)
+
+- [#1370](https://github.com/iTwin/iTwinUI/pull/1370): `iui-progress-indicator-linear` has been refactored to be a single `<div>`. Size, status, indeterminate variant, animation, etc are now specified using data attributes.
+- [#1328](https://github.com/iTwin/iTwinUI/pull/1328): 'iui-progress-overlay' has been renamed to 'iui-overlay' and moved to 'overlay.scss'
+
+### Minor Changes
+
+- [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
+
+### Patch Changes
+
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Expandable block animation now uses pure css instead of javascript for transitioning.
+
 ## 2.0.0-dev.4
 
 ### Major Changes
