@@ -2,9 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$iui-dialog-width: 380px;
-$iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
-$iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + button width x 2
+$iui-dialog-width: 23.25rem; //  3 x min-height
+$iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
 
 .iui-dialog-wrapper {
   position: fixed;
@@ -60,7 +59,7 @@ $iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + butto
 
 .iui-dialog-default {
   max-width: Max(50%, $iui-dialog-width);
-  min-width: Min(100%, $iui-dialog-width);
+  min-width: $iui-dialog-width;
   min-height: $iui-dialog-min-height;
   max-height: 100vh;
 
@@ -128,11 +127,6 @@ $iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + butto
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
-}
-
-.iui-dialog-resizable {
-  min-height: $iui-dialogue-resizable-min-height;
-  min-width: $iui-dialogue-resizable-min-width;
 }
 
 .iui-dialog-animation {
