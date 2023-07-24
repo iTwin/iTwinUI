@@ -10,6 +10,14 @@ import * as React from 'react';
 // @ts-ignore
 import rawCssText from '../../../styles.js';
 
+/** rule that reverts all v1 styles when used inside a v2 boundary */
+const revertV1Styles = (() => {
+  // using :not(#\#) to artifically inflate the specificity of * selector
+  const allSelector = `:where(.iui-body, [class*='iui-theme-']) :where(.iui-root) :not(#\\#)`;
+  const revertRule = `${allSelector}, ${allSelector}::before, ${allSelector}::after { all: revert-layer; }`;
+  return `@layer itwinui-v1 { ${revertRule} }\n@layer itwinui.v1 { ${revertRule} }`;
+})();
+
 // react <18 fallback for useInsertionEffect, with workaround for webpack getting rid of React namespace
 const _React = React;
 const useIsomorphicInsertionEffect =
@@ -52,8 +60,8 @@ const loadStyles = ({ withLayer = true, document = () => getDocument() }) => {
   }
 
   const cssText = withLayer
-    ? `${layers}\n@layer itwinui.v2 { ${rawCssText} }`
-    : rawCssText;
+    ? `${layers}${revertV1Styles}@layer itwinui.v2 { ${rawCssText} }`
+    : `${revertV1Styles}${rawCssText}`;
 
   const supportsAdopting =
     'adoptedStyleSheets' in Document.prototype &&
