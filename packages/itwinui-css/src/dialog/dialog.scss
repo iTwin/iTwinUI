@@ -36,6 +36,15 @@ $iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + butto
     border: 1px solid;
   }
 
+  // needed to prevent resizable dialog content from escaping when dialog is
+  // too small. also fixes rounded corners in title bar. see PR #1424
+  overflow: hidden;
+
+  &:where(:has(.iui-dialog-content), [data-iui-flex='true']) {
+    display: flex;
+    flex-direction: column;
+  }
+
   &:not(.iui-dialog-visible) {
     visibility: hidden;
     opacity: 0;
@@ -52,6 +61,7 @@ $iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + butto
 .iui-dialog-default {
   max-width: Max(50%, $iui-dialog-width);
   min-width: Min(100%, $iui-dialog-width);
+  min-height: $iui-dialog-min-height;
   max-height: 100vh;
 
   &:not([data-iui-placement]) {
@@ -118,7 +128,6 @@ $iui-dialogue-resizable-min-width: 14.5rem; // 14.5rem = 232px = margins + butto
   display: flex;
   flex-direction: column;
   border: 1px solid var(--iui-color-border);
-  min-height: $iui-dialogue-resizable-min-height;
 }
 
 .iui-dialog-resizable {
