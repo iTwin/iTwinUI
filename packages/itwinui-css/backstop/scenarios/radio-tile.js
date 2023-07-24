@@ -13,7 +13,7 @@ module.exports = [
   }),
   // Hover
   scenario('State hover', {
-    actions: [hover('#test-radio-tile-content')],
+    actions: [hover('#test-radio-tile-1')],
     selectors: ['#demo-default'],
   }),
   // Focus
