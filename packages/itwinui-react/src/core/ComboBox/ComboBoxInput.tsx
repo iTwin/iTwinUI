@@ -214,7 +214,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       ref={refs}
       style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
       status={status}
-      disabled={disabled}
+      isDisabled={disabled}
     >
       <InputWithDecorations.Input
         onKeyDown={handleKeyDown}

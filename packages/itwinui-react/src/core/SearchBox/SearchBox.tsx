@@ -157,7 +157,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
           className,
         )}
         size={size}
-        disabled={isDisabled}
+        isDisabled={isDisabled}
         data-iui-expanded={isExpanded}
         {...rest}
       >
