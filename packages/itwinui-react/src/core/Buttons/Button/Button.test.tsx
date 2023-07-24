@@ -182,3 +182,36 @@ it('should support polymorphic `as` prop', () => {
   expect(button).toHaveTextContent('label');
   expect(button.href).toEqual('https://example.com/');
 });
+
+it('should render [x]Props correctly', () => {
+  const { container } = render(
+    <Button
+      startIcon={<SvgPlaceholder />}
+      endIcon={<SvgPlaceholder />}
+      startIconProps={{ className: 'start-icon-class', style: { width: 80 } }}
+      endIconProps={{ className: 'end-icon-class', style: { width: 80 } }}
+      labelProps={{ className: 'label-class', style: { width: 80 } }}
+    >
+      label
+    </Button>,
+  );
+
+  // Test for Button startIcon
+  const startIconElement = container.querySelector(
+    '.start-icon-class',
+  ) as HTMLElement;
+  expect(startIconElement).toBeTruthy();
+  expect(startIconElement.style.width).toBe('80px');
+
+  // Test for Button endIcon
+  const endIconElement = container.querySelector(
+    '.end-icon-class',
+  ) as HTMLElement;
+  expect(endIconElement).toBeTruthy();
+  expect(endIconElement.style.width).toBe('80px');
+
+  // Test for Button Label
+  const labelElement = container.querySelector('.label-class') as HTMLElement;
+  expect(labelElement).toBeTruthy();
+  expect(labelElement.style.width).toBe('80px');
+});
