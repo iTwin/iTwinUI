@@ -610,7 +610,7 @@ TabsTabIcon.displayName = 'Tabs.TabIcon';
 // ----------------------------------------------------------------------------
 // Tabs.TabInfo component
 
-const TabsTabInfo = polymorphic.span('iui-tab-label');
+const TabsTabInfo = polymorphic.span('iui-tab-info');
 TabsTabInfo.displayName = 'Tabs.TabInfo';
 
 // ----------------------------------------------------------------------------

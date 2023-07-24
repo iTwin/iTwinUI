@@ -80,7 +80,7 @@ $borderless-horizontal-tab-min-height: calc(
       transition: fill var(--iui-duration-1) ease-out;
     }
 
-    + .iui-tab-label {
+    + .iui-tab-info {
       margin-inline-start: var(--iui-size-xs);
     }
   }
@@ -117,7 +117,7 @@ $borderless-horizontal-tab-min-height: calc(
   }
 }
 
-@mixin iui-tab-label {
+@mixin iui-tab-info {
   text-align: start;
   max-inline-size: 60ch;
 
