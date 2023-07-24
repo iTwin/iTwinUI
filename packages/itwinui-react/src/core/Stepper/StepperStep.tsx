@@ -120,6 +120,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
     >
       <Box
         as='div'
+        {...trackContentProps}
         className={cx(
           'iui-stepper-track-content',
           trackContentProps?.className,
@@ -127,6 +128,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
       >
         <Box
           as='span'
+          {...circleProps}
           className={cx('iui-stepper-circle', circleProps?.className)}
         >
           {index + 1}
@@ -136,6 +138,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
       {type === 'default' && (
         <Box
           as='span'
+          {...nameProps}
           className={cx('iui-stepper-step-name', nameProps?.className)}
         >
           {title}
