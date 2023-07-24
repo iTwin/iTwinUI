@@ -87,7 +87,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
       )}
       {label && (
         <Box
-          as='div'
           {...labelProps}
           className={cx('iui-radio-tile-label', labelProps?.className)}
         >
@@ -96,7 +95,6 @@ export const RadioTile = React.forwardRef((props, ref) => {
       )}
       {description && (
         <Box
-          as='div'
           {...subLabelProps}
           className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
         >
