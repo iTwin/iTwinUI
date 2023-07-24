@@ -60,8 +60,8 @@ const loadStyles = ({ withLayer = true, document = () => getDocument() }) => {
   }
 
   const cssText = withLayer
-    ? `@charset "utf-8";\n${layers}${revertV1Styles}@layer itwinui.v2 { ${rawCssText} }`
-    : `@charset "utf-8";\n${revertV1Styles}${rawCssText}`;
+    ? `@charset "utf-8";\n${layers}\n${revertV1Styles}\n@layer itwinui.v2 { ${rawCssText} }`
+    : `@charset "utf-8";\n${revertV1Styles}\n${rawCssText}`;
 
   const supportsAdopting =
     'adoptedStyleSheets' in Document.prototype &&
