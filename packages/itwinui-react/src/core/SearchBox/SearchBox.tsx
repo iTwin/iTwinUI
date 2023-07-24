@@ -32,7 +32,7 @@ const SearchBoxContext = React.createContext<
       /**
        * Context prop for disabling subcomponents
        */
-      disabled?: boolean;
+      isDisabled?: boolean;
       /**
        * Id to pass to input
        */
@@ -103,7 +103,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
   const {
     size,
     expandable = false,
-    disabled = false,
+    isDisabled = false,
     onCollapse: onCollapseProp,
     onExpand: onExpandProp,
     isExpanded: isExpandedProp,
@@ -138,7 +138,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
     <SearchBoxContext.Provider
       value={{
         size,
-        disabled,
+        isDisabled,
         onCollapse,
         onExpand,
         inputRef,
@@ -157,7 +157,7 @@ const SearchBoxComponent = React.forwardRef((props, ref) => {
           className,
         )}
         size={size}
-        disabled={disabled}
+        disabled={isDisabled}
         data-iui-expanded={isExpanded}
         {...rest}
       >
@@ -240,7 +240,7 @@ SearchBoxIcon.displayName = 'SearchBox.Icon';
 const SearchBoxInput = React.forwardRef((props, ref) => {
   const { className, id: idProp, ...rest } = props;
 
-  const { inputId, setInputId, disabled, inputRef } =
+  const { inputId, setInputId, isDisabled, inputRef } =
     useSafeContext(SearchBoxContext);
 
   React.useEffect(() => {
@@ -257,7 +257,7 @@ const SearchBoxInput = React.forwardRef((props, ref) => {
       role='searchbox'
       type='text'
       className={cx('iui-search-input', className)}
-      disabled={disabled}
+      disabled={isDisabled}
       {...rest}
     />
   );
@@ -268,14 +268,14 @@ SearchBoxInput.displayName = 'SearchBox.Input';
 
 const SearchBoxButton = React.forwardRef((props, ref) => {
   const { children, ...rest } = props;
-  const { size: sizeContext, disabled } = useSafeContext(SearchBoxContext);
+  const { size: sizeContext, isDisabled } = useSafeContext(SearchBoxContext);
 
   return (
     <IconButton
       styleType='borderless'
       size={sizeContext}
       ref={ref}
-      disabled={disabled}
+      disabled={isDisabled}
       {...rest}
     >
       {children ?? <SvgSearch />}
@@ -292,7 +292,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
   const {
     onCollapse,
     size: sizeContext,
-    disabled,
+    isDisabled,
   } = useSafeContext(SearchBoxContext);
 
   return (
@@ -300,7 +300,7 @@ const SearchBoxCollapseButton = React.forwardRef((props, ref) => {
       ref={ref}
       aria-label='Close searchbox'
       size={sizeContext}
-      disabled={disabled}
+      disabled={isDisabled}
       onClick={mergeEventHandlers(onClickProp, onCollapse)}
       {...rest}
     >
@@ -318,7 +318,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
   const {
     onExpand,
     size: sizeContext,
-    disabled,
+    isDisabled,
     openButtonRef,
   } = useSafeContext(SearchBoxContext);
 
@@ -328,7 +328,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       className={cx('iui-searchbox-open-button', className)}
       aria-label='Expand searchbox'
       size={sizeContext}
-      disabled={disabled}
+      disabled={isDisabled}
       onClick={mergeEventHandlers(onClickProp, onExpand)}
       {...rest}
     >
