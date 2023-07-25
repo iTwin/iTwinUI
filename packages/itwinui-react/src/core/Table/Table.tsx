@@ -277,6 +277,14 @@ export type TableProps<
    */
   enableColumnReordering?: boolean;
   /**
+   * Passes props to Table header wrapper.
+   */
+  headerWrapperProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to Table header.
+   */
+  headerProps?: React.ComponentProps<'div'>;
+  /**
    * Function that returns index of the row that you want to scroll to.
    *
    * When using with lazy-loading table, you need to take care that row is already loaded.
@@ -393,6 +401,8 @@ export const Table = <
     styleType = 'default',
     enableVirtualization = false,
     enableColumnReordering = false,
+    headerWrapperProps,
+    headerProps,
     ...rest
   } = props;
 
@@ -890,7 +900,7 @@ export const Table = <
           });
           return (
             <Box
-              className='iui-table-header-wrapper'
+              as='div'
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
@@ -899,8 +909,17 @@ export const Table = <
                 }
               }}
               key={headerGroupProps.key}
+              {...headerWrapperProps}
+              className={cx(
+                'iui-table-header-wrapper',
+                headerWrapperProps?.className,
+              )}
             >
-              <Box className='iui-table-header'>
+              <Box
+                as='div'
+                {...headerProps}
+                className={cx('iui-table-header', headerProps?.className)}
+              >
                 <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
                     const { onClick, ...restSortProps } =
