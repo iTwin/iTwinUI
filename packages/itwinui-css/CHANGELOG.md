@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.11.5
+
+### Patch Changes
+
+- [#1434](https://github.com/iTwin/iTwinUI/pull/1434): Fixed a few different resizing issues in Dialog.
+
 ## 1.11.4
 
 ### Patch Changes

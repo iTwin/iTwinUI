@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.11.10
+
+### Patch Changes
+
+- [#1434](https://github.com/iTwin/iTwinUI/pull/1434), [#1427](https://github.com/iTwin/iTwinUI/pull/1427): Fixed a few different resizing issues in Dialog.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.5
+
 ## 2.11.9
 
 ### Patch Changes
