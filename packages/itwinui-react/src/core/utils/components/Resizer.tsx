@@ -63,7 +63,12 @@ export const Resizer = (props: ResizerProps) => {
     let translateX = initialTranslateX;
     let translateY = initialTranslateY;
 
-    const minWidth = parseFloat(getComputedStyle(elementRef.current).minWidth);
+    let minWidth = parseFloat(getComputedStyle(elementRef.current).minWidth);
+
+    if (Number.isNaN(minWidth)) {
+      minWidth = 380;
+    }
+
     const minHeight = parseFloat(
       getComputedStyle(elementRef.current).minHeight,
     );
