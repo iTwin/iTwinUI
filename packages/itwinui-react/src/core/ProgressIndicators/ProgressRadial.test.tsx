@@ -11,7 +11,7 @@ it('renders determinate ProgressRadial', () => {
   const { container } = render(<ProgressRadial value={43} />);
 
   const spinner = container.querySelector('.iui-progress-indicator-radial');
-  expect(spinner).toHaveClass('iui-determinate');
+  expect(spinner).not.toHaveAttribute('data-iui-indeterminate');
   expect(spinner).toHaveStyle('--iui-progress-percentage: 43%');
 });
 
@@ -27,7 +27,7 @@ it('should add className and style props correctly', () => {
 it('renders indeterminate ProgressRadial', () => {
   const { container } = render(<ProgressRadial indeterminate={true} />);
   const spinner = container.querySelector('.iui-progress-indicator-radial');
-  expect(spinner).toHaveClass('iui-indeterminate');
+  expect(spinner).toHaveAttribute('data-iui-indeterminate', 'true');
 });
 
 it('renders positive ProgressRadial', () => {

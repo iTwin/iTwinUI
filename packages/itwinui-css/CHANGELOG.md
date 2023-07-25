@@ -1,5 +1,34 @@
 # Changelog
 
+## 2.0.0-dev.5
+
+### Major Changes
+
+- [#1369](https://github.com/iTwin/iTwinUI/pull/1369): The `iui-breadcrumbs-item-overrides` class name has been removed. Breadcrumbs items now use the `iui-breadcrumbs-content` class name.
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): The following class names have been updated:
+
+  - `iui-header` -> `iui-expandable-header`
+  - `iui-icon` -> `iui-expandable-block-icon`
+  - `iui-title` -> `iui-expandable-block-title`
+  - `iui-caption` -> `iui-expandable-block-caption`
+
+  The following class names have been removed and updated to be data attributes:
+
+  - `iui-expanded` -> `data-iui-expanded` (boolean)
+  - `iui-small` -> `data-iui-size` (default or small)
+  - `iui-borderless` -> `data-iui-variant` (default or borderless)
+
+- [#1370](https://github.com/iTwin/iTwinUI/pull/1370): `iui-progress-indicator-linear` has been refactored to be a single `<div>`. Size, status, indeterminate variant, animation, etc are now specified using data attributes.
+- [#1328](https://github.com/iTwin/iTwinUI/pull/1328): 'iui-progress-overlay' has been renamed to 'iui-overlay' and moved to 'overlay.scss'
+
+### Minor Changes
+
+- [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
+
+### Patch Changes
+
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Expandable block animation now uses pure css instead of javascript for transitioning.
+
 ## 2.0.0-dev.4
 
 ### Major Changes
@@ -47,6 +76,18 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.11.5
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424): Fixed a few different resizing issues in Dialog.
+
+## 1.11.4
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
 
 ## 1.11.3
 
