@@ -46,6 +46,8 @@ export type UseThemeProps = {
  *
  * @param theme Light, dark, or based on OS setting.
  * @param themeOptions Options that override default theming behavior.
+ *
+ * @deprecated This hook will be removed in v3. Please use `ThemeProvider` instead.
  */
 export const useTheme = (
   theme?: UseThemeProps['theme'],
