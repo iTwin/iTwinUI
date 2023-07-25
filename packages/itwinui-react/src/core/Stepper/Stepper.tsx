@@ -20,7 +20,7 @@ export type StepProperties = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
-};
+} & React.HTMLAttributes<HTMLLIElement>;
 
 export type StepperProps = {
   /**
@@ -44,6 +44,22 @@ export type StepperProps = {
    *  Click handler on completed step.
    */
   onStepClick?: (clickedIndex: number) => void;
+  /**
+   * Callback that can provide additional props for `<li>` representing a step.
+   */
+  stepProps?: (index: number) => React.ComponentProps<'li'>;
+  /**
+   * Allows props to be passed for iui-stepper-step-track-content
+   */
+  trackContentProps?: (index: number) => React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for iui-stepper-step-circle
+   */
+  circleProps?: (index: number) => React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for iui-stepper-step-circle
+   */
+  nameProps?: (index: number) => React.ComponentProps<'span'>;
 };
 
 const defaultStepperLocalization: StepperLocalization = {
@@ -58,6 +74,10 @@ export const Stepper = React.forwardRef((props, ref) => {
     type = 'default',
     localization = defaultStepperLocalization,
     onStepClick,
+    stepProps,
+    trackContentProps,
+    circleProps,
+    nameProps,
     ...rest
   } = props;
 
@@ -69,18 +89,28 @@ export const Stepper = React.forwardRef((props, ref) => {
   return (
     <Box className={'iui-stepper'} ref={ref} {...rest}>
       <ol>
-        {steps.map((s, index) => (
-          <StepperStep
-            key={index}
-            index={index}
-            title={type === 'long' ? '' : s.name}
-            currentStepNumber={boundedCurrentStep}
-            totalSteps={steps.length}
-            type={type}
-            onClick={onStepClick}
-            description={s.description}
-          />
-        ))}
+        {steps.map((s, index) => {
+          const thisStepProps = stepProps?.(index);
+          const thisTrackContentProps = trackContentProps?.(index);
+          const thisCircleProps = circleProps?.(index);
+          const thisNameProps = nameProps?.(index);
+          return (
+            <StepperStep
+              stepProps={thisStepProps}
+              trackContentProps={thisTrackContentProps}
+              circleProps={thisCircleProps}
+              nameProps={thisNameProps}
+              key={index}
+              index={index}
+              title={type === 'long' ? '' : s.name}
+              currentStepNumber={boundedCurrentStep}
+              totalSteps={steps.length}
+              type={type}
+              onClick={onStepClick}
+              description={s.description}
+            />
+          );
+        })}
       </ol>
       {type === 'long' && (
         <Box className='iui-stepper-steps-label'>

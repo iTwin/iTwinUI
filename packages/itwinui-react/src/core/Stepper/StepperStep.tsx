@@ -110,6 +110,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
       style={{
         width: type === 'default' ? `${100 / totalSteps}%` : undefined,
         ...style,
+        ...stepProps?.style,
       }}
       onClick={onCompletedClick}
       onKeyDown={onKeyDown}
@@ -119,7 +120,6 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <Box
-        as='div'
         {...trackContentProps}
         className={cx(
           'iui-stepper-track-content',

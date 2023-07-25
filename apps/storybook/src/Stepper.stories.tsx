@@ -52,6 +52,26 @@ Basic.args = {
     { name: 'Next Step' },
     { name: 'Last Step' },
   ],
+  // stepProps: (index: number) => {
+  //   return {
+  //     className: `some-class-${index}`,
+  //   };
+  // },
+  // trackContentProps: (index: number) => {
+  //   return {
+  //     className: `some-class-${index}`,
+  //   };
+  // },
+  // circleProps: (index: number) => {
+  //   return {
+  //     className: `some-class-${index}`,
+  //   };
+  // },
+  // nameProps: (index: number) => {
+  //   return {
+  //     className: `some-class-${index}`,
+  //   };
+  // },
 };
 
 export const Long: Story<StepperProps> = (args) => {
