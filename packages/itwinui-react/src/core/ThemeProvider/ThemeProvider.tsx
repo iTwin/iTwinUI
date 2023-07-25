@@ -60,20 +60,28 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
         themeOptions?: RootProps['themeOptions'];
-        styleOptions?: {
-          /**
-           * If true, all styles will be wrapped in a cascade layer named `itwinui`.
-           * This helps avoid specificity battles with application styles.
-           *
-           * @default true
-           */
-          withLayer?: boolean;
-        };
+        /**
+         * If false, styles will not be included at runtime, so .css will need to
+         * be manually imported. By default, styles are included and wrapped in a layer.
+         *
+         * @default { withLayer: true }
+         */
+        includeCss?:
+          | boolean
+          | {
+              /**
+               * If true, all styles will be wrapped in a cascade layer named `itwinui`.
+               * This helps avoid specificity battles with application styles.
+               *
+               * @default true
+               */
+              withLayer?: boolean;
+            };
         children: Required<React.ReactNode>;
       }
     | {
         themeOptions?: ThemeOptions;
-        styleOptions?: never;
+        includeCss?: never;
         children?: undefined;
       }
   );
@@ -109,7 +117,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     theme: themeProp,
     children,
     themeOptions,
-    styleOptions = { withLayer: true },
+    includeCss = { withLayer: true },
     ...rest
   } = props;
 
@@ -146,10 +154,14 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       ref={mergedRefs}
       {...rest}
     >
-      <Styles
-        withLayer={styleOptions.withLayer}
-        document={() => rootRef.current?.ownerDocument}
-      />
+      {includeCss ? (
+        <Styles
+          withLayer={
+            typeof includeCss === 'object' ? includeCss.withLayer : false
+          }
+          document={() => rootRef.current?.ownerDocument}
+        />
+      ) : null}
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
