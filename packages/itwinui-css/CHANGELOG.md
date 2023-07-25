@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#1434](https://github.com/iTwin/iTwinUI/pull/1434): Fixed a few different resizing issues in Dialog.
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424): Fixed a few different resizing issues in Dialog.
 
 ## 1.11.4
 
