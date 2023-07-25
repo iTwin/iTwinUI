@@ -77,6 +77,18 @@
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
 
+## 1.11.5
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424): Fixed a few different resizing issues in Dialog.
+
+## 1.11.4
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
+
 ## 1.11.3
 
 ### Patch Changes
