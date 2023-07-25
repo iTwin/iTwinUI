@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import cx from 'classnames';
 import * as React from 'react';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -57,9 +58,17 @@ export type StepperProps = {
    */
   circleProps?: (index: number) => React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for iui-stepper-step-circle
+   * Allows props to be passed for iui-stepper-step-name
    */
   nameProps?: (index: number) => React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for iui-stepper-steps-label
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for iui-stepper-steps-label-count
+   */
+  labelCountProps?: React.ComponentProps<'span'>;
 };
 
 const defaultStepperLocalization: StepperLocalization = {
@@ -78,6 +87,8 @@ export const Stepper = React.forwardRef((props, ref) => {
     trackContentProps,
     circleProps,
     nameProps,
+    labelProps,
+    labelCountProps,
     ...rest
   } = props;
 
@@ -113,8 +124,14 @@ export const Stepper = React.forwardRef((props, ref) => {
         })}
       </ol>
       {type === 'long' && (
-        <Box className='iui-stepper-steps-label'>
-          <Box as='span' className='iui-stepper-steps-label-count'>
+        <Box className={cx('iui-stepper-steps-label', labelProps?.className)}>
+          <Box
+            as='span'
+            className={cx(
+              'iui-stepper-steps-label-count',
+              labelCountProps?.className,
+            )}
+          >
             {localization.stepsCountLabel(boundedCurrentStep + 1, steps.length)}
           </Box>
           {steps[boundedCurrentStep].name}
