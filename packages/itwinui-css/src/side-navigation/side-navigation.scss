@@ -161,8 +161,27 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 }
 
+//animating technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
+.iui-submenu {
+  display: grid;
+  grid-template-columns: 0fr;
+  overflow: hidden;
+  z-index: -1;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: grid-template-columns var(--iui-duration-2), visibility var(--iui-duration-2),
+      transform var(--iui-duration-2);
+    transition-timing-function: ease-out;
+  }
+}
+
 .iui-side-navigation-submenu {
-  min-inline-size: calc(var(--iui-size-3xl) * 2);
+  // min-block-size: 0;
+  min-inline-size: 0;
+  visibility: hidden;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility var(--iui-duration-2) ease-out;
+  }
+  // min-inline-size: calc(var(--iui-size-3xl) * 2);
   max-inline-size: 50vw;
   block-size: 100%;
   overflow-x: hidden;
@@ -171,13 +190,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   resize: horizontal;
   background-color: var(--iui-color-background);
   border-inline-end: 1px solid var(--iui-color-border);
-
-  @include mixins.iui-transition-group;
-
-  &.iui-enter-active,
-  &.iui-exit-active {
-    display: flex;
-  }
 
   &-content {
     padding: 0 var(--iui-size-s) var(--iui-size-s);
@@ -214,8 +226,24 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 }
 
+.iui-submenu.iui-expanded {
+  grid-template-columns: 1fr;
+}
+
+.iui-submenu.iui-expanded .iui-side-navigation-submenu {
+  visibility: visible;
+  transform: translateX(0%);
+}
+
+.iui-submenu {
+  &:not(.iui-expanded) {
+    transform: translateX(-100%);
+  }
+}
+
 .iui-side-navigation-wrapper {
   display: flex;
   position: relative;
   block-size: 100%;
+  isolation: isolate;
 }

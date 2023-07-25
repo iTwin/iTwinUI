@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { WithCSSTransition, SvgChevronRight, Box } from '../utils/index.js';
+import { SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
@@ -151,14 +151,19 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
         {expanderPlacement === 'bottom' && ExpandButton}
       </Box>
       {submenu && (
-        <WithCSSTransition
-          in={isSubmenuOpen}
-          dimension='width'
-          timeout={200}
-          classNames='iui'
+        <Box
+          className={cx(
+            'iui-submenu',
+            {
+              'iui-expanded': isSubmenuOpen,
+            },
+            className,
+          )}
+          ref={forwardedRef}
+          {...rest}
         >
           {submenu}
-        </WithCSSTransition>
+        </Box>
       )}
     </Box>
   );
