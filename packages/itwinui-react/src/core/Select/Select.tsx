@@ -349,7 +349,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       {...rest}
     >
       <PopoverCopy
-        applyBackground={false}
         content={
           <Menu
             role='listbox'

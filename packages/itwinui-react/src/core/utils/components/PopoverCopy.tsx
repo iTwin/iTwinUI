@@ -67,7 +67,9 @@ function usePopover({
   const click = useClick(context, {
     enabled: controlledOpen == null,
   });
-  const dismiss = useDismiss(context, { enabled: controlledOpen == null });
+  const dismiss = useDismiss(context, {
+    enabled: controlledOpen == null,
+  });
   const role = useRole(context);
 
   const interactions = useInteractions([click, dismiss, role]);
@@ -110,7 +112,7 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     className,
     style,
     portal = true,
-    applyBackground = true,
+    applyBackground = false,
     placement,
     visible,
     onToggleVisible,
