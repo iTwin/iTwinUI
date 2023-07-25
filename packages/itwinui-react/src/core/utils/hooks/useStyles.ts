@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { getDocument } from '../functions/dom.js';
+import { ThemeContext } from '../../ThemeProvider/ThemeProvider.js';
 import * as React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- only gets created at build-time
@@ -23,15 +24,29 @@ export const useStyles = (options?: {
   withLayer?: boolean;
   document?: () => Document | undefined;
 }) => {
-  const { withLayer = true, document = () => getDocument() } = options ?? {};
+  const context = React.useContext(ThemeContext);
   const loaded = _React.useRef(false);
 
   useIsomorphicInsertionEffect(() => {
-    if (!loaded.current) {
-      loadStyles({ withLayer, document });
-      loaded.current = true;
+    if (loaded.current || context?.includeCss === false) {
+      return;
     }
-  }, [document, loaded, withLayer]);
+
+    const withLayerFromContext =
+      typeof context?.includeCss === 'object'
+        ? context?.includeCss?.withLayer
+        : false;
+
+    const documentFromContext = () =>
+      context?.rootRef.current?.ownerDocument ?? getDocument();
+
+    loadStyles({
+      withLayer: options?.withLayer ?? withLayerFromContext,
+      document: options?.document ?? documentFromContext,
+    });
+
+    loaded.current = true;
+  }, [document, loaded, context]);
 };
 
 // ----------------------------------------------------------------------------

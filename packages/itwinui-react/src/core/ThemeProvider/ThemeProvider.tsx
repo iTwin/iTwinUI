@@ -56,27 +56,31 @@ type RootProps = {
   isInheritingTheme?: boolean;
 };
 
+type IncludeCssProps = {
+  /**
+   * If false, styles will not be included at runtime, so .css will need to
+   * be manually imported. By default, styles are included and wrapped in a layer.
+   *
+   * @default { withLayer: true }
+   */
+  includeCss?:
+    | boolean
+    | {
+        /**
+         * If true, all styles will be wrapped in a cascade layer named `itwinui`.
+         * This helps avoid specificity battles with application styles.
+         *
+         * @default true
+         */
+        withLayer?: boolean;
+      };
+};
+
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
         themeOptions?: RootProps['themeOptions'];
-        /**
-         * If false, styles will not be included at runtime, so .css will need to
-         * be manually imported. By default, styles are included and wrapped in a layer.
-         *
-         * @default { withLayer: true }
-         */
-        includeCss?:
-          | boolean
-          | {
-              /**
-               * If true, all styles will be wrapped in a cascade layer named `itwinui`.
-               * This helps avoid specificity battles with application styles.
-               *
-               * @default true
-               */
-              withLayer?: boolean;
-            };
+        includeCss: IncludeCssProps['includeCss'];
         children: Required<React.ReactNode>;
       }
     | {
@@ -131,8 +135,8 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef }),
-    [theme, themeOptions],
+    () => ({ theme, themeOptions, rootRef, includeCss }),
+    [theme, themeOptions, includeCss],
   );
 
   // if no children, then fallback to this wrapper component which calls useTheme
@@ -176,6 +180,7 @@ export const ThemeContext = React.createContext<
       theme?: ThemeType;
       themeOptions?: ThemeOptions;
       rootRef: React.RefObject<HTMLElement>;
+      includeCss?: IncludeCssProps['includeCss'];
     }
   | undefined
 >(undefined);
