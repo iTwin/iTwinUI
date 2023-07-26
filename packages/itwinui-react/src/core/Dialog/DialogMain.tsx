@@ -70,7 +70,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       isDraggable = dialogContext.isDraggable,
       isResizable = dialogContext.isResizable,
       style: propStyle,
-      placement,
+      placement = dialogContext.placement,
       ...rest
     } = props;
 
