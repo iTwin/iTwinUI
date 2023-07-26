@@ -202,22 +202,16 @@ it('should add .iui-large if tabs have sublabel', () => {
     <>
       <Tabs.TabList>
         <Tabs.Tab key={0}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>item0</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel0</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>item0</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel0</Tabs.TabDescription>
         </Tabs.Tab>
         <Tabs.Tab key={1}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>item1</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel1</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>item1</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel1</Tabs.TabDescription>
         </Tabs.Tab>
         <Tabs.Tab key={2}>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>item2</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel2</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>item2</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel2</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
 
@@ -233,8 +227,12 @@ it('should add .iui-large if tabs have sublabel', () => {
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
   tabs.forEach((tab, index) => {
-    const label = tab.querySelector('.iui-tab-info') as HTMLElement;
-    expect(label.textContent).toEqual(`item${index}Sublabel${index}`);
+    const label = tab.querySelector('.iui-tab-label') as HTMLElement;
+    expect(label.textContent).toEqual(`item${index}`);
+    const description = tab.querySelector(
+      '.iui-tab-description',
+    ) as HTMLElement;
+    expect(description.textContent).toEqual(`Sublabel${index}`);
   });
 });
 
@@ -341,7 +339,7 @@ it('should render a Tab in its most basic state', () => {
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-info > div') as HTMLElement;
+  const label = container.querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 });
@@ -351,22 +349,22 @@ it('should render with sublabel', () => {
     <Tabs>
       <Tabs.TabList>
         <Tabs.Tab>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
-            <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
     </Tabs>,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-info') as HTMLElement;
+  const label = container.querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
-  expect(label.firstElementChild?.textContent).toBe('Tab label');
+  expect(label.textContent).toBe('Tab label');
 
-  const sublabel = label.querySelector('.iui-tab-description') as HTMLElement;
-  expect(sublabel.textContent).toEqual('Sub-label');
+  const description = container.querySelector(
+    '.iui-tab-description',
+  ) as HTMLElement;
+  expect(description.textContent).toBe('Sub-label');
 });
 
 it('should render with icon', () => {
@@ -377,16 +375,14 @@ it('should render with icon', () => {
           <Tabs.TabIcon>
             <SvgPlaceholder />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Tab label</Tabs.TabLabel>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
         </Tabs.Tab>
       </Tabs.TabList>
     </Tabs>,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-info > div') as HTMLElement;
+  const label = container.querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 
@@ -409,7 +405,7 @@ it('should render in disabled state', () => {
   expect(tab).toBeTruthy();
   expect(tab.disabled).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-info > div') as HTMLElement;
+  const label = container.querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 });

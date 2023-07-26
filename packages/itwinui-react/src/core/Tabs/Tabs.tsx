@@ -587,13 +587,7 @@ const TabsTab = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {label ? (
-        <Tabs.TabInfo>
-          <Tabs.TabLabel>{label}</Tabs.TabLabel>
-        </Tabs.TabInfo>
-      ) : (
-        children
-      )}
+      {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', TabsTabOwnProps>;
@@ -608,15 +602,9 @@ const TabsTabIcon = polymorphic.span('iui-tab-icon', {
 TabsTabIcon.displayName = 'Tabs.TabIcon';
 
 // ----------------------------------------------------------------------------
-// Tabs.TabInfo component
-
-const TabsTabInfo = polymorphic.span('iui-tab-info');
-TabsTabInfo.displayName = 'Tabs.TabInfo';
-
-// ----------------------------------------------------------------------------
 // Tabs.TabLabel component
 
-const TabsTabLabel = polymorphic('');
+const TabsTabLabel = polymorphic.span('iui-tab-label');
 TabsTabLabel.displayName = 'Tabs.TabLabel';
 
 // ----------------------------------------------------------------------------
@@ -633,14 +621,19 @@ const TabsTabDescription = React.forwardRef((props, ref) => {
 
   if (type !== 'pill') {
     return (
-      <Box className={cx('iui-tab-description', className)} ref={ref} {...rest}>
+      <Box
+        as='span'
+        className={cx('iui-tab-description', className)}
+        ref={ref}
+        {...rest}
+      >
         {children}
       </Box>
     );
   } else {
     return <></>;
   }
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'span'>;
 TabsTabDescription.displayName = 'Tabs.TabDescription';
 
 // ----------------------------------------------------------------------------
@@ -747,19 +740,13 @@ TabsPanel.displayName = 'Tabs.Panel';
  * <Tabs>
  *   <Tabs.TabList>
  *     <Tabs.Tab>
- *       <Tabs.TabInfo>
- *         <Tabs.TabLabel>Label 1</Tabs.TabLabel>
- *       </Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 1</Tabs.TabLabel>
  *     </Tabs.Tab>
  *     <Tabs.Tab>
- *       <Tabs.TabInfo>
- *         <Tabs.TabLabel>Label 2</Tabs.TabLabel>
- *       </Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 2</Tabs.TabLabel>
  *     </Tabs.Tab>
  *     <Tabs.Tab>
- *       <Tabs.TabInfo>
- *         <Tabs.TabLabel>Label 3</Tabs.TabLabel>
- *       </Tabs.TabInfo>
+ *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
  *     </Tabs.Tab>
  *   </Tabs.TabList>
  *   <Tabs.Actions>
@@ -782,10 +769,8 @@ TabsPanel.displayName = 'Tabs.Panel';
  *   <Tabs.TabIcon>
  *     <SvgPlaceholder />
  *   </Tabs.TabIcon>
- *   <Tabs.TabInfo>
- *     <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
- *     <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
- *   </Tabs.TabInfo>
+ *   <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
+ *   <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
  * </Tabs.Tab>
  *
  */
@@ -803,10 +788,6 @@ export const Tabs = Object.assign(TabsComponent, {
    *  Tab icon subcomponent
    */
   TabIcon: TabsTabIcon,
-  /**
-   * 	Tab info subcomponent
-   */
-  TabInfo: TabsTabInfo,
   /**
    * 	Tab label subcomponent
    */

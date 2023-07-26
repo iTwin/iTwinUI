@@ -205,30 +205,24 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item0</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item0</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
         </Tabs.Tab>
 
         <Tabs.Tab>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item1</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
         </Tabs.Tab>
 
         <Tabs.Tab disabled>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item2</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
 
@@ -422,30 +416,24 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item0</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item0</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 0</Tabs.TabDescription>
         </Tabs.Tab>
 
         <Tabs.Tab>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item1</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item1</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 1</Tabs.TabDescription>
         </Tabs.Tab>
 
         <Tabs.Tab>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
-          <Tabs.TabInfo>
-            <Tabs.TabLabel>Item2</Tabs.TabLabel>
-            <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
-          </Tabs.TabInfo>
+          <Tabs.TabLabel>Item2</Tabs.TabLabel>
+          <Tabs.TabDescription>Sublabel 2</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
 
