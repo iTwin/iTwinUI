@@ -3,7 +3,7 @@
 @use '../mixins';
 
 $iui-dialog-width: 380px;
-$iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
+$iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins + button height + partially visible text
 
 .iui-dialog-wrapper {
   position: fixed;
@@ -37,6 +37,15 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
     border: 1px solid;
   }
 
+  // needed to prevent resizable dialog content from escaping when dialog is
+  // too small. also fixes rounded corners in title bar. see PR #1424
+  overflow: hidden;
+
+  &:where(:has(.iui-dialog-content), [data-iui-flex='true']) {
+    display: flex;
+    flex-direction: column;
+  }
+
   &:not(.iui-dialog-visible) {
     visibility: hidden;
     opacity: 0;
@@ -53,6 +62,7 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
 .iui-dialog-default {
   max-inline-size: Max(50%, $iui-dialog-width);
   min-inline-size: Min(100%, $iui-dialog-width);
+  min-block-size: $iui-dialog-min-height;
   max-block-size: 100vh;
   max-block-size: 100dvh;
 
@@ -117,7 +127,6 @@ $iui-dialogue-resizable-min-height: 7.75rem; // 7.75rem = 124px = title bar heig
 
 .iui-dialog-draggable {
   border: 1px solid var(--iui-color-border);
-  min-block-size: $iui-dialogue-resizable-min-height;
 }
 
 .iui-dialog-animation {
