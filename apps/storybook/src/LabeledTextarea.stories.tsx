@@ -32,6 +32,9 @@ export const Basic: Story<Partial<LabeledTextareaProps>> = (args) => {
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
+      labelProps={{ className: 'some label' }}
+      messageProps={{ className: 'some message' }}
+      inputProps={{ className: 'some input' }}
       {...args}
     />
   );

@@ -7,6 +7,7 @@ import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Textarea } from '../Textarea/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
+import cx from 'classnames';
 
 type LabeledTextareaProps = {
   /**
@@ -29,6 +30,18 @@ type LabeledTextareaProps = {
    * Custom style for textarea.
    */
   textareaStyle?: React.CSSProperties;
+  /**
+   * Custom class name for input.
+   */
+  inputProps?: React.ComponentProps<'div'>;
+  /**
+   * Custom class name for label.
+   */
+  labelProps?: React.ComponentProps<'label'>;
+  /**
+   * Custom class name for message.
+   */
+  messageProps?: React.ComponentProps<'div'>;
 } & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'>;
 
 /**
@@ -64,6 +77,9 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
     status,
     textareaClassName,
     textareaStyle,
+    inputProps,
+    labelProps,
+    messageProps,
     displayStyle = 'default',
     iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     svgIcon,
@@ -76,15 +92,21 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
 
   return (
     <InputContainer
+      as='div'
+      {...inputProps}
+      {...labelProps}
+      {...messageProps}
       label={label}
+      labelProps={cx(className, labelProps?.className)}
       disabled={disabled}
       required={required}
       status={status}
       message={message}
+      messageProps={cx(className, messageProps?.className)}
       icon={icon}
       isLabelInline={displayStyle === 'inline'}
       isIconInline={iconDisplayStyle === 'inline'}
-      className={className}
+      className={cx(className, inputProps?.className)}
       style={style}
       inputId={id}
     >
