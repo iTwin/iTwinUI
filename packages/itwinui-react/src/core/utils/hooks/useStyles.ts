@@ -46,7 +46,7 @@ export const useStyles = (options?: {
     });
 
     loaded.current = true;
-  }, [document, loaded, context]);
+  }, [context, options]);
 };
 
 // ----------------------------------------------------------------------------
