@@ -31,6 +31,10 @@ type ProgressLinearProps = {
    * Status of progress.
    */
   status?: 'positive' | 'negative';
+  /**
+   * Pass props to ProgressLinear label group.
+   */
+  labelGroupProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -56,6 +60,7 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     isAnimated = false,
     status,
     className,
+    labelGroupProps,
     ...rest
   } = props;
 
@@ -76,7 +81,14 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       {labels.length > 0 && (
-        <Box className='iui-progress-indicator-linear-label'>
+        <Box
+          as='div'
+          {...labelGroupProps}
+          className={cx(
+            'iui-progress-indicator-linear-label',
+            labelGroupProps?.className,
+          )}
+        >
           {labels.map((label, index) => (
             <span key={index}>{label}</span>
           ))}
