@@ -70,6 +70,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
       isDraggable = dialogContext.isDraggable,
       isResizable = dialogContext.isResizable,
       style: propStyle,
+      placement,
       ...rest
     } = props;
 
@@ -181,6 +182,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         ref={refs}
         onKeyDown={handleKeyDown}
         tabIndex={-1}
+        data-iui-placement={placement}
         style={{
           transform,
           ...style,

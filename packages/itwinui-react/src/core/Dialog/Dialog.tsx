@@ -60,6 +60,7 @@ export const Dialog = Object.assign(
         isDraggable = false,
         isResizable = false,
         relativeTo = 'viewport',
+        placement,
         className,
         style,
         ...rest
@@ -83,6 +84,7 @@ export const Dialog = Object.assign(
             isResizable,
             relativeTo,
             dialogRootRef,
+            placement,
           }}
         >
           <div
