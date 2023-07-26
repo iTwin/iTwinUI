@@ -259,6 +259,7 @@ it('should render with submenu', () => {
 });
 
 it('should not show submenu if isSubmenuOpen is false', () => {
+  document.documentElement.style.setProperty('--iui-duration-2', '0s');
   const { container } = renderComponent({
     submenu: <SidenavSubmenu>submenu content</SidenavSubmenu>,
     isSubmenuOpen: false,
@@ -271,6 +272,7 @@ it('should not show submenu if isSubmenuOpen is false', () => {
   expect(wrapper.querySelector('.iui-side-navigation')).toBeTruthy();
   expect(wrapper.querySelector('.iui-sidenav-content')).toBeTruthy();
 
-  expect(wrapper.querySelector('.iui-side-navigation-submenu')).toBeFalsy();
-  expect(screen.queryByText('submenu content')).toBeFalsy();
+  const submenu = wrapper.querySelector('.iui-side-navigation-submenu-wrapper');
+  expect(submenu).toBeTruthy();
+  expect(submenu).toHaveAttribute('data-iui-expanded', 'false');
 });
