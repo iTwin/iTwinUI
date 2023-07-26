@@ -33,7 +33,8 @@ $borderless-horizontal-tab-min-height: calc(
     font-family: inherit;
     position: relative;
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+    grid-template-columns: auto minmax(min-content, 1fr);
+    grid-template-rows: auto minmax(0, auto);
     grid-template-areas:
       'icon label'
       'icon description';
@@ -46,7 +47,6 @@ $borderless-horizontal-tab-min-height: calc(
     color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
     text-align: start;
-    max-inline-size: 60ch;
 
     &.iui-active {
       color: var(--iui-color-text-accent);
@@ -95,11 +95,12 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-description {
+    @include mixins.iui-line-clamp(3);
+    max-inline-size: 60ch;
     display: none;
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
     grid-area: description;
-    @include mixins.iui-line-clamp(3);
   }
 
   &.iui-green .iui-tab {
@@ -130,6 +131,7 @@ $borderless-horizontal-tab-min-height: calc(
 
 @mixin iui-tab-label {
   grid-area: label;
+  max-inline-size: 60ch;
   @include mixins.iui-line-clamp(3);
 }
 
