@@ -529,6 +529,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
           <li key={index}>
             <TabsContext.Provider
               value={{
+                type,
                 index,
                 currentActiveIndex,
                 setCurrentActiveIndex,
