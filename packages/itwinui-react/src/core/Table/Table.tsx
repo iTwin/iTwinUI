@@ -289,6 +289,10 @@ export type TableProps<
    */
   bodyProps?: React.ComponentProps<'div'>;
   /**
+   * Passes custom props to empty table.
+   */
+  emptyTableContentProps?: React.ComponentProps<'div'>;
+  /**
    * Function that returns index of the row that you want to scroll to.
    *
    * When using with lazy-loading table, you need to take care that row is already loaded.
@@ -408,6 +412,7 @@ export const Table = <
     headerWrapperProps,
     headerProps,
     bodyProps,
+    emptyTableContentProps,
     ...rest
   } = props;
 
@@ -1089,7 +1094,14 @@ export const Table = <
             </Box>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
-            <Box className='iui-table-empty'>
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
               <div>{emptyTableContent}</div>
             </Box>
           )}

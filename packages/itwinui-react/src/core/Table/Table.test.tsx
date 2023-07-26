@@ -4698,11 +4698,17 @@ it('should ignore top-level Header if one is passed', async () => {
 
 it('should pass custom props to different parts of Table', () => {
   const { container } = renderComponent({
+    data: [],
     headerWrapperProps: {
       className: 'custom-header-wrapper-class',
+      style: { fontSize: 12 },
     },
-    headerProps: { className: 'custom-header-class' },
-    bodyProps: { className: 'custom-body-class' },
+    headerProps: { className: 'custom-header-class', style: { fontSize: 12 } },
+    bodyProps: { className: 'custom-body-class', style: { width: 80 } },
+    emptyTableContentProps: {
+      className: 'custom-empty-table-content-class',
+      style: { fontSize: 12 },
+    },
   });
 
   // Test for Table header wrapper
@@ -4710,16 +4716,25 @@ it('should pass custom props to different parts of Table', () => {
     '.iui-table-header-wrapper.custom-header-wrapper-class',
   ) as HTMLElement;
   expect(headerWrapperElement).toBeTruthy();
+  expect(headerWrapperElement.style.fontSize).toBe('12px');
 
   // Test for Table header
   const headerElement = container.querySelector(
     '.iui-table-header.custom-header-class',
   ) as HTMLElement;
   expect(headerElement).toBeTruthy();
+  expect(headerElement.style.fontSize).toBe('12px');
 
   // Test for Table body
   const bodyElement = container.querySelector(
     '.iui-table-body.custom-body-class',
   ) as HTMLElement;
   expect(bodyElement).toBeTruthy();
+
+  // Test for Empty Table Content
+  const emptyTableContent = container.querySelector(
+    '.iui-table-empty.custom-empty-table-content-class',
+  ) as HTMLElement;
+  expect(emptyTableContent).toBeTruthy();
+  expect(emptyTableContent.style.fontSize).toBe('12px');
 });
