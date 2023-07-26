@@ -162,11 +162,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 //animating technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
-.iui-submenu {
+.iui-side-navigation-submenu-wrapper {
   display: grid;
   grid-template-columns: 0fr;
   overflow: hidden;
   z-index: -1;
+  justify-content: end;
+  justify-items: end;
   @media (prefers-reduced-motion: no-preference) {
     transition: grid-template-columns var(--iui-duration-2), visibility var(--iui-duration-2),
       transform var(--iui-duration-2);
@@ -174,14 +176,21 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 }
 
+.iui-side-navigation-submenu-wrapper:where([data-iui-expanded='true']) {
+  grid-template-columns: 1fr;
+}
+
+.iui-side-navigation-submenu-wrapper:where([data-iui-expanded='true']) .iui-side-navigation-submenu {
+  visibility: visible;
+}
+
 .iui-side-navigation-submenu {
-  // min-block-size: 0;
+  min-block-size: 0;
   min-inline-size: 0;
   visibility: hidden;
   @media (prefers-reduced-motion: no-preference) {
     transition: visibility var(--iui-duration-2) ease-out;
   }
-  // min-inline-size: calc(var(--iui-size-3xl) * 2);
   max-inline-size: 50vw;
   block-size: 100%;
   overflow-x: hidden;
@@ -190,6 +199,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   resize: horizontal;
   background-color: var(--iui-color-background);
   border-inline-end: 1px solid var(--iui-color-border);
+  align-self: end;
 
   &-content {
     padding: 0 var(--iui-size-s) var(--iui-size-s);
@@ -223,21 +233,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       flex-shrink: 0;
       margin-inline-start: var(--iui-size-xs);
     }
-  }
-}
-
-.iui-submenu.iui-expanded {
-  grid-template-columns: 1fr;
-}
-
-.iui-submenu.iui-expanded .iui-side-navigation-submenu {
-  visibility: visible;
-  transform: translateX(0%);
-}
-
-.iui-submenu {
-  &:not(.iui-expanded) {
-    transform: translateX(-100%);
   }
 }
 

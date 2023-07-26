@@ -152,13 +152,8 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
       </Box>
       {submenu && (
         <Box
-          className={cx(
-            'iui-submenu',
-            {
-              'iui-expanded': isSubmenuOpen,
-            },
-            className,
-          )}
+          className={cx('iui-side-navigation-submenu-wrapper', className)}
+          data-iui-expanded={isSubmenuOpen}
           ref={forwardedRef}
           {...rest}
         >
