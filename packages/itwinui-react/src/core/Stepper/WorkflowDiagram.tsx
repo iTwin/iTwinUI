@@ -8,23 +8,28 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
-type WorkflowDiagramProps = Pick<StepperProps, 'steps'>;
+type WorkflowDiagramProps = Pick<StepperProps, 'steps'> &
+  Pick<StepperProps, 'diagramProps'>;
 
 export const WorkflowDiagram = React.forwardRef(
   // TODO: Remove this ref cast. ref and rest props should be applied on the same element
   (props, ref: React.Ref<HTMLDivElement>) => {
-    const { steps, ...rest } = props;
+    const { steps, diagramProps, ...rest } = props;
 
     return (
       <Box ref={ref}>
-        <Box as='ol' className={'iui-workflow-diagram'} {...rest}>
-          {steps.map((s, index) => (
-            <WorkflowDiagramStep
-              key={index}
-              title={s.name}
-              description={s.description}
-            />
-          ))}
+        <Box as='ol' className='iui-workflow-diagram' {...rest}>
+          {steps.map((s, index) => {
+            const thisDiagramProps = diagramProps?.(index);
+            return (
+              <WorkflowDiagramStep
+                diagramProps={thisDiagramProps}
+                key={index}
+                title={s.name}
+                description={s.description}
+              />
+            );
+          })}
         </Box>
       </Box>
     );

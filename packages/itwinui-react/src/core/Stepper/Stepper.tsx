@@ -69,6 +69,14 @@ export type StepperProps = {
    * Allows props to be passed for iui-stepper-steps-label-count
    */
   labelCountProps?: React.ComponentProps<'span'>;
+  /**
+   *  Allows props to be passed for iui-workflow-diagram
+   */
+  diagramProps?: (index: number) => React.ComponentProps<'ol'>;
+  /**
+   *  Allows props to be passed for iui-workflow-diagram-content
+   */
+  contentProps?: React.ComponentProps<'span'>;
 };
 
 const defaultStepperLocalization: StepperLocalization = {

@@ -28,6 +28,11 @@ export const Basic: Story<WorkflowDiagramProps> = (args) => {
       { name: 'Review & Approve' },
       { name: 'Complete' },
     ],
+    // diagramProps = (index: number) => {
+    //   return {
+    //     className: `some-class`,
+    //   };
+    // },
     ...rest
   } = args;
   const onStepClick = (index: number) => {
@@ -38,6 +43,7 @@ export const Basic: Story<WorkflowDiagramProps> = (args) => {
       currentStep={currentStep}
       steps={steps}
       onStepClick={onStepClick}
+      // diagramProps={diagramProps}
       {...rest}
     />
   );

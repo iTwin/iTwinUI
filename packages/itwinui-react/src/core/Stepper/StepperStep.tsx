@@ -120,6 +120,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <Box
+        as='div'
         {...trackContentProps}
         className={cx(
           'iui-stepper-track-content',
