@@ -3,12 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, mergeRefs } from '../utils/index.js';
-import type {
-  CommonProps,
-  PopoverProps,
-  PopoverInstance,
-} from '../utils/index.js';
+import { PopoverCopy, mergeRefs } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
 export type DropdownMenuProps = {
@@ -26,7 +22,9 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<PopoverProps, 'content'> &
+  onShow?: () => void;
+  onHide?: () => void;
+} & Omit<React.ComponentProps<typeof PopoverCopy>, 'content'> &
   Omit<CommonProps, 'title'>;
 
 /**
@@ -59,7 +57,6 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     placement = 'bottom-start',
     onShow,
     onHide,
-    trigger,
     id,
     ...rest
   } = props;
@@ -81,36 +78,28 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
 
   const targetRef = React.useRef<HTMLElement>(null);
 
-  const onShowHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsVisible(true);
-      onShow?.(instance);
-    },
-    [onShow],
-  );
+  const onShowHandler = React.useCallback(() => {
+    setIsVisible(true);
+    onShow?.();
+  }, [onShow]);
 
-  const onHideHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsVisible(false);
-      targetRef.current?.focus();
-      onHide?.(instance);
-    },
-    [onHide],
-  );
+  const onHideHandler = React.useCallback(() => {
+    setIsVisible(false);
+    targetRef.current?.focus();
+    onHide?.();
+  }, [onHide]);
 
   return (
-    <Popover
+    <PopoverCopy
       content={
         <Menu className={className} style={style} role={role} id={id}>
           {menuContent}
         </Menu>
       }
-      visible={trigger === undefined ? isVisible : undefined}
-      onClickOutside={close}
+      visible={isVisible}
+      onClickOutsideClose
       placement={placement}
-      onShow={onShowHandler}
-      onHide={onHideHandler}
-      trigger={visible === undefined ? trigger : undefined}
+      onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
       {...rest}
     >
       {React.isValidElement(children) ? (
@@ -120,14 +109,14 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
             (props.children as React.FunctionComponentElement<HTMLElement>).ref,
           ),
           onClick: (args: unknown) => {
-            trigger === undefined && (isVisible ? close() : open());
+            isVisible ? close() : open();
             (children as JSX.Element).props.onClick?.(args);
           },
         })
       ) : (
         <></>
       )}
-    </Popover>
+    </PopoverCopy>
   );
 };
 

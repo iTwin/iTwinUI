@@ -3,7 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, useMergedRefs, SvgCaretRightSmall } from '../utils/index.js';
+import {
+  useMergedRefs,
+  SvgCaretRightSmall,
+  PopoverCopy,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
@@ -193,10 +197,10 @@ export const MenuItem = React.forwardRef((props, ref) => {
     listItem
   ) : (
     <MenuItemContext.Provider value={{ ref: menuItemRef }}>
-      <Popover
+      <PopoverCopy
         placement='right-start'
         visible={isSubmenuVisible}
-        appendTo='parent'
+        portal={{ to: 'parent' }}
         content={
           <div
             onMouseLeave={() => setIsSubmenuVisible(false)}
@@ -212,7 +216,7 @@ export const MenuItem = React.forwardRef((props, ref) => {
         }
       >
         {listItem}
-      </Popover>
+      </PopoverCopy>
     </MenuItemContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'li', MenuItemProps>;

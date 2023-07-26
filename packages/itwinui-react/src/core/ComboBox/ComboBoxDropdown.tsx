@@ -3,25 +3,23 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, useSafeContext } from '../utils/index.js';
-import type {
-  PopoverProps,
-  PolymorphicForwardRefComponent,
-} from '../utils/index.js';
+import { PopoverCopy, useSafeContext } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import {
   ComboBoxStateContext,
   ComboBoxActionContext,
   ComboBoxRefsContext,
 } from './helpers.js';
-import type { Instance, Props } from 'tippy.js';
 
-type ComboBoxDropdownProps = PopoverProps & { children: JSX.Element };
+type ComboBoxDropdownProps = React.ComponentProps<typeof PopoverCopy> & {
+  children: JSX.Element;
+};
 
 export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
   const { isOpen } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
-  const { inputRef, toggleButtonRef } = useSafeContext(ComboBoxRefsContext);
+  const { inputRef } = useSafeContext(ComboBoxRefsContext);
 
   // sync internal isOpen state with user's visible prop
   React.useEffect(() => {
@@ -31,19 +29,10 @@ export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
   }, [dispatch, props.visible]);
 
   return (
-    <Popover
+    <PopoverCopy
       placement='bottom-start'
       visible={isOpen}
-      onClickOutside={React.useCallback(
-        (_: Instance<Props>, { target }: Event) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            dispatch({ type: 'close' });
-          }
-        },
-        [dispatch, toggleButtonRef],
-      )}
-      animation='shift-away'
-      duration={200}
+      onClickOutsideClose
       reference={inputRef}
       ref={forwardedRef}
       content={children}

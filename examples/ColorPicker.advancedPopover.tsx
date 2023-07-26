@@ -13,7 +13,7 @@ import {
   IconButton,
   Button,
 } from '@itwin/itwinui-react';
-import { Popover } from '@itwin/itwinui-react/esm/core/utils';
+import { PopoverCopy } from '@itwin/itwinui-react/esm/core/utils';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -45,7 +45,7 @@ export default () => {
   return (
     <>
       <ButtonGroup>
-        <Popover
+        <PopoverCopy
           content={
             <ColorPicker
               selectedColor={selectedColor}
@@ -65,7 +65,7 @@ export default () => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
+          portal={{ to: document.body }}
           visible={isOpen}
           placement='bottom-start'
         >
@@ -75,7 +75,7 @@ export default () => {
               color={selectedColor}
             />
           </IconButton>
-        </Popover>
+        </PopoverCopy>
         <Button
           onClick={() => {
             setCurrentFormat(

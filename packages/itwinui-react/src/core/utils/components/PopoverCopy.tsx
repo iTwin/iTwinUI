@@ -15,6 +15,12 @@ import {
   type Placement,
   size,
   autoUpdate,
+  offset,
+  flip,
+  shift,
+  autoPlacement,
+  inline,
+  hide,
 } from '@floating-ui/react';
 import ReactDOM from 'react-dom';
 import {
@@ -26,16 +32,65 @@ import {
 } from '../index.js';
 
 type PopoverOptions = {
+  /**
+   *
+   */
   placement?: Placement;
+  /**
+   *
+   */
   visible?: boolean;
+  /**
+   *
+   */
   onToggleVisible?: (open: boolean) => void;
+  /**
+   *
+   */
+  onClickOutsideClose?: boolean;
+  /**
+   * autoUpdate options that recalculates position
+   * to ensure the floating element remains anchored
+   * to its reference element, such as when scrolling
+   * and resizing the screen
+   *
+   * https://floating-ui.com/docs/autoUpdate#options
+   */
+  autoUpdateOptions?: {
+    ancestorScroll?: boolean;
+    ancestorResize?: boolean;
+    elementResize?: boolean;
+    /**
+     * Use this if you want Tooltip to follow moving trigger element
+     */
+    animationFrame?: boolean;
+    layoutShift?: boolean;
+  };
+  /**
+   * Tooltip middleware options.
+   * https://floating-ui.com/docs/offset
+   */
+  middleware?: {
+    offset?: number;
+    flip?: boolean;
+    shift?: boolean;
+    size?: boolean;
+    autoPlacement?: boolean;
+    hide?: boolean;
+    inline?: boolean;
+  };
 };
 
 function usePopover({
   placement = 'bottom',
-
   visible: controlledOpen,
   onToggleVisible,
+  onClickOutsideClose,
+  middleware = {
+    flip: true,
+    shift: true,
+  },
+  autoUpdateOptions = {},
 }: PopoverOptions = {}) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
 
@@ -48,27 +103,41 @@ function usePopover({
     onOpenChange: setOpen,
     whileElementsMounted: (referenceEl, floatingEl, update) =>
       autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: true,
+        animationFrame: autoUpdateOptions.animationFrame,
+        ancestorScroll: autoUpdateOptions.ancestorScroll,
+        ancestorResize: autoUpdateOptions.ancestorResize,
+        elementResize: autoUpdateOptions.elementResize,
+        layoutShift: autoUpdateOptions.layoutShift,
       }),
     middleware: [
-      size({
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        apply({ rects, elements }: any) {
-          Object.assign(elements.floating.style, {
-            width: `${rects.reference.width}px`,
-          });
-        },
-      }),
-    ],
+      middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
+      middleware.flip && flip(),
+      middleware.shift && shift(),
+      middleware.size
+        ? size()
+        : size({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            apply({ rects, elements }: any) {
+              Object.assign(elements.floating.style, {
+                width: `${rects.reference.width}px`,
+              });
+            },
+          }),
+      ,
+      middleware.autoPlacement && autoPlacement(),
+      middleware.inline && inline(),
+      middleware.hide && hide(),
+    ].filter(Boolean),
   });
 
   const context = data.context;
 
   const click = useClick(context, {
-    enabled: controlledOpen == null,
+    enabled: controlledOpen === null,
   });
+
   const dismiss = useDismiss(context, {
-    enabled: controlledOpen == null,
+    outsidePress: onClickOutsideClose,
   });
   const role = useRole(context);
 
@@ -99,6 +168,7 @@ type PopoverOwnProps = {
   children?: React.ReactNode;
   applyBackground?: boolean;
   portal?: boolean | { to: HTMLElement };
+  reference?: React.RefObject<HTMLElement>;
 };
 
 /**
@@ -113,6 +183,8 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     style,
     portal = true,
     applyBackground = false,
+    reference,
+    onClickOutsideClose,
     placement,
     visible,
     onToggleVisible,
@@ -120,7 +192,12 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
   } = props;
   const themeInfo = React.useContext(ThemeContext);
 
-  const popover = usePopover({ placement, visible, onToggleVisible });
+  const popover = usePopover({
+    placement,
+    visible,
+    onToggleVisible,
+    onClickOutsideClose,
+  });
 
   const refs = useMergedRefs(popover.refs.setFloating, ref);
   const childrenRef =
@@ -142,6 +219,12 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
       {content}
     </Box>
   );
+
+  React.useEffect(() => {
+    if (reference) {
+      popover.refs.setReference(reference.current);
+    }
+  }, [reference, popover.refs]);
 
   const portalTo =
     typeof portal !== 'boolean'

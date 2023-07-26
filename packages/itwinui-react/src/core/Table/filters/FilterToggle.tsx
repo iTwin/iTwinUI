@@ -7,9 +7,9 @@ import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
 import {
   useGlobals,
-  Popover,
   SvgFilterHollow,
   SvgFilter,
+  PopoverCopy,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
@@ -50,11 +50,11 @@ export const FilterToggle = <T extends Record<string, unknown>>(
   return (
     <>
       {column.canFilter && column.Filter && (
-        <Popover
+        <PopoverCopy
           content={column.render('Filter', { close, setFilter, clearFilter })}
           placement='bottom-start'
           visible={isVisible}
-          onClickOutside={close}
+          onClickOutsideClose
         >
           <IconButton
             styleType='borderless'
@@ -69,7 +69,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           >
             {isColumnFiltered ? <SvgFilter /> : <SvgFilterHollow />}
           </IconButton>
-        </Popover>
+        </PopoverCopy>
       )}
     </>
   );
