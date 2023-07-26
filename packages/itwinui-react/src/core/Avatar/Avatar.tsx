@@ -4,8 +4,27 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import {
+  Box,
+  VisuallyHidden,
+  SoftBackgrounds,
+  isSoftBackground,
+} from '../utils/index.js';
+import type {
+  AnyString,
+  PolymorphicForwardRefComponent,
+} from '../utils/index.js';
+
+/**
+ * Helper function that returns one of the preset badge color values.
+ */
+const getBackground = (color: AvatarProps['backgroundColor']) => {
+  if (!color) {
+    return '';
+  }
+
+  return isSoftBackground(color) ? SoftBackgrounds[color] : color;
+};
 
 export type AvatarStatus = 'online' | 'busy' | 'away' | 'offline';
 
@@ -36,7 +55,7 @@ type AvatarProps = {
   /**
    * Color of the icon. You can use `getUserColor` function to generate color from user name or email. If not provided, default background color from CSS styling will be used (hsl(72, 51%, 56%) / olive green).
    */
-  backgroundColor?: string;
+  backgroundColor?: keyof typeof SoftBackgrounds | AnyString;
   /**
    * Translated status messages shown on hover.
    */
@@ -90,26 +109,13 @@ export const Avatar = React.forwardRef((props, ref) => {
         className,
       )}
       title={title}
-      style={{ backgroundColor, ...style }}
+      style={{ backgroundColor: getBackground(backgroundColor), ...style }}
       ref={ref}
       {...rest}
     >
-      {!image && (
-        <Box as='abbr' className='iui-initials'>
-          {abbreviation?.substring(0, 2)}
-        </Box>
-      )}
+      {!image ? abbreviation?.substring(0, 2) : null}
       {image}
-      <Box as='span' className='iui-stroke' />
-      {status && (
-        <Box
-          as='span'
-          title={statusTitles[status]}
-          className={cx('iui-status', {
-            [`iui-${status}`]: !!status,
-          })}
-        />
-      )}
+      {status ? <VisuallyHidden>{statusTitles[status]}</VisuallyHidden> : null}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', AvatarProps>;

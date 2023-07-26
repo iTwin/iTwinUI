@@ -3,51 +3,31 @@
 @use '../mixins';
 @use './mixins' as *;
 
+$avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast against soft backgrounds
+
 .iui-avatar {
   @include mixins.iui-reset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0;
-  user-select: none;
   inline-size: var(--_iui-avatar-size);
   block-size: var(--_iui-avatar-size);
-  background-color: hsl(72, 51%, 56%);
+  background-color: var(--iui-color-background-seagreen);
   border-radius: 50%;
+  font-weight: var(--iui-font-weight-semibold);
+  text-align: center;
+  text-transform: uppercase;
+  color: #{$avatar-text-color};
+  line-height: var(--_iui-avatar-size);
+  font-size: var(--_iui-avatar-font-size);
 
-  > .iui-stroke {
-    display: block;
+  &::before {
+    content: '';
     position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    margin: 0;
+    inset: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
-  }
-
-  > .iui-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    margin: 0;
-    border-radius: 50%;
-    font-style: normal;
-    font-weight: var(--iui-font-weight-semibold);
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    color: var(--iui-color-white);
-    line-height: var(--_iui-avatar-size);
-    font-size: var(--_iui-avatar-font-size);
   }
 
   svg {
@@ -65,16 +45,14 @@
     display: block;
     position: absolute;
     object-fit: cover;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
+    inset: 0;
     border-width: 0;
     border-radius: 50%;
     background-color: var(--iui-color-background);
   }
 
-  > .iui-status {
+  &::after {
+    content: '';
     box-sizing: content-box;
     display: flex;
     align-items: center;
@@ -88,76 +66,56 @@
     border: var(--iui-size-3xs) solid var(--iui-color-background);
     background-color: var(--iui-color-border);
 
-    &::after {
-      content: '';
-      inline-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
-      block-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
-    }
+    // &::after {
+    //   content: '';
+    //   inline-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
+    //   block-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
+    // }
 
-    &.iui-online {
-      background-color: var(--iui-color-background-positive);
+    // &.iui-online {
+    //   background-color: var(--iui-color-background-positive);
 
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        background-color: var(--iui-color-white);
-      }
-    }
+    //   &::after {
+    //     mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
+    //     background-color: var(--iui-color-white);
+    //   }
+    // }
 
-    &.iui-away {
-      background-color: var(--iui-color-background-warning);
+    // &.iui-away {
+    //   background-color: var(--iui-color-background-warning);
 
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        background-color: var(--iui-color-white);
-      }
-    }
+    //   &::after {
+    //     mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
+    //     background-color: var(--iui-color-white);
+    //   }
+    // }
 
-    &.iui-busy {
-      background-color: var(--iui-color-background-negative);
+    // &.iui-busy {
+    //   background-color: var(--iui-color-background-negative);
 
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        background-color: var(--iui-color-white);
-      }
-    }
+    //   &::after {
+    //     mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
+    //     background-color: var(--iui-color-white);
+    //   }
+    // }
 
-    &.iui-offline {
-      background-color: var(--iui-color-background);
-      box-shadow: inset 0 0 0 1px var(--iui-color-text-muted);
+    // &.iui-offline {
+    //   background-color: var(--iui-color-background);
+    //   box-shadow: inset 0 0 0 1px var(--iui-color-text-muted);
 
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-        background-color: var(--iui-color-icon-muted);
-      }
-    }
+    //   &::after {
+    //     mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
+    //     background-color: var(--iui-color-icon-muted);
+    //   }
+    // }
   }
 
   &.iui-avatar-count {
-    > .iui-initials {
-      background-color: var(--iui-color-background);
-      color: var(--iui-color-text-muted);
-    }
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-text-muted);
 
-    > .iui-stroke {
+    &::before {
       box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
-    }
-
-    &:focus {
-      outline: none;
-
-      > .iui-stroke {
-        box-shadow: var(--iui-focus-box-shadow);
-      }
-    }
-
-    &:focus-visible {
-      outline: none;
-    }
-
-    &:focus:not(:focus-visible) {
-      > .iui-stroke {
-        box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-background-transparent-hover);
-      }
     }
   }
 
@@ -176,6 +134,26 @@
   }
 }
 
+// ----------------------------------------------------------------------------
+
+@mixin iui-avatar-margins {
+  .iui-avatar:not(:first-child) {
+    margin-inline-start: var(--iui-size-2xs);
+
+    &.iui-small {
+      margin-inline-start: var(--iui-size-3xs);
+    }
+
+    &.iui-large {
+      margin-inline-start: var(--iui-size-xs);
+    }
+
+    &.iui-x-large {
+      margin-inline-start: var(--iui-size-s);
+    }
+  }
+}
+
 .iui-avatar-list {
   display: inline-flex;
   flex-wrap: wrap;
@@ -186,14 +164,14 @@
     .iui-avatar:not(:first-child) {
       margin-inline-start: calc(0px - var(--iui-size-2xs));
 
-      .iui-initials {
+      &::before {
         box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
       }
 
       &.iui-small {
         margin-inline-start: calc(0px - var(--iui-size-3xs));
 
-        .iui-initials {
+        &::after {
           box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
         }
       }

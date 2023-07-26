@@ -1,9 +1,15 @@
-import { Button } from '@itwin/itwinui-react';
+import { Avatar } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <Avatar
+        backgroundColor='sunglow'
+        abbreviation='um'
+        size='large'
+        title='ur mum'
+        status='online'
+      />
     </>
   );
 };
