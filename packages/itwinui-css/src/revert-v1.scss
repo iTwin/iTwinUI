@@ -12,10 +12,12 @@
   }
 }
 
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
 @layer itwinui-v1 {
   @include revert-v1-styles;
 }
 
+/* stylelint-disable-next-line scss/at-rule-no-unknown */
 @layer itwinui.v1 {
   @include revert-v1-styles;
 }
