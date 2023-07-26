@@ -61,6 +61,39 @@ it('should render correctly in its most basic state', () => {
   expect(thumb.getAttribute('aria-disabled')).toEqual('false');
 });
 
+it('should render all custom classNames correctly', () => {
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      sliderMinProps={{ className: 'some-min' }}
+      sliderMaxProps={{ className: 'some-max' }}
+      sliderContainerProps={{ className: 'some-container' }}
+      sliderRailProps={{ className: 'some-rail' }}
+      sliderTrackProps={{ className: 'some-track' }}
+    />,
+  );
+  assertBaseElement(container);
+  expect(container.querySelector('.iui-slider-track')).toBeTruthy();
+  expect(container.querySelector('.iui-slider-min')).toHaveClass(
+    'iui-slider-min',
+    'some-min',
+  );
+  expect(container.querySelector('.iui-slider-max')).toHaveClass(
+    'iui-slider-max',
+    'some-max',
+  );
+  expect(container.querySelector('.iui-slider-container')).toHaveClass(
+    'iui-slider-container',
+    'some-container',
+  );
+  expect(container.querySelector('.iui-slider-track')).toHaveClass(
+    'iui-slider-track',
+    'some-track',
+  );
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-disabled')).toEqual('false');
+});
+
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
   expect(
