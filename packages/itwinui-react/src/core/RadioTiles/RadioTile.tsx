@@ -20,6 +20,22 @@ type RadioTileProps = {
    * Additional description, if needed.
    */
   description?: React.ReactNode;
+  /**
+   * Passes props to tile wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes props to tile icon.
+   */
+  iconProps?: React.ComponentProps<'span'>;
+  /**
+   * Passes props to tile label.
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to tile sublabel.
+   */
+  subLabelProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -28,31 +44,65 @@ type RadioTileProps = {
  * <RadioTile label='My tile' description='Some info' icon={<SvgSmileyHappy />} />
  */
 export const RadioTile = React.forwardRef((props, ref) => {
-  const { icon, label, description, className, style, ...rest } = props;
+  const {
+    icon,
+    label,
+    description,
+    className,
+    wrapperProps,
+    iconProps,
+    labelProps,
+    subLabelProps,
+    style,
+    ...rest
+  } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
   return (
-    <Box as='label' className={cx('iui-radio-tile', className)} style={style}>
+    <Box
+      as='label'
+      data-iui-disabled={props.disabled ? 'true' : undefined}
+      {...wrapperProps}
+      className={cx('iui-radio-tile', wrapperProps?.className)}
+    >
       <Box
         as='input'
-        className='iui-radio-tile-input'
-        type='radio'
         ref={refs}
+        className={cx('iui-radio-tile-input', className)}
+        style={style}
+        type='radio'
         {...rest}
       />
-      <Box className='iui-radio-tile-content'>
-        {icon && (
-          <Box as='span' className='iui-radio-tile-icon' aria-hidden>
-            {icon}
-          </Box>
-        )}
-        {label && <Box className='iui-radio-tile-label'>{label}</Box>}
-        {description && (
-          <Box className='iui-radio-tile-sublabel'>{description}</Box>
-        )}
-      </Box>
+      {icon && (
+        <Box
+          as='span'
+          aria-hidden
+          {...iconProps}
+          className={cx('iui-radio-tile-icon', iconProps?.className)}
+        >
+          {icon}
+        </Box>
+      )}
+      {label && (
+        <Box
+          as='div'
+          {...labelProps}
+          className={cx('iui-radio-tile-label', labelProps?.className)}
+        >
+          {label}
+        </Box>
+      )}
+      {description && (
+        <Box
+          as='div'
+          {...subLabelProps}
+          className={cx('iui-radio-tile-sublabel', subLabelProps?.className)}
+        >
+          {description}
+        </Box>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
