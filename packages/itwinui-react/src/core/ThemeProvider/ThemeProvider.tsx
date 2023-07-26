@@ -80,7 +80,7 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
         themeOptions?: RootProps['themeOptions'];
-        includeCss: IncludeCssProps['includeCss'];
+        includeCss?: IncludeCssProps['includeCss'];
         children: Required<React.ReactNode>;
       }
     | {
