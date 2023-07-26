@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { VisuallyHidden, Box } from '../../utils/index.js';
+import { VisuallyHidden, Box, PopoverCopy } from '../../utils/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
-import { Tooltip } from '../../Tooltip/index.js';
 
 export type IconButtonProps = {
   /**
@@ -69,9 +68,18 @@ const IconButtonTooltip = (props: {
   const { label, children } = props;
 
   return label ? (
-    <Tooltip aria-hidden='true' content={label}>
+    <PopoverCopy
+      middleware={{ offset: 4 }}
+      hover
+      // aria={{ content: null }}
+      content={
+        <Box aria-hidden='true' className='iui-tooltip'>
+          {label}
+        </Box>
+      }
+    >
       {children}
-    </Tooltip>
+    </PopoverCopy>
   ) : (
     children
   );

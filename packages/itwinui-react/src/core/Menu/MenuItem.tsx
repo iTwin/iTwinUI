@@ -200,7 +200,7 @@ export const MenuItem = React.forwardRef((props, ref) => {
       <PopoverCopy
         placement='right-start'
         visible={isSubmenuVisible}
-        portal={{ to: 'parent' }}
+        // portal={{ to: 'parent' }}
         content={
           <div
             onMouseLeave={() => setIsSubmenuVisible(false)}

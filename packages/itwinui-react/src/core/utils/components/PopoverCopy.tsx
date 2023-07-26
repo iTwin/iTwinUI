@@ -12,7 +12,7 @@ import {
   useDismiss,
   useRole,
   useInteractions,
-  type Placement,
+  useHover,
   size,
   autoUpdate,
   offset,
@@ -21,7 +21,9 @@ import {
   autoPlacement,
   inline,
   hide,
+  safePolygon,
 } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import ReactDOM from 'react-dom';
 import {
   Box,
@@ -48,6 +50,10 @@ type PopoverOptions = {
    *
    */
   onClickOutsideClose?: boolean;
+  /**
+   *
+   */
+  hover?: boolean;
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -91,6 +97,7 @@ function usePopover({
     shift: true,
   },
   autoUpdateOptions = {},
+  hover: hoverOption,
 }: PopoverOptions = {}) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
 
@@ -132,6 +139,15 @@ function usePopover({
 
   const context = data.context;
 
+  const hover = useHover(context, {
+    enabled: hoverOption || controlledOpen === null,
+    delay: {
+      open: 50,
+      close: 250,
+    },
+    handleClose: safePolygon({ buffer: -Infinity }),
+  });
+
   const click = useClick(context, {
     enabled: controlledOpen === null,
   });
@@ -141,7 +157,7 @@ function usePopover({
   });
   const role = useRole(context);
 
-  const interactions = useInteractions([click, dismiss, role]);
+  const interactions = useInteractions([click, dismiss, role, hover]);
 
   return React.useMemo(
     () => ({
@@ -185,6 +201,7 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     applyBackground = false,
     reference,
     onClickOutsideClose,
+    hover,
     placement,
     visible,
     onToggleVisible,
@@ -197,6 +214,7 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     visible,
     onToggleVisible,
     onClickOutsideClose,
+    hover,
   });
 
   const refs = useMergedRefs(popover.refs.setFloating, ref);

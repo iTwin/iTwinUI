@@ -8,9 +8,9 @@ import { Button } from '../Button/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
-import type { Placement } from 'tippy.js';
 import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import type { Placement } from '@floating-ui/react';
 
 export type SplitButtonProps = ButtonProps & {
   /**
