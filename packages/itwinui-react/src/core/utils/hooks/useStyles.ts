@@ -24,7 +24,7 @@ export const useStyles = (options?: {
   withLayer?: boolean;
   document?: () => Document | undefined;
 }) => {
-  const context = React.useContext(ThemeContext);
+  const context = _React.useContext(ThemeContext);
   const loaded = _React.useRef(false);
 
   useIsomorphicInsertionEffect(() => {
