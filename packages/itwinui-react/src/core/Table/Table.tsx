@@ -285,6 +285,10 @@ export type TableProps<
    */
   headerProps?: React.ComponentProps<'div'>;
   /**
+   * Passes custom props to Table body.
+   */
+  bodyProps?: React.ComponentProps<'div'>;
+  /**
    * Function that returns index of the row that you want to scroll to.
    *
    * When using with lazy-loading table, you need to take care that row is already loaded.
@@ -403,6 +407,7 @@ export const Table = <
     enableColumnReordering = false,
     headerWrapperProps,
     headerProps,
+    bodyProps,
     ...rest
   } = props;
 
@@ -1028,10 +1033,15 @@ export const Table = <
           );
         })}
         <Box
+          {...bodyProps}
           {...getTableBodyProps({
-            className: cx('iui-table-body', {
-              'iui-zebra-striping': styleType === 'zebra-rows',
-            }),
+            className: cx(
+              'iui-table-body',
+              {
+                'iui-zebra-striping': styleType === 'zebra-rows',
+              },
+              bodyProps?.className,
+            ),
             style: { outline: 0 },
           })}
           ref={bodyRef}

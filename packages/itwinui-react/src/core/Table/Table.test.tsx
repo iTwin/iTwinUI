@@ -4695,3 +4695,31 @@ it('should ignore top-level Header if one is passed', async () => {
     expect(cells[1].textContent).toEqual(description);
   });
 });
+
+it('should pass custom props to different parts of Table', () => {
+  const { container } = renderComponent({
+    headerWrapperProps: {
+      className: 'custom-header-wrapper-class',
+    },
+    headerProps: { className: 'custom-header-class' },
+    bodyProps: { className: 'custom-body-class' },
+  });
+
+  // Test for Table header wrapper
+  const headerWrapperElement = container.querySelector(
+    '.iui-table-header-wrapper.custom-header-wrapper-class',
+  ) as HTMLElement;
+  expect(headerWrapperElement).toBeTruthy();
+
+  // Test for Table header
+  const headerElement = container.querySelector(
+    '.iui-table-header.custom-header-class',
+  ) as HTMLElement;
+  expect(headerElement).toBeTruthy();
+
+  // Test for Table body
+  const bodyElement = container.querySelector(
+    '.iui-table-body.custom-body-class',
+  ) as HTMLElement;
+  expect(bodyElement).toBeTruthy();
+});
