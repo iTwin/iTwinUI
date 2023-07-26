@@ -1,0 +1,21 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+
+@mixin revert-v1-styles {
+  // using :not(#\#) to artificially inflate the specificity of * selector
+  :where(.iui-body, [class*='iui-theme-']) :where(.iui-root) :not(#\#) {
+    &,
+    &::before,
+    &::after {
+      all: revert-layer;
+    }
+  }
+}
+
+@layer itwinui-v1 {
+  @include revert-v1-styles;
+}
+
+@layer itwinui.v1 {
+  @include revert-v1-styles;
+}

@@ -25,12 +25,16 @@ const removeIfExists = async (_path) => {
   }
 };
 
-const rawCssText =
+const allCss =
   (await readPackageOnDisk('@itwin/itwinui-variables')) +
   (await readPackageOnDisk('@itwin/itwinui-css')).replace(
     copyrightBannerJs,
     '',
   );
+
+const revertV1Css = (
+  await readPackageOnDisk('@itwin/itwinui-css/css/revert-v1.css')
+).replace(copyrightBannerJs, '');
 
 const outEsmDir = path.join(__dirname, '..', 'esm');
 const outEsmPath = path.join(outEsmDir, 'styles.js');
@@ -49,11 +53,11 @@ if (!fs.existsSync(outCjsDir)) {
 await removeIfExists(outEsmPath);
 await fs.promises.writeFile(
   outEsmPath,
-  `${copyrightBannerJs}\nexport default String.raw\`${rawCssText}\`;`,
+  `${copyrightBannerJs}\nexport default String.raw\`${allCss}\`;\nexport const revertV1Css=String.raw\`${revertV1Css}\`;`,
 );
 
 await removeIfExists(outCjsPath);
 await fs.promises.writeFile(
   outCjsPath,
-  `${copyrightBannerJs}\nmodule.exports=String.raw\`${rawCssText}\`;`,
+  `${copyrightBannerJs}\nmodule.exports=String.raw\`${allCss}\`;\nexports.revertV1Css=String.raw\`${revertV1Css}\`;`,
 );

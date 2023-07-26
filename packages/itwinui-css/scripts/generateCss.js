@@ -32,7 +32,7 @@ const compileScss = async (path, outFile) => {
 
       let finalOutput = processedOutput;
 
-      if (!['all.css', 'global.css'].includes(outFilename)) {
+      if (!['all.css', 'global.css', 'revert-v1.css'].includes(outFilename)) {
         finalOutput = postcss([
           postcssScoper({
             scope: ':where(.iui-root, [data-iui-theme])',
@@ -57,6 +57,8 @@ const run = async () => {
 
   const globalCss = await compileScss(`${inDir}/global.scss`, 'global');
   allCss += globalCss;
+
+  await compileScss(`${inDir}/revert-v1.scss`, 'revert-v1');
 
   for (const component of directories) {
     if (!ignorePaths.includes(component) && fs.existsSync(path.join(inDir, component, `${component}.scss`))) {
