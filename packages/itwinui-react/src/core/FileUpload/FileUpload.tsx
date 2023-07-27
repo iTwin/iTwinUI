@@ -23,7 +23,7 @@ type FileUploadProps = {
    */
   children: React.ReactNode;
   /**
-   *  Allows props to be passed for iui-content
+   *  Custom className for content.
    */
   contentProps?: React.ComponentProps<'div'>;
 };
