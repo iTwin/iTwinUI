@@ -17,6 +17,10 @@ type RadioProps = {
    * Status of the radio.
    */
   status?: 'positive' | 'warning' | 'negative';
+  /**
+   * Passes props to Radio label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
 };
 
 /**
@@ -30,7 +34,15 @@ type RadioProps = {
  * <Radio status='negative' label='Negative' />
  */
 export const Radio = React.forwardRef((props, ref) => {
-  const { className, disabled = false, label, status, style, ...rest } = props;
+  const {
+    className,
+    disabled = false,
+    label,
+    status,
+    labelProps,
+    style,
+    ...rest
+  } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
@@ -61,7 +73,11 @@ export const Radio = React.forwardRef((props, ref) => {
     >
       {radio}
       {label && (
-        <Box as='span' className='iui-radio-label'>
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-radio-label', labelProps?.className)}
+        >
           {label}
         </Box>
       )}

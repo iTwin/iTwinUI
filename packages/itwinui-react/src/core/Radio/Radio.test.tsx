@@ -114,3 +114,26 @@ it.each(['label', 'input'] as const)(
     expect(container.querySelector(el)).toHaveClass('customClass');
   },
 );
+
+it('passes custom props to wrapper and label', () => {
+  const { container } = render(
+    <Radio
+      label='Radio Label'
+      className='custom-wrapper-class'
+      style={{ fontSize: 12 }}
+      labelProps={{ className: 'custom-label-class', style: { fontSize: 12 } }}
+    />,
+  );
+  // Test wrapper
+  const wrapper = container.querySelector(
+    '.iui-radio-wrapper.custom-wrapper-class',
+  ) as HTMLElement;
+  expect(wrapper).toBeTruthy();
+  expect(wrapper.style.fontSize).toBe('12px');
+  // Test label
+  const label = container.querySelector(
+    '.iui-radio-label.custom-label-class',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.style.fontSize).toBe('12px');
+});
