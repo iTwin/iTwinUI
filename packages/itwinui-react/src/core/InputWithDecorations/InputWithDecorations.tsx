@@ -41,7 +41,7 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
 //-------------------------------------------------------------------------------
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
-  const { id: idProp, size, ...rest } = props;
+  const { id: idProp, size, disabled: localDisabled, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
   const { size: contextSize, isDisabled } = useSafeContext(
@@ -53,7 +53,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
       as='input'
       ref={refs}
       data-iui-size={size ?? contextSize}
-      disabled={isDisabled}
+      disabled={localDisabled ?? isDisabled}
       id={idProp}
       {...rest}
     />
@@ -85,7 +85,7 @@ const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
 //-------------------------------------------------------------------------------
 
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
-  const { children, size, ...rest } = props;
+  const { children, size, disabled: localDisabled, ...rest } = props;
   const { size: contextSize, isDisabled } = useSafeContext(
     InputWithDecorationsContext,
   );
@@ -95,7 +95,7 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
       ref={ref}
       size={size ?? contextSize}
       styleType='borderless'
-      disabled={isDisabled}
+      disabled={localDisabled ?? isDisabled}
       {...rest}
     >
       {children}
