@@ -191,6 +191,7 @@ export const CustomTickNoTooltip: Story<SliderProps> = (args) => {
           </Text>
         </div>
       }
+      tickProps={{ className: 'some-tick' }}
     />
   );
 };

@@ -155,23 +155,23 @@ export type SliderProps = {
   /**
    * Allows props to be passed for slider-min
    */
-  sliderMinProps?: React.ComponentProps<'span'>;
+  minProps?: React.ComponentProps<'span'>;
   /**
    * Allows props to be passed for slider-max
    */
-  sliderMaxProps?: React.ComponentProps<'span'>;
-  /**
-   * Allows props to be passed for slider-container
-   */
-  sliderContainerProps?: React.ComponentProps<'div'>;
+  maxProps?: React.ComponentProps<'span'>;
   /**
    * Allows props to be passed for slider-rail
    */
-  sliderRailProps?: React.ComponentProps<'div'>;
+  railProps?: React.ComponentProps<'div'>;
   /**
    * Allows props to be passed for slider-track
    */
-  sliderTrackProps?: React.ComponentProps<'div'>;
+  trackProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for slider-tick
+   */
+  tickProps?: React.ComponentProps<'span'>;
   /**
    * Defines the allowed behavior when moving Thumbs when multiple Thumbs are
    * shown. It controls if a Thumb movement should be limited to only move in
@@ -228,11 +228,11 @@ export const Slider = React.forwardRef((props, ref) => {
     thumbProps,
     className,
     railContainerProps,
-    sliderMinProps,
-    sliderMaxProps,
-    sliderContainerProps,
-    sliderRailProps,
-    sliderTrackProps,
+    minProps,
+    maxProps,
+    railProps,
+    trackProps,
+    tickProps,
     orientation = 'horizontal',
     ...rest
   } = props;
@@ -437,9 +437,18 @@ export const Slider = React.forwardRef((props, ref) => {
 
     if (Array.isArray(tickLabels)) {
       return (
-        <Box className='iui-slider-ticks'>
+        <Box
+          as='div'
+          {...tickProps}
+          className={cx('iui-slider-ticks', tickProps?.className)}
+        >
           {tickLabels.map((label, index) => (
-            <Box as='span' key={index} className='iui-slider-tick'>
+            <Box
+              as='span'
+              {...tickProps}
+              key={index}
+              className='iui-slider-tick'
+            >
               {label}
             </Box>
           ))}
@@ -448,7 +457,7 @@ export const Slider = React.forwardRef((props, ref) => {
     }
 
     return tickLabels;
-  }, [tickLabels]);
+  }, [tickLabels, tickProps]);
 
   const generateTooltipProps = React.useCallback(
     (index: number, val: number): Omit<TooltipProps, 'children'> => {
@@ -480,8 +489,8 @@ export const Slider = React.forwardRef((props, ref) => {
       {minValueLabel && (
         <Box
           as='span'
-          {...sliderMinProps}
-          className={cx('iui-slider-min', sliderMinProps?.className)}
+          {...minProps}
+          className={cx('iui-slider-min', minProps?.className)}
         >
           {minValueLabel}
         </Box>
@@ -489,21 +498,16 @@ export const Slider = React.forwardRef((props, ref) => {
       <Box
         as='div'
         ref={containerRef}
-        {...sliderContainerProps}
-        className={cx(
-          'iui-slider-container',
-          {
-            'iui-grabbing': undefined !== activeThumbIndex,
-          },
-          sliderContainerProps?.className,
-        )}
+        className={cx('iui-slider-container', {
+          'iui-grabbing': undefined !== activeThumbIndex,
+        })}
         onPointerDown={handlePointerDownOnSlider}
         {...railContainerProps}
       >
         <Box
           as='div'
-          {...sliderRailProps}
-          className={cx('iui-slider-rail', sliderRailProps?.className)}
+          {...railProps}
+          className={cx('iui-slider-rail', railProps?.className)}
         />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
@@ -529,20 +533,20 @@ export const Slider = React.forwardRef((props, ref) => {
           );
         })}
         <Track
-          {...sliderTrackProps}
           trackDisplayMode={trackDisplay}
           sliderMin={min}
           sliderMax={max}
           values={currentValues}
           orientation={orientation}
+          {...trackProps}
         />
         {tickMarkArea}
       </Box>
       {maxValueLabel && (
         <Box
           as='span'
-          {...sliderMaxProps}
-          className={cx('iui-slider-max', sliderMaxProps?.className)}
+          {...maxProps}
+          className={cx('iui-slider-max', maxProps?.className)}
         >
           {maxValueLabel}
         </Box>
