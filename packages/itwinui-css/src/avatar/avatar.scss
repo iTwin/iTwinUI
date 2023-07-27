@@ -35,7 +35,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
     inline-size: 50%;
     block-size: 50%;
     position: absolute;
-    fill: var(--iui-color-white);
+    fill: $avatar-text-color;
     inset-inline-start: 50%;
     inset-block-start: 50%;
     transform: translate(-50%, -50%);
