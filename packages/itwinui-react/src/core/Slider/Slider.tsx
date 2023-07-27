@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { useTheme, getBoundedValue, useEventListener } from '../utils/index.js';
-import '@itwin/itwinui-css/css/slider.css';
 import type { CommonProps } from '../utils/index.js';
 import type { TooltipProps } from '../Tooltip/index.js';
 import { Track } from './Track.js';

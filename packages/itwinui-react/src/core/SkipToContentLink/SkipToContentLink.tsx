@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/skip-to-content.css';
 
 export type SkipToContentLinkProps = {
   /**

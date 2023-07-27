@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
-import '@itwin/itwinui-css/css/table.css';
 import {
   useTheme,
   Popover,

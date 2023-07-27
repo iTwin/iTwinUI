@@ -7,5 +7,4 @@ export * from './dom.js';
 export * from './colors.js';
 export * from './numbers.js';
 export * from './focusable.js';
-export * from './styles.js';
 export * from './supports.js';

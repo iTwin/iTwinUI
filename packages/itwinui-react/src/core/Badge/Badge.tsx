@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { useTheme, isSoftBackground, SoftBackgrounds } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import type { AnyString } from '../utils/index.js';
-import '@itwin/itwinui-css/css/badge.css';
 
 /**
  * Helper function that returns one of the preset badge color values.

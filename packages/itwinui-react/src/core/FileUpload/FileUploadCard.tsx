@@ -15,7 +15,6 @@ import {
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
 import { Anchor } from '../Typography/Anchor/Anchor.js';
-import '@itwin/itwinui-css/css/file-upload.css';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];

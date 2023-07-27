@@ -10,7 +10,6 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/surface.css';
 
 /**
  * Helper function that returns one of the preset surface elevation values.

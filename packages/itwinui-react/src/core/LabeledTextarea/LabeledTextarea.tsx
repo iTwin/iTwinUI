@@ -12,7 +12,6 @@ import {
 import { Textarea } from '../Textarea/index.js';
 import type { TextareaProps } from '../Textarea/Textarea.js';
 import type { LabeledInputProps } from '../LabeledInput/index.js';
-import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledTextareaProps = {
   /**

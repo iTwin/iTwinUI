@@ -6,7 +6,6 @@ import cx from 'classnames';
 import * as React from 'react';
 import { useTheme, SvgCloseSmall } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tag.css';
 import { IconButton } from '../Buttons/index.js';
 
 export type TagProps = {

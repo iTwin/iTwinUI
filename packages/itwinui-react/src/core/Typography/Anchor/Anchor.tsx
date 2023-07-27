@@ -9,7 +9,6 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../../utils/index.js';
-import '@itwin/itwinui-css/css/anchor.css';
 
 type AnchorOwnProps = Record<never, never>;
 

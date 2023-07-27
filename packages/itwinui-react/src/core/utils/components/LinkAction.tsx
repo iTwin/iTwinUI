@@ -8,7 +8,6 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../props.js';
-import '@itwin/itwinui-css/css/utils.css';
 type LinkActionOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 type LinkBoxOwnProps = {}; // eslint-disable-line @typescript-eslint/ban-types
 

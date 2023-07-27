@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { getFocusableElements, useTheme } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
 import { TreeNodeExpander } from './TreeNodeExpander.js';
 import { useTreeContext } from './TreeContext.js';

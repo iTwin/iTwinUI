@@ -14,7 +14,6 @@ import type { CommonProps, ColorType } from '../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
 import { ColorSwatch } from './ColorSwatch.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
-import '@itwin/itwinui-css/css/color-picker.css';
 
 export type ColorPaletteProps = {
   /**

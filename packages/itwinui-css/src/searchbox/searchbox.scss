@@ -15,24 +15,27 @@
 }
 
 .iui-expandable-searchbox {
-  width: var(--_iui-input-min-height);
-  transition: width var(--iui-duration-1) ease-in-out;
+  // specificity hack to override input-flex-container
+  &#{&} {
+    width: var(--_iui-input-min-height);
+    transition: width var(--iui-duration-1) ease-in-out;
 
-  &:has(.iui-searchbox-open-button:focus-visible) {
-    outline: 2px solid var(--_iui-input-accent-border-color);
-    outline-offset: -2px;
-  }
-
-  @supports not selector(:has(+ *)) {
-    &:where(.iui-searchbox-open-button:focus-visible) {
+    &:has(.iui-searchbox-open-button:focus-visible) {
       outline: 2px solid var(--_iui-input-accent-border-color);
       outline-offset: -2px;
     }
-  }
 
-  &:where([data-iui-expanded='true']) {
-    width: 100%;
-    border-color: var(--_iui-input-border-color);
+    @supports not selector(:has(+ *)) {
+      &:where(.iui-searchbox-open-button:focus-visible) {
+        outline: 2px solid var(--_iui-input-accent-border-color);
+        outline-offset: -2px;
+      }
+    }
+
+    &:where([data-iui-expanded='true']) {
+      width: 100%;
+      border-color: var(--_iui-input-border-color);
+    }
   }
 }
 

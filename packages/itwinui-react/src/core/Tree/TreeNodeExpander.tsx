@@ -7,7 +7,6 @@ import cx from 'classnames';
 import { SvgChevronRight } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import type { IconButtonProps } from '../Buttons/IconButton/index.js';
-import '@itwin/itwinui-css/css/tree.css';
 
 export type TreeNodeExpanderProps = {
   isExpanded?: boolean;

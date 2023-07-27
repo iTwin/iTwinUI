@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { AnyString } from '../types.js';
-import '@itwin/itwinui-css/css/utils.css';
+import { useTheme } from '../hooks/useTheme.js';
 
 export type IconProps = {
   /**
@@ -68,6 +68,8 @@ const getSizeValue = (size: string) => {
 export const Icon = React.forwardRef(
   (props: IconProps, ref: React.RefObject<HTMLSpanElement>) => {
     const { size = 'medium', fill = 'default', className, ...rest } = props;
+
+    useTheme();
 
     return (
       <span

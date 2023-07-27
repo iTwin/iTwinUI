@@ -13,7 +13,6 @@ import {
   Icon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/expandable-block.css';
 
 export type ExpandableBlockProps = {
   /**

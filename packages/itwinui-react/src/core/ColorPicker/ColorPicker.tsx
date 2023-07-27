@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import '@itwin/itwinui-css/css/color-picker.css';
 import { useTheme, ColorValue, getTabbableElements } from '../utils/index.js';
 import type { CommonProps, ColorType, HsvColor } from '../utils/index.js';
 import cx from 'classnames';

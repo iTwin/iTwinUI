@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { InputGroup } from '../InputGroup/index.js';
 import type { InputGroupProps } from '../InputGroup/index.js';
-import '@itwin/itwinui-css/css/radio-tile.css';
 import { useTheme } from '../utils/index.js';
 
 export type RadioTileGroupProps = Omit<

@@ -8,7 +8,6 @@ import { IconButton } from '../Buttons/index.js';
 
 import { useTheme, SvgMoreVertical } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 
 export type HeaderTranslations = {

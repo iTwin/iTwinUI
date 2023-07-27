@@ -12,7 +12,6 @@ import {
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
-import '@itwin/itwinui-css/css/side-navigation.css';
 
 export type SideNavigationProps = {
   /**
