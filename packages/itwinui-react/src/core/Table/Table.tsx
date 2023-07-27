@@ -1075,7 +1075,14 @@ export const Table = <
             </>
           )}
           {isLoading && data.length === 0 && (
-            <Box className='iui-table-empty'>
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
               <ProgressRadial indeterminate={true} />
             </Box>
           )}
@@ -1108,7 +1115,14 @@ export const Table = <
           {!isLoading &&
             (data.length === 0 || rows.length === 0) &&
             areFiltersSet && (
-              <Box className='iui-table-empty'>
+              <Box
+                as='div'
+                {...emptyTableContentProps}
+                className={cx(
+                  'iui-table-empty',
+                  emptyTableContentProps?.className,
+                )}
+              >
                 <div>{emptyFilteredTableContent}</div>
               </Box>
             )}
