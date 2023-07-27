@@ -17,8 +17,6 @@ import {
   ComboBoxActionContext,
   ComboBoxRefsContext,
 } from './helpers.js';
-import { InputWithDecorations } from '../InputWithDecorations/index.js';
-import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 
 type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
   typeof Input
@@ -30,8 +28,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     onFocus: onFocusProp,
     onClick: onClickProp,
     selectTags,
-    status,
-    disabled,
     ...rest
   } = props;
 
@@ -210,13 +206,9 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
-    <InputWithDecorations
-      ref={refs}
-      style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
-      status={status}
-      isDisabled={disabled}
-    >
-      <InputWithDecorations.Input
+    <>
+      <Input
+        ref={refs}
         onKeyDown={handleKeyDown}
         onClick={mergeEventHandlers(onClickProp, handleClick)}
         onFocus={handleFocus}
@@ -231,6 +223,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         spellCheck={false}
         autoCapitalize='none'
         autoCorrect='off'
+        style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         {...rest}
       />
@@ -242,9 +235,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
           id={`${id}-selected-live`}
         />
       ) : null}
-
-      <ComboBoxEndIcon isOpen={isOpen} />
-    </InputWithDecorations>
+    </>
   );
 }) as PolymorphicForwardRefComponent<'input', ComboBoxInputProps>;
 ComboBoxInput.displayName = 'ComboBoxInput';
