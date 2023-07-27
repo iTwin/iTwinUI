@@ -152,17 +152,11 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
   &.iui-stacked {
     .iui-avatar:not(:first-child) {
       margin-inline-start: calc(0px - var(--iui-size-2xs));
-
-      &::before {
-        box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
-      }
+      box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
 
       &.iui-small {
         margin-inline-start: calc(0px - var(--iui-size-3xs));
-
-        &::after {
-          box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
-        }
+        box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
       }
 
       &.iui-large {
