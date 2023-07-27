@@ -143,6 +143,7 @@ export const Resizer = (props: ResizerProps) => {
         }
         case 'right': {
           width = elementRef.current.style.width = `${initialWidth - diffX}px`;
+          elementRef.current.style.transform = `translate(${translateX}px, ${translateY}px)`;
           break;
         }
         case 'bottom-right': {
@@ -150,12 +151,14 @@ export const Resizer = (props: ResizerProps) => {
           height = elementRef.current.style.height = `${
             initialHeight - diffY
           }px`;
+          elementRef.current.style.transform = `translate(${translateX}px, ${translateY}px)`;
           break;
         }
         case 'bottom': {
           height = elementRef.current.style.height = `${
             initialHeight - diffY
           }px`;
+          elementRef.current.style.transform = `translate(${translateX}px, ${translateY}px)`;
           break;
         }
         case 'bottom-left': {
