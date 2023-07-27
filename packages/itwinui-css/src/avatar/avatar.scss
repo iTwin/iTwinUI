@@ -46,6 +46,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
     position: absolute;
     object-fit: cover;
     inset: 0;
+    max-inline-size: 100%;
     border-width: 0;
     border-radius: 50%;
     background-color: var(--iui-color-background);
