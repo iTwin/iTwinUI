@@ -51,63 +51,51 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
     background-color: var(--iui-color-background);
   }
 
-  &::after {
-    content: '';
-    box-sizing: content-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    inset-inline-end: calc(0px - var(--iui-size-3xs));
-    inset-block-end: calc(0px - var(--iui-size-3xs));
-    inline-size: 25%;
-    block-size: 25%;
-    border-radius: 50%;
-    border: var(--iui-size-3xs) solid var(--iui-color-background);
-    background-color: var(--iui-color-border);
+  &[data-iui-status] {
+    &::after {
+      content: '';
+      box-sizing: content-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset-inline-end: calc(0px - var(--iui-size-3xs));
+      inset-block-end: calc(0px - var(--iui-size-3xs));
+      inline-size: 25%;
+      block-size: 25%;
+      border-radius: 50%;
+      border: var(--iui-size-3xs) solid var(--iui-color-background);
+      background: var(--_iui-avatar-status-img) no-repeat center / var(--_iui-avatar-status-size, var(--iui-size-xs));
+      background-color: var(--iui-color-border);
+    }
+  }
 
-    // &::after {
-    //   content: '';
-    //   inline-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
-    //   block-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
-    // }
+  &[data-iui-status='online'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
+      background-color: var(--iui-color-background-positive);
+    }
+  }
 
-    // &.iui-online {
-    //   background-color: var(--iui-color-background-positive);
+  &[data-iui-status='away'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
+      background-color: var(--iui-color-background-warning);
+    }
+  }
 
-    //   &::after {
-    //     mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-    //     background-color: var(--iui-color-white);
-    //   }
-    // }
+  &[data-iui-status='busy'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
+      background-color: var(--iui-color-background-negative);
+    }
+  }
 
-    // &.iui-away {
-    //   background-color: var(--iui-color-background-warning);
-
-    //   &::after {
-    //     mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-    //     background-color: var(--iui-color-white);
-    //   }
-    // }
-
-    // &.iui-busy {
-    //   background-color: var(--iui-color-background-negative);
-
-    //   &::after {
-    //     mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-    //     background-color: var(--iui-color-white);
-    //   }
-    // }
-
-    // &.iui-offline {
-    //   background-color: var(--iui-color-background);
-    //   box-shadow: inset 0 0 0 1px var(--iui-color-text-muted);
-
-    //   &::after {
-    //     mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-    //     background-color: var(--iui-color-icon-muted);
-    //   }
-    // }
+  &[data-iui-status='offline'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
+      background-color: var(--iui-color-icon-muted);
+    }
   }
 
   &.iui-avatar-count {

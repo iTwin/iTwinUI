@@ -108,6 +108,7 @@ export const Avatar = React.forwardRef((props, ref) => {
         { [`iui-${size}`]: size !== 'medium' },
         className,
       )}
+      data-iui-status={status}
       title={title}
       style={{ backgroundColor: getBackground(backgroundColor), ...style }}
       ref={ref}
