@@ -5,6 +5,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Box } from './Box.js';
+import { Label } from '../../Label/index.js';
+import { StatusMessage } from '../../StatusMessage/index.js';
 
 export type InputContainerProps<T extends React.ElementType = 'div'> = {
   as?: T;
@@ -52,7 +54,6 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
         'iui-input-container',
         {
           'iui-disabled': disabled,
-          [`iui-${status}`]: !!status,
           'iui-inline-label': isLabelInline,
           'iui-inline-icon': isIconInline,
           'iui-with-message':
@@ -60,36 +61,28 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
         },
         className,
       )}
+      data-iui-status={status}
       style={style}
       {...rest}
     >
       {label && (
-        <Box
+        <Label
           as={inputId && props.as !== 'label' ? 'label' : 'div'}
-          className={cx('iui-label', {
-            'iui-required': required,
-          })}
+          required={required}
           htmlFor={inputId}
           id={labelId}
         >
           {label}
-        </Box>
+        </Label>
       )}
       {children}
-      {statusMessage ? (
-        statusMessage
-      ) : (
-        <>
-          {icon && (
-            <Box as='span' className='iui-input-icon' aria-hidden>
-              {icon}
-            </Box>
+      {statusMessage
+        ? statusMessage
+        : message && (
+            <StatusMessage startIcon={icon} status={status}>
+              {message}
+            </StatusMessage>
           )}
-          {message && !isLabelInline && (
-            <Box className='iui-message'>{message}</Box>
-          )}
-        </>
-      )}
     </Box>
   );
 };

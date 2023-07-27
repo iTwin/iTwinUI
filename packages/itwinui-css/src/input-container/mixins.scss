@@ -10,6 +10,7 @@
   grid-template:
     'label label'
     'inputs inputs' / auto 1fr;
+  row-gap: var(--iui-size-2xs);
 
   &.iui-inline-icon {
     > .iui-input {
