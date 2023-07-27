@@ -21,32 +21,31 @@ const useIsomorphicInsertionEffect =
  * falling back to a regular `<style>` tag in `<head>`.
  */
 export const useStyles = (options?: {
-  withLayer?: boolean;
+  includeCss?: boolean | { withLayer: boolean };
   document?: () => Document | undefined;
 }) => {
   const context = _React.useContext(ThemeContext);
   const loaded = _React.useRef(false);
 
+  const includeCss = options?.includeCss ??
+    context?.includeCss ?? { withLayer: true };
+
   useIsomorphicInsertionEffect(() => {
-    if (loaded.current || context?.includeCss === false) {
+    if (loaded.current || !includeCss) {
       return;
     }
 
-    const withLayerFromContext =
-      typeof context?.includeCss === 'object'
-        ? context?.includeCss?.withLayer
-        : false;
+    const withLayer =
+      typeof includeCss === 'object' ? includeCss?.withLayer : false;
 
-    const documentFromContext = () =>
-      context?.rootRef.current?.ownerDocument ?? getDocument();
+    const document =
+      options?.document ??
+      (() => context?.rootRef.current?.ownerDocument ?? getDocument());
 
-    loadStyles({
-      withLayer: options?.withLayer ?? withLayerFromContext,
-      document: options?.document ?? documentFromContext,
-    });
+    loadStyles({ withLayer, document });
 
     loaded.current = true;
-  }, [context, options]);
+  }, [context, options, includeCss]);
 };
 
 // ----------------------------------------------------------------------------
