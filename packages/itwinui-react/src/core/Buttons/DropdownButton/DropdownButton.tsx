@@ -28,7 +28,7 @@ export type DropdownButtonProps = {
    * Use 'borderless' to hide outline.
    * @default 'default'
    */
-  styleType?: 'default' | 'borderless';
+  styleType?: 'default' | 'borderless' | 'high-visibility';
   /**
    * Props for the `DropdownMenu` which extends `PopoverProps`.
    */
@@ -97,7 +97,6 @@ export const DropdownButton = React.forwardRef(
             )
           }
           ref={refs}
-          aria-label='Dropdown'
           {...rest}
         >
           {children}
