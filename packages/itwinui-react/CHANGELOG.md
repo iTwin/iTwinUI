@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.11.11
+
+### Patch Changes
+
+- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fix resizable Dialog bug where Dialog jumped around the screen when resized on right side.
+
 ## 2.11.10
 
 ### Patch Changes

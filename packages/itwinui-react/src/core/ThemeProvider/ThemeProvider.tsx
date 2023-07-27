@@ -72,7 +72,7 @@ type IncludeCssProps = {
          *
          * @default true
          */
-        withLayer?: boolean;
+        withLayer: boolean;
       };
 };
 
@@ -160,9 +160,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     >
       {includeCss ? (
         <Styles
-          withLayer={
-            typeof includeCss === 'object' ? includeCss.withLayer : false
-          }
+          includeCss={includeCss}
           document={() => rootRef.current?.ownerDocument}
         />
       ) : null}
@@ -240,10 +238,10 @@ const ThemeLogicWrapper = (props: {
  * `useStyles` is called before any subsequent `useStyles` calls from child components.
  */
 const Styles = (props: {
-  withLayer?: boolean;
+  includeCss?: IncludeCssProps['includeCss'];
   document: () => Document | undefined;
 }) => {
-  const { withLayer, document } = props;
-  useStyles({ withLayer, document });
+  const { includeCss, document } = props;
+  useStyles({ includeCss, document });
   return null;
 };
