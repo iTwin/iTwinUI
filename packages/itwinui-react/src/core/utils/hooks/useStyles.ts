@@ -9,7 +9,7 @@ import * as React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment -- only gets created at build-time
 // @ts-ignore
-import rawCssText from '../../../styles.js';
+import allCss, { revertV1Css } from '../../../styles.js';
 
 // react <18 fallback for useInsertionEffect, with workaround for webpack getting rid of React namespace
 const _React = React;
@@ -66,8 +66,8 @@ const loadStyles = ({ withLayer = true, document = () => getDocument() }) => {
   }
 
   const cssText = withLayer
-    ? `@charset "utf-8";\n${layers}\n@layer itwinui.v2 { ${rawCssText} }`
-    : `@charset "utf-8";\n${rawCssText}`;
+    ? `@charset "utf-8";\n${layers}\n${revertV1Css}\n@layer itwinui.v2 { ${allCss} }`
+    : `@charset "utf-8";\n${revertV1Css}\n${allCss}`;
 
   const supportsAdopting =
     'adoptedStyleSheets' in Document.prototype &&
