@@ -32,7 +32,7 @@ export const Basic: Story<InputWithDecorationsProps> = () => {
 
 export const Disabled: Story<InputWithDecorationsProps> = () => {
   return (
-    <InputWithDecorations disabled>
+    <InputWithDecorations isDisabled>
       <InputWithDecorations.Icon>
         <SvgAirplane />
       </InputWithDecorations.Icon>
