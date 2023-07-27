@@ -70,29 +70,7 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
-type TabsComponentOwnProps = {
-  /**
-   * The value of the tab that should be active when initially rendered.
-   * if this prop is used, use the `onTabSelected` prop to keep track of the active index.
-   */
-  activeIndex?: number;
-  /**
-   * Control whether focusing tabs (using arrow keys) should automatically select them.
-   * Use 'manual' if tab panel content is not preloaded.
-   * @default 'auto'
-   */
-  focusActivationMode?: 'auto' | 'manual';
-  /**
-   * Color of the bar on the active tab.
-   * @default 'blue'
-   */
-  color?: 'blue' | 'green';
-  /**
-   * Handler for activating a tab.
-   */
-  onTabSelected?: (index: number) => void;
-} & TabsOrientationProps &
-  TabsOverflowProps;
+type TabsComponentOwnProps = TabsOrientationProps & TabsOverflowProps;
 
 const TabsComponent = React.forwardRef((props, ref) => {
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
@@ -112,10 +90,6 @@ const TabsComponent = React.forwardRef((props, ref) => {
     children,
     orientation = 'horizontal',
     type = 'default',
-    color = 'blue',
-    activeIndex,
-    focusActivationMode = 'auto',
-    onTabSelected,
     ...rest
   } = props;
 
@@ -133,12 +107,8 @@ const TabsComponent = React.forwardRef((props, ref) => {
         value={{
           orientation,
           type,
-          color,
-          activeIndex,
-          focusActivationMode,
           currentActiveIndex,
           setCurrentActiveIndex,
-          onTabSelected,
           overflowOptions,
           setStripeProperties,
         }}
@@ -155,23 +125,46 @@ TabsComponent.displayName = 'Tabs';
 
 type TabsTabListOwnProps = {
   /**
+   * Color of the bar on the active tab.
+   * @default 'blue'
+   */
+  color?: 'blue' | 'green';
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
+  /**
+   * The index of the tab that should be active when initially rendered.
+   */
+  activeIndex?: number;
+  /**
+   * Handler for activating a tab.
+   */
+  onTabSelected?: (index: number) => void;
+  /**
    * Tab items.
    */
   children: React.ReactNode[] | React.ReactNode;
 };
 
 const TabsTabList = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const {
+    className,
+    children,
+    color = 'blue',
+    focusActivationMode = 'auto',
+    activeIndex,
+    onTabSelected,
+    ...rest
+  } = props;
 
   const {
     orientation,
     type,
-    color,
-    activeIndex,
-    focusActivationMode,
     currentActiveIndex,
     setCurrentActiveIndex,
-    onTabSelected,
     overflowOptions,
     setStripeProperties,
   } = useSafeContext(TabsContext);
@@ -527,12 +520,9 @@ const TabsTabList = React.forwardRef((props, ref) => {
       {items.map((item, index) => {
         return (
           <li key={index}>
-            <TabsContext.Provider
+            <TabsTabListContext.Provider
               value={{
-                type,
                 index,
-                currentActiveIndex,
-                setCurrentActiveIndex,
                 onTabSelected: onTabClick,
                 setFocusedIndex,
                 hasSublabel,
@@ -541,7 +531,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
               key={index}
             >
               {item}
-            </TabsContext.Provider>
+            </TabsTabListContext.Provider>
           </li>
         );
       })}
@@ -564,8 +554,9 @@ type TabsTabOwnProps = {
 const TabsTab = React.forwardRef((props, ref) => {
   const { className, children, label, ...rest } = props;
 
-  const { index, currentActiveIndex, onTabSelected, setFocusedIndex } =
-    useSafeContext(TabsContext);
+  const { currentActiveIndex } = useSafeContext(TabsContext);
+  const { index, onTabSelected, setFocusedIndex } =
+    useSafeContext(TabsTabListContext);
 
   const onClick = () => {
     if (index !== undefined) {
@@ -613,8 +604,8 @@ TabsTabLabel.displayName = 'Tabs.TabLabel';
 
 const TabsTabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
-
-  const { type, hasSublabel, setHasSublabel } = useSafeContext(TabsContext);
+  const { type } = useSafeContext(TabsContext);
+  const { hasSublabel, setHasSublabel } = useSafeContext(TabsTabListContext);
 
   useIsomorphicLayoutEffect(() => {
     type !== 'pill' && !hasSublabel && setHasSublabel && setHasSublabel(true);
@@ -689,20 +680,15 @@ const TabsPanels = ({
 }: {
   children: React.ReactNode[] | React.ReactNode;
 }) => {
-  const { currentActiveIndex } = useSafeContext(TabsContext);
-
   const items = Array.isArray(children) ? children : [children];
 
   return (
     <>
       {items.map((item, index) => {
         return (
-          <TabsContext.Provider
-            value={{ index, currentActiveIndex }}
-            key={index}
-          >
+          <TabsPanelsContext.Provider value={{ index }} key={index}>
             {item}
-          </TabsContext.Provider>
+          </TabsPanelsContext.Provider>
         );
       })}
     </>
@@ -716,7 +702,8 @@ TabsPanels.displayName = 'Tabs.Panels';
 const TabsPanel = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { index, currentActiveIndex } = useSafeContext(TabsContext);
+  const { currentActiveIndex } = useSafeContext(TabsContext);
+  const { index } = useSafeContext(TabsPanelsContext);
 
   if (index === currentActiveIndex) {
     return (
@@ -818,29 +805,14 @@ export const Tabs = Object.assign(TabsComponent, {
 export const TabsContext = React.createContext<
   | {
       /**
-       * Orientation of the tabs.
-       * @default 'horizontal'
-       */
-      orientation?: 'horizontal' | 'vertical';
-      /**
        * Type of the tabs.
        */
       type?: string;
       /**
-       * Color of the bar on the active tab.
-       * @default 'blue'
+       * Orientation of the tabs.
+       * @default 'horizontal'
        */
-      color?: 'blue' | 'green';
-      /**
-       * The index of the tab that should be active when initially rendered.
-       */
-      activeIndex?: number;
-      /**
-       * Control whether focusing tabs (using arrow keys) should automatically select them.
-       * Use 'manual' if tab panel content is not preloaded.
-       * @default 'auto'
-       */
-      focusActivationMode?: 'auto' | 'manual';
+      orientation?: 'horizontal' | 'vertical';
       /**
        * The current active index.
        */
@@ -850,17 +822,27 @@ export const TabsContext = React.createContext<
        */
       setCurrentActiveIndex?: (value: number) => void;
       /**
-       * The index value passed for each of the tabs in the tab list.
+       * Options that can be specified to deal with tabs overflowing the allotted space.
+       */
+      overflowOptions?: OverflowOptions;
+      /**
+       * Handler for setting the hasSublabel flag.
+       */
+      setStripeProperties?: (stripeProperties: object) => void;
+    }
+  | undefined
+>(undefined);
+
+export const TabsTabListContext = React.createContext<
+  | {
+      /**
+       * The index value passed for each of the tabs.
        */
       index?: number;
       /**
        * Handler for activating a tab.
        */
       onTabSelected?: (index: number) => void;
-      /**
-       * Options that can be specified to deal with tabs overflowing the allotted space.
-       */
-      overflowOptions?: OverflowOptions;
       /**
        * Handler for setting the focused tab index.
        */
@@ -874,10 +856,16 @@ export const TabsContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setHasSublabel?: (hasSublabel: boolean) => void;
+    }
+  | undefined
+>(undefined);
+
+export const TabsPanelsContext = React.createContext<
+  | {
       /**
-       * Handler for setting the hasSublabel flag.
+       * The index value passed for each of the panels.
        */
-      setStripeProperties?: (stripeProperties: object) => void;
+      index?: number;
     }
   | undefined
 >(undefined);

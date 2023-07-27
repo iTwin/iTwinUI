@@ -8,14 +8,19 @@ import { Tabs } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
 type TabsProps = React.ComponentProps<typeof Tabs>;
+type TabsTabListProps = React.ComponentProps<typeof Tabs.TabList>;
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
+  initialTabListProps?: Partial<TabsTabListProps>,
   initialChildren?: React.ReactNode,
 ) => {
+  const tabListProps: TabsTabListProps = {
+    ...initialTabListProps,
+  } as TabsTabListProps;
   const defaultChildren = (
     <>
-      <Tabs.TabList>
+      <Tabs.TabList {...tabListProps}>
         <Tabs.Tab key={1} label='Label 1' />
         <Tabs.Tab key={2} label='Label 2' />
         <Tabs.Tab key={3} label='Label 3' />
@@ -82,6 +87,7 @@ it('should allow horizontal scrolling when overflowOptions useOverflow is true',
     {
       overflowOptions: { useOverflow: true },
     },
+    {},
     <>
       <Tabs.TabList>
         <Tabs.Tab key={1} label='Label 1' />
@@ -123,6 +129,7 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
       orientation: 'vertical',
       overflowOptions: { useOverflow: true },
     },
+    {},
     <>
       <Tabs.TabList>
         <Tabs.Tab key={1} label='Label 1' />
@@ -159,7 +166,7 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
 });
 
 it('should render green tabs', () => {
-  const { container } = renderComponent({ color: 'green' });
+  const { container } = renderComponent({}, { color: 'green' });
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
@@ -168,7 +175,7 @@ it('should render green tabs', () => {
 
 it('should call onTabSelected when switching tabs', () => {
   const onTabSelected = jest.fn();
-  const { container } = renderComponent({ onTabSelected });
+  const { container } = renderComponent({}, { onTabSelected });
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
@@ -177,7 +184,7 @@ it('should call onTabSelected when switching tabs', () => {
 });
 
 it('should set active tab', () => {
-  const { container } = renderComponent({ activeIndex: 2 });
+  const { container } = renderComponent({}, { activeIndex: 2 });
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
@@ -187,7 +194,7 @@ it('should set active tab', () => {
 });
 
 it('should not fail with invalid active tab and set the closest one', () => {
-  const { container } = renderComponent({ activeIndex: 100 });
+  const { container } = renderComponent({}, { activeIndex: 100 });
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
@@ -198,6 +205,7 @@ it('should not fail with invalid active tab and set the closest one', () => {
 
 it('should add .iui-large if tabs have sublabel', () => {
   const { container } = renderComponent(
+    {},
     {},
     <>
       <Tabs.TabList>
@@ -240,10 +248,12 @@ it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
   async (orientation) => {
     const mockOnTabSelected = jest.fn();
-    const { container } = renderComponent({
-      onTabSelected: mockOnTabSelected,
-      orientation: orientation,
-    });
+    const { container } = renderComponent(
+      {
+        orientation: orientation,
+      },
+      { onTabSelected: mockOnTabSelected },
+    );
 
     const nextTabKey = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
     const previousTabKey = orientation === 'vertical' ? 'ArrowUp' : 'ArrowLeft';
@@ -284,10 +294,13 @@ it.each(['horizontal', 'vertical'] as const)(
 
 it('should handle keypresses when focusActivationMode is manual', async () => {
   const mockOnTabSelected = jest.fn();
-  const { container } = renderComponent({
-    focusActivationMode: 'manual',
-    onTabSelected: mockOnTabSelected,
-  });
+  const { container } = renderComponent(
+    {},
+    {
+      focusActivationMode: 'manual',
+      onTabSelected: mockOnTabSelected,
+    },
+  );
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
   const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
@@ -313,7 +326,10 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
 it('should set focused index when tab is clicked', () => {
   const mockOnTabSelected = jest.fn();
-  const { container } = renderComponent({ onTabSelected: mockOnTabSelected });
+  const { container } = renderComponent(
+    {},
+    { onTabSelected: mockOnTabSelected },
+  );
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
   const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));

@@ -284,13 +284,8 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         padding: 8,
       }}
     >
-      <Tabs
-        overflowOptions={{ useOverflow: true }}
-        activeIndex={activeIndex}
-        onTabSelected={setActiveIndex}
-        {...args}
-      >
-        <Tabs.TabList>
+      <Tabs overflowOptions={{ useOverflow: true }} {...args}>
+        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
           <Tabs.Tab label='Item 1' />
           <Tabs.Tab label='Item 2' />
           <Tabs.Tab label='Item 3' />
@@ -354,11 +349,9 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
       <Tabs
         orientation='vertical'
         overflowOptions={{ useOverflow: true }}
-        activeIndex={activeIndex}
-        onTabSelected={setActiveIndex}
         {...args}
       >
-        <Tabs.TabList>
+        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
           <Tabs.Tab label='Item 1' />
           <Tabs.Tab label='Item 2' />
           <Tabs.Tab label='Item 3' />

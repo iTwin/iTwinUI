@@ -9,12 +9,8 @@ export default () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
-      <Tabs
-        overflowOptions={{ useOverflow: true }}
-        activeIndex={activeIndex}
-        onTabSelected={setActiveIndex}
-      >
-        <Tabs.TabList>
+      <Tabs overflowOptions={{ useOverflow: true }}>
+        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
           <Tabs.Tab label='Bentley Overview' />
           <Tabs.Tab label='Markets' />
           <Tabs.Tab label='Uses' />
