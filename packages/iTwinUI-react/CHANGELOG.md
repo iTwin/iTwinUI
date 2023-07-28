@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.48.3
+
+- Updated `@itwin/itwinui-css` to `0.63.3` which renames the cascade layer to `itwinui` (considered public).
+
 ### 1.48.2
 
 - Wrapped all styles in a `@layer` to make it easier to override them. This makes it possible for iTwinUI v2 to unset all conflicting styles from v1, thereby enabling incremental adoption.
