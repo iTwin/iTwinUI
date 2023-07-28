@@ -20,10 +20,7 @@ export default {
         ? { ...themes.dark, ...darkTheme }
         : { ...themes.light, ...lightTheme },
     },
-    options: {
-      showPanel: true,
-      storySort: { method: 'alphabetical' },
-    },
+    options: { showPanel: true },
     controls: { sort: 'requiredFirst' },
     backgrounds: {
       grid: { disable: true },
