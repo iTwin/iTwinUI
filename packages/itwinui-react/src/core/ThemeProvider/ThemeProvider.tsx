@@ -16,8 +16,7 @@ import type {
   ThemeOptions,
   ThemeType,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
+import { useStyles } from '../utils/hooks/useStyles.js';
 
 export type ThemeProviderProps<T extends React.ElementType = 'div'> =
   PolymorphicComponentProps<T, ThemeProviderOwnProps>;
@@ -57,13 +56,38 @@ type RootProps = {
   isInheritingTheme?: boolean;
 };
 
+type IncludeCssProps = {
+  /**
+   * If false, styles will not be included at runtime, so .css will need to
+   * be manually imported. By default, styles are included and wrapped in a layer.
+   *
+   * @default { withLayer: true }
+   */
+  includeCss?:
+    | boolean
+    | {
+        /**
+         * If true, all styles will be wrapped in a cascade layer named `itwinui`.
+         * This helps avoid specificity battles with application styles.
+         *
+         * @default true
+         */
+        withLayer: boolean;
+      };
+};
+
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
   (
     | {
         themeOptions?: RootProps['themeOptions'];
+        includeCss?: IncludeCssProps['includeCss'];
         children: Required<React.ReactNode>;
       }
-    | { themeOptions?: ThemeOptions; children?: undefined }
+    | {
+        themeOptions?: ThemeOptions;
+        includeCss?: never;
+        children?: undefined;
+      }
   );
 
 /**
@@ -93,7 +117,13 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> &
  * </ThemeProvider>
  */
 export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme: themeProp, children, themeOptions, ...rest } = props;
+  const {
+    theme: themeProp,
+    children,
+    themeOptions,
+    includeCss = { withLayer: true },
+    ...rest
+  } = props;
 
   const rootRef = React.useRef<HTMLElement>(null);
   const mergedRefs = useMergedRefs(rootRef, ref);
@@ -105,8 +135,8 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef }),
-    [theme, themeOptions],
+    () => ({ theme, themeOptions, rootRef, includeCss }),
+    [theme, themeOptions, includeCss],
   );
 
   // if no children, then fallback to this wrapper component which calls useTheme
@@ -128,6 +158,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       ref={mergedRefs}
       {...rest}
     >
+      {includeCss ? (
+        <Styles
+          includeCss={includeCss}
+          document={() => rootRef.current?.ownerDocument}
+        />
+      ) : null}
       <ThemeContext.Provider value={contextValue}>
         {children}
       </ThemeContext.Provider>
@@ -142,6 +178,7 @@ export const ThemeContext = React.createContext<
       theme?: ThemeType;
       themeOptions?: ThemeOptions;
       rootRef: React.RefObject<HTMLElement>;
+      includeCss?: IncludeCssProps['includeCss'];
     }
   | undefined
 >(undefined);
@@ -192,4 +229,19 @@ const ThemeLogicWrapper = (props: {
   const { theme, themeOptions } = props;
   useTheme(theme, themeOptions);
   return <></>;
+};
+
+/**
+ * Wrapper around `useStyles` hook.
+ *
+ * Must be the first thing rendered by `ThemeProvider`, to ensure that its
+ * `useStyles` is called before any subsequent `useStyles` calls from child components.
+ */
+const Styles = (props: {
+  includeCss?: IncludeCssProps['includeCss'];
+  document: () => Document | undefined;
+}) => {
+  const { includeCss, document } = props;
+  useStyles({ includeCss, document });
+  return null;
 };

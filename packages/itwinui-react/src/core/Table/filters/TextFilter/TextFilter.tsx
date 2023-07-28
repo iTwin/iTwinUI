@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import '@itwin/itwinui-css/css/table.css';
 import { useTheme } from '../../../utils/index.js';
 import { Input } from '../../../Input/index.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';

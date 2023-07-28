@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useTheme } from '../utils/index.js';
-import '@itwin/itwinui-css/css/workflow-diagram.css';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 

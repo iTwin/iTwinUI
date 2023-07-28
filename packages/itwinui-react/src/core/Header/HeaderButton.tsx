@@ -9,7 +9,6 @@ import type { ButtonProps } from '../Buttons/index.js';
 
 import { useTheme } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import '@itwin/itwinui-css/css/header.css';
 import { HeaderSplitButton } from './HeaderSplitButton.js';
 import type { HeaderSplitButtonProps } from './HeaderSplitButton.js';
 import { HeaderDropdownButton } from './HeaderDropdownButton.js';

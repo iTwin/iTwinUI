@@ -6,7 +6,6 @@ import cx from 'classnames';
 import * as React from 'react';
 import { useTheme } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/avatar.css';
 
 export type AvatarStatus = 'online' | 'busy' | 'away' | 'offline';
 

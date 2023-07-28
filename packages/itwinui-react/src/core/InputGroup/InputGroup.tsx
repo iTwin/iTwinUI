@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { StatusIconMap, useTheme, InputContainer } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/utils.css';
 
 export type InputGroupProps = {
   /**

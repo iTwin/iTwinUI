@@ -6,7 +6,6 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useTheme, SvgClose, mergeEventHandlers } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
-import '@itwin/itwinui-css/css/dialog.css';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { DialogTitleBarTitle } from './DialogTitleBarTitle.js';

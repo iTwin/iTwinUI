@@ -10,7 +10,6 @@ import {
   getFocusableElements,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/menu.css';
 
 export type MenuProps = {
   /**

@@ -11,7 +11,6 @@ import {
   SvgChevronRight,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/breadcrumbs.css';
 
 export type BreadcrumbsProps = {
   /**

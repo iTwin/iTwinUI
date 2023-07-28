@@ -13,7 +13,6 @@ import {
 } from '../utils/index.js';
 import type { CommonProps, HsvColor } from '../utils/index.js';
 import { Slider } from '../Slider/index.js';
-import '@itwin/itwinui-css/css/color-picker.css';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
 const getVerticalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {

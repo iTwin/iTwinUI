@@ -6,8 +6,7 @@ import * as React from 'react';
 import { getDocument, getWindow } from '../functions/index.js';
 import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
 import { useIsThemeAlreadySet } from './useIsThemeAlreadySet.js';
-import '@itwin/itwinui-css/css/global.css';
-import '@itwin/itwinui-variables/index.css';
+import { useStyles } from './useStyles.js';
 
 export type ThemeOptions = {
   /**
@@ -47,6 +46,8 @@ export type UseThemeProps = {
  *
  * @param theme Light, dark, or based on OS setting.
  * @param themeOptions Options that override default theming behavior.
+ *
+ * @deprecated This hook will be removed in v3. Please use `ThemeProvider` instead.
  */
 export const useTheme = (
   theme?: UseThemeProps['theme'],
@@ -54,6 +55,8 @@ export const useTheme = (
 ) => {
   const ownerDocument = themeOptions?.ownerDocument ?? getDocument();
   const isThemeAlreadySet = useIsThemeAlreadySet(ownerDocument);
+
+  useStyles();
 
   useCorrectRootFontSize();
 

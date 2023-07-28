@@ -10,7 +10,6 @@ import {
   mergeRefs,
 } from '../utils/index.js';
 import type { CommonProps, StylingProps } from '../utils/index.js';
-import '@itwin/itwinui-css/css/tree.css';
 import cx from 'classnames';
 import { TreeContext } from './TreeContext.js';
 

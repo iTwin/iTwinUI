@@ -9,7 +9,7 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../props.js';
-import '@itwin/itwinui-css/css/utils.css';
+import { useTheme } from '../hooks/useTheme.js';
 
 const sizeTokens = [
   '3xs',
@@ -51,6 +51,8 @@ const FlexComponent = React.forwardRef((props, ref) => {
     style,
     ...rest
   } = props;
+
+  useTheme();
 
   return (
     <Element

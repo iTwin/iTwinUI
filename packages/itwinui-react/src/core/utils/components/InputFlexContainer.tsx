@@ -8,7 +8,7 @@ import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,
 } from '../props.js';
-import '@itwin/itwinui-css/css/input-container.css';
+import { useTheme } from '../hooks/useTheme.js';
 
 type InputFlexContainerOwnProps = {
   isDisabled?: boolean;
@@ -29,6 +29,8 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
     style,
     ...rest
   } = props;
+
+  useTheme();
 
   return (
     <Element

@@ -18,7 +18,6 @@ import type {
   PopoverInstance,
   CommonProps,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/select.css';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
 

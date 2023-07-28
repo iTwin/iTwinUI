@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { useTheme } from '../hooks/index.js';
-import '@itwin/itwinui-css/css/utils.css';
 import type {
   PolymorphicComponentProps,
   PolymorphicForwardRefComponent,

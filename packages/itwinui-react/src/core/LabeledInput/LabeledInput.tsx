@@ -11,7 +11,6 @@ import {
   InputContainer,
   useId,
 } from '../utils/index.js';
-import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledInputProps = {
   /**

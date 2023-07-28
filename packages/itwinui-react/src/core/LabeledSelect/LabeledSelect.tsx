@@ -13,7 +13,6 @@ import {
   useId,
 } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/index.js';
-import '@itwin/itwinui-css/css/input.css';
 
 export type LabeledSelectProps<T> = {
   /**
