@@ -14,9 +14,9 @@ import { Menu } from '../Menu/index.js';
 export type DropdownMenuProps = {
   /**
    * List of menu items. Recommended to use MenuItem component.
-   * You can pass function that takes argument `close` that closes the dropdown menu.
+   * You can pass function that takes argument `close` that closes the dropdown menu, or a list of MenuItems.
    */
-  menuItems: (close: () => void) => JSX.Element[];
+  menuItems: (close: () => void) => JSX.Element[] | JSX.Element[] | JSX.Element;
   /**
    * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
    * @default 'menu'
@@ -72,6 +72,13 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
   const open = React.useCallback(() => setIsVisible(true), []);
   const close = React.useCallback(() => setIsVisible(false), []);
 
+  const menuContent = React.useMemo(() => {
+    if (typeof menuItems === 'function') {
+      return menuItems(close);
+    }
+    return menuItems;
+  }, [menuItems, close]);
+
   const targetRef = React.useRef<HTMLElement>(null);
 
   const onShowHandler = React.useCallback(
@@ -95,7 +102,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     <Popover
       content={
         <Menu className={className} style={style} role={role} id={id}>
-          {React.useMemo(() => menuItems(close), [menuItems, close])}
+          {menuContent}
         </Menu>
       }
       visible={trigger === undefined ? isVisible : undefined}
@@ -106,16 +113,20 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       trigger={visible === undefined ? trigger : undefined}
       {...rest}
     >
-      {React.cloneElement(children as JSX.Element, {
-        ref: mergeRefs(
-          targetRef,
-          (props.children as React.FunctionComponentElement<HTMLElement>).ref,
-        ),
-        onClick: (args: unknown) => {
-          trigger === undefined && (isVisible ? close() : open());
-          (children as JSX.Element).props.onClick?.(args);
-        },
-      })}
+      {React.isValidElement(children) ? (
+        React.cloneElement(children as JSX.Element, {
+          ref: mergeRefs(
+            targetRef,
+            (props.children as React.FunctionComponentElement<HTMLElement>).ref,
+          ),
+          onClick: (args: unknown) => {
+            trigger === undefined && (isVisible ? close() : open());
+            (children as JSX.Element).props.onClick?.(args);
+          },
+        })
+      ) : (
+        <></>
+      )}
     </Popover>
   );
 };

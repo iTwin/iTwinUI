@@ -8,8 +8,9 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock disabled title='Disabled expandable block'>
-        Content in block!
+      <ExpandableBlock disabled>
+        <ExpandableBlock.Header label='Disabled expandable block' />
+        <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
       </ExpandableBlock>
     </div>
   );

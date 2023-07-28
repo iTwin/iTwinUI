@@ -9,7 +9,7 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@itwin/itwinui-react": "3.0.0-dev.4",
+    "@itwin/itwinui-react": "3.0.0-dev.5",
     "@itwin/itwinui-icons-react": "2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -22,7 +22,7 @@
     "@types/react-dom": "^18.0.2",
     "@vitejs/plugin-react": "^3.1.0",
     "configs": "*",
-    "typescript": "^4.5.4",
+    "typescript": "~5.1.6",
     "vite": "^4.1.5"
   },
   "lint-staged": {
