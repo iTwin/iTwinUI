@@ -367,4 +367,4 @@ If you're interested in more details,
 
 ## 0.X
 
-For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/v0/packages/itwinui-css/CHANGELOG.md).
+For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v0-css/packages/itwinui-css/CHANGELOG.md).

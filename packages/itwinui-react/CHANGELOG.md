@@ -567,4 +567,4 @@ If you're interested in more details about every signle change, check out a full
 
 ## 1.X
 
-For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI-react/blob/v1/packages/iTwinUI-react/CHANGELOG.md).
+For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v1-react/packages/iTwinUI-react/CHANGELOG.md).
