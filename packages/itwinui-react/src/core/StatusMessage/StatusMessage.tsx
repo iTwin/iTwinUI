@@ -59,9 +59,9 @@ export const StatusMessage = React.forwardRef((props, ref) => {
     >
       {!!icon ? (
         <Icon
+          aria-hidden
           {...iconProps}
           className={cx('iui-status-message-icon', iconProps?.className)}
-          aria-hidden
         >
           {icon}
         </Icon>
