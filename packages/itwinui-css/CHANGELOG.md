@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.63.3
+
+- `@layer itwinui-v1` has been renamed to `@layer itwinui.v1`. This allows applications to use the `itwinui` layer name to orchestrate overall layer order.
+
 ### 0.63.2
 
 - All styles are now wrapped in `@layer`. This makes it possible to easily override and prevent conflicts with the next major version. ([#1037](https://www.github.com/iTwin/iTwinUI/pull/1037))
