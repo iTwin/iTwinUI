@@ -4703,7 +4703,7 @@ it('should pass custom props to different parts of Table', () => {
       className: 'custom-header-wrapper-class',
       style: { fontSize: 12 },
     },
-    headerProps: { className: 'custom-header-class', style: { fontSize: 12 } },
+    headerProps: { className: 'custom-header-class', style: { fontSize: 14 } },
     bodyProps: { className: 'custom-body-class', style: { width: 80 } },
     emptyTableContentProps: {
       className: 'custom-empty-table-content-class',
@@ -4723,7 +4723,7 @@ it('should pass custom props to different parts of Table', () => {
     '.iui-table-header.custom-header-class',
   ) as HTMLElement;
   expect(headerElement).toBeTruthy();
-  expect(headerElement.style.fontSize).toBe('12px');
+  expect(headerElement.style.fontSize).toBe('14px');
 
   // Test for Table body
   const bodyElement = container.querySelector(
