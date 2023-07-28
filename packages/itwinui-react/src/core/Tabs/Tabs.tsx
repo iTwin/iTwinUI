@@ -171,7 +171,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
 
   const items = Array.isArray(children) ? children : [children];
   const isClient = useIsClient();
-  const tablistRef = React.useRef<HTMLUListElement>(null);
+  const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
 
@@ -213,7 +213,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.children[focusedIndex].children[0];
+      const tab = tablistRef.current.children[focusedIndex];
       (tab as HTMLElement)?.focus();
     }
   }, [focusedIndex]);
@@ -294,7 +294,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
 
   const scrollToTab = React.useCallback(
     (
-      list: HTMLUListElement,
+      list: HTMLDivElement,
       activeTab: HTMLElement,
       duration: number,
       isVertical: boolean,
@@ -431,7 +431,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
     [onTabSelected, setCurrentActiveIndex],
   );
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     // alt + arrow keys are used by browser / assistive technologies
     if (event.altKey) {
       return;
@@ -498,7 +498,6 @@ const TabsTabList = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='ul'
       className={cx(
         'iui-tabs',
         `iui-${type}`,
@@ -519,25 +518,23 @@ const TabsTabList = React.forwardRef((props, ref) => {
     >
       {items.map((item, index) => {
         return (
-          <li key={index}>
-            <TabsTabListContext.Provider
-              value={{
-                index,
-                onTabSelected: onTabClick,
-                setFocusedIndex,
-                hasSublabel,
-                setHasSublabel,
-              }}
-              key={index}
-            >
-              {item}
-            </TabsTabListContext.Provider>
-          </li>
+          <TabsTabListContext.Provider
+            value={{
+              index,
+              onTabSelected: onTabClick,
+              setFocusedIndex,
+              hasSublabel,
+              setHasSublabel,
+            }}
+            key={index}
+          >
+            {item}
+          </TabsTabListContext.Provider>
         );
       })}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'ul', TabsTabListOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TabsTabListOwnProps>;
 TabsTabList.displayName = 'Tabs.TabList';
 
 // ----------------------------------------------------------------------------

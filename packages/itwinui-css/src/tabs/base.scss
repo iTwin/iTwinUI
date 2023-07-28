@@ -195,10 +195,10 @@ $borderless-horizontal-tab-min-height: calc(
   block-size: 100%;
 
   .iui-tabs {
-    li,
     .iui-tab {
       inline-size: 100%;
       white-space: nowrap;
+      block-size: auto;
     }
 
     ~ .iui-tabs-content {
