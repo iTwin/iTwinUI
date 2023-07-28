@@ -8,8 +8,7 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
-type WorkflowDiagramProps = Pick<StepperProps, 'steps'> &
-  Pick<StepperProps, 'diagramProps'>;
+type WorkflowDiagramProps = Pick<StepperProps, 'steps' | 'diagramProps'>;
 
 export const WorkflowDiagram = React.forwardRef(
   // TODO: Remove this ref cast. ref and rest props should be applied on the same element

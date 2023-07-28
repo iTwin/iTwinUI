@@ -21,7 +21,7 @@ export type StepProperties = {
    * A tooltip giving detailed description to this step.
    */
   description?: string;
-} & React.HTMLAttributes<HTMLLIElement>;
+} & React.ComponentProps<'li'>;
 
 export type StepperProps = {
   /**
@@ -50,31 +50,31 @@ export type StepperProps = {
    */
   stepProps?: (index: number) => React.ComponentProps<'li'>;
   /**
-   * Allows props to be passed for iui-stepper-step-track-content
+   * Allows props to be passed for track-content
    */
   trackContentProps?: (index: number) => React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for iui-stepper-step-circle
+   * Allows props to be passed for circle
    */
   circleProps?: (index: number) => React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for iui-stepper-step-name
+   * Allows props to be passed for name
    */
   nameProps?: (index: number) => React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for iui-stepper-steps-label
+   * Allows props to be passed for label
    */
   labelProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for iui-stepper-steps-label-count
+   * Allows props to be passed for label-count
    */
   labelCountProps?: React.ComponentProps<'span'>;
   /**
-   *  Allows props to be passed for iui-workflow-diagram
+   *  Allows props to be passed for diagram
    */
   diagramProps?: (index: number) => React.ComponentProps<'ol'>;
   /**
-   *  Allows props to be passed for iui-workflow-diagram-content
+   *  Allows props to be passed for diagram-content
    */
   contentProps?: React.ComponentProps<'span'>;
 };
@@ -132,9 +132,14 @@ export const Stepper = React.forwardRef((props, ref) => {
         })}
       </ol>
       {type === 'long' && (
-        <Box className={cx('iui-stepper-steps-label', labelProps?.className)}>
+        <Box
+          as='div'
+          {...labelProps}
+          className={cx('iui-stepper-steps-label', labelProps?.className)}
+        >
           <Box
             as='span'
+            {...labelCountProps}
             className={cx(
               'iui-stepper-steps-label-count',
               labelCountProps?.className,
