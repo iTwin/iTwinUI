@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.12.0
+
+### Minor Changes
+
+- [#1443](https://github.com/iTwin/iTwinUI/pull/1443): `DropdownButton` now supports `styleType='high-visibility'` to make it blue. This should be used sparingly, as a default or borderless dropdown button is the better choice in most cases.
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles.
+- [#1454](https://github.com/iTwin/iTwinUI/pull/1454): Added `disabled` prop to ExpandableBlock component. When activated, it triggers the "disabled" CSS styling for the ExpandableBlock and disables user interaction with it.
+- [#1415](https://github.com/iTwin/iTwinUI/pull/1415): The styling strategy has changed so there will now be a single stylesheet included at runtime, instead of separate css imports inside every component. All the styles are also wrapped in a cascade layer named `itwinui`. This behavior can be customized using the `includeCss` prop in `ThemeProvider`.
+
+  The dependencies on `@itwin/itwinui-css` and `@itwin/itwinui-variables` have been removed, so these packages don't need to be installed if you are only using components from `@itwin/itwinui-react`.
+
+- [#1441](https://github.com/iTwin/iTwinUI/pull/1441): Added `placement` prop to `Dialog` to allow placing it at one of the corners.
+
 ## 2.11.11
 
 ### Patch Changes
