@@ -16,9 +16,11 @@ module.exports = {
     // make API call to find PR number associated with the commit
     const prOrCommit = await (async () => {
       try {
-        const [{ number }] = await fetch(
-          `https://api.github.com/repos/${options.repo}/commits/${commit}/pulls`,
-        ).then((r) => r.json());
+        const { number } = (
+          await fetch(
+            `https://api.github.com/repos/${options.repo}/commits/${commit}/pulls`,
+          ).then((r) => r.json())
+        ).find((r) => r.merge_commit_sha.includes(commit));
 
         return `[#${number}](https://github.com/${options.repo}/pull/${number})`;
       } catch {
