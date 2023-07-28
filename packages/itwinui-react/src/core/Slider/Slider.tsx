@@ -498,11 +498,15 @@ export const Slider = React.forwardRef((props, ref) => {
       <Box
         as='div'
         ref={containerRef}
-        className={cx('iui-slider-container', {
-          'iui-grabbing': undefined !== activeThumbIndex,
-        })}
-        onPointerDown={handlePointerDownOnSlider}
         {...railContainerProps}
+        className={cx(
+          'iui-slider-container',
+          {
+            'iui-grabbing': undefined !== activeThumbIndex,
+          },
+          railContainerProps?.className,
+        )}
+        onPointerDown={handlePointerDownOnSlider}
       >
         <Box
           as='div'
