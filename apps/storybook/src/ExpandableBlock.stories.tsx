@@ -132,3 +132,16 @@ Borderless.args = {
   title: 'Basic Block',
   styleType: 'borderless',
 };
+
+export const Disabled: Story<Partial<ExpandableBlockProps>> = (args) => {
+  return (
+    <ExpandableBlock title='Disabled Block' disabled {...args}>
+      {args.children}
+    </ExpandableBlock>
+  );
+};
+
+Disabled.args = {
+  title: 'Disabled Block',
+  isExpanded: false,
+};

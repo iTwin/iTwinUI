@@ -57,6 +57,11 @@ export type ExpandableBlockProps = {
    * @default 'default'
    */
   styleType?: 'default' | 'borderless';
+  /**
+   * Disables ExpandableBlock.
+   * @default false
+   */
+  disabled?: boolean;
 } & Omit<CommonProps, 'title'>;
 
 /**
@@ -81,6 +86,7 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
     status,
     size = 'default',
     styleType = 'default',
+    disabled = false,
     ...rest
   } = props;
 
@@ -94,12 +100,15 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
   }, [isExpanded]);
 
   const handleToggle = () => {
+    if (disabled) {
+      return;
+    }
     setExpanded(!expanded);
     onToggle?.(!expanded);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
+    if (event.altKey || disabled) {
       return;
     }
 
@@ -128,8 +137,10 @@ export const ExpandableBlock = (props: ExpandableBlockProps) => {
       {...rest}
     >
       <div
+        role='button'
         aria-expanded={expanded}
         className='iui-header'
+        aria-disabled={disabled}
         tabIndex={0}
         onClick={handleToggle}
         onKeyDown={onKeyDown}
