@@ -2,86 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-/// Container for grouping inputs with a label, an icon and a status message.
-/// Supported modifiers: .iui-inline-label, .iui-inline-icon and .iui-with-message
-@mixin iui-input-container {
-  @include mixins.iui-reset;
-  display: grid;
-  grid-template:
-    'label label'
-    'inputs inputs' / auto 1fr;
-  row-gap: var(--iui-size-2xs);
-
-  &.iui-inline-icon {
-    > .iui-input {
-      padding-inline-end: var(--iui-component-height);
-
-      &:last-child {
-        padding-inline-end: var(--iui-size-s);
-      }
-    }
-  }
-
-  &.iui-with-message {
-    grid-template:
-      'label label'
-      'inputs inputs'
-      'icon message' / auto 1fr;
-
-    // add margin to the icon if it is below input
-    &:not(.iui-inline-icon) > .iui-input-icon {
-      margin-block-start: var(--iui-size-2xs);
-    }
-  }
-
-  .iui-input,
-  .iui-input-with-icon,
-  .iui-input-group {
-    grid-area: inputs;
-  }
-
-  .iui-input-group .iui-toggle-switch-wrapper {
-    padding: calc(var(--iui-size-s) * 0.5) 0;
-  }
-
-  // #region Cursors
-  @include iui-input-label-cursor;
-
-  &.iui-disabled {
-    --_iui-input-label-color: var(--iui-color-text-disabled);
-
-    label {
-      cursor: not-allowed;
-    }
-  }
-  // #endregion
-
-  // Appropriate spacing even if no text label is given
-  .iui-checkbox-wrapper,
-  .iui-radio-wrapper {
-    min-block-size: var(--iui-size-l);
-  }
-
-  &.iui-inline-label {
-    grid-template: 'label inputs icon' / auto 1fr auto;
-
-    &.iui-with-message {
-      grid-template:
-        'label inputs inputs'
-        '. icon message' / auto auto 1fr;
-    }
-
-    > .iui-input-group {
-      display: flex;
-      gap: var(--iui-size-m);
-
-      &:not(:last-child) {
-        margin-inline-end: var(--iui-size-m);
-      }
-    }
-  }
-}
-
 /// Cursor styling for the label.
 @mixin iui-input-label-cursor {
   cursor: default;
@@ -143,11 +63,6 @@
     display: inline-flex;
     align-items: center;
   }
-}
-
-/// Message shown below input
-@mixin iui-input-message {
-  grid-area: message;
 }
 
 /// Icon to be shown near a message.

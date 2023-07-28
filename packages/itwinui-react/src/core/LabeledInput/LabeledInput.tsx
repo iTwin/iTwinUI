@@ -94,7 +94,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         </Label>
       )}
 
-      <InputWithDecorations status={status}>
+      <InputWithDecorations status={status} isDisabled={disabled}>
         <InputWithDecorations.Input
           disabled={disabled}
           required={required}

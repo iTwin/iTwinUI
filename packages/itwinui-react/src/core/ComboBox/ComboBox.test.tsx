@@ -526,8 +526,9 @@ it('should work with custom itemRenderer', async () => {
 it('should accept status prop', () => {
   const { container } = renderComponent({ status: 'negative' });
 
-  expect(container.querySelector('.iui-input-container')).toHaveClass(
-    'iui-negative',
+  expect(container.querySelector('.iui-input-container')).toHaveAttribute(
+    'data-iui-status',
+    'negative',
   );
 });
 
@@ -570,7 +571,7 @@ it('should render with message as string and status', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer).toHaveClass('iui-warning');
+  expect(inputContainer).toHaveAttribute('data-iui-status', 'warning');
   expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
 });
 
@@ -602,7 +603,7 @@ it('should render with message and status', () => {
     '.iui-input-container',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer).toHaveClass('iui-positive');
+  expect(inputContainer).toHaveAttribute('data-iui-status', 'positive');
   expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
   const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message.textContent).toBe('Text here');

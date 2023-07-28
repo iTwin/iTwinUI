@@ -16,9 +16,9 @@ it('should render correctly in its most basic state', () => {
       <Checkbox />
     </InputGroup>,
   );
-  expect(container.querySelector('.iui-input-container')).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
   const label = getByText('some label') as HTMLElement;
-  expect(label.className).toBe('iui-label');
+  expect(label.className).toBe('iui-input-label');
   expect(container.querySelectorAll('input').length).toBe(2);
 });
 
@@ -29,9 +29,7 @@ it('should render disabled group', () => {
       <Checkbox disabled />
     </InputGroup>,
   );
-  expect(
-    container.querySelector('.iui-input-container.iui-disabled'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
   getByText('some label');
   const inputs = container.querySelectorAll('input');
   expect(inputs.length).toBe(2);
@@ -45,8 +43,8 @@ it('should render required group', () => {
       <Checkbox required />
     </InputGroup>,
   );
-  expect(container.querySelector('.iui-input-container')).toBeTruthy();
-  expect(container.querySelector('.iui-label.iui-required')).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
+  expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
 
   const inputs = container.querySelectorAll('input');
   expect(inputs.length).toBe(2);
@@ -64,7 +62,7 @@ it('should render message', () => {
       <Radio />
     </InputGroup>,
   );
-  expect(container.querySelector('.iui-input-container')).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
   getByText('some label');
   const message = container.querySelector(
     '.iui-status-message-content > .my-message',
@@ -88,11 +86,12 @@ it.each(['positive', 'negative', 'warning'] as const)(
         <Radio />
       </InputGroup>,
     );
-    expect(
-      container.querySelector(`.iui-input-container.iui-${status}`),
-    ).toBeTruthy();
+    expect(container.querySelector(`.iui-status-message`)).toHaveAttribute(
+      'data-iui-status',
+      status,
+    );
     getByText('some label');
-    expect(container.querySelector('.iui-input-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
   },
 );
 
@@ -105,7 +104,7 @@ it('should take class and style on container', () => {
     </InputGroup>,
   );
   const groupContainer = container.querySelector(
-    '.iui-input-container.my-class',
+    '.iui-input-grid.my-class',
   ) as HTMLElement;
   expect(groupContainer).toBeTruthy();
   expect(groupContainer.style.width).toBe('80px');
@@ -125,12 +124,14 @@ it('should render inline group', () => {
       <Checkbox />
     </InputGroup>,
   );
-  expect(
-    container.querySelector('.iui-input-container.iui-inline-label'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toHaveAttribute(
+    'data-iui-label-placement',
+    'inline',
+  );
   getByText('some group label');
   expect(queryByText('My message')).toBeNull();
-  expect(container.querySelector('.iui-input-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
 });
 
 it('should take custom icon', () => {
@@ -145,9 +146,12 @@ it('should take custom icon', () => {
       <Checkbox />
     </InputGroup>,
   );
-  expect(
-    container.querySelector('.iui-input-container.iui-inline-label'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-input-grid')).toHaveAttribute(
+    'data-iui-label-placement',
+    'inline',
+  );
   getByText('some group label');
-  expect(container.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-status-message-icon > .my-icon'),
+  ).toBeTruthy();
 });

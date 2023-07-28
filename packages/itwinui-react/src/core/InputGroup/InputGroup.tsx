@@ -87,6 +87,8 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     return undefined;
   };
 
+  console.log(message);
+
   return (
     <InputGrid labelPlacement={displayStyle} ref={forwardedRef} {...rest}>
       {label && (

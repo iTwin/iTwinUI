@@ -16,7 +16,9 @@ const assertBaseElement = (container: HTMLElement) => {
 it('should render correctly in its most basic state', () => {
   const { container, getByText } = render(<LabeledInput label='some label' />);
   assertBaseElement(container);
-  expect(container.querySelector('.iui-input')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-input-flex-container > input'),
+  ).toBeTruthy();
   const label = getByText('some label') as HTMLElement;
   expect(label.className).toBe('iui-input-label');
 });
@@ -26,7 +28,7 @@ it('should render disabled component', () => {
     <LabeledInput label='some label' disabled />,
   );
   assertBaseElement(container);
-  expect(container.querySelector('.iui-input')).toBeTruthy();
+  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   const label = container.querySelector('.iui-input-label');
   expect(label).toBeTruthy();
   expect(label).toHaveAttribute('data-iui-disabled', 'true');
@@ -39,7 +41,7 @@ it('should render disabled component', () => {
 it('should handle required attribute', () => {
   const { container } = render(<LabeledInput label='some label' required />);
   assertBaseElement(container);
-  expect(container.querySelector('.iui-input')).toBeTruthy();
+  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
   expect(
     (container.querySelector('input') as HTMLInputElement).required,
@@ -55,7 +57,7 @@ it('should render message', () => {
   );
   assertBaseElement(container);
   getByText('some label');
-  expect(container.querySelector('.iui-input')).toBeTruthy();
+  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   const message = container.querySelector(
     '.iui-status-message-content > .my-message',
   ) as HTMLElement;
@@ -70,7 +72,7 @@ it.each(['positive', 'negative', 'warning'] as const)(
       <LabeledInput label='some label' status={status} />,
     );
     assertBaseElement(container);
-    const input = container.querySelector('.iui-input');
+    const input = container.querySelector('.iui-input-flex-container');
     expect(input).toBeTruthy();
     expect(input).toHaveAttribute('data-iui-status', status);
     getByText('some label');
@@ -98,14 +100,19 @@ it('should take class and style on input', () => {
   const { container, getByText } = render(
     <LabeledInput
       label='some label'
-      inputClassName='my-class'
-      inputStyle={{ width: 80 }}
+      inputProps={{
+        className: 'my-class',
+        style: { width: 80 },
+      }}
     />,
   );
   assertBaseElement(container);
   getByText('some label');
-  const input = container.querySelector('.iui-input.my-class') as HTMLElement;
+  const input = container.querySelector(
+    '.iui-input-flex-container > input.my-class',
+  ) as HTMLElement;
   expect(input).toBeTruthy();
+  console.log(input.style.width);
   expect(input.style.width).toBe('80px');
 });
 
