@@ -57,6 +57,22 @@ type SideNavigationProps = {
    * @default false
    */
   isSubmenuOpen?: boolean;
+  /**
+   * Passes props for SideNav.
+   */
+  sideNavProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav content.
+   */
+  sideNavContentProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav top.
+   */
+  sideNavTopProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav bottom.
+   */
+  sideNavBottomProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -83,6 +99,10 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     onExpanderClick,
     submenu,
     isSubmenuOpen = false,
+    sideNavProps,
+    sideNavContentProps,
+    sideNavTopProps,
+    sideNavBottomProps,
     ...rest
   } = props;
 
@@ -110,14 +130,28 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <Box
-        className={cx('iui-side-navigation', {
-          'iui-expanded': _isExpanded,
-          'iui-collapsed': !_isExpanded,
-        })}
+        as='div'
+        {...sideNavProps}
+        className={cx(
+          'iui-side-navigation',
+          {
+            'iui-expanded': _isExpanded,
+            'iui-collapsed': !_isExpanded,
+          },
+          sideNavProps?.className,
+        )}
       >
         {expanderPlacement === 'top' && ExpandButton}
-        <Box className='iui-sidenav-content'>
-          <Box className='iui-top'>
+        <Box
+          as='div'
+          {...sideNavContentProps}
+          className={cx('iui-sidenav-content', sideNavContentProps?.className)}
+        >
+          <Box
+            as='div'
+            {...sideNavTopProps}
+            className={cx('iui-top', sideNavTopProps?.className)}
+          >
             {items.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip
@@ -132,7 +166,11 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
               ),
             )}
           </Box>
-          <Box className='iui-bottom'>
+          <Box
+            as='div'
+            {...sideNavBottomProps}
+            className={cx('iui-bottom', sideNavBottomProps)}
+          >
             {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip
