@@ -103,6 +103,28 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.11.11
+
+### Patch Changes
+
+- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fix resizable Dialog bug where Dialog jumped around the screen when resized on right side.
+
+## 2.11.10
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424), [#1427](https://github.com/iTwin/iTwinUI/pull/1427): Fixed a few different resizing issues in Dialog.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.5
+
+## 2.11.9
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.4
+
 ## 2.11.8
 
 ### Patch Changes
