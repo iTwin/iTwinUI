@@ -169,7 +169,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
           <Box
             as='div'
             {...sideNavBottomProps}
-            className={cx('iui-bottom', sideNavBottomProps)}
+            className={cx('iui-bottom', sideNavBottomProps?.className)}
           >
             {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (

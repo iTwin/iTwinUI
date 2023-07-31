@@ -274,3 +274,52 @@ it('should not show submenu if isSubmenuOpen is false', () => {
   expect(wrapper.querySelector('.iui-side-navigation-submenu')).toBeFalsy();
   expect(screen.queryByText('submenu content')).toBeFalsy();
 });
+
+it('passes custom props to subcomponents', () => {
+  const { container } = renderComponent({
+    sideNavProps: {
+      className: 'custom-sidenav-class',
+      style: { width: 70 },
+    },
+    sideNavContentProps: {
+      className: 'custom-sidenav-content-class',
+      style: { width: 80 },
+    },
+    sideNavTopProps: {
+      className: 'custom-sidenav-top-class',
+      style: { width: 90 },
+    },
+    sideNavBottomProps: {
+      className: 'custom-sidenav-bottom-class',
+      style: { width: 100 },
+    },
+  });
+
+  // sideNav props test
+  const sideNavElement = container.querySelector(
+    '.iui-side-navigation.iui-collapsed.custom-sidenav-class',
+  ) as HTMLElement;
+  expect(sideNavElement).toBeTruthy();
+  expect(sideNavElement.style.width).toBe('70px');
+
+  // content props test
+  const contentElement = container.querySelector(
+    '.iui-sidenav-content.custom-sidenav-content-class',
+  ) as HTMLElement;
+  expect(contentElement).toBeTruthy();
+  expect(contentElement.style.width).toBe('80px');
+
+  // top props test
+  const topElement = container.querySelector(
+    '.iui-top.custom-sidenav-top-class',
+  ) as HTMLElement;
+  expect(topElement).toBeTruthy();
+  expect(topElement.style.width).toBe('90px');
+
+  // bottom props test
+  const bottomElement = container.querySelector(
+    '.iui-bottom.custom-sidenav-bottom-class',
+  ) as HTMLElement;
+  expect(bottomElement).toBeTruthy();
+  expect(bottomElement.style.width).toBe('100px');
+});
