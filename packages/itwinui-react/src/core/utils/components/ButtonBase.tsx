@@ -48,11 +48,17 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       onPointerUp={handleIfEnabled(props.onPointerUp)}
     />
   );
-}) as PolymorphicForwardRefComponent<
-  'button',
-  {
-    /* native `disabled` attribute */
-    htmlDisabled?: boolean;
-  }
->;
+}) as PolymorphicForwardRefComponent<'button', ButtonBaseProps>;
 ButtonBase.displayName = 'ButtonBase';
+
+type ButtonBaseProps = {
+  /**
+   * Custom `disabled` prop that keeps the button focusable, prevents
+   * clicks, applied disabled styling, and adds `aria-disabled`.
+   */
+  disabled?: boolean;
+  /**
+   * Built-in html `disabled` attribute
+   */
+  htmlDisabled?: boolean;
+};
