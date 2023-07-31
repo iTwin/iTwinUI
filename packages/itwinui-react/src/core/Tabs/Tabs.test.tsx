@@ -312,31 +312,31 @@ it.each(['horizontal', 'vertical'] as const)(
     const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
 
     // alt key
-    fireEvent.keyDown(tablist, { key: nextTabKey, altKey: true });
+    fireEvent.keyDown(tabs[0], { key: nextTabKey, altKey: true });
     expect(mockOnActiveChange0).not.toHaveBeenCalled();
 
     // 0 -> 1
-    fireEvent.keyDown(tablist, { key: nextTabKey });
+    fireEvent.keyDown(tabs[0], { key: nextTabKey });
     expect(mockOnActiveChange1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
-    fireEvent.keyDown(tablist, { key: nextTabKey });
+    fireEvent.keyDown(tabs[1], { key: nextTabKey });
     expect(mockOnActiveChange2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
-    fireEvent.keyDown(tablist, { key: nextTabKey });
+    fireEvent.keyDown(tabs[2], { key: nextTabKey });
     expect(mockOnActiveChange0).toBeCalled();
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
-    fireEvent.keyDown(tablist, { key: previousTabKey });
+    fireEvent.keyDown(tabs[0], { key: previousTabKey });
     expect(mockOnActiveChange2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
-    fireEvent.keyDown(tablist, { key: previousTabKey });
+    fireEvent.keyDown(tabs[2], { key: previousTabKey });
     expect(mockOnActiveChange1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
   },
@@ -377,21 +377,21 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
   const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
 
   // 0 -> 1
-  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  fireEvent.keyDown(tabs[0], { key: 'ArrowRight' });
   expect(mockOnActiveChange1).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[1]);
 
   // select 1
-  fireEvent.keyDown(tablist, { key: 'Enter' });
+  fireEvent.keyDown(tabs[1], { key: 'Enter' });
   expect(mockOnActiveChange1).toBeCalled();
 
   // 1 -> 0
-  fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
+  fireEvent.keyDown(tabs[1], { key: 'ArrowLeft' });
   expect(mockOnActiveChange0).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[0]);
 
   // select 0
-  fireEvent.keyDown(tablist, { key: ' ' });
+  fireEvent.keyDown(tabs[0], { key: ' ' });
   expect(mockOnActiveChange0).toBeCalled();
 });
 
@@ -406,7 +406,7 @@ it('should set focused index when tab is clicked', () => {
   expect(document.activeElement).toBe(tabs[1]);
 
   // 1 -> 2
-  fireEvent.keyDown(tablist, { key: 'ArrowRight' });
+  fireEvent.keyDown(tabs[1], { key: 'ArrowRight' });
   expect(document.activeElement).toBe(tabs[2]);
 });
 

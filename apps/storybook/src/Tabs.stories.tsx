@@ -275,7 +275,6 @@ SublabelsAndIcons.args = {
 
 export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
   const [activeIndex, setActiveIndex] = React.useState(10);
-  // const activeIndex = React.useRef(10);
 
   const [tabData, setTabData] = React.useState([
     { name: 'Item 1', active: false, disabled: false },

@@ -244,7 +244,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
     ownerDoc.addEventListener('wheel', enableHorizontalScroll);
   }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
 
-  const isTabHidden = (activeTab: HTMLElement, isVertical: boolean) => {
+  const isTabHidden = (tab: HTMLElement, isVertical: boolean) => {
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
       return;
@@ -257,10 +257,10 @@ const TabsTabList = React.forwardRef((props, ref) => {
     const visibleEnd = isVertical
       ? ownerDoc.scrollTop + ownerDoc.offsetHeight
       : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
-    const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
+    const tabStart = isVertical ? tab.offsetTop : tab.offsetLeft;
     const tabEnd = isVertical
-      ? activeTab.offsetTop + activeTab.offsetHeight
-      : activeTab.offsetLeft + activeTab.offsetWidth;
+      ? tab.offsetTop + tab.offsetHeight
+      : tab.offsetLeft + tab.offsetWidth;
 
     if (
       tabStart > visibleStart + fadeBuffer &&
@@ -289,7 +289,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
   const scrollToTab = React.useCallback(
     (
       list: HTMLDivElement,
-      activeTab: HTMLElement,
+      tab: HTMLElement,
       duration: number,
       isVertical: boolean,
       tabPlacement: number,
@@ -305,19 +305,19 @@ const TabsTabList = React.forwardRef((props, ref) => {
       if (tabPlacement < 0) {
         // if tab is before visible section
         change = isVertical
-          ? activeTab.offsetTop - list.scrollTop
-          : activeTab.offsetLeft - list.scrollLeft;
-        change -= fadeBuffer; // give some space so the active tab isn't covered by the fade
+          ? tab.offsetTop - list.scrollTop
+          : tab.offsetLeft - list.scrollLeft;
+        change -= fadeBuffer; // give some space so the tab isn't covered by the fade
       } else {
         // tab is after visible section
         change = isVertical
-          ? activeTab.offsetTop -
+          ? tab.offsetTop -
             (list.scrollTop + list.offsetHeight) +
-            activeTab.offsetHeight
-          : activeTab.offsetLeft -
+            tab.offsetHeight
+          : tab.offsetLeft -
             (list.scrollLeft + list.offsetWidth) +
-            activeTab.offsetWidth;
-        change += fadeBuffer; // give some space so the active tab isn't covered by the fade
+            tab.offsetWidth;
+        change += fadeBuffer; // give some space so the tab isn't covered by the fade
       }
 
       const animateScroll = () => {
@@ -337,23 +337,20 @@ const TabsTabList = React.forwardRef((props, ref) => {
     [],
   );
 
-  // scroll to active tab if it is not visible with overflow
+  // scroll to focused/active tab if it is not visible with overflow
   useIsomorphicLayoutEffect(() => {
     setTimeout(() => {
       const ownerDoc = tablistRef.current;
-      if (
-        ownerDoc !== null &&
-        overflowOptions?.useOverflow &&
-        currentActiveIndex !== undefined
-      ) {
-        const activeTab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
-          currentActiveIndex
+      const scrollToIndex = focusedIndex ?? currentActiveIndex ?? 0;
+      if (ownerDoc !== null && overflowOptions?.useOverflow) {
+        const tab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
+          scrollToIndex
         ] as HTMLElement;
         const isVertical = orientation === 'vertical';
-        const tabPlacement = isTabHidden(activeTab, isVertical);
+        const tabPlacement = isTabHidden(tab, isVertical);
 
         if (tabPlacement) {
-          scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
+          scrollToTab(ownerDoc, tab, 100, isVertical, tabPlacement);
         }
       }
     }, 50);
@@ -420,77 +417,16 @@ const TabsTabList = React.forwardRef((props, ref) => {
       const tab = items[index];
       if (React.isValidElement(tab) && tab.props.onActiveChange) {
         tab.props.onActiveChange();
+      } else {
+        setCurrentActiveIndex && setCurrentActiveIndex(index);
       }
     },
-    [items],
+    [items, setCurrentActiveIndex],
   );
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    // alt + arrow keys are used by browser / assistive technologies
-    if (event.altKey) {
-      return;
-    }
-
-    const isTabDisabled = (index: number) => {
-      const tab = items[index];
-      return React.isValidElement(tab) && tab.props.disabled;
-    };
-
-    let newIndex = focusedIndex ?? currentActiveIndex ?? 0;
-
-    /** focus next tab if delta is +1, previous tab if -1 */
-    const focusTab = (delta = +1) => {
-      do {
-        newIndex = (newIndex + delta + items.length) % items.length;
-      } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
-      setCurrentActiveIndex && setCurrentActiveIndex(newIndex);
-      setFocusedIndex(newIndex);
-      focusActivationMode === 'auto' && onTabClick(newIndex);
-    };
-
-    switch (event.key) {
-      case 'ArrowDown': {
-        if (orientation === 'vertical') {
-          focusTab(+1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowRight': {
-        if (orientation === 'horizontal') {
-          focusTab(+1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowUp': {
-        if (orientation === 'vertical') {
-          focusTab(-1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowLeft': {
-        if (orientation === 'horizontal') {
-          focusTab(-1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        event.preventDefault();
-        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
-          setCurrentActiveIndex && setCurrentActiveIndex(newIndex);
-          setFocusedIndex && setFocusedIndex(newIndex);
-          onTabClick(focusedIndex);
-        }
-        break;
-      }
-      default:
-        break;
-    }
+  const isTabDisabled = (index: number) => {
+    const tab = items[index];
+    return React.isValidElement(tab) && tab.props.disabled;
   };
 
   return (
@@ -509,7 +445,6 @@ const TabsTabList = React.forwardRef((props, ref) => {
       data-iui-overflow={overflowOptions?.useOverflow}
       data-iui-scroll-placement={scrollingPlacement}
       role='tablist'
-      onKeyDown={onKeyDown}
       ref={refs}
       {...rest}
     >
@@ -517,8 +452,13 @@ const TabsTabList = React.forwardRef((props, ref) => {
         return (
           <TabsTabListContext.Provider
             value={{
+              numTabs: items.length,
               index,
+              focusedIndex,
               setFocusedIndex,
+              focusActivationMode,
+              isTabDisabled,
+              onTabClick,
               hasSublabel,
               setHasSublabel,
             }}
@@ -563,20 +503,99 @@ const TabsTab = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { currentActiveIndex, setCurrentActiveIndex } =
+  const { orientation, currentActiveIndex, setCurrentActiveIndex } =
     useSafeContext(TabsContext);
-  const { index, setFocusedIndex } = useSafeContext(TabsTabListContext);
+  const {
+    numTabs,
+    index,
+    focusedIndex,
+    setFocusedIndex,
+    focusActivationMode,
+    isTabDisabled,
+    onTabClick,
+  } = useSafeContext(TabsTabListContext);
 
   const onClick = () => {
     if (index !== undefined) {
+      setFocusedIndex && setFocusedIndex(index);
       if (onActiveChange) {
         onActiveChange();
       } else {
         setCurrentActiveIndex && setCurrentActiveIndex(index);
-        setFocusedIndex && setFocusedIndex(index);
       }
     }
   };
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.altKey) {
+      return;
+    }
+
+    let newIndex = focusedIndex ?? currentActiveIndex ?? 0;
+
+    /** focus next tab if delta is +1, previous tab if -1 */
+    const focusTab = (delta = +1) => {
+      if (numTabs !== undefined) {
+        do {
+          newIndex = (newIndex + delta + numTabs) % numTabs;
+        } while (
+          isTabDisabled &&
+          isTabDisabled(newIndex) &&
+          newIndex !== focusedIndex
+        );
+      }
+
+      setFocusedIndex && setFocusedIndex(newIndex);
+      focusActivationMode === 'auto' && onTabClick && onTabClick(newIndex);
+    };
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        if (orientation === 'vertical') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowRight': {
+        if (orientation === 'horizontal') {
+          focusTab(+1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        if (orientation === 'vertical') {
+          focusTab(-1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        if (orientation === 'horizontal') {
+          focusTab(-1);
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'Enter':
+      case ' ':
+      case 'Spacebar': {
+        event.preventDefault();
+        if (focusActivationMode === 'manual' && focusedIndex === index) {
+          onActiveChange
+            ? onActiveChange()
+            : setCurrentActiveIndex &&
+              index !== undefined &&
+              setCurrentActiveIndex(index);
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
   return (
     <Box
       as='button'
@@ -588,6 +607,7 @@ const TabsTab = React.forwardRef((props, ref) => {
       role='tab'
       tabIndex={index === currentActiveIndex || isActive ? 0 : -1}
       onClick={onClick}
+      onKeyDown={onKeyDown}
       aria-selected={index === currentActiveIndex || isActive}
       ref={ref}
       {...rest}
@@ -849,13 +869,35 @@ export const TabsContext = React.createContext<
 export const TabsTabListContext = React.createContext<
   | {
       /**
+       * Number of tabs in the tab list.
+       */
+      numTabs?: number;
+      /**
        * The index value passed for each of the tabs.
        */
       index?: number;
       /**
+       * The index of the focused tab.
+       */
+      focusedIndex?: number;
+      /**
        * Handler for setting the focused tab index.
        */
       setFocusedIndex?: (index: number) => void;
+      /**
+       * Control whether focusing tabs (using arrow keys) should automatically select them.
+       * Use 'manual' if tab panel content is not preloaded.
+       * @default 'auto'
+       */
+      focusActivationMode?: 'auto' | 'manual';
+      /**
+       * Function that checks if a tab is disabled given its index
+       */
+      isTabDisabled?: (index: number) => boolean;
+      /**
+       * Handler for clicking a tab given the tab's index.
+       */
+      onTabClick?: (index: number) => void;
       /**
        * Flag whether any of the tabs have a sublabel.
        * Used for determining tab size.
