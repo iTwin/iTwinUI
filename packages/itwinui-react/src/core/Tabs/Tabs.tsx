@@ -543,13 +543,12 @@ type TabsTabOwnProps = {
    */
   label?: string | React.ReactNode;
   /**
-   * Orientation of the tabs.
-   * @default 'horizontal'
+   * Flag whether the tab is active.
+   * @default 'false'
    */
   isActive?: boolean;
   /**
-   * Orientation of the tabs.
-   * @default 'horizontal'
+   * Callback fired when the isActive prop changes.
    */
   onActiveChange?: () => void;
 };
