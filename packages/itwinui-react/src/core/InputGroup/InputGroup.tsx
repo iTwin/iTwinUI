@@ -109,12 +109,18 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
 
   return (
     <InputGrid
+      as='div'
       labelPlacement={displayStyle}
       {...wrapperProps}
       className={cx('iui-input-group-wrapper', wrapperProps?.className)}
     >
       {label && (
-        <Label required={required} disabled={disabled} {...labelProps}>
+        <Label
+          as='label'
+          required={required}
+          disabled={disabled}
+          {...labelProps}
+        >
           {label}
         </Label>
       )}
