@@ -22,8 +22,15 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       aria-disabled={
         props.as === 'button' && props.disabled ? 'true' : undefined
       }
+      disabled={props.htmlDisabled || undefined}
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'button'>;
+}) as PolymorphicForwardRefComponent<
+  'button',
+  {
+    /* native `disabled` attribute */
+    htmlDisabled?: boolean;
+  }
+>;
 ButtonBase.displayName = 'ButtonBase';
