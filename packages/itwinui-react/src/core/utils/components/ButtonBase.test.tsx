@@ -74,3 +74,14 @@ it('should support polymorphic `as` prop', () => {
   expect(button).toHaveAttribute('data-iui-disabled', 'true');
   expect(button.href).toEqual('https://example.com/');
 });
+
+it('should allow `htmlDisabled` prop to override `disabled`', () => {
+  const { container } = render(
+    <ButtonBase disabled htmlDisabled>
+      hi
+    </ButtonBase>,
+  );
+  const button = container.querySelector('button') as HTMLButtonElement;
+  expect(button).toBeDisabled();
+  expect(button).not.toHaveAttribute('aria-disabled');
+});
