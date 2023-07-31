@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { StatusIconMap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
@@ -45,6 +46,21 @@ type InputGroupProps = {
    * Child inputs inside group.
    */
   children: React.ReactNode;
+  /**
+   * Passes properties for label.
+   */
+  labelProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes properties for message.
+   */
+  messageProps?: Pick<
+    React.ComponentProps<typeof StatusMessage>,
+    'iconProps' | 'contentProps'
+  >;
 };
 
 /**
@@ -64,6 +80,7 @@ type InputGroupProps = {
  */
 export const InputGroup = React.forwardRef((props, forwardedRef) => {
   const {
+    className,
     children,
     disabled = false,
     displayStyle = 'default',
@@ -72,6 +89,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     status,
     svgIcon,
     required = false,
+    labelProps,
+    messageProps,
+    wrapperProps,
     ...rest
   } = props;
 
@@ -89,19 +109,24 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
 
   return (
     <InputGrid
-      className='iui-input-group-wrapper'
       labelPlacement={displayStyle}
-      ref={forwardedRef}
-      {...rest}
+      {...wrapperProps}
+      className={cx('iui-input-group-wrapper', wrapperProps?.className)}
     >
       {label && (
-        <Label required={required} disabled={disabled}>
+        <Label required={required} disabled={disabled} {...labelProps}>
           {label}
         </Label>
       )}
-      <Box className='iui-input-group'>{children}</Box>
+      <Box
+        ref={forwardedRef}
+        className={cx('iui-input-group', className)}
+        {...rest}
+      >
+        {children}
+      </Box>
       {(message || status || svgIcon) && (
-        <StatusMessage startIcon={icon()} status={status}>
+        <StatusMessage startIcon={icon()} status={status} {...messageProps}>
           {displayStyle !== 'inline' && message}
         </StatusMessage>
       )}

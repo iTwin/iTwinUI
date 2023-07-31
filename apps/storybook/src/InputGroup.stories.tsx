@@ -41,6 +41,7 @@ export const RadioGroup: Story<InputGroupProps> = (args) => {
       <InputGroup
         label='Radio group'
         message='Tell me how happy you are'
+        messageProps={{ iconProps: { className: 'test' } }}
         {...args}
       >
         <Radio

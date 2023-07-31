@@ -22,11 +22,11 @@ type StatusMessageProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   *
+   * Passes props to icon
    */
   iconProps?: React.ComponentProps<typeof Icon>;
   /**
-   *
+   * Passes props to content
    */
   contentProps?: React.ComponentPropsWithRef<'div'>;
 };

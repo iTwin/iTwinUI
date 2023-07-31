@@ -97,7 +97,10 @@ it.each(['positive', 'negative', 'warning'] as const)(
 
 it('should take class and style on container', () => {
   const { container, getByText } = render(
-    <InputGroup label='some label' className='my-class' style={{ width: 80 }}>
+    <InputGroup
+      label='some label'
+      wrapperProps={{ className: 'my-class', style: { width: 80 } }}
+    >
       <Checkbox />
       <Checkbox />
       <Checkbox />
@@ -108,6 +111,70 @@ it('should take class and style on container', () => {
   ) as HTMLElement;
   expect(groupContainer).toBeTruthy();
   expect(groupContainer.style.width).toBe('80px');
+  getByText('some label');
+});
+
+it('should take class and style on label', () => {
+  const { container, getByText } = render(
+    <InputGroup
+      label='some label'
+      labelProps={{ className: 'my-class', style: { width: 80 } }}
+    >
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+    </InputGroup>,
+  );
+  const label = container.querySelector(
+    '.iui-input-label.my-class',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.style.width).toBe('80px');
+  getByText('some label');
+});
+
+it('should take class and style on input group', () => {
+  const { container, getByText } = render(
+    <InputGroup label='some label' className='my-class' style={{ width: 80 }}>
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+    </InputGroup>,
+  );
+  const group = container.querySelector(
+    '.iui-input-group.my-class',
+  ) as HTMLElement;
+  expect(group).toBeTruthy();
+  expect(group.style.width).toBe('80px');
+  getByText('some label');
+});
+
+it('should take class and style on message', () => {
+  const { container, getByText } = render(
+    <InputGroup
+      label='some label'
+      message='Test message'
+      svgIcon={<svg />}
+      messageProps={{
+        contentProps: { className: 'my-class', style: { width: 80 } },
+        iconProps: { className: 'my-icon-class', style: { width: 60 } },
+      }}
+    >
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+    </InputGroup>,
+  );
+  const content = container.querySelector(
+    '.iui-status-message-content.my-class',
+  ) as HTMLElement;
+  expect(content).toBeTruthy();
+  expect(content.style.width).toBe('80px');
+  const icon = container.querySelector(
+    '.iui-status-message-icon.my-icon-class',
+  ) as HTMLElement;
+  expect(icon).toBeTruthy();
+  expect(icon.style.width).toBe('60px');
   getByText('some label');
 });
 
