@@ -87,19 +87,22 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     return undefined;
   };
 
-  console.log(message);
-
   return (
-    <InputGrid labelPlacement={displayStyle} ref={forwardedRef} {...rest}>
+    <InputGrid
+      className='iui-input-group-wrapper'
+      labelPlacement={displayStyle}
+      ref={forwardedRef}
+      {...rest}
+    >
       {label && (
         <Label required={required} disabled={disabled}>
           {label}
         </Label>
       )}
       <Box className='iui-input-group'>{children}</Box>
-      {message && (
+      {(message || status) && (
         <StatusMessage startIcon={icon()} status={status}>
-          {message}
+          {displayStyle !== 'inline' && message}
         </StatusMessage>
       )}
     </InputGrid>

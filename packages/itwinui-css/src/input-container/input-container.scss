@@ -3,37 +3,6 @@
 @use './mixins' as *;
 @use '../mixins' as *;
 
-// input-grid to replace input-container
-@mixin iui-input-grid {
-  display: grid;
-  row-gap: var(--iui-size-2xs);
-  grid-template-columns: 1fr;
-  grid-template-rows: auto;
-  align-items: center;
-
-  &[data-iui-label-placement='inline'] {
-    grid-template-rows: 1fr auto;
-    grid-template-columns: auto 1fr;
-
-    .iui-input-label {
-      margin: 0 var(--iui-size-m) 0 0;
-
-      &.iui-required {
-        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
-      }
-    }
-
-    .iui-input-group {
-      flex-direction: row;
-      gap: var(--iui-size-m);
-    }
-  }
-
-  .iui-status-message {
-    grid-column-end: -1;
-  }
-}
-
 .iui-input-container {
   @include iui-input-grid;
 
@@ -187,6 +156,30 @@
   }
 }
 
+.iui-input-group-wrapper {
+  &[data-iui-label-placement='inline'] {
+    display: flex;
+    flex-direction: row;
+
+    .iui-status-message {
+      margin-inline-start: var(--iui-size-m);
+    }
+  }
+}
+
+.iui-input-group {
+  display: flex;
+  flex-direction: column;
+
+  .iui-toggle-switch-wrapper {
+    padding: calc(var(--iui-size-s) * 0.5) 0;
+  }
+
+  .iui-radio-wrapper {
+    min-block-size: var(--iui-size-l);
+  }
+}
+
 // attribute to include status border in inputs (input, select)
 .iui-input,
 .iui-input-with-icon > .iui-select-button {
@@ -216,18 +209,5 @@
         --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$statusColor});
       }
     }
-  }
-}
-
-.iui-input-group {
-  display: flex;
-  flex-direction: column;
-
-  .iui-toggle-switch-wrapper {
-    padding: calc(var(--iui-size-s) * 0.5) 0;
-  }
-
-  .iui-radio-wrapper {
-    min-block-size: var(--iui-size-l);
   }
 }

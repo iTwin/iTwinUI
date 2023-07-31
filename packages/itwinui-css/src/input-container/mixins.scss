@@ -2,6 +2,37 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
+// input-grid to replace input-container
+@mixin iui-input-grid {
+  display: grid;
+  row-gap: var(--iui-size-2xs);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
+
+  &[data-iui-label-placement='inline'] {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto 1fr;
+
+    .iui-input-label {
+      margin: 0 var(--iui-size-m) 0 0;
+
+      &.iui-required {
+        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
+      }
+    }
+
+    .iui-input-group {
+      flex-direction: row;
+      gap: var(--iui-size-m);
+    }
+  }
+
+  .iui-status-message {
+    grid-column-end: -1;
+  }
+}
+
 /// Cursor styling for the label.
 @mixin iui-input-label-cursor {
   cursor: default;

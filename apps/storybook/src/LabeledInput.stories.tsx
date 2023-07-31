@@ -32,6 +32,10 @@ export const Basic: Story<LabeledInputProps> = (args) => {
     <LabeledInput
       placeholder='Enter text here...'
       label='This is a label'
+      inputProps={{
+        className: 'my-class',
+        style: { width: 80 },
+      }}
       {...args}
     />
   );
