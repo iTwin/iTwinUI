@@ -204,13 +204,26 @@ const TabsTabList = React.forwardRef((props, ref) => {
     }
   }, [currentActiveIndex, type, orientation, tabsWidth]);
 
+  const onTabClick = React.useCallback(
+    (index: number) => {
+      const tab = items[index];
+      if (React.isValidElement(tab) && tab.props.onActiveChange) {
+        tab.props.onActiveChange();
+      } else {
+        setCurrentActiveIndex && setCurrentActiveIndex(index);
+      }
+    },
+    [items, setCurrentActiveIndex],
+  );
+
   const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
   React.useEffect(() => {
     if (tablistRef.current && focusedIndex !== undefined) {
       const tab = tablistRef.current.children[focusedIndex];
       (tab as HTMLElement)?.focus();
+      focusActivationMode === 'auto' && onTabClick(focusedIndex);
     }
-  }, [focusedIndex]);
+  }, [focusedIndex, onTabClick, focusActivationMode]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
@@ -412,23 +425,6 @@ const TabsTabList = React.forwardRef((props, ref) => {
     ownerDoc.addEventListener('scroll', determineScrollingPlacement);
   }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
 
-  const onTabClick = React.useCallback(
-    (index: number) => {
-      const tab = items[index];
-      if (React.isValidElement(tab) && tab.props.onActiveChange) {
-        tab.props.onActiveChange();
-      } else {
-        setCurrentActiveIndex && setCurrentActiveIndex(index);
-      }
-    },
-    [items, setCurrentActiveIndex],
-  );
-
-  const isTabDisabled = (index: number) => {
-    const tab = items[index];
-    return React.isValidElement(tab) && tab.props.disabled;
-  };
-
   return (
     <Box
       className={cx(
@@ -452,13 +448,10 @@ const TabsTabList = React.forwardRef((props, ref) => {
         return (
           <TabsTabListContext.Provider
             value={{
-              numTabs: items.length,
               index,
               focusedIndex,
               setFocusedIndex,
               focusActivationMode,
-              isTabDisabled,
-              onTabClick,
               hasSublabel,
               setHasSublabel,
             }}
@@ -483,6 +476,10 @@ type TabsTabOwnProps = {
    */
   label?: string | React.ReactNode;
   /**
+   * Flag whether the tab is disabled.
+   */
+  disabled?: boolean;
+  /**
    * Flag whether the tab is active.
    * @default 'false'
    */
@@ -498,6 +495,7 @@ const TabsTab = React.forwardRef((props, ref) => {
     className,
     children,
     label,
+    disabled,
     isActive = false,
     onActiveChange,
     ...rest
@@ -505,15 +503,8 @@ const TabsTab = React.forwardRef((props, ref) => {
 
   const { orientation, currentActiveIndex, setCurrentActiveIndex } =
     useSafeContext(TabsContext);
-  const {
-    numTabs,
-    index,
-    focusedIndex,
-    setFocusedIndex,
-    focusActivationMode,
-    isTabDisabled,
-    onTabClick,
-  } = useSafeContext(TabsTabListContext);
+  const { index, focusedIndex, setFocusedIndex, focusActivationMode } =
+    useSafeContext(TabsTabListContext);
 
   const onClick = () => {
     if (index !== undefined) {
@@ -530,23 +521,19 @@ const TabsTab = React.forwardRef((props, ref) => {
     if (event.altKey) {
       return;
     }
+    const items = event.currentTarget.parentElement?.children;
 
-    let newIndex = focusedIndex ?? currentActiveIndex ?? 0;
+    let newIndex = index ?? 0;
 
     /** focus next tab if delta is +1, previous tab if -1 */
     const focusTab = (delta = +1) => {
-      if (numTabs !== undefined) {
+      if (items) {
         do {
-          newIndex = (newIndex + delta + numTabs) % numTabs;
-        } while (
-          isTabDisabled &&
-          isTabDisabled(newIndex) &&
-          newIndex !== focusedIndex
-        );
+          newIndex = (newIndex + delta + items.length) % items.length;
+        } while (items[newIndex].ariaDisabled && newIndex !== focusedIndex);
       }
 
       setFocusedIndex && setFocusedIndex(newIndex);
-      focusActivationMode === 'auto' && onTabClick && onTabClick(newIndex);
     };
 
     switch (event.key) {
@@ -582,7 +569,7 @@ const TabsTab = React.forwardRef((props, ref) => {
       case ' ':
       case 'Spacebar': {
         event.preventDefault();
-        if (focusActivationMode === 'manual' && focusedIndex === index) {
+        if (focusActivationMode === 'manual') {
           onActiveChange
             ? onActiveChange()
             : setCurrentActiveIndex &&
@@ -609,6 +596,8 @@ const TabsTab = React.forwardRef((props, ref) => {
       onClick={onClick}
       onKeyDown={onKeyDown}
       aria-selected={index === currentActiveIndex || isActive}
+      aria-disabled={disabled ? 'true' : undefined}
+      disabled={disabled}
       ref={ref}
       {...rest}
     >
@@ -869,10 +858,6 @@ export const TabsContext = React.createContext<
 export const TabsTabListContext = React.createContext<
   | {
       /**
-       * Number of tabs in the tab list.
-       */
-      numTabs?: number;
-      /**
        * The index value passed for each of the tabs.
        */
       index?: number;
@@ -890,14 +875,6 @@ export const TabsTabListContext = React.createContext<
        * @default 'auto'
        */
       focusActivationMode?: 'auto' | 'manual';
-      /**
-       * Function that checks if a tab is disabled given its index
-       */
-      isTabDisabled?: (index: number) => boolean;
-      /**
-       * Handler for clicking a tab given the tab's index.
-       */
-      onTabClick?: (index: number) => void;
       /**
        * Flag whether any of the tabs have a sublabel.
        * Used for determining tab size.
