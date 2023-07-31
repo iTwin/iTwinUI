@@ -4,8 +4,8 @@
 
 // Statics version of hidden/visible animation handling
 .iui-tooltip-container {
-  width: fit-content;
-  height: fit-content;
+  inline-size: fit-content;
+  block-size: fit-content;
   position: relative;
 
   > .iui-tooltip {
@@ -32,14 +32,13 @@
   border-radius: var(--iui-border-radius-1);
   font-size: var(--iui-font-size-0);
   overflow: hidden;
-  max-width: 400px;
-  width: max-content;
+  max-inline-size: 400px;
+  inline-size: max-content;
   overflow-wrap: break-word;
   box-sizing: content-box;
   padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
   z-index: 999;
   box-shadow: var(--iui-shadow-3);
-  pointer-events: none;
   color: var(--iui-color-white);
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 

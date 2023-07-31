@@ -33,7 +33,7 @@
   &::before,
   &::after {
     content: '';
-    height: var(--iui-size-3xs);
+    block-size: var(--iui-size-3xs);
     flex: 1 2 auto;
   }
 

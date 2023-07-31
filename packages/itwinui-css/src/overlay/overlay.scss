@@ -1,0 +1,42 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@use '../mixins';
+
+.iui-overlay {
+  inline-size: 100%;
+  block-size: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 10000;
+
+  // Blur fallback
+  @include mixins.iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
+
+  .iui-progress-indicator-linear {
+    inline-size: 50%;
+    max-inline-size: 33vw;
+  }
+}
+
+.iui-overlay-wrapper {
+  position: relative;
+}
+
+.iui-overlay-exiting {
+  animation: closeAnimation var(--iui-duration-1) linear;
+
+  // Fade out on completion
+  @keyframes closeAnimation {
+    from {
+      opacity: var(--iui-opacity-1);
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}

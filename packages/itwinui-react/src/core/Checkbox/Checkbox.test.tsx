@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
 import { Checkbox } from './Checkbox.js';
@@ -19,7 +18,7 @@ it('renders correctly with label', () => {
 
   assertBaseElements(container);
   expect(container.querySelector('label')).toHaveClass('iui-checkbox-wrapper');
-  expect(screen.getByText('Some checkbox')).toHaveClass('iui-checkbox-label');
+  expect(container.querySelector('label')).toHaveTextContent('Some checkbox');
 });
 
 it('renders correctly indeterminate state', () => {
@@ -109,51 +108,6 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply style on %s',
-  (el) => {
-    const { container } = render(
-      <Checkbox
-        label={el === 'label' ? 'Some label' : undefined}
-        style={{ color: 'blue' }}
-      />,
-    );
-
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveStyle('color: blue;');
-  },
-);
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply class on %s',
-  (el) => {
-    const { container } = render(
-      <Checkbox
-        label={el === 'label' ? 'Some label' : undefined}
-        className='customClass'
-      />,
-    );
-
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveClass('customClass');
-  },
-);
-
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(
-    <Checkbox label='Some checkbox' ref={onRef} setFocus />,
-  );
-
-  assertBaseElements(container);
-
-  screen.getByText('Some checkbox');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
-
 it('displays a spinner when isLoading is set to true', () => {
   const { container } = render(<Checkbox label='Some checkbox' isLoading />);
 
@@ -187,31 +141,40 @@ it('renders correctly with visibility checkbox', () => {
   expect(container.querySelector('.iui-checkbox-visibility')).toBeTruthy();
 });
 
-it.each(['', 'not'] as const)(
-  'should %s stop propagation correctly if %s used with label',
-  async (labelPresent) => {
-    const wrapperOnClick = jest.fn();
-    const checkboxOnChange = jest.fn();
-    const { container } = render(
-      <div onClick={wrapperOnClick}>
-        <Checkbox
-          label={labelPresent && 'label'}
-          className='my-checkbox'
-          onClick={(e) => e.stopPropagation()}
-          onChange={checkboxOnChange}
-        />
-      </div>,
-    );
-    const checkboxComponent = container.querySelector(
-      '.my-checkbox',
-    ) as HTMLElement;
-    await userEvent.click(checkboxComponent);
+it('correctly passes className through wrapperProps and labelProps', () => {
+  const { container } = render(
+    <Checkbox
+      label='some label'
+      wrapperProps={{ className: 'some-wrapper' }}
+      labelProps={{ className: 'some-label' }}
+      className='some-input'
+    />,
+  );
 
-    expect(checkboxOnChange).toBeCalled();
-    if (labelPresent) {
-      expect(wrapperOnClick).toBeCalled();
-    } else {
-      expect(wrapperOnClick).not.toBeCalled();
-    }
-  },
-);
+  assertBaseElements(container);
+  expect(container.querySelector('label')).toHaveClass(
+    'iui-checkbox-wrapper some-wrapper',
+  );
+  expect(container.querySelector('span')).toHaveClass(
+    'iui-checkbox-label some-label',
+  );
+  expect(container.querySelector('.iui-checkbox')).toHaveClass(
+    'iui-checkbox some-input',
+  );
+});
+
+it('correctly passes style through wrapperProps and labelProps', () => {
+  const { container } = render(
+    <Checkbox
+      label='some label'
+      wrapperProps={{ style: { color: 'blue' } }}
+      labelProps={{ style: { color: 'orange' } }}
+      style={{ color: 'yellow' }}
+    />,
+  );
+
+  assertBaseElements(container);
+  expect(container.querySelector('label')).toHaveStyle('color: blue');
+  expect(container.querySelector('span')).toHaveStyle('color: orange');
+  expect(container.querySelector('.iui-checkbox')).toHaveStyle('color: yellow');
+});

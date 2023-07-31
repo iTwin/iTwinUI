@@ -2,6 +2,7 @@
   "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
     "target": "es2020",
+    "module": "esnext",
     "lib": ["es6", "dom"],
     "declaration": true,
     "esModuleInterop": true,
@@ -18,9 +19,8 @@
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "skipLibCheck": true,
-    "importsNotUsedAsValues": "error",
-    "preserveValueImports": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }

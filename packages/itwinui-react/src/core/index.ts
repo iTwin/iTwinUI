@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 export { Alert } from './Alert/index.js';
 
-export { Avatar, UserIcon } from './Avatar/index.js';
+export { Avatar } from './Avatar/index.js';
 
-export { AvatarGroup, UserIconGroup } from './AvatarGroup/index.js';
+export { AvatarGroup } from './AvatarGroup/index.js';
 
 export { Backdrop } from './Backdrop/index.js';
 
@@ -75,7 +75,7 @@ export { List, ListItem } from './List/index.js';
 
 export { TransferList } from './TransferList/index.js';
 
-export { VerticalTabs, Tabs, Tab, HorizontalTabs } from './Tabs/index.js';
+export { Tabs, Tab } from './Tabs/index.js';
 
 export {
   InformationPanel,
@@ -108,6 +108,8 @@ export {
 export { Modal, ModalButtonBar, ModalContent } from './Modal/index.js';
 
 export { NotificationMarker } from './NotificationMarker/index.js';
+
+export { Overlay } from './Overlay/index.js';
 
 export { ProgressLinear, ProgressRadial } from './ProgressIndicators/index.js';
 
@@ -185,13 +187,8 @@ export {
   Text,
 } from './Typography/index.js';
 
-export { Wizard, Stepper, WorkflowDiagram } from './Stepper/index.js';
-export type {
-  StepProperties,
-  WizardType,
-  WizardLocalization,
-  StepperLocalization,
-} from './Stepper/index.js';
+export { Stepper, WorkflowDiagram } from './Stepper/index.js';
+export type { StepProperties, StepperLocalization } from './Stepper/index.js';
 
 export { SearchBox } from './SearchBox/index.js';
 

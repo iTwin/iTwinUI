@@ -30,7 +30,7 @@
   @include hide-scrollbar;
 
   &-item {
-    width: 100%;
+    inline-size: 100%;
     flex-shrink: 0;
     scroll-snap-align: center;
   }
@@ -39,8 +39,8 @@
 .iui-carousel-navigation {
   display: flex;
   align-items: center;
-  height: calc(var(--iui-size-s) * 3);
-  border-top: var(--iui-size-3xs) solid var(--iui-color-border);
+  block-size: calc(var(--iui-size-s) * 3);
+  border-block-start: var(--iui-size-3xs) solid var(--iui-color-border);
 
   &-left,
   &-right {
@@ -57,7 +57,7 @@
   &-dots {
     @include mixins.iui-reset;
     @include mixins.iui-focus;
-    max-width: calc(var(--iui-size-2xl) * 4);
+    max-inline-size: calc(var(--iui-size-2xl) * 4);
     border-radius: var(--iui-border-radius-1);
     white-space: nowrap;
     @include hide-scrollbar;
@@ -68,9 +68,8 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-    height: var(--_iui-button-height);
-    padding-left: var(--_iui-button-padding-inline);
-    padding-right: var(--_iui-button-padding-inline);
+    block-size: var(--_iui-button-height);
+    padding-inline: var(--_iui-button-padding-inline);
 
     &:hover::after {
       background-color: var(--iui-color-icon-muted-hover);

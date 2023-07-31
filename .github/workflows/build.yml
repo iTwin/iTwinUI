@@ -59,8 +59,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn
+      - name: yarn
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 15
+          max_attempts: 3
+          command: yarn
 
   audit:
     name: Audit node modules
@@ -314,34 +319,6 @@ jobs:
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
-
-      - name: Host test results on gh pages
-        continue-on-error: true
-        if: github.ref != 'refs/heads/main' && github.ref != 'ref/heads/dev' && failure()
-        uses: JamesIves/github-pages-deploy-action@4.1.3
-        with:
-          branch: gh-pages
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/results
-          target-folder: ${{ github.event.number }}/results
-          single-commit: true
-          git-config-name: github-actions[bot]
-          git-config-email: github-actions[bot]@users.noreply.github.com
-
-      - name: Post test results link under Checks
-        if: github.ref != 'refs/heads/main' && github.ref != 'ref/heads/dev' && always()
-        continue-on-error: true
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: '${{ job.status }}',
-              context: 'Test results',
-              ...(context.job.status !== 'success' && { description: 'Backstop html report' }),
-              ...(context.job.status !== 'success' && { target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}/results/html_report/' }),
-            })
 
   visual-test-react:
     name: Run visual tests (react)

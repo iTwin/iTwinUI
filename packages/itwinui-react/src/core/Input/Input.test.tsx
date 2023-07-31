@@ -24,15 +24,10 @@ it('should render disabled component', () => {
   );
 });
 
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container } = render(<Input ref={onRef} setFocus />);
+it('should render with size prop using htmlSize', () => {
+  const { container } = render(<Input htmlSize='10' />);
   assertBaseElement(container);
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
+  expect((container.querySelector('input') as HTMLInputElement).size).toBe(10);
 });
 
 it('should take class and style', () => {

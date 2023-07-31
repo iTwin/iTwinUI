@@ -12,7 +12,7 @@
 
   @if $orientation != 'horizontal' {
     flex-direction: column;
-    max-height: 100%;
+    max-block-size: 100%;
   }
 
   $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
@@ -73,24 +73,24 @@
     // Add rounded corners to first and last items
     &:first-child {
       #{$childBorderSelector} {
-        border-top-left-radius: var(--iui-border-radius-1);
+        border-start-start-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-bottom-left-radius: var(--iui-border-radius-1);
+          border-end-start-radius: var(--iui-border-radius-1);
         } @else {
-          border-top-right-radius: var(--iui-border-radius-1);
+          border-start-end-radius: var(--iui-border-radius-1);
         }
       }
     }
 
     &:last-child {
       #{$childBorderSelector} {
-        border-bottom-right-radius: var(--iui-border-radius-1);
+        border-end-end-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
-          border-top-right-radius: var(--iui-border-radius-1);
+          border-start-end-radius: var(--iui-border-radius-1);
         } @else {
-          border-bottom-left-radius: var(--iui-border-radius-1);
+          border-end-start-radius: var(--iui-border-radius-1);
         }
       }
     }
@@ -98,9 +98,9 @@
     // Use negative margin to make adjacent borders overlap
     + * {
       @if $orientation == 'horizontal' {
-        margin-left: -1px;
+        margin-inline-start: -1px;
       } @else {
-        margin-top: -1px;
+        margin-block-start: -1px;
       }
     }
 
@@ -108,9 +108,9 @@
     &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
         @if $orientation == 'horizontal' {
-          border-left-color: var(--iui-color-border-subtle);
+          border-inline-start-color: var(--iui-color-border-subtle);
         } @else {
-          border-top-color: var(--iui-color-border-subtle);
+          border-block-start-color: var(--iui-color-border-subtle);
         }
       }
     }
@@ -118,5 +118,5 @@
 }
 
 @mixin iui-button-group-overflow-x {
-  width: 100%;
+  inline-size: 100%;
 }

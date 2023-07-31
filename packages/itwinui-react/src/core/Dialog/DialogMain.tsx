@@ -178,7 +178,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
       data-iui-placement={placement}
       style={{
         transform,
-        overflow: 'unset',
         ...style,
         ...propStyle,
       }}

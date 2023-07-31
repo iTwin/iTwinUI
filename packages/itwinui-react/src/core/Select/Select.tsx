@@ -138,11 +138,6 @@ export type SelectProps<T> = {
    */
   size?: 'small' | 'large';
   /**
-   * Set focus on select.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
    */
   itemRenderer?: (
@@ -232,7 +227,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     placeholder,
     disabled = false,
     size,
-    setFocus = false,
     itemRenderer,
     selectedItemRenderer,
     className,
@@ -272,12 +266,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     },
     [onHide],
   );
-
-  React.useEffect(() => {
-    if (selectRef.current && !disabled && setFocus) {
-      selectRef.current.focus();
-    }
-  }, [setFocus, disabled]);
 
   React.useEffect(() => {
     if (selectRef.current) {

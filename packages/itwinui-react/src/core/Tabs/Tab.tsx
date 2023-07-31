@@ -80,4 +80,4 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'button', TabProps>;
 
-export default TabProps;
+export default Tab;

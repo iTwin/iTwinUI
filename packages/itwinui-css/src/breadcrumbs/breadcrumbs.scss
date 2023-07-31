@@ -14,16 +14,8 @@
   @include iui-breadcrumbs-item;
 }
 
-.iui-breadcrumbs-item-overrides {
-  @include iui-breadcrumbs-item-overrides;
-}
-
-.iui-breadcrumbs-text {
-  @include iui-breadcrumbs-text;
-}
-
-.iui-breadcrumbs-button {
-  @include iui-breadcrumbs-button;
+.iui-breadcrumbs-content {
+  @include iui-breadcrumbs-content;
 }
 
 .iui-breadcrumbs-separator {

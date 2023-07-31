@@ -28,14 +28,18 @@ type CheckboxProps = {
    */
   variant?: 'default' | 'eyeball';
   /**
-   * Set focus on checkbox.
-   */
-  setFocus?: boolean;
-  /**
    * Display a loading state.
    * @default false
    */
   isLoading?: boolean;
+  /**
+   * Passes properties for checkbox wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for checkbox label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
 };
 
 /**
@@ -58,20 +62,15 @@ export const Checkbox = React.forwardRef((props, ref) => {
     label,
     status,
     variant = 'default',
-    setFocus,
     isLoading = false,
+    wrapperProps = {},
+    labelProps = {},
     style,
     ...rest
   } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
-
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
 
   React.useEffect(() => {
     if (inputElementRef.current) {
@@ -92,9 +91,9 @@ export const Checkbox = React.forwardRef((props, ref) => {
             'iui-checkbox-visibility': variant === 'eyeball',
             'iui-loading': isLoading,
           },
-          className && { [className]: !label },
+          className,
         )}
-        style={!label ? style : undefined}
+        style={style}
         disabled={disabled || isLoading}
         type='checkbox'
         ref={refs}
@@ -103,6 +102,10 @@ export const Checkbox = React.forwardRef((props, ref) => {
       {isLoading && <ProgressRadial size='x-small' indeterminate />}
     </>
   );
+
+  const { className: wrapperClassName, ...restWrapperProps } = wrapperProps;
+
+  const { className: labelClassName, ...restLabelProps } = labelProps;
 
   return !label ? (
     checkbox
@@ -116,13 +119,17 @@ export const Checkbox = React.forwardRef((props, ref) => {
           [`iui-${status}`]: !!status,
           'iui-loading': isLoading,
         },
-        className,
+        wrapperClassName,
       )}
-      style={style}
+      {...restWrapperProps}
     >
       {checkbox}
       {label && (
-        <Box as='span' className='iui-checkbox-label'>
+        <Box
+          as='span'
+          className={cx('iui-checkbox-label', labelClassName)}
+          {...restLabelProps}
+        >
           {label}
         </Box>
       )}

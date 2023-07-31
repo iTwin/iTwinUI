@@ -1,5 +1,46 @@
 # Changelog
 
+## 2.0.0-dev.5
+
+### Major Changes
+
+- [#1369](https://github.com/iTwin/iTwinUI/pull/1369): The `iui-breadcrumbs-item-overrides` class name has been removed. Breadcrumbs items now use the `iui-breadcrumbs-content` class name.
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): The following class names have been updated:
+
+  - `iui-header` -> `iui-expandable-header`
+  - `iui-icon` -> `iui-expandable-block-icon`
+  - `iui-title` -> `iui-expandable-block-title`
+  - `iui-caption` -> `iui-expandable-block-caption`
+
+  The following class names have been removed and updated to be data attributes:
+
+  - `iui-expanded` -> `data-iui-expanded` (boolean)
+  - `iui-small` -> `data-iui-size` (default or small)
+  - `iui-borderless` -> `data-iui-variant` (default or borderless)
+
+- [#1370](https://github.com/iTwin/iTwinUI/pull/1370): `iui-progress-indicator-linear` has been refactored to be a single `<div>`. Size, status, indeterminate variant, animation, etc are now specified using data attributes.
+- [#1328](https://github.com/iTwin/iTwinUI/pull/1328): 'iui-progress-overlay' has been renamed to 'iui-overlay' and moved to 'overlay.scss'
+
+### Minor Changes
+
+- [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
+
+### Patch Changes
+
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Expandable block animation now uses pure css instead of javascript for transitioning.
+
+## 2.0.0-dev.4
+
+### Major Changes
+
+- [#1255](https://github.com/iTwin/iTwinUI/pull/1255): `iui-folder` is updated to use `display: grid`. `iui-tile-name` is now moved outside of `iui-tile-content` for folder variant.
+- [#1356](https://github.com/iTwin/iTwinUI/pull/1356): `iui-progress-radial` has been refactored to be a single `<div>` instead of using a nested svg. Size and status have been moved to data attributes. Also it is recommended to explicitly set `size` when using in other components.
+
+### Minor Changes
+
+- [#1362](https://github.com/iTwin/iTwinUI/pull/1362): All elements under the root will now get a default focus styling matching `--iui-color-border-accent`.
+- [#1363](https://github.com/iTwin/iTwinUI/pull/1363): `iui-svg-icon` now supports controlling size and fill using `--iui-svg-size` and `--iui-svg-fill` custom properties.
+
 ## 2.0.0-dev.3
 
 ### Patch Changes
@@ -35,6 +76,30 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.12.0
+
+### Minor Changes
+
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles. This rule has also been moved from `all.css` to `revert-v1.css`.
+
+## 1.11.5
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424): Fixed a few different resizing issues in Dialog.
+
+## 1.11.4
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
+
+## 1.11.3
+
+### Patch Changes
+
+- [#1410](https://github.com/iTwin/iTwinUI/pull/1410): Fixed an issue in `Tabs` where tabs-list was becoming too tall when the tabpanel didn't have enough content inside.
 
 ## 1.11.2
 
@@ -379,4 +444,4 @@ If you're interested in more details,
 
 ## 0.X
 
-For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/v0/packages/itwinui-css/CHANGELOG.md).
+For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v0-css/packages/itwinui-css/CHANGELOG.md).

@@ -14,6 +14,7 @@ describe('Stepper', () => {
       if (testName.includes('Tooltip')) {
         cy.get('#storybook-root').within(() => {
           cy.get('li').first().trigger('mouseenter'); // trigger tooltip
+          cy.wait(50);
         });
       }
 

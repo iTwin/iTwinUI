@@ -277,6 +277,22 @@ export type TableProps<
    */
   enableColumnReordering?: boolean;
   /**
+   * Passes props to Table header wrapper.
+   */
+  headerWrapperProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to Table header.
+   */
+  headerProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes custom props to Table body.
+   */
+  bodyProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes custom props to empty table.
+   */
+  emptyTableContentProps?: React.ComponentProps<'div'>;
+  /**
    * Function that returns index of the row that you want to scroll to.
    *
    * When using with lazy-loading table, you need to take care that row is already loaded.
@@ -393,6 +409,10 @@ export const Table = <
     styleType = 'default',
     enableVirtualization = false,
     enableColumnReordering = false,
+    headerWrapperProps,
+    headerProps,
+    bodyProps,
+    emptyTableContentProps,
     ...rest
   } = props;
 
@@ -623,7 +643,7 @@ export const Table = <
       }
       return result;
     },
-    {} as Record<string, string>,
+    {} as Record<string, unknown>,
   );
 
   const areFiltersSet =
@@ -890,7 +910,7 @@ export const Table = <
           });
           return (
             <Box
-              className='iui-table-header-wrapper'
+              as='div'
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
@@ -899,8 +919,17 @@ export const Table = <
                 }
               }}
               key={headerGroupProps.key}
+              {...headerWrapperProps}
+              className={cx(
+                'iui-table-header-wrapper',
+                headerWrapperProps?.className,
+              )}
             >
-              <Box className='iui-table-header'>
+              <Box
+                as='div'
+                {...headerProps}
+                className={cx('iui-table-header', headerProps?.className)}
+              >
                 <Box {...headerGroupProps}>
                   {headerGroup.headers.map((column, index) => {
                     const { onClick, ...restSortProps } =
@@ -1009,10 +1038,15 @@ export const Table = <
           );
         })}
         <Box
+          {...bodyProps}
           {...getTableBodyProps({
-            className: cx('iui-table-body', {
-              'iui-zebra-striping': styleType === 'zebra-rows',
-            }),
+            className: cx(
+              'iui-table-body',
+              {
+                'iui-zebra-striping': styleType === 'zebra-rows',
+              },
+              bodyProps?.className,
+            ),
             style: { outline: 0 },
           })}
           ref={bodyRef}
@@ -1041,7 +1075,14 @@ export const Table = <
             </>
           )}
           {isLoading && data.length === 0 && (
-            <Box className='iui-table-empty'>
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
               <ProgressRadial indeterminate={true} />
             </Box>
           )}
@@ -1060,14 +1101,28 @@ export const Table = <
             </Box>
           )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
-            <Box className='iui-table-empty'>
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
               <div>{emptyTableContent}</div>
             </Box>
           )}
           {!isLoading &&
             (data.length === 0 || rows.length === 0) &&
             areFiltersSet && (
-              <Box className='iui-table-empty'>
+              <Box
+                as='div'
+                {...emptyTableContentProps}
+                className={cx(
+                  'iui-table-empty',
+                  emptyTableContentProps?.className,
+                )}
+              >
                 <div>{emptyFilteredTableContent}</div>
               </Box>
             )}
