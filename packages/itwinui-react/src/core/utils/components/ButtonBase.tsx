@@ -37,7 +37,7 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       }}
       aria-disabled={enhancedDisabled ? 'true' : undefined}
       data-iui-disabled={disabledProp ? 'true' : undefined}
-      disabled={htmlDisabled || (!isClient && disabledProp) ? true : undefined}
+      disabled={htmlDisabled ?? (!isClient && disabledProp) ? true : undefined}
       {...rest}
     />
   );
