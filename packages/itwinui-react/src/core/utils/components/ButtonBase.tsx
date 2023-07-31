@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Box } from './Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
+import { useIsClient } from '../hooks/useIsClient.js';
 
 export const ButtonBase = React.forwardRef((props, forwardedRef) => {
   const {
@@ -15,22 +16,28 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const isClient = useIsClient();
+
+  const enhancedDisabled =
+    disabledProp &&
+    !htmlDisabled && // htmlDisabled prop takes preference
+    isClient && // progressively enhance after first render
+    asProp === 'button'; // ignore if not button, e.g. links
+
   return (
     <Box
       as={asProp}
       type={asProp === 'button' ? 'button' : undefined}
       ref={forwardedRef}
       onClick={(e) => {
-        if (!disabledProp) {
-          onClickProp?.(e);
+        if (enhancedDisabled) {
+          return;
         }
+        onClickProp?.(e);
       }}
-      aria-disabled={
-        !htmlDisabled && disabledProp && asProp === 'button'
-          ? 'true'
-          : undefined
-      }
-      disabled={htmlDisabled || undefined}
+      aria-disabled={enhancedDisabled ? 'true' : undefined}
+      data-iui-disabled={disabledProp ? 'true' : undefined}
+      disabled={htmlDisabled || (!isClient && disabledProp) ? true : undefined}
       {...rest}
     />
   );
