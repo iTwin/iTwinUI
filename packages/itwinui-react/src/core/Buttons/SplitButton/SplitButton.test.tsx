@@ -148,3 +148,37 @@ it('should support polymorphic `as` prop', async () => {
   await userEvent.click(dropdownButton);
   expect(document.querySelector('.iui-menu')).toBeVisible();
 });
+
+it('passes custom props to subcomponents', () => {
+  const { container } = render(
+    <SplitButton
+      buttonProps={{
+        className: 'custom-button-class',
+        style: { fontSize: 12 },
+      }}
+      menuButtonProps={{
+        className: 'custom-menu-button-class',
+        style: { fontSize: 14 },
+      }}
+      menuItems={(close) => [
+        <MenuItem key={0} onClick={close}>
+          Test0
+        </MenuItem>,
+      ]}
+    >
+      Example
+    </SplitButton>,
+  );
+
+  const buttonElement = container.querySelector(
+    '.iui-button.custom-button-class',
+  ) as HTMLElement;
+  expect(buttonElement).toBeTruthy();
+  expect(buttonElement.style.fontSize).toBe('12px');
+
+  const menuButtonElement = container.querySelector(
+    '.iui-button.custom-menu-button-class',
+  ) as HTMLElement;
+  expect(menuButtonElement).toBeTruthy();
+  expect(menuButtonElement.style.fontSize).toBe('14px');
+});

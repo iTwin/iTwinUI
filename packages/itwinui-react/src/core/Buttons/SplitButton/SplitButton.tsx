@@ -28,6 +28,14 @@ export type SplitButtonProps = ButtonProps & {
    * Content of primary button.
    */
   children: React.ReactNode;
+  /**
+   * Passes props to SplitButton button.
+   */
+  buttonProps?: React.ComponentProps<'button'>;
+  /**
+   * Passes props to SplitButton menu button.
+   */
+  menuButtonProps?: React.ComponentProps<'button'>;
 };
 
 /**
@@ -55,6 +63,8 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     children,
     style,
     title,
+    buttonProps,
+    menuButtonProps,
     ...rest
   } = props;
 
@@ -79,11 +89,14 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       ref={ref}
     >
       <Button
+        as='button'
         styleType={styleType}
         size={size}
         onClick={onClick}
         ref={forwardedRef}
         {...rest}
+        {...buttonProps}
+        className={buttonProps?.className}
       >
         {children}
       </Button>
@@ -94,7 +107,14 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         onShow={React.useCallback(() => setIsMenuOpen(true), [])}
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
-        <IconButton styleType={styleType} size={size} disabled={props.disabled}>
+        <IconButton
+          as='button'
+          styleType={styleType}
+          size={size}
+          disabled={props.disabled}
+          {...menuButtonProps}
+          className={menuButtonProps?.className}
+        >
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
       </DropdownMenu>
