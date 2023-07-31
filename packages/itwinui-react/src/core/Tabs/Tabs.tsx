@@ -509,10 +509,13 @@ const TabsTab = React.forwardRef((props, ref) => {
   const onClick = () => {
     if (index !== undefined) {
       setFocusedIndex && setFocusedIndex(index);
-      if (onActiveChange) {
-        onActiveChange();
-      } else {
-        setCurrentActiveIndex && setCurrentActiveIndex(index);
+      // These will be called in a useEffect if focusActivationMode is auto
+      if (focusActivationMode !== 'auto') {
+        if (onActiveChange) {
+          onActiveChange();
+        } else {
+          setCurrentActiveIndex && setCurrentActiveIndex(index);
+        }
       }
     }
   };
