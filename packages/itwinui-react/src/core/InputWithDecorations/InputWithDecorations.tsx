@@ -58,7 +58,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'input', Omit<InputProps, 'setFocus'>>;
+}) as PolymorphicForwardRefComponent<'input', InputProps>;
 
 //-------------------------------------------------------------------------------
 

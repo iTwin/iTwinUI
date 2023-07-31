@@ -83,8 +83,7 @@ it('should take class and style on container', () => {
   const { container, getByText } = render(
     <LabeledInput
       label='some label'
-      className='my-class'
-      style={{ width: 80 }}
+      wrapperProps={{ className: 'my-class', style: { width: 80 } }}
     />,
   );
   assertBaseElement(container);
@@ -100,10 +99,41 @@ it('should take class and style on input', () => {
   const { container, getByText } = render(
     <LabeledInput
       label='some label'
-      inputProps={{
-        className: 'my-class',
-        style: { width: 80 },
-      }}
+      className='my-class'
+      style={{ width: 80 }}
+    />,
+  );
+  assertBaseElement(container);
+  getByText('some label');
+  const inputContainer = container.querySelector(
+    'input.my-class',
+  ) as HTMLElement;
+  expect(inputContainer).toBeTruthy();
+  expect(inputContainer.style.width).toBe('80px');
+});
+
+it('should take class and style on label', () => {
+  const { container, getByText } = render(
+    <LabeledInput
+      label='some label'
+      labelProps={{ className: 'my-class', style: { width: 80 } }}
+    />,
+  );
+  assertBaseElement(container);
+  getByText('some label');
+  const label = container.querySelector(
+    '.iui-input-label.my-class',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.style.width).toBe('80px');
+});
+
+it('should take class and style on input', () => {
+  const { container, getByText } = render(
+    <LabeledInput
+      label='some label'
+      className='my-class'
+      style={{ width: 80 }}
     />,
   );
   assertBaseElement(container);
