@@ -11,6 +11,7 @@ import {
   SvgCloseSmall,
   Box,
   useSafeContext,
+  ButtonBase,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
@@ -259,14 +260,9 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
       </Box>
       <Box className='iui-message'>{content}</Box>
       {link && (
-        <Box
-          as='button'
-          className='iui-toast-anchor'
-          {...link}
-          title={undefined}
-        >
+        <ButtonBase className='iui-toast-anchor' {...link} title={undefined}>
           {link.title}
-        </Box>
+        </ButtonBase>
       )}
       {(type === 'persisting' || hasCloseButton) && (
         <IconButton

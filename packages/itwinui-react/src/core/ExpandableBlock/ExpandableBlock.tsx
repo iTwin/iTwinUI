@@ -12,6 +12,7 @@ import {
   useSafeContext,
   polymorphic,
   mergeEventHandlers,
+  ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
@@ -130,9 +131,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Box
-      as='button'
-      type='button'
+    <ButtonBase
       className={cx('iui-expandable-header', className)}
       aria-expanded={isExpanded}
       aria-disabled={disabled}
@@ -154,7 +153,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
           </ExpandableBlock.LabelArea>
         </>
       )}
-    </Box>
+    </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ExpandableBlockHeaderOwnProps>;
 ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
