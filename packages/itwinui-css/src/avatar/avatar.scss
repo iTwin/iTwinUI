@@ -21,6 +21,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
   color: #{$avatar-text-color};
   line-height: var(--_iui-avatar-size);
   font-size: var(--_iui-avatar-font-size);
+  isolation: isolate;
 
   &::before {
     content: '';
@@ -28,6 +29,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
     inset: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
+    z-index: 1;
   }
 
   svg {
@@ -68,6 +70,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.6); // same as badge, meets AA contrast agai
       border: var(--iui-size-3xs) solid var(--iui-color-background);
       background: var(--_iui-avatar-status-img) no-repeat center / var(--_iui-avatar-status-size, var(--iui-size-xs));
       background-color: var(--iui-color-border);
+      z-index: 2;
     }
   }
 
