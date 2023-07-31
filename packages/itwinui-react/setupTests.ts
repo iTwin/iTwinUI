@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import '@testing-library/jest-dom';
+import { TextEncoder } from 'util';
 
 window.HTMLElement.prototype.scrollIntoView = () => {};
 window.HTMLElement.prototype.scrollTo = () => {};
@@ -25,3 +26,5 @@ afterEach(() => {
     .querySelectorAll('[data-tippy-root]')
     .forEach((tippy) => tippy.remove());
 });
+
+global.TextEncoder = TextEncoder;
