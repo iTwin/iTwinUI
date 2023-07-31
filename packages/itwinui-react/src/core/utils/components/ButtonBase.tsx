@@ -7,22 +7,30 @@ import { Box } from './Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 
 export const ButtonBase = React.forwardRef((props, forwardedRef) => {
-  const { onClick: onClickProp, ...rest } = props;
+  const {
+    as: asProp = 'button',
+    onClick: onClickProp,
+    disabled: disabledProp,
+    htmlDisabled,
+    ...rest
+  } = props;
 
   return (
     <Box
-      as='button'
-      type={props.as === 'button' ? 'button' : undefined}
+      as={asProp}
+      type={asProp === 'button' ? 'button' : undefined}
       ref={forwardedRef}
       onClick={(e) => {
-        if (!props.disabled) {
+        if (!disabledProp) {
           onClickProp?.(e);
         }
       }}
       aria-disabled={
-        props.as === 'button' && props.disabled ? 'true' : undefined
+        !htmlDisabled && disabledProp && asProp === 'button'
+          ? 'true'
+          : undefined
       }
-      disabled={props.htmlDisabled || undefined}
+      disabled={htmlDisabled || undefined}
       {...rest}
     />
   );
