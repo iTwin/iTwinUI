@@ -18,7 +18,7 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
 
   const isClient = useIsClient();
 
-  const enhancedDisabled =
+  const ariaDisabled =
     disabledProp &&
     !htmlDisabled && // htmlDisabled prop takes preference
     isClient && // progressively enhance after first render
@@ -30,12 +30,12 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       type={asProp === 'button' ? 'button' : undefined}
       ref={forwardedRef}
       onClick={(e) => {
-        if (enhancedDisabled) {
+        if (disabledProp) {
           return;
         }
         onClickProp?.(e);
       }}
-      aria-disabled={enhancedDisabled ? 'true' : undefined}
+      aria-disabled={ariaDisabled ? 'true' : undefined}
       data-iui-disabled={disabledProp ? 'true' : undefined}
       disabled={htmlDisabled ?? (!isClient && disabledProp) ? true : undefined}
       {...rest}
