@@ -53,7 +53,7 @@ $borderless-horizontal-tab-min-height: calc(
       }
     }
 
-    &[disabled] {
+    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       cursor: not-allowed;
       color: var(--iui-color-text-disabled);
 

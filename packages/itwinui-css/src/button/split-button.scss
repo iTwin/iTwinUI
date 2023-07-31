@@ -21,9 +21,7 @@
       z-index: 1;
     }
 
-    &[disabled],
-    &:disabled,
-    &[aria-disabled='true'] {
+    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       border-inline-end-color: var(--iui-color-border-subtle);
       z-index: -1;
     }
@@ -42,9 +40,7 @@
       border-inline-start-color: $iui-button-split-divider-color;
     }
 
-    &[disabled],
-    &:disabled,
-    &[aria-disabled='true'] {
+    &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       border-inline-start-color: var(--iui-color-border-subtle);
       z-index: -1;
     }

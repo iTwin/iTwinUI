@@ -40,7 +40,7 @@
       background-color: var(--iui-color-background-accent-muted);
     }
 
-    &[disabled]:hover {
+    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']):hover {
       background-color: transparent;
     }
   }

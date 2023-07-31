@@ -22,9 +22,7 @@
     outline-width: 2px;
   }
 
-  &[disabled],
-  &:disabled,
-  &[aria-disabled='true'] {
+  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-border-color: var(--iui-color-border-disabled);
@@ -43,9 +41,7 @@
 }
 
 @mixin iui-button-active-disabled {
-  &[disabled],
-  &:disabled,
-  &[aria-disabled='true'] {
+  &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     --_iui-button-background-color: var(--iui-color-background-disabled);
   }
 }
