@@ -173,6 +173,10 @@ export type SliderProps = {
    */
   tickProps?: React.ComponentProps<'span'>;
   /**
+   * Allows props to be passed for slider-ticks
+   */
+  ticksProps?: React.ComponentProps<'div'>;
+  /**
    * Defines the allowed behavior when moving Thumbs when multiple Thumbs are
    * shown. It controls if a Thumb movement should be limited to only move in
    * the segments adjacent to the Thumb. Possible values:
@@ -233,6 +237,7 @@ export const Slider = React.forwardRef((props, ref) => {
     railProps,
     trackProps,
     tickProps,
+    ticksProps,
     orientation = 'horizontal',
     ...rest
   } = props;
@@ -439,15 +444,15 @@ export const Slider = React.forwardRef((props, ref) => {
       return (
         <Box
           as='div'
-          {...tickProps}
-          className={cx('iui-slider-ticks', tickProps?.className)}
+          {...ticksProps}
+          className={cx('iui-slider-ticks', ticksProps?.className)}
         >
           {tickLabels.map((label, index) => (
             <Box
               as='span'
               {...tickProps}
               key={index}
-              className='iui-slider-tick'
+              className={cx('iui-slider-tick', tickProps?.className)}
             >
               {label}
             </Box>
@@ -457,7 +462,7 @@ export const Slider = React.forwardRef((props, ref) => {
     }
 
     return tickLabels;
-  }, [tickLabels, tickProps]);
+  }, [tickLabels, tickProps, ticksProps]);
 
   const generateTooltipProps = React.useCallback(
     (index: number, val: number): Omit<TooltipProps, 'children'> => {
