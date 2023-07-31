@@ -100,7 +100,7 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
         </Label>
       )}
       <Box className='iui-input-group'>{children}</Box>
-      {(message || status) && (
+      {(message || status || svgIcon) && (
         <StatusMessage startIcon={icon()} status={status}>
           {displayStyle !== 'inline' && message}
         </StatusMessage>
