@@ -106,6 +106,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       className={cx('iui-side-navigation-wrapper', className)}
+      data-iui-submenu-expanded={isSubmenuOpen}
       ref={forwardedRef}
       {...rest}
     >
@@ -150,16 +151,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
         </Box>
         {expanderPlacement === 'bottom' && ExpandButton}
       </Box>
-      {submenu && (
-        <Box
-          className={cx('iui-side-navigation-submenu-wrapper', className)}
-          data-iui-expanded={isSubmenuOpen}
-          ref={forwardedRef}
-          {...rest}
-        >
-          {submenu}
-        </Box>
-      )}
+      {submenu ?? submenu}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;

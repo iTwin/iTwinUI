@@ -162,35 +162,9 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 //animating technique from https://css-tricks.com/css-grid-can-do-auto-height-transitions/
-.iui-side-navigation-submenu-wrapper {
-  display: grid;
-  grid-template-columns: 0fr;
-  overflow: hidden;
-  z-index: -1;
-  justify-content: end;
-  justify-items: end;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: grid-template-columns var(--iui-duration-2), visibility var(--iui-duration-2),
-      transform var(--iui-duration-2);
-    transition-timing-function: ease-out;
-  }
-}
-
-.iui-side-navigation-submenu-wrapper:where([data-iui-expanded='true']) {
-  grid-template-columns: 1fr;
-}
-
-.iui-side-navigation-submenu-wrapper:where([data-iui-expanded='true']) .iui-side-navigation-submenu {
-  visibility: visible;
-}
-
 .iui-side-navigation-submenu {
   min-block-size: 0;
   min-inline-size: 0;
-  visibility: hidden;
-  @media (prefers-reduced-motion: no-preference) {
-    transition: visibility var(--iui-duration-2) ease-out;
-  }
   max-inline-size: 50vw;
   block-size: 100%;
   overflow-x: hidden;
@@ -199,10 +173,23 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   resize: horizontal;
   background-color: var(--iui-color-background);
   border-inline-end: 1px solid var(--iui-color-border);
-  align-self: end;
+  display: grid;
+  grid-template-columns: 0fr;
+  overflow: hidden;
+  justify-content: end;
+  justify-items: end;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: grid-template-columns var(--iui-duration-2), visibility var(--iui-duration-2),
+      transform var(--iui-duration-2);
+    transition-timing-function: ease-out;
+  }
 
   &-content {
-    padding: 0 var(--iui-size-s) var(--iui-size-s);
+    min-inline-size: 0;
+    visibility: hidden;
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility var(--iui-duration-2) ease-out;
+    }
     flex-shrink: 0;
   }
 
@@ -234,6 +221,15 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       margin-inline-start: var(--iui-size-xs);
     }
   }
+}
+
+:where(.iui-side-navigation-wrapper[data-iui-submenu-expanded='true']) .iui-side-navigation-submenu {
+  grid-template-columns: 1fr;
+}
+
+:where(.iui-side-navigation-wrapper[data-iui-submenu-expanded='true']) .iui-side-navigation-submenu-content {
+  visibility: visible;
+  padding: 0 var(--iui-size-s) var(--iui-size-s);
 }
 
 .iui-side-navigation-wrapper {
