@@ -9,7 +9,6 @@ import {
   Box,
   polymorphic,
   useIsClient,
-  getBoundedValue,
   useIsomorphicLayoutEffect,
   useMergedRefs,
   useContainerWidth,
@@ -136,14 +135,6 @@ type TabsTabListOwnProps = {
    */
   focusActivationMode?: 'auto' | 'manual';
   /**
-   * The index of the tab that should be active when initially rendered.
-   */
-  activeIndex?: number;
-  /**
-   * Handler for activating a tab.
-   */
-  onTabSelected?: (index: number) => void;
-  /**
    * Tab items.
    */
   children: React.ReactNode[] | React.ReactNode;
@@ -155,8 +146,6 @@ const TabsTabList = React.forwardRef((props, ref) => {
     children,
     color = 'blue',
     focusActivationMode = 'auto',
-    activeIndex,
-    onTabSelected,
     ...rest
   } = props;
 
@@ -169,21 +158,26 @@ const TabsTabList = React.forwardRef((props, ref) => {
     setStripeProperties,
   } = useSafeContext(TabsContext);
 
-  const items = Array.isArray(children) ? children : [children];
+  const items = React.useMemo(
+    () => (Array.isArray(children) ? children : [children]),
+    [children],
+  );
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
 
   useIsomorphicLayoutEffect(() => {
-    if (
-      activeIndex != null &&
-      currentActiveIndex !== activeIndex &&
-      setCurrentActiveIndex
-    ) {
-      setCurrentActiveIndex(getBoundedValue(activeIndex, 0, items.length - 1));
-    }
-  }, [activeIndex, currentActiveIndex, items.length]);
+    items.forEach((item, index) => {
+      if (
+        React.isValidElement(item) &&
+        item.props.isActive &&
+        setCurrentActiveIndex
+      ) {
+        setCurrentActiveIndex(index);
+      }
+    });
+  }, [currentActiveIndex, items]);
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
@@ -423,12 +417,12 @@ const TabsTabList = React.forwardRef((props, ref) => {
 
   const onTabClick = React.useCallback(
     (index: number) => {
-      if (onTabSelected) {
-        onTabSelected(index);
+      const tab = items[index];
+      if (React.isValidElement(tab) && tab.props.onActiveChange) {
+        tab.props.onActiveChange();
       }
-      setCurrentActiveIndex && setCurrentActiveIndex(index);
     },
-    [onTabSelected, setCurrentActiveIndex],
+    [items],
   );
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -449,6 +443,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
       do {
         newIndex = (newIndex + delta + items.length) % items.length;
       } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
+      setCurrentActiveIndex && setCurrentActiveIndex(newIndex);
       setFocusedIndex(newIndex);
       focusActivationMode === 'auto' && onTabClick(newIndex);
     };
@@ -487,6 +482,8 @@ const TabsTabList = React.forwardRef((props, ref) => {
       case 'Spacebar': {
         event.preventDefault();
         if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
+          setCurrentActiveIndex && setCurrentActiveIndex(newIndex);
+          setFocusedIndex && setFocusedIndex(newIndex);
           onTabClick(focusedIndex);
         }
         break;
@@ -521,7 +518,6 @@ const TabsTabList = React.forwardRef((props, ref) => {
           <TabsTabListContext.Provider
             value={{
               index,
-              onTabSelected: onTabClick,
               setFocusedIndex,
               hasSublabel,
               setHasSublabel,
@@ -546,19 +542,40 @@ type TabsTabOwnProps = {
    * Cannot be used with tabs that have icons or descriptions.
    */
   label?: string | React.ReactNode;
+  /**
+   * Orientation of the tabs.
+   * @default 'horizontal'
+   */
+  isActive?: boolean;
+  /**
+   * Orientation of the tabs.
+   * @default 'horizontal'
+   */
+  onActiveChange?: () => void;
 };
 
 const TabsTab = React.forwardRef((props, ref) => {
-  const { className, children, label, ...rest } = props;
+  const {
+    className,
+    children,
+    label,
+    isActive = false,
+    onActiveChange,
+    ...rest
+  } = props;
 
-  const { currentActiveIndex } = useSafeContext(TabsContext);
-  const { index, onTabSelected, setFocusedIndex } =
-    useSafeContext(TabsTabListContext);
+  const { currentActiveIndex, setCurrentActiveIndex } =
+    useSafeContext(TabsContext);
+  const { index, setFocusedIndex } = useSafeContext(TabsTabListContext);
 
   const onClick = () => {
     if (index !== undefined) {
-      setFocusedIndex && setFocusedIndex(index);
-      onTabSelected && onTabSelected(index);
+      if (onActiveChange) {
+        onActiveChange();
+      } else {
+        setCurrentActiveIndex && setCurrentActiveIndex(index);
+        setFocusedIndex && setFocusedIndex(index);
+      }
     }
   };
   return (
@@ -566,13 +583,13 @@ const TabsTab = React.forwardRef((props, ref) => {
       as='button'
       className={cx(
         'iui-tab',
-        { 'iui-active': index === currentActiveIndex },
+        { 'iui-active': index === currentActiveIndex || isActive },
         className,
       )}
       role='tab'
-      tabIndex={index === currentActiveIndex ? 0 : -1}
+      tabIndex={index === currentActiveIndex || isActive ? 0 : -1}
       onClick={onClick}
-      aria-selected={index === currentActiveIndex}
+      aria-selected={index === currentActiveIndex || isActive}
       ref={ref}
       {...rest}
     >
@@ -836,10 +853,6 @@ export const TabsTabListContext = React.createContext<
        * The index value passed for each of the tabs.
        */
       index?: number;
-      /**
-       * Handler for activating a tab.
-       */
-      onTabSelected?: (index: number) => void;
       /**
        * Handler for setting the focused tab index.
        */

@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+/* eslint-disable react/jsx-key */
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
@@ -274,6 +275,24 @@ SublabelsAndIcons.args = {
 
 export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
   const [activeIndex, setActiveIndex] = React.useState(10);
+  // const activeIndex = React.useRef(10);
+
+  const [tabData, setTabData] = React.useState([
+    { name: 'Item 1', active: false, disabled: false },
+    { name: 'Item 2', active: false, disabled: false },
+    { name: 'Item 3', active: false, disabled: false },
+    { name: 'Item 4', active: false, disabled: false },
+    { name: 'Item 5', active: false, disabled: false },
+    { name: 'Item 6', active: false, disabled: true },
+    { name: 'Item 7', active: false, disabled: false },
+    { name: 'Item 8', active: false, disabled: false },
+    { name: 'Item 9', active: false, disabled: true },
+    { name: 'Item 10', active: false, disabled: false },
+    { name: 'Item 11', active: true, disabled: false },
+    { name: 'Item 12', active: false, disabled: false },
+    { name: 'Very long item number thirteen', active: false, disabled: false },
+  ]);
+
   return (
     <div
       style={{
@@ -285,20 +304,32 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
       }}
     >
       <Tabs overflowOptions={{ useOverflow: true }} {...args}>
-        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
-          <Tabs.Tab label='Item 1' />
-          <Tabs.Tab label='Item 2' />
-          <Tabs.Tab label='Item 3' />
-          <Tabs.Tab label='Item 4' />
-          <Tabs.Tab label='Item 5' />
-          <Tabs.Tab disabled label='Item 6' />
-          <Tabs.Tab label='Item 7' />
-          <Tabs.Tab label='Item 8' />
-          <Tabs.Tab disabled label='Item 9' />
-          <Tabs.Tab label='Item 10' />
-          <Tabs.Tab label='Item 11' />
-          <Tabs.Tab label='Item 12' />
-          <Tabs.Tab label='Very long item number thirteen' />
+        <Tabs.TabList>
+          {tabData?.map((item, index) => {
+            return (
+              <Tabs.Tab
+                isActive={item.active}
+                disabled={item.disabled}
+                label={item.name}
+                onActiveChange={() => {
+                  setTabData((oldData) => {
+                    const newData = [...oldData];
+
+                    const oldActiveTab = { ...newData[activeIndex] };
+                    oldActiveTab.active = false;
+                    newData[activeIndex] = oldActiveTab;
+
+                    const newActiveTab = { ...newData[index] };
+                    newActiveTab.active = true;
+                    newData[index] = newActiveTab;
+
+                    return newData;
+                  });
+                  setActiveIndex(index);
+                }}
+              />
+            );
+          })}
         </Tabs.TabList>
 
         <Tabs.Actions>
@@ -336,6 +367,22 @@ HorizontalOverflow.argTypes = {
 
 export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
   const [activeIndex, setActiveIndex] = React.useState(10);
+
+  const [tabData, setTabData] = React.useState([
+    { name: 'Item 1', active: false, disabled: false },
+    { name: 'Item 2', active: false, disabled: false },
+    { name: 'Item 3', active: false, disabled: false },
+    { name: 'Item 4', active: false, disabled: false },
+    { name: 'Item 5', active: false, disabled: false },
+    { name: 'Item 6', active: false, disabled: true },
+    { name: 'Item 7', active: false, disabled: false },
+    { name: 'Item 8', active: false, disabled: false },
+    { name: 'Item 9', active: false, disabled: true },
+    { name: 'Item 10', active: false, disabled: false },
+    { name: 'Item 11', active: true, disabled: false },
+    { name: 'Item 12', active: false, disabled: false },
+    { name: 'Very long item number thirteen', active: false, disabled: false },
+  ]);
   return (
     <div
       style={{
@@ -351,20 +398,32 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         overflowOptions={{ useOverflow: true }}
         {...args}
       >
-        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
-          <Tabs.Tab label='Item 1' />
-          <Tabs.Tab label='Item 2' />
-          <Tabs.Tab label='Item 3' />
-          <Tabs.Tab label='Item 4' />
-          <Tabs.Tab label='Item 5' />
-          <Tabs.Tab disabled label='Item 6' />
-          <Tabs.Tab label='Item 7' />
-          <Tabs.Tab label='Item 8' />
-          <Tabs.Tab disabled label='Item 9' />
-          <Tabs.Tab label='Item 10' />
-          <Tabs.Tab label='Item 11' />
-          <Tabs.Tab label='Item 12' />
-          <Tabs.Tab label='Very long item number thirteen' />
+        <Tabs.TabList>
+          {tabData?.map((item, index) => {
+            return (
+              <Tabs.Tab
+                isActive={item.active}
+                disabled={item.disabled}
+                label={item.name}
+                onActiveChange={() => {
+                  setTabData((oldData) => {
+                    const newData = [...oldData];
+
+                    const oldActiveTab = { ...newData[activeIndex] };
+                    oldActiveTab.active = false;
+                    newData[activeIndex] = oldActiveTab;
+
+                    const newActiveTab = { ...newData[index] };
+                    newActiveTab.active = true;
+                    newData[index] = newActiveTab;
+
+                    return newData;
+                  });
+                  setActiveIndex(index);
+                }}
+              />
+            );
+          })}
         </Tabs.TabList>
 
         <Tabs.Actions>

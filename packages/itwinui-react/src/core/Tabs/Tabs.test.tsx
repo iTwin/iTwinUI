@@ -173,34 +173,57 @@ it('should render green tabs', () => {
   expect(tabContainer.className).toContain('iui-green');
 });
 
-it('should call onTabSelected when switching tabs', () => {
-  const onTabSelected = jest.fn();
-  const { container } = renderComponent({}, { onTabSelected });
+it('should call onActiveChange when switching tabs', () => {
+  const onActiveChange = jest.fn();
+
+  const { container } = renderComponent(
+    {},
+    {},
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={0} label='Label 0' />
+        <Tabs.Tab key={1} label='Label 1' />
+        <Tabs.Tab onActiveChange={onActiveChange()} key={2} label='Label 2' />
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
+  );
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
   fireEvent.click(tabs[2]);
-  expect(onTabSelected).toHaveBeenCalledWith(2);
+  expect(onActiveChange).toHaveBeenCalled();
 });
 
 it('should set active tab', () => {
-  const { container } = renderComponent({}, { activeIndex: 2 });
+  const { container } = renderComponent(
+    {},
+    {},
+    <>
+      <Tabs.TabList>
+        <Tabs.Tab key={0} label='Label 0' />
+        <Tabs.Tab key={1} label='Label 1' />
+        <Tabs.Tab isActive key={2} label='Label 2' />
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
+  );
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
   expect(tabs[0].className).not.toContain('iui-tab iui-active');
   expect(tabs[1].className).not.toContain('iui-tab iui-active');
   expect(tabs[2].className).toContain('iui-tab iui-active');
-});
-
-it('should not fail with invalid active tab and set the closest one', () => {
-  const { container } = renderComponent({}, { activeIndex: 100 });
-
-  const tabs = container.querySelectorAll('.iui-tab');
-  expect(tabs.length).toBe(3);
-  expect(tabs[0].className).not.toContain('iui-tab iui-active');
-  expect(tabs[1].className).not.toContain('iui-tab iui-active');
-  expect(tabs[2].className).toContain('iui-tab iui-active'); // 2 is closest to 100
 });
 
 it('should add .iui-large if tabs have sublabel', () => {
@@ -247,12 +270,39 @@ it('should add .iui-large if tabs have sublabel', () => {
 it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
   async (orientation) => {
-    const mockOnTabSelected = jest.fn();
+    const mockOnActiveChange0 = jest.fn();
+    const mockOnActiveChange1 = jest.fn();
+    const mockOnActiveChange2 = jest.fn();
+
     const { container } = renderComponent(
-      {
-        orientation: orientation,
-      },
-      { onTabSelected: mockOnTabSelected },
+      { orientation: orientation },
+      {},
+      <>
+        <Tabs.TabList>
+          <Tabs.Tab
+            isActive
+            onActiveChange={mockOnActiveChange0}
+            key={0}
+            label='Label 0'
+          />
+          <Tabs.Tab
+            onActiveChange={mockOnActiveChange1}
+            key={1}
+            label='Label 1'
+          />
+          <Tabs.Tab
+            onActiveChange={mockOnActiveChange2}
+            key={2}
+            label='Label 2'
+          />
+        </Tabs.TabList>
+
+        <Tabs.Panels>
+          <Tabs.Panel>Test Content 1</Tabs.Panel>
+          <Tabs.Panel>Test Content 2</Tabs.Panel>
+          <Tabs.Panel>Test Content 3</Tabs.Panel>
+        </Tabs.Panels>
+      </>,
     );
 
     const nextTabKey = orientation === 'vertical' ? 'ArrowDown' : 'ArrowRight';
@@ -263,43 +313,64 @@ it.each(['horizontal', 'vertical'] as const)(
 
     // alt key
     fireEvent.keyDown(tablist, { key: nextTabKey, altKey: true });
-    expect(mockOnTabSelected).not.toHaveBeenCalled();
+    expect(mockOnActiveChange0).not.toHaveBeenCalled();
 
     // 0 -> 1
     fireEvent.keyDown(tablist, { key: nextTabKey });
-    expect(mockOnTabSelected).toBeCalledWith(1);
+    expect(mockOnActiveChange1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
     fireEvent.keyDown(tablist, { key: nextTabKey });
-    expect(mockOnTabSelected).toBeCalledWith(2);
+    expect(mockOnActiveChange2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
     fireEvent.keyDown(tablist, { key: nextTabKey });
-    expect(mockOnTabSelected).toBeCalledWith(0);
+    expect(mockOnActiveChange0).toBeCalled();
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
     fireEvent.keyDown(tablist, { key: previousTabKey });
-    expect(mockOnTabSelected).toBeCalledWith(2);
+    expect(mockOnActiveChange2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
     fireEvent.keyDown(tablist, { key: previousTabKey });
-    expect(mockOnTabSelected).toBeCalledWith(1);
+    expect(mockOnActiveChange1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
   },
 );
 
 it('should handle keypresses when focusActivationMode is manual', async () => {
-  const mockOnTabSelected = jest.fn();
+  const mockOnActiveChange0 = jest.fn();
+  const mockOnActiveChange1 = jest.fn();
+
   const { container } = renderComponent(
     {},
-    {
-      focusActivationMode: 'manual',
-      onTabSelected: mockOnTabSelected,
-    },
+    {},
+    <>
+      <Tabs.TabList focusActivationMode='manual'>
+        <Tabs.Tab
+          onActiveChange={mockOnActiveChange0}
+          isActive
+          key={0}
+          label='Label 0'
+        />
+        <Tabs.Tab
+          onActiveChange={mockOnActiveChange1}
+          key={1}
+          label='Label 1'
+        />
+        <Tabs.Tab key={2} label='Label 2' />
+      </Tabs.TabList>
+
+      <Tabs.Panels>
+        <Tabs.Panel>Test Content 1</Tabs.Panel>
+        <Tabs.Panel>Test Content 2</Tabs.Panel>
+        <Tabs.Panel>Test Content 3</Tabs.Panel>
+      </Tabs.Panels>
+    </>,
   );
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
@@ -307,41 +378,35 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
   // 0 -> 1
   fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-  expect(mockOnTabSelected).not.toBeCalled();
+  expect(mockOnActiveChange1).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[1]);
 
   // select 1
   fireEvent.keyDown(tablist, { key: 'Enter' });
-  expect(mockOnTabSelected).toBeCalledWith(1);
+  expect(mockOnActiveChange1).toBeCalled();
 
   // 1 -> 0
   fireEvent.keyDown(tablist, { key: 'ArrowLeft' });
-  expect(mockOnTabSelected).not.toBeCalledWith(0);
+  expect(mockOnActiveChange0).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[0]);
 
   // select 0
   fireEvent.keyDown(tablist, { key: ' ' });
-  expect(mockOnTabSelected).toBeCalledWith(0);
+  expect(mockOnActiveChange0).toBeCalled();
 });
 
 it('should set focused index when tab is clicked', () => {
-  const mockOnTabSelected = jest.fn();
-  const { container } = renderComponent(
-    {},
-    { onTabSelected: mockOnTabSelected },
-  );
+  const { container } = renderComponent();
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
   const tabs = Array.from(tablist.querySelectorAll('.iui-tab'));
 
   // click 1
   fireEvent.click(tabs[1]);
-  expect(mockOnTabSelected).toBeCalledWith(1);
   expect(document.activeElement).toBe(tabs[1]);
 
   // 1 -> 2
   fireEvent.keyDown(tablist, { key: 'ArrowRight' });
-  expect(mockOnTabSelected).toBeCalledWith(2);
   expect(document.activeElement).toBe(tabs[2]);
 });
 

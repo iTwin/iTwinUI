@@ -7,18 +7,46 @@ import { Tabs } from '@itwin/itwinui-react';
 
 export default () => {
   const [activeIndex, setActiveIndex] = React.useState(0);
+
+  const [tabData, setTabData] = React.useState([
+    { name: 'Bentley Overview', active: true },
+    { name: 'Markets', active: false },
+    { name: 'Uses', active: false },
+    { name: 'Reinvestment', active: false },
+    { name: 'Location', active: false },
+    { name: 'Revenue', active: false },
+    { name: 'Founders', active: false },
+    { name: 'History', active: false },
+  ]);
+
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
       <Tabs overflowOptions={{ useOverflow: true }}>
-        <Tabs.TabList activeIndex={activeIndex} onTabSelected={setActiveIndex}>
-          <Tabs.Tab label='Bentley Overview' />
-          <Tabs.Tab label='Markets' />
-          <Tabs.Tab label='Uses' />
-          <Tabs.Tab label='Reinvestment' />
-          <Tabs.Tab label='Location' />
-          <Tabs.Tab label='Revenue' />
-          <Tabs.Tab label='Founders' />
-          <Tabs.Tab label='History' />
+        <Tabs.TabList>
+          {tabData?.map((item, index) => {
+            return (
+              <Tabs.Tab
+                isActive={item.active}
+                label={item.name}
+                onActiveChange={() => {
+                  setTabData((oldData) => {
+                    const newData = [...oldData];
+
+                    const oldActiveTab = { ...newData[activeIndex] };
+                    oldActiveTab.active = false;
+                    newData[activeIndex] = oldActiveTab;
+
+                    const newActiveTab = { ...newData[index] };
+                    newActiveTab.active = true;
+                    newData[index] = newActiveTab;
+
+                    return newData;
+                  });
+                  setActiveIndex(index);
+                }}
+              />
+            );
+          })}
         </Tabs.TabList>
 
         <Tabs.Panels>
