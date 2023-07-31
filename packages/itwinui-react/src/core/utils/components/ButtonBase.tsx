@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { Box } from './Box.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { useIsClient } from '../hooks/useIsClient.js';
@@ -41,6 +42,7 @@ export const ButtonBase = React.forwardRef((props, forwardedRef) => {
       data-iui-disabled={disabledProp ? 'true' : undefined}
       disabled={htmlDisabled ?? (!isClient && disabledProp) ? true : undefined}
       {...rest}
+      className={cx('iui-button-base', props.className)}
       onClick={handleIfEnabled(props.onClick)}
       onPointerDown={handleIfEnabled(props.onPointerDown)}
       onPointerUp={handleIfEnabled(props.onPointerUp)}
