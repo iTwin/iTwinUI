@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { WithCSSTransition, SvgChevronRight, Box } from '../utils/index.js';
+import { SvgChevronRight, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { Tooltip } from '../Tooltip/index.js';
@@ -106,6 +106,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       className={cx('iui-side-navigation-wrapper', className)}
+      data-iui-submenu-expanded={isSubmenuOpen}
       ref={forwardedRef}
       {...rest}
     >
@@ -150,16 +151,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
         </Box>
         {expanderPlacement === 'bottom' && ExpandButton}
       </Box>
-      {submenu && (
-        <WithCSSTransition
-          in={isSubmenuOpen}
-          dimension='width'
-          timeout={200}
-          classNames='iui'
-        >
-          {submenu}
-        </WithCSSTransition>
-      )}
+      {submenu ?? submenu}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;

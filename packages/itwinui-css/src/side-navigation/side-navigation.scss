@@ -171,12 +171,22 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   resize: horizontal;
   background-color: var(--iui-color-background);
   border-inline-end: 1px solid var(--iui-color-border);
+  z-index: -1;
+  visibility: hidden;
+  transform: translateX(-100%);
 
-  @include mixins.iui-transition-group;
+  @media (prefers-reduced-motion: no-preference) {
+    transition: visibility var(--iui-duration-2), transform var(--iui-duration-2);
+    transition-timing-function: ease-out;
+  }
 
-  &.iui-enter-active,
-  &.iui-exit-active {
-    display: flex;
+  :where(.iui-side-navigation-wrapper[data-iui-submenu-expanded='true']) & {
+    visibility: visible;
+    transform: translateX(0);
+    @media (prefers-reduced-motion: no-preference) {
+      transition: visibility var(--iui-duration-2), transform var(--iui-duration-2);
+      transition-timing-function: ease-out;
+    }
   }
 
   &-content {
@@ -217,5 +227,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 .iui-side-navigation-wrapper {
   display: flex;
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   block-size: 100%;
 }
