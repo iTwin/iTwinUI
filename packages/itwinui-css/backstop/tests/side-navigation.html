@@ -2,28 +2,34 @@
   Copyright (c) Bentley Systems, Incorporated. All rights reserved.
   See LICENSE.md in the project root for license terms and full copyright notice.
 -->
-<html lang="en-US" id="theme">
+<html
+  lang="en-US"
+  id="theme"
+>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1"
+    >
     <title>Side navigation | iTwinUI</title>
 
     <script type="module">
-      import './assets/theme.js';
-      import '@itwin/itwinui-icons-elements/chevron-right';
-      import '@itwin/itwinui-icons-elements/home';
-      import '@itwin/itwinui-icons-elements/document';
-      import '@itwin/itwinui-icons-elements/map';
-      import '@itwin/itwinui-icons-elements/archive';
-      import '@itwin/itwinui-icons-elements/calendar';
-      import '@itwin/itwinui-icons-elements/setup';
-      import '@itwin/itwinui-icons-elements/chevron-left';
-      import '@itwin/itwinui-icons-elements/settings';
+      import "./assets/theme.js";
+      import "@itwin/itwinui-icons-elements/chevron-right";
+      import "@itwin/itwinui-icons-elements/home";
+      import "@itwin/itwinui-icons-elements/document";
+      import "@itwin/itwinui-icons-elements/map";
+      import "@itwin/itwinui-icons-elements/archive";
+      import "@itwin/itwinui-icons-elements/calendar";
+      import "@itwin/itwinui-icons-elements/setup";
+      import "@itwin/itwinui-icons-elements/chevron-left";
+      import "@itwin/itwinui-icons-elements/settings";
     </script>
     <style>
-      @import url('./assets/demo.css') layer(demo);
+      @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
-      @import url('@itwin/itwinui-css/css/all.css') layer(itwinui);
+      @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section {
         height: 666px;
       }
@@ -34,12 +40,8 @@
         display: none;
       }
 
-      .iui-top .iui-tooltip {
-        margin-left: 80px;
-      }
-      .iui-bottom .iui-tooltip {
-        margin-left: 80px;
-      }
+      .iui-top .iui-tooltip { margin-left: 80px; }
+      .iui-bottom .iui-tooltip { margin-left: 80px; }
 
       .iui-sidenav-button:hover + .iui-tooltip {
         display: inline-block;
@@ -51,7 +53,10 @@
     </style>
   </head>
 
-  <body class="iui-root" data-iui-theme>
+  <body
+    class="iui-root"
+    data-iui-theme
+  >
     <theme-button></theme-button>
     <h1>Side navigation</h1>
 
@@ -59,7 +64,11 @@
 
     <h2>Default</h2>
     <section id="demo-side-navigation">
-      <div class="iui-side-navigation iui-collapsed" id="demo-sidenav-container">
+
+      <div
+        class="iui-side-navigation iui-collapsed"
+        id="demo-sidenav-container"
+      >
         <!-- Expand arrow -->
         <button
           class="iui-button iui-sidenav-button iui-expand"
@@ -68,11 +77,18 @@
           onclick="togglePanelExpansion(this)"
           id="test-expand"
         >
-          <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right>
+          <svg-chevron-right
+            class="iui-button-icon"
+            aria-hidden="true"
+          ></svg-chevron-right>
         </button>
 
         <!-- Rest of the tabs -->
-        <div class="iui-sidenav-content" role="tablist" aria-label="Applications">
+        <div
+          class="iui-sidenav-content"
+          role="tablist"
+          aria-label="Applications"
+        >
           <div class="iui-top">
             <button
               class="iui-button iui-sidenav-button"
@@ -84,7 +100,10 @@
               aria-controls="home-tab"
               onclick="toggleActiveState(this)"
             >
-              <svg-home class="iui-button-icon" aria-hidden="true"></svg-home>
+              <svg-home
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-home>
               <span>Home</span>
             </button>
             <span class="iui-tooltip">Home</span>
@@ -98,7 +117,11 @@
               aria-controls="documents-tab"
               onclick="toggleActiveState(this)"
             >
-              <span class="iui-button-icon iui-notification-marker" data-iui-variant="negative" data-iui-urgent="true">
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="negative"
+                data-iui-urgent="true"
+              >
                 <svg-document></svg-document>
               </span>
               <span>Documents</span>
@@ -114,7 +137,10 @@
               aria-controls="map-tab"
               onclick="toggleActiveState(this)"
             >
-              <span class="iui-button-icon iui-notification-marker" data-iui-variant="positive">
+              <span
+                class="iui-button-icon iui-notification-marker"
+                data-iui-variant="positive"
+              >
                 <svg-map></svg-map>
               </span>
               <span>Map</span>
@@ -131,7 +157,10 @@
               disabled
               onclick="toggleActiveState(this)"
             >
-              <svg-archive class="iui-button-icon" aria-hidden="true"></svg-archive>
+              <svg-archive
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-archive>
               <span>Archives</span>
             </button>
             <span class="iui-tooltip">Archives</span>
@@ -146,7 +175,10 @@
               id="test-tab-1"
               onclick="toggleActiveState(this)"
             >
-              <svg-calendar class="iui-button-icon" aria-hidden="true"></svg-calendar>
+              <svg-calendar
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-calendar>
               <span>Calendar</span>
             </button>
             <span class="iui-tooltip">Calendar</span>
@@ -163,23 +195,38 @@
               id="test-tab-2"
               onclick="toggleActiveState(this)"
             >
-              <svg-setup class="iui-button-icon" aria-hidden="true"></svg-setup>
+              <svg-setup
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-setup>
               <span>Administration</span>
             </button>
-            <span class="iui-tooltip" style="margin-bottom: 10px">Administration</span>
+            <span
+              class="iui-tooltip"
+              style="margin-bottom: 10px;"
+            >Administration</span>
           </div>
         </div>
       </div>
+
     </section>
 
     <br /><br />
 
     <h3>With submenu open</h3>
     <section id="demo-side-navigation-submenu">
+
       <div class="iui-side-navigation-wrapper">
-        <div class="iui-side-navigation iui-collapsed" id="demo-sidenav-container">
+        <div
+          class="iui-side-navigation iui-collapsed"
+          id="demo-sidenav-container"
+        >
           <!-- Rest of the tabs -->
-          <div class="iui-sidenav-content" role="tablist" aria-label="Applications">
+          <div
+            class="iui-sidenav-content"
+            role="tablist"
+            aria-label="Applications"
+          >
             <div class="iui-top">
               <button
                 class="iui-button iui-sidenav-button"
@@ -190,7 +237,10 @@
                 aria-label="Home"
                 aria-controls="home-tab"
               >
-                <svg-home class="iui-button-icon" aria-hidden="true"></svg-home>
+                <svg-home
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-home>
                 <span>Home</span>
               </button>
               <span class="iui-tooltip">Home</span>
@@ -203,7 +253,10 @@
                 aria-label="Documents"
                 aria-controls="documents-tab"
               >
-                <svg-document class="iui-button-icon" aria-hidden="true"></svg-document>
+                <svg-document
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-document>
                 <span>Documents</span>
               </button>
               <span class="iui-tooltip">Documents</span>
@@ -216,7 +269,10 @@
                 aria-label="Map"
                 aria-controls="map-tab"
               >
-                <svg-map class="iui-button-icon" aria-hidden="true"></svg-map>
+                <svg-map
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-map>
                 <span>Map</span>
               </button>
               <span class="iui-tooltip">Map</span>
@@ -230,7 +286,10 @@
                 aria-controls="archives-tab"
                 disabled
               >
-                <svg-archive class="iui-button-icon" aria-hidden="true"></svg-archive>
+                <svg-archive
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-archive>
                 <span>Archives</span>
               </button>
               <span class="iui-tooltip">Archives</span>
@@ -243,7 +302,10 @@
                 aria-label="Calendar"
                 aria-controls="calendar-tab"
               >
-                <svg-calendar class="iui-button-icon" aria-hidden="true"></svg-calendar>
+                <svg-calendar
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-calendar>
                 <span>Calendar</span>
               </button>
               <span class="iui-tooltip">Calendar</span>
@@ -258,10 +320,16 @@
                 aria-label="Administration"
                 aria-controls="administration-tab"
               >
-                <svg-setup class="iui-button-icon" aria-hidden="true"></svg-setup>
+                <svg-setup
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-setup>
                 <span>Administration</span>
               </button>
-              <span class="iui-tooltip" style="margin-bottom: 10px">Administration</span>
+              <span
+                class="iui-tooltip"
+                style="margin-bottom: 10px;"
+              >Administration</span>
             </div>
           </div>
 
@@ -273,71 +341,168 @@
             onclick="togglePanelExpansion(this)"
             id="test-expand-2"
           >
-            <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right>
+            <svg-chevron-right
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-right>
           </button>
         </div>
 
-        <div class="iui-side-navigation-submenu-wrapper" data-iui-expanded="true">
-          <div class="iui-side-navigation-submenu" style="width: 384px">
-            <div class="iui-side-navigation-submenu-content">
-              <div class="iui-side-navigation-submenu-header">
-                <div class="iui-side-navigation-submenu-header-label">
-                  <button class="iui-button" data-iui-variant="borderless">
-                    <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left>
-                  </button>
-                  <span>Documents with a long label to test for truncation</span>
-                </div>
-                <div class="iui-side-navigation-submenu-header-actions">
-                  <button class="iui-button" data-iui-variant="borderless">
-                    <svg-settings class="iui-button-icon" aria-hidden="true"></svg-settings>
-                  </button>
-                </div>
+        <div
+          class="iui-side-navigation-submenu"
+          style="width: 384px;"
+        >
+          <div class="iui-side-navigation-submenu-content">
+            <div class="iui-side-navigation-submenu-header">
+              <div class="iui-side-navigation-submenu-header-label">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
+                  <svg-chevron-left
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-chevron-left>
+                </button>
+                <span>Documents with a long label to test for truncation</span>
               </div>
-
-              <div class="iui-text-leading">Frequently viewed</div>
-              <ul>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-              </ul>
-              <div class="iui-text-leading">All documents</div>
-              <ul>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-              </ul>
+              <div class="iui-side-navigation-submenu-header-actions">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
+                  <svg-settings
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-settings>
+                </button>
+              </div>
             </div>
+
+            <div class="iui-text-leading">Frequently viewed</div>
+            <ul>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+            </ul>
+            <div class="iui-text-leading">All documents</div>
+            <ul>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+            </ul>
           </div>
         </div>
       </div>
+
     </section>
 
     <br /><br />
 
     <h3>With submenu open & active</h3>
     <section id="demo-side-navigation-submenu-active">
+
       <div class="iui-side-navigation-wrapper">
-        <div class="iui-side-navigation iui-collapsed" id="demo-sidenav-container">
+        <div
+          class="iui-side-navigation iui-collapsed"
+          id="demo-sidenav-container"
+        >
           <!-- Rest of the tabs -->
-          <div class="iui-sidenav-content" role="tablist" aria-label="Applications">
+          <div
+            class="iui-sidenav-content"
+            role="tablist"
+            aria-label="Applications"
+          >
             <div class="iui-top">
               <button
                 class="iui-button iui-sidenav-button"
@@ -347,7 +512,10 @@
                 aria-label="Home"
                 aria-controls="home-tab"
               >
-                <svg-home class="iui-button-icon" aria-hidden="true"></svg-home>
+                <svg-home
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-home>
                 <span>Home</span>
               </button>
               <span class="iui-tooltip">Home</span>
@@ -361,7 +529,10 @@
                 aria-label="Documents"
                 aria-controls="documents-tab"
               >
-                <svg-document class="iui-button-icon" aria-hidden="true"></svg-document>
+                <svg-document
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-document>
                 <span>Documents</span>
               </button>
               <span class="iui-tooltip">Documents</span>
@@ -374,7 +545,10 @@
                 aria-label="Map"
                 aria-controls="map-tab"
               >
-                <svg-map class="iui-button-icon" aria-hidden="true"></svg-map>
+                <svg-map
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-map>
                 <span>Map</span>
               </button>
               <span class="iui-tooltip">Map</span>
@@ -388,7 +562,10 @@
                 aria-controls="archives-tab"
                 disabled
               >
-                <svg-archive class="iui-button-icon" aria-hidden="true"></svg-archive>
+                <svg-archive
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-archive>
                 <span>Archives</span>
               </button>
               <span class="iui-tooltip">Archives</span>
@@ -401,7 +578,10 @@
                 aria-label="Calendar"
                 aria-controls="calendar-tab"
               >
-                <svg-calendar class="iui-button-icon" aria-hidden="true"></svg-calendar>
+                <svg-calendar
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-calendar>
                 <span>Calendar</span>
               </button>
               <span class="iui-tooltip">Calendar</span>
@@ -416,10 +596,16 @@
                 aria-label="Administration"
                 aria-controls="administration-tab"
               >
-                <svg-setup class="iui-button-icon" aria-hidden="true"></svg-setup>
+                <svg-setup
+                  class="iui-button-icon"
+                  aria-hidden="true"
+                ></svg-setup>
                 <span>Administration</span>
               </button>
-              <span class="iui-tooltip" style="margin-bottom: 10px">Administration</span>
+              <span
+                class="iui-tooltip"
+                style="margin-bottom: 10px;"
+              >Administration</span>
             </div>
           </div>
 
@@ -431,68 +617,157 @@
             onclick="togglePanelExpansion(this)"
             id="test-expand-2"
           >
-            <svg-chevron-right class="iui-button-icon" aria-hidden="true"></svg-chevron-right>
+            <svg-chevron-right
+              class="iui-button-icon"
+              aria-hidden="true"
+            ></svg-chevron-right>
           </button>
         </div>
 
-        <div class="iui-side-navigation-submenu-wrapper" data-iui-expanded="true">
-          <div class="iui-side-navigation-submenu" style="width: 384px">
-            <div class="iui-side-navigation-submenu-content">
-              <div class="iui-side-navigation-submenu-header">
-                <div class="iui-side-navigation-submenu-header-label">
-                  <button class="iui-button" data-iui-variant="borderless">
-                    <svg-chevron-left class="iui-button-icon" aria-hidden="true"></svg-chevron-left>
-                  </button>
-                  <span>Documents with a long label to test for truncation</span>
-                </div>
-                <div class="iui-side-navigation-submenu-header-actions">
-                  <button class="iui-button" data-iui-variant="borderless">
-                    <svg-settings class="iui-button-icon" aria-hidden="true"></svg-settings>
-                  </button>
-                </div>
+        <div
+          class="iui-side-navigation-submenu"
+          style="width: 384px;"
+        >
+          <div class="iui-side-navigation-submenu-content">
+            <div class="iui-side-navigation-submenu-header">
+              <div class="iui-side-navigation-submenu-header-label">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
+                  <svg-chevron-left
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-chevron-left>
+                </button>
+                <span>Documents with a long label to test for truncation</span>
               </div>
-
-              <div class="iui-text-leading">Frequently viewed</div>
-              <ul>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-              </ul>
-              <div class="iui-text-leading">All documents</div>
-              <ul>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-                <li><a href="#" class="iui-anchor">Lorem ipsum</a></li>
-                <li><a href="#" class="iui-anchor">Dolor sit amet</a></li>
-                <li><a href="#" class="iui-anchor">Consectetur adipiscing elit</a></li>
-              </ul>
+              <div class="iui-side-navigation-submenu-header-actions">
+                <button
+                  class="iui-button"
+                  data-iui-variant="borderless"
+                >
+                  <svg-settings
+                    class="iui-button-icon"
+                    aria-hidden="true"
+                  ></svg-settings>
+                </button>
+              </div>
             </div>
+
+            <div class="iui-text-leading">Frequently viewed</div>
+            <ul>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+            </ul>
+            <div class="iui-text-leading">All documents</div>
+            <ul>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Lorem ipsum</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Dolor sit amet</a></li>
+              <li><a
+                  href="#"
+                  class="iui-anchor"
+                >Consectetur adipiscing elit</a></li>
+            </ul>
           </div>
         </div>
       </div>
+
     </section>
 
     <script>
       const tooltips = document.querySelectorAll('.iui-top .iui-tooltip');
       tooltips.forEach((tooltip, index) => {
         tooltip.style.top = `${tooltip.previousElementSibling.offsetTop}px`;
-      });
+      })
     </script>
 
     <!-- Expand/collapse panel -->
@@ -506,11 +781,12 @@
     <!-- Toggle active state -->
     <script>
       function toggleActiveState(el) {
-        el.parentElement.parentElement.querySelectorAll('.iui-sidenav-button').forEach((button) => {
+        el.parentElement.parentElement.querySelectorAll('.iui-sidenav-button').forEach(button => {
           button.removeAttribute('data-iui-active');
         });
         el.setAttribute('data-iui-active', 'true');
       }
     </script>
+
   </body>
 </html>
