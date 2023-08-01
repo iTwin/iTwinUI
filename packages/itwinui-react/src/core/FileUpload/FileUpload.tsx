@@ -22,6 +22,10 @@ type FileUploadProps = {
    * Either pass `FileUploadCard` (for default state) or a different component to wrap.
    */
   children: React.ReactNode;
+  /**
+   *  Allows for custom prop to be passed for content.
+   */
+  contentProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -32,7 +36,14 @@ type FileUploadProps = {
  * <FileUpload dragContent='Drop file here' onFileDropped={console.log}><Textarea /></FileUpload>
  */
 export const FileUpload = React.forwardRef((props, ref) => {
-  const { dragContent, children, onFileDropped, className, ...rest } = props;
+  const {
+    dragContent,
+    children,
+    onFileDropped,
+    className,
+    contentProps,
+    ...rest
+  } = props;
 
   const [isDragActive, setIsDragActive] = React.useState(false);
   const fileUploadRef = React.useRef<HTMLDivElement>(null);
@@ -86,8 +97,26 @@ export const FileUpload = React.forwardRef((props, ref) => {
       ref={refs}
       {...rest}
     >
-      {dragContent ? children : <Box className='iui-content'>{children}</Box>}
-      {dragContent && <Box className='iui-content'>{dragContent}</Box>}
+      {dragContent ? (
+        children
+      ) : (
+        <Box
+          as='div'
+          {...contentProps}
+          className={cx('iui-content', contentProps?.className)}
+        >
+          {children}
+        </Box>
+      )}
+      {dragContent && (
+        <Box
+          as='div'
+          {...contentProps}
+          className={cx('iui-content', contentProps?.className)}
+        >
+          {dragContent}
+        </Box>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', FileUploadProps>;
