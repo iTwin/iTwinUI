@@ -50,7 +50,7 @@ export type StepperProps = {
    */
   stepProps?: (index: number) => React.ComponentProps<'li'>;
   /**
-   * Allows props to be passed for track-content
+   * Allows props to be passed for track content
    */
   trackContentProps?: (index: number) => React.ComponentProps<'div'>;
   /**
@@ -66,7 +66,7 @@ export type StepperProps = {
    */
   labelProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for label-count
+   * Allows props to be passed for label count
    */
   labelCountProps?: React.ComponentProps<'span'>;
 };

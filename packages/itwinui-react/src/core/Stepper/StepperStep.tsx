@@ -38,7 +38,7 @@ export type StepperStepProps = {
    */
   description?: string;
   /**
-   * Allows props to be passed for iui-stepper-step
+   * Allows props to be passed for stepper step
    */
   stepProps?: React.ComponentProps<'li'>;
   /**
