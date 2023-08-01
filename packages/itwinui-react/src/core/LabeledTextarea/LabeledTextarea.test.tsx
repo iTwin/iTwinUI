@@ -10,15 +10,11 @@ import { LabeledTextarea } from './LabeledTextarea.js';
 it('should render correctly in its most basic state', () => {
   const { container } = render(<LabeledTextarea label='test-label' />);
 
-  const label = container.querySelector(
-    '.iui-input-grid .iui-input-label',
-  ) as HTMLElement;
+  const label = container.querySelector('.iui-input-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toEqual('test-label');
 
-  const textarea = container.querySelector(
-    '.iui-input-grid textarea.iui-input',
-  );
+  const textarea = container.querySelector('.iui-input-grid textarea');
   expect(textarea).toBeTruthy();
 });
 
@@ -37,7 +33,7 @@ it('should show status', () => {
     <LabeledTextarea label='Label' status='negative' />,
   );
 
-  const input = container.querySelector('.iui-input');
+  const input = container.querySelector('textarea');
   expect(input).toHaveAttribute('data-iui-status', 'negative');
 });
 
@@ -46,11 +42,11 @@ it('should be disabled', () => {
     <LabeledTextarea label='Label' disabled={true} />,
   );
 
-  const input = container.querySelector('.iui-input');
+  const input = container.querySelector('textarea');
   expect(input).toBeDisabled();
 
   const textarea = container.querySelector(
-    '.iui-input-grid textarea.iui-input',
+    '.iui-input-grid textarea',
   ) as HTMLTextAreaElement;
   expect(textarea).toBeTruthy();
   expect(textarea.disabled).toBe(true);
@@ -63,7 +59,7 @@ it('should handle required attribute', () => {
   expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
 
   const textarea = container.querySelector(
-    '.iui-input-grid textarea.iui-input',
+    '.iui-input-grid textarea',
   ) as HTMLTextAreaElement;
   expect(textarea).toBeTruthy();
   expect(textarea.required).toBeTruthy();
@@ -73,10 +69,14 @@ it('should add custom class names and styles', () => {
   const { container } = render(
     <LabeledTextarea
       label='Label'
-      className={'test-classname'}
-      style={{ width: 100 }}
-      textareaClassName={'test-textarea-classname'}
-      textareaStyle={{ width: 50 }}
+      svgIcon={<svg />}
+      message='Test message'
+      wrapperProps={{ className: 'test-classname', style: { width: 100 } }}
+      className={'test-textarea-classname'}
+      style={{ width: 50 }}
+      labelProps={{ className: 'test-label-classname' }}
+      iconProps={{ className: 'my-icon' }}
+      messageContentProps={{ className: 'my-message' }}
     />,
   );
 
@@ -87,10 +87,25 @@ it('should add custom class names and styles', () => {
   expect(labelContainer.style.width).toBe('100px');
 
   const textarea = container.querySelector(
-    '.iui-input-grid textarea.iui-input.test-textarea-classname',
+    '.iui-input-grid textarea.test-textarea-classname',
   ) as HTMLElement;
   expect(textarea).toBeTruthy();
   expect(textarea.style.width).toBe('50px');
+
+  const label = container.querySelector(
+    '.iui-input-label.test-label-classname',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+
+  const icon = container.querySelector(
+    '.iui-status-message-icon.my-icon',
+  ) as HTMLElement;
+  expect(icon).toBeTruthy();
+
+  const content = container.querySelector(
+    '.iui-status-message-content.my-message',
+  ) as HTMLElement;
+  expect(content).toBeTruthy();
 });
 
 it('should render without label when it is undefined', () => {
@@ -99,9 +114,7 @@ it('should render without label when it is undefined', () => {
   const label = container.querySelector('.iui-input-grid .iui-input-label');
   expect(label).toBeNull();
 
-  const textarea = container.querySelector(
-    '.iui-input-grid textarea.iui-input',
-  );
+  const textarea = container.querySelector('.iui-input-grid textarea');
   expect(textarea).toBeTruthy();
 });
 

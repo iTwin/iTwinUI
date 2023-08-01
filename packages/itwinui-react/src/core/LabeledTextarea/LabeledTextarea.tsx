@@ -3,9 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useId, Box } from '../utils/index.js';
+import { StatusIconMap, useId, Box, Icon } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { Textarea } from '../Textarea/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
@@ -26,13 +25,21 @@ type LabeledTextareaProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   * Custom class name for textarea.
+   * Pass props to wrapper element.
    */
-  textareaClassName?: string;
+  wrapperProps?: React.ComponentProps<typeof InputGrid>;
   /**
-   * Custom style for textarea.
+   * Passes properties for label.
    */
-  textareaStyle?: React.CSSProperties;
+  labelProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for message content.
+   */
+  messageContentProps?: React.ComponentPropsWithRef<'div'>;
+  /**
+   * Passes properties for svgIcon.
+   */
+  iconProps?: React.ComponentProps<typeof Icon>;
 } & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'>;
 
 /**
@@ -60,19 +67,19 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
   const uid = useId();
 
   const {
-    className,
-    style,
     disabled = false,
     label,
     message,
     status,
-    textareaClassName,
-    textareaStyle,
     displayStyle = 'default',
     iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     svgIcon,
     required = false,
     id = uid,
+    wrapperProps,
+    labelProps,
+    messageContentProps,
+    iconProps,
     ...textareaProps
   } = props;
 
@@ -80,50 +87,42 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
   const iconFill = !svgIcon ? status : undefined;
 
   return (
-    <InputGrid
-      labelPlacement={displayStyle}
-      className={className}
-      style={style}
-    >
+    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
       {label && (
-        <Label required={required} disabled={disabled} htmlFor={id}>
+        <Label
+          as='label'
+          required={required}
+          disabled={disabled}
+          htmlFor={id}
+          {...labelProps}
+        >
           {label}
         </Label>
       )}
-      {iconDisplayStyle === 'inline' ? (
-        <InputWithDecorations status={status}>
-          <Box
-            as='textarea'
-            className={textareaClassName}
-            style={textareaStyle}
-            required={required}
-            disabled={disabled}
-            data-iui-status={status}
-            rows={3}
-            {...textareaProps}
-            ref={ref}
-          />
-          <InputWithDecorations.Icon fill={iconFill}>
-            {icon}
-          </InputWithDecorations.Icon>
-        </InputWithDecorations>
-      ) : (
-        <Textarea
-          disabled={disabled}
-          className={textareaClassName}
-          style={textareaStyle}
+
+      <InputWithDecorations status={status}>
+        <Box
+          as='textarea'
           required={required}
-          status={status}
-          id={id}
+          disabled={disabled}
+          data-iui-status={status}
+          rows={3}
           {...textareaProps}
           ref={ref}
         />
-      )}
+        {iconDisplayStyle === 'inline' && (
+          <InputWithDecorations.Icon fill={iconFill} {...iconProps}>
+            {icon}
+          </InputWithDecorations.Icon>
+        )}
+      </InputWithDecorations>
 
       {(message || (icon && iconDisplayStyle !== 'inline')) && (
         <StatusMessage
           status={status}
           startIcon={displayStyle === 'default' ? icon : undefined}
+          iconProps={iconProps}
+          contentProps={messageContentProps}
         >
           {message}
         </StatusMessage>
