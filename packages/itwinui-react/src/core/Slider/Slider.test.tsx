@@ -65,6 +65,7 @@ it('should render all custom classNames correctly', () => {
   const { container } = render(
     <Slider
       values={defaultSingleValue}
+      tickLabels={['0', '25', '50', '75', '100']}
       minProps={{ className: 'some-min' }}
       maxProps={{ className: 'some-max' }}
       railProps={{ className: 'some-rail' }}
@@ -91,14 +92,14 @@ it('should render all custom classNames correctly', () => {
     'iui-slider-track',
     'some-track',
   );
-  // expect(container.querySelector('.iui-slider-tick')).toHaveClass(
-  //   'iui-slider-tick',
-  //   'some-tick',
-  // );
-  // expect(container.querySelector('.iui-slider-ticks')).toHaveClass(
-  //   'iui-slider-ticks',
-  //   'some-ticks',
-  // );
+  expect(container.querySelector('.iui-slider-tick')).toHaveClass(
+    'iui-slider-tick',
+    'some-tick',
+  );
+  expect(container.querySelector('.iui-slider-ticks')).toHaveClass(
+    'iui-slider-ticks',
+    'some-ticks',
+  );
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-disabled')).toEqual('false');
 });
