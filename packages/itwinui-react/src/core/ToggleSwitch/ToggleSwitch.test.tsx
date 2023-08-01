@@ -104,22 +104,6 @@ it('should render label on the left', () => {
   getByText('my label');
 });
 
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
-  const { container, getByText } = render(
-    <ToggleSwitch label='my label' ref={onRef} setFocus />,
-  );
-
-  assertBaseElements(container, 'right');
-
-  getByText('my label');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
-});
-
 it('should apply style and class', () => {
   const { container } = render(
     <ToggleSwitch className='my-class' style={{ width: 80 }} />,

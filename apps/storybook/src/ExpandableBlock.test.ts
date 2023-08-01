@@ -20,7 +20,7 @@ describe('ExpandableBlock', () => {
       cy.visit('iframe', { qs: { id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       if (testName !== 'Disabled') {
-        cy.get('[role=button]').first().click();
+        cy.get('[type=button]').first().click();
         cy.compareSnapshot(`${testName} (Open)`);
       }
     });

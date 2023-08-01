@@ -28,21 +28,25 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        width: 35vw;
-        min-width: 300px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--iui-size-l);
+        width: auto;
       }
 
-      section .iui-progress-indicator-radial {
-        margin-right: 16px;
+      #demo-radial-determinate > *,
+      #demo-radial-indeterminate > * {
+        display: flex;
+        gap: var(--iui-size-m);
       }
 
       .demo-overlay-wrapper {
         border: 1px solid var(--iui-color-border);
         position: relative;
-        margin-bottom: 12px;
       }
+
       .demo-overlay-content {
-        padding: 12px;
+        padding: var(--iui-size-s);
       }
     </style>
   </head>
@@ -55,414 +59,373 @@
     <hr />
 
     <h2>Linear</h2>
-    <section id="demo-linear">
 
-      <div id="linear-determinate">
-        <h3>Determinate</h3>
-        <br />
-        <!-- Determinate without determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 25%;"
-            ></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with determinate class -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            ></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div
-              class="iui-fill"
-              style="width: 75%;"
-            ></div>
-          </div>
-          <div class="iui-label">
-            <span>Loading iModel</span>
-            <span>75%</span>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 100%;"
-            ></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 100%;"
-            >
-            </div>
-          </div>
-          <div class="iui-label">
-            <span>Upload successful!</span>
-            <svg-status-success-hollow aria-hidden="true"></svg-status-success-hollow>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            >
-            </div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Determinate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div
-              class="iui-fill iui-determinate"
-              style="width: 50%;"
-            >
-            </div>
-          </div>
-          <div class="iui-label">
-            <span>Upload failed!</span>
-            <svg-status-error-hollow aria-hidden="true"></svg-status-error-hollow>
-          </div>
-        </div>
-        <br />
+    <h3>Determinate</h3>
+    <p class="iui-text-small iui-text-muted">
+      For determinate variants, percentage is set by&nbsp;
+      <code>--iui-progress-percentage</code>.
+    </p>
+    <section id="demo-linear-determinate">
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 25%;"
+      >
       </div>
 
-      <div id="linear-indeterminate">
-        <h3>Indeterminate</h3>
-        <br />
-        <!-- Indeterminate -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Indeterminate with labels -->
-        <div class="iui-progress-indicator-linear">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Loading iModel</span>
-          </div>
-        </div>
-        <br />
-
-        <!-- Indeterminate with success -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Indeterminate with success & labels -->
-        <div class="iui-progress-indicator-linear iui-positive">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Upload successful!</span>
-          </div>
-        </div>
-        <br />
-
-        <!-- Indeterminate with error -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-        </div>
-        <br />
-
-        <!-- Indeterminate with error & labels -->
-        <div class="iui-progress-indicator-linear iui-negative">
-          <div class="iui-track">
-            <div class="iui-fill iui-indeterminate"></div>
-          </div>
-          <div class="iui-label">
-            <span>Upload failed!</span>
-          </div>
-        </div>
-        <br />
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 50%;"
+      >
       </div>
 
+      <div
+        class="iui-progress-indicator-linear"
+        style="--iui-progress-percentage: 75%;"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Loading iModel</span>
+          <span>75%</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="positive"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="positive"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful!</span>
+          <svg-status-success-hollow
+            class="iui-svg-icon"
+            aria-hidden="true"
+          ></svg-status-success-hollow>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="negative"
+        style="--iui-progress-percentage: 50%;"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-status="negative"
+        style="--iui-progress-percentage: 50%;"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload failed!</span>
+          <svg-status-error-hollow
+            class="iui-svg-icon"
+            aria-hidden="true"
+          ></svg-status-error-hollow>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h3>Indeterminate</h3>
+    <section id="demo-linear-indeterminate">
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Loading iModel</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="positive"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="positive"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload successful!</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="negative"
+      >
+      </div>
+
+      <div
+        class="iui-progress-indicator-linear"
+        data-iui-indeterminate="true"
+        data-iui-status="negative"
+      >
+        <div class="iui-progress-indicator-linear-label">
+          <span>Upload failed!</span>
+        </div>
+      </div>
     </section>
 
     <hr />
 
     <h2>Radial</h2>
-    <section id="demo-radial">
 
-      <div id="radial-determinate">
-        <h3>Determinate</h3>
-
-        <p class="iui-text-small iui-text-muted">
-          For determinate variants, percentage is set by
-          <code>--iui-progress-percentage</code>.
-        </p>
-        <br />
-
-        <div id="radial-size-large">
-          <!-- Large determinate -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="large"
-          >
-          </div>
-
-          <!-- Determinate with center content -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="large"
-          >
-            60
-          </div>
-
-          <!-- Large determinate with center icon -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="large"
-          >
-            <svg-pause aria-hidden="true"></svg-pause>
-          </div>
-
-          <!-- Large determinate with center icon & success -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="large"
-            data-iui-status="positive"
-          >
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </div>
-
-          <!-- Large determinate with center icon & error -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="large"
-            data-iui-status="negative"
-          >
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </div>
+    <h3>Determinate</h3>
+    <p class="iui-text-small iui-text-muted">
+      For determinate variants, percentage is set by&nbsp;
+      <code>--iui-progress-percentage</code>.
+    </p>
+    <section
+      id="demo-radial-determinate"
+      style="width: fit-content;"
+    >
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
         </div>
 
-        <br />
-
-        <div id="radial-size-default">
-          <!-- Determinate -->
-          <div class="iui-progress-indicator-radial iui-determinate">
-          </div>
-
-          <!-- Determinate with center content -->
-          <div class="iui-progress-indicator-radial iui-determinate">
-            60
-          </div>
-
-          <!-- Determinate with center icon -->
-          <div class="iui-progress-indicator-radial iui-determinate">
-            <svg-pause aria-hidden="true"></svg-pause>
-          </div>
-
-          <!-- Determinate with center icon & success -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-status="positive"
-          >
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </div>
-
-          <!-- Determinate with center icon & error -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-status="negative"
-          >
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
         </div>
 
-        <br />
-
-        <div id="radial-size-small">
-          <!-- Small determinate -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="small"
-          >
-          </div>
-
-          <!-- Determinate with center content -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="small"
-          >
-            60
-          </div>
-
-          <!-- Small determinate with center icon -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="small"
-          >
-            <svg-pause aria-hidden="true"></svg-pause>
-          </div>
-
-          <!-- Small determinate with center icon & success -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="small"
-            data-iui-status="positive"
-          >
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </div>
-
-          <!-- Small determinate with center icon & error -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="small"
-            data-iui-status="negative"
-          >
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </div>
-        </div>
-
-        <br />
-
-        <div id="radial-size-x-small">
-          <!-- x-Small determinate -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="x-small"
-          >
-          </div>
-
-          <!-- Determinate with center content -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="x-small"
-          >
-            <span>60</span>
-          </div>
-
-          <!-- x-Small determinate with center icon -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="x-small"
-          >
-            <svg-pause aria-hidden="true"></svg-pause>
-          </div>
-
-          <!-- x-Small determinate with center icon & success -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="x-small"
-            data-iui-status="positive"
-          >
-            <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
-          </div>
-
-          <!-- x-Small determinate with center icon & error -->
-          <div
-            class="iui-progress-indicator-radial iui-determinate"
-            data-iui-size="x-small"
-            data-iui-status="negative"
-          >
-            <svg-important-small aria-hidden="true"></svg-important-small>
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <br />
-
-    <section id="demo-radial-not-tested">
-      <div id="radial-indeterminate">
-        <h3>Indeterminate</h3>
-        <br />
-        <!-- Indeterminate -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-        </div>
-
-        <!-- Indeterminate with center content -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
-          &hellip;
-        </div>
-
-        <!-- Indeterminate with center icon -->
-        <div class="iui-progress-indicator-radial iui-indeterminate">
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
+          style="--iui-progress-percentage: 60%;"
+        >
           <svg-pause aria-hidden="true"></svg-pause>
         </div>
 
-        <!-- Indeterminate with center icon & success -->
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
           data-iui-status="positive"
         >
           <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
         </div>
 
-        <!-- Indeterminate with center icon & error -->
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
+          class="iui-progress-indicator-radial"
+          data-iui-size="large"
           data-iui-status="negative"
         >
           <svg-important-small aria-hidden="true"></svg-important-small>
         </div>
+      </div>
 
-        <!-- Small indeterminate -->
+      <div>
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
-          data-iui-size="small"
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
         >
         </div>
 
-        <!-- Small indeterminate with center icon -->
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
-          data-iui-size="small"
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          style="--iui-progress-percentage: 60%;"
         >
           <svg-pause aria-hidden="true"></svg-pause>
         </div>
 
-        <!-- Small indeterminate with center icon & success -->
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
+          class="iui-progress-indicator-radial"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          60
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
           data-iui-size="small"
           data-iui-status="positive"
         >
           <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
         </div>
 
-        <!-- Small indeterminate with center icon & error -->
         <div
-          class="iui-progress-indicator-radial iui-indeterminate"
+          class="iui-progress-indicator-radial"
+          data-iui-size="small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <span>60</span>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          style="--iui-progress-percentage: 60%;"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-size="x-small"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+    </section>
+
+    <br />
+
+    <h3>Indeterminate</h3>
+    <section id="demo-radial-indeterminate">
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+          &hellip;
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-status="negative"
+        >
+          <svg-important-small aria-hidden="true"></svg-important-small>
+        </div>
+      </div>
+
+      <div>
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+        >
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+        >
+          <svg-pause aria-hidden="true"></svg-pause>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
+          data-iui-size="small"
+          data-iui-status="positive"
+        >
+          <svg-checkmark-small aria-hidden="true"></svg-checkmark-small>
+        </div>
+
+        <div
+          class="iui-progress-indicator-radial"
+          data-iui-indeterminate="true"
           data-iui-size="small"
           data-iui-status="negative"
         >
@@ -489,11 +452,11 @@
         </div>
         <div class="iui-overlay">
           <!-- Linear indeterminate with label -->
-          <div class="iui-progress-indicator-linear">
-            <div class="iui-track">
-              <div class="iui-fill iui-indeterminate"></div>
-            </div>
-            <div class="iui-label">
+          <div
+            class="iui-progress-indicator-linear"
+            data-iui-indeterminate="true"
+          >
+            <div class="iui-progress-indicator-linear-label">
               <span>Loading content</span>
             </div>
           </div>
@@ -514,7 +477,10 @@
 
         <div class="iui-overlay">
           <!-- Radial indeterminate -->
-          <div class="iui-progress-indicator-radial iui-indeterminate">
+          <div
+            class="iui-progress-indicator-radial"
+            data-iui-indeterminate="true"
+          >
           </div>
         </div>
       </div>

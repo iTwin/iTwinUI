@@ -1,5 +1,51 @@
 # Changelog
 
+## 3.0.0-dev.6
+
+### Major Changes
+
+- [#1409](https://github.com/iTwin/iTwinUI/pull/1409): `RadioTile`'s `className` and `style` props will now be applied on the `<input>` element instead of the wrapper. Added `wrapperProps`, `iconProps`, `labelProps`, `subLabelProps` to individually customize each part of the component.
+
+### Minor Changes
+
+- [#1457](https://github.com/iTwin/iTwinUI/pull/1457): Added `htmlName` prop to the `HeaderButton` subcomponent which handles the native `name` attribute in `<button>`.
+- [#1437](https://github.com/iTwin/iTwinUI/pull/1437): Added headerWrapperProps, headerProps, bodyProps, and emptyTableContentProps to make each part of the Table component more customizable.
+- [#1412](https://github.com/iTwin/iTwinUI/pull/1412): All styles have been wrapped inside a cascade layer named `itwinui`.
+- [#1419](https://github.com/iTwin/iTwinUI/pull/1419): Added `htmlSize` prop to the `Input` component which handles the native `size` attribute in `<input>`.
+
+### Patch Changes
+
+- [#1420](https://github.com/iTwin/iTwinUI/pull/1420): RadioTile DOM has been simplified to remove a content wrapper `div`.
+
+## 3.0.0-dev.5
+
+### Major Changes
+
+- [#1370](https://github.com/iTwin/iTwinUI/pull/1370): ProgressLinear has been refactored to be a single `<div>`.
+- [#1371](https://github.com/iTwin/iTwinUI/pull/1371): Checkbox: `className` and `style` will now always be applied on the checkbox input element. Added new `wrapperProps` and `labelProps` to allow for styling of wrapper and label elements.
+- [#1389](https://github.com/iTwin/iTwinUI/pull/1389): iTwinUI now correctly supports both ESM and CJS environments.
+- [#1369](https://github.com/iTwin/iTwinUI/pull/1369): Added new `Breadcrumbs.Item` subcomponent to use for custom `a` and `button` elements within the `Breadcrumbs`
+- [#1400](https://github.com/iTwin/iTwinUI/pull/1400): `ErrorPage` will now dynamically import illustrations. The peer dependency on `@itwin/itwinui-illustrations-react` will need to be manually installed if using `ErrorPage`.
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Updated Expandable Block component to be composition of customizable subcomponents: <ExpandableBlock.Header/>, <ExpandableBlock.ExpandIcon/>, <ExpandableBlock.LabelArea/>, <ExpandableBlock.Title/>, <ExpandableBlock.Caption/>, <ExpandableBlock.EndIcon/>, <ExpandableBlock.Content/>
+
+  The following props have been removed as they are now subcomponents: `title`, `caption`, `endIcon`
+
+- [#1406](https://github.com/iTwin/iTwinUI/pull/1406): Removed `setFocus` prop from Checkbox, ColorPicker, ComboBox, Input, LabeledInput, LabeledTextarea, Radio, RadioTile, Select, Slider, ToggleSwitch. Users can use `ref` to focus the element.
+
+### Minor Changes
+
+- [#1373](https://github.com/iTwin/iTwinUI/pull/1373): Converted all physical CSS properties to their logical equivalents.
+- [#1328](https://github.com/iTwin/iTwinUI/pull/1328): Created new Overlay component with customizable subcomponents: Overlay.Wrapper, Overlay.HiddenContent, Overlay.Overlay
+- [#1403](https://github.com/iTwin/iTwinUI/pull/1403): Updated `DropdownMenu` to additionally accept list of JSX elements or a JSX fragment for `menuItems` prop,
+- [#1407](https://github.com/iTwin/iTwinUI/pull/1407): Adding the ability for each node element in `NonIdealState` to have a custom `className`.
+
+### Patch Changes
+
+- [#1354](https://github.com/iTwin/iTwinUI/pull/1354): Expandable block animation now uses pure css instead of javascript for transitioning.
+- [#1389](https://github.com/iTwin/iTwinUI/pull/1389): The build output is now more readable, using a combination of `prettier` for formatting and `tslib` for import helpers.
+- [#1397](https://github.com/iTwin/iTwinUI/pull/1397): Avatar will no longer incorrectly set aria-label on the status dot.
+- [#1404](https://github.com/iTwin/iTwinUI/pull/1404): `aria-orientation` attribute removed from ButtonGroup to meet accessibility requirements.
+
 ## 3.0.0-dev.4
 
 ### Major Changes
@@ -73,6 +119,49 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.12.0
+
+### Minor Changes
+
+- [#1415](https://github.com/iTwin/iTwinUI/pull/1415): The styling strategy has changed so there will now be a single stylesheet included at runtime, instead of separate css imports inside every component. All the styles are also wrapped in a cascade layer named `itwinui`. This behavior can be customized using the `includeCss` prop in `ThemeProvider`.
+
+  **Important note**: The dependencies on `@itwin/itwinui-css` and `@itwin/itwinui-variables` have been removed, so these packages _don't_ need to be installed if you are only using components from `@itwin/itwinui-react`.
+
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles.
+- [#1443](https://github.com/iTwin/iTwinUI/pull/1443): `DropdownButton` now supports `styleType='high-visibility'` to make it blue. This should be used sparingly, as a default or borderless dropdown button is the better choice in most cases.
+- [#1454](https://github.com/iTwin/iTwinUI/pull/1454): Added `disabled` prop to `ExpandableBlock` to disable intersction with it.
+- [#1441](https://github.com/iTwin/iTwinUI/pull/1441): Added `placement` prop to `Dialog` to allow placing it at one of the corners.
+
+## 2.11.11
+
+### Patch Changes
+
+- [#1448](https://github.com/iTwin/iTwinUI/pull/1448): Fix resizable Dialog bug where Dialog jumped around the screen when resized on right side.
+
+## 2.11.10
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424), [#1427](https://github.com/iTwin/iTwinUI/pull/1427): Fixed a few different resizing issues in Dialog.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.5
+
+## 2.11.9
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.4
+
+## 2.11.8
+
+### Patch Changes
+
+- [#1410](https://github.com/iTwin/iTwinUI/pull/1410): Fixed an issue in `Tabs` where tabs-list was becoming too tall when the tabpanel didn't have enough content inside.
+- Updated dependencies:
+  - @itwin/itwinui-css@1.11.3
 
 ## 2.11.7
 
@@ -599,4 +688,4 @@ If you're interested in more details about every signle change, check out a full
 
 ## 1.X
 
-For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI-react/blob/v1/packages/iTwinUI-react/CHANGELOG.md).
+For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v1-react/packages/iTwinUI-react/CHANGELOG.md).

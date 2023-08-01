@@ -88,11 +88,6 @@ const focusThumb = (sliderContainer: HTMLDivElement, activeIndex: number) => {
 
 export type SliderProps = {
   /**
-   * Set focus on first thumb in slider element.
-   * @default false
-   */
-  setFocus?: boolean;
-  /**
    * Minimum slider value.
    * @default 0
    */
@@ -158,6 +153,30 @@ export type SliderProps = {
    */
   railContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
+   * Allows props to be passed for slider-min
+   */
+  minProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for slider-max
+   */
+  maxProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for slider-rail
+   */
+  railProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for slider-track
+   */
+  trackProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for slider-tick
+   */
+  tickProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for slider-ticks
+   */
+  ticksProps?: React.ComponentProps<'div'>;
+  /**
    * Defines the allowed behavior when moving Thumbs when multiple Thumbs are
    * shown. It controls if a Thumb movement should be limited to only move in
    * the segments adjacent to the Thumb. Possible values:
@@ -192,7 +211,7 @@ export type SliderProps = {
  * @example
  * <Slider values={[10]} min={0} max={60} disabled />
  * <Slider values={[10, 20]} min={0} max={50} step={2} />
- * <Slider values={[10, 20, 30, 40]} min={0} max={60} setFocus
+ * <Slider values={[10, 20, 30, 40]} min={0} max={60}
  *   thumbMode='allow-crossing' />
  */
 export const Slider = React.forwardRef((props, ref) => {
@@ -201,7 +220,6 @@ export const Slider = React.forwardRef((props, ref) => {
     max = 100,
     values,
     step = 1,
-    setFocus = false,
     tooltipProps,
     disabled = false,
     tickLabels,
@@ -214,6 +232,12 @@ export const Slider = React.forwardRef((props, ref) => {
     thumbProps,
     className,
     railContainerProps,
+    minProps,
+    maxProps,
+    railProps,
+    trackProps,
+    tickProps,
+    ticksProps,
     orientation = 'horizontal',
     ...rest
   } = props;
@@ -245,12 +269,6 @@ export const Slider = React.forwardRef((props, ref) => {
   }, [trackDisplayMode, currentValues]);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (containerRef.current && setFocus) {
-      focusThumb(containerRef.current, 0);
-    }
-  }, [setFocus]);
 
   const getNumDecimalPlaces = React.useMemo(() => {
     const stepString = step.toString();
@@ -424,9 +442,18 @@ export const Slider = React.forwardRef((props, ref) => {
 
     if (Array.isArray(tickLabels)) {
       return (
-        <Box className='iui-slider-ticks'>
+        <Box
+          as='div'
+          {...ticksProps}
+          className={cx('iui-slider-ticks', ticksProps?.className)}
+        >
           {tickLabels.map((label, index) => (
-            <Box as='span' key={index} className='iui-slider-tick'>
+            <Box
+              as='span'
+              {...tickProps}
+              key={index}
+              className={cx('iui-slider-tick', tickProps?.className)}
+            >
               {label}
             </Box>
           ))}
@@ -435,7 +462,7 @@ export const Slider = React.forwardRef((props, ref) => {
     }
 
     return tickLabels;
-  }, [tickLabels]);
+  }, [tickLabels, tickProps, ticksProps]);
 
   const generateTooltipProps = React.useCallback(
     (index: number, val: number): Omit<TooltipProps, 'children'> => {
@@ -465,19 +492,32 @@ export const Slider = React.forwardRef((props, ref) => {
       {...rest}
     >
       {minValueLabel && (
-        <Box as='span' className='iui-slider-min'>
+        <Box
+          as='span'
+          {...minProps}
+          className={cx('iui-slider-min', minProps?.className)}
+        >
           {minValueLabel}
         </Box>
       )}
       <Box
+        as='div'
         ref={containerRef}
-        className={cx('iui-slider-container', {
-          'iui-grabbing': undefined !== activeThumbIndex,
-        })}
-        onPointerDown={handlePointerDownOnSlider}
         {...railContainerProps}
+        className={cx(
+          'iui-slider-container',
+          {
+            'iui-grabbing': undefined !== activeThumbIndex,
+          },
+          railContainerProps?.className,
+        )}
+        onPointerDown={handlePointerDownOnSlider}
       >
-        <Box className='iui-slider-rail' />
+        <Box
+          as='div'
+          {...railProps}
+          className={cx('iui-slider-rail', railProps?.className)}
+        />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -507,11 +547,16 @@ export const Slider = React.forwardRef((props, ref) => {
           sliderMax={max}
           values={currentValues}
           orientation={orientation}
+          {...trackProps}
         />
         {tickMarkArea}
       </Box>
       {maxValueLabel && (
-        <Box as='span' className='iui-slider-max'>
+        <Box
+          as='span'
+          {...maxProps}
+          className={cx('iui-slider-max', maxProps?.className)}
+        >
           {maxValueLabel}
         </Box>
       )}

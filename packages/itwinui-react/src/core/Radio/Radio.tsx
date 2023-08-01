@@ -18,10 +18,13 @@ type RadioProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
-   * Set focus on radio element.
-   * @default false
+   * Passes props to Radio label.
    */
-  setFocus?: boolean;
+  labelProps?: React.ComponentProps<'span'>;
+  /**
+   * Passes props to Radio wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'label'>;
 };
 
 /**
@@ -40,25 +43,20 @@ export const Radio = React.forwardRef((props, ref) => {
     disabled = false,
     label,
     status,
+    labelProps,
+    wrapperProps,
     style,
-    setFocus = false,
     ...rest
   } = props;
 
   const inputElementRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
 
-  React.useEffect(() => {
-    if (inputElementRef.current && setFocus) {
-      inputElementRef.current.focus();
-    }
-  }, [setFocus]);
-
   const radio = (
     <Box
       as='input'
-      className={cx('iui-radio', className && { [className]: !label })}
-      style={!label ? style : undefined}
+      className={cx('iui-radio', className)}
+      style={style}
       disabled={disabled}
       type='radio'
       ref={refs}
@@ -71,16 +69,20 @@ export const Radio = React.forwardRef((props, ref) => {
   ) : (
     <Box
       as='label'
+      {...wrapperProps}
       className={cx(
         'iui-radio-wrapper',
         { 'iui-disabled': disabled, [`iui-${status}`]: !!status },
-        className,
+        wrapperProps?.className,
       )}
-      style={style}
     >
       {radio}
       {label && (
-        <Box as='span' className='iui-radio-label'>
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-radio-label', labelProps?.className)}
+        >
           {label}
         </Box>
       )}

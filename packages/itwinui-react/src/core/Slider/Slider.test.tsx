@@ -61,6 +61,49 @@ it('should render correctly in its most basic state', () => {
   expect(thumb.getAttribute('aria-disabled')).toEqual('false');
 });
 
+it('should render all custom classNames correctly', () => {
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      tickLabels={['0', '25', '50', '75', '100']}
+      minProps={{ className: 'some-min' }}
+      maxProps={{ className: 'some-max' }}
+      railProps={{ className: 'some-rail' }}
+      trackProps={{ className: 'some-track' }}
+      tickProps={{ className: 'some-tick' }}
+      ticksProps={{ className: 'some-ticks' }}
+    />,
+  );
+  assertBaseElement(container);
+  expect(container.querySelector('.iui-slider-track')).toBeTruthy();
+  expect(container.querySelector('.iui-slider-min')).toHaveClass(
+    'iui-slider-min',
+    'some-min',
+  );
+  expect(container.querySelector('.iui-slider-max')).toHaveClass(
+    'iui-slider-max',
+    'some-max',
+  );
+  expect(container.querySelector('.iui-slider-rail')).toHaveClass(
+    'iui-slider-rail',
+    'some-rail',
+  );
+  expect(container.querySelector('.iui-slider-track')).toHaveClass(
+    'iui-slider-track',
+    'some-track',
+  );
+  expect(container.querySelector('.iui-slider-tick')).toHaveClass(
+    'iui-slider-tick',
+    'some-tick',
+  );
+  expect(container.querySelector('.iui-slider-ticks')).toHaveClass(
+    'iui-slider-ticks',
+    'some-ticks',
+  );
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-disabled')).toEqual('false');
+});
+
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
   expect(
@@ -146,52 +189,37 @@ it('should render provided min max label nodes', () => {
   expect(container.querySelector('.span-max')?.textContent).toBe('big');
 });
 
-it('should set focus', () => {
-  let element: HTMLDivElement | null = null;
-  const onRef = (ref: HTMLDivElement) => {
-    element = ref;
-  };
-  const { container } = render(
-    <Slider ref={onRef} values={defaultSingleValue} setFocus />,
-  );
+it('should show tooltip when focused', async () => {
+  const { container } = render(<Slider values={defaultSingleValue} />);
   assertBaseElement(container);
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(
-    container.querySelector('.iui-slider-thumb'),
-  );
-});
-
-it('should show tooltip when focused', () => {
-  const { container } = render(<Slider values={defaultSingleValue} setFocus />);
-  assertBaseElement(container);
+  await userEvent.tab();
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
   expect(document.querySelector('.iui-tooltip')?.textContent).toBe('50');
 });
 
-it('should not show tooltip if visibility is overridden', () => {
+it('should not show tooltip if visibility is overridden', async () => {
   const { container } = render(
     <Slider
       values={defaultSingleValue}
-      setFocus
       tooltipProps={() => {
         return { visible: false };
       }}
     />,
   );
   assertBaseElement(container);
+  await userEvent.tab();
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
   expect(document.querySelector('.iui-tooltip')).toBeFalsy();
 });
 
-it('should show custom tooltip when focused', () => {
+it('should show custom tooltip when focused', async () => {
   const { container } = render(
     <Slider
       values={defaultSingleValue}
-      setFocus
       tooltipProps={(index, val) => {
         return {
           content: `\$${val}.00`,
@@ -200,6 +228,7 @@ it('should show custom tooltip when focused', () => {
     />,
   );
   assertBaseElement(container);
+  await userEvent.tab();
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
@@ -313,14 +342,13 @@ it('should activate thumb on pointerDown', () => {
   expect(thumb.classList).toContain('iui-active');
 });
 
-it('should process keystrokes when thumb has focus', () => {
+it('should process keystrokes when thumb has focus', async () => {
   const handleOnUpdate = jest.fn();
   const handleOnChange = jest.fn();
   const { container } = render(
     <Slider
       values={[50]}
       step={5}
-      setFocus
       onUpdate={handleOnUpdate}
       onChange={handleOnChange}
     />,
@@ -329,6 +357,7 @@ it('should process keystrokes when thumb has focus', () => {
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
 
+  await userEvent.tab();
   expect(document.activeElement).toEqual(thumb);
   expect(thumb.getAttribute('aria-valuenow')).toEqual('50');
 
@@ -384,12 +413,12 @@ it('should process keystrokes when thumb has focus', () => {
   expect(handleOnChange).toHaveBeenCalledTimes(3);
 });
 
-it('should limit keystrokes processing to adjacent points by default', () => {
-  const { container } = render(<Slider values={[40, 80]} step={5} setFocus />);
+it('should limit keystrokes processing to adjacent points by default', async () => {
+  const { container } = render(<Slider values={[40, 80]} step={5} />);
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-
+  await userEvent.tab();
   expect(document.activeElement).toEqual(thumb);
   expect(thumb.getAttribute('aria-valuenow')).toEqual('40');
 
@@ -414,13 +443,12 @@ it('should limit keystrokes processing to adjacent points by default', () => {
   expect(thumb.getAttribute('aria-valuenow')).toEqual('75');
 });
 
-it('should limit keystrokes processing by min max when allow-crossing is set', () => {
+it('should limit keystrokes processing by min max when allow-crossing is set', async () => {
   const handleOnChange = jest.fn();
   const { container } = render(
     <Slider
       values={[40, 80]}
       step={5}
-      setFocus
       thumbMode='allow-crossing'
       onChange={handleOnChange}
     />,
@@ -428,7 +456,7 @@ it('should limit keystrokes processing by min max when allow-crossing is set', (
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-
+  await userEvent.tab();
   expect(document.activeElement).toEqual(thumb);
   expect(thumb.getAttribute('aria-valuenow')).toEqual('40');
 

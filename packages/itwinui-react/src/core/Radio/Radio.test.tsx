@@ -86,47 +86,38 @@ it('renders negative component', () => {
   ).toBeTruthy();
 });
 
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply style on %s',
-  (el) => {
-    const { container } = render(
-      <Radio
-        label={el === 'label' ? 'Some label' : undefined}
-        style={{ color: 'blue' }}
-      />,
-    );
-
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveStyle('color: blue;');
-  },
-);
-it.each(['label', 'input'] as const)(
-  'should isomorphically apply class on %s',
-  (el) => {
-    const { container } = render(
-      <Radio
-        label={el === 'label' ? 'Some label' : undefined}
-        className='customClass'
-      />,
-    );
-
-    assertBaseElements(container);
-    expect(container.querySelector(el)).toHaveClass('customClass');
-  },
-);
-
-it('should set focus', () => {
-  let element: HTMLInputElement | null = null;
-  const onRef = (ref: HTMLInputElement) => {
-    element = ref;
-  };
+it('passes custom props to wrapper and label', () => {
   const { container } = render(
-    <Radio label='Some label' ref={onRef} setFocus />,
+    <Radio
+      label='Radio Label'
+      className='custom-class'
+      style={{ fontSize: 12 }}
+      wrapperProps={{
+        className: 'custom-wrapper-class',
+        style: { fontSize: 14 },
+      }}
+      labelProps={{ className: 'custom-label-class', style: { fontSize: 16 } }}
+    />,
   );
 
-  assertBaseElements(container);
+  // Test Radio
+  const radio = container.querySelector(
+    '.iui-radio.custom-class',
+  ) as HTMLElement;
+  expect(radio).toBeTruthy();
+  expect(radio.style.fontSize).toBe('12px');
 
-  screen.getByText('Some label');
-  expect(element).toBeTruthy();
-  expect(document.activeElement).toEqual(element);
+  // Test wrapper
+  const wrapper = container.querySelector(
+    '.iui-radio-wrapper.custom-wrapper-class',
+  ) as HTMLElement;
+  expect(wrapper).toBeTruthy();
+  expect(wrapper.style.fontSize).toBe('14px');
+
+  // Test label
+  const label = container.querySelector(
+    '.iui-radio-label.custom-label-class',
+  ) as HTMLElement;
+  expect(label).toBeTruthy();
+  expect(label.style.fontSize).toBe('16px');
 });
