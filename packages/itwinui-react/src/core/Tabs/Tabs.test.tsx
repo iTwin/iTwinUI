@@ -173,8 +173,8 @@ it('should render green tabs', () => {
   expect(tabContainer.className).toContain('iui-green');
 });
 
-it('should call onActiveChange when switching tabs', () => {
-  const onActiveChange = jest.fn();
+it('should call onActivated when switching tabs', () => {
+  const onActivated = jest.fn();
 
   const { container } = renderComponent(
     {},
@@ -183,7 +183,7 @@ it('should call onActiveChange when switching tabs', () => {
       <Tabs.TabList>
         <Tabs.Tab key={0} label='Label 0' />
         <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab onActiveChange={onActiveChange()} key={2} label='Label 2' />
+        <Tabs.Tab onActivated={onActivated()} key={2} label='Label 2' />
       </Tabs.TabList>
 
       <Tabs.Panels>
@@ -197,7 +197,7 @@ it('should call onActiveChange when switching tabs', () => {
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
   fireEvent.click(tabs[2]);
-  expect(onActiveChange).toHaveBeenCalled();
+  expect(onActivated).toHaveBeenCalled();
 });
 
 it('should set active tab', () => {
@@ -270,9 +270,9 @@ it('should add .iui-large if tabs have sublabel', () => {
 it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
   async (orientation) => {
-    const mockOnActiveChange0 = jest.fn();
-    const mockOnActiveChange1 = jest.fn();
-    const mockOnActiveChange2 = jest.fn();
+    const mockonActivated0 = jest.fn();
+    const mockonActivated1 = jest.fn();
+    const mockonActivated2 = jest.fn();
 
     const { container } = renderComponent(
       { orientation: orientation },
@@ -281,20 +281,12 @@ it.each(['horizontal', 'vertical'] as const)(
         <Tabs.TabList>
           <Tabs.Tab
             isActive
-            onActiveChange={mockOnActiveChange0}
+            onActivated={mockonActivated0}
             key={0}
             label='Label 0'
           />
-          <Tabs.Tab
-            onActiveChange={mockOnActiveChange1}
-            key={1}
-            label='Label 1'
-          />
-          <Tabs.Tab
-            onActiveChange={mockOnActiveChange2}
-            key={2}
-            label='Label 2'
-          />
+          <Tabs.Tab onActivated={mockonActivated1} key={1} label='Label 1' />
+          <Tabs.Tab onActivated={mockonActivated2} key={2} label='Label 2' />
         </Tabs.TabList>
 
         <Tabs.Panels>
@@ -313,38 +305,38 @@ it.each(['horizontal', 'vertical'] as const)(
 
     // alt key
     fireEvent.keyDown(tabs[0], { key: nextTabKey, altKey: true });
-    expect(mockOnActiveChange0).not.toHaveBeenCalled();
+    expect(mockonActivated0).not.toHaveBeenCalled();
 
     // 0 -> 1
     fireEvent.keyDown(tabs[0], { key: nextTabKey });
-    expect(mockOnActiveChange1).toBeCalled();
+    expect(mockonActivated1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
     fireEvent.keyDown(tabs[1], { key: nextTabKey });
-    expect(mockOnActiveChange2).toBeCalled();
+    expect(mockonActivated2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
     fireEvent.keyDown(tabs[2], { key: nextTabKey });
-    expect(mockOnActiveChange0).toBeCalled();
+    expect(mockonActivated0).toBeCalled();
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
     fireEvent.keyDown(tabs[0], { key: previousTabKey });
-    expect(mockOnActiveChange2).toBeCalled();
+    expect(mockonActivated2).toBeCalled();
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
     fireEvent.keyDown(tabs[2], { key: previousTabKey });
-    expect(mockOnActiveChange1).toBeCalled();
+    expect(mockonActivated1).toBeCalled();
     expect(document.activeElement).toBe(tabs[1]);
   },
 );
 
 it('should handle keypresses when focusActivationMode is manual', async () => {
-  const mockOnActiveChange0 = jest.fn();
-  const mockOnActiveChange1 = jest.fn();
+  const mockonActivated0 = jest.fn();
+  const mockonActivated1 = jest.fn();
 
   const { container } = renderComponent(
     {},
@@ -352,16 +344,12 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
     <>
       <Tabs.TabList focusActivationMode='manual'>
         <Tabs.Tab
-          onActiveChange={mockOnActiveChange0}
+          onActivated={mockonActivated0}
           isActive
           key={0}
           label='Label 0'
         />
-        <Tabs.Tab
-          onActiveChange={mockOnActiveChange1}
-          key={1}
-          label='Label 1'
-        />
+        <Tabs.Tab onActivated={mockonActivated1} key={1} label='Label 1' />
         <Tabs.Tab key={2} label='Label 2' />
       </Tabs.TabList>
 
@@ -378,21 +366,21 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
   // 0 -> 1
   fireEvent.keyDown(tabs[0], { key: 'ArrowRight' });
-  expect(mockOnActiveChange1).not.toBeCalled();
+  expect(mockonActivated1).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[1]);
 
   // select 1
   fireEvent.keyDown(tabs[1], { key: 'Enter' });
-  expect(mockOnActiveChange1).toBeCalled();
+  expect(mockonActivated1).toBeCalled();
 
   // 1 -> 0
   fireEvent.keyDown(tabs[1], { key: 'ArrowLeft' });
-  expect(mockOnActiveChange0).not.toBeCalled();
+  expect(mockonActivated0).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[0]);
 
   // select 0
   fireEvent.keyDown(tabs[0], { key: ' ' });
-  expect(mockOnActiveChange0).toBeCalled();
+  expect(mockonActivated0).toBeCalled();
 });
 
 it('should set focused index when tab is clicked', () => {

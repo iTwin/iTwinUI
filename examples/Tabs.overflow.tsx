@@ -28,7 +28,7 @@ export default () => {
               <Tabs.Tab
                 isActive={item.active}
                 label={item.name}
-                onActiveChange={() => {
+                onActivated={() => {
                   setTabData((oldData) => {
                     const newData = [...oldData];
 

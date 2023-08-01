@@ -207,8 +207,8 @@ const TabList = React.forwardRef((props, ref) => {
   const onTabClick = React.useCallback(
     (index: number) => {
       const tab = items[index];
-      if (React.isValidElement(tab) && tab.props.onActiveChange) {
-        tab.props.onActiveChange();
+      if (React.isValidElement(tab) && tab.props.onActivated) {
+        tab.props.onActivated();
       } else {
         setCurrentActiveIndex && setCurrentActiveIndex(index);
       }
@@ -487,7 +487,7 @@ type TabOwnProps = {
   /**
    * Callback fired when the isActive prop changes.
    */
-  onActiveChange?: () => void;
+  onActivated?: () => void;
 };
 
 const Tab = React.forwardRef((props, ref) => {
@@ -497,7 +497,7 @@ const Tab = React.forwardRef((props, ref) => {
     label,
     disabled,
     isActive = false,
-    onActiveChange,
+    onActivated,
     ...rest
   } = props;
 
@@ -511,8 +511,8 @@ const Tab = React.forwardRef((props, ref) => {
       setFocusedIndex && setFocusedIndex(index);
       // These will be called in a useEffect if focusActivationMode is auto
       if (focusActivationMode !== 'auto') {
-        if (onActiveChange) {
-          onActiveChange();
+        if (onActivated) {
+          onActivated();
         } else {
           setCurrentActiveIndex && setCurrentActiveIndex(index);
         }
@@ -573,8 +573,8 @@ const Tab = React.forwardRef((props, ref) => {
       case 'Spacebar': {
         event.preventDefault();
         if (focusActivationMode === 'manual') {
-          onActiveChange
-            ? onActiveChange()
+          onActivated
+            ? onActivated()
             : setCurrentActiveIndex &&
               index !== undefined &&
               setCurrentActiveIndex(index);

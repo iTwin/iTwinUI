@@ -310,7 +310,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
                 isActive={item.active}
                 disabled={item.disabled}
                 label={item.name}
-                onActiveChange={() => {
+                onActivated={() => {
                   setTabData((oldData) => {
                     const newData = [...oldData];
 
@@ -404,7 +404,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
                 isActive={item.active}
                 disabled={item.disabled}
                 label={item.name}
-                onActiveChange={() => {
+                onActivated={() => {
                   setTabData((oldData) => {
                     const newData = [...oldData];
 
