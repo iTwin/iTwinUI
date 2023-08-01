@@ -379,7 +379,7 @@ jobs:
 
       - run: yarn build --filter=itwinui-react
 
-      - uses: cypress-io/github-action@v5
+      - uses: cypress-io/github-action@v5.8.3
         with:
           working-directory: testing/a11y
           component: true
