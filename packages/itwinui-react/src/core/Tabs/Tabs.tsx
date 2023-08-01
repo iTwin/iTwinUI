@@ -122,7 +122,7 @@ TabsComponent.displayName = 'Tabs';
 // ----------------------------------------------------------------------------
 // Tabs.TabList component
 
-type TabsTabListOwnProps = {
+type TabListOwnProps = {
   /**
    * Color of the bar on the active tab.
    * @default 'blue'
@@ -140,7 +140,7 @@ type TabsTabListOwnProps = {
   children: React.ReactNode[] | React.ReactNode;
 };
 
-const TabsTabList = React.forwardRef((props, ref) => {
+const TabList = React.forwardRef((props, ref) => {
   const {
     className,
     children,
@@ -446,7 +446,7 @@ const TabsTabList = React.forwardRef((props, ref) => {
     >
       {items.map((item, index) => {
         return (
-          <TabsTabListContext.Provider
+          <TabListContext.Provider
             value={{
               index,
               focusedIndex,
@@ -458,18 +458,18 @@ const TabsTabList = React.forwardRef((props, ref) => {
             key={index}
           >
             {item}
-          </TabsTabListContext.Provider>
+          </TabListContext.Provider>
         );
       })}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TabsTabListOwnProps>;
-TabsTabList.displayName = 'Tabs.TabList';
+}) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
+TabList.displayName = 'Tabs.TabList';
 
 // ----------------------------------------------------------------------------
 // Tabs.Tab component
 
-type TabsTabOwnProps = {
+type TabOwnProps = {
   /**
    * Tab label used for simple Tab construction.
    * Cannot be used with tabs that have icons or descriptions.
@@ -490,7 +490,7 @@ type TabsTabOwnProps = {
   onActiveChange?: () => void;
 };
 
-const TabsTab = React.forwardRef((props, ref) => {
+const Tab = React.forwardRef((props, ref) => {
   const {
     className,
     children,
@@ -504,7 +504,7 @@ const TabsTab = React.forwardRef((props, ref) => {
   const { orientation, currentActiveIndex, setCurrentActiveIndex } =
     useSafeContext(TabsContext);
   const { index, focusedIndex, setFocusedIndex, focusActivationMode } =
-    useSafeContext(TabsTabListContext);
+    useSafeContext(TabListContext);
 
   const onClick = () => {
     if (index !== undefined) {
@@ -607,30 +607,30 @@ const TabsTab = React.forwardRef((props, ref) => {
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'button', TabsTabOwnProps>;
-TabsTab.displayName = 'Tabs.Tab';
+}) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
+Tab.displayName = 'Tabs.Tab';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabIcon component
 
-const TabsTabIcon = polymorphic.span('iui-tab-icon', {
+const TabIcon = polymorphic.span('iui-tab-icon', {
   'aria-hidden': true,
 });
-TabsTabIcon.displayName = 'Tabs.TabIcon';
+TabIcon.displayName = 'Tabs.TabIcon';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabLabel component
 
-const TabsTabLabel = polymorphic.span('iui-tab-label');
-TabsTabLabel.displayName = 'Tabs.TabLabel';
+const TabLabel = polymorphic.span('iui-tab-label');
+TabLabel.displayName = 'Tabs.TabLabel';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabDescription component
 
-const TabsTabDescription = React.forwardRef((props, ref) => {
+const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   const { type } = useSafeContext(TabsContext);
-  const { hasSublabel, setHasSublabel } = useSafeContext(TabsTabListContext);
+  const { hasSublabel, setHasSublabel } = useSafeContext(TabListContext);
 
   useIsomorphicLayoutEffect(() => {
     type !== 'pill' && !hasSublabel && setHasSublabel && setHasSublabel(true);
@@ -651,7 +651,7 @@ const TabsTabDescription = React.forwardRef((props, ref) => {
     return <></>;
   }
 }) as PolymorphicForwardRefComponent<'span'>;
-TabsTabDescription.displayName = 'Tabs.TabDescription';
+TabDescription.displayName = 'Tabs.TabDescription';
 
 // ----------------------------------------------------------------------------
 // Tabs.ActionsWrapper component
@@ -792,23 +792,23 @@ export const Tabs = Object.assign(TabsComponent, {
   /**
    * 	Tab list subcomponent
    */
-  TabList: TabsTabList,
+  TabList: TabList,
   /**
    * 	Tab subcomponent
    */
-  Tab: TabsTab,
+  Tab: Tab,
   /**
    *  Tab icon subcomponent
    */
-  TabIcon: TabsTabIcon,
+  TabIcon: TabIcon,
   /**
    * 	Tab label subcomponent
    */
-  TabLabel: TabsTabLabel,
+  TabLabel: TabLabel,
   /**
    * 	Tab description subcomponent
    */
-  TabDescription: TabsTabDescription,
+  TabDescription: TabDescription,
   /**
    * 	Tab actions wrapper subcomponent
    */
@@ -858,7 +858,7 @@ export const TabsContext = React.createContext<
   | undefined
 >(undefined);
 
-export const TabsTabListContext = React.createContext<
+export const TabListContext = React.createContext<
   | {
       /**
        * The index value passed for each of the tabs.

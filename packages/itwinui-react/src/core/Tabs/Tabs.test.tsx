@@ -8,16 +8,16 @@ import { Tabs } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
 type TabsProps = React.ComponentProps<typeof Tabs>;
-type TabsTabListProps = React.ComponentProps<typeof Tabs.TabList>;
+type TabListProps = React.ComponentProps<typeof Tabs.TabList>;
 
 const renderComponent = (
   initialProps?: Partial<TabsProps>,
-  initialTabListProps?: Partial<TabsTabListProps>,
+  initialTabListProps?: Partial<TabListProps>,
   initialChildren?: React.ReactNode,
 ) => {
-  const tabListProps: TabsTabListProps = {
+  const tabListProps: TabListProps = {
     ...initialTabListProps,
-  } as TabsTabListProps;
+  } as TabListProps;
   const defaultChildren = (
     <>
       <Tabs.TabList {...tabListProps}>
