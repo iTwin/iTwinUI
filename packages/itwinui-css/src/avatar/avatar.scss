@@ -3,7 +3,8 @@
 @use '../mixins';
 @use './mixins' as *;
 
-$avatar-text-color: hsl(0 0% 0% / 0.77); // same as badge, meets AA contrast against soft backgrounds
+// similar technique as badge, meets AAA contrast ratio against soft backgrounds
+$avatar-text-color: hsl(0 0% 0% / 0.77);
 
 .iui-avatar {
   @include mixins.iui-reset;
