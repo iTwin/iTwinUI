@@ -654,9 +654,9 @@ const TabsTabDescription = React.forwardRef((props, ref) => {
 TabsTabDescription.displayName = 'Tabs.TabDescription';
 
 // ----------------------------------------------------------------------------
-// Tabs.Actions component
+// Tabs.ActionsWrapper component
 
-const TabsActions = React.forwardRef((props, ref) => {
+const TabsActionsWrapper = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
   const { type } = useSafeContext(TabsContext);
@@ -675,12 +675,12 @@ const TabsActions = React.forwardRef((props, ref) => {
     return <></>;
   }
 }) as PolymorphicForwardRefComponent<'div'>;
-TabsActions.displayName = 'Tabs.Actions';
+TabsActionsWrapper.displayName = 'Tabs.ActionsWrapper';
 
 // ----------------------------------------------------------------------------
-// Tabs.Action component
+// Tabs.Actions component
 
-const TabsAction = React.forwardRef((props, ref) => {
+const TabsActions = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
   const { type } = useSafeContext(TabsContext);
@@ -695,7 +695,7 @@ const TabsAction = React.forwardRef((props, ref) => {
     return <></>;
   }
 }) as PolymorphicForwardRefComponent<'div'>;
-TabsAction.displayName = 'Tabs.Action';
+TabsActions.displayName = 'Tabs.Actions';
 
 // ----------------------------------------------------------------------------
 // Tabs.Panels component
@@ -762,11 +762,11 @@ TabsPanel.displayName = 'Tabs.Panel';
  *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
  *     </Tabs.Tab>
  *   </Tabs.TabList>
- *   <Tabs.Actions>
- *     <Tabs.Action>
+ *   <Tabs.ActionsWrapper>
+ *     <Tabs.Actions>
  *       <Button>Sample Button</Button>,
- *     </Tabs.Action>
- *   </Tabs.Actions>
+ *     </Tabs.Actions>
+ *   </Tabs.ActionsWrapper>
  *   <Tabs.Panels>
  *     <Tabs.Panel>Content 1</Tabs.Panel>
  *     <Tabs.Panel>Content 2</Tabs.Panel>
@@ -810,13 +810,13 @@ export const Tabs = Object.assign(TabsComponent, {
    */
   TabDescription: TabsTabDescription,
   /**
+   * 	Tab actions wrapper subcomponent
+   */
+  ActionsWrapper: TabsActionsWrapper,
+  /**
    * 	Tab actions subcomponent
    */
   Actions: TabsActions,
-  /**
-   * 	Tab action subcomponent
-   */
-  Action: TabsAction,
   /**
    * 	Tab panels subcomponent
    */

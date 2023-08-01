@@ -34,14 +34,14 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
         <Tabs.Tab label='Item3' />
       </Tabs.TabList>
 
-      <Tabs.Actions>
-        <Tabs.Action>
+      <Tabs.ActionsWrapper>
+        <Tabs.Actions>
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
           <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Action>
-      </Tabs.Actions>
+        </Tabs.Actions>
+      </Tabs.ActionsWrapper>
 
       <Tabs.Panels>
         <Tabs.Panel>
@@ -89,14 +89,14 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
         <Tabs.Tab label='Item3' />
       </Tabs.TabList>
 
-      <Tabs.Actions>
-        <Tabs.Action>
+      <Tabs.ActionsWrapper>
+        <Tabs.Actions>
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
           <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Action>
-      </Tabs.Actions>
+        </Tabs.Actions>
+      </Tabs.ActionsWrapper>
 
       <Tabs.Panels>
         <Tabs.Panel>
@@ -227,14 +227,14 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.Actions>
-        <Tabs.Action>
+      <Tabs.ActionsWrapper>
+        <Tabs.Actions>
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
           <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Action>
-      </Tabs.Actions>
+        </Tabs.Actions>
+      </Tabs.ActionsWrapper>
 
       <Tabs.Panels>
         <Tabs.Panel>
@@ -331,11 +331,11 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
           })}
         </Tabs.TabList>
 
-        <Tabs.Actions>
-          <Tabs.Action>
+        <Tabs.ActionsWrapper>
+          <Tabs.Actions>
             <Button key={'button'}>Button</Button>
-          </Tabs.Action>
-        </Tabs.Actions>
+          </Tabs.Actions>
+        </Tabs.ActionsWrapper>
 
         <Tabs.Panels>
           <Tabs.Panel>Tab Content One</Tabs.Panel>
@@ -425,11 +425,11 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
           })}
         </Tabs.TabList>
 
-        <Tabs.Actions>
-          <Tabs.Action>
+        <Tabs.ActionsWrapper>
+          <Tabs.Actions>
             <Button key={'button'}>Button</Button>
-          </Tabs.Action>
-        </Tabs.Actions>
+          </Tabs.Actions>
+        </Tabs.ActionsWrapper>
 
         <Tabs.Panels>
           <Tabs.Panel>Tab Content One</Tabs.Panel>
@@ -488,14 +488,14 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.Actions>
-        <Tabs.Action>
+      <Tabs.ActionsWrapper>
+        <Tabs.Actions>
           <Button key={'Small'} size={'small'}>
             Small size button
           </Button>
           <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Action>
-      </Tabs.Actions>
+        </Tabs.Actions>
+      </Tabs.ActionsWrapper>
 
       <Tabs.Panels>
         <Tabs.Panel>
