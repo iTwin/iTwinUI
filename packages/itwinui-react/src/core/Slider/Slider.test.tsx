@@ -61,6 +61,49 @@ it('should render correctly in its most basic state', () => {
   expect(thumb.getAttribute('aria-disabled')).toEqual('false');
 });
 
+it('should render all custom classNames correctly', () => {
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      tickLabels={['0', '25', '50', '75', '100']}
+      minProps={{ className: 'some-min' }}
+      maxProps={{ className: 'some-max' }}
+      railProps={{ className: 'some-rail' }}
+      trackProps={{ className: 'some-track' }}
+      tickProps={{ className: 'some-tick' }}
+      ticksProps={{ className: 'some-ticks' }}
+    />,
+  );
+  assertBaseElement(container);
+  expect(container.querySelector('.iui-slider-track')).toBeTruthy();
+  expect(container.querySelector('.iui-slider-min')).toHaveClass(
+    'iui-slider-min',
+    'some-min',
+  );
+  expect(container.querySelector('.iui-slider-max')).toHaveClass(
+    'iui-slider-max',
+    'some-max',
+  );
+  expect(container.querySelector('.iui-slider-rail')).toHaveClass(
+    'iui-slider-rail',
+    'some-rail',
+  );
+  expect(container.querySelector('.iui-slider-track')).toHaveClass(
+    'iui-slider-track',
+    'some-track',
+  );
+  expect(container.querySelector('.iui-slider-tick')).toHaveClass(
+    'iui-slider-tick',
+    'some-tick',
+  );
+  expect(container.querySelector('.iui-slider-ticks')).toHaveClass(
+    'iui-slider-ticks',
+    'some-ticks',
+  );
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-disabled')).toEqual('false');
+});
+
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
   expect(
