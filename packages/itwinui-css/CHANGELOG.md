@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-dev.6
+
+### Major Changes
+
+- [#1420](https://github.com/iTwin/iTwinUI/pull/1420): `<div class="iui-radio-tile-content">` has been removed from radio-tile. Also, `data-iui-disabled` attribute must be set on the radio-tile for browsers that don't support `:has` (firefox).
+
 ## 2.0.0-dev.5
 
 ### Major Changes
@@ -76,6 +82,12 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.12.0
+
+### Minor Changes
+
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles. This rule has also been moved from `all.css` to `revert-v1.css`.
 
 ## 1.11.5
 
@@ -438,4 +450,4 @@ If you're interested in more details,
 
 ## 0.X
 
-For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/v0/packages/itwinui-css/CHANGELOG.md).
+For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v0-css/packages/itwinui-css/CHANGELOG.md).
