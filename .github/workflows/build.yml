@@ -383,3 +383,4 @@ jobs:
         with:
           working-directory: testing/a11y
           component: true
+          install-command: yarn
