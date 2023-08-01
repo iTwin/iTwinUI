@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox, VisuallyHidden } from '@itwin/itwinui-react';
+import { ComboBox, Label } from '@itwin/itwinui-react';
 
 export default () => {
   const options = React.useMemo(
@@ -22,16 +22,12 @@ export default () => {
     'condos',
   ]);
 
-  const inputId = React.useId();
-
   return (
     <>
-      <VisuallyHidden as='label' htmlFor={inputId}>
-        Select a housing type
-      </VisuallyHidden>
+      <Label htmlFor='housing-input'> Select housing type </Label>
       <ComboBox
         options={options}
-        inputProps={{ id: inputId, placeholder: 'Housing type' }}
+        inputProps={{ id: 'housing-input', placeholder: 'Housing type' }}
         multiple
         value={selectedOptions}
         onChange={(selected) => {
