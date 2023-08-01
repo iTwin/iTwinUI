@@ -11,4 +11,5 @@
 export const dynamicImport =
   typeof jest === undefined
     ? new Function('specifier', 'return import(specifier)')
-    : (specifier: string) => import(specifier);
+    : (specifier: string) =>
+        import(/* webpackIgnore: true */ /* @vite-ignore */ specifier);
