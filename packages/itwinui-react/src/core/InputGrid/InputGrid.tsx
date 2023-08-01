@@ -27,8 +27,8 @@ type InputGridOwnProps = {
  * @usage
  *
  * <InputGrid>
- *   <Label>This is label</Label>
- *   <Input />
+ *   <Label htmlFor='input-1'>This is label</Label>
+ *   <Input id='input-1'/>
  *   <StatusMessage>This is message</StatusMessage>
  * </InputGrid>
  */

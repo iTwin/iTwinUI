@@ -115,28 +115,8 @@ it('should render inline style', () => {
   expect(inputContainer.querySelector('.iui-status-message')).toBeFalsy();
 });
 
-it('should render with custom className on container', () => {
-  const { container } = renderComponent({ className: 'test-className' });
-
-  const inputContainer = container.querySelector(
-    '.iui-input-grid',
-  ) as HTMLElement;
-  assertBaseElement(inputContainer);
-  expect(inputContainer.classList).toContain('test-className');
-});
-
-it('should render with custom style on container', () => {
-  const { container } = renderComponent({ style: { color: 'red' } });
-
-  const inputContainer = container.querySelector(
-    '.iui-input-grid',
-  ) as HTMLElement;
-  assertBaseElement(inputContainer);
-  expect(inputContainer.style.color).toEqual('red');
-});
-
 it('should render with custom className on select', () => {
-  const { container } = renderComponent({ selectClassName: 'test-className' });
+  const { container } = renderComponent({ className: 'test-className' });
 
   const inputContainer = container.querySelector(
     '.iui-input-grid',
@@ -151,7 +131,7 @@ it('should render with custom className on select', () => {
 
 it('should render with custom style on select', () => {
   const { container } = renderComponent({
-    selectStyle: { color: 'red' },
+    style: { color: 'red' },
   });
 
   const inputContainer = container.querySelector(
@@ -163,6 +143,51 @@ it('should render with custom style on select', () => {
   ) as HTMLElement;
   expect(select).toBeTruthy();
   expect(select.style.color).toEqual('red');
+});
+
+it('should render with custom style on wrapper', () => {
+  const { container } = renderComponent({
+    wrapperProps: { style: { color: 'red' }, className: 'my-classname' },
+  });
+
+  const inputContainer = container.querySelector(
+    '.iui-input-grid.my-classname',
+  );
+  expect(inputContainer).toBeTruthy();
+  expect((inputContainer as HTMLElement).style.color).toEqual('red');
+});
+
+it('should render with custom style on label', () => {
+  const { container } = renderComponent({
+    labelProps: { style: { color: 'red' }, className: 'my-classname' },
+  });
+
+  const label = container.querySelector('.iui-input-label.my-classname');
+  expect(label).toBeTruthy();
+  expect((label as HTMLElement).style.color).toEqual('red');
+});
+
+it('should render with custom style on message', () => {
+  const { container } = renderComponent({
+    message: 'Test message',
+    svgIcon: <svg />,
+    messageContentProps: { style: { color: 'red' }, className: 'my-classname' },
+    messageIconProps: {
+      style: { color: 'green' },
+      className: 'my-icon-classname',
+    },
+  });
+
+  const content = container.querySelector(
+    '.iui-status-message-content.my-classname',
+  );
+  expect(content).toBeTruthy();
+  expect((content as HTMLElement).style.color).toEqual('red');
+  const icon = container.querySelector(
+    '.iui-status-message-icon.my-icon-classname',
+  );
+  expect(icon).toBeTruthy();
+  expect((icon as HTMLElement).style.color).toEqual('green');
 });
 
 it('should handle required attribute', () => {

@@ -54,7 +54,7 @@ export type LabeledInputProps = {
    */
   messageContentProps?: React.ComponentPropsWithRef<'div'>;
   /**
-   * Passes properties for message.
+   * Passes properties for icon.
    */
   iconProps?: React.ComponentProps<typeof Icon>;
   /**
