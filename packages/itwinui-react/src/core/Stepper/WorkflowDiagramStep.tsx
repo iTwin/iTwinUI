@@ -6,14 +6,14 @@ import cx from 'classnames';
 import * as React from 'react';
 import { Tooltip } from '../Tooltip/index.js';
 import { Box, type CommonProps } from '../utils/index.js';
-import type { StepperProps } from './Stepper.js';
 import type { StepperStepProps } from './StepperStep.js';
 
-export type WorkflowDiagramStepProps = Pick<
-  StepperStepProps,
-  'title' | 'description'
-> &
-  Pick<StepperProps, 'contentProps'> &
+export type WorkflowDiagramStepProps = {
+  /**
+   *  Allows props to be passed for diagram-content
+   */
+  contentProps?: React.ComponentProps<'span'>;
+} & Pick<StepperStepProps, 'title' | 'description'> &
   Omit<CommonProps, 'title'>;
 
 export const WorkflowDiagramStep = (props: WorkflowDiagramStepProps) => {

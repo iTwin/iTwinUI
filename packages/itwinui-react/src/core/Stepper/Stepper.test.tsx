@@ -35,6 +35,43 @@ it('should render all step names and numbers in default stepper', () => {
   getByText('Step Three');
 });
 
+it('should add custom props to Stepper', () => {
+  const stepper = (
+    <Stepper
+      currentStep={1}
+      type='long'
+      localization={{
+        stepsCountLabel: (currentStep, totalSteps) =>
+          `This is ${currentStep} of great ${totalSteps}:`,
+      }}
+      steps={[
+        {
+          name: 'Step One',
+        },
+        {
+          name: 'Step Two',
+        },
+        {
+          name: 'Step Three',
+        },
+      ]}
+      labelProps={{ className: 'some-label' }}
+      labelCountProps={{ className: 'some-count' }}
+    />
+  );
+
+  const { container } = render(stepper);
+
+  expect(container.querySelector('.iui-stepper-steps-label')).toHaveClass(
+    'iui-stepper-steps-label',
+    'some-label',
+  );
+  expect(container.querySelector('.iui-stepper-steps-label-count')).toHaveClass(
+    'iui-stepper-steps-label-count',
+    'some-count',
+  );
+});
+
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {
   const mockedOnClick = jest.fn();
   const stepper = (

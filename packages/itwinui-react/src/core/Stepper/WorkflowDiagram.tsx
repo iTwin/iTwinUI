@@ -3,26 +3,41 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { StepperProps } from './Stepper.js';
 import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
-type WorkflowDiagramProps = Pick<StepperProps, 'steps' | 'diagramProps'>;
+type WorkflowDiagramProps = Pick<StepperProps, 'steps'> & {
+  /**
+   *  Allows props to be passed for diagram
+   */
+  contentProps?: (index: number) => React.ComponentProps<'span'>;
+  /**
+   *  Allows props to be passed for diagram-wrapper
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
+};
 
 export const WorkflowDiagram = React.forwardRef(
-  // TODO: Remove this ref cast. ref and rest props should be applied on the same element
-  (props, ref: React.Ref<HTMLDivElement>) => {
-    const { steps, diagramProps, ...rest } = props;
+  (props: React.Ref<HTMLDivElement>) => {
+    const { steps, className, contentProps, wrapperProps, ref, ...rest } =
+      props;
 
     return (
-      <Box ref={ref}>
-        <Box as='ol' className='iui-workflow-diagram' {...rest}>
+      <Box as='div' {...wrapperProps}>
+        <Box
+          as='ol'
+          className={cx('iui-workflow-diagram', className)}
+          ref={ref}
+          {...rest}
+        >
           {steps.map((s, index) => {
-            const thisDiagramProps = diagramProps?.(index);
+            const thisContentProps = contentProps?.(index);
             return (
               <WorkflowDiagramStep
-                diagramProps={thisDiagramProps}
+                contentProps={thisContentProps}
                 key={index}
                 title={s.name}
                 description={s.description}

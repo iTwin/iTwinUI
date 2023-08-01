@@ -69,14 +69,6 @@ export type StepperProps = {
    * Allows props to be passed for label-count
    */
   labelCountProps?: React.ComponentProps<'span'>;
-  /**
-   *  Allows props to be passed for diagram
-   */
-  diagramProps?: (index: number) => React.ComponentProps<'ol'>;
-  /**
-   *  Allows props to be passed for diagram-content
-   */
-  contentProps?: React.ComponentProps<'span'>;
 };
 
 const defaultStepperLocalization: StepperLocalization = {
