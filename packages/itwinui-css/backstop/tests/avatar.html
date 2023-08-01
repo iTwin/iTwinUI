@@ -24,13 +24,18 @@
     </style>
     <title>Avatar | iTwinUI</title>
     <style>
+      section[id^=demo] {
+        display: grid;
+        gap: 4px;
+      }
+
       #demo-default {
         display: flex;
         align-items: end;
       }
 
-      #demo-default > span,
-      #demo-status > div > span {
+      #demo-default > *,
+      #demo-status > * {
         margin-right: 4px;
       }
 
