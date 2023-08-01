@@ -225,7 +225,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         autoCorrect='off'
         style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
-        aria-label='Menu'
         {...rest}
       />
 
