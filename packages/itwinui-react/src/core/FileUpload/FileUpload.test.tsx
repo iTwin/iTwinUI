@@ -28,6 +28,32 @@ it('should render dragContent and children', () => {
   expect(children.textContent).toEqual(mockChildren);
 });
 
+it('should add props to iui-content', () => {
+  const mockContent = 'Mock drag content';
+  const mockChildren = 'Mock children to wrap';
+  const { container } = render(
+    <FileUpload
+      dragContent={mockContent}
+      onFileDropped={jest.fn}
+      contentProps={{ className: 'some-content' }}
+    >
+      {mockChildren}
+    </FileUpload>,
+  );
+
+  const component = container.querySelector('.iui-file-upload') as HTMLElement;
+  expect(component).toBeTruthy();
+
+  const content = container.querySelector('.iui-content') as HTMLElement;
+  expect(content).toBeTruthy();
+  expect(content.textContent).toEqual(mockContent);
+  expect(content).toHaveClass('iui-content', 'some-content');
+
+  const children = component.firstChild as HTMLElement;
+  expect(children).toBeTruthy();
+  expect(children.textContent).toEqual(mockChildren);
+});
+
 it('should apply content class to children if dragContent not passed', () => {
   const mockChildren = 'Mock children to wrap';
   const { container } = render(
