@@ -43,7 +43,7 @@ it('should render in its most basic form', () => {
   const previousPageButton = screen.getByLabelText(
     'Previous page',
   ) as HTMLButtonElement;
-  expect(previousPageButton.disabled).toBe(true);
+  expect(previousPageButton).toHaveAttribute('aria-disabled', 'true');
   const nextPageButton = screen.getByLabelText(
     'Next page',
   ) as HTMLButtonElement;
@@ -127,7 +127,7 @@ it('should render loading state when there is data', () => {
   const nextPageButton = screen.getByLabelText(
     'Next page',
   ) as HTMLButtonElement;
-  expect(nextPageButton.disabled).toBe(true);
+  expect(nextPageButton).toHaveAttribute('aria-disabled', 'true');
   const pageSizeSelector = container.querySelector(
     '.iui-button-dropdown',
   ) as HTMLButtonElement;
@@ -154,11 +154,11 @@ it('should render loading state when there is no data', () => {
   const previousPageButton = screen.getByLabelText(
     'Previous page',
   ) as HTMLButtonElement;
-  expect(previousPageButton.disabled).toBe(true);
+  expect(previousPageButton).toHaveAttribute('aria-disabled', 'true');
   const nextPageButton = screen.getByLabelText(
     'Next page',
   ) as HTMLButtonElement;
-  expect(nextPageButton.disabled).toBe(true);
+  expect(nextPageButton).toHaveAttribute('aria-disabled', 'true');
 
   expect(container.querySelector('.iui-dropdown')).toBeFalsy();
 });

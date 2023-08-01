@@ -218,7 +218,7 @@ it('should render active and disabled sidebar buttons', () => {
   expect(mainItems).toHaveLength(3);
 
   expect(mainItems[0]).toHaveAttribute('data-iui-active', 'true');
-  expect(mainItems[1]).toBeDisabled();
+  expect(mainItems[1]).toHaveAttribute('aria-disabled', 'true');
   expect(mainItems[2]).toHaveClass('iui-submenu-open');
 });
 

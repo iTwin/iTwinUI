@@ -57,7 +57,7 @@ it('renders disabled small icon button correctly', () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button).toHaveAttribute('data-iui-size', 'small');
-  expect(button.disabled).toBe(true);
+  expect(button).toHaveAttribute('aria-disabled', 'true');
   button.click();
   expect(onClickMock).not.toHaveBeenCalled();
   const icon = container.querySelector('.iui-button-icon');
