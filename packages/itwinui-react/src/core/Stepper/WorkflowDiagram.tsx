@@ -11,7 +11,7 @@ import { WorkflowDiagramStep } from './WorkflowDiagramStep.js';
 
 type WorkflowDiagramProps = Pick<StepperProps, 'steps'> & {
   /**
-   *  Allows props to be passed for diagram
+   *  Allows props to be passed for diagram.
    */
   contentProps?: (index: number) => React.ComponentProps<'span'>;
   /**
