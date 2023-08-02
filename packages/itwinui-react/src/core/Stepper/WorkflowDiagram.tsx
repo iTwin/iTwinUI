@@ -15,7 +15,7 @@ type WorkflowDiagramProps = Pick<StepperProps, 'steps'> & {
    */
   contentProps?: (index: number) => React.ComponentProps<'span'>;
   /**
-   *  Allows props to be passed for diagram-wrapper
+   *  Allows props to be passed for diagram wrapper.
    */
   wrapperProps?: React.ComponentProps<'div'>;
 };
