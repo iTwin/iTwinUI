@@ -22,7 +22,10 @@ export type IconButtonProps = {
    * Passes props to IconButton icon.
    */
   iconProps?: React.ComponentProps<'span'>;
-} & Omit<ButtonProps, 'startIcon' | 'endIcon'>;
+} & Omit<
+  ButtonProps,
+  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+>;
 
 /**
  * Icon button
