@@ -21,16 +21,14 @@ const renderComponent = (
   const defaultChildren = (
     <>
       <Tabs.TabList {...tabListProps}>
-        <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab key={2} label='Label 2' />
-        <Tabs.Tab key={3} label='Label 3' />
+        <Tabs.Tab value={'tab1'} key={1} label='Label 1' />
+        <Tabs.Tab value={'tab2'} key={2} label='Label 2' />
+        <Tabs.Tab value={'tab3'} key={3} label='Label 3' />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value={'tab1'}>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value={'tab2'}>Test Content 2</Tabs.Panel>
+      <Tabs.Panel value={'tab3'}>Test Content 3</Tabs.Panel>
     </>
   );
   const props: TabsProps = { ...initialProps } as TabsProps;
@@ -90,28 +88,26 @@ it('should allow horizontal scrolling when overflowOptions useOverflow is true',
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab key={2} label='Label 2' />
-        <Tabs.Tab key={3} label='Label 3' />
-        <Tabs.Tab key={4} label='Label 4' />
-        <Tabs.Tab key={5} label='Label 5' />
-        <Tabs.Tab key={6} label='Label 6' />
-        <Tabs.Tab key={7} label='Label 7' />
-        <Tabs.Tab key={8} label='Label 8' />
-        <Tabs.Tab key={9} label='Label 9' />
+        <Tabs.Tab value='tab1' key={1} label='Label 1' />
+        <Tabs.Tab value='tab2' key={2} label='Label 2' />
+        <Tabs.Tab value='tab3' key={3} label='Label 3' />
+        <Tabs.Tab value='tab4' key={4} label='Label 4' />
+        <Tabs.Tab value='tab5' key={5} label='Label 5' />
+        <Tabs.Tab value='tab6' key={6} label='Label 6' />
+        <Tabs.Tab value='tab7' key={7} label='Label 7' />
+        <Tabs.Tab value='tab8' key={8} label='Label 8' />
+        <Tabs.Tab value='tab9' key={9} label='Label 9' />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-        <Tabs.Panel>Test Content 4</Tabs.Panel>
-        <Tabs.Panel>Test Content 5</Tabs.Panel>
-        <Tabs.Panel>Test Content 6</Tabs.Panel>
-        <Tabs.Panel>Test Content 7</Tabs.Panel>
-        <Tabs.Panel>Test Content 8</Tabs.Panel>
-        <Tabs.Panel>Test Content 9</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
+      <Tabs.Panel value='tab3'>Test Content 3</Tabs.Panel>
+      <Tabs.Panel value='tab4'>Test Content 4</Tabs.Panel>
+      <Tabs.Panel value='tab5'>Test Content 5</Tabs.Panel>
+      <Tabs.Panel value='tab6'>Test Content 6</Tabs.Panel>
+      <Tabs.Panel value='tab7'>Test Content 7</Tabs.Panel>
+      <Tabs.Panel value='tab8'>Test Content 8</Tabs.Panel>
+      <Tabs.Panel value='tab9'>Test Content 9</Tabs.Panel>
     </>,
   );
 
@@ -132,28 +128,26 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab key={2} label='Label 2' />
-        <Tabs.Tab key={3} label='Label 3' />
-        <Tabs.Tab key={4} label='Label 4' />
-        <Tabs.Tab key={5} label='Label 5' />
-        <Tabs.Tab key={6} label='Label 6' />
-        <Tabs.Tab key={7} label='Label 7' />
-        <Tabs.Tab key={8} label='Label 8' />
-        <Tabs.Tab key={9} label='Label 9' />
+        <Tabs.Tab value='tab1' key={1} label='Label 1' />
+        <Tabs.Tab value='tab2' key={2} label='Label 2' />
+        <Tabs.Tab value='tab3' key={3} label='Label 3' />
+        <Tabs.Tab value='tab4' key={4} label='Label 4' />
+        <Tabs.Tab value='tab5' key={5} label='Label 5' />
+        <Tabs.Tab value='tab6' key={6} label='Label 6' />
+        <Tabs.Tab value='tab7' key={7} label='Label 7' />
+        <Tabs.Tab value='tab8' key={8} label='Label 8' />
+        <Tabs.Tab value='tab9' key={9} label='Label 9' />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-        <Tabs.Panel>Test Content 4</Tabs.Panel>
-        <Tabs.Panel>Test Content 5</Tabs.Panel>
-        <Tabs.Panel>Test Content 6</Tabs.Panel>
-        <Tabs.Panel>Test Content 7</Tabs.Panel>
-        <Tabs.Panel>Test Content 8</Tabs.Panel>
-        <Tabs.Panel>Test Content 9</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
+      <Tabs.Panel value='tab3'>Test Content 3</Tabs.Panel>
+      <Tabs.Panel value='tab4'>Test Content 4</Tabs.Panel>
+      <Tabs.Panel value='tab5'>Test Content 5</Tabs.Panel>
+      <Tabs.Panel value='tab6'>Test Content 6</Tabs.Panel>
+      <Tabs.Panel value='tab7'>Test Content 7</Tabs.Panel>
+      <Tabs.Panel value='tab8'>Test Content 8</Tabs.Panel>
+      <Tabs.Panel value='tab9'>Test Content 9</Tabs.Panel>
     </>,
   );
 
@@ -181,16 +175,19 @@ it('should call onActivated when switching tabs', () => {
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={0} label='Label 0' />
-        <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab onActivated={onActivated()} key={2} label='Label 2' />
+        <Tabs.Tab value='tab0' key={0} label='Label 0' />
+        <Tabs.Tab value='tab1' key={1} label='Label 1' />
+        <Tabs.Tab
+          value='tab2'
+          onActivated={onActivated()}
+          key={2}
+          label='Label 2'
+        />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
     </>,
   );
 
@@ -206,16 +203,14 @@ it('should set active tab', () => {
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={0} label='Label 0' />
-        <Tabs.Tab key={1} label='Label 1' />
-        <Tabs.Tab isActive key={2} label='Label 2' />
+        <Tabs.Tab value='tab0' key={0} label='Label 0' />
+        <Tabs.Tab value='tab1' key={1} label='Label 1' />
+        <Tabs.Tab isActive value='tab2' key={2} label='Label 2' />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
     </>,
   );
 
@@ -232,25 +227,23 @@ it('should add .iui-large if tabs have sublabel', () => {
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab key={0}>
+        <Tabs.Tab value='tab0' key={0}>
           <Tabs.TabLabel>item0</Tabs.TabLabel>
           <Tabs.TabDescription>Sublabel0</Tabs.TabDescription>
         </Tabs.Tab>
-        <Tabs.Tab key={1}>
+        <Tabs.Tab value='tab1' key={1}>
           <Tabs.TabLabel>item1</Tabs.TabLabel>
           <Tabs.TabDescription>Sublabel1</Tabs.TabDescription>
         </Tabs.Tab>
-        <Tabs.Tab key={2}>
+        <Tabs.Tab value='tab2' key={2}>
           <Tabs.TabLabel>item2</Tabs.TabLabel>
           <Tabs.TabDescription>Sublabel2</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
     </>,
   );
   expect(container.querySelector('.iui-tabs.iui-large')).toBeTruthy();
@@ -280,20 +273,29 @@ it.each(['horizontal', 'vertical'] as const)(
       <>
         <Tabs.TabList>
           <Tabs.Tab
+            value='tab0'
             isActive
             onActivated={mockonActivated0}
             key={0}
             label='Label 0'
           />
-          <Tabs.Tab onActivated={mockonActivated1} key={1} label='Label 1' />
-          <Tabs.Tab onActivated={mockonActivated2} key={2} label='Label 2' />
+          <Tabs.Tab
+            value='tab1'
+            onActivated={mockonActivated1}
+            key={1}
+            label='Label 1'
+          />
+          <Tabs.Tab
+            value='tab2'
+            onActivated={mockonActivated2}
+            key={2}
+            label='Label 2'
+          />
         </Tabs.TabList>
 
-        <Tabs.Panels>
-          <Tabs.Panel>Test Content 1</Tabs.Panel>
-          <Tabs.Panel>Test Content 2</Tabs.Panel>
-          <Tabs.Panel>Test Content 3</Tabs.Panel>
-        </Tabs.Panels>
+        <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
+        <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+        <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
       </>,
     );
 
@@ -344,20 +346,24 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
     <>
       <Tabs.TabList focusActivationMode='manual'>
         <Tabs.Tab
+          value='tab0'
           onActivated={mockonActivated0}
           isActive
           key={0}
           label='Label 0'
         />
-        <Tabs.Tab onActivated={mockonActivated1} key={1} label='Label 1' />
-        <Tabs.Tab key={2} label='Label 2' />
+        <Tabs.Tab
+          value='tab1'
+          onActivated={mockonActivated1}
+          key={1}
+          label='Label 1'
+        />
+        <Tabs.Tab value='tab2' key={2} label='Label 2' />
       </Tabs.TabList>
 
-      <Tabs.Panels>
-        <Tabs.Panel>Test Content 1</Tabs.Panel>
-        <Tabs.Panel>Test Content 2</Tabs.Panel>
-        <Tabs.Panel>Test Content 3</Tabs.Panel>
-      </Tabs.Panels>
+      <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
+      <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
+      <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
     </>,
   );
 
@@ -402,7 +408,7 @@ it('should render a Tab in its most basic state', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab label='Tab label' />
+        <Tabs.Tab value='tab' label='Tab label' />
       </Tabs.TabList>
     </Tabs>,
   );
@@ -417,7 +423,7 @@ it('should render with sublabel', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab>
+        <Tabs.Tab value='tab'>
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
           <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
         </Tabs.Tab>
@@ -440,7 +446,7 @@ it('should render with icon', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab>
+        <Tabs.Tab value='tab'>
           <Tabs.TabIcon>
             <SvgPlaceholder />
           </Tabs.TabIcon>
@@ -465,7 +471,7 @@ it('should render in disabled state', () => {
   const { container } = render(
     <Tabs>
       <Tabs.TabList>
-        <Tabs.Tab disabled label='Tab label' />
+        <Tabs.Tab value='tab' disabled label='Tab label' />
       </Tabs.TabList>
     </Tabs>,
   );

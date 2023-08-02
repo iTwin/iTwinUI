@@ -92,7 +92,7 @@ const TabsComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
+  const [activeValue, setActiveValue] = React.useState<string | undefined>();
   const [stripeProperties, setStripeProperties] = React.useState({});
 
   return (
@@ -106,8 +106,8 @@ const TabsComponent = React.forwardRef((props, ref) => {
         value={{
           orientation,
           type,
-          currentActiveIndex,
-          setCurrentActiveIndex,
+          activeValue,
+          setActiveValue,
           overflowOptions,
           setStripeProperties,
         }}
@@ -152,8 +152,8 @@ const TabList = React.forwardRef((props, ref) => {
   const {
     orientation,
     type,
-    currentActiveIndex,
-    setCurrentActiveIndex,
+    activeValue,
+    setActiveValue,
     overflowOptions,
     setStripeProperties,
   } = useSafeContext(TabsContext);
@@ -166,28 +166,44 @@ const TabList = React.forwardRef((props, ref) => {
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
+  const newActiveIndex = React.useRef(0);
+
+  // sets activeValue to whichever tab has the isActive prop
+  useIsomorphicLayoutEffect(() => {
+    // Should only call on the first render since activeValue cannot be initialized in TabsWrapper
+    if (
+      activeValue === undefined &&
+      React.isValidElement(items[0]) &&
+      setActiveValue
+    ) {
+      setActiveValue(items[0].props.value as string);
+      return;
+    }
+    items.forEach((item) => {
+      if (React.isValidElement(item) && item.props.isActive && setActiveValue) {
+        const value = item.props.value as string;
+        if (value !== activeValue) {
+          setActiveValue(value);
+        }
+      }
+    });
+  }, [items, activeValue]);
 
   useIsomorphicLayoutEffect(() => {
     items.forEach((item, index) => {
-      if (
-        React.isValidElement(item) &&
-        item.props.isActive &&
-        setCurrentActiveIndex
-      ) {
-        setCurrentActiveIndex(index);
+      if (React.isValidElement(item) && item.props.value === activeValue) {
+        newActiveIndex.current = index;
+        console.log('activeIndex found! ');
+        return;
       }
     });
-  }, [currentActiveIndex, items]);
+  }, [activeValue]);
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
-    if (
-      type !== 'default' &&
-      tablistRef.current != undefined &&
-      currentActiveIndex != undefined
-    ) {
+    if (type !== 'default' && tablistRef.current != undefined && activeValue) {
       const activeTab = tablistRef.current.children[
-        currentActiveIndex
+        newActiveIndex.current
       ] as HTMLElement;
       const activeTabRect = activeTab.getBoundingClientRect();
       setStripeProperties &&
@@ -202,28 +218,41 @@ const TabList = React.forwardRef((props, ref) => {
           }),
         });
     }
-  }, [currentActiveIndex, type, orientation, tabsWidth]);
+  }, [type, orientation, tabsWidth, activeValue]);
 
   const onTabClick = React.useCallback(
     (index: number) => {
       const tab = items[index];
-      if (React.isValidElement(tab) && tab.props.onActivated) {
-        tab.props.onActivated();
-      } else {
-        setCurrentActiveIndex && setCurrentActiveIndex(index);
+      if (React.isValidElement(tab)) {
+        if (tab.props.onActivated) {
+          tab.props.onActivated();
+        } else {
+          setActiveValue && setActiveValue(tab.props.value as string);
+        }
       }
     },
-    [items, setCurrentActiveIndex],
+    [items, setActiveValue],
   );
 
-  const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
+  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
+  const newFocusedIndex = React.useRef<number | undefined>();
+
+  useIsomorphicLayoutEffect(() => {
+    items.forEach((item, index) => {
+      if (React.isValidElement(item) && item.props.value === focusedValue) {
+        newFocusedIndex.current = index;
+        console.log('focusedIndex found! ');
+        return;
+      }
+    });
+  }, [focusedValue]);
+
   React.useEffect(() => {
-    if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.children[focusedIndex];
+    if (tablistRef.current && newFocusedIndex.current !== undefined) {
+      const tab = tablistRef.current.children[newFocusedIndex.current];
       (tab as HTMLElement)?.focus();
-      focusActivationMode === 'auto' && onTabClick(focusedIndex);
     }
-  }, [focusedIndex, onTabClick, focusActivationMode]);
+  }, [focusedValue, onTabClick, focusActivationMode]);
 
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
@@ -354,7 +383,8 @@ const TabList = React.forwardRef((props, ref) => {
   useIsomorphicLayoutEffect(() => {
     setTimeout(() => {
       const ownerDoc = tablistRef.current;
-      const scrollToIndex = focusedIndex ?? currentActiveIndex ?? 0;
+      const scrollToIndex =
+        newFocusedIndex.current ?? newActiveIndex.current ?? 0;
       if (ownerDoc !== null && overflowOptions?.useOverflow) {
         const tab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
           scrollToIndex
@@ -367,13 +397,7 @@ const TabList = React.forwardRef((props, ref) => {
         }
       }
     }, 50);
-  }, [
-    overflowOptions?.useOverflow,
-    currentActiveIndex,
-    focusedIndex,
-    orientation,
-    scrollToTab,
-  ]);
+  }, [overflowOptions?.useOverflow, focusedValue, orientation, scrollToTab]);
 
   const [scrollingPlacement, setScrollingPlacement] = React.useState<
     string | undefined
@@ -444,23 +468,18 @@ const TabList = React.forwardRef((props, ref) => {
       ref={refs}
       {...rest}
     >
-      {items.map((item, index) => {
-        return (
-          <TabListContext.Provider
-            value={{
-              index,
-              focusedIndex,
-              setFocusedIndex,
-              focusActivationMode,
-              hasSublabel,
-              setHasSublabel,
-            }}
-            key={index}
-          >
-            {item}
-          </TabListContext.Provider>
-        );
-      })}
+      <TabListContext.Provider
+        value={{
+          onTabClick,
+          focusedValue,
+          setFocusedValue,
+          focusActivationMode,
+          hasSublabel,
+          setHasSublabel,
+        }}
+      >
+        {children}
+      </TabListContext.Provider>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
@@ -470,6 +489,10 @@ TabList.displayName = 'Tabs.TabList';
 // Tabs.Tab component
 
 type TabOwnProps = {
+  /**
+   * Value used to associate the tab with a given panel.
+   */
+  value: string;
   /**
    * Tab label used for simple Tab construction.
    * Cannot be used with tabs that have icons or descriptions.
@@ -494,6 +517,7 @@ const Tab = React.forwardRef((props, ref) => {
   const {
     className,
     children,
+    value,
     label,
     disabled,
     isActive = false,
@@ -501,22 +525,17 @@ const Tab = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { orientation, currentActiveIndex, setCurrentActiveIndex } =
+  const { orientation, activeValue, setActiveValue } =
     useSafeContext(TabsContext);
-  const { index, focusedIndex, setFocusedIndex, focusActivationMode } =
+  const { onTabClick, focusedValue, setFocusedValue, focusActivationMode } =
     useSafeContext(TabListContext);
 
   const onClick = () => {
-    if (index !== undefined) {
-      setFocusedIndex && setFocusedIndex(index);
-      // These will be called in a useEffect if focusActivationMode is auto
-      if (focusActivationMode !== 'auto') {
-        if (onActivated) {
-          onActivated();
-        } else {
-          setCurrentActiveIndex && setCurrentActiveIndex(index);
-        }
-      }
+    setFocusedValue && setFocusedValue(value);
+    if (onActivated) {
+      onActivated();
+    } else {
+      setActiveValue && setActiveValue(value);
     }
   };
 
@@ -524,19 +543,29 @@ const Tab = React.forwardRef((props, ref) => {
     if (event.altKey) {
       return;
     }
-    const items = event.currentTarget.parentElement?.children;
-
-    let newIndex = index ?? 0;
 
     /** focus next tab if delta is +1, previous tab if -1 */
     const focusTab = (delta = +1) => {
-      if (items) {
+      const currentTab = event.currentTarget as Element;
+
+      const items =
+        event.currentTarget.parentElement &&
+        Array.from(event.currentTarget.parentElement.children);
+
+      let newIndex = items && items.findIndex((item) => item === currentTab);
+
+      if (items && newIndex !== null) {
         do {
           newIndex = (newIndex + delta + items.length) % items.length;
-        } while (items[newIndex].ariaDisabled && newIndex !== focusedIndex);
-      }
+        } while (
+          items[newIndex].ariaDisabled &&
+          items[newIndex].getAttribute('aria-controls') !== focusedValue
+        );
 
-      setFocusedIndex && setFocusedIndex(newIndex);
+        const newValue = items[newIndex].getAttribute('aria-controls');
+        newValue && setFocusedValue && setFocusedValue(newValue);
+        focusActivationMode === 'auto' && onTabClick && onTabClick(newIndex);
+      }
     };
 
     switch (event.key) {
@@ -573,11 +602,7 @@ const Tab = React.forwardRef((props, ref) => {
       case 'Spacebar': {
         event.preventDefault();
         if (focusActivationMode === 'manual') {
-          onActivated
-            ? onActivated()
-            : setCurrentActiveIndex &&
-              index !== undefined &&
-              setCurrentActiveIndex(index);
+          onActivated ? onActivated() : setActiveValue && setActiveValue(value);
         }
         break;
       }
@@ -591,15 +616,16 @@ const Tab = React.forwardRef((props, ref) => {
       as='button'
       className={cx(
         'iui-tab',
-        { 'iui-active': index === currentActiveIndex || isActive },
+        { 'iui-active': value === activeValue || isActive },
         className,
       )}
       role='tab'
-      tabIndex={index === currentActiveIndex || isActive ? 0 : -1}
+      tabIndex={value === activeValue || isActive ? 0 : -1}
       onClick={onClick}
       onKeyDown={onKeyDown}
-      aria-selected={index === currentActiveIndex || isActive}
+      aria-selected={value === activeValue || isActive}
       aria-disabled={disabled ? 'true' : undefined}
+      aria-controls={value}
       disabled={disabled}
       ref={ref}
       {...rest}
@@ -698,43 +724,26 @@ const TabsActions = React.forwardRef((props, ref) => {
 TabsActions.displayName = 'Tabs.Actions';
 
 // ----------------------------------------------------------------------------
-// Tabs.Panels component
-
-const TabsPanels = ({
-  children,
-}: {
-  children: React.ReactNode[] | React.ReactNode;
-}) => {
-  const items = Array.isArray(children) ? children : [children];
-
-  return (
-    <>
-      {items.map((item, index) => {
-        return (
-          <TabsPanelsContext.Provider value={{ index }} key={index}>
-            {item}
-          </TabsPanelsContext.Provider>
-        );
-      })}
-    </>
-  );
-};
-TabsPanels.displayName = 'Tabs.Panels';
-
-// ----------------------------------------------------------------------------
 // Tabs.Panel component
 
+type TabsPanelOwnProps = {
+  /**
+   * Value used to associate the panel with a given tab.
+   */
+  value: string;
+};
+
 const TabsPanel = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { value, className, children, ...rest } = props;
 
-  const { currentActiveIndex } = useSafeContext(TabsContext);
-  const { index } = useSafeContext(TabsPanelsContext);
+  const { activeValue } = useSafeContext(TabsContext);
 
-  if (index === currentActiveIndex) {
+  if (value === activeValue) {
     return (
       <Box
         className={cx('iui-tabs-content', className)}
         role='tabpanel'
+        id={value}
         ref={ref}
         {...rest}
       >
@@ -744,7 +753,7 @@ const TabsPanel = React.forwardRef((props, ref) => {
   } else {
     return <></>;
   }
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
 TabsPanel.displayName = 'Tabs.Panel';
 
 /**
@@ -752,13 +761,13 @@ TabsPanel.displayName = 'Tabs.Panel';
  * @example
  * <Tabs>
  *   <Tabs.TabList>
- *     <Tabs.Tab>
+ *     <Tabs.Tab value='tab1'>
  *       <Tabs.TabLabel>Label 1</Tabs.TabLabel>
  *     </Tabs.Tab>
- *     <Tabs.Tab>
+ *     <Tabs.Tab value='tab2'>
  *       <Tabs.TabLabel>Label 2</Tabs.TabLabel>
  *     </Tabs.Tab>
- *     <Tabs.Tab>
+ *     <Tabs.Tab value='tab3'>
  *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
  *     </Tabs.Tab>
  *   </Tabs.TabList>
@@ -767,18 +776,16 @@ TabsPanel.displayName = 'Tabs.Panel';
  *       <Button>Sample Button</Button>,
  *     </Tabs.Actions>
  *   </Tabs.ActionsWrapper>
- *   <Tabs.Panels>
- *     <Tabs.Panel>Content 1</Tabs.Panel>
- *     <Tabs.Panel>Content 2</Tabs.Panel>
- *     <Tabs.Panel>Content 3</Tabs.Panel>
- *   </Tabs.Panels>
+ *   <Tabs.Panel value='tab1'>Content 1</Tabs.Panel>
+ *   <Tabs.Panel value='tab2'>Content 2</Tabs.Panel>
+ *   <Tabs.Panel value='tab3'>Content 3</Tabs.Panel>
  * </Tabs>
  *
  * @example
  * <Tabs orientation='vertical'/>
  *
  * @example
- * <Tabs.Tab>
+ * <Tabs.Tab value='sample'>
  *   <Tabs.TabIcon>
  *     <SvgPlaceholder />
  *   </Tabs.TabIcon>
@@ -818,10 +825,6 @@ export const Tabs = Object.assign(TabsComponent, {
    */
   Actions: TabsActions,
   /**
-   * 	Tab panels subcomponent
-   */
-  Panels: TabsPanels,
-  /**
    * 	Tab panel subcomponent
    */
   Panel: TabsPanel,
@@ -839,13 +842,13 @@ export const TabsContext = React.createContext<
        */
       orientation?: 'horizontal' | 'vertical';
       /**
-       * The current active index.
+       * The value prop of the active tab.
        */
-      currentActiveIndex?: number;
+      activeValue?: string;
       /**
-       * Handler for setting the current active index.
+       * Handler for setting the value of the active tab.
        */
-      setCurrentActiveIndex?: (value: number) => void;
+      setActiveValue?: (value: string) => void;
       /**
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
@@ -861,17 +864,17 @@ export const TabsContext = React.createContext<
 export const TabListContext = React.createContext<
   | {
       /**
-       * The index value passed for each of the tabs.
+       * Handler for clicking a tab given its index.
        */
-      index?: number;
+      onTabClick?: (index: number) => void;
       /**
-       * The index of the focused tab.
+       * The value of the focused tab.
        */
-      focusedIndex?: number;
+      focusedValue?: string;
       /**
-       * Handler for setting the focused tab index.
+       * Handler for setting the value of the focused tab.
        */
-      setFocusedIndex?: (index: number) => void;
+      setFocusedValue?: (value: string) => void;
       /**
        * Control whether focusing tabs (using arrow keys) should automatically select them.
        * Use 'manual' if tab panel content is not preloaded.
@@ -887,16 +890,6 @@ export const TabListContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setHasSublabel?: (hasSublabel: boolean) => void;
-    }
-  | undefined
->(undefined);
-
-export const TabsPanelsContext = React.createContext<
-  | {
-      /**
-       * The index value passed for each of the panels.
-       */
-      index?: number;
     }
   | undefined
 >(undefined);
