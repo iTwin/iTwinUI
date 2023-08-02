@@ -9,6 +9,7 @@ describe('LabeledInput', () => {
     'Disabled',
     'Inline',
     'Hybrid Layout',
+    'Hybrid Layout With Button',
     'Negative',
     'Positive',
     'Warning',
