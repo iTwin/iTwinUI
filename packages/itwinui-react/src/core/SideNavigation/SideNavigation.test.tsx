@@ -277,19 +277,19 @@ it('should not show submenu if isSubmenuOpen is false', () => {
 
 it('passes custom props to subcomponents', () => {
   const { container } = renderComponent({
-    sideNavProps: {
+    innerProps: {
       className: 'custom-sidenav-class',
       style: { width: 70 },
     },
-    sideNavContentProps: {
+    contentProps: {
       className: 'custom-sidenav-content-class',
       style: { width: 80 },
     },
-    sideNavTopProps: {
+    topProps: {
       className: 'custom-sidenav-top-class',
       style: { width: 90 },
     },
-    sideNavBottomProps: {
+    bottomProps: {
       className: 'custom-sidenav-bottom-class',
       style: { width: 100 },
     },
