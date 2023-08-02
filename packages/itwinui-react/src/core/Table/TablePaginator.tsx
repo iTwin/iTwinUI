@@ -15,6 +15,7 @@ import {
   SvgChevronLeft,
   SvgChevronRight,
   Box,
+  ButtonBase,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import type { TablePaginatorRendererProps } from './Table.js';
@@ -170,10 +171,8 @@ export const TablePaginator = (props: TablePaginatorProps) => {
 
   const pageButton = React.useCallback(
     (index: number, tabIndex = index === focusedIndex ? 0 : -1) => (
-      <Box
-        as='button'
+      <ButtonBase
         key={index}
-        type='button'
         className={cx('iui-table-paginator-page-button', {
           'iui-table-paginator-page-button-small': buttonSize === 'small',
         })}
@@ -184,7 +183,7 @@ export const TablePaginator = (props: TablePaginatorProps) => {
         tabIndex={tabIndex}
       >
         {index + 1}
-      </Box>
+      </ButtonBase>
     ),
     [focusedIndex, currentPage, localization, buttonSize, onPageChange],
   );
