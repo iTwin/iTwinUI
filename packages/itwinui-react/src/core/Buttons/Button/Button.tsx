@@ -5,7 +5,7 @@
 import cx from 'classnames';
 import * as React from 'react';
 
-import { Box } from '../../utils/index.js';
+import { Box, ButtonBase } from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type ButtonProps = {
@@ -40,6 +40,7 @@ export type ButtonProps = {
    */
   endIconProps?: React.ComponentProps<'span'>;
 };
+} & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
  * Generic button component
@@ -55,9 +56,7 @@ export const Button = React.forwardRef((props, ref) => {
     children,
     className,
     size,
-    style,
     styleType = 'default',
-    type = 'button',
     startIcon,
     endIcon,
     labelProps,
@@ -67,14 +66,11 @@ export const Button = React.forwardRef((props, ref) => {
   } = props;
 
   return (
-    <Box
-      as='button'
+    <ButtonBase
       ref={ref}
       className={cx('iui-button', className)}
       data-iui-variant={styleType !== 'default' ? styleType : undefined}
       data-iui-size={size}
-      style={style}
-      type={type}
       {...rest}
     >
       {startIcon && (
@@ -100,7 +96,7 @@ export const Button = React.forwardRef((props, ref) => {
           {endIcon}
         </Box>
       )}
-    </Box>
+    </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonProps>;
 
