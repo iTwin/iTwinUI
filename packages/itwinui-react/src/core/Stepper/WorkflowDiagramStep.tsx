@@ -10,7 +10,7 @@ import type { StepperStepProps } from './StepperStep.js';
 
 export type WorkflowDiagramStepProps = {
   /**
-   *  Allows props to be passed for diagram-content
+   *  Allows props to be passed for diagram content.
    */
   contentProps?: React.ComponentProps<'span'>;
 } & Pick<StepperStepProps, 'title' | 'description'> &
