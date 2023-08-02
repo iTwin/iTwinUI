@@ -23,7 +23,7 @@
       background-color: var(--iui-color-background);
     }
 
-    &[disabled] {
+    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       background-color: var(--iui-color-background-disabled);
     }
 
