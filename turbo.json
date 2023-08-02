@@ -31,7 +31,11 @@
       "outputs": []
     },
     "dev": {
-      "dependsOn": [],
+      "dependsOn": ["build"],
+      "cache": false
+    },
+    "@itwin/itwinui-css#dev": {
+      "dependsOn": ["build"],
       "cache": false
     },
     "@itwin/itwinui-react#dev": {
