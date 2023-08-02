@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { Box } from '../utils/index.js';
 import type { SliderProps, TrackDisplayMode } from './Slider.js';
 
@@ -48,14 +49,21 @@ export type TrackProps = {
   sliderMax: number;
   values: number[];
   orientation: SliderProps['orientation'];
-};
+} & React.HTMLAttributes<HTMLDivElement>;
 
 /**
  * Track displays color segments above Rail. Which, if any, segments that are
  * colorized is based on `trackDisplayMode`.
  */
 export const Track = (props: TrackProps) => {
-  const { trackDisplayMode, sliderMin, sliderMax, values, orientation } = props;
+  const {
+    className,
+    trackDisplayMode,
+    sliderMin,
+    sliderMax,
+    values,
+    orientation,
+  } = props;
   const [segments, setSegments] = React.useState(() =>
     generateSegments(values, sliderMin, sliderMax),
   );
@@ -81,7 +89,7 @@ export const Track = (props: TrackProps) => {
             <React.Fragment key={index}>
               {shouldDisplaySegment(index, trackDisplayMode) ? (
                 <Box
-                  className='iui-slider-track'
+                  className={cx('iui-slider-track', className)}
                   style={{
                     ...(orientation === 'horizontal'
                       ? {

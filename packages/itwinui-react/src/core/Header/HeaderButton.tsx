@@ -27,6 +27,10 @@ type HeaderButtonProps = {
    * @default false
    */
   isActive?: boolean;
+  /**
+   * Modify the native `name` attribute of the `<button>` element.
+   */
+  htmlName?: string;
 } & Partial<Pick<DropdownButtonProps, 'menuItems'>> &
   Pick<ButtonProps, 'startIcon' | 'endIcon'>;
 
@@ -44,6 +48,7 @@ export const HeaderButton = React.forwardRef((props, ref) => {
   const {
     name,
     description,
+    htmlName,
     isActive = false,
     startIcon,
     menuItems,
@@ -71,6 +76,7 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     ),
     ref: ref,
     disabled: disabled,
+    name: htmlName,
     ...(!!menuItems && { menuItems }),
     ...rest,
   } as any; // eslint-disable-line @typescript-eslint/no-explicit-any

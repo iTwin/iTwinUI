@@ -46,6 +46,24 @@ export default defineConfig({
         return `_iui3-${name.replace('iui-', '')}`;
       },
     },
+    postcss: {
+      plugins: [
+        Object.assign(
+          () => ({
+            postcssPlugin: true,
+            Rule(rule) {
+              if (
+                rule.type === 'rule' &&
+                rule.selector?.startsWith(':where([data-iui-theme')
+              ) {
+                rule.selector = `:where(.iui-root)${rule.selector}`;
+              }
+            },
+          }),
+          { postcss: true },
+        ),
+      ],
+    },
   },
 });
 
