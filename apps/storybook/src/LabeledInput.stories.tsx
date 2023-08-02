@@ -2,11 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import { SvgCloseSmall, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledInput, Tooltip } from '@itwin/itwinui-react';
+import { LabeledInput, Tooltip, IconButton } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -173,4 +173,25 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
 HybridLayout.args = {
   iconDisplayStyle: 'inline',
   message: 'Block layout with inline icon',
+};
+export const HybridLayoutWithButton: Story<LabeledInputProps> = (args) => {
+  return (
+    <LabeledInput
+      placeholder='Enter text here...'
+      label='This is a label'
+      endButton={
+        <IconButton styleType='borderless'>
+          <SvgCloseSmall />
+        </IconButton>
+      }
+      message='Block layout with inline borderless button'
+      iconDisplayStyle='inline'
+      {...args}
+    />
+  );
+};
+
+HybridLayoutWithButton.args = {
+  message: 'Block layout with inline borderless button',
+  iconDisplayStyle: 'inline',
 };
