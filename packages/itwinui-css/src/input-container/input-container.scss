@@ -87,6 +87,7 @@
     min-inline-size: var(--_iui-input-min-height);
     flex: 999;
     padding-inline-start: var(--iui-size-s);
+    padding-inline-end: var(--iui-size-s);
 
     &:is(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
