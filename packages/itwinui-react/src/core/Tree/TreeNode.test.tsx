@@ -189,7 +189,7 @@ it('should render disabled node', () => {
     '.iui-button[data-iui-variant="borderless"][data-iui-size="small"]',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
-  expect(button.disabled).toBe(true);
+  expect(button).toHaveAttribute('aria-disabled', 'true');
 
   fireEvent.click(button);
   expect(onSelected).not.toHaveBeenCalled();
