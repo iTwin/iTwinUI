@@ -190,6 +190,38 @@ type DatePickerProps = {
    */
   showYearSelection?: boolean;
   /**
+   * Allows props to be passed for calendar month year
+   */
+  calendarProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for label inside polite
+   */
+  politeLabelProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for calendar month
+   */
+  calendarMonthProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for days of the week wrapper
+   */
+  daysOfWeekProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for calendar weekdays
+   */
+  weekDayProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for calendar days (inside & outside)
+   */
+  dayProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for listbox
+   */
+  listboxProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for calendar weeks
+   */
+  weekProps?: React.ComponentProps<'div'>;
+  /**
    * Will disable dates for which this function returns true.
    * Disabled dates cannot be selected.
    */
@@ -225,6 +257,14 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     enableRangeSelect = false,
     startDate,
     endDate,
+    calendarProps,
+    politeLabelProps,
+    calendarMonthProps,
+    daysOfWeekProps,
+    weekDayProps,
+    dayProps,
+    listboxProps,
+    weekProps,
     isDateDisabled,
     ...rest
   } = props;
@@ -532,7 +572,11 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <div>
-        <Box className='iui-calendar-month-year'>
+        <Box
+          as='div'
+          {...calendarProps}
+          className={cx('iui-calendar-month-year', calendarProps?.className)}
+        >
           {showYearSelection && (
             <IconButton
               styleType='borderless'
@@ -551,10 +595,18 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           >
             <SvgChevronLeft />
           </IconButton>
-          <span aria-live='polite'>
+          <span
+            aria-live='polite'
+            {...politeLabelProps}
+            className={cx(className, politeLabelProps?.className)}
+          >
             <Box
               as='span'
-              className='iui-calendar-month'
+              {...calendarMonthProps}
+              className={cx(
+                'iui-calendar-month',
+                calendarMonthProps?.className,
+              )}
               title={monthNames[displayedMonthIndex]}
             >
               {monthNames[displayedMonthIndex]}
@@ -580,27 +632,45 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
             </IconButton>
           )}
         </Box>
-        <Box className='iui-calendar-weekdays'>
+        <Box
+          as='div'
+          {...daysOfWeekProps}
+          className={cx('iui-calendar-weekdays', daysOfWeekProps?.className)}
+        >
           {shortDays.map((day, index) => (
-            <div key={day} title={longDays[index]}>
+            <div
+              key={day}
+              title={longDays[index]}
+              {...weekDayProps}
+              className={cx(className, weekDayProps?.className)}
+            >
               {day}
             </div>
           ))}
         </Box>
-        <div onKeyDown={handleCalendarKeyDown} role='listbox'>
+        <div
+          onKeyDown={handleCalendarKeyDown}
+          role='listbox'
+          {...listboxProps}
+          className={cx(className, listboxProps?.className)}
+        >
           {weeks.map((weekDays, weekIndex) => {
             return (
               <Box
+                as='div'
+                {...weekProps}
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
-                className='iui-calendar-week'
+                className={cx('iui-calendar-week', weekProps?.className)}
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   const isDisabled = isDateDisabled?.(weekDay);
                   return (
                     <Box
+                      as='div'
+                      {...dayProps}
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
-                      className={getDayClass(weekDay)}
+                      className={cx(getDayClass(weekDay), dayProps?.className)}
                       onClick={() => !isDisabled && onDayClick(weekDay)}
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
