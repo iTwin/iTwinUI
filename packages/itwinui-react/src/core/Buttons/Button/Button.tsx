@@ -39,7 +39,6 @@ export type ButtonProps = {
    * Passes props to the end icon.
    */
   endIconProps?: React.ComponentProps<'span'>;
-};
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
