@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { getRandomValue, useMergedRefs, useTheme } from '../utils/index.js';
+import {
+  getRandomValue,
+  useLatestRef,
+  useMergedRefs,
+  useTheme,
+} from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
 import { CarouselSlide } from './CarouselSlide.js';
@@ -122,10 +127,10 @@ export const Carousel = Object.assign(
       }
     };
 
-    const userOnSlideChange = React.useRef(onSlideChange);
+    const userOnSlideChange = useLatestRef(onSlideChange);
     React.useEffect(() => {
       userOnSlideChange.current?.(currentIndex);
-    }, [currentIndex]);
+    }, [userOnSlideChange, currentIndex]);
 
     return (
       <section
