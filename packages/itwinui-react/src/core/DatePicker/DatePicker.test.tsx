@@ -64,6 +64,36 @@ it('should display today', () => {
   expect(day.textContent).toBe(today.getDate().toString());
 });
 
+it('should apply all custom props', () => {
+  const { container } = render(
+    <DatePicker
+      date={new Date(2020, 0, 5)}
+      onChange={jest.fn()}
+      calendarProps={{ className: 'some-calendar' }}
+      calendarMonthProps={{ className: 'some-month' }}
+      daysOfWeekProps={{ className: 'some-day-of-week' }}
+      weekProps={{ className: 'some-week' }}
+    />,
+  );
+  assertMonthYear(container, 'January', '2020');
+  expect(container.querySelector('.iui-calendar-month-year')).toHaveClass(
+    'iui-calendar-month-year',
+    'some-calendar',
+  );
+  expect(container.querySelector('.iui-calendar-month')).toHaveClass(
+    'iui-calendar-month',
+    'some-month',
+  );
+  expect(container.querySelector('.iui-calendar-weekdays')).toHaveClass(
+    'iui-calendar-weekdays',
+    'some-day-of-week',
+  );
+  expect(container.querySelector('.iui-calendar-week')).toHaveClass(
+    'iui-calendar-week',
+    'some-week',
+  );
+});
+
 it('should return selected date', async () => {
   const onClick = jest.fn();
   const { container, getByText } = render(
