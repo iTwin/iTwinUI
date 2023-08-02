@@ -31,18 +31,20 @@ const durations = ['0', '1', '2', '3'];
 </script>
 
 <style>
-  duration-item button {
-    border: none;
-    padding: var(--space-3);
-    width: var(--space-8);
-    height: var(--space-8);
-    border-radius: var(--space-1);
-    box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--iui-color-background);
-    color: var(--iui-color-foreground-2);
-    cursor: pointer;
+  @layer components {
+    duration-item button {
+      border: none;
+      padding: var(--space-3);
+      width: var(--space-8);
+      height: var(--space-8);
+      border-radius: var(--space-1);
+      box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--iui-color-background);
+      color: var(--iui-color-foreground-2);
+      cursor: pointer;
+    }
   }
 </style>

@@ -49,5 +49,7 @@
     "*.stories.tsx": "${capture}.test.ts"
   },
   "javascript.preferences.importModuleSpecifierEnding": "js",
-  "typescript.preferences.importModuleSpecifierEnding": "js"
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "css.validate": false,
+  "scss.validate": false
 }
