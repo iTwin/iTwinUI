@@ -31,7 +31,7 @@
       "outputs": []
     },
     "dev": {
-      "dependsOn": [],
+      "dependsOn": ["build"],
       "cache": false
     },
     "format": {
