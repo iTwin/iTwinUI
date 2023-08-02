@@ -38,19 +38,19 @@ export type StepperStepProps = {
    */
   description?: string;
   /**
-   * Allows props to be passed for stepper step
+   * Allows props to be passed for stepper step.
    */
   stepProps?: React.ComponentProps<'li'>;
   /**
-   * Allows props to be passed for iui-stepper-step-track-content
+   * Allows props to be passed for track content.
    */
   trackContentProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for iui-stepper-step-circle
+   * Allows props to be passed for stepper-step circle.
    */
   circleProps?: React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for iui-stepper-name
+   * Allows props to be passed for stepper name.
    */
   nameProps?: React.ComponentProps<'span'>;
 };
