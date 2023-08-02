@@ -1,5 +1,22 @@
 # Changelog
 
+## 3.0.0-dev.6
+
+### Major Changes
+
+- [#1409](https://github.com/iTwin/iTwinUI/pull/1409): `RadioTile`'s `className` and `style` props will now be applied on the `<input>` element instead of the wrapper. Added `wrapperProps`, `iconProps`, `labelProps`, `subLabelProps` to individually customize each part of the component.
+
+### Minor Changes
+
+- [#1457](https://github.com/iTwin/iTwinUI/pull/1457): Added `htmlName` prop to the `HeaderButton` subcomponent which handles the native `name` attribute in `<button>`.
+- [#1437](https://github.com/iTwin/iTwinUI/pull/1437): Added headerWrapperProps, headerProps, bodyProps, and emptyTableContentProps to make each part of the Table component more customizable.
+- [#1412](https://github.com/iTwin/iTwinUI/pull/1412): All styles have been wrapped inside a cascade layer named `itwinui`.
+- [#1419](https://github.com/iTwin/iTwinUI/pull/1419): Added `htmlSize` prop to the `Input` component which handles the native `size` attribute in `<input>`.
+
+### Patch Changes
+
+- [#1420](https://github.com/iTwin/iTwinUI/pull/1420): RadioTile DOM has been simplified to remove a content wrapper `div`.
+
 ## 3.0.0-dev.5
 
 ### Major Changes
@@ -103,11 +120,24 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.0
+
+### Minor Changes
+
+- [#1415](https://github.com/iTwin/iTwinUI/pull/1415): The styling strategy has changed so there will now be a single stylesheet included at runtime, instead of separate css imports inside every component. All the styles are also wrapped in a cascade layer named `itwinui`. This behavior can be customized using the `includeCss` prop in `ThemeProvider`.
+
+  **Important note**: The dependencies on `@itwin/itwinui-css` and `@itwin/itwinui-variables` have been removed, so these packages _don't_ need to be installed if you are only using components from `@itwin/itwinui-react`.
+
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles.
+- [#1443](https://github.com/iTwin/iTwinUI/pull/1443): `DropdownButton` now supports `styleType='high-visibility'` to make it blue. This should be used sparingly, as a default or borderless dropdown button is the better choice in most cases.
+- [#1454](https://github.com/iTwin/iTwinUI/pull/1454): Added `disabled` prop to `ExpandableBlock` to disable intersction with it.
+- [#1441](https://github.com/iTwin/iTwinUI/pull/1441): Added `placement` prop to `Dialog` to allow placing it at one of the corners.
+
 ## 2.11.11
 
 ### Patch Changes
 
-- [#3](https://github.com/iTwin/iTwinUI/pull/3): Fix resizable Dialog bug where Dialog jumped around the screen when resized on right side.
+- [#1448](https://github.com/iTwin/iTwinUI/pull/1448): Fix resizable Dialog bug where Dialog jumped around the screen when resized on right side.
 
 ## 2.11.10
 
@@ -658,4 +688,4 @@ If you're interested in more details about every signle change, check out a full
 
 ## 1.X
 
-For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI-react/blob/v1/packages/iTwinUI-react/CHANGELOG.md).
+For any changes prior to 2.0.0, check out the [1.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v1-react/packages/iTwinUI-react/CHANGELOG.md).
