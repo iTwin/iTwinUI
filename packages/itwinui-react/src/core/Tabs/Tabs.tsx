@@ -193,7 +193,6 @@ const TabList = React.forwardRef((props, ref) => {
     items.forEach((item, index) => {
       if (React.isValidElement(item) && item.props.value === activeValue) {
         newActiveIndex.current = index;
-        console.log('activeIndex found! ');
         return;
       }
     });
@@ -241,7 +240,6 @@ const TabList = React.forwardRef((props, ref) => {
     items.forEach((item, index) => {
       if (React.isValidElement(item) && item.props.value === focusedValue) {
         newFocusedIndex.current = index;
-        console.log('focusedIndex found! ');
         return;
       }
     });
@@ -471,7 +469,6 @@ const TabList = React.forwardRef((props, ref) => {
       <TabListContext.Provider
         value={{
           onTabClick,
-          focusedValue,
           setFocusedValue,
           focusActivationMode,
           hasSublabel,
@@ -527,7 +524,7 @@ const Tab = React.forwardRef((props, ref) => {
 
   const { orientation, activeValue, setActiveValue } =
     useSafeContext(TabsContext);
-  const { onTabClick, focusedValue, setFocusedValue, focusActivationMode } =
+  const { onTabClick, setFocusedValue, focusActivationMode } =
     useSafeContext(TabListContext);
 
   const onClick = () => {
@@ -557,10 +554,7 @@ const Tab = React.forwardRef((props, ref) => {
       if (items && newIndex !== null) {
         do {
           newIndex = (newIndex + delta + items.length) % items.length;
-        } while (
-          items[newIndex].ariaDisabled &&
-          items[newIndex].getAttribute('aria-controls') !== focusedValue
-        );
+        } while (items[newIndex].ariaDisabled);
 
         const newValue = items[newIndex].getAttribute('aria-controls');
         newValue && setFocusedValue && setFocusedValue(newValue);
@@ -867,10 +861,6 @@ export const TabListContext = React.createContext<
        * Handler for clicking a tab given its index.
        */
       onTabClick?: (index: number) => void;
-      /**
-       * The value of the focused tab.
-       */
-      focusedValue?: string;
       /**
        * Handler for setting the value of the focused tab.
        */
