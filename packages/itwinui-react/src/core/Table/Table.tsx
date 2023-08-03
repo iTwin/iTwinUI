@@ -1095,7 +1095,7 @@ export const Table = <
                 <ProgressRadial
                   indeterminate={true}
                   size='small'
-                  style={{ float: 'none' }}
+                  style={{ float: 'none', marginInlineStart: 0 }}
                 />
               </Box>
             </Box>
