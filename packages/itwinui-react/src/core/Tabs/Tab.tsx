@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { Box } from '../utils/index.js';
+import { Box, ButtonBase } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type TabProps = {
@@ -56,8 +56,7 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   return (
-    <Box
-      as='button'
+    <ButtonBase
       className={cx('iui-tab', { 'iui-active': active }, className)}
       role='tab'
       tabIndex={-1}
@@ -76,7 +75,7 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
         </Box>
       )}
       {children}
-    </Box>
+    </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', TabProps>;
 
