@@ -1823,9 +1823,9 @@ it('should disable row and handle expansion accordingly', async () => {
     '.iui-slot .iui-button',
   ) as NodeListOf<HTMLButtonElement>;
   expect(expansionCells.length).toBe(3);
-  expect(expansionCells[0].disabled).toBe(false);
-  expect(expansionCells[1].disabled).toBe(true);
-  expect(expansionCells[2].disabled).toBe(false);
+  expect(expansionCells[0]).not.toHaveAttribute('aria-disabled');
+  expect(expansionCells[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expansionCells[2]).not.toHaveAttribute('aria-disabled');
 
   await userEvent.click(expansionCells[1]);
   expect(onExpand).not.toHaveBeenCalled();
@@ -3896,9 +3896,10 @@ it('should add expander column manually', () => {
     '.iui-table-row-expander',
   );
   expect(expanders.length).toBe(3);
-  expect(expanders[0].disabled).toBe(false);
-  expect(expanders[1].disabled).toBe(true);
-  expect(expanders[2].disabled).toBe(false);
+  expect(expanders[0]).not.toHaveAttribute('aria-disabled');
+  expect(expanders[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expanders[2]).not.toHaveAttribute('aria-disabled');
+
   fireEvent.click(expanders[2]);
   expect(onExpand).toHaveBeenCalledWith(
     [{ name: 'Name3', description: 'Description3' }],
