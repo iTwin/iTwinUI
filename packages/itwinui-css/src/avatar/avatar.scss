@@ -3,51 +3,34 @@
 @use '../mixins';
 @use './mixins' as *;
 
+// similar technique as badge, meets AAA contrast ratio against soft backgrounds
+$avatar-text-color: hsl(0 0% 0% / 0.77);
+
 .iui-avatar {
   @include mixins.iui-reset;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  margin: 0;
-  user-select: none;
   inline-size: var(--_iui-avatar-size);
   block-size: var(--_iui-avatar-size);
-  background-color: hsl(72, 51%, 56%);
+  background-color: var(--iui-color-background-skyblue);
   border-radius: 50%;
+  font-weight: var(--iui-font-weight-semibold);
+  text-align: center;
+  text-transform: uppercase;
+  color: #{$avatar-text-color};
+  line-height: var(--_iui-avatar-size);
+  font-size: var(--_iui-avatar-font-size);
+  isolation: isolate;
 
-  > .iui-stroke {
-    display: block;
+  &::before {
+    content: '';
     position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    margin: 0;
+    inset: 0;
     border-radius: 50%;
     box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
-  }
-
-  > .iui-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
-    margin: 0;
-    border-radius: 50%;
-    font-style: normal;
-    font-weight: var(--iui-font-weight-semibold);
-    text-align: center;
-    text-decoration: none;
-    text-transform: uppercase;
-    overflow: hidden;
-    color: var(--iui-color-white);
-    line-height: var(--_iui-avatar-size);
-    font-size: var(--_iui-avatar-font-size);
+    z-index: 1;
   }
 
   svg {
@@ -55,7 +38,7 @@
     inline-size: 50%;
     block-size: 50%;
     position: absolute;
-    fill: var(--iui-color-white);
+    fill: $avatar-text-color;
     inset-inline-start: 50%;
     inset-block-start: 50%;
     transform: translate(-50%, -50%);
@@ -65,99 +48,67 @@
     display: block;
     position: absolute;
     object-fit: cover;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: 100%;
-    block-size: 100%;
+    inset: 0;
+    max-inline-size: 100%;
     border-width: 0;
     border-radius: 50%;
     background-color: var(--iui-color-background);
   }
 
-  > .iui-status {
-    box-sizing: content-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    inset-inline-end: calc(0px - var(--iui-size-3xs));
-    inset-block-end: calc(0px - var(--iui-size-3xs));
-    inline-size: 25%;
-    block-size: 25%;
-    border-radius: 50%;
-    border: var(--iui-size-3xs) solid var(--iui-color-background);
-    background-color: var(--iui-color-border);
-
+  &[data-iui-status] {
     &::after {
       content: '';
-      inline-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
-      block-size: var(--_iui-avatar-status-size, var(--iui-size-xs));
+      box-sizing: content-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      inset-inline-end: calc(0px - var(--iui-size-3xs));
+      inset-block-end: calc(0px - var(--iui-size-3xs));
+      inline-size: 25%;
+      block-size: 25%;
+      border-radius: 50%;
+      border: var(--iui-size-3xs) solid var(--iui-color-background);
+      background: var(--_iui-avatar-status-img) no-repeat center / var(--_iui-avatar-status-size, var(--iui-size-xs));
+      background-color: var(--iui-color-border);
+      z-index: 2;
     }
+  }
 
-    &.iui-online {
+  &[data-iui-status='online'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
       background-color: var(--iui-color-background-positive);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M6,14L0,8l2-2l4,4l8-8l2,2L6,14z' /></svg>");
-        background-color: var(--iui-color-white);
-      }
     }
+  }
 
-    &.iui-away {
+  &[data-iui-status='away'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
       background-color: var(--iui-color-background-warning);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m13.445 12.832-6.445-4.297v-7.535h2v6.465l5.555 3.703z' /></svg>");
-        background-color: var(--iui-color-white);
-      }
     }
+  }
 
-    &.iui-busy {
+  &[data-iui-status='busy'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
       background-color: var(--iui-color-background-negative);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect x='2' y='7' width='12' height='2'></rect></svg>");
-        background-color: var(--iui-color-white);
-      }
     }
+  }
 
-    &.iui-offline {
-      background-color: var(--iui-color-background);
-      box-shadow: inset 0 0 0 1px var(--iui-color-text-muted);
-
-      &::after {
-        mask: url("data:image/svg+xml,<svg viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
-        background-color: var(--iui-color-icon-muted);
-      }
+  &[data-iui-status='offline'] {
+    &::after {
+      --_iui-avatar-status-img: url("data:image/svg+xml,<svg fill='white' viewBox='0 0 16 16' xmlns='http://www.w3.org/2000/svg'><path d='m12.5 2-4.5 4.5-4.5-4.5-1.5 1.5 4.5 4.5-4.5 4.5 1.5 1.5 4.5-4.5 4.5 4.5 1.5-1.5-4.5-4.5 4.5-4.5z' /></svg>");
+      background-color: var(--iui-color-icon-muted);
     }
   }
 
   &.iui-avatar-count {
-    > .iui-initials {
-      background-color: var(--iui-color-background);
-      color: var(--iui-color-text-muted);
-    }
+    background-color: var(--iui-color-background);
+    color: var(--iui-color-text-muted);
 
-    > .iui-stroke {
+    &::before {
       box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
-    }
-
-    &:focus {
-      outline: none;
-
-      > .iui-stroke {
-        box-shadow: var(--iui-focus-box-shadow);
-      }
-    }
-
-    &:focus-visible {
-      outline: none;
-    }
-
-    &:focus:not(:focus-visible) {
-      > .iui-stroke {
-        box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-background-transparent-hover);
-      }
     }
   }
 
@@ -176,6 +127,26 @@
   }
 }
 
+// ----------------------------------------------------------------------------
+
+@mixin iui-avatar-margins {
+  .iui-avatar:not(:first-child) {
+    margin-inline-start: var(--iui-size-2xs);
+
+    &.iui-small {
+      margin-inline-start: var(--iui-size-3xs);
+    }
+
+    &.iui-large {
+      margin-inline-start: var(--iui-size-xs);
+    }
+
+    &.iui-x-large {
+      margin-inline-start: var(--iui-size-s);
+    }
+  }
+}
+
 .iui-avatar-list {
   display: inline-flex;
   flex-wrap: wrap;
@@ -185,17 +156,11 @@
   &.iui-stacked {
     .iui-avatar:not(:first-child) {
       margin-inline-start: calc(0px - var(--iui-size-2xs));
-
-      .iui-initials {
-        box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
-      }
+      box-shadow: 0 0 0 var(--iui-size-2xs) var(--iui-color-background);
 
       &.iui-small {
         margin-inline-start: calc(0px - var(--iui-size-3xs));
-
-        .iui-initials {
-          box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
-        }
+        box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-background);
       }
 
       &.iui-large {
