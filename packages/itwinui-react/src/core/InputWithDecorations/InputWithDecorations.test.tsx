@@ -34,7 +34,10 @@ it('should render disabled component', () => {
   );
   assertBaseElement(container);
   expect(container.querySelector('input')).toBeDisabled();
-  expect(container.querySelector('button')).toBeDisabled();
+  expect(container.querySelector('button')).toHaveAttribute(
+    'aria-disabled',
+    'true',
+  );
 });
 
 it('should take class and style', () => {
