@@ -47,8 +47,8 @@
 
     <h2>Default</h2>
     <section id="demo-default">
-      <div class="iui-input-container iui-with-message">
-        <div class="iui-label iui-required">Radio group label</div>
+      <div class="iui-input-grid">
+        <div class="iui-input-label iui-required">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -90,11 +90,16 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class='iui-status-message-content'>Help message.</div>
+        </div>
       </div>
 
-      <div class="iui-input-container iui-with-message iui-disabled">
-        <div class="iui-label">Radio group label</div>
+      <div class="iui-input-grid iui-disabled">
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper iui-disabled">
             <input
@@ -138,11 +143,13 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class='iui-status-message-content'>Help message.</div>
+        </div>
       </div>
 
-      <div class="iui-input-container iui-with-message iui-positive">
-        <div class="iui-label">Radio group label</div>
+      <div class="iui-input-grid iui-positive">
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -184,17 +191,24 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
-        <div class="iui-message">
-          Positive message.
+
+        <div
+          class="iui-status-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-status-message-icon"><svg-status-success
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-success></div>
+          <div class='iui-status-message-content'>
+            Positive message.
+          </div>
+
         </div>
       </div>
 
-      <div class="iui-input-container iui-with-message iui-warning">
-        <div class="iui-label">Radio group label</div>
+      <div class="iui-input-grid iui-warning">
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -236,17 +250,23 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
-        <div class="iui-message">
-          Warning message.
+
+        <div
+          class="iui-status-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-status-message-icon"> <svg-status-warning
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-warning></div>
+          <div class='iui-status-message-content'>
+            Warning message.</div>
+
         </div>
       </div>
 
-      <div class="iui-input-container iui-with-message iui-negative">
-        <div class="iui-label">Radio group label</div>
+      <div class="iui-input-grid iui-negative">
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -288,17 +308,24 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
-        <div class="iui-message">
-          Negative message.
+
+        <div
+          class="iui-status-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-status-message-icon"> <svg-status-error
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-error></div>
+          <div class='iui-status-message-content'>
+            Negative message.
+          </div>
+
         </div>
       </div>
 
-      <div class="iui-input-container iui-with-message">
-        <div class="iui-label">Radio group label</div>
+      <div class="iui-input-grid">
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -348,7 +375,9 @@
             </span>
           </label>
         </div>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div class='iui-status-message-content'>Help message.</div>
+        </div>
       </div>
     </section>
 
@@ -356,8 +385,11 @@
 
     <h2>Inline</h2>
     <section id="demo-inline">
-      <div class="iui-input-container iui-inline-label">
-        <div class="iui-label iui-required">Radio group label</div>
+      <div
+        class="iui-input-grid iui-inline-label"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label iui-required">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -401,8 +433,14 @@
         </div>
       </div>
 
-      <div class="iui-input-container iui-inline-label iui-disabled">
-        <div class="iui-label">Radio group label</div>
+      <div
+        class="iui-input-grid iui-inline-label"
+        data-iui-label-placement="inline"
+      >
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper iui-disabled">
             <input
@@ -448,8 +486,11 @@
         </div>
       </div>
 
-      <div class="iui-input-container iui-inline-label iui-positive">
-        <div class="iui-label">Radio group label</div>
+      <div
+        class="iui-input-grid iui-input-group-wrapper iui-positive"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -491,14 +532,22 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
+        <div
+          class="iui-status-message"
+          data-iui-status="positive"
+        >
+          <svg-status-success
+            class="iui-svg-icon iui-status-message-icon"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
       </div>
 
-      <div class="iui-input-container iui-inline-label iui-warning">
-        <div class="iui-label">Radio group label</div>
+      <div
+        class="iui-input-grid iui-input-group-wrapper iui-warning"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -540,14 +589,22 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
+        <div
+          class="iui-status-message"
+          data-iui-status="warning"
+        >
+          <svg-status-warning
+            class="iui-svg-icon iui-status-message-icon"
+            aria-hidden="true"
+          ></svg-status-warning>
+        </div>
       </div>
 
-      <div class="iui-input-container iui-inline-label iui-negative">
-        <div class="iui-label">Radio group label</div>
+      <div
+        class="iui-input-grid iui-input-group-wrapper iui-negative"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Radio group label</div>
         <div class="iui-input-group">
           <label class="iui-radio-wrapper">
             <input
@@ -589,10 +646,15 @@
             <span class="iui-radio-label">Option 4</span>
           </label>
         </div>
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
+        <div
+          class="iui-status-message"
+          data-iui-status="negative"
+        >
+          <svg-status-error
+            class="iui-svg-icon iui-status-message-icon"
+            aria-hidden="true"
+          ></svg-status-error>
+        </div>
       </div>
     </section>
 
