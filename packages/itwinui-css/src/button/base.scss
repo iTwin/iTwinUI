@@ -57,9 +57,7 @@
     background: var(--_iui-button-active-stripe-background);
   }
 
-  &[disabled],
-  &:disabled,
-  &[aria-disabled='true'] {
+  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     --_iui-button-active-stripe-background: var(--iui-color-icon-disabled);
     --_iui-button-text-color: var(--iui-color-text-disabled);
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
