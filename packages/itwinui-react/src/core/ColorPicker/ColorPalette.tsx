@@ -140,6 +140,8 @@ export const ColorPalette = React.forwardRef((props, ref) => {
     >
       {label && <Box className='iui-color-picker-section-label'>{label}</Box>}
       <Box
+        role='listbox'
+        aria-label='Color palette'
         className='iui-color-palette'
         onKeyDown={handleKeyDown}
         ref={paletteRefs}
@@ -148,8 +150,11 @@ export const ColorPalette = React.forwardRef((props, ref) => {
         {colors &&
           colors.map((_color, index) => {
             const color = getColorValue(_color);
+            const swatchLabel = getColorValue(color).toHslString(true);
             return (
               <ColorSwatch
+                role='option'
+                aria-label={swatchLabel}
                 key={index}
                 color={color}
                 onClick={(event) => {
