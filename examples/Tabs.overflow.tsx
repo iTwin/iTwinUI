@@ -39,7 +39,15 @@ export default () => {
   ];
 
   return (
-    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
+    <div
+      style={{
+        maxInlineSize: 425,
+        borderInline: '1px solid lightpink',
+        borderBlock: '1px solid lightpink',
+        paddingInline: 8,
+        paddingBlock: 8,
+      }}
+    >
       <Tabs
         labels={labels}
         overflowOptions={{ useOverflow: true }}

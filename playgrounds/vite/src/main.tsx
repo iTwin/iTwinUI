@@ -18,7 +18,8 @@ const Shell = () => {
         styles={css`
           * {
             box-sizing: border-box;
-            margin: 0;
+            margin-inline: 0;
+            margin-block: 0;
           }
         `}
       />

@@ -60,7 +60,7 @@ export default () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
       <div style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
         <ColorSwatch
-          style={{ pointerEvents: 'none', margin: 0 }}
+          style={{ pointerEvents: 'none' }}
           color={activeColor.color}
         />
         <span>{colorName}</span>

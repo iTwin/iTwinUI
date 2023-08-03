@@ -111,9 +111,9 @@ export const Toast = (props: ToastProps) => {
 
   const marginStyle = () => {
     if (placementPosition === 'top') {
-      return { marginBottom: margin };
+      return { marginBlockEnd: margin };
     }
-    return { marginTop: margin };
+    return { marginBlockStart: margin };
   };
 
   React.useEffect(() => {

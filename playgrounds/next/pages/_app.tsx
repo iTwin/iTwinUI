@@ -19,10 +19,12 @@ const styles = css.global`
     box-sizing: border-box;
   }
   body {
-    margin: 0;
+    margin-inline: 0;
+    margin-block: 0;
   }
   .app-wrapper {
-    padding: 2rem 1rem;
-    height: 100dvh;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+    block-size: 100dvh;
   }
 `;

@@ -14,7 +14,8 @@ export default () => {
         placeItems: 'center',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        margin: '10px',
+        marginInline: '10px',
+        marginBlock: '10px',
       }}
     >
       <Badge backgroundColor='skyblue'>Skyblue</Badge>

@@ -90,7 +90,10 @@ export const Popover = React.forwardRef((props: PopoverProps, ref) => {
       ...props.popperOptions,
       modifiers: [
         { name: 'flip' },
-        { name: 'preventOverflow', options: { padding: 0 } },
+        {
+          name: 'preventOverflow',
+          options: { paddingInline: 0, paddingBlock: 0 },
+        },
         ...(props.popperOptions?.modifiers || []),
       ],
     },

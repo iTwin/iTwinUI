@@ -7,11 +7,12 @@ import { Surface, Text, Flex, Anchor, Divider } from '@itwin/itwinui-react';
 
 export default () => {
   const listStyle = {
-    padding: 'var(--iui-size-s)',
+    paddingInline: 'var(--iui-size-s)',
+    paddingBlock: 'var(--iui-size-s)',
     position: 'relative',
   } as React.CSSProperties;
   const cardStyle = {
-    maxHeight: '300px',
+    maxBlockSize: '300px',
   };
   return (
     <Surface elevation={3} style={cardStyle}>
@@ -26,8 +27,10 @@ export default () => {
             style={{
               width: '100%',
               listStyle: 'none',
-              margin: '0',
-              padding: '0',
+              marginInline: '0',
+              marginBlock: '0',
+              paddingInline: '0',
+              paddingBlock: '0',
             }}
           >
             <li style={listStyle}>

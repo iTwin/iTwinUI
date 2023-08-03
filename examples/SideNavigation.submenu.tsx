@@ -90,7 +90,8 @@ export default () => {
       <div
         style={{
           background: 'var(--iui-color-background-disabled)',
-          padding: 16,
+          paddingInline: 16,
+          paddingBlock: 16,
           flexGrow: 1,
           display: 'grid',
           placeContent: 'center',

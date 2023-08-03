@@ -16,7 +16,7 @@ export const EXPANDER_CELL_ID = 'iui-table-expander';
  * @example
  * const subComponent = useCallback(
  *   (row: Row) => (
- *     <div style={{ padding: 16 }}>
+ *     <div style={{ paddingInline: 16, paddingBlock: 16 }}>
  *       <Text variant='leading'>Extra information</Text>
  *       <pre>
  *         <code>{JSON.stringify({ values: row.values }, null, 2)}</code>

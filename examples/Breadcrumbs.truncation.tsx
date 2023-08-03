@@ -9,11 +9,13 @@ export default () => {
   return (
     <div
       style={{
-        width: '75%',
-        minWidth: 150,
-        maxWidth: 450,
-        border: '1px solid pink',
-        padding: 8,
+        inlineSize: '75%',
+        minInlineSize: 150,
+        maxInlineSize: 450,
+        borderInline: '1px solid pink',
+        borderBlock: '1px solid pink',
+        paddingInline: 8,
+        paddingBlock: 8,
       }}
     >
       <Breadcrumbs>
