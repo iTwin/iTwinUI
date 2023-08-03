@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { getRandomValue, useMergedRefs, Box } from '../utils/index.js';
+import {
+  getRandomValue,
+  useMergedRefs,
+  Box,
+  useLatestRef,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
@@ -102,10 +107,10 @@ const CarouselComponent = React.forwardRef((props, ref) => {
     }
   };
 
-  const userOnSlideChange = React.useRef(onSlideChange);
+  const userOnSlideChange = useLatestRef(onSlideChange);
   React.useEffect(() => {
     userOnSlideChange.current?.(currentIndex);
-  }, [currentIndex]);
+  }, [userOnSlideChange, currentIndex]);
 
   return (
     <Box
