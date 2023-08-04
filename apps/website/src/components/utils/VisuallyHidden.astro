@@ -9,15 +9,17 @@ const { unhide = false } = Astro.props;
 </span>
 
 <style lang='scss' is:global>
-  .visually-hidden:where(:not(:focus):not(:focus-within):not(:active):not(.not-visually-hidden)) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-    border-width: 0;
+  @layer components {
+    .visually-hidden:where(:not(:focus):not(:focus-within):not(:active):not(.not-visually-hidden)) {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+      border-width: 0;
+    }
   }
 </style>

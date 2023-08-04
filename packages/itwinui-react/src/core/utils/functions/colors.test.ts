@@ -6,10 +6,14 @@ import { getUserColor } from './colors.js';
 
 describe('getUserColor', () => {
   it('should return color for given user name', () => {
-    expect(getUserColor('Terry Rivers')).toEqual('#6AB9EC');
+    expect(getUserColor('Terry Rivers')).toEqual(
+      'var(--iui-color-background-skyblue)',
+    );
   });
 
   it('should return color for given user email', () => {
-    expect(getUserColor('Terry.Rivers@email.com')).toEqual('#73C7C1');
+    expect(getUserColor('Terry.Rivers@email.com')).toEqual(
+      'var(--iui-color-background-montecarlo)',
+    );
   });
 });
