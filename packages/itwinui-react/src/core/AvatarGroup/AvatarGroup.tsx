@@ -116,12 +116,9 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
               countIconProps?.className,
             )}
           >
-            <Box as='abbr' className='iui-initials'>
-              {childrenLength <= maxLength
-                ? `${childrenLength - maxIcons}`
-                : `${maxLength}+`}
-            </Box>
-            <Box className='iui-stroke' />
+            {childrenLength <= maxLength
+              ? `${childrenLength - maxIcons}`
+              : `${maxLength}+`}
           </Box>
         </>
       )}

@@ -120,6 +120,12 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.1
+
+### Patch Changes
+
+- [#1467](https://github.com/iTwin/iTwinUI/pull/1467): Fixed an issue in Carousel where latest `onSlideChange` callback was being ignored.
+
 ## 2.12.0
 
 ### Minor Changes

@@ -35,35 +35,37 @@
 </script>
 
 <style lang='scss'>
-  sidebar-toggle {
-    display: none;
+  @layer components {
+    sidebar-toggle {
+      display: none;
 
-    @media (max-width: 50em) {
-      display: block;
+      @media (max-width: 50em) {
+        display: block;
+      }
     }
-  }
 
-  button {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    background-color: transparent;
-    border-radius: var(--border-radius-1);
-    padding: var(--space-2) var(--space-3);
-    color: var(--color-text);
-    opacity: 0.9;
-    border: none;
+    button {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      background-color: transparent;
+      border-radius: var(--border-radius-1);
+      padding: var(--space-2) var(--space-3);
+      color: var(--color-text);
+      opacity: 0.9;
+      border: none;
 
-    &:hover {
-      opacity: 1;
-      background-color: var(--color-active);
+      &:hover {
+        opacity: 1;
+        background-color: var(--color-active);
+      }
     }
-  }
 
-  svg {
-    width: 2em;
-    height: 2em;
-    fill: none;
-    stroke: currentColor;
+    svg {
+      width: 2em;
+      height: 2em;
+      fill: none;
+      stroke: currentColor;
+    }
   }
 </style>
