@@ -21,16 +21,15 @@ type WorkflowDiagramProps = Pick<StepperProps, 'steps'> & {
 };
 
 export const WorkflowDiagram = React.forwardRef(
-  (props: React.Ref<HTMLDivElement>) => {
-    const { steps, className, contentProps, wrapperProps, ref, ...rest } =
-      props;
+  // TODO: Remove this ref cast. ref and rest props should be applied on the same element
+  (props, ref: React.Ref<HTMLDivElement>) => {
+    const { steps, className, contentProps, wrapperProps, ...rest } = props;
 
     return (
-      <Box as='div' {...wrapperProps}>
+      <Box as='div' {...wrapperProps} ref={ref}>
         <Box
           as='ol'
           className={cx('iui-workflow-diagram', className)}
-          ref={ref}
           {...rest}
         >
           {steps.map((s, index) => {
