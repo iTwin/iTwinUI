@@ -62,14 +62,12 @@ it('should add custom props to Stepper', () => {
 
   const { container } = render(stepper);
 
-  expect(container.querySelector('.iui-stepper-steps-label')).toHaveClass(
-    'iui-stepper-steps-label',
-    'some-label',
-  );
-  expect(container.querySelector('.iui-stepper-steps-label-count')).toHaveClass(
-    'iui-stepper-steps-label-count',
-    'some-count',
-  );
+  expect(
+    container.querySelector('.iui-stepper-steps-label.some-label'),
+  ).toBeTruthy();
+  expect(
+    container.querySelector('.iui-stepper-steps-label-count.some-count'),
+  ).toBeTruthy();
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {

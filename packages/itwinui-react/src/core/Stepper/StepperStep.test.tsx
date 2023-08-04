@@ -150,22 +150,21 @@ describe('Stepper step (default)', () => {
 
     const { container } = render(step);
 
-    expect(container.querySelector('.iui-stepper-step')).toHaveClass(
-      'iui-stepper-step',
-      'some-class',
-    );
-    expect(container.querySelector('.iui-stepper-track-content')).toHaveClass(
-      'iui-stepper-track-content',
-      'some-content',
-    );
-    expect(container.querySelector('.iui-stepper-circle')).toHaveClass(
-      'iui-stepper-circle',
-      'some-circle',
-    );
-    expect(container.querySelector('.iui-stepper-step-name')).toHaveClass(
-      'iui-stepper-step-name',
-      'some-name',
-    );
+    expect(
+      container.querySelector('.iui-stepper-step.some-class'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-track-content.some-content'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-circle.some-circle'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-step-name.some-name'),
+    ).toBeTruthy();
   });
 
   it('should set dynamic inline width based on total steps', () => {
