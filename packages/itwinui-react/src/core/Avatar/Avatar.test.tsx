@@ -8,20 +8,23 @@ import { SvgUser } from '@itwin/itwinui-icons-react';
 
 import { defaultStatusTitles, Avatar, type AvatarStatus } from './Avatar.js';
 
-function assertBaseElements(size = 'small', backgroundColor?: string) {
-  const avatarContainer = screen.getByTitle('Terry Rivers');
-  expect(avatarContainer.className).toEqual(
-    `iui-avatar${size !== 'medium' ? ` iui-${size}` : ''}`,
+function assertBaseElements({
+  size = 'small',
+  backgroundColor = '',
+  abbreviation = 'TR',
+} = {}) {
+  const avatar = screen.getByText(abbreviation);
+  expect(avatar).toHaveAttribute('title', 'Terry Rivers');
+  expect(avatar).toHaveClass(
+    `iui-avatar`,
+    size !== 'medium' ? `iui-${size}` : '',
   );
 
   if (backgroundColor) {
-    expect(avatarContainer.style.backgroundColor).toEqual(backgroundColor);
-  } else {
-    expect(avatarContainer.style.backgroundColor).toBeFalsy();
+    expect(avatar.style.backgroundColor).toEqual(backgroundColor);
   }
 
-  const abbreviation = screen.getByText('TR');
-  expect(abbreviation.className).toEqual('iui-initials');
+  return avatar;
 }
 
 it('should render with given abbreviation', () => {
@@ -38,33 +41,24 @@ it.each(['small', 'medium', 'large', 'x-large'] as Array<
   'small' | 'medium' | 'large' | 'x-large'
 >)('should render with %s size', (size) => {
   render(<Avatar abbreviation='TR' title='Terry Rivers' size={size} />);
-  assertBaseElements(size);
+  assertBaseElements({ size });
 });
 
 it.each(['', 'online', 'busy', 'away', 'offline'] as Array<AvatarStatus>)(
   'should render with the %s status',
   (status) => {
-    const { container } = render(
-      <Avatar abbreviation='TR' title='Terry Rivers' status={status} />,
-    );
-    assertBaseElements();
-    const statusContainer = container.querySelector(
-      '.iui-status',
-    ) as HTMLElement;
-    if (!status) {
-      expect(statusContainer).toBeFalsy();
-      return;
+    render(<Avatar abbreviation='TR' title='Terry Rivers' status={status} />);
+    const avatar = assertBaseElements();
+
+    if (status) {
+      expect(avatar).toHaveAttribute('data-iui-status', status);
+      expect(avatar).toHaveTextContent(`TR${defaultStatusTitles[status]}`);
     }
-    expect(statusContainer).toBeTruthy();
-    expect(statusContainer.classList).toContain(`iui-${status}`);
-    expect(statusContainer.getAttribute('title')).toEqual(
-      defaultStatusTitles[status],
-    );
   },
 );
 
 it('should render with translated statuses', () => {
-  const { container } = render(
+  render(
     <Avatar
       abbreviation='TR'
       title='Terry Rivers'
@@ -76,24 +70,20 @@ it('should render with translated statuses', () => {
     />,
   );
 
-  const statusContainer = container.querySelector('.iui-status') as HTMLElement;
-  expect(statusContainer.getAttribute('title')).toEqual('test-offline');
+  const avatar = assertBaseElements();
+  expect(avatar).toHaveAttribute('data-iui-status', 'offline');
+  expect(avatar).toHaveTextContent(`TRtest-offline`);
 });
 
 it('should render with custom color', () => {
   render(
     <Avatar abbreviation='TR' title='Terry Rivers' backgroundColor={'pink'} />,
   );
-  assertBaseElements(undefined, 'pink');
+  assertBaseElements({ backgroundColor: 'pink' });
 });
 
 it('renders with image', () => {
   const { container } = render(<Avatar image={<img />} title='Terry Rivers' />);
-
-  const avatarContainer = screen.getByTitle('Terry Rivers');
-  expect(avatarContainer.className).toEqual('iui-avatar iui-small');
-  const abbreviation = container.querySelector('.iui-initials');
-  expect(abbreviation).toBeFalsy();
   const img = container.querySelector('img');
   expect(img).toBeTruthy();
 });

@@ -81,3 +81,28 @@ it('renders ProgressLinear with 2 labels', () => {
   screen.getByText('Processing...');
   screen.getByText('test.dgn');
 });
+
+it('passes custom props to ProgressLinear parts', () => {
+  const value = 100;
+  const labels = ['Upload done!', '100%'];
+  const status = 'positive';
+  const { container } = render(
+    <ProgressLinear
+      value={value}
+      labels={labels}
+      labelGroupProps={{
+        className: 'custom-label-group-class',
+        style: { fontSize: 12 },
+      }}
+      status={status}
+    />,
+  );
+
+  // Label group test
+
+  const labelGroup = container.querySelector(
+    '.iui-progress-indicator-linear-label.custom-label-group-class',
+  ) as HTMLElement;
+  expect(labelGroup).toBeTruthy;
+  expect(labelGroup.style.fontSize).toBe('12px');
+});
