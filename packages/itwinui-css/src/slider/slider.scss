@@ -9,6 +9,7 @@ $tick-height: var(--iui-size-s); // 12px
 .iui-slider-component-container {
   display: flex;
   align-items: flex-start;
+  flex-direction: unset;
 
   &.iui-disabled {
     cursor: not-allowed;

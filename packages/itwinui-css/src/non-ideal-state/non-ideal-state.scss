@@ -39,7 +39,8 @@
   align-items: center;
   margin-block-end: var(--iui-size-xs);
 
-  > .iui-input-container {
+  > .iui-input-container,
+  > .iui-input-flex-container {
     display: inline-block;
     inline-size: 200px;
     text-align: start;
