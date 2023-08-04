@@ -3,24 +3,6 @@
 @use 'sass:map';
 @use '../mixins';
 
-@mixin iui-avatar-margins {
-  .iui-avatar:not(:first-child) {
-    margin-inline-start: var(--iui-size-2xs);
-
-    &.iui-small {
-      margin-inline-start: var(--iui-size-3xs);
-    }
-
-    &.iui-large {
-      margin-inline-start: var(--iui-size-xs);
-    }
-
-    &.iui-x-large {
-      margin-inline-start: var(--iui-size-s);
-    }
-  }
-}
-
 /// @arg $size Must be one of: xl, l, 2xl, 3xl
 @mixin iui-avatar-size($size: xl, $font-size: var(--iui-font-size-2)) {
   $icon-size: map.get(mixins.$iui-icon-sizes, $size);
