@@ -73,6 +73,9 @@ it('should apply all custom props', () => {
       calendarMonthProps={{ className: 'some-month' }}
       daysOfWeekProps={{ className: 'some-day-of-week' }}
       weekProps={{ className: 'some-week' }}
+      politeLabelProps={{ className: 'some-politeness' }}
+      listboxProps={{ className: 'some-listbox' }}
+      dayProps={{ className: 'some-day' }}
     />,
   );
   assertMonthYear(container, 'January', '2020');
@@ -92,6 +95,13 @@ it('should apply all custom props', () => {
     'iui-calendar-week',
     'some-week',
   );
+  expect(container.querySelector('.iui-calendar-week')).toHaveClass(
+    'iui-calendar-week',
+    'some-week',
+  );
+  expect(container.querySelector('.some-politeness')).toBeTruthy();
+  expect(container.querySelector('.some-listbox')).toBeTruthy();
+  expect(container.querySelector('.some-day')).toBeTruthy();
 });
 
 it('should return selected date', async () => {
