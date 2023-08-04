@@ -287,6 +287,8 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       </Box>
 
       <Slider
+        aria-label='Hue slider'
+        id='Slider'
         minLabel=''
         maxLabel=''
         values={[sliderValue]}
@@ -305,6 +307,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
 
       {showAlpha && (
         <Slider
+          aria-label='Opacity slider'
           minLabel=''
           maxLabel=''
           values={[alphaValue]}

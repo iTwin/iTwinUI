@@ -69,7 +69,10 @@ export default () => {
           visible={isOpen}
           placement='bottom-start'
         >
-          <IconButton onClick={() => setIsOpen((open) => !open)}>
+          <IconButton
+            label='Color Picker Toggle'
+            onClick={() => setIsOpen((open) => !open)}
+          >
             <ColorSwatch
               style={{ pointerEvents: 'none', margin: 0 }}
               color={selectedColor}

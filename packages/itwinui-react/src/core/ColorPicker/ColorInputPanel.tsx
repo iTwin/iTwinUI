@@ -477,6 +477,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       <Box className='iui-color-input'>
         {allowedColorFormats.length > 1 && (
           <IconButton
+            label='Color input'
             styleType='borderless'
             onClick={swapColorFormat}
             size='small'
