@@ -132,49 +132,51 @@ const uid = `t-${nanoid(7)}`;
 </div>
 
 <style lang='scss'>
-  div {
-    position: relative;
-  }
-
-  a {
-    display: grid;
-    place-items: center;
-    min-width: 2rem;
-    min-height: 2rem;
-    color: var(--color-text);
-    background: transparent;
-    border-radius: 9e9px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    padding: 0.25rem;
-
-    &:hover {
-      background: hsl(0 0% 0% / 0.2);
+  @layer components {
+    div {
+      position: relative;
     }
 
-    > :global(svg) {
-      width: 1.25rem;
-      height: 1.25rem;
+    a {
+      display: grid;
+      place-items: center;
+      min-width: 2rem;
+      min-height: 2rem;
+      color: var(--color-text);
+      background: transparent;
+      border-radius: 9e9px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      padding: 0.25rem;
+
+      &:hover {
+        background: hsl(0 0% 0% / 0.2);
+      }
+
+      > :global(svg) {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
-  }
 
-  a + span {
-    visibility: hidden;
+    a + span {
+      visibility: hidden;
 
-    position: absolute;
-    top: -100%;
-    left: 50%;
-    transform: translate(-66%);
-    font-size: var(--type--2);
-    padding: 0.5rem;
-    white-space: nowrap;
-    background-color: var(--color-background-2);
-    border: 1px solid var(--color-line-2);
-    border-radius: 4px;
-  }
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translate(-66%);
+      font-size: var(--type--2);
+      padding: 0.5rem;
+      white-space: nowrap;
+      background-color: var(--color-background-2);
+      border: 1px solid var(--color-line-2);
+      border-radius: 4px;
+    }
 
-  a:is(:hover, :focus-within) + span,
-  a + span:hover {
-    visibility: visible;
+    a:is(:hover, :focus-within) + span,
+    a + span:hover {
+      visibility: visible;
+    }
   }
 </style>
