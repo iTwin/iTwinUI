@@ -1996,17 +1996,17 @@ it('should render sub-rows with padding-left of 12+30*(row depth) for condensed 
 
   // First row has a row depth of zero, so padding-left is 12 + 30*0 = 12
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 12px',
+    'padding-inline-start: 12px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 12 + 30*2 = 72
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 72px',
+    'padding-inline-start: 72px',
   );
 
   // Second row has a row depth of one, so padding-left is 12 + 30*1 = 42
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 42px',
+    'padding-inline-start: 42px',
   );
 });
 
@@ -2027,17 +2027,17 @@ it('should render sub-rows with padding-left of 8+30*(row depth) for extra-conde
 
   // First row has a row depth of zero, so padding-left is 8 + 30*0 = 8
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 8px',
+    'padding-inline-start: 8px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 8 + 30*2 = 68
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 68px',
+    'padding-inline-start: 68px',
   );
 
   // Second row has a row depth of one, so padding-left is 8 + 30*1 = 38
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 38px',
+    'padding-inline-start: 38px',
   );
 });
 
