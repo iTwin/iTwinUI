@@ -79,26 +79,16 @@ it('should apply all custom props', () => {
     />,
   );
   assertMonthYear(container, 'January', '2020');
-  expect(container.querySelector('.iui-calendar-month-year')).toHaveClass(
-    'iui-calendar-month-year',
-    'some-calendar',
-  );
-  expect(container.querySelector('.iui-calendar-month')).toHaveClass(
-    'iui-calendar-month',
-    'some-month',
-  );
-  expect(container.querySelector('.iui-calendar-weekdays')).toHaveClass(
-    'iui-calendar-weekdays',
-    'some-day-of-week',
-  );
-  expect(container.querySelector('.iui-calendar-week')).toHaveClass(
-    'iui-calendar-week',
-    'some-week',
-  );
-  expect(container.querySelector('.iui-calendar-week')).toHaveClass(
-    'iui-calendar-week',
-    'some-week',
-  );
+  expect(
+    container.querySelector('.iui-calendar-month-year.some-calendar'),
+  ).toBeTruthy();
+  expect(
+    container.querySelector('.iui-calendar-month.some-month'),
+  ).toBeTruthy();
+  expect(
+    container.querySelector('.iui-calendar-weekdays.some-day-of-week'),
+  ).toBeTruthy();
+  expect(container.querySelector('.iui-calendar-week.some-week')).toBeTruthy();
   expect(container.querySelector('.some-politeness')).toBeTruthy();
   expect(container.querySelector('.some-listbox')).toBeTruthy();
   expect(container.querySelector('.some-day')).toBeTruthy();
