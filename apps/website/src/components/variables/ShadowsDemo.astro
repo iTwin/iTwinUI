@@ -13,8 +13,10 @@ import Item from './_item.astro';
   }
 </Wrapper>
 
-<style>
-  .item {
-    box-shadow: var(--_shadow);
+<style lang='scss'>
+  @layer components {
+    .item {
+      box-shadow: var(--_shadow);
+    }
   }
 </style>

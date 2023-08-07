@@ -18,7 +18,7 @@ describe('AvatarGroup', () => {
       cy.visit('iframe', { qs: { id } });
 
       if (testName.includes('Tooltip')) {
-        cy.get('abbr').contains('3').parent().trigger('mouseenter');
+        cy.get('div').contains('3').trigger('mouseenter');
         cy.wait(50);
       }
 
