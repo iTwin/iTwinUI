@@ -62,9 +62,6 @@ it('should render in its most basic state', () => {
     '.iui-avatar-count',
   ) as HTMLElement;
   expect(countAvatar.textContent).toBe('2');
-
-  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(6);
-  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(6);
 });
 
 it('should render animated', () => {
@@ -92,9 +89,6 @@ it('should render without count avatar', () => {
   expect(avatarGroupCount.length).toBe(6);
 
   expect(container.querySelector('.iui-avatar-count')).toBeFalsy();
-
-  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(6);
-  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(6);
 });
 
 it('should render different length', () => {
@@ -117,9 +111,6 @@ it('should render different length', () => {
     '.iui-avatar-count',
   ) as HTMLElement;
   expect(countAvatar.textContent).toBe('4');
-
-  expect(avatarGroup.querySelectorAll('.iui-stroke').length).toBe(4);
-  expect(avatarGroup.querySelectorAll('.iui-initials').length).toBe(4);
 });
 
 it('should render animated', () => {

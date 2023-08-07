@@ -69,69 +69,71 @@ const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === c
 </div>
 
 <style lang='scss'>
-  .wrapper {
-    display: flex;
-    overflow: auto;
-  }
-
-  table {
-    color: var(--color-subtext);
-    border-spacing: 0;
-    border-collapse: collapse;
-    width: 100%;
-
-    &,
-    * {
-      font-size: var(--type--1);
-    }
-  }
-
-  tr {
-    background: transparent;
-
-    & + & {
-      border-top: 0.5px solid hsl(0 0% 0% / 0.2);
-    }
-  }
-
-  th,
-  td {
-    padding: var(--space-3) var(--space-2);
-    max-width: 35ch;
-
-    &:first-child {
-      padding-left: 0;
+  @layer components {
+    .wrapper {
+      display: flex;
+      overflow: auto;
     }
 
-    &:last-child {
-      padding-right: 0;
+    table {
+      color: var(--color-subtext);
+      border-spacing: 0;
+      border-collapse: collapse;
+      width: 100%;
+
+      &,
+      * {
+        font-size: var(--type--1);
+      }
     }
-  }
 
-  th {
-    text-align: left;
-    text-transform: uppercase;
-    letter-spacing: 0.05ch;
-  }
+    tr {
+      background: transparent;
 
-  tr + tr {
-    border-top: 1px solid var(--color-line-2);
-  }
+      & + & {
+        border-top: 0.5px solid hsl(0 0% 0% / 0.2);
+      }
+    }
 
-  .md {
-    font-family: var(--font-body);
-    margin-bottom: var(--space-2);
+    th,
+    td {
+      padding: var(--space-3) var(--space-2);
+      max-width: 35ch;
 
-    & code {
+      &:first-child {
+        padding-left: 0;
+      }
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+
+    th {
+      text-align: left;
+      text-transform: uppercase;
+      letter-spacing: 0.05ch;
+    }
+
+    tr + tr {
+      border-top: 1px solid var(--color-line-2);
+    }
+
+    .md {
+      font-family: var(--font-body);
+      margin-bottom: var(--space-2);
+
+      & code {
+        font-family: var(--font-mono);
+      }
+    }
+
+    .mono {
       font-family: var(--font-mono);
     }
-  }
 
-  .mono {
-    font-family: var(--font-mono);
-  }
-
-  .types {
-    font-family: var(--font-mono);
+    .types {
+      font-family: var(--font-mono);
+    }
   }
 </style>

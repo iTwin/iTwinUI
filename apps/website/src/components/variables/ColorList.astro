@@ -22,51 +22,55 @@ const { colors, ...rest } = Astro.props;
 </Wrapper>
 
 <style>
-  .color-list-wrapper {
-    display: grid;
-    grid-auto-flow: column;
-    gap: var(--space-5);
+  @layer components {
+    .color-list-wrapper {
+      display: grid;
+      grid-auto-flow: column;
+      gap: var(--space-5);
+    }
   }
 </style>
 
 <style lang='scss' is:global>
-  .color-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    margin-inline: auto;
-  }
-
-  .color-tooltip {
-    color: hsl(0 0% 100% / 0.9);
-    background-color: hsl(0 0% 0% / 0.9);
-    border-radius: var(--space-1);
-    padding: var(--space-1) var(--space-3);
-    font-family: var(--font-mono);
-    font-size: var(--type-0);
-    transition: opacity 0.3s ease-in-out;
-    box-shadow: 0px 1px 10px 3px hsl(0 0% 0% / 20%);
-    max-width: min(450px, 100%);
-
-    [data-state='hidden'] & {
-      opacity: 0;
+  @layer components {
+    .color-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-inline: auto;
     }
 
-    [data-state='visible'] & {
-      opacity: 1;
-      transition-duration: 0.1ms;
-    }
-  }
+    .color-tooltip {
+      color: hsl(0 0% 100% / 0.9);
+      background-color: hsl(0 0% 0% / 0.9);
+      border-radius: var(--space-1);
+      padding: var(--space-1) var(--space-3);
+      font-family: var(--font-mono);
+      font-size: var(--type-0);
+      transition: opacity 0.3s ease-in-out;
+      box-shadow: 0px 1px 10px 3px hsl(0 0% 0% / 20%);
+      max-width: min(450px, 100%);
 
-  .color-list-item {
-    border: none;
-    width: var(--space-8);
-    height: var(--space-8);
-    border-radius: var(--space-1);
-    box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--_color);
+      [data-state='hidden'] & {
+        opacity: 0;
+      }
+
+      [data-state='visible'] & {
+        opacity: 1;
+        transition-duration: 0.1ms;
+      }
+    }
+
+    .color-list-item {
+      border: none;
+      width: var(--space-8);
+      height: var(--space-8);
+      border-radius: var(--space-1);
+      box-shadow: 0 0 4px hsl(0 0% 0% / 20%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--_color);
+    }
   }
 </style>
