@@ -9,6 +9,11 @@ export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
       <Slider
+        thumbProps={() => {
+          return {
+            'aria-label': `Choose a value`,
+          };
+        }}
         values={[50]}
         min={0}
         max={100}
