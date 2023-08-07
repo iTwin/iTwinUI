@@ -15,7 +15,7 @@ export default () => {
       <Slider
         thumbProps={() => {
           return {
-            'aria-label': `Choose a value`,
+            'aria-label': `Choose a rating`,
           };
         }}
         values={[50]}
