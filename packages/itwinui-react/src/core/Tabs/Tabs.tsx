@@ -755,19 +755,13 @@ TabsPanel.displayName = 'Tabs.Panel';
  * @example
  * <Tabs>
  *   <Tabs.TabList>
- *     <Tabs.Tab value='tab1'>
- *       <Tabs.TabLabel>Label 1</Tabs.TabLabel>
- *     </Tabs.Tab>
- *     <Tabs.Tab value='tab2'>
- *       <Tabs.TabLabel>Label 2</Tabs.TabLabel>
- *     </Tabs.Tab>
- *     <Tabs.Tab value='tab3'>
- *       <Tabs.TabLabel>Label 3</Tabs.TabLabel>
- *     </Tabs.Tab>
+ *     <Tabs.Tab value='tab1' label='Label 1' />
+ *     <Tabs.Tab value='tab2' label='Label 2' />
+ *     <Tabs.Tab value='tab3' label='Label 3' />
  *   </Tabs.TabList>
  *   <Tabs.ActionsWrapper>
  *     <Tabs.Actions>
- *       <Button>Sample Button</Button>,
+ *       <Button>Sample Button</Button>
  *     </Tabs.Actions>
  *   </Tabs.ActionsWrapper>
  *   <Tabs.Panel value='tab1'>Content 1</Tabs.Panel>
@@ -791,35 +785,67 @@ TabsPanel.displayName = 'Tabs.Panel';
 
 export const Tabs = Object.assign(TabsComponent, {
   /**
-   * 	Tab list subcomponent
+   * Tablist subcomponent which contains all of the tab subcomponents.
+   * @example
+   * <Tabs.TabList>
+   *   <Tabs.Tab value='tab1' label='Label 1' />
+   *   <Tabs.Tab value='tab2' label='Label 2' />
+   *   <Tabs.Tab value='tab3' label='Label 3' />
+   * </Tabs.TabList>
+   *
+   * @example
+   * <Tabs.TabList color='green'>
+   *   <Tabs.Tab value='tab1' label='Green Tab' />
+   * </Tabs.TabList>
+   *
+   * @example
+   * <Tabs.TabList focusActivationMode='manual'>
+   *   <Tabs.Tab value='tab1' label='Manual Focus Tab' />
+   * </Tabs.TabList>
    */
   TabList: TabList,
   /**
-   * 	Tab subcomponent
+   * Tab subcomponent which is used for each of the tabs.
+   * @example
+   * <Tabs.Tab value='tab1' label='Label 1' />
+   *
+   * @example
+   * <Tabs.Tab value='sample'>
+   *   <Tabs.TabIcon>
+   *     <SvgPlaceholder />
+   *   </Tabs.TabIcon>
+   *   <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
+   *   <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
+   * </Tabs.Tab>
+   *
    */
   Tab: Tab,
   /**
-   *  Tab icon subcomponent
+   * Tab icon subcomponent which places an icon on the left side of the tab.
    */
   TabIcon: TabIcon,
   /**
-   * 	Tab label subcomponent
+   * Tab label subcomponent which holds the tab's label.
    */
   TabLabel: TabLabel,
   /**
-   * 	Tab description subcomponent
+   * Tab description subcomponent which places a description under the tab label.
    */
   TabDescription: TabDescription,
   /**
-   * 	Tab actions wrapper subcomponent
+   * Tab actions wrapper subcomponent which contains the actions subcomponent.
    */
   ActionsWrapper: TabsActionsWrapper,
   /**
-   * 	Tab actions subcomponent
+   * Tab actions subcomponent which contains action buttons that are placed at the end of the tabs.
    */
   Actions: TabsActions,
   /**
-   * 	Tab panel subcomponent
+   * Tab panel subcomponent which contains the tab's content.
+   * @example
+   * <Tabs.Panel value='tab1'>
+   *   Sample Panel
+   * </Tabs.Panel>
    */
   Panel: TabsPanel,
 });
