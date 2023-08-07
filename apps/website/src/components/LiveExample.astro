@@ -75,123 +75,125 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 </script>
 
 <style lang='scss'>
-  .demo-box {
-    position: relative;
-    min-height: 300px;
-    max-height: 500px;
-    display: grid;
-    justify-items: center;
-    padding: 1rem;
-    background: var(--color-sandbox-gradient);
-    isolation: isolate;
-    border-radius: var(--border-radius-1);
-  }
-
-  .demo-box :global([data-iui-theme]) {
-    height: 100%;
-    width: 100%;
-    overflow: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .sandbox-link {
-    position: absolute;
-    bottom: 0.25rem;
-    right: 0.25rem;
-    z-index: 1;
-  }
-
-  demo-code {
-    isolation: isolate;
-    position: relative;
-    display: grid;
-    border-radius: var(--border-radius-1);
-    outline: 1px solid var(--color-line-2);
-    outline-offset: 1px;
-
-    > :global(pre) {
-      padding: 1rem;
-      font-size: var(--type--1);
-      border-radius: var(--border-radius-1);
-    }
-
-    > :global([aria-expanded='false'] ~ pre) {
-      max-height: 200px;
-      overflow: hidden !important;
-
-      &::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        z-index: 1;
-        background: linear-gradient(to bottom, transparent, var(--color-background-2));
-      }
-    }
-
-    > :global([aria-expanded='true'] ~ pre) {
-      padding-block-end: 2.5rem;
-    }
-
-    button {
-      font: inherit;
-      cursor: pointer;
-      background: var(--color-background-1);
-      padding: 0.5rem 1.25rem;
-      position: absolute;
-      border: 1px solid;
-      border-radius: var(--border-radius-1);
-      z-index: 2;
-      transition: color 0.2s, border-color 0.2s;
-    }
-
-    button[aria-expanded] {
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-
-      &:not(:hover, :focus-visible) {
-        color: var(--color-text);
-        border-color: var(--color-line-1);
-      }
-    }
-
-    button[data-copied] {
-      top: 0.5rem;
-      right: 0.5rem;
-      padding: 0.5rem;
-      border-color: var(--color-line-2);
+  @layer components {
+    .demo-box {
+      position: relative;
+      min-height: 300px;
+      max-height: 500px;
       display: grid;
-      place-items: center;
-
-      --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z'></path></svg>");
-
-      &[data-copied='true'] {
-        --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 20 20'><path d='m7.032 13.907l-3.471-3.905a.75.75 0 0 0-1.122.996l4 4.5a.75.75 0 0 0 1.091.032l10.5-10.5a.75.75 0 0 0-1.06-1.06l-9.938 9.937Z'></path></svg>");
-      }
-
-      &::before {
-        content: '';
-        -webkit-mask: var(--_svg) no-repeat center / contain;
-        mask: var(--_svg) no-repeat center / contain;
-        width: 1rem;
-        height: 1rem;
-        background-color: currentColor;
-      }
-
-      &:hover {
-        border-color: currentColor;
-      }
+      justify-items: center;
+      padding: 1rem;
+      background: var(--color-sandbox-gradient);
+      isolation: isolate;
+      border-radius: var(--border-radius-1);
     }
 
-    &:not(:hover, :focus-within) button[data-copied] {
-      clip-path: inset(50%);
-      overflow: hidden;
-      width: 1px;
-      height: 1px;
-      white-space: nowrap;
+    .demo-box :global([data-iui-theme]) {
+      height: 100%;
+      width: 100%;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .sandbox-link {
+      position: absolute;
+      bottom: 0.25rem;
+      right: 0.25rem;
+      z-index: 1;
+    }
+
+    demo-code {
+      isolation: isolate;
+      position: relative;
+      display: grid;
+      border-radius: var(--border-radius-1);
+      outline: 1px solid var(--color-line-2);
+      outline-offset: 1px;
+
+      > :global(pre) {
+        padding: 1rem;
+        font-size: var(--type--1);
+        border-radius: var(--border-radius-1);
+      }
+
+      > :global([aria-expanded='false'] ~ pre) {
+        max-height: 200px;
+        overflow: hidden !important;
+
+        &::before {
+          content: '';
+          position: absolute;
+          inset: 0;
+          z-index: 1;
+          background: linear-gradient(to bottom, transparent, var(--color-background-2));
+        }
+      }
+
+      > :global([aria-expanded='true'] ~ pre) {
+        padding-block-end: 2.5rem;
+      }
+
+      button {
+        font: inherit;
+        cursor: pointer;
+        background: var(--color-background-1);
+        padding: 0.5rem 1.25rem;
+        position: absolute;
+        border: 1px solid;
+        border-radius: var(--border-radius-1);
+        z-index: 2;
+        transition: color 0.2s, border-color 0.2s;
+      }
+
+      button[aria-expanded] {
+        bottom: 1rem;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &:not(:hover, :focus-visible) {
+          color: var(--color-text);
+          border-color: var(--color-line-1);
+        }
+      }
+
+      button[data-copied] {
+        top: 0.5rem;
+        right: 0.5rem;
+        padding: 0.5rem;
+        border-color: var(--color-line-2);
+        display: grid;
+        place-items: center;
+
+        --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z'></path></svg>");
+
+        &[data-copied='true'] {
+          --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 20 20'><path d='m7.032 13.907l-3.471-3.905a.75.75 0 0 0-1.122.996l4 4.5a.75.75 0 0 0 1.091.032l10.5-10.5a.75.75 0 0 0-1.06-1.06l-9.938 9.937Z'></path></svg>");
+        }
+
+        &::before {
+          content: '';
+          -webkit-mask: var(--_svg) no-repeat center / contain;
+          mask: var(--_svg) no-repeat center / contain;
+          width: 1rem;
+          height: 1rem;
+          background-color: currentColor;
+        }
+
+        &:hover {
+          border-color: currentColor;
+        }
+      }
+
+      &:not(:hover, :focus-within) button[data-copied] {
+        clip-path: inset(50%);
+        overflow: hidden;
+        width: 1px;
+        height: 1px;
+        white-space: nowrap;
+      }
     }
   }
 </style>

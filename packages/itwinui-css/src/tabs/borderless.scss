@@ -50,7 +50,7 @@
     }
   }
 
-  .iui-tab[disabled]:hover {
+  .iui-tab:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']):hover {
     background-color: transparent;
   }
 }

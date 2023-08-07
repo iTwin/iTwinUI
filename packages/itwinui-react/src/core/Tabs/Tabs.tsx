@@ -13,6 +13,7 @@ import {
   useMergedRefs,
   useContainerWidth,
   useResizeObserver,
+  ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
@@ -496,10 +497,6 @@ type TabOwnProps = {
    */
   label?: string | React.ReactNode;
   /**
-   * Flag whether the tab is disabled.
-   */
-  disabled?: boolean;
-  /**
    * Flag whether the tab is active.
    * @default 'false'
    */
@@ -516,7 +513,6 @@ const Tab = React.forwardRef((props, ref) => {
     children,
     value,
     label,
-    disabled,
     isActive = false,
     onActivated,
     ...rest
@@ -606,8 +602,7 @@ const Tab = React.forwardRef((props, ref) => {
   };
 
   return (
-    <Box
-      as='button'
+    <ButtonBase
       className={cx(
         'iui-tab',
         { 'iui-active': value === activeValue || isActive },
@@ -618,14 +613,12 @@ const Tab = React.forwardRef((props, ref) => {
       onClick={onClick}
       onKeyDown={onKeyDown}
       aria-selected={value === activeValue || isActive}
-      aria-disabled={disabled ? 'true' : undefined}
       aria-controls={value}
-      disabled={disabled}
       ref={ref}
       {...rest}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
-    </Box>
+    </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
 Tab.displayName = 'Tabs.Tab';
