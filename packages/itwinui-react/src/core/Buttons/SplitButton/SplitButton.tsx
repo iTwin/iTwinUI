@@ -29,9 +29,9 @@ export type SplitButtonProps = ButtonProps & {
    */
   children: React.ReactNode;
   /**
-   * Passes props to SplitButton button.
+   * Passes props to SplitButton wrapper.
    */
-  buttonProps?: React.ComponentProps<'button'>;
+  wrapperProps?: React.ComponentProps<typeof Box>;
   /**
    * Passes props to SplitButton menu button.
    */
@@ -61,9 +61,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     styleType = 'default',
     size,
     children,
-    style,
-    title,
-    buttonProps,
+    wrapperProps,
     menuButtonProps,
     ...rest
   } = props;
@@ -81,22 +79,25 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx(className, 'iui-button-split', {
-        'iui-disabled': props.disabled,
-      })}
-      style={style}
-      title={title}
-      ref={ref}
+      {...wrapperProps}
+      className={cx(
+        className,
+        'iui-button-split',
+        {
+          'iui-disabled': props.disabled,
+        },
+        wrapperProps?.className,
+      )}
     >
       <Button
-        as='button'
+        className={cx(className, 'iui-button-split', {
+          'iui-disabled': props.disabled,
+        })}
         styleType={styleType}
         size={size}
         onClick={onClick}
         ref={forwardedRef}
         {...rest}
-        {...buttonProps}
-        className={buttonProps?.className}
       >
         {children}
       </Button>

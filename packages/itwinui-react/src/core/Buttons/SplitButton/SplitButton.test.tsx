@@ -152,8 +152,8 @@ it('should support polymorphic `as` prop', async () => {
 it('passes custom props to subcomponents', () => {
   const { container } = render(
     <SplitButton
-      buttonProps={{
-        className: 'custom-button-class',
+      wrapperProps={{
+        className: 'custom-wrapper-class',
         style: { fontSize: 12 },
       }}
       menuButtonProps={{
@@ -170,11 +170,11 @@ it('passes custom props to subcomponents', () => {
     </SplitButton>,
   );
 
-  const buttonElement = container.querySelector(
-    '.iui-button.custom-button-class',
+  const wrapperElement = container.querySelector(
+    '.custom-wrapper-class',
   ) as HTMLElement;
-  expect(buttonElement).toBeTruthy();
-  expect(buttonElement.style.fontSize).toBe('12px');
+  expect(wrapperElement).toBeTruthy();
+  expect(wrapperElement.style.fontSize).toBe('12px');
 
   const menuButtonElement = container.querySelector(
     '.iui-button.custom-menu-button-class',
