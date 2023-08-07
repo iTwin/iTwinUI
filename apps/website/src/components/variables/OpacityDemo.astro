@@ -13,8 +13,10 @@ import Item from './_item.astro';
   }
 </Wrapper>
 
-<style>
-  .item {
-    opacity: var(--_opacity);
+<style lang='scss'>
+  @layer components {
+    .item {
+      opacity: var(--_opacity);
+    }
   }
 </style>
