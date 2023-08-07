@@ -29,7 +29,7 @@ export default () => {
       <Slider
         thumbProps={() => {
           return {
-            'aria-label': `Choose a value`,
+            'aria-label': `Choose a date`,
           };
         }}
         values={[currentValue.number]}
