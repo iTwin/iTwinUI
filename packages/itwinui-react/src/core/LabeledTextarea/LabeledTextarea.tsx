@@ -111,9 +111,9 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
           ref={ref}
         />
         {iconDisplayStyle === 'inline' && (
-          <InputWithDecorations.Icon fill={iconFill} {...iconProps}>
+          <Icon fill={iconFill} padded {...iconProps}>
             {icon}
-          </InputWithDecorations.Icon>
+          </Icon>
         )}
       </InputWithDecorations>
 

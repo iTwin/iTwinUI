@@ -29,10 +29,6 @@ export type LabeledInputProps = {
    */
   svgIcon?: JSX.Element;
   /**
-   * Custom end button to use as inline icon. Will override status icon if specified.
-   */
-  endButton?: JSX.Element;
-  /**
    * Pass props to wrapper element.
    */
   wrapperProps?: React.ComponentProps<typeof InputGrid>;
@@ -88,7 +84,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     message,
     status,
     svgIcon,
-    endButton,
     wrapperProps,
     labelProps,
     messageContentProps,
@@ -129,18 +124,11 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {(icon || endButton) &&
-          iconDisplayStyle === 'inline' &&
-          (!!endButton ? (
-            endButton
-          ) : (
-            <InputWithDecorations.Icon
-              fill={!svgIcon ? status : undefined}
-              {...iconProps}
-            >
-              {icon}
-            </InputWithDecorations.Icon>
-          ))}
+        {icon && iconDisplayStyle === 'inline' && (
+          <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
+            {icon}
+          </Icon>
+        )}
       </InputWithDecorations>
 
       {(message || (icon && iconDisplayStyle !== 'inline')) && (

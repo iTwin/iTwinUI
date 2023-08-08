@@ -27,6 +27,7 @@ $default-fill: var(--iui-color-icon-muted);
   @each $size in 's', 'm', 'l', 'auto' {
     &[data-iui-icon-size='#{$size}'] {
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
+      --_iui-svg-margin: calc(#{map.get($icon-sizes, $size)} / 2);
     }
   }
 
@@ -41,5 +42,9 @@ $default-fill: var(--iui-color-icon-muted);
     &:where(:not([data-iui-icon-color]), [data-iui-icon-color='default']) {
       --_iui-svg-fill: CanvasText;
     }
+  }
+
+  &[data-iui-padded='true'] {
+    margin: 0 var(--_iui-svg-margin, --iui-size-s);
   }
 }

@@ -37,6 +37,10 @@ export type IconProps = {
     | 'negative'
     | 'warning'
     | AnyString;
+  /**
+   *
+   */
+  padded?: boolean;
 } & React.ComponentPropsWithoutRef<'span'>;
 
 const getSizeValue = (size: string) => {
@@ -67,7 +71,13 @@ const getSizeValue = (size: string) => {
  * </Icon>
  */
 export const Icon = React.forwardRef((props, ref) => {
-  const { size = 'medium', fill = 'default', className, ...rest } = props;
+  const {
+    size = 'medium',
+    fill = 'default',
+    className,
+    padded = false,
+    ...rest
+  } = props;
 
   return (
     <Box
@@ -75,6 +85,7 @@ export const Icon = React.forwardRef((props, ref) => {
       className={cx('iui-svg-icon', className)}
       data-iui-icon-size={getSizeValue(size)}
       data-iui-icon-color={fill}
+      data-iui-padded={padded ? 'true' : undefined}
       ref={ref}
       {...rest}
     />
