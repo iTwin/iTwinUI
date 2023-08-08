@@ -56,6 +56,24 @@ type RootProps = {
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
+  /**
+   * The element used as the portal for floating elements (Tooltip, Toast, DropdownMenu, Dialog, etc).
+   *
+   * Defaults to a `<div>` rendered at the end of the ThemeProvider.
+   *
+   * When passing an element, it is recommended to use state.
+   *
+   * @example
+   * const [myPortal, setMyPortal] = React.useState(null);
+   *
+   * <div ref={setMyPortal} />
+   * <ThemeProvider
+   *   portalContainer={myPortal}
+   * >
+   *   ...
+   * </ThemeProvider>
+   */
+  portalContainer?: HTMLElement;
 };
 
 /**
@@ -85,9 +103,19 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
  * </ThemeProvider>
  */
 export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme: themeProp, children, themeOptions, ...rest } = props;
+  const {
+    theme: themeProp,
+    children,
+    themeOptions,
+    portalContainer: portalContainerProp,
+    ...rest
+  } = props;
 
-  const portalContainerRef = React.useRef<HTMLDivElement>(null);
+  const [portalContainerState, setPortalContainerState] = React.useState(
+    portalContainerProp || null,
+  );
+  const portalContainer = portalContainerProp || portalContainerState;
+
   const parentContext = React.useContext(ThemeContext);
 
   const theme =
@@ -98,8 +126,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
     (themeProp === 'inherit' ? false : !parentContext);
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, portalContainerRef }),
-    [theme, themeOptions],
+    () => ({
+      theme,
+      themeOptions,
+      portalContainer,
+    }),
+    [portalContainer, theme, themeOptions],
   );
 
   return (
@@ -113,9 +145,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       >
         <ToastProvider>
           {children}
-          <div ref={portalContainerRef}>
-            <Toaster />
-          </div>
+
+          {!portalContainerProp ? (
+            <div ref={setPortalContainerState}>
+              <Toaster />
+            </div>
+          ) : null}
         </ToastProvider>
       </Root>
     </ThemeContext.Provider>
