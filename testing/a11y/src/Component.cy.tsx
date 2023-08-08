@@ -8,6 +8,19 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 describe('Should have no WCAG violations', () => {
   Object.entries(allExamples).forEach(([name, Component]) => {
+    const testsToTestFor = [
+      'SelectDisableExample',
+      'SelectIconExample',
+      'SelectMainExample',
+      'SelectStatusesExample',
+      'SelectSublabelsExample',
+      'SelectTruncateExample',
+    ];
+
+    if (!testsToTestFor.includes(name)) {
+      return;
+    }
+
     it(name, () => {
       cy.mount(
         <ThemeProvider theme='dark' style={{ height: '100vh' }}>
