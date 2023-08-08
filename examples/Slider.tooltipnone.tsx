@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Text } from '@itwin/itwinui-react';
-import { useId } from '../packages/itwinui-react/src/core/utils/hooks/index.js';
 
 export default () => {
-  const labelId = useId();
+  const labelId = React.useId();
 
   const dateFormatter = React.useMemo(() => {
     return new Intl.DateTimeFormat('default', {
