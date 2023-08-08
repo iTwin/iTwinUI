@@ -4,8 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Text } from '@itwin/itwinui-react';
+import { useId } from '../packages/itwinui-react/src/core/utils/hooks/index.js';
 
 export default () => {
+  const labelId = useId();
+
   const dateFormatter = React.useMemo(() => {
     return new Intl.DateTimeFormat('default', {
       month: 'short',
@@ -26,10 +29,14 @@ export default () => {
 
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
+      <Text id={labelId} as='label' variant='leading'>
+        Choose a start date
+      </Text>
       <Slider
         thumbProps={() => {
           return {
-            'aria-label': `Choose a date`,
+            'aria-labelledby': labelId,
+            'aria-valuetext': dateFormatter.format(currentValue.date),
           };
         }}
         values={[currentValue.number]}

@@ -3,19 +3,25 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Slider } from '@itwin/itwinui-react';
+import { Slider, Text } from '@itwin/itwinui-react';
+import { useId } from '../packages/itwinui-react/src/core/utils/hooks/index.js';
 import {
   SvgSmileyHappyVery,
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
 
 export default () => {
+  const labelId = useId();
+
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
+      <Text id={labelId} as='label' variant='leading'>
+        Choose a happiness level
+      </Text>
       <Slider
         thumbProps={() => {
           return {
-            'aria-label': `Choose a rating`,
+            'aria-labelledby': labelId,
           };
         }}
         values={[50]}
