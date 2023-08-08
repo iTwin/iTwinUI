@@ -17,7 +17,6 @@ export type InputContainerProps<T extends React.ElementType = 'div'> = {
   message?: React.ReactNode;
   icon?: JSX.Element;
   isLabelInline?: boolean;
-  isIconInline?: boolean;
   statusMessage?: React.ReactNode;
   inputId?: string;
   labelId?: string;
@@ -37,12 +36,11 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
     status,
     message,
     icon,
-    isLabelInline,
-    isIconInline,
     children,
     className,
     style,
     statusMessage,
+    isLabelInline,
     inputId,
     labelId,
     ...rest
@@ -50,18 +48,9 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
 
   return (
     <Box
-      className={cx(
-        'iui-input-container',
-        {
-          'iui-disabled': disabled,
-          'iui-inline-label': isLabelInline,
-          'iui-inline-icon': isIconInline,
-          'iui-with-message':
-            (!!message || !!icon || !!statusMessage) && !isLabelInline,
-        },
-        className,
-      )}
+      className={cx('iui-input-grid', className)}
       data-iui-status={status}
+      data-iui-label-placement={isLabelInline ? 'inline' : undefined}
       style={style}
       {...rest}
     >
@@ -69,6 +58,7 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
         <Label
           as={inputId && props.as !== 'label' ? 'label' : 'div'}
           required={required}
+          disabled={disabled}
           htmlFor={inputId}
           id={labelId}
         >

@@ -3,7 +3,7 @@
 @use './mixins' as *;
 @use '../mixins' as *;
 
-.iui-input-container {
+.iui-input-grid {
   @include iui-input-grid;
 
   @each $status in positive, warning, negative {
@@ -11,10 +11,6 @@
       @include iui-input-status($status: $status);
     }
   }
-}
-
-.iui-input-grid {
-  @include iui-input-grid;
 }
 
 .iui-input-label {
@@ -133,8 +129,6 @@
 }
 
 .iui-input-decorator-icon {
-  margin: 0 var(--iui-size-s);
-
   &.iui-actionable {
     align-items: center;
     block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline

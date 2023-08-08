@@ -530,10 +530,11 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             multiple,
           }}
         >
-          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
+          <ComboBoxInputContainer {...rest}>
             <>
               <ComboBoxInput
                 value={inputValue}
+                disabled={inputProps?.disabled}
                 {...inputProps}
                 onChange={handleOnInput}
                 selectTags={
