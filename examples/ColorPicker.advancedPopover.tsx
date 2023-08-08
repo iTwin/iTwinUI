@@ -70,7 +70,7 @@ export default () => {
           placement='bottom-start'
         >
           <IconButton
-            label='Color Picker toggle'
+            label='Color Picker Toggle Visibility'
             onClick={() => setIsOpen((open) => !open)}
           >
             <ColorSwatch
