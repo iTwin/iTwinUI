@@ -105,7 +105,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
 
   const shouldApplyBackground = themeOptions?.applyBackground ?? !parentTheme;
-  console.log({ shouldApplyBackground, parentTheme });
 
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, portalContainerRef }),
