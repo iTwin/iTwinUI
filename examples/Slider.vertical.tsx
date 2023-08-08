@@ -9,11 +9,7 @@ export default () => {
   return (
     <div style={{ height: '300px' }}>
       <Slider
-        thumbProps={() => {
-          return {
-            'aria-label': `Choose a value`,
-          };
-        }}
+        thumbProps={() => ({ 'aria-label': `Choose a value` })}
         values={[50]}
         orientation='vertical'
       />

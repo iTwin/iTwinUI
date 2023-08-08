@@ -19,11 +19,7 @@ export default () => {
         Choose a happiness level
       </Text>
       <Slider
-        thumbProps={() => {
-          return {
-            'aria-labelledby': labelId,
-          };
-        }}
+        thumbProps={() => ({ 'aria-labelledby': labelId })}
         values={[50]}
         minLabel={<SvgSmileySadVery />}
         maxLabel={<SvgSmileyHappyVery />}

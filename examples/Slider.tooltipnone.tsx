@@ -32,12 +32,10 @@ export default () => {
         Choose a start date
       </Text>
       <Slider
-        thumbProps={() => {
-          return {
-            'aria-labelledby': labelId,
-            'aria-valuetext': dateFormatter.format(currentValue.date),
-          };
-        }}
+        thumbProps={() => ({
+          'aria-labelledby': labelId,
+          'aria-valuetext': dateFormatter.format(currentValue.date),
+        })}
         values={[currentValue.number]}
         min={1}
         max={365}

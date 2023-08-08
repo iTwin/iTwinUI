@@ -14,11 +14,7 @@ export default () => {
         Choose a range
       </Text>
       <Slider
-        thumbProps={() => {
-          return {
-            'aria-labelledby': labelId,
-          };
-        }}
+        thumbProps={() => ({ 'aria-labelledby': labelId })}
         values={[25, 75]}
         min={0}
         max={100}
