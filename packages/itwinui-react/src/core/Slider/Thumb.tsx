@@ -154,7 +154,6 @@ export const Thumb = (props: ThumbProps) => {
       {...tooltipProps}
     >
       <Box
-        aria-labelledby='Slider'
         {...rest}
         data-index={index}
         ref={thumbRef}

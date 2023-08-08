@@ -287,8 +287,11 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       </Box>
 
       <Slider
-        aria-label='Hue slider'
-        id='Slider'
+        thumbProps={() => {
+          return {
+            'aria-label': `Hue slider`,
+          };
+        }}
         minLabel=''
         maxLabel=''
         values={[sliderValue]}
@@ -307,7 +310,11 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
 
       {showAlpha && (
         <Slider
-          aria-label='Opacity slider'
+          thumbProps={() => {
+            return {
+              'aria-label': `Opacity slider`,
+            };
+          }}
           minLabel=''
           maxLabel=''
           values={[alphaValue]}
