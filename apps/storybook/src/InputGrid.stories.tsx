@@ -9,6 +9,7 @@ import {
   InputGrid,
   InputWithDecorations,
   Label,
+  Icon,
   SearchBox,
   Select,
   StatusMessage,
@@ -38,9 +39,9 @@ export const WithInputWithDecorations: Story<InputGridProps> = () => {
     <InputGrid>
       <Label>This is label</Label>
       <InputWithDecorations>
-        <InputWithDecorations.Icon>
+        <Icon padded>
           <SvgAirplane />
-        </InputWithDecorations.Icon>
+        </Icon>
         <InputWithDecorations.Input placeholder='Add destination...' />
         <InputWithDecorations.Button label='Add new flight'>
           <SvgAdd />

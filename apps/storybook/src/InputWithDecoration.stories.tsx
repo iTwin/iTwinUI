@@ -19,7 +19,7 @@ export default {
 export const Basic: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations>
-      <Icon>
+      <Icon padded>
         <SvgAirplane />
       </Icon>
       <InputWithDecorations.Input placeholder='Input..' />
@@ -33,7 +33,7 @@ export const Basic: Story<InputWithDecorationsProps> = () => {
 export const Disabled: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations isDisabled>
-      <Icon>
+      <Icon padded>
         <SvgAirplane />
       </Icon>
       <InputWithDecorations.Input placeholder='Disabled input' />
@@ -61,7 +61,7 @@ export const Small: Story<InputWithDecorationsProps> = () => {
 export const Status: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations status='positive'>
-      <Icon>
+      <Icon padded>
         <SvgAirplane />
       </Icon>
       <InputWithDecorations.Input placeholder='Positive input' />
