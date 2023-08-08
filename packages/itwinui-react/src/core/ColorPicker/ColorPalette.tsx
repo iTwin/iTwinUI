@@ -134,6 +134,7 @@ export const ColorPalette = React.forwardRef((props, ref) => {
 
   return (
     <Box
+      id='wrapper'
       className={cx('iui-color-palette-wrapper', className)}
       ref={ref}
       {...rest}
@@ -141,7 +142,8 @@ export const ColorPalette = React.forwardRef((props, ref) => {
       {label && <Box className='iui-color-picker-section-label'>{label}</Box>}
       <Box
         role='listbox'
-        aria-label='Color palette'
+        aria-labelledby={label ? 'wrapper' : undefined}
+        aria-label={!label ? 'Color palette' : undefined}
         className='iui-color-palette'
         onKeyDown={handleKeyDown}
         ref={paletteRefs}
