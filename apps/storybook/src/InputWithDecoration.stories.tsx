@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { InputWithDecorations } from '@itwin/itwinui-react';
+import { InputWithDecorations, Icon } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 type InputWithDecorationsProps = React.ComponentProps<
@@ -19,9 +19,9 @@ export default {
 export const Basic: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations>
-      <InputWithDecorations.Icon>
+      <Icon>
         <SvgAirplane />
-      </InputWithDecorations.Icon>
+      </Icon>
       <InputWithDecorations.Input placeholder='Input..' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -33,9 +33,9 @@ export const Basic: Story<InputWithDecorationsProps> = () => {
 export const Disabled: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations isDisabled>
-      <InputWithDecorations.Icon>
+      <Icon>
         <SvgAirplane />
-      </InputWithDecorations.Icon>
+      </Icon>
       <InputWithDecorations.Input placeholder='Disabled input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -47,9 +47,9 @@ export const Disabled: Story<InputWithDecorationsProps> = () => {
 export const Small: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations size='small'>
-      <InputWithDecorations.Icon>
+      <Icon size='s' padded>
         <SvgAirplane />
-      </InputWithDecorations.Icon>
+      </Icon>
       <InputWithDecorations.Input placeholder='Small input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -61,9 +61,9 @@ export const Small: Story<InputWithDecorationsProps> = () => {
 export const Status: Story<InputWithDecorationsProps> = () => {
   return (
     <InputWithDecorations status='positive'>
-      <InputWithDecorations.Icon>
+      <Icon>
         <SvgAirplane />
-      </InputWithDecorations.Icon>
+      </Icon>
       <InputWithDecorations.Input placeholder='Positive input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />

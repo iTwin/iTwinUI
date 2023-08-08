@@ -2,11 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import * as React from 'react';
 import {
   Box,
-  Icon,
   InputFlexContainer,
   useMergedRefs,
   useSafeContext,
@@ -62,28 +60,6 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
 
 //-------------------------------------------------------------------------------
 
-const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
-  const { children, className, isActionable, ...rest } = props;
-  return (
-    <Icon
-      className={cx(
-        'iui-input-decorator-icon',
-        { 'iui-actionable': isActionable },
-        className,
-      )}
-      ref={ref}
-      {...rest}
-    >
-      {children}
-    </Icon>
-  );
-}) as PolymorphicForwardRefComponent<
-  'span',
-  React.ComponentProps<typeof Icon> & { isActionable?: boolean }
->;
-
-//-------------------------------------------------------------------------------
-
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   const { children, size, disabled: localDisabled, ...rest } = props;
   const { size: contextSize, isDisabled } = useSafeContext(
@@ -127,10 +103,6 @@ export const InputWithDecorations = Object.assign(
      * Subcomponent to include input in your InputWithDecorations
      */
     Input: InputWithDecorationsInput,
-    /**
-     * Subcomponent to include icon in your InputWithDecorations
-     */
-    Icon: InputWithDecorationsIcon,
     /**
      * Subcomponent to include button in your InputWithDecorations
      */
