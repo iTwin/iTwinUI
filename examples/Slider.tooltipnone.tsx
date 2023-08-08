@@ -28,7 +28,9 @@ export default () => {
 
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <Label id={labelId}>Choose a start date</Label>
+      <Label id={labelId} as='div'>
+        Choose a start date
+      </Label>
       <Slider
         thumbProps={() => ({
           'aria-labelledby': labelId,

@@ -10,7 +10,9 @@ export default () => {
 
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <Label id={labelId}>Choose ranges</Label>
+      <Label id={labelId} as='div'>
+        Choose ranges
+      </Label>
       <Slider
         thumbProps={() => ({ 'aria-labelledby': labelId })}
         values={[20, 40, 60, 80]}
