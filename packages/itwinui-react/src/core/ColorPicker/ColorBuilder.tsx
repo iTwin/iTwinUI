@@ -289,7 +289,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
       <Slider
         thumbProps={() => {
           return {
-            'aria-label': `Hue slider`,
+            'aria-label': `Hue`,
           };
         }}
         minLabel=''
