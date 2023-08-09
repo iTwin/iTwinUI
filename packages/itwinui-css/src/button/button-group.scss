@@ -15,8 +15,8 @@
     max-block-size: 100%;
   }
 
-  $childZindexSelector: '.iui-input-container, .iui-input-flex-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input-flex-container,.iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
+  $childZindexSelector: '.iui-input-flex-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input, input))';
+  $childBorderSelector: '.iui-input-flex-container, .iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
@@ -27,8 +27,6 @@
     }
 
     #{$childZindexSelector} {
-      position: relative;
-
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
         --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
@@ -58,7 +56,8 @@
       }
     }
 
-    #{$childBorderSelector} {
+    #{$childBorderSelector},
+    .iui-input-flex-container::before {
       // Reset border radius
       border-radius: 0;
 
@@ -72,7 +71,8 @@
 
     // Add rounded corners to first and last items
     &:first-child {
-      #{$childBorderSelector} {
+      #{$childBorderSelector},
+      .iui-input-flex-container::before {
         border-start-start-radius: var(--iui-border-radius-1);
 
         @if $orientation == 'horizontal' {
