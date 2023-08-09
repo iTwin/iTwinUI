@@ -12,6 +12,7 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  Icon,
 } from '../utils/index.js';
 import type {
   PopoverProps,
@@ -253,7 +254,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
   const onShowHandler = React.useCallback(
     (instance: PopoverInstance) => {
@@ -394,10 +394,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         onHide={onHideHandler}
         {...popoverProps}
         visible={isOpen}
-        onClickOutside={(_, { target }) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            setIsOpen(false);
-          }
+        onClickOutside={() => {
+          setIsOpen(false);
         }}
       >
         <Box
@@ -449,19 +447,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           )}
         </Box>
       </Popover>
-      <Box
+      <Icon
         as='span'
         aria-hidden
-        ref={toggleButtonRef}
         className={cx('iui-end-icon', {
-          'iui-actionable': !disabled,
           'iui-disabled': disabled,
           'iui-open': isOpen,
         })}
-        onClick={() => !disabled && setIsOpen((o) => !o)}
       >
         <SvgCaretDownSmall />
-      </Box>
+      </Icon>
 
       {multiple ? (
         <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
