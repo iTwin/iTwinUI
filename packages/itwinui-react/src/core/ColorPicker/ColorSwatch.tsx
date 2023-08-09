@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { ColorValue, Box } from '../utils/index.js';
+import { ColorValue, Box, VisuallyHidden } from '../utils/index.js';
 import type {
   ColorType,
   PolymorphicForwardRefComponent,
@@ -50,10 +50,11 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
       }
       onClick={onClick}
       tabIndex={isActive ? 0 : -1}
-      aria-selected={isActive}
       ref={ref}
       {...rest}
-    />
+    >
+      <VisuallyHidden>{colorString.toUpperCase()}</VisuallyHidden>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorSwatchProps>;
 
