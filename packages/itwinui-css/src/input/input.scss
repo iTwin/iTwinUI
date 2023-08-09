@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
-@use 'input-with-icon';
 
 @mixin iui-input {
   --_iui-input-background-color: var(--iui-color-background);
@@ -98,10 +97,94 @@
   }
 }
 
-.iui-input-with-icon.iui-input-with-icon {
-  @include input-with-icon.iui-input-with-icon;
+// Mixin to have inputs combined with icon (eg. select)
+.iui-input-with-icon {
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  > :first-child {
+    grid-area: 1 / -1;
+    padding-inline-end: var(--iui-component-height); // Width of the end-icon button
+  }
+
+  &:focus-within {
+    > :first-child {
+      // --_focus-color can be used to control this from outside
+      outline: 2px solid var(--_focus-color, var(--iui-color-border-accent));
+      outline-offset: -2px;
+    }
+  }
+
+  &:hover {
+    > :first-child {
+      // --_iui-input-with-icon-hover-border-color can be used to control this from outside
+      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-border-foreground-hover));
+    }
+  }
+
+  > .iui-select-tag-container {
+    max-inline-size: 70%;
+    inset-inline-end: unset;
+  }
 }
 
 .iui-end-icon {
-  @include input-with-icon.iui-end-icon;
+  $margin-end: calc(var(--iui-size-xs) + 1px);
+  display: flex;
+  grid-area: 1 / -1;
+
+  justify-self: end;
+  margin: 0 #{$margin-end} 0 0;
+  position: relative;
+  block-size: 100%;
+  inline-size: fit-content;
+  display: inline-flex;
+  align-items: center;
+
+  svg:where(:not(.iui-button svg)) {
+    @include mixins.iui-icon-style('m');
+  }
+
+  &,
+  .iui-button {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: inherit;
+    border-end-end-radius: inherit;
+  }
+
+  .iui-button {
+    margin-inline-end: calc(-1 * $margin-end);
+  }
+
+  &.iui-disabled {
+    cursor: not-allowed;
+
+    svg {
+      fill: var(--iui-color-icon-disabled);
+    }
+  }
+
+  .iui-actionable {
+    align-items: center;
+    block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+    margin-inline-end: 2px; // shift 2px from the right to avoid overlapping with border/outline
+    border-radius: var(--iui-border-radius-1);
+    padding-inline: calc(var(--iui-size-xs) + 1px);
+    cursor: pointer;
+    box-sizing: content-box;
+
+    @include mixins.iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
+
+    svg {
+      fill: var(--iui-color-icon);
+      transition: transform var(--iui-duration-1) ease-out;
+    }
+
+    &.iui-open svg {
+      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+    }
+  }
 }
