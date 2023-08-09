@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useMediaQuery,
@@ -145,11 +146,13 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
         <ToastProvider>
           {children}
 
-          {!portalContainerProp ? (
+          {portalContainerProp ? (
+            ReactDOM.createPortal(<Toaster />, portalContainerProp)
+          ) : (
             <div ref={setPortalContainerState}>
               <Toaster />
             </div>
-          ) : null}
+          )}
         </ToastProvider>
       </Root>
     </ThemeContext.Provider>
