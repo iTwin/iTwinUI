@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { MenuItem, MiddleTextTruncation, Select } from '@itwin/itwinui-react';
+import {
+  MenuItem,
+  MiddleTextTruncation,
+  Select,
+  Label,
+} from '@itwin/itwinui-react';
 import { useCallback, useState } from 'react';
 
 export default () => {
@@ -34,23 +39,35 @@ export default () => {
     ),
     [],
   );
+
+  const labelId = React.useId();
+
   return (
-    <Select
-      options={options}
-      value={selectedValue}
-      onChange={setSelectedValue}
-      placeholder={'Placeholder text'}
-      itemRenderer={(option) => (
-        <MenuItem>
+    <div>
+      <Label id={labelId}>Choose file</Label>
+      <Select
+        triggerProps={{
+          'aria-labelledby': labelId,
+        }}
+        options={options}
+        value={selectedValue}
+        onChange={setSelectedValue}
+        placeholder={'Placeholder text'}
+        itemRenderer={(option) => (
+          <MenuItem>
+            <MiddleTextTruncation
+              text={option.label}
+              textRenderer={textRenderer}
+            />
+          </MenuItem>
+        )}
+        selectedItemRenderer={(option) => (
           <MiddleTextTruncation
             text={option.label}
             textRenderer={textRenderer}
           />
-        </MenuItem>
-      )}
-      selectedItemRenderer={(option) => (
-        <MiddleTextTruncation text={option.label} textRenderer={textRenderer} />
-      )}
-    />
+        )}
+      />
+    </div>
   );
 };
