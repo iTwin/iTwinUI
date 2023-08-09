@@ -14,6 +14,7 @@ export default () => {
         max={100}
         thumbProps={() => {
           return {
+            'aria-label': `Choose a value`,
             style: {
               display: 'flex',
               justifyContent: 'center',
