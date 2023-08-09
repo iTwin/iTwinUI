@@ -17,7 +17,7 @@ import type {
 import { getColorValue } from './ColorPicker.js';
 import { ColorSwatch } from './ColorSwatch.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
-
+import { useId } from '../utils/index.js';
 export type ColorPaletteProps = {
   /**
    * Label shown above the palette.
@@ -45,7 +45,8 @@ export type ColorPaletteProps = {
  * </ColorPalette>
  */
 export const ColorPalette = React.forwardRef((props, ref) => {
-  const { colors, label, className, children, ...rest } = props;
+  const uid = useId();
+  const { colors, label, className, children, id = uid, ...rest } = props;
 
   const { activeColor, setActiveColor, onChangeComplete } =
     useColorPickerContext();
@@ -134,15 +135,15 @@ export const ColorPalette = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      id='wrapper'
       className={cx('iui-color-palette-wrapper', className)}
       ref={ref}
+      id={id}
       {...rest}
     >
       {label && <Box className='iui-color-picker-section-label'>{label}</Box>}
       <Box
         role='listbox'
-        aria-labelledby={label ? 'wrapper' : undefined}
+        aria-labelledby={label ? id : undefined}
         aria-label={!label ? 'Color palette' : undefined}
         className='iui-color-palette'
         onKeyDown={handleKeyDown}
