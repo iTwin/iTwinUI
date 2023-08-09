@@ -31,74 +31,56 @@
     grid-column-end: -1;
   }
 
-  // @each $status in positive, warning, negative {
-  //   &[data-iui-status='#{$status}'] {
-  //     @include mixins.iui-text-selection($status);
+  @each $status in positive, warning, negative {
+    &[data-iui-status='#{$status}'] {
+      @include iui-text-selection($status);
 
-  //     #{$iconSelector} {
-  //       fill: var(--iui-color-icon-#{$status});
-  //     }
+      .iui-input {
+        // #region Bottom padding to accomodate for status stripe
+        padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
-  //     #{$textSelector} {
-  //       color: var(--iui-color-text-#{$status});
+        &[data-iui-size='small'] {
+          padding-block-end: 0;
+        }
 
-  //       a {
-  //         text-decoration: underline;
-  //         color: var(--iui-color-text-#{$status});
+        &[data-iui-size='large'] {
+          padding-block-end: calc(var(--iui-size-xs) - 1px);
+        }
+        // #endregion
 
-  //         &:hover {
-  //           text-decoration: none;
-  //           color: var(--iui-color-text-#{$status}-hover);
-  //         }
-  //       }
-  //     }
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
-  //     .iui-input {
-  //       // #region Bottom padding to accomodate for status stripe
-  //       padding-block-end: calc(var(--iui-size-2xs) - 1px);
+        &:focus {
+          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+          outline: 2px solid var(--iui-color-text-#{$status});
+          outline-offset: -2px;
+        }
 
-  //       &[data-iui-size='small'] {
-  //         padding-block-end: 0;
-  //       }
+        &:hover {
+          --_iui-input-border-color: var(--iui-color-border-#{$status});
+        }
+      }
 
-  //       &[data-iui-size='large'] {
-  //         padding-block-end: calc(var(--iui-size-xs) - 1px);
-  //       }
-  //       // #endregion
+      .iui-input-with-icon {
+        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
+        --_focus-color: var(--iui-color-text-#{$status});
+      }
 
-  //       border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+      .iui-select-button {
+        border-block-end: transparent;
 
-  //       &:focus {
-  //         border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-  //         outline: 2px solid var(--iui-color-text-#{$status});
-  //         outline-offset: -2px;
-  //       }
-
-  //       &:hover {
-  //         --_iui-input-border-color: var(--iui-color-border-#{$status});
-  //       }
-  //     }
-
-  //     .iui-input-with-icon {
-  //       --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-  //       --_focus-color: var(--iui-color-text-#{$status});
-  //     }
-
-  //     .iui-select-button {
-  //       border-block-end: transparent;
-
-  //       &::after {
-  //         content: '';
-  //         inline-size: 100%;
-  //         position: absolute;
-  //         inset-block-end: 0;
-  //         inset-inline-start: 0;
-  //         block-size: var(--iui-size-3xs);
-  //         background-color: var(--iui-color-border-#{$status});
-  //       }
-  //     }
-  //   }
-  // }
+        &::after {
+          content: '';
+          inline-size: 100%;
+          position: absolute;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          block-size: var(--iui-size-3xs);
+          background-color: var(--iui-color-border-#{$status});
+        }
+      }
+    }
+  }
 }
 
 .iui-input-label {
