@@ -154,7 +154,7 @@ export const ColorPalette = React.forwardRef((props, ref) => {
           colors.map((_color, index) => {
             const color = getColorValue(_color);
             const swatchLabel = getColorValue(color)
-              .toHslString(true)
+              .toHexString(true)
               .toUpperCase();
             return (
               <ColorSwatch
