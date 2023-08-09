@@ -154,13 +154,9 @@ export const ColorPalette = React.forwardRef((props, ref) => {
         {colors &&
           colors.map((_color, index) => {
             const color = getColorValue(_color);
-            // const swatchLabel = getColorValue(color)
-            //   .toHexString(true)
-            //   .toUpperCase();
             return (
               <ColorSwatch
                 role='option'
-                // aria-label={swatchLabel}
                 key={index}
                 color={color}
                 onClick={(event) => {
