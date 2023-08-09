@@ -9,6 +9,7 @@ import {
   getFocusableElements,
   useMergedRefs,
   Box,
+  useId,
 } from '../utils/index.js';
 import type {
   ColorType,
@@ -17,7 +18,6 @@ import type {
 import { getColorValue } from './ColorPicker.js';
 import { ColorSwatch } from './ColorSwatch.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
-import { useId } from '../utils/index.js';
 export type ColorPaletteProps = {
   /**
    * Label shown above the palette.
