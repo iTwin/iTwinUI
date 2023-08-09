@@ -31,7 +31,7 @@ const renderComponent = (
 
 const assertBaseElement = (container: HTMLElement) => {
   const rootElement = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
 
   const input = rootElement.querySelector('.iui-input') as HTMLInputElement;
@@ -45,7 +45,7 @@ const assertBaseElement = (container: HTMLElement) => {
 
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
-  const id = container.querySelector('.iui-input-container')?.id;
+  const id = container.querySelector('.iui-input-grid')?.id;
   const input = assertBaseElement(container);
 
   fireEvent.focus(input);
@@ -473,9 +473,7 @@ it('should accept inputProps', () => {
   expect(input.id).toBe(inputId);
 
   fireEvent.focus(input);
-  expect(container.querySelector('.iui-input-container')?.id).toBe(
-    `${inputId}-cb`,
-  );
+  expect(container.querySelector('.iui-input-grid')?.id).toBe(`${inputId}-cb`);
   expect(document.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
 });
 
@@ -526,7 +524,7 @@ it('should work with custom itemRenderer', async () => {
 it('should accept status prop', () => {
   const { container } = renderComponent({ status: 'negative' });
 
-  expect(container.querySelector('.iui-input-container')).toHaveAttribute(
+  expect(container.querySelector('.iui-input-grid')).toHaveAttribute(
     'data-iui-status',
     'negative',
   );
@@ -568,7 +566,7 @@ it('should render with message as string and status', () => {
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('My message as string');
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveAttribute('data-iui-status', 'warning');
@@ -585,7 +583,7 @@ it('should render with custom icon', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
   expect(
@@ -600,7 +598,7 @@ it('should render with message and status', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveAttribute('data-iui-status', 'positive');
@@ -765,7 +763,7 @@ it('should select multiple options', async () => {
   );
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
   await userEvent.tab();
   await userEvent.click(screen.getByText('Item 1'));
@@ -803,7 +801,7 @@ it('should override multiple selected options', async () => {
   );
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
 
   const tags = inputContainer.querySelectorAll('.iui-select-tag');

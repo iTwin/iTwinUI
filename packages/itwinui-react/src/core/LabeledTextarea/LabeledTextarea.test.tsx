@@ -130,9 +130,7 @@ it('should render inline input', () => {
   getByText('some label');
   const grid = container.querySelector('.iui-input-grid');
   expect(grid).toHaveAttribute('data-iui-label-placement', 'inline');
-  expect(
-    container.querySelector('.iui-svg-icon.iui-input-decorator-icon'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
 });
 
 it('should take custom icon', () => {
@@ -165,7 +163,5 @@ it('should render inline icon', () => {
   );
   expect(queryByText('some label')).toHaveClass('iui-input-label');
   expect(queryByText('My message')).toHaveClass('iui-status-message-content');
-  expect(
-    container.querySelector('.iui-input-decorator-icon > .my-icon'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon > .my-icon')).toBeTruthy();
 });

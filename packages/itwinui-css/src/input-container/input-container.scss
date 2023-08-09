@@ -128,26 +128,24 @@
   }
 }
 
-.iui-input-decorator-icon {
-  &.iui-actionable {
-    align-items: center;
-    block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
-    margin-inline-end: 2px; // shift 2px from the right to avoid overlapping with border/outline
-    border-radius: var(--iui-border-radius-1);
-    padding-inline: calc(var(--iui-size-xs) + 1px);
-    cursor: pointer;
-    box-sizing: content-box;
+.iui-actionable {
+  align-items: center;
+  block-size: calc(100% - 4px); // subtract 2px on both sides to avoid overlapping with border/outline
+  margin-inline-end: 2px; // shift 2px from the right to avoid overlapping with border/outline
+  border-radius: var(--iui-border-radius-1);
+  padding-inline: calc(var(--iui-size-xs) + 1px);
+  cursor: pointer;
+  box-sizing: content-box;
 
-    @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
+  @include iui-ripple(var(--iui-color-background), var(--iui-color-background-backdrop));
 
-    svg {
-      fill: var(--iui-color-icon);
-      transition: transform var(--iui-duration-1) ease-out;
-    }
+  svg {
+    fill: var(--iui-color-icon);
+    transition: transform var(--iui-duration-1) ease-out;
+  }
 
-    &.iui-open svg {
-      transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
-    }
+  &.iui-open svg {
+    transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
   }
 }
 
