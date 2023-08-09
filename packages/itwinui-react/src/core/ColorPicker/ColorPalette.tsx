@@ -45,8 +45,8 @@ export type ColorPaletteProps = {
  * </ColorPalette>
  */
 export const ColorPalette = React.forwardRef((props, ref) => {
-  const uid = useId();
-  const { colors, label, className, children, id = uid, ...rest } = props;
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const { colors, label, className, children, id = useId(), ...rest } = props;
 
   const { activeColor, setActiveColor, onChangeComplete } =
     useColorPickerContext();
