@@ -312,7 +312,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
         <Slider
           thumbProps={() => {
             return {
-              'aria-label': `Opacity slider`,
+              'aria-label': `Opacity`,
             };
           }}
           minLabel=''
