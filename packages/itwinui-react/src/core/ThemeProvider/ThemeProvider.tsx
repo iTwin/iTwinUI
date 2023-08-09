@@ -190,5 +190,5 @@ const useParentTheme = () => {
     );
   }, []);
 
-  return [parentContext?.theme || parentThemeState, rootRef] as const;
+  return [parentContext?.theme ?? parentThemeState, rootRef] as const;
 };
