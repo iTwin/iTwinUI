@@ -18,6 +18,7 @@ import type {
 import { getColorValue } from './ColorPicker.js';
 import { ColorSwatch } from './ColorSwatch.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
+
 export type ColorPaletteProps = {
   /**
    * Label shown above the palette.
