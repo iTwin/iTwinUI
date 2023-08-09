@@ -38,7 +38,8 @@ export type IconProps = {
     | 'warning'
     | AnyString;
   /**
-   *
+   * Option to add padding to the icon.
+   * @default false
    */
   padded?: boolean;
 } & React.ComponentPropsWithoutRef<'span'>;

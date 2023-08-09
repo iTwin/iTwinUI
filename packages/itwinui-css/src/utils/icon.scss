@@ -45,6 +45,6 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    margin: 0 var(--_iui-svg-margin, --iui-size-s);
+    margin-inline: var(--_iui-svg-margin, --iui-size-s);
   }
 }
