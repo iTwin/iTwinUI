@@ -81,7 +81,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     <Box
       {...wrapperProps}
       className={cx(
-        className,
         'iui-button-split',
         {
           'iui-disabled': props.disabled,
