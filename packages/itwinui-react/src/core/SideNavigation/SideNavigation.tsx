@@ -113,11 +113,14 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   const ExpandButton = (
     <IconButton
-      className='iui-sidenav-button iui-expand'
+      as='div'
+      className={cx('iui-sidenav-button iui-expand', className)}
       onClick={React.useCallback(() => {
         _setIsExpanded((expanded) => !expanded);
         onExpanderClick?.();
       }, [onExpanderClick])}
+      ref={forwardedRef}
+      {...rest}
     >
       <SvgChevronRight />
     </IconButton>
@@ -125,21 +128,16 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
+      as='div'
       {...wrapperProps}
       className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
-      ref={forwardedRef}
     >
       <Box
         as='div'
-        className={cx(
-          'iui-side-navigation',
-          {
-            'iui-expanded': _isExpanded,
-            'iui-collapsed': !_isExpanded,
-          },
-          className,
-        )}
-        {...rest}
+        className={cx('iui-side-navigation', {
+          'iui-expanded': _isExpanded,
+          'iui-collapsed': !_isExpanded,
+        })}
       >
         {expanderPlacement === 'top' && ExpandButton}
         <Box

@@ -222,20 +222,6 @@ it('should render active and disabled sidebar buttons', () => {
   expect(mainItems[2]).toHaveClass('iui-submenu-open');
 });
 
-it('should handle custom class and style', () => {
-  const { container } = renderComponent({
-    className: 'test-class',
-    style: { height: 200 },
-  });
-
-  const sidebar = container.querySelector(
-    '.iui-side-navigation',
-  ) as HTMLElement;
-
-  expect(sidebar).toHaveClass('test-class');
-  expect(sidebar).toHaveStyle('height: 200px');
-});
-
 it('should render with submenu', () => {
   const { container } = renderComponent({
     submenu: <SidenavSubmenu>submenu content</SidenavSubmenu>,
@@ -277,6 +263,8 @@ it('should not show submenu if isSubmenuOpen is false', () => {
 
 it('passes custom props to subcomponents', () => {
   const { container } = renderComponent({
+    className: 'custom-class',
+    style: { width: 60 },
     wrapperProps: {
       className: 'custom-wrapper-class',
       style: { width: 70 },
@@ -295,12 +283,19 @@ it('passes custom props to subcomponents', () => {
     },
   });
 
-  // sideNav props test
+  // wrapper props test
   const wrapperElement = container.querySelector(
     '.iui-side-navigation-wrapper.custom-wrapper-class',
   ) as HTMLElement;
   expect(wrapperElement).toBeTruthy();
   expect(wrapperElement.style.width).toBe('70px');
+
+  // button props test
+  const buttonElement = container.querySelector(
+    '.iui-button-base.iui-button.iui-sidenav-button.iui-expand.custom-class',
+  ) as HTMLElement;
+  expect(buttonElement).toBeTruthy();
+  expect(buttonElement.style.width).toBe('60px');
 
   // content props test
   const contentElement = container.querySelector(
