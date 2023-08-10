@@ -106,12 +106,10 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <IconButton
-          as='button'
           styleType={styleType}
           size={size}
           disabled={props.disabled}
           {...menuButtonProps}
-          className={menuButtonProps?.className}
         >
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
