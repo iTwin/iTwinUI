@@ -68,6 +68,8 @@ sections.set(
   </ul>
 </nav>
 
+<script></script>
+
 <style lang='scss'>
   @layer components {
     nav {
@@ -123,13 +125,14 @@ sections.set(
     }
 
     .nav-group-subtitle {
-      margin-top: var(--space-3);
+      margin-top: var(--space-6);
       color: var(--color-mutedtext);
       font-size: var(--type--1);
       font-weight: 600;
       padding-inline: var(--space-5);
       margin-bottom: var(--space-2);
       text-transform: uppercase;
+      letter-spacing: 0.1ex;
 
       @media (max-width: 50em) {
         color: var(--color-mutedtext);
@@ -168,6 +171,19 @@ sections.set(
       background-color: var(--color-active);
       color: var(--color-text);
       position: relative;
+
+      // scroll to current link when page loads, without any JS.
+      // based on https://oh-snap.netlify.app/#scroll-start-trick
+      animation: scroll-into-view 1.5s;
+
+      @keyframes scroll-into-view {
+        from {
+          scroll-snap-align: center;
+        }
+        to {
+          scroll-snap-align: unset;
+        }
+      }
 
       &::before {
         content: '';
