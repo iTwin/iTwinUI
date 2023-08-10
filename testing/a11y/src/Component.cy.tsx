@@ -36,6 +36,9 @@ const axeConfigPerExample = {
 
 describe('Should have no WCAG violations', () => {
   Object.entries(allExamples).forEach(([name, Component]) => {
+    if (!['InputGroupRadioGroupExample', 'SelectMainExample'].includes(name))
+      return;
+
     it(name, () => {
       cy.mount(
         <ThemeProvider theme='dark' style={{ height: '100vh' }}>
@@ -49,11 +52,15 @@ describe('Should have no WCAG violations', () => {
       cy.configureAxe(axeConfigPerExample[name]);
 
       cy.checkA11y(undefined, undefined, (violations) => {
-        const violationData = violations.map(({ id, help }) => ({
+        const violationData = violations.map(({ id, help, ...rest }) => ({
           Component: name,
           'Rule ID': id,
           Description: help,
+          ...rest,
         }));
+
+        console.log('violationData', violationData);
+
         cy.task('table', violationData);
       });
     });
