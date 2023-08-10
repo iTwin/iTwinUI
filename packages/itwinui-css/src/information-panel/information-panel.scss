@@ -204,6 +204,7 @@
     align-items: center;
 
     .iui-input-label {
+      margin-inline-end: var(--iui-size-m);
       // right align labels
       justify-self: end;
       text-align: end;

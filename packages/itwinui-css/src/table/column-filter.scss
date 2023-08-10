@@ -10,7 +10,7 @@
   align-items: flex-end;
   gap: var(--iui-size-s);
 
-  > .iui-input-container:not(.iui-inline-label) {
+  > .iui-input-grid:not([data-iui-label-placement='inline']) {
     inline-size: 100%;
   }
 

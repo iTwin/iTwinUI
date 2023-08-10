@@ -281,7 +281,7 @@
       </div>
 
       <div
-        class="iui-input-grid iui-inline-icon iui-positive"
+        class="iui-input-grid iui-positive"
         data-iui-label-placement="inline"
       >
         <label class="iui-input-label">Input label
@@ -292,8 +292,9 @@
         >
           <input placeholder="Placeholder…" />
           <div
-            class="iui-svg-icon iui-input-decorator-icon"
+            class="iui-svg-icon"
             data-iui-icon-color="positive"
+            data-iui-padded="true"
           >
             <svg-status-success
               class="iui-svg-icon"
@@ -304,7 +305,7 @@
       </div>
 
       <div
-        class="iui-input-grid iui-inline-icon iui-warning"
+        class="iui-input-grid"
         data-iui-label-placement="inline"
       >
         <label class="iui-input-label">Input label
@@ -315,7 +316,8 @@
         >
           <input placeholder="Placeholder…" />
           <div
-            class="iui-svg-icon iui-input-decorator-icon"
+            class="iui-svg-icon"
+            data-iui-padded="true"
             data-iui-icon-color="warning"
           >
             <svg-status-warning
@@ -327,7 +329,7 @@
       </div>
 
       <div
-        class="iui-input-grid iui-inline-icon iui-negative"
+        class="iui-input-grid"
         data-iui-label-placement="inline"
       >
         <label class="iui-input-label">Input label
@@ -338,7 +340,8 @@
         >
           <input placeholder="Placeholder…" />
           <div
-            class="iui-svg-icon iui-input-decorator-icon"
+            class="iui-svg-icon"
+            data-iui-padded="true"
             data-iui-icon-color="negative"
           >
             <svg-status-error
@@ -350,7 +353,7 @@
       </div>
 
       <div
-        class="iui-input-grid iui-inline-icon"
+        class="iui-input-grid"
         data-iui-label-placement="inline"
       >
         <label
@@ -383,7 +386,7 @@
 
     <h2>Hybrid layouts</h2>
     <section id="demo-hybrid">
-      <div class="iui-input-grid iui-inline-icon">
+      <div class="iui-input-grid">
         <label
           class="iui-input-label"
           for="input-15"
@@ -394,12 +397,11 @@
             id="input-15"
             value="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
           />
-          <div class="iui-svg-icon iui-input-decorator-icon">
-            <svg-info-circular
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-info-circular>
-          </div>
+          <svg-info-circular
+            class="iui-svg-icon"
+            data-iui-padded="true"
+            aria-hidden="true"
+          ></svg-info-circular>
         </div>
         <div class="iui-status-message">
           <div class="iui-status-message-content">Block layout with inline icon.</div>
@@ -407,19 +409,18 @@
       </div>
 
       <div
-        class="iui-input-grid iui-inline-icon"
+        class="iui-input-grid"
         data-iui-label-placement="inline"
       >
         <label class="iui-input-label">Input label
         </label>
         <div class="iui-input-flex-container">
           <input placeholder="Placeholder…" />
-          <div class="iui-svg-icon iui-input-decorator-icon">
-            <svg-info-circular
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-info-circular>
-          </div>
+          <svg-info-circular
+            class="iui-svg-icon"
+            data-iui-padded="true"
+            aria-hidden="true"
+          ></svg-info-circular>
         </div>
         <div class="iui-status-message">
           <div class="iui-status-message-content">Inline label and icon with message below.</div>
@@ -482,57 +483,48 @@
         />
       </div>
 
-      <div class="iui-input-grid iui-inline-icon iui-positive">
+      <div class="iui-input-grid iui-positive">
         <div
           class="iui-input-flex-container"
           data-iui-status="positive"
         >
           <input placeholder="Placeholder…" />
-          <div
-            class="iui-svg-icon iui-input-decorator-icon"
+          <svg-status-success
+            class="iui-svg-icon"
+            data-iui-padded="true"
             data-iui-icon-color="positive"
-          >
-            <svg-status-success
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-success>
-          </div>
+            aria-hidden="true"
+          ></svg-status-success>
         </div>
       </div>
 
-      <div class="iui-input-grid iui-inline-icon iui-warning">
+      <div class="iui-input-grid iui-warning">
         <div
           class="iui-input-flex-container"
           data-iui-status="warning"
         >
           <input placeholder="Placeholder…" />
-          <div
-            class="iui-svg-icon iui-input-decorator-icon"
+          <svg-status-warning
+            class="iui-svg-icon"
+            data-iui-padded="true"
             data-iui-icon-color="warning"
-          >
-            <svg-status-warning
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-warning>
-          </div>
+            aria-hidden="true"
+          ></svg-status-warning>
         </div>
       </div>
 
-      <div class="iui-input-grid iui-inline-icon iui-negative">
+      <div class="iui-input-grid iui-negative">
         <div
           class="iui-input-flex-container"
           data-iui-status="negative"
         >
           <input placeholder="Placeholder…" />
-          <div
-            class="iui-svg-icon iui-input-decorator-icon"
+          <svg-status-error
+            class="iui-svg-icon"
+            data-iui-padded="true"
             data-iui-icon-color="negative"
-          >
-            <svg-status-error
-              class="iui-svg-icon"
-              aria-hidden="true"
-            ></svg-status-error>
-          </div>
+            aria-hidden="true"
+          ></svg-status-error>
         </div>
       </div>
 

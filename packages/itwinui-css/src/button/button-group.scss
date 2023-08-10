@@ -15,7 +15,7 @@
     max-block-size: 100%;
   }
 
-  $childZindexSelector: '.iui-input-flex-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input, input))';
+  $childZindexSelector: '.iui-input-flex-container, .iui-button, .iui-input:where(:not(input))';
   $childBorderSelector: '.iui-input-flex-container, .iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
