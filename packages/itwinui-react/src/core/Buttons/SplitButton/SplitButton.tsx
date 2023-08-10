@@ -31,7 +31,7 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Passes props to SplitButton wrapper.
    */
-  wrapperProps?: React.ComponentProps<typeof Box>;
+  wrapperProps?: React.ComponentProps<'div'>;
   /**
    * Passes props to SplitButton menu button.
    */
