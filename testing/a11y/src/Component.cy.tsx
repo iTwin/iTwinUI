@@ -7,7 +7,6 @@ import * as allExamples from 'examples';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
 type commonRulesKeys = 'ignore_color_contrast_for_select_placeholder';
-
 const commonRules: Record<commonRulesKeys, Record<string, any>> = {
   ignore_color_contrast_for_select_placeholder: {
     id: 'color-contrast',
@@ -16,7 +15,7 @@ const commonRules: Record<commonRulesKeys, Record<string, any>> = {
   },
 };
 
-const skipRules = {
+const axeConfigPerExample = {
   SelectIconExample: {
     rules: [commonRules.ignore_color_contrast_for_select_placeholder],
   },
@@ -43,11 +42,7 @@ describe('Should have no WCAG violations', () => {
         axeCorePath: Cypress.env('axeCorePath'),
       });
 
-      const rules = skipRules[name] ? skipRules[name].rules : undefined;
-
-      cy.configureAxe({
-        rules: rules,
-      });
+      cy.configureAxe(axeConfigPerExample[name]);
 
       cy.checkA11y(undefined, undefined, (violations) => {
         let violationData = violations.map(({ id, help }) => ({
