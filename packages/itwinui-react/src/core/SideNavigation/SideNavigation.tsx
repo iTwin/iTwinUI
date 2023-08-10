@@ -58,9 +58,9 @@ type SideNavigationProps = {
    */
   isSubmenuOpen?: boolean;
   /**
-   * Passes props for SideNav.
+   * Passes props for SideNav wrapper.
    */
-  innerProps?: React.ComponentProps<'div'>;
+  wrapperProps?: React.ComponentProps<'div'>;
   /**
    * Passes props for SideNav content.
    */
@@ -99,7 +99,7 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     onExpanderClick,
     submenu,
     isSubmenuOpen = false,
-    innerProps,
+    wrapperProps,
     contentProps,
     topProps,
     bottomProps,
@@ -125,21 +125,21 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx('iui-side-navigation-wrapper', className)}
+      {...wrapperProps}
+      className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
       ref={forwardedRef}
-      {...rest}
     >
       <Box
         as='div'
-        {...innerProps}
         className={cx(
           'iui-side-navigation',
           {
             'iui-expanded': _isExpanded,
             'iui-collapsed': !_isExpanded,
           },
-          innerProps?.className,
+          className,
         )}
+        {...rest}
       >
         {expanderPlacement === 'top' && ExpandButton}
         <Box

@@ -229,7 +229,7 @@ it('should handle custom class and style', () => {
   });
 
   const sidebar = container.querySelector(
-    '.iui-side-navigation-wrapper',
+    '.iui-side-navigation',
   ) as HTMLElement;
 
   expect(sidebar).toHaveClass('test-class');
@@ -277,8 +277,8 @@ it('should not show submenu if isSubmenuOpen is false', () => {
 
 it('passes custom props to subcomponents', () => {
   const { container } = renderComponent({
-    innerProps: {
-      className: 'custom-sidenav-class',
+    wrapperProps: {
+      className: 'custom-wrapper-class',
       style: { width: 70 },
     },
     contentProps: {
@@ -296,11 +296,11 @@ it('passes custom props to subcomponents', () => {
   });
 
   // sideNav props test
-  const sideNavElement = container.querySelector(
-    '.iui-side-navigation.iui-collapsed.custom-sidenav-class',
+  const wrapperElement = container.querySelector(
+    '.iui-side-navigation-wrapper.custom-wrapper-class',
   ) as HTMLElement;
-  expect(sideNavElement).toBeTruthy();
-  expect(sideNavElement.style.width).toBe('70px');
+  expect(wrapperElement).toBeTruthy();
+  expect(wrapperElement.style.width).toBe('70px');
 
   // content props test
   const contentElement = container.querySelector(
