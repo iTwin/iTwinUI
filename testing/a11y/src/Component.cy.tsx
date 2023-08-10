@@ -23,16 +23,36 @@ describe('Should have no WCAG violations', () => {
           {
             id: 'color-contrast',
             enabled: true,
-            selector: ':not(._iui3-content)',
+            selector: ':not(._iui3-placeholder > span._iui3-content)',
           },
         ],
       },
-      SelectMainExample: { rules: [{ id: 'color-contrast', enabled: false }] },
+      SelectMainExample: {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+            selector: ':not(._iui3-placeholder > span._iui3-content)',
+          },
+        ],
+      },
       SelectStatusesExample: {
-        rules: [{ id: 'color-contrast', enabled: false }],
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+            selector: ':not(._iui3-placeholder > span._iui3-content)',
+          },
+        ],
       },
       SelectSublabelsExample: {
-        rules: [{ id: 'color-contrast', enabled: false }],
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+            selector: ':not(._iui3-placeholder > span._iui3-content)',
+          },
+        ],
       },
     };
 
