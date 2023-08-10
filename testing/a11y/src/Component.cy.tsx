@@ -49,12 +49,11 @@ describe('Should have no WCAG violations', () => {
       cy.configureAxe(axeConfigPerExample[name]);
 
       cy.checkA11y(undefined, undefined, (violations) => {
-        let violationData = violations.map(({ id, help }) => ({
+        const violationData = violations.map(({ id, help }) => ({
           Component: name,
           'Rule ID': id,
           Description: help,
         }));
-
         cy.task('table', violationData);
       });
     });
