@@ -90,9 +90,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       )}
     >
       <Button
-        className={cx(className, 'iui-button-split', {
-          'iui-disabled': props.disabled,
-        })}
+        className={className}
         styleType={styleType}
         size={size}
         onClick={onClick}
