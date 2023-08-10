@@ -14,8 +14,6 @@ $default-size: #{map.get($icon-sizes, m)};
 $default-fill: var(--iui-color-icon-muted);
 
 .iui-svg-icon {
-  --_iui-svg-margin: var(--iui-size-s);
-
   display: inline-flex;
   flex-shrink: 0;
 

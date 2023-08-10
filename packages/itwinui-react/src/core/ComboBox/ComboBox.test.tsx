@@ -82,7 +82,11 @@ it('should render with selected value', () => {
 
 it('should render caret icon correctly', () => {
   const { container } = renderComponent();
-  let icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  let icon = container.querySelector(
+    '.iui-end-icon.iui-svg-icon > svg',
+  ) as HTMLElement;
+
+  const input = container.querySelector('input') as HTMLElement;
 
   const {
     container: { firstChild: caretDown },
@@ -92,14 +96,17 @@ it('should render caret icon correctly', () => {
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // open
-  fireEvent.click(icon);
-  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  fireEvent.click(input);
+  icon = container.querySelector('.iui-end-icon.iui-open > svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(document.querySelector('.iui-menu')).toBeVisible();
+  const menuItem = document.querySelector('.iui-list-item') as HTMLLIElement;
 
   // close
-  fireEvent.click(icon);
-  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  fireEvent.click(menuItem);
+  icon = container.querySelector(
+    '.iui-end-icon.iui-svg-icon > svg',
+  ) as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(document.querySelector('.iui-menu')).not.toBeVisible();
 });
@@ -650,13 +657,15 @@ it('should call onExpand and onCollapse when dropdown is opened and closed', asy
     onHide: onCollapse,
   });
 
-  const icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
-  await userEvent.click(icon);
+  const input = container.querySelector('input') as HTMLElement;
+  await userEvent.click(input);
   const list = document.querySelector('.iui-menu') as HTMLUListElement;
   expect(list).toBeVisible();
   expect(onExpand).toHaveBeenCalled();
 
-  await userEvent.click(icon);
+  const menuItem = document.querySelector('.iui-list-item') as HTMLLIElement;
+
+  await userEvent.click(menuItem);
   expect(list).not.toBeVisible();
   expect(onCollapse).toHaveBeenCalled();
 });
