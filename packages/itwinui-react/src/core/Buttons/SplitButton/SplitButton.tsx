@@ -31,11 +31,11 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Passes props to SplitButton wrapper.
    */
-  wrapperProps?: React.ComponentProps<typeof Box>;
+  wrapperProps?: React.ComponentProps<'div'>;
   /**
    * Passes props to SplitButton menu button.
    */
-  menuButtonProps?: React.ComponentProps<'button'>;
+  menuButtonProps?: React.ComponentProps<typeof IconButton>;
 };
 
 /**
@@ -107,12 +107,10 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <IconButton
-          as='button'
           styleType={styleType}
           size={size}
           disabled={props.disabled}
           {...menuButtonProps}
-          className={menuButtonProps?.className}
         >
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
