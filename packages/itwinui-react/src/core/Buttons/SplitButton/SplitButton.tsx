@@ -35,7 +35,7 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Passes props to SplitButton menu button.
    */
-  menuButtonProps?: React.ComponentProps<'button'>;
+  menuButtonProps?: React.ComponentProps<typeof IconButton>;
 };
 
 /**
