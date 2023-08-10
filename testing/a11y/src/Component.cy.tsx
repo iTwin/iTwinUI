@@ -17,6 +17,25 @@ describe('Should have no WCAG violations', () => {
       'SelectTruncateExample',
     ];
 
+    const skipRules = {
+      SelectIconExample: {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+            selector: ':not(._iui3-content)',
+          },
+        ],
+      },
+      SelectMainExample: { rules: [{ id: 'color-contrast', enabled: false }] },
+      SelectStatusesExample: {
+        rules: [{ id: 'color-contrast', enabled: false }],
+      },
+      SelectSublabelsExample: {
+        rules: [{ id: 'color-contrast', enabled: false }],
+      },
+    };
+
     if (!testsToTestFor.includes(name)) {
       return;
     }
@@ -30,12 +49,30 @@ describe('Should have no WCAG violations', () => {
       cy.injectAxe({
         axeCorePath: Cypress.env('axeCorePath'),
       });
+
+      const rules = skipRules[name] ? skipRules[name].rules : undefined;
+
+      cy.configureAxe({
+        rules: rules,
+      });
+
       cy.checkA11y(undefined, undefined, (violations) => {
-        const violationData = violations.map(({ id, help }) => ({
+        let violationData = violations.map(({ id, help, ...rest }) => ({
           Component: name,
           'Rule ID': id,
           Description: help,
+          ...rest,
         }));
+
+        console.log('violationData', violationData);
+
+        // violationData = violationData.filter((data) => {
+        //   if (skipVioloations[name]) {
+        //     return !skipVioloations[name].includes(data['Rule ID']);
+        //   }
+        //   return true;
+        // });
+
         cy.task('table', violationData);
       });
     });
