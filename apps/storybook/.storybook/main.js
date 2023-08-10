@@ -41,4 +41,8 @@ export default {
   docs: {
     autodocs: false,
   },
+  core: {
+    disableTelemetry: true,
+    disableWhatsNewNotifications: true,
+  },
 };
