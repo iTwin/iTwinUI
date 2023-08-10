@@ -17,42 +17,28 @@ describe('Should have no WCAG violations', () => {
       'SelectTruncateExample',
     ];
 
+    type commonRulesKeys = 'ignore_color_contrast_for_select_placeholder';
+
+    const commonRules: Record<commonRulesKeys, Record<string, any>> = {
+      ignore_color_contrast_for_select_placeholder: {
+        id: 'color-contrast',
+        enabled: true,
+        selector: ':not(._iui3-placeholder > span._iui3-content)',
+      },
+    };
+
     const skipRules = {
       SelectIconExample: {
-        rules: [
-          {
-            id: 'color-contrast',
-            enabled: true,
-            selector: ':not(._iui3-placeholder > span._iui3-content)',
-          },
-        ],
+        rules: [commonRules.ignore_color_contrast_for_select_placeholder],
       },
       SelectMainExample: {
-        rules: [
-          {
-            id: 'color-contrast',
-            enabled: true,
-            selector: ':not(._iui3-placeholder > span._iui3-content)',
-          },
-        ],
+        rules: [commonRules.ignore_color_contrast_for_select_placeholder],
       },
       SelectStatusesExample: {
-        rules: [
-          {
-            id: 'color-contrast',
-            enabled: true,
-            selector: ':not(._iui3-placeholder > span._iui3-content)',
-          },
-        ],
+        rules: [commonRules.ignore_color_contrast_for_select_placeholder],
       },
       SelectSublabelsExample: {
-        rules: [
-          {
-            id: 'color-contrast',
-            enabled: true,
-            selector: ':not(._iui3-placeholder > span._iui3-content)',
-          },
-        ],
+        rules: [commonRules.ignore_color_contrast_for_select_placeholder],
       },
     };
 
