@@ -76,7 +76,8 @@
     "semver": "^7.5.2",
     "optionator": "~0.9.3",
     "typescript": "~5.1.6",
-    "@cypress/request": "^3.0.0"
+    "@cypress/request": "^3.0.0",
+    "jackspeak": "2.1.1"
   },
   "engines": {
     "npm": ">=7.0.0",
