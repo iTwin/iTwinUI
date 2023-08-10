@@ -20,22 +20,24 @@ const storyUrl = `https://itwin.github.io/iTwinUI/react/?path=/story/${component
 </div>
 
 <style lang='scss'>
-  div {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-3);
-    border: solid 1px var(--color-highlight-2);
-    border-radius: var(--border-radius-1);
+  @layer components {
+    div {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-3);
+      border: solid 1px var(--color-highlight-2);
+      border-radius: var(--border-radius-1);
 
-    p {
-      color: var(--color-text);
-    }
+      p {
+        color: var(--color-text);
+      }
 
-    svg {
-      color: var(--color-highlight-2);
-      height: var(--space-8);
-      width: var(--space-8);
+      svg {
+        color: var(--color-highlight-2);
+        height: var(--space-8);
+        width: var(--space-8);
+      }
     }
   }
 </style>

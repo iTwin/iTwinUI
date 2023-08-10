@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox } from '@itwin/itwinui-react';
+import { ComboBox, Label } from '@itwin/itwinui-react';
 
 export default () => {
   const options = React.useMemo(
@@ -23,14 +23,17 @@ export default () => {
   ]);
 
   return (
-    <ComboBox
-      options={options}
-      inputProps={{ placeholder: 'Housing type' }}
-      multiple
-      value={selectedOptions}
-      onChange={(selected) => {
-        setSelectedOptions(selected);
-      }}
-    />
+    <>
+      <Label htmlFor='housing-input'> Select housing type </Label>
+      <ComboBox
+        options={options}
+        inputProps={{ id: 'housing-input', placeholder: 'Housing type' }}
+        multiple
+        value={selectedOptions}
+        onChange={(selected) => {
+          setSelectedOptions(selected);
+        }}
+      />
+    </>
   );
 };

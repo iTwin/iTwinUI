@@ -10,20 +10,22 @@ import Item from './_item.astro';
 </Wrapper>
 
 <style lang='scss'>
-  .wrapper {
-    align-items: center;
-  }
-
-  .item {
-    border-radius: var(--iui-border-radius-1);
-    height: var(--iui-component-height);
-
-    &:first-child {
-      height: var(--iui-component-height-small);
+  @layer components {
+    .wrapper {
+      align-items: center;
     }
 
-    &:last-child {
-      height: var(--iui-component-height-large);
+    .item {
+      border-radius: var(--iui-border-radius-1);
+      height: var(--iui-component-height);
+
+      &:first-child {
+        height: var(--iui-component-height-small);
+      }
+
+      &:last-child {
+        height: var(--iui-component-height-large);
+      }
     }
   }
 </style>

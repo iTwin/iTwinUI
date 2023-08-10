@@ -48,63 +48,65 @@ const { command } = Astro.props;
 </script>
 
 <style lang='scss'>
-  copy-command-button {
-    position: relative;
-    padding: var(--space-2) var(--space-4);
-    border-radius: var(--border-radius-1);
-    box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
-    outline: 1px solid transparent;
-    display: flex;
-    gap: var(--space-3);
-    align-items: center;
-    color: var(--color-text);
-    transition: box-shadow var(--transition-speed) ease;
+  @layer components {
+    copy-command-button {
+      position: relative;
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--border-radius-1);
+      box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+      outline: 1px solid transparent;
+      display: flex;
+      gap: var(--space-3);
+      align-items: center;
+      color: var(--color-text);
+      transition: box-shadow var(--transition-speed) ease;
 
-    &:hover {
-      box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
-    }
-  }
-
-  [data-icon-name='success'] {
-    display: none;
-
-    [data-copied='true'] & {
-      display: block;
-    }
-  }
-
-  [data-copied='true'] [data-icon-name='copy'] {
-    display: none;
-  }
-
-  code {
-    letter-spacing: -0.01em;
-    transform: translateY(-0.1ex); // visual adjustment
-  }
-
-  button {
-    display: flex;
-    align-items: center;
-    border: 1px solid transparent;
-    background-color: transparent;
-    padding: 0;
-    cursor: pointer;
-
-    &::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      &:hover {
+        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+      }
     }
 
-    svg {
-      width: 1rem;
-      height: 1rem;
-      fill: var(--color-subtext);
-      transition: fill var(--transition-speed) ease;
+    [data-icon-name='success'] {
+      display: none;
+
+      [data-copied='true'] & {
+        display: block;
+      }
     }
 
-    &:hover svg {
-      fill: var(--color-text);
+    [data-copied='true'] [data-icon-name='copy'] {
+      display: none;
+    }
+
+    code {
+      letter-spacing: -0.01em;
+      transform: translateY(-0.1ex); // visual adjustment
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      border: 1px solid transparent;
+      background-color: transparent;
+      padding: 0;
+      cursor: pointer;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+      }
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        fill: var(--color-subtext);
+        transition: fill var(--transition-speed) ease;
+      }
+
+      &:hover svg {
+        fill: var(--color-text);
+      }
     }
   }
 </style>

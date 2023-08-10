@@ -2,24 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+
+const persons = {
+  1: { title: 'Robin Mercer', abbr: 'RM', color: 'var(--iui-color-background-sunglow)' },
+  2: { title: 'Terry Rivers', abbr: 'TR', color: 'var(--iui-color-background-skyblue)' },
+};
+
 /**
  * Web component for avatar. Use in other components examples to simplify html. Choose between 2 predefined types/people.
  * <x-avatar size="small" type="2"></x-avatar>
  * <x-avatar size="x-large" type="1" status="online" showPlaceholder="true"></x-avatar>
  */
-const persons = {
-  1: {
-    title: 'Robin Mercer',
-    abbr: 'RM',
-    color: '#FFC335',
-  },
-  2: {
-    title: 'Terry Rivers',
-    abbr: 'TR',
-    color: '#6AB9EC',
-  },
-};
-
 class Avatar extends HTMLElement {
   constructor() {
     super();
@@ -32,35 +25,15 @@ class Avatar extends HTMLElement {
     const showPlaceholder = this.getAttribute('showPlaceholder');
 
     const innerHtml = `
-    <span
-      class="iui-avatar iui-${size}"
-      title="${person.title}"
-    >
-      <abbr
-        class="iui-initials"
+      <span
+        class="iui-avatar iui-${size}"
+        title="${person.title}"
         style="background-color: ${person.color};"
+        ${status ? 'data-iui-status=' + status : ''}
       >
         ${person.abbr}
-      </abbr>
-      ${
-        showPlaceholder
-          ? `<img
-              src="./assets/user-placeholder.png"
-              alt="${person.title}"
-            />`
-          : ''
-      }
-      <span class="iui-stroke"></span>
-      ${
-        status
-          ? `<span
-              title="${status}"
-              class="iui-status iui-${status}"
-            ></span>`
-          : ''
-      }
-    </span>
-    `;
+        ${showPlaceholder ? `<img src="./assets/user-placeholder.png" alt="" />` : ''}
+      </span>`;
     this.insertAdjacentHTML('afterend', innerHtml);
     this.remove();
   }

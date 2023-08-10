@@ -1823,9 +1823,9 @@ it('should disable row and handle expansion accordingly', async () => {
     '.iui-slot .iui-button',
   ) as NodeListOf<HTMLButtonElement>;
   expect(expansionCells.length).toBe(3);
-  expect(expansionCells[0].disabled).toBe(false);
-  expect(expansionCells[1].disabled).toBe(true);
-  expect(expansionCells[2].disabled).toBe(false);
+  expect(expansionCells[0]).not.toHaveAttribute('aria-disabled');
+  expect(expansionCells[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expansionCells[2]).not.toHaveAttribute('aria-disabled');
 
   await userEvent.click(expansionCells[1]);
   expect(onExpand).not.toHaveBeenCalled();
@@ -3896,9 +3896,10 @@ it('should add expander column manually', () => {
     '.iui-table-row-expander',
   );
   expect(expanders.length).toBe(3);
-  expect(expanders[0].disabled).toBe(false);
-  expect(expanders[1].disabled).toBe(true);
-  expect(expanders[2].disabled).toBe(false);
+  expect(expanders[0]).not.toHaveAttribute('aria-disabled');
+  expect(expanders[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expanders[2]).not.toHaveAttribute('aria-disabled');
+
   fireEvent.click(expanders[2]);
   expect(onExpand).toHaveBeenCalledWith(
     [{ name: 'Name3', description: 'Description3' }],
@@ -4694,4 +4695,47 @@ it('should ignore top-level Header if one is passed', async () => {
     expect(cells[0].textContent).toEqual(name);
     expect(cells[1].textContent).toEqual(description);
   });
+});
+
+it('should pass custom props to different parts of Table', () => {
+  const { container } = renderComponent({
+    data: [],
+    headerWrapperProps: {
+      className: 'custom-header-wrapper-class',
+      style: { fontSize: 12 },
+    },
+    headerProps: { className: 'custom-header-class', style: { fontSize: 14 } },
+    bodyProps: { className: 'custom-body-class', style: { width: 80 } },
+    emptyTableContentProps: {
+      className: 'custom-empty-table-content-class',
+      style: { fontSize: 12 },
+    },
+  });
+
+  // Test for Table header wrapper
+  const headerWrapperElement = container.querySelector(
+    '.iui-table-header-wrapper.custom-header-wrapper-class',
+  ) as HTMLElement;
+  expect(headerWrapperElement).toBeTruthy();
+  expect(headerWrapperElement.style.fontSize).toBe('12px');
+
+  // Test for Table header
+  const headerElement = container.querySelector(
+    '.iui-table-header.custom-header-class',
+  ) as HTMLElement;
+  expect(headerElement).toBeTruthy();
+  expect(headerElement.style.fontSize).toBe('14px');
+
+  // Test for Table body
+  const bodyElement = container.querySelector(
+    '.iui-table-body.custom-body-class',
+  ) as HTMLElement;
+  expect(bodyElement).toBeTruthy();
+
+  // Test for Empty Table Content
+  const emptyTableContent = container.querySelector(
+    '.iui-table-empty.custom-empty-table-content-class',
+  ) as HTMLElement;
+  expect(emptyTableContent).toBeTruthy();
+  expect(emptyTableContent.style.fontSize).toBe('12px');
 });
