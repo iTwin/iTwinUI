@@ -27,8 +27,8 @@ export default {
 export const WithInput: Story<InputGridProps> = () => {
   return (
     <InputGrid>
-      <Label>This is label</Label>
-      <Input />
+      <Label htmlFor='input-id'>This is label</Label>
+      <Input id='input-id' />
       <StatusMessage>This is message</StatusMessage>
     </InputGrid>
   );
@@ -37,12 +37,15 @@ export const WithInput: Story<InputGridProps> = () => {
 export const WithInputWithDecorations: Story<InputGridProps> = () => {
   return (
     <InputGrid>
-      <Label>This is label</Label>
+      <Label htmlFor='input-id'>This is label</Label>
       <InputWithDecorations>
         <Icon padded>
           <SvgAirplane />
         </Icon>
-        <InputWithDecorations.Input placeholder='Add destination...' />
+        <InputWithDecorations.Input
+          placeholder='Add destination...'
+          id='input-id'
+        />
         <InputWithDecorations.Button label='Add new flight'>
           <SvgAdd />
         </InputWithDecorations.Button>
@@ -62,8 +65,9 @@ export const WithSelect: Story<InputGridProps> = () => {
 
   return (
     <InputGrid>
-      <Label>This is label</Label>
+      <Label htmlFor='input-id'>This is label</Label>
       <Select
+        id='input-id'
         options={options}
         placeholder='Select destination'
         value={value}
@@ -77,8 +81,8 @@ export const WithSelect: Story<InputGridProps> = () => {
 export const WithSearch: Story<InputGridProps> = () => {
   return (
     <InputGrid labelPlacement='inline'>
-      <Label>This is label</Label>
-      <SearchBox />
+      <Label htmlFor='input-id'>This is label</Label>
+      <SearchBox inputProps={{ id: 'input-id' }} />
       <StatusMessage>This is message</StatusMessage>
     </InputGrid>
   );
