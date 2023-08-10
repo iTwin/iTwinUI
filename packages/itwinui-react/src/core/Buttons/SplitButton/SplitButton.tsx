@@ -69,11 +69,11 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const [menuWidth, setMenuWidth] = React.useState(0);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (ref.current) {
-      setMenuWidth(ref.current.offsetWidth);
+    if (wrapperRef.current) {
+      setMenuWidth(wrapperRef.current.offsetWidth);
     }
   }, [children, size]);
 
@@ -87,6 +87,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         },
         wrapperProps?.className,
       )}
+      ref={wrapperRef}
     >
       <Button
         className={className}
