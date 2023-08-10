@@ -27,6 +27,18 @@ export type ButtonProps = {
    * Icon shown after the main button content.
    */
   endIcon?: JSX.Element;
+  /**
+   * Passes props to the button label.
+   */
+  labelProps?: React.ComponentProps<'span'>;
+  /**
+   * Passes props to the start icon.
+   */
+  startIconProps?: React.ComponentProps<'span'>;
+  /**
+   * Passes props to the end icon.
+   */
+  endIconProps?: React.ComponentProps<'span'>;
 } & Pick<React.ComponentProps<typeof ButtonBase>, 'htmlDisabled'>;
 
 /**
@@ -46,6 +58,9 @@ export const Button = React.forwardRef((props, ref) => {
     styleType = 'default',
     startIcon,
     endIcon,
+    labelProps,
+    startIconProps,
+    endIconProps,
     ...rest
   } = props;
 
@@ -58,15 +73,25 @@ export const Button = React.forwardRef((props, ref) => {
       {...rest}
     >
       {startIcon && (
-        <Box as='span' className='iui-button-icon' aria-hidden>
+        <Box
+          as='span'
+          aria-hidden
+          {...startIconProps}
+          className={cx('iui-button-icon', startIconProps?.className)}
+        >
           {startIcon}
         </Box>
       )}
 
-      {children && <span>{children}</span>}
+      {children && <span {...labelProps}>{children}</span>}
 
       {endIcon && (
-        <Box as='span' className='iui-button-icon' aria-hidden>
+        <Box
+          as='span'
+          aria-hidden
+          {...endIconProps}
+          className={cx('iui-button-icon', endIconProps?.className)}
+        >
           {endIcon}
         </Box>
       )}
