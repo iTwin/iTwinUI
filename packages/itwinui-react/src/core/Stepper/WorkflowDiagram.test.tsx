@@ -34,6 +34,29 @@ it('should display all step names in default workflow diagram', () => {
   expect(queryByText('3')).toBeNull();
 });
 
+it('should add custom prop to workflow diagram wrapper', () => {
+  const workflowDiagram = (
+    <WorkflowDiagram
+      steps={[
+        {
+          name: 'Step One',
+        },
+        {
+          name: 'Step Two',
+        },
+        {
+          name: 'Step Three',
+        },
+      ]}
+      wrapperProps={{ className: 'some-wrapper' }}
+    />
+  );
+
+  const { container } = render(workflowDiagram);
+
+  expect(container.querySelector('div')).toHaveClass('some-wrapper');
+});
+
 it('should display tooltip upon hovering step if description provided', async () => {
   jest.useFakeTimers();
 

@@ -3,12 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useMediaQuery,
   useMergedRefs,
   Box,
   useIsomorphicLayoutEffect,
+  useUncontrolledState,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -61,6 +63,24 @@ type RootProps = {
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
+  /**
+   * The element used as the portal for floating elements (Tooltip, Toast, DropdownMenu, Dialog, etc).
+   *
+   * Defaults to a `<div>` rendered at the end of the ThemeProvider.
+   *
+   * When passing an element, it is recommended to use state.
+   *
+   * @example
+   * const [myPortal, setMyPortal] = React.useState(null);
+   *
+   * <div ref={setMyPortal} />
+   * <ThemeProvider
+   *   portalContainer={myPortal}
+   * >
+   *   ...
+   * </ThemeProvider>
+   */
+  portalContainer?: HTMLElement;
 };
 
 /**
@@ -96,10 +116,13 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     theme: themeProp = 'inherit',
     children,
     themeOptions,
+    portalContainer: portalContainerProp,
     ...rest
   } = props;
 
-  const portalContainerRef = React.useRef<HTMLDivElement>(null);
+  const [portalContainer, setPortalContainer] = useUncontrolledState(
+    portalContainerProp || null,
+  );
 
   const [parentTheme, rootRef] = useParentTheme();
   const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
@@ -107,8 +130,8 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   const shouldApplyBackground = themeOptions?.applyBackground ?? !parentTheme;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, portalContainerRef }),
-    [theme, themeOptions],
+    () => ({ theme, themeOptions, portalContainer }),
+    [theme, themeOptions, portalContainer],
   );
 
   return (
@@ -122,9 +145,14 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       >
         <ToastProvider>
           {children}
-          <div ref={portalContainerRef}>
-            <Toaster />
-          </div>
+
+          {portalContainerProp ? (
+            ReactDOM.createPortal(<Toaster />, portalContainerProp)
+          ) : (
+            <div ref={setPortalContainer}>
+              <Toaster />
+            </div>
+          )}
         </ToastProvider>
       </Root>
     </ThemeContext.Provider>
