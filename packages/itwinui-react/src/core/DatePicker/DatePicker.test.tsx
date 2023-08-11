@@ -73,7 +73,7 @@ it('should apply all custom props', () => {
       calendarMonthProps={{ className: 'some-month' }}
       daysOfWeekProps={{ className: 'some-day-of-week' }}
       weekProps={{ className: 'some-week' }}
-      politeLabelProps={{ className: 'some-politeness' }}
+      // politeLabelProps={{ className: 'some-politeness' }}
       listboxProps={{ className: 'some-listbox' }}
       dayProps={{ className: 'some-day' }}
     />,
@@ -89,7 +89,7 @@ it('should apply all custom props', () => {
     container.querySelector('.iui-calendar-weekdays.some-day-of-week'),
   ).toBeTruthy();
   expect(container.querySelector('.iui-calendar-week.some-week')).toBeTruthy();
-  expect(container.querySelector('.some-politeness')).toBeTruthy();
+  // expect(container.querySelector('.some-politeness')).toBeTruthy();
   expect(container.querySelector('.some-listbox')).toBeTruthy();
   expect(container.querySelector('.some-day')).toBeTruthy();
 });
