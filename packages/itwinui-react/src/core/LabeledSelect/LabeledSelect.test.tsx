@@ -61,9 +61,7 @@ it('should render message', () => {
     '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
-  const message = container.querySelector(
-    '.iui-status-message-content > .my-message',
-  ) as HTMLElement;
+  const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
 });
@@ -82,7 +80,7 @@ it.each(['positive', 'warning', 'negative'] as const)(
     assertBaseElement(inputContainer);
     const select = container.querySelector(`.iui-select-button`) as HTMLElement;
     expect(select).toHaveAttribute('data-iui-status', status);
-    expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
     expect(container.querySelector('.iui-status-message')).toBeTruthy();
   },
 );
@@ -96,9 +94,7 @@ it('should render with custom icon', () => {
     '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(inputContainer);
-  const icon = inputContainer.querySelector(
-    '.iui-status-message-icon > .my-icon',
-  );
+  const icon = inputContainer.querySelector('.iui-svg-icon > .my-icon');
   console.log(prettyDOM(container));
   expect(icon).toBeTruthy();
 });
@@ -178,14 +174,10 @@ it('should render with custom style on message', () => {
     },
   });
 
-  const content = container.querySelector(
-    '.iui-status-message-content.my-classname',
-  );
+  const content = container.querySelector('.my-classname');
   expect(content).toBeTruthy();
   expect((content as HTMLElement).style.color).toEqual('red');
-  const icon = container.querySelector(
-    '.iui-status-message-icon.my-icon-classname',
-  );
+  const icon = container.querySelector('.iui-svg-icon.my-icon-classname');
   expect(icon).toBeTruthy();
   expect((icon as HTMLElement).style.color).toEqual('green');
 });

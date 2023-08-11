@@ -2,48 +2,28 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-.iui-status-message-content {
-  font-size: var(--iui-font-size-0);
-  color: var(--iui-color-text-muted);
-}
-
-.iui-status-message-icon {
-  align-self: center;
-
-  &:not(:last-child) {
-    margin-inline-end: var(--iui-size-2xs);
-  }
-
-  svg:where(:not(.iui-button svg)) {
-    @include mixins.iui-icon-color;
-  }
-}
-
 .iui-status-message {
   display: flex;
+  gap: var(--iui-size-2xs);
+  align-items: center;
+  font-size: var(--iui-font-size-0);
+  color: var(--iui-color-text-muted);
 
   @each $status in positive, warning, negative {
     &[data-iui-status='#{$status}'] {
-      .iui-status-message-content {
+      color: var(--iui-color-text-#{$status});
+
+      a {
+        text-decoration: underline;
         color: var(--iui-color-text-#{$status});
-
-        a {
-          text-decoration: underline;
-          color: var(--iui-color-text-#{$status});
-        }
-
-        a:hover {
-          text-decoration: none;
-          color: var(--iui-color-text-#{$status}-hover);
-        }
       }
 
-      .iui-status-message-icon {
-        &,
-        svg {
-          fill: var(--iui-color-icon-#{$status});
-        }
+      a:hover {
+        text-decoration: none;
+        color: var(--iui-color-text-#{$status}-hover);
       }
+
+      --_iui-svg-fill: var(--iui-color-icon-#{$status});
     }
   }
 }

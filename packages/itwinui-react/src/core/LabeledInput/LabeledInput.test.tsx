@@ -58,9 +58,7 @@ it('should render message', () => {
   assertBaseElement(container);
   getByText('some label');
   expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
-  const message = container.querySelector(
-    '.iui-status-message-content > .my-message',
-  ) as HTMLElement;
+  const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
 });
@@ -147,7 +145,7 @@ it('should take class and style on input', () => {
 });
 
 it('should render inline input', () => {
-  const { container, getByText, queryByText } = render(
+  const { container, getByText } = render(
     <LabeledInput
       label='some label'
       displayStyle='inline'
@@ -159,7 +157,7 @@ it('should render inline input', () => {
   expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   expect(inputContainer).toHaveAttribute('data-iui-label-placement', 'inline');
   getByText('some label');
-  expect(queryByText('My message')).toHaveClass('iui-status-message-content');
+  getByText('My message');
   expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
 });
 
@@ -178,7 +176,7 @@ it('should take custom icon', () => {
 });
 
 it('should render inline icon', () => {
-  const { container, queryByText } = render(
+  const { container, queryByText, getByText } = render(
     <LabeledInput
       label='some label'
       iconDisplayStyle='inline'
@@ -192,6 +190,6 @@ it('should render inline icon', () => {
     'inline',
   );
   expect(queryByText('some label')).toHaveClass('iui-input-label');
-  expect(queryByText('My message')).toHaveClass('iui-status-message-content');
+  getByText('My message');
   expect(container.querySelector('.my-icon')).toBeTruthy();
 });

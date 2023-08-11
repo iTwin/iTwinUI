@@ -97,14 +97,10 @@ it('should add custom class names and styles', () => {
   ) as HTMLElement;
   expect(label).toBeTruthy();
 
-  const icon = container.querySelector(
-    '.iui-status-message-icon.my-icon',
-  ) as HTMLElement;
+  const icon = container.querySelector('.iui-svg-icon.my-icon') as HTMLElement;
   expect(icon).toBeTruthy();
 
-  const content = container.querySelector(
-    '.iui-status-message-content.my-message',
-  ) as HTMLElement;
+  const content = container.querySelector('.my-message') as HTMLElement;
   expect(content).toBeTruthy();
 });
 
@@ -148,7 +144,7 @@ it('should take custom icon', () => {
 });
 
 it('should render inline icon', () => {
-  const { container, queryByText } = render(
+  const { container, getByText } = render(
     <LabeledTextarea
       label='some label'
       iconDisplayStyle='inline'
@@ -161,7 +157,7 @@ it('should render inline icon', () => {
     'data-iui-label-placement',
     'inline',
   );
-  expect(queryByText('some label')).toHaveClass('iui-input-label');
-  expect(queryByText('My message')).toHaveClass('iui-status-message-content');
+  expect(getByText('some label')).toHaveClass('iui-input-label');
+  getByText('My message');
   expect(container.querySelector('.iui-svg-icon > .my-icon')).toBeTruthy();
 });

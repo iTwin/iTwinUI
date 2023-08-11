@@ -546,9 +546,7 @@ it('should render with message', () => {
     ),
   });
   assertBaseElement(container);
-  const message = container.querySelector(
-    '.iui-status-message-content > .my-message',
-  ) as HTMLElement;
+  const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
 });
@@ -577,7 +575,7 @@ it('should render with message as string and status', () => {
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveAttribute('data-iui-status', 'warning');
-  expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-svg-icon')).toBeTruthy();
 });
 
 it('should render with custom icon', () => {
@@ -593,9 +591,7 @@ it('should render with custom icon', () => {
     '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(
-    inputContainer.querySelector('.iui-status-message-icon .my-icon'),
-  ).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-svg-icon .my-icon')).toBeTruthy();
 });
 
 it('should render with message and status', () => {
@@ -609,7 +605,7 @@ it('should render with message and status', () => {
   ) as HTMLElement;
   assertBaseElement(container);
   expect(inputContainer).toHaveAttribute('data-iui-status', 'positive');
-  expect(inputContainer.querySelector('.iui-status-message-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-svg-icon')).toBeTruthy();
   const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message.textContent).toBe('Text here');
 });

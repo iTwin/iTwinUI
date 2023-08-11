@@ -64,9 +64,7 @@ it('should render message', () => {
   );
   expect(container.querySelector('.iui-input-grid')).toBeTruthy();
   getByText('some label');
-  const message = container.querySelector(
-    '.iui-status-message-content > .my-message',
-  ) as HTMLElement;
+  const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
   expect(container.querySelectorAll('input').length).toBe(3);
@@ -91,7 +89,7 @@ it.each(['positive', 'negative', 'warning'] as const)(
       status,
     );
     getByText('some label');
-    expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
   },
 );
 
@@ -165,13 +163,11 @@ it('should take class and style on message', () => {
       <Checkbox />
     </InputGroup>,
   );
-  const content = container.querySelector(
-    '.iui-status-message-content.my-class',
-  ) as HTMLElement;
+  const content = container.querySelector('.my-class') as HTMLElement;
   expect(content).toBeTruthy();
   expect(content.style.width).toBe('80px');
   const icon = container.querySelector(
-    '.iui-status-message-icon.my-icon-class',
+    '.iui-svg-icon.my-icon-class',
   ) as HTMLElement;
   expect(icon).toBeTruthy();
   expect(icon.style.width).toBe('60px');
@@ -198,7 +194,7 @@ it('should render inline group', () => {
   );
   getByText('some group label');
   expect(queryByText('My message')).toBeNull();
-  expect(container.querySelector('.iui-status-message-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
 });
 
 it('should take custom icon', () => {
@@ -218,7 +214,5 @@ it('should take custom icon', () => {
     'inline',
   );
   getByText('some group label');
-  expect(
-    container.querySelector('.iui-status-message-icon > .my-icon'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon > .my-icon')).toBeTruthy();
 });
