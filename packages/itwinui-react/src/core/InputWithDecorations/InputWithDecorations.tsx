@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  Box,
-  InputFlexContainer,
-  useMergedRefs,
-  useSafeContext,
-} from '../utils/index.js';
+import { Box, InputFlexContainer, useSafeContext } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import type { InputProps } from '../Input/Input.js';
@@ -40,8 +35,6 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   const { id: idProp, size, disabled: localDisabled, ...rest } = props;
-  const inputRef = React.useRef<HTMLInputElement>(null);
-  const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
   const { size: contextSize, isDisabled } = useSafeContext(
     InputWithDecorationsContext,
   );
@@ -49,7 +42,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   return (
     <Box
       as='input'
-      ref={refs}
+      ref={ref}
       data-iui-size={size ?? contextSize}
       disabled={localDisabled ?? isDisabled}
       id={idProp}
