@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { Box } from '../utils/index.js';
+import { ButtonBase } from '../utils/index.js';
 
 type CarouselDotProps = {
   /** Is this dot currently active? */
@@ -24,9 +24,7 @@ export const CarouselDot = React.forwardRef((props, ref) => {
   const { isActive, isSmaller, isSmall, className, ...rest } = props;
 
   return (
-    <Box
-      as='button'
-      type='button'
+    <ButtonBase
       role='tab'
       tabIndex={-1}
       className={cx(

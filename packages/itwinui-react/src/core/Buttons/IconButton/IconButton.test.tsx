@@ -57,7 +57,7 @@ it('renders disabled small icon button correctly', () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
   expect(button).toHaveAttribute('data-iui-size', 'small');
-  expect(button.disabled).toBe(true);
+  expect(button).toHaveAttribute('aria-disabled', 'true');
   button.click();
   expect(onClickMock).not.toHaveBeenCalled();
   const icon = container.querySelector('.iui-button-icon');
@@ -85,4 +85,20 @@ it('should support polymorphic `as` prop', () => {
 
   const button = container.querySelector('a.iui-button') as HTMLAnchorElement;
   expect(button.href).toEqual('https://example.com/');
+});
+
+it('should pass props to IconButton parts', () => {
+  const { container } = render(
+    <IconButton
+      iconProps={{ className: 'custom-icon-class', style: { width: 80 } }}
+    >
+      <SvgMore />
+    </IconButton>,
+  );
+
+  const icon = container.querySelector(
+    '.iui-button-icon.custom-icon-class',
+  ) as HTMLElement;
+  expect(icon).toBeTruthy;
+  expect(icon.style.width).toBe('80px');
 });

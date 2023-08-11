@@ -18,3 +18,4 @@ export * from './Divider.js';
 export * from './LinkAction.js';
 export * from './AutoclearingHiddenLiveRegion.js';
 export * from './Box.js';
+export * from './ButtonBase.js';

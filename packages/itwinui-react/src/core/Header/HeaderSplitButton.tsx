@@ -5,7 +5,12 @@
 import cx from 'classnames';
 import * as React from 'react';
 import { DropdownMenu } from '../DropdownMenu/index.js';
-import { SvgCaretDownSmall, SvgCaretUpSmall, Box } from '../utils/index.js';
+import {
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  Box,
+  ButtonBase,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { SplitButtonProps } from '../Buttons/SplitButton/SplitButton.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
@@ -45,9 +50,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         style={{ minWidth: menuWidth }}
         onToggleVisible={(open) => setIsMenuOpen(open)}
       >
-        <Box
-          as='button'
-          type='button'
+        <ButtonBase
           className='iui-header-breadcrumb-button iui-header-breadcrumb-button-split'
           disabled={disabled}
         >
@@ -62,7 +65,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
               aria-hidden
             />
           )}
-        </Box>
+        </ButtonBase>
       </DropdownMenu>
     </Box>
   );
