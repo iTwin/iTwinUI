@@ -14,15 +14,6 @@ const Shell = () => {
 
   return (
     <>
-      <Global
-        styles={css`
-          * {
-            box-sizing: border-box;
-            margin-inline: 0;
-            margin-block: 0;
-          }
-        `}
-      />
       <ThemeProvider theme={theme}>
         <Main>
           <ThemeButton
