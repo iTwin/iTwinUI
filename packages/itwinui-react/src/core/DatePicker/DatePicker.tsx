@@ -193,10 +193,10 @@ type DatePickerProps = {
    * Allows props to be passed for calendar month year
    */
   calendarProps?: React.ComponentProps<'div'>;
-  /**
-   * Allows props to be passed for label inside polite
-   */
-  politeLabelProps?: React.ComponentProps<'span'>;
+  // /**
+  //  * Allows props to be passed for label inside polite
+  //  */
+  // politeLabelProps?: React.ComponentProps<'span'>;
   /**
    * Allows props to be passed for calendar month
    */
@@ -258,7 +258,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     startDate,
     endDate,
     calendarProps,
-    politeLabelProps,
+    // politeLabelProps,
     calendarMonthProps,
     daysOfWeekProps,
     weekDayProps,
@@ -597,8 +597,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           </IconButton>
           <span
             aria-live='polite'
-            {...politeLabelProps}
-            className={cx(className, politeLabelProps?.className)}
+            // {...politeLabelProps}
+            // className={cx(className, politeLabelProps?.className)}
           >
             <Box
               as='span'
