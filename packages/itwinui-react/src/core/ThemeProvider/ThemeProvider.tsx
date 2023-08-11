@@ -3,8 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
-import { useMediaQuery, useMergedRefs, Box } from '../utils/index.js';
+import {
+  useMediaQuery,
+  useMergedRefs,
+  Box,
+  useIsomorphicLayoutEffect,
+  useUncontrolledState,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
 import { ToastProvider, Toaster } from '../Toast/Toaster.js';
@@ -56,12 +63,32 @@ type RootProps = {
 type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
   themeOptions?: RootProps['themeOptions'];
   children: Required<React.ReactNode>;
+  /**
+   * The element used as the portal for floating elements (Tooltip, Toast, DropdownMenu, Dialog, etc).
+   *
+   * Defaults to a `<div>` rendered at the end of the ThemeProvider.
+   *
+   * When passing an element, it is recommended to use state.
+   *
+   * @example
+   * const [myPortal, setMyPortal] = React.useState(null);
+   *
+   * <div ref={setMyPortal} />
+   * <ThemeProvider
+   *   portalContainer={myPortal}
+   * >
+   *   ...
+   * </ThemeProvider>
+   */
+  portalContainer?: HTMLElement;
 };
 
 /**
- * This component provides global styles and applies theme to the entire tree
- * that it is wrapping around. The `theme` prop is optional and defaults to the
- * light theme.
+ * This component provides global state and applies theme to the entire tree
+ * that it is wrapping around.
+ *
+ * The `theme` prop defaults to "inherit", which looks upwards for closest ThemeProvider
+ * and falls back to "light" theme if one is not found.
  *
  * If you want to theme the entire app, you should use this component at the root. You can also
  * use this component to apply a different theme to only a part of the tree.
@@ -84,22 +111,27 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
  *  <App />
  * </ThemeProvider>
  */
-export const ThemeProvider = React.forwardRef((props, ref) => {
-  const { theme: themeProp, children, themeOptions, ...rest } = props;
+export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
+  const {
+    theme: themeProp = 'inherit',
+    children,
+    themeOptions,
+    portalContainer: portalContainerProp,
+    ...rest
+  } = props;
 
-  const portalContainerRef = React.useRef<HTMLDivElement>(null);
-  const parentContext = React.useContext(ThemeContext);
+  const [portalContainer, setPortalContainer] = useUncontrolledState(
+    portalContainerProp || null,
+  );
 
-  const theme =
-    themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
+  const [parentTheme, rootRef] = useParentTheme();
+  const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
 
-  const shouldApplyBackground =
-    themeOptions?.applyBackground ??
-    (themeProp === 'inherit' ? false : !parentContext);
+  const shouldApplyBackground = themeOptions?.applyBackground ?? !parentTheme;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, portalContainerRef }),
-    [theme, themeOptions],
+    () => ({ theme, themeOptions, portalContainer }),
+    [theme, themeOptions, portalContainer],
   );
 
   return (
@@ -108,14 +140,19 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
         theme={theme}
         shouldApplyBackground={shouldApplyBackground}
         themeOptions={themeOptions}
-        ref={ref}
+        ref={useMergedRefs(forwardedRef, rootRef)}
         {...rest}
       >
         <ToastProvider>
           {children}
-          <div ref={portalContainerRef}>
-            <Toaster />
-          </div>
+
+          {portalContainerProp ? (
+            ReactDOM.createPortal(<Toaster />, portalContainerProp)
+          ) : (
+            <div ref={setPortalContainer}>
+              <Toaster />
+            </div>
+          )}
         </ToastProvider>
       </Root>
     </ThemeContext.Provider>
@@ -123,6 +160,8 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
 
 export default ThemeProvider;
+
+// ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
   const {
@@ -134,8 +173,6 @@ const Root = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const ref = React.useRef<HTMLElement>(null);
-  const mergedRefs = useMergedRefs(ref, forwardedRef);
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
   const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
@@ -150,10 +187,36 @@ const Root = React.forwardRef((props, forwardedRef) => {
       )}
       data-iui-theme={shouldApplyDark ? 'dark' : 'light'}
       data-iui-contrast={shouldApplyHC ? 'high' : 'default'}
-      ref={mergedRefs}
+      ref={forwardedRef}
       {...rest}
     >
       {children}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', RootProps>;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Returns theme from either parent context or by reading the closest
+ * data-iui-theme attribute if context is not found.
+ */
+const useParentTheme = () => {
+  const parentContext = React.useContext(ThemeContext);
+  const rootRef = React.useRef<HTMLElement>(null);
+  const [parentThemeState, setParentTheme] = React.useState(
+    parentContext?.theme,
+  );
+
+  useIsomorphicLayoutEffect(() => {
+    setParentTheme(
+      (old) =>
+        old ||
+        (rootRef.current?.parentElement
+          ?.closest('[data-iui-theme]')
+          ?.getAttribute('data-iui-theme') as ThemeType),
+    );
+  }, []);
+
+  return [parentContext?.theme ?? parentThemeState, rootRef] as const;
+};

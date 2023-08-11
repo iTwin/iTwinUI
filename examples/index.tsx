@@ -6,8 +6,15 @@ import * as React from 'react';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
 const withThemeProvider = (Component: () => React.ReactElement) => () => {
+  const [portalContainer, setPortalContainer] = React.useState<HTMLElement>();
+  React.useEffect(() => void setPortalContainer(document.body), []);
+
   return (
-    <ThemeProvider theme='dark' themeOptions={{ applyBackground: false }}>
+    <ThemeProvider
+      theme='dark'
+      themeOptions={{ applyBackground: false }}
+      portalContainer={portalContainer}
+    >
       <Component />
     </ThemeProvider>
   );
