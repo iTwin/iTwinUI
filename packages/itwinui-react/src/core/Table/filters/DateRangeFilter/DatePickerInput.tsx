@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import { PopoverCopy, SvgCalendar, isBefore } from '../../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
 import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
@@ -84,7 +84,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Popover
+    <PopoverCopy
       content={
         <DatePicker
           date={date}
@@ -95,12 +95,13 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       }
       placement='bottom'
       visible={isVisible}
-      onClickOutside={(_, e) => {
-        if (!buttonRef.current?.contains(e.target as Node)) {
-          close();
-        }
-      }}
-      appendTo='parent'
+      // onClickOutside={(_, e) => {
+      //   if (!buttonRef.current?.contains(e.target as Node)) {
+      //     close();
+      //   }
+      // }}
+      onClickOutsideClose
+      // portal={{ to: 'parent' }}
     >
       <LabeledInput
         ref={forwardedRef}
@@ -119,7 +120,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
         }
         {...rest}
       />
-    </Popover>
+    </PopoverCopy>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
 
