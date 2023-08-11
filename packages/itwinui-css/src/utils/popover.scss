@@ -7,7 +7,7 @@
     pointer-events: none;
   }
 
-  &[data-iui-apply-background='true'] {
+  &[data-iui-apply-background] {
     background-color: var(--iui-color-background);
     border: 1px solid var(--iui-color-border-subtle);
     border-radius: var(--iui-border-radius-1);

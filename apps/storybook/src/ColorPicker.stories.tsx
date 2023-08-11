@@ -15,7 +15,7 @@ import {
   ColorBuilder,
   ColorInputPanel,
 } from '@itwin/itwinui-react';
-import { Popover } from '@itwin/itwinui-react/esm/core/utils';
+import { PopoverCopy } from '@itwin/itwinui-react/esm/core/utils';
 import { action } from '@storybook/addon-actions';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
@@ -83,7 +83,7 @@ export const Basic: Story<ColorPickerProps> = (args) => {
 
   return (
     <>
-      <Popover
+      <PopoverCopy
         content={
           <ColorPicker
             selectedColor={activeColor.color}
@@ -102,7 +102,7 @@ export const Basic: Story<ColorPickerProps> = (args) => {
             color={activeColor.color}
           />
         </IconButton>
-      </Popover>
+      </PopoverCopy>
       <span style={{ marginLeft: 16 }}>{colorName}</span>
     </>
   );
@@ -139,7 +139,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
   return (
     <>
       <ButtonGroup>
-        <Popover
+        <PopoverCopy
           content={
             <ColorPicker
               selectedColor={selectedColor}
@@ -170,7 +170,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
               color={selectedColor}
             />
           </IconButton>
-        </Popover>
+        </PopoverCopy>
         <Button
           onClick={() => {
             setCurrentFormat(
@@ -220,7 +220,7 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
   return (
     <>
       <ButtonGroup>
-        <Popover
+        <PopoverCopy
           content={
             <ColorPicker
               selectedColor={selectedColor}
@@ -249,7 +249,7 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
               color={selectedColor}
             />
           </IconButton>
-        </Popover>
+        </PopoverCopy>
         <Button
           onClick={() => {
             setCurrentFormat(
