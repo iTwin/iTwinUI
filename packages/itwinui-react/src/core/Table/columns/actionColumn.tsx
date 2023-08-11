@@ -121,13 +121,9 @@ export const ActionColumn = <T extends Record<string, unknown>>({
         <DropdownMenu
           {...dropdownMenuProps}
           menuItems={headerCheckBoxes}
-          onHide={() => {
-            setIsOpen(false);
-            dropdownMenuProps.onHide?.();
-          }}
-          onShow={() => {
-            setIsOpen(true);
-            dropdownMenuProps.onShow?.();
+          onToggleVisible={(open) => {
+            setIsOpen(open);
+            dropdownMenuProps?.onToggleVisible?.(open);
           }}
           className={cx('iui-scroll', dropdownMenuProps.className)}
         >

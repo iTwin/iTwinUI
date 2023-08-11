@@ -16,9 +16,9 @@ import {
   AutoclearingHiddenLiveRegion,
 } from '../utils/index.js';
 import type {
-  PopoverProps,
   InputContainerProps,
   CommonProps,
+  PopoverCopy,
 } from '../utils/index.js';
 import {
   ComboBoxActionContext,
@@ -105,7 +105,7 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: PopoverProps;
+  dropdownMenuProps?: React.ComponentProps<typeof PopoverCopy>;
   /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
@@ -556,8 +556,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           </ComboBoxInputContainer>
           <ComboBoxDropdown
             {...dropdownMenuProps}
-            onShow={onShow}
-            onHide={onHide}
+            onToggleVisible={(open) => (open ? onShow : onHide)}
           >
             <ComboBoxMenu>
               {filteredOptions.length > 0 && !enableVirtualization

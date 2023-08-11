@@ -349,6 +349,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       {...rest}
     >
       <PopoverCopy
+        matchTriggerWidth
         content={
           <Menu
             role='listbox'

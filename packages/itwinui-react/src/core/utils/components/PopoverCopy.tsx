@@ -85,6 +85,11 @@ type PopoverOptions = {
     hide?: boolean;
     inline?: boolean;
   };
+  /**
+   * Matches Popover width to trigger width
+   * @default false;
+   */
+  matchTriggerWidth?: boolean;
 };
 
 function usePopover({
@@ -92,6 +97,7 @@ function usePopover({
   visible: controlledOpen,
   onToggleVisible,
   onClickOutsideClose,
+  matchTriggerWidth = false,
   middleware = {
     flip: true,
     shift: true,
@@ -117,12 +123,13 @@ function usePopover({
         layoutShift: autoUpdateOptions.layoutShift,
       }),
     middleware: [
-      middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
+      middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
       middleware.shift && shift(),
       middleware.size
         ? size()
-        : size({
+        : matchTriggerWidth &&
+          size({
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             apply({ rects, elements }: any) {
               Object.assign(elements.floating.style, {
@@ -205,6 +212,7 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     placement,
     visible,
     onToggleVisible,
+    matchTriggerWidth,
     ...rest
   } = props;
   const themeInfo = React.useContext(ThemeContext);
@@ -215,6 +223,7 @@ export const PopoverCopy = React.forwardRef((props, ref) => {
     onToggleVisible,
     onClickOutsideClose,
     hover,
+    matchTriggerWidth,
   });
 
   const refs = useMergedRefs(popover.refs.setFloating, ref);

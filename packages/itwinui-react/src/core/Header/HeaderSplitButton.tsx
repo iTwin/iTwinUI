@@ -43,8 +43,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         placement={menuPlacement}
         menuItems={menuItems}
         style={{ minWidth: menuWidth }}
-        onShow={React.useCallback(() => setIsMenuOpen(true), [])}
-        onHide={React.useCallback(() => setIsMenuOpen(false), [])}
+        onToggleVisible={(open) => setIsMenuOpen(open)}
       >
         <Box
           as='button'

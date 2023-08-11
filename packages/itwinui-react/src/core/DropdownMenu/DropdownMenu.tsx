@@ -22,8 +22,6 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-  onShow?: () => void;
-  onHide?: () => void;
 } & Omit<React.ComponentProps<typeof PopoverCopy>, 'content'> &
   Omit<CommonProps, 'title'>;
 
@@ -55,8 +53,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     role = 'menu',
     visible,
     placement = 'bottom-start',
-    onShow,
-    onHide,
+    onToggleVisible,
     id,
     ...rest
   } = props;
@@ -80,14 +77,14 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
 
   const onShowHandler = React.useCallback(() => {
     setIsVisible(true);
-    onShow?.();
-  }, [onShow]);
+    onToggleVisible?.(true);
+  }, [onToggleVisible]);
 
   const onHideHandler = React.useCallback(() => {
     setIsVisible(false);
     targetRef.current?.focus();
-    onHide?.();
-  }, [onHide]);
+    onToggleVisible?.(false);
+  }, [onToggleVisible]);
 
   return (
     <PopoverCopy
