@@ -10,6 +10,7 @@ import {
   useMergedRefs,
   Box,
   useIsomorphicLayoutEffect,
+  useUncontrolledState,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -119,10 +120,9 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [portalContainerState, setPortalContainerState] = React.useState(
+  const [portalContainer, setPortalContainer] = useUncontrolledState(
     portalContainerProp || null,
   );
-  const portalContainer = portalContainerProp || portalContainerState;
 
   const [parentTheme, rootRef] = useParentTheme();
   const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
@@ -149,7 +149,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
           {portalContainerProp ? (
             ReactDOM.createPortal(<Toaster />, portalContainerProp)
           ) : (
-            <div ref={setPortalContainerState}>
+            <div ref={setPortalContainer}>
               <Toaster />
             </div>
           )}
