@@ -9,8 +9,6 @@ import * as React from 'react';
  * uncontrolled state (which often comes from a prop).
  */
 export const useUncontrolledState = <T>(uncontrolledState: T) => {
-  const [controlledState, setControlledState] =
-    React.useState(uncontrolledState);
-
+  const [controlledState, setControlledState] = React.useState<T>();
   return [uncontrolledState ?? controlledState, setControlledState] as const;
 };
