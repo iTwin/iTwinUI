@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { MenuItem, Select } from '@itwin/itwinui-react';
+import { MenuItem, LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
   const options = [
@@ -22,7 +22,8 @@ export default () => {
   ];
 
   return (
-    <Select<string>
+    <LabeledSelect
+      label={'Choose color'}
       options={options}
       placeholder={'Placeholder text'}
       itemRenderer={(option) => (
