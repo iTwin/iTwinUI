@@ -14,13 +14,53 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-footer' />
-
 <LiveExample src='Footer.main.tsx' truncate={false}>
   <AllExamples.FooterMainExample client:load />
 </LiveExample>
 
 The footer is fixed to the bottom of a web page, and contains your typical legally required links. The legal footer is only required to be displayed on pages that are considered a “main entry point into your application”. This means that the sign in and home page of any hub / app are good places to display the footer. You do not need to display the footer within an App UI widget, or deeper pages within an app. You can not include the footer on a page with infinite scrolling because you can not reach the bottom of the page.
+
+## Variants
+
+### Appended Custom Elements
+
+Add custom element by passing `customElements` prop to Footer component, set the `title` property as label for the custom link and `url` property for URL associated with the custom link.
+
+<LiveExample src='Footer.appendedcustomelements.tsx'>
+  <AllExamples.FooterAppendCustomElementsExample client:load />
+</LiveExample>
+
+### Only Custom Elements
+
+Add only custom elements by passing `customElements` prop to Footer component. It expects an array of objects each describing a custom link for the footer. Set the `title` and `url` property for each defined custom element.
+
+<LiveExample src='Footer.onlycustomelements.tsx'>
+  <AllExamples.FooterOnlyCustomElementsExample client:load />
+</LiveExample>
+
+### Customized Default And Custom Elements
+
+Add customized default and custom elements by creating `customUrls` and `translatedTitles` objects. Show Footer component by returning new array containing `customizedDefaultElements` and `customElements`.
+
+<LiveExample src='Footer.customizeddefaultandcustomelements.tsx'>
+  <AllExamples.FooterCustomizedDefaultAndCustomElementsExample client:load />
+</LiveExample>
+
+### Bottom Fixed
+
+Place the footer to the bottom of the page using the `style` prop and set the `position` and `bottom` property.
+
+<LiveExample src='Footer.bottomfixed.tsx'>
+  <AllExamples.FooterBottomFixedExample client:load />
+</LiveExample>
+
+### Custom Content
+
+Add custom content and icons to the Footer component. Construct custom elements by concatenating `customItem` with other `defaultFooterElements`.
+
+<LiveExample src='Footer.customcontent.tsx'>
+  <AllExamples.FooterCustomContentExample client:load />
+</LiveExample>
 
 ## Appearance
 
