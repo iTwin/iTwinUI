@@ -31,9 +31,7 @@
     outline-width: 1px;
   }
 
-  &[disabled],
-  &:disabled,
-  &[aria-disabled='true'] {
+  &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
     --_iui-button-background-color: var(--iui-color-background-disabled);
     --_iui-button-border-color: var(--iui-color-border-disabled);
     --_iui-button-text-color: var(--iui-color-text-disabled);

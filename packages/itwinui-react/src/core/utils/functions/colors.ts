@@ -24,19 +24,7 @@ export const isSoftBackground = (
   return Object.keys(SoftBackgrounds).includes(value);
 };
 
-const USER_COLORS = [
-  '#6AB9EC',
-  '#B1C854',
-  '#F7706C',
-  '#4585A5',
-  '#FFC335',
-  '#F7963E',
-  '#73C7C1',
-  '#85A9CF',
-  '#A3779F',
-  '#C8C2B4',
-  '#A47854',
-];
+const USER_COLORS = Object.values(SoftBackgrounds);
 
 /**
  * Generate color from user name or email.
