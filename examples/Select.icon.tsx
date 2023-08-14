@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Select } from '@itwin/itwinui-react';
+import { LabeledSelect } from '@itwin/itwinui-react';
 import {
   SvgSmileyHappy,
   SvgSmileySad,
@@ -12,7 +12,8 @@ import {
 
 export default () => {
   return (
-    <Select
+    <LabeledSelect
+      label={'Choose feeling'}
       options={[
         {
           value: 'happy',
