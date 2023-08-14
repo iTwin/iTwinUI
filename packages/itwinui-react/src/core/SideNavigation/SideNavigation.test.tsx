@@ -277,6 +277,8 @@ it('should not show submenu if isSubmenuOpen is false', () => {
 
 it('passes custom props to subcomponents', () => {
   const { container } = renderComponent({
+    className: 'custom-class',
+    style: { width: 60 },
     wrapperProps: {
       className: 'custom-wrapper-class',
       style: { width: 70 },
@@ -295,7 +297,14 @@ it('passes custom props to subcomponents', () => {
     },
   });
 
-  // sideNav props test
+  // sidenav props test
+  const sidenavElement = container.querySelector(
+    '.iui-side-navigation.iui-collapsed.custom-class',
+  ) as HTMLElement;
+  expect(sidenavElement).toBeTruthy();
+  expect(sidenavElement.style.width).toBe('60px');
+
+  // wrapper props test
   const wrapperElement = container.querySelector(
     '.iui-side-navigation-wrapper.custom-wrapper-class',
   ) as HTMLElement;
