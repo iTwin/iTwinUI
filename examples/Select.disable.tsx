@@ -7,7 +7,7 @@ import { LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <LabeledSelect<number>
+    <LabeledSelect
       disabled
       label={'Disabled Select Label'}
       options={[

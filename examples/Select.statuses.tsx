@@ -22,7 +22,7 @@ export default () => {
   ];
 
   return (
-    <LabeledSelect<string>
+    <LabeledSelect
       label={'Choose color'}
       options={options}
       placeholder={'Placeholder text'}
