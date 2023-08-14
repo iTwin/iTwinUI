@@ -37,7 +37,7 @@
   overflow-wrap: break-word;
   box-sizing: content-box;
   padding-block: calc(var(--iui-size-s) * 0.33);
-  padding-inline: (--iui-size-xs);
+  padding-inline: var(--iui-size-xs);
   z-index: 999;
   box-shadow: var(--iui-shadow-3);
   color: var(--iui-color-white);

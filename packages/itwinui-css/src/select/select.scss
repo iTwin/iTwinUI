@@ -72,6 +72,7 @@
 
 @mixin iui-select-tag-container {
   position: absolute;
+  inset-block: 0;
   // align wth Select's padding
   inset-inline: var(--iui-size-s) calc(var(--iui-size-m) + var(--iui-size-l));
   block-size: 100%;
