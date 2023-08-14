@@ -3,13 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { ThemeOptions, ThemeType } from './ThemeProvider.js';
 
-export const ThemeContext = React.createContext<
-  | {
-      theme?: ThemeType;
-      themeOptions?: ThemeOptions;
-      portalContainer?: HTMLElement | null;
-    }
-  | undefined
->(undefined);
+/**
+ * Wrapper over `useState` that always gives preference to the
+ * uncontrolled state (which often comes from a prop).
+ */
+export const useUncontrolledState = <T>(uncontrolledState: T) => {
+  const [controlledState, setControlledState] = React.useState<T>();
+  return [uncontrolledState ?? controlledState, setControlledState] as const;
+};
