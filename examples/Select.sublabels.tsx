@@ -25,6 +25,13 @@ export default () => {
   ];
 
   return (
-    <Select options={options} placeholder={'Placeholder text'} size={'large'} />
+    <Select
+      triggerProps={{
+        'aria-label': 'Select label',
+      }}
+      options={options}
+      placeholder={'Placeholder text'}
+      size={'large'}
+    />
   );
 };
