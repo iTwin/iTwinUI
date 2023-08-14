@@ -12,7 +12,11 @@ export default () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+      <IconButton
+        onClick={() => setOpened(!opened)}
+        id='picker-button'
+        aria-label='date picker'
+      >
         <SvgCalendar />
       </IconButton>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
