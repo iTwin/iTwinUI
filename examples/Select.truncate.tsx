@@ -6,8 +6,7 @@ import * as React from 'react';
 import {
   MenuItem,
   MiddleTextTruncation,
-  Select,
-  Label,
+  LabeledSelect,
 } from '@itwin/itwinui-react';
 import { useCallback, useState } from 'react';
 
@@ -39,35 +38,24 @@ export default () => {
     ),
     [],
   );
-
-  const labelId = React.useId();
-
   return (
-    <div>
-      <Label id={labelId}>Choose file</Label>
-      <Select
-        triggerProps={{
-          'aria-labelledby': labelId,
-        }}
-        options={options}
-        value={selectedValue}
-        onChange={setSelectedValue}
-        placeholder={'Placeholder text'}
-        itemRenderer={(option) => (
-          <MenuItem>
-            <MiddleTextTruncation
-              text={option.label}
-              textRenderer={textRenderer}
-            />
-          </MenuItem>
-        )}
-        selectedItemRenderer={(option) => (
+    <LabeledSelect
+      label={'Choose file'}
+      options={options}
+      value={selectedValue}
+      onChange={setSelectedValue}
+      placeholder={'Placeholder text'}
+      itemRenderer={(option) => (
+        <MenuItem>
           <MiddleTextTruncation
             text={option.label}
             textRenderer={textRenderer}
           />
-        )}
-      />
-    </div>
+        </MenuItem>
+      )}
+      selectedItemRenderer={(option) => (
+        <MiddleTextTruncation text={option.label} textRenderer={textRenderer} />
+      )}
+    />
   );
 };
