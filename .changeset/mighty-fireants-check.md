@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Fixed `aria-owns` value for `TreeNode`
+Fixed `aria-owns` syntax for `TreeNode`'s `<ul>` `subNodes`
