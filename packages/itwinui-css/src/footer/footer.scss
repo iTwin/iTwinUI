@@ -8,13 +8,13 @@
 
   text-align: center;
   inline-size: 100%;
-  padding: var(--iui-size-s) 0;
+  padding-block: var(--iui-size-s);
   font-size: var(--iui-font-size-0);
 }
 
 .iui-legal-footer-list {
   list-style-type: none;
-  margin: 0 auto;
+  margin-inline: auto;
   padding: 0;
   display: flex;
   justify-content: center;
@@ -41,7 +41,7 @@
 }
 
 .iui-legal-footer-separator {
-  margin: 0 var(--iui-size-xs);
+  margin-inline: var(--iui-size-xs);
   inline-size: 1px;
   block-size: var(--iui-size-s);
   background-color: var(--iui-color-border);
