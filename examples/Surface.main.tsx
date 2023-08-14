@@ -11,8 +11,7 @@ export default () => {
       elevation={4}
       style={{
         blockSize: 200,
-        paddingInline: 12,
-        paddingBlock: 12,
+        padding: 12,
         inlineSize: 200,
         display: 'flex',
         alignItems: 'center',

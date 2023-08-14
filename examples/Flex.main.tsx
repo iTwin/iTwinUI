@@ -16,14 +16,5 @@ export default () => {
 };
 
 const MyItem = ({ children = '' }) => (
-  <div
-    style={{
-      paddingInline: '1rem',
-      paddingBlock: '1rem',
-      borderInline: '1px solid',
-      borderBlock: '1px solid',
-    }}
-  >
-    {children}
-  </div>
+  <div style={{ padding: '1rem', border: '1px solid' }}>{children}</div>
 );

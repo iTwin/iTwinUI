@@ -10,8 +10,7 @@ export default () => {
   const cardStyle = {
     display: 'flex',
     inlineSize: '100px',
-    paddingInline: '12px',
-    paddingBlock: '12px',
+    padding: '12px',
     justifyContent: 'center',
     textAlign: 'center',
     flex: '1',

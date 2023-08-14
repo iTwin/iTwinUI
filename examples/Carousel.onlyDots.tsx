@@ -37,10 +37,8 @@ export default () => {
       <ol
         style={{
           listStyle: 'none',
-          marginInline: 0,
-          marginBlock: 0,
-          paddingInline: 0,
-          paddingBlock: 0,
+          margin: 0,
+          padding: 0,
           display: 'grid',
           grid: `[slide] 1fr / [slide] 1fr`,
         }}

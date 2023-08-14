@@ -12,10 +12,8 @@ export default () => {
         inlineSize: '75%',
         minInlineSize: 150,
         maxInlineSize: 450,
-        borderInline: '1px solid pink',
-        borderBlock: '1px solid pink',
-        paddingInline: 8,
-        paddingBlock: 8,
+        border: '1px solid pink',
+        padding: 8,
       }}
     >
       <Breadcrumbs>

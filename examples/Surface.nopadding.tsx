@@ -7,8 +7,7 @@ import { Surface, Text, Flex, Anchor, Divider } from '@itwin/itwinui-react';
 
 export default () => {
   const listStyle = {
-    paddingInline: 'var(--iui-size-s)',
-    paddingBlock: 'var(--iui-size-s)',
+    padding: 'var(--iui-size-s)',
     position: 'relative',
   } as React.CSSProperties;
   const cardStyle = {
@@ -27,10 +26,8 @@ export default () => {
             style={{
               width: '100%',
               listStyle: 'none',
-              marginInline: '0',
-              marginBlock: '0',
-              paddingInline: '0',
-              paddingBlock: '0',
+              margin: 0,
+              padding: 0,
             }}
           >
             <li style={listStyle}>

@@ -19,8 +19,7 @@ const styles = css.global`
     box-sizing: border-box;
   }
   body {
-    margin-inline: 0;
-    margin-block: 0;
+    margin: 0;
   }
   .app-wrapper {
     padding-inline: 1rem;
