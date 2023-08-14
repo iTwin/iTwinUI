@@ -88,7 +88,7 @@ type TooltipOwnProps = {
   children?: React.ReactNode;
   /**
    * Element to portal tooltip to.
-   * Portals to ThemeProvider portalContainerRef by default.
+   * Portals to ThemeProvider portalContainer by default.
    * @default true;
    */
   portal?: boolean | { to: HTMLElement };
@@ -221,7 +221,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     typeof portal !== 'boolean'
       ? portal.to
       : portal
-      ? context?.portalContainerRef?.current ?? getDocument()?.body
+      ? context?.portalContainer || getDocument()?.body
       : null;
 
   const contentBox = (
