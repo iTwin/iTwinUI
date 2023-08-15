@@ -352,7 +352,7 @@ We have full access to the [Cypress API](https://docs.cypress.io/api) so any add
 
 ### Accessibility testing
 
-We use an automated script to evaluate each example for accessibility violations using [`cypress-axe`](https://github.com/component-driven/cypress-axe). The setup for this can be found in the `a11y` workspace.
+We use an automated script to evaluate each component example for accessibility violations using [`cypress-axe`](https://github.com/component-driven/cypress-axe). The setup for this can be found in the `a11y` workspace, and the component examples can be found in the `examples` workspace.
 
 #### Running accessibility tests
 
