@@ -227,8 +227,6 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     startDate,
     endDate,
     isDateDisabled,
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    id = useId(),
     ...rest
   } = props;
 
@@ -528,6 +526,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     return dayClass;
   };
 
+  const dateTableId = useId();
+
   return (
     <Box
       className={cx('iui-date-picker', className)}
@@ -558,7 +558,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
             <Box
               as='span'
               className='iui-calendar-month'
-              id={id}
+              id={dateTableId}
               title={monthNames[displayedMonthIndex]}
             >
               {monthNames[displayedMonthIndex]}
@@ -594,7 +594,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
         <div
           onKeyDown={handleCalendarKeyDown}
           role='listbox'
-          aria-labelledby={id}
+          aria-labelledby={dateTableId}
         >
           {weeks.map((weekDays, weekIndex) => {
             return (
