@@ -374,38 +374,6 @@ In Cypress, if the component violates a Axe rule, its rule ID and the number of 
 
 For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
 
-#### Writing accessibility tests
-
-- Write an example usecase of the component with each of the features you want to evaluate for accessibility.
-- In `testing\a11y\src`, write the Cypress test for your component.
-The test file should look something like this: 
-
-```ts
-import * as React from 'react';
-import { YourExample } from 'examples';
-import { ThemeProvider } from '@itwin/itwinui-react';
-
-it('should have no WCAG violations', () => {
-  cy.mount(
-    <ThemeProvider theme='dark' style={{ height: '100vh' }}>
-      <YourExample />
-    </ThemeProvider>,
-  );
-  cy.injectAxe({
-    axeCorePath: Cypress.env('axeCorePath'),
-  });
-  cy.checkA11y(undefined, undefined, (violations) => {
-    const violationData = violations.map(({ id, help }) => ({
-      Component: name,
-      'Rule ID': id,
-      Description: help,
-    }));
-    cy.task('table', violationData);
-  });
-});
-```
-
-
 ---
 
 ## Pull Requests
