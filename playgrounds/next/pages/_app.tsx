@@ -22,7 +22,8 @@ const styles = css.global`
     margin: 0;
   }
   .app-wrapper {
-    padding: 2rem 1rem;
-    height: 100dvh;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+    block-size: 100dvh;
   }
 `;

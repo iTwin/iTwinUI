@@ -108,7 +108,7 @@ export const StepperStep = React.forwardRef((props, forwardedRef) => {
         stepProps?.className,
       )}
       style={{
-        width: type === 'default' ? `${100 / totalSteps}%` : undefined,
+        inlineSize: type === 'default' ? `${100 / totalSteps}%` : undefined,
         ...style,
         ...stepProps?.style,
       }}

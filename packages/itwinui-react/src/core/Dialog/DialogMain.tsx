@@ -144,10 +144,10 @@ export const DialogMain = React.forwardRef((props, ref) => {
     const [translateX, translateY] = getTranslateValues(dialogRef.current);
     setStyle((oldStyle) => ({
       ...oldStyle,
-      width: rect?.width,
-      height: rect?.height,
-      left: dialogRef.current?.offsetLeft,
-      top: dialogRef.current?.offsetTop,
+      inlineSize: rect?.width,
+      blockSize: rect?.height,
+      insetInlineStart: dialogRef.current?.offsetLeft,
+      insetBlockStart: dialogRef.current?.offsetTop,
       transform: `translate(${translateX}px,${translateY}px)`,
     }));
   }, [isDraggable, isOpen]);
@@ -190,7 +190,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
           onResizeStart={() => {
             if (!hasBeenResized.current) {
               hasBeenResized.current = true;
-              setResizeStyle({ maxWidth: '100%' });
+              setResizeStyle({ maxInlineSize: '100%' });
             }
           }}
           onResizeEnd={setResizeStyle}
