@@ -11,6 +11,7 @@ import {
   Text,
   SidenavSubmenu,
   SidenavSubmenuHeader,
+  VisuallyHidden,
 } from '@itwin/itwinui-react';
 import {
   SvgHome,
@@ -62,7 +63,10 @@ export default () => {
           <SidenavSubmenu>
             <SidenavSubmenuHeader
               actions={
-                <IconButton styleType='borderless'>
+                <IconButton
+                  title='Open submenu settings'
+                  styleType='borderless'
+                >
                   <SvgSettings />
                 </IconButton>
               }
