@@ -223,7 +223,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         spellCheck={false}
         autoCapitalize='none'
         autoCorrect='off'
-        style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+        style={multiple ? { paddingInlineStart: tagContainerWidth + 18 } : {}}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         {...rest}
       />

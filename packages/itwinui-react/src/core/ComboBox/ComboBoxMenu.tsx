@@ -64,13 +64,13 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     });
 
     const surfaceStyles = {
-      minWidth,
+      minInlineSize: minWidth,
 
       // set as constant because we don't want it shifting when items are unmounted
-      maxWidth: minWidth,
+      maxInlineSize: minWidth,
 
       // max-height must be on the outermost element for virtual scroll
-      maxHeight: 'calc((var(--iui-component-height) - 1px) * 8.5)',
+      maxBlockSize: 'calc((var(--iui-component-height) - 1px) * 8.5)',
       overflowY: isOverflowOverlaySupported() ? 'overlay' : 'auto',
       ...style,
     } as React.CSSProperties;
@@ -105,8 +105,8 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
 
   const styles = React.useMemo(
     () => ({
-      minWidth,
-      maxWidth: `min(${minWidth * 2}px, 90vw)`,
+      minInlineSize: minWidth,
+      maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
     }),
     [minWidth],
   );

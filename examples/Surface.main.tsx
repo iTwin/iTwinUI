@@ -10,9 +10,9 @@ export default () => {
     <Surface
       elevation={4}
       style={{
-        height: 200,
+        blockSize: 200,
         padding: 12,
-        width: 200,
+        inlineSize: 200,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
