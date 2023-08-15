@@ -34,7 +34,7 @@ Add custom element by passing `customElements` prop to Footer component, set the
 
 ### Only Custom Elements
 
-Add only custom elements by passing `customElements` prop to Footer component. It expects an array of objects each describing a custom link for the footer. Set the `title` and `url` property for each defined custom element.
+Add only custom elements by passing `customElements` prop to Footer component. It expects an array of objects each describing a custom link for the footer. They are all the elements that we pass. Set the `title` and `url` property for each defined custom element.
 
 <LiveExample src='Footer.onlycustomelements.tsx'>
   <AllExamples.FooterOnlyCustomElementsExample client:load />
@@ -42,7 +42,7 @@ Add only custom elements by passing `customElements` prop to Footer component. I
 
 ### Customized Default And Custom Elements
 
-Add customized default and custom elements by creating `customUrls` and `translatedTitles` objects. Show Footer component by returning new array containing `customizedDefaultElements` and `customElements`.
+Add customized default and custom elements by creating `customUrls` and `translatedTitles` objects. Show Footer component by returning new array containing `customizedDefaultElements` and `customElements`which are default and custom elements respectively.
 
 <LiveExample src='Footer.customizeddefaultandcustomelements.tsx'>
   <AllExamples.FooterCustomizedDefaultAndCustomElementsExample client:load />

@@ -44,7 +44,6 @@ export default () => {
                 </React.Fragment>
               );
             }),
-          ,
         ]}
       </Footer.List>
     </Footer>
