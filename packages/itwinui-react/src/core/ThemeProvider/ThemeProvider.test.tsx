@@ -3,10 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { render, screen } from '@testing-library/react';
 import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
 
 import { ThemeProvider } from './ThemeProvider.js';
+import { ThemeContext } from './ThemeContext.js';
 
 let useMediaSpy: jest.SpyInstance;
 
@@ -178,4 +180,28 @@ it('should inherit theme from data attribute if no context found', () => {
 it('should default to light theme if no parent theme found', () => {
   render(<ThemeProvider>Test</ThemeProvider>);
   expect(screen.getByText('Test')).toHaveAttribute('data-iui-theme', 'light');
+});
+
+it('should respect the portalContainer prop', async () => {
+  const myPortals = document.createElement('my-portals');
+  document.body.appendChild(myPortals);
+
+  const InPortal = () => {
+    const { portalContainer } = React.useContext(ThemeContext) || {};
+    return (
+      portalContainer &&
+      ReactDOM.createPortal(<div>in portal!</div>, portalContainer)
+    );
+  };
+
+  const { getByText } = render(
+    <ThemeProvider portalContainer={myPortals}>
+      <div>not in portal</div>
+      <InPortal />
+    </ThemeProvider>,
+  );
+
+  getByText('not in portal');
+  expect(document.querySelector('my-portals .iui-toast-wrapper')).toBeTruthy();
+  expect(document.querySelector('my-portals')).toHaveTextContent('in portal!');
 });

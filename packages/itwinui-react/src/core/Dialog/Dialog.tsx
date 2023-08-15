@@ -55,7 +55,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
     typeof portal !== 'boolean'
       ? portal.to
       : portal
-      ? context?.portalContainerRef?.current ?? getDocument()?.body
+      ? context?.portalContainer || getDocument()?.body
       : null;
 
   const dialog = (

@@ -18,7 +18,14 @@ export type IconButtonProps = {
    * Name of the button, shown in a tooltip and exposed to assistive technologies.
    */
   label?: React.ReactNode;
-} & Omit<ButtonProps, 'startIcon' | 'endIcon'>;
+  /**
+   * Passes props to IconButton icon.
+   */
+  iconProps?: React.ComponentProps<'span'>;
+} & Omit<
+  ButtonProps,
+  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+>;
 
 /**
  * Icon button
@@ -35,6 +42,7 @@ export const IconButton = React.forwardRef((props, ref) => {
     size,
     className,
     label,
+    iconProps,
     ...rest
   } = props;
 
@@ -49,7 +57,12 @@ export const IconButton = React.forwardRef((props, ref) => {
         aria-pressed={isActive}
         {...rest}
       >
-        <Box as='span' className='iui-button-icon' aria-hidden>
+        <Box
+          as='span'
+          aria-hidden
+          {...iconProps}
+          className={cx('iui-button-icon', iconProps?.className)}
+        >
           {children}
         </Box>
         {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
