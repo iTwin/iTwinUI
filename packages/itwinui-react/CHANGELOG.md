@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.2
+
+### Patch Changes
+
+- [#1494](https://github.com/iTwin/iTwinUI/pull/1494): Updated color-picker dot so its outline adapts dynamically to the backgrounds for better contrast.
+
 ## 2.12.1
 
 ### Patch Changes
