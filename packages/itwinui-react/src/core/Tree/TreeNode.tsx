@@ -276,7 +276,7 @@ export const TreeNode = (props: TreeNodeProps) => {
           as='ul'
           className='iui-sub-tree'
           role='group'
-          aria-owns={subNodeIds.join(',')}
+          aria-owns={subNodeIds.join(' ')}
         />
       )}
     </Box>
