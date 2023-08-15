@@ -52,6 +52,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <ButtonBase
+          aria-label='dropdown menu button'
           className='iui-header-breadcrumb-button iui-header-breadcrumb-button-split'
           disabled={disabled}
         >
