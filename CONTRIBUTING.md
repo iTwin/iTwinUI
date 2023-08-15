@@ -358,7 +358,7 @@ We use an automated script to evaluate each example for accessibility violations
 
 In the terminal: 
 
-- Run the command `yarn workspace a11y test` to run all of the component tests in the `a11y\src` folder. This will include `Component.cy.tsx`, which tests all of the component examples in the `iTwinUI\examples` directory.
+- Run the command `yarn test --filter=a11y` to run automated accessibility tests for all examples.
 
 In the Cypress GUI:
 
