@@ -364,7 +364,7 @@ In the Cypress GUI:
 
 1. From the monorepo root, run `yarn workspace a11y open`. This will open the Cypress control panel where you can run the tests.
 2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
-3. Select `Component.cy.tsx` to run the script that tests all of the component examples. Any additional component test you write and place into `a11y\src` will also be present here for testing.
+3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
 
 ##### Your results
 
