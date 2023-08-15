@@ -244,6 +244,6 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   &:focus-visible {
     outline: 2px solid var(--iui-color-border-accent);
     outline-offset: 3px;
-    box-shadow: 0 0 0 2px var(--iui-color-border);
+    box-shadow: 0 0 0 3px var(--iui-color-border);
   }
 }
