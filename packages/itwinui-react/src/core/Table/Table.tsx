@@ -1092,11 +1092,7 @@ export const Table = <
                 className='iui-table-cell'
                 style={{ justifyContent: 'center' }}
               >
-                <ProgressRadial
-                  indeterminate={true}
-                  size='small'
-                  style={{ float: 'none', marginLeft: 0 }}
-                />
+                <ProgressRadial indeterminate size='small' />
               </Box>
             </Box>
           )}
