@@ -180,7 +180,7 @@ describe('Stepper step (default)', () => {
 
     const step1 = container1.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step1).toBeTruthy();
-    expect(step1.style.width).toEqual('25%');
+    expect(step1.style.inlineSize).toEqual('25%');
 
     const { container: container2 } = render(
       <StepperStep
@@ -194,7 +194,7 @@ describe('Stepper step (default)', () => {
 
     const step2 = container2.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step2).toBeTruthy();
-    expect(step2.style.width).toEqual('12.5%');
+    expect(step2.style.inlineSize).toEqual('12.5%');
   });
 });
 
@@ -254,7 +254,7 @@ describe('Stepper step (long)', () => {
 
     const step = container.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step).toBeTruthy();
-    expect(step.style.width).toBeFalsy(); // not 25%
+    expect(step.style.inlineSize).toBeFalsy(); // not 25%
   });
 });
 

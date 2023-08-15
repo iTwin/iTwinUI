@@ -47,8 +47,8 @@ const getElementHeightWithMargins = (element: HTMLElement | undefined) => {
   }
 
   const margin =
-    parseFloat(getElementStyle(element, 'margin-top')) +
-    parseFloat(getElementStyle(element, 'margin-bottom'));
+    parseFloat(getElementStyle(element, 'margin-block-start')) +
+    parseFloat(getElementStyle(element, 'margin-block-end'));
   return getElementHeight(element) + (isNaN(margin) ? 0 : margin);
 };
 
@@ -417,13 +417,13 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   return {
     outerProps: {
       style: {
-        minHeight:
+        minBlockSize:
           itemsLength > 1
             ? Math.max(itemsLength - 2, 0) * childHeight.current.middle +
               childHeight.current.first +
               childHeight.current.last
             : childHeight.current.middle,
-        minWidth: '100%',
+        minInlineSize: '100%',
         ...style,
       },
       ...rest,

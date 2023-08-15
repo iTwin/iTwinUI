@@ -160,8 +160,8 @@ export const Thumb = (props: ThumbProps) => {
         style={{
           ...style,
           ...(orientation === 'horizontal'
-            ? { left: `${lowPercent}%` }
-            : { bottom: `${lowPercent}%` }),
+            ? { insetInlineStart: `${lowPercent}%` }
+            : { insetBlockEnd: `${lowPercent}%` }),
         }}
         className={cx(
           'iui-slider-thumb',

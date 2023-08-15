@@ -79,7 +79,7 @@ export const DropdownButton = React.forwardRef((props, ref) => {
         setIsMenuOpen(false);
         dropdownMenuProps?.onHide?.(i);
       }}
-      style={{ minWidth: menuWidth, ...dropdownMenuProps?.style }}
+      style={{ minInlineSize: menuWidth, ...dropdownMenuProps?.style }}
     >
       <Button
         className={cx('iui-button-dropdown', className)}

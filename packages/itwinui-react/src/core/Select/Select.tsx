@@ -373,8 +373,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
             style={{
-              minWidth,
-              maxWidth: `min(${minWidth * 2}px, 90vw)`,
+              minInlineSize: minWidth,
+              maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
               ...menuStyle,
             }}
             id={`${uid}-menu`}
