@@ -65,6 +65,22 @@ type ExpandableBlockOwnProps = {
 };
 
 const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
+  const { children, title, ...rest } = props;
+  return (
+    <ExpandableBlock.Wrapper {...rest} ref={forwardedRef}>
+      <ExpandableBlock.Header label={title} />
+      <ExpandableBlock.Content>{children}</ExpandableBlock.Content>
+    </ExpandableBlock.Wrapper>
+  );
+}) as PolymorphicForwardRefComponent<
+  'div',
+  ExpandableBlockOwnProps & { title: React.ReactNode }
+>;
+ExpandableBlockComponent.displayName = 'ExpandableBlock';
+
+// ----------------------------------------------------------------------------
+
+const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     className,
@@ -108,12 +124,13 @@ const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
     </ExpandableBlockContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ExpandableBlockOwnProps>;
-ExpandableBlockComponent.displayName = 'ExpandableBlock';
+ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Header component
 type ExpandableBlockHeaderOwnProps = {
   label?: React.ReactNode;
+  caption?: React.ReactNode;
   expandIcon?: React.ReactNode;
 };
 
@@ -122,6 +139,7 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     className,
     children,
     label,
+    caption,
     onClick: onClickProp,
     expandIcon,
     ...rest
@@ -150,6 +168,9 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
           {expandIcon ?? <ExpandableBlock.ExpandIcon />}
           <ExpandableBlock.LabelArea>
             <ExpandableBlock.Title>{label}</ExpandableBlock.Title>
+            {caption && (
+              <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
+            )}
           </ExpandableBlock.LabelArea>
         </>
       )}
@@ -260,6 +281,7 @@ ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
  *  </ExpandableBlock>
  */
 export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
+  Wrapper: ExpandableBlockWrapper,
   /**
    * `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents
    * @example
