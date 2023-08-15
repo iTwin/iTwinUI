@@ -230,10 +230,6 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   cursor: crosshair;
   background-color: var(--iui-color-picker-selected-color);
 
-  &:focus-visible {
-    outline-offset: 3px;
-  }
-
   &::before {
     content: '';
     position: absolute;
@@ -243,5 +239,11 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
     // ensures enough contrast with the background
     filter: invert(1) grayscale(1) contrast(999);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 2px var(--iui-color-border);
   }
 }
