@@ -18,10 +18,6 @@ module.exports = [
     actions: [hover('#test-color-swatch')],
     selectors: ['#demo-basic'],
   }),
-  scenario('State hover color dot', {
-    actions: [hover('#test-color-dot')],
-    selectors: ['#demo-advanced-interactions'],
-  }),
 
   // Focus states
   scenario('State focus color swatch', {

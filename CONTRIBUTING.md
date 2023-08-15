@@ -350,6 +350,30 @@ Notice how we do all of these things manually:
 
 We have full access to the [Cypress API](https://docs.cypress.io/api) so any additional interactions or custom logic can be easily added.
 
+### Accessibility testing
+
+We use an automated script to evaluate each component example for accessibility violations using [`cypress-axe`](https://github.com/component-driven/cypress-axe). The setup for this can be found in the `a11y` workspace, and the component examples can be found in the `examples` workspace.
+
+#### Running accessibility tests
+
+In the terminal: 
+
+- Run the command `yarn test --filter=a11y` to run automated accessibility tests for all examples.
+
+In the Cypress GUI:
+
+1. From the monorepo root, run `yarn workspace a11y open`. This will open the Cypress control panel where you can run the tests.
+2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
+3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
+
+##### Your results
+
+In the terminal, a table will be produced for each violating component with the Axe rule ID being violated and its description. 
+
+In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.  
+
+For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
+
 ---
 
 ## Pull Requests
