@@ -352,9 +352,7 @@ We have full access to the [Cypress API](https://docs.cypress.io/api) so any add
 
 ### Accessibility testing
 
-We reuse our component examples for accessibility testing with
-a Cypress script that evaluates each of their iframes for accessibility
-violations. 
+We use an automated script to evaluate each example for accessibility violations using [`cypress-axe`](https://github.com/component-driven/cypress-axe). The setup for this can be found in the `a11y` workspace.
 
 #### Running accessibility tests
 
