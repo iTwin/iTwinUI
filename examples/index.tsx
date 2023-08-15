@@ -593,10 +593,6 @@ const FooterCustomizedDefaultAndCustomElementsExample = withThemeProvider(
 );
 export { FooterCustomizedDefaultAndCustomElementsExample };
 
-import { default as FooterBottomFixedExampleRaw } from './Footer.bottomfixed';
-const FooterBottomFixedExample = withThemeProvider(FooterBottomFixedExampleRaw);
-export { FooterBottomFixedExample };
-
 import { default as FooterCustomContentExampleRaw } from './Footer.customcontent';
 const FooterCustomContentExample = withThemeProvider(
   FooterCustomContentExampleRaw,

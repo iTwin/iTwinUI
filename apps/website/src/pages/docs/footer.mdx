@@ -20,7 +20,9 @@ import * as AllExamples from 'examples';
 
 The footer is fixed to the bottom of a web page, and contains your typical legally required links. The legal footer is only required to be displayed on pages that are considered a “main entry point into your application”. This means that the sign in and home page of any hub / app are good places to display the footer. You do not need to display the footer within an App UI widget, or deeper pages within an app. You can not include the footer on a page with infinite scrolling because you can not reach the bottom of the page.
 
-## Variants
+## Default Footer Customizations
+
+Alter standard footer section by modifying elements or adding new custom elements and content.
 
 ### Appended Custom Elements
 
@@ -44,14 +46,6 @@ Add customized default and custom elements by creating `customUrls` and `transla
 
 <LiveExample src='Footer.customizeddefaultandcustomelements.tsx'>
   <AllExamples.FooterCustomizedDefaultAndCustomElementsExample client:load />
-</LiveExample>
-
-### Bottom Fixed
-
-Place the footer to the bottom of the page using the `style` prop and set the `position` and `bottom` property.
-
-<LiveExample src='Footer.bottomfixed.tsx'>
-  <AllExamples.FooterBottomFixedExample client:load />
 </LiveExample>
 
 ### Custom Content
