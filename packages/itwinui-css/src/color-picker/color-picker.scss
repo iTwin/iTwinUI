@@ -228,13 +228,22 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   border-radius: 50%;
   transform: translate(calc(0px - var(--iui-size-xs)), calc(0px - var(--iui-size-xs)));
   cursor: crosshair;
-  box-shadow: rgba(0, 0, 0, var(--iui-opacity-1)) 0 0 0 calc(var(--iui-size-3xs) - 1px),
-    inset 0 0 0 calc(var(--iui-size-3xs) - 1px) rgba(0, 0, 0, var(--iui-opacity-6));
   background-color: var(--iui-color-picker-selected-color);
 
-  &:hover {
-    box-shadow: $iui-hover-box-shadow;
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    outline: var(--iui-size-3xs) solid var(--iui-color-picker-selected-color);
+
+    // ensures enough contrast with the background
+    filter: invert(1) grayscale(1) contrast(999);
   }
 
-  @include mixins.iui-focus($offset: 0, $thickness: 2px);
+  &:focus-visible {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 3px var(--iui-color-border);
+  }
 }
