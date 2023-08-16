@@ -63,7 +63,7 @@ export default () => {
           <SidenavSubmenu>
             <SidenavSubmenuHeader
               actions={
-                <IconButton title='Submenu settings' styleType='borderless'>
+                <IconButton label='Submenu settings' styleType='borderless'>
                   <SvgSettings />
                 </IconButton>
               }
