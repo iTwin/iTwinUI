@@ -10,7 +10,6 @@ import {
   SvgCaretUpSmall,
   Box,
   ButtonBase,
-  VisuallyHidden,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { SplitButtonProps } from '../Buttons/SplitButton/SplitButton.js';
@@ -53,10 +52,10 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <ButtonBase
+          title='Dropdown menu button'
           className='iui-header-breadcrumb-button iui-header-breadcrumb-button-split'
           disabled={disabled}
         >
-          <VisuallyHidden>Dropdown menu button</VisuallyHidden>
           {isMenuOpen ? (
             <SvgCaretUpSmall
               className='iui-header-breadcrumb-button-dropdown-icon'
