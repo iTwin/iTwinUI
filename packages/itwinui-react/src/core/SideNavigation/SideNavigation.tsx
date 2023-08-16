@@ -113,7 +113,8 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   const ExpandButton = (
     <IconButton
-      label='Expand or collapse side menu'
+      label='Toggle icon labels'
+      aria-expanded={_isExpanded}
       className='iui-sidenav-button iui-expand'
       onClick={React.useCallback(() => {
         _setIsExpanded((expanded) => !expanded);
