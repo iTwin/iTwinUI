@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils/index.js';
@@ -216,30 +216,35 @@ it('should respect disabled prop', () => {
 });
 
 it('should support legacy api', () => {
-  const result1 = render(
-    <ExpandableBlock
-      title='test title'
-      caption='test caption'
-      endIcon='test icon'
-      data-testid='test'
-    >
-      test content
-    </ExpandableBlock>,
-  );
-  const result2 = render(
-    <ExpandableBlock.Wrapper data-testid='2'>
-      <ExpandableBlock.Trigger>
-        <ExpandableBlock.LabelArea>
-          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-          <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
-        </ExpandableBlock.LabelArea>
-        <ExpandableBlock.EndIcon>test icon</ExpandableBlock.EndIcon>
-      </ExpandableBlock.Trigger>
-      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
-    </ExpandableBlock.Wrapper>,
+  render(
+    <div data-testid='1'>
+      <ExpandableBlock
+        title='test title'
+        caption='test caption'
+        endIcon='test icon'
+      >
+        test content
+      </ExpandableBlock>
+    </div>,
   );
 
-  expect(result1.getByTestId('test').outerHTML).toEqual(
-    result2.getByTestId('test').outerHTML,
+  render(
+    <div data-testid='2'>
+      <ExpandableBlock.Wrapper>
+        <ExpandableBlock.Trigger>
+          <ExpandableBlock.ExpandIcon />
+          <ExpandableBlock.LabelArea>
+            <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+            <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
+          </ExpandableBlock.LabelArea>
+          <ExpandableBlock.EndIcon>test icon</ExpandableBlock.EndIcon>
+        </ExpandableBlock.Trigger>
+        <ExpandableBlock.Content>test content</ExpandableBlock.Content>
+      </ExpandableBlock.Wrapper>
+    </div>,
+  );
+
+  expect(screen.getByTestId('1').innerHTML).toEqual(
+    screen.getByTestId('2').innerHTML,
   );
 });
