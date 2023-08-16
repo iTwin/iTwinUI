@@ -11,7 +11,6 @@ import {
   Text,
   SidenavSubmenu,
   SidenavSubmenuHeader,
-  VisuallyHidden,
 } from '@itwin/itwinui-react';
 import {
   SvgHome,
