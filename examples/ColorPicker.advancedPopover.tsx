@@ -74,7 +74,7 @@ export default () => {
             onClick={() => setIsOpen((open) => !open)}
           >
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>
