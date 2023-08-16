@@ -49,18 +49,18 @@ export default () => {
 
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock>
-        <ExpandableBlock.Header label='Name' />
+      <ExpandableBlock.Wrapper>
+        <ExpandableBlock.Trigger label='Name' />
         <ExpandableBlock.Content>{nameSection}</ExpandableBlock.Content>
-      </ExpandableBlock>
-      <ExpandableBlock>
-        <ExpandableBlock.Header label='Favorite Color' />
+      </ExpandableBlock.Wrapper>
+      <ExpandableBlock.Wrapper>
+        <ExpandableBlock.Trigger label='Favorite Color' />
         <ExpandableBlock.Content>{colorSection}</ExpandableBlock.Content>
-      </ExpandableBlock>
-      <ExpandableBlock>
-        <ExpandableBlock.Header label='Reasoning' />
+      </ExpandableBlock.Wrapper>
+      <ExpandableBlock.Wrapper>
+        <ExpandableBlock.Trigger label='Reasoning' />
         <ExpandableBlock.Content>{reasonSection}</ExpandableBlock.Content>
-      </ExpandableBlock>
+      </ExpandableBlock.Wrapper>
     </div>
   );
 };

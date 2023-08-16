@@ -280,28 +280,28 @@ ExpandableBlockContent.displayName = 'ExpandableBlock.Content';
 /**
  * Expandable block with customizable Title, Caption, Content and EndIcon subcomponents.
  * @example
- *  <ExpandableBlock>
- *    <ExpandableBlock.Header>
+ *  <ExpandableBlock.Wrapper>
+ *    <ExpandableBlock.Trigger>
  *      <ExpandableBlock.ExpandIcon/>
  *      <ExpandableBlock.LabelArea>
  *        <ExpandableBlock.Title/>
  *        <ExpandableBlock.Caption/>
  *      </ExpandableBlock.LabelArea>
  *      <ExpandableBlock.EndIcon/>
- *    </ExpandableBlock.Header>
+ *    </ExpandableBlock.Trigger>
  *    <ExpandableBlock.Content/>
- *  </ExpandableBlock>
+ *  </ExpandableBlock.Wrapper>
  */
 export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
   Wrapper: ExpandableBlockWrapper,
   /**
    * `Header` container that contains `ExpandIcon`, `LabelArea` and `EndIcon` subcomponents
    * @example
-   * <ExpandableBlock.Header>
+   * <ExpandableBlock.Trigger>
    *    <ExpandableBlock.ExpandIcon/>
    *    <ExpandableBlock.LabelArea/>
    *    <ExpandableBlock.EndIcon/>
-   * </ExpandableBlock.Header>
+   * </ExpandableBlock.Trigger>
    */
   Trigger: ExpandableBlockTrigger,
   /**
@@ -329,17 +329,17 @@ export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
    * Svg icon displayed at the end of the main text.
    * Will override status icon if specified. Used inside `Header` subcomponent.
    * @example
-   * <ExpandableBlock.Header>
+   * <ExpandableBlock.Trigger>
    *    <ExpandableBlock.EndIcon> <SvgIcon/> </ExpandableBlock.EndIcon>
-   * <ExpandableBlock.Header/>
+   * <ExpandableBlock.Trigger/>
    */
   EndIcon: ExpandableBlockEndIcon,
   /**
    * Content shown in the block's body when fully expanded.
    * @example
-   * <ExpandableBlock>
+   * <ExpandableBlock.Wrapper>
    *    <ExpandableBlock.Content> Content </ExpandableBlock.Content>
-   * </ExpandableBlock>
+   * </ExpandableBlock.Wrapper>
    */
   Content: ExpandableBlockContent,
 });

@@ -8,10 +8,10 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
-      <ExpandableBlock styleType='borderless'>
-        <ExpandableBlock.Header label='Borderless expandable block' />
+      <ExpandableBlock.Wrapper styleType='borderless'>
+        <ExpandableBlock.Trigger label='Borderless expandable block' />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
-      </ExpandableBlock>
+      </ExpandableBlock.Wrapper>
     </div>
   );
 };
