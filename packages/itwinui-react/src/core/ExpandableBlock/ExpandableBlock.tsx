@@ -66,7 +66,7 @@ type ExpandableBlockOwnProps = {
 
 type ExpandableBlockLegacyProps = {
   title?: React.ReactNode;
-} & Pick<ExpandableBlockHeaderOwnProps, 'caption' | 'endIcon'>;
+} & Pick<ExpandableBlockTriggerOwnProps, 'caption' | 'endIcon'>;
 
 const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
   const { children, title, caption, endIcon, ...rest } = props;
@@ -135,8 +135,8 @@ const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
 ExpandableBlockWrapper.displayName = 'ExpandableBlock.Wrapper';
 
 // ----------------------------------------------------------------------------
-// ExpandableBlock.Header component
-type ExpandableBlockHeaderOwnProps = {
+// ExpandableBlock.Trigger component
+type ExpandableBlockTriggerOwnProps = {
   label?: React.ReactNode;
   caption?: React.ReactNode;
   expandIcon?: React.ReactNode;
@@ -188,7 +188,7 @@ const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
       )}
     </ButtonBase>
   );
-}) as PolymorphicForwardRefComponent<'button', ExpandableBlockHeaderOwnProps>;
+}) as PolymorphicForwardRefComponent<'button', ExpandableBlockTriggerOwnProps>;
 ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
 
 // ----------------------------------------------------------------------------
