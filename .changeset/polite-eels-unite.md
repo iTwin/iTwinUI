@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Added accessible button name to expand button.
+Added accessible button name to SideNavigation expand button.
