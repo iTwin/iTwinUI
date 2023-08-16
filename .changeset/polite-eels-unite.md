@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Added accessible button name to expand / collapse button.
+Added accessible button name to expand button.
