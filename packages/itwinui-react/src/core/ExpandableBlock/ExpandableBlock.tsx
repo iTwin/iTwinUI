@@ -64,17 +64,25 @@ type ExpandableBlockOwnProps = {
   disabled?: boolean;
 };
 
+type ExpandableBlockLegacyProps = {
+  title?: React.ReactNode;
+} & Pick<ExpandableBlockHeaderOwnProps, 'caption' | 'endIcon'>;
+
 const ExpandableBlockComponent = React.forwardRef((props, forwardedRef) => {
-  const { children, title, ...rest } = props;
+  const { children, title, caption, endIcon, ...rest } = props;
   return (
     <ExpandableBlock.Wrapper {...rest} ref={forwardedRef}>
-      <ExpandableBlock.Header label={title} />
+      <ExpandableBlock.Trigger
+        label={title}
+        caption={caption}
+        endIcon={endIcon}
+      />
       <ExpandableBlock.Content>{children}</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 }) as PolymorphicForwardRefComponent<
   'div',
-  ExpandableBlockOwnProps & { title: React.ReactNode }
+  ExpandableBlockOwnProps & ExpandableBlockLegacyProps
 >;
 ExpandableBlockComponent.displayName = 'ExpandableBlock';
 
@@ -132,9 +140,10 @@ type ExpandableBlockHeaderOwnProps = {
   label?: React.ReactNode;
   caption?: React.ReactNode;
   expandIcon?: React.ReactNode;
+  endIcon?: React.ReactNode;
 };
 
-const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
+const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
   const {
     className,
     children,
@@ -142,11 +151,11 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
     caption,
     onClick: onClickProp,
     expandIcon,
+    endIcon,
     ...rest
   } = props;
-  const { isExpanded, setExpanded, disabled, onToggle } = useSafeContext(
-    ExpandableBlockContext,
-  );
+  const { isExpanded, setExpanded, disabled, onToggle, status } =
+    useSafeContext(ExpandableBlockContext);
 
   return (
     <ButtonBase
@@ -172,12 +181,15 @@ const ExpandableBlockHeader = React.forwardRef((props, forwardedRef) => {
               <ExpandableBlock.Caption>{caption}</ExpandableBlock.Caption>
             )}
           </ExpandableBlock.LabelArea>
+          {endIcon || status ? (
+            <ExpandableBlock.EndIcon>{endIcon}</ExpandableBlock.EndIcon>
+          ) : null}
         </>
       )}
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ExpandableBlockHeaderOwnProps>;
-ExpandableBlockHeader.displayName = 'ExpandableBlock.Header';
+ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.ExpandIcon component
@@ -291,7 +303,7 @@ export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
    *    <ExpandableBlock.EndIcon/>
    * </ExpandableBlock.Header>
    */
-  Header: ExpandableBlockHeader,
+  Trigger: ExpandableBlockTrigger,
   /**
    * The expanding icon on the left of header
    */
