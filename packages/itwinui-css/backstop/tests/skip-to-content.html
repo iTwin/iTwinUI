@@ -58,7 +58,7 @@
     <section id="demo-other-content">
       <header class="iui-page-header">
         <div class="iui-page-header-left">
-          <!-- Application Button -->
+          <!-- Application Button, will be skipped over when skip-to-content link is pressed. -->
           <div
             class="iui-header-brand"
             role="button"
@@ -70,118 +70,9 @@
               aria-hidden="true"
             ></svg-imodel-hollow>
           </div>
-
-          <div class="iui-page-header-divider"></div>
-
-          <nav
-            class="iui-header-breadcrumbs"
-            aria-label="Breadcrumbs"
-          >
-            <ol class="iui-header-breadcrumbs-list">
-              <li class="iui-header-breadcrumb-item">
-                <button
-                  class="iui-header-breadcrumb-button"
-                  type="button"
-                  aria-label="Project picker"
-                  aria-expanded="false"
-                  id="test-button-1"
-                >
-                  <span class="iui-header-breadcrumb-button-text">
-                    <span class="iui-header-breadcrumb-button-text-label">Project Alpha</span>
-                  </span>
-                  <svg-caret-down-small
-                    class="iui-header-breadcrumb-button-dropdown-icon"
-                    aria-hidden="true"
-                  ></svg-caret-down-small>
-                </button>
-              </li>
-              <li
-                class="iui-breadcrumbs-separator"
-                aria-hidden="true"
-              >
-                <svg-chevron-right aria-hidden="true"></svg-chevron-right>
-              </li>
-              <li
-                class="iui-header-breadcrumb-item"
-                aria-current="location"
-              >
-                <button
-                  class="iui-header-breadcrumb-button"
-                  type="button"
-                  aria-label="Model picker"
-                  aria-expanded="false"
-                >
-                  <span class="iui-header-breadcrumb-button-text">
-                    <span class="iui-header-breadcrumb-button-text-label">Model Beta</span>
-                  </span>
-                  <svg-caret-down-small
-                    class="iui-header-breadcrumb-button-dropdown-icon"
-                    aria-hidden="true"
-                  ></svg-caret-down-small>
-                </button>
-              </li>
-            </ol>
-          </nav>
         </div>
 
-        <div class="iui-page-header-right">
-          <!-- Notifications -->
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            type="button"
-            aria-label="Notifications"
-            aria-expanded="false"
-          >
-            <span
-              class="iui-button-icon iui-notification-marker"
-              data-iui-variant="positive"
-              aria-hidden="true"
-            >
-              <svg-notification></svg-notification>
-            </span>
-          </button>
-
-          <!-- Help -->
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            type="button"
-            aria-label="Help"
-            aria-expanded="false"
-          >
-            <svg-help-circular-hollow
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-help-circular-hollow>
-          </button>
-
-          <!-- Profile dropdown button -->
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            type="button"
-            aria-label="My account"
-            aria-expanded="false"
-          >
-
-            <x-avatar type="2"></x-avatar>
-          </button>
-
-          <!-- More menu -->
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            type="button"
-            aria-label="More options"
-            aria-expanded="false"
-          >
-            <svg-more-vertical
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-more-vertical>
-          </button>
-        </div>
+        <!-- not adding other parts of header to keep complexity low and avoid test image frustrations  -->
       </header>
       <br />
       <div>

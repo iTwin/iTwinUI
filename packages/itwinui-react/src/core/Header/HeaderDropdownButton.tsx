@@ -32,7 +32,7 @@ export const HeaderDropdownButton = React.forwardRef((props, ref) => {
   return (
     <DropdownMenu
       menuItems={menuItems}
-      style={{ minWidth: menuWidth }}
+      style={{ minInlineSize: menuWidth }}
       onShow={() => setIsMenuOpen(true)}
       onHide={() => setIsMenuOpen(false)}
     >
