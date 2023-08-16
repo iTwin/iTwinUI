@@ -26,7 +26,7 @@ Alter standard footer section by modifying elements or adding new custom element
 
 ### Appended Custom Elements
 
-Add custom element by passing `customElements` prop to Footer component, set the `title` property as label for the custom link and `url` property for URL associated with the custom link.
+Along with the default elements, we can also append custom elements by passing an array of elements to the `customElements` prop. Each object in the array would have the `title` (label) and `url` (href) properties. If the `url` is not passed, then the element is rendered as plain text and not an anchor.
 
 <LiveExample src='Footer.appendedcustomelements.tsx'>
   <AllExamples.FooterAppendCustomElementsExample client:load />
@@ -34,7 +34,7 @@ Add custom element by passing `customElements` prop to Footer component, set the
 
 ### Only Custom Elements
 
-Add only custom elements by passing `customElements` prop to Footer component. It expects an array of objects each describing a custom link for the footer. They are all the elements that we pass. Set the `title` and `url` property for each defined custom element. The `url` property is optional and if not set, it will render as plain text.
+To remove all default elements and only use custom elements, pass a function to the `customElements` prop. The function should return an array of objects, each with `title` (label) and `url` (href). Similar to the [above case](#appended-custom-elements), if `url` is not passed, the element is rendered as plain text and not an anchor.
 
 <LiveExample src='Footer.onlycustomelements.tsx'>
   <AllExamples.FooterOnlyCustomElementsExample client:load />
