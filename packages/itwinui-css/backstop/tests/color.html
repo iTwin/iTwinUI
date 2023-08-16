@@ -78,7 +78,10 @@
         flex: 1;
         text-align: center;
       }
-
+      .demo-text-placeholder {
+        color: var(--iui-color-text-placeholder);
+        font-weight: var(--iui-font-weight-light);
+      }
       .demo-text-informational { color: var(--iui-color-text-informational); }
       .demo-text-informational:hover { color: var(--iui-color-text-informational-hover); }
       .demo-text-informational::selection { background-color: hsl(var(--iui-color-informational-hsl) / var(--iui-opacity-5)); }
@@ -127,6 +130,7 @@
           <ul>
             <li class="iui-text-block">Normal text</li>
             <li class="iui-text-block iui-text-muted">Muted text</li>
+            <li class="demo-text-placeholder">Placeholder text</li>
             <li class="demo-text-informational">Informational text</li>
             <li class="demo-text-positive">Positive text</li>
             <li class="demo-text-warning">Warning text</li>
