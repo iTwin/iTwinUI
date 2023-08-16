@@ -215,28 +215,31 @@ it('should respect disabled prop', () => {
   expect(header).toHaveAttribute('aria-expanded', 'false');
 });
 
-// it('should support legacy api', () => {
-//   const { asFragment: container1 } = render(
-//     <ExpandableBlock
-//       title='test title'
-//       caption='test caption'
-//       endIcon='test icon'
-//     >
-//       test content
-//     </ExpandableBlock>,
-//   );
-//   const { asFragment: container2 } = render(
-//     <ExpandableBlock.Wrapper>
-//       <ExpandableBlock.Trigger>
-//         <ExpandableBlock.LabelArea>
-//           <ExpandableBlock.Title>test title</ExpandableBlock.Title>
-//           <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
-//         </ExpandableBlock.LabelArea>
-//         <ExpandableBlock.EndIcon>test icon</ExpandableBlock.EndIcon>
-//       </ExpandableBlock.Trigger>
-//       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
-//     </ExpandableBlock.Wrapper>,
-//   );
+it('should support legacy api', () => {
+  const result1 = render(
+    <ExpandableBlock
+      title='test title'
+      caption='test caption'
+      endIcon='test icon'
+      data-testid='test'
+    >
+      test content
+    </ExpandableBlock>,
+  );
+  const result2 = render(
+    <ExpandableBlock.Wrapper data-testid='2'>
+      <ExpandableBlock.Trigger>
+        <ExpandableBlock.LabelArea>
+          <ExpandableBlock.Title>test title</ExpandableBlock.Title>
+          <ExpandableBlock.Caption>test caption</ExpandableBlock.Caption>
+        </ExpandableBlock.LabelArea>
+        <ExpandableBlock.EndIcon>test icon</ExpandableBlock.EndIcon>
+      </ExpandableBlock.Trigger>
+      <ExpandableBlock.Content>test content</ExpandableBlock.Content>
+    </ExpandableBlock.Wrapper>,
+  );
 
-//   // expect(container1()).toMatchInlineSnapshot(container2());
-// });
+  expect(result1.getByTestId('test').outerHTML).toEqual(
+    result2.getByTestId('test').outerHTML,
+  );
+});
