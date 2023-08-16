@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Added accessible name to dropdown menu button in HeaderSplitButton.
+Added accessible, visually hidden name to dropdown menu button in HeaderSplitButton.
