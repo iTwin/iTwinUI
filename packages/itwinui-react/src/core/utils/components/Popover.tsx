@@ -29,9 +29,9 @@ import {
   Box,
   getDocument,
   useMergedRefs,
-  type PolymorphicForwardRefComponent,
-  mergeRefs,
+  useUncontrolledState,
 } from '../index.js';
+import type { PolymorphicForwardRefComponent } from '../index.js';
 
 type PopoverOptions = {
   /**
@@ -85,6 +85,7 @@ type PopoverOptions = {
     hide?: boolean;
     inline?: boolean;
   };
+  reference?: HTMLElement;
 };
 
 function usePopover({
@@ -98,6 +99,7 @@ function usePopover({
   },
   autoUpdateOptions = {},
   hover: hoverOption,
+  reference,
 }: PopoverOptions = {}) {
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
 
@@ -116,6 +118,7 @@ function usePopover({
         elementResize: autoUpdateOptions.elementResize,
         layoutShift: autoUpdateOptions.layoutShift,
       }),
+    elements: { reference },
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
@@ -184,14 +187,13 @@ type PopoverOwnProps = {
   children?: React.ReactNode;
   applyBackground?: boolean;
   portal?: boolean | { to: HTMLElement };
-  reference?: React.RefObject<HTMLElement>;
 };
 
 /**
  * A utility component to help with positioning of floating content.
  * Built on top of [`floating-ui`](https://floating-ui.com/)
  */
-export const Popover = React.forwardRef((props, ref) => {
+export const Popover = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     content,
@@ -205,10 +207,11 @@ export const Popover = React.forwardRef((props, ref) => {
     placement,
     visible,
     onToggleVisible,
-
     ...rest
   } = props;
   const themeInfo = React.useContext(ThemeContext);
+
+  const [triggerElement, setTriggerElement] = useUncontrolledState(reference);
 
   const popover = usePopover({
     placement,
@@ -216,16 +219,8 @@ export const Popover = React.forwardRef((props, ref) => {
     onToggleVisible,
     onClickOutsideClose,
     hover,
+    reference: reference ? triggerElement : undefined,
   });
-
-  const refs = useMergedRefs(popover.refs.setFloating, ref);
-  const childrenRef =
-    React.isValidElement(children) &&
-    mergeRefs(
-      popover.refs.setReference,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (children as any).ref,
-    );
 
   const contentBox = (
     <Box
@@ -233,23 +228,17 @@ export const Popover = React.forwardRef((props, ref) => {
       data-iui-apply-background={applyBackground ? true : undefined}
       style={{ ...popover.floatingStyles, ...style }}
       {...popover.getFloatingProps(rest)}
-      ref={refs}
+      ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
     >
       {content}
     </Box>
   );
 
-  React.useEffect(() => {
-    if (reference) {
-      popover.refs.setReference(reference.current);
-    }
-  }, [reference, popover.refs]);
-
   const portalTo =
     typeof portal !== 'boolean'
       ? portal.to
       : portal
-      ? themeInfo?.portalContainerRef?.current ?? getDocument()?.body
+      ? themeInfo?.portalContainer ?? getDocument()?.body
       : null;
 
   return (
@@ -258,7 +247,7 @@ export const Popover = React.forwardRef((props, ref) => {
         ? React.cloneElement(
             children,
             popover.getReferenceProps({
-              ref: childrenRef,
+              ref: setTriggerElement,
               ...(children as JSX.Element).props,
             }),
           )
