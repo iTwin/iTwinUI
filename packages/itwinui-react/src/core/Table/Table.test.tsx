@@ -1823,9 +1823,9 @@ it('should disable row and handle expansion accordingly', async () => {
     '.iui-slot .iui-button',
   ) as NodeListOf<HTMLButtonElement>;
   expect(expansionCells.length).toBe(3);
-  expect(expansionCells[0].disabled).toBe(false);
-  expect(expansionCells[1].disabled).toBe(true);
-  expect(expansionCells[2].disabled).toBe(false);
+  expect(expansionCells[0]).not.toHaveAttribute('aria-disabled');
+  expect(expansionCells[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expansionCells[2]).not.toHaveAttribute('aria-disabled');
 
   await userEvent.click(expansionCells[1]);
   expect(onExpand).not.toHaveBeenCalled();
@@ -1996,17 +1996,17 @@ it('should render sub-rows with padding-left of 12+30*(row depth) for condensed 
 
   // First row has a row depth of zero, so padding-left is 12 + 30*0 = 12
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 12px',
+    'padding-inline-start: 12px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 12 + 30*2 = 72
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 72px',
+    'padding-inline-start: 72px',
   );
 
   // Second row has a row depth of one, so padding-left is 12 + 30*1 = 42
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 42px',
+    'padding-inline-start: 42px',
   );
 });
 
@@ -2027,17 +2027,17 @@ it('should render sub-rows with padding-left of 8+30*(row depth) for extra-conde
 
   // First row has a row depth of zero, so padding-left is 8 + 30*0 = 8
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 8px',
+    'padding-inline-start: 8px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 8 + 30*2 = 68
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 68px',
+    'padding-inline-start: 68px',
   );
 
   // Second row has a row depth of one, so padding-left is 8 + 30*1 = 38
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 38px',
+    'padding-inline-start: 38px',
   );
 });
 
@@ -3896,9 +3896,10 @@ it('should add expander column manually', () => {
     '.iui-table-row-expander',
   );
   expect(expanders.length).toBe(3);
-  expect(expanders[0].disabled).toBe(false);
-  expect(expanders[1].disabled).toBe(true);
-  expect(expanders[2].disabled).toBe(false);
+  expect(expanders[0]).not.toHaveAttribute('aria-disabled');
+  expect(expanders[1]).toHaveAttribute('aria-disabled', 'true');
+  expect(expanders[2]).not.toHaveAttribute('aria-disabled');
+
   fireEvent.click(expanders[2]);
   expect(onExpand).toHaveBeenCalledWith(
     [{ name: 'Name3', description: 'Description3' }],

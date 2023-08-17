@@ -69,118 +69,134 @@ sections.set(
 </nav>
 
 <style lang='scss'>
-  nav {
-    width: 100%;
-    font-size: var(--type--1);
+  @layer components {
+    nav {
+      width: 100%;
+      font-size: var(--type--1);
 
-    & ul {
-      list-style: none;
-      padding: 0;
-    }
-  }
-
-  .nav-groups {
-    height: 100%;
-    padding-top: var(--space-7);
-    max-height: 100vh;
-    min-width: 220px;
-
-    > li:last-of-type {
-      padding-block-end: var(--space-7);
-    }
-
-    > li + li:not(.nav-link) {
-      margin-top: var(--space-5);
-
-      @media (max-width: 50em) {
-        margin-top: var(--space-7);
+      & ul {
+        list-style: none;
+        padding: 0;
       }
     }
-  }
 
-  .nav-group-title a {
-    color: var(--color-subtext);
-    font-size: var(--type-0);
-    font-weight: 600;
-    padding: 0.3rem var(--space-4);
-    margin-bottom: var(--space-2);
-    text-decoration: none;
-    text-transform: uppercase;
-    display: block;
+    .nav-groups {
+      height: 100%;
+      padding-top: var(--space-7);
+      max-height: 100vh;
+      min-width: 220px;
 
-    &:where(:hover, :focus) {
-      background-color: var(--color-active);
-      color: var(--color-text);
+      > li:last-of-type {
+        padding-block-end: var(--space-7);
+      }
+
+      > li + li:not(.nav-link) {
+        margin-top: var(--space-5);
+
+        @media (max-width: 50em) {
+          margin-top: var(--space-7);
+        }
+      }
     }
 
-    @media (max-width: 50em) {
+    .nav-group-title a {
       color: var(--color-subtext);
-      font-size: var(--type-2);
-      padding-inline: var(--space-6);
-      margin-bottom: var(--space-3);
+      font-size: var(--type-0);
+      font-weight: 600;
+      padding: 0.3rem var(--space-4);
+      margin-bottom: var(--space-2);
+      text-decoration: none;
+      text-transform: uppercase;
+      display: block;
+
+      &:where(:hover, :focus) {
+        background-color: var(--color-active);
+        color: var(--color-text);
+      }
+
+      @media (max-width: 50em) {
+        color: var(--color-subtext);
+        font-size: var(--type-2);
+        padding-inline: var(--space-6);
+        margin-bottom: var(--space-3);
+      }
     }
-  }
 
-  .nav-group-subtitle {
-    margin-top: var(--space-3);
-    color: var(--color-mutedtext);
-    font-size: var(--type--1);
-    font-weight: 600;
-    padding-inline: var(--space-5);
-    margin-bottom: var(--space-2);
-    text-transform: uppercase;
-
-    @media (max-width: 50em) {
+    .nav-group-subtitle {
+      margin-top: var(--space-6);
       color: var(--color-mutedtext);
-      font-size: var(--type-1);
-      padding-inline: var(--space-6);
-      margin-bottom: var(--space-3);
-    }
-  }
+      font-size: var(--type--1);
+      font-weight: 600;
+      padding-inline: var(--space-5);
+      margin-bottom: var(--space-2);
+      text-transform: uppercase;
+      letter-spacing: 0.1ex;
 
-  .nav-link a {
-    margin: 1px;
-    padding: 0.3rem var(--space-5);
-    font: inherit;
-    font-size: var(--type-0);
-    color: var(--color-subtext);
-    text-decoration: none;
-    display: block;
-    border-top-left-radius: 2px;
-    border-bottom-left-radius: 2px;
-
-    &:where(:hover, :focus) {
-      background-color: var(--color-active);
-      color: var(--color-text);
+      @media (max-width: 50em) {
+        color: var(--color-mutedtext);
+        font-size: var(--type-1);
+        padding-inline: var(--space-6);
+        margin-bottom: var(--space-3);
+      }
     }
 
-    @media (max-width: 50em) {
-      font-size: var(--type-2);
-      padding: var(--space-1) var(--space-6);
-      min-height: 44px;
-      display: flex;
-      align-items: center;
-    }
-  }
-
-  .nav-link a[aria-current='page'] {
-    background-color: var(--color-active);
-    color: var(--color-text);
-    position: relative;
-
-    &::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      border-left: 2px solid var(--color-text);
+    .nav-link a {
+      margin: 1px;
+      padding: 0.3rem var(--space-5);
+      font: inherit;
+      font-size: var(--type-0);
+      color: var(--color-subtext);
+      text-decoration: none;
+      display: block;
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
 
+      &:where(:hover, :focus) {
+        background-color: var(--color-active);
+        color: var(--color-text);
+      }
+
       @media (max-width: 50em) {
-        border-width: 4px;
-        border-radius: 0;
+        font-size: var(--type-2);
+        padding: var(--space-1) var(--space-6);
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+      }
+    }
+
+    .nav-link a[aria-current='page'] {
+      background-color: var(--color-active);
+      color: var(--color-text);
+      position: relative;
+
+      // scroll to current link when page loads, without any JS.
+      // based on https://oh-snap.netlify.app/#scroll-start-trick
+      animation: scroll-into-view 1.5s;
+
+      @keyframes scroll-into-view {
+        from {
+          scroll-snap-align: center;
+        }
+        to {
+          scroll-snap-align: unset;
+        }
+      }
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        border-left: 2px solid var(--color-text);
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+
+        @media (max-width: 50em) {
+          border-width: 4px;
+          border-radius: 0;
+        }
       }
     }
   }

@@ -10,7 +10,8 @@
   font-weight: var(--iui-font-weight-semibold);
   font-family: var(--iui-font-mono);
   line-height: 1;
-  padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
+  padding-block: calc(var(--iui-size-s) * 0.33);
+  padding-inline: var(--iui-size-xs);
   white-space: nowrap;
   text-transform: uppercase;
   user-select: none;

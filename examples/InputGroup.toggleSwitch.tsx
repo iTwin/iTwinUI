@@ -12,7 +12,7 @@ export default () => {
 
   return (
     <Surface>
-      <InputGroup label='Toggle group' style={{ padding: '12px' }}>
+      <InputGroup label='Toggle group' style={{ padding: 12 }}>
         <ToggleSwitch
           onChange={(event) => setOption1(event.target.checked)}
           checked={option1}

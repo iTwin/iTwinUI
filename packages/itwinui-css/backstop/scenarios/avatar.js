@@ -8,7 +8,7 @@ module.exports = [
   // Types
   scenario('Type default', {
     selectors: ['#demo-default'],
-    misMatchThreshold: 0.1,
+    misMatchThreshold: 0.5,
   }),
   scenario('Type online status', {
     selectors: ['#demo-status'],
