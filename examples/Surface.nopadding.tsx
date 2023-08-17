@@ -14,7 +14,7 @@ export default () => {
     maxBlockSize: '300px',
   };
   return (
-    <Surface elevation={3} style={cardStyle} tabIndex={0}>
+    <Surface elevation={3} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & no body padding
