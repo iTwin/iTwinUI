@@ -74,12 +74,10 @@
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.1",
-    "@tippyjs/react": "^4.2.6",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
     "react-transition-group": "^4.4.2",
-    "tippy.js": "^6.3.7",
     "tslib": "^2.6.0"
   },
   "devDependencies": {

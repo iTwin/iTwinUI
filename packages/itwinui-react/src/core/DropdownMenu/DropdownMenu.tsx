@@ -27,7 +27,7 @@ export type DropdownMenuProps = {
 
 /**
  * Dropdown menu component.
- * Uses the {@link Popover} component, which is a wrapper around [tippy.js](https://atomiks.github.io/tippyjs).
+ * Built on top of the {@link Popover} component.
  * @example
  * const menuItems = (close: () => void) => [
  *   <MenuItem key={1} onClick={onClick(1, close)}>
