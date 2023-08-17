@@ -25,12 +25,7 @@ import {
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import ReactDOM from 'react-dom';
-import {
-  Box,
-  getDocument,
-  useMergedRefs,
-  useUncontrolledState,
-} from '../index.js';
+import { Box, getDocument, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 
 type PopoverOptions = {
@@ -211,15 +206,13 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   } = props;
   const themeInfo = React.useContext(ThemeContext);
 
-  const [triggerElement, setTriggerElement] = useUncontrolledState(reference);
-
   const popover = usePopover({
     placement,
     visible,
     onToggleVisible,
     onClickOutsideClose,
     hover,
-    reference: reference ? triggerElement : undefined,
+    reference,
   });
 
   const contentBox = (
@@ -247,7 +240,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
         ? React.cloneElement(
             children,
             popover.getReferenceProps({
-              ref: setTriggerElement,
+              ref: popover.refs.setReference,
               ...(children as JSX.Element).props,
             }),
           )
