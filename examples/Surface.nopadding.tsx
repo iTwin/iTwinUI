@@ -33,23 +33,23 @@ export default () => {
             <li style={listStyle}>
               <Anchor>Daily log</Anchor>
             </li>
-            <Divider />
+            <Divider as='li' />
             <li style={listStyle}>
               <Anchor>Inspections</Anchor>
             </li>
-            <Divider />
+            <Divider as='li' />
             <li style={listStyle}>
               <Anchor>Issues</Anchor>
             </li>
-            <Divider />
+            <Divider as='li' />
             <li style={listStyle}>
               <Anchor>Observations</Anchor>
             </li>
-            <Divider />
+            <Divider as='li' />
             <li style={listStyle}>
               <Anchor>RFIs</Anchor>
             </li>
-            <Divider />
+            <Divider as='li' />
             <li style={listStyle}>
               <Anchor>Weather delay notices</Anchor>
             </li>
