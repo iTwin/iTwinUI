@@ -94,12 +94,7 @@ $opacities: (
   --iui-color-background-backdrop-hover: #{hex($bg-600)};
   --iui-color-background-disabled: #{hex($bg-400)};
   --iui-color-background-accent: var(--iui-color-background-informational);
-  --iui-color-background-accent-hover: var(
-    --iui-color-background-informational-hover
-  );
-  --iui-color-background-accent-muted: var(
-    --iui-color-background-informational-muted
-  );
+  --iui-color-background-accent-muted: var(--iui-color-background-informational-muted);
   --iui-color-background-informational: #{hex($bg-informational-1)};
   --iui-color-background-informational-hover: #{hex($bg-informational-2)};
   --iui-color-background-informational-muted: #{hex($bg-informational-0)};
