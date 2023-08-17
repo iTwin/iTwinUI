@@ -318,7 +318,8 @@
 }
 
 @mixin iui-table-body {
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: scroll;
   scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
