@@ -75,7 +75,7 @@
       > .iui-table-resizer-bar {
         block-size: 100%;
         inline-size: var(--iui-size-3xs);
-        margin: 0 auto;
+        margin-inline: auto;
         transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-border);
       }
