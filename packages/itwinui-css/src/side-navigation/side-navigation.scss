@@ -62,16 +62,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     min-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
     max-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
-
-    // iPhone notch support
-    @supports (min-width: string.unquote('max(0px)')) {
-      min-inline-size: string.unquote(
-        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
-      );
-      max-inline-size: string.unquote(
-        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
-      );
-    }
   }
 
   &.iui-expanded,
