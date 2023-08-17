@@ -14,7 +14,7 @@ export default () => {
     maxBlockSize: '300px',
   };
   return (
-    <Surface elevation={3} style={cardStyle}>
+    <Surface elevation={3} style={cardStyle} tabIndex={0}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & no body padding
@@ -30,27 +30,27 @@ export default () => {
               padding: 0,
             }}
           >
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>Daily log</Anchor>
             </li>
             <Divider as='li' />
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>Inspections</Anchor>
             </li>
             <Divider as='li' />
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>Issues</Anchor>
             </li>
             <Divider as='li' />
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>Observations</Anchor>
             </li>
             <Divider as='li' />
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>RFIs</Anchor>
             </li>
             <Divider as='li' />
-            <li style={listStyle}>
+            <li style={listStyle} tabIndex={0}>
               <Anchor>Weather delay notices</Anchor>
             </li>
           </ul>
