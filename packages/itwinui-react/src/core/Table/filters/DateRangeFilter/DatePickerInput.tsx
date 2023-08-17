@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { PopoverCopy, SvgCalendar, isBefore } from '../../../utils/index.js';
+import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
 import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
@@ -84,7 +84,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <PopoverCopy
+    <Popover
       content={
         <DatePicker
           date={date}
@@ -120,7 +120,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
         }
         {...rest}
       />
-    </PopoverCopy>
+    </Popover>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
 

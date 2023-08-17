@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { PopoverCopy, mergeRefs } from '../utils/index.js';
+import { Popover, mergeRefs } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
@@ -22,7 +22,7 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<React.ComponentProps<typeof PopoverCopy>, 'content'> &
+} & Omit<React.ComponentProps<typeof Popover>, 'content'> &
   Omit<CommonProps, 'title'>;
 
 /**
@@ -87,7 +87,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
   }, [onToggleVisible]);
 
   return (
-    <PopoverCopy
+    <Popover
       content={
         <Menu className={className} style={style} role={role} id={id}>
           {menuContent}
@@ -113,7 +113,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
       ) : (
         <></>
       )}
-    </PopoverCopy>
+    </Popover>
   );
 };
 

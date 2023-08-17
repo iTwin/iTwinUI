@@ -13,7 +13,7 @@ import {
   IconButton,
   Button,
 } from '@itwin/itwinui-react';
-import { PopoverCopy } from '@itwin/itwinui-react/esm/core/utils';
+import { Popover } from '@itwin/itwinui-react/esm/core/utils';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -45,7 +45,7 @@ export default () => {
   return (
     <>
       <ButtonGroup>
-        <PopoverCopy
+        <Popover
           content={
             <ColorPicker
               selectedColor={selectedColor}
@@ -75,7 +75,7 @@ export default () => {
               color={selectedColor}
             />
           </IconButton>
-        </PopoverCopy>
+        </Popover>
         <Button
           onClick={() => {
             setCurrentFormat(

@@ -202,4 +202,5 @@ export {
   Flex,
   VisuallyHidden,
   Divider,
+  Popover,
 } from './utils/index.js';

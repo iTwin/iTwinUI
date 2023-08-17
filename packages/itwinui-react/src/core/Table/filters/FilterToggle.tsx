@@ -9,7 +9,7 @@ import {
   useGlobals,
   SvgFilterHollow,
   SvgFilter,
-  PopoverCopy,
+  Popover,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
@@ -50,7 +50,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
   return (
     <>
       {column.canFilter && column.Filter && (
-        <PopoverCopy
+        <Popover
           content={column.render('Filter', { close, setFilter, clearFilter })}
           placement='bottom-start'
           visible={isVisible}
@@ -69,7 +69,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           >
             {isColumnFiltered ? <SvgFilter /> : <SvgFilterHollow />}
           </IconButton>
-        </PopoverCopy>
+        </Popover>
       )}
     </>
   );

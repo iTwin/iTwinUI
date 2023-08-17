@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { VisuallyHidden, PopoverCopy, Box, ButtonBase } from '../../utils/index.js';
+import { VisuallyHidden, Popover, Box, ButtonBase } from '../../utils/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -78,7 +78,7 @@ const IconButtonTooltip = (props: {
   const { label, children } = props;
 
   return label ? (
-    <PopoverCopy
+    <Popover
       middleware={{ offset: 4 }}
       hover
       // aria={{ content: null }}
@@ -89,7 +89,7 @@ const IconButtonTooltip = (props: {
       }
     >
       {children}
-    </PopoverCopy>
+    </Popover>
   ) : (
     children
   );

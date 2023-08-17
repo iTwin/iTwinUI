@@ -18,7 +18,7 @@ import {
 import type {
   InputContainerProps,
   CommonProps,
-  PopoverCopy,
+  Popover,
 } from '../utils/index.js';
 import {
   ComboBoxActionContext,
@@ -105,7 +105,7 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: React.ComponentProps<typeof PopoverCopy>;
+  dropdownMenuProps?: React.ComponentProps<typeof Popover>;
   /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.

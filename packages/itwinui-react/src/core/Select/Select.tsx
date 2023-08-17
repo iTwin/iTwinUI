@@ -8,7 +8,7 @@ import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
-  PopoverCopy,
+  Popover,
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
@@ -348,7 +348,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       style={style}
       {...rest}
     >
-      <PopoverCopy
+      <Popover
         content={
           <Menu
             role='listbox'
@@ -414,7 +414,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </Box>
-      </PopoverCopy>
+      </Popover>
       <Box
         as='span'
         aria-hidden

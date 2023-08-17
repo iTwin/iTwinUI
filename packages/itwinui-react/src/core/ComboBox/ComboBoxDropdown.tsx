@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { PopoverCopy, useSafeContext } from '../utils/index.js';
+import { Popover, useSafeContext } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import {
   ComboBoxStateContext,
@@ -11,7 +11,7 @@ import {
   ComboBoxRefsContext,
 } from './helpers.js';
 
-type ComboBoxDropdownProps = React.ComponentProps<typeof PopoverCopy> & {
+type ComboBoxDropdownProps = React.ComponentProps<typeof Popover> & {
   children: JSX.Element;
 };
 
@@ -29,7 +29,7 @@ export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
   }, [dispatch, props.visible]);
 
   return (
-    <PopoverCopy
+    <Popover
       placement='bottom-start'
       visible={isOpen}
       onClickOutsideClose
