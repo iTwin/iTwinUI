@@ -27,7 +27,8 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
       ) : (
         <IconButton
           style={{
-            marginRight: density === 'default' || density === undefined ? 8 : 4,
+            marginInlineEnd:
+              density === 'default' || density === undefined ? 8 : 4,
           }}
           className='iui-table-row-expander'
           styleType='borderless'

@@ -11,7 +11,7 @@ export default () => {
     position: 'relative',
   } as React.CSSProperties;
   const cardStyle = {
-    maxHeight: '300px',
+    maxBlockSize: '300px',
   };
   return (
     <Surface elevation={3} style={cardStyle}>
@@ -26,8 +26,8 @@ export default () => {
             style={{
               width: '100%',
               listStyle: 'none',
-              margin: '0',
-              padding: '0',
+              margin: 0,
+              padding: 0,
             }}
           >
             <li style={listStyle}>

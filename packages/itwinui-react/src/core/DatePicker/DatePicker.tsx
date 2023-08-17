@@ -11,6 +11,7 @@ import {
   SvgChevronRightDouble,
   isBefore,
   Box,
+  useId,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
@@ -565,6 +566,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     return dayClass;
   };
 
+  const dateTableId = useId();
+
   return (
     <Box
       className={cx('iui-date-picker', className)}
@@ -607,6 +610,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                 'iui-calendar-month',
                 calendarMonthProps?.className,
               )}
+              id={dateTableId}
               title={monthNames[displayedMonthIndex]}
             >
               {monthNames[displayedMonthIndex]}
@@ -653,6 +657,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           role='listbox'
           {...listboxProps}
           className={cx(className, listboxProps?.className)}
+          aria-labelledby={dateTableId}
         >
           {weeks.map((weekDays, weekIndex) => {
             return (
