@@ -33,7 +33,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   @include surface.iui-surface;
   border-radius: var(--iui-border-radius-1);
   display: inline-flex;
-  padding: var(--iui-size-s) var(--iui-size-s);
+  padding: var(--iui-size-s);
   user-select: none;
   overflow-y: auto;
   flex-direction: column;
@@ -219,10 +219,12 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 }
 
 .iui-color-dot {
-  --iui-color-dot-inset: initial;
+  --iui-color-dot-inset-block: initial;
+  --iui-color-dot-inset-inline: initial;
 
   position: absolute;
-  inset: var(--iui-color-dot-inset);
+  inset-block: var(--iui-color-dot-inset-block);
+  inset-inline: var(--iui-color-dot-inset-inline);
   inline-size: var(--iui-size-m);
   block-size: var(--iui-size-m);
   border-radius: 50%;

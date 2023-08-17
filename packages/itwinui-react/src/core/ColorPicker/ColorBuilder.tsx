@@ -272,7 +272,8 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
           className='iui-color-dot'
           style={
             {
-              '--iui-color-dot-inset': `${squareTop.toString()}% auto auto ${squareLeft.toString()}%`,
+              '--iui-color-dot-inset-block': `${squareTop.toString()}% auto`,
+              '--iui-color-dot-inset-inline': `${squareLeft.toString()}% auto`,
             } as React.CSSProperties
           }
           onPointerDown={() => {

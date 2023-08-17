@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 var(--iui-size-m);
+  padding-inline: var(--iui-size-m);
   user-select: none;
   background-color: var(--iui-color-background);
   border-end-start-radius: var(--iui-border-radius-1);
@@ -60,7 +60,7 @@
 @mixin iui-table-paginator-pages-group {
   display: inline-flex;
   align-items: center;
-  margin: 0 var(--iui-size-xs);
+  margin-inline: var(--iui-size-xs);
 }
 
 @mixin iui-table-paginator-page-button {
@@ -76,6 +76,7 @@
     @include borderless.iui-button-borderless-active;
 
     // Adds stripe above active button
-    --_iui-button-active-stripe-inset: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)} #{var(--iui-size-3xs)};
+    --_iui-button-active-stripe-inset-block: calc(100% - #{var(--iui-size-2xs)}) #{var(--iui-size-3xs)};
+    --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
   }
 }
