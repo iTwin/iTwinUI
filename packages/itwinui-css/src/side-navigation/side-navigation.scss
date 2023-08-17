@@ -123,8 +123,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       &::before {
         content: '';
         position: absolute;
-        --_iui-button-active-stripe-inset-block: 0;
-        --_iui-button-active-stripe-inset-inline: 0 -2px;
+        inset-block: 0;
+        inset-inline: 0 -2px;
         z-index: -1;
         background-color: inherit;
       }
