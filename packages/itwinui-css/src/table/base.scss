@@ -11,12 +11,19 @@
   @include iui-table-cell-icon;
 }
 
-@mixin iui-table-header-wrapper {
-  overflow-x: hidden;
-  // empty scrollbar space to force alignment with table body
+/// Preserves empty scrollbar space using scrollbar-gutter, with
+/// `overflow-y: scroll` (instead of `auto` or `overlay`) as Safari fallback.
+/// Must be included in both table-header-wrapper and table-body
+/// to make sure they are always aligned, even when body is not
+/// scrollable and even when it has sticky columns.
+@mixin table-scrollbar {
   overflow-y: scroll;
   scrollbar-gutter: stable;
+}
 
+@mixin iui-table-header-wrapper {
+  @include table-scrollbar;
+  overflow-x: hidden;
   background-color: var(--iui-color-background);
   display: flex;
   flex-shrink: 0;
@@ -318,9 +325,8 @@
 }
 
 @mixin iui-table-body {
+  @include table-scrollbar;
   overflow-x: auto;
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
