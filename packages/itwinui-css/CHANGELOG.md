@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.0.0-dev.7
+
+### Major Changes
+
+- [#1446](https://github.com/iTwin/iTwinUI/pull/1446): `iui-avatar` has been refactored to be a single `<span>`, and the status is now applied using the `data-iui-status` attribute. The colors have been updated to pass AAA contrast ratio.
+- [#1489](https://github.com/iTwin/iTwinUI/pull/1489): `--iui-color-dot-inset` has been split into `--iui-color-dot-inset-block` and `--iui-color-dot-inset-inline`.
+
+### Patch Changes
+
+- [#1499](https://github.com/iTwin/iTwinUI/pull/1499): Removed special handling of iPhone notch in Header and SideNavigation.
+
 ## 2.0.0-dev.6
 
 ### Major Changes
