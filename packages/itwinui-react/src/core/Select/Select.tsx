@@ -231,7 +231,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [isOpenState, setIsOpen] = React.useState(false);
   const isOpen = isOpenState;
 
-  // const [minWidth, setMinWidth] = React.useState(0);
+  const [minWidth, setMinWidth] = React.useState(0);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
@@ -248,11 +248,11 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     // onHide?.(instance);
   }, []);
 
-  // React.useEffect(() => {
-  //   if (selectRef.current) {
-  //     setMinWidth(selectRef.current.offsetWidth);
-  //   }
-  // }, [isOpen]);
+  React.useEffect(() => {
+    if (selectRef.current) {
+      setMinWidth(selectRef.current.offsetWidth);
+    }
+  }, [isOpen]);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
     if (event.altKey) {
@@ -354,6 +354,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
             style={{
+              minInlineSize: minWidth,
+              maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
               ...menuStyle,
             }}
             id={`${uid}-menu`}

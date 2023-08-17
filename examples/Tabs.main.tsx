@@ -18,7 +18,7 @@ export default () => {
     }
   };
   return (
-    <div style={{ padding: '0 48px' }}>
+    <div style={{ paddingInline: 48 }}>
       <Tabs
         orientation='horizontal'
         labels={[

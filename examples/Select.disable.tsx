@@ -3,12 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Select } from '@itwin/itwinui-react';
+import { LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Select<number>
+    <LabeledSelect
       disabled
+      label={'Disabled Select Label'}
       options={[
         {
           value: 1,
