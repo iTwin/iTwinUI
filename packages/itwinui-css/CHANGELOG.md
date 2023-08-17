@@ -83,6 +83,13 @@
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
 
+## 1.12.2
+
+### Patch Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Improved color contrast for input and select placeholder text.
+- [#1501](https://github.com/iTwin/iTwinUI/pull/1501): Fixed a small misalignment in Table when using sticky columns.
+
 ## 1.12.1
 
 ### Patch Changes

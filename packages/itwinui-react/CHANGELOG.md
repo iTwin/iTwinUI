@@ -120,6 +120,13 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.3
+
+### Patch Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Improved color contrast for input and select placeholder text.
+- [#1501](https://github.com/iTwin/iTwinUI/pull/1501): Fixed a small misalignment in Table when using sticky columns.
+
 ## 2.12.2
 
 ### Patch Changes
