@@ -26,6 +26,7 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
         expanderCell(cellProps)
       ) : (
         <IconButton
+          label='Toggle sub row'
           style={{
             marginInlineEnd:
               density === 'default' || density === undefined ? 8 : 4,
