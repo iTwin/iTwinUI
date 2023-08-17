@@ -188,8 +188,8 @@ type PopoverOwnProps = {
 };
 
 /**
- * Uses [FloatingUI](https://floating-ui.com/).
- * @private
+ * A utility component to help with positioning of floating content.
+ * Built on top of [`floating-ui`](https://floating-ui.com/)
  */
 export const Popover = React.forwardRef((props, ref) => {
   const {
