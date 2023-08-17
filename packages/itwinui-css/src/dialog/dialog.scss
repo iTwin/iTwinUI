@@ -28,7 +28,8 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   border-radius: var(--iui-border-radius-1);
   box-shadow: var(--iui-shadow-5);
   position: fixed;
-  padding: var(--iui-size-s) var(--iui-size-m);
+  padding-block: var(--iui-size-s);
+  padding-inline: var(--iui-size-m);
   pointer-events: auto;
   background-color: var(--iui-color-background);
   display: flex;
@@ -160,8 +161,10 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
 .iui-dialog-title-bar-filled {
   font-size: var(--iui-font-size-2);
-  padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
-  margin: calc(0px - var(--iui-size-s)) calc(0px - var(--iui-size-m)) var(--iui-size-s) calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
+  padding-block: calc(var(--iui-size-s) * 0.5);
+  padding-inline: var(--iui-size-m);
+  margin-inline: calc(0px - var(--iui-size-m)); // negative margin to counteract dialog padding
+  margin-block: calc(0px - var(--iui-size-s)) var(--iui-size-s);
   cursor: grab;
   background-color: var(--iui-color-background-backdrop);
   border-block-end: 1px solid var(--iui-color-border);
@@ -173,8 +176,8 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
 .iui-dialog-content {
   flex-grow: 2;
-  margin: 0 calc(0px - var(--iui-size-m));
-  padding: 0 var(--iui-size-m);
+  margin-inline: calc(0px - var(--iui-size-m));
+  padding-inline: var(--iui-size-m);
   overflow-y: auto;
   overflow-y: overlay;
 }

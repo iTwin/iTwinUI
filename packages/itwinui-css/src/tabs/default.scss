@@ -6,7 +6,8 @@
   @include base.iui-tab-not-animated;
 
   .iui-tab {
-    padding: var(--iui-size-2xs) var(--iui-size-m);
+    padding-block: var(--iui-size-2xs);
+    padding-inline: var(--iui-size-m);
     background-color: var(--iui-color-background-backdrop);
     border: 1px solid var(--iui-color-border);
 
