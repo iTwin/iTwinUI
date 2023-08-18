@@ -16,14 +16,14 @@ export default () => {
   return (
     <Surface elevation={3} style={cardStyle}>
       <Surface.Header>
-        <Text id='subheading' variant='subheading' as='h2'>
+        <Text id='surface-header' variant='subheading' as='h2'>
           Surface with overflow & no body padding
         </Text>
       </Surface.Header>
       <Surface.Body
         tabIndex={0}
         role='group'
-        aria-labelledby='subheading'
+        aria-labelledby='surface-header'
         isPadded={false}
       >
         <Flex flexDirection='column' style={{ flex: '1' }}>
