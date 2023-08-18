@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 import {
@@ -22,9 +23,9 @@ import {
   inline,
   hide,
   safePolygon,
+  FloatingFocusManager,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import ReactDOM from 'react-dom';
 import { Box, getDocument, mergeRefs, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 
@@ -118,17 +119,7 @@ function usePopover({
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
       middleware.shift && shift(),
-      middleware.size
-        ? size()
-        : size({
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            apply({ rects, elements }: any) {
-              Object.assign(elements.floating.style, {
-                minWidth: `${rects.reference.width}px`,
-              });
-            },
-          }),
-      ,
+      middleware.size && size(),
       middleware.autoPlacement && autoPlacement(),
       middleware.inline && inline(),
       middleware.hide && hide(),
@@ -138,16 +129,12 @@ function usePopover({
   const context = data.context;
 
   const hover = useHover(context, {
-    enabled: hoverOption || controlledOpen === null,
-    delay: {
-      open: 50,
-      close: 250,
-    },
+    enabled: !!(hoverOption && controlledOpen === undefined),
     handleClose: safePolygon({ buffer: -Infinity }),
   });
 
   const click = useClick(context, {
-    enabled: controlledOpen === null,
+    enabled: controlledOpen === undefined,
   });
 
   const dismiss = useDismiss(context, {
@@ -216,15 +203,23 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   });
 
   const contentBox = (
-    <Box
-      className={cx('iui-popover', className)}
-      data-iui-apply-background={applyBackground ? true : undefined}
-      style={{ ...popover.floatingStyles, ...style }}
-      {...popover.getFloatingProps(rest)}
-      ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
+    <FloatingFocusManager
+      context={popover.context}
+      modal={false}
+      initialFocus={-1}
+      returnFocus
+      guards={false}
     >
-      {content}
-    </Box>
+      <Box
+        className={cx('iui-popover', className)}
+        data-iui-apply-background={applyBackground ? true : undefined}
+        style={{ ...popover.floatingStyles, ...style }}
+        {...popover.getFloatingProps(rest)}
+        ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
+      >
+        {content}
+      </Box>
+    </FloatingFocusManager>
   );
 
   const portalTo =
