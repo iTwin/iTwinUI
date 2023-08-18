@@ -11,13 +11,20 @@
   @include iui-table-cell-icon;
 }
 
+/// Preserves empty scrollbar space using scrollbar-gutter, with
+/// `overflow-y: scroll` (instead of `auto` or `overlay`) as Safari fallback.
+/// Must be included in both table-header-wrapper and table-body
+/// to make sure they are always aligned, even when body is not
+/// scrollable and even when it has sticky columns.
+@mixin table-scrollbar {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
 @mixin iui-table-header-wrapper {
-  overflow: hidden;
-  // Fix for Firefox columns misalignment
-  @supports not (overflow: overlay) {
-    scrollbar-gutter: stable;
-    background-color: var(--iui-color-background);
-  }
+  @include table-scrollbar;
+  overflow-x: hidden;
+  background-color: var(--iui-color-background);
   display: flex;
   flex-shrink: 0;
   border-start-start-radius: var(--iui-border-radius-1);
@@ -68,7 +75,7 @@
       > .iui-table-resizer-bar {
         block-size: 100%;
         inline-size: var(--iui-size-3xs);
-        margin: 0 auto;
+        margin-inline: auto;
         transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-border);
       }
@@ -318,8 +325,8 @@
 }
 
 @mixin iui-table-body {
-  overflow-y: scroll;
-  overflow: overlay;
+  @include table-scrollbar;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
