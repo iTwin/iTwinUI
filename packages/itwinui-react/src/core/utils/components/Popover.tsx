@@ -129,13 +129,11 @@ function usePopover({
   const context = data.context;
 
   const hover = useHover(context, {
-    enabled: !!(hoverOption && controlledOpen === undefined),
+    enabled: !!hoverOption,
     handleClose: safePolygon({ buffer: -Infinity }),
   });
 
-  const click = useClick(context, {
-    enabled: controlledOpen === undefined,
-  });
+  const click = useClick(context);
 
   const dismiss = useDismiss(context, {
     outsidePress: onClickOutsideClose,

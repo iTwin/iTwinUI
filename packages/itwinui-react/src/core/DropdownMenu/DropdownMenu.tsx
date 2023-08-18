@@ -3,8 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, mergeRefs } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import { Popover } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
 export type DropdownMenuProps = {
@@ -22,8 +21,7 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<React.ComponentProps<typeof Popover>, 'content'> &
-  Omit<CommonProps, 'title'>;
+} & Omit<React.ComponentProps<typeof Popover>, 'content'>;
 
 /**
  * Dropdown menu component.
@@ -47,44 +45,24 @@ export type DropdownMenuProps = {
 export const DropdownMenu = (props: DropdownMenuProps) => {
   const {
     menuItems,
-    children,
     className,
     style,
     role = 'menu',
-    visible,
+    visible: visibleProp,
     placement = 'bottom-start',
     onToggleVisible,
     id,
     ...rest
   } = props;
 
-  const [isVisible, setIsVisible] = React.useState(visible ?? false);
-  React.useEffect(() => {
-    setIsVisible(visible ?? false);
-  }, [visible]);
-
-  const open = React.useCallback(() => setIsVisible(true), []);
-  const close = React.useCallback(() => setIsVisible(false), []);
+  const [visible, setVisible] = React.useState(visibleProp);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(close);
+      return menuItems(() => setVisible(false));
     }
     return menuItems;
-  }, [menuItems, close]);
-
-  const targetRef = React.useRef<HTMLElement>(null);
-
-  const onShowHandler = React.useCallback(() => {
-    setIsVisible(true);
-    onToggleVisible?.(true);
-  }, [onToggleVisible]);
-
-  const onHideHandler = React.useCallback(() => {
-    setIsVisible(false);
-    targetRef.current?.focus();
-    onToggleVisible?.(false);
-  }, [onToggleVisible]);
+  }, [menuItems]);
 
   return (
     <Popover
@@ -93,27 +71,11 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
           {menuContent}
         </Menu>
       }
-      visible={isVisible}
-      onClickOutsideClose
+      visible={visibleProp ?? visible}
+      onToggleVisible={onToggleVisible ?? setVisible}
       placement={placement}
-      onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
       {...rest}
-    >
-      {React.isValidElement(children) ? (
-        React.cloneElement(children as JSX.Element, {
-          ref: mergeRefs(
-            targetRef,
-            (props.children as React.FunctionComponentElement<HTMLElement>).ref,
-          ),
-          onClick: (args: unknown) => {
-            isVisible ? close() : open();
-            (children as JSX.Element).props.onClick?.(args);
-          },
-        })
-      ) : (
-        <></>
-      )}
-    </Popover>
+    />
   );
 };
 
