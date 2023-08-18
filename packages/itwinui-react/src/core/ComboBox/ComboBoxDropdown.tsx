@@ -33,7 +33,7 @@ export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
       placement='bottom-start'
       visible={isOpen}
       onClickOutsideClose
-      reference={inputRef}
+      reference={inputRef.current} // TODO: use state
       ref={forwardedRef}
       content={children}
       {...rest}

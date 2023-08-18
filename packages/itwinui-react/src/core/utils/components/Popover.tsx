@@ -25,7 +25,7 @@ import {
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import ReactDOM from 'react-dom';
-import { Box, getDocument, useMergedRefs } from '../index.js';
+import { Box, getDocument, mergeRefs, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 
 type PopoverOptions = {
@@ -80,7 +80,7 @@ type PopoverOptions = {
     hide?: boolean;
     inline?: boolean;
   };
-  reference?: HTMLElement;
+  reference?: HTMLElement | null;
 };
 
 function usePopover({
@@ -237,13 +237,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   return (
     <>
       {React.isValidElement(children)
-        ? React.cloneElement(
-            children,
-            popover.getReferenceProps({
-              ref: popover.refs.setReference,
-              ...(children as JSX.Element).props,
-            }),
-          )
+        ? React.cloneElement(children as JSX.Element, {
+            ...popover.getReferenceProps((children as JSX.Element).props),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            ref: mergeRefs(popover.refs.setReference, (children as any).ref),
+          })
         : null}
       {popover.open
         ? portalTo
