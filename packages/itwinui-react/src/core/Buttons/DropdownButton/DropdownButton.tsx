@@ -73,7 +73,7 @@ export const DropdownButton = React.forwardRef((props, ref) => {
       {...dropdownMenuProps}
       onToggleVisible={(open) => {
         setIsMenuOpen(open);
-        dropdownMenuProps?.onToggleVisible;
+        dropdownMenuProps?.onToggleVisible?.(open);
       }}
       style={{ minInlineSize: menuWidth, ...dropdownMenuProps?.style }}
     >
