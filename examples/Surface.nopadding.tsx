@@ -27,7 +27,7 @@ export default () => {
         isPadded={false}
       >
         <Flex flexDirection='column' style={{ flex: '1' }}>
-          <ul
+          <div
             style={{
               width: '100%',
               listStyle: 'none',
@@ -35,30 +35,30 @@ export default () => {
               padding: 0,
             }}
           >
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Daily log</Anchor>
-            </li>
-            <Divider as='li' />
-            <li style={listStyle}>
+            </div>
+            <Divider />
+            <div style={listStyle}>
               <Anchor>Inspections</Anchor>
-            </li>
-            <Divider as='li' />
-            <li style={listStyle}>
+            </div>
+            <Divider />
+            <div style={listStyle}>
               <Anchor>Issues</Anchor>
-            </li>
-            <Divider as='li' />
-            <li style={listStyle}>
+            </div>
+            <Divider />
+            <div style={listStyle}>
               <Anchor>Observations</Anchor>
-            </li>
-            <Divider as='li' />
-            <li style={listStyle}>
+            </div>
+            <Divider />
+            <div style={listStyle}>
               <Anchor>RFIs</Anchor>
-            </li>
-            <Divider as='li' />
-            <li style={listStyle}>
+            </div>
+            <Divider />
+            <div style={listStyle}>
               <Anchor>Weather delay notices</Anchor>
-            </li>
-          </ul>
+            </div>
+          </div>
         </Flex>
       </Surface.Body>
     </Surface>
