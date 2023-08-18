@@ -140,7 +140,7 @@ function usePopover({
   const dismiss = useDismiss(context, {
     outsidePress: onClickOutsideClose,
   });
-  const role = useRole(context);
+  const role = useRole(context, { enabled: false }); // TODO: Fix roles in all components
 
   const interactions = useInteractions([click, dismiss, role, hover]);
 
