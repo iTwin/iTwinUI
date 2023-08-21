@@ -8,6 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { copyrightBannerJs } from '../../../scripts/copyrightLinter.js';
+import swc from '@swc/core';
 
 const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -50,14 +51,17 @@ if (!fs.existsSync(outCjsDir)) {
   await fs.promises.mkdir(outCjsDir);
 }
 
+// remove old styles.js created when switching from v3 branch
+await removeIfExists(path.join(__dirname, 'src', 'styles.js'));
+
+const esmExports = `${copyrightBannerJs}\nexport default String.raw\`${allCss}\`;\nexport const revertV1Css=String.raw\`${revertV1Css}\`;`;
+const cjsExports = swc.transformSync(esmExports, {
+  module: { type: 'commonjs' },
+  jsc: { target: 'es2020' },
+}).code;
+
 await removeIfExists(outEsmPath);
-await fs.promises.writeFile(
-  outEsmPath,
-  `${copyrightBannerJs}\nexport default String.raw\`${allCss}\`;\nexport const revertV1Css=String.raw\`${revertV1Css}\`;`,
-);
+await fs.promises.writeFile(outEsmPath, esmExports);
 
 await removeIfExists(outCjsPath);
-await fs.promises.writeFile(
-  outCjsPath,
-  `${copyrightBannerJs}\nmodule.exports=String.raw\`${allCss}\`;\nexports.revertV1Css=String.raw\`${revertV1Css}\`;`,
-);
+await fs.promises.writeFile(outCjsPath, cjsExports);
