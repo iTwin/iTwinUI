@@ -60,6 +60,8 @@ import type {
 import type { TableFilterProps } from '../core/Table/filters/index.js';
 
 declare module 'react-table' {
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   export type FieldType = 'text' | 'number' | 'date' | string;
 
   export type CellRendererProps<D extends object = {}> = {
