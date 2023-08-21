@@ -593,7 +593,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           >
             <SvgChevronLeft />
           </IconButton>
-          <span>
+          <span aria-live='polite'>
             <Box
               as='span'
               {...calendarMonthProps}
