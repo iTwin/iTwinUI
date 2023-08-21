@@ -47,11 +47,12 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
       <DropdownMenu
         placement={menuPlacement}
         menuItems={menuItems}
-        style={{ minWidth: menuWidth }}
+        style={{ minInlineSize: menuWidth }}
         onShow={React.useCallback(() => setIsMenuOpen(true), [])}
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
         <ButtonBase
+          aria-label='More'
           className='iui-header-breadcrumb-button iui-header-breadcrumb-button-split'
           disabled={disabled}
         >

@@ -16,6 +16,12 @@
 
 - [#1302](https://github.com/iTwin/iTwinUI/pull/1302): All selectors have been wrapped with `:where` to nullify specificity.
 
+## 2.1.0
+
+### Minor Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Added new `--iui-color-text-placeholder` variable.
+
 ## 2.0.0
 
 ### Major Changes

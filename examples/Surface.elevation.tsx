@@ -9,7 +9,7 @@ import { Surface, Flex } from '@itwin/itwinui-react';
 export default () => {
   const cardStyle = {
     display: 'flex',
-    width: '100px',
+    inlineSize: '100px',
     padding: '12px',
     justifyContent: 'center',
     textAlign: 'center',

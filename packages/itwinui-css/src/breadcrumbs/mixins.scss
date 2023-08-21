@@ -34,7 +34,7 @@
 }
 
 @mixin iui-breadcrumbs-content {
-  padding: 0 var(--iui-size-xs);
+  padding-inline: var(--iui-size-xs);
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -68,7 +68,7 @@
 
 @mixin iui-breadcrumbs-separator {
   display: flex;
-  margin: 0 var(--iui-size-3xs);
+  margin-inline: var(--iui-size-3xs);
 
   svg {
     @include mixins.iui-icon-style('s');

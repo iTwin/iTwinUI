@@ -4,7 +4,7 @@
 
 .iui-fieldset {
   @include mixins.iui-reset;
-  padding: var(--iui-size-s) var(--iui-size-s);
+  padding: var(--iui-size-s);
   border-radius: var(--iui-border-radius-1);
   border: 1px solid var(--iui-color-border);
   background-color: var(--iui-color-background);
