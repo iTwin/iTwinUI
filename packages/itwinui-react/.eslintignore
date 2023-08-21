@@ -7,3 +7,7 @@ scripts
 cjs
 esm
 *.d.ts
+
+# # Ignore all .d.ts files, except the ones in src/types/react-table/index.d.ts
+# **/*.d.ts
+# !src/types/react-table/index.d.ts
