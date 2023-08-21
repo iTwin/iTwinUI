@@ -48,21 +48,21 @@ declare module 'react-table' {
    */
   export type TableOptions<D extends object> = UseTableOptions<D>;
 
-  export interface TableInstance<D extends object = {}>
+  export interface TableInstance<D extends object>
     extends Omit<TableOptions<D>, 'columns' | 'pageCount'>,
       UseTableInstanceProps<D> {}
 
-  export interface TableState<D extends object = {}> {
+  export interface TableState<D extends object> {
     hiddenColumns?: Array<IdType<D>> | undefined;
   }
 
-  export type Hooks<D extends object = {}> = UseTableHooks<D>;
+  export type Hooks<D extends object> = UseTableHooks<D>;
 
-  export type Cell<D extends object = {}, V = any> = UseTableCellProps<D, V>;
+  export type Cell<D extends object, V = any> = UseTableCellProps<D, V>;
 
-  export type ColumnInterface<D extends object = {}> = UseTableColumnOptions<D>;
+  export type ColumnInterface<D extends object> = UseTableColumnOptions<D>;
 
-  export interface ColumnInterfaceBasedOnValue<D extends object = {}, V = any> {
+  export interface ColumnInterfaceBasedOnValue<D extends object, V = any> {
     Cell?: Renderer<CellProps<D, V>> | undefined;
   }
 
@@ -70,7 +70,7 @@ declare module 'react-table' {
     columns: Array<Column<D>>;
   }
 
-  export type ColumnGroup<D extends object = {}> = ColumnInterface<D> &
+  export type ColumnGroup<D extends object> = ColumnInterface<D> &
     ColumnGroupInterface<D> &
     (
       | { Header: string }
@@ -82,42 +82,40 @@ declare module 'react-table' {
   type ValueOf<T> = T[keyof T];
 
   // The accessors like `foo.bar` are not supported, use functions instead
-  export type ColumnWithStrictAccessor<D extends object = {}> =
-    ColumnInterface<D> &
-      ValueOf<{
-        [K in keyof D]: {
-          accessor: K;
-        } & ColumnInterfaceBasedOnValue<D, D[K]>;
-      }>;
+  export type ColumnWithStrictAccessor<D extends object> = ColumnInterface<D> &
+    ValueOf<{
+      [K in keyof D]: {
+        accessor: K;
+      } & ColumnInterfaceBasedOnValue<D, D[K]>;
+    }>;
 
-  export type ColumnWithLooseAccessor<D extends object = {}> =
-    ColumnInterface<D> &
-      ColumnInterfaceBasedOnValue<D> &
-      (
-        | { Header: string }
-        | { id: IdType<D> }
-        | { accessor: keyof D extends never ? IdType<D> : never }
-      ) & {
-        accessor?:
-          | (keyof D extends never ? IdType<D> | Accessor<D> : Accessor<D>)
-          | undefined;
-      };
+  export type ColumnWithLooseAccessor<D extends object> = ColumnInterface<D> &
+    ColumnInterfaceBasedOnValue<D> &
+    (
+      | { Header: string }
+      | { id: IdType<D> }
+      | { accessor: keyof D extends never ? IdType<D> : never }
+    ) & {
+      accessor?:
+        | (keyof D extends never ? IdType<D> | Accessor<D> : Accessor<D>)
+        | undefined;
+    };
 
-  export type Column<D extends object = {}> =
+  export type Column<D extends object> =
     | ColumnGroup<D>
     | ColumnWithLooseAccessor<D>
     | ColumnWithStrictAccessor<D>;
 
-  export interface ColumnInstance<D extends object = {}>
+  export interface ColumnInstance<D extends object>
     extends Omit<ColumnInterface<D>, 'id'>,
       ColumnInterfaceBasedOnValue<D>,
       UseTableColumnProps<D> {}
 
-  export interface HeaderGroup<D extends object = {}>
+  export interface HeaderGroup<D extends object>
     extends ColumnInstance<D>,
       UseTableHeaderGroupProps<D> {}
 
-  export type Row<D extends object = {}> = UseTableRowProps<D>;
+  export type Row<D extends object> = UseTableRowProps<D>;
 
   export interface TableCommonProps {
     style?: CSSProperties | undefined;
@@ -165,7 +163,7 @@ declare module 'react-table' {
     : M & Extension;
 
   //#region useTable
-  export function useTable<D extends object = {}>(
+  export function useTable<D extends object>(
     options: TableOptions<D>,
     ...plugins: Array<PluginHook<D>>
   ): TableInstance<D>;
@@ -420,9 +418,7 @@ declare module 'react-table' {
   // Plugins
 
   //#region useAbsoluteLayout
-  export function useAbsoluteLayout<D extends object = {}>(
-    hooks: Hooks<D>,
-  ): void;
+  export function useAbsoluteLayout<D extends object>(hooks: Hooks<D>): void;
 
   export namespace useAbsoluteLayout {
     const pluginName = 'useAbsoluteLayout';
@@ -430,7 +426,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useBlockLayout
-  export function useBlockLayout<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useBlockLayout<D extends object>(hooks: Hooks<D>): void;
 
   export namespace useBlockLayout {
     const pluginName = 'useBlockLayout';
