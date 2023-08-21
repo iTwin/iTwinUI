@@ -142,9 +142,12 @@ it('should set the dot positions', () => {
   //Set the correct position on color square
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 100%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('100% auto');
 
   // Set the correct position on the slider
   const sliderDot = container.querySelectorAll(
@@ -234,18 +237,24 @@ it('should handle arrow key navigation on color dot', () => {
 
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 100%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('100% auto');
 
   // Go down
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   expect(onChange).toHaveBeenCalledTimes(2);
   expect(onChangeComplete).not.toHaveBeenCalled();
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '2% auto auto 100%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('2% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('100% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #fa0000',
   );
@@ -255,9 +264,12 @@ it('should handle arrow key navigation on color dot', () => {
   // Go left
   fireEvent.keyDown(colorDot, { key: 'ArrowLeft' });
   expect(onChange).toHaveBeenCalledTimes(3);
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '2% auto auto 99%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('2% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('99% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #fa0202',
   );
@@ -268,17 +280,23 @@ it('should handle arrow key navigation on color dot', () => {
   // Go up to top
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 99%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('99% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #ff0303',
   );
 
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 99%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('99% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #ff0303',
   );
@@ -287,9 +305,12 @@ it('should handle arrow key navigation on color dot', () => {
 
   // Go right to the edge
   fireEvent.keyDown(colorDot, { key: 'ArrowRight' });
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 100%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('100% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #ff0000',
   );
@@ -298,9 +319,12 @@ it('should handle arrow key navigation on color dot', () => {
 
   // Go up
   fireEvent.keyDown(colorDot, { key: 'ArrowUp' });
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '0% auto auto 100%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('0% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('100% auto');
   expect(colorBuilder).toHaveStyle(
     '--iui-color-picker-selected-color: #ff0000',
   );
@@ -417,16 +441,22 @@ it('should preserve hue when color dot is black/at bottom of square', () => {
 
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '98.4% auto auto 75%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('98.4% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('75% auto');
 
   // Go to bottom of square and hue should be preserved
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
   fireEvent.keyDown(colorDot, { key: 'ArrowDown' });
-  expect(colorDot.style.getPropertyValue('--iui-color-dot-inset')).toEqual(
-    '100% auto auto 75%',
-  );
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-block'),
+  ).toEqual('100% auto');
+  expect(
+    colorDot.style.getPropertyValue('--iui-color-dot-inset-inline'),
+  ).toEqual('75% auto');
   expect(colorBuilder.style.getPropertyValue('--iui-color-field-hue')).toBe(
     '#00ff55',
   );
