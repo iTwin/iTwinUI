@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.4
+
+### Patch Changes
+
+- [#1508](https://github.com/iTwin/iTwinUI/pull/1508): Fixed an issue where styles were not included in CommonJS environments.
+
 ## 2.12.3
 
 ### Patch Changes
