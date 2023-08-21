@@ -36,7 +36,8 @@
   inline-size: max-content;
   overflow-wrap: break-word;
   box-sizing: content-box;
-  padding: calc(var(--iui-size-s) * 0.33) var(--iui-size-xs);
+  padding-block: calc(var(--iui-size-s) * 0.33);
+  padding-inline: var(--iui-size-xs);
   z-index: 999;
   box-shadow: var(--iui-shadow-3);
   color: var(--iui-color-white);
