@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fixed an issue with styles not getting included in CommonJS environments.
+Fixed an issue where styles were not included in CommonJS environments.
