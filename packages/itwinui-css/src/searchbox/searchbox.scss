@@ -37,9 +37,9 @@
 }
 
 .iui-search-icon {
-  margin: 0 var(--iui-size-s);
+  margin-inline: var(--iui-size-s);
 
   &:is(:first-child) {
-    margin: 0 var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
+    margin-inline: var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
   }
 }

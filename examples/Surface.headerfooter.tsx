@@ -14,7 +14,7 @@ export default () => {
           <Text variant='subheading' as='h2'>
             Custom surface
           </Text>
-          <IconButton styleType='borderless'>
+          <IconButton label='Settings' styleType='borderless'>
             <SvgSettings />
           </IconButton>
         </Flex>

@@ -27,7 +27,9 @@
   @include iui-input-size;
 
   &::placeholder {
-    --_iui-input-text-color: var(--iui-color-text-disabled);
+    --_iui-input-text-color: var(--iui-color-text-placeholder);
+    font-weight: var(--iui-font-weight-light);
+    opacity: 1;
     user-select: none;
     color: var(--_iui-input-text-color);
   }

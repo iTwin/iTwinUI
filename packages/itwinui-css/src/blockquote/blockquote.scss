@@ -8,8 +8,9 @@
   @include surface.iui-surface;
   display: block;
   position: relative;
-  padding: var(--iui-size-s) var(--iui-size-m);
-  margin: var(--iui-size-s) 0;
+  padding-block: var(--iui-size-s);
+  padding-inline: var(--iui-size-m);
+  margin-block: var(--iui-size-s);
   text-align: justify;
   border-inline-start: var(--iui-size-xs) solid var(--iui-color-border);
 

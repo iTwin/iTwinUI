@@ -41,7 +41,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 .iui-tree-node {
   display: flex;
   cursor: pointer;
-  padding: 0 var(--iui-size-xs);
+  padding-inline: var(--iui-size-xs);
   align-items: center;
   border-radius: var(--iui-border-radius-1);
 
@@ -58,7 +58,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     padding-inline-start: var(--iui-size-3xs);
 
     &-icon {
-      margin: 0 $iui-expander-inline-padding;
+      margin-inline: $iui-expander-inline-padding;
 
       &,
       svg {
