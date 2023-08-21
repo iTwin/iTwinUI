@@ -9,7 +9,8 @@
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;
   user-select: none;
-  padding: calc(var(--iui-size-s) * 0.75) var(--iui-size-m);
+  padding-block: calc(var(--iui-size-s) * 0.75);
+  padding-inline: var(--iui-size-m);
   position: fixed;
   text-align: center;
   inset-inline-start: 50%;

@@ -47,7 +47,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     @include mixins.iui-icon-style('l');
     fill: var(--iui-color-icon);
   }
-  margin: 0 $iui-side-navigation-icon-margins;
+  margin-inline: $iui-side-navigation-icon-margins;
   will-change: transform;
   transform: var(--_iui-header-icon-scale);
   @media (prefers-reduced-motion: no-preference) {
@@ -163,7 +163,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-breadcrumb-button-split {
-  padding: 0 var(--iui-size-xs);
+  padding-inline: var(--iui-size-xs);
   margin-inline-start: calc(0px - var(--iui-size-xs));
   flex-shrink: 0;
 

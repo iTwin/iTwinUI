@@ -82,7 +82,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     justify-content: flex-start;
 
     // Adds stripe to the right of active button
-    --_iui-button-active-stripe-inset: 0 -2px 0 100%;
+    --_iui-button-active-stripe-inset-block: 0;
+    --_iui-button-active-stripe-inset-inline: 100% -2px;
 
     &:not(.iui-expand) {
       block-size: calc(var(--iui-size-s) * 5);
@@ -122,7 +123,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       &::before {
         content: '';
         position: absolute;
-        inset: 0 -2px 0 0;
+        inset-block: 0;
+        inset-inline: 0 -2px;
         z-index: -1;
         background-color: inherit;
       }
@@ -169,7 +171,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   &-content {
-    padding: 0 var(--iui-size-s) var(--iui-size-s);
+    padding-block: 0 var(--iui-size-s);
+    padding-inline: var(--iui-size-s);
     flex-shrink: 0;
   }
 
