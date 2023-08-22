@@ -51,10 +51,6 @@ type InputGroupProps = {
    */
   labelProps?: React.ComponentProps<'label'>;
   /**
-   * Passes properties for wrapper.
-   */
-  wrapperProps?: React.ComponentProps<'div'>;
-  /**
    * Passes properties for message.
    */
   messageProps?: Pick<
@@ -91,7 +87,6 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     required = false,
     labelProps,
     messageProps,
-    wrapperProps,
     ...rest
   } = props;
 
@@ -109,10 +104,11 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
 
   return (
     <InputGrid
+      ref={forwardedRef}
       as='div'
       labelPlacement={displayStyle}
-      {...wrapperProps}
-      className={cx('iui-input-group-wrapper', wrapperProps?.className)}
+      className={cx('iui-input-group-wrapper', className)}
+      {...rest}
     >
       {label && (
         <Label
@@ -124,13 +120,7 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
           {label}
         </Label>
       )}
-      <Box
-        ref={forwardedRef}
-        className={cx('iui-input-group', className)}
-        {...rest}
-      >
-        {children}
-      </Box>
+      <Box className='iui-input-group'>{children}</Box>
       {(message || status || svgIcon) && (
         <StatusMessage startIcon={icon()} status={status} {...messageProps}>
           {displayStyle !== 'inline' && message}
