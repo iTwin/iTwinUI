@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.5
+
+### Patch Changes
+
+- [#1511](https://github.com/iTwin/iTwinUI/pull/1511): Fix high-visibility button background on hover.
+
 ## 2.12.4
 
 ### Patch Changes
