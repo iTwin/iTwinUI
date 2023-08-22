@@ -40,11 +40,11 @@ type AlertOwnProps = {
 };
 
 type AlertLegacyProps = {
-  /** @deprecated - Use `Alert.Action` subcomponent. */
+  /** @deprecated Use `Alert.Action` subcomponent. */
   clickableText?: React.ReactNode;
-  /** @deprecated - Use `Alert.Action` subcomponent. */
+  /** @deprecated Use `Alert.Action` subcomponent. */
   clickableTextProps?: React.ComponentPropsWithoutRef<'a'>;
-  /** @deprecated - Use `Alert.CloseButton` subcomponent. */
+  /** @deprecated Use `Alert.CloseButton` subcomponent. */
   onClose?: () => void;
 };
 
