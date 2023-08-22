@@ -95,10 +95,7 @@ it.each(['positive', 'negative', 'warning'] as const)(
 
 it('should take class and style on container', () => {
   const { container, getByText } = render(
-    <InputGroup
-      label='some label'
-      wrapperProps={{ className: 'my-class', style: { width: 80 } }}
-    >
+    <InputGroup label='some label' className='my-class' style={{ width: 80 }}>
       <Checkbox />
       <Checkbox />
       <Checkbox />
@@ -128,22 +125,6 @@ it('should take class and style on label', () => {
   ) as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.style.width).toBe('80px');
-  getByText('some label');
-});
-
-it('should take class and style on input group', () => {
-  const { container, getByText } = render(
-    <InputGroup label='some label' className='my-class' style={{ width: 80 }}>
-      <Checkbox />
-      <Checkbox />
-      <Checkbox />
-    </InputGroup>,
-  );
-  const group = container.querySelector(
-    '.iui-input-group.my-class',
-  ) as HTMLElement;
-  expect(group).toBeTruthy();
-  expect(group.style.width).toBe('80px');
   getByText('some label');
 });
 
