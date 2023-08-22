@@ -158,7 +158,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     useRole(floating.context, { enabled: false }), // TODO: Fix roles in all components,
     useHover(floating.context, {
       enabled: !!hoverProp,
-      handleClose: safePolygon({ buffer: -Infinity }),
+      handleClose: safePolygon(),
     }),
   ]);
 
