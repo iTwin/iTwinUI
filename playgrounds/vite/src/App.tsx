@@ -20,26 +20,41 @@ import type {
   TableState,
 } from 'react-table';
 
+type ValueOf<T> = T[keyof T];
+
 const App = () => {
   // type TableStoryDataType = Record<string, any>;
-  type TableStoryDataType = {
-    product: string;
-    price: number;
-    // [K in string]: any;
+  // interface TableStoryDataType extends Record<string, any> {
+  interface TableStoryDataType extends Record<string, any> {
+    1: string;
+    // price: number;
+    // // [K in string]: any;
     // quantity: number;
     // rating: number;
     // deliveryTime: number;
     // status: 'positive' | 'negative' | 'warning' | undefined;
     // subRows: TableStoryDataType[];
-  };
+    // 1?: number;
+  }
+
+  // type MyType = {
+  // "a_key": string,
+  // "b_key": number,
+  // "c_key": boolean,
+  // };
+  //   type q = ValueOf<{
+  //     [K in keyof TableStoryDataType]: {
+  //       accessor: K;
+  //     }
+  //   }>;
 
   const generateItem = useCallback(
     (index: number, parentRow = '', depth = 0): TableStoryDataType => {
       const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
       const rating = (index % 4) + 1;
       return {
-        product: `Product ${keyValue}`,
-        price: ((index % 10) + 1) * 15,
+        1: `Product ${keyValue}`,
+        // price: ((index % 10) + 1) * 15,
         // quantity: ((index % 10) + 1) * 150,
         // rating: rating,
         // deliveryTime: (index % 15) + 1,
@@ -86,37 +101,42 @@ const App = () => {
         {
           id: 'product',
           Header: 'Product',
-          // accessor: 'product',
+          accessor: 'product',
           Filter: tableFilters.TextFilter(),
           disableToggleVisibility: true,
           disableReordering: true,
           width: 200,
           sticky: 'left',
+          // testing1: '',
+          testing1: (props) => <div></div>,
         },
-        {
-          id: 'price',
-          Header: 'Price',
-          accessor: 'price',
-          width: 200,
-          Filter: tableFilters.NumberRangeFilter(),
-          filter: 'between',
-          disableReordering: true,
-          sortType: 'number',
-          // Cell1: (props) => {
-          //   return <div></div>
-          // },
-          Cell: (props: CellProps<Record<string, any>, number>) => {
-            return <>${props.value}</>;
-          },
-          // Cell: (props) => {
-          //   return <>${props.value}</>;
-          // },
-          sticky: 'left',
-        },
+        // {
+        //   id: 'price',
+        //   Header: 'Price',
+        //   // accessor: 'price',
+        //   width: 200,
+        //   Filter: tableFilters.NumberRangeFilter(),
+        //   filter: 'between',
+        //   disableReordering: true,
+        //   sortType: 'number',
+        //   // Cell1: (props) => {
+        //   //   return <div></div>
+        //   // },
+        //   // Cell: (props: CellProps<Record<string, any>, number>) => {
+        //   // cell
+        //   // Cell: (props) => {
+        //   //   return <div></div>;
+        //   //   // return <>${props.value}</>;
+        //   // },
+        //   // Cell: (props) => {
+        //   //   return <>${props.value}</>;
+        //   // },
+        //   sticky: 'left',
+        // },
         // {
         //   id: 'quantity',
         //   Header: 'Quantity',
-        //   accessor: 'quantity',
+        //   // accessor: 'quantity',
         //   Filter: tableFilters.NumberRangeFilter(),
         //   filter: 'between',
         //   sortType: 'number',
@@ -125,7 +145,7 @@ const App = () => {
         // {
         //   id: 'rating',
         //   Header: 'Rating',
-        //   accessor: 'rating',
+        //   // accessor: 'rating',
         //   Filter: tableFilters.NumberRangeFilter(),
         //   filter: 'between',
         //   sortType: 'number',
@@ -144,34 +164,36 @@ const App = () => {
         // {
         //   id: 'deliveryTime',
         //   Header: 'Delivery Time',
-        //   accessor: 'deliveryTime',
+        //   // accessor: 'deliveryTime',
         //   Filter: tableFilters.NumberRangeFilter(),
         //   filter: 'between',
         //   sortType: 'number',
         //   width: 400,
-        //   Cell: (props: CellProps<TableStoryDataType>) => {
-        //     return <>{props.value} day(s)</>;
-        //   },
+        //   // Cell: (props: CellProps<TableStoryDataType>) => {
+        //   //   return <>{props.value} day(s)</>;
+        //   // },
         // },
-        // // {
-        // //   ...ActionColumn({ columnManager: true }),
-        // //   // Cell: (props: CellProps<TableStoryDataType>) => (
-        // //   //   <DropdownMenu menuItems={menuItems}>
-        // //   //     <IconButton
-        // //   //       styleType='borderless'
-        // //   //       onClick={(e) => e.stopPropagation()}
-        // //   //       disabled={isRowDisabled(props.row.original)}
-        // //   //     >
-        // //   //       <SvgMore />
-        // //   //     </IconButton>
-        // //   //   </DropdownMenu>
-        // //   // ),
-        // //   // sticky: 'right',
-        // // },
+        // {
+        //   // accessor: 'actions',
+        //   // ...ActionColumn({ columnManager: true }),
+        //   // Cell: (props: CellProps<TableStoryDataType>) => (
+        //   //   <DropdownMenu menuItems={menuItems}>
+        //   //     <IconButton
+        //   //       styleType='borderless'
+        //   //       onClick={(e) => e.stopPropagation()}
+        //   //       disabled={isRowDisabled(props.row.original)}
+        //   //     >
+        //   //       <SvgMore />
+        //   //     </IconButton>
+        //   //   </DropdownMenu>
+        //   // ),
+        //   accessor: 'deliveryTime',
+        //   sticky: 'right',
+        // },
         // ] satisfies Array<Column<Record<string, any>>>,
-        // ] satisfies Array<Column<TableStoryDataType>>,
-        // ] as Column<TableStoryDataType>[],
-      ] as Column<TableStoryDataType>[],
+      ] satisfies Array<Column<TableStoryDataType>>,
+    // ] as Column<TableStoryDataType>[],
+    // ] as Column<TableStoryDataType>[],
     [isRowDisabled, menuItems],
   );
 

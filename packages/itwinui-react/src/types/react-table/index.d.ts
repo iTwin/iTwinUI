@@ -200,7 +200,10 @@ declare module 'react-table' {
   }
 
   export interface ColumnInterfaceBasedOnValue<D extends object, V = any> {
-    Cell?: Renderer<CellProps<D, V>> | undefined;
+    // Cell?: Renderer<CellProps<D, V>> | undefined;
+    // Cell?: (props: CellProps<D, V>) => React.ReactNode;
+    // testing1: Renderer<CellProps<D, V>> | undefined;
+    testing1: Renderer<CellProps<D, V>> | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -219,8 +222,26 @@ declare module 'react-table' {
 
   type ValueOf<T> = T[keyof T];
 
+  // interface TableStoryDataType {
+  //   product: number;
+  //   price: number;
+  //   // [K in string]: any;
+  //   quantity: number;
+  //   rating: number;
+  //   deliveryTime: number;
+  //   status: 'positive' | 'negative' | 'warning' | undefined;
+  //   // subRows: TableStoryDataType[];
+  //   // 1?: number;
+  // };
+
+  // // type testing = ColumnWithStrictAccessor<TableStoryDataType>
+  // // type testing = ColumnInterfaceBasedOnValue<TableStoryDataType>
+  // // type testing = CellProps<TableStoryDataType>
+  // type testing = TableInstance<TableStoryDataType>
+
   // The accessors like `foo.bar` are not supported, use functions instead
   export type ColumnWithStrictAccessor<D extends object> = ColumnInterface<D> &
+    // export type ColumnWithStrictAccessor<D extends object> = ValueOf<{
     ValueOf<{
       [K in keyof D]: {
         accessor: K;
@@ -239,7 +260,7 @@ declare module 'react-table' {
         | undefined;
     };
 
-  export type Column<D extends object> =
+  export type Column<D extends object = object> =
     | ColumnGroup<D>
     | ColumnWithLooseAccessor<D>
     | ColumnWithStrictAccessor<D>;
@@ -550,12 +571,18 @@ declare module 'react-table' {
     column: ColumnInstance<D>;
   };
 
-  export type CellProps<D extends object, V = any> = TableInstance<D> & {
-    column: ColumnInstance<D>;
+  export type CellProps<D, V = any> = {
+    //     column: ColumnInstance<D>;
     row: Row<D>;
-    cell: Cell<D, V>;
+    // cell: Cell<D, V>;
     value: CellValue<V>;
   };
+  // export type CellProps<D extends object, V = any> = TableInstance<D> & {
+  //   column: ColumnInstance<D>;
+  //   row: Row<D>;
+  //   cell: Cell<D, V>;
+  //   value: CellValue<V>;
+  // };
 
   export type Accessor<D extends object> = (
     originalRow: D,

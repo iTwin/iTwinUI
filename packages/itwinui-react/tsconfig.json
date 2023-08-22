@@ -20,7 +20,8 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "noErrorTruncation": true
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }
