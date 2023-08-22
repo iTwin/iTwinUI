@@ -1,5 +1,11 @@
 # @itwin/itwinui-variables
 
+## 2.1.1
+
+### Patch Changes
+
+- [#1511](https://github.com/iTwin/iTwinUI/pull/1511): Add missing `iui-color-background-accent-hover` variable in light and dark themes.
+
 ## 2.1.0
 
 ### Minor Changes
