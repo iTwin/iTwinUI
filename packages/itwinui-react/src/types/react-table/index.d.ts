@@ -60,7 +60,10 @@ declare module 'react-table' {
 
   export type Hooks<D extends object> = UseTableHooks<D>;
 
-  export type Cell<D extends object, V = any> = UseTableCellProps<D, V>;
+  export interface Cell<D extends object, V = any>
+    extends UseTableCellProps<D, V>,
+      UseGroupByCellProps<D>,
+      UseRowStateCellProps<D> {}
 
   export type ColumnInterface<D extends object> = UseTableColumnOptions<D>;
 

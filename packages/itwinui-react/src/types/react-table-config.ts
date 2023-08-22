@@ -24,7 +24,7 @@ import type {
   UseGlobalFiltersInstanceProps,
   UseGlobalFiltersOptions,
   UseGlobalFiltersState,
-  UseGroupByCellProps,
+  // UseGroupByCellProps,
   // UseGroupByColumnOptions,
   UseGroupByColumnProps,
   UseGroupByHooks,
@@ -44,7 +44,7 @@ import type {
   UseRowSelectOptions,
   UseRowSelectRowProps,
   UseRowSelectState,
-  UseRowStateCellProps,
+  // UseRowStateCellProps,
   UseRowStateInstanceProps,
   // UseRowStateOptions,
   UseRowStateRowProps,
@@ -239,9 +239,9 @@ declare module 'react-table' {
     originalSticky?: 'left' | 'right' | 'none';
   }
 
-  export interface Cell<D extends object = {}>
-    extends UseGroupByCellProps<D>,
-      UseRowStateCellProps<D> {}
+  // export interface Cell<D extends object = {}>
+  //   extends UseGroupByCellProps<D>,
+  //     UseRowStateCellProps<D> {}
 
   export interface Row<D extends object = {}>
     extends UseExpandedRowProps<D>,
