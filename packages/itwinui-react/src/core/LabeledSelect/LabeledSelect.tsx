@@ -144,18 +144,18 @@ export const LabeledSelect = <T,>(
           ...triggerProps,
         }}
       />
-      {typeof message !== 'string'
-        ? message
-        : icon() && (
-            <StatusMessage
-              status={status}
-              startIcon={displayStyle === 'default' ? icon() : undefined}
-              iconProps={messageIconProps}
-              contentProps={messageContentProps}
-            >
-              {message}
-            </StatusMessage>
-          )}
+      {typeof message !== 'string' ? (
+        message
+      ) : (
+        <StatusMessage
+          status={status}
+          startIcon={displayStyle === 'default' ? icon() : undefined}
+          iconProps={messageIconProps}
+          contentProps={messageContentProps}
+        >
+          {message}
+        </StatusMessage>
+      )}
     </InputGrid>
   );
 };

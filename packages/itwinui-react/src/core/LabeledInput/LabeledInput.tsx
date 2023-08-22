@@ -131,9 +131,9 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         )}
       </InputWithDecorations>
 
-      {(typeof message !== 'string'
-        ? message
-        : icon && iconDisplayStyle !== 'inline') && (
+      {typeof message !== 'string' ? (
+        message
+      ) : (
         <StatusMessage
           status={status}
           startIcon={iconDisplayStyle !== 'inline' ? icon : undefined}

@@ -117,19 +117,18 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
         )}
       </InputWithDecorations>
 
-      {typeof message !== 'string'
-        ? message
-        : icon &&
-          iconDisplayStyle !== 'inline' && (
-            <StatusMessage
-              status={status}
-              startIcon={displayStyle === 'default' ? icon : undefined}
-              iconProps={iconProps}
-              contentProps={messageContentProps}
-            >
-              {message}
-            </StatusMessage>
-          )}
+      {typeof message !== 'string' ? (
+        message
+      ) : (
+        <StatusMessage
+          status={status}
+          startIcon={displayStyle === 'default' ? icon : undefined}
+          iconProps={iconProps}
+          contentProps={messageContentProps}
+        >
+          {message}
+        </StatusMessage>
+      )}
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;
