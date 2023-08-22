@@ -123,25 +123,25 @@ declare module 'react-table' {
     role?: string | undefined;
   }
 
-  export interface TableProps extends TableCommonProps {}
+  export type TableProps = TableCommonProps;
 
-  export interface TableBodyProps extends TableCommonProps {}
+  export type TableBodyProps = TableCommonProps;
 
   export interface TableKeyedProps extends TableCommonProps {
     key: React.Key;
   }
 
-  export interface TableHeaderGroupProps extends TableKeyedProps {}
+  export type TableHeaderGroupProps = TableKeyedProps;
 
-  export interface TableFooterGroupProps extends TableKeyedProps {}
+  export type TableFooterGroupProps = TableKeyedProps;
 
-  export interface TableHeaderProps extends TableKeyedProps {}
+  export type TableHeaderProps = TableKeyedProps;
 
-  export interface TableFooterProps extends TableKeyedProps {}
+  export type TableFooterProps = TableKeyedProps;
 
-  export interface TableRowProps extends TableKeyedProps {}
+  export type TableRowProps = TableKeyedProps;
 
-  export interface TableCellProps extends TableKeyedProps {}
+  export type TableCellProps = TableKeyedProps;
 
   export interface TableToggleCommonProps extends TableCommonProps {
     onChange?: ((e: ChangeEvent) => void) | undefined;
@@ -309,8 +309,7 @@ declare module 'react-table' {
     oldHidden: Array<IdType<D>>,
   ) => Array<IdType<D>>;
 
-  export interface TableToggleHideAllColumnProps
-    extends TableToggleCommonProps {}
+  export type TableToggleHideAllColumnProps = TableToggleCommonProps;
 
   export interface UseTableInstanceProps<D extends object> {
     state: TableState<D>;
@@ -434,7 +433,9 @@ declare module 'react-table' {
   //#endregion
 
   //#region useColumnOrder
-  export function useColumnOrder<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useColumnOrder<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace useColumnOrder {
     const pluginName = 'useColumnOrder';
@@ -455,13 +456,13 @@ declare module 'react-table' {
   //#endregion
 
   //#region useExpanded
-  export function useExpanded<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useExpanded<D extends object = object>(hooks: Hooks<D>): void;
 
   export namespace useExpanded {
     const pluginName = 'useExpanded';
   }
 
-  export interface TableExpandedToggleProps extends TableKeyedProps {}
+  export type TableExpandedToggleProps = TableKeyedProps;
 
   export type UseExpandedOptions<D extends object> = Partial<{
     manualExpandedKey: IdType<D>;
@@ -503,7 +504,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useFilters
-  export function useFilters<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useFilters<D extends object = object>(hooks: Hooks<D>): void;
 
   export namespace useFilters {
     const pluginName = 'useFilters';
@@ -588,7 +589,9 @@ declare module 'react-table' {
   //#endregion
 
   //#region useFlexLayout
-  export function useFlexLayout<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useFlexLayout<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace useFlexLayout {
     const pluginName = 'useFlexLayout';
@@ -596,7 +599,9 @@ declare module 'react-table' {
   //#endregion
 
   //#region useGridLayout
-  export function useGridLayout<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useGridLayout<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace useGridLayout {
     const pluginName = 'useGridLayout';
@@ -604,7 +609,9 @@ declare module 'react-table' {
   //#endregion
 
   //#region useGlobalFilter
-  export function useGlobalFilter<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useGlobalFilter<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace useGlobalFilter {
     const pluginName = 'useGlobalFilter';
@@ -648,7 +655,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useGroupBy
-  export function useGroupBy<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useGroupBy<D extends object = object>(hooks: Hooks<D>): void;
 
   export namespace useGroupBy {
     const pluginName = 'useGroupBy';
@@ -752,7 +759,9 @@ declare module 'react-table' {
   //#endregion
 
   //#region usePagination
-  export function usePagination<D extends object = {}>(hooks: Hooks<D>): void;
+  export function usePagination<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace usePagination {
     const pluginName = 'usePagination';
@@ -785,7 +794,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useResizeColumns
-  export function useResizeColumns<D extends object = {}>(
+  export function useResizeColumns<D extends object = object>(
     hooks: Hooks<D>,
   ): void;
 
@@ -812,7 +821,7 @@ declare module 'react-table' {
     disableResizing?: boolean | undefined;
   }
 
-  export interface TableResizerProps {}
+  // export interface TableResizerProps {}
 
   export interface UseResizeColumnsColumnProps<D extends object> {
     getResizerProps: (props?: Partial<TableResizerProps>) => TableResizerProps;
@@ -823,17 +832,17 @@ declare module 'react-table' {
   //#endregion
 
   //#region useRowSelect
-  export function useRowSelect<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useRowSelect<D extends object = object>(
+    hooks: Hooks<D>,
+  ): void;
 
   export namespace useRowSelect {
     const pluginName = 'useRowSelect';
   }
 
-  export interface TableToggleAllRowsSelectedProps
-    extends TableToggleCommonProps {}
+  export type TableToggleAllRowsSelectedProps = TableToggleCommonProps;
 
-  export interface TableToggleRowsSelectedProps
-    extends TableToggleCommonProps {}
+  export type TableToggleRowsSelectedProps = TableToggleCommonProps;
 
   export type UseRowSelectOptions<D extends object> = Partial<{
     manualRowSelectedKey: IdType<D>;
@@ -882,7 +891,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useRowState
-  export function useRowState<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useRowState<D extends object = object>(hooks: Hooks<D>): void;
 
   export namespace useRowState {
     const pluginName = 'useRowState';
@@ -925,7 +934,7 @@ declare module 'react-table' {
   //#endregion
 
   //#region useSortBy
-  export function useSortBy<D extends object = {}>(hooks: Hooks<D>): void;
+  export function useSortBy<D extends object = object>(hooks: Hooks<D>): void;
 
   export namespace useSortBy {
     const pluginName = 'useSortBy';
@@ -1044,20 +1053,20 @@ declare module 'react-table' {
   export type TableDispatch<A = any> = (action: A) => void;
 
   // utils
-  export function defaultOrderByFn<D extends object = {}>(
+  export function defaultOrderByFn<D extends object = object>(
     arr: Array<Row<D>>,
     funcs: Array<OrderByFn<D>>,
     dirs: boolean[],
   ): Array<Row<D>>;
 
-  export function defaultGroupByFn<D extends object = {}>(
+  export function defaultGroupByFn<D extends object = object>(
     rows: Array<Row<D>>,
     columnId: IdType<D>,
   ): Record<string, Array<Row<D>>>;
 
   export function makePropGetter(hooks: Hooks, ...meta: any[]): any;
 
-  export function reduceHooks<T extends object = {}>(
+  export function reduceHooks<T extends object = object>(
     hooks: Hooks,
     initial: T,
     ...args: any[]
@@ -1065,13 +1074,13 @@ declare module 'react-table' {
 
   export function loopHooks(hooks: Hooks, ...args: any[]): void;
 
-  export function ensurePluginOrder<D extends object = {}>(
+  export function ensurePluginOrder<D extends object = object>(
     plugins: Array<PluginHook<D>>,
     befores: string[],
     pluginName: string,
   ): void;
 
-  export function functionalUpdate<D extends object = {}>(
+  export function functionalUpdate<D extends object = object>(
     updater: any,
     old: Partial<TableState<D>>,
   ): Partial<TableState<D>>;
