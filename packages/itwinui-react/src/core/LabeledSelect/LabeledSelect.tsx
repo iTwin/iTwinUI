@@ -112,7 +112,7 @@ export const LabeledSelect = <T,>(
 
   const icon = () => {
     if (svgIcon) {
-      return React.cloneElement(svgIcon, { 'aria-hidden': true });
+      return <Icon>{svgIcon}</Icon>;
     }
     if (status && message) {
       return StatusIconMap[status]();
@@ -144,9 +144,7 @@ export const LabeledSelect = <T,>(
           ...triggerProps,
         }}
       />
-      {typeof message !== 'string' ? (
-        message
-      ) : (
+      {typeof message === 'string' || !!icon() ? (
         <StatusMessage
           status={status}
           startIcon={displayStyle === 'default' ? icon() : undefined}
@@ -155,6 +153,8 @@ export const LabeledSelect = <T,>(
         >
           {message}
         </StatusMessage>
+      ) : (
+        message
       )}
     </InputGrid>
   );

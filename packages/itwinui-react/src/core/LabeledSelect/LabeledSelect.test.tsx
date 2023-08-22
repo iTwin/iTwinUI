@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { prettyDOM, render } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { LabeledSelect } from './LabeledSelect.js';
 import type { LabeledSelectProps } from './LabeledSelect.js';
 import type { SelectMultipleTypeProps } from '../Select/Select.js';
@@ -95,7 +95,6 @@ it('should render with custom icon', () => {
   ) as HTMLElement;
   assertBaseElement(inputContainer);
   const icon = inputContainer.querySelector('.iui-svg-icon > .my-icon');
-  console.log(prettyDOM(container));
   expect(icon).toBeTruthy();
 });
 

@@ -131,17 +131,17 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         )}
       </InputWithDecorations>
 
-      {typeof message !== 'string' ? (
-        message
-      ) : (
+      {typeof message === 'string' || !!icon ? (
         <StatusMessage
           status={status}
-          startIcon={iconDisplayStyle !== 'inline' ? icon : undefined}
+          startIcon={displayStyle === 'default' ? icon : undefined}
           iconProps={iconProps}
           contentProps={messageContentProps}
         >
           {message}
         </StatusMessage>
+      ) : (
+        message
       )}
     </InputGrid>
   );

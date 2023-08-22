@@ -117,9 +117,7 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
         )}
       </InputWithDecorations>
 
-      {typeof message !== 'string' ? (
-        message
-      ) : (
+      {typeof message === 'string' || !!icon ? (
         <StatusMessage
           status={status}
           startIcon={displayStyle === 'default' ? icon : undefined}
@@ -128,6 +126,8 @@ export const LabeledTextarea = React.forwardRef((props, ref) => {
         >
           {message}
         </StatusMessage>
+      ) : (
+        message
       )}
     </InputGrid>
   );
