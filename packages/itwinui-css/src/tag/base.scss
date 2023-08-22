@@ -23,7 +23,7 @@
   block-size: calc(var(--iui-size-s) * 3);
   margin-block: var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-round);
-  padding: 0 var(--iui-size-3xs);
+  padding-inline: var(--iui-size-3xs);
   align-items: center;
   transition: border-color var(--iui-duration-1) ease-out;
   font-size: var(--iui-font-size-1);
@@ -49,10 +49,10 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
-  margin: 0 var(--iui-size-2xs) 0 var(--iui-size-xs);
+  margin-inline: var(--iui-size-xs) var(--iui-size-2xs);
 
   &:only-child {
-    margin: 0 var(--iui-size-xs);
+    margin-inline: var(--iui-size-xs);
   }
 }
 
@@ -90,7 +90,8 @@
 
   &.iui-visible {
     border-radius: var(--iui-border-radius-1);
-    padding: var(--iui-size-2xs) var(--iui-size-s);
+    padding-block: var(--iui-size-2xs);
+    padding-inline: var(--iui-size-s);
     background-color: var(--iui-color-background);
   }
 }

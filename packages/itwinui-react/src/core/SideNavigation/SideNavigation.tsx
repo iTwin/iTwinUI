@@ -57,6 +57,22 @@ type SideNavigationProps = {
    * @default false
    */
   isSubmenuOpen?: boolean;
+  /**
+   * Passes props for SideNav wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav content.
+   */
+  contentProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav top.
+   */
+  topProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props for SideNav bottom.
+   */
+  bottomProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -83,6 +99,10 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     onExpanderClick,
     submenu,
     isSubmenuOpen = false,
+    wrapperProps,
+    contentProps,
+    topProps,
+    bottomProps,
     ...rest
   } = props;
 
@@ -93,6 +113,8 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   const ExpandButton = (
     <IconButton
+      label='Toggle icon labels'
+      aria-expanded={_isExpanded}
       className='iui-sidenav-button iui-expand'
       onClick={React.useCallback(() => {
         _setIsExpanded((expanded) => !expanded);
@@ -105,19 +127,33 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      className={cx('iui-side-navigation-wrapper', className)}
+      {...wrapperProps}
+      className={cx('iui-side-navigation-wrapper', wrapperProps?.className)}
       ref={forwardedRef}
-      {...rest}
     >
       <Box
-        className={cx('iui-side-navigation', {
-          'iui-expanded': _isExpanded,
-          'iui-collapsed': !_isExpanded,
-        })}
+        as='div'
+        className={cx(
+          'iui-side-navigation',
+          {
+            'iui-expanded': _isExpanded,
+            'iui-collapsed': !_isExpanded,
+          },
+          className,
+        )}
+        {...rest}
       >
         {expanderPlacement === 'top' && ExpandButton}
-        <Box className='iui-sidenav-content'>
-          <Box className='iui-top'>
+        <Box
+          as='div'
+          {...contentProps}
+          className={cx('iui-sidenav-content', contentProps?.className)}
+        >
+          <Box
+            as='div'
+            {...topProps}
+            className={cx('iui-top', topProps?.className)}
+          >
             {items.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip
@@ -132,7 +168,11 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
               ),
             )}
           </Box>
-          <Box className='iui-bottom'>
+          <Box
+            as='div'
+            {...bottomProps}
+            className={cx('iui-bottom', bottomProps?.className)}
+          >
             {secondaryItems?.map((sidenavButton: JSX.Element, index) =>
               !_isExpanded ? (
                 <Tooltip

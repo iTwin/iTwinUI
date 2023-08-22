@@ -118,7 +118,7 @@ it('should not render track if min and max are same value', () => {
   const { container } = render(<Slider values={[10]} min={20} max={20} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('0%');
+  expect(element.style.insetInlineStart).toBe('0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -126,7 +126,7 @@ it('should not render track if value is below specified min/max', () => {
   const { container } = render(<Slider values={[10]} min={20} max={40} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('0%');
+  expect(element.style.insetInlineStart).toBe('0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -137,7 +137,7 @@ it('should not render track if value is above specified min/max', () => {
   ).toBeTruthy();
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('100%');
+  expect(element.style.insetInlineStart).toBe('100%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 

@@ -29,14 +29,11 @@
     #{$childZindexSelector} {
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
-        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
-          #{var(--iui-size-3xs)}
-          calc(100% - #{var(--iui-size-2xs)});
+        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
+        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
       } @else {
-        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
-          calc(100% - #{var(--iui-size-2xs)})
-          #{var(--iui-size-3xs)}
-          #{var(--iui-size-3xs)};
+        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)};
+        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
       }
 
       &:hover {

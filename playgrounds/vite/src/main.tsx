@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App';
-import { css, Global } from '@emotion/react';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
 import '@itwin/itwinui-react/styles.css';
 
@@ -14,14 +13,6 @@ const Shell = () => {
 
   return (
     <>
-      <Global
-        styles={css`
-          * {
-            box-sizing: border-box;
-            margin: 0;
-          }
-        `}
-      />
       <ThemeProvider theme={theme}>
         <Main>
           <ThemeButton

@@ -6,8 +6,15 @@ import * as React from 'react';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
 const withThemeProvider = (Component: () => React.ReactElement) => () => {
+  const [portalContainer, setPortalContainer] = React.useState<HTMLElement>();
+  React.useEffect(() => void setPortalContainer(document.body), []);
+
   return (
-    <ThemeProvider theme='dark' themeOptions={{ applyBackground: false }}>
+    <ThemeProvider
+      theme='dark'
+      themeOptions={{ applyBackground: false }}
+      portalContainer={portalContainer}
+    >
       <Component />
     </ThemeProvider>
   );
@@ -574,6 +581,30 @@ export { FlexMainExample };
 import { default as FooterMainExampleRaw } from './Footer.main';
 const FooterMainExample = withThemeProvider(FooterMainExampleRaw);
 export { FooterMainExample };
+
+import { default as FooterAppendCustomElementsExampleRaw } from './Footer.appendedcustomelements';
+const FooterAppendCustomElementsExample = withThemeProvider(
+  FooterAppendCustomElementsExampleRaw,
+);
+export { FooterAppendCustomElementsExample };
+
+import { default as FooterOnlyCustomElementsExampleRaw } from './Footer.onlycustomelements';
+const FooterOnlyCustomElementsExample = withThemeProvider(
+  FooterOnlyCustomElementsExampleRaw,
+);
+export { FooterOnlyCustomElementsExample };
+
+import { default as FooterCustomizedDefaultAndCustomElementsExampleRaw } from './Footer.customizeddefaultandcustomelements';
+const FooterCustomizedDefaultAndCustomElementsExample = withThemeProvider(
+  FooterCustomizedDefaultAndCustomElementsExampleRaw,
+);
+export { FooterCustomizedDefaultAndCustomElementsExample };
+
+import { default as FooterCustomContentExampleRaw } from './Footer.customcontent';
+const FooterCustomContentExample = withThemeProvider(
+  FooterCustomContentExampleRaw,
+);
+export { FooterCustomContentExample };
 
 // ----------------------------------------------------------------------------
 

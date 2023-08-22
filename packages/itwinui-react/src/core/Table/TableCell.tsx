@@ -64,7 +64,7 @@ export const TableCell = <T extends Record<string, unknown>>(
     const multiplier = 26 + expanderMargin; // 26 = expander width
 
     return {
-      paddingLeft: cellPadding + dynamicMargin * multiplier,
+      paddingInlineStart: cellPadding + dynamicMargin * multiplier,
     };
   };
 

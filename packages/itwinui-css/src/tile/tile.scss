@@ -399,7 +399,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     font-size: var(--iui-font-size-1);
     flex: 1;
     block-size: auto;
-    padding: var(--iui-size-s) var(--iui-size-s);
+    padding: var(--iui-size-s);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
