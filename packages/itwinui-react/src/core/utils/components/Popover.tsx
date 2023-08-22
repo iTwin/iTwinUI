@@ -84,75 +84,6 @@ type PopoverOptions = {
   reference?: HTMLElement | null;
 };
 
-function usePopover({
-  placement = 'bottom-start',
-  visible: controlledOpen,
-  onToggleVisible,
-  onClickOutsideClose,
-  middleware = {
-    flip: true,
-    shift: true,
-  },
-  autoUpdateOptions = {},
-  hover: hoverOption,
-  reference,
-}: PopoverOptions = {}) {
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
-
-  const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = onToggleVisible ?? setUncontrolledOpen;
-
-  const data = useFloating({
-    placement,
-    open,
-    onOpenChange: setOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: autoUpdateOptions.animationFrame,
-        ancestorScroll: autoUpdateOptions.ancestorScroll,
-        ancestorResize: autoUpdateOptions.ancestorResize,
-        elementResize: autoUpdateOptions.elementResize,
-        layoutShift: autoUpdateOptions.layoutShift,
-      }),
-    elements: { reference },
-    middleware: [
-      middleware.offset !== undefined && offset(middleware.offset),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
-      middleware.size && size(),
-      middleware.autoPlacement && autoPlacement(),
-      middleware.inline && inline(),
-      middleware.hide && hide(),
-    ].filter(Boolean),
-  });
-
-  const context = data.context;
-
-  const hover = useHover(context, {
-    enabled: !!hoverOption,
-    handleClose: safePolygon({ buffer: -Infinity }),
-  });
-
-  const click = useClick(context);
-
-  const dismiss = useDismiss(context, {
-    outsidePress: onClickOutsideClose,
-  });
-  const role = useRole(context, { enabled: false }); // TODO: Fix roles in all components
-
-  const interactions = useInteractions([click, dismiss, role, hover]);
-
-  return React.useMemo(
-    () => ({
-      open,
-      setOpen,
-      ...interactions,
-      ...data,
-    }),
-    [open, setOpen, interactions, data],
-  );
-}
-
 type PopoverOwnProps = {
   /**
    * Controlled flag for whether the popover is visible.
@@ -183,26 +114,69 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     applyBackground = false,
     reference,
     onClickOutsideClose,
-    hover,
-    placement,
-    visible,
+    hover: hoverProp,
+    placement = 'bottom-start',
+    visible: controlledOpen,
     onToggleVisible,
+    autoUpdateOptions = {},
+    middleware = {
+      flip: true,
+      shift: true,
+    },
     ...rest
   } = props;
+
   const themeInfo = React.useContext(ThemeContext);
 
-  const popover = usePopover({
+  const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
+
+  const open = controlledOpen ?? uncontrolledOpen;
+  const setOpen = onToggleVisible ?? setUncontrolledOpen;
+
+  const floating = useFloating({
     placement,
-    visible,
-    onToggleVisible,
-    onClickOutsideClose,
-    hover,
-    reference,
+    open,
+    onOpenChange: setOpen,
+    whileElementsMounted: (referenceEl, floatingEl, update) =>
+      autoUpdate(referenceEl, floatingEl, update, {
+        animationFrame: autoUpdateOptions.animationFrame,
+        ancestorScroll: autoUpdateOptions.ancestorScroll,
+        ancestorResize: autoUpdateOptions.ancestorResize,
+        elementResize: autoUpdateOptions.elementResize,
+        layoutShift: autoUpdateOptions.layoutShift,
+      }),
+    elements: { reference },
+    middleware: [
+      middleware.offset !== undefined && offset(middleware.offset),
+      middleware.flip && flip(),
+      middleware.shift && shift(),
+      middleware.size && size(),
+      middleware.autoPlacement && autoPlacement(),
+      middleware.inline && inline(),
+      middleware.hide && hide(),
+    ].filter(Boolean),
   });
+
+  const hover = useHover(floating.context, {
+    enabled: !!hoverProp,
+    handleClose: safePolygon({ buffer: -Infinity }),
+  });
+  const click = useClick(floating.context);
+  const dismiss = useDismiss(floating.context, {
+    outsidePress: onClickOutsideClose,
+  });
+  const role = useRole(floating.context, { enabled: false }); // TODO: Fix roles in all components
+
+  const { getFloatingProps, getReferenceProps } = useInteractions([
+    click,
+    dismiss,
+    role,
+    hover,
+  ]);
 
   const contentBox = (
     <FloatingFocusManager
-      context={popover.context}
+      context={floating.context}
       modal={false}
       initialFocus={-1}
       returnFocus
@@ -211,9 +185,9 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       <Box
         className={cx('iui-popover', className)}
         data-iui-apply-background={applyBackground ? true : undefined}
-        style={{ ...popover.floatingStyles, ...style }}
-        {...popover.getFloatingProps(rest)}
-        ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
+        style={{ ...floating.floatingStyles, ...style }}
+        {...getFloatingProps(rest)}
+        ref={useMergedRefs(floating.refs.setFloating, forwardedRef)}
       >
         {content}
       </Box>
@@ -231,12 +205,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     <>
       {React.isValidElement(children)
         ? React.cloneElement(children as JSX.Element, {
-            ...popover.getReferenceProps((children as JSX.Element).props),
+            ...getReferenceProps((children as JSX.Element).props),
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ref: mergeRefs(popover.refs.setReference, (children as any).ref),
+            ref: mergeRefs(floating.refs.setReference, (children as any).ref),
           })
         : null}
-      {popover.open
+      {open
         ? portalTo
           ? ReactDOM.createPortal(contentBox, portalTo)
           : contentBox
