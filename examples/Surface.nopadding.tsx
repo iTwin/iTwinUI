@@ -16,13 +16,18 @@ export default () => {
   return (
     <Surface elevation={3} style={cardStyle}>
       <Surface.Header>
-        <Text variant='subheading' as='h2'>
+        <Text id='surface-header' variant='subheading' as='h2'>
           Surface with overflow & no body padding
         </Text>
       </Surface.Header>
-      <Surface.Body isPadded={false}>
+      <Surface.Body
+        tabIndex={0}
+        role='group'
+        aria-labelledby='surface-header'
+        isPadded={false}
+      >
         <Flex flexDirection='column' style={{ flex: '1' }}>
-          <ul
+          <div
             style={{
               width: '100%',
               listStyle: 'none',
@@ -30,30 +35,30 @@ export default () => {
               padding: 0,
             }}
           >
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Daily log</Anchor>
-            </li>
+            </div>
             <Divider />
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Inspections</Anchor>
-            </li>
+            </div>
             <Divider />
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Issues</Anchor>
-            </li>
+            </div>
             <Divider />
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Observations</Anchor>
-            </li>
+            </div>
             <Divider />
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>RFIs</Anchor>
-            </li>
+            </div>
             <Divider />
-            <li style={listStyle}>
+            <div style={listStyle}>
               <Anchor>Weather delay notices</Anchor>
-            </li>
-          </ul>
+            </div>
+          </div>
         </Flex>
       </Surface.Body>
     </Surface>

@@ -51,6 +51,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         onToggleVisible={(open) => setIsMenuOpen(open)}
       >
         <ButtonBase
+          aria-label='More'
           className='iui-header-breadcrumb-button iui-header-breadcrumb-button-split'
           disabled={disabled}
         >
