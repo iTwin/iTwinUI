@@ -2,4 +2,4 @@
 '@itwin/itwinui-variables': patch
 ---
 
-Add missing `iui-background-accent-hover` variable in light and dark themes.
+Add missing `iui-color-background-accent-hover` variable in light and dark themes.
