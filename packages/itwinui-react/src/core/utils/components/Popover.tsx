@@ -119,17 +119,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     visible: controlledOpen,
     onToggleVisible,
     autoUpdateOptions = {},
-    middleware = {
-      flip: true,
-      shift: true,
-    },
+    middleware = { flip: true, shift: true },
     ...rest
   } = props;
 
-  const themeInfo = React.useContext(ThemeContext);
-
+  const portalTo = usePortalTo(portal);
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
-
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = onToggleVisible ?? setUncontrolledOpen;
 
@@ -157,21 +152,14 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     ].filter(Boolean),
   });
 
-  const hover = useHover(floating.context, {
-    enabled: !!hoverProp,
-    handleClose: safePolygon({ buffer: -Infinity }),
-  });
-  const click = useClick(floating.context);
-  const dismiss = useDismiss(floating.context, {
-    outsidePress: onClickOutsideClose,
-  });
-  const role = useRole(floating.context, { enabled: false }); // TODO: Fix roles in all components
-
   const { getFloatingProps, getReferenceProps } = useInteractions([
-    click,
-    dismiss,
-    role,
-    hover,
+    useClick(floating.context),
+    useDismiss(floating.context, { outsidePress: onClickOutsideClose }),
+    useRole(floating.context, { enabled: false }), // TODO: Fix roles in all components,
+    useHover(floating.context, {
+      enabled: !!hoverProp,
+      handleClose: safePolygon({ buffer: -Infinity }),
+    }),
   ]);
 
   const contentBox = (
@@ -194,13 +182,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     </FloatingFocusManager>
   );
 
-  const portalTo =
-    typeof portal !== 'boolean'
-      ? portal.to
-      : portal
-      ? themeInfo?.portalContainer ?? getDocument()?.body
-      : null;
-
   return (
     <>
       {React.isValidElement(children)
@@ -220,3 +201,15 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div', PopoverOwnProps & PopoverOptions>;
 
 export default Popover;
+
+// ----------------------------------------------------------------------------
+
+const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
+  const themeInfo = React.useContext(ThemeContext);
+
+  return typeof portal !== 'boolean'
+    ? portal.to
+    : portal
+    ? themeInfo?.portalContainer ?? getDocument()?.body
+    : null;
+};
