@@ -75,6 +75,7 @@ const AlertComponent = React.forwardRef((props, forwardedRef) => {
     </Alert.Wrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps & AlertLegacyProps>;
+AlertComponent.displayName = 'Alert';
 
 // ----------------------------------------------------------------------------
 // Alert.Wrapper component
