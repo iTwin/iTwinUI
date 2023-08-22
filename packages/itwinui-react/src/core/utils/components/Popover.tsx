@@ -26,7 +26,13 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
-import { Box, getDocument, mergeRefs, useMergedRefs } from '../index.js';
+import {
+  Box,
+  getDocument,
+  mergeRefs,
+  useIsClient,
+  useMergedRefs,
+} from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 
 type PopoverOptions = {
@@ -217,7 +223,12 @@ export default Popover;
 // ----------------------------------------------------------------------------
 
 const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
+  const isClient = useIsClient();
   const themeInfo = React.useContext(ThemeContext);
+
+  if (!isClient) {
+    return null;
+  }
 
   if (typeof portal === 'boolean') {
     return portal ? themeInfo?.portalContainer ?? getDocument()?.body : null;
