@@ -118,7 +118,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement = 'bottom-start',
     visible: controlledOpen,
     onToggleVisible,
-    autoUpdateOptions = {},
+    autoUpdateOptions,
     middleware = { flip: true, shift: true },
     ...rest
   } = props;
@@ -133,13 +133,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     open,
     onOpenChange: setOpen,
     whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: autoUpdateOptions.animationFrame,
-        ancestorScroll: autoUpdateOptions.ancestorScroll,
-        ancestorResize: autoUpdateOptions.ancestorResize,
-        elementResize: autoUpdateOptions.elementResize,
-        layoutShift: autoUpdateOptions.layoutShift,
-      }),
+      autoUpdate(referenceEl, floatingEl, update, autoUpdateOptions),
     elements: { reference },
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
