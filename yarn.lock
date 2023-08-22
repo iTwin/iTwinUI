@@ -4238,10 +4238,8 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-table@^7.0.18":
+"@types/react-table@file:./packages/itwinui-react/src/types/react-table":
   version "7.7.12"
-  resolved "https://registry.npmjs.org/@types/react-table/-/react-table-7.7.12.tgz"
-  integrity sha512-bRUent+NR/WwtDGwI/BqhZ8XnHghwHw0HUKeohzB5xN3K2qKWYE5w19e7GCuOkL1CXD9Gi1HFy7TIm2AvgWUHg==
   dependencies:
     "@types/react" "*"
 

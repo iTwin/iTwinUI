@@ -75,7 +75,7 @@
   "dependencies": {
     "@floating-ui/react": "^0.24.3",
     "@tippyjs/react": "^4.2.6",
-    "@types/react-table": "^7.0.18",
+    "@types/react-table": "file:./src/types/react-table",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
     "react-transition-group": "^4.4.2",

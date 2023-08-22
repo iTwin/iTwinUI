@@ -4,3 +4,4 @@
  *--------------------------------------------------------------------------------------------*/
 export * from './core/index.js';
 export * from './types/react-table-config.js';
+export * from './types/react-table/index.js';

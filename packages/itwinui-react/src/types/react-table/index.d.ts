@@ -33,6 +33,8 @@ import {
   ReactNode,
 } from 'react';
 
+export const TESTING = 'TESTING';
+
 declare module 'react-table' {
   export {};
 
@@ -66,8 +68,9 @@ declare module 'react-table' {
     Cell?: Renderer<CellProps<D, V>> | undefined;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
   export interface ColumnGroupInterface<D extends object> {
-    columns: Array<Column<D>>;
+    // columns: Array<Column<D>>;
   }
 
   export type ColumnGroup<D extends object> = ColumnInterface<D> &
