@@ -162,7 +162,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       modal={false}
       initialFocus={-1}
       returnFocus
-      guards={false}
     >
       <Box
         className={cx('iui-popover', className)}
