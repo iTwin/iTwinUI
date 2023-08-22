@@ -169,17 +169,15 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
 /**
  * A small box to quickly grab user attention and communicate a brief message
  * @example
- * <Alert>
- *  <Alert.Message>This is an alert.</Alert.Message>
- * </Alert>
+ * <Alert>This is an alert.</Alert>
  * @example
- * <Alert type='informational'>
+ * <Alert.Wrapper type='informational'>
  *  <Alert.Icon />
  *  <Alert.Message>This is an informational alert.</Alert.Message>
  *  <Alert.CloseButton onClick={() => {}} />
- * </Alert>
+ * </Alert.Wrapper>
  * @example
- * <Alert type='positive'>
+ * <Alert.Wrapper type='positive'>
  *  <Alert.Icon>
  *    <SvgSmileyHappy />
  *  </Alert.Icon>
@@ -190,7 +188,7 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  *  <Alert.CloseButton onClick={() => {}}>
  *    <SvgCollapse />
  *  </Alert.CloseButton>
- * </Alert>
+ * </Alert.Wrapper>
  */
 export const Alert = Object.assign(AlertComponent, {
   /**
