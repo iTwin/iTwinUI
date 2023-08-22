@@ -97,7 +97,7 @@ type PopoverOwnProps = {
   content?: React.ReactNode;
   children?: React.ReactNode;
   applyBackground?: boolean;
-  portal?: boolean | { to: HTMLElement };
+  portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
   /**
    * Whether the popover should match the width of the trigger.
    */
@@ -219,11 +219,11 @@ export default Popover;
 const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
 
-  return typeof portal !== 'boolean'
-    ? portal.to
-    : portal
-    ? themeInfo?.portalContainer ?? getDocument()?.body
-    : null;
+  if (typeof portal === 'boolean') {
+    return portal ? themeInfo?.portalContainer ?? getDocument()?.body : null;
+  }
+
+  return typeof portal.to === 'function' ? portal.to() : portal.to;
 };
 
 // ----------------------------------------------------------------------------
