@@ -12,6 +12,7 @@ import {
   Box,
   useSafeContext,
   ButtonBase,
+  Icon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
@@ -35,6 +36,15 @@ export type ToastProps = {
    * Content of the Toast message
    */
   content: React.ReactNode;
+  /**
+   *
+   */
+  contentProps?: React.ComponentPropsWithoutRef<'div'>;
+  /**
+   *
+   */
+  iconAreaProps?: React.ComponentPropsWithoutRef<'div'>;
+  startIcon?: React.ReactNode;
   /**
    * Category of the Toast, which controls the border color, as well as the category icon.
    */
@@ -248,6 +258,9 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     hasCloseButton,
     onClose,
     className,
+    contentProps,
+    startIcon,
+    iconAreaProps,
     ...rest
   } = props;
 
@@ -255,10 +268,18 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
 
   return (
     <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
-      <Box className='iui-status-area'>
-        {<StatusIcon className='iui-icon' />}
+      <Box
+        {...iconAreaProps}
+        className={cx('iui-status-area', iconAreaProps?.className)}
+      >
+        {<Icon>{startIcon}</Icon> || <StatusIcon className='iui-icon' />}
       </Box>
-      <Box className='iui-message'>{content}</Box>
+      <Box
+        {...contentProps}
+        className={cx('iui-message', contentProps?.className)}
+      >
+        {content}
+      </Box>
       {link && (
         <ButtonBase className='iui-toast-anchor' {...link} title={undefined}>
           {link.title}
