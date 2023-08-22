@@ -203,17 +203,9 @@ type DatePickerProps = {
    */
   daysOfWeekProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for calendar weekdays
-   */
-  weekDayProps?: React.ComponentProps<'div'>;
-  /**
    * Allows props to be passed for calendar days (inside & outside)
    */
   dayProps?: React.ComponentProps<'div'>;
-  /**
-   * Allows props to be passed for listbox
-   */
-  listboxProps?: React.ComponentProps<'div'>;
   /**
    * Allows props to be passed for calendar weeks
    */
@@ -257,9 +249,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     calendarProps,
     calendarMonthProps,
     daysOfWeekProps,
-    weekDayProps,
     dayProps,
-    listboxProps,
     weekProps,
     isDateDisabled,
     ...rest
@@ -633,12 +623,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           className={cx('iui-calendar-weekdays', daysOfWeekProps?.className)}
         >
           {shortDays.map((day, index) => (
-            <div
-              key={day}
-              title={longDays[index]}
-              {...weekDayProps}
-              className={cx(className, weekDayProps?.className)}
-            >
+            <div key={day} title={longDays[index]}>
               {day}
             </div>
           ))}
@@ -646,8 +631,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
         <div
           onKeyDown={handleCalendarKeyDown}
           role='listbox'
-          {...listboxProps}
-          className={cx(className, listboxProps?.className)}
+          {...calendarProps}
+          className={cx('iui-calendar-listbox', calendarProps?.className)}
           aria-labelledby={dateTableId}
         >
           {weeks.map((weekDays, weekIndex) => {
