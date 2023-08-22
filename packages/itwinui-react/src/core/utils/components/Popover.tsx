@@ -98,6 +98,10 @@ type PopoverOwnProps = {
   children?: React.ReactNode;
   applyBackground?: boolean;
   portal?: boolean | { to: HTMLElement };
+  /**
+   * Whether the popover should match the width of the trigger.
+   */
+  matchWidth?: boolean;
 };
 
 /**
@@ -120,6 +124,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     onToggleVisible,
     autoUpdateOptions,
     middleware = { flip: true, shift: true },
+    matchWidth,
     ...rest
   } = props;
 
@@ -156,6 +161,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     }),
   ]);
 
+  const [triggerWidth, triggerCallbackRef] = useTriggerWidth();
+
   const contentBox = (
     <FloatingFocusManager
       context={floating.context}
@@ -166,7 +173,16 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       <Box
         className={cx('iui-popover', className)}
         data-iui-apply-background={applyBackground ? true : undefined}
-        style={{ ...floating.floatingStyles, ...style }}
+        style={{
+          ...floating.floatingStyles,
+          ...(matchWidth
+            ? {
+                minInlineSize: triggerWidth,
+                maxInlineSize: `min(${triggerWidth * 2}px, 90vw)`,
+              }
+            : null),
+          ...style,
+        }}
         {...getFloatingProps(rest)}
         ref={useMergedRefs(floating.refs.setFloating, forwardedRef)}
       >
@@ -180,8 +196,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       {React.isValidElement(children)
         ? React.cloneElement(children as JSX.Element, {
             ...getReferenceProps((children as JSX.Element).props),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ref: mergeRefs(floating.refs.setReference, (children as any).ref),
+            ref: mergeRefs(
+              floating.refs.setReference,
+              triggerCallbackRef,
+              (children as any).ref, // eslint-disable-line @typescript-eslint/no-explicit-any
+            ),
           })
         : null}
       {open
@@ -205,4 +224,18 @@ const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
     : portal
     ? themeInfo?.portalContainer ?? getDocument()?.body
     : null;
+};
+
+// ----------------------------------------------------------------------------
+
+/** Returns a callback ref and a state variable that contains the width. */
+const useTriggerWidth = () => {
+  const [width, setWidth] = React.useState(0);
+  const triggerRef = React.useCallback((element: HTMLElement | null) => {
+    if (element) {
+      setWidth(element.offsetWidth);
+    }
+  }, []);
+
+  return [width, triggerRef] as const;
 };

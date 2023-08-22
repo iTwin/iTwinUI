@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, mergeRefs, useLatestRef } from '../utils/index.js';
+import { Popover, useLatestRef } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
@@ -22,10 +22,6 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-  /**
-   * Whether the dropdown should match the width of the trigger.
-   */
-  matchWidth?: boolean;
 } & Omit<React.ComponentProps<typeof Popover>, 'content'>;
 
 /**
@@ -57,8 +53,6 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     placement = 'bottom-start',
     onToggleVisible,
     id,
-    children,
-    matchWidth,
     ...rest
   } = props;
 
@@ -76,25 +70,10 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const [triggerWidth, triggerRef] = useTriggerWidth();
-
   return (
     <Popover
       content={
-        <Menu
-          className={className}
-          style={
-            matchWidth
-              ? {
-                  minInlineSize: triggerWidth,
-                  maxInlineSize: `min(${triggerWidth * 2}px, 90vw)`,
-                  ...style,
-                }
-              : style
-          }
-          role={role}
-          id={id}
-        >
+        <Menu className={className} style={style} role={role} id={id}>
           {menuContent}
         </Menu>
       }
@@ -103,31 +82,8 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
       placement={placement}
       ref={forwardedRef}
       {...rest}
-    >
-      {!matchWidth
-        ? children
-        : React.isValidElement(children)
-        ? React.cloneElement(children as JSX.Element, {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            ref: mergeRefs((children as any).ref, triggerRef),
-          })
-        : null}
-    </Popover>
+    />
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
 
 export default DropdownMenu;
-
-// ----------------------------------------------------------------------------
-
-/** Returns a callback ref and a state variable that contains the width. */
-const useTriggerWidth = () => {
-  const [width, setWidth] = React.useState(0);
-  const triggerRef = React.useCallback((element: HTMLElement | null) => {
-    if (element) {
-      setWidth(element.offsetWidth);
-    }
-  }, []);
-
-  return [width, triggerRef] as const;
-};
