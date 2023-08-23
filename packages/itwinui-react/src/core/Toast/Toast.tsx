@@ -285,7 +285,7 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
           <Icon>{startIcon}</Icon>
         ) : (
           <Icon fill={category}>
-            <StatusIcon />
+            <StatusIcon aria-hidden />
           </Icon>
         )}
       </Box>

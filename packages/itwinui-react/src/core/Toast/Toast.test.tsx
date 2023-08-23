@@ -10,6 +10,7 @@ import {
   SvgStatusError,
   SvgStatusSuccess,
   SvgStatusWarning,
+  Icon,
 } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
 import { ToastProvider } from './Toaster.js';
@@ -39,22 +40,30 @@ it('renders the category classes & icons correctly', () => {
     let expectedIcon: RenderResult = {} as RenderResult;
     if (category === 'negative') {
       expectedIcon = render(
-        <SvgStatusError className='iui-icon' aria-hidden />,
+        <Icon fill={category}>
+          <SvgStatusError aria-hidden />
+        </Icon>,
       );
     } else if (category === 'informational') {
       expectedIcon = render(
-        <SvgInfoCircular className='iui-icon' aria-hidden />,
+        <Icon fill={category}>
+          <SvgInfoCircular aria-hidden />
+        </Icon>,
       );
     } else if (category === 'positive') {
       expectedIcon = render(
-        <SvgStatusSuccess className='iui-icon' aria-hidden />,
+        <Icon fill={category}>
+          <SvgStatusSuccess aria-hidden />
+        </Icon>,
       );
     } else if (category === 'warning') {
       expectedIcon = render(
-        <SvgStatusWarning className='iui-icon' aria-hidden />,
+        <Icon fill={category}>
+          <SvgStatusWarning aria-hidden />
+        </Icon>,
       );
     }
-    const icon = container.querySelector('.iui-icon');
+    const icon = container.querySelector('.iui-svg-icon');
     expect(expectedIcon.container.firstChild).toEqual(icon);
   });
 });
@@ -194,14 +203,14 @@ it('should pass content props correctly', () => {
         type='persisting'
         content='Job Processing Completed'
         category='positive'
-        contentProps={{ className: 'my-class', style: { width: 80 } }}
+        contentProps={{ className: 'my-class', style: { color: 'red' } }}
         id={1}
       />
     </ToastProvider>,
   );
 
   const toast = container.querySelector('.iui-message.my-class');
-  expect(toast).toHaveStyle({ width: 80 });
+  expect(toast).toHaveStyle({ color: 'red' });
 });
 
 it('should pass status area props correctly', () => {
@@ -212,14 +221,14 @@ it('should pass status area props correctly', () => {
         type='persisting'
         content='Job Processing Completed'
         category='positive'
-        statusAreaProps={{ className: 'my-class', style: { width: 80 } }}
+        statusAreaProps={{ className: 'my-class', style: { color: 'red' } }}
         id={1}
       />
     </ToastProvider>,
   );
 
   const area = container.querySelector('.iui-status-area.my-class');
-  expect(area).toHaveStyle({ width: 80 });
+  expect(area).toHaveStyle({ color: 'red' });
 });
 it('should render custom icon correctly', () => {
   const { container } = render(
