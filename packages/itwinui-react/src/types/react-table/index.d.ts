@@ -689,10 +689,10 @@ declare module 'react-table' {
   }
 
   export type UseFiltersColumnOptions<D extends object> = Partial<{
-    // Filter: Renderer<FilterProps<D>>;
-    // disableFilters: boolean;
-    // defaultCanFilter: boolean;
-    // filter: FilterType<D> | DefaultFilterTypes | string;
+    Filter: Renderer<FilterProps<D>>;
+    disableFilters: boolean;
+    defaultCanFilter: boolean;
+    filter: FilterType<D> | DefaultFilterTypes | string;
   }>;
 
   export interface UseFiltersInstanceProps<D extends object> {

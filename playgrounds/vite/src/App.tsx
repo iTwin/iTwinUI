@@ -104,9 +104,7 @@ const App = () => {
           id: 'product',
           Header: 'Product',
           accessor: 'product',
-          Filter: tableFilters.TextFilter() as Renderer<
-            TableFilterProps<TableStoryDataType>
-          >,
+          Filter: tableFilters.TextFilter(),
           // disableToggleVisibility: true,
           // disableReordering: true,
           // width: 200,
