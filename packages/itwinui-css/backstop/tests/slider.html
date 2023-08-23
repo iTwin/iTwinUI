@@ -30,26 +30,18 @@
         display: flex;
         gap: 2rem;
       }
-
-      #demo-default,
-      #demo-range {
-        flex-direction: column;
-      }
-
-      .iui-tooltip {
-        display: none;
-      }
-
+      section[id^='demo-horizontal'] { flex-direction: column; }
+      section[id^='demo-vertical'] { height: calc(var(--iui-size-3xl) * 5); }
+      .iui-tooltip { display: none; }
       .iui-slider .iui-slider-thumb:focus + .iui-tooltip,
       .iui-slider .iui-slider-thumb:hover + .iui-tooltip,
       .iui-slider .iui-slider-thumb.iui-active + .iui-tooltip {
         position: absolute;
         display: block;
-        margin-top: -32px;
+        margin-top: calc(var(--iui-size-xl) * -1);
         transform: translateX(-50%);
       }
     </style>
-
 
   </head>
 
@@ -62,511 +54,124 @@
     <hr />
     <br>
 
-    <h2>Default</h2>
-    <section id="demo-default">
+    <h2>Horizontal</h2>
+    <section id="demo-horizontal">
       <div
         class="iui-slider iui-progress-slider"
-        aria-orientation="horizontal"
+        data-iui-orientation="horizontal"
       >
         <div
           class="iui-slider-track"
-          style="right: 50%;"
+          style="width: 50%;"
         ></div>
         <div
-          style="left: 50%;"
           class="iui-slider-thumb"
           role="slider"
           tabindex="0"
-          aria-label="Volume Setting"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
-      </div>
-
-      <div
-        class="iui-slider iui-progress-slider"
-        aria-orientation="horizontal"
-      >
-        <div
-          class="iui-slider-track"
-          style="right: 50%;"
-        ></div>
-        <div
-          style="left: 50%;"
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume Setting"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-      </div>
-
-      <div
-        class="iui-slider iui-progress-slider"
-        aria-orientation="horizontal"
-        aria-disabled="true"
-      >
-        <div
-          class="iui-slider-track"
-          style="right: 50%;"
-        ></div>
-        <div
-          style="left: 50%;"
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume Setting"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-      </div>
-
-      <div class="iui-input-container">
-        <div class="iui-label">Volume</div>
-
-        <div
-          class="iui-slider-container iui-input-group"
+          aria-label="Volume setting"
           aria-orientation="horizontal"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          style="left: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
         >
-          <span class="iui-slider-min">
-            <svg-sound-mute
-              class="iui-icon"
-              aria-hidden="true"
-            ></svg-sound-mute>
-          </span>
-          <div
-            class="iui-slider iui-progress-slider"
-            aria-orientation="horizontal"
-          >
-            <div
-              class="iui-slider-track"
-              style="right: 50%;"
-            ></div>
-            <div
-              style="left: 50%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Volume Setting"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-1"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 50%;"
-            >
-              50
-            </output>
-          </div>
-          <span class="iui-slider-max">
-            <svg-sound-loud
-              class="iui-icon"
-              aria-hidden="true"
-            ></svg-sound-loud>
-          </span>
-        </div>
-
+          50
+        </output>
       </div>
 
-      <div class="iui-input-container">
-        <div class="iui-label">Slider with ticks</div>
-
-        <div class="iui-slider-container iui-slider-horizontal iui-input-group">
-          <span class="iui-slider-min">0</span>
-          <div
-            class="iui-slider iui-progress-slider"
-            aria-orientation="horizontal"
-          >
-            <div
-              class="iui-slider-track"
-              style="right: 50%;"
-            ></div>
-            <div
-              style="left: 50%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Percent Complete"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-2"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 50%;"
-            >
-              50
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
+      <div
+        class="iui-slider iui-progress-slider"
+        data-iui-orientation="horizontal"
+      >
+        <div
+          class="iui-slider-track"
+          style="width: 50%;"
+        ></div>
+        <div
+          class="iui-slider-thumb"
+          role="slider"
+          aria-label="Volume setting"
+          aria-orientation="horizontal"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          aria-disabled="true"
+          style="left: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
+        >
+          50
+        </output>
       </div>
 
-      <div class="iui-input-container iui-disabled">
-        <div class="iui-label">Disabled slider</div>
-
-        <div class="iui-slider-container iui-slider-horizontal iui-input-group iui-disabled">
-          <span class="iui-slider-min">0</span>
-          <div
-            class="iui-slider iui-progress-slider"
-            aria-orientation="horizontal"
-            aria-disabled="true"
-          >
-            <div
-              class="iui-slider-track"
-              style="right: 50%;"
-            ></div>
-            <div
-              style="left: 50%;"
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="Percent Complete"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-2"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 50%;"
-            >
-              50
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
+      <div
+        class="iui-slider iui-progress-slider"
+        data-iui-orientation="horizontal"
+        data-iui-disabled="true"
+      >
+        <div
+          class="iui-slider-track"
+          style="width: 50%;"
+        ></div>
+        <div
+          class="iui-slider-thumb"
+          role="slider"
+          aria-label="Volume setting"
+          aria-orientation="horizontal"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          aria-disabled="true"
+          style="left: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
+        >
+          50
+        </output>
       </div>
     </section>
-
-    <!-- <br />
-
-    <h2>Ranges</h2>
-    <section id="demo-range">
-      <div class="iui-input-container">
-        <div class="iui-label">Price range</div>
-
-        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
-          <span class="iui-slider-min">0</span>
-          <div class="iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div
-              class="iui-slider-track"
-              style="left: 20%; right: 20%;"
-            ></div>
-            <div
-              style="left: 20%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 20%;"
-            >
-              20
-            </output>
-            <div
-              style="left: 80%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 80%;"
-            >
-              80
-            </output>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
-      </div>
-
-      <br /><br />
-
-      <div class="iui-input-container">
-        <div class="iui-label">Range with ticks</div>
-
-        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group">
-          <span class="iui-slider-min">0</span>
-          <div class="
-            iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div
-              class="iui-slider-track"
-              style="left: 20%; right: 20%;"
-            ></div>
-            <div
-              style="left: 20%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 20%;"
-            >
-              20
-            </output>
-            <div
-              style="left: 80%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 80%;"
-            >
-              80
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
-      </div>
-
-      <br /><br />
-
-      <div class="iui-input-container iui-disabled">
-        <div class="iui-label">Disabled range</div>
-
-        <div class="iui-slider-component-container iui-slider-horizontal iui-input-group iui-disabled">
-          <span class="iui-slider-min">0</span>
-          <div class="
-            iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div
-              class="iui-slider-track"
-              style="left: 20%; right: 20%;"
-            ></div>
-            <div
-              style="left: 20%;"
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 20%;"
-            >
-              20
-            </output>
-            <div
-              style="left: 80%;"
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="left: 80%;"
-            >
-              80
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
-      </div>
-    </section> -->
-
     <br />
 
-    <h2>Default vertical</h2>
-    <section
-      id="demo-default-vertical"
-      style="height: 500px;"
-    >
-      <div
-        class="iui-slider"
-        aria-orientation="vertical"
-      >
+    <h3>With container</h3>
+    <section id="demo-horizontal-container">
+      <div class="iui-slider-container">
         <div
-          class="iui-slider-track"
-          style="bottom: 50%;"
-        ></div>
-        <div
-          style="bottom: 50%;"
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume Setting"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="bottom: 50%;"
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="horizontal"
         >
-          50
-        </output>
-      </div>
-
-      <div
-        class="iui-slider"
-        aria-orientation="vertical"
-      >
-        <div
-          class="iui-slider-track"
-          style="bottom: 50%;"
-        ></div>
-        <div
-          style="bottom: 50%;"
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume Setting"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="bottom: 50%;"
-        >
-          50
-        </output>
+          <div
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            style="left: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
         <div class="iui-slider-ticks">
           <span class="iui-slider-tick">0</span>
           <span class="iui-slider-tick">10</span>
@@ -582,304 +187,411 @@
         </div>
       </div>
 
-      <div class="iui-input-container">
-        <div class="iui-label">Volume</div>
-        <div class="iui-slider-container iui-slider-vertical iui-input-group">
-          <span class="iui-slider-min">
-            <svg-sound-mute
-              class="iui-icon"
-              aria-hidden="true"
-            ></svg-sound-mute>
-          </span>
+      <div
+        class="iui-slider-container"
+        aria-orientation="horizontal"
+      >
+        <span class="iui-slider-min">
+          <svg-sound-mute
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-mute>
+        </span>
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="horizontal"
+        >
           <div
-            class="iui-slider"
-            aria-orientation="vertical"
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            style="left: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
           >
-            <div
-              class="iui-slider-track"
-              style="bottom: 50%;"
-            ></div>
-            <div
-              style="bottom: 50%;"
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Volume Setting"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-1"
-            ></div>
-            <output
-              class="iui-tooltip"
-              style="bottom: 50%;"
-            >
-              50
-            </output>
-          </div>
-          <span class="iui-slider-max">
-            <svg-sound-loud
-              class="iui-icon"
-              aria-hidden="true"
-            ></svg-sound-loud>
-          </span>
+            50
+          </output>
         </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          <svg-sound-loud
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-loud>
+        </span>
       </div>
 
-      <div class="iui-input-container">
-        <div class="iui-label">Slider with ticks</div>
-        <div class="iui-slider-container iui-slider-vertical iui-input-group">
-          <span class="iui-slider-min">0</span>
+      <div
+        class="iui-slider-container"
+        aria-orientation="horizontal"
+      >
+        <span class="iui-slider-min">
+          0
+        </span>
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="horizontal"
+        >
           <div
-            class="iui-slider"
-            aria-orientation="vertical"
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            style="left: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
           >
-            <div class="iui-slider-track"></div>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Percent Complete"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-2"
-            ></div>
-            <output class="iui-tooltip">
-              50
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
+            50
+          </output>
         </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          100
+        </span>
       </div>
 
-      <div class="iui-input-container iui-disabled">
-        <div class="iui-label">Disabled slider</div>
-        <div class="iui-slider-container iui-slider-vertical iui-input-group iui-disabled">
-          <span class="iui-slider-min">0</span>
+      <div
+        class="iui-slider-container"
+        aria-orientation="horizontal"
+      >
+        <span class="iui-slider-min">
+          0
+        </span>
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="horizontal"
+          data-iui-disabled="true"
+        >
           <div
-            class="iui-slider"
-            aria-orientation="vertical"
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            style="left: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
             aria-disabled="true"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
           >
-            <div class="iui-slider-track">
-            </div>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="Percent Complete"
-              aria-valuemin="0"
-              aria-valuenow="50"
-              aria-valuemax="100"
-              id="test-slider-2"
-            >
-            </div>
-            <output class="iui-tooltip">
-              50
-            </output>
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
+            50
+          </output>
         </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          100
+        </span>
       </div>
     </section>
+    <br />
 
-    <!-- <br />
-
-    <h2>Ranges Vertical</h2>
-    <section id="demo-range-vertical">
-      <div class="iui-input-container ">
-        <div class="iui-label">Price range</div>
-
+    <h2>Vertical</h2>
+    <section id="demo-vertical">
+      <div
+        class="iui-slider iui-progress-slider"
+        data-iui-orientation="vertical"
+      >
         <div
-          class="iui-slider-component-container iui-slider-vertical iui-input-group"
-          style="height: 500px;"
+          class="iui-slider-track"
+          style="height: 50%;"
+        ></div>
+        <div
+          class="iui-slider-thumb"
+          role="slider"
+          tabindex="0"
+          aria-label="Volume setting"
+          aria-orientation="vertical"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          style="bottom: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
         >
-          <span class="iui-slider-min">0</span>
-          <div class="
-              iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div class="iui-slider-track">
-            </div>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            >
-            </div>
-            <output class="iui-tooltip">
-              20
-            </output>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            >
-            </div>
-            <output class="iui-tooltip">
-              80
-            </output>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
+          50
+        </output>
       </div>
 
-      <div class="iui-input-container">
-        <div class="iui-label">Range with ticks</div>
-
+      <div
+        class="iui-slider iui-progress-slider"
+        data-iui-orientation="vertical"
+      >
         <div
-          class="iui-slider-component-container iui-slider-vertical iui-input-group"
-          style="height: 500px;"
+          class="iui-slider-track"
+          style="height: 50%;"
+        ></div>
+        <div
+          class="iui-slider-thumb"
+          role="slider"
+          aria-label="Volume setting"
+          aria-orientation="vertical"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          aria-disabled="true"
+          style="bottom: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
         >
-          <span class="iui-slider-min">0</span>
-          <div class="
-            iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div class="iui-slider-track">
-            </div>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            >
-            </div>
-            <output class="iui-tooltip">
-              20
-            </output>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              tabindex="0"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            >
-            </div>
-            <output class="iui-tooltip">
-              80
-            </output>
-
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
+          50
+        </output>
       </div>
 
-      <div class="iui-input-container iui-disabled">
-        <div class="iui-label">Disabled range</div>
-
+      <div
+        class="iui-slider iui-progress-slider"
+        data-iui-orientation="vertical"
+        data-iui-disabled="true"
+      >
         <div
-          class="iui-slider-component-container iui-slider-vertical iui-input-group iui-disabled"
-          style="height: 500px;"
+          class="iui-slider-track"
+          style="height: 50%;"
+        ></div>
+        <div
+          class="iui-slider-thumb"
+          role="slider"
+          aria-label="Volume setting"
+          aria-orientation="vertical"
+          aria-valuemin="0"
+          aria-valuenow="50"
+          aria-valuemax="100"
+          aria-disabled="true"
+          style="bottom: 50%;"
+          id="test-slider-1"
+        ></div>
+        <output
+          class="iui-tooltip"
+          style="left: 50%;"
         >
-          <span class="iui-slider-min">0</span>
-          <div class="
-            iui-slider-container iui-range-slider">
-            <div class="iui-slider-rail"></div>
-            <div class="iui-slider-track">
-            </div>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="Start Value"
-              aria-valuemin="0"
-              aria-valuenow="20"
-              aria-valuemax="79"
-              data-range-max="100"
-            >
-            </div>
-            <output class="iui-tooltip">
-              20
-            </output>
-            <div
-              class="iui-slider-thumb"
-              role="slider"
-              aria-label="End Value"
-              aria-valuemin="21"
-              aria-valuenow="80"
-              aria-valuemax="100"
-              data-range-min="0"
-            >
-            </div>
-            <output class="iui-tooltip">
-              80
-            </output>
-
-            <div class="iui-slider-ticks">
-              <span class="iui-slider-tick">0</span>
-              <span class="iui-slider-tick">10</span>
-              <span class="iui-slider-tick">20</span>
-              <span class="iui-slider-tick">30</span>
-              <span class="iui-slider-tick">40</span>
-              <span class="iui-slider-tick">50</span>
-              <span class="iui-slider-tick">60</span>
-              <span class="iui-slider-tick">70</span>
-              <span class="iui-slider-tick">80</span>
-              <span class="iui-slider-tick">90</span>
-              <span class="iui-slider-tick">100</span>
-            </div>
-          </div>
-          <span class="iui-slider-max">100</span>
-        </div>
-
+          50
+        </output>
       </div>
-    </section> -->
+    </section>
+    <br />
+
+    <h3>With container</h3>
+    <section id="demo-vertical-container">
+      <div class="iui-slider-container">
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="vertical"
+        >
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            style="bottom: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+      </div>
+
+      <div
+        class="iui-slider-container"
+        aria-orientation="vertical"
+      >
+        <span class="iui-slider-min">
+          <svg-sound-mute
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-mute>
+        </span>
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="vertical"
+        >
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            style="bottom: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          <svg-sound-loud
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-loud>
+        </span>
+      </div>
+
+      <div
+        class="iui-slider-container"
+        aria-orientation="vertical"
+      >
+        <span class="iui-slider-min">
+          0
+        </span>
+        <div
+          class="iui-slider iui-progress-slider"
+          data-iui-orientation="vertical"
+        >
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            style="bottom: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          100
+        </span>
+      </div>
+
+
+    </section>
 
     <script>
 
