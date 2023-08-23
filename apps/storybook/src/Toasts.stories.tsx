@@ -7,6 +7,7 @@ import { Story, Meta } from '@storybook/react';
 import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
 import { ToastProps } from '@itwin/itwinui-react/esm/core/Toast/Toast';
 import { ToasterSettings } from '@itwin/itwinui-react/esm/core/Toast/Toaster';
+import { SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
   argTypes: {
@@ -245,6 +246,52 @@ export const Warning: Story<ToastProps & ToasterSettings> = ({
 
 Warning.args = {
   content: 'This is a warning toast message',
+};
+
+export const CustomIcon: Story<ToastProps & ToasterSettings> = ({
+  content,
+  duration,
+  hasCloseButton,
+  link,
+  type,
+  onRemove,
+  placement,
+  order,
+}) => {
+  const toaster = useToaster();
+
+  const displayToast = () => {
+    toaster.setSettings({
+      placement: placement ?? 'top',
+      order: order ?? 'descending',
+    });
+    toaster.informational(content, {
+      duration,
+      hasCloseButton,
+      link,
+      type,
+      onRemove,
+      startIcon: <SvgAirplane />,
+    });
+  };
+
+  return (
+    <>
+      <Button styleType='high-visibility' onClick={displayToast}>
+        Toast
+      </Button>
+      <Button
+        style={{ display: 'block', marginTop: 16 }}
+        onClick={() => toaster.closeAll()}
+      >
+        Close All
+      </Button>
+    </>
+  );
+};
+
+CustomIcon.args = {
+  content: 'This is a toast message with custom icon',
 };
 
 export const PositionChanged: Story<ToastProps & ToasterSettings> = ({

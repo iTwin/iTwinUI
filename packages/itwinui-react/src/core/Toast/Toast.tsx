@@ -37,13 +37,16 @@ export type ToastProps = {
    */
   content: React.ReactNode;
   /**
-   *
+   * Passes props to content
    */
   contentProps?: React.ComponentPropsWithoutRef<'div'>;
   /**
-   *
+   * Passes props to status area
    */
-  iconAreaProps?: React.ComponentPropsWithoutRef<'div'>;
+  statusAreaProps?: React.ComponentPropsWithoutRef<'div'>;
+  /**
+   * Svg icon shown on the left of toast message.
+   */
   startIcon?: React.ReactNode;
   /**
    * Category of the Toast, which controls the border color, as well as the category icon.
@@ -106,6 +109,9 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
+    startIcon,
+    contentProps,
+    statusAreaProps,
   } = props;
 
   const closeTimeout = React.useRef(0);
@@ -233,6 +239,9 @@ export const Toast = (props: ToastProps) => {
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
+            startIcon={startIcon}
+            contentProps={contentProps}
+            statusAreaProps={statusAreaProps}
           />
         </div>
       </Box>
@@ -260,7 +269,7 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     className,
     contentProps,
     startIcon,
-    iconAreaProps,
+    statusAreaProps,
     ...rest
   } = props;
 
@@ -269,10 +278,16 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
   return (
     <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
       <Box
-        {...iconAreaProps}
-        className={cx('iui-status-area', iconAreaProps?.className)}
+        {...statusAreaProps}
+        className={cx('iui-status-area', statusAreaProps?.className)}
       >
-        {<Icon>{startIcon}</Icon> || <StatusIcon className='iui-icon' />}
+        {!!startIcon ? (
+          <Icon>{startIcon}</Icon>
+        ) : (
+          <Icon fill={category}>
+            <StatusIcon />
+          </Icon>
+        )}
       </Box>
       <Box
         {...contentProps}

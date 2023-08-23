@@ -185,3 +185,56 @@ it('should close temporary toast after 7s', () => {
 
   jest.useRealTimers();
 });
+
+it('should pass content props correctly', () => {
+  const { container } = render(
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        contentProps={{ className: 'my-class', style: { width: 80 } }}
+        id={1}
+      />
+    </ToastProvider>,
+  );
+
+  const toast = container.querySelector('.iui-message.my-class');
+  expect(toast).toHaveStyle({ width: 80 });
+});
+
+it('should pass status area props correctly', () => {
+  const { container } = render(
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        statusAreaProps={{ className: 'my-class', style: { width: 80 } }}
+        id={1}
+      />
+    </ToastProvider>,
+  );
+
+  const area = container.querySelector('.iui-status-area.my-class');
+  expect(area).toHaveStyle({ width: 80 });
+});
+it('should render custom icon correctly', () => {
+  const { container } = render(
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        startIcon={<svg className='my-icon' />}
+        id={1}
+      />
+    </ToastProvider>,
+  );
+
+  const icon = container.querySelector('.iui-svg-icon > .my-icon');
+  expect(icon).toBeTruthy();
+});
