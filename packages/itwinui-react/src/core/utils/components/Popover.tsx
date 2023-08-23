@@ -13,7 +13,6 @@ import {
   useDismiss,
   useRole,
   useInteractions,
-  useHover,
   size,
   autoUpdate,
   offset,
@@ -22,7 +21,6 @@ import {
   autoPlacement,
   inline,
   hide,
-  safePolygon,
   FloatingFocusManager,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
@@ -52,10 +50,6 @@ type PopoverOptions = {
    *
    */
   onClickOutsideClose?: boolean;
-  /**
-   *
-   */
-  hover?: boolean;
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -124,7 +118,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     applyBackground = false,
     reference,
     onClickOutsideClose,
-    hover: hoverProp,
     placement = 'bottom-start',
     visible: controlledOpen,
     onToggleVisible,
@@ -161,10 +154,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     useClick(floating.context),
     useDismiss(floating.context, { outsidePress: onClickOutsideClose }),
     useRole(floating.context, { enabled: false }), // TODO: Fix roles in all components,
-    useHover(floating.context, {
-      enabled: !!hoverProp,
-      handleClose: safePolygon(),
-    }),
   ]);
 
   const [triggerWidth, triggerCallbackRef] = useTriggerWidth();
