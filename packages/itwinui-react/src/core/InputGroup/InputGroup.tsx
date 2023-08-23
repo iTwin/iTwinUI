@@ -57,6 +57,10 @@ type InputGroupProps = {
     React.ComponentProps<typeof StatusMessage>,
     'iconProps' | 'contentProps'
   >;
+  /**
+   * Passes properties for inner input group element.
+   */
+  innerProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -87,6 +91,7 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     required = false,
     labelProps,
     messageProps,
+    innerProps,
     ...rest
   } = props;
 
@@ -120,7 +125,13 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
           {label}
         </Label>
       )}
-      <Box className='iui-input-group'>{children}</Box>
+      <Box
+        as='div'
+        {...innerProps}
+        className={cx('iui-input-group', innerProps?.className)}
+      >
+        {children}
+      </Box>
       {(message || status || svgIcon) && (
         <StatusMessage startIcon={icon()} status={status} {...messageProps}>
           {displayStyle !== 'inline' && message}

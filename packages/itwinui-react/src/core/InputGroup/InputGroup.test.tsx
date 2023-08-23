@@ -109,6 +109,25 @@ it('should take class and style on container', () => {
   getByText('some label');
 });
 
+it('should take class and style on inner element', () => {
+  const { container, getByText } = render(
+    <InputGroup
+      label='some label'
+      innerProps={{ className: 'my-class', style: { width: 80 } }}
+    >
+      <Checkbox />
+      <Checkbox />
+      <Checkbox />
+    </InputGroup>,
+  );
+  const innerEl = container.querySelector(
+    '.iui-input-group.my-class',
+  ) as HTMLElement;
+  expect(innerEl).toBeTruthy();
+  expect(innerEl.style.width).toBe('80px');
+  getByText('some label');
+});
+
 it('should take class and style on label', () => {
   const { container, getByText } = render(
     <InputGroup
