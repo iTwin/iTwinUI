@@ -106,7 +106,9 @@ const App = () => {
           disableToggleVisibility: true,
           disableReordering: true,
           width: 200,
-          testing1: (props: any) => <div>{props}</div>,
+          testing1: (props: CellProps<TableStoryDataType>) => (
+            <div>{`${props}`}</div>
+          ),
           // sticky: 'left',
           // testing1: '',
           // testig

@@ -313,9 +313,9 @@ declare module 'react-table' {
   }
 
   export type CellProps<D, V = any> = {
-    //     column: ColumnInstance<D>;
+    column: ColumnInstance<D>;
     row: Row<D>;
-    // cell: Cell<D, V>;
+    cell: Cell<D, V>;
     value: CellValue<V>;
   };
   // export type CellProps<D extends object, V = any> = TableInstance<D> & {
