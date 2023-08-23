@@ -75,7 +75,6 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
           )
         }
         ref={forwardedRef}
-        aria-label='Dropdown'
         {...rest}
       >
         {children}
