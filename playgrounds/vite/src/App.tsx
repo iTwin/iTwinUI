@@ -105,104 +105,9 @@ const App = () => {
           Header: 'Product',
           accessor: 'product',
           Filter: tableFilters.TextFilter(),
-          // Filter: () => <div></div>,
-          // disableToggleVisibility: true,
-          // disableReordering: true,
-          // width: 200,
-          // testing1: (props: CellProps<TableStoryDataType>) => (
-          // testing1: (props) => <div>{`${props}`}</div>,
-
-          // sticky: 'left',
-          // testing1: '',
-          // testig
-          // col
           Cell: (props) => <div></div>,
         },
-        // {},
-        // {
-        //   id: 'price',
-        //   Header: 'Price',
-        //   // accessor: 'price',
-        //   width: 200,
-        //   Filter: tableFilters.NumberRangeFilter(),
-        //   filter: 'between',
-        //   disableReordering: true,
-        //   sortType: 'number',
-        //   // Cell1: (props) => {
-        //   //   return <div></div>
-        //   // },
-        //   // Cell: (props: CellProps<Record<string, any>, number>) => {
-        //   // cell
-        //   // Cell: (props) => {
-        //   //   return <div></div>;
-        //   //   // return <>${props.value}</>;
-        //   // },
-        //   // Cell: (props) => {
-        //   //   return <>${props.value}</>;
-        //   // },
-        //   sticky: 'left',
-        // },
-        // {
-        //   id: 'quantity',
-        //   Header: 'Quantity',
-        //   // accessor: 'quantity',
-        //   Filter: tableFilters.NumberRangeFilter(),
-        //   filter: 'between',
-        //   sortType: 'number',
-        //   width: 400,
-        // },
-        // {
-        //   id: 'rating',
-        //   Header: 'Rating',
-        //   // accessor: 'rating',
-        //   Filter: tableFilters.NumberRangeFilter(),
-        //   filter: 'between',
-        //   sortType: 'number',
-        //   width: 400,
-        //   // cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
-        //   //   return (
-        //   //     <DefaultCell
-        //   //       {...props}
-        //   //       status={props.cellProps.row.original.status}
-        //   //     >
-        //   //       {props.cellProps.row.original.rating}/5
-        //   //     </DefaultCell>
-        //   //   );
-        //   // },
-        // },
-        // {
-        //   id: 'deliveryTime',
-        //   Header: 'Delivery Time',
-        //   // accessor: 'deliveryTime',
-        //   Filter: tableFilters.NumberRangeFilter(),
-        //   filter: 'between',
-        //   sortType: 'number',
-        //   width: 400,
-        //   // Cell: (props: CellProps<TableStoryDataType>) => {
-        //   //   return <>{props.value} day(s)</>;
-        //   // },
-        // },
-        // {
-        //   // accessor: 'actions',
-        //   // ...ActionColumn({ columnManager: true }),
-        //   // Cell: (props: CellProps<TableStoryDataType>) => (
-        //   //   <DropdownMenu menuItems={menuItems}>
-        //   //     <IconButton
-        //   //       styleType='borderless'
-        //   //       onClick={(e) => e.stopPropagation()}
-        //   //       disabled={isRowDisabled(props.row.original)}
-        //   //     >
-        //   //       <SvgMore />
-        //   //     </IconButton>
-        //   //   </DropdownMenu>
-        //   // ),
-        //   accessor: 'deliveryTime',
-        //   sticky: 'right',
-        // },
-        // ] satisfies Array<Column<Record<string, any>>>,
       ] satisfies Array<Column<TableStoryDataType>>,
-    // ] as Column<TableStoryDataType>[],
-    // ] as Column<TableStoryDataType>[],
     [isRowDisabled, menuItems],
   );
 
@@ -213,9 +118,6 @@ const App = () => {
   // }, []);
 
   const [globalFilterValue, setGlobalFilterValue] = useState('');
-
-  let testing0: TableStoryDataType = { 1: 'q' };
-  let testing1: Record<string, any> = testing0;
 
   return (
     <div
