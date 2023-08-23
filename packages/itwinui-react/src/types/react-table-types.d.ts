@@ -2,6 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+/* eslint-disable @typescript-eslint/no-empty-interface */
+/* eslint-disable @typescript-eslint/ban-types */
 // Type definitions for react-table 7.7
 // Project: https://github.com/tannerlinsley/react-table
 // Definitions by: Guy Gascoigne-Piggford <https://github.com/ggascoigne>,
@@ -33,8 +35,10 @@ import {
   ReactNode,
 } from 'react';
 
+declare module 'react-table';
+
 declare module 'react-table' {
-  export {};
+  // export {};
 
   /**
    * The empty definitions of below provides a base definition for the parts used by useTable, that can then be extended in the users code.
