@@ -193,7 +193,7 @@ type DatePickerProps = {
   /**
    * Allows props to be passed for calendar month year
    */
-  calendarProps?: React.ComponentProps<'div'>;
+  calendarMonthYearProps?: React.ComponentProps<'div'>;
   /**
    * Allows props to be passed for calendar month
    */
@@ -206,6 +206,10 @@ type DatePickerProps = {
    * Allows props to be passed for calendar days (inside & outside)
    */
   dayProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for listbox
+   */
+  calendarProps?: React.ComponentProps<'div'>;
   /**
    * Allows props to be passed for calendar weeks
    */
@@ -246,6 +250,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     enableRangeSelect = false,
     startDate,
     endDate,
+    calendarMonthYearProps,
     calendarProps,
     calendarMonthProps,
     daysOfWeekProps,
@@ -562,8 +567,11 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       <div>
         <Box
           as='div'
-          {...calendarProps}
-          className={cx('iui-calendar-month-year', calendarProps?.className)}
+          {...calendarMonthYearProps}
+          className={cx(
+            'iui-calendar-month-year',
+            calendarMonthYearProps?.className,
+          )}
         >
           {showYearSelection && (
             <IconButton
@@ -632,7 +640,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           onKeyDown={handleCalendarKeyDown}
           role='listbox'
           {...calendarProps}
-          className={cx('iui-calendar-listbox', calendarProps?.className)}
+          className={cx(className, calendarProps?.className)}
           aria-labelledby={dateTableId}
         >
           {weeks.map((weekDays, weekIndex) => {
