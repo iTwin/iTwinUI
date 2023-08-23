@@ -7,10 +7,19 @@ import * as React from 'react';
 import { Button } from '../Button/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
-import { DropdownMenu } from '../../DropdownMenu/index.js';
-import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import {
+  Box,
+  Portal,
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  usePopover,
+} from '../../utils/index.js';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../../utils/index.js';
 import type { Placement } from '@floating-ui/react';
+import { Menu } from '../../Menu/Menu.js';
 
 export type SplitButtonProps = ButtonProps & {
   /**
@@ -36,7 +45,7 @@ export type SplitButtonProps = ButtonProps & {
    * Passes props to SplitButton menu button.
    */
   menuButtonProps?: React.ComponentProps<typeof IconButton>;
-};
+} & Pick<PortalProps, 'portal'>;
 
 /**
  * Split button component with a DropdownMenu.
@@ -63,23 +72,30 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     children,
     wrapperProps,
     menuButtonProps,
+    portal = true,
     ...rest
   } = props;
 
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
 
-  const [menuWidth, setMenuWidth] = React.useState(0);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
-
-  React.useEffect(() => {
-    if (wrapperRef.current) {
-      setMenuWidth(wrapperRef.current.offsetWidth);
+  const menuContent = React.useMemo(() => {
+    if (typeof menuItems === 'function') {
+      return menuItems(() => setVisible(false));
     }
-  }, [children, size]);
+    return menuItems;
+  }, [menuItems]);
+
+  const popover = usePopover({
+    visible,
+    onToggleVisible: setVisible,
+    placement: menuPlacement,
+    matchWidth: true,
+  });
 
   return (
     <Box
       {...wrapperProps}
+      ref={popover.refs.setPositionReference}
       className={cx(
         'iui-button-split',
         {
@@ -87,7 +103,6 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         },
         wrapperProps?.className,
       )}
-      ref={wrapperRef}
     >
       <Button
         className={className}
@@ -99,21 +114,23 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Button>
-      <DropdownMenu
-        placement={menuPlacement}
-        menuItems={menuItems}
-        style={{ minInlineSize: menuWidth }}
-        onToggleVisible={(open) => setIsMenuOpen(open)}
+      <IconButton
+        styleType={styleType}
+        size={size}
+        disabled={props.disabled}
+        ref={popover.refs.setReference}
+        {...popover.getReferenceProps()}
+        {...menuButtonProps}
       >
-        <IconButton
-          styleType={styleType}
-          size={size}
-          disabled={props.disabled}
-          {...menuButtonProps}
-        >
-          {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
-        </IconButton>
-      </DropdownMenu>
+        {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
+      </IconButton>
+      {popover.open && (
+        <Portal portal={portal}>
+          <Menu {...popover.getFloatingProps()} ref={popover.refs.setFloating}>
+            {menuContent}
+          </Menu>
+        </Portal>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;
