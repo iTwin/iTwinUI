@@ -116,7 +116,7 @@ const App = () => {
           // testing1: '',
           // testig
           // col
-          testing1: (props) => <div></div>,
+          Cell: (props) => <div></div>,
         },
         // {},
         // {
