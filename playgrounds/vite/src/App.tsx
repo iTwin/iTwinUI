@@ -102,7 +102,7 @@ const App = () => {
           id: 'product',
           Header: 'Product',
           accessor: 'product',
-          Filter: tableFilters.TextFilter(),
+          // Filter: tableFilters.TextFilter(),
           // disableToggleVisibility: true,
           // disableReordering: true,
           // width: 200,
