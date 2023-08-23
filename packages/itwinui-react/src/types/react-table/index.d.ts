@@ -148,6 +148,7 @@ declare module 'react-table' {
      * Filter component used as a column filter. Should use filters from `tableFilters`.
      */
     Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
+    // Filter?: Renderer<CellProps<D, any>> | undefined;
     /**
      * String value or custom function to use for filtering.
      * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.

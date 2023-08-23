@@ -105,6 +105,7 @@ const App = () => {
           Header: 'Product',
           accessor: 'product',
           Filter: tableFilters.TextFilter(),
+          // Filter: () => <div></div>,
           // disableToggleVisibility: true,
           // disableReordering: true,
           // width: 200,
@@ -114,6 +115,7 @@ const App = () => {
           // sticky: 'left',
           // testing1: '',
           // testig
+          // col
           testing1: (props) => <div></div>,
         },
         // {},
