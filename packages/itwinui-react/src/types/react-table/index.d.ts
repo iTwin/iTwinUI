@@ -14,6 +14,8 @@ import {
   ReactNode,
 } from 'react';
 
+// import { TableFilterProps } from '@itwin/itwinui-react';
+
 declare module 'react-table' {
   export {};
 
@@ -186,7 +188,8 @@ declare module 'react-table' {
     // Cell?: Renderer<CellProps<D, V>> | undefined;
     // Cell?: (props: CellProps<D, V>) => React.ReactNode;
     // testing1: Renderer<CellProps<D, V>> | undefined;
-    testing1?: Renderer<CellProps<D, V>> | undefined;
+    // testing1?: Renderer<CellProps<D, V>> | undefined;
+    Cell?: Renderer<CellProps<D, V>> | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -526,7 +529,7 @@ declare module 'react-table' {
     parent?: ColumnInstance<D> | undefined; // not documented
     getToggleHiddenProps: (userProps?: any) => any;
     depth: number; // not documented
-    placeholderOf?: ColumnInstance | undefined;
+    placeholderOf?: ColumnInstance<D> | undefined;
   }
 
   export interface UseTableRowProps<D extends object> {
