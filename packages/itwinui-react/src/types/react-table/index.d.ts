@@ -82,16 +82,17 @@ declare module 'react-table' {
     tableWidth: number;
   }
 
-  export interface TableState<D extends object>
-    extends UseColumnOrderState<D>,
-      UseExpandedState<D>,
-      UseFiltersState<D>,
-      UseGlobalFiltersState<D>,
-      UseGroupByState<D>,
-      UsePaginationState<D>,
-      UseRowSelectState<D>,
-      UseRowStateState<D>,
-      UseSortByState<D> {
+  export interface TableState<D extends object> {
+    // extends
+    // UseColumnOrderState<D>,
+    // UseExpandedState<D>,
+    // UseFiltersState<D>,
+    // UseGlobalFiltersState<D>,
+    // UseGroupByState<D>,
+    // UsePaginationState<D>,
+    // UseRowSelectState<D>,
+    // UseRowStateState<D>,
+    // UseSortByState<D>
     // hiddenColumns?: Array<IdType<D>> | undefined;
     // columnResizing: {
     //   startX?: number;
@@ -111,33 +112,48 @@ declare module 'react-table' {
     // lastSelectedRowId?: string;
   }
 
-  export interface Hooks<D extends object>
-    extends UseTableHooks<D>,
-      UseExpandedHooks<D>,
-      UseGroupByHooks<D>,
-      UseRowSelectHooks<D>,
-      UseSortByHooks<D> {}
+  export interface Hooks<D extends object> {
+    // extends UseTableHooks<D>,
+    //   UseExpandedHooks<D>,
+    //   UseGroupByHooks<D>,
+    //   UseRowSelectHooks<D>,
+    //   UseSortByHooks<D>
+  }
 
-  export interface Cell<D extends object, V = any>
-    extends UseTableCellProps<D, V>,
-      UseGroupByCellProps<D>,
-      UseRowStateCellProps<D> {}
+  export interface Cell<D extends object, V = any> {
+    // extends UseTableCellProps<D, V>,
+    //   UseGroupByCellProps<D>,
+    //   UseRowStateCellProps<D>
+  }
 
   export interface ColumnInterface<D extends object> {
-    // /**
-    //  * Custom class name applied to header column cell.
-    //  */
-    // columnClassName?: string;
-    // /**
-    //  * Filter component used as a column filter. Should use filters from `tableFilters`.
-    //  */
-    // Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
-    // /**
-    //  * String value or custom function to use for filtering.
-    //  * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
-    //  * More info about these filters: https://github.com/tannerlinsley/react-table/blob/master/src/filterTypes.js
-    //  */
-    // filter?: FilterType<D> | DefaultFilterTypes | string;
+    // extends UseTableColumnOptions<D>,
+    //   UseSortByColumnOptions<D>,
+    //   UseFiltersColumnOptions<D>,
+    //   UseResizeColumnsColumnOptions<D>,
+    //   UseGlobalFiltersColumnOptions<D>
+    /**
+     * Custom class name applied to header column cell.
+     */
+    columnClassName?: string;
+    /**
+     * Custom class name applied to each column's cell.
+     */
+    cellClassName?: string;
+    /**
+     * Type of the data in cell. Used for manual filtering.
+     */
+    fieldType?: FieldType;
+    /**
+     * Filter component used as a column filter. Should use filters from `tableFilters`.
+     */
+    Filter?: Renderer<FilterProps<D>> | Renderer<TableFilterProps<D>>;
+    /**
+     * String value or custom function to use for filtering.
+     * Possible string values: `text`, `exactText`, `exactTextCase`, `includes`, `includesAll`, `exact`, `equals`, `between`.
+     * More info about these filters: https://github.com/tannerlinsley/react-table/blob/master/src/filterTypes.js
+     */
+    filter?: FilterType<D> | DefaultFilterTypes | string;
     /**
      * Function that should return whole cell element not only the content.
      * Must be memoized.
@@ -149,27 +165,27 @@ declare module 'react-table' {
      * }
      */
     cellRenderer?: (props: CellRendererProps<D>) => React.ReactNode;
-    // /**
-    //  * If true, column can't be reordered.
-    //  * @default false
-    //  */
-    // disableReordering?: boolean;
-    // /**
-    //  * If true, column's visibility cannot be toggled.
-    //  * @default false
-    //  */
-    // disableToggleVisibility?: boolean;
-    // /**
-    //  * Side on which column should be sticked to.
-    //  */
-    // sticky?: 'left' | 'right';
+    /**
+     * If true, column can't be reordered.
+     * @default false
+     */
+    disableReordering?: boolean;
+    /**
+     * If true, column's visibility cannot be toggled.
+     * @default false
+     */
+    disableToggleVisibility?: boolean;
+    /**
+     * Side on which column should be sticked to.
+     */
+    sticky?: 'left' | 'right';
   }
 
   export interface ColumnInterfaceBasedOnValue<D extends object, V = any> {
     // Cell?: Renderer<CellProps<D, V>> | undefined;
     // Cell?: (props: CellProps<D, V>) => React.ReactNode;
     // testing1: Renderer<CellProps<D, V>> | undefined;
-    testing1: Renderer<CellProps<D, V>> | undefined;
+    testing1?: Renderer<CellProps<D, V>> | undefined;
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-interface
@@ -539,7 +555,7 @@ declare module 'react-table' {
     column: ColumnInstance<D>;
   };
 
-  export type CellProps<D, V = any> = {
+  export type CellProps<D extends object, V = any> = {
     column: ColumnInstance<D>;
     row: Row<D>;
     cell: Cell<D, V>;

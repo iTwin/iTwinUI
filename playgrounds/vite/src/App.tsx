@@ -10,6 +10,7 @@ import {
   Table,
   tableFilters,
 } from '@itwin/itwinui-react';
+import { TableFilterProps } from '@itwin/itwinui-react/cjs/core/Table/index.js';
 import { useCallback, useMemo, useState } from 'react';
 import type {
   CellProps,
@@ -18,6 +19,7 @@ import type {
   Row,
   TableInstance,
   TableState,
+  Renderer,
 } from 'react-table';
 
 type ValueOf<T> = T[keyof T];
@@ -102,17 +104,19 @@ const App = () => {
           id: 'product',
           Header: 'Product',
           accessor: 'product',
-          // Filter: tableFilters.TextFilter(),
+          Filter: tableFilters.TextFilter() as Renderer<
+            TableFilterProps<TableStoryDataType>
+          >,
           // disableToggleVisibility: true,
           // disableReordering: true,
           // width: 200,
-          testing1: (props: CellProps<TableStoryDataType>) => (
-            <div>{`${props}`}</div>
-          ),
+          // testing1: (props: CellProps<TableStoryDataType>) => (
+          // testing1: (props) => <div>{`${props}`}</div>,
+
           // sticky: 'left',
           // testing1: '',
           // testig
-          // testing1: (props) => <div></div>,
+          testing1: (props) => <div></div>,
         },
         // {},
         // {
