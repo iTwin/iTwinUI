@@ -63,7 +63,7 @@
 
       .iui-input-with-icon {
         --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-        --_focus-color: var(--iui-color-text-#{$status});
+        --_iui-input-with-icon-focus-color: var(--iui-color-text-#{$status});
       }
 
       .iui-select-button {
