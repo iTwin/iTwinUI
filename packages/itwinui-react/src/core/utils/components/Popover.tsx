@@ -23,7 +23,7 @@ import {
   hide,
   FloatingFocusManager,
 } from '@floating-ui/react';
-import type { Placement } from '@floating-ui/react';
+import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
   Box,
   getDocument,
@@ -76,12 +76,16 @@ type PopoverOptions = {
     offset?: number;
     flip?: boolean;
     shift?: boolean;
-    size?: boolean;
+    // size?: boolean; // TODO: decide if it makes sense to expose
     autoPlacement?: boolean;
     hide?: boolean;
     inline?: boolean;
   };
   reference?: HTMLElement | null;
+  /**
+   * Whether the popover should match the width of the trigger.
+   */
+  matchWidth?: boolean;
 };
 
 type PopoverOwnProps = {
@@ -98,24 +102,12 @@ type PopoverOwnProps = {
   children?: React.ReactNode;
   applyBackground?: boolean;
   portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
-  /**
-   * Whether the popover should match the width of the trigger.
-   */
-  matchWidth?: boolean;
 };
 
-/**
- * A utility component to help with positioning of floating content.
- * Built on top of [`floating-ui`](https://floating-ui.com/)
- */
-export const Popover = React.forwardRef((props, forwardedRef) => {
+// ----------------------------------------------------------------------------
+
+const usePopover = (options: PopoverOptions) => {
   const {
-    children,
-    content,
-    className,
-    style,
-    portal = true,
-    applyBackground = false,
     reference,
     onClickOutsideClose,
     placement = 'bottom-start',
@@ -124,10 +116,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     autoUpdateOptions,
     middleware = { flip: true, shift: true },
     matchWidth,
-    ...rest
-  } = props;
+  } = options;
 
-  const portalTo = usePortalTo(portal);
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
   const open = controlledOpen ?? uncontrolledOpen;
   const setOpen = onToggleVisible ?? setUncontrolledOpen;
@@ -143,24 +133,75 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
       middleware.shift && shift(),
-      middleware.size && size(),
+      matchWidth &&
+        size({
+          apply: ({ rects, availableWidth, elements }) => {
+            Object.assign(elements.floating.style, {
+              minInlineSize: `${rects.reference.width}px`,
+              maxInlineSize: `min(${
+                rects.reference.width * 2
+              }px, ${availableWidth})`,
+            });
+          },
+        } as SizeOptions),
       middleware.autoPlacement && autoPlacement(),
       middleware.inline && inline(),
       middleware.hide && hide(),
     ].filter(Boolean),
   });
 
-  const { getFloatingProps, getReferenceProps } = useInteractions([
+  const interactions = useInteractions([
     useClick(floating.context),
     useDismiss(floating.context, { outsidePress: onClickOutsideClose }),
     useRole(floating.context, { enabled: false }), // TODO: Fix roles in all components,
   ]);
 
-  const [triggerWidth, triggerCallbackRef] = useTriggerWidth();
+  const getFloatingProps = React.useCallback(
+    (userProps?: React.HTMLProps<HTMLElement>) =>
+      interactions.getFloatingProps({
+        ...userProps,
+        style: {
+          ...floating.floatingStyles,
+          ...userProps?.style,
+        },
+      }),
+    [floating.floatingStyles, interactions],
+  );
+
+  return React.useMemo(
+    () => ({
+      open,
+      setOpen,
+      ...interactions,
+      getFloatingProps,
+      ...floating,
+    }),
+    [open, setOpen, interactions, getFloatingProps, floating],
+  );
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * A utility component to help with positioning of floating content.
+ * Built on top of [`floating-ui`](https://floating-ui.com/)
+ */
+export const Popover = React.forwardRef((props, forwardedRef) => {
+  const {
+    children,
+    content,
+    className,
+    applyBackground,
+    portal = true,
+    ...rest
+  } = props;
+
+  const popover = usePopover(props);
+  const portalTo = usePortalTo(portal);
 
   const contentBox = (
     <FloatingFocusManager
-      context={floating.context}
+      context={popover.context}
       modal={false}
       initialFocus={-1}
       returnFocus
@@ -168,18 +209,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       <Box
         className={cx('iui-popover', className)}
         data-iui-apply-background={applyBackground ? true : undefined}
-        style={{
-          ...floating.floatingStyles,
-          ...(matchWidth
-            ? {
-                minInlineSize: triggerWidth,
-                maxInlineSize: `min(${triggerWidth * 2}px, 90vw)`,
-              }
-            : null),
-          ...style,
-        }}
-        {...getFloatingProps(rest)}
-        ref={useMergedRefs(floating.refs.setFloating, forwardedRef)}
+        {...popover.getFloatingProps(rest)}
+        ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
       >
         {content}
       </Box>
@@ -190,15 +221,14 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     <>
       {React.isValidElement(children)
         ? React.cloneElement(children as JSX.Element, {
-            ...getReferenceProps((children as JSX.Element).props),
+            ...popover.getReferenceProps((children as JSX.Element).props),
             ref: mergeRefs(
-              floating.refs.setReference,
-              triggerCallbackRef,
+              popover.refs.setReference,
               (children as any).ref, // eslint-disable-line @typescript-eslint/no-explicit-any
             ),
           })
         : null}
-      {open
+      {popover.open
         ? portalTo
           ? ReactDOM.createPortal(contentBox, portalTo)
           : contentBox
@@ -224,18 +254,4 @@ const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
   }
 
   return typeof portal.to === 'function' ? portal.to() : portal.to;
-};
-
-// ----------------------------------------------------------------------------
-
-/** Returns a callback ref and a state variable that contains the width. */
-const useTriggerWidth = () => {
-  const [width, setWidth] = React.useState(0);
-  const triggerRef = React.useCallback((element: HTMLElement | null) => {
-    if (element) {
-      setWidth(element.offsetWidth);
-    }
-  }, []);
-
-  return [width, triggerRef] as const;
 };
