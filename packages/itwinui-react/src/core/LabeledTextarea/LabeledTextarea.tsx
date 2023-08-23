@@ -3,13 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, useId, Box, Icon } from '../utils/index.js';
+import { Icon } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
-import { Label } from '../Label/Label.js';
-import { StatusMessage } from '../StatusMessage/StatusMessage.js';
-import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
+import { LabeledInput } from '../LabeledInput/index.js';
 
 type LabeledTextareaProps = {
   /**
@@ -63,73 +61,12 @@ type LabeledTextareaProps = {
  *  status='negative'
  * />
  */
-export const LabeledTextarea = React.forwardRef((props, ref) => {
-  const uid = useId();
-
-  const {
-    disabled = false,
-    label,
-    message,
-    status,
-    displayStyle = 'default',
-    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
-    svgIcon,
-    required = false,
-    id = uid,
-    wrapperProps,
-    labelProps,
-    messageContentProps,
-    iconProps,
-    ...textareaProps
-  } = props;
-
-  const icon = svgIcon ?? (status && StatusIconMap[status]());
-  const iconFill = !svgIcon ? status : undefined;
-
+export const LabeledTextarea = React.forwardRef((props, forwardedRef) => {
   return (
-    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
-      {label && (
-        <Label
-          as='label'
-          required={required}
-          disabled={disabled}
-          htmlFor={id}
-          {...labelProps}
-        >
-          {label}
-        </Label>
-      )}
-
-      <InputWithDecorations status={status}>
-        <Box
-          as='textarea'
-          required={required}
-          disabled={disabled}
-          data-iui-status={status}
-          rows={3}
-          {...textareaProps}
-          ref={ref}
-        />
-        {iconDisplayStyle === 'inline' && (
-          <Icon fill={iconFill} padded {...iconProps}>
-            {icon}
-          </Icon>
-        )}
-      </InputWithDecorations>
-
-      {typeof message === 'string' || !!icon ? (
-        <StatusMessage
-          status={status}
-          startIcon={displayStyle === 'default' ? icon : undefined}
-          iconProps={iconProps}
-          contentProps={messageContentProps}
-        >
-          {message}
-        </StatusMessage>
-      ) : (
-        message
-      )}
-    </InputGrid>
+    // ref types don't match but it's internal, so ts-ignore is ok here
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <LabeledInput as='textarea' rows={3} ref={forwardedRef} {...props} />
   );
 }) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;
 
