@@ -121,12 +121,10 @@ export const usePopover = (options: PopoverOptions) => {
       middleware.shift && shift(),
       matchWidth &&
         size({
-          apply: ({ rects, availableWidth, elements }) => {
+          apply: ({ rects, elements }) => {
             Object.assign(elements.floating.style, {
               minInlineSize: `${rects.reference.width}px`,
-              maxInlineSize: `min(${
-                rects.reference.width * 2
-              }px, ${availableWidth})`,
+              maxInlineSize: `min(${rects.reference.width * 2}px, 90vw)`,
             });
           },
         } as SizeOptions),
