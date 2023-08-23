@@ -3,8 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, useLatestRef } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import {
+  Popover,
+  useLatestRef,
+  useMergedRefs,
+  usePopover,
+  Portal,
+  cloneElementWithRef,
+} from '../utils/index.js';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
 export type DropdownMenuProps = {
@@ -22,7 +32,12 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<React.ComponentProps<typeof Popover>, 'content'>;
+} & Pick<
+  React.ComponentProps<typeof Popover>,
+  'visible' | 'onToggleVisible' | 'placement' | 'matchWidth'
+> &
+  React.ComponentPropsWithoutRef<'ul'> &
+  Pick<PortalProps, 'portal'>;
 
 /**
  * Dropdown menu component.
@@ -46,13 +61,13 @@ export type DropdownMenuProps = {
 export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   const {
     menuItems,
-    className,
-    style,
+    children,
     role = 'menu',
     visible: visibleProp,
     placement = 'bottom-start',
+    matchWidth = false,
     onToggleVisible,
-    id,
+    portal = true,
     ...rest
   } = props;
 
@@ -70,19 +85,32 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     return menuItems;
   }, [menuItems, close]);
 
+  const popover = usePopover({
+    visible: visibleProp ?? visible,
+    onToggleVisible: onToggleVisible ?? setVisible,
+    placement,
+    matchWidth,
+  });
+
+  const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
+
   return (
-    <Popover
-      content={
-        <Menu className={className} style={style} role={role} id={id}>
-          {menuContent}
-        </Menu>
-      }
-      visible={visibleProp ?? visible}
-      onToggleVisible={onToggleVisible ?? setVisible}
-      placement={placement}
-      ref={forwardedRef}
-      {...rest}
-    />
+    <>
+      {cloneElementWithRef(children, (children) => ({
+        ...popover.getReferenceProps(children.props),
+        ref: popover.refs.setReference,
+      }))}
+      {popover.open && (
+        <Portal portal={portal}>
+          <Menu
+            {...popover.getFloatingProps({ role, ...rest })}
+            ref={popoverRef}
+          >
+            {menuContent}
+          </Menu>
+        </Portal>
+      )}
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
 
