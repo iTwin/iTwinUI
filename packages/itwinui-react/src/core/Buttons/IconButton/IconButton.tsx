@@ -4,9 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { VisuallyHidden, Popover, Box, ButtonBase } from '../../utils/index.js';
+import { VisuallyHidden, Box, ButtonBase } from '../../utils/index.js';
 import type { ButtonProps } from '../Button/Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
+import { Tooltip } from '../../Tooltip/Tooltip.js';
 
 export type IconButtonProps = {
   /**
@@ -78,18 +79,9 @@ const IconButtonTooltip = (props: {
   const { label, children } = props;
 
   return label ? (
-    <Popover
-      middleware={{ offset: 4 }}
-      hover
-      // aria={{ content: null }}
-      content={
-        <Box aria-hidden='true' className='iui-tooltip'>
-          {label}
-        </Box>
-      }
-    >
-      {children}
-    </Popover>
+    <Tooltip content={label} aria-hidden>
+      {React.cloneElement(children, { 'aria-describedby': undefined })}
+    </Tooltip>
   ) : (
     children
   );
