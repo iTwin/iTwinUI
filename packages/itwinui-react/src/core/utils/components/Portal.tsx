@@ -18,7 +18,7 @@ export type PortalProps = React.PropsWithChildren<{
    *
    * Otherwise, it will portal to the element passed to `to`.
    */
-  portal: boolean | { to: HTMLElement | (() => HTMLElement) };
+  portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
 }>;
 
 // ----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ export type PortalProps = React.PropsWithChildren<{
  *
  * @private
  */
-export const Portal = ({ portal, children }: PortalProps) => {
+export const Portal = ({ portal = true, children }: PortalProps) => {
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
 
@@ -45,7 +45,7 @@ export const Portal = ({ portal, children }: PortalProps) => {
 
 // ----------------------------------------------------------------------------
 
-const usePortalTo = (portal: PortalProps['portal']) => {
+const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
 
   if (typeof portal === 'boolean') {
