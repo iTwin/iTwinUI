@@ -13,7 +13,7 @@ import {
 import { useCallback, useMemo, useState } from 'react';
 import type {
   CellProps,
-  CellRendererProps,
+  // CellRendererProps,
   Column,
   Row,
   TableInstance,
@@ -106,10 +106,13 @@ const App = () => {
           disableToggleVisibility: true,
           disableReordering: true,
           width: 200,
-          sticky: 'left',
+          testing1: (props: any) => <div>{props}</div>,
+          // sticky: 'left',
           // testing1: '',
-          testing1: (props) => <div></div>,
+          // testig
+          // testing1: (props) => <div></div>,
         },
+        // {},
         // {
         //   id: 'price',
         //   Header: 'Price',
@@ -197,11 +200,11 @@ const App = () => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
-    return {
-      status: row.original.status,
-    };
-  }, []);
+  // const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
+  //   return {
+  //     status: row.original.status,
+  //   };
+  // }, []);
 
   const [globalFilterValue, setGlobalFilterValue] = useState('');
 
