@@ -103,9 +103,9 @@ const App = () => {
           Header: 'Product',
           accessor: 'product',
           Filter: tableFilters.TextFilter(),
-          disableToggleVisibility: true,
-          disableReordering: true,
-          width: 200,
+          // disableToggleVisibility: true,
+          // disableReordering: true,
+          // width: 200,
           testing1: (props: CellProps<TableStoryDataType>) => (
             <div>{`${props}`}</div>
           ),
@@ -209,6 +209,9 @@ const App = () => {
   // }, []);
 
   const [globalFilterValue, setGlobalFilterValue] = useState('');
+
+  let testing0: TableStoryDataType = { 1: 'q' };
+  let testing1: Record<string, any> = testing0;
 
   return (
     <div
