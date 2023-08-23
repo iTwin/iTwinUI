@@ -4,9 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
-import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 import {
   useFloating,
   useClick,
@@ -24,24 +22,21 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
-import {
-  Box,
-  getDocument,
-  mergeRefs,
-  useIsClient,
-  useMergedRefs,
-} from '../index.js';
+import { Box, mergeRefs, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
+import { Portal } from './Portal.js';
+import type { PortalProps } from './Portal.js';
 
 type PopoverOptions = {
   /**
-   *
-   */
-  placement?: Placement;
-  /**
-   *
+   * Controlled flag for whether the popover is visible.
    */
   visible?: boolean;
+  /**
+   * Placement of the popover content.
+   * @default 'bottom-start'
+   */
+  placement?: Placement;
   /**
    *
    */
@@ -89,24 +84,15 @@ type PopoverOptions = {
 };
 
 type PopoverOwnProps = {
-  /**
-   * Controlled flag for whether the popover is visible.
-   */
-  visible?: boolean;
-  /**
-   * Placement of the popover content.
-   * @default 'bottom-start'
-   */
-  placement?: Placement;
   content?: React.ReactNode;
   children?: React.ReactNode;
   applyBackground?: boolean;
-  portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
+  portal?: PortalProps['portal'];
 };
 
 // ----------------------------------------------------------------------------
 
-const usePopover = (options: PopoverOptions) => {
+export const usePopover = (options: PopoverOptions) => {
   const {
     reference,
     onClickOutsideClose,
@@ -188,34 +174,37 @@ const usePopover = (options: PopoverOptions) => {
  */
 export const Popover = React.forwardRef((props, forwardedRef) => {
   const {
+    portal = true,
+    //
+    // popover options
+    visible,
+    placement,
+    onToggleVisible,
+    reference,
+    matchWidth,
+    middleware,
+    autoUpdateOptions,
+    onClickOutsideClose,
+    //
+    // dom props
     children,
     content,
     className,
     applyBackground,
-    portal = true,
     ...rest
   } = props;
 
-  const popover = usePopover(props);
-  const portalTo = usePortalTo(portal);
-
-  const contentBox = (
-    <FloatingFocusManager
-      context={popover.context}
-      modal={false}
-      initialFocus={-1}
-      returnFocus
-    >
-      <Box
-        className={cx('iui-popover', className)}
-        data-iui-apply-background={applyBackground ? true : undefined}
-        {...popover.getFloatingProps(rest)}
-        ref={useMergedRefs(popover.refs.setFloating, forwardedRef)}
-      >
-        {content}
-      </Box>
-    </FloatingFocusManager>
-  );
+  const popover = usePopover({
+    visible,
+    placement,
+    onToggleVisible,
+    reference,
+    matchWidth,
+    middleware,
+    autoUpdateOptions,
+    onClickOutsideClose,
+  });
+  const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 
   return (
     <>
@@ -228,30 +217,28 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
             ),
           })
         : null}
-      {popover.open
-        ? portalTo
-          ? ReactDOM.createPortal(contentBox, portalTo)
-          : contentBox
-        : null}
+
+      {popover.open ? (
+        <Portal portal={portal}>
+          <FloatingFocusManager
+            context={popover.context}
+            modal={false}
+            initialFocus={-1}
+            returnFocus
+          >
+            <Box
+              className={cx('iui-popover', className)}
+              data-iui-apply-background={applyBackground ? true : undefined}
+              {...popover.getFloatingProps(rest)}
+              ref={popoverRef}
+            >
+              {content}
+            </Box>
+          </FloatingFocusManager>
+        </Portal>
+      ) : null}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverOwnProps & PopoverOptions>;
 
 export default Popover;
-
-// ----------------------------------------------------------------------------
-
-const usePortalTo = (portal: NonNullable<PopoverOwnProps['portal']>) => {
-  const isClient = useIsClient();
-  const themeInfo = React.useContext(ThemeContext);
-
-  if (!isClient) {
-    return null;
-  }
-
-  if (typeof portal === 'boolean') {
-    return portal ? themeInfo?.portalContainer ?? getDocument()?.body : null;
-  }
-
-  return typeof portal.to === 'function' ? portal.to() : portal.to;
-};
