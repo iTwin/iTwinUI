@@ -22,7 +22,7 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
-import { Box, mergeRefs, useMergedRefs } from '../index.js';
+import { Box, cloneElementWithRef, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 import { Portal } from './Portal.js';
 import type { PortalProps } from './Portal.js';
@@ -208,15 +208,10 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      {React.isValidElement(children)
-        ? React.cloneElement(children as JSX.Element, {
-            ...popover.getReferenceProps((children as JSX.Element).props),
-            ref: mergeRefs(
-              popover.refs.setReference,
-              (children as any).ref, // eslint-disable-line @typescript-eslint/no-explicit-any
-            ),
-          })
-        : null}
+      {cloneElementWithRef(children, (children) => ({
+        ...popover.getReferenceProps(children.props),
+        ref: popover.refs.setReference,
+      }))}
 
       {popover.open ? (
         <Portal portal={portal}>
