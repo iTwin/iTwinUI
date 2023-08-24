@@ -8,7 +8,7 @@ import { Alert } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div>
-      <Alert isSticky>
+      <Alert.Wrapper isSticky>
         <Alert.Icon />
         <Alert.Message>
           This is a sticky alert
@@ -17,7 +17,7 @@ export default () => {
           </Alert.Action>
         </Alert.Message>
         <Alert.CloseButton onClick={() => console.log('CLOSED')} />
-      </Alert>
+      </Alert.Wrapper>
       <p>Page content.</p>
     </div>
   );

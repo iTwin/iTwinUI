@@ -11,6 +11,7 @@ import {
   StatusIconMap,
   SvgCloseSmall,
   Box,
+  ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
@@ -25,9 +26,6 @@ const AlertContext = React.createContext<
   | undefined
 >(undefined);
 
-// ----------------------------------------------------------------------------
-// Alert component
-
 type AlertOwnProps = {
   /**
    * Type of the alert.
@@ -41,7 +39,48 @@ type AlertOwnProps = {
   isSticky?: boolean;
 };
 
-const AlertComponent = React.forwardRef((props, ref) => {
+type AlertLegacyProps = {
+  /** @deprecated Use `Alert.Action` subcomponent. */
+  clickableText?: React.ReactNode;
+  /** @deprecated Use `Alert.Action` subcomponent. */
+  clickableTextProps?: React.ComponentPropsWithoutRef<'a'>;
+  /** @deprecated Use `Alert.CloseButton` subcomponent. */
+  onClose?: () => void;
+};
+
+// ----------------------------------------------------------------------------
+// Alert component
+
+const AlertComponent = React.forwardRef((props, forwardedRef) => {
+  const {
+    children,
+    type = 'informational',
+    isSticky = false,
+    clickableText,
+    clickableTextProps,
+    onClose,
+    ...rest
+  } = props;
+
+  return (
+    <Alert.Wrapper type={type} isSticky={isSticky} ref={forwardedRef} {...rest}>
+      <Alert.Icon />
+      <Alert.Message>
+        {children}
+        {clickableText ? (
+          <Alert.Action {...clickableTextProps}>{clickableText}</Alert.Action>
+        ) : null}
+      </Alert.Message>
+      {onClose ? <Alert.CloseButton onClick={onClose} /> : null}
+    </Alert.Wrapper>
+  );
+}) as PolymorphicForwardRefComponent<'div', AlertOwnProps & AlertLegacyProps>;
+AlertComponent.displayName = 'Alert';
+
+// ----------------------------------------------------------------------------
+// Alert.Wrapper component
+
+const AlertWrapper = React.forwardRef((props, ref) => {
   const {
     children,
     className,
@@ -62,7 +101,7 @@ const AlertComponent = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', AlertOwnProps>;
-AlertComponent.displayName = 'Alert';
+AlertWrapper.displayName = 'Alert.Wrapper';
 
 // ----------------------------------------------------------------------------
 // Alert.Icon component
@@ -95,14 +134,14 @@ const AlertAction = React.forwardRef((props, ref) => {
   const { children, className, ...rest } = props;
 
   return (
-    <Box
+    <ButtonBase
       as={(!!props.href ? 'a' : 'button') as 'a'}
       className={cx('iui-alert-link', className)}
       ref={ref}
       {...rest}
     >
       {children}
-    </Box>
+    </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'a'>;
 AlertAction.displayName = 'Alert.Action';
@@ -130,17 +169,15 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
 /**
  * A small box to quickly grab user attention and communicate a brief message
  * @example
- * <Alert>
- *  <Alert.Message>This is an alert.</Alert.Message>
- * </Alert>
+ * <Alert>This is an alert.</Alert>
  * @example
- * <Alert type='informational'>
+ * <Alert.Wrapper type='informational'>
  *  <Alert.Icon />
  *  <Alert.Message>This is an informational alert.</Alert.Message>
  *  <Alert.CloseButton onClick={() => {}} />
- * </Alert>
+ * </Alert.Wrapper>
  * @example
- * <Alert type='positive'>
+ * <Alert.Wrapper type='positive'>
  *  <Alert.Icon>
  *    <SvgSmileyHappy />
  *  </Alert.Icon>
@@ -151,9 +188,13 @@ AlertCloseButton.displayName = 'Alert.CloseButton';
  *  <Alert.CloseButton onClick={() => {}}>
  *    <SvgCollapse />
  *  </Alert.CloseButton>
- * </Alert>
+ * </Alert.Wrapper>
  */
 export const Alert = Object.assign(AlertComponent, {
+  /**
+   *  Alert wrapper subcomponent
+   */
+  Wrapper: AlertWrapper,
   /**
    * 	Alert icon subcomponent
    */
