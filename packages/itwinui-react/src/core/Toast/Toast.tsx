@@ -12,7 +12,6 @@ import {
   Box,
   useSafeContext,
   ButtonBase,
-  Icon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
@@ -40,14 +39,6 @@ export type ToastProps = {
    * Passes props to content
    */
   contentProps?: React.ComponentPropsWithoutRef<'div'>;
-  /**
-   * Passes props to status area
-   */
-  statusAreaProps?: React.ComponentPropsWithoutRef<'div'>;
-  /**
-   * Svg icon shown on the left of toast message.
-   */
-  startIcon?: React.ReactNode;
   /**
    * Category of the Toast, which controls the border color, as well as the category icon.
    */
@@ -109,9 +100,7 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
-    startIcon,
     contentProps,
-    statusAreaProps,
   } = props;
 
   const closeTimeout = React.useRef(0);
@@ -239,9 +228,7 @@ export const Toast = (props: ToastProps) => {
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
-            startIcon={startIcon}
             contentProps={contentProps}
-            statusAreaProps={statusAreaProps}
           />
         </div>
       </Box>
@@ -268,8 +255,6 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     onClose,
     className,
     contentProps,
-    startIcon,
-    statusAreaProps,
     ...rest
   } = props;
 
@@ -277,17 +262,8 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
 
   return (
     <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
-      <Box
-        {...statusAreaProps}
-        className={cx('iui-status-area', statusAreaProps?.className)}
-      >
-        {!!startIcon ? (
-          <Icon>{startIcon}</Icon>
-        ) : (
-          <Icon fill={category}>
-            <StatusIcon aria-hidden />
-          </Icon>
-        )}
+      <Box className='iui-status-area'>
+        {<StatusIcon className='iui-icon' />}
       </Box>
       <Box
         {...contentProps}

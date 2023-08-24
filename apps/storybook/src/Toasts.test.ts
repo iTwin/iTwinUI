@@ -11,7 +11,6 @@ describe('Toasts', () => {
     'Positive',
     'Warning',
     'Position Changed',
-    'Custom Icon',
   ];
 
   tests.forEach((testName) => {
