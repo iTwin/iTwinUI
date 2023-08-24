@@ -21,7 +21,7 @@ export default {
 
 export const Informational: Story<AlertProps> = (args) => {
   return (
-    <Alert type='informational' {...args}>
+    <Alert.Wrapper type='informational' {...args}>
       <Alert.Icon />
       <Alert.Message>
         This is an informational message.
@@ -30,7 +30,7 @@ export const Informational: Story<AlertProps> = (args) => {
         </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 
@@ -41,7 +41,7 @@ Informational.args = {
 
 export const Positive: Story<AlertProps> = (args) => {
   return (
-    <Alert type='positive' {...args}>
+    <Alert.Wrapper type='positive' {...args}>
       <Alert.Icon />
       <Alert.Message>
         This is a positive message.
@@ -50,7 +50,7 @@ export const Positive: Story<AlertProps> = (args) => {
         </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 
@@ -61,7 +61,7 @@ Positive.args = {
 
 export const Warning: Story<AlertProps> = (args) => {
   return (
-    <Alert type='warning' {...args}>
+    <Alert.Wrapper type='warning' {...args}>
       <Alert.Icon />
       <Alert.Message>
         This is a warning message.
@@ -70,7 +70,7 @@ export const Warning: Story<AlertProps> = (args) => {
         </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 
@@ -81,7 +81,7 @@ Warning.args = {
 
 export const Negative: Story<AlertProps> = (args) => {
   return (
-    <Alert type='negative' {...args}>
+    <Alert.Wrapper type='negative' {...args}>
       <Alert.Icon />
       <Alert.Message>
         This is a negative message.
@@ -90,7 +90,7 @@ export const Negative: Story<AlertProps> = (args) => {
         </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={action('Close!')} />
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 
@@ -109,7 +109,7 @@ export const Sticky: Story<AlertProps> = (args) => {
         border: 'solid 0.5px',
       }}
     >
-      <Alert type='informational' isSticky={true} {...args}>
+      <Alert.Wrapper type='informational' isSticky={true} {...args}>
         <Alert.Icon />
         <Alert.Message>
           This is sticky!
@@ -118,7 +118,7 @@ export const Sticky: Story<AlertProps> = (args) => {
           </Alert.Action>
         </Alert.Message>
         <Alert.CloseButton onClick={action('Close!')} />
-      </Alert>
+      </Alert.Wrapper>
       <p style={{ margin: 0, padding: '8px' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -171,10 +171,10 @@ Sticky.args = {
 
 export const Empty: Story<AlertProps> = (args) => {
   return (
-    <Alert type='informational' {...args}>
+    <Alert.Wrapper type='informational' {...args}>
       <Alert.Icon />
       <Alert.Message>This is an empty info message.</Alert.Message>
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 
@@ -185,7 +185,7 @@ Empty.args = {
 
 export const CustomIcon: Story<AlertProps> = (args) => {
   return (
-    <Alert type='informational' {...args}>
+    <Alert.Wrapper type='informational' {...args}>
       <Alert.Icon>
         <SvgSmileyHappy />
       </Alert.Icon>
@@ -193,7 +193,7 @@ export const CustomIcon: Story<AlertProps> = (args) => {
       <Alert.CloseButton onClick={action('Close!')}>
         <SvgPlaceholder />
       </Alert.CloseButton>
-    </Alert>
+    </Alert.Wrapper>
   );
 };
 

@@ -7,7 +7,7 @@ import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Alert type='negative' style={{ minWidth: 'min(100%, 350px)' }}>
+    <Alert.Wrapper type='negative' style={{ minWidth: 'min(100%, 350px)' }}>
       <Alert.Icon />
       <Alert.Message>
         This is a negative alert
@@ -16,6 +16,6 @@ export default () => {
         </Alert.Action>
       </Alert.Message>
       <Alert.CloseButton onClick={() => console.log('CLOSED')} />
-    </Alert>
+    </Alert.Wrapper>
   );
 };
