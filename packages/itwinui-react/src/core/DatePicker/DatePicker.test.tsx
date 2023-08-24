@@ -71,10 +71,10 @@ it('should apply all custom props', () => {
       onChange={jest.fn()}
       calendarMonthYearProps={{ className: 'some-calendar' }}
       calendarMonthProps={{ className: 'some-month' }}
-      daysOfWeekProps={{ className: 'some-day-of-week' }}
-      weekProps={{ className: 'some-week' }}
+      calendarWeekDayProps={{ className: 'some-day-of-week' }}
+      calendarWeekProps={{ className: 'some-week' }}
       calendarProps={{ className: 'some-listbox' }}
-      dayProps={{ className: 'some-day' }}
+      calendarDayProps={{ className: 'some-day' }}
     />,
   );
   assertMonthYear(container, 'January', '2020');
