@@ -15,7 +15,7 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
-} from 'react-table';
+} from '../../types/react-table-types.js';
 import type {
   CellProps,
   HeaderGroup,
@@ -25,7 +25,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
-} from 'react-table';
+} from '../../types/react-table-types.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useGlobals,
