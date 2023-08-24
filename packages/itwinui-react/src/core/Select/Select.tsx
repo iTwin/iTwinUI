@@ -8,10 +8,12 @@ import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
-  Popover,
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  usePopover,
+  Portal,
+  useMergedRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
@@ -228,8 +230,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     ...rest
   } = props;
 
-  const [isOpenState, setIsOpen] = React.useState(false);
-  const isOpen = isOpenState;
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
@@ -241,10 +242,9 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   }, []);
 
   const onHideHandler = React.useCallback(() => {
-    // (instance: PopoverInstance) => {
     setIsOpen(false);
+    // TODO: fix this
     selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-    // onHide?.(instance);
   }, []);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -335,32 +335,23 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
+  const popover = usePopover({
+    visible: isOpen,
+    onToggleVisible: (open) => (open ? onShowHandler() : onHideHandler()),
+    matchWidth: true,
+  });
+
   return (
-    <Box
-      className={cx('iui-input-with-icon', className)}
-      style={style}
-      {...rest}
-    >
-      <Popover
-        content={
-          <Menu
-            role='listbox'
-            className={cx('iui-scroll', menuClassName)}
-            style={menuStyle}
-            id={`${uid}-menu`}
-            key={`${uid}-menu`}
-          >
-            {menuItems}
-          </Menu>
-        }
-        matchWidth
-        onToggleVisible={(open) => (open ? onShowHandler : onHideHandler)}
-        visible={isOpen}
+    <>
+      <Box
+        className={cx('iui-input-with-icon', className)}
+        style={style}
+        {...rest}
+        ref={popover.refs.setPositionReference}
       >
         <Box
           tabIndex={0}
           role='combobox'
-          ref={selectRef}
           data-iui-size={size}
           onClick={() => !disabled && setIsOpen((o) => !o)}
           onKeyDown={(e) => !disabled && onKeyDown(e)}
@@ -369,7 +360,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
-          {...triggerProps}
+          {...popover.getReferenceProps(triggerProps)}
+          ref={useMergedRefs(selectRef, popover.refs.setReference)}
           className={cx(
             'iui-select-button',
             {
@@ -404,25 +396,41 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </Box>
-      </Popover>
-      <Box
-        as='span'
-        aria-hidden
-        ref={toggleButtonRef}
-        className={cx('iui-end-icon', {
-          'iui-actionable': !disabled,
-          'iui-disabled': disabled,
-          'iui-open': isOpen,
-        })}
-        onClick={() => !disabled && setIsOpen((o) => !o)}
-      >
-        <SvgCaretDownSmall />
+        <Box
+          as='span'
+          aria-hidden
+          ref={toggleButtonRef}
+          className={cx('iui-end-icon', {
+            'iui-actionable': !disabled,
+            'iui-disabled': disabled,
+            'iui-open': isOpen,
+          })}
+          onClick={() => !disabled && setIsOpen((o) => !o)}
+        >
+          <SvgCaretDownSmall />
+        </Box>
+
+        {multiple ? (
+          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+        ) : null}
       </Box>
 
-      {multiple ? (
-        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-      ) : null}
-    </Box>
+      {popover.open && (
+        <Portal>
+          <Menu
+            role='listbox'
+            className={cx('iui-scroll', menuClassName)}
+            style={menuStyle}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+            {...popover.getFloatingProps()}
+            ref={popover.refs.setFloating}
+          >
+            {menuItems}
+          </Menu>
+        </Portal>
+      )}
+    </>
   );
 };
 
