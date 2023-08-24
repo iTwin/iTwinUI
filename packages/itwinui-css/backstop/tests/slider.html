@@ -57,99 +57,105 @@
     <h2>Horizontal</h2>
     <section id="demo-horizontal">
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="horizontal"
       >
-        <div
-          class="iui-slider-track"
-          style="width: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume setting"
-          aria-orientation="horizontal"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          style="left: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-orientation="horizontal"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            style="left: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="horizontal"
       >
-        <div
-          class="iui-slider-track"
-          style="width: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          aria-label="Volume setting"
-          aria-orientation="horizontal"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          aria-disabled="true"
-          style="left: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            aria-label="Volume setting"
+            aria-orientation="horizontal"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            aria-disabled="true"
+            style="left: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="horizontal"
         data-iui-disabled="true"
       >
-        <div
-          class="iui-slider-track"
-          style="width: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          aria-label="Volume setting"
-          aria-orientation="horizontal"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          aria-disabled="true"
-          style="left: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            aria-label="Volume setting"
+            aria-orientation="horizontal"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            aria-disabled="true"
+            style="left: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
     </section>
     <br />
 
-    <h3>With container</h3>
-    <section id="demo-horizontal-container">
-      <div class="iui-slider-container">
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="horizontal"
-        >
+    <h3>With extras</h3>
+    <section id="demo-horizontal-extras">
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="horizontal"
+      >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="width: 50%;"
@@ -189,7 +195,7 @@
 
       <div
         class="iui-slider-container"
-        aria-orientation="horizontal"
+        data-iui-orientation="horizontal"
       >
         <span class="iui-slider-min">
           <svg-sound-mute
@@ -197,10 +203,7 @@
             aria-hidden="true"
           ></svg-sound-mute>
         </span>
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="horizontal"
-        >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="width: 50%;"
@@ -246,15 +249,12 @@
 
       <div
         class="iui-slider-container"
-        aria-orientation="horizontal"
+        data-iui-orientation="horizontal"
       >
         <span class="iui-slider-min">
           0
         </span>
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="horizontal"
-        >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="width: 50%;"
@@ -297,16 +297,13 @@
 
       <div
         class="iui-slider-container"
-        aria-orientation="horizontal"
+        data-iui-orientation="horizontal"
+        data-iui-disabled="true"
       >
         <span class="iui-slider-min">
           0
         </span>
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="horizontal"
-          data-iui-disabled="true"
-        >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="width: 50%;"
@@ -352,99 +349,105 @@
     <h2>Vertical</h2>
     <section id="demo-vertical">
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="vertical"
       >
-        <div
-          class="iui-slider-track"
-          style="height: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          tabindex="0"
-          aria-label="Volume setting"
-          aria-orientation="vertical"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          style="bottom: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-orientation="vertical"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            style="bottom: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="vertical"
       >
-        <div
-          class="iui-slider-track"
-          style="height: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          aria-label="Volume setting"
-          aria-orientation="vertical"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          aria-disabled="true"
-          style="bottom: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            aria-label="Volume setting"
+            aria-orientation="vertical"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            aria-disabled="true"
+            style="bottom: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
-        class="iui-slider iui-progress-slider"
+        class="iui-slider-container"
         data-iui-orientation="vertical"
         data-iui-disabled="true"
       >
-        <div
-          class="iui-slider-track"
-          style="height: 50%;"
-        ></div>
-        <div
-          class="iui-slider-thumb"
-          role="slider"
-          aria-label="Volume setting"
-          aria-orientation="vertical"
-          aria-valuemin="0"
-          aria-valuenow="50"
-          aria-valuemax="100"
-          aria-disabled="true"
-          style="bottom: 50%;"
-          id="test-slider-1"
-        ></div>
-        <output
-          class="iui-tooltip"
-          style="left: 50%;"
-        >
-          50
-        </output>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            aria-label="Volume setting"
+            aria-orientation="vertical"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            aria-disabled="true"
+            style="bottom: 50%;"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
     </section>
     <br />
 
-    <h3>With container</h3>
-    <section id="demo-vertical-container">
-      <div class="iui-slider-container">
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="vertical"
-        >
+    <h3>With extras</h3>
+    <section id="demo-vertical-extras">
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="vertical"
+      >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="height: 50%;"
@@ -484,7 +487,7 @@
 
       <div
         class="iui-slider-container"
-        aria-orientation="vertical"
+        data-iui-orientation="vertical"
       >
         <span class="iui-slider-min">
           <svg-sound-mute
@@ -492,10 +495,7 @@
             aria-hidden="true"
           ></svg-sound-mute>
         </span>
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="vertical"
-        >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="height: 50%;"
@@ -541,15 +541,12 @@
 
       <div
         class="iui-slider-container"
-        aria-orientation="vertical"
+        data-iui-orientation="vertical"
       >
         <span class="iui-slider-min">
           0
         </span>
-        <div
-          class="iui-slider iui-progress-slider"
-          data-iui-orientation="vertical"
-        >
+        <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
             style="height: 50%;"
@@ -590,7 +587,55 @@
         </span>
       </div>
 
-
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="vertical"
+        data-iui-disabled="true"
+      >
+        <span class="iui-slider-min">
+          0
+        </span>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            style="bottom: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            aria-disabled="true"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
+        <div class="iui-slider-ticks">
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
+        <span class="iui-slider-max">
+          100
+        </span>
+      </div>
     </section>
 
     <script>

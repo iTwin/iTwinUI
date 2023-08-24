@@ -5,96 +5,141 @@
 // #region Slider container
 .iui-slider-container {
   --_iui-slider-container-gap: var(--iui-size-s);
+  --_iui-slider-rail-color: var(--iui-color-border);
+  --_iui-slider-thumb-border-color: var(--iui-color-border-foreground);
+  --_iui-slider-thumb-color: var(--iui-color-background);
+  --_iui-slider-thumb-cursor: grab;
+  --_iui-slider-thumb-size: var(--iui-size-m);
   --_iui-slider-tick-size: var(--iui-size-s);
   --_iui-slider-tick-thickness: 1px;
+  --_iui-slider-track-color: var(--iui-color-border-accent);
+  --_iui-slider-track-thickness: calc(var(--_iui-slider-thumb-size) * 0.25);
 
   display: grid;
 
-  @supports selector(:has(+ *)) {
-    &:has(.iui-slider[data-iui-orientation='horizontal']) {
-      grid-template-columns: auto 1fr auto;
+  &[data-iui-orientation='horizontal'] {
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'min content max';
+    align-items: center;
 
-      .iui-slider {
-        grid-row: 1;
-        grid-column: 2;
-      }
+    .iui-slider-min,
+    .iui-slider-max {
+      align-items: center;
+    }
 
-      .iui-slider-min,
-      .iui-slider-max {
-        min-inline-size: var(--iui-size-l); // TODO: Can this be removed and use grid-template-columns instead?
-      }
+    .iui-slider-min {
+      margin-inline-end: var(--_iui-slider-container-gap);
+      justify-content: end;
+    }
 
-      .iui-slider-min {
-        grid-row: 1;
-        margin-inline-end: var(--_iui-slider-container-gap);
-        text-align: end;
-      }
+    .iui-slider-max {
+      margin-inline-start: var(--_iui-slider-container-gap);
+    }
 
-      .iui-slider-max {
-        grid-row: 1;
-        grid-column: 3;
-        margin-inline-start: var(--_iui-slider-container-gap);
-      }
+    .iui-slider-tick {
+      flex-direction: column;
+      inline-size: var(--_iui-slider-tick-thickness);
 
-      .iui-slider-ticks {
-        grid-row: 2;
-        grid-column: 2;
-      }
-
-      .iui-slider-tick {
-        flex-direction: column;
+      &::before {
         inline-size: var(--_iui-slider-tick-thickness);
-
-        &::before {
-          inline-size: var(--_iui-slider-tick-thickness);
-          block-size: var(--_iui-slider-tick-size);
-        }
+        block-size: var(--_iui-slider-tick-size);
       }
     }
 
-    &:has(.iui-slider[data-iui-orientation='vertical']) {
-      grid-template-rows: auto 1fr auto;
-      row-gap: var(
-        --_iui-slider-container-gap
-      ); // Use gap on vertical & margin on horizontal to avoid ticks conflicting with other content.
+    .iui-slider {
+      block-size: calc(var(--_iui-slider-thumb-size) + 2px);
+      touch-action: pan-x;
 
-      .iui-slider {
-        grid-row: 2;
-        grid-column: 1;
+      &::before {
+        grid-column-start: 1;
+        inline-size: 100%;
       }
+    }
 
-      .iui-slider-min {
-        grid-row: 3;
-      }
+    .iui-slider::before,
+    .iui-slider-track {
+      block-size: var(--_iui-slider-track-thickness);
+    }
 
-      .iui-slider-max {
-        grid-row: 1;
-        grid-column: 1;
-      }
+    .iui-slider-track {
+      grid-column-start: 1;
+    }
 
-      .iui-slider-min,
-      .iui-slider-max {
-        text-align: center;
-      }
+    .iui-slider-thumb {
+      transform: translateX(-50%);
+    }
+  }
 
-      .iui-slider-ticks {
-        grid-row: 2;
-        grid-column: 2;
-        flex-direction: column-reverse;
-      }
+  &[data-iui-orientation='vertical'] {
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'max'
+      'content'
+      'min';
+    justify-items: center;
 
-      .iui-slider-tick {
+    .iui-slider-min,
+    .iui-slider-max {
+      justify-content: center;
+    }
+
+    .iui-slider-min {
+      margin-block-start: var(--_iui-slider-container-gap);
+    }
+
+    .iui-slider-max {
+      margin-block-end: var(--_iui-slider-container-gap);
+    }
+
+    .iui-slider-ticks {
+      flex-direction: column-reverse;
+    }
+
+    .iui-slider-tick {
+      block-size: var(--_iui-slider-tick-thickness);
+
+      &::before {
+        inline-size: var(--_iui-slider-tick-size);
         block-size: var(--_iui-slider-tick-thickness);
-
-        &::before {
-          inline-size: var(--_iui-slider-tick-size);
-          block-size: var(--_iui-slider-tick-thickness);
-        }
       }
     }
 
-    &:has(.iui-slider[data-iui-disabled='true']) {
-      color: var(--iui-color-text-disabled);
+    .iui-slider {
+      inline-size: calc(var(--_iui-slider-thumb-size) + 2px);
+      touch-action: pan-y;
+
+      &::before {
+        grid-row-start: 1; // TODO: What should this be?
+        block-size: 100%;
+      }
+    }
+
+    .iui-slider::before,
+    .iui-slider-track {
+      inline-size: var(--_iui-slider-track-thickness);
+    }
+
+    .iui-slider-track {
+      align-self: end;
+    }
+
+    .iui-slider-thumb {
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  &[data-iui-disabled='true'] {
+    cursor: not-allowed;
+    color: var(--iui-color-text-disabled);
+
+    --_iui-slider-rail-color: var(--iui-color-background-disabled);
+    --_iui-slider-track-color: var(--iui-color-border);
+    @media (forced-colors: active) {
+      --_iui-slider-track-color: GrayText;
+    }
+
+    .iui-slider {
+      pointer-events: none;
     }
   }
 }
@@ -103,7 +148,6 @@
 .iui-slider-max {
   user-select: all;
   display: flex;
-  justify-content: center;
 
   svg {
     @include mixins.iui-icon-style('m');
@@ -112,7 +156,11 @@
 }
 
 .iui-slider-min {
-  grid-column: 1;
+  grid-area: min;
+}
+
+.iui-slider-max {
+  grid-area: max;
 }
 
 .iui-slider-ticks {
@@ -121,6 +169,9 @@
   pointer-events: none;
   justify-content: space-between;
   user-select: none;
+  grid-area: content;
+
+  display: none;
 }
 
 .iui-slider-tick {
@@ -143,18 +194,11 @@
 
 // #region Slider
 .iui-slider {
-  --_iui-slider-rail-color: var(--iui-color-border);
-  --_iui-slider-thumb-border-color: var(--iui-color-border-foreground);
-  --_iui-slider-thumb-color: var(--iui-color-background);
-  --_iui-slider-thumb-cursor: grab;
-  --_iui-slider-thumb-size: var(--iui-size-m);
-  --_iui-slider-track-color: var(--iui-color-border-accent);
-  --_iui-slider-track-thickness: calc(var(--_iui-slider-thumb-size) * 0.25);
-
   display: grid;
   position: relative;
   cursor: pointer;
   isolation: isolate;
+  grid-area: content;
 
   &.iui-grabbing {
     cursor: grabbing;
@@ -164,70 +208,9 @@
     content: '';
     display: flex;
     background-color: var(--_iui-slider-rail-color);
+    grid-area: inherit;
     @media (forced-colors: active) {
       --_iui-slider-rail-color: CanvasText;
-    }
-  }
-
-  &[data-iui-orientation='horizontal'] {
-    block-size: calc(var(--_iui-slider-thumb-size) + 2px);
-    touch-action: pan-x;
-
-    &::before,
-    .iui-slider-track {
-      block-size: var(--_iui-slider-track-thickness);
-    }
-
-    &::before {
-      grid-row: 2;
-      grid-column-start: 1;
-      inline-size: 100%;
-    }
-
-    .iui-slider-track {
-      grid-row: 2;
-      grid-column-start: 1;
-    }
-
-    .iui-slider-thumb {
-      transform: translateX(-50%);
-    }
-  }
-
-  &[data-iui-orientation='vertical'] {
-    inline-size: calc(var(--_iui-slider-thumb-size) + 2px);
-    touch-action: pan-y;
-
-    &::before,
-    .iui-slider-track {
-      inline-size: var(--_iui-slider-track-thickness);
-    }
-
-    &::before {
-      grid-column: 2;
-      grid-row-start: 1;
-      block-size: 100%;
-    }
-
-    .iui-slider-track {
-      grid-column: 2;
-      grid-row-start: 1;
-      align-self: end;
-    }
-
-    .iui-slider-thumb {
-      transform: translate(-50%, 50%);
-    }
-  }
-
-  &[data-iui-disabled='true'] {
-    cursor: not-allowed;
-    pointer-events: none;
-
-    --_iui-slider-rail-color: var(--iui-color-background-disabled);
-    --_iui-slider-track-color: var(--iui-color-border);
-    @media (forced-colors: active) {
-      --_iui-slider-track-color: GrayText;
     }
   }
 }
@@ -263,6 +246,7 @@
 .iui-slider-track {
   pointer-events: none;
   background-color: var(--_iui-slider-track-color);
+  grid-area: inherit;
 
   @media (forced-colors: active) {
     --_iui-slider-track-color: Highlight;
