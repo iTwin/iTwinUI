@@ -38,7 +38,10 @@ export type ToastProps = {
   /**
    * Passes props to content
    */
-  contentProps?: React.ComponentPropsWithoutRef<'div'>;
+  domProps?: {
+    toastProps?: React.ComponentProps<'div'>;
+    contentProps?: React.ComponentProps<'div'>;
+  };
   /**
    * Category of the Toast, which controls the border color, as well as the category icon.
    */
@@ -100,7 +103,7 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
-    contentProps,
+    domProps,
   } = props;
 
   const closeTimeout = React.useRef(0);
@@ -228,7 +231,7 @@ export const Toast = (props: ToastProps) => {
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
-            contentProps={contentProps}
+            domProps={domProps}
           />
         </div>
       </Box>
@@ -253,21 +256,29 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     link,
     hasCloseButton,
     onClose,
-    className,
-    contentProps,
+    domProps,
     ...rest
   } = props;
 
   const StatusIcon = StatusIconMap[category];
 
   return (
-    <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
+    <Box
+      as='div'
+      {...domProps?.toastProps}
+      className={cx(
+        `iui-toast iui-${category}`,
+        domProps?.toastProps?.className,
+      )}
+      {...rest}
+    >
       <Box className='iui-status-area'>
         {<StatusIcon className='iui-icon' />}
       </Box>
       <Box
-        {...contentProps}
-        className={cx('iui-message', contentProps?.className)}
+        as='div'
+        {...domProps?.contentProps}
+        className={cx('iui-message', domProps?.contentProps?.className)}
       >
         {content}
       </Box>

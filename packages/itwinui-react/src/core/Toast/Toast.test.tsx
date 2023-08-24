@@ -194,12 +194,17 @@ it('should pass content props correctly', () => {
         type='persisting'
         content='Job Processing Completed'
         category='positive'
-        contentProps={{ className: 'my-class', style: { color: 'red' } }}
+        domProps={{
+          toastProps: { className: 'my-toast', style: { color: 'blue' } },
+          contentProps: { className: 'my-class', style: { color: 'red' } },
+        }}
         id={1}
       />
     </ToastProvider>,
   );
 
-  const toast = container.querySelector('.iui-message.my-class');
-  expect(toast).toHaveStyle({ color: 'red' });
+  const toast = container.querySelector('.iui-toast.my-toast');
+  expect(toast).toHaveStyle({ color: 'blue' });
+  const content = container.querySelector('.iui-message.my-class');
+  expect(content).toHaveStyle({ color: 'red' });
 });
