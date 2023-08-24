@@ -77,7 +77,6 @@ ComboBoxRefsContext.displayName = 'ComboBoxRefsContext';
 type ComboBoxStateContextProps<T = unknown> = {
   isOpen: boolean;
   id: string;
-  minWidth: number;
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
   onClickHandler?: (prop: number) => void;

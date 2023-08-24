@@ -30,7 +30,7 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     { children, className, style, ...rest }: ComboBoxMenuProps,
     forwardedRef: React.Ref<HTMLUListElement>,
   ) => {
-    const { minWidth, id, filteredOptions, getMenuItem, focusedIndex } =
+    const { id, filteredOptions, getMenuItem, focusedIndex } =
       useSafeContext(ComboBoxStateContext);
     const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
@@ -64,10 +64,8 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     });
 
     const surfaceStyles = {
-      minInlineSize: minWidth,
-
       // set as constant because we don't want it shifting when items are unmounted
-      maxInlineSize: minWidth,
+      maxInlineSize: 0,
 
       // max-height must be on the outermost element for virtual scroll
       maxBlockSize: 'calc((var(--iui-component-height) - 1px) * 8.5)',
@@ -96,27 +94,17 @@ const VirtualizedComboBoxMenu = React.forwardRef(
 );
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
-  const { className, style, ...rest } = props;
-  const { minWidth, id, enableVirtualization } =
-    useSafeContext(ComboBoxStateContext);
+  const { className, ...rest } = props;
+  const { id, enableVirtualization } = useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
   const refs = useMergedRefs(menuRef, forwardedRef);
-
-  const styles = React.useMemo(
-    () => ({
-      minInlineSize: minWidth,
-      maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
-    }),
-    [minWidth],
-  );
 
   return (
     <>
       {!enableVirtualization ? (
         <Menu
           id={`${id}-list`}
-          style={{ ...styles, ...style }}
           setFocus={false}
           role='listbox'
           ref={refs}

@@ -14,19 +14,17 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
+  useMergedRefs,
+  usePopover,
+  Portal,
 } from '../utils/index.js';
-import type {
-  InputContainerProps,
-  CommonProps,
-  Popover,
-} from '../utils/index.js';
+import type { InputContainerProps, CommonProps } from '../utils/index.js';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
   ComboBoxRefsContext,
   ComboBoxStateContext,
 } from './helpers.js';
-import { ComboBoxDropdown } from './ComboBoxDropdown.js';
 import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
@@ -105,7 +103,7 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: React.ComponentProps<typeof Popover>;
+  dropdownMenuProps?: React.ComponentProps<'div'>;
   /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
@@ -177,8 +175,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     itemRenderer,
     enableVirtualization = false,
     multiple = false,
-    onShow,
-    onHide,
+    // onShow: onShowProp,
+    // onHide: onHideProp,
     ...rest
   } = props;
 
@@ -247,6 +245,16 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     },
   );
 
+  // const onShow = () => {
+  //   dispatch({ type: 'open' });
+  //   onShowProp?.();
+  // };
+
+  // const onHide = () => {
+  //   dispatch({ type: 'close' });
+  //   onHideProp?.();
+  // };
+
   useIsomorphicLayoutEffect(() => {
     // When the dropdown opens
     if (isOpen) {
@@ -271,14 +279,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       }
     }
   }, [isOpen, multiple, optionsRef, selected]);
-
-  // Set min-width of menu to be same as input
-  const [minWidth, setMinWidth] = React.useState(0);
-  React.useEffect(() => {
-    if (inputRef.current) {
-      setMinWidth(inputRef.current.offsetWidth);
-    }
-  }, [isOpen]);
 
   // Update filtered options to the latest value options according to input value
   const [filteredOptions, setFilteredOptions] = React.useState(options);
@@ -512,6 +512,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [emptyStateMessage],
   );
 
+  const popover = usePopover({
+    // TODO: controlled mode doesn't seem to work
+    // visible: isOpen,
+    // onToggleVisible: (open) => (open ? onShow() : onHide()),
+    matchWidth: true,
+    onClickOutsideClose: true,
+  });
+
   return (
     <ComboBoxRefsContext.Provider
       value={{ inputRef, menuRef, toggleButtonRef, optionsExtraInfoRef }}
@@ -520,7 +528,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         <ComboBoxStateContext.Provider
           value={{
             id,
-            minWidth,
             isOpen,
             focusedIndex,
             onClickHandler,
@@ -530,11 +537,16 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             multiple,
           }}
         >
-          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
+          <ComboBoxInputContainer
+            disabled={inputProps?.disabled}
+            {...rest}
+            ref={popover.refs.setPositionReference}
+          >
             <>
               <ComboBoxInput
                 value={inputValue}
                 {...inputProps}
+                {...popover.getReferenceProps()}
                 onChange={handleOnInput}
                 selectTags={
                   isMultipleEnabled(selected, multiple)
@@ -546,6 +558,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                       })
                     : undefined
                 }
+                ref={useMergedRefs(inputProps?.ref, popover.refs.setReference)}
               />
             </>
             <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
@@ -554,16 +567,19 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
             ) : null}
           </ComboBoxInputContainer>
-          <ComboBoxDropdown
-            {...dropdownMenuProps}
-            onToggleVisible={(open) => (open ? onShow : onHide)}
-          >
-            <ComboBoxMenu>
-              {filteredOptions.length > 0 && !enableVirtualization
-                ? filteredOptions.map(getMenuItem)
-                : emptyContent}
-            </ComboBoxMenu>
-          </ComboBoxDropdown>
+
+          {popover.open && (
+            <Portal portal>
+              <ComboBoxMenu
+                {...popover.getFloatingProps(dropdownMenuProps)}
+                ref={popover.refs.setFloating}
+              >
+                {filteredOptions.length > 0 && !enableVirtualization
+                  ? filteredOptions.map(getMenuItem)
+                  : emptyContent}
+              </ComboBoxMenu>
+            </Portal>
+          )}
         </ComboBoxStateContext.Provider>
       </ComboBoxActionContext.Provider>
     </ComboBoxRefsContext.Provider>
