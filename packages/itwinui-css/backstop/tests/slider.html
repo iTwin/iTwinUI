@@ -61,9 +61,10 @@
         data-iui-orientation="horizontal"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -91,9 +92,10 @@
         data-iui-orientation="horizontal"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -122,9 +124,10 @@
         data-iui-disabled="true"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -156,9 +159,10 @@
         data-iui-orientation="horizontal"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             style="left: 50%;"
@@ -204,9 +208,10 @@
           ></svg-sound-mute>
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             style="left: 50%;"
@@ -255,9 +260,10 @@
           0
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             style="left: 50%;"
@@ -304,9 +310,10 @@
           0
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="left: 0;"
           ></div>
           <div
             style="left: 50%;"
@@ -353,9 +360,10 @@
         data-iui-orientation="vertical"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -383,9 +391,10 @@
         data-iui-orientation="vertical"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -414,9 +423,10 @@
         data-iui-disabled="true"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -448,9 +458,10 @@
         data-iui-orientation="vertical"
       >
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             style="bottom: 50%;"
@@ -496,9 +507,10 @@
           ></svg-sound-mute>
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             style="bottom: 50%;"
@@ -547,9 +559,10 @@
           0
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             style="bottom: 50%;"
@@ -596,9 +609,10 @@
           0
         </span>
         <div class="iui-slider iui-progress-slider">
+          <div class="iui-slider-rail"></div>
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="bottom: 0;"
           ></div>
           <div
             style="bottom: 50%;"
@@ -654,40 +668,40 @@
         }
       }
 
-      function setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode) {
+      function setThumbAndTrack(percent, thumb, otherThumb, track, sliderContainer, mode) {
         if (getIsVerticalSlider(sliderContainer)) {
           if (mode === "progress") {
             thumb.style.bottom = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
+            track.style.top = `${progressPercent}%`;
             console.log(`${percent}%`);
           }
           else if (mode === "range-left") {
             otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
             thumb.style.bottom = `${percent}%`;
-            progress.style.bottom = `${percent}%`;
+            track.style.bottom = `${percent}%`;
             console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
           } else if (mode === "range-right") {
             otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
             thumb.style.bottom = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
+            track.style.top = `${progressPercent}%`;
             console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
           }
         } else {
           if (mode === "progress") {
             thumb.style.left = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
+            track.style.right = `${progressPercent}%`;
           } else if (mode === "range-left") {
             otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
             thumb.style.left = `${percent}%`;
-            progress.style.left = `${percent}%`;
+            track.style.left = `${percent}%`;
           } else if (mode === "range-right") {
             otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
             thumb.style.left = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
+            track.style.right = `${progressPercent}%`;
           }
         }
       }
@@ -727,12 +741,12 @@
         return percent;
       }
 
-      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer) {
+      function moveSlider(event, thumb, rail, track, mode, toolTip, otherThumb, sliderContainer) {
         var min = getMinValueFromThumb(thumb);
         var limitMin = getMinLimitValueFromThumb(thumb);
         var max = getMaxValueFromThumb(thumb);
         var limitMax = getMaxLimitValueFromThumb(thumb);
-        var rect = track.getBoundingClientRect();
+        var rect = rail.getBoundingClientRect();
         var diff;
         var trackLength;
         if (getIsVerticalSlider(sliderContainer)) {
@@ -759,7 +773,7 @@
 
         thumb.setAttribute("aria-valuenow", percent);
         setTooltip(percent, toolTip, sliderContainer);
-        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
+        setThumbAndTrack(percent, thumb, otherThumb, track, sliderContainer, mode);
 
         event.preventDefault();
         event.stopPropagation();
@@ -787,17 +801,17 @@
 
       function getIsVerticalSlider(sliderContainer) {
         // return sliderContainer.parentNode.classList.contains("iui-slider-vertical");
-        return sliderContainer.getAttribute('aria-orientation') === 'vertical';
+        return sliderContainer.getAttribute('data-iui-orientation') === 'vertical';
       }
 
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
         const percent = getPercentFromThumb(thumb);
-        let progress = sliderContainer.querySelector(".iui-slider-track");
+        let track = sliderContainer.querySelector(".iui-slider-track");
         let otherThumb = getOtherRangeThumb(thumb);
         const toolTip = getToolTip(thumb, mode);
 
         setTooltip(percent, toolTip, sliderContainer);
-        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
+        setThumbAndTrack(percent, thumb, otherThumb, track, sliderContainer, mode);
 
         thumb.addEventListener("mousedown", function () {
           if (sliderContainer.parentElement.classList.contains('iui-disabled'))
@@ -805,9 +819,9 @@
           thumb.classList.add("iui-active");
           sliderContainer.classList.add("iui-grabbing");
           var ownerDoc = thumb.ownerDocument;
-          var track = sliderContainer.querySelector(".iui-slider::before");
+          var rail = sliderContainer.querySelector(".iui-slider-rail");
           var handleMouseMove = function (event) {
-            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer);
+            moveSlider(event, thumb, rail, track, mode, toolTip, otherThumb, sliderContainer);
           };
 
           var handleMouseUp = function (event) {
@@ -829,7 +843,7 @@
       }
 
       function initializeAllProgressSliders() {
-        const allProgressSliderContainers = document.querySelectorAll(".iui-slider.iui-progress-slider");
+        const allProgressSliderContainers = document.querySelectorAll(".iui-slider-container");
         allProgressSliderContainers.forEach(progressSliderContainer => {
           const thumb = progressSliderContainer.querySelector(".iui-slider-thumb");
           initializeThumbProcessing(thumb, progressSliderContainer, "progress");
