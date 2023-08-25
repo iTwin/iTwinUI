@@ -19,7 +19,9 @@ const readPackageOnDisk = (pkg) =>
 const removeIfExists = async (_path) => {
   if (fs.existsSync(_path)) {
     if (fs.lstatSync(_path).isDirectory()) {
-      await fs.promises.rmdir(_path);
+      await fs.promises.rmdir(_path, {
+        recursive: true,
+      });
     } else {
       await fs.promises.unlink(_path);
     }
@@ -52,7 +54,7 @@ if (!fs.existsSync(outCjsDir)) {
 }
 
 // remove old styles.js created when switching from v3 branch
-await removeIfExists(path.join(__dirname, 'src', 'styles.js'));
+await removeIfExists(path.join(__dirname, '..', 'src', 'styles.js'));
 
 const esmExports = `${copyrightBannerJs}\nexport default String.raw\`${allCss}\`;\nexport const revertV1Css=String.raw\`${revertV1Css}\`;`;
 const cjsExports = swc.transformSync(esmExports, {
