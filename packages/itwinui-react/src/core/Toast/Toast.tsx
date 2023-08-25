@@ -242,7 +242,7 @@ export const Toast = (props: ToastProps) => {
 
 export type ToastPresentationProps = Omit<
   ToastProps,
-  'duration' | 'id' | 'isVisible' | 'onRemove'
+  'duration' | 'id' | 'isVisible' | 'onRemove' | 'domProps'
 > & {
   onClose?: () => void;
   contentProps?: React.ComponentProps<'div'>;
