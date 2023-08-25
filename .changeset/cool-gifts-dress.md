@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': minor
 ---
 
-Add `contentProps` to allow Toast customisation.
+Added `domProps` to allow Toast's DOM customisation.
