@@ -94,6 +94,12 @@
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
 
+## 1.12.3
+
+### Patch Changes
+
+- [#1516](https://github.com/iTwin/iTwinUI/pull/1516): Update SearchBox placeholder color to match Input.
+
 ## 1.12.2
 
 ### Patch Changes
