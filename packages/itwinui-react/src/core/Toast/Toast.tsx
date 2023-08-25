@@ -36,7 +36,7 @@ export type ToastProps = {
    */
   content: React.ReactNode;
   /**
-   * Passes props to content
+   * Passes props to toast and content
    */
   domProps?: {
     toastProps?: React.ComponentProps<'div'>;
@@ -231,7 +231,8 @@ export const Toast = (props: ToastProps) => {
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
-            domProps={domProps}
+            {...domProps?.toastProps}
+            contentProps={domProps?.contentProps}
           />
         </div>
       </Box>
@@ -242,7 +243,10 @@ export const Toast = (props: ToastProps) => {
 export type ToastPresentationProps = Omit<
   ToastProps,
   'duration' | 'id' | 'isVisible' | 'onRemove'
-> & { onClose?: () => void } & CommonProps;
+> & {
+  onClose?: () => void;
+  contentProps?: React.ComponentProps<'div'>;
+} & CommonProps;
 
 /**
  * The presentational part of a toast, without any animation or logic.
@@ -256,7 +260,8 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     link,
     hasCloseButton,
     onClose,
-    domProps,
+    className,
+    contentProps,
     ...rest
   } = props;
 
@@ -265,11 +270,7 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
   return (
     <Box
       as='div'
-      {...domProps?.toastProps}
-      className={cx(
-        `iui-toast iui-${category}`,
-        domProps?.toastProps?.className,
-      )}
+      className={cx(`iui-toast iui-${category}`, className)}
       {...rest}
     >
       <Box className='iui-status-area'>
@@ -277,8 +278,8 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
       </Box>
       <Box
         as='div'
-        {...domProps?.contentProps}
-        className={cx('iui-message', domProps?.contentProps?.className)}
+        {...contentProps}
+        className={cx('iui-message', contentProps?.className)}
       >
         {content}
       </Box>
