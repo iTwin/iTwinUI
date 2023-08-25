@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.6
+
+### Patch Changes
+
+- [#1516](https://github.com/iTwin/iTwinUI/pull/1516): Update SearchBox placeholder color to match Input.
+
 ## 2.12.5
 
 ### Patch Changes
