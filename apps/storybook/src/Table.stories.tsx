@@ -10,7 +10,7 @@ import type {
   Row,
   TableInstance,
   TableState,
-} from 'react-table';
+} from '@itwin/itwinui-react';
 import {
   Checkbox,
   Code,

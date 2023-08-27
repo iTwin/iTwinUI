@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { HeaderProps } from 'react-table';
+import type { HeaderProps } from '../../../types/react-table-types.js';
 import { Checkbox } from '../../Checkbox/index.js';
 import { SvgColumnManager } from '../../utils/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';

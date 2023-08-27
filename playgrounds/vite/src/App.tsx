@@ -20,7 +20,7 @@ import type {
   TableInstance,
   TableState,
   Renderer,
-} from 'react-table';
+} from '@itwin/itwinui-react';
 
 type ValueOf<T> = T[keyof T];
 

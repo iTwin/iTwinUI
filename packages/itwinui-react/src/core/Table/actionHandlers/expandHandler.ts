@@ -2,7 +2,10 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { TableInstance, TableState } from 'react-table';
+import type {
+  TableInstance,
+  TableState,
+} from '../../../types/react-table-types.js';
 
 export const onExpandHandler = <T extends Record<string, unknown>>(
   newState: TableState<T>,

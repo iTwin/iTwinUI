@@ -34,7 +34,11 @@
  * SOFTWARE.
  */
 import type * as React from 'react';
-import { actions, makePropGetter, useGetLatest } from 'react-table';
+import {
+  actions,
+  makePropGetter,
+  useGetLatest,
+} from '../../../types/react-table-types.js';
 import type {
   ActionType,
   ColumnInstance,
@@ -43,7 +47,7 @@ import type {
   TableInstance,
   TableKeyedProps,
   TableState,
-} from 'react-table';
+} from '../../../types/react-table-types.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(

@@ -23,7 +23,7 @@
 
 // The changelog for the important changes is located in the Readme.md
 
-import {
+import type {
   ChangeEvent,
   ComponentType,
   CSSProperties,
@@ -35,6 +35,9 @@ import {
   ReactNode,
 } from 'react';
 
+import type { TableFilterProps } from '../core/Table/index.js';
+
+export const testingVar = 0;
 // export {};
 
 /**

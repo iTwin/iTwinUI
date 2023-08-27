@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Table, DefaultCell } from '@itwin/itwinui-react';
-import type { CellProps, CellRendererProps, Column } from 'react-table';
+import type {
+  CellProps,
+  CellRendererProps,
+  Column,
+} from '@itwin/itwinui-react';
 
 export default () => {
   type TableDataType = {
