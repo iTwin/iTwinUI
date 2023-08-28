@@ -5,7 +5,7 @@
 import type {
   ActionType,
   TableState,
-} from '../../../types/react-table-types.js';
+} from '../../utils/types/react-table-types.js';
 
 export const onTableResizeStart = <T extends Record<string, unknown>>(
   state: TableState<T>,

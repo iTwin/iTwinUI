@@ -8,7 +8,7 @@ import type {
   ColumnInstance,
   Hooks,
   Row,
-} from '../../../types/react-table-types.js';
+} from '../../utils/types/react-table-types.js';
 import { ExpanderColumn, EXPANDER_CELL_ID } from '../columns/index.js';
 
 export const useExpanderCell =

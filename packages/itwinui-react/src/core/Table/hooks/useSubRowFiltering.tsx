@@ -8,7 +8,7 @@ import type {
   IdType,
   Row,
   TableInstance,
-} from '../../../types/react-table-types.js';
+} from '../../utils/types/react-table-types.js';
 import { defaultFilterFunctions } from '../filters/defaultFilterFunctions.js';
 
 export const useSubRowFiltering =

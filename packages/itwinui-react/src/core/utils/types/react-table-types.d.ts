@@ -35,7 +35,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { TableFilterProps } from '../core/Table/index.js';
+import type { TableFilterProps } from '../../Table/index.js';
 
 export const testingVar = 0;
 // export {};

@@ -9,7 +9,7 @@ import type {
   Row,
   TableInstance,
   TableState,
-} from '../../types/react-table-types.js';
+} from '../utils/types/react-table-types.js';
 import {
   Box,
   useIntersection,

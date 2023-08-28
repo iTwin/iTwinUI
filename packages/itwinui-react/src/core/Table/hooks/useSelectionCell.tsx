@@ -5,7 +5,7 @@
 import type {
   ColumnInstance,
   Hooks,
-} from '../../../types/react-table-types.js';
+} from '../../utils/types/react-table-types.js';
 import { SelectionColumn, SELECTION_CELL_ID } from '../columns/index.js';
 
 export const useSelectionCell =

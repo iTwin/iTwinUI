@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { CellRendererProps } from '../../../types/react-table-types.js';
+import type { CellRendererProps } from '../../utils/types/react-table-types.js';
 import cx from 'classnames';
 import { Box } from '../../utils/index.js';
 

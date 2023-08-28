@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { IdType, Row } from '../../../types/react-table-types.js';
+import type { IdType, Row } from '../../utils/types/react-table-types.js';
 
 const isValidDate = (date: Date | undefined) =>
   !!date && !isNaN(date.valueOf());

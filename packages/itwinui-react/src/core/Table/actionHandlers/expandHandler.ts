@@ -5,7 +5,7 @@
 import type {
   TableInstance,
   TableState,
-} from '../../../types/react-table-types.js';
+} from '../../utils/types/react-table-types.js';
 
 export const onExpandHandler = <T extends Record<string, unknown>>(
   newState: TableState<T>,
