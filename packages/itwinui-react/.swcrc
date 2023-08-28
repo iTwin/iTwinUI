@@ -8,5 +8,9 @@
   "module": {
     "type": "es6"
   },
-  "exclude": ["src/styles.js", "src/styles.d.ts"]
+  "exclude": [
+    "src/styles.js",
+    "src/styles.d.ts",
+    "src/core/Table/types/react-table-types.d.ts"
+  ]
 }

@@ -57,7 +57,7 @@
     "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && yarn build:styles && yarn build:post",
     "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
-    "build:post": "node ./scripts/postBuild.mjs",
+    "build:post": "node ./scripts/postBuild.mjs && node ./scripts/postBuildTypes.mjs",
     "clean:build": "rimraf esm && rimraf cjs",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
@@ -69,7 +69,7 @@
     "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn build:styles --watch\" \"yarn dev:types\"",
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
+    "dev:types": "node ./scripts/postBuildTypes.mjs && concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {
@@ -99,6 +99,7 @@
     "@typescript-eslint/eslint-plugin": "^5.60.0",
     "@typescript-eslint/parser": "^5.60.0",
     "concurrently": "^5.3.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^8.43.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-require-extensions": "^0.1.3",
