@@ -209,7 +209,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     className,
     visible,
     reference,
-    ariaStrategy,
+    ariaStrategy = 'description',
     ...rest
   } = props;
   const tooltip = useTooltip({
