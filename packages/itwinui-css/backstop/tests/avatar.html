@@ -39,6 +39,10 @@
         margin-right: 4px;
       }
 
+      .demo-tooltip-container {
+        position: relative;
+      }
+
       .demo-right {
         top: -5px;
         left: 100%;
@@ -490,7 +494,7 @@
           5
         </span>
 
-        <div class="iui-tooltip-container">
+        <div class="demo-tooltip-container">
           <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
             Mercer<br />Terry
             Rivers</span>
@@ -537,7 +541,7 @@
           5
         </span>
 
-        <div class="iui-tooltip-container">
+        <div class="demo-tooltip-container">
           <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
             Mercer<br />Terry
             Rivers</span>
@@ -584,7 +588,7 @@
           5
         </span>
 
-        <div class="iui-tooltip-container">
+        <div class="demo-tooltip-container">
           <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
             Mercer<br />Terry
             Rivers</span>
@@ -631,7 +635,7 @@
           5
         </span>
 
-        <div class="iui-tooltip-container">
+        <div class="demo-tooltip-container">
           <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
             Mercer<br />Terry
             Rivers</span>
@@ -805,7 +809,7 @@
           5
         </span>
 
-        <div class="iui-tooltip-container">
+        <div class="demo-tooltip-container">
           <span class="iui-tooltip demo-right">Terry Rivers<br />Robin Mercer<br />Terry Rivers<br />Robin
             Mercer<br />Terry
             Rivers</span>
@@ -973,9 +977,9 @@
       document.querySelectorAll('#demo-list .iui-avatar-list').forEach((list) => {
         const lastIcon = list.querySelector('.iui-avatar:nth-last-child(2)');
         const tooltip = list.querySelector('.iui-tooltip');
-        tooltip.style.visibility = 'visible';
-        lastIcon.addEventListener('mouseenter', () => { tooltip.style.opacity = 1; });
-        lastIcon.addEventListener('mouseleave', () => { tooltip.style.opacity = 0; });
+        tooltip.hidden = true;
+        lastIcon.addEventListener('mouseenter', () => { tooltip.hidden = false; });
+        lastIcon.addEventListener('mouseleave', () => { tooltip.hidden = true; });
       });
     </script>
   </body>
