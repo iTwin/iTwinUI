@@ -6,7 +6,7 @@ import type {
   ActionType,
   TableInstance,
   TableState,
-} from '../../utils/types/react-table-types.js';
+} from '../types/react-table-types.js';
 import type { TableFilterValue } from '../filters/index.js';
 
 export const onFilterHandler = <T extends Record<string, unknown>>(

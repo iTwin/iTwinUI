@@ -7,7 +7,7 @@ import {
   actions,
   makePropGetter,
   useGetLatest,
-} from '../../utils/types/react-table-types.js';
+} from '../types/react-table-types.js';
 import type {
   ActionType,
   HeaderGroup,
@@ -16,7 +16,7 @@ import type {
   TableInstance,
   TableKeyedProps,
   TableState,
-} from '../../utils/types/react-table-types.js';
+} from '../types/react-table-types.js';
 import styles from '../../../styles.js';
 
 const REORDER_ACTIONS = {

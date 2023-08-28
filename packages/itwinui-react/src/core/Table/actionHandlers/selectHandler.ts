@@ -7,7 +7,7 @@ import type {
   Row,
   TableInstance,
   TableState,
-} from '../../utils/types/react-table-types.js';
+} from '../types/react-table-types.js';
 
 /**
  * Handles subrow selection and validation.

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 export * from './core/index.js';
 // export * from './types/react-table-config.js';
-export * from './core/utils/types/react-table-types.js';
+export * from './core/Table/types/react-table-types.js';
 // import * from './types/react-table-types.js';
 
 export const CellPropsq = {};

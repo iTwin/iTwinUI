@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type { HeaderGroup } from '../../utils/types/react-table-types.js';
+import type { HeaderGroup } from '../types/react-table-types.js';
 import {
   useGlobals,
   Popover,
