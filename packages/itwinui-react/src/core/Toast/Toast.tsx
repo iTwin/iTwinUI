@@ -225,6 +225,7 @@ export const Toast = (props: ToastProps) => {
       >
         <div ref={onRef}>
           <ToastPresentation
+            as='div'
             category={category}
             content={content}
             link={link}
