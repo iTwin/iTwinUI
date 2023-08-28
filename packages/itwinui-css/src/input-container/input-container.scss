@@ -203,6 +203,10 @@
       font-weight: var(--iui-font-weight-light);
       opacity: 1;
     }
+
+    &:focus {
+      outline: none;
+    }
   }
 
   &[data-iui-disabled='true'] {
