@@ -6,7 +6,7 @@ export { Table } from './Table.js';
 
 // Export everything from './types/react-table-types.js' as a variable called `ReactTableTypes`
 // export { TableTypes } from './types/index.js';
-export * from './types/index.js';
+export { TableTypes } from './types/index.js';
 
 export type { TableProps, TablePaginatorRendererProps } from './Table.js';
 
