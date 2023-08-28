@@ -88,6 +88,7 @@ it.each(['positive', 'warning', 'negative'] as const)(
 it('should render with custom icon', () => {
   const { container } = renderComponent({
     svgIcon: <svg className='my-icon' />,
+    message: 'my message',
   });
 
   const inputContainer = container.querySelector(
