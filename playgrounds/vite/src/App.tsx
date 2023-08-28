@@ -9,24 +9,24 @@ import {
   MenuItem,
   Table,
   tableFilters,
-  // TableTypes,
-  ReactTableTypes,
+  TableTypes,
+  // ReactTableTypes,
 } from '@itwin/itwinui-react';
 import { TableFilterProps } from '@itwin/itwinui-react/cjs/core/Table/index.js';
 import { useCallback, useMemo, useState } from 'react';
-import type {
-  CellProps,
-  // CellRendererProps,
-  Column,
-  Row,
-  TableInstance,
-  TableState,
-  Renderer,
-} from '@itwin/itwinui-react';
+// import type {
+//   CellProps,
+//   // CellRendererProps,
+//   Column,
+//   Row,
+//   TableInstance,
+//   TableState,
+//   Renderer,
+// } from '@itwin/itwinui-react';
 
 type ValueOf<T> = T[keyof T];
 
-const q: ReactTableTypes.Column;
+const q: TableTypes.Column;
 
 const App = () => {
   // type TableStoryDataType = Record<string, any>;
@@ -111,7 +111,7 @@ const App = () => {
           Filter: tableFilters.TextFilter(),
           Cell: (props) => <div></div>,
         },
-      ] satisfies Array<Column<TableStoryDataType>>,
+      ] satisfies Array<TableTypes.Column<TableStoryDataType>>,
     [isRowDisabled, menuItems],
   );
 
