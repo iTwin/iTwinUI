@@ -191,29 +191,29 @@ type DatePickerProps = {
    */
   showYearSelection?: boolean;
   /**
-   * Allows props to be passed for month-year, referring to .iui-calendar-month-year div element.
+   * Allows props to be passed for calendar month year, referring to the div that wraps around the month/year and the next/previous buttons.
    */
-  MonthYearProps?: React.ComponentProps<'div'>;
+  monthYearProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for only month, referring to .iui-calendar-month span element.
+   * Allows props to be passed for only month, referring to span that wraps around the month title.
    */
-  MonthProps?: React.ComponentProps<'span'>;
+  monthProps?: React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for week days, referring to .iui-calendar-weekday div element.
+   * Allows props to be passed for week days, referring to div that wraps around the week day title.
    */
-  WeekDayProps?: React.ComponentProps<'div'>;
+  weekDayProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for day selected  (inside & outside), referring to .iui-calendar-day div element.
+   * Allows props to be passed for individual day , referring to div element the wraps around single day number.
    */
-  DayProps?: React.ComponentProps<'div'>;
+  dayProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for calendar, referring to listbox div element
+   * Allows props to be passed for calendar, referring to div that is used for listbox for wraping days and weeks.
    */
   calendarProps?: React.ComponentProps<'div'>;
   /**
-   * Allows props to be passed for weeks, referring to .iui-calendar-week div element.
+   * Allows props to be passed for weeks, referring to div that wraps around weeks.
    */
-  WeekProps?: React.ComponentProps<'div'>;
+  weekProps?: React.ComponentProps<'div'>;
   /**
    * Will disable dates for which this function returns true.
    * Disabled dates cannot be selected.
@@ -250,12 +250,12 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     enableRangeSelect = false,
     startDate,
     endDate,
-    MonthYearProps,
+    monthYearProps,
     calendarProps,
-    MonthProps,
-    WeekDayProps,
-    DayProps,
-    WeekProps,
+    monthProps,
+    weekDayProps,
+    dayProps,
+    weekProps,
     isDateDisabled,
     ...rest
   } = props;
@@ -567,8 +567,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       <div>
         <Box
           as='div'
-          {...MonthYearProps}
-          className={cx('iui-calendar-month-year', MonthYearProps?.className)}
+          {...monthYearProps}
+          className={cx('iui-calendar-month-year', monthYearProps?.className)}
         >
           {showYearSelection && (
             <IconButton
@@ -593,8 +593,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
               as='span'
               id={dateTableId}
               title={monthNames[displayedMonthIndex]}
-              {...MonthProps}
-              className={cx('iui-calendar-month', MonthProps?.className)}
+              {...monthProps}
+              className={cx('iui-calendar-month', monthProps?.className)}
             >
               {monthNames[displayedMonthIndex]}
             </Box>
@@ -621,8 +621,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
         </Box>
         <Box
           as='div'
-          {...WeekDayProps}
-          className={cx('iui-calendar-weekdays', WeekDayProps?.className)}
+          {...weekDayProps}
+          className={cx('iui-calendar-weekdays', weekDayProps?.className)}
         >
           {shortDays.map((day, index) => (
             <div key={day} title={longDays[index]}>
@@ -641,8 +641,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
               <Box
                 as='div'
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
-                {...WeekProps}
-                className={cx('iui-calendar-week', WeekProps?.className)}
+                {...weekProps}
+                className={cx('iui-calendar-week', weekProps?.className)}
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
@@ -660,8 +660,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                         needFocus.current &&
                         element?.focus()
                       }
-                      {...DayProps}
-                      className={cx(getDayClass(weekDay), DayProps?.className)}
+                      {...dayProps}
+                      className={cx(getDayClass(weekDay), dayProps?.className)}
                     >
                       {dateValue}
                     </Box>

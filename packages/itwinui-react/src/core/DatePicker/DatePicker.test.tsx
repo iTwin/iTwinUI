@@ -69,12 +69,12 @@ it('should apply all custom props', () => {
     <DatePicker
       date={new Date(2020, 0, 5)}
       onChange={jest.fn()}
-      MonthYearProps={{ className: 'some-calendar' }}
-      MonthProps={{ className: 'some-month' }}
-      WeekDayProps={{ className: 'some-day-of-week' }}
-      WeekProps={{ className: 'some-week' }}
+      monthYearProps={{ className: 'some-calendar' }}
+      monthProps={{ className: 'some-month' }}
+      weekDayProps={{ className: 'some-day-of-week' }}
+      weekProps={{ className: 'some-week' }}
       calendarProps={{ className: 'some-listbox' }}
-      DayProps={{ className: 'some-day' }}
+      dayProps={{ className: 'some-day' }}
     />,
   );
   assertMonthYear(container, 'January', '2020');
