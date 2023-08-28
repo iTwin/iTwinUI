@@ -26,8 +26,6 @@ import { useCallback, useMemo, useState } from 'react';
 
 type ValueOf<T> = T[keyof T];
 
-const q: TableTypes.Column;
-
 const App = () => {
   // type TableStoryDataType = Record<string, any>;
   // interface TableStoryDataType extends Record<string, any> {
