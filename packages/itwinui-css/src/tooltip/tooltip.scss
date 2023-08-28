@@ -44,4 +44,8 @@
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 
   @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
+
+  &[hidden] {
+    display: none !important;
+  }
 }
