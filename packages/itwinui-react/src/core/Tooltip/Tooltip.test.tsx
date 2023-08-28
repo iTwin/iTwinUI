@@ -15,16 +15,16 @@ it('should toggle the visibility of tooltip on hover', async () => {
     </Tooltip>,
   );
 
-  expect(queryByText('some text')).toBeNull();
+  expect(queryByText('some text')).not.toBeVisible();
 
   fireEvent.mouseEnter(getByText('Hover Here'));
   act(() => void jest.advanceTimersByTime(50));
-  getByText('some text');
+  expect(getByText('some text')).toBeVisible();
 
   fireEvent.mouseLeave(getByText('Hover Here'));
   act(() => void jest.advanceTimersByTime(250));
 
-  expect(queryByText('some text')).not.toBeInTheDocument();
+  expect(queryByText('some text')).not.toBeVisible();
 
   jest.useRealTimers();
 });
@@ -39,14 +39,22 @@ it('should be visible', () => {
   getByText('some text');
 });
 
-it('should not be visible', () => {
-  const { queryByText } = render(
+it('should respect visible prop', () => {
+  const { queryByText, rerender } = render(
     <Tooltip content='some text' visible={false}>
       <div>Visible!</div>
     </Tooltip>,
   );
 
-  expect(queryByText('some text')).toBeNull();
+  expect(queryByText('some text')).not.toBeVisible();
+
+  rerender(
+    <Tooltip content='some text' visible>
+      <div>Not visible!</div>
+    </Tooltip>,
+  );
+
+  expect(queryByText('some text')).toBeVisible();
 });
 
 it('should allow button clicks and hovers', () => {
