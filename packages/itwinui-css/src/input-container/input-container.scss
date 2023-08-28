@@ -183,12 +183,16 @@
 
   input,
   textarea {
-    all: unset;
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    font: inherit;
     z-index: 2;
     min-inline-size: var(--_iui-input-min-height);
+    min-block-size: var(--_iui-input-min-height);
     flex: 999;
-    padding-inline-start: var(--iui-size-s);
-    padding-inline-end: var(--iui-size-s);
+    padding-inline: var(--iui-size-s);
+    padding-block: var(--_iui-input-padding-block);
 
     &:is(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
@@ -199,10 +203,6 @@
       font-weight: var(--iui-font-weight-light);
       opacity: 1;
     }
-  }
-
-  textarea {
-    padding-block: var(--_iui-input-padding-block);
   }
 
   &[data-iui-disabled='true'] {
