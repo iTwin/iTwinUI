@@ -22,8 +22,8 @@ import {
   Text,
   tableFilters,
   TableFilterValue,
-  TableProps,
-  // TableTypes,
+  // TableProps,
+  TableTypes,
   Tooltip,
   DefaultCell,
   EditableCell,
@@ -103,7 +103,7 @@ export default {
 
 export const Basic: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -123,7 +123,9 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -157,7 +159,7 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
 
 export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: Row) =>
+    (event: React.MouseEvent, row: TableTypes.Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -179,7 +181,9 @@ export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           return (
             <Anchor
               as='button'
@@ -233,7 +237,7 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
   );
 
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: Row) =>
+    (event: React.MouseEvent, row: TableTypes.Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -255,7 +259,9 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           return (
             <Anchor
               as='button'
@@ -300,7 +306,7 @@ SelectableMulti.args = { isSelectable: true, selectionMode: 'multi' };
 
 export const Sortable: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const onSort = useCallback(
@@ -332,7 +338,9 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -413,7 +421,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): TableTypes.Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -442,7 +450,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
         id: 'ids',
         Header: 'IDs (enter one of the IDs in the filter)',
         accessor: 'ids',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{props.row.original.ids.join(', ')}</>;
         },
         Filter: tableFilters.TextFilter(translatedLabels),
@@ -452,7 +460,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{formatDate(props.row.original.startDate)}</>;
         },
         Filter: tableFilters.DateRangeFilter({
@@ -465,7 +473,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
         Header: 'End date',
         // Converting string to Date for filtering
         accessor: (rowData) => new Date(rowData.endDate),
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{formatDate(new Date(props.row.original.endDate))}</>;
         },
         Filter: tableFilters.DateRangeFilter({
@@ -510,8 +518,8 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
   const onFilter = React.useCallback(
     (
       filters: TableFilterValue<TableStoryDataType>[],
-      state: TableState,
-      filteredData: Row<{ name: string; description: string }>[],
+      state: TableTypes.TableState,
+      filteredData: TableTypes.Row<{ name: string; description: string }>[],
     ) => {
       // rowInfo is used due to JSON errors when displaying row data
       let rowInfo = '[';
@@ -576,7 +584,7 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
   };
 
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -598,7 +606,9 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -696,7 +706,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: Row) => (
+    (row: TableTypes.Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -872,7 +882,7 @@ ExpandableSubrows.args = {
 
 export const LazyLoading: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -893,7 +903,9 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -957,7 +969,7 @@ LazyLoading.argTypes = {
 
 export const RowInViewport: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -977,7 +989,9 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -1045,7 +1059,7 @@ RowInViewport.argTypes = {
 
 export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: Row) =>
+    (event: React.MouseEvent, row: TableTypes.Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -1075,7 +1089,9 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
         Header: 'Click',
         width: 100,
         // Manually handling disabled state in custom cells
-        Cell: (props: CellProps<{ name: string; description: string }>) => (
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => (
           <>
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
@@ -1101,7 +1117,7 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: Row) => (
+    (row: TableTypes.Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -1490,7 +1506,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: Row) => (
+    (row: TableTypes.Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -1502,7 +1518,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   );
 
   const rowProps = useCallback(
-    (row: Row<{ name: string; description: string }>) => {
+    (row: TableTypes.Row<{ name: string; description: string }>) => {
       return {
         onMouseEnter: () => {
           action(`Hovered over ${row.original.name}`)();
@@ -1612,7 +1628,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
   }, []);
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): TableTypes.Column<TableStoryDataType>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -1632,7 +1648,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
         filter: 'between',
         disableReordering: true,
         sortType: 'number',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -1654,7 +1670,9 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
         filter: 'between',
         sortType: 'number',
         width: 400,
-        cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
+        cellRenderer: (
+          props: TableTypes.CellRendererProps<TableStoryDataType>,
+        ) => {
           return (
             <DefaultCell
               {...props}
@@ -1673,13 +1691,13 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
         filter: 'between',
         sortType: 'number',
         width: 400,
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{props.value} day(s)</>;
         },
       },
       {
         ...ActionColumn({ columnManager: true }),
-        Cell: (props: CellProps<TableStoryDataType>) => (
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => (
           <DropdownMenu menuItems={menuItems}>
             <IconButton
               styleType='borderless'
@@ -1696,11 +1714,14 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
-    return {
-      status: row.original.status,
-    };
-  }, []);
+  const rowProps = useCallback(
+    (row: TableTypes.Row<{ status: string | undefined }>) => {
+      return {
+        status: row.original.status,
+      };
+    },
+    [],
+  );
 
   const [globalFilterValue, setGlobalFilterValue] = useState('');
 
@@ -1853,7 +1874,7 @@ Localized.parameters = {
 
 export const Condensed: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const onExpand = useCallback(
@@ -1884,7 +1905,9 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -2041,7 +2064,7 @@ export const Editable: Story<Partial<TableProps>> = (args) => {
   );
 
   const cellRenderer = useCallback(
-    (props: CellRendererProps<TableStoryDataType>) => (
+    (props: TableTypes.CellRendererProps<TableStoryDataType>) => (
       <>
         {!isRowDisabled(props.cellProps.row.original) &&
         props.cellProps.value !== 'Fetching...' ? (
@@ -2055,7 +2078,7 @@ export const Editable: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = React.useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): TableTypes.Column<TableStoryDataType>[] => [
       {
         id: 'name',
         Header: 'Name',
@@ -2578,7 +2601,7 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
   };
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): TableTypes.Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -2609,7 +2632,7 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return (
             <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
           );
@@ -2620,7 +2643,7 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
       {
         id: 'endDate',
         Header: 'End date',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
         },
         maxWidth: 200,
@@ -2878,7 +2901,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    (): TableTypes.Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -2890,7 +2913,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 400,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2911,7 +2934,7 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3021,7 +3044,7 @@ HorizontalScroll.decorators = [
 
 export const Virtualized: Story<Partial<TableProps>> = (args) => {
   const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
+    props: TableTypes.CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -3040,7 +3063,9 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<{ name: string; description: string }>) => {
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -3089,7 +3114,8 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
     description: string;
   };
   const onClickHandler = React.useCallback(
-    (props: CellProps<TableStoryDataType>) => action(props.row.original.name)(),
+    (props: TableTypes.CellProps<TableStoryDataType>) =>
+      action(props.row.original.name)(),
     [],
   );
 
@@ -3111,7 +3137,7 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -3149,8 +3175,10 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
       style={{ maxHeight: '90vh' }}
       data={data}
       scrollToRow={React.useCallback(
-        (rows: Row<TableStoryDataType>[], data: TableStoryDataType[]) =>
-          rows.findIndex((row) => row.original.id === data[12345].id),
+        (
+          rows: TableTypes.Row<TableStoryDataType>[],
+          data: TableStoryDataType[],
+        ) => rows.findIndex((row) => row.original.id === data[12345].id),
         [],
       )}
     />
@@ -3308,7 +3336,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column[] => [
+    (): TableTypes.Column[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -3319,7 +3347,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -3337,7 +3365,7 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3469,7 +3497,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   }, []);
 
   const subComponent = useCallback(
-    (row: Row) => (
+    (row: TableTypes.Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -3481,7 +3509,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
   );
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    (): TableTypes.Column<(typeof data)[number]>[] => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
       }),
@@ -3553,7 +3581,7 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
   };
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    (): TableTypes.Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -3580,7 +3608,7 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return (
             <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
           );
@@ -3590,7 +3618,7 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
         id: 'endDate',
         Header: 'End date',
         accessor: 'endDate',
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
           return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
         },
       },
@@ -3866,7 +3894,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
   }, []);
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    (): TableTypes.Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -3879,7 +3907,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Price',
         accessor: 'price',
         width: 150,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -3901,7 +3929,7 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
           return <>{props.value} day(s)</>;
         },
       },
@@ -4032,7 +4060,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
         Header: 'Name',
         accessor: 'name',
         cellRenderer: (
-          props: CellRendererProps<{
+          props: TableTypes.CellRendererProps<{
             startIcon: JSX.Element;
             endIcon: JSX.Element;
           }>,
@@ -4056,7 +4084,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
         accessor: 'modified',
         maxWidth: 200,
         cellRenderer: (
-          props: CellRendererProps<{
+          props: TableTypes.CellRendererProps<{
             status: 'positive' | 'warning' | 'negative' | undefined;
           }>,
         ) => {
@@ -4122,7 +4150,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
 
   const rowProps = useCallback(
     (
-      row: Row<{
+      row: TableTypes.Row<{
         name: string;
         modified: string;
         size: string;
