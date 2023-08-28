@@ -46,7 +46,8 @@
 }
 
 .iui-alert-message {
-  margin: var(--iui-size-s) var(--iui-size-m);
+  margin-block: var(--iui-size-s);
+  margin-inline: var(--iui-size-m);
   word-break: normal;
   overflow-wrap: anywhere;
   flex: 999;

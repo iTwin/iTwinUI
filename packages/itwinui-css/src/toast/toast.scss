@@ -36,7 +36,8 @@
   inset-block-end: 0;
 
   .iui-toast {
-    margin: var(--iui-size-s) var(--iui-size-m) 0 var(--iui-size-m);
+    margin-block: var(--iui-size-s) 0;
+    margin-inline: var(--iui-size-m);
   }
 }
 
@@ -59,7 +60,7 @@
   @media screen and (min-width: 401px) {
     min-inline-size: 400px;
     max-inline-size: 640px;
-    margin: var(--iui-size-l) 0;
+    margin-block: var(--iui-size-l);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -110,7 +111,8 @@
   display: inline-flex;
   align-items: center;
   pointer-events: all;
-  margin: 0 var(--iui-size-m) var(--iui-size-s) var(--iui-size-m);
+  margin-block: 0 var(--iui-size-s);
+  margin-inline: var(--iui-size-m);
   min-block-size: calc(var(--iui-size-s) * 4);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);

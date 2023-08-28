@@ -13,12 +13,12 @@ export default () => {
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
         <Tile.TypeIndicator>
-          <Tile.IconButton>
+          <Tile.IconButton label='Favorite'>
             <SvgStar />
           </Tile.IconButton>
         </Tile.TypeIndicator>
         <Tile.QuickAction>
-          <Tile.IconButton>
+          <Tile.IconButton label='More info'>
             <SvgInfo />
           </Tile.IconButton>
         </Tile.QuickAction>
