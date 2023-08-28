@@ -201,6 +201,10 @@
     }
   }
 
+  textarea {
+    padding-block: var(--_iui-input-padding-block);
+  }
+
   &[data-iui-disabled='true'] {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
