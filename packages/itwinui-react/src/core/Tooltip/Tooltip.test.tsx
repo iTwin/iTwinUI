@@ -87,3 +87,27 @@ it('should allow button clicks and hovers', () => {
   expect(mouseEnterHandler).toBeCalledTimes(1);
   expect(mouseLeaveHandler).toBeCalledTimes(1);
 });
+
+it.each(['description', 'label', 'none'] as const)(
+  'should respect ariaStrategy=%s',
+  (strategy) => {
+    const { getByText } = render(
+      <Tooltip content='some text' ariaStrategy={strategy}>
+        <button>hi</button>
+      </Tooltip>,
+    );
+
+    const trigger = getByText('hi');
+
+    if (strategy === 'description') {
+      expect(trigger).toHaveAccessibleName('hi');
+      expect(trigger).toHaveAccessibleDescription('some text');
+    } else if (strategy === 'label') {
+      expect(trigger).toHaveAccessibleName('some text');
+      expect(trigger).not.toHaveAccessibleDescription();
+    } else {
+      expect(trigger).toHaveAccessibleName('hi');
+      expect(trigger).not.toHaveAccessibleDescription();
+    }
+  },
+);
