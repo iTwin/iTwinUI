@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "files": ["src/index.ts", "src/types/react-table-types.js"],
+  "files": ["src/index.ts", "src/types/react-table-types.d.ts"],
   "compilerOptions": {
     "noUnusedLocals": false,
     "importHelpers": true
