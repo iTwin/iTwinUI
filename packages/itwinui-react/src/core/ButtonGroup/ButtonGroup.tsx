@@ -89,7 +89,7 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
   const refs = useMergedRefs(overflowRef, ref);
 
   return (
-    <FloatingDelayGroup delay={50}>
+    <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
       <Box
         className={cx(
           {
