@@ -101,6 +101,16 @@ type TooltipOwnProps = {
    * <Tooltip content='tooltip text' reference={buttonRef} />
    */
   reference?: React.RefObject<HTMLElement>;
+  /**
+   * By default, the tooltip will be associated with the reference element
+   * using `aria-describedby`.
+   *
+   * Pass "label" if you want to use `aria-labelledby` instead, or pass "none"
+   * if you don't want any association.
+   *
+   * @default 'description'
+   */
+  ariaStrategy?: 'description' | 'label' | 'none';
 };
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -201,6 +211,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     className,
     visible,
     reference,
+    ariaStrategy = 'description',
     ...rest
   } = props;
   const tooltip = useTooltip({
@@ -230,6 +241,9 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
       ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
       style={{ ...tooltip.floatingStyles, ...style }}
       {...tooltip.getFloatingProps()}
+      role={undefined}
+      aria-hidden
+      hidden={!tooltip.open}
       {...rest}
     >
       {content}
@@ -251,15 +265,19 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
             children as JSX.Element,
             tooltip.getReferenceProps({
               ref: childrenRef,
+              ...(ariaStrategy === 'label' && {
+                'aria-labelledby': tooltip.getFloatingProps().id,
+              }),
+              // override aria-describedby that comes from floating-ui
+              'aria-describedby':
+                ariaStrategy === 'description'
+                  ? tooltip.getFloatingProps().id
+                  : undefined,
               ...(children as JSX.Element).props,
             }),
           )
         : null}
-      {tooltip.open
-        ? portalTo
-          ? ReactDOM.createPortal(contentBox, portalTo)
-          : contentBox
-        : null}
+      {portalTo ? ReactDOM.createPortal(contentBox, portalTo) : contentBox}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;

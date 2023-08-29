@@ -151,6 +151,7 @@ export const Thumb = (props: ThumbProps) => {
     <Tooltip
       placement='top'
       autoUpdateOptions={{ animationFrame: true }}
+      ariaStrategy='none'
       {...tooltipProps}
     >
       <Box

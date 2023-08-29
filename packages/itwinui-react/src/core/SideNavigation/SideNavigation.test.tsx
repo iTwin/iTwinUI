@@ -184,12 +184,14 @@ it('should only add tooltips to items when collapsed', async () => {
   mainItems.forEach((item, index) => {
     expect(
       queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
-    ).toBeFalsy();
+    ).not.toBeVisible();
     jest.useFakeTimers();
     fireEvent.mouseEnter(item);
     act(() => void jest.advanceTimersByTime(50));
     jest.useRealTimers();
-    getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' });
+    expect(
+      getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
+    ).toBeVisible();
   });
 
   // expanded
