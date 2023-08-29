@@ -9,7 +9,7 @@ import { SvgTag } from '@itwin/itwinui-icons-react';
 export default () => {
   const [selected, setSelected] = React.useState(true);
   return (
-    <Tile isSelected={selected}>
+    <Tile.Wrapper isSelected={selected}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -36,6 +36,6 @@ export default () => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
