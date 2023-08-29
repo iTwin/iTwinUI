@@ -344,7 +344,7 @@ TileMetadata.displayName = 'Tile.Metadata';
 // Tile.MoreOptions component
 type TileMoreOptionsOwnProps = {
   buttonProps?: React.ComponentPropsWithoutRef<typeof IconButton>;
-  children?: React.ReactElement[];
+  children?: React.ReactNode[];
 };
 
 const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
