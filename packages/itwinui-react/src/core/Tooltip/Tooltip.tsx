@@ -107,7 +107,7 @@ type TooltipOwnProps = {
    *
    * Pass "label" if you want to use `aria-labelledby` instead, or pass "none"
    * if you don't want any association.
-   * 
+   *
    * @default 'description'
    */
   ariaStrategy?: 'description' | 'label' | 'none';
@@ -268,6 +268,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
               ...(ariaStrategy === 'label' && {
                 'aria-labelledby': tooltip.getFloatingProps().id,
               }),
+              // override aria-describedby that comes from floating-ui
               'aria-describedby':
                 ariaStrategy === 'description'
                   ? tooltip.getFloatingProps().id
