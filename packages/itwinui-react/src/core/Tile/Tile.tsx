@@ -621,8 +621,6 @@ export const Tile = Object.assign(TileComponent, {
    * @example
    * <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture/>
-   *    // or
-   *    <Tile.ThumbnailAvatar/>
    *    <Tile.QuickAction/>
    *    <Tile.TypeIndicator/>
    *    <Tile.BadgeContainer/>
