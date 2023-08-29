@@ -21,6 +21,8 @@ import {
   autoPlacement,
   hide,
   inline,
+  useDelayGroupContext,
+  useDelayGroup,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import {
@@ -28,6 +30,7 @@ import {
   getDocument,
   mergeRefs,
   useGlobals,
+  useId,
   useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -152,12 +155,11 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const context = data.context;
 
+  const { delay } = useDelayGroupContext();
+
   const hover = useHover(context, {
     enabled: controlledOpen == null,
-    delay: {
-      open: 50,
-      close: 250,
-    },
+    delay: delay ?? { open: 50, close: 250 },
     handleClose: safePolygon({ buffer: -Infinity }),
   });
 
@@ -172,6 +174,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const dismiss = useDismiss(context, {
     enabled: controlledOpen == null,
   });
+
+  useDelayGroup(context, { id: useId() });
 
   const role = useRole(context, { role: 'tooltip' });
 
