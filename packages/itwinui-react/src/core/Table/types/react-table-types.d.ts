@@ -233,8 +233,8 @@ export type ColumnWithStrictAccessor<D extends Record<string, unknown> = {}> =
     ValueOf<{
       [K in keyof D]: {
         accessor: K;
-        Cell?: Renderer<CellProps<D, D[K]>> | undefined;
-      };
+        // Cell?: Renderer<CellProps<D, D[K]>> | undefined;
+      } & ColumnInterfaceBasedOnValue<D, D[K]>;
       // } & ColumnInterfaceBasedOnValue<D, D[K]>;
     }>;
 
@@ -252,10 +252,8 @@ export type ColumnWithLooseAccessor<D extends Record<string, unknown> = {}> =
     };
 
 export type Column<D extends Record<string, unknown> = {}> =
-  ColumnWithStrictAccessor<D>;
-// | ColumnGroup<D>
-// | ColumnWithLooseAccessor<D>
-// | ColumnWithStrictAccessor<D>;
+  // ColumnWithStrictAccessor<D>;
+  ColumnGroup<D> | ColumnWithLooseAccessor<D> | ColumnWithStrictAccessor<D>;
 
 export interface ColumnInstance<D extends Record<string, unknown> = {}>
   extends Omit<ColumnInterface<D>, 'id'>,
