@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { Tile } from './Tile.js';
 import { Badge } from '../Badge/index.js';
@@ -14,10 +14,10 @@ import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ContentArea />
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
@@ -30,23 +30,23 @@ it('should render in its most basic state', () => {
 
 it('should render new and selected states', () => {
   const { container } = render(
-    <Tile isSelected>
+    <Tile.Wrapper isSelected>
       <Tile.Name name='test-name' />
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile.iui-selected')).toBeTruthy();
 
   const { container: container2 } = render(
-    <Tile isNew>
+    <Tile.Wrapper isNew>
       <Tile.Name name='test-name' />
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container2.querySelector('.iui-tile.iui-new')).toBeTruthy();
 });
 
 it('should render main text content correctly', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <SvgPlaceholder />
@@ -58,7 +58,7 @@ it('should render main text content correctly', () => {
         <Tile.Description>test-description</Tile.Description>
         <Tile.Metadata>test-metadata</Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
@@ -81,12 +81,12 @@ it('should render main text content correctly', () => {
 
 it('should render thumbnail correctly (url)', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='image.png' />
       </Tile.ThumbnailArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
   const picture = container.querySelector(
@@ -98,14 +98,14 @@ it('should render thumbnail correctly (url)', () => {
 
 it('should render thumbnail correctly (<img>)', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <img src='image.png' />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile-thumbnail')).toBeTruthy();
   const img = container.querySelector('.iui-thumbnail-icon')
@@ -116,14 +116,14 @@ it('should render thumbnail correctly (<img>)', () => {
 
 it('should render thumbnail correctly (svg)', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgPlaceholder />
         </Tile.ThumbnailPicture>
       </Tile.ThumbnailArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   const { container: placeholderIcon } = render(<SvgPlaceholder />);
   expect(container.querySelector('.iui-tile-thumbnail svg')).toBeTruthy();
@@ -136,7 +136,7 @@ it('should work with buttons correctly', () => {
   const onClickMock = jest.fn();
 
   const { container, getByText } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
@@ -151,7 +151,7 @@ it('should work with buttons correctly', () => {
           test-button 2
         </Button>
       </Tile.Buttons>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile')).toBeTruthy();
   expect(container.querySelector('.iui-tile-buttons')).toBeTruthy();
@@ -171,7 +171,7 @@ it('should work with icons correctly', () => {
   const onClickMock = jest.fn();
 
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
@@ -188,7 +188,7 @@ it('should work with icons correctly', () => {
           </IconButton>
         </Tile.QuickAction>
       </Tile.ThumbnailArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
@@ -208,7 +208,7 @@ it('should work with icons correctly', () => {
 it('should render options dropdown correctly', async () => {
   const onClickMock = jest.fn();
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
@@ -223,7 +223,7 @@ it('should render options dropdown correctly', async () => {
           Item 1
         </MenuItem>
       </Tile.MoreOptions>
-    </Tile>,
+    </Tile.Wrapper>,
   );
 
   expect(container.querySelector('.iui-tile')).toBeTruthy();
@@ -247,7 +247,7 @@ it('should render options dropdown correctly', async () => {
 
 it('should propagate misc props correctly', () => {
   const { container } = render(
-    <Tile className='test-class' style={{ height: '300px' }}>
+    <Tile.Wrapper className='test-class' style={{ height: '300px' }}>
       <Tile.Name name='test-name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
@@ -257,7 +257,7 @@ it('should propagate misc props correctly', () => {
       <Tile.ContentArea>
         <span className='test-child'>test-content</span>
       </Tile.ContentArea>
-    </Tile>,
+    </Tile.Wrapper>,
   );
 
   const tile = container.querySelector('.iui-tile.test-class') as HTMLElement;
@@ -273,45 +273,121 @@ it('should propagate misc props correctly', () => {
 
 it('should render actionable tile', () => {
   const { container } = render(
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name>
         <Tile.NameLabel>
           <Tile.Action>test-name</Tile.Action>
         </Tile.NameLabel>
       </Tile.Name>
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector('.iui-tile.iui-actionable')).toBeTruthy();
 });
 
 it.each(['positive', 'warning', 'negative'] as const)(
-  'should render tile with %s status',
+  'should render Tile with %s status',
   (status) => {
     const { container } = render(
-      <Tile status={status}>
+      <Tile.Wrapper status={status}>
         <Tile.Name name='test-name' />
-      </Tile>,
+      </Tile.Wrapper>,
     );
     expect(container.querySelector(`.iui-tile.iui-${status}`)).toBeTruthy();
   },
 );
 
-it('should render tile with loading status', () => {
+it('should render Tile with loading status', () => {
   const { container } = render(
-    <Tile isLoading={true}>
+    <Tile.Wrapper isLoading={true}>
       <Tile.Name name='test-name' />
-    </Tile>,
+    </Tile.Wrapper>,
   );
   expect(container.querySelector(`.iui-tile.iui-loading`)).toBeTruthy();
 });
 
-it('should render tile with disabled status', () => {
+it('should render Tile with disabled status', () => {
   const { container } = render(
-    <Tile isDisabled={true}>
+    <Tile.Wrapper isDisabled={true}>
       <Tile.Name name='test-name' />
-    </Tile>,
+    </Tile.Wrapper>,
   );
   const tile = container.querySelector(`.iui-tile`) as HTMLElement;
   expect(tile).toBeTruthy();
   expect(tile).toHaveAttribute('aria-disabled', 'true');
+});
+
+it('should support Tile with legacy props', () => {
+  render(
+    <Tile
+      data-testid='1'
+      name='Tile name'
+      description='Tile description that takes upto 3 lines'
+      metadata={'basic metadata'}
+      thumbnail='/url/to/image.jpg'
+      badge={<Badge backgroundColor='blue'>Badge label</Badge>}
+      buttons={[
+        <Button key='button-1'>Button 1</Button>,
+        <Button key='button-2'>Button 2</Button>,
+      ]}
+      moreOptions={[
+        <MenuItem key='menuitem-1'>Item 1</MenuItem>,
+        <MenuItem key='menuitem-1'>Item 2</MenuItem>,
+      ]}
+      leftIcon={
+        <Tile.IconButton>
+          <svg className='info' />
+        </Tile.IconButton>
+      }
+      rightIcon={
+        <Tile.IconButton>
+          <svg className='star' />
+        </Tile.IconButton>
+      }
+      isSelected={true}
+      isNew={false}
+    />,
+  );
+
+  render(
+    <Tile.Wrapper data-testid='2' isSelected={true} isNew={false}>
+      <Tile.Name>
+        <Tile.NameIcon />
+        <Tile.NameLabel>Tile name</Tile.NameLabel>
+      </Tile.Name>
+      <Tile.ThumbnailArea>
+        <Tile.ThumbnailPicture url='/url/to/image.jpg' />
+        <Tile.BadgeContainer>
+          <Badge backgroundColor='blue'>Badge label</Badge>
+        </Tile.BadgeContainer>
+        <Tile.TypeIndicator>
+          <Tile.IconButton>
+            <svg className='info' />
+          </Tile.IconButton>
+        </Tile.TypeIndicator>
+        <Tile.QuickAction>
+          <Tile.IconButton>
+            <svg className='star' />
+          </Tile.IconButton>
+        </Tile.QuickAction>
+      </Tile.ThumbnailArea>
+      <Tile.ContentArea>
+        <Tile.Description>
+          Tile description that takes upto 3 lines
+        </Tile.Description>
+        <Tile.MoreOptions>
+          <MenuItem key='menuitem-1'>Item 1</MenuItem>
+          <MenuItem key='menuitem-1'>Item 2</MenuItem>
+        </Tile.MoreOptions>
+        <Tile.Metadata>basic metadata</Tile.Metadata>
+      </Tile.ContentArea>
+      <Tile.Buttons>
+        <Button key='button-1'>Button 1</Button>
+        <Button key='button-2'>Button 2</Button>
+      </Tile.Buttons>
+    </Tile.Wrapper>,
+  );
+
+  expect(screen.getByTestId('1').innerHTML).toEqual(
+    screen.getByTestId('2').innerHTML,
+  );
 });

@@ -557,8 +557,8 @@ const TileComponent = React.forwardRef((props, forwardedRef) => {
           <TileThumbnailPicture url={thumbnail} />
         )}
         {badge && <TileBadgeContainer>{badge}</TileBadgeContainer>}
-        {rightIcon && <TileQuickAction>{rightIcon}</TileQuickAction>}
         {leftIcon && <TileTypeIndicator>{leftIcon}</TileTypeIndicator>}
+        {rightIcon && <TileQuickAction>{rightIcon}</TileQuickAction>}
       </TileThumbnailArea>
 
       <TileContentArea>
@@ -587,7 +587,7 @@ TileComponent.displayName = 'Tile';
  *    <Tile.Name>
  *      <Tile.NameIcon/>
  *      <Tile.NameLabel/>
- *    <Tile.Name/>
+ *    </Tile.Name>
  *    <Tile.ContentArea>
  *      <Tile.Description />
  *      <Tile.Metadata/>
