@@ -398,7 +398,7 @@ const TileButtons = polymorphic('iui-tile-buttons');
 TileButtons.displayName = 'Tile.Buttons';
 
 // ----------------------------------------------------------------------------
-type TileOwnProps = {
+type TileLegacyProps = {
   /**
    * Name or title of the tile.
    */
@@ -571,7 +571,7 @@ const TileComponent = React.forwardRef((props, forwardedRef) => {
       {buttons && <TileButtons>{buttons}</TileButtons>}
     </TileWrapper>
   );
-}) as PolymorphicForwardRefComponent<'div', TileOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', TileLegacyProps>;
 TileComponent.displayName = 'Tile';
 
 /**
