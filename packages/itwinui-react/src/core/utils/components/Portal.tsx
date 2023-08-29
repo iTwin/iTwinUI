@@ -8,7 +8,7 @@ import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 import { getDocument } from '../functions/dom.js';
 import { useIsClient } from '../hooks/useIsClient.js';
 
-export type PortalProps = React.PropsWithChildren<{
+export type PortalProps = {
   /**
    * Where should the element be portaled to?
    *
@@ -19,7 +19,7 @@ export type PortalProps = React.PropsWithChildren<{
    * Otherwise, it will portal to the element passed to `to`.
    */
   portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
-}>;
+};
 
 // ----------------------------------------------------------------------------
 
@@ -32,7 +32,9 @@ export type PortalProps = React.PropsWithChildren<{
  *
  * @private
  */
-export const Portal = ({ portal = true, children }: PortalProps) => {
+export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
+  const { portal = true, children } = props;
+
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
 
