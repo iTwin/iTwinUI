@@ -36,6 +36,13 @@ export type ToastProps = {
    */
   content: React.ReactNode;
   /**
+   * Passes props to toast and content
+   */
+  domProps?: {
+    toastProps?: React.ComponentProps<'div'>;
+    contentProps?: React.ComponentProps<'div'>;
+  };
+  /**
    * Category of the Toast, which controls the border color, as well as the category icon.
    */
   category: ToastCategory;
@@ -96,6 +103,7 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
+    domProps,
   } = props;
 
   const closeTimeout = React.useRef(0);
@@ -217,12 +225,15 @@ export const Toast = (props: ToastProps) => {
       >
         <div ref={onRef}>
           <ToastPresentation
+            as='div'
             category={category}
             content={content}
             link={link}
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
+            {...domProps?.toastProps}
+            contentProps={domProps?.contentProps}
           />
         </div>
       </Box>
@@ -232,8 +243,11 @@ export const Toast = (props: ToastProps) => {
 
 export type ToastPresentationProps = Omit<
   ToastProps,
-  'duration' | 'id' | 'isVisible' | 'onRemove'
-> & { onClose?: () => void };
+  'duration' | 'id' | 'isVisible' | 'onRemove' | 'domProps'
+> & {
+  onClose?: () => void;
+  contentProps?: React.ComponentProps<'div'>;
+};
 
 /**
  * The presentational part of a toast, without any animation or logic.
@@ -248,6 +262,7 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
     hasCloseButton,
     onClose,
     className,
+    contentProps,
     ...rest
   } = props;
 
@@ -262,7 +277,13 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
       <Box className='iui-status-area'>
         {<StatusIcon className='iui-icon' />}
       </Box>
-      <Box className='iui-message'>{content}</Box>
+      <Box
+        as='div'
+        {...contentProps}
+        className={cx('iui-message', contentProps?.className)}
+      >
+        {content}
+      </Box>
       {link && (
         <ButtonBase className='iui-toast-anchor' {...link} title={undefined}>
           {link.title}
