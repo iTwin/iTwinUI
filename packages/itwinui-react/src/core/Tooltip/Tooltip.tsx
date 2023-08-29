@@ -213,7 +213,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     style,
     className,
     visible,
-    reference: referenceProp,
+    reference,
     ariaStrategy = 'description',
     id = uniqueId,
     ...rest
@@ -238,13 +238,13 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
   const context = useGlobals();
 
   React.useEffect(() => {
-    if (referenceProp) {
-      tooltip.refs.setReference(referenceProp);
+    if (reference) {
+      tooltip.refs.setReference(reference);
       Object.entries(ariaProps).forEach(([key, value]) => {
-        referenceProp.setAttribute(key, value);
+        reference.setAttribute(key, value);
       });
     }
-  }, [ariaProps, referenceProp, tooltip.refs]);
+  }, [ariaProps, reference, tooltip.refs]);
 
   const portalTo =
     typeof portal !== 'boolean'
