@@ -1,5 +1,5 @@
 {
   "extends": [
-    "../../internal/configs/.stylelintrc.json"
+    "configs/.stylelintrc.json"
   ]
 }
