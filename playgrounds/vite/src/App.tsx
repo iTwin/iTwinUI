@@ -30,14 +30,14 @@ const App = () => {
   // type TableStoryDataType = Record<string, any>;
   // interface TableStoryDataType extends Record<string, any> {
   interface TableStoryDataType extends Record<string, any> {
-    1: string;
-    // price: number;
+    // 1: string;
+    price: number;
     // // [K in string]: any;
-    // quantity: number;
-    // rating: number;
-    // deliveryTime: number;
-    // status: 'positive' | 'negative' | 'warning' | undefined;
-    // subRows: TableStoryDataType[];
+    quantity: number;
+    rating: number;
+    deliveryTime: number;
+    status: 'positive' | 'negative' | 'warning' | undefined;
+    subRows: TableStoryDataType[];
     // 1?: number;
   }
 
@@ -57,19 +57,19 @@ const App = () => {
       const keyValue = parentRow ? `${parentRow}.${index + 1}` : `${index + 1}`;
       const rating = (index % 4) + 1;
       return {
-        1: `Product ${keyValue}`,
-        // price: ((index % 10) + 1) * 15,
-        // quantity: ((index % 10) + 1) * 150,
-        // rating: rating,
-        // deliveryTime: (index % 15) + 1,
-        // status:
-        //   rating >= 4 ? 'positive' : rating === 3 ? 'warning' : 'negative',
-        // subRows:
-        //   depth < 2
-        //     ? Array(Math.round(index % 5))
-        //         .fill(null)
-        //         .map((_, index) => generateItem(index, keyValue, depth + 1))
-        //     : [],
+        // 1: `Product ${keyValue}`,
+        price: ((index % 10) + 1) * 15,
+        quantity: ((index % 10) + 1) * 150,
+        rating: rating,
+        deliveryTime: (index % 15) + 1,
+        status:
+          rating >= 4 ? 'positive' : rating === 3 ? 'warning' : 'negative',
+        subRows:
+          depth < 2
+            ? Array(Math.round(index % 5))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
       };
     },
     [],
@@ -107,7 +107,7 @@ const App = () => {
           Header: 'Product',
           accessor: 'product',
           Filter: tableFilters.TextFilter(),
-          Cell: (props) => <div></div>,
+          Cell: (props) => <div>{`${props}`}</div>,
         },
       ] satisfies Array<TableTypes.Column<TableStoryDataType>>,
     [isRowDisabled, menuItems],
