@@ -102,7 +102,7 @@ type TooltipOwnProps = {
    * <Button ref={setTrigger} />
    * <Tooltip content='tooltip text' reference={trigger} />
    */
-  reference?: HTMLElement;
+  reference?: HTMLElement | null;
   /**
    * By default, the tooltip will be associated with the reference element
    * using `aria-describedby`.
