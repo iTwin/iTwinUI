@@ -42,7 +42,7 @@ it('should be visible', () => {
 it('should respect visible prop', () => {
   const { queryByText, rerender } = render(
     <Tooltip content='some text' visible={false}>
-      <div>Visible!</div>
+      <div>Not visible!</div>
     </Tooltip>,
   );
 
@@ -50,7 +50,7 @@ it('should respect visible prop', () => {
 
   rerender(
     <Tooltip content='some text' visible>
-      <div>Not visible!</div>
+      <div>Visible!</div>
     </Tooltip>,
   );
 
