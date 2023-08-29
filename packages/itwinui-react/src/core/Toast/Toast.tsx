@@ -270,7 +270,6 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      as='div'
       className={cx(`iui-toast iui-${category}`, className)}
       ref={forwardedRef}
       {...rest}
