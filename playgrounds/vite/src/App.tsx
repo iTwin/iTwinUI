@@ -1,9 +1,14 @@
-import { Button } from '@itwin/itwinui-react';
+import { Button, Tooltip } from '@itwin/itwinui-react';
 
 const App = () => {
   return (
     <>
-      <Button>Hello world</Button>
+      <Tooltip
+        content='or not'
+        portal={{ to: () => document.querySelector('main') }}
+      >
+        <Button>Hello world</Button>
+      </Tooltip>
     </>
   );
 };
