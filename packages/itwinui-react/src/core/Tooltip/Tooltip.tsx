@@ -226,21 +226,6 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     }
   }, [reference, tooltip.refs]);
 
-  const contentBox = (
-    <Box
-      className={cx('iui-tooltip', className)}
-      ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
-      style={{ ...tooltip.floatingStyles, ...style }}
-      {...tooltip.getFloatingProps()}
-      role={undefined}
-      aria-hidden
-      hidden={!tooltip.open}
-      {...rest}
-    >
-      {content}
-    </Box>
-  );
-
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
@@ -258,7 +243,20 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
         ref: tooltip.refs.setReference,
       }))}
 
-      <Portal portal={portal}>{contentBox}</Portal>
+      <Portal portal={portal}>
+        <Box
+          className={cx('iui-tooltip', className)}
+          ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
+          style={{ ...tooltip.floatingStyles, ...style }}
+          {...tooltip.getFloatingProps()}
+          role={undefined}
+          aria-hidden
+          hidden={!tooltip.open}
+          {...rest}
+        >
+          {content}
+        </Box>
+      </Portal>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
