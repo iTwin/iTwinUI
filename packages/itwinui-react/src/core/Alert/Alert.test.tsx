@@ -2,16 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
+import userEvent from '@testing-library/user-event';
 
 import { Alert } from './Alert.js';
 
 it('renders correctly in its default state', () => {
   const { container } = render(
-    <Alert>
+    <Alert.Wrapper>
       <Alert.Message>This is an alert.</Alert.Message>
-    </Alert>,
+    </Alert.Wrapper>,
   );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
@@ -26,14 +27,14 @@ it('renders correctly in its default state', () => {
 it('renders clickable text with href correctly', () => {
   const mockHref = 'https://www.example.com/';
   const { container, getByText } = render(
-    <Alert>
+    <Alert.Wrapper>
       <Alert.Message>
         This is an alert.
         <Alert.Action href={mockHref} className={'my-link'}>
           I am a clickable text
         </Alert.Action>
       </Alert.Message>
-    </Alert>,
+    </Alert.Wrapper>,
   );
 
   expect(container.querySelector('.iui-alert')).toBeTruthy();
@@ -49,9 +50,9 @@ it('renders clickable text with href correctly', () => {
 
 it('takes a className and style correctly', () => {
   const { container, getByText } = render(
-    <Alert className='custom-alert' style={{ width: 100 }}>
+    <Alert.Wrapper className='custom-alert' style={{ width: 100 }}>
       <Alert.Message>This is an alert.</Alert.Message>
-    </Alert>,
+    </Alert.Wrapper>,
   );
 
   const alert = container.querySelector('.iui-alert') as HTMLElement;
@@ -63,9 +64,9 @@ it('takes a className and style correctly', () => {
 
 it('renders sticky alert correctly', () => {
   const { container, getByText } = render(
-    <Alert isSticky>
+    <Alert.Wrapper isSticky>
       <Alert.Message>This is sticky alert.</Alert.Message>
-    </Alert>,
+    </Alert.Wrapper>,
   );
 
   const alert = container.querySelector('.iui-alert') as HTMLElement;
@@ -76,12 +77,12 @@ it('renders sticky alert correctly', () => {
 
 it('renders alert action as button', () => {
   const { container } = render(
-    <Alert>
+    <Alert.Wrapper>
       <Alert.Message>
         This is an alert.
         <Alert.Action>I am a clickable button</Alert.Action>
       </Alert.Message>
-    </Alert>,
+    </Alert.Wrapper>,
   );
 
   const alert = container.querySelector('.iui-alert') as HTMLElement;
@@ -99,11 +100,11 @@ it('renders alert action as button', () => {
   it(`renders ${type} correctly`, () => {
     const closeMock = jest.fn();
     const { container, getByText } = render(
-      <Alert type={type}>
+      <Alert.Wrapper type={type}>
         <Alert.Icon />
         <Alert.Message>This is an alert.</Alert.Message>
         <Alert.CloseButton onClick={closeMock} />
-      </Alert>,
+      </Alert.Wrapper>,
     );
     const alert = container.querySelector('.iui-alert') as HTMLElement;
     expect(alert).toBeTruthy();
@@ -124,4 +125,48 @@ it('renders alert action as button', () => {
     expect(closeMock).toHaveBeenCalled();
     getByText('This is an alert.');
   });
+});
+
+it('should support legacy api', async () => {
+  const onClose = jest.fn();
+
+  render(
+    <div data-testid='1'>
+      <Alert
+        type='warning'
+        isSticky
+        onClose={onClose}
+        clickableText='Click me'
+        clickableTextProps={{ href: '/' }}
+      >
+        This is an alert.
+      </Alert>
+    </div>,
+  );
+
+  render(
+    <div data-testid='2'>
+      <Alert.Wrapper type='warning' isSticky>
+        <Alert.Icon />
+        <Alert.Message>
+          This is an alert.
+          <Alert.Action href='/'>Click me</Alert.Action>
+        </Alert.Message>
+        <Alert.CloseButton onClick={onClose} />
+      </Alert.Wrapper>
+    </div>,
+  );
+
+  expect(screen.getByTestId('1').innerHTML).toEqual(
+    screen.getByTestId('2').innerHTML,
+  );
+
+  await userEvent.click(
+    screen.getByTestId('1').querySelector('[aria-label=Close]') as HTMLElement,
+  );
+  expect(onClose).toHaveBeenCalledTimes(1);
+  await userEvent.click(
+    screen.getByTestId('2').querySelector('[aria-label=Close]') as HTMLElement,
+  );
+  expect(onClose).toHaveBeenCalledTimes(2);
 });

@@ -21,6 +21,8 @@ import {
   autoPlacement,
   hide,
   inline,
+  useDelayGroupContext,
+  useDelayGroup,
 } from '@floating-ui/react';
 import type { Placement } from '@floating-ui/react';
 import {
@@ -28,6 +30,7 @@ import {
   getDocument,
   mergeRefs,
   useGlobals,
+  useId,
   useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -101,6 +104,16 @@ type TooltipOwnProps = {
    * <Tooltip content='tooltip text' reference={buttonRef} />
    */
   reference?: React.RefObject<HTMLElement>;
+  /**
+   * By default, the tooltip will be associated with the reference element
+   * using `aria-describedby`.
+   *
+   * Pass "label" if you want to use `aria-labelledby` instead, or pass "none"
+   * if you don't want any association.
+   *
+   * @default 'description'
+   */
+  ariaStrategy?: 'description' | 'label' | 'none';
 };
 
 const useTooltip = (options: TooltipOptions = {}) => {
@@ -142,12 +155,11 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const context = data.context;
 
+  const { delay } = useDelayGroupContext();
+
   const hover = useHover(context, {
     enabled: controlledOpen == null,
-    delay: {
-      open: 50,
-      close: 250,
-    },
+    delay: delay ?? { open: 50, close: 250 },
     handleClose: safePolygon({ buffer: -Infinity }),
   });
 
@@ -162,6 +174,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const dismiss = useDismiss(context, {
     enabled: controlledOpen == null,
   });
+
+  useDelayGroup(context, { id: useId() });
 
   const role = useRole(context, { role: 'tooltip' });
 
@@ -201,6 +215,7 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     className,
     visible,
     reference,
+    ariaStrategy = 'description',
     ...rest
   } = props;
   const tooltip = useTooltip({
@@ -230,6 +245,9 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
       ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
       style={{ ...tooltip.floatingStyles, ...style }}
       {...tooltip.getFloatingProps()}
+      role={undefined}
+      aria-hidden
+      hidden={!tooltip.open}
       {...rest}
     >
       {content}
@@ -251,15 +269,19 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
             children as JSX.Element,
             tooltip.getReferenceProps({
               ref: childrenRef,
+              ...(ariaStrategy === 'label' && {
+                'aria-labelledby': tooltip.getFloatingProps().id,
+              }),
+              // override aria-describedby that comes from floating-ui
+              'aria-describedby':
+                ariaStrategy === 'description'
+                  ? tooltip.getFloatingProps().id
+                  : undefined,
               ...(children as JSX.Element).props,
             }),
           )
         : null}
-      {tooltip.open
-        ? portalTo
-          ? ReactDOM.createPortal(contentBox, portalTo)
-          : contentBox
-        : null}
+      {portalTo ? ReactDOM.createPortal(contentBox, portalTo) : contentBox}
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;

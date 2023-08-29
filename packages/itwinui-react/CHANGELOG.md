@@ -146,6 +146,24 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.6
+
+### Patch Changes
+
+- [#1516](https://github.com/iTwin/iTwinUI/pull/1516): Update SearchBox placeholder color to match Input.
+
+## 2.12.5
+
+### Patch Changes
+
+- [#1511](https://github.com/iTwin/iTwinUI/pull/1511): Fix high-visibility button background on hover.
+
+## 2.12.4
+
+### Patch Changes
+
+- [#1508](https://github.com/iTwin/iTwinUI/pull/1508): Fixed an issue where styles were not included in CommonJS environments.
+
 ## 2.12.3
 
 ### Patch Changes

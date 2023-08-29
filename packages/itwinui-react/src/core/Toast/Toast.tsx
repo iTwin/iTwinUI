@@ -13,7 +13,7 @@ import {
   useSafeContext,
   ButtonBase,
 } from '../utils/index.js';
-import type { CommonProps } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { ToasterStateContext } from './Toaster.js';
 
@@ -35,6 +35,13 @@ export type ToastProps = {
    * Content of the Toast message
    */
   content: React.ReactNode;
+  /**
+   * Passes props to toast and content
+   */
+  domProps?: {
+    toastProps?: React.ComponentProps<'div'>;
+    contentProps?: React.ComponentProps<'div'>;
+  };
   /**
    * Category of the Toast, which controls the border color, as well as the category icon.
    */
@@ -96,6 +103,7 @@ export const Toast = (props: ToastProps) => {
     hasCloseButton,
     onRemove,
     animateOutTo,
+    domProps,
   } = props;
 
   const closeTimeout = React.useRef(0);
@@ -217,12 +225,15 @@ export const Toast = (props: ToastProps) => {
       >
         <div ref={onRef}>
           <ToastPresentation
+            as='div'
             category={category}
             content={content}
             link={link}
             type={type}
             hasCloseButton={hasCloseButton}
             onClose={close}
+            {...domProps?.toastProps}
+            contentProps={domProps?.contentProps}
           />
         </div>
       </Box>
@@ -232,14 +243,17 @@ export const Toast = (props: ToastProps) => {
 
 export type ToastPresentationProps = Omit<
   ToastProps,
-  'duration' | 'id' | 'isVisible' | 'onRemove'
-> & { onClose?: () => void } & CommonProps;
+  'duration' | 'id' | 'isVisible' | 'onRemove' | 'domProps'
+> & {
+  onClose?: () => void;
+  contentProps?: React.ComponentProps<'div'>;
+};
 
 /**
  * The presentational part of a toast, without any animation or logic.
  * @private
  */
-export const ToastPresentation = (props: ToastPresentationProps) => {
+export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
   const {
     content,
     category,
@@ -248,17 +262,28 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
     hasCloseButton,
     onClose,
     className,
+    contentProps,
     ...rest
   } = props;
 
   const StatusIcon = StatusIconMap[category];
 
   return (
-    <Box className={cx(`iui-toast iui-${category}`, className)} {...rest}>
+    <Box
+      className={cx(`iui-toast iui-${category}`, className)}
+      ref={forwardedRef}
+      {...rest}
+    >
       <Box className='iui-status-area'>
         {<StatusIcon className='iui-icon' />}
       </Box>
-      <Box className='iui-message'>{content}</Box>
+      <Box
+        as='div'
+        {...contentProps}
+        className={cx('iui-message', contentProps?.className)}
+      >
+        {content}
+      </Box>
       {link && (
         <ButtonBase className='iui-toast-anchor' {...link} title={undefined}>
           {link.title}
@@ -276,6 +301,6 @@ export const ToastPresentation = (props: ToastPresentationProps) => {
       )}
     </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', ToastPresentationProps>;
 
 export default Toast;
