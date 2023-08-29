@@ -234,11 +234,11 @@ it('should render options dropdown correctly', async () => {
   expect(menuButton).toBeTruthy();
   await userEvent.click(menuButton);
 
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
-  expect(document.querySelectorAll('li')).toHaveLength(2);
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(2);
 
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   expect(menuItem.textContent).toBe('Item 1');
   await userEvent.click(menuItem);

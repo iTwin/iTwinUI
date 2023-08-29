@@ -53,7 +53,7 @@ it('should render in its most basic state', () => {
   expect(input).toHaveAttribute('aria-controls', `${id}-list`);
   expect(input).toHaveAttribute('aria-autocomplete', 'list');
 
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLElement;
   expect(list).toBeVisible();
   expect(list.id).toEqual(`${id}-list`);
   expect(list).toHaveAttribute('role', 'listbox');
@@ -651,7 +651,7 @@ it('should call onExpand and onCollapse when dropdown is opened and closed', asy
 
   const icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
   await userEvent.click(icon);
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLElement;
   expect(list).toBeVisible();
   expect(onExpand).toHaveBeenCalled();
 
@@ -720,7 +720,7 @@ it('should update options (have selected option in new options list)', async () 
 
   rerender(<ComboBox options={options2} onChange={mockOnChange} value={2} />);
   fireEvent.focus(input);
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLElement;
   expect(list).toBeVisible();
   expect(list.children).toHaveLength(4);
   expect(mockOnChange).not.toHaveBeenCalledTimes(2);
