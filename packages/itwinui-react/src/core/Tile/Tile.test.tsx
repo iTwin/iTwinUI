@@ -334,12 +334,12 @@ it('should support Tile with legacy props', () => {
         <MenuItem key='menuitem-1'>Item 2</MenuItem>,
       ]}
       leftIcon={
-        <IconButton size='small'>
+        <IconButton size='small' styleType='borderless'>
           <svg className='info' />
         </IconButton>
       }
       rightIcon={
-        <IconButton size='small'>
+        <IconButton size='small' styleType='borderless'>
           <svg className='star' />
         </IconButton>
       }
