@@ -17,11 +17,9 @@ import {
   useGlobalFilter,
 } from './types/react-table-types.js';
 import type {
-  TableProps,
-  TablePaginatorRendererProps,
-  // CellProps,
+  CellProps,
   HeaderGroup,
-  // TableOptions,
+  TableOptions,
   Row,
   TableState,
   ActionType,
@@ -37,7 +35,7 @@ import {
   useIsomorphicLayoutEffect,
   Box,
 } from '../utils/index.js';
-// import type { CommonProps } from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
@@ -77,17 +75,6 @@ let isDev = false;
 try {
   isDev = process.env.NODE_ENV !== 'production';
 } catch {}
-
-const flattenColumns = (columns: Column[]): Column[] => {
-  const flatColumns: Column[] = [];
-  columns.forEach((column) => {
-    flatColumns.push(column);
-    if ('columns' in column) {
-      flatColumns.push(...flattenColumns(column.columns));
-    }
-  });
-  return flatColumns;
-};
 
 export type TablePaginatorRendererProps = {
   /**
@@ -330,6 +317,17 @@ export type TableProps<
    */
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
+
+const flattenColumns = (columns: Column[]): Column[] => {
+  const flatColumns: Column[] = [];
+  columns.forEach((column) => {
+    flatColumns.push(column);
+    if ('columns' in column) {
+      flatColumns.push(...flattenColumns(column.columns));
+    }
+  });
+  return flatColumns;
+};
 
 /**
  * Table based on [react-table](https://react-table.tanstack.com/docs/api/overview).
