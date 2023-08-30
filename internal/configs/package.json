@@ -9,7 +9,8 @@
     "eslint-preset.js",
     "prettier-config.js",
     "prettier-astro-config.js",
-    "prettier-scss-config.js"
+    "prettier-scss-config.js",
+    ".stylelintrc.json"
   ],
   "scripts": {
     "clean": "rimraf .turbo && rimraf node_modules"

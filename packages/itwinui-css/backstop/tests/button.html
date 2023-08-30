@@ -1980,9 +1980,11 @@
 
       <div class="iui-button-group">
         <div>
-          <div class="iui-input-container iui-disabled">
+          <div
+            class="iui-input-flex-container"
+            data-iui-disabled="true"
+          >
             <input
-              class="iui-input"
               value="https://itwin.github.io/iTwinUI"
               disabled
             />
@@ -2002,23 +2004,19 @@
 
       <div class="iui-button-group">
         <div>
-          <div class="iui-input-container iui-inline-icon">
-            <input
-              class="iui-input"
-              value="https://itwin.github.io/iTwinUI"
-            />
-            <span class="iui-input-icon">
+          <div class="iui-input-flex-container">
+            <input value="https://itwin.github.io/iTwinUI" />
 
-              <button
-                class="iui-button"
-                data-iui-variant="borderless"
-              >
-                <svg-close-small
-                  class="iui-button-icon"
-                  aria-hidden="true"
-                ></svg-close-small>
-              </button>
-            </span>
+            <button
+              class="iui-button"
+              data-iui-variant="borderless"
+            >
+              <svg-close-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+
           </div>
         </div>
         <div>
