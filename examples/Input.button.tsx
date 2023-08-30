@@ -16,9 +16,12 @@ export default () => {
   return (
     <>
       <InputGrid>
-        <Label>Street</Label>
+        <Label htmlFor='input-1'>Street</Label>
         <InputWithDecorations>
-          <InputWithDecorations.Input defaultValue='1051 Faribault Road' />
+          <InputWithDecorations.Input
+            id='input-1'
+            defaultValue='1051 Faribault Road'
+          />
           <InputWithDecorations.Button>
             <SvgCloseSmall />
           </InputWithDecorations.Button>
