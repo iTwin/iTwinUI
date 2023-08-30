@@ -500,6 +500,9 @@ type TileLegacyProps = {
    * @default false
    */
   isDisabled?: boolean;
+  /**
+   * Adds onClick to the TileAction component.
+   */
   onClick?: React.MouseEventHandler<HTMLElement>;
 };
 
@@ -613,7 +616,7 @@ TileComponent.displayName = 'Tile';
  */
 export const Tile = Object.assign(TileComponent, {
   /**
-   *
+   * Wrapper subcomponent for fully customisable Tile.
    */
   Wrapper: TileWrapper,
   /**
