@@ -126,8 +126,6 @@ it.each(['description', 'label', 'none'] as const)(
 );
 
 it('should work with reference prop', async () => {
-  jest.useFakeTimers();
-
   const TestComp = () => {
     const [reference, setReference] = React.useState<HTMLElement | null>(null);
     return (
