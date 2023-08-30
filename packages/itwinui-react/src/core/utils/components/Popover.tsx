@@ -102,13 +102,13 @@ type PopoverOwnProps = {
 
 export const usePopover = (options: PopoverOptions) => {
   const {
-    reference,
-    closeOnOutsideClick: onClickOutsideClose,
     placement = 'bottom-start',
     visible,
     onVisibleChange,
+    closeOnOutsideClick,
     autoUpdateOptions,
     middleware = { flip: true, shift: true },
+    reference,
     matchWidth,
   } = options;
 
@@ -145,7 +145,7 @@ export const usePopover = (options: PopoverOptions) => {
 
   const interactions = useInteractions([
     useClick(floating.context),
-    useDismiss(floating.context, { outsidePress: onClickOutsideClose }),
+    useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
   ]);
 
   const getFloatingProps = React.useCallback(
@@ -186,11 +186,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     visible,
     placement,
     onVisibleChange,
+    closeOnOutsideClick,
+    autoUpdateOptions,
+    middleware,
     reference,
     matchWidth,
-    middleware,
-    autoUpdateOptions,
-    closeOnOutsideClick,
     //
     // dom props
     children,
@@ -203,11 +203,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     visible,
     placement,
     onVisibleChange,
+    closeOnOutsideClick,
+    autoUpdateOptions,
+    middleware,
     reference,
     matchWidth,
-    middleware,
-    autoUpdateOptions,
-    closeOnOutsideClick: closeOnOutsideClick,
   });
   const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 
