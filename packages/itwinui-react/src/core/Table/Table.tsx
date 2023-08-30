@@ -432,7 +432,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const flatColumns = flattenColumns(columns as Column[]);
+    const flatColumns = flattenColumns(columns);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
 
@@ -718,7 +718,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns as Column<T>[];
+    lastPassedColumns.current = columns;
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
