@@ -8,7 +8,6 @@ import {
   useFloating,
   useClick,
   useDismiss,
-  useRole,
   useInteractions,
   size,
   autoUpdate,
@@ -144,7 +143,6 @@ export const usePopover = (options: PopoverOptions) => {
   const interactions = useInteractions([
     useClick(floating.context),
     useDismiss(floating.context, { outsidePress: onClickOutsideClose }),
-    useRole(floating.context, { enabled: false }), // TODO: Fix roles in all components,
   ]);
 
   const getFloatingProps = React.useCallback(
