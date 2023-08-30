@@ -24,6 +24,7 @@
     "noErrorTruncation": true,
     "baseUrl": ".",
     "paths": {
+      // Since we don't depend on `@types/react-table`, we need to provide the types for it.
       "react-table": ["src/core/Table/types/react-table-types.d.ts"]
     }
   },
