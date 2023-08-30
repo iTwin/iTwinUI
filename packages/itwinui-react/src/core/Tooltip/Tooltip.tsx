@@ -232,12 +232,26 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
   });
 
   React.useEffect(() => {
-    if (reference) {
-      tooltip.refs.setReference(reference);
-      Object.entries(ariaProps).forEach(([key, value]) => {
-        reference.setAttribute(key, value);
-      });
+    if (!reference) {
+      return;
     }
+    tooltip.refs.setReference(reference);
+
+    const oldValues: Record<string, string | null> = {}; // for cleanup
+    Object.entries(ariaProps).forEach(([key, value]) => {
+      oldValues[key] = reference.getAttribute(key);
+      reference.setAttribute(key, value);
+    });
+
+    return () => {
+      Object.entries(oldValues).forEach(([key, value]) => {
+        if (value) {
+          reference.setAttribute(key, value);
+        } else {
+          reference.removeAttribute(key);
+        }
+      });
+    };
   }, [ariaProps, reference, tooltip.refs]);
 
   return (
