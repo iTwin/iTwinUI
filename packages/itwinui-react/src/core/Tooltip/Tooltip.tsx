@@ -131,8 +131,7 @@ const useTooltip = (options: TooltipOptions = {}) => {
     placement,
     open,
     onOpenChange: setUncontrolledOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, autoUpdateOptions),
+    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
       middleware.flip && flip(),
@@ -220,14 +219,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
   );
 
   return React.useMemo(
-    () => ({
-      open,
-      setUncontrolledOpen,
-      getReferenceProps,
-      floatingProps,
-      ...floating,
-    }),
-    [open, getReferenceProps, floatingProps, floating],
+    () => ({ getReferenceProps, floatingProps, ...floating }),
+    [getReferenceProps, floatingProps, floating],
   );
 };
 
