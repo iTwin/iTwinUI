@@ -8,6 +8,9 @@ module.exports = [
   scenario('Basic', {
     selectors: ['#demo-icons'],
   }),
+  scenario('Padded', {
+    selectors: ['#demo-padded'],
+  }),
   scenario('Status colors', {
     selectors: ['#demo-status'],
   }),

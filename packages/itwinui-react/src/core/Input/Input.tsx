@@ -13,6 +13,10 @@ export type InputProps = {
    */
   size?: 'small' | 'large';
   /**
+   * Status of input.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Modify the native `size` attribute of the `<input>` element.
    * The `width` or `inline-size` property must be unset in order to use this prop.
    */
@@ -27,7 +31,7 @@ export type InputProps = {
  * <Input size='small' />
  */
 export const Input = React.forwardRef((props, ref) => {
-  const { size, htmlSize, className, ...rest } = props;
+  const { size, htmlSize, status, className, ...rest } = props;
   const inputRef = React.useRef<HTMLInputElement>(null);
   const refs = useMergedRefs<HTMLInputElement>(inputRef, ref);
 
@@ -36,6 +40,7 @@ export const Input = React.forwardRef((props, ref) => {
       as='input'
       className={cx('iui-input', className)}
       data-iui-size={size}
+      data-iui-status={status}
       size={htmlSize}
       ref={refs}
       {...rest}
