@@ -58,9 +58,9 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
       matchWidth
       {...dropdownMenuProps}
       visible={isMenuOpen}
-      onToggleVisible={(open) => {
+      onVisibleChange={(open) => {
         setIsMenuOpen(open);
-        dropdownMenuProps?.onToggleVisible?.(open);
+        dropdownMenuProps?.onVisibleChange?.(open);
       }}
     >
       <Button

@@ -353,7 +353,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
 
   return (
     <DropdownMenu
-      onToggleVisible={(open) =>
+      onVisibleChange={(open) =>
         open ? setIsMenuVisible(true) : setIsMenuVisible(false)
       }
       menuItems={(close) =>

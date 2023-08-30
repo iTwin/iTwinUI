@@ -21,7 +21,12 @@ import {
   FloatingFocusManager,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
-import { Box, cloneElementWithRef, useMergedRefs } from '../index.js';
+import {
+  Box,
+  cloneElementWithRef,
+  useControlledState,
+  useMergedRefs,
+} from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 import { Portal } from './Portal.js';
 import type { PortalProps } from './Portal.js';
@@ -29,22 +34,24 @@ import { Surface } from '../../Surface/index.js';
 
 type PopoverOptions = {
   /**
-   * Controlled flag for whether the popover is visible.
-   */
-  visible?: boolean;
-  /**
    * Placement of the popover content.
    * @default 'bottom-start'
    */
   placement?: Placement;
   /**
-   *
+   * Controlled flag for whether the popover is visible.
    */
-  onToggleVisible?: (open: boolean) => void;
+  visible?: boolean;
+
   /**
-   *
+   * Callback invoked every time the tooltip visibility changes as a result
+   * of internal logic. Should be used alongside `visible` prop.
    */
-  onClickOutsideClose?: boolean;
+  onVisibleChange?: (visible: boolean) => void;
+  /**
+   * If true, the popover will close when clicking outside it.
+   */
+  closeOnOutsideClick?: boolean;
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -87,33 +94,33 @@ type PopoverOwnProps = {
   content?: React.ReactNode;
   children?: React.ReactNode;
   applyBackground?: boolean;
-  portal?: PortalProps['portal'];
-};
+} & PortalProps;
 
 // ----------------------------------------------------------------------------
 
 export const usePopover = (options: PopoverOptions) => {
   const {
     reference,
-    onClickOutsideClose,
+    closeOnOutsideClick: onClickOutsideClose,
     placement = 'bottom-start',
-    visible: controlledOpen,
-    onToggleVisible,
+    visible,
+    onVisibleChange,
     autoUpdateOptions,
     middleware = { flip: true, shift: true },
     matchWidth,
   } = options;
 
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState<boolean>();
-  const open = controlledOpen ?? uncontrolledOpen;
-  const setOpen = onToggleVisible ?? setUncontrolledOpen;
+  const [open, onOpenChange] = useControlledState(
+    false,
+    visible,
+    onVisibleChange,
+  );
 
   const floating = useFloating({
     placement,
     open,
-    onOpenChange: setOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, autoUpdateOptions),
+    onOpenChange,
+    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     elements: { reference },
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
@@ -155,12 +162,12 @@ export const usePopover = (options: PopoverOptions) => {
   return React.useMemo(
     () => ({
       open,
-      setOpen,
+      onOpenChange,
       ...interactions,
       getFloatingProps,
       ...floating,
     }),
-    [open, setOpen, interactions, getFloatingProps, floating],
+    [open, onOpenChange, interactions, getFloatingProps, floating],
   );
 };
 
@@ -177,12 +184,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     // popover options
     visible,
     placement,
-    onToggleVisible,
+    onVisibleChange,
     reference,
     matchWidth,
     middleware,
     autoUpdateOptions,
-    onClickOutsideClose,
+    closeOnOutsideClick,
     //
     // dom props
     children,
@@ -194,12 +201,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   const popover = usePopover({
     visible,
     placement,
-    onToggleVisible,
+    onVisibleChange,
     reference,
     matchWidth,
     middleware,
     autoUpdateOptions,
-    onClickOutsideClose,
+    closeOnOutsideClick: closeOnOutsideClick,
   });
   const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 

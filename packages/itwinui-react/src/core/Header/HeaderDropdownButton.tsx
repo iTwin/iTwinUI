@@ -33,7 +33,7 @@ export const HeaderDropdownButton = React.forwardRef((props, ref) => {
     <DropdownMenu
       menuItems={menuItems}
       style={{ minInlineSize: menuWidth }}
-      onToggleVisible={(open) => setIsMenuOpen(open)}
+      onVisibleChange={(open) => setIsMenuOpen(open)}
     >
       <HeaderBasicButton
         className={cx('iui-header-breadcrumb-button', className)}

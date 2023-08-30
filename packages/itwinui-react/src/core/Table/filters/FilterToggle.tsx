@@ -54,7 +54,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           content={column.render('Filter', { close, setFilter, clearFilter })}
           placement='bottom-start'
           visible={isVisible}
-          onClickOutsideClose
+          closeOnOutsideClick
         >
           <IconButton
             styleType='borderless'

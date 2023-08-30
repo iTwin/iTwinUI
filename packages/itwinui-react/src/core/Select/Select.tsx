@@ -344,7 +344,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const popover = usePopover({
     visible: isOpen,
-    onToggleVisible: (open) => (open ? onShowHandler() : onHideHandler()),
+    onVisibleChange: (open) => (open ? onShowHandler() : onHideHandler()),
     matchWidth: true,
   });
 

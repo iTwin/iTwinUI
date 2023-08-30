@@ -110,7 +110,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       //     close();
       //   }
       // }}
-      onClickOutsideClose
+      closeOnOutsideClick
       // portal={{ to: 'parent' }}
     >
       <InputGrid labelPlacement='inline' {...wrapperProps}>

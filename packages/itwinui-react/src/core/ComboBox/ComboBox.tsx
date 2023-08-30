@@ -514,9 +514,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   const popover = usePopover({
     // TODO: controlled mode doesn't seem to work
     // visible: isOpen,
-    // onToggleVisible: (open) => (open ? onShow() : onHide()),
+    // onVisibleChange: (open) => (open ? onShow() : onHide()),
     matchWidth: true,
-    onClickOutsideClose: true,
+    closeOnOutsideClick: true,
   });
 
   return (

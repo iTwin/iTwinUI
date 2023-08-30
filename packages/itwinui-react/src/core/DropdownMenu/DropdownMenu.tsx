@@ -34,7 +34,7 @@ export type DropdownMenuProps = {
   children: React.ReactNode;
 } & Pick<
   React.ComponentProps<typeof Popover>,
-  'visible' | 'onToggleVisible' | 'placement' | 'matchWidth'
+  'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
   React.ComponentPropsWithoutRef<'ul'> &
   Pick<PortalProps, 'portal'>;
@@ -66,17 +66,17 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     visible: visibleProp,
     placement = 'bottom-start',
     matchWidth = false,
-    onToggleVisible,
+    onVisibleChange: onVisibleChange,
     portal = true,
     ...rest
   } = props;
 
   const [visible, setVisible] = React.useState(visibleProp);
-  const onToggleVisibleRef = useLatestRef(onToggleVisible);
+  const onVisibleChangeRef = useLatestRef(onVisibleChange);
   const close = React.useCallback(() => {
     setVisible(false);
-    onToggleVisibleRef.current?.(false);
-  }, [onToggleVisibleRef]);
+    onVisibleChangeRef.current?.(false);
+  }, [onVisibleChangeRef]);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
@@ -87,7 +87,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     visible: visibleProp ?? visible,
-    onToggleVisible: onToggleVisible ?? setVisible,
+    onVisibleChange: onVisibleChange ?? setVisible,
     placement,
     matchWidth,
   });

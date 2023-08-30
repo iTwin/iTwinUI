@@ -88,7 +88,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
 
   const popover = usePopover({
     visible,
-    onToggleVisible: setVisible,
+    onVisibleChange: setVisible,
     placement: menuPlacement,
     matchWidth: true,
   });
