@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 
 import * as React from 'react';
-import cx from 'classnames';
 import {
   useFloating,
   useClick,
@@ -26,6 +25,7 @@ import { Box, cloneElementWithRef, useMergedRefs } from '../index.js';
 import type { PolymorphicForwardRefComponent } from '../index.js';
 import { Portal } from './Portal.js';
 import type { PortalProps } from './Portal.js';
+import { Surface } from '../../Surface/index.js';
 
 type PopoverOptions = {
   /**
@@ -187,7 +187,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     // dom props
     children,
     content,
-    className,
     applyBackground,
     ...rest
   } = props;
@@ -220,8 +219,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
             returnFocus
           >
             <Box
-              className={cx('iui-popover', className)}
-              data-iui-apply-background={applyBackground ? true : undefined}
+              as={(applyBackground ? Surface : 'div') as 'div'}
               {...popover.getFloatingProps(rest)}
               ref={popoverRef}
             >
