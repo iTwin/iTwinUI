@@ -83,19 +83,19 @@ it('should work with menu items', async () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   expect(button).toBeTruthy();
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   await userEvent.click(button);
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy).toBeVisible();
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
 
-  expect(document.querySelectorAll('li')).toHaveLength(3);
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
 

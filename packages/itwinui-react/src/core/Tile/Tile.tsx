@@ -66,7 +66,7 @@ TileContext.displayName = 'TileContext';
 // ----------------------------------------------------------------------------
 // Main Tile component
 
-type TileOwnProps = {
+type TileWrapperOwnProps = {
   /**
    * Status of the tile.
    */
@@ -101,7 +101,7 @@ type TileOwnProps = {
   isDisabled?: boolean;
 };
 
-const TileComponent = React.forwardRef((props, forwardedRef) => {
+const TileWrapper = React.forwardRef((props, forwardedRef) => {
   const {
     className,
     status,
@@ -147,8 +147,8 @@ const TileComponent = React.forwardRef((props, forwardedRef) => {
       />
     </TileContext.Provider>
   );
-}) as PolymorphicForwardRefComponent<'div', TileOwnProps>;
-TileComponent.displayName = 'Tile';
+}) as PolymorphicForwardRefComponent<'div', TileWrapperOwnProps>;
+TileWrapper.displayName = 'Tile.Wrapper';
 
 // ----------------------------------------------------------------------------
 // Tile.Action component
@@ -344,7 +344,7 @@ TileMetadata.displayName = 'Tile.Metadata';
 // Tile.MoreOptions component
 type TileMoreOptionsOwnProps = {
   buttonProps?: React.ComponentPropsWithoutRef<typeof IconButton>;
-  children?: React.ReactElement[];
+  children?: React.ReactNode[];
 };
 
 const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
@@ -398,10 +398,190 @@ TileMoreOptions.displayName = 'Tile.MoreOptions';
 const TileButtons = polymorphic('iui-tile-buttons');
 TileButtons.displayName = 'Tile.Buttons';
 
+// ----------------------------------------------------------------------------
+type TileLegacyProps = {
+  /**
+   * Name or title of the tile.
+   */
+  name: React.ReactNode;
+  /**
+   * Description text of the tile.
+   * Gets truncated if it can't fit in the tile.
+   */
+  description?: React.ReactNode;
+  /**
+   * Metadata section located below description.
+   * @example
+   * <Tile
+   *  // ...
+   *  metadata='basic metadata'
+   *  // or
+   *  metadata={<span><SvgClock /> 2021-01-01, 04:30 AM</span>}
+   *  // or
+   *  metadata={<>
+   *    <SvgTag2 />
+   *    <TagContainer><Tag variant='basic'>Tag 1</Tag><Tag variant='basic'>Tag 2</Tag></TagContainer>
+   *  </>}
+   * />
+   */
+  metadata?: React.ReactNode;
+  /**
+   * Thumbnail image url, a custom component or an svg.
+   * @example
+   * <Tile
+   *  // ...
+   *  thumbnail='/url/to/image.jpg'
+   *  // or
+   *  thumbnail={<Avatar image={<img src='icon.png' />} />}
+   *  // or
+   *  thumbnail={<SvgImodelHollow />}
+   * />
+   */
+  thumbnail?: string | React.ReactNode;
+  /**
+   * `Badge` shown on the bottom right of thumbnail.
+   */
+  badge?: React.ReactNode;
+  /**
+   * Icon shown on top left of the tile. Also known as "type indicator".
+   * Recommended to use an invisible `IconButton`.
+   */
+  leftIcon?: React.ReactNode;
+  /**
+   * Icon shown on top right of the tile. Also known as "quick action".
+   * Recommended to use an invisible `IconButton`.
+   */
+  rightIcon?: React.ReactNode;
+  /**
+   * Upto two buttons shown at the bottom of the tile.
+   */
+  buttons?: [React.ReactNode?, React.ReactNode?];
+  /**
+   * Dropdown menu containing `MenuItem`s.
+   */
+  moreOptions?: React.ReactNode[];
+  /**
+   * Status of the tile.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
+   * Whether the tile is selected or in "active" state.
+   * Gets highlighted and shows a checkmark icon near tile name.
+   */
+  isSelected?: boolean;
+  /**
+   * Whether the tile is "new". Tile name becomes bold and gets a new status icon.
+   */
+  isNew?: boolean;
+  /**
+   * Default tile variant or the folder layout.
+   * @default 'default'
+   */
+  variant?: 'default' | 'folder';
+  /**
+   * Any custom nodes that will be appended to the tile's main content.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the tile is expected to be interactable (i.e. `onClick`).
+   * It becomes focusable and gets on hover styling.
+   */
+  isActionable?: boolean;
+  /**
+   * Display a loading state.
+   * @default false
+   */
+  isLoading?: boolean;
+  /**
+   * Flag whether the tile is disabled.
+   *
+   * Note: This only affects the tile. You need to manually disable
+   * the buttons and other interactive elements inside the tile.
+   *
+   * @default false
+   */
+  isDisabled?: boolean;
+  /**
+   * Adds onClick to the TileAction component.
+   */
+  onClick?: React.MouseEventHandler<HTMLElement>;
+};
+
+const TileComponent = React.forwardRef((props, forwardedRef) => {
+  const {
+    name,
+    description,
+    status,
+    isNew,
+    isLoading,
+    isSelected,
+    thumbnail,
+    badge,
+    leftIcon,
+    rightIcon,
+    buttons,
+    metadata,
+    moreOptions,
+    children,
+    isActionable,
+    isDisabled,
+    onClick,
+    ...rest
+  } = props;
+  return (
+    <TileWrapper
+      ref={forwardedRef}
+      isNew={isNew}
+      isSelected={isSelected}
+      isLoading={isLoading}
+      status={status}
+      isDisabled={isDisabled}
+      {...rest}
+    >
+      <TileName>
+        {(status || isNew || isLoading || isSelected) && <TileNameIcon />}
+        <TileNameLabel>
+          {isActionable ? (
+            <TileAction
+              onClick={!isDisabled ? onClick : undefined}
+              aria-disabled={isDisabled}
+            >
+              {name}
+            </TileAction>
+          ) : (
+            name
+          )}
+        </TileNameLabel>
+      </TileName>
+
+      <TileThumbnailArea>
+        {typeof thumbnail !== 'string' ? (
+          <TileThumbnailPicture>{thumbnail}</TileThumbnailPicture>
+        ) : (
+          <TileThumbnailPicture url={thumbnail} />
+        )}
+        {badge && <TileBadgeContainer>{badge}</TileBadgeContainer>}
+        {leftIcon && <TileTypeIndicator>{leftIcon}</TileTypeIndicator>}
+        {rightIcon && <TileQuickAction>{rightIcon}</TileQuickAction>}
+      </TileThumbnailArea>
+
+      <TileContentArea>
+        {description && <TileDescription>{description}</TileDescription>}
+        {moreOptions && <TileMoreOptions>{moreOptions}</TileMoreOptions>}
+        {metadata && <TileMetadata>{metadata}</TileMetadata>}
+        {children}
+      </TileContentArea>
+
+      {buttons && <TileButtons>{buttons}</TileButtons>}
+    </TileWrapper>
+  );
+}) as PolymorphicForwardRefComponent<'div', TileLegacyProps>;
+TileComponent.displayName = 'Tile';
+
 /**
  * Tile with customizable Thumbnail, Name, Content and Buttons subcomponents
  * @example
- * <Tile>
+ * <Tile.Wrapper>
  *    <Tile.ThumbnailArea>
  *      <Tile.ThumbnailPicture/>
  *      <Tile.Badge/>
@@ -411,23 +591,40 @@ TileButtons.displayName = 'Tile.Buttons';
  *    <Tile.Name>
  *      <Tile.NameIcon/>
  *      <Tile.NameLabel/>
- *    <Tile.Name/>
+ *    </Tile.Name>
  *    <Tile.ContentArea>
  *      <Tile.Description />
  *      <Tile.Metadata/>
  *      <Tile.MoreOptions/>
  *    </Tile.ContentArea>
  *    <Tile.Buttons/>
- * </Tile>
+ * </Tile.Wrapper>
+ *
+ * @example
+ *  <Tile
+ *  name='Tile name'
+ *  description='Tile description that takes upto 3 lines'
+ *  metadata={<TagContainer><Tag variant='basic'>Tag 1</Tag></TagContainer>}
+ *  thumbnail='/url/to/image.jpg'
+ *  badge={<Badge backgroundColor='blue'>Badge label</Badge>}
+ *  buttons={[<Button>Button 1</Button>, <Button>Button 2</Button>]}
+ *  moreOptions={[<MenuItem>Item 1</MenuItem>, <MenuItem>Item 2</MenuItem>]}
+ *  leftIcon={<IconButton><SvgInfo /></IconButton>}
+ *  rightIcon={<IconButton><SvgStar /></IconButton>}
+ *  isSelected={true}
+ *  isNew={false}
+ * />
  */
 export const Tile = Object.assign(TileComponent, {
+  /**
+   * Wrapper subcomponent for fully customisable Tile.
+   */
+  Wrapper: TileWrapper,
   /**
    * ThumbnailArea subcomponent that contains `ThumbnailPicture`, `QuickAction`, `TypeIndicator` or `BadgeContainer`
    * @example
    * <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture/>
-   *    // or
-   *    <Tile.ThumbnailAvatar/>
    *    <Tile.QuickAction/>
    *    <Tile.TypeIndicator/>
    *    <Tile.BadgeContainer/>
@@ -437,14 +634,14 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * Thumbnail image url, a custom component or an svg for thumbnail avatar.
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  // ...
    *  <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture url = '/url/to/image.jpg'/>
    *  </Tile.ThumbnailArea>
-   * </Tile>
+   * </Tile.Wrapper>
    * or
-   * <Tile>
+   * <Tile.Wrapper>
    *  // ...
    *  <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture>
@@ -481,21 +678,21 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * `NameIcon` next to name of the tile. Goes under <Tile.Name>
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.Name>
    *    <Tile.NameIcon/>
    *  </Tile.Name>
-   * <Tile/>
+   * </Tile.Wrapper>
    */
   NameIcon: TileNameIcon,
   /*
    * `NameLabel` of the tile
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.Name>
    *    <Tile.NameLabel> Tile Name <Tile.NameLabel/>
    *  </Tile.Name/>
-   * <Tile/>
+   * </Tile.Wrapper>
    */
   NameLabel: TileNameLabel,
   /**
@@ -512,13 +709,13 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * Tile content area that contains `Description`, `Metadata` and `MoreOptions` Tile subcomponents
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.ContentArea>
    *    <Tile.Description/>
    *    <Tile.Metadata/>
    *    <Tile.MoreOptions/>
    *  </Tile.ContentArea>
-   * </Tile>
+   * </Tile.Wrapper>
    */
   ContentArea: TileContentArea,
   /**

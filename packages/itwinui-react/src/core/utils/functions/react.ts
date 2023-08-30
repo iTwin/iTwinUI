@@ -7,7 +7,7 @@ import { mergeRefs } from '../hooks/useMergedRefs.js';
 
 /**
  * Wrapper over `cloneElement` that automatically checks for `isValidElement`
- * and automatically merges `children.ref` with ref passed in props.
+ * and automatically merges `children.ref` with the ref passed in props.
  *
  * @private
  */

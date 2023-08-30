@@ -20,7 +20,7 @@ type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
   'onClick'
 > &
-  React.ComponentPropsWithoutRef<'ul'>;
+  React.ComponentPropsWithoutRef<'div'>;
 
 const isOverflowOverlaySupported = () =>
   getWindow()?.CSS?.supports?.('overflow: overlay');
@@ -28,7 +28,7 @@ const isOverflowOverlaySupported = () =>
 const VirtualizedComboBoxMenu = React.forwardRef(
   (
     { children, className, style, ...rest }: ComboBoxMenuProps,
-    forwardedRef: React.Ref<HTMLUListElement>,
+    forwardedRef: React.Ref<HTMLElement>,
   ) => {
     const { id, filteredOptions, getMenuItem, focusedIndex } =
       useSafeContext(ComboBoxStateContext);
@@ -116,5 +116,5 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
       )}
     </>
   );
-}) as PolymorphicForwardRefComponent<'ul', ComboBoxMenuProps>;
+}) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

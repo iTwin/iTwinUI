@@ -12,6 +12,7 @@ import {
   Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
+  useId,
   usePopover,
 } from '../../utils/index.js';
 import type {
@@ -92,6 +93,8 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     matchWidth: true,
   });
 
+  const labelId = useId();
+
   return (
     <Box
       {...wrapperProps}
@@ -111,6 +114,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         onClick={onClick}
         ref={forwardedRef}
         {...rest}
+        labelProps={{ id: labelId, ...props.labelProps }}
       >
         {children}
       </Button>

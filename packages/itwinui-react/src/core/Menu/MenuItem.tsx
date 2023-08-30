@@ -13,7 +13,7 @@ import type { ListItemOwnProps } from '../List/ListItem.js';
  * Context used to provide menu item ref to sub-menu items.
  */
 const MenuItemContext = React.createContext<{
-  ref: React.RefObject<HTMLLIElement> | undefined;
+  ref: React.RefObject<HTMLElement> | undefined;
 }>({ ref: undefined });
 
 export type MenuItemProps = {
@@ -98,19 +98,19 @@ export const MenuItem = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const menuItemRef = React.useRef<HTMLLIElement>(null);
+  const menuItemRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(menuItemRef, ref);
 
   const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
 
-  const subMenuRef = React.useRef<HTMLUListElement>(null);
+  const subMenuRef = React.useRef<HTMLDivElement>(null);
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
 
   const startIcon = startIconProp ?? icon;
   const endIcon = endIconProp ?? badge;
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLLIElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -144,6 +144,7 @@ export const MenuItem = React.forwardRef((props, ref) => {
 
   const listItem = (
     <ListItem
+      as='div'
       actionable
       size={size}
       active={isSelected}
@@ -215,6 +216,6 @@ export const MenuItem = React.forwardRef((props, ref) => {
       </Popover>
     </MenuItemContext.Provider>
   );
-}) as PolymorphicForwardRefComponent<'li', MenuItemProps>;
+}) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 
 export default MenuItem;

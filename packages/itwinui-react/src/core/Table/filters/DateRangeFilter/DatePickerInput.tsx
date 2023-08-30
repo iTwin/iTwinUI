@@ -3,11 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import { Popover, SvgCalendar, isBefore, useId } from '../../../utils/index.js';
+import type { LabeledInput } from '../../../LabeledInput/index.js';
 import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
-import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
-import { IconButton } from '../../../Buttons/index.js';
+import { InputGrid } from '../../../InputGrid/index.js';
+import { Label } from '../../../Label/index.js';
+import { InputWithDecorations } from '../../../InputWithDecorations/index.js';
 
 export type DatePickerInputProps = {
   date?: Date;
@@ -28,13 +30,21 @@ export type DatePickerInputProps = {
 >;
 
 const DatePickerInput = React.forwardRef((props, forwardedRef) => {
+  const uid = useId();
   const {
     onChange,
     date,
     parseInput,
     formatDate,
+    label,
+    required,
+    disabled,
     isFromOrTo,
     selectedDate,
+    wrapperProps,
+    labelProps,
+    inputWrapperProps,
+    id = uid,
     ...rest
   } = props;
 
@@ -103,23 +113,35 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       onClickOutsideClose
       // portal={{ to: 'parent' }}
     >
-      <LabeledInput
-        ref={forwardedRef}
-        displayStyle='inline'
-        value={inputValue}
-        onChange={onInputChange}
-        onClick={close}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
+      <InputGrid labelPlacement='inline' {...wrapperProps}>
+        <Label
+          as='label'
+          required={required}
+          disabled={disabled}
+          htmlFor={id}
+          {...labelProps}
+        >
+          {label}
+        </Label>
+        <InputWithDecorations {...inputWrapperProps}>
+          <InputWithDecorations.Input
+            id={id}
+            value={inputValue}
+            onChange={onInputChange}
+            onClick={close}
+            required={required}
+            disabled={disabled}
+            ref={forwardedRef}
+            {...rest}
+          />
+          <InputWithDecorations.Button
             onClick={() => setIsVisible((v) => !v)}
             ref={buttonRef}
           >
             <SvgCalendar />
-          </IconButton>
-        }
-        {...rest}
-      />
+          </InputWithDecorations.Button>
+        </InputWithDecorations>
+      </InputGrid>
     </Popover>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;

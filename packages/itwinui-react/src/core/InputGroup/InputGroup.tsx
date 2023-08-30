@@ -3,8 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusIconMap, InputContainer, Box } from '../utils/index.js';
+import cx from 'classnames';
+import { StatusIconMap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { InputGrid } from '../InputGrid/index.js';
+import { Label } from '../Label/index.js';
+import { StatusMessage } from '../StatusMessage/index.js';
 
 type InputGroupProps = {
   /**
@@ -42,6 +46,21 @@ type InputGroupProps = {
    * Child inputs inside group.
    */
   children: React.ReactNode;
+  /**
+   * Passes properties for label.
+   */
+  labelProps?: React.ComponentProps<'label'>;
+  /**
+   * Passes properties for message.
+   */
+  messageProps?: Pick<
+    React.ComponentProps<typeof StatusMessage>,
+    'iconProps' | 'contentProps'
+  >;
+  /**
+   * Passes properties for inner input group element.
+   */
+  innerProps?: React.ComponentProps<'div'>;
 };
 
 /**
@@ -61,6 +80,7 @@ type InputGroupProps = {
  */
 export const InputGroup = React.forwardRef((props, forwardedRef) => {
   const {
+    className,
     children,
     disabled = false,
     displayStyle = 'default',
@@ -69,6 +89,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     status,
     svgIcon,
     required = false,
+    labelProps,
+    messageProps,
+    innerProps,
     ...rest
   } = props;
 
@@ -85,19 +108,36 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
   };
 
   return (
-    <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={icon()}
-      isLabelInline={displayStyle === 'inline'}
+    <InputGrid
       ref={forwardedRef}
+      as='div'
+      labelPlacement={displayStyle}
+      className={cx('iui-input-group-wrapper', className)}
       {...rest}
     >
-      <Box className='iui-input-group'>{children}</Box>
-    </InputContainer>
+      {label && (
+        <Label
+          as='label'
+          required={required}
+          disabled={disabled}
+          {...labelProps}
+        >
+          {label}
+        </Label>
+      )}
+      <Box
+        as='div'
+        {...innerProps}
+        className={cx('iui-input-group', innerProps?.className)}
+      >
+        {children}
+      </Box>
+      {(message || status || svgIcon) && (
+        <StatusMessage startIcon={icon()} status={status} {...messageProps}>
+          {displayStyle !== 'inline' && message}
+        </StatusMessage>
+      )}
+    </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
 

@@ -14,6 +14,8 @@ import {
   usePopover,
   Portal,
   useMergedRefs,
+  SvgCheckmark,
+  Icon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
@@ -136,6 +138,10 @@ export type SelectProps<T> = {
    */
   size?: 'small' | 'large';
   /**
+   * Status of select.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
    */
   itemRenderer?: (
@@ -227,6 +233,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     menuStyle,
     multiple = false,
     triggerProps,
+    status,
     ...rest
   } = props;
 
@@ -235,7 +242,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
   const onShowHandler = React.useCallback(() => {
     setIsOpen(true);
@@ -284,6 +290,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         key: `${label}-${index}`,
         isSelected,
         startIcon: startIcon,
+        endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
         onClick: () => {
           if (option.disabled) {
             return;
@@ -353,6 +360,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           tabIndex={0}
           role='combobox'
           data-iui-size={size}
+          data-iui-status={status}
           onClick={() => !disabled && setIsOpen((o) => !o)}
           onKeyDown={(e) => !disabled && onKeyDown(e)}
           aria-disabled={disabled}
@@ -396,19 +404,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </Box>
-        <Box
+        <Icon
           as='span'
           aria-hidden
-          ref={toggleButtonRef}
           className={cx('iui-end-icon', {
-            'iui-actionable': !disabled,
             'iui-disabled': disabled,
             'iui-open': isOpen,
           })}
-          onClick={() => !disabled && setIsOpen((o) => !o)}
         >
           <SvgCaretDownSmall />
-        </Box>
+        </Icon>
 
         {multiple ? (
           <AutoclearingHiddenLiveRegion text={liveRegionSelection} />

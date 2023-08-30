@@ -233,8 +233,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   render(stepper);
 
-  expect(document.querySelector('.iui-tooltip')).toBeNull();
-  expect(screen.queryByText('Step one tooltip')).toBeNull();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
   act(() => void jest.advanceTimersByTime(50));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
@@ -246,7 +245,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
   act(() => void jest.advanceTimersByTime(50));
-  expect(document.querySelector('.iui-tooltip')).toBeNull();
+  expect(tooltip).not.toBeVisible();
 
   jest.useRealTimers();
 });

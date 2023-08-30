@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': major
+'@itwin/itwinui-react': minor
 ---
 
-Alert composition has been updated such that it is now made up of customizable subcomponents, thus removing the `onClose`, `clickableText`, and `clickableTextProps` props from `Alert`.
+Alert can now be used through customizable subcomponents. The `onClose`, `clickableText`, and `clickableTextProps` props have been deprecated.

@@ -39,9 +39,12 @@
       }
 
       .demo-searchbar {
+        background-color: var(--iui-color-background-backdrop);
         border-radius: 9999px;
         width: 20vw;
-        background-color: var(--iui-color-background-backdrop);
+      }
+      .demo-searchbar::before {
+        border-radius: 9999px;
       }
 
       .demo-searchbar-button {
@@ -176,13 +179,10 @@
           </div>
 
           <div class="iui-page-header-center">
-            <label class="iui-input-container iui-inline-label iui-inline-icon">
-              <input
-                placeholder="Search within Version Gamma…"
-                class="iui-input demo-searchbar"
-              />
+            <label class="iui-input-flex-container demo-searchbar">
+              <input placeholder="Search within Version Gamma…" />
               <button
-                class="iui-button iui-input-icon demo-searchbar-button"
+                class="iui-button demo-searchbar-button"
                 data-iui-variant="borderless"
                 aria-label="Search"
               >

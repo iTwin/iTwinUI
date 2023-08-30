@@ -64,8 +64,7 @@ export const comboBoxReducer = (
 export const ComboBoxRefsContext = React.createContext<
   | {
       inputRef: React.RefObject<HTMLInputElement>;
-      menuRef: React.RefObject<HTMLUListElement>;
-      toggleButtonRef: React.RefObject<HTMLSpanElement>;
+      menuRef: React.RefObject<HTMLElement>;
       optionsExtraInfoRef: React.MutableRefObject<
         Record<string, { __originalIndex: number }>
       >;

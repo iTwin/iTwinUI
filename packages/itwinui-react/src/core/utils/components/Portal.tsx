@@ -8,7 +8,7 @@ import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
 import { getDocument } from '../functions/dom.js';
 import { useIsClient } from '../hooks/useIsClient.js';
 
-export type PortalProps = React.PropsWithChildren<{
+export type PortalProps = {
   /**
    * Where should the element be portaled to?
    *
@@ -17,22 +17,26 @@ export type PortalProps = React.PropsWithChildren<{
    * If false, it will not be portaled.
    *
    * Otherwise, it will portal to the element passed to `to`.
+   *
+   * @default true
    */
   portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
-}>;
+};
 
 // ----------------------------------------------------------------------------
 
 /**
  * Helper component that portals children according to the following conditions:
  *   - renders null on server
- *   - if true, renders into nearest ThemeContext.portalContainer
- *   - if false, renders as-is without portal
- *   - otherwise renders into portal.to (can be an element or a function)
+ *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
+ *   - if `portal` is set to false, renders as-is without portal
+ *   - otherwise renders into `portal.to` (can be an element or a function)
  *
  * @private
  */
-export const Portal = ({ portal = true, children }: PortalProps) => {
+export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
+  const { portal = true, children } = props;
+
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
 

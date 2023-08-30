@@ -87,6 +87,10 @@ export {
 
 export { Input } from './Input/index.js';
 
+export { InputWithDecorations } from './InputWithDecorations/InputWithDecorations.js';
+
+export { InputGrid } from './InputGrid/InputGrid.js';
+
 export { Label } from './Label/index.js';
 
 export { LabeledInput } from './LabeledInput/index.js';
