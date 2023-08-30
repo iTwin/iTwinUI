@@ -9,7 +9,12 @@ import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { Placement } from 'tippy.js';
-import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
+import {
+  Box,
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  useId,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -77,6 +82,8 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     }
   }, [children, size]);
 
+  const labelId = useId();
+
   return (
     <Box
       {...wrapperProps}
@@ -96,6 +103,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         onClick={onClick}
         ref={forwardedRef}
         {...rest}
+        labelProps={{ id: labelId, ...props.labelProps }}
       >
         {children}
       </Button>
@@ -110,6 +118,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
           styleType={styleType}
           size={size}
           disabled={props.disabled}
+          aria-labelledby={props.labelProps?.id || labelId}
           {...menuButtonProps}
         >
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
