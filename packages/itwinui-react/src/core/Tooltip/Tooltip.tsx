@@ -28,6 +28,7 @@ import {
   Box,
   Portal,
   cloneElementWithRef,
+  useControlledState,
   useId,
   useMergedRefs,
 } from '../utils/index.js';
@@ -46,6 +47,11 @@ type TooltipOptions = {
    * Property for manual visibility control
    */
   visible?: boolean;
+  /**
+   * Callback invoked every time the tooltip visibility changes as a result
+   * of internal logic. Should be used alongside `visible` prop.
+   */
+  onVisibleChange?: (visible: boolean) => void;
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -115,7 +121,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const uniqueId = useId();
   const {
     placement = 'top',
-    visible: controlledOpen,
+    visible,
+    onVisibleChange,
     middleware = { flip: true, shift: true },
     autoUpdateOptions = {},
     reference,
@@ -123,16 +130,18 @@ const useTooltip = (options: TooltipOptions = {}) => {
     id = uniqueId,
     ...props
   } = options;
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
-  const open = controlledOpen ?? uncontrolledOpen;
+  const [open, onOpenChange] = useControlledState(
+    false,
+    visible,
+    onVisibleChange,
+  );
 
   const floating = useFloating({
     placement,
     open,
-    onOpenChange: setUncontrolledOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, autoUpdateOptions),
+    onOpenChange,
+    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
       middleware.flip && flip(),
@@ -179,27 +188,17 @@ const useTooltip = (options: TooltipOptions = {}) => {
 
   const { delay } = useDelayGroupContext();
 
-  const hover = useHover(floating.context, {
-    enabled: controlledOpen == null,
-    delay: delay ?? { open: 50, close: 250 },
-    handleClose: safePolygon({ buffer: -Infinity }),
-  });
-
-  const focus = useFocus(floating.context, {
-    enabled: controlledOpen == null,
-  });
-
-  const click = useClick(floating.context, {
-    enabled: controlledOpen == null,
-  });
-
-  const dismiss = useDismiss(floating.context, {
-    enabled: controlledOpen == null,
-  });
-
   useDelayGroup(floating.context, { id: useId() });
 
-  const interactions = useInteractions([click, hover, focus, dismiss]);
+  const interactions = useInteractions([
+    useHover(floating.context, {
+      delay: delay ?? { open: 50, close: 250 },
+      handleClose: safePolygon({ buffer: -Infinity }),
+    }),
+    useFocus(floating.context),
+    useClick(floating.context),
+    useDismiss(floating.context),
+  ]);
 
   const getReferenceProps = React.useCallback(
     (userProps?: React.HTMLProps<Element>) => {
@@ -211,23 +210,17 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const floatingProps = React.useMemo(
     () =>
       interactions.getFloatingProps({
-        hidden: !open,
+        hidden: !floating.context.open,
         'aria-hidden': 'true',
         ...props,
         id,
       }),
-    [interactions, props, id, open],
+    [interactions, floating.context.open, props, id],
   );
 
   return React.useMemo(
-    () => ({
-      open,
-      setUncontrolledOpen,
-      getReferenceProps,
-      floatingProps,
-      ...floating,
-    }),
-    [open, getReferenceProps, floatingProps, floating],
+    () => ({ getReferenceProps, floatingProps, ...floating }),
+    [getReferenceProps, floatingProps, floating],
   );
 };
 

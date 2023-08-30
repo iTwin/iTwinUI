@@ -7,8 +7,10 @@ import * as React from 'react';
 import { Tooltip } from './Tooltip.js';
 
 it('should toggle the visibility of tooltip on hover', () => {
+  const onVisibleChange = jest.fn();
+
   const { getByText } = render(
-    <Tooltip content='some text'>
+    <Tooltip content='some text' onVisibleChange={onVisibleChange}>
       <div>Hover Here</div>
     </Tooltip>,
   );
@@ -21,16 +23,19 @@ it('should toggle the visibility of tooltip on hover', () => {
 
   fireEvent.mouseEnter(trigger);
   expect(tooltip).toBeVisible();
+  expect(onVisibleChange).toBeCalledWith(true);
 
   fireEvent.mouseLeave(trigger);
   expect(tooltip).not.toBeVisible();
+  expect(onVisibleChange).toBeCalledWith(false);
 });
 
 it('should toggle the visibility of tooltip on focus', async () => {
   jest.useFakeTimers();
+  const onVisibleChange = jest.fn();
 
   const { getByText } = render(
-    <Tooltip content='some text'>
+    <Tooltip content='some text' onVisibleChange={onVisibleChange}>
       <button>focus here</button>
     </Tooltip>,
   );
@@ -44,10 +49,12 @@ it('should toggle the visibility of tooltip on focus', async () => {
   fireEvent.focus(trigger);
   act(() => void jest.advanceTimersByTime(50));
   expect(tooltip).toBeVisible();
+  expect(onVisibleChange).toBeCalledWith(true);
 
   fireEvent.blur(trigger);
   act(() => void jest.advanceTimersByTime(250));
   expect(tooltip).not.toBeVisible();
+  expect(onVisibleChange).toBeCalledWith(false);
 
   jest.useRealTimers();
 });
