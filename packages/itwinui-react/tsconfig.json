@@ -21,7 +21,11 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    "baseUrl": ".",
+    "paths": {
+      "react-table": ["src/core/Table/types/react-table-types.d.ts"]
+    }
   },
   // "include": ["src"],
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]

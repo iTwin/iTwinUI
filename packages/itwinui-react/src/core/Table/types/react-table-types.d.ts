@@ -38,6 +38,8 @@ import type {
 import type { TableFilterProps, TableFilterValue } from '../index.js';
 import type { CommonProps } from '../../utils/props.js';
 
+declare module 'react-table' {
+
 export const testingVar = 0;
 // export {};
 
@@ -1321,3 +1323,5 @@ export type CellRendererProps<D extends Record<string, unknown> = {}> = {
    */
   isDisabled?: (rowData: D) => boolean;
 };
+
+}
