@@ -7,7 +7,7 @@
 //   type TableBodyPropGetter,
 // } from './react-table-types.js';
 
-// import everything from './react-table-types.js' and put it in a variable called ReactTableTypes
+// import everything from './react-table-types.d.ts' and put it in a variable called TableTypes
 export type * as TableTypes from './react-table-types.js';
 // export { TableTypes };
 // export { TableTypes } from './react-table-types.js';

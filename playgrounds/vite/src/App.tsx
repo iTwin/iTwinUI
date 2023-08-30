@@ -12,6 +12,12 @@ import {
   TableTypes,
   // ReactTableTypes,
 } from '@itwin/itwinui-react';
+
+// import type { TableTypes } from '@itwin/itwinui-react/cjs/core/Table/index.js';
+
+const q: TableTypes.Column<Record<string, any>>[] = [];
+
+// import type { TableTypes } from '@itwin/itwinui-react';
 import { TableFilterProps } from '@itwin/itwinui-react/cjs/core/Table/index.js';
 import { useCallback, useMemo, useState } from 'react';
 // import type {
