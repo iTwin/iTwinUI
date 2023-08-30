@@ -82,6 +82,9 @@ type PopoverOptions = {
     hide?: boolean;
     inline?: boolean;
   };
+  /**
+   * Use an external element (stored in state) as the trigger.
+   */
   reference?: HTMLElement | null;
   /**
    * Whether the popover should match the width of the trigger.
@@ -120,7 +123,7 @@ export const usePopover = (options: PopoverOptions) => {
     open,
     onOpenChange,
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    elements: { reference },
+    ...(reference && { elements: { reference } }),
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
