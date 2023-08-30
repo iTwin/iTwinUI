@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Input', () => {
   const storyPath = 'Input/Input';
-  const tests = ['Basic', 'Disabled', 'Small'];
+  const tests = ['Basic', 'Disabled', 'Small', 'Status'];
 
   tests.forEach((testName) => {
     it(testName, function () {
