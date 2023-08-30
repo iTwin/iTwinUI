@@ -28,9 +28,9 @@ export type PortalProps = {
 /**
  * Helper component that portals children according to the following conditions:
  *   - renders null on server
- *   - if true, renders into nearest ThemeContext.portalContainer
- *   - if false, renders as-is without portal
- *   - otherwise renders into portal.to (can be an element or a function)
+ *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
+ *   - if `portal` is set to false, renders as-is without portal
+ *   - otherwise renders into `portal.to` (can be an element or a function)
  *
  * @private
  */
