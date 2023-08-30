@@ -39,6 +39,9 @@
         gap: 12px;
         margin-bottom: 12px;
       }
+      .demo-tooltip-container {
+        position: relative;
+      }
       .demo-right {
         top: 0;
         left: 100%;
@@ -582,7 +585,7 @@
           id="radio-tile-with-tooltips"
         >
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -602,7 +605,7 @@
               assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -622,7 +625,7 @@
               assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -641,7 +644,7 @@
             <span class="iui-tooltip demo-right">Dimensions in dp/sp,<br />XML export,<br />PNG and SVG assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -867,5 +870,14 @@
         </div>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll('.demo-tooltip-container').forEach((container) => {
+        const tooltip = container.querySelector('.iui-tooltip');
+        tooltip.hidden = true;
+        container.addEventListener('mouseenter', () => { tooltip.hidden = false; });
+        container.addEventListener('mouseleave', () => { tooltip.hidden = true; });
+      });
+    </script>
   </body>
 </html>
