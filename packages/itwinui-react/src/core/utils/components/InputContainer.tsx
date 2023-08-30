@@ -36,11 +36,11 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
     status,
     message,
     icon,
+    isLabelInline,
     children,
     className,
     style,
     statusMessage,
-    isLabelInline,
     inputId,
     labelId,
     ...rest
