@@ -13,6 +13,7 @@ it('should render in its most basic state', () => {
   expect(icon).toHaveClass('iui-svg-icon');
   expect(icon).toHaveAttribute('data-iui-icon-size', 'm');
   expect(icon).toHaveAttribute('data-iui-icon-color', 'default');
+  expect(icon).not.toHaveAttribute('data-iui-padded', 'true');
 });
 
 it.each(['auto', 'small', 'medium', 'large'] as const)(
@@ -69,4 +70,10 @@ it('should allow arbitrary sizes and fills', () => {
   expect(icon).toHaveClass('iui-svg-icon');
   expect(icon).toHaveAttribute('data-iui-icon-size', '26.2px');
   expect(icon).toHaveAttribute('data-iui-icon-color', 'hotpink');
+});
+
+it('should render padded icon', () => {
+  render(<Icon padded>icon</Icon>);
+  const icon = screen.getByText('icon');
+  expect(icon).toHaveAttribute('data-iui-padded', 'true');
 });

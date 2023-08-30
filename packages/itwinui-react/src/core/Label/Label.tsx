@@ -20,6 +20,11 @@ type LabelOwnProps = {
    * This adds an asterisk next to the label text.
    */
   required?: boolean;
+  /**
+   * Adds disabled styling to a label.
+   * @default false
+   */
+  disabled?: boolean;
 };
 
 /**
@@ -33,6 +38,7 @@ export const Label = React.forwardRef((props, forwardedRef) => {
   const {
     displayStyle = 'block',
     required,
+    disabled,
     className,
     children,
     ...rest
@@ -49,6 +55,7 @@ export const Label = React.forwardRef((props, forwardedRef) => {
         },
         className,
       )}
+      data-iui-disabled={disabled ? true : undefined}
       ref={forwardedRef}
       {...rest}
     >

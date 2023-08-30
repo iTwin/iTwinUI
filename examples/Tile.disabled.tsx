@@ -8,7 +8,7 @@ import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile isDisabled={true}>
+    <Tile.Wrapper isDisabled={true}>
       <Tile.Name name='Tile Name' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
@@ -31,6 +31,6 @@ export default () => {
       <Tile.Buttons>
         <Button disabled>Button</Button>
       </Tile.Buttons>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

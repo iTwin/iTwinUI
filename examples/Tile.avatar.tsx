@@ -13,7 +13,7 @@ import {
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='Some User' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
@@ -39,6 +39,6 @@ export default () => {
           <MenuItem key={2}>Item 2</MenuItem>
         </Tile.MoreOptions>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

@@ -9,7 +9,7 @@ import { Button } from '../Buttons/index.js';
 import { MenuItem } from '../Menu/index.js';
 import userEvent from '@testing-library/user-event';
 
-function assertBaseElement(menu: HTMLUListElement, role = 'menu') {
+function assertBaseElement(menu: HTMLElement, role = 'menu') {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual(role);
   const menuItems = menu.querySelectorAll('.iui-list-item');
@@ -43,13 +43,13 @@ function renderComponent(props?: Partial<DropdownMenuProps>) {
 it('should show menu only after click', () => {
   renderComponent();
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 });
 
@@ -59,11 +59,11 @@ it('should close menu after menu item click', () => {
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  const menuItem = menu.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = menu.querySelector('.iui-list-item') as HTMLElement;
   expect(menuItem).toBeTruthy();
   fireEvent.click(menuItem);
 
@@ -76,7 +76,7 @@ it('should render menu with custom role', () => {
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu, 'listbox');
 });
 
@@ -86,7 +86,7 @@ it('should render menu with custom className', () => {
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.classList).toContain('test-className');
 });
@@ -97,7 +97,7 @@ it('should render menu with custom style', () => {
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
 });
@@ -136,7 +136,7 @@ it('should close menu on pressing escape or tab key', async () => {
   const button = container.querySelector('.iui-button') as HTMLButtonElement;
   await userEvent.click(button);
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 
   expect(menu).toBeVisible();
@@ -144,7 +144,7 @@ it('should close menu on pressing escape or tab key', async () => {
   expect(menu).not.toBeVisible();
 
   await userEvent.click(button);
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeVisible();
 
   await userEvent.tab();
@@ -160,13 +160,13 @@ it('should render menu from list', () => {
     ],
   });
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 });
 
@@ -180,12 +180,12 @@ it('should render menu from element', () => {
     ),
   });
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   const button = screen.getByText('Click here');
   fireEvent.click(button);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 });
