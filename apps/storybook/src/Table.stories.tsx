@@ -2663,11 +2663,7 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
 
   return (
     <>
-      <InputGroup
-        label='Resize mode'
-        displayStyle='inline'
-        style={{ marginBottom: 12 }}
-      >
+      <InputGroup label='Resize mode' displayStyle='inline'>
         <Radio
           name='choice'
           value='fit'

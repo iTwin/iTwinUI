@@ -13,7 +13,6 @@ import {
   ComboBoxActionContext,
   ComboBoxRefsContext,
 } from './helpers.js';
-import type { Instance, Props } from 'tippy.js';
 
 type ComboBoxDropdownProps = PopoverProps & { children: JSX.Element };
 
@@ -21,7 +20,7 @@ export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
   const { children, ...rest } = props;
   const { isOpen } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
-  const { inputRef, toggleButtonRef } = useSafeContext(ComboBoxRefsContext);
+  const { inputRef } = useSafeContext(ComboBoxRefsContext);
 
   // sync internal isOpen state with user's visible prop
   React.useEffect(() => {
@@ -34,14 +33,9 @@ export const ComboBoxDropdown = React.forwardRef((props, forwardedRef) => {
     <Popover
       placement='bottom-start'
       visible={isOpen}
-      onClickOutside={React.useCallback(
-        (_: Instance<Props>, { target }: Event) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            dispatch({ type: 'close' });
-          }
-        },
-        [dispatch, toggleButtonRef],
-      )}
+      onClickOutside={React.useCallback(() => {
+        dispatch({ type: 'close' });
+      }, [dispatch])}
       animation='shift-away'
       duration={200}
       reference={inputRef}

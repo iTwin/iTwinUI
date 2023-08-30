@@ -1,41 +1,125 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
-@use './mixins' as *;
+@use '../mixins' as *;
 
-.iui-input-container {
-  @include iui-input-container;
+.iui-input-grid {
+  display: grid;
+  row-gap: var(--iui-size-2xs);
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  align-items: center;
 
-  > .iui-label {
-    @include iui-input-container-label;
-  }
+  &[data-iui-label-placement='inline'] {
+    grid-template-rows: 1fr auto;
+    grid-template-columns: auto 1fr;
 
-  .iui-input-icon {
-    @include iui-input-icon;
-  }
+    .iui-input-label {
+      margin: 0 var(--iui-size-m) 0 0;
 
-  .iui-message {
-    @include iui-input-message;
-  }
+      &.iui-required {
+        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
+      }
+    }
 
-  &.iui-inline-icon > .iui-input-icon {
-    @include iui-input-icon-inline;
-  }
-
-  &.iui-inline-label {
-    > .iui-label {
-      @include iui-input-label-inline;
+    .iui-input-group {
+      flex-direction: row;
+      gap: var(--iui-size-m);
     }
   }
 
+  .iui-status-message {
+    grid-column-end: -1;
+  }
+
   @each $status in positive, warning, negative {
-    &.iui-#{$status} {
-      @include iui-input-status($status: $status);
+    &[data-iui-status='#{$status}'] {
+      @include iui-text-selection($status);
+
+      .iui-input {
+        // #region Bottom padding to accomodate for status stripe
+        padding-block-end: calc(var(--iui-size-2xs) - 1px);
+
+        &[data-iui-size='small'] {
+          padding-block-end: 0;
+        }
+
+        &[data-iui-size='large'] {
+          padding-block-end: calc(var(--iui-size-xs) - 1px);
+        }
+        // #endregion
+
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+
+        &:focus {
+          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+          outline: 2px solid var(--iui-color-text-#{$status});
+          outline-offset: -2px;
+        }
+
+        &:hover {
+          --_iui-input-border-color: var(--iui-color-border-#{$status});
+        }
+      }
+
+      .iui-input-with-icon {
+        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
+        --_iui-input-with-icon-focus-color: var(--iui-color-text-#{$status});
+      }
+
+      .iui-select-button {
+        border-block-end: transparent;
+
+        &::after {
+          content: '';
+          inline-size: 100%;
+          position: absolute;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          block-size: var(--iui-size-3xs);
+          background-color: var(--iui-color-border-#{$status});
+        }
+      }
     }
   }
 }
 
 .iui-input-label {
-  @include iui-input-label;
+  font-weight: var(--iui-font-weight-semibold);
+  color: var(--_iui-input-label-color);
+
+  &.iui-required {
+    &::after {
+      content: '*';
+      margin-inline-start: var(--iui-size-2xs);
+      color: var(--iui-color-text-negative);
+    }
+  }
+
+  &[data-iui-disabled='true'] {
+    --_iui-input-label-color: var(--iui-color-text-disabled);
+  }
+
+  cursor: default;
+
+  &:is(label) {
+    cursor: pointer;
+
+    &[data-iui-disabled='true'] {
+      cursor: not-allowed;
+    }
+  }
+  display: block;
+
+  &.iui-inline {
+    margin: 0 var(--iui-size-m) 0 0;
+
+    &.iui-required {
+      margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
+    }
+
+    display: inline-flex;
+    align-items: center;
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -57,6 +141,8 @@
   block-size: var(--_iui-input-min-height);
   inline-size: 100%;
   isolation: isolate;
+  min-block-size: var(--_iui-input-min-height);
+  block-size: fit-content;
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
@@ -72,7 +158,8 @@
     --_iui-input-border-color: var(--iui-color-border-foreground-hover);
   }
 
-  &:has(input:focus-visible) {
+  &:has(input:focus-visible),
+  &:has(textarea:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
 
@@ -94,12 +181,18 @@
     }
   }
 
-  input {
-    all: unset;
+  input,
+  textarea {
+    box-sizing: border-box;
+    background: transparent;
+    border: none;
+    font: inherit;
     z-index: 2;
     min-inline-size: var(--_iui-input-min-height);
+    min-block-size: var(--_iui-input-min-height);
     flex: 999;
-    padding-inline-start: var(--iui-size-s);
+    padding-inline: var(--iui-size-s);
+    padding-block: var(--_iui-input-padding-block);
 
     &:is(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
@@ -109,6 +202,10 @@
       color: var(--iui-color-text-placeholder);
       font-weight: var(--iui-font-weight-light);
       opacity: 1;
+    }
+
+    &:focus {
+      outline: none;
     }
   }
 
@@ -141,6 +238,63 @@
 
       &:hover {
         --_iui-input-border-color: var(--iui-color-border-#{$status});
+      }
+    }
+  }
+}
+
+.iui-input-group-wrapper {
+  &[data-iui-label-placement='inline'] {
+    display: flex;
+    flex-direction: row;
+
+    .iui-status-message {
+      margin-inline-start: var(--iui-size-m);
+    }
+  }
+}
+
+.iui-input-group {
+  display: flex;
+  flex-direction: column;
+
+  .iui-toggle-switch-wrapper {
+    padding: calc(var(--iui-size-s) * 0.5) 0;
+  }
+
+  .iui-radio-wrapper,
+  .iui-checkbox-wrapper {
+    min-block-size: var(--iui-size-l);
+  }
+}
+
+// attribute to include status border in inputs (input, select)
+.iui-input,
+.iui-input-with-icon > .iui-select-button {
+  @each $statusColor in informational, positive, warning, negative {
+    &:where([data-iui-status='#{$statusColor}']) {
+      padding-block-end: calc(var(--iui-size-2xs) - 1px);
+
+      &[data-iui-size='small'] {
+        padding-block-end: 0;
+      }
+
+      &[data-iui-size='large'] {
+        padding-block-end: calc(var(--iui-size-xs) - 1px);
+      }
+      // #endregion
+
+      border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+
+      &:focus {
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+        outline: 2px solid var(--iui-color-text-#{$statusColor});
+        outline-offset: -2px;
+      }
+
+      &:hover {
+        --_iui-input-border-color: var(--iui-color-border-#{$statusColor});
+        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$statusColor});
       }
     }
   }

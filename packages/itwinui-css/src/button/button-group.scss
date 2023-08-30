@@ -15,8 +15,8 @@
     max-block-size: 100%;
   }
 
-  $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
+  $childZindexSelector: '.iui-input-flex-container, .iui-button, .iui-input:where(:not(.iui-input-grid .iui-input))';
+  $childBorderSelector: '.iui-input-flex-container, .iui-input, .iui-button:where(:not([data-iui-variant="borderless"])), .iui-input-flex-container::before';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {

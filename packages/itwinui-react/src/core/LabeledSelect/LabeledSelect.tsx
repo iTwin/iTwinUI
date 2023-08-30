@@ -6,8 +6,11 @@ import * as React from 'react';
 
 import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
-import { StatusIconMap, InputContainer, useId } from '../utils/index.js';
+import { StatusIconMap, useId, Icon } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
+import { InputGrid } from '../InputGrid/InputGrid.js';
+import { Label } from '../Label/Label.js';
 
 export type LabeledSelectProps<T> = {
   /**
@@ -28,18 +31,26 @@ export type LabeledSelectProps<T> = {
    */
   svgIcon?: JSX.Element;
   /**
-   * Custom CSS class name for the select element.
-   */
-  selectClassName?: string;
-  /**
-   * Custom CSS Style for the select element.
-   */
-  selectStyle?: React.CSSProperties;
-  /**
    * If true, shows a red asterisk but does not prevent form submission.
    * @default false
    */
   required?: boolean;
+  /**
+   * Pass props to wrapper element.
+   */
+  wrapperProps?: React.ComponentProps<typeof InputGrid>;
+  /**
+   * Passes properties for label.
+   */
+  labelProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes properties for message content.
+   */
+  messageContentProps?: React.ComponentPropsWithRef<'div'>;
+  /**
+   * Passes properties for message icon.
+   */
+  messageIconProps?: React.ComponentProps<typeof Icon>;
 } & Pick<LabeledInputProps, 'displayStyle'> &
   SelectProps<T>;
 
@@ -88,10 +99,12 @@ export const LabeledSelect = <T,>(
     svgIcon,
     displayStyle = 'default',
     style,
-    selectClassName,
-    selectStyle,
     required = false,
     triggerProps,
+    wrapperProps,
+    labelProps,
+    messageContentProps,
+    messageIconProps,
     ...rest
   } = props;
 
@@ -99,7 +112,7 @@ export const LabeledSelect = <T,>(
 
   const icon = () => {
     if (svgIcon) {
-      return React.cloneElement(svgIcon, { 'aria-hidden': true });
+      return <Icon>{svgIcon}</Icon>;
     }
     if (status && message) {
       return StatusIconMap[status]();
@@ -108,29 +121,42 @@ export const LabeledSelect = <T,>(
   };
 
   return (
-    <InputContainer
-      label={label}
-      disabled={disabled}
-      required={required}
-      status={status}
-      message={message}
-      icon={displayStyle === 'default' ? icon() : undefined}
-      isLabelInline={displayStyle === 'inline'}
-      className={className}
-      style={style}
-      labelId={labelId}
-    >
+    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+      {label && (
+        <Label
+          as='div'
+          required={required}
+          disabled={disabled}
+          id={labelId}
+          {...labelProps}
+        >
+          {label}
+        </Label>
+      )}
       <Select
         disabled={disabled}
-        className={selectClassName}
-        style={selectStyle}
+        className={className}
+        style={style}
+        status={status}
         {...rest}
         triggerProps={{
           'aria-labelledby': labelId,
           ...triggerProps,
         }}
       />
-    </InputContainer>
+      {typeof message === 'string' ? (
+        <StatusMessage
+          status={status}
+          startIcon={displayStyle === 'default' ? icon() : undefined}
+          iconProps={messageIconProps}
+          contentProps={messageContentProps}
+        >
+          {message}
+        </StatusMessage>
+      ) : (
+        message
+      )}
+    </InputGrid>
   );
 };
 

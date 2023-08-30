@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
-@use '../input-container/mixins' as input-container;
 
 @mixin iui-information-panel-vertical {
   inset-block-start: 0;
@@ -205,7 +204,7 @@
     align-items: center;
 
     .iui-input-label {
-      @include input-container.iui-input-label-inline;
+      margin-inline-end: var(--iui-size-m);
       // right align labels
       justify-self: end;
       text-align: end;

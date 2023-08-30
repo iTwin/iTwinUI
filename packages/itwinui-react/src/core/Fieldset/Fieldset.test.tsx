@@ -64,9 +64,7 @@ it('should render disabled group', () => {
   expect(fieldset).toBeTruthy();
   expect(fieldset.disabled).toBe(true);
 
-  const inputContainers = container.querySelectorAll(
-    '.iui-input-container.iui-disabled',
-  );
+  const inputContainers = container.querySelectorAll('.iui-input-grid');
   expect(inputContainers.length).toBe(1);
 
   const inputs = container.querySelectorAll('input');
