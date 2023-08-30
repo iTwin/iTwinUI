@@ -38,7 +38,9 @@ function assertMenu(
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
-    expect(!!item.querySelector('.iui-list-item-icon')).toBe(hasIcon);
+    expect(!!item.querySelector('.iui-list-item-icon')).toBe(
+      hasIcon || selectedIndex === index,
+    );
     expect(item.hasAttribute('data-iui-active')).toBe(selectedIndex === index);
     expect(item.hasAttribute('data-iui-disabled')).toBe(
       disabledIndex === index,

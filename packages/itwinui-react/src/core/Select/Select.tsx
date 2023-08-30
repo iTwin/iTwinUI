@@ -12,6 +12,7 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  SvgCheckmark,
   Icon,
 } from '../utils/index.js';
 import type {
@@ -315,6 +316,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         key: `${label}-${index}`,
         isSelected,
         startIcon: startIcon,
+        endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
         onClick: () => {
           if (option.disabled) {
             return;
