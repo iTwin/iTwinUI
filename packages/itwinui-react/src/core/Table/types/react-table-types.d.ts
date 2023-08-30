@@ -38,7 +38,7 @@ import type {
 import type { TableFilterProps, TableFilterValue } from '../index.js';
 import type { CommonProps } from '../../utils/props.js';
 
-declare module 'react-table' {
+// declare module 'react-table' {
   export const testingVar = 0;
   // export {};
 
@@ -1341,4 +1341,4 @@ declare module 'react-table' {
      */
     isDisabled?: (rowData: D) => boolean;
   };
-}
+// }
