@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-// import { CellProps } from '@itwin/itwinui-react';
 import { TableTypes } from '@itwin/itwinui-react';
 import { action } from '@storybook/addon-actions';
 import { SvgEdit } from '@itwin/itwinui-icons-react';

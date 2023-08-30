@@ -3,14 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
-// import type {
-//   CellProps,
-//   CellRendererProps,
-//   Column,
-//   Row,
-//   TableInstance,
-//   TableState,
-// } from '@itwin/itwinui-react';
 import {
   Checkbox,
   Code,
