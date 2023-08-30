@@ -7,7 +7,7 @@ import type {
   FilterProps,
   FilterType,
   HeaderGroup,
-} from '../types/react-table-types.js';
+} from 'react-table';
 
 export interface TableFilterValue<T extends Record<string, unknown>> {
   /**

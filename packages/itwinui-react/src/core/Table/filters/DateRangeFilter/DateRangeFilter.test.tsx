@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import type { HeaderGroup } from '../../types/react-table-types.js';
+import type { HeaderGroup } from 'react-table';
 import {
   DateRangeFilter,
   type DateRangeFilterProps,

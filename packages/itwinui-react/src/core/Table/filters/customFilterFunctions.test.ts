@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { Row } from '../types/react-table-types.js';
+import type { Row } from 'react-table';
 import { customFilterFunctions } from './customFilterFunctions.js';
 
 const mockRows = (values: any[]) => {

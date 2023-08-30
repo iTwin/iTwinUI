@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { Row } from '../types/react-table-types.js';
+import type { Row } from 'react-table';
 import type { TableProps } from '../Table.js';
 
 type ScrollToRow<T extends Record<string, unknown>> = {

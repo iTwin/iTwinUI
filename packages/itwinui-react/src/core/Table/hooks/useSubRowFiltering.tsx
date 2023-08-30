@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type {
-  Hooks,
-  IdType,
-  Row,
-  TableInstance,
-} from '../types/react-table-types.js';
+import type { Hooks, IdType, Row, TableInstance } from 'react-table';
 import { defaultFilterFunctions } from '../filters/defaultFilterFunctions.js';
 
 export const useSubRowFiltering =

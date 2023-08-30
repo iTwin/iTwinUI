@@ -13,7 +13,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
-} from './types/react-table-types.js';
+} from 'react-table';
 import {
   actions as TableActions,
   useFlexLayout,
@@ -25,7 +25,7 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
-} from './types/react-table-types.js';
+} from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useGlobals,
@@ -318,7 +318,9 @@ export type TableProps<
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
-const flattenColumns = (columns: Column[]): Column[] => {
+const flattenColumns = <T extends Record<string, unknown>>(
+  columns: Column<T>[],
+): Column<T>[] => {
   // Return columns itself since we don't support nested columns
   return columns;
 };
@@ -432,7 +434,6 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const q = 0;
     const flatColumns = flattenColumns(columns);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);

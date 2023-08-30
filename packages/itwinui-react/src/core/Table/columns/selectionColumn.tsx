@@ -3,11 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type {
-  CellProps,
-  CellRendererProps,
-  HeaderProps,
-} from '../types/react-table-types.js';
+import type { CellProps, CellRendererProps, HeaderProps } from 'react-table';
 import { Checkbox } from '../../Checkbox/index.js';
 import { DefaultCell } from '../cells/index.js';
 

@@ -28,7 +28,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-import type { IdType, Row } from '../types/react-table-types.js';
+import type { IdType, Row } from 'react-table';
 
 const text = <T extends Record<string, unknown>>(
   rows: Row<T>[],
