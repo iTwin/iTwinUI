@@ -13,7 +13,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
-} from './types/react-table-objects.js';
+} from './types/react-table-types.js';
 import {
   actions as TableActions,
   useFlexLayout,
@@ -25,7 +25,7 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
-} from './types/react-table-objects.js';
+} from './types/react-table-types.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useGlobals,
