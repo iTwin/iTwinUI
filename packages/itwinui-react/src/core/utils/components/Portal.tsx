@@ -17,6 +17,8 @@ export type PortalProps = {
    * If false, it will not be portaled.
    *
    * Otherwise, it will portal to the element passed to `to`.
+   *
+   * @default true
    */
   portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
 };
