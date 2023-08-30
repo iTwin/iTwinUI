@@ -319,14 +319,8 @@ export type TableProps<
 } & Omit<CommonProps, 'title'>;
 
 const flattenColumns = (columns: Column[]): Column[] => {
-  const flatColumns: Column[] = [];
-  columns.forEach((column) => {
-    flatColumns.push(column);
-    if ('columns' in column) {
-      flatColumns.push(...flattenColumns(column.columns));
-    }
-  });
-  return flatColumns;
+  // Return columns itself since we don't support nested columns
+  return columns;
 };
 
 /**
