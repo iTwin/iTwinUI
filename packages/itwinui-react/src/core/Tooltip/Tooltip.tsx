@@ -77,18 +77,6 @@ type TooltipOptions = {
     hide?: boolean;
     inline?: boolean;
   };
-};
-
-type TooltipOwnProps = {
-  /**
-   * Content of the tooltip.
-   */
-  content: React.ReactNode;
-  /**
-   * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
-   * If not specified, the `reference` prop should be used instead.
-   */
-  children?: React.ReactNode;
   /**
    * Sets reference point to user provided element.
    * @example
@@ -108,34 +96,43 @@ type TooltipOwnProps = {
    * @default 'description'
    */
   ariaStrategy?: 'description' | 'label' | 'none';
+  id?: string;
+};
+
+type TooltipOwnProps = {
+  /**
+   * Content of the tooltip.
+   */
+  content: React.ReactNode;
+  /**
+   * Element to have tooltip on. Has to be a valid JSX element and needs to forward its ref.
+   * If not specified, the `reference` prop should be used instead.
+   */
+  children?: React.ReactNode;
 } & PortalProps;
 
 const useTooltip = (options: TooltipOptions = {}) => {
+  const uniqueId = useId();
   const {
-    placement,
+    placement = 'top',
     visible: controlledOpen,
-    middleware = {
-      flip: true,
-      shift: true,
-    },
+    middleware = { flip: true, shift: true },
     autoUpdateOptions = {},
+    reference,
+    ariaStrategy = 'description',
+    id = uniqueId,
+    ...props
   } = options;
   const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
   const open = controlledOpen ?? uncontrolledOpen;
 
-  const data = useFloating({
+  const floating = useFloating({
     placement,
     open,
     onOpenChange: setUncontrolledOpen,
     whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: autoUpdateOptions.animationFrame,
-        ancestorScroll: autoUpdateOptions.ancestorScroll,
-        ancestorResize: autoUpdateOptions.ancestorResize,
-        elementResize: autoUpdateOptions.elementResize,
-        layoutShift: autoUpdateOptions.layoutShift,
-      }),
+      autoUpdate(referenceEl, floatingEl, update, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
       middleware.flip && flip(),
@@ -145,74 +142,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
       middleware.inline && inline(),
       middleware.hide && hide(),
     ].filter(Boolean),
+    ...(reference && { elements: { reference } }),
   });
-
-  const context = data.context;
-
-  const { delay } = useDelayGroupContext();
-
-  const hover = useHover(context, {
-    enabled: controlledOpen == null,
-    delay: delay ?? { open: 50, close: 250 },
-    handleClose: safePolygon({ buffer: -Infinity }),
-  });
-
-  const focus = useFocus(context, {
-    enabled: controlledOpen == null,
-  });
-
-  const click = useClick(context, {
-    enabled: controlledOpen == null,
-  });
-
-  const dismiss = useDismiss(context, {
-    enabled: controlledOpen == null,
-  });
-
-  useDelayGroup(context, { id: useId() });
-
-  const interactions = useInteractions([click, hover, focus, dismiss]);
-
-  return React.useMemo(
-    () => ({
-      open,
-      setUncontrolledOpen,
-      ...interactions,
-      ...data,
-    }),
-    [open, interactions, data],
-  );
-};
-
-/**
- * Basic tooltip component to display informative content when an element is hovered or focused.
- * Uses [FloatingUI](https://floating-ui.com/).
- * @example
- * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
- * @example
- * const buttonRef = React.useRef();
- * ...
- * <Button ref={buttonRef} />
- * <Tooltip content='tooltip text' reference={buttonRef} />
- */
-export const Tooltip = React.forwardRef((props, forwardRef) => {
-  const uniqueId = useId();
-
-  const {
-    content,
-    children,
-    portal = true,
-    placement = 'top',
-    autoUpdateOptions,
-    middleware,
-    style,
-    className,
-    visible,
-    reference,
-    ariaStrategy = 'description',
-    id = uniqueId,
-    ...rest
-  } = props;
 
   const ariaProps = React.useMemo(
     () =>
@@ -224,18 +155,10 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
     [ariaStrategy, id],
   );
 
-  const tooltip = useTooltip({
-    placement,
-    visible,
-    autoUpdateOptions,
-    middleware,
-  });
-
   React.useEffect(() => {
     if (!reference) {
       return;
     }
-    tooltip.refs.setReference(reference);
 
     const oldValues: Record<string, string | null> = {}; // for cleanup
     Object.entries(ariaProps).forEach(([key, value]) => {
@@ -252,26 +175,91 @@ export const Tooltip = React.forwardRef((props, forwardRef) => {
         }
       });
     };
-  }, [ariaProps, reference, tooltip.refs]);
+  }, [ariaProps, reference]);
+
+  const { delay } = useDelayGroupContext();
+
+  const hover = useHover(floating.context, {
+    enabled: controlledOpen == null,
+    delay: delay ?? { open: 50, close: 250 },
+    handleClose: safePolygon({ buffer: -Infinity }),
+  });
+
+  const focus = useFocus(floating.context, {
+    enabled: controlledOpen == null,
+  });
+
+  const click = useClick(floating.context, {
+    enabled: controlledOpen == null,
+  });
+
+  const dismiss = useDismiss(floating.context, {
+    enabled: controlledOpen == null,
+  });
+
+  useDelayGroup(floating.context, { id: useId() });
+
+  const interactions = useInteractions([click, hover, focus, dismiss]);
+
+  const getReferenceProps = React.useCallback(
+    (userProps?: React.HTMLProps<Element>) => {
+      return interactions.getReferenceProps({ ...userProps, ...ariaProps });
+    },
+    [interactions, ariaProps],
+  );
+
+  const floatingProps = React.useMemo(
+    () =>
+      interactions.getFloatingProps({
+        hidden: !open,
+        'aria-hidden': 'true',
+        ...props,
+        id,
+      }),
+    [interactions, props, id, open],
+  );
+
+  return React.useMemo(
+    () => ({
+      open,
+      setUncontrolledOpen,
+      getReferenceProps,
+      floatingProps,
+      ...floating,
+    }),
+    [open, getReferenceProps, floatingProps, floating],
+  );
+};
+
+/**
+ * Basic tooltip component to display informative content when an element is hovered or focused.
+ * Uses [FloatingUI](https://floating-ui.com/).
+ * @example
+ * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
+ * @example
+ * const [trigger, setTrigger] = React.useState(null);
+ * ...
+ * <Button ref={setTrigger} />
+ * <Tooltip content='tooltip text' reference={trigger} />
+ */
+export const Tooltip = React.forwardRef((props, forwardedRef) => {
+  const { content, children, portal = true, className, style, ...rest } = props;
+
+  const tooltip = useTooltip(rest);
 
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
         ...tooltip.getReferenceProps(children.props),
-        ...ariaProps,
         ref: tooltip.refs.setReference,
       }))}
 
       <Portal portal={portal}>
         <Box
           className={cx('iui-tooltip', className)}
-          ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
+          ref={useMergedRefs(tooltip.refs.setFloating, forwardedRef)}
           style={{ ...tooltip.floatingStyles, ...style }}
-          {...tooltip.getFloatingProps()}
-          id={id}
-          aria-hidden
-          hidden={!tooltip.open}
-          {...rest}
+          {...tooltip.floatingProps}
         >
           {content}
         </Box>
