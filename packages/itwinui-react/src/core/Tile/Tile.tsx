@@ -633,14 +633,14 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * Thumbnail image url, a custom component or an svg for thumbnail avatar.
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  // ...
    *  <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture url = '/url/to/image.jpg'/>
    *  </Tile.ThumbnailArea>
-   * </Tile>
+   * </Tile.Wrapper>
    * or
-   * <Tile>
+   * <Tile.Wrapper>
    *  // ...
    *  <Tile.ThumbnailArea>
    *    <Tile.ThumbnailPicture>
@@ -677,21 +677,21 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * `NameIcon` next to name of the tile. Goes under <Tile.Name>
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.Name>
    *    <Tile.NameIcon/>
    *  </Tile.Name>
-   * <Tile/>
+   * </Tile.Wrapper>
    */
   NameIcon: TileNameIcon,
   /*
    * `NameLabel` of the tile
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.Name>
    *    <Tile.NameLabel> Tile Name <Tile.NameLabel/>
    *  </Tile.Name/>
-   * <Tile/>
+   * </Tile.Wrapper>
    */
   NameLabel: TileNameLabel,
   /**
@@ -708,13 +708,13 @@ export const Tile = Object.assign(TileComponent, {
   /**
    * Tile content area that contains `Description`, `Metadata` and `MoreOptions` Tile subcomponents
    * @example
-   * <Tile>
+   * <Tile.Wrapper>
    *  <Tile.ContentArea>
    *    <Tile.Description/>
    *    <Tile.Metadata/>
    *    <Tile.MoreOptions/>
    *  </Tile.ContentArea>
-   * </Tile>
+   * </Tile.Wrapper>
    */
   ContentArea: TileContentArea,
   /**
