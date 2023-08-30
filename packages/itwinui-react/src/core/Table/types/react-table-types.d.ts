@@ -553,14 +553,15 @@ export type FooterProps<D extends Record<string, unknown>> =
     column: ColumnInstance<D>;
   };
 
-export type CellProps<D extends Record<string, unknown>, V = any> =
-  // TableInstance<D> &
-  {
-    // column: ColumnInstance<D>;
-    row: Row<D>;
-    // cell: Cell<D, V>;
-    value: CellValue<V>;
-  };
+export type CellProps<
+  D extends Record<string, unknown>,
+  V = any,
+> = TableInstance<D> & {
+  column: ColumnInstance<D>;
+  row: Row<D>;
+  cell: Cell<D, V>;
+  value: CellValue<V>;
+};
 
 export type Accessor<D extends Record<string, unknown>> = (
   originalRow: D,
