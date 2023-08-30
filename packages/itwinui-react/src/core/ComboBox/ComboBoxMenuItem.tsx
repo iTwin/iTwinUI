@@ -31,7 +31,7 @@ export const ComboBoxMenuItem = React.memo(
     const { focusedIndex, enableVirtualization } =
       useSafeContext(ComboBoxStateContext);
 
-    const focusRef = (el: HTMLLIElement | null) => {
+    const focusRef = (el: HTMLElement | null) => {
       if (!enableVirtualization && focusedIndex === index) {
         el?.scrollIntoView({ block: 'nearest' });
       }
@@ -41,6 +41,7 @@ export const ComboBoxMenuItem = React.memo(
 
     return (
       <ListItem
+        as='div'
         actionable
         size={size}
         active={isSelected}
@@ -71,6 +72,6 @@ export const ComboBoxMenuItem = React.memo(
         )}
       </ListItem>
     );
-  }) as PolymorphicForwardRefComponent<'li', ComboBoxMenuItemProps>,
+  }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuItemProps>,
 );
 ComboBoxMenuItem.displayName = 'ComboBoxMenuItem';
