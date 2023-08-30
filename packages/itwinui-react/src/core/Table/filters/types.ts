@@ -7,7 +7,7 @@ import type {
   FilterProps,
   FilterType,
   HeaderGroup,
-} from '../types/react-table-types.js';
+} from '../types/react-table-objects.js';
 
 export interface TableFilterValue<T extends Record<string, unknown>> {
   /**
@@ -28,7 +28,7 @@ export interface TableFilterValue<T extends Record<string, unknown>> {
   filterType: FilterType<T>;
 }
 
-export type TableFilterProps<T extends Record<string, unknown> | object> =
+export type TableFilterProps<T extends Record<string, unknown>> =
   FilterProps<T> & {
     /**
      * Data of column on which filter is opened. It is provided by the table it self.

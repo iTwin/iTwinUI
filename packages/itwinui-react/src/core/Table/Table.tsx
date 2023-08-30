@@ -4,6 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
+import type {
+  CellProps,
+  HeaderGroup,
+  TableOptions,
+  Row,
+  TableState,
+  ActionType,
+  TableInstance,
+  Column,
+} from './types/react-table-objects.js';
 import {
   actions as TableActions,
   useFlexLayout,
@@ -15,17 +25,7 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
-} from './types/react-table-types.js';
-import type {
-  CellProps,
-  HeaderGroup,
-  TableOptions,
-  Row,
-  TableState,
-  ActionType,
-  TableInstance,
-  Column,
-} from './types/react-table-types.js';
+} from './types/react-table-objects.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useGlobals,
@@ -432,6 +432,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
+    const q = 0;
     const flatColumns = flattenColumns(columns);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
