@@ -9,10 +9,10 @@ import { SvgAdd, SvgClose } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <Flex>
-      <IconButton>
+      <IconButton label='Add'>
         <SvgAdd />
       </IconButton>
-      <IconButton styleType='borderless'>
+      <IconButton styleType='borderless' label='Close'>
         <SvgClose />
       </IconButton>
     </Flex>

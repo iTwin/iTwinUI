@@ -12,6 +12,7 @@ module.exports = [
   }),
   scenario('Type online status', {
     selectors: ['#demo-status'],
+    misMatchThreshold: 0.5,
   }),
   scenario('Type list', {
     selectors: ['#demo-list'],
