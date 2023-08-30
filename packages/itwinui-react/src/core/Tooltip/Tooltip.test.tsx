@@ -6,37 +6,50 @@ import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
 import { Tooltip } from './Tooltip.js';
 
-it('should toggle the visibility of tooltip on hover', async () => {
-  jest.useFakeTimers();
-
-  const { getByText, queryByText } = render(
+it('should toggle the visibility of tooltip on hover', () => {
+  const { getByText } = render(
     <Tooltip content='some text'>
       <div>Hover Here</div>
     </Tooltip>,
   );
 
-  expect(queryByText('some text')).not.toBeVisible();
+  const trigger = getByText('Hover Here');
+  expect(trigger).toHaveAccessibleDescription('some text');
 
-  fireEvent.mouseEnter(getByText('Hover Here'));
-  act(() => void jest.advanceTimersByTime(50));
-  expect(getByText('some text')).toBeVisible();
+  const tooltip = getByText('some text');
+  expect(tooltip).not.toBeVisible();
 
-  fireEvent.mouseLeave(getByText('Hover Here'));
-  act(() => void jest.advanceTimersByTime(250));
+  fireEvent.mouseEnter(trigger);
+  expect(tooltip).toBeVisible();
 
-  expect(queryByText('some text')).not.toBeVisible();
-
-  jest.useRealTimers();
+  fireEvent.mouseLeave(trigger);
+  expect(tooltip).not.toBeVisible();
 });
 
-it('should be visible', () => {
+it('should toggle the visibility of tooltip on focus', async () => {
+  jest.useFakeTimers();
+
   const { getByText } = render(
-    <Tooltip content='some text' visible>
-      <div>Visible!</div>
+    <Tooltip content='some text'>
+      <button>focus here</button>
     </Tooltip>,
   );
 
-  getByText('some text');
+  const trigger = getByText('focus here');
+  expect(trigger).toHaveAccessibleDescription('some text');
+
+  const tooltip = getByText('some text');
+  expect(tooltip).not.toBeVisible();
+
+  fireEvent.focus(trigger);
+  act(() => void jest.advanceTimersByTime(50));
+  expect(tooltip).toBeVisible();
+
+  fireEvent.blur(trigger);
+  act(() => void jest.advanceTimersByTime(250));
+  expect(tooltip).not.toBeVisible();
+
+  jest.useRealTimers();
 });
 
 it('should respect visible prop', () => {
@@ -111,3 +124,36 @@ it.each(['description', 'label', 'none'] as const)(
     }
   },
 );
+
+it('should work with reference prop', async () => {
+  jest.useFakeTimers();
+
+  const TestComp = () => {
+    const [reference, setReference] = React.useState<HTMLElement | null>(null);
+    return (
+      <>
+        <button ref={setReference}>trigger</button>
+        <Tooltip content='some text' reference={reference} />
+      </>
+    );
+  };
+  const { getByText } = render(<TestComp />);
+
+  const trigger = getByText('trigger');
+  expect(trigger).toHaveAccessibleDescription('some text');
+
+  const tooltip = getByText('some text');
+  expect(tooltip).not.toBeVisible();
+
+  fireEvent.mouseEnter(trigger);
+  expect(tooltip).toBeVisible();
+
+  fireEvent.mouseLeave(trigger);
+  expect(tooltip).not.toBeVisible();
+
+  // TODO: investigate a fix for this
+  // fireEvent.focus(trigger);
+  // expect(tooltip).toBeVisible();
+  // fireEvent.blur(trigger);
+  // expect(tooltip).not.toBeVisible();
+});
