@@ -210,12 +210,12 @@ const useTooltip = (options: TooltipOptions = {}) => {
   const floatingProps = React.useMemo(
     () =>
       interactions.getFloatingProps({
-        hidden: !floating.context.open,
+        hidden: !open,
         'aria-hidden': 'true',
         ...props,
         id,
       }),
-    [interactions, floating.context.open, props, id],
+    [interactions, props, id, open],
   );
 
   return React.useMemo(
