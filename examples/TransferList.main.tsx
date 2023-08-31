@@ -56,7 +56,7 @@ export default () => {
   return (
     <TransferList style={{ width: 500 }}>
       <TransferList.ListboxWrapper>
-        <TransferList.ListboxLabel>Listbox</TransferList.ListboxLabel>
+        <TransferList.ListboxLabel>Column A</TransferList.ListboxLabel>
         <TransferList.Listbox>
           {optionData?.map((item, index) => {
             return (
@@ -118,7 +118,7 @@ export default () => {
         </IconButton>
       </TransferList.Toolbar>
       <TransferList.ListboxWrapper>
-        <TransferList.ListboxLabel>Listbox</TransferList.ListboxLabel>
+        <TransferList.ListboxLabel>Column B</TransferList.ListboxLabel>
         <TransferList.Listbox>
           {appliedData.map((item, index) => {
             return (
