@@ -19,48 +19,6 @@ import type { Column } from 'react-table';
 import React from 'react';
 
 /**
- * Confirm that `Column` from `react-table` is equivalent to `TableTypes.Column`.
- */
-() => {
-  const columns1: TableTypes.Column<{
-    header1: string;
-    header2: string;
-  }>[] = [
-    {
-      Header: 'Header 1',
-      accessor: 'header1',
-    },
-    {
-      Header: 'Header 2',
-      accessor: 'header2',
-    },
-  ] as Column<{
-    header1: string;
-    header2: string;
-  }>[];
-
-  const columns2: Column<{
-    header1: string;
-    header2: string;
-  }>[] = [
-    {
-      Header: 'Header 1',
-      accessor: 'header1',
-    },
-    {
-      Header: 'Header 2',
-      accessor: 'header2',
-    },
-  ] as TableTypes.Column<{
-    header1: string;
-    header2: string;
-  }>[];
-
-  // Dummy return statement to prevent the variables declared but unused warning
-  return [columns1, columns2];
-};
-
-/**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
  */
 () => {
@@ -159,11 +117,13 @@ import React from 'react';
 };
 
 /**
- * Both 'react-table'.Column and TableTypes.Column should work.
+ * Confirm that `Column` from `react-table` is equivalent to `TableTypes.Column`.
  */
 () => {
-  // Using 'react-table'.Column
-  const columns1 = [
+  const columns1: TableTypes.Column<{
+    header1: string;
+    header2: string;
+  }>[] = [
     {
       Header: 'Header 1',
       accessor: 'header1',
@@ -172,14 +132,15 @@ import React from 'react';
       Header: 'Header 2',
       accessor: 'header2',
     },
-    // No type error
-  ] satisfies Column<{
+  ] as Column<{
     header1: string;
     header2: string;
   }>[];
 
-  // Using TableTypes.Column
-  const columns2 = [
+  const columns2: Column<{
+    header1: string;
+    header2: string;
+  }>[] = [
     {
       Header: 'Header 1',
       accessor: 'header1',
@@ -188,13 +149,15 @@ import React from 'react';
       Header: 'Header 2',
       accessor: 'header2',
     },
-    // No type error
-  ] satisfies TableTypes.Column<{
+  ] as TableTypes.Column<{
     header1: string;
     header2: string;
   }>[];
 
-  const data = [
+  const data: Array<{
+    header1: string;
+    header2: string;
+  }> = [
     {
       header1: 'row1',
       header2: 'row1',
@@ -205,12 +168,10 @@ import React from 'react';
     },
   ];
 
-  return (
-    <div>
-      <Table columns={columns1} data={data} emptyTableContent='No data.' />
-      <Table columns={columns2} data={data} emptyTableContent='No data.' />
-    </div>
-  );
+  <div>
+    <Table columns={columns1} data={data} emptyTableContent='No data.' />
+    <Table columns={columns2} data={data} emptyTableContent='No data.' />
+  </div>;
 };
 
 /**
