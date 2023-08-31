@@ -243,14 +243,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const selectRef = React.useRef<HTMLDivElement>(null);
 
-  const onShowHandler = React.useCallback(() => {
+  const show = React.useCallback(() => {
+    if (disabled) {
+      return;
+    }
     setIsOpen(true);
-  }, []);
+  }, [disabled]);
 
-  const onHideHandler = React.useCallback(() => {
+  const hide = React.useCallback(() => {
     setIsOpen(false);
-    // TODO: fix this
-    selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
+    selectRef.current?.focus({ preventScroll: true });
   }, []);
 
   const onKeyDown = (event: React.KeyboardEvent) => {
@@ -262,7 +264,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       case 'Enter':
       case ' ':
       case 'Spacebar': {
-        setIsOpen((o) => !o);
+        hide();
         event.preventDefault();
         break;
       }
@@ -297,7 +299,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           }
           if (isSingleOnChange(onChange, multiple)) {
             onChange?.(option.value);
-            setIsOpen(false);
+            hide();
           } else {
             onChange?.(option.value, isSelected ? 'removed' : 'added');
           }
@@ -327,7 +329,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ...menuItem.props,
       });
     });
-  }, [itemRenderer, multiple, onChange, options, value]);
+  }, [hide, itemRenderer, multiple, onChange, options, value]);
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -344,7 +346,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const popover = usePopover({
     visible: isOpen,
-    onVisibleChange: (open) => (open ? onShowHandler() : onHideHandler()),
+    onVisibleChange: (open) => (open ? show() : hide()),
     matchWidth: true,
   });
 
