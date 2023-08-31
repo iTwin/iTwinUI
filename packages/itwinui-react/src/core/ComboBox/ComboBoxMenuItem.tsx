@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
-import { useSafeContext, useMergedRefs } from '../utils/index.js';
+import { useSafeContext, useMergedRefs, SvgCheckmark } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext } from './helpers.js';
 import { ListItem } from '../List/ListItem.js';
@@ -31,7 +31,7 @@ export const ComboBoxMenuItem = React.memo(
     const { focusedIndex, enableVirtualization } =
       useSafeContext(ComboBoxStateContext);
 
-    const focusRef = (el: HTMLLIElement | null) => {
+    const focusRef = (el: HTMLElement | null) => {
       if (!enableVirtualization && focusedIndex === index) {
         el?.scrollIntoView({ block: 'nearest' });
       }
@@ -41,6 +41,7 @@ export const ComboBoxMenuItem = React.memo(
 
     return (
       <ListItem
+        as='div'
         actionable
         size={size}
         active={isSelected}
@@ -64,13 +65,14 @@ export const ComboBoxMenuItem = React.memo(
           {children}
           {sublabel && <ListItem.Description>{sublabel}</ListItem.Description>}
         </ListItem.Content>
-        {endIcon && (
-          <ListItem.Icon as='span' aria-hidden>
-            {endIcon}
-          </ListItem.Icon>
-        )}
+        {endIcon ||
+          (isSelected && (
+            <ListItem.Icon as='span' aria-hidden>
+              {endIcon ?? <SvgCheckmark />}
+            </ListItem.Icon>
+          ))}
       </ListItem>
     );
-  }) as PolymorphicForwardRefComponent<'li', ComboBoxMenuItemProps>,
+  }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuItemProps>,
 );
 ComboBoxMenuItem.displayName = 'ComboBoxMenuItem';

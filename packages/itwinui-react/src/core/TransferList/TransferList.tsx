@@ -14,6 +14,7 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { List, ListItem } from '../List/index.js';
+import { Label } from '../Label/index.js';
 
 // ----------------------------------------------------------------------------
 // TransferListComponent
@@ -193,7 +194,7 @@ type TransferListListboxLabelOwnProps = {
 };
 
 const TransferListListboxLabel = React.forwardRef((props, ref) => {
-  const { children, className, id, ...rest } = props;
+  const { children, id, ...rest } = props;
 
   const { labelId, setLabelId } = useSafeContext(TransferListContext);
 
@@ -204,15 +205,9 @@ const TransferListListboxLabel = React.forwardRef((props, ref) => {
   }, [id, labelId, setLabelId]);
 
   return (
-    <Box
-      as='div'
-      className={cx('iui-transfer-list-listbox-label', className)}
-      id={labelId}
-      ref={ref}
-      {...rest}
-    >
+    <Label as='div' id={labelId} ref={ref} {...rest}>
       {children}
-    </Box>
+    </Label>
   );
 }) as PolymorphicForwardRefComponent<'div', TransferListListboxLabelOwnProps>;
 TransferListListboxLabel.displayName = 'TransferList.ListboxLabel';

@@ -95,7 +95,7 @@ it('should work with menu items', async () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split')).toBeTruthy();
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   const dropdownButton = container.querySelectorAll(
@@ -103,13 +103,13 @@ it('should work with menu items', async () => {
   )[1] as HTMLButtonElement;
   await userEvent.click(dropdownButton);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
 
-  expect(document.querySelectorAll('li')).toHaveLength(3);
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
 

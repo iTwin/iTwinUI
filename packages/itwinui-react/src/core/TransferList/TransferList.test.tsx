@@ -155,9 +155,7 @@ it('should render custom transfer list with label and toolbar', () => {
       </TransferList.ListboxWrapper>
     </TransferList>,
   );
-  const listBoxLabel = container.querySelector(
-    '.iui-transfer-list-listbox-label',
-  );
+  const listBoxLabel = container.querySelector('.iui-input-label');
   expect(listBoxLabel).toBeTruthy();
   expect(listBoxLabel).toHaveTextContent('Label');
 

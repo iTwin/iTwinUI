@@ -8,7 +8,7 @@ import { SvgTag } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name>
         <Tile.NameLabel>
           <Tile.Action href='https://inclusive-components.design/cards/'>
@@ -34,6 +34,6 @@ export default () => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

@@ -98,10 +98,10 @@ it('should render split button correctly', async () => {
   expect(buttonOnClick).toBeCalled();
 
   await userEvent.click(innerButtons[1] as HTMLButtonElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
-  expect(menu.querySelectorAll('li')).toHaveLength(3);
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  expect(menu.querySelectorAll('[role=menuitem]')).toHaveLength(3);
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
   expect(itemOneOnClick).toBeCalled();
@@ -166,7 +166,7 @@ it('should render menuItems correctly', async () => {
     ),
   ).toEqual(downArrow);
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   await userEvent.click(button);
@@ -188,12 +188,12 @@ it('should render menuItems correctly', async () => {
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy.style.visibility).toEqual('visible');
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
 
-  expect(menu.querySelectorAll('li')).toHaveLength(3);
+  expect(menu.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
 

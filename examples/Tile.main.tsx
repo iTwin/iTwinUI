@@ -8,7 +8,7 @@ import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='Tile name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
@@ -34,6 +34,6 @@ export default () => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

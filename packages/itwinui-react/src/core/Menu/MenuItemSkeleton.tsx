@@ -48,7 +48,6 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      as='li'
       className={cx('iui-menu-item-skeleton', className)}
       data-iui-size={hasSublabel && 'large'}
       style={{
@@ -70,6 +69,6 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
       </Box>
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', MenuItemSkeletonProps>;
+}) as PolymorphicForwardRefComponent<'div', MenuItemSkeletonProps>;
 
 export default MenuItemSkeleton;

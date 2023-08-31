@@ -39,3 +39,12 @@ Small.args = {
   placeholder: 'Small Input',
   size: 'small',
 };
+
+export const Status: Story<InputProps> = (args) => {
+  return <Input placeholder='Positive Input' status='positive' {...args} />;
+};
+
+Status.args = {
+  placeholder: 'Positive Input',
+  status: 'positive',
+};

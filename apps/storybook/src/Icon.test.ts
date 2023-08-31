@@ -9,6 +9,7 @@ describe('Icon', () => {
     'Default',
     'Statuses',
     'Sizes',
+    'Padded',
     // 'Autoscale', // exclude Autoscale because it is only an interactive demo for the user
   ];
 
