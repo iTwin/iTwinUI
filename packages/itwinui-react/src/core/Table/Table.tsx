@@ -321,8 +321,15 @@ export type TableProps<
 const flattenColumns = <T extends Record<string, unknown>>(
   columns: Column<T>[],
 ): Column<T>[] => {
-  // Return columns itself since we don't support nested columns
-  return columns;
+  const flatColumns: Column<T>[] = [];
+  columns.forEach((column) => {
+    flatColumns.push(column);
+    if ('columns' in column) {
+      // @ts-expect-error - Since nested columns are not supported from a types perspective
+      flatColumns.push(...flattenColumns(column.columns));
+    }
+  });
+  return flatColumns;
 };
 
 /**
