@@ -1,0 +1,20 @@
+---
+title: Input grid
+description: Used to display inputs with label and/or status message.
+layout: ./_layout.astro
+propsPath: '@itwin/itwinui-react/esm/core/InputGrid/InputGrid.d.ts'
+thumbnail: #TODO
+group: utilities
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from 'examples';
+
+<LiveExample src='VisuallyHidden.icon.tsx'>
+  <AllExamples.VisuallyHiddenIconExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />
