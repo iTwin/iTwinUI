@@ -16,6 +16,7 @@ import {
   useMergedRefs,
   SvgCheckmark,
   Icon,
+  handleFocusOut,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
@@ -255,24 +256,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     selectRef.current?.focus({ preventScroll: true });
   }, []);
 
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.altKey) {
-      return;
-    }
-
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        hide();
-        event.preventDefault();
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
       const isSelected = isMultipleEnabled(value, multiple)
@@ -348,6 +331,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     visible: isOpen,
     onVisibleChange: (open) => (open ? show() : hide()),
     matchWidth: true,
+    closeOnOutsideClick: true,
   });
 
   return (
@@ -359,18 +343,19 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ref={popover.refs.setPositionReference}
       >
         <Box
+          {...popover.getReferenceProps({
+            onKeyDown: handleFocusOut(() => setIsOpen(false)),
+          })}
           tabIndex={0}
           role='combobox'
           data-iui-size={size}
           data-iui-status={status}
-          onClick={() => !disabled && setIsOpen((o) => !o)}
-          onKeyDown={(e) => !disabled && onKeyDown(e)}
           aria-disabled={disabled}
           aria-autocomplete='none'
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
-          {...popover.getReferenceProps(triggerProps)}
+          {...triggerProps}
           ref={useMergedRefs(selectRef, popover.refs.setReference)}
           className={cx(
             'iui-select-button',

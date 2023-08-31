@@ -10,13 +10,14 @@ import {
   Portal,
   cloneElementWithRef,
   useControlledState,
+  mergeRefs,
+  handleFocusOut,
 } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
-import { FloatingFocusManager } from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -78,17 +79,23 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
   );
 
+  const triggerRef = React.useRef<HTMLElement>(null);
+
+  const close = React.useCallback(() => {
+    setVisible(false);
+    triggerRef.current?.focus({ preventScroll: true });
+  }, [setVisible]);
+
   const menuContent = React.useMemo(() => {
-    const close = () => setVisible(false);
     if (typeof menuItems === 'function') {
       return menuItems(close);
     }
     return menuItems;
-  }, [menuItems, setVisible]);
+  }, [menuItems, close]);
 
   const popover = usePopover({
     visible,
-    onVisibleChange: setVisible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement,
     matchWidth,
   });
@@ -98,23 +105,20 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
-        ...popover.getReferenceProps(children.props),
-        ref: popover.refs.setReference,
+        ...popover.getReferenceProps({
+          ...children.props,
+          onKeyDown: handleFocusOut(() => setVisible(false)),
+        }),
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
       {popover.open && (
         <Portal portal={portal}>
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            initialFocus={-1}
+          <Menu
+            {...popover.getFloatingProps({ role, ...rest })}
+            ref={popoverRef}
           >
-            <Menu
-              {...popover.getFloatingProps({ role, ...rest })}
-              ref={popoverRef}
-            >
-              {menuContent}
-            </Menu>
-          </FloatingFocusManager>
+            {menuContent}
+          </Menu>
         </Portal>
       )}
     </>
