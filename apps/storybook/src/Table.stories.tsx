@@ -1595,7 +1595,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         {...args}
       />
       <Tooltip
-        reference={React.useRef(rowRefMap.current[hoveredRowIndex])}
+        reference={React.useRef(rowRefMap[hoveredRowIndex])}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />
