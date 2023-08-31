@@ -13,14 +13,10 @@ import {
   Table,
   Text,
   tableFilters,
-  TableFilterValue,
-  TableProps,
-  TableTypes,
   Tooltip,
   DefaultCell,
   EditableCell,
   TablePaginator,
-  TablePaginatorRendererProps,
   ActionColumn,
   Anchor,
   SelectionColumn,
@@ -30,7 +26,13 @@ import {
   ProgressRadial,
   BaseFilter,
 } from '@itwin/itwinui-react';
-import { Story, Meta } from '@storybook/react';
+import type {
+  TableFilterValue,
+  TableProps,
+  TableTypes,
+  TablePaginatorRendererProps,
+} from '@itwin/itwinui-react';
+import type { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
