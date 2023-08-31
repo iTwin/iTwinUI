@@ -80,7 +80,7 @@ type TooltipOptions = {
   /**
    * Sets reference point to user provided element.
    * @example
-   * const [trigger, setTrigger] = React.useState();
+   * const [trigger, setTrigger] = React.useState(null);
    * ...
    * <Button ref={setTrigger} />
    * <Tooltip content='tooltip text' reference={trigger} />
