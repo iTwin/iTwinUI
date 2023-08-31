@@ -67,7 +67,9 @@
     }
 
     .iui-slider-track {
-      grid-column-start: 1;
+      inset-inline-start: 0;
+      inset-block-start: 50%;
+      transform: translateY(-50%);
     }
 
     .iui-slider-thumb {
@@ -116,21 +118,23 @@
 
       &::before {
         block-size: 100%;
+        grid-row: 1 / 3;
       }
     }
 
     .iui-slider::before,
     .iui-slider-track {
       inline-size: var(--_iui-slider-track-thickness);
-      grid-row: 1 / 3;
     }
 
     .iui-slider-track {
-      align-self: end;
+      inset-block-end: 0;
+      inset-inline-start: 50%;
+      transform: translateX(-50%);
     }
 
     .iui-slider-thumb {
-      transform: translate(-50%, 50%);
+      transform: translateY(50%);
     }
   }
 
@@ -250,7 +254,7 @@
 .iui-slider-track {
   pointer-events: none;
   background-color: var(--_iui-slider-track-color);
-  grid-area: inherit;
+  position: absolute;
 
   @media (forced-colors: active) {
     --_iui-slider-track-color: Highlight;

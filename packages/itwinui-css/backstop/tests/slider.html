@@ -31,6 +31,7 @@
         width: auto;
         display: flex;
         gap: 2rem;
+        margin-block-end: 4rem;
       }
       section[id^='demo-horizontal'] { flex-direction: column; }
       section[id^='demo-vertical'] { height: calc(var(--iui-size-3xl) * 5); }
@@ -40,7 +41,7 @@
       .iui-slider .iui-slider-thumb.iui-active + .iui-tooltip {
         position: absolute;
         display: block;
-        margin-top: calc(var(--iui-size-xl) * -1);
+        margin-block-start: calc(var(--iui-size-xl) * -1);
         transform: translateX(-50%);
       }
     </style>
@@ -65,7 +66,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -76,12 +77,11 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            style="left: 50%;"
-            id="test-slider-1"
+            style="inset-inline-start: 50%;"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -95,7 +95,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -106,12 +106,11 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            style="left: 50%;"
-            id="test-slider-1"
+            style="inset-inline-start: 50%;"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -126,7 +125,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -137,19 +136,63 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            style="left: 50%;"
-            id="test-slider-1"
+            style="inset-inline-start: 50%;"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
         </div>
       </div>
+
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="horizontal"
+      >
+        <div class="iui-slider iui-range-slider">
+          <div
+            class="iui-slider-track"
+            style="inset-inline-start: 20%; inset-inline-end: 20%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Start value"
+            aria-valuemin="0"
+            aria-valuenow="20"
+            aria-valuemax="79"
+            data-range-max="100"
+            style="inset-inline-start: 20%;"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="inset-inline-start: 20%;"
+          >
+            20
+          </output>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="End value"
+            aria-valuemin="21"
+            aria-valuenow="80"
+            aria-valuemax="100"
+            data-range-min="0"
+            style="inset-inline-start: 80%;"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="inset-inline-start: 80%;"
+          >
+            80
+          </output>
+        </div>
+      </div>
     </section>
-    <br />
 
     <h3>With extras</h3>
     <section id="demo-horizontal-extras">
@@ -176,10 +219,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -187,11 +230,10 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -233,10 +275,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -244,11 +286,10 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -284,10 +325,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -295,11 +336,10 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -345,10 +385,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -356,11 +396,10 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
@@ -397,10 +436,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="width: 50%;"
+            style="inset-inline-end: 50%;"
           ></div>
           <div
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
             class="iui-slider-thumb"
             role="slider"
             aria-label="Volume setting"
@@ -408,18 +447,16 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
-            style="left: 50%;"
+            style="inset-inline-start: 50%;"
           >
             50
           </output>
         </div>
       </div>
     </section>
-    <br />
 
     <h2>Vertical</h2>
     <section id="demo-vertical">
@@ -430,7 +467,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -441,8 +478,7 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            style="bottom: 50%;"
-            id="test-slider-1"
+            style="inset-block-end: 50%;"
           ></div>
           <output
             class="iui-tooltip"
@@ -460,7 +496,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -471,8 +507,7 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            style="bottom: 50%;"
-            id="test-slider-1"
+            style="inset-block-end: 50%;"
           ></div>
           <output
             class="iui-tooltip"
@@ -491,7 +526,7 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
             class="iui-slider-thumb"
@@ -502,8 +537,7 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            style="bottom: 50%;"
-            id="test-slider-1"
+            style="inset-block-end: 50%;"
           ></div>
           <output
             class="iui-tooltip"
@@ -513,8 +547,54 @@
           </output>
         </div>
       </div>
+
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="vertical"
+      >
+        <div class="iui-slider iui-range-slider">
+          <div
+            class="iui-slider-track"
+            style="inset-block-start: 20%; inset-block-end: 20%;"
+          ></div>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Start value"
+            aria-orientation="vertical"
+            aria-valuemin="0"
+            aria-valuenow="20"
+            aria-valuemax="79"
+            style="inset-block-end: 20%;"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="inset-block-start: 50%;"
+          >
+            20
+          </output>
+          <div
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="End value"
+            aria-orientation="vertical"
+            aria-valuemin="21"
+            aria-valuenow="80"
+            aria-valuemax="100"
+            data-range-min="0"
+            style="inset-block-end: 80%;"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="inset-block-start: 50%;"
+          >
+            80
+          </output>
+        </div>
+      </div>
     </section>
-    <br />
 
     <h3>With extras</h3>
     <section id="demo-vertical-extras">
@@ -541,10 +621,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
-            style="bottom: 50%;"
+            style="inset-block-end: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -552,7 +632,6 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
@@ -598,10 +677,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
-            style="bottom: 50%;"
+            style="inset-block-end: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -609,7 +688,6 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
@@ -649,10 +727,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
-            style="bottom: 50%;"
+            style="inset-block-end: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -660,7 +738,6 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
@@ -710,10 +787,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
-            style="bottom: 50%;"
+            style="inset-block-end: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -721,7 +798,6 @@
             aria-valuemin="0"
             aria-valuenow="50"
             aria-valuemax="100"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
@@ -762,10 +838,10 @@
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
-            style="height: 50%;"
+            style="inset-block-start: 50%;"
           ></div>
           <div
-            style="bottom: 50%;"
+            style="inset-block-end: 50%;"
             class="iui-slider-thumb"
             role="slider"
             tabindex="0"
@@ -774,7 +850,6 @@
             aria-valuenow="50"
             aria-valuemax="100"
             aria-disabled="true"
-            id="test-slider-1"
           ></div>
           <output
             class="iui-tooltip"
@@ -786,223 +861,5 @@
       </div>
     </section>
 
-    <script>
-
-      function setTooltip(percent, tooltip, sliderContainer) {
-        if (getIsVerticalSlider(sliderContainer)) {
-          if (tooltip) {
-            tooltip.style.bottom = `${percent}%`;
-            tooltip.innerHTML = `${percent}`;
-          }
-        } else {
-          if (tooltip) {
-            tooltip.style.left = `${percent}%`;
-            tooltip.innerHTML = `${percent}`;
-          }
-        }
-      }
-
-      function setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode) {
-        if (getIsVerticalSlider(sliderContainer)) {
-          if (mode === "progress") {
-            thumb.style.bottom = `${percent}%`;
-            var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
-            console.log(`${percent}%`);
-          }
-          else if (mode === "range-left") {
-            otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-            thumb.style.bottom = `${percent}%`;
-            progress.style.bottom = `${percent}%`;
-            console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
-          } else if (mode === "range-right") {
-            otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-            thumb.style.bottom = `${percent}%`;
-            var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
-            console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
-          }
-        } else {
-          if (mode === "progress") {
-            thumb.style.left = `${percent}%`;
-            var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
-          } else if (mode === "range-left") {
-            otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-            thumb.style.left = `${percent}%`;
-            progress.style.left = `${percent}%`;
-          } else if (mode === "range-right") {
-            otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-            thumb.style.left = `${percent}%`;
-            var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
-          }
-        }
-      }
-
-      function getMinValueFromThumb(thumb) {
-        const minAtt = thumb.getAttribute("aria-valuemin");
-        const dataRangeMinAtt = thumb.getAttribute("data-range-min");
-        const min = parseInt(null !== dataRangeMinAtt ? dataRangeMinAtt : minAtt);
-        return min;
-      }
-
-      function getMaxValueFromThumb(thumb) {
-        const maxAtt = thumb.getAttribute("aria-valuemax");
-        const dataRangeMaxAtt = thumb.getAttribute("data-range-max");
-        const max = parseInt(null !== dataRangeMaxAtt ? dataRangeMaxAtt : maxAtt);
-        return max;
-      }
-
-      function getMaxLimitValueFromThumb(thumb) {
-        var maxAtt = thumb.getAttribute("aria-valuemax");
-        var max = parseInt(maxAtt);
-        return max;
-      }
-
-      function getMinLimitValueFromThumb(thumb) {
-        var minAtt = thumb.getAttribute("aria-valuemin");
-        var min = parseInt(minAtt);
-        return min;
-      }
-
-      function getPercentFromThumb(thumb) {
-        var valueAtt = thumb.getAttribute("aria-valuenow");
-        var value = parseInt(valueAtt);
-        var min = getMinValueFromThumb(thumb);
-        var max = getMaxValueFromThumb(thumb);
-        var percent = ((value - min) / (max - min)) * 100;
-        return percent;
-      }
-
-      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer) {
-        var min = getMinValueFromThumb(thumb);
-        var limitMin = getMinLimitValueFromThumb(thumb);
-        var max = getMaxValueFromThumb(thumb);
-        var limitMax = getMaxLimitValueFromThumb(thumb);
-        var rect = track.getBoundingClientRect();
-        var diff;
-        var trackLength;
-        if (getIsVerticalSlider(sliderContainer)) {
-          trackLength = rect.height;
-          diff = - (event.pageY - (rect.bottom + window.scrollY));
-          if (diff > rect.height)
-            diff = rect.height;
-          if (diff < 0)
-            diff = 0;
-        } else {
-          trackLength = rect.width;
-          diff = event.pageX - rect.left;
-          if (diff > rect.width)
-            diff = rect.width;
-          if (diff < 0)
-            diff = 0;
-        }
-
-        var percent = parseInt(((max - min) * diff) / trackLength);
-        if (percent < limitMin)
-          percent = limitMin;
-        if (percent > limitMax)
-          percent = limitMax;
-
-        thumb.setAttribute("aria-valuenow", percent);
-        setTooltip(percent, toolTip, sliderContainer);
-        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
-
-        event.preventDefault();
-        event.stopPropagation();
-      }
-
-      function getOtherRangeThumb(thumb) {
-        var parent = thumb.parentNode;
-        const allThumbs = parent.querySelectorAll(".iui-slider-thumb");
-        for (var i = 0; i < allThumbs.length; i++) {
-          if (allThumbs[i] !== thumb)
-            return allThumbs[i];
-        }
-      }
-
-      function getToolTip(thumb, mode) {
-        const parent = thumb.parentNode;
-        const tooltips = parent.querySelectorAll(".iui-tooltip");
-        if (mode === "range-left")
-          return tooltips[0];
-        else if (mode === "range-right")
-          return tooltips[1];
-
-        return tooltips[0];
-      }
-
-      function getIsVerticalSlider(sliderContainer) {
-        // return sliderContainer.parentNode.classList.contains("iui-slider-vertical");
-        return sliderContainer.getAttribute('aria-orientation') === 'vertical';
-      }
-
-      function initializeThumbProcessing(thumb, sliderContainer, mode) {
-        const percent = getPercentFromThumb(thumb);
-        let progress = sliderContainer.querySelector(".iui-slider-track");
-        let otherThumb = getOtherRangeThumb(thumb);
-        const toolTip = getToolTip(thumb, mode);
-
-        setTooltip(percent, toolTip, sliderContainer);
-        setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode);
-
-        thumb.addEventListener("mousedown", function () {
-          if (sliderContainer.parentElement.classList.contains('iui-disabled'))
-            return;
-          thumb.classList.add("iui-active");
-          sliderContainer.classList.add("iui-grabbing");
-          var ownerDoc = thumb.ownerDocument;
-          var track = sliderContainer.querySelector(".iui-slider::before");
-          var handleMouseMove = function (event) {
-            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer);
-          };
-
-          var handleMouseUp = function (event) {
-            ownerDoc.removeEventListener('mousemove', handleMouseMove);
-            ownerDoc.removeEventListener('mouseup', handleMouseUp);
-            thumb.classList.remove("iui-active");
-            sliderContainer.classList.remove("iui-grabbing");
-          };
-
-          // bind a mousemove event handler to move pointer
-          ownerDoc.addEventListener('mousemove', handleMouseMove);
-
-          // bind a mouseup event handler to stop tracking mouse movements
-          ownerDoc.addEventListener('mouseup', handleMouseUp);
-
-          event.preventDefault();
-          event.stopPropagation();
-        });
-      }
-
-      function initializeAllProgressSliders() {
-        const allProgressSliderContainers = document.querySelectorAll(".iui-slider.iui-progress-slider");
-        allProgressSliderContainers.forEach(progressSliderContainer => {
-          const thumb = progressSliderContainer.querySelector(".iui-slider-thumb");
-          initializeThumbProcessing(thumb, progressSliderContainer, "progress");
-        });
-      }
-
-      function initializeAllRangeSliders() {
-        const allRangeSliderContainers = document.querySelectorAll(".iui-slider-container.iui-range-slider");
-        allRangeSliderContainers.forEach(rangeSliderContainer => {
-          const thumbs = rangeSliderContainer.querySelectorAll(".iui-slider-thumb");
-
-          const leftThumb = thumbs[0];
-          if (leftThumb) {
-            initializeThumbProcessing(leftThumb, rangeSliderContainer, "range-left");
-          }
-
-          const rightThumb = thumbs[1];
-          if (rightThumb) {
-            initializeThumbProcessing(rightThumb, rangeSliderContainer, "range-right");
-          }
-        });
-      }
-
-      initializeAllProgressSliders();
-      initializeAllRangeSliders();
-    </script>
   </body>
 </html>
