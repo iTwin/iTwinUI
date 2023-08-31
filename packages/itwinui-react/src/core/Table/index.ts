@@ -3,12 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Table } from './Table.js';
-
-// Export everything from './types/react-table-types.js' as a variable called `ReactTableTypes`
-// export { TableTypes } from './types/index.js';
-export type { TableTypes } from './types/index.js';
-
 export type { TableProps, TablePaginatorRendererProps } from './Table.js';
+
+export type { TableTypes } from './types/index.js';
 
 export { BaseFilter, FilterButtonBar, tableFilters } from './filters/index.js';
 export type {
