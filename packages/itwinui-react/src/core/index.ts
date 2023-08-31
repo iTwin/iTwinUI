@@ -152,6 +152,8 @@ export {
   SelectionColumn,
 } from './Table/index.js';
 export type {
+  DefaultCellProps,
+  EditableCellProps,
   TableFilterValue,
   DateRangeFilterOptions,
   TablePaginatorRendererProps,
