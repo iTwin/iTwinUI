@@ -21,9 +21,6 @@
     "test": {
       "outputs": []
     },
-    "test:types": {
-      "outputs": []
-    },
     "storybook#test": {
       "dependsOn": ["build"]
     },

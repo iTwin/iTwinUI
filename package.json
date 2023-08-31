@@ -31,7 +31,6 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
-    "test:types": "turbo run test:types",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
