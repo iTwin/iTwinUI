@@ -27,7 +27,7 @@ it('should render ColorInputPanel with input fields', async () => {
 
   expect(container.querySelector('.iui-color-input')).toBeTruthy();
   expect(container.querySelector('.iui-color-input-fields')).toBeTruthy();
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
+  expect(container.querySelectorAll('.iui-input').length).toBe(1);
 
   const swapButton = container.querySelector(
     '.iui-button[data-iui-variant="borderless"]',
@@ -36,15 +36,15 @@ it('should render ColorInputPanel with input fields', async () => {
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('HSL');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(3);
+  expect(container.querySelectorAll('.iui-input').length).toBe(3);
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('RGB');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(3);
+  expect(container.querySelectorAll('.iui-input').length).toBe(3);
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('HEX');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
+  expect(container.querySelectorAll('.iui-input').length).toBe(1);
 });
 
 it('should render ColorInputPanel with input fields with alpha', async () => {
@@ -65,7 +65,7 @@ it('should render ColorInputPanel with input fields with alpha', async () => {
 
   expect(container.querySelector('.iui-color-input')).toBeTruthy();
   expect(container.querySelector('.iui-color-input-fields')).toBeTruthy();
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
+  expect(container.querySelectorAll('.iui-input').length).toBe(1);
 
   const swapButton = container.querySelector(
     '.iui-button[data-iui-variant="borderless"]',
@@ -74,15 +74,15 @@ it('should render ColorInputPanel with input fields with alpha', async () => {
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('HSLA');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(4);
+  expect(container.querySelectorAll('.iui-input').length).toBe(4);
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('RGBA');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(4);
+  expect(container.querySelectorAll('.iui-input').length).toBe(4);
 
   await userEvent.click(swapButton);
   expect(element.textContent).toBe('HEX');
-  expect(container.querySelectorAll('.iui-input-container').length).toBe(1);
+  expect(container.querySelectorAll('.iui-input').length).toBe(1);
 });
 
 it('should only show allowed color formats on input panel', async () => {

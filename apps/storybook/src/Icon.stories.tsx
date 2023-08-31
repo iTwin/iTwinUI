@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Icon, Slider } from '@itwin/itwinui-react';
+import { Icon, Slider, Flex } from '@itwin/itwinui-react';
 import {
   SvgInfoCircular,
   SvgPlaceholder,
@@ -40,6 +40,26 @@ export const Default: Story<IconProps> = (args) => {
 Default.args = {
   size: 'medium',
   fill: 'default',
+};
+
+export const Padded: Story<IconProps> = (args) => {
+  return (
+    <Flex
+      style={{
+        border: '1px solid red',
+        width: 'fit-content',
+      }}
+    >
+      <Icon {...args}>
+        <SvgPlaceholder />
+      </Icon>
+    </Flex>
+  );
+};
+Padded.args = {
+  size: 'medium',
+  fill: 'default',
+  padded: true,
 };
 
 export const Statuses: Story<IconProps> = (args) => {

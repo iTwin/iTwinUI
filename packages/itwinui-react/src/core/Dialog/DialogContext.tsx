@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import type { PortalProps } from '../utils/index.js';
 
 export type DialogContextProps = {
   /**
@@ -72,9 +73,9 @@ export type DialogContextProps = {
    *
    * Can be set to an object with a `to` property to portal into a specific element.
    *
-   * @default false
+   * Defaults to false if using `Dialog` and true if using `Modal`.
    */
-  portal?: boolean | { to: HTMLElement };
+  portal?: PortalProps['portal'];
   /**
    * Dialog root ref. For internal use.
    */

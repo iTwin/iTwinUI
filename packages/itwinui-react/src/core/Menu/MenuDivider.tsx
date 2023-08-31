@@ -19,7 +19,7 @@ import { polymorphic } from '../utils/index.js';
  *   ]}
  * </Menu>
  */
-export const MenuDivider = polymorphic.li('iui-menu-divider', {
+export const MenuDivider = polymorphic('iui-menu-divider', {
   role: 'separator',
 });
 

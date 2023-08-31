@@ -42,7 +42,7 @@ export default {
 
 export const Basic: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name name='Stadium' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
@@ -71,13 +71,13 @@ export const Basic: Story<TileProps> = (args) => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 
 export const AllProps: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Stadium</Tile.NameLabel>
@@ -127,7 +127,7 @@ export const AllProps: Story<TileProps> = (args) => {
           Projects
         </Button>
       </Tile.Buttons>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 AllProps.argTypes = {
@@ -142,7 +142,7 @@ AllProps.args = {
 export const Actionable: Story<TileProps> = (args) => {
   const [selected, setSelected] = React.useState(false);
   return (
-    <Tile isSelected={selected} {...args}>
+    <Tile.Wrapper isSelected={selected} {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -169,7 +169,7 @@ export const Actionable: Story<TileProps> = (args) => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Actionable.argTypes = { ...Basic.argTypes };
@@ -179,7 +179,7 @@ Actionable.args = {
 
 export const AnchorLink: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -206,7 +206,7 @@ export const AnchorLink: Story<TileProps> = (args) => {
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 AnchorLink.argTypes = { ...Basic.argTypes };
@@ -216,7 +216,7 @@ AnchorLink.args = {
 
 export const Condensed: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Condensed</Tile.NameLabel>
@@ -236,7 +236,7 @@ export const Condensed: Story<TileProps> = (args) => {
           </MenuItem>
         </Tile.MoreOptions>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Condensed.argTypes = {
@@ -248,7 +248,7 @@ Condensed.args = {
 
 export const WithAvatar: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Some User</Tile.NameLabel>
@@ -281,7 +281,7 @@ export const WithAvatar: Story<TileProps> = (args) => {
           </MenuItem>
         </Tile.MoreOptions>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 WithAvatar.argTypes = {
@@ -293,7 +293,7 @@ WithAvatar.args = {
 
 export const Folder: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgFolder />
@@ -317,7 +317,7 @@ export const Folder: Story<TileProps> = (args) => {
           <span>Folder metadata</span>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Folder.argTypes = {
@@ -331,7 +331,7 @@ Folder.args = {
 
 export const Status: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -355,7 +355,7 @@ export const Status: Story<TileProps> = (args) => {
           <span>Tile with status</span>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Status.argTypes = {
@@ -369,7 +369,7 @@ Status.args = {
 
 export const Loading: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -393,7 +393,7 @@ export const Loading: Story<TileProps> = (args) => {
           <span>Loading tile</span>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Loading.argTypes = {
@@ -408,7 +408,7 @@ Loading.args = {
 
 export const Disabled: Story<TileProps> = (args) => {
   return (
-    <Tile {...args}>
+    <Tile.Wrapper {...args}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -442,7 +442,7 @@ export const Disabled: Story<TileProps> = (args) => {
       <Tile.Buttons>
         <Button disabled>Button</Button>
       </Tile.Buttons>
-    </Tile>
+    </Tile.Wrapper>
   );
 };
 Disabled.argTypes = {

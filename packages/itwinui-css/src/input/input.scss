@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
-@use 'input-with-icon';
 
 @mixin iui-input {
   --_iui-input-background-color: var(--iui-color-background);
@@ -100,10 +99,56 @@
   }
 }
 
-.iui-input-with-icon.iui-input-with-icon {
-  @include input-with-icon.iui-input-with-icon;
+// Class to have inputs combined with icon (eg. select with arrow icon)
+.iui-input-with-icon {
+  display: grid;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+
+  > :first-child {
+    grid-area: 1 / -1;
+    padding-inline-end: var(--iui-component-height); // Width of the end-icon button
+  }
+
+  &:focus-within {
+    > :first-child {
+      // --_iui-input-with-icon-focus-color can be used to control this from outside
+      outline: 2px solid var(--_iui-input-with-icon-focus-color, var(--iui-color-border-accent));
+      outline-offset: -2px;
+    }
+  }
+
+  &:hover {
+    > :first-child {
+      // --_iui-input-with-icon-hover-border-color can be used to control this from outside
+      border-color: var(--_iui-input-with-icon-hover-border-color, var(--iui-color-border-foreground-hover));
+    }
+  }
+
+  > .iui-select-tag-container {
+    max-inline-size: 70%;
+    inset-inline-end: unset;
+  }
 }
 
 .iui-end-icon {
-  @include input-with-icon.iui-end-icon;
+  grid-area: 1 / -1;
+
+  justify-self: end;
+  margin-inline-end: calc(var(--iui-size-xs) + 1px);
+  position: relative; // Needed to show it on top of the input
+  pointer-events: none;
+
+  --_iui-svg-fill: var(--iui-color-icon);
+  transition: transform var(--iui-duration-1) ease-out;
+
+  &.iui-disabled {
+    cursor: not-allowed;
+    --_iui-svg-fill: var(--iui-color-icon-disabled);
+  }
+
+  &.iui-open {
+    transform: rotate(180deg); // transform for arrow icon (e.g. svg-caret-down), used in combobox
+  }
 }

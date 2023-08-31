@@ -14,7 +14,6 @@ import {
   useHover,
   useFocus,
   useDismiss,
-  useRole,
   useInteractions,
   safePolygon,
   size,
@@ -27,14 +26,16 @@ import {
 import type { Placement } from '@floating-ui/react';
 import {
   Box,
-  getDocument,
-  mergeRefs,
-  useGlobals,
+  Portal,
+  cloneElementWithRef,
+  useControlledState,
   useId,
   useMergedRefs,
 } from '../utils/index.js';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import ReactDOM from 'react-dom';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../utils/index.js';
 
 type TooltipOptions = {
   /**
@@ -46,6 +47,11 @@ type TooltipOptions = {
    * Property for manual visibility control
    */
   visible?: boolean;
+  /**
+   * Callback invoked every time the tooltip visibility changes as a result
+   * of internal logic. Should be used alongside `visible` prop.
+   */
+  onVisibleChange?: (visible: boolean) => void;
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -77,6 +83,26 @@ type TooltipOptions = {
     hide?: boolean;
     inline?: boolean;
   };
+  /**
+   * Sets reference point to user provided element.
+   * @example
+   * const [trigger, setTrigger] = React.useState(null);
+   * ...
+   * <Button ref={setTrigger} />
+   * <Tooltip content='tooltip text' reference={trigger} />
+   */
+  reference?: HTMLElement | null;
+  /**
+   * By default, the tooltip will be associated with the reference element
+   * using `aria-describedby`.
+   *
+   * Pass "label" if you want to use `aria-labelledby` instead, or pass "none"
+   * if you don't want any association.
+   *
+   * @default 'description'
+   */
+  ariaStrategy?: 'description' | 'label' | 'none';
+  id?: string;
 };
 
 type TooltipOwnProps = {
@@ -89,59 +115,33 @@ type TooltipOwnProps = {
    * If not specified, the `reference` prop should be used instead.
    */
   children?: React.ReactNode;
-  /**
-   * Element to portal tooltip to.
-   * Portals to ThemeProvider portalContainer by default.
-   * @default true;
-   */
-  portal?: boolean | { to: HTMLElement };
-  /**
-   * Sets reference point to user provided element.
-   * @example
-   * const buttonRef = React.useRef();
-   * ...
-   * <Button ref={buttonRef} />
-   * <Tooltip content='tooltip text' reference={buttonRef} />
-   */
-  reference?: React.RefObject<HTMLElement>;
-  /**
-   * By default, the tooltip will be associated with the reference element
-   * using `aria-describedby`.
-   *
-   * Pass "label" if you want to use `aria-labelledby` instead, or pass "none"
-   * if you don't want any association.
-   *
-   * @default 'description'
-   */
-  ariaStrategy?: 'description' | 'label' | 'none';
-};
+} & PortalProps;
 
 const useTooltip = (options: TooltipOptions = {}) => {
+  const uniqueId = useId();
   const {
-    placement,
-    visible: controlledOpen,
-    middleware = {
-      flip: true,
-      shift: true,
-    },
+    placement = 'top',
+    visible,
+    onVisibleChange,
+    middleware = { flip: true, shift: true },
     autoUpdateOptions = {},
+    reference,
+    ariaStrategy = 'description',
+    id = uniqueId,
+    ...props
   } = options;
-  const [uncontrolledOpen, setUncontrolledOpen] = React.useState(false);
 
-  const open = controlledOpen ?? uncontrolledOpen;
+  const [open, onOpenChange] = useControlledState(
+    false,
+    visible,
+    onVisibleChange,
+  );
 
-  const data = useFloating({
+  const floating = useFloating({
     placement,
     open,
-    onOpenChange: setUncontrolledOpen,
-    whileElementsMounted: (referenceEl, floatingEl, update) =>
-      autoUpdate(referenceEl, floatingEl, update, {
-        animationFrame: autoUpdateOptions.animationFrame,
-        ancestorScroll: autoUpdateOptions.ancestorScroll,
-        ancestorResize: autoUpdateOptions.ancestorResize,
-        elementResize: autoUpdateOptions.elementResize,
-        layoutShift: autoUpdateOptions.layoutShift,
-      }),
+    onOpenChange,
+    whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined ? offset(middleware.offset) : offset(4),
       middleware.flip && flip(),
@@ -151,44 +151,93 @@ const useTooltip = (options: TooltipOptions = {}) => {
       middleware.inline && inline(),
       middleware.hide && hide(),
     ].filter(Boolean),
+    ...(reference && { elements: { reference } }),
   });
 
-  const context = data.context;
+  const ariaProps = React.useMemo(
+    () =>
+      ariaStrategy === 'description'
+        ? { 'aria-describedby': id }
+        : ariaStrategy === 'label'
+        ? { 'aria-labelledby': id }
+        : {},
+    [ariaStrategy, id],
+  );
 
   const { delay } = useDelayGroupContext();
 
-  const hover = useHover(context, {
-    enabled: controlledOpen == null,
-    delay: delay ?? { open: 50, close: 250 },
-    handleClose: safePolygon({ buffer: -Infinity }),
-  });
+  useDelayGroup(floating.context, { id: useId() });
 
-  const focus = useFocus(context, {
-    enabled: controlledOpen == null,
-  });
+  const interactions = useInteractions([
+    useHover(floating.context, {
+      delay: delay ?? { open: 50, close: 250 },
+      handleClose: safePolygon({ buffer: -Infinity }),
+    }),
+    useFocus(floating.context),
+    useClick(floating.context),
+    useDismiss(floating.context),
+  ]);
 
-  const click = useClick(context, {
-    enabled: controlledOpen == null,
-  });
+  // Manually add attributes and event handlers to external reference element,
+  // because we cannot spread getReferenceProps onto it.
+  React.useEffect(() => {
+    if (!reference) {
+      return;
+    }
 
-  const dismiss = useDismiss(context, {
-    enabled: controlledOpen == null,
-  });
+    /** e.g. onPointerDown --> pointerdown */
+    const domEventName = (e: string) => e.toLowerCase().substring(2);
 
-  useDelayGroup(context, { id: useId() });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const cleanupValues: Record<string, any> = {};
 
-  const role = useRole(context, { role: 'tooltip' });
+    Object.entries({
+      ...ariaProps,
+      ...interactions.getReferenceProps(),
+    }).forEach(([key, value]) => {
+      if (typeof value === 'function') {
+        reference.addEventListener(domEventName(key), value);
+        cleanupValues[key] = value;
+      } else if (value) {
+        cleanupValues[key] = reference.getAttribute(key);
+        reference.setAttribute(key, value);
+      }
+    });
 
-  const interactions = useInteractions([click, hover, focus, dismiss, role]);
+    return () => {
+      Object.entries(cleanupValues).forEach(([key, value]) => {
+        if (typeof value === 'function') {
+          reference.removeEventListener(domEventName(key), value);
+        } else if (value) {
+          reference.setAttribute(key, value);
+        } else {
+          reference.removeAttribute(key);
+        }
+      });
+    };
+  }, [ariaProps, reference, interactions]);
+
+  const getReferenceProps = React.useCallback(
+    (userProps?: React.HTMLProps<Element>) => {
+      return interactions.getReferenceProps({ ...userProps, ...ariaProps });
+    },
+    [interactions, ariaProps],
+  );
+
+  const floatingProps = React.useMemo(
+    () =>
+      interactions.getFloatingProps({
+        hidden: !open,
+        'aria-hidden': 'true',
+        ...props,
+        id,
+      }),
+    [interactions, props, id, open],
+  );
 
   return React.useMemo(
-    () => ({
-      open,
-      setUncontrolledOpen,
-      ...interactions,
-      ...data,
-    }),
-    [open, interactions, data],
+    () => ({ getReferenceProps, floatingProps, ...floating }),
+    [getReferenceProps, floatingProps, floating],
   );
 };
 
@@ -198,90 +247,33 @@ const useTooltip = (options: TooltipOptions = {}) => {
  * @example
  * <Tooltip content='tooltip text' placement='top'>Hover here</Tooltip>
  * @example
- * const buttonRef = React.useRef();
+ * const [trigger, setTrigger] = React.useState(null);
  * ...
- * <Button ref={buttonRef} />
- * <Tooltip content='tooltip text' reference={buttonRef} />
+ * <Button ref={setTrigger} />
+ * <Tooltip content='tooltip text' reference={trigger} />
  */
-export const Tooltip = React.forwardRef((props, forwardRef) => {
-  const {
-    content,
-    children,
-    portal = true,
-    placement = 'top',
-    autoUpdateOptions,
-    middleware,
-    style,
-    className,
-    visible,
-    reference,
-    ariaStrategy = 'description',
-    ...rest
-  } = props;
-  const tooltip = useTooltip({
-    placement,
-    visible,
-    autoUpdateOptions,
-    middleware,
-  });
-  const context = useGlobals();
+export const Tooltip = React.forwardRef((props, forwardedRef) => {
+  const { content, children, portal = true, className, style, ...rest } = props;
 
-  React.useEffect(() => {
-    if (reference) {
-      tooltip.refs.setReference(reference.current);
-    }
-  }, [reference, tooltip.refs]);
-
-  const portalTo =
-    typeof portal !== 'boolean'
-      ? portal.to
-      : portal
-      ? context?.portalContainer || getDocument()?.body
-      : null;
-
-  const contentBox = (
-    <Box
-      className={cx('iui-tooltip', className)}
-      ref={useMergedRefs(tooltip.refs.setFloating, forwardRef)}
-      style={{ ...tooltip.floatingStyles, ...style }}
-      {...tooltip.getFloatingProps()}
-      role={undefined}
-      aria-hidden
-      hidden={!tooltip.open}
-      {...rest}
-    >
-      {content}
-    </Box>
-  );
-
-  const childrenRef =
-    React.isValidElement(children) &&
-    mergeRefs(
-      tooltip.refs.setReference,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (children as any).ref,
-    );
+  const tooltip = useTooltip(rest);
 
   return (
     <>
-      {React.isValidElement(children)
-        ? React.cloneElement(
-            children as JSX.Element,
-            tooltip.getReferenceProps({
-              ref: childrenRef,
-              ...(ariaStrategy === 'label' && {
-                'aria-labelledby': tooltip.getFloatingProps().id,
-              }),
-              // override aria-describedby that comes from floating-ui
-              'aria-describedby':
-                ariaStrategy === 'description'
-                  ? tooltip.getFloatingProps().id
-                  : undefined,
-              ...(children as JSX.Element).props,
-            }),
-          )
-        : null}
-      {portalTo ? ReactDOM.createPortal(contentBox, portalTo) : contentBox}
+      {cloneElementWithRef(children, (children) => ({
+        ...tooltip.getReferenceProps(children.props),
+        ref: tooltip.refs.setReference,
+      }))}
+
+      <Portal portal={portal}>
+        <Box
+          className={cx('iui-tooltip', className)}
+          ref={useMergedRefs(tooltip.refs.setFloating, forwardedRef)}
+          style={{ ...tooltip.floatingStyles, ...style }}
+          {...tooltip.floatingProps}
+        >
+          {content}
+        </Box>
+      </Portal>
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;

@@ -1483,7 +1483,9 @@ ControlledState.argTypes = {
 export const Full: Story<Partial<TableProps>> = (args) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
 
-  const rowRefMap = React.useRef<Record<number, HTMLDivElement>>({});
+  const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
+    {},
+  );
 
   const isRowDisabled = useCallback(
     (rowData: { name: string; description: string }) => {
@@ -1566,7 +1568,10 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         },
         ref: (el: HTMLDivElement | null) => {
           if (el) {
-            rowRefMap.current[row.index] = el;
+            setRowRefMap((r) => {
+              r[row.index] = el;
+              return r;
+            });
           }
         },
       };
@@ -2726,11 +2731,7 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
 
   return (
     <>
-      <InputGroup
-        label='Resize mode'
-        displayStyle='inline'
-        style={{ marginBottom: 12 }}
-      >
+      <InputGroup label='Resize mode' displayStyle='inline'>
         <Radio
           name='choice'
           value='fit'

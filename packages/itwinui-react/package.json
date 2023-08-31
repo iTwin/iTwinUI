@@ -75,7 +75,7 @@
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.24.3",
+    "@floating-ui/react": "^0.25.2",
     "@tippyjs/react": "^4.2.6",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
