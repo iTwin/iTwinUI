@@ -670,6 +670,38 @@ export { InputButtonExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as InputWithDecorationsMainExampleRaw } from './InputWithDecorations.main';
+const InputWithDecorationsMainExample = withThemeProvider(
+  InputWithDecorationsMainExampleRaw,
+);
+export { InputWithDecorationsMainExample };
+
+import { default as InputWithDecorationsAdvancedExampleRaw } from './InputWithDecorations.advanced';
+const InputWithDecorationsAdvancedExample = withThemeProvider(
+  InputWithDecorationsAdvancedExampleRaw,
+);
+export { InputWithDecorationsAdvancedExample };
+
+import { default as InputWithDecorationsSizeExampleRaw } from './InputWithDecorations.size';
+const InputWithDecorationsSizeExample = withThemeProvider(
+  InputWithDecorationsSizeExampleRaw,
+);
+export { InputWithDecorationsSizeExample };
+
+import { default as InputWithDecorationsStatusExampleRaw } from './InputWithDecorations.status';
+const InputWithDecorationsStatusExample = withThemeProvider(
+  InputWithDecorationsStatusExampleRaw,
+);
+export { InputWithDecorationsStatusExample };
+
+import { default as InputWithDecorationsDisabledExampleRaw } from './InputWithDecorations.disabled';
+const InputWithDecorationsDisabledExample = withThemeProvider(
+  InputWithDecorationsDisabledExampleRaw,
+);
+export { InputWithDecorationsDisabledExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as KeyboardMainExampleRaw } from './Keyboard.main';
 const KeyboardMainExample = withThemeProvider(KeyboardMainExampleRaw);
 export { KeyboardMainExample };
