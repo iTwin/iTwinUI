@@ -8,9 +8,8 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
 import { Table } from '../index.js';
-// import type { TableProps } from '../index.js';
 
-// TableTypes should be imported as a type-only import.y
+// TableTypes should be imported as a type-only import.
 // @ts-expect-error (TS 1485) - 'TableTypes' resolves to a type-only declaration and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
 import { TableTypes as _TableTypes } from '../index.js';
 import type { TableTypes } from '../index.js';
@@ -19,8 +18,47 @@ import type { Column } from 'react-table';
 
 import React from 'react';
 
-// Testing that all imports from `react-table` work as expected.
-// import type * from 'react-table';
+/**
+ * Confirm that `Column` from `react-table` is equivalent to `TableTypes.Column`.
+ */
+() => {
+  const columns1: TableTypes.Column<{
+    header1: string;
+    header2: string;
+  }>[] = [
+    {
+      Header: 'Header 1',
+      accessor: 'header1',
+    },
+    {
+      Header: 'Header 2',
+      accessor: 'header2',
+    },
+  ] as Column<{
+    header1: string;
+    header2: string;
+  }>[];
+
+  const columns2: Column<{
+    header1: string;
+    header2: string;
+  }>[] = [
+    {
+      Header: 'Header 1',
+      accessor: 'header1',
+    },
+    {
+      Header: 'Header 2',
+      accessor: 'header2',
+    },
+  ] as TableTypes.Column<{
+    header1: string;
+    header2: string;
+  }>[];
+
+  // Dummy return statement to prevent the variables declared but unused warning
+  return [columns1, columns2];
+};
 
 /**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
