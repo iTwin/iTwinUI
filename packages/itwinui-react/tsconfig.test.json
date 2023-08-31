@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "files": [
+    "src/core/Table/types/react-table-types.test.tsx",
+    "../../apps/storybook/src/Table.stories.tsx"
+  ],
+  "compilerOptions": {
+    // This is needed to avoid the below error when running yarn test:types
+    // TS17004: Cannot use JSX unless the '--jsx' flag is provided.
+    "jsx": "react"
+  }
+}
