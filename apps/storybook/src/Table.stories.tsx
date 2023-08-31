@@ -30,7 +30,6 @@ import {
   ProgressRadial,
   BaseFilter,
 } from '@itwin/itwinui-react';
-import type { DefaultCellProps } from '@itwin/itwinui-react/cjs/core/Table/';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
@@ -3559,12 +3558,8 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
         cellRenderer: (props) => (
           <DefaultCell<(typeof data)[number]>
             {...props}
-            isDisabled={
-              ((rowData: (typeof data)[number]) =>
-                isCellDisabled(rowData) ||
-                isRowDisabled(rowData)) satisfies NonNullable<
-                DefaultCellProps<(typeof data)[number]>['isDisabled']
-              >
+            isDisabled={(rowData: (typeof data)[number]) =>
+              isCellDisabled(rowData) || isRowDisabled(rowData)
             }
           />
         ),
