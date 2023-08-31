@@ -109,7 +109,7 @@
       touch-action: pan-y;
 
       &::before {
-        grid-row-start: 1; // TODO: What should this be?
+        grid-row: 1 / 3;
         block-size: 100%;
       }
     }
@@ -206,6 +206,7 @@
 
   &::before {
     content: '';
+    grid-row: 1 / 3;
     display: flex;
     background-color: var(--_iui-slider-rail-color);
     grid-area: inherit;
