@@ -30,6 +30,7 @@ import {
   ProgressRadial,
   BaseFilter,
 } from '@itwin/itwinui-react';
+import type { DefaultCellProps } from '@itwin/itwinui-react/cjs/core/Table/';
 import { Story, Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
@@ -226,7 +227,9 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<
+    TableProps<{ name: string; description: string }>['onSelect']
+  >;
 
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: TableTypes.Row) =>
@@ -304,7 +307,9 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
   const onSort = useCallback(
     (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
     [],
-  );
+  ) satisfies NonNullable<
+    TableProps<{ name: string; description: string }>['onSort']
+  >;
 
   const columns = useMemo(
     () => [
@@ -669,7 +674,12 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<
+    TableProps<{
+      name: string;
+      description: string;
+    }>['onExpand']
+  >;
 
   const columns = useMemo(
     () => [
@@ -734,7 +744,12 @@ export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<
+    TableProps<{
+      name: string;
+      description: string;
+    }>['onExpand']
+  >;
 
   const columns = useMemo(
     () => [
@@ -1009,7 +1024,12 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
 
   const onRowInViewport = useCallback((rowData) => {
     action(`Row in view: ${JSON.stringify(rowData)}`)();
-  }, []);
+  }, []) satisfies NonNullable<
+    TableProps<{
+      name: string;
+      description: string;
+    }>['onRowInViewport']
+  >;
 
   return (
     <>
@@ -1281,7 +1301,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance>();
+  const tableInstance = React.useRef<TableTypes.TableInstance<DemoData>>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
@@ -1424,18 +1444,30 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        stateReducer={useCallback((newState, action, prevState, instance) => {
-          tableInstance.current = instance;
-          return newState;
-        }, [])}
+        stateReducer={
+          useCallback((newState, action, prevState, instance) => {
+            tableInstance.current = instance;
+            return newState;
+          }, []) satisfies NonNullable<
+            TableTypes.TableOptions<DemoData>['stateReducer']
+          >
+        }
         isSelectable
-        onSelect={useCallback((selected) => {
-          setSelectedRows(selected ?? []);
-        }, [])}
-        onExpand={useCallback((expanded) => {
-          setExpandedRows(expanded);
-        }, [])}
-        getRowId={useCallback((rowData) => rowData.id, [])}
+        onSelect={
+          useCallback((selected) => {
+            setSelectedRows(selected ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onSelect']>
+        }
+        onExpand={
+          useCallback((expanded) => {
+            setExpandedRows(expanded ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onExpand']>
+        }
+        getRowId={
+          useCallback((rowData) => rowData.id, []) satisfies NonNullable<
+            TableTypes.TableOptions<DemoData>['getRowId']
+          >
+        }
         {...args}
         data={data}
       />
@@ -1557,7 +1589,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         {...args}
       />
       <Tooltip
-        reference={rowRefMap.current[hoveredRowIndex]}
+        reference={React.useRef(rowRefMap.current[hoveredRowIndex])}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />
@@ -1889,7 +1921,9 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<
+    TableProps<{ name: string; description: string }>['onExpand']
+  >;
 
   const columns = useMemo(
     () => [
@@ -3475,7 +3509,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps<(typeof data)[number]>['onExpand']>;
 
   const data = useMemo(
     () => [
@@ -3523,10 +3557,14 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Name',
         accessor: 'name',
         cellRenderer: (props) => (
-          <DefaultCell
+          <DefaultCell<(typeof data)[number]>
             {...props}
-            isDisabled={(rowData) =>
-              isCellDisabled(rowData) || isRowDisabled(rowData)
+            isDisabled={
+              ((rowData: (typeof data)[number]) =>
+                isCellDisabled(rowData) ||
+                isRowDisabled(rowData)) satisfies NonNullable<
+                DefaultCellProps<(typeof data)[number]>['isDisabled']
+              >
             }
           />
         ),
