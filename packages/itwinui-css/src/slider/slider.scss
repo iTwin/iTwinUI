@@ -109,7 +109,6 @@
       touch-action: pan-y;
 
       &::before {
-        grid-row: 1 / 3;
         block-size: 100%;
       }
     }
@@ -117,6 +116,7 @@
     .iui-slider::before,
     .iui-slider-track {
       inline-size: var(--_iui-slider-track-thickness);
+      grid-row: 1 / 3;
     }
 
     .iui-slider-track {
