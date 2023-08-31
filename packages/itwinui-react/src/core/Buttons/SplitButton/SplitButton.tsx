@@ -12,7 +12,9 @@ import {
   Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
+  handleFocusOut,
   useId,
+  useMergedRefs,
   usePopover,
 } from '../../utils/index.js';
 import type {
@@ -45,7 +47,10 @@ export type SplitButtonProps = ButtonProps & {
   /**
    * Passes props to SplitButton menu button.
    */
-  menuButtonProps?: React.ComponentProps<typeof IconButton>;
+  menuButtonProps?: Omit<
+    React.ComponentProps<typeof IconButton>,
+    'label' | 'size'
+  >;
 } & Pick<PortalProps, 'portal'>;
 
 /**
@@ -77,18 +82,24 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const buttonRef = React.useRef<HTMLElement>(null);
+
   const [visible, setVisible] = React.useState(false);
+  const close = React.useCallback(() => {
+    setVisible(false);
+    buttonRef.current?.focus({ preventScroll: true });
+  }, []);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
-      return menuItems(() => setVisible(false));
+      return menuItems(close);
     }
     return menuItems;
-  }, [menuItems]);
+  }, [menuItems, close]);
 
   const popover = usePopover({
     visible,
-    onVisibleChange: setVisible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
     placement: menuPlacement,
     matchWidth: true,
   });
@@ -112,7 +123,7 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         styleType={styleType}
         size={size}
         onClick={onClick}
-        ref={forwardedRef}
+        ref={useMergedRefs(buttonRef, forwardedRef)}
         {...rest}
         labelProps={{ id: labelId, ...props.labelProps }}
       >
@@ -123,8 +134,10 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         disabled={props.disabled}
         ref={popover.refs.setReference}
-        {...popover.getReferenceProps()}
-        {...menuButtonProps}
+        {...popover.getReferenceProps({
+          ...menuButtonProps,
+          onKeyDown: handleFocusOut(() => setVisible(false)),
+        })}
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
