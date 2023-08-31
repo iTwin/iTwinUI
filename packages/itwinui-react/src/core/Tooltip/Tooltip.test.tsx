@@ -126,6 +126,8 @@ it.each(['description', 'label', 'none'] as const)(
 );
 
 it('should work with reference prop', async () => {
+  jest.useFakeTimers();
+
   const TestComp = () => {
     const [reference, setReference] = React.useState<HTMLElement | null>(null);
     return (
@@ -149,9 +151,13 @@ it('should work with reference prop', async () => {
   fireEvent.mouseLeave(trigger);
   expect(tooltip).not.toBeVisible();
 
-  // TODO: investigate a fix for this
-  // fireEvent.focus(trigger);
-  // expect(tooltip).toBeVisible();
-  // fireEvent.blur(trigger);
-  // expect(tooltip).not.toBeVisible();
+  fireEvent.focus(trigger);
+  act(() => void jest.advanceTimersByTime(50));
+  expect(tooltip).toBeVisible();
+
+  fireEvent.blur(trigger);
+  act(() => void jest.advanceTimersByTime(250));
+  expect(tooltip).not.toBeVisible();
+
+  jest.useRealTimers();
 });

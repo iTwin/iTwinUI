@@ -154,28 +154,6 @@ const useTooltip = (options: TooltipOptions = {}) => {
     [ariaStrategy, id],
   );
 
-  React.useEffect(() => {
-    if (!reference) {
-      return;
-    }
-
-    const oldValues: Record<string, string | null> = {}; // for cleanup
-    Object.entries(ariaProps).forEach(([key, value]) => {
-      oldValues[key] = reference.getAttribute(key);
-      reference.setAttribute(key, value);
-    });
-
-    return () => {
-      Object.entries(oldValues).forEach(([key, value]) => {
-        if (value) {
-          reference.setAttribute(key, value);
-        } else {
-          reference.removeAttribute(key);
-        }
-      });
-    };
-  }, [ariaProps, reference]);
-
   const { delay } = useDelayGroupContext();
 
   const hover = useHover(floating.context, {
@@ -199,6 +177,45 @@ const useTooltip = (options: TooltipOptions = {}) => {
   useDelayGroup(floating.context, { id: useId() });
 
   const interactions = useInteractions([click, hover, focus, dismiss]);
+
+  // Manually add attributes and event handlers to external reference element,
+  // because we cannot spread getReferenceProps onto it.
+  React.useEffect(() => {
+    if (!reference) {
+      return;
+    }
+
+    /** e.g. onPointerDown --> pointerdown */
+    const domEventName = (e: string) => e.toLowerCase().substring(2);
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const cleanupValues: Record<string, any> = {};
+
+    Object.entries({
+      ...ariaProps,
+      ...interactions.getReferenceProps(),
+    }).forEach(([key, value]) => {
+      if (typeof value === 'function') {
+        reference.addEventListener(domEventName(key), value);
+        cleanupValues[key] = value;
+      } else if (value) {
+        cleanupValues[key] = reference.getAttribute(key);
+        reference.setAttribute(key, value);
+      }
+    });
+
+    return () => {
+      Object.entries(cleanupValues).forEach(([key, value]) => {
+        if (typeof value === 'function') {
+          reference.removeEventListener(domEventName(key), value);
+        } else if (value) {
+          reference.setAttribute(key, value);
+        } else {
+          reference.removeAttribute(key);
+        }
+      });
+    };
+  }, [ariaProps, reference, interactions]);
 
   const getReferenceProps = React.useCallback(
     (userProps?: React.HTMLProps<Element>) => {
