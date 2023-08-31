@@ -6,7 +6,7 @@ import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledInput, Tooltip } from '@itwin/itwinui-react';
+import { LabeledInput } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -150,22 +150,16 @@ Inline.args = {
 };
 
 export const HybridLayout: Story<LabeledInputProps> = (args) => {
-  const ref = React.useRef(null);
   return (
     <>
       <LabeledInput
         placeholder='Enter text here...'
         label='This is a label'
-        svgIcon={
-          <div ref={ref}>
-            <SvgPlaceholder />
-          </div>
-        }
+        svgIcon={<SvgPlaceholder />}
         message='Block layout with inline icon'
         iconDisplayStyle='inline'
         {...args}
       />
-      <Tooltip reference={ref} content='Placeholder' />
     </>
   );
 };
