@@ -156,13 +156,10 @@ export {
   SelectionColumn,
 } from './Table/index.js';
 export type {
-  DefaultCellProps,
-  EditableCellProps,
   TableFilterValue,
   DateRangeFilterOptions,
   TablePaginatorRendererProps,
   TableTypes,
-  TableProps,
 } from './Table/index.js';
 
 export { Tag, TagContainer } from './Tag/index.js';
