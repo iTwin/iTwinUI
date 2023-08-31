@@ -10,6 +10,7 @@
   --_iui-slider-thumb-color: var(--iui-color-background);
   --_iui-slider-thumb-cursor: grab;
   --_iui-slider-thumb-size: var(--iui-size-m);
+  --_iui-slider-ticks-placement: 37px; // TODO: Figure out a calc for this
   --_iui-slider-tick-size: var(--iui-size-s);
   --_iui-slider-tick-thickness: 1px;
   --_iui-slider-track-color: var(--iui-color-border-accent);
@@ -34,6 +35,10 @@
 
     .iui-slider-max {
       margin-inline-start: var(--_iui-slider-container-gap);
+    }
+
+    .iui-slider-ticks {
+      margin-block-start: var(--_iui-slider-ticks-placement);
     }
 
     .iui-slider-tick {
@@ -93,6 +98,7 @@
 
     .iui-slider-ticks {
       flex-direction: column-reverse;
+      margin-inline-start: var(--_iui-slider-ticks-placement);
     }
 
     .iui-slider-tick {
@@ -170,15 +176,12 @@
   justify-content: space-between;
   user-select: none;
   grid-area: content;
-
-  display: none;
 }
 
 .iui-slider-tick {
   position: relative;
   display: flex;
   pointer-events: none;
-  justify-content: center;
   align-items: center;
   color: var(--_iui-slider-tick-text-color);
 

@@ -20,6 +20,8 @@
       import "./assets/theme.js";
       import "@itwin/itwinui-icons-elements/sound-mute";
       import "@itwin/itwinui-icons-elements/sound-loud";
+      import "@itwin/itwinui-icons-elements/add";
+      import "@itwin/itwinui-icons-elements/minimize";
     </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
@@ -155,6 +157,22 @@
         class="iui-slider-container"
         data-iui-orientation="horizontal"
       >
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -177,19 +195,6 @@
           >
             50
           </output>
-        </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
         </div>
       </div>
 
@@ -203,6 +208,28 @@
             aria-hidden="true"
           ></svg-sound-mute>
         </span>
+        <span class="iui-slider-max">
+          <svg-sound-loud
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-loud>
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -226,25 +253,6 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-        <span class="iui-slider-max">
-          <svg-sound-loud
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-sound-loud>
-        </span>
       </div>
 
       <div
@@ -254,6 +262,25 @@
         <span class="iui-slider-min">
           0
         </span>
+        <span class="iui-slider-max">
+          100
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -277,7 +304,32 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
+      </div>
+
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="horizontal"
+      >
+        <span class="iui-slider-min">
+          <button class="iui-button">
+            <svg-minimize
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-minimize>
+          </button>
+        </span>
+        <span class="iui-slider-max">
+          <button class="iui-button">
+            <svg-add
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-add>
+          </button>
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
           <span class="iui-slider-tick">0</span>
           <span class="iui-slider-tick">10</span>
           <span class="iui-slider-tick">20</span>
@@ -290,9 +342,29 @@
           <span class="iui-slider-tick">90</span>
           <span class="iui-slider-tick">100</span>
         </div>
-        <span class="iui-slider-max">
-          100
-        </span>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="width: 50%;"
+          ></div>
+          <div
+            style="left: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
@@ -303,6 +375,25 @@
         <span class="iui-slider-min">
           0
         </span>
+        <span class="iui-slider-max">
+          100
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -326,22 +417,6 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-        <span class="iui-slider-max">
-          100
-        </span>
       </div>
     </section>
     <br />
@@ -447,6 +522,22 @@
         class="iui-slider-container"
         data-iui-orientation="vertical"
       >
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -469,19 +560,6 @@
           >
             50
           </output>
-        </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
         </div>
       </div>
 
@@ -495,6 +573,28 @@
             aria-hidden="true"
           ></svg-sound-mute>
         </span>
+        <span class="iui-slider-max">
+          <svg-sound-loud
+            class="iui-icon"
+            aria-hidden="true"
+          ></svg-sound-loud>
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -518,25 +618,6 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-        <span class="iui-slider-max">
-          <svg-sound-loud
-            class="iui-icon"
-            aria-hidden="true"
-          ></svg-sound-loud>
-        </span>
       </div>
 
       <div
@@ -546,6 +627,25 @@
         <span class="iui-slider-min">
           0
         </span>
+        <span class="iui-slider-max">
+          100
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -569,7 +669,32 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
+      </div>
+
+      <div
+        class="iui-slider-container"
+        data-iui-orientation="vertical"
+      >
+        <span class="iui-slider-min">
+          <button class="iui-button">
+            <svg-minimize
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-minimize>
+          </button>
+        </span>
+        <span class="iui-slider-max">
+          <button class="iui-button">
+            <svg-add
+              class="iui-icon"
+              aria-hidden="true"
+            ></svg-add>
+          </button>
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
           <span class="iui-slider-tick">0</span>
           <span class="iui-slider-tick">10</span>
           <span class="iui-slider-tick">20</span>
@@ -582,9 +707,29 @@
           <span class="iui-slider-tick">90</span>
           <span class="iui-slider-tick">100</span>
         </div>
-        <span class="iui-slider-max">
-          100
-        </span>
+        <div class="iui-slider iui-progress-slider">
+          <div
+            class="iui-slider-track"
+            style="height: 50%;"
+          ></div>
+          <div
+            style="bottom: 50%;"
+            class="iui-slider-thumb"
+            role="slider"
+            tabindex="0"
+            aria-label="Volume setting"
+            aria-valuemin="0"
+            aria-valuenow="50"
+            aria-valuemax="100"
+            id="test-slider-1"
+          ></div>
+          <output
+            class="iui-tooltip"
+            style="left: 50%;"
+          >
+            50
+          </output>
+        </div>
       </div>
 
       <div
@@ -595,6 +740,25 @@
         <span class="iui-slider-min">
           0
         </span>
+        <span class="iui-slider-max">
+          100
+        </span>
+        <div
+          class="iui-slider-ticks"
+          aria-hidden="true"
+        >
+          <span class="iui-slider-tick">0</span>
+          <span class="iui-slider-tick">10</span>
+          <span class="iui-slider-tick">20</span>
+          <span class="iui-slider-tick">30</span>
+          <span class="iui-slider-tick">40</span>
+          <span class="iui-slider-tick">50</span>
+          <span class="iui-slider-tick">60</span>
+          <span class="iui-slider-tick">70</span>
+          <span class="iui-slider-tick">80</span>
+          <span class="iui-slider-tick">90</span>
+          <span class="iui-slider-tick">100</span>
+        </div>
         <div class="iui-slider iui-progress-slider">
           <div
             class="iui-slider-track"
@@ -619,22 +783,6 @@
             50
           </output>
         </div>
-        <div class="iui-slider-ticks">
-          <span class="iui-slider-tick">0</span>
-          <span class="iui-slider-tick">10</span>
-          <span class="iui-slider-tick">20</span>
-          <span class="iui-slider-tick">30</span>
-          <span class="iui-slider-tick">40</span>
-          <span class="iui-slider-tick">50</span>
-          <span class="iui-slider-tick">60</span>
-          <span class="iui-slider-tick">70</span>
-          <span class="iui-slider-tick">80</span>
-          <span class="iui-slider-tick">90</span>
-          <span class="iui-slider-tick">100</span>
-        </div>
-        <span class="iui-slider-max">
-          100
-        </span>
       </div>
     </section>
 
