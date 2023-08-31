@@ -35,12 +35,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { TableFilterProps, TableFilterValue } from '../index.js';
-import type { CommonProps } from '../../utils/props.js';
-
-// declare module 'react-table' {
-export const testingVar = 0;
-// export {};
+import type { TableFilterProps } from '../index.js';
 
 /**
  * The empty definitions of below provides a base definition for the parts used by useTable, that can then be extended in the users code.
