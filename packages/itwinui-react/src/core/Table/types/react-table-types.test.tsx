@@ -1,3 +1,9 @@
+/**
+ * This test file to test some Table type related cases that have not been tested in other files
+ * (e.g. storybook, unit tests, etc.)
+ */
+
+// To hide impertinent errors
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 

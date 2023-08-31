@@ -4661,6 +4661,7 @@ it('should ignore top-level Header if one is passed', async () => {
           // We expect to get `columns` does not exist type error.
           // Because although `columns` is removed from the Column type (i.e. no sub-columns),
           // we allow to pass `columns` in the top level Header for backward compatibility.
+          // (#1072: https://github.com/iTwin/iTwinUI/pull/1072)
           // @ts-expect-error - `columns` does not exist in type ...
           columns: [
             {
