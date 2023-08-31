@@ -23,7 +23,8 @@ export const useControlledState = <T>(
   const [uncontrolledState, setUncontrolledState] =
     React.useState<T>(initialValue);
 
-  const state = controlledState ?? uncontrolledState;
+  const state =
+    controlledState !== undefined ? controlledState : uncontrolledState;
 
   const setState = React.useCallback(
     (value) => {
