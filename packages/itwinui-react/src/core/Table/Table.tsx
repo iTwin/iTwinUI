@@ -4,16 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type {
-  CellProps,
-  HeaderGroup,
-  TableOptions,
-  Row,
-  TableState,
-  ActionType,
-  TableInstance,
-  Column,
-} from 'react-table';
 import {
   actions as TableActions,
   useFlexLayout,
@@ -25,6 +15,16 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
+} from 'react-table';
+import type {
+  CellProps,
+  HeaderGroup,
+  TableOptions,
+  Row,
+  TableState,
+  ActionType,
+  TableInstance,
+  Column,
 } from 'react-table';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
