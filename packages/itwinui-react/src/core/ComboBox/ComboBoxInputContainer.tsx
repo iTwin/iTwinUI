@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { StatusMessage } from '../StatusMessage/index.js';
-import { InputContainer, useSafeContext, Box } from '../utils/index.js';
+import {
+  InputContainer,
+  useSafeContext,
+  Box,
+  useMergedRefs,
+} from '../utils/index.js';
 import type {
   InputContainerProps,
   PolymorphicForwardRefComponent,
@@ -20,7 +25,7 @@ export const ComboBoxInputContainer = React.forwardRef(
   (props, forwardedRef) => {
     const { className, status, message, children, ...rest } = props;
 
-    const { id } = useSafeContext(ComboBoxStateContext);
+    const { id, popover } = useSafeContext(ComboBoxStateContext);
 
     return (
       <InputContainer
@@ -34,7 +39,7 @@ export const ComboBoxInputContainer = React.forwardRef(
             React.cloneElement(message as JSX.Element, { status })
           )
         }
-        ref={forwardedRef}
+        ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
         {...rest}
         id={id}
       >

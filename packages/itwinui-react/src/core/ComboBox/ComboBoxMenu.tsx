@@ -26,10 +26,8 @@ const isOverflowOverlaySupported = () =>
   getWindow()?.CSS?.supports?.('overflow: overlay');
 
 const VirtualizedComboBoxMenu = React.forwardRef(
-  (
-    { children, className, style, ...rest }: ComboBoxMenuProps,
-    forwardedRef: React.Ref<HTMLElement>,
-  ) => {
+  (props: ComboBoxMenuProps, forwardedRef: React.Ref<HTMLElement>) => {
+    const { children, className, style, ...rest } = props;
     const { id, filteredOptions, getMenuItem, focusedIndex } =
       useSafeContext(ComboBoxStateContext);
     const { menuRef } = useSafeContext(ComboBoxRefsContext);
@@ -74,31 +72,34 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     } as React.CSSProperties;
 
     return (
-      <Surface style={surfaceStyles}>
-        <div {...outerProps}>
-          <Menu
-            id={`${id}-list`}
-            setFocus={false}
-            role='listbox'
-            ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
-            className={className}
-            style={innerProps.style}
-            {...rest}
-          >
-            {visibleChildren}
-          </Menu>
-        </div>
+      <Surface style={surfaceStyles} {...outerProps}>
+        <Menu
+          id={`${id}-list`}
+          setFocus={false}
+          role='listbox'
+          ref={mergeRefs(menuRef, innerProps.ref, forwardedRef)}
+          className={className}
+          style={innerProps.style}
+          {...rest}
+        >
+          {visibleChildren}
+        </Menu>
       </Surface>
     );
   },
 );
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
-  const { className, ...rest } = props;
-  const { id, enableVirtualization } = useSafeContext(ComboBoxStateContext);
+  const { className, children, ...rest } = props;
+  const { id, enableVirtualization, popover } =
+    useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
 
-  const refs = useMergedRefs(menuRef, forwardedRef);
+  const refs = useMergedRefs(
+    popover.refs.setFloating,
+    forwardedRef,
+    enableVirtualization ? menuRef : null,
+  );
 
   return (
     <>
@@ -109,10 +110,18 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
           role='listbox'
           ref={refs}
           className={cx('iui-scroll', className)}
-          {...rest}
-        />
+          {...popover.getFloatingProps(rest)}
+        >
+          {children}
+        </Menu>
       ) : (
-        <VirtualizedComboBoxMenu ref={forwardedRef} {...props} />
+        <VirtualizedComboBoxMenu
+          as='div'
+          ref={refs}
+          {...popover.getFloatingProps(props)}
+        >
+          {children}
+        </VirtualizedComboBoxMenu>
       )}
     </>
   );

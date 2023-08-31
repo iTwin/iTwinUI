@@ -14,7 +14,6 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
-  useMergedRefs,
   usePopover,
   Portal,
 } from '../utils/index.js';
@@ -175,8 +174,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     itemRenderer,
     enableVirtualization = false,
     multiple = false,
-    // onShow: onShowProp,
-    // onHide: onHideProp,
+    onShow: onShowProp,
+    onHide: onHideProp,
     ...rest
   } = props;
 
@@ -244,15 +243,15 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     },
   );
 
-  // const onShow = () => {
-  //   dispatch({ type: 'open' });
-  //   onShowProp?.();
-  // };
+  const onShow = () => {
+    dispatch({ type: 'open' });
+    onShowProp?.();
+  };
 
-  // const onHide = () => {
-  //   dispatch({ type: 'close' });
-  //   onHideProp?.();
-  // };
+  const onHide = () => {
+    dispatch({ type: 'close' });
+    onHideProp?.();
+  };
 
   useIsomorphicLayoutEffect(() => {
     // When the dropdown opens
@@ -512,9 +511,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
   );
 
   const popover = usePopover({
-    // TODO: controlled mode doesn't seem to work
-    // visible: isOpen,
-    // onVisibleChange: (open) => (open ? onShow() : onHide()),
+    visible: isOpen,
+    onVisibleChange: (open) => (open ? onShow() : onHide()),
     matchWidth: true,
     closeOnOutsideClick: true,
   });
@@ -534,19 +532,15 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             filteredOptions,
             getMenuItem,
             multiple,
+            popover,
           }}
         >
-          <ComboBoxInputContainer
-            disabled={inputProps?.disabled}
-            {...rest}
-            ref={popover.refs.setPositionReference}
-          >
+          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
             <>
               <ComboBoxInput
                 value={inputValue}
                 disabled={inputProps?.disabled}
                 {...inputProps}
-                {...popover.getReferenceProps()}
                 onChange={handleOnInput}
                 selectTags={
                   isMultipleEnabled(selected, multiple)
@@ -558,7 +552,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                       })
                     : undefined
                 }
-                ref={useMergedRefs(inputProps?.ref, popover.refs.setReference)}
               />
             </>
             <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
@@ -568,12 +561,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             ) : null}
           </ComboBoxInputContainer>
 
-          {popover.open && (
+          {isOpen && (
             <Portal portal>
-              <ComboBoxMenu
-                {...popover.getFloatingProps(dropdownMenuProps)}
-                ref={popover.refs.setFloating}
-              >
+              <ComboBoxMenu as='div' {...dropdownMenuProps}>
                 {filteredOptions.length > 0 && !enableVirtualization
                   ? filteredOptions.map(getMenuItem)
                   : emptyContent}

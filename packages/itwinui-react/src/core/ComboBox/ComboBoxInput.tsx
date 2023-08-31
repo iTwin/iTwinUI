@@ -8,7 +8,6 @@ import {
   useSafeContext,
   useMergedRefs,
   useContainerWidth,
-  mergeEventHandlers,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
@@ -26,8 +25,8 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const {
     onKeyDown: onKeyDownProp,
     onFocus: onFocusProp,
-    onClick: onClickProp,
     selectTags,
+    size,
     ...rest
   } = props;
 
@@ -38,11 +37,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     enableVirtualization,
     multiple,
     onClickHandler,
+    popover,
   } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
     useSafeContext(ComboBoxRefsContext);
-  const refs = useMergedRefs(inputRef, forwardedRef);
+  const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
 
   const focusedIndexRef = React.useRef(focusedIndex ?? -1);
   React.useEffect(() => {
@@ -163,8 +163,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             if (focusedIndexRef.current > -1) {
               onClickHandler?.(focusedIndexRef.current);
             }
-          } else {
-            dispatch({ type: 'open' });
           }
           break;
         }
@@ -197,21 +195,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     [dispatch, onFocusProp],
   );
 
-  const handleClick = React.useCallback(() => {
-    if (!isOpen) {
-      dispatch({ type: 'open' });
-    }
-  }, [dispatch, isOpen]);
-
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
     <>
       <Input
         ref={refs}
-        onKeyDown={handleKeyDown}
-        onClick={mergeEventHandlers(onClickProp, handleClick)}
-        onFocus={handleFocus}
         aria-activedescendant={
           isOpen && focusedIndex != undefined && focusedIndex > -1
             ? getIdFromIndex(focusedIndex)
@@ -225,7 +214,12 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         autoCorrect='off'
         style={multiple ? { paddingInlineStart: tagContainerWidth + 18 } : {}}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
-        {...rest}
+        size={size}
+        {...popover.getReferenceProps({
+          onKeyDown: handleKeyDown,
+          onFocus: handleFocus,
+          ...rest,
+        })}
       />
 
       {multiple && selectTags ? (
