@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Textarea } from '@itwin/itwinui-react';
+import { LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
   const [value, setValue] = React.useState(
@@ -11,7 +11,8 @@ export default () => {
   );
 
   return (
-    <Textarea
+    <LabeledTextarea
+      label='textarea-scroll'
       id='text-area'
       value={value}
       onChange={(event) => setValue(event.target.value)}
