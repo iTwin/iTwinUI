@@ -8,6 +8,4 @@ export * from './components/index.js';
 export * from './props.js';
 export * from './color/index.js';
 export * from './icons/index.js';
-// export * from '../Table/types/index.js';
-// export * from '../Table/types/react-table-types.js';
 export * from './types.js';
