@@ -3,13 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  LabeledInput,
-  IconButton,
-  InputGrid,
-  Label,
-  InputWithDecorations,
-} from '@itwin/itwinui-react';
+import { InputGrid, Label, InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgCloseSmall } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -22,7 +16,7 @@ export default () => {
             id='input-1'
             defaultValue='1051 Faribault Road'
           />
-          <InputWithDecorations.Button>
+          <InputWithDecorations.Button label='Clear'>
             <SvgCloseSmall />
           </InputWithDecorations.Button>
         </InputWithDecorations>
