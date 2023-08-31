@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+
 import { Table } from '../index.js';
-import type { TableProps } from '../index.js';
+// import type { TableProps } from '../index.js';
 
 // TableTypes should be imported as a type-only import.y
 // @ts-expect-error (TS 1485) - 'TableTypes' resolves to a type-only declaration and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
@@ -18,6 +20,7 @@ import React from 'react';
 /**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const ColumnsSatisfiesColumn = () => {
   const columns = [
     {
@@ -50,7 +53,10 @@ const ColumnsSatisfiesColumn = () => {
 /**
  * To make sure we cannot pass nested columns.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const NoNestedColumns = () => {
+  // Don't show TS warning: 'columns' is declared but its value is never read.ts(6133)
+  // @ts-ignore - Ignore declared but unused variable.
   const columns = [
     {
       Header: 'Header 1',
@@ -73,6 +79,7 @@ const NoNestedColumns = () => {
 /**
  * To test that passing other props to `Table` do not give any type errors.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const TableWithOtherProps = () => {
   const columns = [
     {
@@ -114,6 +121,7 @@ const TableWithOtherProps = () => {
 /**
  * Both 'react-table'.Column and TableTypes.Column should work.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const ReactTableColumnAndTableTypesColumnInterchangeable = () => {
   // Using 'react-table'.Column
   const columns1 = [
@@ -169,6 +177,7 @@ const ReactTableColumnAndTableTypesColumnInterchangeable = () => {
 /**
  * When creating variables (with satisfies) that are passed as props.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const VariablesWithSatisfiesPassedAsProps = () => {
   const cellRenderer = React.useCallback((props) => {
     return <div>{props.cellProps.row.original.header1}</div>;
@@ -212,6 +221,7 @@ const VariablesWithSatisfiesPassedAsProps = () => {
 /**
  * When creating variables (without satisfies) that are passed as props.
  */
+// @ts-ignore - Ignore declared but unused variable.
 const VariablesWithoutSatisfiesPassedAsProps = () => {
   const Cell = React.useCallback(
     (
