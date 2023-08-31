@@ -1721,14 +1721,11 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback(
-    (row: TableTypes.Row<{ status: string | undefined }>) => {
-      return {
-        status: row.original.status,
-      };
-    },
-    [],
-  );
+  const rowProps = useCallback((row: TableTypes.Row<TableStoryDataType>) => {
+    return {
+      status: row.original.status satisfies TableStoryDataType['status'],
+    };
+  }, []);
 
   const [globalFilterValue, setGlobalFilterValue] = useState('');
 
@@ -3585,6 +3582,11 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
     id: string;
     startDate: Date;
     endDate: Date;
+    price: string;
+    color: string;
+    stock: number;
+    rating: string;
+    location: string;
   };
 
   const columns = useMemo(
@@ -4070,6 +4072,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
           props: TableTypes.CellRendererProps<{
             startIcon: JSX.Element;
             endIcon: JSX.Element;
+            isLoading?: boolean;
           }>,
         ) => (
           <DefaultCell
