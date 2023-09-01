@@ -37,7 +37,6 @@ import {
   ProgressRadial,
   BaseFilter,
 } from '@itwin/itwinui-react';
-import { Meta } from '@storybook/react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
@@ -52,7 +51,7 @@ import {
 export default {
   title: 'Core/Table',
   component: Table,
-} as Meta<TableProps>;
+};
 
 export const Basic = () => {
   const onClickHandler = (
