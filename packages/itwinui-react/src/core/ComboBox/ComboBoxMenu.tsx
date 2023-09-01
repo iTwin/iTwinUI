@@ -12,6 +12,7 @@ import {
   useVirtualization,
   mergeRefs,
   getWindow,
+  Portal,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxStateContext, ComboBoxRefsContext } from './helpers.js';
@@ -102,28 +103,30 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <>
-      {!enableVirtualization ? (
-        <Menu
-          id={`${id}-list`}
-          setFocus={false}
-          role='listbox'
-          ref={refs}
-          className={cx('iui-scroll', className)}
-          {...popover.getFloatingProps(rest)}
-        >
-          {children}
-        </Menu>
-      ) : (
-        <VirtualizedComboBoxMenu
-          as='div'
-          ref={refs}
-          {...popover.getFloatingProps(props)}
-        >
-          {children}
-        </VirtualizedComboBoxMenu>
-      )}
-    </>
+    popover.open && (
+      <Portal portal>
+        {!enableVirtualization ? (
+          <Menu
+            id={`${id}-list`}
+            setFocus={false}
+            role='listbox'
+            ref={refs}
+            className={cx('iui-scroll', className)}
+            {...popover.getFloatingProps(rest)}
+          >
+            {children}
+          </Menu>
+        ) : (
+          <VirtualizedComboBoxMenu
+            as='div'
+            ref={refs}
+            {...popover.getFloatingProps(props)}
+          >
+            {children}
+          </VirtualizedComboBoxMenu>
+        )}
+      </Portal>
+    )
   );
 }) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

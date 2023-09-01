@@ -15,7 +15,6 @@ import {
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
   usePopover,
-  Portal,
 } from '../utils/index.js';
 import type { InputContainerProps, CommonProps } from '../utils/index.js';
 import {
@@ -560,16 +559,11 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
             ) : null}
           </ComboBoxInputContainer>
-
-          {isOpen && (
-            <Portal portal>
-              <ComboBoxMenu as='div' {...dropdownMenuProps}>
-                {filteredOptions.length > 0 && !enableVirtualization
-                  ? filteredOptions.map(getMenuItem)
-                  : emptyContent}
-              </ComboBoxMenu>
-            </Portal>
-          )}
+          <ComboBoxMenu as='div' {...dropdownMenuProps}>
+            {filteredOptions.length > 0 && !enableVirtualization
+              ? filteredOptions.map(getMenuItem)
+              : emptyContent}
+          </ComboBoxMenu>
         </ComboBoxStateContext.Provider>
       </ComboBoxActionContext.Provider>
     </ComboBoxRefsContext.Provider>
