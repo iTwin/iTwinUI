@@ -183,9 +183,9 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
   ];
 
   /**
-   * Ref is set on the last avatar for tooltip positioning.
+   * Store the last avatar for tooltip positioning.
    */
-  const avatarRef = React.useRef<HTMLDivElement>(null);
+  const [countIcon, setCountIcon] = React.useState<HTMLElement | null>(null);
 
   const arrayLength = args.maxIcons;
   const usersSubArray = userNames.slice(arrayLength);
@@ -193,7 +193,7 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
 
   return (
     <>
-      <AvatarGroup {...args} countIconProps={{ ref: avatarRef }}>
+      <AvatarGroup {...args} countIconProps={{ ref: setCountIcon }}>
         {userNames.map((name, index) => (
           <Avatar
             key={`${name}-${index}`}
@@ -207,7 +207,7 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
         ))}
       </AvatarGroup>
       <Tooltip
-        reference={avatarRef}
+        reference={countIcon}
         content={tooltipContent}
         placement='right'
         style={{ whiteSpace: 'pre' }}
