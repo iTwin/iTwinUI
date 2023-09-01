@@ -177,13 +177,13 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 .iui-hue-slider .iui-slider {
   --_iui-slider-rail-color: linear-gradient(
     to right,
-    rgb(255, 0, 0) 0%,
-    rgb(255, 255, 0) 17%,
-    rgb(0, 255, 0) 33%,
-    rgb(0, 255, 255) 50%,
-    rgb(0, 51, 255) 67%,
-    rgb(204, 51, 255) 83%,
-    rgb(255, 0, 0) 100%
+    hsl(0, 100%, 50%) 0%,
+    hsl(60, 100%, 50%) 17%,
+    hsl(120, 100%, 50%) 33%,
+    hsl(180, 100%, 50%) 50%,
+    hsl(240, 100%, 50%) 67%,
+    hsl(300, 100%, 50%) 83%,
+    hsl(0, 100%, 50%) 100%
   );
 }
 
