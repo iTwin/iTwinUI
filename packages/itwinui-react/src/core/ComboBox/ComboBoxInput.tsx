@@ -8,6 +8,7 @@ import {
   useSafeContext,
   useMergedRefs,
   useContainerWidth,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ComboBoxMultipleContainer } from './ComboBoxMultipleContainer.js';
@@ -22,13 +23,7 @@ type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
 >;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
-  const {
-    onKeyDown: onKeyDownProp,
-    onFocus: onFocusProp,
-    selectTags,
-    size,
-    ...rest
-  } = props;
+  const { onKeyDown: onKeyDownProp, selectTags, size, ...rest } = props;
 
   const {
     isOpen,
@@ -57,7 +52,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      onKeyDownProp?.(event);
       const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
 
       if (event.altKey) {
@@ -182,19 +176,9 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       isOpen,
       menuRef,
       onClickHandler,
-      onKeyDownProp,
       optionsExtraInfoRef,
     ],
   );
-
-  const handleFocus = React.useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
-      dispatch({ type: 'open' });
-      onFocusProp?.(event);
-    },
-    [dispatch, onFocusProp],
-  );
-
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
@@ -216,8 +200,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
         {...popover.getReferenceProps({
-          onKeyDown: handleKeyDown,
-          onFocus: handleFocus,
+          onKeyDown: mergeEventHandlers(onKeyDownProp, handleKeyDown),
           ...rest,
         })}
       />
