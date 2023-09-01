@@ -960,6 +960,18 @@ export { SliderTooltipNoneExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as StatusMessageMainExampleRaw } from './StatusMessage.main';
+const StatusMessageMainExample = withThemeProvider(StatusMessageMainExampleRaw);
+export { StatusMessageMainExample };
+
+import { default as StatusMessageStatusExampleRaw } from './StatusMessage.status';
+const StatusMessageStatusExample = withThemeProvider(
+  StatusMessageStatusExampleRaw,
+);
+export { StatusMessageStatusExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as StepperMainExampleRaw } from './Stepper.main';
 const StepperMainExample = withThemeProvider(StepperMainExampleRaw);
 export { StepperMainExample };
