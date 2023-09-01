@@ -12,7 +12,7 @@ export default () => {
 
   return (
     <LabeledTextarea
-      label='textarea-scroll'
+      label='Textarea Scroll'
       id='text-area'
       value={value}
       onChange={(event) => setValue(event.target.value)}
