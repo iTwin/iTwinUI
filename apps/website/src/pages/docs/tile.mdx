@@ -69,7 +69,7 @@ Actionable tiles have Tile.Action wrapped around tile name. It adds action to th
   <AllExamples.TileActionableExample client:load />
 </LiveExample>
 
-Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link.
+Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link. This is because manually wrapping the Tile with an `<a href="...">` is not recommended for accessibility reasons.
 
 <LiveExample src='Tile.anchorlink.tsx'>
   <AllExamples.TileAnchorLinkExample client:load style={{ padding: 50 }} />
