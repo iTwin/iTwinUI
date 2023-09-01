@@ -61,11 +61,13 @@ You can also take advantage of props provided for `Tile`. A list of available pr
 
 Click on an actionable tile triggers an action.
 
+Actionable tiles have Tile.Action wrapped around tile name. It adds action to the name, increases click or touch target for said action and keeps accessibility for the best user experience.
+
 <LiveExample src='Tile.actionable.tsx'>
   <AllExamples.TileActionableExample client:load />
 </LiveExample>
 
-Tile can also link to another page.
+Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link.
 
 <LiveExample src='Tile.anchorlink.tsx'>
   <AllExamples.TileAnchorLinkExample client:load style={{ padding: 50 }} />
