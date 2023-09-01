@@ -864,7 +864,6 @@
     </section>
 
     <script>
-
       function setTooltip(percent, tooltip, sliderContainer) {
         if (getIsVerticalSlider(sliderContainer)) {
           if (tooltip) {
@@ -952,12 +951,12 @@
         return percent;
       }
 
-      function moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer) {
+      function moveSlider(event, thumb, progress, mode, toolTip, otherThumb, sliderContainer) {
         var min = getMinValueFromThumb(thumb);
         var limitMin = getMinLimitValueFromThumb(thumb);
         var max = getMaxValueFromThumb(thumb);
         var limitMax = getMaxLimitValueFromThumb(thumb);
-        var rect = track.getBoundingClientRect();
+        var rect = sliderContainer.getBoundingClientRect();
         var diff;
         var trackLength;
         if (getIsVerticalSlider(sliderContainer)) {
@@ -1011,8 +1010,7 @@
       }
 
       function getIsVerticalSlider(sliderContainer) {
-        // return sliderContainer.parentNode.classList.contains("iui-slider-vertical");
-        return sliderContainer.getAttribute('aria-orientation') === 'vertical';
+        return sliderContainer.parentNode.getAttribute("data-iui-orientation") === "vertical";
       }
 
       function initializeThumbProcessing(thumb, sliderContainer, mode) {
@@ -1032,7 +1030,7 @@
           var ownerDoc = thumb.ownerDocument;
           var track = sliderContainer.querySelector(".iui-slider::before");
           var handleMouseMove = function (event) {
-            moveSlider(event, thumb, track, progress, mode, toolTip, otherThumb, sliderContainer);
+            moveSlider(event, thumb, progress, mode, toolTip, otherThumb, sliderContainer);
           };
 
           var handleMouseUp = function (event) {
@@ -1062,7 +1060,7 @@
       }
 
       function initializeAllRangeSliders() {
-        const allRangeSliderContainers = document.querySelectorAll(".iui-slider-container.iui-range-slider");
+        const allRangeSliderContainers = document.querySelectorAll(".iui-slider.iui-range-slider");
         allRangeSliderContainers.forEach(rangeSliderContainer => {
           const thumbs = rangeSliderContainer.querySelectorAll(".iui-slider-thumb");
 
