@@ -642,6 +642,12 @@ export { InputGroupRadioGroupExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as InputGridExampleRaw } from './InputGrid.main';
+const InputGridExample = withThemeProvider(InputGridExampleRaw);
+export { InputGridExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as InputMainExampleRaw } from './Input.main';
 const InputMainExample = withThemeProvider(InputMainExampleRaw);
 export { InputMainExample };

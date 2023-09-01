@@ -11,9 +11,15 @@ import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
 import * as AllExamples from 'examples';
 
-<LiveExample src='VisuallyHidden.icon.tsx'>
-  <AllExamples.VisuallyHiddenIconExample client:load />
+<p>{frontmatter.description}</p>
+
+<LiveExample src='InputGrid.main.tsx' truncate={false}>
+  <AllExamples.InputGridExample client:load />
 </LiveExample>
+
+InputGrid is a layout component that allows to group label, input and status message.
+
+You can add any input (eg. Select, ComboBox or InputWithDecorations).
 
 ## Props
 
