@@ -99,7 +99,7 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
   const refs = useMergedRefs(
     popover.refs.setFloating,
     forwardedRef,
-    enableVirtualization ? menuRef : null,
+    enableVirtualization ? null : menuRef,
   );
 
   return (
