@@ -1426,7 +1426,9 @@ ControlledState.argTypes = {
 export const Full: Story<Partial<TableProps>> = (args) => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
 
-  const rowRefMap = React.useRef<Record<number, HTMLDivElement>>({});
+  const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
+    {},
+  );
 
   const isRowDisabled = useCallback(
     (rowData: { name: string; description: string }) => {
@@ -1509,7 +1511,10 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         },
         ref: (el: HTMLDivElement | null) => {
           if (el) {
-            rowRefMap.current[row.index] = el;
+            setRowRefMap((r) => {
+              r[row.index] = el;
+              return r;
+            });
           }
         },
       };
@@ -1533,7 +1538,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         {...args}
       />
       <Tooltip
-        reference={rowRefMap.current[hoveredRowIndex]}
+        reference={rowRefMap[hoveredRowIndex]}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />
