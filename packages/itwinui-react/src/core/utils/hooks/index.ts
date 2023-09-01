@@ -15,4 +15,4 @@ export * from './useLatestRef.js';
 export * from './useIsomorphicLayoutEffect.js';
 export * from './useIsClient.js';
 export * from './useId.js';
-export * from './useUncontrolledState.js';
+export * from './useControlledState.js';
