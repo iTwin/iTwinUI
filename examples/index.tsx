@@ -646,6 +646,14 @@ import { default as InputGridExampleRaw } from './InputGrid.main';
 const InputGridExample = withThemeProvider(InputGridExampleRaw);
 export { InputGridExample };
 
+import { default as InputGridInlineExampleRaw } from './InputGrid.inline';
+const InputGridInlineExample = withThemeProvider(InputGridInlineExampleRaw);
+export { InputGridInlineExample };
+
+import { default as InputGridSelectExampleRaw } from './InputGrid.select';
+const InputGridSelectExample = withThemeProvider(InputGridSelectExampleRaw);
+export { InputGridSelectExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as InputMainExampleRaw } from './Input.main';
