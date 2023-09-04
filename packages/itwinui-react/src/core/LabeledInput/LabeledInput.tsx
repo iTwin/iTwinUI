@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { StatusIconMap, useId, Icon } from '../utils/index.js';
+import { useId, Icon } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
 import { InputWithDecorations } from '../InputWithDecorations/index.js';
@@ -40,15 +40,6 @@ export type LabeledInputProps = {
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
-  /**
-   * Set display style of icon.
-   * Supported values:
-   * - 'block' - icon appears below input.
-   * - 'inline' - icon appears inside input (at the end).
-   *
-   * Defaults to 'block' if `displayStyle` is `default`, else 'inline'.
-   */
-  iconDisplayStyle?: 'block' | 'inline';
   /**
    * Passes properties for message content.
    */
@@ -90,13 +81,10 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     iconProps,
     inputWrapperProps,
     displayStyle = 'default',
-    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     required = false,
     id = uid,
     ...rest
   } = props;
-
-  const icon = svgIcon ?? (status && StatusIconMap[status]());
 
   return (
     <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
@@ -124,9 +112,9 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {icon && iconDisplayStyle === 'inline' && (
-          <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
-            {icon}
+        {svgIcon && (
+          <Icon padded {...iconProps}>
+            {svgIcon}
           </Icon>
         )}
       </InputWithDecorations>
@@ -134,7 +122,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
       {typeof message === 'string' ? (
         <StatusMessage
           status={status}
-          startIcon={displayStyle === 'default' ? icon : undefined}
           iconProps={iconProps}
           contentProps={messageContentProps}
         >
