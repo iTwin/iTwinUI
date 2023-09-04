@@ -8,8 +8,8 @@ import { InputGrid, Input, Label, StatusMessage } from '@itwin/itwinui-react';
 export default () => {
   return (
     <InputGrid labelPlacement='inline'>
-      <Label htmlFor='input-1'>This is label</Label>
-      <Input placeholder='Input' id='input-1' />
+      <Label htmlFor='input-2'>This is label</Label>
+      <Input placeholder='Input' id='input-2' />
       <StatusMessage>Message</StatusMessage>
     </InputGrid>
   );
