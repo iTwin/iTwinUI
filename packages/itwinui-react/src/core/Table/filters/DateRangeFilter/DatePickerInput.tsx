@@ -130,6 +130,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
           />
           <InputWithDecorations.Button
             onClick={() => setIsVisible((v) => !v)}
+            aria-label='Date picker'
             ref={buttonRef}
           >
             <SvgCalendar />
