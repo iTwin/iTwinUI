@@ -43,7 +43,7 @@ type PopoverOptions = {
   visible?: boolean;
 
   /**
-   * Callback invoked every time the tooltip visibility changes as a result
+   * Callback invoked every time the popover visibility changes as a result
    * of internal logic. Should be used alongside `visible` prop.
    */
   onVisibleChange?: (visible: boolean) => void;
@@ -51,6 +51,18 @@ type PopoverOptions = {
    * If true, the popover will close when clicking outside it.
    */
   closeOnOutsideClick?: boolean;
+  /**
+   * Use an external element (stored in state) as the trigger.
+   */
+  reference?: HTMLElement | null;
+  /**
+   * Whether the popover should match the width of the trigger.
+   */
+  matchWidth?: boolean;
+};
+
+// keep public api small to start with
+type PopoverInternalProps = {
   /**
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
@@ -64,7 +76,7 @@ type PopoverOptions = {
     ancestorResize?: boolean;
     elementResize?: boolean;
     /**
-     * Use this if you want Tooltip to follow moving trigger element
+     * Use this if you want popover to follow moving trigger element
      */
     animationFrame?: boolean;
     layoutShift?: boolean;
@@ -77,30 +89,15 @@ type PopoverOptions = {
     offset?: number;
     flip?: boolean;
     shift?: boolean;
-    // size?: boolean; // TODO: decide if it makes sense to expose
     autoPlacement?: boolean;
     hide?: boolean;
     inline?: boolean;
   };
-  /**
-   * Use an external element (stored in state) as the trigger.
-   */
-  reference?: HTMLElement | null;
-  /**
-   * Whether the popover should match the width of the trigger.
-   */
-  matchWidth?: boolean;
 };
-
-type PopoverOwnProps = {
-  content?: React.ReactNode;
-  children?: React.ReactNode;
-  applyBackground?: boolean;
-} & PortalProps;
 
 // ----------------------------------------------------------------------------
 
-export const usePopover = (options: PopoverOptions) => {
+export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   const {
     placement = 'bottom-start',
     visible,
@@ -174,6 +171,13 @@ export const usePopover = (options: PopoverOptions) => {
 
 // ----------------------------------------------------------------------------
 
+type PopoverPublicProps = {
+  content?: React.ReactNode;
+  children?: React.ReactNode;
+  applyBackground?: boolean;
+} & PortalProps &
+  PopoverOptions;
+
 /**
  * A utility component to help with positioning of floating content.
  * Built on top of [`floating-ui`](https://floating-ui.com/)
@@ -187,8 +191,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement,
     onVisibleChange,
     closeOnOutsideClick,
-    autoUpdateOptions,
-    middleware,
     reference,
     matchWidth,
     //
@@ -204,8 +206,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement,
     onVisibleChange,
     closeOnOutsideClick,
-    autoUpdateOptions,
-    middleware,
     reference,
     matchWidth,
   });
@@ -238,6 +238,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
       ) : null}
     </>
   );
-}) as PolymorphicForwardRefComponent<'div', PopoverOwnProps & PopoverOptions>;
+}) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
 
 export default Popover;
