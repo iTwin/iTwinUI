@@ -21,6 +21,7 @@ import {
   useHover,
   useFocus,
   safePolygon,
+  useRole,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
@@ -101,6 +102,7 @@ type PopoverInternalProps = {
    * `hover` and `focus` can be manually specified as triggers.
    */
   trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
+  role?: 'dialog' | 'menu' | 'listbox';
 };
 
 // ----------------------------------------------------------------------------
@@ -116,6 +118,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     reference,
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
+    role,
   } = options;
 
   const [open, onOpenChange] = useControlledState(
@@ -158,6 +161,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       handleClose: safePolygon({ buffer: 1 }),
     }),
     useFocus(floating.context, { enabled: !!trigger.focus }),
+    useRole(floating.context, { role: 'dialog', enabled: !!role }),
   ]);
 
   const getFloatingProps = React.useCallback(
@@ -223,6 +227,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     closeOnOutsideClick,
     reference,
     matchWidth,
+    role: 'dialog',
   });
   const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
 
@@ -243,7 +248,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
           >
             <Box
               as={(applyBackground ? Surface : 'div') as 'div'}
-              role='dialog'
               {...popover.getFloatingProps(rest)}
               ref={popoverRef}
             >
