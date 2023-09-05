@@ -1275,7 +1275,7 @@ export declare function makeRenderer(
   meta?: any,
 ): ReactElement;
 
-//////////////////////////////////////////////////////////////////////////////////////////////////
+//-------------------------------------------------------------------------------
 // Custom Additions (parts from the old file called react-table-config.ts)
 
 export type FieldType = 'text' | 'number' | 'date' | string;
