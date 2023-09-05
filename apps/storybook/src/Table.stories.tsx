@@ -42,6 +42,7 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+import { StoryFn } from '@storybook/react';
 
 export default {
   title: 'Core/Table',
@@ -1249,7 +1250,6 @@ export const ControlledState = () => {
             TableTypes.TableOptions<DemoData>['getRowId']
           >
         }
-        {...args}
         data={data}
       />
     </>
@@ -1370,7 +1370,7 @@ export const Full = () => {
         enableColumnReordering
       />
       <Tooltip
-        reference={React.useRef(rowRefMap[hoveredRowIndex])}
+        reference={rowRefMap[hoveredRowIndex]}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />
@@ -1650,7 +1650,7 @@ export const Localized = () => {
 };
 
 Localized.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -1928,7 +1928,7 @@ export const WithPaginator = () => {
 };
 
 WithPaginator.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2137,7 +2137,7 @@ export const WithManualPaginatorAndFilter = () => {
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2295,7 +2295,7 @@ export const CustomFilter = () => {
 };
 
 CustomFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2627,7 +2627,7 @@ export const HorizontalScroll = () => {
 };
 
 HorizontalScroll.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
@@ -3388,7 +3388,7 @@ export const StickyColumns = () => {
 };
 
 StickyColumns.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
