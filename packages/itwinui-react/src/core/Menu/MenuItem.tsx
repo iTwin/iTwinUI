@@ -187,6 +187,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-selected={isSelected}
       aria-haspopup={subMenuItems.length > 0}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
       aria-disabled={disabled}
       onKeyDown={onKeyDown}
       {...rest}
