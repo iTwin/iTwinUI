@@ -12,7 +12,9 @@ import LiveExample from '~/components/LiveExample.astro';
 import RelatedComponents from '~/components/RelatedComponents.astro';
 import * as AllExamples from 'examples';
 
-<p>{frontmatter.description} The labels should always be provided above the TransferList.</p>
+<p>{frontmatter.description}</p>
+
+The labels should always be provided above the TransferList.
 
 <LiveExample src='TransferList.main.tsx'>
   <AllExamples.TransferListMainExample client:load />
