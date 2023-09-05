@@ -96,11 +96,11 @@ it('should call onChange when selected day from calendar', async () => {
   expect(iconButton).toBeTruthy();
   await userEvent.click(iconButton);
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy.style.visibility).toEqual('visible');
+  const popover = document.querySelector('[role=dialog]') as HTMLElement;
+  expect(popover).toBeVisible();
   fireEvent.click(screen.getByText('7'));
 
-  expect(tippy).not.toBeVisible();
+  expect(popover).not.toBeVisible();
   expect(document.activeElement).toEqual(iconButton);
   expect(onChange).toHaveBeenCalledWith(new Date(2021, 4, 7));
 });

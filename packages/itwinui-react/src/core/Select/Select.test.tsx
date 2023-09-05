@@ -209,15 +209,15 @@ it('should respect visible prop', () => {
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy).toBeVisible();
-  assertMenu(document.querySelector('.iui-menu') as HTMLElement);
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeVisible();
+  assertMenu(menu);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  expect(tippy).toBeVisible();
+  expect(menu).toBeVisible();
 
   rerender(<Select options={options} popoverProps={{ visible: false }} />);
-  expect(tippy).not.toBeVisible();
+  expect(menu).not.toBeVisible();
 });
 
 it.each(['Enter', ' ', 'Spacebar'])(
