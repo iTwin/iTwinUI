@@ -98,7 +98,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
                     'calc((var(--iui-component-height) - 1px) * 8.5)',
                   overflowY: isOverflowOverlaySupported() ? 'overlay' : 'auto',
                   ...style,
-                  // ...outerProps.style,
                 } as React.CSSProperties),
             ...rest,
           })}
@@ -109,7 +108,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
             <VirtualizedComboBoxMenu>{children}</VirtualizedComboBoxMenu>
           )}
         </Menu>
-        )
       </Portal>
     )
   );
