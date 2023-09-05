@@ -24,7 +24,10 @@ export type DropdownMenuProps = {
    * List of menu items. Recommended to use MenuItem component.
    * You can pass function that takes argument `close` that closes the dropdown menu, or a list of MenuItems.
    */
-  menuItems: (close: () => void) => JSX.Element[] | JSX.Element[] | JSX.Element;
+  menuItems:
+    | ((close: () => void) => JSX.Element[])
+    | JSX.Element[]
+    | JSX.Element;
   /**
    * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
    * @default 'menu'
