@@ -28,13 +28,17 @@
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
       section[id^='demo'] {
-        width: auto;
         display: flex;
         gap: 2rem;
         margin-block-end: 4rem;
+        padding: 1rem;
       }
-      section[id^='demo-horizontal'] { flex-direction: column; }
+      section[id^='demo-horizontal'] {
+        flex-direction: column;
+        width: auto;
+      }
       section[id^='demo-vertical'] { height: calc(var(--iui-size-3xl) * 5); }
+
       .iui-tooltip { display: none; }
       .iui-slider .iui-slider-thumb:focus + .iui-tooltip,
       .iui-slider .iui-slider-thumb:hover + .iui-tooltip,
