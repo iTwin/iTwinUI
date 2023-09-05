@@ -22,7 +22,8 @@ import { flushSync } from 'react-dom';
  */
 const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLElement> | undefined;
-}>({ ref: undefined });
+  setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
 
 export type MenuItemProps = {
   /**
@@ -107,14 +108,25 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
-  const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
   const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
   const submenuId = useId();
 
+  const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
+    React.useState(false);
+  const parent = React.useContext(MenuItemContext);
+
+  const onVisibleChange = (open: boolean) => {
+    setIsSubmenuVisible(open);
+
+    // we don't want parent to close when mouse goes into a nested submenu,
+    // so we need to let the parent know whether the submenu is still open.
+    parent.setIsNestedSubmenuVisible?.(open);
+  };
+
   const popover = usePopover({
-    visible: isSubmenuVisible,
-    onVisibleChange: setIsSubmenuVisible,
+    visible: isSubmenuVisible || isNestedSubmenuVisible,
+    onVisibleChange,
     placement: 'right-start',
     trigger: { hover: true, focus: true },
   });
@@ -146,9 +158,14 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        parentMenuItemRef?.current?.focus();
+        parent.ref?.current?.focus();
         event.stopPropagation();
         event.preventDefault();
+        break;
+      }
+      case 'Escape': {
+        // focus might get lost if submenu closes so move it back to parent
+        parent.ref?.current?.focus();
         break;
       }
       default:
@@ -206,11 +223,20 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }))}
       {popover.open && (
         <Portal portal>
-          <MenuItemContext.Provider value={{ ref: menuItemRef }}>
+          <MenuItemContext.Provider
+            value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
+          >
             <Menu
               setFocus={focusOnSubmenu}
               ref={popover.refs.setFloating}
-              {...popover.getFloatingProps({ id: submenuId })}
+              {...popover.getFloatingProps({
+                id: submenuId,
+                onPointerMove: () => {
+                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                  // so we need to flip it back to true when pointer re-enters this submenu.
+                  setIsSubmenuVisible(true);
+                },
+              })}
             >
               {subMenuItems}
             </Menu>
