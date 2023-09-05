@@ -514,6 +514,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     onVisibleChange: (open) => (open ? onShow() : onHide()),
     matchWidth: true,
     closeOnOutsideClick: true,
+    trigger: { click: true, focus: true },
   });
 
   return (

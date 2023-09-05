@@ -158,6 +158,17 @@ export type SelectProps<T> = {
    */
   menuStyle?: React.CSSProperties;
   /**
+   * Props to customize Popover behavior.
+   */
+  popoverProps?: Pick<
+    Parameters<typeof usePopover>[0],
+    | 'visible'
+    | 'onVisibleChange'
+    | 'placement'
+    | 'matchWidth'
+    | 'closeOnOutsideClick'
+  >;
+  /**
    * Props to pass to the select button (trigger) element.
    */
   triggerProps?: React.ComponentPropsWithoutRef<'div'>;
@@ -235,6 +246,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     multiple = false,
     triggerProps,
     status,
+    popoverProps,
     ...rest
   } = props;
 
@@ -249,12 +261,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
       return;
     }
     setIsOpen(true);
-  }, [disabled]);
+    popoverProps?.onVisibleChange?.(true);
+  }, [disabled, popoverProps]);
 
   const hide = React.useCallback(() => {
     setIsOpen(false);
     selectRef.current?.focus({ preventScroll: true });
-  }, []);
+    popoverProps?.onVisibleChange?.(false);
+  }, [popoverProps]);
 
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
@@ -329,9 +343,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const popover = usePopover({
     visible: isOpen,
-    onVisibleChange: (open) => (open ? show() : hide()),
     matchWidth: true,
     closeOnOutsideClick: true,
+    ...popoverProps,
+    onVisibleChange: (open) => (open ? show() : hide()),
   });
 
   return (
