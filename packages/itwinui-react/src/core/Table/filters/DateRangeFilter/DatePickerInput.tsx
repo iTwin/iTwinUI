@@ -105,13 +105,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       }
       placement='bottom'
       visible={isVisible}
-      // onClickOutside={(_, e) => {
-      //   if (!buttonRef.current?.contains(e.target as Node)) {
-      //     close();
-      //   }
-      // }}
       closeOnOutsideClick
-      // portal={{ to: 'parent' }}
     >
       <InputGrid labelPlacement='inline' {...wrapperProps}>
         <Label
