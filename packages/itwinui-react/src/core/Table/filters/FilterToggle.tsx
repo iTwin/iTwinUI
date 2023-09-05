@@ -10,7 +10,6 @@ import {
   SvgFilterHollow,
   SvgFilter,
   Popover,
-  useId,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
@@ -48,8 +47,6 @@ export const FilterToggle = <T extends Record<string, unknown>>(
   const isColumnFiltered =
     column.filterValue != null && column.filterValue !== '';
 
-  const toggleButtonId = useId();
-
   return (
     <>
       {column.canFilter && column.Filter && (
@@ -57,17 +54,15 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           content={column.render('Filter', { close, setFilter, clearFilter })}
           placement='bottom-start'
           visible={isVisible}
+          onVisibleChange={setIsVisible}
           closeOnOutsideClick
-          aria-labelledby={toggleButtonId}
         >
           <IconButton
             styleType='borderless'
             isActive={isVisible || isColumnFiltered}
             className={cx('iui-table-filter-button', className)}
-            id={toggleButtonId}
             aria-label='Filter'
             onClick={(e) => {
-              setIsVisible((v) => !v);
               // Prevents from triggering sort
               e.stopPropagation();
             }}
