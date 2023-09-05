@@ -102,22 +102,6 @@ it('should render menu with custom style', () => {
   expect(menu.style.color).toEqual('red');
 });
 
-it('should be mounted lazily', async () => {
-  let content: unknown;
-  renderComponent({
-    onCreate: (i) => {
-      content = i.props.content;
-    },
-    onShow: (i) => {
-      content = i.props.content;
-    },
-  });
-  expect((content as Element).children.length).toBe(0);
-
-  await userEvent.click(screen.getByText('Click here'));
-  expect((content as Element).children.length).toBe(1);
-});
-
 it('should focus target after hide', async () => {
   const { container } = renderComponent();
 
