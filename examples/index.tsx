@@ -1108,6 +1108,53 @@ import { default as TileMainExampleRaw } from './Tile.main';
 const TileMainExample = withThemeProvider(TileMainExampleRaw);
 export { TileMainExample };
 
+import { default as TileActionableExampleRaw } from './Tile.actionable';
+const TileActionableExample = withThemeProvider(TileActionableExampleRaw);
+export { TileActionableExample };
+
+import { default as TileAnchorLinkExampleRaw } from './Tile.anchorlink';
+const TileAnchorLinkExample = withThemeProvider(TileAnchorLinkExampleRaw);
+export { TileAnchorLinkExample };
+
+import { default as TileAvatarExampleRaw } from './Tile.avatar';
+const TileAvatarExample = withThemeProvider(TileAvatarExampleRaw);
+export { TileAvatarExample };
+
+import { default as TileCondensedExampleRaw } from './Tile.condensed';
+const TileCondensedExample = withThemeProvider(TileCondensedExampleRaw);
+export { TileCondensedExample };
+
+import { default as TileDisabledExampleRaw } from './Tile.disabled';
+const TileDisabledExample = withThemeProvider(TileDisabledExampleRaw);
+export { TileDisabledExample };
+
+import { default as TileFolderExampleRaw } from './Tile.folder';
+const TileFolderExample = withThemeProvider(TileFolderExampleRaw);
+export { TileFolderExample };
+
+import { default as TileLoadingExampleRaw } from './Tile.loading';
+const TileLoadingExample = withThemeProvider(TileLoadingExampleRaw);
+export { TileLoadingExample };
+
+import { default as TileStatusExampleRaw } from './Tile.status';
+const TileStatusExample = withThemeProvider(TileStatusExampleRaw);
+export { TileStatusExample };
+
+import { default as TileCompositionExampleRaw } from './Tile.composition';
+const TileCompositionExample = withThemeProvider(TileCompositionExampleRaw);
+export { TileCompositionExample };
+
+import { default as TilePropsExampleRaw } from './Tile.props';
+const TilePropsExample = withThemeProvider(TilePropsExampleRaw);
+export { TilePropsExample };
+
+import { default as TileSelectedExampleRaw } from './Tile.selected';
+const TileSelectedExample = withThemeProvider(TileSelectedExampleRaw);
+export { TileSelectedExample };
+
+import { default as TileQuickActionsExampleRaw } from './Tile.quickactions';
+const TileQuickActionsExample = withThemeProvider(TileQuickActionsExampleRaw);
+export { TileQuickActionsExample };
 // ----------------------------------------------------------------------------
 
 import { default as ToastMainExampleRaw } from './Toast.main';
