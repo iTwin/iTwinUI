@@ -1098,12 +1098,6 @@ import { default as TransferListMainExampleRaw } from './TransferList.main';
 const TransferListMainExample = withThemeProvider(TransferListMainExampleRaw);
 export { TransferListMainExample };
 
-import { default as TransferListWithLabelExampleRaw } from './TransferList.withlabel';
-const TransferListWithLabelExample = withThemeProvider(
-  TransferListWithLabelExampleRaw,
-);
-export { TransferListWithLabelExample };
-
 // ----------------------------------------------------------------------------
 
 import { default as TreeMainExampleRaw } from './Tree.main';
