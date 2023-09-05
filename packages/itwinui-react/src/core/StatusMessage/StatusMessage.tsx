@@ -32,7 +32,7 @@ type StatusMessageProps = {
 };
 
 /**
- * Component to display icon and text below the `Combobox` component.
+ * Component to display icon and text below the form field.
  * @example
  * <StatusMessage>This is the text</StatusMessage>
  * <StatusMessage startIcon={<SvgStar />}>This is the text</StatusMessage>
