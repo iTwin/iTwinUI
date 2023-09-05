@@ -34,6 +34,7 @@ import type { PolymorphicForwardRefComponent } from '../index.js';
 import { Portal } from './Portal.js';
 import type { PortalProps } from './Portal.js';
 import { Surface } from '../../Surface/index.js';
+import { ThemeProvider } from '../../ThemeProvider/index.js';
 
 type PopoverOptions = {
   /**
@@ -170,6 +171,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         ...userProps,
         style: {
           ...floating.floatingStyles,
+          zIndex: 9999,
           ...userProps?.style,
         },
       }),
@@ -229,7 +231,14 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     matchWidth,
     role: 'dialog',
   });
-  const popoverRef = useMergedRefs(popover.refs.setFloating, forwardedRef);
+
+  const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
+
+  const popoverRef = useMergedRefs(
+    popover.refs.setFloating,
+    forwardedRef,
+    setPopoverElement,
+  );
 
   return (
     <>
@@ -240,20 +249,24 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
       {popover.open ? (
         <Portal portal={portal}>
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            initialFocus={-1}
-            returnFocus
+          <ThemeProvider
+            portalContainer={popoverElement} // portal nested popovers into this one
           >
-            <Box
-              as={(applyBackground ? Surface : 'div') as 'div'}
-              {...popover.getFloatingProps(rest)}
-              ref={popoverRef}
+            <FloatingFocusManager
+              context={popover.context}
+              modal={false}
+              initialFocus={-1}
+              returnFocus
             >
-              {content}
-            </Box>
-          </FloatingFocusManager>
+              <Box
+                as={(applyBackground ? Surface : 'div') as 'div'}
+                {...popover.getFloatingProps(rest)}
+                ref={popoverRef}
+              >
+                {content}
+              </Box>
+            </FloatingFocusManager>
+          </ThemeProvider>
         </Portal>
       ) : null}
     </>
