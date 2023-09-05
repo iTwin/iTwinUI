@@ -243,6 +243,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
           >
             <Box
               as={(applyBackground ? Surface : 'div') as 'div'}
+              role='dialog'
               {...popover.getFloatingProps(rest)}
               ref={popoverRef}
             >
