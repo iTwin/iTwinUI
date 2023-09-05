@@ -6,24 +6,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/ban-types */
-// Type definitions for react-table 7.7
-// Project: https://github.com/tannerlinsley/react-table
-// Definitions by: Guy Gascoigne-Piggford <https://github.com/ggascoigne>,
-//                 Rohit Garg <https://github.com/gargroh>
-//                 Jason Clark <https://github.com/riceboyler>
-// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-// TypeScript Version: 3.5
-// reflects react-table@7.7.0
 
-// tslint:disable:no-empty-interface
-// no-empty-interface is disabled to allow easy extension with declaration merging
-
-// TODO: Find out why the below line was giving an error
-// /* eslint-disable @definitelytyped/no-unnecessary-generics */
-// no-unnecessary-generics is disabled because many of these definitions are either used in a generic
-// context or the signatures are required to match for declaration merging
-
-// The changelog for the important changes is located in the Readme.md
+// This file is a hard fork of @types/react-table v7
+// The original code is licensed under MIT - https://unpkg.com/browse/@types/react-table@7.7.15/LICENSE
 
 import type {
   ChangeEvent,
@@ -39,16 +24,6 @@ import type {
 
 import type { TableFilterProps } from '../index.js';
 
-/**
- * The empty definitions of below provides a base definition for the parts used by useTable, that can then be extended in the users code.
- *
- * @example
- *  export interface TableOptions<D extends Record<string, unknown> = {}}>
- *    extends
- *      UseExpandedOptions<D>,
- *      UseFiltersOptions<D> {}
- * see https://gist.github.com/ggascoigne/646e14c9d54258e40588a13aabf0102d for more details
- */
 export interface TableOptions<D extends Record<string, unknown>>
   extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
     UseRowSelectOptions<D>,
