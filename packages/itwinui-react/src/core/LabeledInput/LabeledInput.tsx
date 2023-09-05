@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { useId, Icon } from '../utils/index.js';
+import { StatusIconMap, useId, Icon } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
 import { InputWithDecorations } from '../InputWithDecorations/index.js';
@@ -86,6 +86,8 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  const icon = svgIcon ?? (status && StatusIconMap[status]());
+
   return (
     <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
       {label && (
@@ -112,9 +114,9 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {svgIcon && (
-          <Icon padded {...iconProps}>
-            {svgIcon}
+        {(svgIcon || (status && !message)) && (
+          <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
+            {icon}
           </Icon>
         )}
       </InputWithDecorations>
