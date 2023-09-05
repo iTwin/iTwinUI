@@ -3,11 +3,19 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { useMergedRefs, SvgCaretRightSmall, Popover } from '../utils/index.js';
+import {
+  SvgCaretRightSmall,
+  cloneElementWithRef,
+  usePopover,
+  Portal,
+  useMergedRefs,
+  useId,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
+import { flushSync } from 'react-dom';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
@@ -80,7 +88,7 @@ export type MenuItemProps = {
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
  */
-export const MenuItem = React.forwardRef((props, ref) => {
+export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     isSelected,
@@ -89,26 +97,27 @@ export const MenuItem = React.forwardRef((props, ref) => {
     onClick,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
-    startIcon: startIconProp,
     icon,
-    endIcon: endIconProp,
+    startIcon = icon,
     badge,
+    endIcon = badge,
     role = 'menuitem',
     subMenuItems = [],
     ...rest
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuItemRef, ref);
-
   const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
-
-  const subMenuRef = React.useRef<HTMLDivElement>(null);
-
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
+  const submenuId = useId();
 
-  const startIcon = startIconProp ?? icon;
-  const endIcon = endIconProp ?? badge;
+  const popover = usePopover({
+    visible: isSubmenuVisible,
+    onVisibleChange: setIsSubmenuVisible,
+    placement: 'right-start',
+    trigger: { hover: true, focus: true },
+  });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -126,6 +135,11 @@ export const MenuItem = React.forwardRef((props, ref) => {
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
           setIsSubmenuVisible(true);
+
+          // flush and reset state so we are ready to focus again next time
+          flushSync(() => setFocusOnSubmenu(true));
+          setFocusOnSubmenu(false);
+
           event.preventDefault();
           event.stopPropagation();
         }
@@ -150,22 +164,14 @@ export const MenuItem = React.forwardRef((props, ref) => {
       active={isSelected}
       disabled={disabled}
       onClick={() => !disabled && onClick?.(value)}
-      ref={refs}
+      ref={useMergedRefs(menuItemRef, forwardedRef)}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
       aria-haspopup={subMenuItems.length > 0}
+      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-disabled={disabled}
       onKeyDown={onKeyDown}
-      onMouseEnter={() => setIsSubmenuVisible(true)}
-      onMouseLeave={(e) => {
-        if (
-          !(e.relatedTarget instanceof Node) ||
-          !subMenuRef.current?.contains(e.relatedTarget as Node)
-        ) {
-          setIsSubmenuVisible(false);
-        }
-      }}
       {...rest}
     >
       {startIcon && (
@@ -193,28 +199,25 @@ export const MenuItem = React.forwardRef((props, ref) => {
   return subMenuItems.length === 0 ? (
     listItem
   ) : (
-    <MenuItemContext.Provider value={{ ref: menuItemRef }}>
-      <Popover
-        placement='right-start'
-        visible={isSubmenuVisible}
-        // portal={{ to: 'parent' }}
-        content={
-          <div
-            onMouseLeave={() => setIsSubmenuVisible(false)}
-            onBlur={(e) => {
-              !!(e.relatedTarget instanceof Node) &&
-                !subMenuRef.current?.contains(e.relatedTarget as Node) &&
-                !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
-                setIsSubmenuVisible(false);
-            }}
-          >
-            <Menu ref={subMenuRef}>{subMenuItems}</Menu>
-          </div>
-        }
-      >
-        {listItem}
-      </Popover>
-    </MenuItemContext.Provider>
+    <>
+      {cloneElementWithRef(listItem, ({ props }) => ({
+        ...popover.getReferenceProps(props),
+        ref: popover.refs.setReference,
+      }))}
+      {popover.open && (
+        <Portal portal>
+          <MenuItemContext.Provider value={{ ref: menuItemRef }}>
+            <Menu
+              setFocus={focusOnSubmenu}
+              ref={popover.refs.setFloating}
+              {...popover.getFloatingProps({ id: submenuId })}
+            >
+              {subMenuItems}
+            </Menu>
+          </MenuItemContext.Provider>
+        </Portal>
+      )}
+    </>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 

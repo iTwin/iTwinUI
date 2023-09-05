@@ -18,6 +18,9 @@ import {
   inline,
   hide,
   FloatingFocusManager,
+  useHover,
+  useFocus,
+  safePolygon,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
@@ -93,6 +96,11 @@ type PopoverInternalProps = {
     hide?: boolean;
     inline?: boolean;
   };
+  /**
+   * By default, the popover will only open on click.
+   * `hover` and `focus` can be manually specified as triggers.
+   */
+  trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
 };
 
 // ----------------------------------------------------------------------------
@@ -107,6 +115,7 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     middleware = { flip: true, shift: true },
     reference,
     matchWidth,
+    trigger = { click: true, hover: false, focus: false },
   } = options;
 
   const [open, onOpenChange] = useControlledState(
@@ -141,8 +150,14 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
   });
 
   const interactions = useInteractions([
-    useClick(floating.context),
+    useClick(floating.context, { enabled: !!trigger.click }),
     useDismiss(floating.context, { outsidePress: closeOnOutsideClick }),
+    useHover(floating.context, {
+      enabled: !!trigger.hover,
+      delay: 100,
+      handleClose: safePolygon({ buffer: 1 }),
+    }),
+    useFocus(floating.context, { enabled: !!trigger.focus }),
   ]);
 
   const getFloatingProps = React.useCallback(
