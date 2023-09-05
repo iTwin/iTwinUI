@@ -27,7 +27,7 @@ export type LabeledInputProps = {
   /**
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: JSX.Element | null;
   /**
    * Pass props to wrapper element.
    */
@@ -114,7 +114,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {(svgIcon || (status && !message)) && (
+        {(svgIcon || (svgIcon !== null && status && !message)) && (
           <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
             {icon}
           </Icon>
