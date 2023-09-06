@@ -9,6 +9,7 @@
 
 // This file is a hard fork of @types/react-table v7
 // The original code is licensed under MIT - https://unpkg.com/browse/@types/react-table@7.7.15/LICENSE
+//
 // A few reasons for this hard fork are:
 // - iTwinUI Table does not offer all the functionality that `react-table` offers. (no nested columns)
 // - `@types/react-table` expects row data to extend `object`. However, iTwinUI Table's expects row data to extend `Record<string, unknown>`.
