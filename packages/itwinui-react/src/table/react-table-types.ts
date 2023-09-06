@@ -1302,4 +1302,3 @@ export type CellRendererProps<D extends Record<string, unknown> = {}> = {
    */
   isDisabled?: (rowData: D) => boolean;
 };
-// }
