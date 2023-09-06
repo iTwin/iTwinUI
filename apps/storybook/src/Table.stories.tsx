@@ -450,7 +450,7 @@ export const Filters = () => {
     (
       filters: TableFilterValue<TableStoryDataType>[],
       state: TableTypes.TableState,
-      filteredData: TableTypes.Row<{ name: string; description: string }>[],
+      filteredData: TableTypes.Row<TableStoryDataType>[],
     ) => {
       // rowInfo is used due to JSON errors when displaying row data
       let rowInfo = '[';
@@ -466,7 +466,7 @@ export const Filters = () => {
       )();
     },
     [],
-  );
+  ) satisfies NonNullable<TableProps<TableStoryDataType>['onFilter']>;
 
   return (
     <Table
