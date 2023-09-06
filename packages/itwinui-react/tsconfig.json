@@ -24,7 +24,7 @@
     "baseUrl": ".",
     "paths": {
       // Since we don't depend on `@types/react-table`, we need to provide the types for it.
-      "react-table": ["src/table/react-table-types.ts"]
+      "react-table": ["src/react-table/react-table-types.ts"]
     }
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]

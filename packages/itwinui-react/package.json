@@ -18,14 +18,14 @@
         "default": "./cjs/index.js"
       }
     },
-    "./table": {
+    "./react-table": {
       "import": {
-        "types": "./esm/table/index.d.ts",
-        "default": "./esm/table/index.js"
+        "types": "./esm/react-table/index.d.ts",
+        "default": "./esm/react-table/index.js"
       },
       "require": {
-        "types": "./cjs/table/index.d.ts",
-        "default": "./cjs/table/index.js"
+        "types": "./cjs/react-table/index.d.ts",
+        "default": "./cjs/react-table/index.js"
       }
     },
     "./styles.css": "./styles.css",
