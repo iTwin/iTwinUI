@@ -10,6 +10,7 @@ import { DatePicker } from '../../../DatePicker/index.js';
 import { InputGrid } from '../../../InputGrid/index.js';
 import { Label } from '../../../Label/index.js';
 import { InputWithDecorations } from '../../../InputWithDecorations/index.js';
+import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
 
 export type DatePickerInputProps = {
   date?: Date;
@@ -24,6 +25,10 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
+  /**
+   * Months, short days and days localized names for DatePicker
+   */
+  localizedNames?: DatePickerLocalizedNames;
 } & Omit<
   React.ComponentProps<typeof LabeledInput>,
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
@@ -45,6 +50,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
     labelProps,
     inputWrapperProps,
     id = uid,
+    localizedNames,
     ...rest
   } = props;
 
@@ -121,6 +127,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
               onChange={onDateSelected}
               setFocus
               isDateDisabled={isDateDisabled}
+              localizedNames={localizedNames}
             />
           }
           placement='bottom-end'

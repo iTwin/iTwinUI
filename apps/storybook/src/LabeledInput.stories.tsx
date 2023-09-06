@@ -6,7 +6,7 @@ import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledInput } from '@itwin/itwinui-react';
+import { LabeledInput, StatusMessage } from '@itwin/itwinui-react';
 
 type LabeledInputProps = React.ComponentProps<typeof LabeledInput>;
 
@@ -125,8 +125,11 @@ export const WithCustomIcon: Story<LabeledInputProps> = (args) => {
     <LabeledInput
       placeholder='Enter text here...'
       label='This is a label'
-      message='⬅ This is a custom icon'
-      svgIcon={<SvgCamera />}
+      message={
+        <StatusMessage startIcon={<SvgCamera />}>
+          ⬅ This is a custom icon
+        </StatusMessage>
+      }
       {...args}
     />
   );
@@ -157,7 +160,6 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
         label='This is a label'
         svgIcon={<SvgPlaceholder />}
         message='Block layout with inline icon'
-        iconDisplayStyle='inline'
         {...args}
       />
     </>
@@ -165,6 +167,5 @@ export const HybridLayout: Story<LabeledInputProps> = (args) => {
 };
 
 HybridLayout.args = {
-  iconDisplayStyle: 'inline',
   message: 'Block layout with inline icon',
 };
