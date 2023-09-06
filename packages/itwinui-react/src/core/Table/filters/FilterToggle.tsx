@@ -7,9 +7,9 @@ import cx from 'classnames';
 import type { HeaderGroup } from 'react-table';
 import {
   useGlobals,
+  Popover,
   SvgFilterHollow,
   SvgFilter,
-  Popover,
 } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
 import { IconButton } from '../../Buttons/index.js';
