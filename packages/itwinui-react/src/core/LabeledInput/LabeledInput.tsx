@@ -27,7 +27,7 @@ export type LabeledInputProps = {
   /**
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: JSX.Element | null;
   /**
    * Pass props to wrapper element.
    */
@@ -40,15 +40,6 @@ export type LabeledInputProps = {
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
-  /**
-   * Set display style of icon.
-   * Supported values:
-   * - 'block' - icon appears below input.
-   * - 'inline' - icon appears inside input (at the end).
-   *
-   * Defaults to 'block' if `displayStyle` is `default`, else 'inline'.
-   */
-  iconDisplayStyle?: 'block' | 'inline';
   /**
    * Passes properties for message content.
    */
@@ -90,13 +81,13 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     iconProps,
     inputWrapperProps,
     displayStyle = 'default',
-    iconDisplayStyle = displayStyle === 'default' ? 'block' : 'inline',
     required = false,
     id = uid,
     ...rest
   } = props;
 
   const icon = svgIcon ?? (status && StatusIconMap[status]());
+  const shouldShowIcon = svgIcon !== null && (svgIcon || (status && !message));
 
   return (
     <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
@@ -124,7 +115,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {icon && iconDisplayStyle === 'inline' && (
+        {shouldShowIcon && (
           <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
             {icon}
           </Icon>
@@ -134,7 +125,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
       {typeof message === 'string' ? (
         <StatusMessage
           status={status}
-          startIcon={displayStyle === 'default' ? icon : undefined}
           iconProps={iconProps}
           contentProps={messageContentProps}
         >

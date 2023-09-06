@@ -38,7 +38,7 @@ type LabeledTextareaProps = {
    * Passes properties for svgIcon.
    */
   iconProps?: React.ComponentProps<typeof Icon>;
-} & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle' | 'iconDisplayStyle'>;
+} & Pick<LabeledInputProps, 'svgIcon' | 'displayStyle'>;
 
 /**
  * Textarea wrapper that allows for additional styling and labelling

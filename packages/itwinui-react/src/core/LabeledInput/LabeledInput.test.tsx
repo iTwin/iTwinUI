@@ -70,9 +70,12 @@ it.each(['positive', 'negative', 'warning'] as const)(
       <LabeledInput label='some label' status={status} />,
     );
     assertBaseElement(container);
-    const input = container.querySelector('.iui-input-flex-container');
+    const input = container.querySelector(
+      '.iui-input-flex-container',
+    ) as HTMLElement;
     expect(input).toBeTruthy();
     expect(input).toHaveAttribute('data-iui-status', status);
+    expect(input.querySelector('.iui-svg-icon')).toBeTruthy();
     getByText('some label');
   },
 );
@@ -179,7 +182,6 @@ it('should render inline icon', () => {
   const { container, queryByText, getByText } = render(
     <LabeledInput
       label='some label'
-      iconDisplayStyle='inline'
       svgIcon={<svg className='my-icon' />}
       message='My message'
     />,
@@ -192,4 +194,13 @@ it('should render inline icon', () => {
   expect(queryByText('some label')).toHaveClass('iui-input-label');
   getByText('My message');
   expect(container.querySelector('.my-icon')).toBeTruthy();
+});
+
+it('should not render default icon when null is passed', () => {
+  const { container, queryByText } = render(
+    <LabeledInput label='some label' svgIcon={null} status='negative' />,
+  );
+  assertBaseElement(container);
+  expect(queryByText('some label')).toHaveClass('iui-input-label');
+  expect(container.querySelector('.iui-svg-icon')).not.toBeTruthy();
 });
