@@ -5,3 +5,5 @@
 export { Tabs } from './Tabs.js';
 
 export { Tab } from './Tab.js';
+
+export { NewTabs } from './NewTabs.js';
