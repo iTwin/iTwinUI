@@ -9,8 +9,6 @@
     "sourceMap": false,
     "allowJs": false,
     "jsx": "react",
-    "module": "Node16",
-    "moduleResolution": "Node16",
     "traceResolution": false,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
