@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.json",
-  "files": ["src/index.ts", "src/table/index.ts"],
+  "files": ["src/index.ts", "src/react-table/index.ts"],
   "compilerOptions": {
     "noUnusedLocals": false,
     "importHelpers": true

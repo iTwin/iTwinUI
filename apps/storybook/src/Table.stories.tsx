@@ -30,7 +30,7 @@ import type {
   TableFilterValue,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
-import * as TableTypes from '@itwin/itwinui-react/table';
+import * as TableTypes from '@itwin/itwinui-react/react-table';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
