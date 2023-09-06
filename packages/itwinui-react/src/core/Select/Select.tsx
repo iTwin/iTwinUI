@@ -16,11 +16,11 @@ import {
   useMergedRefs,
   SvgCheckmark,
   Icon,
-  handleFocusOut,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
+import { FloatingFocusManager } from '@floating-ui/react';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -358,9 +358,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ref={popover.refs.setPositionReference}
       >
         <Box
-          {...popover.getReferenceProps({
-            onKeyDown: handleFocusOut(() => setIsOpen(false)),
-          })}
+          {...popover.getReferenceProps()}
           tabIndex={0}
           role='combobox'
           data-iui-size={size}
@@ -424,17 +422,24 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
       {popover.open && (
         <Portal>
-          <Menu
-            role='listbox'
-            className={cx('iui-scroll', menuClassName)}
-            style={menuStyle}
-            id={`${uid}-menu`}
-            key={`${uid}-menu`}
-            {...popover.getFloatingProps()}
-            ref={popover.refs.setFloating}
+          <FloatingFocusManager
+            context={popover.context}
+            modal={false}
+            guards={false}
+            initialFocus={-1}
           >
-            {menuItems}
-          </Menu>
+            <Menu
+              role='listbox'
+              className={cx('iui-scroll', menuClassName)}
+              style={menuStyle}
+              id={`${uid}-menu`}
+              key={`${uid}-menu`}
+              {...popover.getFloatingProps()}
+              ref={popover.refs.setFloating}
+            >
+              {menuItems}
+            </Menu>
+          </FloatingFocusManager>
         </Portal>
       )}
     </>

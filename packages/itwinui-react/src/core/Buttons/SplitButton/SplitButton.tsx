@@ -12,7 +12,6 @@ import {
   Portal,
   SvgCaretDownSmall,
   SvgCaretUpSmall,
-  handleFocusOut,
   useId,
   useMergedRefs,
   usePopover,
@@ -21,7 +20,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import type { Placement } from '@floating-ui/react';
+import { FloatingFocusManager, type Placement } from '@floating-ui/react';
 import { Menu } from '../../Menu/Menu.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -134,18 +133,25 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         size={size}
         disabled={props.disabled}
         ref={popover.refs.setReference}
-        {...popover.getReferenceProps({
-          ...menuButtonProps,
-          onKeyDown: handleFocusOut(() => setVisible(false)),
-        })}
+        {...popover.getReferenceProps(menuButtonProps)}
       >
         {visible ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
       </IconButton>
       {popover.open && (
         <Portal portal={portal}>
-          <Menu {...popover.getFloatingProps()} ref={popover.refs.setFloating}>
-            {menuContent}
-          </Menu>
+          <FloatingFocusManager
+            context={popover.context}
+            modal={false}
+            guards={false}
+            initialFocus={-1}
+          >
+            <Menu
+              {...popover.getFloatingProps()}
+              ref={popover.refs.setFloating}
+            >
+              {menuContent}
+            </Menu>
+          </FloatingFocusManager>
         </Portal>
       )}
     </Box>
