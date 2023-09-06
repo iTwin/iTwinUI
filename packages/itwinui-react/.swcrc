@@ -8,10 +8,5 @@
   "module": {
     "type": "es6"
   },
-  "exclude": [
-    "src/styles.js",
-    "src/styles.d.ts",
-    // Since swc converts `react-table-types.d.ts` to `react-table-types.d.js`
-    "src/core/Table/types/react-table-types.d.ts"
-  ]
+  "exclude": ["src/styles.js", "src/styles.d.ts"]
 }
