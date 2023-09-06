@@ -1,5 +1,21 @@
 # Changelog
 
+## 2.0.0-dev.8
+
+### Major Changes
+
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): `iui-transfer-list-listbox-label` and `iui-input-container` classes were removed.
+- [#1529](https://github.com/iTwin/iTwinUI/pull/1529): Removed location-marker component.
+- [#1523](https://github.com/iTwin/iTwinUI/pull/1523): Removed `iui-tooltip-container` and `iui-tooltip-visible` classes. The display is now toggled using the `hidden` HTML attribute, and the positioning should be managed using custom JS/CSS.
+
+### Minor Changes
+
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-input-group-wrapper` class to allow inline labels for input groups.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-input-grid` class for outer input styling.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added status styling to `input` and `select`.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added padded styling to Icon using `data-iui-padded` attribute.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-status-message` class to wrap StatusMessage icon and content.
+
 ## 2.0.0-dev.7
 
 ### Major Changes

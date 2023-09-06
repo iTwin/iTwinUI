@@ -82,13 +82,17 @@ const defaultLongDays = [
   'Saturday',
 ];
 
+export type DatePickerLocalizedNames = {
+  [key in 'months' | 'shortDays' | 'days']: string[];
+};
+
 /**
  * Generate localized months and days strings using `Intl.DateTimeFormat` for passed locale to use in DatePicker component.
  * If locale is not passed, browser locale will be used.
  */
 export const generateLocalizedStrings = (
   locale?: string,
-): { [key in 'months' | 'shortDays' | 'days']: string[] } => {
+): DatePickerLocalizedNames => {
   const shortWeekDayFormatter = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
   });
@@ -174,7 +178,7 @@ type DatePickerProps = {
    * Pass localized week days (start from sunday) and months.
    * Use helper function `generateLocalizedStrings` to generate strings using `Intl.DateTimeFormat`.
    */
-  localizedNames?: { [key in 'months' | 'shortDays' | 'days']: string[] };
+  localizedNames?: DatePickerLocalizedNames;
   /**
    * Set focus on selected day or today.
    * @default false
