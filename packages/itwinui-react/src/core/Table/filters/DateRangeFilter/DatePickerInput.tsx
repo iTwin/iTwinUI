@@ -8,6 +8,7 @@ import { LabeledInput } from '../../../LabeledInput/index.js';
 import type { LabeledInputProps } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
 import { IconButton } from '../../../Buttons/index.js';
+import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
 
 export type DatePickerInputProps = {
   date?: Date;
@@ -22,6 +23,10 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
+  /**
+   * Months, short days and days localized names for DatePicker
+   */
+  localizedNames?: DatePickerLocalizedNames;
 } & Omit<LabeledInputProps, 'value' | 'onChange' | 'svgIcon' | 'displayStyle'>;
 
 const DatePickerInput = (props: DatePickerInputProps) => {
@@ -32,6 +37,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
     formatDate,
     isFromOrTo,
     selectedDate,
+    localizedNames,
     ...rest
   } = props;
 
@@ -88,6 +94,7 @@ const DatePickerInput = (props: DatePickerInputProps) => {
           onChange={onDateSelected}
           setFocus
           isDateDisabled={isDateDisabled}
+          localizedNames={localizedNames}
         />
       }
       placement='bottom'
