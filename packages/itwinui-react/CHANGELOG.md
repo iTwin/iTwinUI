@@ -146,6 +146,12 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.7
+
+### Patch Changes
+
+- [#1545](https://github.com/iTwin/iTwinUI/pull/1545): `tableFilters.DateRangeFilter` now supports localizing the date picker using `translatedLabels.datePicker`.
+
 ## 2.12.6
 
 ### Patch Changes
