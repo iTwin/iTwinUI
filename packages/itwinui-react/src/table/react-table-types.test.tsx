@@ -11,16 +11,39 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
-import { Table } from '../index.js';
+import {
+  ActionColumn,
+  Table,
+  TablePaginator,
+  tableFilters,
+  EditableCell,
+  DefaultCell,
+  SelectionColumn,
+  ExpanderColumn,
+} from '../core/Table/index.js';
+import type {
+  TableFilterValue,
+  TablePaginatorRendererProps,
+} from '../core/Table/index.js';
 
-// TableTypes should be imported as a type-only import.
-// @ts-expect-error (TS 1485) - 'TableTypes' resolves to a type-only declaration and must be imported using a type-only import when 'verbatimModuleSyntax' is enabled.
-import { TableTypes as _TableTypes } from '../index.js';
-import type { TableTypes } from '../index.js';
-
+// Table types can be imported with an alias or selective types can be imported too.
+import * as TableTypes from 'react-table';
 import type { Column } from 'react-table';
 
+type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
+  React.ComponentProps<typeof Table<T>>;
+
 import React from 'react';
+import {
+  Anchor,
+  DropdownMenu,
+  IconButton,
+  Input,
+  MenuItem,
+  Text,
+  Tooltip,
+} from 'src/core/index.js';
+import { SvgMore } from 'src/core/utils/index.js';
 
 /**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
@@ -80,48 +103,7 @@ import React from 'react';
 };
 
 /**
- * To test that passing other props to `Table` do not give any type errors.
- */
-() => {
-  const columns = [
-    {
-      Header: 'Header 1',
-      accessor: 'header1',
-    },
-    {
-      Header: 'Header 2',
-      accessor: 'header2',
-    },
-  ] satisfies TableTypes.Column<{
-    header1: string;
-    header2: string;
-  }>[];
-
-  const data = [
-    {
-      header1: 'row1',
-      header2: 'row1',
-    },
-    {
-      header1: 'row2',
-      header2: 'row2',
-    },
-  ];
-
-  return (
-    <Table
-      columns={columns}
-      data={data}
-      emptyTableContent='No data.'
-      className='test-table-class'
-      style={{ color: 'red' }}
-      aria-label='test-table'
-    />
-  );
-};
-
-/**
- * Confirm that `Column` from `react-table` is equivalent to `TableTypes.Column`.
+ * Confirm that `Column` and `TableTypes.Column` are equivalent.
  */
 () => {
   const columns1: TableTypes.Column<{
@@ -200,7 +182,7 @@ import React from 'react';
     {
       Header: 'Header 2',
       accessor: 'header2',
-      // Cell:
+      Cell: (props) => <div>{props.row.original.header2}</div>,
     },
   ] satisfies TableTypes.Column<{
     header1: string;
@@ -267,4 +249,517 @@ import React from 'react';
   ];
 
   return <Table columns={columns} data={data} emptyTableContent='No data.' />;
+};
+
+/**
+ * Complex Table example.
+ */
+() => {
+  type TableRowDataType = {
+    index: number;
+    name: string;
+    description: string;
+    ids: string[];
+    startDate: Date;
+    endDate: string;
+    subRows: TableRowDataType[];
+  };
+
+  const translatedLabels = React.useMemo(
+    () => ({
+      filter: 'Filter',
+      clear: 'Clear',
+      from: 'From',
+      to: 'To',
+    }),
+    [],
+  );
+
+  const formatter = React.useMemo(
+    () =>
+      new Intl.DateTimeFormat('en-us', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
+    [],
+  );
+
+  const formatDate = React.useCallback(
+    (date: Date) => {
+      return formatter.format(date);
+    },
+    [formatter],
+  );
+
+  const menuItems = React.useCallback((close: () => void) => {
+    return [
+      <MenuItem key={1} onClick={() => close()}>
+        Edit
+      </MenuItem>,
+      <MenuItem key={2} onClick={() => close()}>
+        Delete
+      </MenuItem>,
+    ];
+  }, []);
+
+  const isRowDisabled = React.useCallback(
+    (rowData: { name: string; description: string }) => {
+      return rowData.name === 'Name2';
+    },
+    [],
+  );
+  const isCheckboxDisabled = React.useCallback(
+    (rowData: (typeof data)[number]) => {
+      return rowData.name === 'Name1';
+    },
+    [],
+  );
+  const isExpanderDisabled = React.useCallback(
+    (rowData: (typeof data)[number]) => {
+      return rowData.name === 'Name2';
+    },
+    [],
+  );
+  const isCellDisabled = React.useCallback((rowData: (typeof data)[number]) => {
+    return rowData.name === 'Name3';
+  }, []);
+
+  const onCellEdit = React.useCallback(
+    (columnId: string, value: string, rowData: TableRowDataType) => {
+      console.log({ columnId, value, rowData });
+    },
+    [],
+  );
+
+  const cellRenderer = React.useCallback(
+    (props: TableTypes.CellRendererProps<TableRowDataType>) => (
+      <>
+        {!isRowDisabled(props.cellProps.row.original) &&
+        props.cellProps.value !== 'Fetching...' ? (
+          <EditableCell {...props} onCellEdit={onCellEdit} />
+        ) : (
+          <DefaultCell
+            {...props}
+            status={
+              props.cellProps.value === 'Fetching...' ? undefined : 'positive'
+            }
+            isDisabled={(rowData: (typeof data)[number]) =>
+              isCellDisabled(rowData) || isRowDisabled(rowData)
+            }
+          />
+        )}
+      </>
+    ),
+    [isCellDisabled, isRowDisabled, onCellEdit],
+  );
+
+  const expandedSubComponent = React.useCallback(
+    (row: TableTypes.Row) => (
+      <div style={{ padding: 16 }}>
+        <Text variant='leading'>Extra information</Text>
+        <pre>
+          <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
+        </pre>
+      </div>
+    ),
+    [],
+  );
+
+  const columns = React.useMemo(
+    () => [
+      SelectionColumn({
+        isDisabled: isCheckboxDisabled,
+      }),
+      ExpanderColumn({
+        subComponent: expandedSubComponent,
+        isDisabled: isExpanderDisabled,
+      }),
+      {
+        id: 'index',
+        Header: '#',
+        accessor: 'index',
+        width: 80,
+        fieldType: 'number',
+        Filter: tableFilters.NumberRangeFilter(translatedLabels),
+        filter: 'between',
+        disableToggleVisibility: true,
+        sticky: 'left',
+      },
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        fieldType: 'text',
+        cellRenderer,
+        Filter: tableFilters.TextFilter(translatedLabels),
+        disableReordering: true,
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        fieldType: 'text',
+        Filter: tableFilters.TextFilter(translatedLabels),
+        maxWidth: 200,
+      },
+      {
+        id: 'ids',
+        Header: 'IDs (enter one of the IDs in the filter)',
+        accessor: 'ids',
+        Cell: (props: TableTypes.CellProps<TableRowDataType>) => {
+          return <>{props.row.original.ids.join(', ')}</>;
+        },
+        Filter: tableFilters.TextFilter(translatedLabels),
+        filter: 'includes',
+        minWidth: 200,
+      },
+      {
+        id: 'startDate',
+        Header: 'Start date',
+        accessor: 'startDate',
+        Cell: (props: TableTypes.CellProps<TableRowDataType>) => {
+          return <>{formatDate(props.row.original.startDate)}</>;
+        },
+        Filter: tableFilters.DateRangeFilter({
+          translatedLabels,
+        }),
+        filter: 'betweenDate',
+      },
+      {
+        id: 'endDate',
+        Header: 'End date',
+        // Converting string to Date for filtering
+        accessor: (rowData) => new Date(rowData.endDate),
+        Cell: (props: TableTypes.CellProps<TableRowDataType>) => {
+          return <>{formatDate(new Date(props.row.original.endDate))}</>;
+        },
+        Filter: tableFilters.DateRangeFilter({
+          translatedLabels,
+        }),
+        filter: 'betweenDate',
+      },
+      {
+        id: 'click-me',
+        Header: 'Click',
+        width: 100,
+        Cell: (
+          props: TableTypes.CellProps<{ name: string; description: string }>,
+        ) => {
+          return (
+            <Anchor
+              as='button'
+              onClick={(e) => {
+                e.stopPropagation(); // prevent row selection when clicking on link
+                console.log(props.row.original.name);
+
+                onClickHandler(props);
+              }}
+            >
+              Click me!
+            </Anchor>
+          );
+        },
+        disableResizing: true,
+      },
+      {
+        ...ActionColumn({ columnManager: true }),
+        Cell: (props: TableTypes.CellProps<TableRowDataType>) => (
+          <DropdownMenu menuItems={menuItems}>
+            <IconButton
+              styleType='borderless'
+              onClick={(e) => e.stopPropagation()}
+              disabled={isRowDisabled(props.row.original)}
+            >
+              <SvgMore />
+            </IconButton>
+          </DropdownMenu>
+        ),
+        sticky: 'right',
+      },
+    ],
+    [
+      isCheckboxDisabled,
+      expandedSubComponent,
+      isExpanderDisabled,
+      translatedLabels,
+      cellRenderer,
+      formatDate,
+      menuItems,
+      isRowDisabled,
+    ],
+  ) satisfies TableTypes.Column<TableRowDataType>[];
+
+  const data = React.useMemo(
+    () => [
+      {
+        index: 1,
+        name: 'Name1',
+        description: 'Description1',
+        ids: ['1'],
+        startDate: new Date('May 1, 2021'),
+        endDate: '2021-05-31T21:00:00.000Z',
+        subRows: [
+          {
+            index: 11,
+            name: 'Name11',
+            description: 'Description11',
+            ids: ['11'],
+            startDate: new Date('May 11, 2021'),
+            endDate: '2021-05-31T21:00:00.000Z',
+            subRows: [
+              {
+                index: 111,
+                name: 'Name111',
+                description: 'Description111',
+                ids: ['111'],
+                startDate: new Date('May 11, 2021'),
+                endDate: '2021-05-31T21:00:00.000Z',
+                subRows: [],
+              },
+            ],
+          },
+        ],
+      },
+      {
+        index: 2,
+        name: 'Name2',
+        description: 'Description2',
+        ids: ['2', '3', '4'],
+        startDate: new Date('May 2, 2021'),
+        endDate: '2021-06-01T21:00:00.000Z',
+        subRows: [
+          {
+            index: 21,
+            name: 'Name21',
+            description: 'Description21',
+            ids: ['21'],
+            startDate: new Date('May 21, 2021'),
+            endDate: '2021-06-01T21:00:00.000Z',
+            subRows: [],
+          },
+          {
+            index: 22,
+            name: 'Name22',
+            description: 'Description22',
+            ids: ['22'],
+            startDate: new Date('May 22, 2021'),
+            endDate: '2021-06-01T21:00:00.000Z',
+            subRows: [],
+          },
+        ],
+      },
+      {
+        index: 3,
+        name: 'Name3',
+        description: 'Description3',
+        ids: ['3', '4'],
+        startDate: new Date('May 3, 2021'),
+        endDate: '2021-06-02T21:00:00.000Z',
+        subRows: [],
+      },
+    ],
+    [],
+  ) satisfies TableRowDataType[];
+
+  const onFilter = React.useCallback(
+    (
+      filters: TableFilterValue<TableRowDataType>[],
+      state: TableTypes.TableState,
+      filteredData: TableTypes.Row<TableRowDataType>[],
+    ) => {
+      // rowInfo is used due to JSON errors when displaying row data
+      let rowInfo = '[';
+      filteredData.forEach((row) => {
+        rowInfo += `${JSON.stringify(row.original)},`;
+      });
+      rowInfo = rowInfo.slice(0, rowInfo.length - 1);
+      rowInfo += ']';
+
+      console.log(
+        `Filter changed. Filters: ${JSON.stringify(
+          filters,
+        )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
+      );
+    },
+    [],
+  ) satisfies NonNullable<TableProps<TableRowDataType>['onFilter']>;
+
+  const onSelect = React.useCallback(
+    (rows, state) =>
+      console.log(
+        `Selected rows: ${JSON.stringify(rows)}, Table state: ${JSON.stringify(
+          state,
+        )}`,
+      ),
+    [],
+  ) satisfies NonNullable<
+    TableProps<{ name: string; description: string }>['onSelect']
+  >;
+
+  const onRowClick = React.useCallback(
+    (event: React.MouseEvent, row: TableTypes.Row) =>
+      console.log(`Row clicked: ${JSON.stringify(row.original)}`),
+    [],
+  );
+
+  const onClickHandler = (
+    props: TableTypes.CellProps<{ name: string; description: string }>,
+  ) => console.log(props.row.original.name);
+
+  const onSort = React.useCallback(
+    (state) =>
+      console.log(`Sort changed. Table state: ${JSON.stringify(state)}`),
+    [],
+  ) satisfies NonNullable<
+    TableProps<{ name: string; description: string }>['onSort']
+  >;
+
+  const onExpand = React.useCallback(
+    (rows, state) =>
+      console.log(
+        `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
+          state,
+        )}`,
+      ),
+    [],
+  ) satisfies NonNullable<
+    TableProps<{
+      name: string;
+      description: string;
+    }>['onExpand']
+  >;
+
+  const onRowInViewport = React.useCallback((rowData) => {
+    console.log(`Row in view: ${JSON.stringify(rowData)}`);
+  }, []) satisfies NonNullable<
+    TableProps<{
+      name: string;
+      description: string;
+    }>['onRowInViewport']
+  >;
+
+  const rowProps = React.useCallback(
+    (row: TableTypes.Row<{ name: string; description: string }>) => {
+      return {
+        onMouseEnter: () => {
+          console.log(`Hovered over ${row.original.name}`);
+          setHoveredRowIndex(row.index);
+        },
+        ref: (el: HTMLDivElement | null) => {
+          if (el) {
+            setRowRefMap((r) => {
+              r[row.index] = el;
+              return r;
+            });
+          }
+        },
+      };
+    },
+    [],
+  );
+
+  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const paginator = React.useCallback(
+    (props: TablePaginatorRendererProps) => (
+      <TablePaginator
+        {...props}
+        pageSizeList={pageSizeList}
+        localization={{
+          pageSizeLabel: (size: number) => `${size} per localized page`,
+          rangeLabel: (
+            startIndex: number,
+            endIndex: number,
+            totalRows: number,
+            isLoading: boolean,
+          ) =>
+            isLoading
+              ? `${startIndex}-${endIndex} localized`
+              : `${startIndex}-${endIndex} of localized ${totalRows}`,
+          previousPage: 'Previous localized page',
+          nextPage: 'Next localized page',
+          goToPageLabel: (page: number) => `Go to localized page ${page}`,
+          rowsPerPageLabel: 'Rows per localized page',
+          rowsSelectedLabel: (totalSelectedRowsCount: number) =>
+            `${totalSelectedRowsCount} localized ${
+              totalSelectedRowsCount === 1 ? 'row' : 'rows'
+            } selected`,
+        }}
+      />
+    ),
+    [pageSizeList],
+  );
+
+  const [globalFilter, setGlobalFilter] = React.useState('');
+  const tableInstance =
+    React.useRef<TableTypes.TableInstance<TableRowDataType>>();
+
+  const [hoveredRowIndex, setHoveredRowIndex] = React.useState(0);
+  const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
+    {},
+  );
+
+  return (
+    <div>
+      <Input
+        placeholder='Search...'
+        value={globalFilter}
+        onInput={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setGlobalFilter(e.target.value)
+        }
+      />
+      <Table
+        columns={columns}
+        data={data}
+        emptyTableContent='No data.'
+        onFilter={onFilter}
+        globalFilterValue={globalFilter}
+        onSelect={onSelect}
+        isSelectable
+        isSortable
+        isResizable
+        enableColumnReordering
+        onSort={onSort}
+        onRowClick={onRowClick}
+        onExpand={onExpand}
+        subComponent={expandedSubComponent}
+        onRowInViewport={onRowInViewport}
+        selectionMode='multi'
+        isRowDisabled={isRowDisabled}
+        initialState={{
+          filters: [{ id: 'name', value: '1' }],
+          selectedRowIds: { '0': true, '1': true, '4': true, '5': true },
+        }}
+        stateReducer={
+          React.useCallback((newState, action, prevState, instance) => {
+            tableInstance.current = instance;
+            return newState;
+          }, []) satisfies NonNullable<
+            TableTypes.TableOptions<TableRowDataType>['stateReducer']
+          >
+        }
+        rowProps={rowProps}
+        paginatorRenderer={paginator}
+        density='condensed'
+        // These flags prevent filters and sorting from resetting
+        autoResetFilters={false}
+        autoResetSortBy={false}
+        columnResizeMode='expand'
+        styleType='zebra-rows'
+        enableVirtualization
+        scrollToRow={React.useCallback(
+          (
+            rows: TableTypes.Row<TableRowDataType>[],
+            data: TableRowDataType[],
+          ) => rows.findIndex((row) => row.original.index === 1),
+          [],
+        )}
+      />
+      <Tooltip
+        reference={rowRefMap[hoveredRowIndex]}
+        content={`Hovered over ${data[hoveredRowIndex].name}.`}
+        placement='bottom'
+      />
+    </div>
+  );
 };
