@@ -18,6 +18,16 @@
         "default": "./cjs/index.js"
       }
     },
+    "./table": {
+      "import": {
+        "types": "./esm/table/index.d.ts",
+        "default": "./esm/table/index.js"
+      },
+      "require": {
+        "types": "./cjs/table/index.d.ts",
+        "default": "./cjs/table/index.js"
+      }
+    },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
     "./esm": "./esm/index.js",
