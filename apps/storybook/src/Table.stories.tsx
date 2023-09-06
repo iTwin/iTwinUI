@@ -28,10 +28,9 @@ import {
 } from '@itwin/itwinui-react';
 import type {
   TableFilterValue,
-  TableProps,
-  TableTypes,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
+import * as TableTypes from '@itwin/itwinui-react/table';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
@@ -43,6 +42,9 @@ import {
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
 import { StoryFn } from '@storybook/react';
+
+type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
+  React.ComponentProps<typeof Table<T>>;
 
 export default {
   title: 'Core/Table',
@@ -1101,7 +1103,7 @@ export const ControlledState = () => {
       },
     ],
     [],
-  );
+  ) satisfies TableTypes.Column<DemoData>[];
 
   const data: DemoData[] = useMemo(
     () => [
@@ -2399,7 +2401,7 @@ export const ResizableColumns = () => {
   );
 
   const [columnResizeMode, setColumnResizeMode] =
-    React.useState<TableProps['columnResizeMode']>('fit');
+    React.useState<TableProps<TableStoryDataType>['columnResizeMode']>('fit');
 
   return (
     <>
