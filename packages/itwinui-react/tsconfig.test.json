@@ -1,4 +1,5 @@
 {
   "extends": "./tsconfig.json",
+  // TODO: Test all the files, and not just the Table files or just the build files.
   "include": ["src/core/Table/**/*"]
 }
