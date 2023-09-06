@@ -8,7 +8,7 @@ import type {
   CellProps,
   CellRendererProps,
   Column,
-} from '@itwin/itwinui-react';
+} from '@itwin/itwinui-react/react-table';
 
 export default () => {
   type TableDataType = {
