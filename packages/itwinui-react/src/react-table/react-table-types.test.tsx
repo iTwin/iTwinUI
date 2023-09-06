@@ -27,8 +27,11 @@ import type {
 } from '../core/Table/index.js';
 
 // Table types can be imported with an alias or selective types can be imported too.
-import * as TableTypes from 'src/react-table/react-table-types.js';
+import * as _TableTypes from 'src/react-table/react-table-types.js';
 import type { Column } from 'src/react-table/react-table-types.js';
+
+// Can import types from file or by package name.
+import * as TableTypes from 'react-table';
 
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
