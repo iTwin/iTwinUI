@@ -56,7 +56,7 @@ export const InputContainer = React.forwardRef((props, forwardedRef) => {
       {label && (
         <Label
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore -- shut up for the love of god
+          // @ts-ignore
           as={inputId && props.as !== 'label' ? 'label' : 'div'}
           required={required}
           disabled={disabled}
