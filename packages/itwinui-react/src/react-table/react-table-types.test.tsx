@@ -252,6 +252,40 @@ import { SvgMore } from 'src/core/utils/index.js';
 };
 
 /**
+ * Passing custom `Filter` does not produce any type errors.
+ * (Testing this since custom `Filter`s used to give type errors.)
+ */
+() => {
+  const columns = React.useMemo(
+    () => [
+      {
+        id: 'name',
+        Header: 'Name',
+        Filter: tableFilters.TextFilter(),
+        accessor: 'name',
+      },
+      {
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
+      },
+    ],
+    [],
+  );
+
+  const data = React.useMemo(() => {
+    return [
+      { name: 'Name1', description: 'description' },
+      { name: 'Name2', description: 'description' },
+      { name: 'Name3', description: 'description' },
+    ];
+  }, []);
+
+  return <Table columns={columns} emptyTableContent='No data.' data={data} />;
+};
+
+/**
  * Complex Table example.
  */
 () => {
