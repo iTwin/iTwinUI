@@ -159,7 +159,6 @@ export type {
   TableFilterValue,
   DateRangeFilterOptions,
   TablePaginatorRendererProps,
-  TableProps,
 } from './Table/index.js';
 
 export { Tag, TagContainer } from './Tag/index.js';
