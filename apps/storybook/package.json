@@ -37,7 +37,7 @@
     "build": "tsc -p tsconfig.build.json && dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
     "dev": "sb dev -p 6006 --no-open --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
-    "test": "yarn test:visual",
+    "test": "node scripts/run-tests.js",
     "approve": "cypress-image-diff -u",
     "cy": "cypress open",
     "cy:run": "cypress run",
