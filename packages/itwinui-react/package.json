@@ -20,12 +20,12 @@
     },
     "./react-table": {
       "import": {
-        "types": "./react-table.d.ts",
-        "default": "./react-table.js"
+        "types": "./esm/react-table/index.d.ts",
+        "default": "./esm/react-table/index.js"
       },
       "require": {
-        "types": "./react-table.d.ts",
-        "default": "./react-table.js"
+        "types": "./cjs/react-table/index.d.ts",
+        "default": "./cjs/react-table/index.js"
       }
     },
     "./styles.css": "./styles.css",

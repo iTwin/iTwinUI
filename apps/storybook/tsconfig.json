@@ -10,8 +10,6 @@
     "allowJs": false,
     "jsx": "react",
     "traceResolution": false,
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,

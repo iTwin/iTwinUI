@@ -20,15 +20,15 @@ import {
   DefaultCell,
   SelectionColumn,
   ExpanderColumn,
-} from '../../index.js';
+} from '../core/Table/index.js';
 import type {
   TableFilterValue,
   TablePaginatorRendererProps,
-} from '../../index.js';
+} from '../core/Table/index.js';
 
 // Table types can be imported with an alias or selective types can be imported too.
-import * as TableTypes from 'react-table';
-import type { Column } from 'react-table';
+import * as TableTypes from 'src/react-table/react-table-types.js';
+import type { Column } from 'src/react-table/react-table-types.js';
 
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
