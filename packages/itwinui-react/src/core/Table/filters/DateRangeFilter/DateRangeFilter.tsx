@@ -9,10 +9,12 @@ import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
 import type { TableFilterProps } from '../types.js';
 import DatePickerInput from './DatePickerInput.js';
+import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
 
 export type DateRangeTranslation = {
   from: string;
   to: string;
+  datePicker?: DatePickerLocalizedNames;
 };
 
 const defaultStrings: DateRangeTranslation = {
@@ -125,6 +127,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         placeholder={placeholder}
         selectedDate={to}
         isFromOrTo='from'
+        localizedNames={translatedStrings.datePicker}
         setFocus
       />
       <DatePickerInput
@@ -137,6 +140,7 @@ export const DateRangeFilter = <T extends Record<string, unknown>>(
         placeholder={placeholder}
         selectedDate={from}
         isFromOrTo='to'
+        localizedNames={translatedStrings.datePicker}
       />
       <FilterButtonBar
         setFilter={() => setFilter([from, to])}
