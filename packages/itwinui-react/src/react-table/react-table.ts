@@ -27,7 +27,25 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { TableFilterProps } from '../core/Table/index.js';
+export type TableFilterProps<T extends Record<string, unknown>> =
+  FilterProps<T> & {
+    /**
+     * Data of column on which filter is opened. It is provided by the table it self.
+     */
+    column: HeaderGroup<T>;
+    /**
+     * Function to close the filter. It is provided by the table it self.
+     */
+    close: () => void;
+    /**
+     * Function to set the filter value. It is provided by the table it self.
+     */
+    setFilter: (filterValue: unknown | undefined) => void;
+    /**
+     * Function to clear the filter value. It is provided by the table it self.
+     */
+    clearFilter: () => void;
+  };
 
 export interface TableOptions<D extends Record<string, unknown>>
   extends Omit<UseTableOptions<D>, 'data' | 'columns'>,

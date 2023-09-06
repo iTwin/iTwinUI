@@ -19,14 +19,8 @@
       }
     },
     "./react-table": {
-      "import": {
-        "types": "./esm/react-table/index.d.ts",
-        "default": "./esm/react-table/index.js"
-      },
-      "require": {
-        "types": "./cjs/react-table/index.d.ts",
-        "default": "./cjs/react-table/index.js"
-      }
+      "types": "./react-table.d.ts",
+      "default": "./react-table.js"
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
@@ -41,7 +35,8 @@
     "styles.css",
     "CHANGELOG.md",
     "LICENSE.md",
-    "react-table.d.ts"
+    "react-table.d.ts",
+    "react-table.js"
   ],
   "description": "A react component library for iTwinUI",
   "homepage": "https://github.com/iTwin/iTwinUI",
@@ -65,7 +60,7 @@
     "ux"
   ],
   "scripts": {
-    "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && yarn build:styles && yarn build:post",
+    "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json && yarn build:styles && yarn build:post",
     "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "build:post": "node ./scripts/postBuild.mjs",
@@ -82,7 +77,7 @@
     "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn build:styles --watch\" \"yarn dev:types\"",
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
-    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
+    "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --emitDeclarationOnly --watch --preserveWatchOutput\"",
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {

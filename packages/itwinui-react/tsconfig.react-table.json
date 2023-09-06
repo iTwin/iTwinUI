@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "files": ["src/core/Table/types/react-table.ts"],
+  "compilerOptions": {
+    "outDir": ".",
+    "noUnusedLocals": false,
+    "importHelpers": true
+  }
+}
