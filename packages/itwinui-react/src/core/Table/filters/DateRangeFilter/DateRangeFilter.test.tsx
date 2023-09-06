@@ -249,16 +249,8 @@ it('should render with localized DatePicker', async () => {
       datePicker: { months, shortDays, days },
     },
   });
-  const iconButton = container.querySelector(
-    '.iui-input-flex-container > .iui-button[data-iui-variant="borderless"]',
-  ) as HTMLButtonElement;
-  expect(iconButton).toBeTruthy();
 
-  await userEvent.click(iconButton);
-  const calendar = container.querySelector(
-    '.iui-date-picker',
-  ) as HTMLButtonElement;
-  expect(calendar).toBeTruthy();
+  await userEvent.click(container.querySelector('button') as HTMLElement);
 
   getByText('January-custom');
   getByText('Su-custom');
