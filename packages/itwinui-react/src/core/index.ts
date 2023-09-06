@@ -159,7 +159,6 @@ export type {
   TableFilterValue,
   DateRangeFilterOptions,
   TablePaginatorRendererProps,
-  TableTypes,
   TableProps,
 } from './Table/index.js';
 

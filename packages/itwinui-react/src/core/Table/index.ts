@@ -5,8 +5,6 @@
 export { Table } from './Table.js';
 export type { TableProps, TablePaginatorRendererProps } from './Table.js';
 
-export type { TableTypes } from './types/index.js';
-
 export { BaseFilter, FilterButtonBar, tableFilters } from './filters/index.js';
 export type {
   BaseFilterProps,

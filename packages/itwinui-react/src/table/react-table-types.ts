@@ -26,7 +26,7 @@ import type {
   ReactNode,
 } from 'react';
 
-import type { TableFilterProps } from '../index.js';
+import type { TableFilterProps } from '../core/Table/index.js';
 
 export interface TableOptions<D extends Record<string, unknown>>
   extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
