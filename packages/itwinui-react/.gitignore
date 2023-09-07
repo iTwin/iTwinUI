@@ -9,7 +9,6 @@ cjs
 esm
 
 # Build outputs
-react-table.js
 react-table.d.ts
 
 # Compiled Styles

@@ -6,8 +6,4 @@ dist
 scripts
 cjs
 esm
-
-# Ignore all .d.ts except ./react-table.d.ts
 *.d.ts
-!/react-table.d.ts
-
