@@ -1,4 +1,4 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from 'next/app.js';
 import css from 'styled-jsx/css';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import '@itwin/itwinui-react/styles.css';
