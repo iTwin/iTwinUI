@@ -199,6 +199,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       <Input
         ref={refs}
         onClick={mergeEventHandlers(onClickProp, handleClick)}
+        aria-expanded={isOpen}
         aria-activedescendant={
           isOpen && focusedIndex != undefined && focusedIndex > -1
             ? getIdFromIndex(focusedIndex)
