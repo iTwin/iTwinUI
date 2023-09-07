@@ -8,7 +8,7 @@ import { Meta, Story } from '@storybook/react/';
 import React from 'react';
 import { Button, NewTabs } from '@itwin/itwinui-react';
 
-type TabsProps = React.ComponentProps<typeof NewTabs>;
+type TabsProps = React.ComponentProps<typeof NewTabs.Wrapper>;
 
 export default {
   title: 'Core/Tabs',
@@ -25,13 +25,13 @@ export default {
   },
 } as Meta<TabsProps>;
 
-export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
+export const DefaultTabs = () => {
   return (
-    <NewTabs.Wrapper {...args}>
+    <NewTabs.Wrapper>
       <NewTabs.TabList>
-        <NewTabs.Tab label='Item1' value='tab1' />
-        <NewTabs.Tab label='Item2' value='tab2' />
-        <NewTabs.Tab label='Item3' value='tab3' />
+        <NewTabs.Tab label='Item1' linkedPanel='tab1' />
+        <NewTabs.Tab label='Item2' linkedPanel='tab2' />
+        <NewTabs.Tab label='Item3' linkedPanel='tab3' />
       </NewTabs.TabList>
 
       <NewTabs.ActionsWrapper>
@@ -43,7 +43,7 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
         </NewTabs.Actions>
       </NewTabs.ActionsWrapper>
 
-      <NewTabs.Panel value='tab1'>
+      <NewTabs.Panel panelId='tab1'>
         Bentley Systems, Incorporated, is an American-based software development
         company that develops, manufactures, licenses, sells and supports
         computer software and services for the design, construction, and
@@ -55,12 +55,12 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
         industrial plants, power plants, and utility networks. The company
         re-invests 20% of their revenues in research and development.
       </NewTabs.Panel>
-      <NewTabs.Panel value='tab2'>
+      <NewTabs.Panel panelId='tab2'>
         Bentley Systems is headquartered in Exton, Pennsylvania, United States,
         but has development, sales and other departments in over 50 countries.
         The company had revenues of $700 million in 2018.
       </NewTabs.Panel>
-      <NewTabs.Panel value='tab3'>
+      <NewTabs.Panel panelId='tab3'>
         Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
         They introduced the commercial version of PseudoStation in 1985, which
         allowed users of Intergraphs VAX systems to use low-cost graphics
@@ -81,9 +81,9 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
   return (
     <NewTabs.Wrapper type='borderless' {...args}>
       <NewTabs.TabList>
-        <NewTabs.Tab value='item1' label='Item1' />
-        <NewTabs.Tab value='item2' label='Item2' />
-        <NewTabs.Tab value='item3' label='Item3' />
+        <NewTabs.Tab linkedPanel='item1' label='Item1' />
+        <NewTabs.Tab linkedPanel='item2' label='Item2' />
+        <NewTabs.Tab linkedPanel='item3' label='Item3' />
       </NewTabs.TabList>
 
       <NewTabs.ActionsWrapper>
@@ -95,7 +95,7 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
         </NewTabs.Actions>
       </NewTabs.ActionsWrapper>
 
-      <NewTabs.Panel value='item1'>
+      <NewTabs.Panel panelId='item1'>
         Bentley Systems, Incorporated, is an American-based software development
         company that develops, manufactures, licenses, sells and supports
         computer software and services for the design, construction, and
@@ -107,12 +107,12 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
         industrial plants, power plants, and utility networks. The company
         re-invests 20% of their revenues in research and development.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item2'>
+      <NewTabs.Panel panelId='item2'>
         Bentley Systems is headquartered in Exton, Pennsylvania, United States,
         but has development, sales and other departments in over 50 countries.
         The company had revenues of $700 million in 2018.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item3'>
+      <NewTabs.Panel panelId='item3'>
         Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
         They introduced the commercial version of PseudoStation in 1985, which
         allowed users of Intergraphs VAX systems to use low-cost graphics
@@ -133,26 +133,26 @@ export const PillTabs: Story<Partial<TabsProps>> = (args) => {
   return (
     <NewTabs.Wrapper type='pill' {...args}>
       <NewTabs.TabList>
-        <NewTabs.Tab value='item1'>
+        <NewTabs.Tab linkedPanel='item1'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item2'>
+        <NewTabs.Tab linkedPanel='item2'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item3'>
+        <NewTabs.Tab linkedPanel='item3'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
         </NewTabs.Tab>
       </NewTabs.TabList>
 
-      <NewTabs.Panel value='item1'>
+      <NewTabs.Panel panelId='item1'>
         Bentley Systems, Incorporated, is an American-based software development
         company that develops, manufactures, licenses, sells and supports
         computer software and services for the design, construction, and
@@ -164,12 +164,12 @@ export const PillTabs: Story<Partial<TabsProps>> = (args) => {
         industrial plants, power plants, and utility networks. The company
         re-invests 20% of their revenues in research and development.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item2'>
+      <NewTabs.Panel panelId='item2'>
         Bentley Systems is headquartered in Exton, Pennsylvania, United States,
         but has development, sales and other departments in over 50 countries.
         The company had revenues of $700 million in 2018.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item3'>
+      <NewTabs.Panel panelId='item3'>
         Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
         They introduced the commercial version of PseudoStation in 1985, which
         allowed users of Intergraphs VAX systems to use low-cost graphics
@@ -193,7 +193,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
   return (
     <NewTabs.Wrapper type='borderless' {...args}>
       <NewTabs.TabList>
-        <NewTabs.Tab value='item0'>
+        <NewTabs.Tab linkedPanel='item0'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -201,7 +201,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
           <NewTabs.TabDescription>Sublabel 0</NewTabs.TabDescription>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item1'>
+        <NewTabs.Tab linkedPanel='item1'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -209,7 +209,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
           <NewTabs.TabDescription>Sublabel 1</NewTabs.TabDescription>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item2' disabled>
+        <NewTabs.Tab linkedPanel='item2' disabled>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -227,7 +227,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
         </NewTabs.Actions>
       </NewTabs.ActionsWrapper>
 
-      <NewTabs.Panel value='item0'>
+      <NewTabs.Panel panelId='item0'>
         Bentley Systems, Incorporated, is an American-based software development
         company that develops, manufactures, licenses, sells and supports
         computer software and services for the design, construction, and
@@ -239,12 +239,12 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
         industrial plants, power plants, and utility networks. The company
         re-invests 20% of their revenues in research and development.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item1'>
+      <NewTabs.Panel panelId='item1'>
         Bentley Systems is headquartered in Exton, Pennsylvania, United States,
         but has development, sales and other departments in over 50 countries.
         The company had revenues of $700 million in 2018.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item2'>
+      <NewTabs.Panel panelId='item2'>
         Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
         They introduced the commercial version of PseudoStation in 1985, which
         allowed users of Intergraphs VAX systems to use low-cost graphics
@@ -295,7 +295,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
           {tabData?.map((item, index) => {
             return (
               <NewTabs.Tab
-                value={`tab${index + 1}`}
+                linkedPanel={`tab${index + 1}`}
                 isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
@@ -313,19 +313,19 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
           </NewTabs.Actions>
         </NewTabs.ActionsWrapper>
 
-        <NewTabs.Panel value='tab1'>Tab Content One</NewTabs.Panel>
-        <NewTabs.Panel value='tab2'>Tab Content Two</NewTabs.Panel>
-        <NewTabs.Panel value='tab3'>Tab Content Three</NewTabs.Panel>
-        <NewTabs.Panel value='tab4'>Tab Content Four</NewTabs.Panel>
-        <NewTabs.Panel value='tab5'>Tab Content Five</NewTabs.Panel>
-        <NewTabs.Panel value='tab6'>Tab Content Six</NewTabs.Panel>
-        <NewTabs.Panel value='tab7'>Tab Content Seven</NewTabs.Panel>
-        <NewTabs.Panel value='tab8'>Tab Content Eight</NewTabs.Panel>
-        <NewTabs.Panel value='tab9'>Tab Content Nine</NewTabs.Panel>
-        <NewTabs.Panel value='tab10'>Tab Content Ten</NewTabs.Panel>
-        <NewTabs.Panel value='tab11'>Tab Content Eleven</NewTabs.Panel>
-        <NewTabs.Panel value='tab12'>Tab Content Twelve</NewTabs.Panel>
-        <NewTabs.Panel value='tab13'>Tab Content Thirteen</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab1'>Tab Content One</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab2'>Tab Content Two</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab3'>Tab Content Three</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab4'>Tab Content Four</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab5'>Tab Content Five</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab6'>Tab Content Six</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab7'>Tab Content Seven</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab8'>Tab Content Eight</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab9'>Tab Content Nine</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab10'>Tab Content Ten</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab11'>Tab Content Eleven</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab12'>Tab Content Twelve</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab13'>Tab Content Thirteen</NewTabs.Panel>
       </NewTabs.Wrapper>
     </div>
   );
@@ -375,7 +375,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
           {tabData?.map((item, index) => {
             return (
               <NewTabs.Tab
-                value={`tab${index + 1}`}
+                linkedPanel={`tab${index + 1}`}
                 isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
@@ -393,19 +393,19 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
           </NewTabs.Actions>
         </NewTabs.ActionsWrapper>
 
-        <NewTabs.Panel value='tab1'>Tab Content One</NewTabs.Panel>
-        <NewTabs.Panel value='tab2'>Tab Content Two</NewTabs.Panel>
-        <NewTabs.Panel value='tab3'>Tab Content Three</NewTabs.Panel>
-        <NewTabs.Panel value='tab4'>Tab Content Four</NewTabs.Panel>
-        <NewTabs.Panel value='tab5'>Tab Content Five</NewTabs.Panel>
-        <NewTabs.Panel value='tab6'>Tab Content Six</NewTabs.Panel>
-        <NewTabs.Panel value='tab7'>Tab Content Seven</NewTabs.Panel>
-        <NewTabs.Panel value='tab8'>Tab Content Eight</NewTabs.Panel>
-        <NewTabs.Panel value='tab9'>Tab Content Nine</NewTabs.Panel>
-        <NewTabs.Panel value='tab10'>Tab Content Ten</NewTabs.Panel>
-        <NewTabs.Panel value='tab11'>Tab Content Eleven</NewTabs.Panel>
-        <NewTabs.Panel value='tab12'>Tab Content Twelve</NewTabs.Panel>
-        <NewTabs.Panel value='tab13'>Tab Content Thirteen</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab1'>Tab Content One</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab2'>Tab Content Two</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab3'>Tab Content Three</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab4'>Tab Content Four</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab5'>Tab Content Five</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab6'>Tab Content Six</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab7'>Tab Content Seven</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab8'>Tab Content Eight</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab9'>Tab Content Nine</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab10'>Tab Content Ten</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab11'>Tab Content Eleven</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab12'>Tab Content Twelve</NewTabs.Panel>
+        <NewTabs.Panel panelId='tab13'>Tab Content Thirteen</NewTabs.Panel>
       </NewTabs.Wrapper>
     </div>
   );
@@ -423,7 +423,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
   return (
     <NewTabs.Wrapper orientation='vertical' type='borderless' {...args}>
       <NewTabs.TabList>
-        <NewTabs.Tab value='item0'>
+        <NewTabs.Tab linkedPanel='item0'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -431,7 +431,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
           <NewTabs.TabDescription>Sublabel 0</NewTabs.TabDescription>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item1'>
+        <NewTabs.Tab linkedPanel='item1'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -439,7 +439,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
           <NewTabs.TabDescription>Sublabel 1</NewTabs.TabDescription>
         </NewTabs.Tab>
 
-        <NewTabs.Tab value='item2'>
+        <NewTabs.Tab linkedPanel='item2'>
           <NewTabs.TabIcon>
             <SvgStar />
           </NewTabs.TabIcon>
@@ -457,7 +457,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
         </NewTabs.Actions>
       </NewTabs.ActionsWrapper>
 
-      <NewTabs.Panel value='item0'>
+      <NewTabs.Panel panelId='item0'>
         Bentley Systems, Incorporated, is an American-based software development
         company that develops, manufactures, licenses, sells and supports
         computer software and services for the design, construction, and
@@ -469,12 +469,12 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
         industrial plants, power plants, and utility networks. The company
         re-invests 20% of their revenues in research and development.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item1'>
+      <NewTabs.Panel panelId='item1'>
         Bentley Systems is headquartered in Exton, Pennsylvania, United States,
         but has development, sales and other departments in over 50 countries.
         The company had revenues of $700 million in 2018.
       </NewTabs.Panel>
-      <NewTabs.Panel value='item2'>
+      <NewTabs.Panel panelId='item2'>
         Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
         They introduced the commercial version of PseudoStation in 1985, which
         allowed users of Intergraphs VAX systems to use low-cost graphics

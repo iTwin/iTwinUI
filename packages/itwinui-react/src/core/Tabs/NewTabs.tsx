@@ -177,12 +177,12 @@ const TabList = React.forwardRef((props, ref) => {
       React.isValidElement(items[0]) &&
       setActiveValue
     ) {
-      setActiveValue(items[0].props.value as string);
+      setActiveValue(items[0].props.linkedPanel as string);
       return;
     }
     items.forEach((item) => {
       if (React.isValidElement(item) && item.props.isActive && setActiveValue) {
-        const value = item.props.value as string;
+        const value = item.props.linkedPanel as string;
         if (value !== activeValue) {
           setActiveValue(value);
         }
@@ -192,7 +192,10 @@ const TabList = React.forwardRef((props, ref) => {
 
   useIsomorphicLayoutEffect(() => {
     items.forEach((item, index) => {
-      if (React.isValidElement(item) && item.props.value === activeValue) {
+      if (
+        React.isValidElement(item) &&
+        item.props.linkedPanel === activeValue
+      ) {
         newActiveIndex.current = index;
         return;
       }
@@ -239,7 +242,10 @@ const TabList = React.forwardRef((props, ref) => {
 
   useIsomorphicLayoutEffect(() => {
     items.forEach((item, index) => {
-      if (React.isValidElement(item) && item.props.value === focusedValue) {
+      if (
+        React.isValidElement(item) &&
+        item.props.linkedPanel === focusedValue
+      ) {
         newFocusedIndex.current = index;
         return;
       }
@@ -524,11 +530,11 @@ const Tab = React.forwardRef((props, ref) => {
     useSafeContext(TabListContext);
 
   const onClick = () => {
-    setFocusedValue && setFocusedValue(value);
+    setFocusedValue && setFocusedValue(linkedPanel);
     if (onActivated) {
       onActivated();
     } else {
-      setActiveValue && setActiveValue(value);
+      setActiveValue && setActiveValue(linkedPanel);
     }
   };
 
@@ -592,7 +598,9 @@ const Tab = React.forwardRef((props, ref) => {
       case 'Spacebar': {
         event.preventDefault();
         if (focusActivationMode === 'manual') {
-          onActivated ? onActivated() : setActiveValue && setActiveValue(value);
+          onActivated
+            ? onActivated()
+            : setActiveValue && setActiveValue(linkedPanel);
         }
         break;
       }
