@@ -19,8 +19,7 @@
       }
     },
     "./react-table": {
-      "types": "./react-table.d.ts",
-      "default": "./react-table.js"
+      "types": "./react-table.d.ts"
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
