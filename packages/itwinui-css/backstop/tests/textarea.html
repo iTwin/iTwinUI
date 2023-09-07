@@ -43,10 +43,10 @@
     <h2>Default</h2>
     <section id="demo-default">
       <label
-        class="iui-input-container iui-with-message"
+        class="iui-input-grid iui-with-message"
         id="demo-default-singular"
       >
-        <div class="iui-label iui-required">Textarea label</div>
+        <div class="iui-input-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-input"
@@ -54,11 +54,13 @@
           id="test-default-singular"
           required
         ></textarea>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div>Help message.</div>
+        </div>
       </label>
 
-      <label class="iui-input-container iui-with-message">
-        <div class="iui-label">Textarea label</div>
+      <label class="iui-input-grid iui-with-message">
+        <div class="iui-input-label">Textarea label</div>
         <textarea
           class="iui-input"
           rows="3"
@@ -66,22 +68,32 @@
         >
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </textarea>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div>Help message.</div>
+        </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-disabled">
-        <div class="iui-label">Textarea label</div>
+      <label class="iui-input-grid iui-with-message iui-disabled">
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Textarea label</div>
         <textarea
           disabled
           placeholder="Placeholder…"
           class="iui-input"
           rows="3"
         ></textarea>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div>Help message.</div>
+        </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-disabled">
-        <div class="iui-label">Textarea label</div>
+      <label class="iui-input-grid iui-with-message iui-disabled">
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Textarea label</div>
         <textarea
           disabled
           class="iui-input"
@@ -89,58 +101,78 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         >
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
         </textarea>
-        <div class="iui-message">Help message.</div>
+        <div class="iui-status-message">
+          <div>Help message.</div>
+        </div>
       </label>
 
       <label
-        class="iui-input-container iui-with-message iui-positive"
+        class="iui-input-grid iui-with-message iui-positive"
         id="demo-status-singular"
       >
-        <div class="iui-label">Textarea label</div>
+        <div class="iui-input-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-input"
           rows="3"
           id="test-status-singular"
+          data-iui-status="positive"
         ></textarea>
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
-        <div class="iui-message">
-          Positive message.
+        <div
+          class="iui-status-message"
+          data-iui-status="positive"
+        >
+          <div class="iui-svg-icon">
+            <svg-status-success
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-success>
+          </div>
+          <div>Positive message.</div>
         </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-warning">
-        <div class="iui-label">Textarea label</div>
+      <label class="iui-input-grid iui-with-message iui-warning">
+        <div class="iui-input-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-input"
           rows="3"
+          data-iui-status="warning"
         ></textarea>
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
-        <div class="iui-message">
-          Warning message.
+        <div
+          class="iui-status-message"
+          data-iui-status="warning"
+        >
+          <div class="iui-svg-icon">
+            <svg-status-warning
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-warning>
+          </div>
+          <div>Warning message.</div>
         </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-negative">
-        <div class="iui-label">Textarea label</div>
+      <label class="iui-input-grid iui-with-message iui-negative">
+        <div class="iui-input-label">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-input"
           rows="3"
+          data-iui-status="negative"
         ></textarea>
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
-        <div class="iui-message">
-          Negative message.
+        <div
+          class="iui-status-message"
+          data-iui-status="negative"
+        >
+          <div class="iui-svg-icon">
+            <svg-status-error
+              class="iui-svg-icon"
+              aria-hidden="true"
+            ></svg-status-error>
+          </div>
+          <div>Negative message.</div>
         </div>
       </label>
     </section>
@@ -149,8 +181,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     <h2>Inline</h2>
     <section id="demo-inline">
-      <label class="iui-input-container iui-with-message iui-inline-label">
-        <div class="iui-label iui-required">Textarea label</div>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label iui-required">Textarea label</div>
         <textarea
           placeholder="Placeholder…"
           class="iui-input"
@@ -159,8 +194,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         ></textarea>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label">
-        <div class="iui-label">Textarea label</div>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Textarea label</div>
         <textarea
           class="iui-input"
           rows="3"
@@ -170,8 +208,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         </textarea>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
-        <div class="iui-label">Textarea label</div>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label iui-disabled"
+        data-iui-label-placement="inline"
+      >
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Textarea label</div>
         <textarea
           disabled
           placeholder="Placeholder…"
@@ -180,8 +224,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
         ></textarea>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label iui-disabled">
-        <div class="iui-label">Textarea label</div>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label iui-disabled"
+        data-iui-label-placement="inline"
+      >
+        <div
+          class="iui-input-label"
+          data-iui-disabled="true"
+        >Textarea label</div>
         <textarea
           disabled
           class="iui-input"
@@ -191,43 +241,67 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
           </textarea>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-positive">
-        <div class="iui-label">Textarea label</div>
-        <textarea
-          placeholder="Placeholder…"
-          class="iui-input"
-          rows="3"
-        ></textarea>
-        <svg-status-success
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-success>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label iui-inline-icon iui-positive"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Textarea label</div>
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="positive"
+        >
+          <textarea
+            placeholder="Placeholder…"
+            rows="3"
+          ></textarea>
+          <svg-status-success
+            class="iui-svg-icon iui-input-decorator-icon"
+            data-iui-icon-color="positive"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-warning">
-        <div class="iui-label">Textarea label</div>
-        <textarea
-          placeholder="Placeholder…"
-          class="iui-input"
-          rows="3"
-        ></textarea>
-        <svg-status-warning
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-warning>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label iui-inline-icon iui-warning"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Textarea label</div>
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="warning"
+        >
+          <textarea
+            placeholder="Placeholder…"
+            rows="3"
+          ></textarea>
+          <svg-status-warning
+            class="iui-svg-icon iui-input-decorator-icon"
+            data-iui-icon-color="warning"
+            aria-hidden="true"
+          ></svg-status-warning>
+        </div>
       </label>
 
-      <label class="iui-input-container iui-with-message iui-inline-label iui-inline-icon iui-negative">
-        <div class="iui-label">Textarea label</div>
-        <textarea
-          placeholder="Placeholder…"
-          class="iui-input"
-          rows="3"
-        ></textarea>
-        <svg-status-error
-          class="iui-input-icon"
-          aria-hidden="true"
-        ></svg-status-error>
+      <label
+        class="iui-input-grid iui-with-message iui-inline-label iui-inline-icon iui-negative"
+        data-iui-label-placement="inline"
+      >
+        <div class="iui-input-label">Textarea label</div>
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="negative"
+        >
+          <textarea
+            placeholder="Placeholder…"
+            rows="3"
+          ></textarea>
+          <svg-status-error
+            class="iui-svg-icon iui-input-decorator-icon"
+            data-iui-icon-color="negative"
+            aria-hidden="true"
+          ></svg-status-error>
+        </div>
       </label>
     </section>
   </body>

@@ -3,9 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Slider, Text } from '@itwin/itwinui-react';
+import { Slider, Text, Label } from '@itwin/itwinui-react';
 
 export default () => {
+  const labelId = React.useId();
+
   const dateFormatter = React.useMemo(() => {
     return new Intl.DateTimeFormat('default', {
       month: 'short',
@@ -26,7 +28,14 @@ export default () => {
 
   return (
     <div style={{ width: 'min(100%, 300px)' }}>
+      <Label id={labelId} as='div'>
+        Choose a start date
+      </Label>
       <Slider
+        thumbProps={() => ({
+          'aria-labelledby': labelId,
+          'aria-valuetext': dateFormatter.format(currentValue.date),
+        })}
         values={[currentValue.number]}
         min={1}
         max={365}

@@ -1,7 +1,7 @@
 ---
-'@itwin/itwinui-react': major
+'@itwin/itwinui-react': minor
 ---
 
-Updated Expandable Block component to be composition of customizable subcomponents: <ExpandableBlock.Header/>, <ExpandableBlock.ExpandIcon/>, <ExpandableBlock.LabelArea/>, <ExpandableBlock.Title/>, <ExpandableBlock.Caption/>, <ExpandableBlock.EndIcon/>, <ExpandableBlock.Content/>
+Updated `ExpandableBlock` to support customizable subcomponents: `<ExpandableBlock.Wrapper/>`, `<ExpandableBlock.Trigger/>`, `<ExpandableBlock.ExpandIcon/>`, `<ExpandableBlock.LabelArea/>`, `<ExpandableBlock.Title/>`, `<ExpandableBlock.Caption/>`, `<ExpandableBlock.EndIcon/>`, `<ExpandableBlock.Content/>`
 
-The following props have been removed as they are now subcomponents: `title`, `caption`, `endIcon`
+The old api is still supported for backwards compatibility.

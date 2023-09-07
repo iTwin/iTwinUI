@@ -9,7 +9,7 @@ import { SvgSmileyHappy } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
 
 function assertBaseElement(
-  menuItem: HTMLLIElement,
+  menuItem: HTMLElement,
   {
     role = 'menuitem',
     isSelected = false,
@@ -44,14 +44,14 @@ function assertBaseElement(
 it('should render content', () => {
   const { container } = render(<MenuItem>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
 });
 
 it('should render as selected', () => {
   const { container } = render(<MenuItem isSelected>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { isSelected: true });
 });
 
@@ -63,7 +63,7 @@ it('should render as disabled', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { disabled: true });
 
   fireEvent.click(menuItem);
@@ -75,7 +75,7 @@ it('should render with an startIcon', () => {
     <MenuItem startIcon={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { hasIcon: true });
 });
 
@@ -84,14 +84,14 @@ it('should render with a endIcon', () => {
     <MenuItem endIcon={<SvgSmileyHappy />}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { hasBadge: true });
 });
 
 it('should render with custom role', () => {
   const { container } = render(<MenuItem role='option'>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { role: 'option' });
 });
 
@@ -103,7 +103,7 @@ it('should handle click', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
 
   fireEvent.click(menuItem);
@@ -118,7 +118,7 @@ it('should handle key press', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
 
   fireEvent.keyDown(menuItem, { key: 'Enter', altKey: true });
@@ -137,7 +137,7 @@ it('should add custom className', () => {
     <MenuItem className='test-className'>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
   expect(menuItem.classList).toContain('test-className');
 });
@@ -147,7 +147,7 @@ it('should add custom style', () => {
     <MenuItem style={{ color: 'red' }}>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
   expect(menuItem.style.color).toEqual('red');
 });
@@ -155,7 +155,7 @@ it('should add custom style', () => {
 it('should render large size', () => {
   const { container } = render(<MenuItem size='large'>Test item</MenuItem>);
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
   expect(menuItem).toHaveAttribute('data-iui-size', 'large');
 });
@@ -165,7 +165,7 @@ it('should render sublabel', () => {
     <MenuItem sublabel='Test sublabel'>Test item</MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem);
   expect(menuItem).toHaveAttribute('data-iui-size', 'large');
 
@@ -203,14 +203,14 @@ it('should show sub menu on hover', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { hasBadge: true });
 
   // hover over menu item
   fireEvent.mouseOver(menuItem);
   const subMenu = container.querySelectorAll(
     '[data-tippy-root] .iui-list-item',
-  )[0] as HTMLLIElement;
+  )[0] as HTMLElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
 
@@ -218,7 +218,7 @@ it('should show sub menu on hover', () => {
   fireEvent.mouseOver(subMenu);
   const subSubMenu = container.querySelectorAll(
     '[data-tippy-root] .iui-list-item',
-  )[1] as HTMLLIElement;
+  )[1] as HTMLElement;
   expect(subSubMenu.textContent).toBe('Test sub sub');
   expect(container.ownerDocument.activeElement).toEqual(subSubMenu);
   fireEvent.click(subSubMenu);
@@ -244,14 +244,14 @@ it('should handle key press with sub menus', async () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLLIElement;
+  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
   assertBaseElement(menuItem, { hasBadge: true });
 
   // go right to open sub menu
   menuItem.focus();
   await userEvent.keyboard('{ArrowRight}');
   const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
-  const subMenu = subTippy.querySelector('.iui-list-item') as HTMLLIElement;
+  const subMenu = subTippy.querySelector('.iui-list-item') as HTMLElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
 

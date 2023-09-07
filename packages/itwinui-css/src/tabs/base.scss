@@ -324,7 +324,7 @@ $borderless-horizontal-tab-min-height: calc(
 
   :where(.iui-tabs-wrapper.iui-vertical) & {
     margin-block-start: $tabs-actions-gap;
-    padding: 0 $content-actions-gap-vertical-tabs;
+    padding-inline: $content-actions-gap-vertical-tabs;
   }
 }
 

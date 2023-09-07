@@ -5,7 +5,7 @@
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
-import { LabeledTextarea } from '@itwin/itwinui-react';
+import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
 
 type LabeledTextareaProps = React.ComponentProps<typeof LabeledTextarea>;
 
@@ -102,12 +102,15 @@ Negative.args = {
 };
 
 export const WithCustomIcon: Story<Partial<LabeledTextareaProps>> = (args) => {
+  const { message: textMessage, ...rest } = args;
   return (
     <LabeledTextarea
       placeholder='Enter text here'
       label='This is a label'
-      svgIcon={<SvgCamera />}
-      {...args}
+      message={
+        <StatusMessage startIcon={<SvgCamera />}>{textMessage}</StatusMessage>
+      }
+      {...rest}
     />
   );
 };

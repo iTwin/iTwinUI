@@ -22,13 +22,12 @@ const renderComponent = (initialProps?: Partial<DatePickerInputProps>) => {
 it('should render correctly', async () => {
   const { container } = renderComponent();
 
-  const labeledInput = container.querySelector(
-    '.iui-input-container.iui-inline-label',
-  );
+  const labeledInput = container.querySelector('.iui-input-grid');
   expect(labeledInput).toBeTruthy();
+  expect(labeledInput).toHaveAttribute('data-iui-label-placement', 'inline');
 
   const iconButton = container.querySelector(
-    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
+    '.iui-input-flex-container > .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
 
@@ -42,7 +41,7 @@ it('should render correctly with given date', () => {
   const { container } = renderComponent({ date });
 
   const input = container.querySelector(
-    '.iui-input-container input',
+    '.iui-input-flex-container input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   expect(input.value).toEqual(date.toISOString());
@@ -52,7 +51,7 @@ it('should render correctly with invalid given date', () => {
   const { container } = renderComponent({ date: new Date(' ') });
 
   const input = container.querySelector(
-    '.iui-input-container input',
+    '.iui-input-flex-container input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   expect(input.value).toEqual('');
@@ -63,7 +62,7 @@ it('should call onChange with parsed date', () => {
   const { container } = renderComponent({ onChange });
 
   const input = container.querySelector(
-    '.iui-input-container input',
+    '.iui-input-flex-container input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   fireEvent.change(input, { target: { value: '2021-05-17T21:00:00.000Z' } });
@@ -76,7 +75,7 @@ it('should not call onChange with invalid value', () => {
   const { container } = renderComponent({ onChange });
 
   const input = container.querySelector(
-    '.iui-input-container input',
+    '.iui-input-flex-container input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   fireEvent.change(input, { target: { value: ' ' } });
@@ -92,7 +91,7 @@ it('should call onChange when selected day from calendar', async () => {
   });
 
   const iconButton = container.querySelector(
-    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
+    '.iui-input-flex-container > .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   await userEvent.click(iconButton);
@@ -114,7 +113,7 @@ it('should call onChange with undefined when input field is cleared', async () =
   });
 
   const iconButton = container.querySelector(
-    '.iui-input-icon .iui-button[data-iui-variant="borderless"]',
+    '.iui-input-flex-container > .iui-button[data-iui-variant="borderless"]',
   ) as HTMLButtonElement;
   expect(iconButton).toBeTruthy();
   await userEvent.click(iconButton);
@@ -123,7 +122,7 @@ it('should call onChange with undefined when input field is cleared', async () =
   expect(onChange).toHaveBeenNthCalledWith(1, new Date(2021, 4, 7));
 
   const input = container.querySelector(
-    '.iui-input-container input',
+    '.iui-input-flex-container input',
   ) as HTMLInputElement;
   expect(input).toBeTruthy();
   fireEvent.change(input, { target: { value: '' } });

@@ -9,7 +9,12 @@ import type { ButtonProps } from '../Button/Button.js';
 import { IconButton } from '../IconButton/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { Placement } from 'tippy.js';
-import { Box, SvgCaretDownSmall, SvgCaretUpSmall } from '../../utils/index.js';
+import {
+  Box,
+  SvgCaretDownSmall,
+  SvgCaretUpSmall,
+  useId,
+} from '../../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -28,6 +33,14 @@ export type SplitButtonProps = ButtonProps & {
    * Content of primary button.
    */
   children: React.ReactNode;
+  /**
+   * Passes props to SplitButton wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
+  /**
+   * Passes props to SplitButton menu button.
+   */
+  menuButtonProps?: React.ComponentProps<typeof IconButton>;
 };
 
 /**
@@ -53,48 +66,61 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     styleType = 'default',
     size,
     children,
-    style,
-    title,
+    wrapperProps,
+    menuButtonProps,
     ...rest
   } = props;
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const [menuWidth, setMenuWidth] = React.useState(0);
-  const ref = React.useRef<HTMLDivElement>(null);
+  const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (ref.current) {
-      setMenuWidth(ref.current.offsetWidth);
+    if (wrapperRef.current) {
+      setMenuWidth(wrapperRef.current.offsetWidth);
     }
   }, [children, size]);
 
+  const labelId = useId();
+
   return (
     <Box
-      className={cx(className, 'iui-button-split', {
-        'iui-disabled': props.disabled,
-      })}
-      style={style}
-      title={title}
-      ref={ref}
+      {...wrapperProps}
+      className={cx(
+        'iui-button-split',
+        {
+          'iui-disabled': props.disabled,
+        },
+        wrapperProps?.className,
+      )}
+      ref={wrapperRef}
     >
       <Button
+        className={className}
         styleType={styleType}
         size={size}
         onClick={onClick}
         ref={forwardedRef}
         {...rest}
+        labelProps={{ id: labelId, ...props.labelProps }}
       >
         {children}
       </Button>
       <DropdownMenu
         placement={menuPlacement}
         menuItems={menuItems}
-        style={{ minWidth: menuWidth }}
+        style={{ minInlineSize: menuWidth }}
         onShow={React.useCallback(() => setIsMenuOpen(true), [])}
         onHide={React.useCallback(() => setIsMenuOpen(false), [])}
       >
-        <IconButton styleType={styleType} size={size} disabled={props.disabled}>
+        <IconButton
+          styleType={styleType}
+          size={size}
+          disabled={props.disabled}
+          aria-labelledby={props.labelProps?.id || labelId}
+          {...menuButtonProps}
+        >
           {isMenuOpen ? <SvgCaretUpSmall /> : <SvgCaretDownSmall />}
         </IconButton>
       </DropdownMenu>

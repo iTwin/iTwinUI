@@ -3,11 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, SvgCalendar, isBefore } from '../../../utils/index.js';
+import { Popover, SvgCalendar, isBefore, useId } from '../../../utils/index.js';
+import type { LabeledInput } from '../../../LabeledInput/index.js';
 import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
-import { LabeledInput } from '../../../LabeledInput/index.js';
 import { DatePicker } from '../../../DatePicker/index.js';
-import { IconButton } from '../../../Buttons/index.js';
+import { InputGrid } from '../../../InputGrid/index.js';
+import { Label } from '../../../Label/index.js';
+import { InputWithDecorations } from '../../../InputWithDecorations/index.js';
+import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
 
 export type DatePickerInputProps = {
   date?: Date;
@@ -22,19 +25,32 @@ export type DatePickerInputProps = {
    * The 'to' date for the 'from' DatePickerInput or the 'from' date for the 'to' DatePickerInput
    */
   selectedDate?: Date;
+  /**
+   * Months, short days and days localized names for DatePicker
+   */
+  localizedNames?: DatePickerLocalizedNames;
 } & Omit<
   React.ComponentProps<typeof LabeledInput>,
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
 >;
 
 const DatePickerInput = React.forwardRef((props, forwardedRef) => {
+  const uid = useId();
   const {
     onChange,
     date,
     parseInput,
     formatDate,
+    label,
+    required,
+    disabled,
     isFromOrTo,
     selectedDate,
+    wrapperProps,
+    labelProps,
+    inputWrapperProps,
+    id = uid,
+    localizedNames,
     ...rest
   } = props;
 
@@ -91,6 +107,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
           onChange={onDateSelected}
           setFocus
           isDateDisabled={isDateDisabled}
+          localizedNames={localizedNames}
         />
       }
       placement='bottom'
@@ -102,23 +119,35 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
       }}
       appendTo='parent'
     >
-      <LabeledInput
-        ref={forwardedRef}
-        displayStyle='inline'
-        value={inputValue}
-        onChange={onInputChange}
-        onClick={close}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
+      <InputGrid labelPlacement='inline' {...wrapperProps}>
+        <Label
+          as='label'
+          required={required}
+          disabled={disabled}
+          htmlFor={id}
+          {...labelProps}
+        >
+          {label}
+        </Label>
+        <InputWithDecorations {...inputWrapperProps}>
+          <InputWithDecorations.Input
+            id={id}
+            value={inputValue}
+            onChange={onInputChange}
+            onClick={close}
+            required={required}
+            disabled={disabled}
+            ref={forwardedRef}
+            {...rest}
+          />
+          <InputWithDecorations.Button
             onClick={() => setIsVisible((v) => !v)}
             ref={buttonRef}
           >
             <SvgCalendar />
-          </IconButton>
-        }
-        {...rest}
-      />
+          </InputWithDecorations.Button>
+        </InputWithDecorations>
+      </InputGrid>
     </Popover>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;

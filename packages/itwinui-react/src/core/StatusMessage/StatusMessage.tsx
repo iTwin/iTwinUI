@@ -3,7 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, StatusIconMap } from '../utils/index.js';
+import { Box, StatusIconMap, Icon } from '../utils/index.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import cx from 'classnames';
 
 type StatusMessageProps = {
   /**
@@ -19,31 +21,50 @@ type StatusMessageProps = {
    * Status of the message.
    */
   status?: 'positive' | 'warning' | 'negative';
+  /**
+   * Passes props to icon
+   */
+  iconProps?: React.ComponentProps<typeof Icon>;
+  /**
+   * Passes props to content
+   */
+  contentProps?: React.ComponentPropsWithRef<'div'>;
 };
 
 /**
- * Component to display icon and text below the `Combobox` component.
+ * Component to display icon and text below the form field.
  * @example
  * <StatusMessage>This is the text</StatusMessage>
  * <StatusMessage startIcon={<SvgStar />}>This is the text</StatusMessage>
  */
-export const StatusMessage = ({
-  startIcon: userStartIcon,
-  children,
-  status,
-}: StatusMessageProps) => {
+export const StatusMessage = React.forwardRef((props, ref) => {
+  const {
+    children,
+    startIcon: userStartIcon,
+    status,
+    className,
+    iconProps,
+    contentProps,
+    ...rest
+  } = props;
+
   const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
   return (
-    <>
+    <Box
+      className={cx('iui-status-message', className)}
+      data-iui-status={status}
+      ref={ref}
+      {...rest}
+    >
       {!!icon ? (
-        <Box as='span' className='iui-input-icon' aria-hidden>
+        <Icon aria-hidden {...iconProps}>
           {icon}
-        </Box>
+        </Icon>
       ) : null}
-      <Box className='iui-message'>{children}</Box>
-    </>
+      <Box {...contentProps}>{children}</Box>
+    </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
 
 export default StatusMessage;

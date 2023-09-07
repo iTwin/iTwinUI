@@ -1,5 +1,63 @@
 # Changelog
 
+## 3.0.0-dev.8
+
+### Major Changes
+
+- [#1544](https://github.com/iTwin/iTwinUI/pull/1544): Removed `iconDisplayStyle` prop from `LabeledInput` and `LabeledTextarea` components. `svgIcon` is now added inline. Users must use `StatusMessage` to add custom icon to the message.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Removed `inputStyle` and `inputClassName` props from `LabeledInput`; style and className props are being passed down to input. Added `wrapperProps`, `labelProps`, `messageProps`, `messageIconProps`, `inputWrapperProps` to pass props to sub elements.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Removed `selectStyle` and `selectClassName` props from `LabeledSelect`; style and className props are being passed down to textarea. Added `wrapperProps`, `labelProps`, `messageProps`, `messageIconProps` to pass props to sub elements.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Removed `textareaStyle` and `textareaClassName` props from `LabeledTextarea`; style and className props are being passed down to textarea. Added `wrapperProps`, `labelProps`, `messageProps`, `messageIconProps` to pass props to sub elements.
+
+### Minor Changes
+
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `status` prop to `Input`, `Textarea` and `Select`.
+- [#1510](https://github.com/iTwin/iTwinUI/pull/1510): Added `domProps` to allow Toast's DOM customisation.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added two new components for building complex input layouts.
+
+  - `InputGrid` for the "outer" layout (label, inputs and statusMessage)
+  - `InputWithDecorations` for the "inner" layout (start icon/button, end icon/button)
+
+  `LabeledInput`, `LabeledSelect`, `LabeledTextarea` and table `DatePickerInput` have been updated to make use of these new components internally.
+
+- [#1531](https://github.com/iTwin/iTwinUI/pull/1531): Selected options in Select/ComboBox will now have a checkmark.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added new `padded` prop to `Icon`.
+- [#1466](https://github.com/iTwin/iTwinUI/pull/1466): Adding the ability for every DOM node inside DatePicker component to have a custom className passed to it.
+- [#1523](https://github.com/iTwin/iTwinUI/pull/1523): Added `ariaStrategy` prop to Tooltip. Can be used to change how the tooltip is associated with the trigger element.
+
+### Patch Changes
+
+- [#1533](https://github.com/iTwin/iTwinUI/pull/1533): Fixed missing accessible name in SplitButton.
+- [#1495](https://github.com/iTwin/iTwinUI/pull/1495): Added accessible name to dropdown menu button in HeaderSplitButton.
+- [#1496](https://github.com/iTwin/iTwinUI/pull/1496): Added accessible button name to SideNavigation expand button.
+- [#1505](https://github.com/iTwin/iTwinUI/pull/1505): Gave accessible label to the sub-row toggle in <Table>.
+
+## 3.0.0-dev.7
+
+### Major Changes
+
+- [#1478](https://github.com/iTwin/iTwinUI/pull/1478): ThemeProvider now defaults the `theme` value to `"inherit"` and falls back to `"light"` there is no parent theme found. Also the inherit behavior has been made more resilient for cases where react context fails.
+- [#1458](https://github.com/iTwin/iTwinUI/pull/1458): Added wrapperProps, contentProps, topProps, and bottomProps to Side Navigation component to improve customization. Top-level props (className, styling, etc) now passed to SideNav button instead of to the wrapper.
+- [#1435](https://github.com/iTwin/iTwinUI/pull/1435): Improving customization of SplitButton with wrapperProps and menuButtonProps. ClassName now passed to the button instead of the component wrapper.
+- [#1461](https://github.com/iTwin/iTwinUI/pull/1461): Changed disabled button behavior to make them focusable and use `aria-disabled` instead of `disabled` attribute.
+
+### Minor Changes
+
+- [#1440](https://github.com/iTwin/iTwinUI/pull/1440): Adding the ability for every DOM node to have a custom className passed to it.
+  New prop for `FileUpload` component: `contentProps`
+- [#1430](https://github.com/iTwin/iTwinUI/pull/1430): Adding the ability for each node element in `Stepper` to have a custom `prop`.
+  New props include: `stepProps`, `trackContentProps`, `circleProps`, `nameProps`, `labelProps`, `labelCountProps`
+- [#1435](https://github.com/iTwin/iTwinUI/pull/1435): Improving customization of Button with new props: labelProps, startIconProps, and endIconProps.
+  Improving customization of IconButton with iconProps.
+- [#1477](https://github.com/iTwin/iTwinUI/pull/1477): Added a new `portalContainer` prop to `ThemeProvider`. When specified, all floating elements (tooltips, toats, dialogs) under the ThemeProvider will read this prop from context and portal into it.
+
+### Patch Changes
+
+- [#1446](https://github.com/iTwin/iTwinUI/pull/1446): Avatar has been refactored to be a single `<span>`. The colors have been updated to pass AAA contrast ratio.
+- [#1492](https://github.com/iTwin/iTwinUI/pull/1492): Fixed `aria-owns` syntax for `TreeNode`
+- [#1486](https://github.com/iTwin/iTwinUI/pull/1486): DatePicker date tables now have accessible labels.
+- [#1499](https://github.com/iTwin/iTwinUI/pull/1499): Removed special handling of iPhone notch in Header and SideNavigation.
+
 ## 3.0.0-dev.6
 
 ### Major Changes
@@ -119,6 +177,43 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.12.7
+
+### Patch Changes
+
+- [#1545](https://github.com/iTwin/iTwinUI/pull/1545): `tableFilters.DateRangeFilter` now supports localizing the date picker using `translatedLabels.datePicker`.
+
+## 2.12.6
+
+### Patch Changes
+
+- [#1516](https://github.com/iTwin/iTwinUI/pull/1516): Update SearchBox placeholder color to match Input.
+
+## 2.12.5
+
+### Patch Changes
+
+- [#1511](https://github.com/iTwin/iTwinUI/pull/1511): Fix high-visibility button background on hover.
+
+## 2.12.4
+
+### Patch Changes
+
+- [#1508](https://github.com/iTwin/iTwinUI/pull/1508): Fixed an issue where styles were not included in CommonJS environments.
+
+## 2.12.3
+
+### Patch Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Improved color contrast for input and select placeholder text.
+- [#1501](https://github.com/iTwin/iTwinUI/pull/1501): Fixed a small misalignment in Table when using sticky columns.
+
+## 2.12.2
+
+### Patch Changes
+
+- [#1494](https://github.com/iTwin/iTwinUI/pull/1494): Updated color-picker dot so its outline adapts dynamically to the backgrounds for better contrast.
 
 ## 2.12.1
 

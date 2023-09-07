@@ -93,12 +93,12 @@ export const Track = (props: TrackProps) => {
                   style={{
                     ...(orientation === 'horizontal'
                       ? {
-                          left: `${lowPercent}%`,
-                          right: `${highPercent}%`,
+                          insetInlineStart: `${lowPercent}%`,
+                          insetInlineEnd: `${highPercent}%`,
                         }
                       : {
-                          top: `${highPercent}%`,
-                          bottom: `${lowPercent}%`,
+                          insetBlockStart: `${highPercent}%`,
+                          insetBlockEnd: `${lowPercent}%`,
                         }),
                   }}
                 />

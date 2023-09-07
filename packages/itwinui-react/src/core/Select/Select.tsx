@@ -12,6 +12,8 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  SvgCheckmark,
+  Icon,
 } from '../utils/index.js';
 import type {
   PopoverProps,
@@ -138,6 +140,10 @@ export type SelectProps<T> = {
    */
   size?: 'small' | 'large';
   /**
+   * Status of select.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
    */
   itemRenderer?: (
@@ -238,6 +244,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     popoverProps,
     multiple = false,
     triggerProps,
+    status,
     ...rest
   } = props;
 
@@ -248,7 +255,6 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
   const onShowHandler = React.useCallback(
     (instance: PopoverInstance) => {
@@ -310,6 +316,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         key: `${label}-${index}`,
         isSelected,
         startIcon: startIcon,
+        endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
         onClick: () => {
           if (option.disabled) {
             return;
@@ -373,8 +380,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
             style={{
-              minWidth,
-              maxWidth: `min(${minWidth * 2}px, 90vw)`,
+              minInlineSize: minWidth,
+              maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
               ...menuStyle,
             }}
             id={`${uid}-menu`}
@@ -389,10 +396,8 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         onHide={onHideHandler}
         {...popoverProps}
         visible={isOpen}
-        onClickOutside={(_, { target }) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            setIsOpen(false);
-          }
+        onClickOutside={() => {
+          setIsOpen(false);
         }}
       >
         <Box
@@ -400,6 +405,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           role='combobox'
           ref={selectRef}
           data-iui-size={size}
+          data-iui-status={status}
           onClick={() => !disabled && setIsOpen((o) => !o)}
           onKeyDown={(e) => !disabled && onKeyDown(e)}
           aria-disabled={disabled}
@@ -443,19 +449,16 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           )}
         </Box>
       </Popover>
-      <Box
+      <Icon
         as='span'
         aria-hidden
-        ref={toggleButtonRef}
         className={cx('iui-end-icon', {
-          'iui-actionable': !disabled,
           'iui-disabled': disabled,
           'iui-open': isOpen,
         })}
-        onClick={() => !disabled && setIsOpen((o) => !o)}
       >
         <SvgCaretDownSmall />
-      </Box>
+      </Icon>
 
       {multiple ? (
         <AutoclearingHiddenLiveRegion text={liveRegionSelection} />

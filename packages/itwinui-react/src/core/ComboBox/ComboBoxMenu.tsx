@@ -20,7 +20,7 @@ type ComboBoxMenuProps = Omit<
   React.ComponentPropsWithoutRef<typeof Menu>,
   'onClick'
 > &
-  React.ComponentPropsWithoutRef<'ul'>;
+  React.ComponentPropsWithoutRef<'div'>;
 
 const isOverflowOverlaySupported = () =>
   getWindow()?.CSS?.supports?.('overflow: overlay');
@@ -28,7 +28,7 @@ const isOverflowOverlaySupported = () =>
 const VirtualizedComboBoxMenu = React.forwardRef(
   (
     { children, className, style, ...rest }: ComboBoxMenuProps,
-    forwardedRef: React.Ref<HTMLUListElement>,
+    forwardedRef: React.Ref<HTMLElement>,
   ) => {
     const { minWidth, id, filteredOptions, getMenuItem, focusedIndex } =
       useSafeContext(ComboBoxStateContext);
@@ -64,13 +64,13 @@ const VirtualizedComboBoxMenu = React.forwardRef(
     });
 
     const surfaceStyles = {
-      minWidth,
+      minInlineSize: minWidth,
 
       // set as constant because we don't want it shifting when items are unmounted
-      maxWidth: minWidth,
+      maxInlineSize: minWidth,
 
       // max-height must be on the outermost element for virtual scroll
-      maxHeight: 'calc((var(--iui-component-height) - 1px) * 8.5)',
+      maxBlockSize: 'calc((var(--iui-component-height) - 1px) * 8.5)',
       overflowY: isOverflowOverlaySupported() ? 'overlay' : 'auto',
       ...style,
     } as React.CSSProperties;
@@ -105,8 +105,8 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
 
   const styles = React.useMemo(
     () => ({
-      minWidth,
-      maxWidth: `min(${minWidth * 2}px, 90vw)`,
+      minInlineSize: minWidth,
+      maxInlineSize: `min(${minWidth * 2}px, 90vw)`,
     }),
     [minWidth],
   );
@@ -128,5 +128,5 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
       )}
     </>
   );
-}) as PolymorphicForwardRefComponent<'ul', ComboBoxMenuProps>;
+}) as PolymorphicForwardRefComponent<'div', ComboBoxMenuProps>;
 ComboBoxMenu.displayName = 'ComboBoxMenu';

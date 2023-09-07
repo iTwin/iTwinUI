@@ -34,6 +34,29 @@ it('should display all step names in default workflow diagram', () => {
   expect(queryByText('3')).toBeNull();
 });
 
+it('should add custom prop to workflow diagram wrapper', () => {
+  const workflowDiagram = (
+    <WorkflowDiagram
+      steps={[
+        {
+          name: 'Step One',
+        },
+        {
+          name: 'Step Two',
+        },
+        {
+          name: 'Step Three',
+        },
+      ]}
+      wrapperProps={{ className: 'some-wrapper' }}
+    />
+  );
+
+  const { container } = render(workflowDiagram);
+
+  expect(container.querySelector('div')).toHaveClass('some-wrapper');
+});
+
 it('should display tooltip upon hovering step if description provided', async () => {
   jest.useFakeTimers();
 
@@ -57,8 +80,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   render(workflowDiagram);
 
-  expect(document.querySelector('.iui-tooltip')).toBeNull();
-  expect(screen.queryByText('Step one tooltip')).toBeNull();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
   act(() => void jest.advanceTimersByTime(50));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
@@ -70,7 +92,7 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
   act(() => void jest.advanceTimersByTime(50));
-  expect(document.querySelector('.iui-tooltip')).toBeNull();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
   jest.useRealTimers();
 });

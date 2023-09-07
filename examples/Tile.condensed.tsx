@@ -8,7 +8,7 @@ import { SvgImodelHollow } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='Condensed' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
@@ -21,6 +21,6 @@ export default () => {
           <MenuItem key={2}>Item 2</MenuItem>
         </Tile.MoreOptions>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

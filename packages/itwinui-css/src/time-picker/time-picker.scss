@@ -26,7 +26,8 @@
 
 .iui-time,
 .iui-period {
-  padding: var(--iui-size-s) var(--iui-size-xs);
+  padding-block: var(--iui-size-s);
+  padding-inline: var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
   scrollbar-width: none;
@@ -41,7 +42,8 @@
 
     > li {
       @include mixins.iui-focus;
-      padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
+      padding-block: calc(var(--iui-size-s) * 0.5);
+      padding-inline: var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
       &:hover {

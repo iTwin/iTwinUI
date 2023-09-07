@@ -14,7 +14,7 @@
 
 .iui-codeblock {
   @include mixins.iui-reset;
-  margin: calc(var(--iui-size-s) * 0.5) 0;
+  margin-block: calc(var(--iui-size-s) * 0.5);
 
   > .iui-title-bar {
     display: flex;
@@ -62,7 +62,7 @@
         content: counter(section);
         text-align: end;
         display: inline-block;
-        padding: 0 var(--iui-size-xs);
+        padding-inline: var(--iui-size-xs);
         inline-size: calc(var(--iui-size-l) + 2 * var(--iui-size-xs)); // 2 * iui-size-xs for the padding
         background-color: var(--iui-color-background-backdrop);
         color: var(--iui-color-text-muted);
