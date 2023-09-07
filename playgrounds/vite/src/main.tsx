@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import styled from '@emotion/styled';
+
+// Workaround for emotion/styled not working in ESM: https://github.com/emotion-js/emotion/issues/2730#issuecomment-1205489497
+import _styled from '@emotion/styled';
+const styled = _styled.default;
+
 import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App.js';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
