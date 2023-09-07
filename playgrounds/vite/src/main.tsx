@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createRoot } from 'react-dom/client';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@itwin/itwinui-react';
-import App from './App';
+import App from './App.tsx';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
 import '@itwin/itwinui-react/styles.css';
 
