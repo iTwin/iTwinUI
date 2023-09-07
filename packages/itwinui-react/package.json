@@ -64,7 +64,7 @@
     "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "build:post": "node ./scripts/postBuild.mjs",
-    "clean:build": "rimraf esm && rimraf cjs",
+    "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
     "test": "yarn test:unit && yarn test:types",
