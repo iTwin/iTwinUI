@@ -599,28 +599,21 @@ import { SvgMore } from 'src/core/utils/index.js';
     [],
   ) satisfies TableRowDataType[];
 
-  const onFilter = React.useCallback(
-    (
-      filters: TableFilterValue<TableRowDataType>[],
-      state: TableTypes.TableState,
-      filteredData: TableTypes.Row<TableRowDataType>[],
-    ) => {
-      // rowInfo is used due to JSON errors when displaying row data
-      let rowInfo = '[';
-      filteredData.forEach((row) => {
-        rowInfo += `${JSON.stringify(row.original)},`;
-      });
-      rowInfo = rowInfo.slice(0, rowInfo.length - 1);
-      rowInfo += ']';
+  const onFilter = React.useCallback((filters, state, filteredData) => {
+    // rowInfo is used due to JSON errors when displaying row data
+    let rowInfo = '[';
+    filteredData?.forEach((row) => {
+      rowInfo += `${JSON.stringify(row.original)},`;
+    });
+    rowInfo = rowInfo.slice(0, rowInfo.length - 1);
+    rowInfo += ']';
 
-      console.log(
-        `Filter changed. Filters: ${JSON.stringify(
-          filters,
-        )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
-      );
-    },
-    [],
-  ) satisfies NonNullable<TableProps<TableRowDataType>['onFilter']>;
+    console.log(
+      `Filter changed. Filters: ${JSON.stringify(
+        filters,
+      )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
+    );
+  }, []) satisfies NonNullable<TableProps<TableRowDataType>['onFilter']>;
 
   const onSelect = React.useCallback(
     (rows, state) =>
