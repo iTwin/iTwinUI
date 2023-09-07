@@ -23,7 +23,13 @@ type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
 >;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
-  const { onKeyDown: onKeyDownProp, selectTags, size, ...rest } = props;
+  const {
+    onKeyDown: onKeyDownProp,
+    onClick: onClickProp,
+    selectTags,
+    size,
+    ...rest
+  } = props;
 
   const {
     isOpen,
@@ -157,6 +163,8 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
             if (focusedIndexRef.current > -1) {
               onClickHandler?.(focusedIndexRef.current);
             }
+          } else {
+            dispatch({ type: 'open' });
           }
           break;
         }
@@ -179,12 +187,18 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       optionsExtraInfoRef,
     ],
   );
+
+  const handleClick = React.useCallback(() => {
+    dispatch({ type: isOpen ? 'close' : 'open' });
+  }, [dispatch, isOpen]);
+
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
     <>
       <Input
         ref={refs}
+        onClick={mergeEventHandlers(onClickProp, handleClick)}
         aria-activedescendant={
           isOpen && focusedIndex != undefined && focusedIndex > -1
             ? getIdFromIndex(focusedIndex)
