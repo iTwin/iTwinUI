@@ -109,6 +109,7 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     <>
       {cloneElementWithRef(children, (children) => ({
         ...popover.getReferenceProps(children.props),
+        'aria-expanded': popover.open,
         ref: mergeRefs(triggerRef, popover.refs.setReference),
       }))}
       {popover.open && (

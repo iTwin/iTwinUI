@@ -352,31 +352,31 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
   const [isMenuVisible, setIsMenuVisible] = React.useState(false);
 
   return (
-    <DropdownMenu
-      onVisibleChange={(open) =>
-        open ? setIsMenuVisible(true) : setIsMenuVisible(false)
-      }
-      menuItems={(close) =>
-        children?.map((option: React.ReactElement) =>
-          React.cloneElement(option, {
-            onClick: (value: unknown) => {
-              close();
-              option.props.onClick?.(value);
-            },
-          }),
-        )
-      }
+    <Box
+      className={cx(
+        'iui-tile-more-options',
+        {
+          'iui-visible': isMenuVisible,
+        },
+        className,
+      )}
+      ref={forwardedRef}
+      {...rest}
     >
-      <Box
-        className={cx(
-          'iui-tile-more-options',
-          {
-            'iui-visible': isMenuVisible,
-          },
-          className,
-        )}
-        ref={forwardedRef}
-        {...rest}
+      <DropdownMenu
+        onVisibleChange={(open) =>
+          open ? setIsMenuVisible(true) : setIsMenuVisible(false)
+        }
+        menuItems={(close) =>
+          children?.map((option: React.ReactElement) =>
+            React.cloneElement(option, {
+              onClick: (value: unknown) => {
+                close();
+                option.props.onClick?.(value);
+              },
+            }),
+          )
+        }
       >
         <IconButton
           styleType='borderless'
@@ -386,8 +386,8 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
         >
           <SvgMore />
         </IconButton>
-      </Box>
-    </DropdownMenu>
+      </DropdownMenu>
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TileMoreOptionsOwnProps>;
 TileMoreOptions.displayName = 'Tile.MoreOptions';

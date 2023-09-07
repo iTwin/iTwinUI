@@ -185,7 +185,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0}
+      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
       aria-disabled={disabled}
