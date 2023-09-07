@@ -166,8 +166,7 @@ it('should render menuItems correctly', async () => {
     ),
   ).toEqual(downArrow);
 
-  const menu = document.querySelector('.iui-menu') as HTMLElement;
-  expect(menu).toBeFalsy();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   await userEvent.click(button);
 
@@ -185,8 +184,8 @@ it('should render menuItems correctly', async () => {
     ),
   ).toEqual(upArrow);
 
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeVisible();
-
   expect(menu.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
   const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;

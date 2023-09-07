@@ -32,7 +32,7 @@ it('should render correctly', async () => {
   expect(iconButton).toBeTruthy();
 
   await userEvent.click(iconButton);
-  const calendar = container.querySelector('.iui-date-picker');
+  const calendar = document.querySelector('.iui-date-picker');
   expect(calendar).toBeTruthy();
 });
 
@@ -132,7 +132,7 @@ it('should call onChange with undefined when input field is cleared', async () =
 it('should disable dates before "from" date when using "to" date picker', async () => {
   const fromDate = new Date(2023, 3, 22);
   const onClick = jest.fn();
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     isFromOrTo: 'to',
     selectedDate: fromDate,
   });
@@ -141,7 +141,7 @@ it('should disable dates before "from" date when using "to" date picker', async 
   expect(iconButton).toBeTruthy();
 
   await userEvent.click(iconButton);
-  const day12 = getByText('12');
+  const day12 = screen.getByText('12');
   await userEvent.click(day12);
   expect(onClick).not.toHaveBeenCalled();
 });

@@ -235,9 +235,7 @@ it.each(['Enter', ' ', 'Spacebar'])(
     act(() => {
       fireEvent.keyDown(
         select.querySelector('.iui-select-button') as HTMLElement,
-        {
-          key,
-        },
+        { key },
       );
     });
     menu = document.querySelector('.iui-menu') as HTMLElement;

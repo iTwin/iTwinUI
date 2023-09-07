@@ -229,7 +229,7 @@ it('should render options dropdown correctly', async () => {
   expect(container.querySelector('.iui-tile')).toBeTruthy();
 
   const menuButton = container.querySelector(
-    '.iui-tile-more-options',
+    '.iui-tile-more-options button',
   ) as HTMLButtonElement;
   expect(menuButton).toBeTruthy();
   await userEvent.click(menuButton);

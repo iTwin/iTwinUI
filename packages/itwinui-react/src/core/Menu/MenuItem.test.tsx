@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import MenuItem from './MenuItem.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
@@ -208,25 +208,17 @@ it('should show sub menu on hover', () => {
 
   // hover over menu item
   fireEvent.mouseOver(menuItem);
-  const subMenu = container.querySelectorAll(
-    '[data-tippy-root] .iui-list-item',
-  )[0] as HTMLElement;
-  expect(subMenu.textContent).toBe('Test sub');
-  expect(container.ownerDocument.activeElement).toEqual(subMenu);
+  const subMenuItem = screen.getByText('Test sub');
 
   // hover over sub menu item
-  fireEvent.mouseOver(subMenu);
-  const subSubMenu = container.querySelectorAll(
-    '[data-tippy-root] .iui-list-item',
-  )[1] as HTMLElement;
-  expect(subSubMenu.textContent).toBe('Test sub sub');
-  expect(container.ownerDocument.activeElement).toEqual(subSubMenu);
-  fireEvent.click(subSubMenu);
+  fireEvent.mouseOver(subMenuItem);
+  const subSubMenuItem = screen.getByText('Test sub sub');
+  fireEvent.click(subSubMenuItem);
   expect(mockedSubSubOnClick).toHaveBeenCalled();
 
   // leave sub menu item
-  fireEvent.mouseLeave(subMenu, { relatedTarget: menuItem });
-  expect(subSubMenu).not.toBeVisible();
+  fireEvent.mouseLeave(subMenuItem, { relatedTarget: menuItem });
+  expect(subSubMenuItem).not.toBeVisible();
 });
 
 it('should handle key press with sub menus', async () => {
@@ -250,18 +242,16 @@ it('should handle key press with sub menus', async () => {
   // go right to open sub menu
   menuItem.focus();
   await userEvent.keyboard('{ArrowRight}');
-  const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
-  const subMenu = subTippy.querySelector('.iui-list-item') as HTMLElement;
-  expect(subMenu.textContent).toBe('Test sub');
-  expect(container.ownerDocument.activeElement).toEqual(subMenu);
+  const subMenuItem = screen.getByText('Test sub');
+  expect(subMenuItem).toHaveFocus();
 
   // go left to close sub menu
   await userEvent.keyboard('{ArrowLeft}');
-  expect(subTippy).not.toBeVisible();
+  expect(subMenuItem).not.toBeVisible();
 
   // go right to open sub menu
   await userEvent.keyboard('{ArrowRight}');
-  expect(subTippy).toBeVisible();
+  expect(subMenuItem).toBeVisible();
 
   // click
   await userEvent.keyboard('{Enter}');
