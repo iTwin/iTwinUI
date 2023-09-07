@@ -80,7 +80,7 @@ it('should render with selected value', () => {
   });
 });
 
-it('should render caret icon correctly', () => {
+it('should render caret icon correctly', async () => {
   const { container } = renderComponent();
   let icon = container.querySelector(
     '.iui-end-icon.iui-svg-icon > svg',
@@ -96,19 +96,19 @@ it('should render caret icon correctly', () => {
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // open
-  fireEvent.click(input);
+  await userEvent.click(input);
   icon = container.querySelector('.iui-end-icon.iui-open > svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(document.querySelector('.iui-menu')).toBeVisible();
   const menuItem = document.querySelector('.iui-list-item') as HTMLElement;
 
   // close
-  fireEvent.click(menuItem);
+  await userEvent.click(menuItem);
   icon = container.querySelector(
     '.iui-end-icon.iui-svg-icon > svg',
   ) as HTMLElement;
   expect(icon).toEqual(caretDown);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should filter list according to text input', () => {
@@ -206,7 +206,7 @@ it('should select value on click', async () => {
   await userEvent.tab();
   await userEvent.click(getByText('Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(input.value).toEqual('Item 1');
 
   await userEvent.tab({ shift: true });
@@ -276,7 +276,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
   await userEvent.keyboard('{Enter}');
   items = document.querySelectorAll('.iui-list-item');
   expect(mockOnChange).toHaveBeenCalledWith(0);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen menu
   await userEvent.keyboard('{Enter}');
@@ -300,7 +300,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
   // select 2
   await userEvent.keyboard('{Enter}');
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
@@ -311,13 +311,13 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen and close
   await act(async () => void (await userEvent.keyboard('X')));
   expect(document.querySelector('.iui-menu')).toBeVisible();
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should handle keyboard navigation when virtualization is enabled', async () => {
@@ -393,7 +393,7 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
   await userEvent.keyboard('{Enter}');
   items = document.querySelectorAll('.iui-list-item');
   expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen menu
   await userEvent.keyboard('{Enter}');
@@ -448,7 +448,7 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
   // select 11
   await userEvent.keyboard('{Enter}');
   expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
@@ -459,13 +459,13 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen and close
   await act(async () => void (await userEvent.keyboard('X')));
   expect(document.querySelector('.iui-menu')).toBeVisible();
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should accept inputProps', () => {
@@ -505,7 +505,7 @@ it('should work with custom itemRenderer', async () => {
   await userEvent.tab();
   await userEvent.click(getByText('CUSTOM Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(input).toHaveValue('Item 1'); // the actual value of input doesn't change
 
   await userEvent.keyboard('{Enter}'); // reopen menu
@@ -639,7 +639,7 @@ it('should use the latest onChange prop', async () => {
   expect(mockOnChange1).toHaveBeenNthCalledWith(1, 1);
 
   rerender(<ComboBox options={options} onChange={mockOnChange2} />);
-  await userEvent.tab({ shift: true }); // reopen menu
+  await userEvent.keyboard('{Enter}'); // reopen menu
   await userEvent.click(screen.getByText('Item 2'));
   expect(mockOnChange2).toHaveBeenNthCalledWith(1, 2);
   expect(mockOnChange1).toHaveBeenCalledTimes(1);
@@ -662,7 +662,7 @@ it('should call onExpand and onCollapse when dropdown is opened and closed', asy
   const menuItem = document.querySelector('.iui-list-item') as HTMLElement;
 
   await userEvent.click(menuItem);
-  expect(list).not.toBeVisible();
+  expect(list).toBeFalsy();
   expect(onCollapse).toHaveBeenCalled();
 });
 
@@ -910,7 +910,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('X')));
@@ -928,7 +928,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 
   // close
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should not crash when provided value in not in options when multiple enabled', async () => {
