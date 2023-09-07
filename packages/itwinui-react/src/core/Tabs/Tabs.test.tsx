@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Tabs } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
-type TabsProps = React.ComponentProps<typeof Tabs>;
+type TabsProps = React.ComponentProps<typeof Tabs.Wrapper>;
 type TabListProps = React.ComponentProps<typeof Tabs.TabList>;
 
 const renderComponent = (
@@ -33,7 +33,7 @@ const renderComponent = (
   );
   const props: TabsProps = { ...initialProps } as TabsProps;
   const children = initialChildren ?? defaultChildren;
-  return render(<Tabs {...props}>{children}</Tabs>);
+  return render(<Tabs.Wrapper {...props}>{children}</Tabs.Wrapper>);
 };
 
 it('should render tabs', () => {
@@ -406,11 +406,11 @@ it('should set focused index when tab is clicked', () => {
 
 it('should render a Tab in its most basic state', () => {
   const { container } = render(
-    <Tabs>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab' label='Tab label' />
       </Tabs.TabList>
-    </Tabs>,
+    </Tabs.Wrapper>,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
@@ -421,14 +421,14 @@ it('should render a Tab in its most basic state', () => {
 
 it('should render with sublabel', () => {
   const { container } = render(
-    <Tabs>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab'>
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
           <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
-    </Tabs>,
+    </Tabs.Wrapper>,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
@@ -444,7 +444,7 @@ it('should render with sublabel', () => {
 
 it('should render with icon', () => {
   const { container } = render(
-    <Tabs>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab'>
           <Tabs.TabIcon>
@@ -453,7 +453,7 @@ it('should render with icon', () => {
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
         </Tabs.Tab>
       </Tabs.TabList>
-    </Tabs>,
+    </Tabs.Wrapper>,
   );
   expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
@@ -469,11 +469,11 @@ it('should render with icon', () => {
 
 it('should render in disabled state', () => {
   const { container } = render(
-    <Tabs>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab' disabled label='Tab label' />
       </Tabs.TabList>
-    </Tabs>,
+    </Tabs.Wrapper>,
   );
 
   const tab = container.querySelector('button.iui-tab') as HTMLButtonElement;

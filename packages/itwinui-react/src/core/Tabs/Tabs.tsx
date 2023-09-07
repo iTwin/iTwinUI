@@ -19,7 +19,7 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
 
 // ----------------------------------------------------------------------------
-// TabsComponent
+// TabsWrapper
 
 type OverflowOptions = {
   /**
@@ -70,9 +70,9 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
-type TabsComponentOwnProps = TabsOrientationProps & TabsOverflowProps;
+type TabsWrapperOwnProps = TabsOrientationProps & TabsOverflowProps;
 
-const TabsComponent = React.forwardRef((props, ref) => {
+const TabsWrapper = React.forwardRef((props, ref) => {
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
   let overflowOptions: OverflowOptions | undefined;
   if (
@@ -117,8 +117,8 @@ const TabsComponent = React.forwardRef((props, ref) => {
       </TabsContext.Provider>
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div', TabsComponentOwnProps>;
-TabsComponent.displayName = 'Tabs';
+}) as PolymorphicForwardRefComponent<'div', TabsWrapperOwnProps>;
+TabsWrapper.displayName = 'Tabs.Wrapper';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabList component
@@ -667,30 +667,6 @@ const TabDescription = React.forwardRef((props, ref) => {
 TabDescription.displayName = 'Tabs.TabDescription';
 
 // ----------------------------------------------------------------------------
-// Tabs.ActionsWrapper component
-
-const TabsActionsWrapper = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
-
-  const { type } = useSafeContext(TabsContext);
-
-  if (type !== 'pill') {
-    return (
-      <Box
-        className={cx('iui-tabs-actions-wrapper', className)}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </Box>
-    );
-  } else {
-    return <></>;
-  }
-}) as PolymorphicForwardRefComponent<'div'>;
-TabsActionsWrapper.displayName = 'Tabs.ActionsWrapper';
-
-// ----------------------------------------------------------------------------
 // Tabs.Actions component
 
 const TabsActions = React.forwardRef((props, ref) => {
@@ -743,6 +719,10 @@ const TabsPanel = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
 TabsPanel.displayName = 'Tabs.Panel';
 
+const TabsComponent = () => {
+  return <></>;
+};
+
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
@@ -777,6 +757,10 @@ TabsPanel.displayName = 'Tabs.Panel';
  */
 
 export const Tabs = Object.assign(TabsComponent, {
+  /**
+   *
+   */
+  Wrapper: TabsWrapper,
   /**
    * Tablist subcomponent which contains all of the tab subcomponents.
    * @example
@@ -825,10 +809,6 @@ export const Tabs = Object.assign(TabsComponent, {
    * Tab description subcomponent which places a description under the tab label.
    */
   TabDescription: TabDescription,
-  /**
-   * Tab actions wrapper subcomponent which contains the actions subcomponent.
-   */
-  ActionsWrapper: TabsActionsWrapper,
   /**
    * Tab actions subcomponent which contains action buttons that are placed at the end of the tabs.
    */

@@ -27,21 +27,19 @@ export default {
 
 export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs {...args}>
+    <Tabs.Wrapper {...args}>
       <Tabs.TabList>
         <Tabs.Tab label='Item1' value='tab1' />
         <Tabs.Tab label='Item2' value='tab2' />
         <Tabs.Tab label='Item3' value='tab3' />
       </Tabs.TabList>
 
-      <Tabs.ActionsWrapper>
-        <Tabs.Actions>
-          <Button key={'Small'} size={'small'}>
-            Small size button
-          </Button>
-          <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Actions>
-      </Tabs.ActionsWrapper>
+      <Tabs.Actions>
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>
+        <Button key={'Normal'}>Normal size button</Button>
+      </Tabs.Actions>
 
       <Tabs.Panel value='tab1'>
         Bentley Systems, Incorporated, is an American-based software development
@@ -70,7 +68,7 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
 DefaultTabs.args = {
@@ -79,21 +77,19 @@ DefaultTabs.args = {
 
 export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs type='borderless' {...args}>
+    <Tabs.Wrapper type='borderless' {...args}>
       <Tabs.TabList>
         <Tabs.Tab value='item1' label='Item1' />
         <Tabs.Tab value='item2' label='Item2' />
         <Tabs.Tab value='item3' label='Item3' />
       </Tabs.TabList>
 
-      <Tabs.ActionsWrapper>
-        <Tabs.Actions>
-          <Button key={'Small'} size={'small'}>
-            Small size button
-          </Button>
-          <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Actions>
-      </Tabs.ActionsWrapper>
+      <Tabs.Actions>
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>
+        <Button key={'Normal'}>Normal size button</Button>
+      </Tabs.Actions>
 
       <Tabs.Panel value='item1'>
         Bentley Systems, Incorporated, is an American-based software development
@@ -122,7 +118,7 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
 BorderlessTabs.args = {
@@ -131,7 +127,7 @@ BorderlessTabs.args = {
 
 export const PillTabs: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs type='pill' {...args}>
+    <Tabs.Wrapper type='pill' {...args}>
       <Tabs.TabList>
         <Tabs.Tab value='item1'>
           <Tabs.TabIcon>
@@ -179,7 +175,7 @@ export const PillTabs: Story<Partial<TabsProps>> = (args) => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
 PillTabs.args = {
@@ -191,7 +187,7 @@ PillTabs.argTypes = {
 
 export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs type='borderless' {...args}>
+    <Tabs.Wrapper type='borderless' {...args}>
       <Tabs.TabList>
         <Tabs.Tab value='item0'>
           <Tabs.TabIcon>
@@ -218,14 +214,12 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.ActionsWrapper>
-        <Tabs.Actions>
-          <Button key={'Small'} size={'small'}>
-            Small size button
-          </Button>
-          <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Actions>
-      </Tabs.ActionsWrapper>
+      <Tabs.Actions>
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>
+        <Button key={'Normal'}>Normal size button</Button>
+      </Tabs.Actions>
 
       <Tabs.Panel value='item0'>
         Bentley Systems, Incorporated, is an American-based software development
@@ -254,7 +248,7 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
 SublabelsAndIcons.args = {
@@ -290,7 +284,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         padding: 8,
       }}
     >
-      <Tabs overflowOptions={{ useOverflow: true }} {...args}>
+      <Tabs.Wrapper overflowOptions={{ useOverflow: true }} {...args}>
         <Tabs.TabList>
           {tabData?.map((item, index) => {
             return (
@@ -307,11 +301,9 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
           })}
         </Tabs.TabList>
 
-        <Tabs.ActionsWrapper>
-          <Tabs.Actions>
-            <Button key={'button'}>Button</Button>
-          </Tabs.Actions>
-        </Tabs.ActionsWrapper>
+        <Tabs.Actions>
+          <Button key={'button'}>Button</Button>
+        </Tabs.Actions>
 
         <Tabs.Panel value='tab1'>Tab Content One</Tabs.Panel>
         <Tabs.Panel value='tab2'>Tab Content Two</Tabs.Panel>
@@ -326,7 +318,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         <Tabs.Panel value='tab11'>Tab Content Eleven</Tabs.Panel>
         <Tabs.Panel value='tab12'>Tab Content Twelve</Tabs.Panel>
         <Tabs.Panel value='tab13'>Tab Content Thirteen</Tabs.Panel>
-      </Tabs>
+      </Tabs.Wrapper>
     </div>
   );
 };
@@ -366,7 +358,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         padding: 8,
       }}
     >
-      <Tabs
+      <Tabs.Wrapper
         orientation='vertical'
         overflowOptions={{ useOverflow: true }}
         {...args}
@@ -387,11 +379,9 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
           })}
         </Tabs.TabList>
 
-        <Tabs.ActionsWrapper>
-          <Tabs.Actions>
-            <Button key={'button'}>Button</Button>
-          </Tabs.Actions>
-        </Tabs.ActionsWrapper>
+        <Tabs.Actions>
+          <Button key={'button'}>Button</Button>
+        </Tabs.Actions>
 
         <Tabs.Panel value='tab1'>Tab Content One</Tabs.Panel>
         <Tabs.Panel value='tab2'>Tab Content Two</Tabs.Panel>
@@ -406,7 +396,7 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         <Tabs.Panel value='tab11'>Tab Content Eleven</Tabs.Panel>
         <Tabs.Panel value='tab12'>Tab Content Twelve</Tabs.Panel>
         <Tabs.Panel value='tab13'>Tab Content Thirteen</Tabs.Panel>
-      </Tabs>
+      </Tabs.Wrapper>
     </div>
   );
 };
@@ -421,7 +411,7 @@ VerticalOverflow.argTypes = {
 
 export const Vertical: Story<Partial<TabsProps>> = (args) => {
   return (
-    <Tabs orientation='vertical' type='borderless' {...args}>
+    <Tabs.Wrapper orientation='vertical' type='borderless' {...args}>
       <Tabs.TabList>
         <Tabs.Tab value='item0'>
           <Tabs.TabIcon>
@@ -448,14 +438,12 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.ActionsWrapper>
-        <Tabs.Actions>
-          <Button key={'Small'} size={'small'}>
-            Small size button
-          </Button>
-          <Button key={'Normal'}>Normal size button</Button>
-        </Tabs.Actions>
-      </Tabs.ActionsWrapper>
+      <Tabs.Actions>
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>
+        <Button key={'Normal'}>Normal size button</Button>
+      </Tabs.Actions>
 
       <Tabs.Panel value='item0'>
         Bentley Systems, Incorporated, is an American-based software development
@@ -484,7 +472,7 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
 Vertical.args = {
