@@ -242,15 +242,18 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     },
   );
 
-  const onShow = () => {
-    dispatch({ type: 'open' });
-    onShowProp?.();
-  };
+  const onShowRef = useLatestRef(onShowProp);
+  const onHideRef = useLatestRef(onHideProp);
 
-  const onHide = () => {
+  const show = React.useCallback(() => {
+    dispatch({ type: 'open' });
+    onShowRef.current?.();
+  }, [onShowRef]);
+
+  const hide = React.useCallback(() => {
     dispatch({ type: 'close' });
-    onHideProp?.();
-  };
+    onHideRef.current?.();
+  }, [onHideRef]);
 
   useIsomorphicLayoutEffect(() => {
     // When the dropdown opens
@@ -306,7 +309,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.currentTarget;
       setInputValue(value);
-      dispatch({ type: 'open' }); // reopen when typing
+      show(); // reopen when typing
       setFilteredOptions(
         filterFunction?.(optionsRef.current, value) ??
           optionsRef.current.filter((option) =>
@@ -318,7 +321,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       }
       inputProps?.onChange?.(event);
     },
-    [filterFunction, focusedIndex, inputProps, optionsRef],
+    [filterFunction, focusedIndex, inputProps, optionsRef, show],
   );
 
   // When the value prop changes, update the selected index/indices
@@ -418,7 +421,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         );
       } else {
         dispatch({ type: 'select', value: __originalIndex });
-        dispatch({ type: 'close' });
+        hide();
         onChangeHandler(__originalIndex);
       }
     },
@@ -429,6 +432,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       onChangeHandler,
       selected,
       optionsRef,
+      hide,
     ],
   );
 
@@ -511,7 +515,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   const popover = usePopover({
     visible: isOpen,
-    onVisibleChange: (open) => (open ? onShow() : onHide()),
+    onVisibleChange: (open) => (open ? show() : hide()),
     matchWidth: true,
     closeOnOutsideClick: true,
     trigger: { focus: true },
@@ -533,6 +537,8 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             getMenuItem,
             multiple,
             popover,
+            show,
+            hide,
           }}
         >
           <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>

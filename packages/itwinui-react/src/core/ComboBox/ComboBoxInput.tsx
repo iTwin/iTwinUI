@@ -39,6 +39,8 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     multiple,
     onClickHandler,
     popover,
+    show,
+    hide,
   } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
@@ -68,7 +70,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         case 'ArrowDown': {
           event.preventDefault();
           if (!isOpen) {
-            return dispatch({ type: 'open' });
+            return show();
           }
 
           if (length === 0) {
@@ -115,7 +117,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         case 'ArrowUp': {
           event.preventDefault();
           if (!isOpen) {
-            return dispatch({ type: 'open' });
+            return show();
           }
 
           if (length === 0) {
@@ -164,17 +166,17 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
               onClickHandler?.(focusedIndexRef.current);
             }
           } else {
-            dispatch({ type: 'open' });
+            show();
           }
           break;
         }
         case 'Escape': {
           event.preventDefault();
-          dispatch({ type: 'close' });
+          hide();
           break;
         }
         case 'Tab':
-          dispatch({ type: 'close' });
+          hide();
           break;
       }
     },
@@ -185,12 +187,18 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       menuRef,
       onClickHandler,
       optionsExtraInfoRef,
+      show,
+      hide,
     ],
   );
 
   const handleClick = React.useCallback(() => {
-    dispatch({ type: isOpen ? 'close' : 'open' });
-  }, [dispatch, isOpen]);
+    if (!isOpen) {
+      show();
+    } else {
+      hide();
+    }
+  }, [hide, isOpen, show]);
 
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 

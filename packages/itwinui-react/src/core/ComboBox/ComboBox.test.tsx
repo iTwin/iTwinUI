@@ -655,14 +655,13 @@ it('should call onExpand and onCollapse when dropdown is opened and closed', asy
 
   const input = container.querySelector('input') as HTMLElement;
   await userEvent.click(input);
-  const list = document.querySelector('.iui-menu') as HTMLElement;
-  expect(list).toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeVisible();
   expect(onExpand).toHaveBeenCalled();
 
   const menuItem = document.querySelector('.iui-list-item') as HTMLElement;
 
   await userEvent.click(menuItem);
-  expect(list).toBeFalsy();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(onCollapse).toHaveBeenCalled();
 });
 

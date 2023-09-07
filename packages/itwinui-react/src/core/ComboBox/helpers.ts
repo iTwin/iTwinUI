@@ -84,6 +84,8 @@ type ComboBoxStateContextProps<T = unknown> = {
   focusedIndex?: number;
   multiple?: boolean;
   popover: ReturnType<typeof usePopover>;
+  show: () => void;
+  hide: () => void;
 };
 
 export const ComboBoxStateContext = React.createContext<
