@@ -1,14 +1,14 @@
 {
   "name": "vite-playground",
-  "private": true,
+  "type": "module",
   "version": "0.0.0",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
-  "type": "module",
   "dependencies": {
     "@itwin/itwinui-react": "3.0.0-dev.8",
     "@itwin/itwinui-icons-react": "2",
