@@ -745,7 +745,7 @@ import { SvgMore } from 'src/core/utils/index.js';
           setGlobalFilter(e.target.value)
         }
       />
-      <Table
+      <Table<TableRowDataType>
         columns={columns}
         data={data}
         emptyTableContent='No data.'
