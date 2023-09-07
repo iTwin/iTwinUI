@@ -7,7 +7,32 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/ban-types */
 
-// This file is a hard fork of @types/react-table v7
+//-------------------------------------------------------------------------------
+// Custom Additions (parts from the old file called react-table-config.ts)
+
+export type FieldType = 'text' | 'number' | 'date' | string;
+
+export type CellRendererProps<D extends Record<string, unknown> = {}> = {
+  /**
+   * Cell HTML props passed from the Table.
+   */
+  cellElementProps: TableCellProps;
+  /**
+   * Table specific cell props like `column`, `row`.
+   */
+  cellProps: CellProps<D>;
+  /**
+   * Cell's content.
+   */
+  children: React.ReactNode;
+  /**
+   * Function that returns whether the cell is disabled.
+   */
+  isDisabled?: (rowData: D) => boolean;
+};
+
+//-------------------------------------------------------------------------------
+// Everything below is a hard fork of @types/react-table v7
 // The original code is licensed under MIT - https://unpkg.com/browse/@types/react-table@7.7.15/LICENSE
 //
 // A few reasons for this hard fork are:
@@ -1297,27 +1322,3 @@ export declare function makeRenderer(
   column: ColumnInstance,
   meta?: any,
 ): ReactElement;
-
-//-------------------------------------------------------------------------------
-// Custom Additions (parts from the old file called react-table-config.ts)
-
-export type FieldType = 'text' | 'number' | 'date' | string;
-
-export type CellRendererProps<D extends Record<string, unknown> = {}> = {
-  /**
-   * Cell HTML props passed from the Table.
-   */
-  cellElementProps: TableCellProps;
-  /**
-   * Table specific cell props like `column`, `row`.
-   */
-  cellProps: CellProps<D>;
-  /**
-   * Cell's content.
-   */
-  children: React.ReactNode;
-  /**
-   * Function that returns whether the cell is disabled.
-   */
-  isDisabled?: (rowData: D) => boolean;
-};
