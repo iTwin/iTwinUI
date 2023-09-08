@@ -397,6 +397,12 @@ import { SvgMore } from 'src/core/utils/index.js';
     [],
   );
 
+  const onClickHandler = React.useCallback(
+    (props: TableTypes.CellProps<TableRowDataType>) =>
+      console.log(props.row.original.name),
+    [],
+  );
+
   const columns = React.useMemo(
     () => [
       SelectionColumn({
@@ -514,6 +520,7 @@ import { SvgMore } from 'src/core/utils/index.js';
       translatedLabels,
       cellRenderer,
       formatDate,
+      onClickHandler,
       menuItems,
       isRowDisabled,
     ],
@@ -622,9 +629,6 @@ import { SvgMore } from 'src/core/utils/index.js';
       console.log(`Row clicked: ${JSON.stringify(row.original)}`),
     [],
   );
-
-  const onClickHandler = (props: TableTypes.CellProps<TableRowDataType>) =>
-    console.log(props.row.original.name);
 
   const onSort = React.useCallback(
     (state) =>
