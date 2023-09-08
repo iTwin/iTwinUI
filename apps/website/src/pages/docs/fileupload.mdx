@@ -14,13 +14,21 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-fileupload' />
-
 <LiveExample src='FileUpload.main.tsx'>
   <AllExamples.FileUploadMainExample client:load />
 </LiveExample>
 
 File uploading is a common interaction most users do multiple times per day. File uploading may happen in various different ways depending on the context. While the overall design may differ from UI to UI, the basics always stay the same: let the user know they can upload content, display upload status progress, and confirm that the upload’s status upon completion.
+
+## Customizations
+
+### Custom File Upload Card
+
+Change standard file upload card by adding custom label and text.
+
+<LiveExample src='FileUpload.custom.tsx'>
+  <AllExamples.FileUploadCustomExample client:load />
+</LiveExample>
 
 ## Chat
 
