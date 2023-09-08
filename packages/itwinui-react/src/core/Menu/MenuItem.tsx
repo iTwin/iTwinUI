@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   SvgCaretRightSmall,
-  cloneElementWithRef,
   usePopover,
   Portal,
   useMergedRefs,
@@ -121,7 +120,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
 
     // we don't want parent to close when mouse goes into a nested submenu,
     // so we need to let the parent know whether the submenu is still open.
-    parent.setIsNestedSubmenuVisible?.(open);
+    parent.setIsNestedSubmenuVisible(open);
   };
 
   const popover = usePopover({
@@ -146,8 +145,6 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
-          setIsSubmenuVisible(true);
-
           // flush and reset state so we are ready to focus again next time
           flushSync(() => setFocusOnSubmenu(true));
           setFocusOnSubmenu(false);
@@ -158,7 +155,10 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
         break;
       }
       case 'ArrowLeft': {
-        parent.ref?.current?.focus();
+        if (parent.ref) {
+          parent.ref.current?.focus();
+          parent.setIsNestedSubmenuVisible(false);
+        }
         event.stopPropagation();
         event.preventDefault();
         break;
@@ -173,15 +173,23 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  const listItem = (
+  const handlers = {
+    onClick: () => !disabled && onClick?.(value),
+    onKeyDown,
+  };
+
+  return (
     <ListItem
       as='div'
       actionable
       size={size}
       active={isSelected}
       disabled={disabled}
-      onClick={() => !disabled && onClick?.(value)}
-      ref={useMergedRefs(menuItemRef, forwardedRef)}
+      ref={useMergedRefs(
+        menuItemRef,
+        forwardedRef,
+        subMenuItems.length > 0 ? popover.refs.setReference : null,
+      )}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
@@ -189,8 +197,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
       aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
       aria-disabled={disabled}
-      onKeyDown={onKeyDown}
-      {...rest}
+      {...(subMenuItems.length === 0
+        ? { ...handlers, ...rest }
+        : popover.getReferenceProps({ ...handlers, ...rest }))}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -211,19 +220,9 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           {endIcon}
         </ListItem.Icon>
       )}
-    </ListItem>
-  );
 
-  return subMenuItems.length === 0 ? (
-    listItem
-  ) : (
-    <>
-      {cloneElementWithRef(listItem, ({ props }) => ({
-        ...popover.getReferenceProps(props),
-        ref: popover.refs.setReference,
-      }))}
-      {popover.open && (
-        <Portal portal>
+      {subMenuItems.length > 0 && popover.open && (
+        <Portal>
           <MenuItemContext.Provider
             value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
           >
@@ -244,7 +243,7 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
           </MenuItemContext.Provider>
         </Portal>
       )}
-    </>
+    </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 

@@ -11,13 +11,13 @@ import {
   cloneElementWithRef,
   useControlledState,
   mergeRefs,
+  mergeEventHandlers,
 } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
-import { FloatingFocusManager } from '@floating-ui/react';
 
 export type DropdownMenuProps = {
   /**
@@ -114,19 +114,23 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
       }))}
       {popover.open && (
         <Portal portal={portal}>
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            guards={false}
-            initialFocus={-1}
+          <Menu
+            {...popover.getFloatingProps({
+              role,
+              ...rest,
+              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                if (e.defaultPrevented) {
+                  return;
+                }
+                if (e.key === 'Tab') {
+                  close();
+                }
+              }),
+            })}
+            ref={popoverRef}
           >
-            <Menu
-              {...popover.getFloatingProps({ role, ...rest })}
-              ref={popoverRef}
-            >
-              {menuContent}
-            </Menu>
-          </FloatingFocusManager>
+            {menuContent}
+          </Menu>
         </Portal>
       )}
     </>
