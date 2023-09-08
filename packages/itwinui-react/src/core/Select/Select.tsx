@@ -424,10 +424,10 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
           <Menu
             role='listbox'
             className={cx('iui-scroll', menuClassName)}
-            style={menuStyle}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
             {...popover.getFloatingProps({
+              style: menuStyle,
               onKeyDown: ({ key }) => {
                 if (key === 'Tab') {
                   hide();
