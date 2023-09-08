@@ -44,8 +44,6 @@
 }
 
 @mixin iui-button-active {
-  --_iui-button-active-stripe-inset-block: initial;
-  --_iui-button-active-stripe-inset-inline: initial;
   --_iui-button-active-stripe-background: var(--iui-color-border-accent);
   --_iui-button-text-color: var(--iui-color-text-accent);
   --_iui-button-icon-fill: var(--iui-color-text-accent);

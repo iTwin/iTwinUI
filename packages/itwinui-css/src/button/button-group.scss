@@ -1,16 +1,29 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-/// Mixin for button group or input+button combo group.
-/// @arg $orientation must be one of: horizontal, vertical
-/// Note: Vertical button-group should be used for icon buttons only.
-@mixin iui-button-group($orientation: horizontal) {
+@mixin iui-button-group {
+  all: unset;
+  list-style-type: none;
   display: inline-flex;
   align-items: center;
   isolation: isolate;
   pointer-events: none;
 
-  @if $orientation != 'horizontal' {
+  &[aria-orientation='horizontal'] {
+    --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
+    --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
+    --_iui-button-group-inline-gap: -1px;
+    --_iui-button-group-radius-first-bottom-left: var(--iui-border-radius-1);
+    --_iui-button-group-radius-last-top-right: var(--iui-border-radius-1);
+  }
+
+  &[aria-orientation='vertical'] {
+    --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)};
+    --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
+    --_iui-button-group-block-gap: -1px;
+    --_iui-button-group-radius-first-top-right: var(--iui-border-radius-1);
+    --_iui-button-group-radius-last-bottom-left: var(--iui-border-radius-1);
+
     flex-direction: column;
     max-block-size: 100%;
   }
@@ -28,15 +41,6 @@
 
     #{$childZindexSelector} {
       position: relative;
-
-      // Adds stripe to active button
-      @if $orientation == 'horizontal' {
-        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
-        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
-      } @else {
-        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)};
-        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
-      }
 
       &:hover {
         z-index: 1;
@@ -67,48 +71,35 @@
       }
     }
 
-    // Add rounded corners to first and last items
+    //#region Add rounded corners to first and last items
     &:first-child {
       #{$childBorderSelector} {
         border-start-start-radius: var(--iui-border-radius-1);
-
-        @if $orientation == 'horizontal' {
-          border-end-start-radius: var(--iui-border-radius-1);
-        } @else {
-          border-start-end-radius: var(--iui-border-radius-1);
-        }
+        border-end-start-radius: var(--_iui-button-group-radius-first-bottom-left);
+        border-start-end-radius: var(--_iui-button-group-radius-first-top-right);
       }
     }
 
     &:last-child {
       #{$childBorderSelector} {
         border-end-end-radius: var(--iui-border-radius-1);
-
-        @if $orientation == 'horizontal' {
-          border-start-end-radius: var(--iui-border-radius-1);
-        } @else {
-          border-end-start-radius: var(--iui-border-radius-1);
-        }
+        border-end-start-radius: var(--_iui-button-group-radius-last-bottom-left);
+        border-start-end-radius: var(--_iui-button-group-radius-last-top-right);
       }
     }
+    //#endregion Add rounded corners to first and last items
 
     // Use negative margin to make adjacent borders overlap
     + * {
-      @if $orientation == 'horizontal' {
-        margin-inline-start: -1px;
-      } @else {
-        margin-block-start: -1px;
-      }
+      margin-inline-start: var(--_iui-button-group-inline-gap);
+      margin-block-start: var(--_iui-button-group-block-gap);
     }
 
     // Add slight border between disabled items
     &:not(:first-child) :not([data-iui-variant='borderless']) {
       #{$disabledSelector} {
-        @if $orientation == 'horizontal' {
-          border-inline-start-color: var(--iui-color-border-subtle);
-        } @else {
-          border-block-start-color: var(--iui-color-border-subtle);
-        }
+        border-inline-start-color: var(--iui-color-border-disabled);
+        border-block-start-color: var(--iui-color-border-disabled);
       }
     }
   }
