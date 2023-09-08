@@ -103,64 +103,6 @@ import { SvgMore } from 'src/core/utils/index.js';
 };
 
 /**
- * Confirm that `react-table` (e.g. `TableTypes.Column`) and `src/react-table/react-table.js` (e.g. `Column`) are equivalent.
- */
-() => {
-  const columns1: TableTypes.Column<{
-    header1: string;
-    header2: string;
-  }>[] = [
-    {
-      Header: 'Header 1',
-      accessor: 'header1',
-    },
-    {
-      Header: 'Header 2',
-      accessor: 'header2',
-    },
-  ] as Column<{
-    header1: string;
-    header2: string;
-  }>[];
-
-  const columns2: Column<{
-    header1: string;
-    header2: string;
-  }>[] = [
-    {
-      Header: 'Header 1',
-      accessor: 'header1',
-    },
-    {
-      Header: 'Header 2',
-      accessor: 'header2',
-    },
-  ] as TableTypes.Column<{
-    header1: string;
-    header2: string;
-  }>[];
-
-  const data: Array<{
-    header1: string;
-    header2: string;
-  }> = [
-    {
-      header1: 'row1',
-      header2: 'row1',
-    },
-    {
-      header1: 'row2',
-      header2: 'row2',
-    },
-  ];
-
-  <div>
-    <Table columns={columns1} data={data} emptyTableContent='No data.' />
-    <Table columns={columns2} data={data} emptyTableContent='No data.' />
-  </div>;
-};
-
-/**
  * When creating variables (with satisfies) that are passed as props.
  */
 () => {
