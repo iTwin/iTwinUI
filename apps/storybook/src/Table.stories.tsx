@@ -3,6 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
+import type {
+  CellProps,
+  CellRendererProps,
+  Column,
+  Row,
+  TableInstance,
+  TableState,
+  TableOptions,
+} from '@itwin/itwinui-react/react-table';
 import {
   Checkbox,
   Code,
@@ -30,7 +39,6 @@ import type {
   TableFilterValue,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
-import * as TableTypes from '@itwin/itwinui-react/react-table';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
@@ -53,7 +61,7 @@ export default {
 
 export const Basic = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -73,9 +81,7 @@ export const Basic = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -102,7 +108,7 @@ export const Basic = () => {
 
 export const SelectableSingle = () => {
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: TableTypes.Row) =>
+    (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -124,9 +130,7 @@ export const SelectableSingle = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
               as='button'
@@ -179,7 +183,7 @@ export const SelectableMulti = () => {
   >;
 
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: TableTypes.Row) =>
+    (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -201,9 +205,7 @@ export const SelectableMulti = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           return (
             <Anchor
               as='button'
@@ -245,7 +247,7 @@ export const SelectableMulti = () => {
 
 export const Sortable = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const onSort = useCallback(
@@ -279,9 +281,7 @@ export const Sortable = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -352,7 +352,7 @@ export const Filters = () => {
   );
 
   const columns = useMemo(
-    (): TableTypes.Column<TableStoryDataType>[] => [
+    (): Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -381,7 +381,7 @@ export const Filters = () => {
         id: 'ids',
         Header: 'IDs (enter one of the IDs in the filter)',
         accessor: 'ids',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{props.row.original.ids.join(', ')}</>;
         },
         Filter: tableFilters.TextFilter(translatedLabels),
@@ -391,7 +391,7 @@ export const Filters = () => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{formatDate(props.row.original.startDate)}</>;
         },
         Filter: tableFilters.DateRangeFilter({
@@ -404,7 +404,7 @@ export const Filters = () => {
         Header: 'End date',
         // Converting string to Date for filtering
         accessor: (rowData) => new Date(rowData.endDate),
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{formatDate(new Date(props.row.original.endDate))}</>;
         },
         Filter: tableFilters.DateRangeFilter({
@@ -449,8 +449,8 @@ export const Filters = () => {
   const onFilter = React.useCallback(
     (
       filters: TableFilterValue<TableStoryDataType>[],
-      state: TableTypes.TableState,
-      filteredData: TableTypes.Row<TableStoryDataType>[],
+      state: TableState,
+      filteredData: Row<TableStoryDataType>[],
     ) => {
       // rowInfo is used due to JSON errors when displaying row data
       let rowInfo = '[';
@@ -485,7 +485,7 @@ export const GlobalFilter = () => {
   };
 
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -507,9 +507,7 @@ export const GlobalFilter = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -600,7 +598,7 @@ export const Expandable = () => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: TableTypes.Row) => (
+    (row: Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -726,7 +724,7 @@ export const ExpandableSubrows = () => {
 
 export const LazyLoading = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -747,9 +745,7 @@ export const LazyLoading = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -804,7 +800,7 @@ export const LazyLoading = () => {
 
 export const RowInViewport = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -824,9 +820,7 @@ export const RowInViewport = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -894,7 +888,7 @@ export const RowInViewport = () => {
 
 export const DisabledRows = () => {
   const onRowClick = useCallback(
-    (event: React.MouseEvent, row: TableTypes.Row) =>
+    (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
     [],
   );
@@ -924,9 +918,7 @@ export const DisabledRows = () => {
         Header: 'Click',
         width: 100,
         // Manually handling disabled state in custom cells
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => (
+        Cell: (props: CellProps<{ name: string; description: string }>) => (
           <>
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
@@ -952,7 +944,7 @@ export const DisabledRows = () => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: TableTypes.Row) => (
+    (row: Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -1085,7 +1077,7 @@ export const ControlledState = () => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableTypes.TableInstance<DemoData>>();
+  const tableInstance = React.useRef<TableInstance<DemoData>>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
@@ -1103,7 +1095,7 @@ export const ControlledState = () => {
       },
     ],
     [],
-  ) satisfies TableTypes.Column<DemoData>[];
+  ) satisfies Column<DemoData>[];
 
   const data: DemoData[] = useMemo(
     () => [
@@ -1232,9 +1224,7 @@ export const ControlledState = () => {
           useCallback((newState, action, prevState, instance) => {
             tableInstance.current = instance;
             return newState;
-          }, []) satisfies NonNullable<
-            TableTypes.TableOptions<DemoData>['stateReducer']
-          >
+          }, []) satisfies NonNullable<TableOptions<DemoData>['stateReducer']>
         }
         isSelectable
         onSelect={
@@ -1249,7 +1239,7 @@ export const ControlledState = () => {
         }
         getRowId={
           useCallback((rowData) => rowData.id, []) satisfies NonNullable<
-            TableTypes.TableOptions<DemoData>['getRowId']
+            TableOptions<DemoData>['getRowId']
           >
         }
         data={data}
@@ -1326,7 +1316,7 @@ export const Full = () => {
   );
 
   const expandedSubComponent = useCallback(
-    (row: TableTypes.Row) => (
+    (row: Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -1338,7 +1328,7 @@ export const Full = () => {
   );
 
   const rowProps = useCallback(
-    (row: TableTypes.Row<{ name: string; description: string }>) => {
+    (row: Row<{ name: string; description: string }>) => {
       return {
         onMouseEnter: () => {
           action(`Hovered over ${row.original.name}`)();
@@ -1438,7 +1428,7 @@ export const Full2 = () => {
   }, []);
 
   const columns = useMemo(
-    (): TableTypes.Column<TableStoryDataType>[] => [
+    (): Column<TableStoryDataType>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -1458,7 +1448,7 @@ export const Full2 = () => {
         filter: 'between',
         disableReordering: true,
         sortType: 'number',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -1480,9 +1470,7 @@ export const Full2 = () => {
         filter: 'between',
         sortType: 'number',
         width: 400,
-        cellRenderer: (
-          props: TableTypes.CellRendererProps<TableStoryDataType>,
-        ) => {
+        cellRenderer: (props: CellRendererProps<TableStoryDataType>) => {
           return (
             <DefaultCell
               {...props}
@@ -1501,13 +1489,13 @@ export const Full2 = () => {
         filter: 'between',
         sortType: 'number',
         width: 400,
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{props.value} day(s)</>;
         },
       },
       {
         ...ActionColumn({ columnManager: true }),
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => (
+        Cell: (props: CellProps<TableStoryDataType>) => (
           <DropdownMenu menuItems={menuItems}>
             <IconButton
               styleType='borderless'
@@ -1524,7 +1512,7 @@ export const Full2 = () => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback((row: TableTypes.Row<TableStoryDataType>) => {
+  const rowProps = useCallback((row: Row<TableStoryDataType>) => {
     return {
       status: row.original.status satisfies TableStoryDataType['status'],
     };
@@ -1665,7 +1653,7 @@ Localized.parameters = {
 
 export const Condensed = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const onExpand = useCallback(
@@ -1698,9 +1686,7 @@ export const Condensed = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -1806,7 +1792,7 @@ export const Editable = () => {
   );
 
   const cellRenderer = useCallback(
-    (props: TableTypes.CellRendererProps<TableStoryDataType>) => (
+    (props: CellRendererProps<TableStoryDataType>) => (
       <>
         {!isRowDisabled(props.cellProps.row.original) &&
         props.cellProps.value !== 'Fetching...' ? (
@@ -1820,7 +1806,7 @@ export const Editable = () => {
   );
 
   const columns = React.useMemo(
-    (): TableTypes.Column<TableStoryDataType>[] => [
+    (): Column<TableStoryDataType>[] => [
       {
         id: 'name',
         Header: 'Name',
@@ -2319,7 +2305,7 @@ export const ResizableColumns = () => {
   };
 
   const columns = useMemo(
-    (): TableTypes.Column<TableStoryDataType>[] => [
+    (): Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -2350,7 +2336,7 @@ export const ResizableColumns = () => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return (
             <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
           );
@@ -2361,7 +2347,7 @@ export const ResizableColumns = () => {
       {
         id: 'endDate',
         Header: 'End date',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
         },
         maxWidth: 200,
@@ -2577,7 +2563,7 @@ export const HorizontalScroll = () => {
   );
 
   const columns = useMemo(
-    (): TableTypes.Column<(typeof data)[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -2589,7 +2575,7 @@ export const HorizontalScroll = () => {
         Header: 'Price',
         accessor: 'price',
         width: 400,
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2610,7 +2596,7 @@ export const HorizontalScroll = () => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -2644,7 +2630,7 @@ HorizontalScroll.decorators = [
 
 export const Virtualized = () => {
   const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
+    props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
 
   const columns = useMemo(
@@ -2663,9 +2649,7 @@ export const Virtualized = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -2708,8 +2692,7 @@ export const ScrollToRow = () => {
     description: string;
   };
   const onClickHandler = React.useCallback(
-    (props: TableTypes.CellProps<TableStoryDataType>) =>
-      action(props.row.original.name)(),
+    (props: CellProps<TableStoryDataType>) => action(props.row.original.name)(),
     [],
   );
 
@@ -2731,7 +2714,7 @@ export const ScrollToRow = () => {
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           const onClick = () => onClickHandler(props);
           return (
             <Anchor as='button' onClick={onClick}>
@@ -2768,10 +2751,8 @@ export const ScrollToRow = () => {
       style={{ maxHeight: '90vh' }}
       data={data}
       scrollToRow={React.useCallback(
-        (
-          rows: TableTypes.Row<TableStoryDataType>[],
-          data: TableStoryDataType[],
-        ) => rows.findIndex((row) => row.original.id === data[12345].id),
+        (rows: Row<TableStoryDataType>[], data: TableStoryDataType[]) =>
+          rows.findIndex((row) => row.original.id === data[12345].id),
         [],
       )}
     />
@@ -2918,7 +2899,7 @@ export const DraggableColumns = () => {
   );
 
   const columns = useMemo(
-    (): TableTypes.Column[] => [
+    (): Column[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -2929,7 +2910,7 @@ export const DraggableColumns = () => {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2947,7 +2928,7 @@ export const DraggableColumns = () => {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
@@ -3001,7 +2982,7 @@ export const CustomizedColumns = () => {
   }, []);
 
   const subComponent = useCallback(
-    (row: TableTypes.Row) => (
+    (row: Row) => (
       <div style={{ padding: 16 }}>
         <Text variant='leading'>Extra information</Text>
         <pre>
@@ -3013,7 +2994,7 @@ export const CustomizedColumns = () => {
   );
 
   const columns = useMemo(
-    (): TableTypes.Column<(typeof data)[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
       }),
@@ -3079,7 +3060,7 @@ export const ColumnManager = () => {
   };
 
   const columns = useMemo(
-    (): TableTypes.Column<TableStoryDataType>[] => [
+    (): Column<TableStoryDataType>[] => [
       {
         id: 'index',
         Header: '#',
@@ -3106,7 +3087,7 @@ export const ColumnManager = () => {
         id: 'startDate',
         Header: 'Start date',
         accessor: 'startDate',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return (
             <>{props.row.original.startDate.toLocaleDateString('en-US')}</>
           );
@@ -3116,7 +3097,7 @@ export const ColumnManager = () => {
         id: 'endDate',
         Header: 'End date',
         accessor: 'endDate',
-        Cell: (props: TableTypes.CellProps<TableStoryDataType>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{props.row.original.endDate.toLocaleDateString('en-US')}</>;
         },
       },
@@ -3321,7 +3302,7 @@ export const StickyColumns = () => {
   }, []);
 
   const columns = useMemo(
-    (): TableTypes.Column<(typeof data)[number]>[] => [
+    (): Column<(typeof data)[number]>[] => [
       {
         id: 'product',
         Header: 'Product',
@@ -3334,7 +3315,7 @@ export const StickyColumns = () => {
         Header: 'Price',
         accessor: 'price',
         width: 150,
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>${props.value}</>;
         },
         sticky: 'left',
@@ -3356,7 +3337,7 @@ export const StickyColumns = () => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 400,
-        Cell: (props: TableTypes.CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{props.value} day(s)</>;
         },
       },
@@ -3411,7 +3392,7 @@ export const StatusAndCellIcons = () => {
         Header: 'Name',
         accessor: 'name',
         cellRenderer: (
-          props: TableTypes.CellRendererProps<{
+          props: CellRendererProps<{
             startIcon: JSX.Element;
             endIcon: JSX.Element;
             isLoading?: boolean;
@@ -3436,7 +3417,7 @@ export const StatusAndCellIcons = () => {
         accessor: 'modified',
         maxWidth: 200,
         cellRenderer: (
-          props: TableTypes.CellRendererProps<{
+          props: CellRendererProps<{
             status: 'positive' | 'warning' | 'negative' | undefined;
           }>,
         ) => {
@@ -3502,7 +3483,7 @@ export const StatusAndCellIcons = () => {
 
   const rowProps = useCallback(
     (
-      row: TableTypes.Row<{
+      row: Row<{
         name: string;
         modified: string;
         size: string;
