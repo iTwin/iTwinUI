@@ -106,7 +106,7 @@ import { SvgMore } from 'src/core/utils/index.js';
 };
 
 /**
- * Confirm that `Column` and `TableTypes.Column` are equivalent.
+ * Confirm that `react-table` (e.g. `TableTypes.Column`) and `src/react-table/react-table.js` (e.g. `Column`) are equivalent.
  */
 () => {
   const columns1: TableTypes.Column<{
