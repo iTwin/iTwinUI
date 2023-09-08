@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import * as TableTypes from '@itwin/itwinui-react/react-table';
+import { CellProps } from '@itwin/itwinui-react/react-table';
 import { action } from '@storybook/addon-actions';
 import { SvgEdit } from '@itwin/itwinui-icons-react';
 import {
@@ -56,7 +56,7 @@ export const Basic: Story<InformationPanelProps> = (args) => {
       { id: 'name', Header: 'Name', accessor: 'name' },
       {
         Header: 'Details',
-        Cell: ({ row: { index } }: TableTypes.CellProps<{ name: string }>) => (
+        Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
           <Button onClick={() => setOpenRowIndex(index)}>Details</Button>
         ),
       },
@@ -137,7 +137,7 @@ export const Horizontal: Story<InformationPanelProps> = (args) => {
       { id: 'name', Header: 'Name', accessor: 'name' },
       {
         Header: 'Details',
-        Cell: ({ row: { index } }: TableTypes.CellProps<{ name: string }>) => (
+        Cell: ({ row: { index } }: CellProps<{ name: string }>) => (
           <Button onClick={() => setOpenRowIndex(index)}>Details</Button>
         ),
       },
@@ -212,9 +212,7 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
       { id: 'name', Header: 'Name', accessor: 'name' },
       {
         Header: 'Details',
-        Cell: ({
-          row,
-        }: TableTypes.CellProps<{ name: string; info: string }>) => (
+        Cell: ({ row }: CellProps<{ name: string; info: string }>) => (
           <Button onClick={() => setOpenRowIndex(row.index)}>Details</Button>
         ),
       },
