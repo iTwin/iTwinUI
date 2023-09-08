@@ -21,10 +21,7 @@ import {
   SelectionColumn,
   ExpanderColumn,
 } from '../core/Table/index.js';
-import type {
-  TableFilterValue,
-  TablePaginatorRendererProps,
-} from '../core/Table/index.js';
+import type { TablePaginatorRendererProps } from '../core/Table/index.js';
 
 // Table types can be imported with an alias or selective types can be imported too.
 import * as _TableTypes from 'src/react-table/react-table.js';
@@ -340,12 +337,9 @@ import { SvgMore } from 'src/core/utils/index.js';
     ];
   }, []);
 
-  const isRowDisabled = React.useCallback(
-    (rowData: { name: string; description: string }) => {
-      return rowData.name === 'Name2';
-    },
-    [],
-  );
+  const isRowDisabled = React.useCallback((rowData: TableRowDataType) => {
+    return rowData.name === 'Name2';
+  }, []);
   const isCheckboxDisabled = React.useCallback(
     (rowData: (typeof data)[number]) => {
       return rowData.name === 'Name1';
@@ -480,9 +474,7 @@ import { SvgMore } from 'src/core/utils/index.js';
         id: 'click-me',
         Header: 'Click',
         width: 100,
-        Cell: (
-          props: TableTypes.CellProps<{ name: string; description: string }>,
-        ) => {
+        Cell: (props: TableTypes.CellProps<TableRowDataType>) => {
           return (
             <Anchor
               as='button'
@@ -623,9 +615,7 @@ import { SvgMore } from 'src/core/utils/index.js';
         )}`,
       ),
     [],
-  ) satisfies NonNullable<
-    TableProps<{ name: string; description: string }>['onSelect']
-  >;
+  ) satisfies NonNullable<TableProps<TableRowDataType>['onSelect']>;
 
   const onRowClick = React.useCallback(
     (event: React.MouseEvent, row: TableTypes.Row) =>
@@ -633,9 +623,8 @@ import { SvgMore } from 'src/core/utils/index.js';
     [],
   );
 
-  const onClickHandler = (
-    props: TableTypes.CellProps<{ name: string; description: string }>,
-  ) => console.log(props.row.original.name);
+  const onClickHandler = (props: TableTypes.CellProps<TableRowDataType>) =>
+    console.log(props.row.original.name);
 
   const onSort = React.useCallback(
     (state) =>
@@ -670,7 +659,7 @@ import { SvgMore } from 'src/core/utils/index.js';
   >;
 
   const rowProps = React.useCallback(
-    (row: TableTypes.Row<{ name: string; description: string }>) => {
+    (row: TableTypes.Row<TableRowDataType>) => {
       return {
         onMouseEnter: () => {
           console.log(`Hovered over ${row.original.name}`);
