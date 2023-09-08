@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import MenuItem from './MenuItem.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
@@ -177,17 +177,22 @@ it('should render sublabel', () => {
 });
 
 it('should show sub menu on hover', () => {
+  jest.useFakeTimers();
+
   const mockedSubSubOnClick = jest.fn();
-  const { container } = render(
+  render(
     <MenuItem
       value='test_value'
+      data-testid='parent'
       subMenuItems={[
         <MenuItem
           key={1}
+          data-testid='sub'
           value='test_value_sub'
           subMenuItems={[
             <MenuItem
               key={1}
+              data-testid='sub-sub'
               onClick={mockedSubSubOnClick}
               value='test_value_sub_sub'
             >
@@ -203,31 +208,44 @@ it('should show sub menu on hover', () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
-  assertBaseElement(menuItem, { hasBadge: true });
+  const menuItem = screen.getByTestId('parent');
+  expect(menuItem).toHaveTextContent('Test item');
 
   // hover over menu item
-  fireEvent.mouseOver(menuItem);
-  const subMenuItem = screen.getByText('Test sub');
+  fireEvent.mouseEnter(menuItem);
+  act(() => jest.advanceTimersByTime(100));
+  const subMenuItem = screen.getByTestId('sub');
+  expect(subMenuItem).toHaveTextContent('Test sub');
 
   // hover over sub menu item
-  fireEvent.mouseOver(subMenuItem);
-  const subSubMenuItem = screen.getByText('Test sub sub');
+  fireEvent.mouseEnter(subMenuItem);
+  act(() => jest.advanceTimersByTime(100));
+  const subSubMenuItem = screen.getByTestId('sub-sub');
+  expect(subSubMenuItem).toHaveTextContent('Test sub sub');
   fireEvent.click(subSubMenuItem);
   expect(mockedSubSubOnClick).toHaveBeenCalled();
 
   // leave sub menu item
   fireEvent.mouseLeave(subMenuItem, { relatedTarget: menuItem });
+  act(() => jest.advanceTimersByTime(100));
   expect(subSubMenuItem).not.toBeVisible();
+
+  jest.useRealTimers();
 });
 
 it('should handle key press with sub menus', async () => {
   const mockedSubOnClick = jest.fn();
-  const { container } = render(
+  render(
     <MenuItem
       value='test_value'
+      data-testid='parent'
       subMenuItems={[
-        <MenuItem key={1} onClick={mockedSubOnClick} value='test_value_sub'>
+        <MenuItem
+          key={1}
+          onClick={mockedSubOnClick}
+          value='test_value_sub'
+          data-testid='sub'
+        >
           Test sub
         </MenuItem>,
       ]}
@@ -236,22 +254,32 @@ it('should handle key press with sub menus', async () => {
     </MenuItem>,
   );
 
-  const menuItem = container.querySelector('.iui-list-item') as HTMLElement;
-  assertBaseElement(menuItem, { hasBadge: true });
+  const menuItem = screen.getByTestId('parent');
 
-  // go right to open sub menu
-  menuItem.focus();
+  // focus to open sub menu
+  act(() => menuItem.focus());
+  const subMenuItem = screen.getByTestId('sub');
+  expect(subMenuItem).toHaveTextContent('Test sub');
+
+  // go right to move focus
   await userEvent.keyboard('{ArrowRight}');
-  const subMenuItem = screen.getByText('Test sub');
+  expect(subMenuItem).toHaveTextContent('Test sub');
   expect(subMenuItem).toHaveFocus();
 
-  // go left to close sub menu
+  // go left to move focus
   await userEvent.keyboard('{ArrowLeft}');
-  expect(subMenuItem).not.toBeVisible();
+  expect(menuItem).toHaveFocus();
+
+  // escape to close
+  await userEvent.keyboard('{Escape}');
+  expect(screen.queryByTestId('sub')).toBeFalsy();
 
   // go right to open sub menu
   await userEvent.keyboard('{ArrowRight}');
-  expect(subMenuItem).toBeVisible();
+  expect(screen.queryByTestId('sub')).toBeTruthy();
+
+  // go right again to move focus into sub menu
+  await userEvent.keyboard('{ArrowRight}');
 
   // click
   await userEvent.keyboard('{Enter}');
