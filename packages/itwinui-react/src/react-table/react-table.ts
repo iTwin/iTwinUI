@@ -171,8 +171,8 @@ export interface Cell<D extends Record<string, unknown> = {}, V = any>
     UseRowStateCellProps<D> {}
 
 export interface ColumnInterface<D extends Record<string, unknown> = {}>
+  // UseGroupByColumnOptions<D>,
   extends UseTableColumnOptions<D>,
-    // UseGroupByColumnOptions<D>,
     UseSortByColumnOptions<D>,
     UseFiltersColumnOptions<D>,
     UseResizeColumnsColumnOptions<D>,
@@ -256,9 +256,7 @@ export type ColumnWithStrictAccessor<D extends Record<string, unknown> = {}> =
     ValueOf<{
       [K in keyof D]: {
         accessor: K;
-        // Cell?: Renderer<CellProps<D, D[K]>> | undefined;
       } & ColumnInterfaceBasedOnValue<D, D[K]>;
-      // } & ColumnInterfaceBasedOnValue<D, D[K]>;
     }>;
 
 export type ColumnWithLooseAccessor<D extends Record<string, unknown> = {}> =
