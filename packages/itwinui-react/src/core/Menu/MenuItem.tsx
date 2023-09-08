@@ -145,6 +145,8 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
       }
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
+          setIsSubmenuVisible(true);
+
           // flush and reset state so we are ready to focus again next time
           flushSync(() => setFocusOnSubmenu(true));
           setFocusOnSubmenu(false);
