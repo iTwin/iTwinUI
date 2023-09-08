@@ -57,10 +57,6 @@ type PopoverOptions = {
    */
   closeOnOutsideClick?: boolean;
   /**
-   * Use an external element (stored in state) as the trigger.
-   */
-  reference?: HTMLElement | null;
-  /**
    * Whether the popover should match the width of the trigger.
    */
   matchWidth?: boolean;
@@ -87,8 +83,9 @@ type PopoverInternalProps = {
     layoutShift?: boolean;
   };
   /**
-   * Tooltip middleware options.
-   * https://floating-ui.com/docs/offset
+   * Middleware options.
+   *
+   * @see https://floating-ui.com/docs/offset
    */
   middleware?: {
     offset?: number;
@@ -116,7 +113,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     closeOnOutsideClick,
     autoUpdateOptions,
     middleware = { flip: true, shift: true },
-    reference,
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
     role,
@@ -133,7 +129,6 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     open,
     onOpenChange,
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
-    ...(reference && { elements: { reference } }),
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
       middleware.flip && flip(),
@@ -212,7 +207,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement,
     onVisibleChange,
     closeOnOutsideClick,
-    reference,
     matchWidth,
     //
     // dom props
@@ -227,7 +221,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement,
     onVisibleChange,
     closeOnOutsideClick,
-    reference,
     matchWidth,
     role: 'dialog',
   });
