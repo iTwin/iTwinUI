@@ -58,7 +58,7 @@ import { SvgMore } from 'src/core/utils/index.js';
       Header: 'Header 2',
       accessor: 'header2',
     },
-  ] satisfies TableTypes.Column<{
+  ] satisfies Column<{
     header1: string;
     header2: string;
   }>[];
