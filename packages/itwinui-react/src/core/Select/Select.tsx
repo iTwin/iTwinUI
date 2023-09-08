@@ -20,7 +20,6 @@ import {
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
-import { FloatingFocusManager } from '@floating-ui/react';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),
@@ -422,24 +421,23 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
       {popover.open && (
         <Portal>
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            guards={false}
-            initialFocus={-1}
+          <Menu
+            role='listbox'
+            className={cx('iui-scroll', menuClassName)}
+            style={menuStyle}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+            {...popover.getFloatingProps({
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  hide();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
           >
-            <Menu
-              role='listbox'
-              className={cx('iui-scroll', menuClassName)}
-              style={menuStyle}
-              id={`${uid}-menu`}
-              key={`${uid}-menu`}
-              {...popover.getFloatingProps()}
-              ref={popover.refs.setFloating}
-            >
-              {menuItems}
-            </Menu>
-          </FloatingFocusManager>
+            {menuItems}
+          </Menu>
         </Portal>
       )}
     </>

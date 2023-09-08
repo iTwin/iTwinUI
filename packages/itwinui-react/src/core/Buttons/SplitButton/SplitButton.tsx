@@ -20,7 +20,7 @@ import type {
   PolymorphicForwardRefComponent,
   PortalProps,
 } from '../../utils/index.js';
-import { FloatingFocusManager, type Placement } from '@floating-ui/react';
+import type { Placement } from '@floating-ui/react';
 import { Menu } from '../../Menu/Menu.js';
 
 export type SplitButtonProps = ButtonProps & {
@@ -139,19 +139,18 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
       </IconButton>
       {popover.open && (
         <Portal portal={portal}>
-          <FloatingFocusManager
-            context={popover.context}
-            modal={false}
-            guards={false}
-            initialFocus={-1}
+          <Menu
+            {...popover.getFloatingProps({
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  close();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
           >
-            <Menu
-              {...popover.getFloatingProps()}
-              ref={popover.refs.setFloating}
-            >
-              {menuContent}
-            </Menu>
-          </FloatingFocusManager>
+            {menuContent}
+          </Menu>
         </Portal>
       )}
     </Box>
