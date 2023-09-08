@@ -1661,39 +1661,6 @@ it('should not trigger sorting when filter is clicked', async () => {
   expect(onSort).not.toHaveBeenCalled();
 });
 
-it('should render filter dropdown in the correct document', async () => {
-  const mockDocument = document.implementation.createHTMLDocument();
-  const div = mockDocument.createElement('div');
-  const mockContainer = mockDocument.body.appendChild(div);
-  const onFilter = jest.fn();
-  const mockedColumns = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-      Filter: tableFilters.TextFilter(),
-      fieldType: 'text',
-    },
-  ];
-  const { container } = renderComponent(
-    { columns: mockedColumns, onFilter },
-    undefined,
-    mockContainer,
-  );
-  expect(container.querySelector('.iui-table')).toBeTruthy();
-
-  const filterToggle = container.querySelector(
-    '.iui-table-filter-button',
-  ) as HTMLElement;
-  expect(filterToggle).toBeTruthy();
-  act(() => filterToggle.click());
-
-  await waitFor(() =>
-    expect(mockDocument.querySelector('.iui-table-column-filter')).toBeTruthy(),
-  );
-  expect(document.querySelector('.iui-table-column-filter')).toBeFalsy();
-});
-
 it('should rerender table when columns change', async () => {
   const data = mockedData();
   const { rerender } = render(

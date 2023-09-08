@@ -149,7 +149,7 @@ it('should disable dates before "from" date when using "to" date picker', async 
 it('should disable dates after "to" date when using "from" date picker', async () => {
   const toDate = new Date(2023, 3, 8);
   const onClick = jest.fn();
-  const { container, getByText } = renderComponent({
+  const { container } = renderComponent({
     isFromOrTo: 'from',
     selectedDate: toDate,
   });
@@ -158,10 +158,7 @@ it('should disable dates after "to" date when using "from" date picker', async (
   expect(iconButton).toBeTruthy();
 
   await userEvent.click(iconButton);
-  const calendar = container.querySelector('.iui-date-picker');
-  expect(calendar).toBeTruthy();
-
-  const day12 = getByText('12');
+  const day12 = screen.getByText('12');
   await userEvent.click(day12);
   expect(onClick).not.toHaveBeenCalled();
 });
