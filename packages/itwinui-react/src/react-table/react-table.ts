@@ -234,6 +234,7 @@ export interface ColumnInterfaceBasedOnValue<
 }
 
 export interface ColumnGroupInterface<D extends Record<string, unknown>> {
+  // Commented out since we do not support nested columns
   // columns: Array<Column<D>>;
 }
 
@@ -274,8 +275,9 @@ export type ColumnWithLooseAccessor<D extends Record<string, unknown> = {}> =
     };
 
 export type Column<D extends Record<string, unknown> = {}> =
-  // ColumnWithStrictAccessor<D>;
-  ColumnGroup<D> | ColumnWithLooseAccessor<D> | ColumnWithStrictAccessor<D>;
+  | ColumnGroup<D>
+  | ColumnWithLooseAccessor<D>
+  | ColumnWithStrictAccessor<D>;
 
 export interface ColumnInstance<D extends Record<string, unknown> = {}>
   extends Omit<ColumnInterface<D>, 'id'>,
@@ -603,15 +605,6 @@ export declare function useAbsoluteLayout<
   D extends Record<string, unknown> = {},
 >(hooks: Hooks<D>): void;
 
-// export namespace useAbsoluteLayout {
-//   const pluginName = 'useAbsoluteLayout';
-// }
-
-// export declare const useAbsoluteLayout: (<
-//   D extends Record<string, unknown> = {},
-// >(
-//   hooks: Hooks<D>,
-// ) => void) & { pluginName: 'useAbsoluteLayout' };
 //#endregion
 
 //#region useBlockLayout
@@ -619,19 +612,12 @@ export declare function useBlockLayout<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
 
-// export namespace useBlockLayout {
-//   const pluginName = 'useBlockLayout';
-// }
 //#endregion
 
 //#region useColumnOrder
 export declare function useColumnOrder<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useColumnOrder {
-//   const pluginName = 'useColumnOrder';
-// }
 
 export interface UseColumnOrderState<D extends Record<string, unknown>> {
   columnOrder: Array<IdType<D>>;
@@ -653,10 +639,6 @@ export interface UseColumnOrderInstanceProps<
 export declare function useExpanded<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useExpanded {
-//   const pluginName = 'useExpanded';
-// }
 
 export interface TableExpandedToggleProps extends TableKeyedProps {}
 
@@ -703,10 +685,6 @@ export interface UseExpandedRowProps<D extends Record<string, unknown>> {
 export declare function useFilters<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useFilters {
-//   const pluginName = 'useFilters';
-// }
 
 export type UseFiltersOptions<D extends Record<string, unknown>> = Partial<{
   manualFilters: boolean;
@@ -795,9 +773,6 @@ export declare function useFlexLayout<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
 
-// export namespace useFlexLayout {
-//   const pluginName = 'useFlexLayout';
-// }
 //#endregion
 
 //#region useGridLayout
@@ -805,19 +780,12 @@ export declare function useGridLayout<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
 
-// export namespace useGridLayout {
-//   const pluginName = 'useGridLayout';
-// }
 //#endregion
 
 //#region useGlobalFilter
 export declare function useGlobalFilter<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useGlobalFilter {
-//   const pluginName = 'useGlobalFilter';
-// }
 
 export type UseGlobalFiltersOptions<D extends Record<string, unknown>> =
   Partial<{
@@ -864,10 +832,6 @@ export interface UseGlobalFiltersInstanceProps<
 export declare function useGroupBy<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useGroupBy {
-//   const pluginName = 'useGroupBy';
-// }
 
 export interface TableGroupByToggleProps {
   title?: string | undefined;
@@ -972,10 +936,6 @@ export declare function usePagination<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
 
-// export namespace usePagination {
-//   const pluginName = 'usePagination';
-// }
-
 export type UsePaginationOptions<D extends Record<string, unknown>> = Partial<{
   pageCount: number;
   manualPagination: boolean;
@@ -1006,10 +966,6 @@ export interface UsePaginationInstanceProps<D extends Record<string, unknown>> {
 export declare function useResizeColumns<
   D extends Record<string, unknown> = {},
 >(hooks: Hooks<D>): void;
-
-// export namespace useResizeColumns {
-//   const pluginName = 'useResizeColumns';
-// }
 
 export interface UseResizeColumnsOptions<D extends Record<string, unknown>> {
   disableResizing?: boolean | undefined;
@@ -1048,10 +1004,6 @@ export interface UseResizeColumnsColumnProps<
 export declare function useRowSelect<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useRowSelect {
-//   const pluginName = 'useRowSelect';
-// }
 
 export interface TableToggleAllRowsSelectedProps
   extends TableToggleCommonProps {}
@@ -1107,10 +1059,6 @@ export declare function useRowState<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
 
-// export namespace useRowState {
-//   const pluginName = 'useRowState';
-// }
-
 export type UseRowStateOptions<D extends Record<string, unknown>> = Partial<{
   initialRowStateAccessor: (row: Row<D>) => UseRowStateLocalState<D>;
   getResetRowStateDeps: (instance: TableInstance<D>) => any[];
@@ -1151,10 +1099,6 @@ export type UseRowStateLocalState<
 export declare function useSortBy<D extends Record<string, unknown> = {}>(
   hooks: Hooks<D>,
 ): void;
-
-// export namespace useSortBy {
-//   const pluginName = 'useSortBy';
-// }
 
 export interface TableSortByToggleProps {
   title?: string | undefined;
