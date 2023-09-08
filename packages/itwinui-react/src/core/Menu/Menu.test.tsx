@@ -14,12 +14,12 @@ import { Button } from '../Buttons/index.js';
 const testLabels = ['Test0', 'Test1', 'Test2'];
 
 function assertBaseElement(
-  menu: HTMLUListElement,
+  menu: HTMLElement,
   { role = 'menu', focusedIndex = 0, labels = testLabels } = {},
 ) {
   expect(menu).toBeTruthy();
   expect(menu.getAttribute('role')).toEqual(role);
-  const menuItems = menu.querySelectorAll('li');
+  const menuItems = menu.querySelectorAll(`[role=${role}] > *`);
   expect(menuItems.length).toBe(labels.length);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(labels[index]);
@@ -45,21 +45,21 @@ function renderComponent(
 it('should render menu items', () => {
   const { container } = renderComponent();
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
 });
 
 it('should render menu with custom role', () => {
   const { container } = renderComponent({ role: 'listbox' });
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu, { role: 'listbox' });
 });
 
 it('should focus selected item', () => {
   const { container } = renderComponent(undefined, 1);
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu, { focusedIndex: 1 });
 });
 
@@ -92,7 +92,7 @@ it('should handle keyboard navigation', () => {
     'Test4',
   ];
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu, { labels, focusedIndex: 1 });
 
   // Test0 -> Test1
@@ -130,7 +130,7 @@ it('should handle keyboard navigation', () => {
 it('should add custom className', () => {
   const { container } = renderComponent({ className: 'test-className' });
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.classList).toContain('test-className');
 });
@@ -138,7 +138,7 @@ it('should add custom className', () => {
 it('should add custom style', () => {
   const { container } = renderComponent({ style: { color: 'red' } });
 
-  const menu = container.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = container.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
 });

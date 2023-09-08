@@ -29,7 +29,7 @@ export const Menu = React.forwardRef((props, ref) => {
   const { setFocus = true, className, ...rest } = props;
 
   const [focusedIndex, setFocusedIndex] = React.useState<number | null>();
-  const menuRef = React.useRef<HTMLUListElement>(null);
+  const menuRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(menuRef, ref);
 
   const getFocusableNodes = React.useCallback(() => {
@@ -43,7 +43,7 @@ export const Menu = React.forwardRef((props, ref) => {
   React.useEffect(() => {
     const items = getFocusableNodes();
     if (focusedIndex != null) {
-      (items?.[focusedIndex] as HTMLLIElement)?.focus();
+      (items?.[focusedIndex] as HTMLElement)?.focus();
       return;
     }
 
@@ -55,7 +55,7 @@ export const Menu = React.forwardRef((props, ref) => {
     }
   }, [setFocus, focusedIndex, getFocusableNodes]);
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+  const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
       return;
     }
@@ -86,7 +86,7 @@ export const Menu = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='ul'
+      as='div'
       className={cx('iui-menu', className)}
       role='menu'
       onKeyDown={onKeyDown}
@@ -94,6 +94,6 @@ export const Menu = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'ul', MenuProps>;
+}) as PolymorphicForwardRefComponent<'div', MenuProps>;
 
 export default Menu;

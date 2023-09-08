@@ -28,7 +28,7 @@ function assertSelect(
 }
 
 function assertMenu(
-  menu: HTMLUListElement,
+  menu: HTMLElement,
   { hasIcon = false, selectedIndex = -1, disabledIndex = -1 } = {},
 ) {
   expect(menu).toBeTruthy();
@@ -38,7 +38,9 @@ function assertMenu(
   expect(menuItems.length).toBe(3);
   menuItems.forEach((item, index) => {
     expect(item.textContent).toContain(`Test${index}`);
-    expect(!!item.querySelector('.iui-list-item-icon')).toBe(hasIcon);
+    expect(!!item.querySelector('.iui-list-item-icon')).toBe(
+      hasIcon || selectedIndex === index,
+    );
     expect(item.hasAttribute('data-iui-active')).toBe(selectedIndex === index);
     expect(item.hasAttribute('data-iui-disabled')).toBe(
       disabledIndex === index,
@@ -186,11 +188,11 @@ it('should open menu on click', () => {
 
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
 });
 
@@ -209,7 +211,7 @@ it('should respect visible prop', () => {
 
   const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   expect(tippy).toBeVisible();
-  assertMenu(document.querySelector('.iui-menu') as HTMLUListElement);
+  assertMenu(document.querySelector('.iui-menu') as HTMLElement);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   expect(tippy).toBeVisible();
@@ -227,7 +229,7 @@ it.each(['Enter', ' ', 'Spacebar'])(
       '.iui-input-with-icon',
     ) as HTMLElement;
     expect(select).toBeTruthy();
-    let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+    let menu = document.querySelector('.iui-menu') as HTMLElement;
     expect(menu).toBeFalsy();
 
     act(() => {
@@ -238,7 +240,7 @@ it.each(['Enter', ' ', 'Spacebar'])(
         },
       );
     });
-    menu = document.querySelector('.iui-menu') as HTMLUListElement;
+    menu = document.querySelector('.iui-menu') as HTMLElement;
     assertMenu(menu);
   },
 );
@@ -256,7 +258,7 @@ it('should show menu items with icons', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu, { hasIcon: true });
 });
 
@@ -273,7 +275,7 @@ it('should show menu with disabled item', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu, { disabledIndex: 1 });
 });
 
@@ -291,7 +293,7 @@ it('should show selected item in menu', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu, { selectedIndex: 1 });
   expect(scrollSpy).toHaveBeenCalledTimes(1);
 });
@@ -306,10 +308,10 @@ it('should call onChange on item click', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
 
-  const menuItem = menu.querySelectorAll('li');
+  const menuItem = menu.querySelectorAll('[role=option]');
   expect(menuItem.length).toBe(3);
   fireEvent.click(menuItem[1]);
   expect(onChange).toHaveBeenCalledWith(1);
@@ -322,7 +324,7 @@ it('should render menu with custom className', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
   expect(menu.classList).toContain('test-className');
 });
@@ -334,7 +336,7 @@ it('should render menu with custom style', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
   expect(menu.style.color).toEqual('red');
 });
@@ -357,18 +359,18 @@ it('should use custom renderer for menu items', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
-  const menuItems = menu.querySelectorAll('li');
+  const menuItems = menu.querySelectorAll('[role=option]');
   expect(menuItems.length).toBe(3);
 
   expect(menuItems[0].textContent).toEqual('Yellow');
   expect(menuItems[1].textContent).toEqual('Green');
   expect(menuItems[2].textContent).toEqual('Red');
 
-  expect(menuItems[0].style.color).toEqual('yellow');
-  expect(menuItems[1].style.color).toEqual('green');
-  expect(menuItems[2].style.color).toEqual('red');
+  expect(menuItems[0]).toHaveStyle('color: yellow;');
+  expect(menuItems[1]).toHaveStyle('color: green;');
+  expect(menuItems[2]).toHaveStyle('color: red;');
 });
 
 it.each(['small', 'large'] as const)(
@@ -462,7 +464,7 @@ it('should select multiple items', () => {
   expect(select).toBeTruthy();
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  const menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
 
   let menuItems = menu.querySelectorAll('.iui-list-item');

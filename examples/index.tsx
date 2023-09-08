@@ -582,6 +582,30 @@ import { default as FooterMainExampleRaw } from './Footer.main';
 const FooterMainExample = withThemeProvider(FooterMainExampleRaw);
 export { FooterMainExample };
 
+import { default as FooterAppendCustomElementsExampleRaw } from './Footer.appendedcustomelements';
+const FooterAppendCustomElementsExample = withThemeProvider(
+  FooterAppendCustomElementsExampleRaw,
+);
+export { FooterAppendCustomElementsExample };
+
+import { default as FooterOnlyCustomElementsExampleRaw } from './Footer.onlycustomelements';
+const FooterOnlyCustomElementsExample = withThemeProvider(
+  FooterOnlyCustomElementsExampleRaw,
+);
+export { FooterOnlyCustomElementsExample };
+
+import { default as FooterCustomizedDefaultAndCustomElementsExampleRaw } from './Footer.customizeddefaultandcustomelements';
+const FooterCustomizedDefaultAndCustomElementsExample = withThemeProvider(
+  FooterCustomizedDefaultAndCustomElementsExampleRaw,
+);
+export { FooterCustomizedDefaultAndCustomElementsExample };
+
+import { default as FooterCustomContentExampleRaw } from './Footer.customcontent';
+const FooterCustomContentExample = withThemeProvider(
+  FooterCustomContentExampleRaw,
+);
+export { FooterCustomContentExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as HeaderMainExampleRaw } from './Header.main';
@@ -618,6 +642,20 @@ export { InputGroupRadioGroupExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as InputGridExampleRaw } from './InputGrid.main';
+const InputGridExample = withThemeProvider(InputGridExampleRaw);
+export { InputGridExample };
+
+import { default as InputGridInlineExampleRaw } from './InputGrid.inline';
+const InputGridInlineExample = withThemeProvider(InputGridInlineExampleRaw);
+export { InputGridInlineExample };
+
+import { default as InputGridSelectExampleRaw } from './InputGrid.select';
+const InputGridSelectExample = withThemeProvider(InputGridSelectExampleRaw);
+export { InputGridSelectExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as InputMainExampleRaw } from './Input.main';
 const InputMainExample = withThemeProvider(InputMainExampleRaw);
 export { InputMainExample };
@@ -643,6 +681,38 @@ export { InputStatusExample };
 import { default as InputButtonExampleRaw } from './Input.button';
 const InputButtonExample = withThemeProvider(InputButtonExampleRaw);
 export { InputButtonExample };
+
+// ----------------------------------------------------------------------------
+
+import { default as InputWithDecorationsMainExampleRaw } from './InputWithDecorations.main';
+const InputWithDecorationsMainExample = withThemeProvider(
+  InputWithDecorationsMainExampleRaw,
+);
+export { InputWithDecorationsMainExample };
+
+import { default as InputWithDecorationsAdvancedExampleRaw } from './InputWithDecorations.advanced';
+const InputWithDecorationsAdvancedExample = withThemeProvider(
+  InputWithDecorationsAdvancedExampleRaw,
+);
+export { InputWithDecorationsAdvancedExample };
+
+import { default as InputWithDecorationsSizeExampleRaw } from './InputWithDecorations.size';
+const InputWithDecorationsSizeExample = withThemeProvider(
+  InputWithDecorationsSizeExampleRaw,
+);
+export { InputWithDecorationsSizeExample };
+
+import { default as InputWithDecorationsStatusExampleRaw } from './InputWithDecorations.status';
+const InputWithDecorationsStatusExample = withThemeProvider(
+  InputWithDecorationsStatusExampleRaw,
+);
+export { InputWithDecorationsStatusExample };
+
+import { default as InputWithDecorationsDisabledExampleRaw } from './InputWithDecorations.disabled';
+const InputWithDecorationsDisabledExample = withThemeProvider(
+  InputWithDecorationsDisabledExampleRaw,
+);
+export { InputWithDecorationsDisabledExample };
 
 // ----------------------------------------------------------------------------
 
@@ -898,6 +968,18 @@ export { SliderTooltipNoneExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as StatusMessageMainExampleRaw } from './StatusMessage.main';
+const StatusMessageMainExample = withThemeProvider(StatusMessageMainExampleRaw);
+export { StatusMessageMainExample };
+
+import { default as StatusMessageStatusExampleRaw } from './StatusMessage.status';
+const StatusMessageStatusExample = withThemeProvider(
+  StatusMessageStatusExampleRaw,
+);
+export { StatusMessageStatusExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as StepperMainExampleRaw } from './Stepper.main';
 const StepperMainExample = withThemeProvider(StepperMainExampleRaw);
 export { StepperMainExample };
@@ -1026,6 +1108,53 @@ import { default as TileMainExampleRaw } from './Tile.main';
 const TileMainExample = withThemeProvider(TileMainExampleRaw);
 export { TileMainExample };
 
+import { default as TileActionableExampleRaw } from './Tile.actionable';
+const TileActionableExample = withThemeProvider(TileActionableExampleRaw);
+export { TileActionableExample };
+
+import { default as TileAnchorLinkExampleRaw } from './Tile.anchorlink';
+const TileAnchorLinkExample = withThemeProvider(TileAnchorLinkExampleRaw);
+export { TileAnchorLinkExample };
+
+import { default as TileAvatarExampleRaw } from './Tile.avatar';
+const TileAvatarExample = withThemeProvider(TileAvatarExampleRaw);
+export { TileAvatarExample };
+
+import { default as TileCondensedExampleRaw } from './Tile.condensed';
+const TileCondensedExample = withThemeProvider(TileCondensedExampleRaw);
+export { TileCondensedExample };
+
+import { default as TileDisabledExampleRaw } from './Tile.disabled';
+const TileDisabledExample = withThemeProvider(TileDisabledExampleRaw);
+export { TileDisabledExample };
+
+import { default as TileFolderExampleRaw } from './Tile.folder';
+const TileFolderExample = withThemeProvider(TileFolderExampleRaw);
+export { TileFolderExample };
+
+import { default as TileLoadingExampleRaw } from './Tile.loading';
+const TileLoadingExample = withThemeProvider(TileLoadingExampleRaw);
+export { TileLoadingExample };
+
+import { default as TileStatusExampleRaw } from './Tile.status';
+const TileStatusExample = withThemeProvider(TileStatusExampleRaw);
+export { TileStatusExample };
+
+import { default as TileCompositionExampleRaw } from './Tile.composition';
+const TileCompositionExample = withThemeProvider(TileCompositionExampleRaw);
+export { TileCompositionExample };
+
+import { default as TilePropsExampleRaw } from './Tile.props';
+const TilePropsExample = withThemeProvider(TilePropsExampleRaw);
+export { TilePropsExample };
+
+import { default as TileSelectedExampleRaw } from './Tile.selected';
+const TileSelectedExample = withThemeProvider(TileSelectedExampleRaw);
+export { TileSelectedExample };
+
+import { default as TileQuickActionsExampleRaw } from './Tile.quickactions';
+const TileQuickActionsExample = withThemeProvider(TileQuickActionsExampleRaw);
+export { TileQuickActionsExample };
 // ----------------------------------------------------------------------------
 
 import { default as ToastMainExampleRaw } from './Toast.main';
@@ -1073,12 +1202,6 @@ export { TooltipPlacementExample };
 import { default as TransferListMainExampleRaw } from './TransferList.main';
 const TransferListMainExample = withThemeProvider(TransferListMainExampleRaw);
 export { TransferListMainExample };
-
-import { default as TransferListWithLabelExampleRaw } from './TransferList.withlabel';
-const TransferListWithLabelExample = withThemeProvider(
-  TransferListWithLabelExampleRaw,
-);
-export { TransferListWithLabelExample };
 
 // ----------------------------------------------------------------------------
 

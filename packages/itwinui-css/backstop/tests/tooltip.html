@@ -21,7 +21,10 @@
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
       @import url("@itwin/itwinui-css/css/all.css") layer(itwinui);
-      .iui-tooltip-container {
+      .demo-tooltip-container {
+        inline-size: fit-content;
+        block-size: fit-content;
+        position: relative;
         margin-left: 90px;
         margin-bottom: 35px;
       }
@@ -69,29 +72,44 @@
     <br />
 
     <section id="demo-tooltip">
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (top)
-        <span class="iui-tooltip top">Hello, I'm a tooltip!</span>
+        <span
+          class="iui-tooltip top"
+          hidden
+        >Hello, I'm a tooltip!</span>
       </div>
 
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (right)
-        <span class="iui-tooltip right">Hello, I'm a tooltip!</span>
+        <span
+          class="iui-tooltip right"
+          hidden
+        >Hello, I'm a tooltip!</span>
       </div>
 
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (bottom)
-        <span class="iui-tooltip bottom">Hello, I'm a tooltip!</span>
+        <span
+          class="iui-tooltip bottom"
+          hidden
+        >Hello, I'm a tooltip!</span>
       </div>
 
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (left)
-        <span class="iui-tooltip left">Hello, I'm a tooltip!</span>
+        <span
+          class="iui-tooltip left"
+          hidden
+        >Hello, I'm a tooltip!</span>
       </div>
 
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (Lorem ipsum)
-        <span class="iui-tooltip top">
+        <span
+          class="iui-tooltip top"
+          hidden
+        >
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
           veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -102,12 +120,20 @@
         </span>
       </div>
 
-      <div class="iui-tooltip-container">
+      <div class="demo-tooltip-container">
         Hover here (permanent)
-        <span class="iui-tooltip bottom iui-tooltip-visible">
+        <span class="iui-tooltip bottom">
           This tooltip will not disappear.
         </span>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll('.demo-tooltip-container:not(:last-child)').forEach((container) => {
+        const tooltip = container.querySelector('.iui-tooltip');
+        container.addEventListener('mouseenter', () => { tooltip.hidden = false; });
+        container.addEventListener('mouseleave', () => { tooltip.hidden = true; });
+      });
+    </script>
   </body>
 </html>

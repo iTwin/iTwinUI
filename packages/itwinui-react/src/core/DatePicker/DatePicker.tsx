@@ -82,13 +82,17 @@ const defaultLongDays = [
   'Saturday',
 ];
 
+export type DatePickerLocalizedNames = {
+  [key in 'months' | 'shortDays' | 'days']: string[];
+};
+
 /**
  * Generate localized months and days strings using `Intl.DateTimeFormat` for passed locale to use in DatePicker component.
  * If locale is not passed, browser locale will be used.
  */
 export const generateLocalizedStrings = (
   locale?: string,
-): { [key in 'months' | 'shortDays' | 'days']: string[] } => {
+): DatePickerLocalizedNames => {
   const shortWeekDayFormatter = new Intl.DateTimeFormat(locale, {
     weekday: 'short',
   });
@@ -174,7 +178,7 @@ type DatePickerProps = {
    * Pass localized week days (start from sunday) and months.
    * Use helper function `generateLocalizedStrings` to generate strings using `Intl.DateTimeFormat`.
    */
-  localizedNames?: { [key in 'months' | 'shortDays' | 'days']: string[] };
+  localizedNames?: DatePickerLocalizedNames;
   /**
    * Set focus on selected day or today.
    * @default false
@@ -190,6 +194,30 @@ type DatePickerProps = {
    * @default false
    */
   showYearSelection?: boolean;
+  /**
+   * Allows props to be passed for calendar month year, referring to the div that wraps around the month/year and the next/previous buttons.
+   */
+  monthYearProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for only month, referring to span that wraps around the month title.
+   */
+  monthProps?: React.ComponentProps<'span'>;
+  /**
+   * Allows props to be passed for week days, referring to div that wraps around the week day title.
+   */
+  weekDayProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for individual day , referring to div element the wraps around single day number.
+   */
+  dayProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for calendar, referring to div that is used for listbox for wraping days and weeks.
+   */
+  calendarProps?: React.ComponentProps<'div'>;
+  /**
+   * Allows props to be passed for weeks, referring to div that wraps around weeks.
+   */
+  weekProps?: React.ComponentProps<'div'>;
   /**
    * Will disable dates for which this function returns true.
    * Disabled dates cannot be selected.
@@ -226,6 +254,12 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     enableRangeSelect = false,
     startDate,
     endDate,
+    monthYearProps,
+    calendarProps,
+    monthProps,
+    weekDayProps,
+    dayProps,
+    weekProps,
     isDateDisabled,
     ...rest
   } = props;
@@ -535,7 +569,11 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <div>
-        <Box className='iui-calendar-month-year'>
+        <Box
+          as='div'
+          {...monthYearProps}
+          className={cx('iui-calendar-month-year', monthYearProps?.className)}
+        >
           {showYearSelection && (
             <IconButton
               styleType='borderless'
@@ -557,9 +595,10 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           <span aria-live='polite'>
             <Box
               as='span'
-              className='iui-calendar-month'
               id={dateTableId}
               title={monthNames[displayedMonthIndex]}
+              {...monthProps}
+              className={cx('iui-calendar-month', monthProps?.className)}
             >
               {monthNames[displayedMonthIndex]}
             </Box>
@@ -584,7 +623,11 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
             </IconButton>
           )}
         </Box>
-        <Box className='iui-calendar-weekdays'>
+        <Box
+          as='div'
+          {...weekDayProps}
+          className={cx('iui-calendar-weekdays', weekDayProps?.className)}
+        >
           {shortDays.map((day, index) => (
             <div key={day} title={longDays[index]}>
               {day}
@@ -595,20 +638,23 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
           onKeyDown={handleCalendarKeyDown}
           role='listbox'
           aria-labelledby={dateTableId}
+          {...calendarProps}
         >
           {weeks.map((weekDays, weekIndex) => {
             return (
               <Box
+                as='div'
                 key={`week-${displayedMonthIndex}-${weekIndex}`}
-                className='iui-calendar-week'
+                {...weekProps}
+                className={cx('iui-calendar-week', weekProps?.className)}
               >
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   const isDisabled = isDateDisabled?.(weekDay);
                   return (
                     <Box
+                      as='div'
                       key={`day-${displayedMonthIndex}-${dayIndex}`}
-                      className={getDayClass(weekDay)}
                       onClick={() => !isDisabled && onDayClick(weekDay)}
                       role='option'
                       tabIndex={isSameDay(weekDay, focusedDay) ? 0 : -1}
@@ -618,6 +664,8 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                         needFocus.current &&
                         element?.focus()
                       }
+                      {...dayProps}
+                      className={cx(getDayClass(weekDay), dayProps?.className)}
                     >
                       {dateValue}
                     </Box>

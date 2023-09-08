@@ -26,6 +26,8 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
         expanderCell(cellProps)
       ) : (
         <IconButton
+          aria-label='Toggle sub row'
+          aria-expanded={cell.row.isExpanded ? 'true' : 'false'}
           style={{
             marginInlineEnd:
               density === 'default' || density === undefined ? 8 : 4,

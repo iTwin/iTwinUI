@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Tile, TagContainer, Tag } from '@itwin/itwinui-react';
-import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
+import { SvgStar, SvgInfo, SvgTag } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper>
       <Tile.Name name='Tile name' />
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture url='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
@@ -28,12 +28,13 @@ export default () => {
           Tile description that takes upto 3 lines
         </Tile.Description>
         <Tile.Metadata>
+          <SvgTag />
           <TagContainer>
             <Tag variant='basic'>Tag 1</Tag>
             <Tag variant='basic'>Tag 2</Tag>
           </TagContainer>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

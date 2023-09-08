@@ -39,6 +39,9 @@
         gap: 12px;
         margin-bottom: 12px;
       }
+      .demo-tooltip-container {
+        position: relative;
+      }
       .demo-right {
         top: 0;
         left: 100%;
@@ -59,8 +62,8 @@
     <hr />
 
     <section id="demo-default">
-      <div class="iui-input-container demo-container-spacing">
-        <div class="iui-label iui-required">Radio tile label</div>
+      <div class="iui-input-grid demo-container-spacing">
+        <div class="iui-input-label iui-required">Radio tile label</div>
         <div class="iui-radio-tile-container">
           <label
             class="iui-radio-tile"
@@ -149,8 +152,8 @@
         </div>
       </div>
 
-      <div class="iui-input-container demo-container-spacing">
-        <div class="iui-label">Radio tile label</div>
+      <div class="iui-input-grid demo-container-spacing">
+        <div class="iui-input-label">Radio tile label</div>
         <div class="iui-radio-tile-container">
           <label class="iui-radio-tile">
             <input
@@ -223,8 +226,8 @@
         </div>
       </div>
 
-      <div class="iui-input-container demo-container-spacing">
-        <div class="iui-label">Map indicator type</div>
+      <div class="iui-input-grid demo-container-spacing">
+        <div class="iui-input-label">Map indicator type</div>
         <div class="iui-radio-tile-container">
           <label class="iui-radio-tile">
             <input
@@ -341,8 +344,8 @@
         </div>
       </div>
 
-      <div class="iui-input-container demo-container-spacing">
-        <div class="iui-label">Radio tile label</div>
+      <div class="iui-input-grid demo-container-spacing">
+        <div class="iui-input-label">Radio tile label</div>
         <div class="iui-radio-tile-container">
           <label
             class="iui-radio-tile"
@@ -439,8 +442,8 @@
         </div>
       </div>
 
-      <div class="iui-input-container demo-container-spacing">
-        <div class="iui-label">Map indicator type</div>
+      <div class="iui-input-grid demo-container-spacing">
+        <div class="iui-input-label">Map indicator type</div>
 
         <div class="iui-radio-tile-container">
           <label
@@ -573,16 +576,16 @@
 
     <section id="demo-alternative-layouts">
       <div
-        class="iui-input-container demo-container-spacing"
+        class="iui-input-grid demo-container-spacing"
         style="width: 300px;"
       >
-        <div class="iui-label">Radio tile vertical with tooltips</div>
+        <div class="iui-input-label">Radio tile vertical with tooltips</div>
         <div
           class="iui-radio-tile-container"
           id="radio-tile-with-tooltips"
         >
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -602,7 +605,7 @@
               assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -622,7 +625,7 @@
               assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -641,7 +644,7 @@
             <span class="iui-tooltip demo-right">Dimensions in dp/sp,<br />XML export,<br />PNG and SVG assets</span>
           </div>
 
-          <div class="iui-tooltip-container">
+          <div class="demo-tooltip-container">
             <label class="iui-radio-tile">
               <input
                 class="iui-radio-tile-input"
@@ -664,10 +667,10 @@
       </div>
 
       <div
-        class="iui-input-container demo-container-spacing"
+        class="iui-input-grid demo-container-spacing"
         style="width: 400px;"
       >
-        <div class="iui-label">Radio tile label stacked</div>
+        <div class="iui-input-label">Radio tile label stacked</div>
         <div class="iui-radio-tile-container">
           <label class="iui-radio-tile">
             <input
@@ -748,10 +751,10 @@
       </div>
 
       <div
-        class="iui-input-container demo-container-spacing"
+        class="iui-input-grid demo-container-spacing"
         style="width: 75vw; max-width: 1000px; min-width: 400px"
       >
-        <div class="iui-label">Radio tile stacked - odd number</div>
+        <div class="iui-input-label">Radio tile stacked - odd number</div>
         <div class="iui-radio-tile-container">
           <label class="iui-radio-tile">
             <input
@@ -867,5 +870,14 @@
         </div>
       </div>
     </section>
+
+    <script>
+      document.querySelectorAll('.demo-tooltip-container').forEach((container) => {
+        const tooltip = container.querySelector('.iui-tooltip');
+        tooltip.hidden = true;
+        container.addEventListener('mouseenter', () => { tooltip.hidden = false; });
+        container.addEventListener('mouseleave', () => { tooltip.hidden = true; });
+      });
+    </script>
   </body>
 </html>

@@ -4,15 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import {
-  useSafeContext,
-  useMergedRefs,
-  SvgCaretDownSmall,
-  mergeEventHandlers,
-  Box,
-} from '../utils/index.js';
+import { SvgCaretDownSmall, Icon } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { ComboBoxActionContext, ComboBoxRefsContext } from './helpers.js';
 
 type ComboBoxEndIconProps = {
   disabled?: boolean;
@@ -20,38 +13,24 @@ type ComboBoxEndIconProps = {
 };
 
 export const ComboBoxEndIcon = React.forwardRef((props, forwardedRef) => {
-  const {
-    className,
-    children,
-    onClick: onClickProp,
-    disabled,
-    isOpen,
-    ...rest
-  } = props;
-  const dispatch = useSafeContext(ComboBoxActionContext);
-  const { toggleButtonRef } = useSafeContext(ComboBoxRefsContext);
-  const refs = useMergedRefs(toggleButtonRef, forwardedRef);
+  const { className, children, disabled, isOpen, ...rest } = props;
 
   return (
-    <Box
+    <Icon
       as='span'
-      ref={refs}
+      ref={forwardedRef}
       className={cx(
         'iui-end-icon',
         {
-          'iui-actionable': !disabled,
           'iui-disabled': disabled,
           'iui-open': isOpen,
         },
         className,
       )}
-      onClick={mergeEventHandlers(onClickProp, () => {
-        dispatch({ type: isOpen ? 'close' : 'open' });
-      })}
       {...rest}
     >
       {children ?? <SvgCaretDownSmall aria-hidden />}
-    </Box>
+    </Icon>
   );
 }) as PolymorphicForwardRefComponent<'span', ComboBoxEndIconProps>;
 ComboBoxEndIcon.displayName = 'ComboBoxEndIcon';

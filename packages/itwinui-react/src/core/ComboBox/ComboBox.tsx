@@ -192,8 +192,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const menuRef = React.useRef<HTMLUListElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
+  const menuRef = React.useRef<HTMLElement>(null);
   const onChangeProp = useLatestRef(onChange);
   const optionsRef = useLatestRef(options);
 
@@ -463,7 +462,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
-          ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
+          ref: mergeRefs(customItem.props.ref, (el: HTMLElement | null) => {
             if (!enableVirtualization && focusedIndex === __originalIndex) {
               el?.scrollIntoView({ block: 'nearest' });
             }
@@ -514,7 +513,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   return (
     <ComboBoxRefsContext.Provider
-      value={{ inputRef, menuRef, toggleButtonRef, optionsExtraInfoRef }}
+      value={{ inputRef, menuRef, optionsExtraInfoRef }}
     >
       <ComboBoxActionContext.Provider value={dispatch}>
         <ComboBoxStateContext.Provider
@@ -530,10 +529,11 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             multiple,
           }}
         >
-          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
+          <ComboBoxInputContainer {...rest}>
             <>
               <ComboBoxInput
                 value={inputValue}
+                disabled={inputProps?.disabled}
                 {...inputProps}
                 onChange={handleOnInput}
                 selectTags={
