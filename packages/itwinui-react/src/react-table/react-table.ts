@@ -7,6 +7,18 @@
 /* eslint-disable @typescript-eslint/no-empty-interface */
 /* eslint-disable @typescript-eslint/ban-types */
 
+import type {
+  ChangeEvent,
+  ComponentType,
+  CSSProperties,
+  DependencyList,
+  EffectCallback,
+  MouseEvent,
+  ReactElement,
+  ReactFragment,
+  ReactNode,
+} from 'react';
+
 //-------------------------------------------------------------------------------
 // Custom Additions (parts from the old file called react-table-config.ts)
 
@@ -31,27 +43,6 @@ export type CellRendererProps<D extends Record<string, unknown> = {}> = {
   isDisabled?: (rowData: D) => boolean;
 };
 
-//-------------------------------------------------------------------------------
-// Everything below is a hard fork of @types/react-table v7
-// The original code is licensed under MIT - https://unpkg.com/browse/@types/react-table@7.7.15/LICENSE
-//
-// A few reasons for this hard fork are:
-// - iTwinUI Table does not offer all the functionality that `react-table` offers. (no nested columns)
-// - `@types/react-table` expects row data to extend `object`. However, iTwinUI Table's expects row data to extend `Record<string, unknown>`.
-//   - This gave type errors like: `Type Record<string, unknown> is not assignable to type TableStoryDataType.`
-
-import type {
-  ChangeEvent,
-  ComponentType,
-  CSSProperties,
-  DependencyList,
-  EffectCallback,
-  MouseEvent,
-  ReactElement,
-  ReactFragment,
-  ReactNode,
-} from 'react';
-
 export type TableFilterProps<T extends Record<string, unknown>> =
   FilterProps<T> & {
     /**
@@ -71,6 +62,15 @@ export type TableFilterProps<T extends Record<string, unknown>> =
      */
     clearFilter: () => void;
   };
+
+//-------------------------------------------------------------------------------
+// Everything below is a hard fork of @types/react-table v7
+// The original code is licensed under MIT - https://unpkg.com/browse/@types/react-table@7.7.15/LICENSE
+//
+// A few reasons for this hard fork are:
+// - iTwinUI Table does not offer all the functionality that `react-table` offers. (no nested columns)
+// - `@types/react-table` expects row data to extend `object`. However, iTwinUI Table's expects row data to extend `Record<string, unknown>`.
+//   - This gave type errors like: `Type Record<string, unknown> is not assignable to type TableStoryDataType.`
 
 export interface TableOptions<D extends Record<string, unknown>>
   extends Omit<UseTableOptions<D>, 'data' | 'columns'>,
