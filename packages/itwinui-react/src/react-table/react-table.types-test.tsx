@@ -576,9 +576,7 @@ import { SvgMore } from 'src/core/utils/index.js';
     (state) =>
       console.log(`Sort changed. Table state: ${JSON.stringify(state)}`),
     [],
-  ) satisfies NonNullable<
-    TableProps<{ name: string; description: string }>['onSort']
-  >;
+  ) satisfies NonNullable<TableProps<TableRowDataType>['onSort']>;
 
   const onExpand = React.useCallback(
     (rows, state) =>
@@ -588,21 +586,11 @@ import { SvgMore } from 'src/core/utils/index.js';
         )}`,
       ),
     [],
-  ) satisfies NonNullable<
-    TableProps<{
-      name: string;
-      description: string;
-    }>['onExpand']
-  >;
+  ) satisfies NonNullable<TableProps<TableRowDataType>['onExpand']>;
 
   const onRowInViewport = React.useCallback((rowData) => {
     console.log(`Row in view: ${JSON.stringify(rowData)}`);
-  }, []) satisfies NonNullable<
-    TableProps<{
-      name: string;
-      description: string;
-    }>['onRowInViewport']
-  >;
+  }, []) satisfies NonNullable<TableProps<TableRowDataType>['onRowInViewport']>;
 
   const rowProps = React.useCallback(
     (row: TableTypes.Row<TableRowDataType>) => {
