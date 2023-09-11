@@ -132,6 +132,8 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
         styleType={styleType}
         size={size}
         disabled={props.disabled}
+        aria-labelledby={props.labelProps?.id || labelId}
+        aria-expanded={popover.open}
         ref={popover.refs.setReference}
         {...popover.getReferenceProps(menuButtonProps)}
       >
