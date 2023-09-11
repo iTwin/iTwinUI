@@ -48,8 +48,7 @@ export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
         placement={menuPlacement}
         menuItems={menuItems}
         style={{ minInlineSize: menuWidth }}
-        onShow={React.useCallback(() => setIsMenuOpen(true), [])}
-        onHide={React.useCallback(() => setIsMenuOpen(false), [])}
+        onVisibleChange={(open) => setIsMenuOpen(open)}
       >
         <ButtonBase
           aria-label='More'

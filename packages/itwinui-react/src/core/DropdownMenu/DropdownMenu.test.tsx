@@ -60,14 +60,14 @@ it('should close menu after menu item click', () => {
   fireEvent.click(button);
 
   const menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeVisible();
   assertBaseElement(menu);
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   const menuItem = menu.querySelector('.iui-list-item') as HTMLElement;
   expect(menuItem).toBeTruthy();
   fireEvent.click(menuItem);
 
-  expect(tippy).not.toBeVisible();
+  expect(menu).not.toBeVisible();
 });
 
 it('should render menu with custom role', () => {
@@ -100,22 +100,6 @@ it('should render menu with custom style', () => {
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertBaseElement(menu);
   expect(menu.style.color).toEqual('red');
-});
-
-it('should be mounted lazily', async () => {
-  let content: unknown;
-  renderComponent({
-    onCreate: (i) => {
-      content = i.props.content;
-    },
-    onShow: (i) => {
-      content = i.props.content;
-    },
-  });
-  expect((content as Element).children.length).toBe(0);
-
-  await userEvent.click(screen.getByText('Click here'));
-  expect((content as Element).children.length).toBe(1);
 });
 
 it('should focus target after hide', async () => {

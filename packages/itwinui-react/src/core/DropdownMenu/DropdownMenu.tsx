@@ -3,11 +3,19 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, mergeRefs } from '../utils/index.js';
+import {
+  Popover,
+  useMergedRefs,
+  usePopover,
+  Portal,
+  cloneElementWithRef,
+  useControlledState,
+  mergeRefs,
+  mergeEventHandlers,
+} from '../utils/index.js';
 import type {
-  CommonProps,
-  PopoverProps,
-  PopoverInstance,
+  PolymorphicForwardRefComponent,
+  PortalProps,
 } from '../utils/index.js';
 import { Menu } from '../Menu/index.js';
 
@@ -16,7 +24,10 @@ export type DropdownMenuProps = {
    * List of menu items. Recommended to use MenuItem component.
    * You can pass function that takes argument `close` that closes the dropdown menu, or a list of MenuItems.
    */
-  menuItems: (close: () => void) => JSX.Element[] | JSX.Element[] | JSX.Element;
+  menuItems:
+    | ((close: () => void) => JSX.Element[])
+    | JSX.Element[]
+    | JSX.Element;
   /**
    * ARIA role. Role of menu. For menu use 'menu', for select use 'listbox'.
    * @default 'menu'
@@ -26,12 +37,16 @@ export type DropdownMenuProps = {
    * Child element to wrap dropdown with.
    */
   children: React.ReactNode;
-} & Omit<PopoverProps, 'content'> &
-  Omit<CommonProps, 'title'>;
+} & Pick<
+  React.ComponentProps<typeof Popover>,
+  'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
+> &
+  React.ComponentPropsWithoutRef<'ul'> &
+  Pick<PortalProps, 'portal'>;
 
 /**
  * Dropdown menu component.
- * Uses the {@link Popover} component, which is a wrapper around [tippy.js](https://atomiks.github.io/tippyjs).
+ * Built on top of the {@link Popover} component.
  * @example
  * const menuItems = (close: () => void) => [
  *   <MenuItem key={1} onClick={onClick(1, close)}>
@@ -48,29 +63,31 @@ export type DropdownMenuProps = {
  *   <Button>Menu</Button>
  * </DropdownMenu>
  */
-export const DropdownMenu = (props: DropdownMenuProps) => {
+export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
   const {
     menuItems,
     children,
-    className,
-    style,
     role = 'menu',
-    visible,
+    visible: visibleProp,
     placement = 'bottom-start',
-    onShow,
-    onHide,
-    trigger,
-    id,
+    matchWidth = false,
+    onVisibleChange,
+    portal = true,
     ...rest
   } = props;
 
-  const [isVisible, setIsVisible] = React.useState(visible ?? false);
-  React.useEffect(() => {
-    setIsVisible(visible ?? false);
-  }, [visible]);
+  const [visible, setVisible] = useControlledState(
+    false,
+    visibleProp,
+    onVisibleChange,
+  );
 
-  const open = React.useCallback(() => setIsVisible(true), []);
-  const close = React.useCallback(() => setIsVisible(false), []);
+  const triggerRef = React.useRef<HTMLElement>(null);
+
+  const close = React.useCallback(() => {
+    setVisible(false);
+    triggerRef.current?.focus({ preventScroll: true });
+  }, [setVisible]);
 
   const menuContent = React.useMemo(() => {
     if (typeof menuItems === 'function') {
@@ -79,56 +96,45 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     return menuItems;
   }, [menuItems, close]);
 
-  const targetRef = React.useRef<HTMLElement>(null);
+  const popover = usePopover({
+    visible,
+    onVisibleChange: (open) => (open ? setVisible(true) : close()),
+    placement,
+    matchWidth,
+  });
 
-  const onShowHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsVisible(true);
-      onShow?.(instance);
-    },
-    [onShow],
-  );
-
-  const onHideHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsVisible(false);
-      targetRef.current?.focus();
-      onHide?.(instance);
-    },
-    [onHide],
-  );
+  const popoverRef = useMergedRefs(forwardedRef, popover.refs.setFloating);
 
   return (
-    <Popover
-      content={
-        <Menu className={className} style={style} role={role} id={id}>
-          {menuContent}
-        </Menu>
-      }
-      visible={trigger === undefined ? isVisible : undefined}
-      onClickOutside={close}
-      placement={placement}
-      onShow={onShowHandler}
-      onHide={onHideHandler}
-      trigger={visible === undefined ? trigger : undefined}
-      {...rest}
-    >
-      {React.isValidElement(children) ? (
-        React.cloneElement(children as JSX.Element, {
-          ref: mergeRefs(
-            targetRef,
-            (props.children as React.FunctionComponentElement<HTMLElement>).ref,
-          ),
-          onClick: (args: unknown) => {
-            trigger === undefined && (isVisible ? close() : open());
-            (children as JSX.Element).props.onClick?.(args);
-          },
-        })
-      ) : (
-        <></>
+    <>
+      {cloneElementWithRef(children, (children) => ({
+        ...popover.getReferenceProps(children.props),
+        'aria-expanded': popover.open,
+        ref: mergeRefs(triggerRef, popover.refs.setReference),
+      }))}
+      {popover.open && (
+        <Portal portal={portal}>
+          <Menu
+            {...popover.getFloatingProps({
+              role,
+              ...rest,
+              onKeyDown: mergeEventHandlers(props.onKeyDown, (e) => {
+                if (e.defaultPrevented) {
+                  return;
+                }
+                if (e.key === 'Tab') {
+                  close();
+                }
+              }),
+            })}
+            ref={popoverRef}
+          >
+            {menuContent}
+          </Menu>
+        </Portal>
       )}
-    </Popover>
+    </>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
 
 export default DropdownMenu;

@@ -65,7 +65,7 @@ export default () => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
+          portal={{ to: () => document.body }}
           visible={isOpen}
           placement='bottom-start'
         >
