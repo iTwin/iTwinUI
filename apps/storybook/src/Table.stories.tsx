@@ -178,9 +178,7 @@ export const SelectableMulti = () => {
         )}`,
       )(),
     [],
-  ) satisfies NonNullable<
-    TableProps<{ name: string; description: string }>['onSelect']
-  >;
+  ) satisfies NonNullable<TableProps['onSelect']>;
 
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
@@ -253,9 +251,7 @@ export const Sortable = () => {
   const onSort = useCallback(
     (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
     [],
-  ) satisfies NonNullable<
-    TableProps<{ name: string; description: string }>['onSort']
-  >;
+  ) satisfies NonNullable<TableProps['onSort']>;
 
   const columns = useMemo(
     () => [
@@ -466,7 +462,7 @@ export const Filters = () => {
       )();
     },
     [],
-  ) satisfies NonNullable<TableProps<TableStoryDataType>['onFilter']>;
+  ) satisfies NonNullable<TableProps['onFilter']>;
 
   return (
     <Table
@@ -564,12 +560,7 @@ export const Expandable = () => {
         )}`,
       )(),
     [],
-  ) satisfies NonNullable<
-    TableProps<{
-      name: string;
-      description: string;
-    }>['onExpand']
-  >;
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -630,12 +621,7 @@ export const ExpandableSubrows = () => {
         )}`,
       )(),
     [],
-  ) satisfies NonNullable<
-    TableProps<{
-      name: string;
-      description: string;
-    }>['onExpand']
-  >;
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -846,12 +832,7 @@ export const RowInViewport = () => {
 
   const onRowInViewport = useCallback((rowData) => {
     action(`Row in view: ${JSON.stringify(rowData)}`)();
-  }, []) satisfies NonNullable<
-    TableProps<{
-      name: string;
-      description: string;
-    }>['onRowInViewport']
-  >;
+  }, []) satisfies NonNullable<TableProps['onRowInViewport']>;
 
   return (
     <>
@@ -1664,9 +1645,7 @@ export const Condensed = () => {
         )}`,
       )(),
     [],
-  ) satisfies NonNullable<
-    TableProps<{ name: string; description: string }>['onExpand']
-  >;
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
