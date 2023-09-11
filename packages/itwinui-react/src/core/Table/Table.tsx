@@ -34,6 +34,7 @@ import {
   SvgSortUp,
   useIsomorphicLayoutEffect,
   Box,
+  createWarningLogger,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle } from './utils.js';
@@ -68,13 +69,7 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
-let didLogWarning = false;
-let isDev = false;
-
-// wrapping in try-catch because process might be undefined
-try {
-  isDev = process.env.NODE_ENV !== 'production';
-} catch {}
+const logWarningInDev = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -628,12 +623,9 @@ export const Table = <
 
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
-    if (isDev && !didLogWarning) {
-      console.warn(
-        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
-      );
-      didLogWarning = true;
-    }
+    logWarningInDev(
+      `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+    );
   }
 
   const ariaDataAttributes = Object.entries(rest).reduce(
