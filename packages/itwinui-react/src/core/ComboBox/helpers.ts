@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
+import type { usePopover } from '../utils/index.js';
 
 type ComboBoxAction =
   | { type: 'multiselect'; value: number[] }
@@ -64,8 +65,7 @@ export const comboBoxReducer = (
 export const ComboBoxRefsContext = React.createContext<
   | {
       inputRef: React.RefObject<HTMLInputElement>;
-      menuRef: React.RefObject<HTMLUListElement>;
-      toggleButtonRef: React.RefObject<HTMLSpanElement>;
+      menuRef: React.RefObject<HTMLElement>;
       optionsExtraInfoRef: React.MutableRefObject<
         Record<string, { __originalIndex: number }>
       >;
@@ -77,13 +77,15 @@ ComboBoxRefsContext.displayName = 'ComboBoxRefsContext';
 type ComboBoxStateContextProps<T = unknown> = {
   isOpen: boolean;
   id: string;
-  minWidth: number;
   enableVirtualization: boolean;
   filteredOptions: SelectOption<T>[];
   onClickHandler?: (prop: number) => void;
   getMenuItem: (option: SelectOption<T>, filteredIndex?: number) => JSX.Element;
   focusedIndex?: number;
   multiple?: boolean;
+  popover: ReturnType<typeof usePopover>;
+  show: () => void;
+  hide: () => void;
 };
 
 export const ComboBoxStateContext = React.createContext<

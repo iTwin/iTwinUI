@@ -3,10 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import * as ReactDOM from 'react-dom';
+import { render, screen } from '@testing-library/react';
 import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
 
 import { ThemeProvider } from './ThemeProvider.js';
+import { ThemeContext } from './ThemeContext.js';
 
 let useMediaSpy: jest.SpyInstance;
 
@@ -18,13 +20,11 @@ beforeEach(() => {
 
 afterEach(() => useMediaSpy.mockRestore());
 
-it.each(['default', 'light', 'dark'] as const)(
+it.each(['light', 'dark'] as const)(
   'should render correctly with %s theme',
   (theme) => {
     const { container } = render(
-      <ThemeProvider theme={theme === 'default' ? undefined : theme}>
-        Test
-      </ThemeProvider>,
+      <ThemeProvider theme={theme}>Test</ThemeProvider>,
     );
     const element = container.querySelector('div');
     expect(element).toBeTruthy();
@@ -142,6 +142,7 @@ it('should apply iui-root-background to the topmost ThemeProvider', () => {
 it('should default applyBackground to false when inheriting theme', () => {
   const { container, rerender } = render(
     <ThemeProvider theme='inherit'>Hello</ThemeProvider>,
+    { wrapper: ({ children }) => <div data-iui-theme='light'>{children}</div> },
   );
   const element = container.querySelector('.iui-root');
   expect(element).not.toHaveClass('iui-root-background');
@@ -153,4 +154,54 @@ it('should default applyBackground to false when inheriting theme', () => {
     </ThemeProvider>,
   );
   expect(element).toHaveClass('iui-root-background');
+});
+
+it('should inherit theme by default', () => {
+  const { container } = render(
+    <ThemeProvider theme='dark'>
+      <ThemeProvider id='nested'>Test</ThemeProvider>
+    </ThemeProvider>,
+  );
+
+  const nested = container.querySelector('#nested');
+  expect(nested).toHaveAttribute('data-iui-theme', 'dark');
+});
+
+it('should inherit theme from data attribute if no context found', () => {
+  const { container } = render(
+    <ThemeProvider id='nested'>Test</ThemeProvider>,
+    { wrapper: ({ children }) => <div data-iui-theme='dark'>{children}</div> },
+  );
+
+  const nested = container.querySelector('#nested');
+  expect(nested).toHaveAttribute('data-iui-theme', 'dark');
+});
+
+it('should default to light theme if no parent theme found', () => {
+  render(<ThemeProvider>Test</ThemeProvider>);
+  expect(screen.getByText('Test')).toHaveAttribute('data-iui-theme', 'light');
+});
+
+it('should respect the portalContainer prop', async () => {
+  const myPortals = document.createElement('my-portals');
+  document.body.appendChild(myPortals);
+
+  const InPortal = () => {
+    const { portalContainer } = React.useContext(ThemeContext) || {};
+    return (
+      portalContainer &&
+      ReactDOM.createPortal(<div>in portal!</div>, portalContainer)
+    );
+  };
+
+  const { getByText } = render(
+    <ThemeProvider portalContainer={myPortals}>
+      <div>not in portal</div>
+      <InPortal />
+    </ThemeProvider>,
+  );
+
+  getByText('not in portal');
+  expect(document.querySelector('my-portals .iui-toast-wrapper')).toBeTruthy();
+  expect(document.querySelector('my-portals')).toHaveTextContent('in portal!');
 });

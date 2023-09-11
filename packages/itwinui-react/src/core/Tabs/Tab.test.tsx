@@ -50,7 +50,7 @@ it('should render in disabled state', () => {
 
   const tab = container.querySelector('button.iui-tab') as HTMLButtonElement;
   expect(tab).toBeTruthy();
-  expect(tab.disabled).toBeTruthy();
+  expect(tab).toHaveAttribute('aria-disabled', 'true');
 
   const label = container.querySelector('.iui-tab-label > div') as HTMLElement;
   expect(label).toBeTruthy();

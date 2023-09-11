@@ -9,6 +9,7 @@ import {
   DateRangeFilter,
   type DateRangeFilterProps,
 } from './DateRangeFilter.js';
+import userEvent from '@testing-library/user-event';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
@@ -26,17 +27,15 @@ const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
 it('should render correctly', () => {
   const { container } = renderComponent();
 
-  const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label',
-  );
+  const labeledInputs = container.querySelectorAll('.iui-input-grid');
   expect(labeledInputs.length).toBe(2);
 
-  expect(labeledInputs[0].querySelector('.iui-label')?.textContent).toEqual(
-    'From',
-  );
-  expect(labeledInputs[1].querySelector('.iui-label')?.textContent).toEqual(
-    'To',
-  );
+  expect(
+    labeledInputs[0].querySelector('.iui-input-label')?.textContent,
+  ).toEqual('From');
+  expect(
+    labeledInputs[1].querySelector('.iui-input-label')?.textContent,
+  ).toEqual('To');
 
   screen.getByText('Filter');
   screen.getByText('Clear');
@@ -51,7 +50,7 @@ it('should render correctly with set filter value', () => {
   });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -64,7 +63,7 @@ it('should set filter when both values entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -84,7 +83,7 @@ it('should set filter when only From is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -103,7 +102,7 @@ it('should set filter when only To is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -122,7 +121,7 @@ it('should set filter when both values entered and Enter is pressed', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -145,7 +144,7 @@ it('should set filter with empty values when invalid date is entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -161,7 +160,7 @@ it('should set filter with empty values when date is not fully entered', () => {
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -186,7 +185,7 @@ it('should set filter and keep time from existing dates', () => {
   });
 
   const labeledInputs = container.querySelectorAll(
-    '.iui-input-container.iui-inline-label input',
+    '.iui-input-flex-container > input',
   ) as NodeListOf<HTMLInputElement>;
   expect(labeledInputs.length).toBe(2);
 
@@ -199,4 +198,59 @@ it('should set filter and keep time from existing dates', () => {
     new Date(2021, 4, 1, 10, 20, 30, 400),
     new Date(2021, 4, 3, 20, 30, 40, 500),
   ]);
+});
+
+it('should render with localized DatePicker', async () => {
+  const months = [
+    'January-custom',
+    'February-custom',
+    'March-custom',
+    'April-custom',
+    'May-custom',
+    'June-custom',
+    'July-custom',
+    'August-custom',
+    'September-custom',
+    'October-custom',
+    'November-custom',
+    'December-custom',
+  ];
+  const shortDays = [
+    'Su-custom',
+    'Mo-custom',
+    'Tu-custom',
+    'We-custom',
+    'Th-custom',
+    'Fr-custom',
+    'Sa-custom',
+  ];
+  const days = [
+    'Sunday-custom',
+    'Monday-custom',
+    'Tuesday-custom',
+    'Wednesday-custom',
+    'Thursday-custom',
+    'Friday-custom',
+    'Saturday-custom',
+  ];
+  const { container, getByText, getByTitle } = renderComponent({
+    column: {
+      filterValue: [new Date(2021, 0, 1)],
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as HeaderGroup<any>,
+
+    translatedLabels: {
+      from: 'From',
+      to: 'To',
+      clear: 'Clear',
+      filter: 'Filter',
+      datePicker: { months, shortDays, days },
+    },
+  });
+
+  await userEvent.click(container.querySelector('button') as HTMLElement);
+
+  getByText('January-custom');
+  getByText('Su-custom');
+  getByTitle('Sunday-custom');
 });

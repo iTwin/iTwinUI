@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/index.js';
 import { Input } from '../Input/index.js';
-import { ColorValue, InputContainer, SvgSwap, Box } from '../utils/index.js';
+import { ColorValue, SvgSwap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
@@ -169,18 +169,44 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
   };
 
   const hexInputField = (
-    <InputContainer status={validHexInput ? undefined : 'negative'}>
+    <Input
+      size='small'
+      maxLength={showAlpha ? 9 : 7}
+      minLength={1}
+      placeholder='HEX'
+      value={input[0]}
+      onChange={(event) => {
+        const value = event.target.value.startsWith('#')
+          ? event.target.value
+          : `#${event.target.value}`;
+        setInput([value]);
+      }}
+      onKeyDown={(event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          handleColorInputChange();
+        }
+      }}
+      onBlur={(event) => {
+        event.preventDefault();
+        handleColorInputChange();
+      }}
+      status={validHexInput ? undefined : 'negative'}
+    />
+  );
+
+  const hslInputs = (
+    <>
       <Input
         size='small'
-        maxLength={showAlpha ? 9 : 7}
-        minLength={1}
-        placeholder='HEX'
-        value={input[0]}
+        type='number'
+        min='0'
+        max='359'
+        step='.1'
+        placeholder='H'
+        value={input[0] ?? ''}
         onChange={(event) => {
-          const value = event.target.value.startsWith('#')
-            ? event.target.value
-            : `#${event.target.value}`;
-          setInput([value]);
+          setInput([event.target.value, input[1], input[2], input[3]]);
         }}
         onKeyDown={(event) => {
           if (event.key === 'Enter') {
@@ -190,95 +216,86 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         }}
         onBlur={(event) => {
           event.preventDefault();
-          handleColorInputChange();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
         }}
-      />
-    </InputContainer>
-  );
-
-  const hslInputs = (
-    <>
-      <InputContainer
         status={
           Number(input[0]) < 0 || Number(input[0]) > 360
             ? 'negative'
             : undefined
         }
-      >
-        <Input
-          size='small'
-          type='number'
-          min='0'
-          max='359'
-          step='.1'
-          placeholder='H'
-          value={input[0] ?? ''}
-          onChange={(event) => {
-            setInput([event.target.value, input[1], input[2], input[3]]);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              handleColorInputChange();
-            }
-          }}
-          onBlur={(event) => {
+      />
+      <Input
+        size='small'
+        type='number'
+        min='0'
+        max='100'
+        step='.1'
+        placeholder='S'
+        value={input[1] ?? ''}
+        onChange={(event) => {
+          setInput([input[0], event.target.value, input[2], input[3]]);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            if (!isFocusInside(event.relatedTarget)) {
-              handleColorInputChange();
-            }
-          }}
-        />
-      </InputContainer>
-      <InputContainer
+            handleColorInputChange();
+          }
+        }}
+        onBlur={(event) => {
+          event.preventDefault();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
+        }}
         status={
           Number(input[1]) < 0 || Number(input[1]) > 100
             ? 'negative'
             : undefined
         }
-      >
-        <Input
-          size='small'
-          type='number'
-          min='0'
-          max='100'
-          step='.1'
-          placeholder='S'
-          value={input[1] ?? ''}
-          onChange={(event) => {
-            setInput([input[0], event.target.value, input[2], input[3]]);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              handleColorInputChange();
-            }
-          }}
-          onBlur={(event) => {
+      />
+      <Input
+        size='small'
+        type='number'
+        min='0'
+        max='100'
+        step='.1'
+        placeholder='L'
+        value={input[2] ?? ''}
+        onChange={(event) => {
+          setInput([input[0], input[1], event.target.value, input[3]]);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            if (!isFocusInside(event.relatedTarget)) {
-              handleColorInputChange();
-            }
-          }}
-        />
-      </InputContainer>
-      <InputContainer
+            handleColorInputChange();
+          }
+        }}
+        onBlur={(event) => {
+          event.preventDefault();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
+        }}
         status={
           Number(input[2]) < 0 || Number(input[2]) > 100
             ? 'negative'
             : undefined
         }
-      >
+      />
+
+      {showAlpha && (
         <Input
           size='small'
           type='number'
           min='0'
-          max='100'
-          step='.1'
-          placeholder='L'
-          value={input[2] ?? ''}
+          max='1'
+          step='.01'
+          placeholder='A'
+          value={input[3] ?? ''}
           onChange={(event) => {
-            setInput([input[0], input[1], event.target.value, input[3]]);
+            setInput([input[0], input[1], input[2], event.target.value]);
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
@@ -292,125 +309,115 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
               handleColorInputChange();
             }
           }}
-        />
-      </InputContainer>
-      {showAlpha && (
-        <InputContainer
           status={
             Number(input[3]) < 0 || Number(input[3]) > 1
               ? 'negative'
               : undefined
           }
-        >
-          <Input
-            size='small'
-            type='number'
-            min='0'
-            max='1'
-            step='.01'
-            placeholder='A'
-            value={input[3] ?? ''}
-            onChange={(event) => {
-              setInput([input[0], input[1], input[2], event.target.value]);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                event.preventDefault();
-                handleColorInputChange();
-              }
-            }}
-            onBlur={(event) => {
-              event.preventDefault();
-              if (!isFocusInside(event.relatedTarget)) {
-                handleColorInputChange();
-              }
-            }}
-          />
-        </InputContainer>
+        />
       )}
     </>
   );
 
   const rgbInputs = (
     <>
-      <InputContainer
+      <Input
+        size='small'
+        type='number'
+        min='0'
+        max='255'
+        placeholder='R'
+        value={input[0] ?? ''}
+        onChange={(event) => {
+          setInput([event.target.value, input[1], input[2], input[3]]);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            handleColorInputChange();
+          }
+        }}
+        onBlur={(event) => {
+          event.preventDefault();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
+        }}
         status={
           Number(input[0]) < 0 || Number(input[0]) > 255
             ? 'negative'
             : undefined
         }
-      >
-        <Input
-          size='small'
-          type='number'
-          min='0'
-          max='255'
-          placeholder='R'
-          value={input[0] ?? ''}
-          onChange={(event) => {
-            setInput([event.target.value, input[1], input[2], input[3]]);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              handleColorInputChange();
-            }
-          }}
-          onBlur={(event) => {
+      />
+
+      <Input
+        size='small'
+        type='number'
+        min='0'
+        max='255'
+        placeholder='G'
+        value={input[1] ?? ''}
+        onChange={(event) => {
+          setInput([input[0], event.target.value, input[2], input[3]]);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            if (!isFocusInside(event.relatedTarget)) {
-              handleColorInputChange();
-            }
-          }}
-        />
-      </InputContainer>
-      <InputContainer
+            handleColorInputChange();
+          }
+        }}
+        onBlur={(event) => {
+          event.preventDefault();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
+        }}
         status={
           Number(input[1]) < 0 || Number(input[1]) > 255
             ? 'negative'
             : undefined
         }
-      >
-        <Input
-          size='small'
-          type='number'
-          min='0'
-          max='255'
-          placeholder='G'
-          value={input[1] ?? ''}
-          onChange={(event) => {
-            setInput([input[0], event.target.value, input[2], input[3]]);
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              event.preventDefault();
-              handleColorInputChange();
-            }
-          }}
-          onBlur={(event) => {
+      />
+
+      <Input
+        size='small'
+        type='number'
+        min='0'
+        max='255'
+        placeholder={'B'}
+        value={input[2] ?? ''}
+        onChange={(event) => {
+          setInput([input[0], input[1], event.target.value, input[3]]);
+        }}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            if (!isFocusInside(event.relatedTarget)) {
-              handleColorInputChange();
-            }
-          }}
-        />
-      </InputContainer>
-      <InputContainer
+            handleColorInputChange();
+          }
+        }}
+        onBlur={(event) => {
+          event.preventDefault();
+          if (!isFocusInside(event.relatedTarget)) {
+            handleColorInputChange();
+          }
+        }}
         status={
           Number(input[2]) < 0 || Number(input[2]) > 255
             ? 'negative'
             : undefined
         }
-      >
+      />
+      {showAlpha && (
         <Input
           size='small'
           type='number'
           min='0'
-          max='255'
-          placeholder={'B'}
-          value={input[2] ?? ''}
+          max='1'
+          step='.01'
+          placeholder='A'
+          value={input[3] ?? ''}
           onChange={(event) => {
-            setInput([input[0], input[1], event.target.value, input[3]]);
+            setInput([input[0], input[1], input[2], event.target.value]);
           }}
           onKeyDown={(event) => {
             if (event.key === 'Enter') {
@@ -424,41 +431,12 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
               handleColorInputChange();
             }
           }}
-        />
-      </InputContainer>
-      {showAlpha && (
-        <InputContainer
           status={
             Number(input[3]) < 0 || Number(input[3]) > 1
               ? 'negative'
               : undefined
           }
-        >
-          <Input
-            size='small'
-            type='number'
-            min='0'
-            max='1'
-            step='.01'
-            placeholder='A'
-            value={input[3] ?? ''}
-            onChange={(event) => {
-              setInput([input[0], input[1], input[2], event.target.value]);
-            }}
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                event.preventDefault();
-                handleColorInputChange();
-              }
-            }}
-            onBlur={(event) => {
-              event.preventDefault();
-              if (!isFocusInside(event.relatedTarget)) {
-                handleColorInputChange();
-              }
-            }}
-          />
-        </InputContainer>
+        />
       )}
     </>
   );

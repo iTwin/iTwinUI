@@ -14,17 +14,22 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='ExpandableBlock.main.tsx'>
+<LiveExample src='ExpandableBlock.main.tsx' truncate={false}>
   <AllExamples.ExpandableBlockMainExample client:load />
 </LiveExample>
 
 The expandable block has a label reflecting its content. On click, it expands to reveal more content.
 
-## Variants
+## Usage
+
+The expandable block can be used in two ways:
+
+- Directly using `ExpandableBlock` along with `title`, `caption`, `endIcon` and children. This pattern can suffice for simple cases.
+- Using subcomponents (`ExpandableBlock.Wrapper`, `ExpandableBlock.Trigger`, `ExpandableBlock.Content`, etc). This pattern is more verbose but allows full customization over all the parts.
 
 ### With caption
 
-Users can optionally display descriptor text underneath the title.
+Descriptor text can be optionally displayed underneath the title, either using the `caption` prop or the `ExpandableBlock.Caption` subcomponent.
 
 <LiveExample src='ExpandableBlock.withcaption.tsx'>
   <AllExamples.ExpandableBlockWithCaptionExample client:load />
@@ -40,7 +45,7 @@ Expandable blocks can also stack on top of each other in an accordion to make la
 
 ### With status
 
-An expandable block could display status, an icon, or other helpful information at a glance right aligned within the block header.
+An expandable block could display status, an icon, or other helpful information at a glance right aligned within the block header. The status can be set using the `status` prop, and the icon can be customized using either the `endIcon` prop or the `ExpandableBlock.EndIcon` subcomponent.
 
 <LiveExample src='ExpandableBlock.status.tsx'>
   <AllExamples.ExpandableBlockStatusExample client:load />
@@ -70,9 +75,9 @@ An expandable block can be disabled by using the `disabled` prop.
   <AllExamples.ExpandableBlockDisabledExample client:load />
 </LiveExample>
 
-## Usage
+## Guidelines
 
-Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/) Expandable blocks should not be used with flattened hierarchy or information panels. [Table](table) rows can also expand similarly to expandable block
+Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/) Expandable blocks should not be used with flattened hierarchy or information panels. [Table](table) rows can also expand similarly to expandable block.
 
 ### Forms
 

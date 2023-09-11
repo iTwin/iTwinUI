@@ -45,14 +45,17 @@
       .demo-border-subtle { background-color: var(--iui-color-border-subtle); }
       .demo-border { background-color: var(--iui-color-border); }
       .demo-background-informational-muted { background-color: var(--iui-color-background-informational-muted); }
+      .demo-background-accent-muted { background-color: var(--iui-color-background-accent-muted); }
       .demo-background-positive-muted { background-color: var(--iui-color-background-positive-muted); }
       .demo-background-warning-muted { background-color: var(--iui-color-background-warning-muted); }
       .demo-background-negative-muted { background-color: var(--iui-color-background-negative-muted); }
       .demo-background-informational { background-color: var(--iui-color-background-informational); }
+      .demo-background-accent { background-color: var(--iui-color-background-accent); }
       .demo-background-positive { background-color: var(--iui-color-background-positive); }
       .demo-background-warning { background-color: var(--iui-color-background-warning); }
       .demo-background-negative { background-color: var(--iui-color-background-negative); }
       .demo-background-informational-hover { background-color: var(--iui-color-background-informational-hover); }
+      .demo-background-accent-hover { background-color: var(--iui-color-background-accent-hover); }
       .demo-background-positive-hover { background-color: var(--iui-color-background-positive-hover); }
       .demo-background-warning-hover { background-color: var(--iui-color-background-warning-hover); }
       .demo-background-negative-hover { background-color: var(--iui-color-background-negative-hover); }
@@ -62,6 +65,7 @@
         display: flex;
         flex: 1;
       }
+      .demo-background-accent,
       .demo-background-informational,
       .demo-background-positive,
       .demo-background-warning,
@@ -72,13 +76,17 @@
       .demo-background-backdrop-hover,
       .demo-background-transparent-hover,
       .demo-background-informational-hover,
+      .demo-background-accent-hover,
       .demo-background-positive-hover,
       .demo-background-warning-hover,
       .demo-background-negative-hover {
         flex: 1;
         text-align: center;
       }
-
+      .demo-text-placeholder {
+        color: var(--iui-color-text-placeholder);
+        font-weight: var(--iui-font-weight-light);
+      }
       .demo-text-informational { color: var(--iui-color-text-informational); }
       .demo-text-informational:hover { color: var(--iui-color-text-informational-hover); }
       .demo-text-informational::selection { background-color: hsl(var(--iui-color-informational-hsl) / var(--iui-opacity-5)); }
@@ -130,6 +138,7 @@
           <ul>
             <li class="iui-text-block">Normal text</li>
             <li class="iui-text-block iui-text-muted">Muted text</li>
+            <li class="demo-text-placeholder">Placeholder text</li>
             <li class="demo-text-informational">Informational text</li>
             <li class="demo-text-positive">Positive text</li>
             <li class="demo-text-warning">Warning text</li>
@@ -254,6 +263,15 @@
         </ul>
       </div>
 
+      <div class="demo-background-accent">
+        <h2 class="iui-text-title iui-text-spacing">Background accent</h2>
+        <ul>
+          <li class="iui-text-block">Text</li>
+        </ul>
+        <ul class="demo-hover-backgrounds">
+          <li class="demo-background-accent-hover">Background accent hover</li>
+        </ul>
+      </div>
       <div class="demo-background-informational">
         <h2 class="iui-text-title iui-text-spacing">Background informational</h2>
         <ul>

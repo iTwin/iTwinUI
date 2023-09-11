@@ -54,14 +54,15 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           content={column.render('Filter', { close, setFilter, clearFilter })}
           placement='bottom-start'
           visible={isVisible}
-          onClickOutside={close}
+          onVisibleChange={setIsVisible}
+          closeOnOutsideClick
         >
           <IconButton
             styleType='borderless'
             isActive={isVisible || isColumnFiltered}
             className={cx('iui-table-filter-button', className)}
+            aria-label='Filter'
             onClick={(e) => {
-              setIsVisible((v) => !v);
               // Prevents from triggering sort
               e.stopPropagation();
             }}

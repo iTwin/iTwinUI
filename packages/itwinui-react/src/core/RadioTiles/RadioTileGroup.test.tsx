@@ -17,11 +17,11 @@ it('should render without label', () => {
   );
   expect(
     container.querySelector(
-      '.iui-input-container > .iui-input-group > .iui-radio-tile-container',
+      '.iui-input-grid > .iui-input-group > .iui-radio-tile-container',
     ),
   ).toBeTruthy();
   expect(
-    container.querySelector('.iui-input-container > .iui-label'),
+    container.querySelector('.iui-input-container > .iui-input-label'),
   ).toBeNull();
 });
 
@@ -34,11 +34,11 @@ it('should render with label', () => {
   );
   expect(
     container.querySelector(
-      '.iui-input-container > .iui-input-group > .iui-radio-tile-container',
+      '.iui-input-grid > .iui-input-group > .iui-radio-tile-container',
     ),
   ).toBeTruthy();
   const label = container.querySelector(
-    '.iui-input-container > .iui-label',
+    '.iui-input-grid > .iui-input-label',
   ) as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('My tiles');

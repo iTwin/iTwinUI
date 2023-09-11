@@ -65,13 +65,13 @@ export default () => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
+          portal={{ to: () => document.body }}
           visible={isOpen}
           placement='bottom-start'
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch
-              style={{ pointerEvents: 'none', margin: 0 }}
+              style={{ pointerEvents: 'none' }}
               color={selectedColor}
             />
           </IconButton>

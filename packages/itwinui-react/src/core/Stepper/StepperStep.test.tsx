@@ -131,6 +131,42 @@ describe('Stepper step (default)', () => {
     expect(container.querySelector('.iui-stepper-track-content')).toBeTruthy();
   });
 
+  it('should correctly pass custom className through stepProps, trackContentProps, circleProps, and nameProps', () => {
+    const mockedClick = jest.fn();
+    const step = (
+      <StepperStep
+        title='First step'
+        index={0}
+        currentStepNumber={1}
+        totalSteps={3}
+        type='default'
+        onClick={mockedClick}
+        stepProps={{ className: 'some-class' }}
+        trackContentProps={{ className: 'some-content' }}
+        circleProps={{ className: 'some-circle' }}
+        nameProps={{ className: 'some-name' }}
+      />
+    );
+
+    const { container } = render(step);
+
+    expect(
+      container.querySelector('.iui-stepper-step.some-class'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-track-content.some-content'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-circle.some-circle'),
+    ).toBeTruthy();
+
+    expect(
+      container.querySelector('.iui-stepper-step-name.some-name'),
+    ).toBeTruthy();
+  });
+
   it('should set dynamic inline width based on total steps', () => {
     const { container: container1 } = render(
       <StepperStep
@@ -144,7 +180,7 @@ describe('Stepper step (default)', () => {
 
     const step1 = container1.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step1).toBeTruthy();
-    expect(step1.style.width).toEqual('25%');
+    expect(step1.style.inlineSize).toEqual('25%');
 
     const { container: container2 } = render(
       <StepperStep
@@ -158,7 +194,7 @@ describe('Stepper step (default)', () => {
 
     const step2 = container2.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step2).toBeTruthy();
-    expect(step2.style.width).toEqual('12.5%');
+    expect(step2.style.inlineSize).toEqual('12.5%');
   });
 });
 
@@ -218,7 +254,7 @@ describe('Stepper step (long)', () => {
 
     const step = container.querySelector('.iui-stepper-step') as HTMLElement;
     expect(step).toBeTruthy();
-    expect(step.style.width).toBeFalsy(); // not 25%
+    expect(step.style.inlineSize).toBeFalsy(); // not 25%
   });
 });
 

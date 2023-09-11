@@ -61,6 +61,49 @@ it('should render correctly in its most basic state', () => {
   expect(thumb.getAttribute('aria-disabled')).toEqual('false');
 });
 
+it('should render all custom classNames correctly', () => {
+  const { container } = render(
+    <Slider
+      values={defaultSingleValue}
+      tickLabels={['0', '25', '50', '75', '100']}
+      minProps={{ className: 'some-min' }}
+      maxProps={{ className: 'some-max' }}
+      railProps={{ className: 'some-rail' }}
+      trackProps={{ className: 'some-track' }}
+      tickProps={{ className: 'some-tick' }}
+      ticksProps={{ className: 'some-ticks' }}
+    />,
+  );
+  assertBaseElement(container);
+  expect(container.querySelector('.iui-slider-track')).toBeTruthy();
+  expect(container.querySelector('.iui-slider-min')).toHaveClass(
+    'iui-slider-min',
+    'some-min',
+  );
+  expect(container.querySelector('.iui-slider-max')).toHaveClass(
+    'iui-slider-max',
+    'some-max',
+  );
+  expect(container.querySelector('.iui-slider-rail')).toHaveClass(
+    'iui-slider-rail',
+    'some-rail',
+  );
+  expect(container.querySelector('.iui-slider-track')).toHaveClass(
+    'iui-slider-track',
+    'some-track',
+  );
+  expect(container.querySelector('.iui-slider-tick')).toHaveClass(
+    'iui-slider-tick',
+    'some-tick',
+  );
+  expect(container.querySelector('.iui-slider-ticks')).toHaveClass(
+    'iui-slider-ticks',
+    'some-ticks',
+  );
+  const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
+  expect(thumb.getAttribute('aria-disabled')).toEqual('false');
+});
+
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
   expect(
@@ -75,7 +118,7 @@ it('should not render track if min and max are same value', () => {
   const { container } = render(<Slider values={[10]} min={20} max={20} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('0%');
+  expect(element.style.insetInlineStart).toBe('0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -83,7 +126,7 @@ it('should not render track if value is below specified min/max', () => {
   const { container } = render(<Slider values={[10]} min={20} max={40} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('0%');
+  expect(element.style.insetInlineStart).toBe('0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -94,7 +137,7 @@ it('should not render track if value is above specified min/max', () => {
   ).toBeTruthy();
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.left).toBe('100%');
+  expect(element.style.insetInlineStart).toBe('100%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -153,7 +196,7 @@ it('should show tooltip when focused', async () => {
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
-  expect(document.querySelector('.iui-tooltip')?.textContent).toBe('50');
+  expect(document.querySelector('.iui-tooltip')).toBeVisible();
 });
 
 it('should not show tooltip if visibility is overridden', async () => {
@@ -170,7 +213,7 @@ it('should not show tooltip if visibility is overridden', async () => {
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
-  expect(document.querySelector('.iui-tooltip')).toBeFalsy();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 });
 
 it('should show custom tooltip when focused', async () => {
@@ -189,7 +232,9 @@ it('should show custom tooltip when focused', async () => {
   expect(document.activeElement).toEqual(
     container.querySelector('.iui-slider-thumb'),
   );
-  expect(document.querySelector('.iui-tooltip')?.textContent).toBe('$50.00');
+  const tooltip = document.querySelector('.iui-tooltip');
+  expect(tooltip).toBeVisible();
+  expect(tooltip).toHaveTextContent('$50.00');
 });
 
 it('should take class and style', () => {
@@ -468,14 +513,16 @@ it('should show tooltip on thumb hover', async () => {
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-  expect(document.querySelector('.iui-tooltip')).toBeFalsy();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
   jest.useFakeTimers();
   fireEvent.mouseEnter(thumb);
   act(() => void jest.advanceTimersByTime(50));
   jest.useRealTimers();
 
-  expect(document.querySelector('.iui-tooltip')?.textContent).toBe('50');
+  const tooltip = document.querySelector('.iui-tooltip');
+  expect(tooltip).toBeVisible();
+  expect(tooltip).toHaveTextContent('50');
 });
 
 it('should show tooltip on thumb focus', async () => {
@@ -483,12 +530,13 @@ it('should show tooltip on thumb focus', async () => {
   assertBaseElement(container);
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.classList).not.toContain('iui-active');
-  expect(document.querySelector('.iui-tooltip')).toBeFalsy();
+  expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
   await userEvent.tab();
-  expect(
-    (document.querySelector('.iui-tooltip') as HTMLDivElement).textContent,
-  ).toBe('50');
+
+  const tooltip = document.querySelector('.iui-tooltip');
+  expect(tooltip).toBeVisible();
+  expect(tooltip).toHaveTextContent('50');
 });
 
 it('should apply thumb props', () => {

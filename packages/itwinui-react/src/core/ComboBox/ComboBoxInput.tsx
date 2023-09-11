@@ -25,9 +25,9 @@ type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
   const {
     onKeyDown: onKeyDownProp,
-    onFocus: onFocusProp,
     onClick: onClickProp,
     selectTags,
+    size,
     ...rest
   } = props;
 
@@ -38,11 +38,14 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     enableVirtualization,
     multiple,
     onClickHandler,
+    popover,
+    show,
+    hide,
   } = useSafeContext(ComboBoxStateContext);
   const dispatch = useSafeContext(ComboBoxActionContext);
   const { inputRef, menuRef, optionsExtraInfoRef } =
     useSafeContext(ComboBoxRefsContext);
-  const refs = useMergedRefs(inputRef, forwardedRef);
+  const refs = useMergedRefs(inputRef, popover.refs.setReference, forwardedRef);
 
   const focusedIndexRef = React.useRef(focusedIndex ?? -1);
   React.useEffect(() => {
@@ -57,7 +60,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      onKeyDownProp?.(event);
       const length = Object.keys(optionsExtraInfoRef.current).length ?? 0;
 
       if (event.altKey) {
@@ -68,7 +70,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         case 'ArrowDown': {
           event.preventDefault();
           if (!isOpen) {
-            return dispatch({ type: 'open' });
+            return show();
           }
 
           if (length === 0) {
@@ -115,7 +117,7 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         case 'ArrowUp': {
           event.preventDefault();
           if (!isOpen) {
-            return dispatch({ type: 'open' });
+            return show();
           }
 
           if (length === 0) {
@@ -164,17 +166,17 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
               onClickHandler?.(focusedIndexRef.current);
             }
           } else {
-            dispatch({ type: 'open' });
+            show();
           }
           break;
         }
         case 'Escape': {
           event.preventDefault();
-          dispatch({ type: 'close' });
+          hide();
           break;
         }
         case 'Tab':
-          dispatch({ type: 'close' });
+          hide();
           break;
       }
     },
@@ -184,24 +186,19 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
       isOpen,
       menuRef,
       onClickHandler,
-      onKeyDownProp,
       optionsExtraInfoRef,
+      show,
+      hide,
     ],
-  );
-
-  const handleFocus = React.useCallback(
-    (event: React.FocusEvent<HTMLInputElement>) => {
-      dispatch({ type: 'open' });
-      onFocusProp?.(event);
-    },
-    [dispatch, onFocusProp],
   );
 
   const handleClick = React.useCallback(() => {
     if (!isOpen) {
-      dispatch({ type: 'open' });
+      show();
+    } else {
+      hide();
     }
-  }, [dispatch, isOpen]);
+  }, [hide, isOpen, show]);
 
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
@@ -209,9 +206,8 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     <>
       <Input
         ref={refs}
-        onKeyDown={handleKeyDown}
         onClick={mergeEventHandlers(onClickProp, handleClick)}
-        onFocus={handleFocus}
+        aria-expanded={isOpen}
         aria-activedescendant={
           isOpen && focusedIndex != undefined && focusedIndex > -1
             ? getIdFromIndex(focusedIndex)
@@ -223,9 +219,13 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         spellCheck={false}
         autoCapitalize='none'
         autoCorrect='off'
-        style={multiple ? { paddingLeft: tagContainerWidth + 18 } : {}}
+        style={multiple ? { paddingInlineStart: tagContainerWidth + 18 } : {}}
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
-        {...rest}
+        size={size}
+        {...popover.getReferenceProps({
+          onKeyDown: mergeEventHandlers(onKeyDownProp, handleKeyDown),
+          ...rest,
+        })}
       />
 
       {multiple && selectTags ? (

@@ -8,7 +8,7 @@ import { SvgFolder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Tile>
+    <Tile.Wrapper variant='folder'>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgFolder />
@@ -25,6 +25,6 @@ export default () => {
           <span>Folder metadata</span>
         </Tile.Metadata>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

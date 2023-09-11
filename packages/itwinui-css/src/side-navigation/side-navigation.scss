@@ -62,16 +62,6 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     min-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
     max-inline-size: calc($icon-large + $iui-side-navigation-icon-margins * 2);
-
-    // iPhone notch support
-    @supports (min-width: string.unquote('max(0px)')) {
-      min-inline-size: string.unquote(
-        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
-      );
-      max-inline-size: string.unquote(
-        'max(#{$icon-large} + #{$iui-side-navigation-icon-margins} * 2, #{$icon-large} + #{$iui-side-navigation-icon-margins} * 2 + env(safe-area-inset-left))'
-      );
-    }
   }
 
   &.iui-expanded,
@@ -92,7 +82,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     justify-content: flex-start;
 
     // Adds stripe to the right of active button
-    --_iui-button-active-stripe-inset: 0 -2px 0 100%;
+    --_iui-button-active-stripe-inset-block: 0;
+    --_iui-button-active-stripe-inset-inline: 100% -2px;
 
     &:not(.iui-expand) {
       block-size: calc(var(--iui-size-s) * 5);
@@ -112,7 +103,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     &,
     &:hover,
-    &[disabled] {
+    &:is([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       border-color: var(--iui-color-border);
     }
 
@@ -132,14 +123,14 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       &::before {
         content: '';
         position: absolute;
-        inset: 0 -2px 0 0;
+        inset-block: 0;
+        inset-inline: 0 -2px;
         z-index: -1;
         background-color: inherit;
       }
     }
 
-    &[disabled],
-    &:disabled {
+    &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {
       background-color: var(--iui-color-background-backdrop);
     }
 
@@ -180,7 +171,8 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   &-content {
-    padding: 0 var(--iui-size-s) var(--iui-size-s);
+    padding-block: 0 var(--iui-size-s);
+    padding-inline: var(--iui-size-s);
     flex-shrink: 0;
   }
 

@@ -7,9 +7,9 @@ import { Tile, TagContainer, Tag, Badge } from '@itwin/itwinui-react';
 import { SvgTag } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [selected, setSelected] = React.useState(true);
+  const [selected, setSelected] = React.useState(false);
   return (
-    <Tile isSelected={selected}>
+    <Tile.Wrapper isSelected={selected}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -25,17 +25,8 @@ export default () => {
         </Tile.BadgeContainer>
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
-        <Tile.Description>
-          If you click on this stadium, it is going to be selected.
-        </Tile.Description>
-        <Tile.Metadata>
-          <SvgTag />
-          <TagContainer>
-            <Tag variant='basic'>tag 1</Tag>
-            <Tag variant='basic'>tag 2</Tag>
-          </TagContainer>
-        </Tile.Metadata>
+        <Tile.Description>This Tile is going to be selected.</Tile.Description>
       </Tile.ContentArea>
-    </Tile>
+    </Tile.Wrapper>
   );
 };

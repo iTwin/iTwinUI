@@ -95,7 +95,7 @@ it('should work with menu items', async () => {
   const { container } = renderComponent();
   expect(container.querySelector('.iui-button-split')).toBeTruthy();
 
-  let menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  let menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeFalsy();
 
   const dropdownButton = container.querySelectorAll(
@@ -103,17 +103,16 @@ it('should work with menu items', async () => {
   )[1] as HTMLButtonElement;
   await userEvent.click(dropdownButton);
 
-  menu = document.querySelector('.iui-menu') as HTMLUListElement;
+  menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
 
-  expect(document.querySelectorAll('li')).toHaveLength(3);
+  expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  const menuItem = menu.querySelector('li') as HTMLLIElement;
-  expect(menuItem).toBeTruthy();
+  const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
+  expect(menuItem).toBeVisible();
   await userEvent.click(menuItem);
 
-  expect(tippy).not.toBeVisible();
+  expect(menuItem).not.toBeVisible();
 });
 
 it('should support polymorphic `as` prop', async () => {
@@ -147,4 +146,38 @@ it('should support polymorphic `as` prop', async () => {
   const dropdownButton = splitMenu.querySelector('button') as HTMLButtonElement;
   await userEvent.click(dropdownButton);
   expect(document.querySelector('.iui-menu')).toBeVisible();
+});
+
+it('passes custom props to subcomponents', () => {
+  const { container } = render(
+    <SplitButton
+      wrapperProps={{
+        className: 'custom-wrapper-class',
+        style: { fontSize: 12 },
+      }}
+      menuButtonProps={{
+        className: 'custom-menu-button-class',
+        style: { fontSize: 14 },
+      }}
+      menuItems={(close) => [
+        <MenuItem key={0} onClick={close}>
+          Test0
+        </MenuItem>,
+      ]}
+    >
+      Example
+    </SplitButton>,
+  );
+
+  const wrapperElement = container.querySelector(
+    '.custom-wrapper-class',
+  ) as HTMLElement;
+  expect(wrapperElement).toBeTruthy();
+  expect(wrapperElement.style.fontSize).toBe('12px');
+
+  const menuButtonElement = container.querySelector(
+    '.iui-button.custom-menu-button-class',
+  ) as HTMLElement;
+  expect(menuButtonElement).toBeTruthy();
+  expect(menuButtonElement.style.fontSize).toBe('14px');
 });

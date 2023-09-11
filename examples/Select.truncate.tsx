@@ -3,7 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { MenuItem, MiddleTextTruncation, Select } from '@itwin/itwinui-react';
+import {
+  MenuItem,
+  MiddleTextTruncation,
+  LabeledSelect,
+} from '@itwin/itwinui-react';
 import { useCallback, useState } from 'react';
 
 export default () => {
@@ -35,7 +39,8 @@ export default () => {
     [],
   );
   return (
-    <Select
+    <LabeledSelect
+      label={'Choose file'}
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}

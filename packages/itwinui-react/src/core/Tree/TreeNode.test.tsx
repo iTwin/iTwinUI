@@ -135,7 +135,7 @@ it.each([true, false])(
     const subTree = container.querySelector('.iui-sub-tree');
     expect(subTree).toBeTruthy();
     expect(subTree).toHaveAttribute('role', 'group');
-    expect(subTree).toHaveAttribute('aria-owns', 'subNode1,subNode2');
+    expect(subTree).toHaveAttribute('aria-owns', 'subNode1 subNode2');
 
     const expanderIcon = container.querySelector(
       '.iui-tree-node-content-expander-icon',
@@ -189,7 +189,7 @@ it('should render disabled node', () => {
     '.iui-button[data-iui-variant="borderless"][data-iui-size="small"]',
   ) as HTMLButtonElement;
   expect(button).toBeTruthy();
-  expect(button.disabled).toBe(true);
+  expect(button).toHaveAttribute('aria-disabled', 'true');
 
   fireEvent.click(button);
   expect(onSelected).not.toHaveBeenCalled();

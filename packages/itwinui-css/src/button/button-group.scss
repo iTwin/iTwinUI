@@ -15,8 +15,8 @@
     max-block-size: 100%;
   }
 
-  $childZindexSelector: '.iui-input-container, .iui-button, .iui-input:where(:not(.iui-input-container .iui-input))';
-  $childBorderSelector: '.iui-input, .iui-button:where(:not([data-iui-variant="borderless"]))';
+  $childZindexSelector: '.iui-input-flex-container, .iui-button, .iui-input:where(:not(.iui-input-grid .iui-input))';
+  $childBorderSelector: '.iui-input-flex-container, .iui-input, .iui-button:where(:not([data-iui-variant="borderless"])), .iui-input-flex-container::before';
   $disabledSelector: '&:disabled, &.iui-disabled, &[aria-disabled="true"]';
 
   > * {
@@ -31,14 +31,11 @@
 
       // Adds stripe to active button
       @if $orientation == 'horizontal' {
-        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
-          #{var(--iui-size-3xs)}
-          calc(100% - #{var(--iui-size-2xs)});
+        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
+        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
       } @else {
-        --_iui-button-active-stripe-inset: #{var(--iui-size-3xs)}
-          calc(100% - #{var(--iui-size-2xs)})
-          #{var(--iui-size-3xs)}
-          #{var(--iui-size-3xs)};
+        --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)};
+        --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
       }
 
       &:hover {

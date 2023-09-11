@@ -151,6 +151,7 @@ export const Thumb = (props: ThumbProps) => {
     <Tooltip
       placement='top'
       autoUpdateOptions={{ animationFrame: true }}
+      ariaStrategy='none'
       {...tooltipProps}
     >
       <Box
@@ -160,8 +161,8 @@ export const Thumb = (props: ThumbProps) => {
         style={{
           ...style,
           ...(orientation === 'horizontal'
-            ? { left: `${lowPercent}%` }
-            : { bottom: `${lowPercent}%` }),
+            ? { insetInlineStart: `${lowPercent}%` }
+            : { insetBlockEnd: `${lowPercent}%` }),
         }}
         className={cx(
           'iui-slider-thumb',

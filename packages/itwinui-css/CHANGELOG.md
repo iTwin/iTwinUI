@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.0.0-dev.8
+
+### Major Changes
+
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): `iui-transfer-list-listbox-label` and `iui-input-container` classes were removed.
+- [#1529](https://github.com/iTwin/iTwinUI/pull/1529): Removed location-marker component.
+- [#1523](https://github.com/iTwin/iTwinUI/pull/1523): Removed `iui-tooltip-container` and `iui-tooltip-visible` classes. The display is now toggled using the `hidden` HTML attribute, and the positioning should be managed using custom JS/CSS.
+
+### Minor Changes
+
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-input-group-wrapper` class to allow inline labels for input groups.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-input-grid` class for outer input styling.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added status styling to `input` and `select`.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added padded styling to Icon using `data-iui-padded` attribute.
+- [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `iui-status-message` class to wrap StatusMessage icon and content.
+
+## 2.0.0-dev.7
+
+### Major Changes
+
+- [#1446](https://github.com/iTwin/iTwinUI/pull/1446): `iui-avatar` has been refactored to be a single `<span>`, and the status is now applied using the `data-iui-status` attribute. The colors have been updated to pass AAA contrast ratio.
+- [#1489](https://github.com/iTwin/iTwinUI/pull/1489): `--iui-color-dot-inset` has been split into `--iui-color-dot-inset-block` and `--iui-color-dot-inset-inline`.
+
+### Patch Changes
+
+- [#1499](https://github.com/iTwin/iTwinUI/pull/1499): Removed special handling of iPhone notch in Header and SideNavigation.
+
+## 2.0.0-dev.6
+
+### Major Changes
+
+- [#1420](https://github.com/iTwin/iTwinUI/pull/1420): `<div class="iui-radio-tile-content">` has been removed from radio-tile. Also, `data-iui-disabled` attribute must be set on the radio-tile for browsers that don't support `:has` (firefox).
+
 ## 2.0.0-dev.5
 
 ### Major Changes
@@ -76,6 +109,43 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.12.3
+
+### Patch Changes
+
+- [#1516](https://github.com/iTwin/iTwinUI/pull/1516): Update SearchBox placeholder color to match Input.
+
+## 1.12.2
+
+### Patch Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Improved color contrast for input and select placeholder text.
+- [#1501](https://github.com/iTwin/iTwinUI/pull/1501): Fixed a small misalignment in Table when using sticky columns.
+
+## 1.12.1
+
+### Patch Changes
+
+- [#1494](https://github.com/iTwin/iTwinUI/pull/1494): Updated color-picker dot so its outline adapts dynamically to the backgrounds for better contrast.
+
+## 1.12.0
+
+### Minor Changes
+
+- [#1422](https://github.com/iTwin/iTwinUI/pull/1422): Changed `all: revert` to `all: revert-layer` so that only styles from the v1 layer are reverted, thus avoiding issues with inadvertently removing browser default styles. This rule has also been moved from `all.css` to `revert-v1.css`.
+
+## 1.11.5
+
+### Patch Changes
+
+- [#1424](https://github.com/iTwin/iTwinUI/pull/1424): Fixed a few different resizing issues in Dialog.
+
+## 1.11.4
+
+### Patch Changes
+
+- [#1421](https://github.com/iTwin/iTwinUI/pull/1421): Fixed an issue in Table where column reordering and editable cells were not working when v2 Table was used within a v1 app.
 
 ## 1.11.3
 
@@ -426,4 +496,4 @@ If you're interested in more details,
 
 ## 0.X
 
-For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/v0/packages/itwinui-css/CHANGELOG.md).
+For any changes prior to 1.0.0, check out the [0.X changelog](https://github.com/iTwin/iTwinUI/blob/legacy/v0-css/packages/itwinui-css/CHANGELOG.md).
