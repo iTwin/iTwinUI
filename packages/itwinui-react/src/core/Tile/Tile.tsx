@@ -364,9 +364,7 @@ const TileMoreOptions = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <DropdownMenu
-        onVisibleChange={(open) =>
-          open ? setIsMenuVisible(true) : setIsMenuVisible(false)
-        }
+        onVisibleChange={setIsMenuVisible}
         menuItems={(close) =>
           children?.map((option: React.ReactElement) =>
             React.cloneElement(option, {
