@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { act, fireEvent, render } from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import Select, {
   type SelectProps,
   type SelectMultipleTypeProps,
@@ -209,20 +209,20 @@ it('should respect visible prop', () => {
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy).toBeVisible();
-  assertMenu(document.querySelector('.iui-menu') as HTMLElement);
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeVisible();
+  assertMenu(menu);
 
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
-  expect(tippy).toBeVisible();
+  expect(menu).toBeVisible();
 
   rerender(<Select options={options} popoverProps={{ visible: false }} />);
-  expect(tippy).not.toBeVisible();
+  expect(menu).not.toBeVisible();
 });
 
-it.each(['Enter', ' ', 'Spacebar'])(
+it.each(['{Enter}', ' ', '{Spacebar}'])(
   'should open menu on "%s" key press',
-  (key) => {
+  async (key) => {
     const { container } = renderComponent();
 
     const select = container.querySelector(
@@ -232,14 +232,8 @@ it.each(['Enter', ' ', 'Spacebar'])(
     let menu = document.querySelector('.iui-menu') as HTMLElement;
     expect(menu).toBeFalsy();
 
-    act(() => {
-      fireEvent.keyDown(
-        select.querySelector('.iui-select-button') as HTMLElement,
-        {
-          key,
-        },
-      );
-    });
+    await userEvent.tab();
+    await userEvent.keyboard(key);
     menu = document.querySelector('.iui-menu') as HTMLElement;
     assertMenu(menu);
   },
@@ -329,13 +323,15 @@ it('should render menu with custom className', () => {
   expect(menu.classList).toContain('test-className');
 });
 
-it('should render menu with custom style', () => {
+it('should render menu with custom style', async () => {
   const { container } = renderComponent({ menuStyle: { color: 'red' } });
 
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
   expect(select).toBeTruthy();
 
-  fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
+  await userEvent.click(
+    select.querySelector('.iui-select-button') as HTMLElement,
+  );
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   assertMenu(menu);
   expect(menu.style.color).toEqual('red');

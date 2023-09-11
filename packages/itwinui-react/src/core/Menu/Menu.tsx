@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, getFocusableElements, Box } from '../utils/index.js';
+import {
+  useMergedRefs,
+  getFocusableElements,
+  Box,
+  mergeEventHandlers,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type MenuProps = {
@@ -89,9 +94,9 @@ export const Menu = React.forwardRef((props, ref) => {
       as='div'
       className={cx('iui-menu', className)}
       role='menu'
-      onKeyDown={onKeyDown}
       ref={refs}
       {...rest}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
