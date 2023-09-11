@@ -204,16 +204,15 @@ const ListItem = ({
       'Directly using Button/a/span as Breadcrumbs children is deprecated, please use `Breadcrumbs.Item` instead.',
     );
     children = <BreadcrumbsItem {...children.props} />;
-  } else {
-    children = React.cloneElement(children, {
-      'aria-current':
-        children.props['aria-current'] ?? isActive ? 'location' : undefined,
-    });
   }
 
   return (
     <Box as='li' className={'iui-breadcrumbs-item'}>
-      {children}
+      {children &&
+        React.cloneElement(children, {
+          'aria-current':
+            children.props['aria-current'] ?? isActive ? 'location' : undefined,
+        })}
     </Box>
   );
 };
