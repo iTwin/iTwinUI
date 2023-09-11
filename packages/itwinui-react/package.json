@@ -65,7 +65,7 @@
     "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
-    "test": "yarn test:unit && yarn test:types",
+    "test": "yarn test:types && yarn test:unit",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
