@@ -21,7 +21,7 @@ export default () => {
 
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
-      <Tabs overflowOptions={{ useOverflow: true }}>
+      <Tabs.Wrapper overflowOptions={{ useOverflow: true }}>
         <Tabs.TabList>
           {tabData?.map((item, index) => {
             return (
@@ -74,7 +74,7 @@ export default () => {
           terminals to view and modify the designs on their Intergraph IGDS
           (Interactive Graphics Design System) installations.
         </Tabs.Panel>
-      </Tabs>
+      </Tabs.Wrapper>
     </div>
   );
 };

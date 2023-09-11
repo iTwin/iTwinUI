@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tabs, Button } from '@itwin/itwinui-react';
+import { Tabs } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Tabs>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='item1' label='Item1' />
         <Tabs.Tab value='item2' label='Item2' />
@@ -41,6 +41,6 @@ export default () => {
         willing to pay for it. They averaged the answers, arriving at a price of
         $7,943. A DOS-based version of MicroStation was introduced in 1986.
       </Tabs.Panel>
-    </Tabs>
+    </Tabs.Wrapper>
   );
 };
