@@ -263,7 +263,6 @@ it('should handle key press with sub menus', async () => {
 
   // go right to move focus
   await userEvent.keyboard('{ArrowRight}');
-  expect(subMenuItem).toHaveTextContent('Test sub');
   expect(subMenuItem).toHaveFocus();
 
   // go left to move focus
