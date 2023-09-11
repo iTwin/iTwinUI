@@ -8,7 +8,6 @@
   --_iui-slider-rail-color: var(--iui-color-border);
   --_iui-slider-thumb-border-color: var(--iui-color-border-foreground);
   --_iui-slider-thumb-color: var(--iui-color-background);
-  --_iui-slider-thumb-cursor: grab;
   --_iui-slider-thumb-size: var(--iui-size-m);
   --_iui-slider-tick-size: var(--iui-size-s);
   --_iui-slider-tick-thickness: 1px;
@@ -157,11 +156,6 @@
 .iui-slider-max {
   user-select: all;
   display: flex;
-
-  svg {
-    @include mixins.iui-icon-style('m');
-    @include mixins.iui-icon-color;
-  }
 }
 
 .iui-slider-min {
@@ -229,19 +223,19 @@
   inline-size: var(--_iui-slider-thumb-size);
   border-radius: 100%;
   z-index: 1;
-  cursor: var(--_iui-slider-thumb-cursor);
+  cursor: grab;
   @include mixins.iui-focus($thickness: 2px);
   background: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-foreground);
 
   &:active {
-    --_iui-slider-thumb-cursor: grabbing;
+    cursor: grabbing;
   }
 
   &[aria-disabled='true'] {
     border-color: var(--iui-color-border);
     background: var(--iui-color-border);
-    --_iui-slider-thumb-cursor: not-allowed;
+    cursor: not-allowed;
 
     @media (forced-colors: active) {
       border-color: GrayText;
