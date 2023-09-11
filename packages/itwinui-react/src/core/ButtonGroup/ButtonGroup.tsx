@@ -74,10 +74,7 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
   } = props;
 
   const items = React.useMemo(
-    () =>
-      React.Children.map(children, (child) =>
-        !!child ? <div>{child}</div> : undefined,
-      )?.filter(Boolean) ?? [],
+    () => React.Children.toArray(children).filter(Boolean),
     [children],
   );
 
@@ -115,17 +112,17 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
 
           return (
             <>
-              {overflowButton && overflowPlacement === 'start' && (
-                <div>{overflowButton(overflowStart)}</div>
-              )}
+              {overflowButton &&
+                overflowPlacement === 'start' &&
+                overflowButton(overflowStart)}
 
               {overflowPlacement === 'start'
                 ? items.slice(overflowStart + 1)
                 : items.slice(0, Math.max(0, overflowStart))}
 
-              {overflowButton && overflowPlacement === 'end' && (
-                <div>{overflowButton(overflowStart)}</div>
-              )}
+              {overflowButton &&
+                overflowPlacement === 'end' &&
+                overflowButton(overflowStart)}
             </>
           );
         })()}
