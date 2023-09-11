@@ -135,11 +135,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
       middleware.shift && shift(),
       matchWidth &&
         size({
-          apply: ({ rects, elements }) => {
-            Object.assign(elements.floating.style, {
-              minInlineSize: `${rects.reference.width}px`,
-              maxInlineSize: `min(${rects.reference.width * 2}px, 90vw)`,
-            });
+          apply: ({ rects }) => {
+            setReferenceWidth(rects.reference.width);
           },
         } as SizeOptions),
       middleware.autoPlacement && autoPlacement(),
@@ -160,6 +157,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     useRole(floating.context, { role: 'dialog', enabled: !!role }),
   ]);
 
+  const [referenceWidth, setReferenceWidth] = React.useState<number>();
+
   const getFloatingProps = React.useCallback(
     (userProps?: React.HTMLProps<HTMLElement>) =>
       interactions.getFloatingProps({
@@ -167,10 +166,16 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
         style: {
           ...floating.floatingStyles,
           zIndex: 9999,
+          ...(matchWidth && referenceWidth
+            ? {
+                minInlineSize: `${referenceWidth}px`,
+                maxInlineSize: `min(${referenceWidth * 2}px, 90vw)`,
+              }
+            : {}),
           ...userProps?.style,
         },
       }),
-    [floating.floatingStyles, interactions],
+    [floating.floatingStyles, interactions, matchWidth, referenceWidth],
   );
 
   return React.useMemo(

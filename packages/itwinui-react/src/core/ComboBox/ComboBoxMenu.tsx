@@ -9,7 +9,6 @@ import {
   useSafeContext,
   useMergedRefs,
   useVirtualization,
-  getWindow,
   Portal,
   Box,
 } from '../utils/index.js';
@@ -21,9 +20,6 @@ type ComboBoxMenuProps = Omit<
   'onClick'
 > &
   React.ComponentPropsWithoutRef<'div'>;
-
-const isOverflowOverlaySupported = () =>
-  getWindow()?.CSS?.supports?.('overflow: overlay');
 
 const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
   const { children, ...rest } = props;
@@ -93,10 +89,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
                   // set as constant because we don't want it shifting when items are unmounted
                   maxInlineSize: 0,
 
-                  // max-height must be on the outermost element for virtual scroll
-                  maxBlockSize:
-                    'calc((var(--iui-component-height) - 1px) * 8.5)',
-                  overflowY: isOverflowOverlaySupported() ? 'overlay' : 'auto',
                   ...style,
                 } as React.CSSProperties),
             ...rest,
