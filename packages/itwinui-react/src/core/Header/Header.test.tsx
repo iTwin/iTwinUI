@@ -139,12 +139,8 @@ it('renders moreMenu alone correctly', async () => {
   expect(menu).toBeFalsy();
 
   await userEvent.click(button);
-
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy.style.visibility).toEqual('visible');
-
   menu = document.querySelector('.iui-menu') as HTMLElement;
-  expect(menu).toBeTruthy();
+  expect(menu).toBeVisible();
 
   expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
@@ -152,7 +148,7 @@ it('renders moreMenu alone correctly', async () => {
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
 
-  expect(tippy).not.toBeVisible();
+  expect(menu).not.toBeVisible();
 
   expect(itemOneOnClick).toHaveBeenCalled();
 });

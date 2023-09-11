@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.0.0-dev.8",
+  "version": "3.0.0-dev.9",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -73,13 +73,11 @@
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.25.2",
-    "@tippyjs/react": "^4.2.6",
+    "@floating-ui/react": "^0.25.3",
     "@types/react-table": "^7.0.18",
     "classnames": "^2.2.6",
     "react-table": "^7.1.0",
     "react-transition-group": "^4.4.2",
-    "tippy.js": "^6.3.7",
     "tslib": "^2.6.0"
   },
   "devDependencies": {

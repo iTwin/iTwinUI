@@ -14,8 +14,8 @@ import {
   ColorPalette,
   ColorBuilder,
   ColorInputPanel,
+  Popover,
 } from '@itwin/itwinui-react';
-import { Popover } from '@itwin/itwinui-react/esm/core/utils';
 import { action } from '@storybook/addon-actions';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 

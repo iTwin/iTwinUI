@@ -7,9 +7,9 @@ import cx from 'classnames';
 import { Box } from './Box.js';
 import { Label } from '../../Label/index.js';
 import { StatusMessage } from '../../StatusMessage/index.js';
+import type { PolymorphicForwardRefComponent } from '../props.js';
 
-export type InputContainerProps<T extends React.ElementType = 'div'> = {
-  as?: T;
+export type InputContainerProps = {
   label?: React.ReactNode;
   disabled?: boolean;
   required?: boolean;
@@ -20,15 +20,13 @@ export type InputContainerProps<T extends React.ElementType = 'div'> = {
   statusMessage?: React.ReactNode;
   inputId?: string;
   labelId?: string;
-} & React.ComponentPropsWithoutRef<T>;
+};
 
 /**
  * Input container to wrap inputs with label, and add optional message and icon.
  * @private
  */
-export const InputContainer = <T extends React.ElementType = 'div'>(
-  props: InputContainerProps<T>,
-) => {
+export const InputContainer = React.forwardRef((props, forwardedRef) => {
   const {
     label,
     disabled,
@@ -52,10 +50,13 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
       data-iui-status={status}
       data-iui-label-placement={isLabelInline ? 'inline' : undefined}
       style={style}
+      ref={forwardedRef}
       {...rest}
     >
       {label && (
         <Label
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
           as={inputId && props.as !== 'label' ? 'label' : 'div'}
           required={required}
           disabled={disabled}
@@ -75,4 +76,4 @@ export const InputContainer = <T extends React.ElementType = 'div'>(
           )}
     </Box>
   );
-};
+}) as PolymorphicForwardRefComponent<'div', InputContainerProps>;
