@@ -89,14 +89,16 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
     <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
       <Box
         className={cx(
+          'iui-button-group',
           {
-            'iui-button-group': orientation === 'horizontal',
-            'iui-button-group-vertical': orientation === 'vertical',
             'iui-button-group-overflow-x':
               !!overflowButton && orientation === 'horizontal',
           },
           className,
         )}
+        data-iui-orientation={
+          orientation === 'vertical' ? orientation : undefined
+        }
         ref={refs}
         {...rest}
       >
