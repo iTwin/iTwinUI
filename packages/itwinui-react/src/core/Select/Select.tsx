@@ -265,7 +265,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
 
   const hide = React.useCallback(() => {
     setIsOpen(false);
-    selectRef.current?.focus({ preventScroll: true });
+    selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
     popoverProps?.onVisibleChange?.(false);
   }, [popoverProps]);
 
