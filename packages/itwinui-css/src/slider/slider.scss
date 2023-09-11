@@ -10,7 +10,6 @@
   --_iui-slider-thumb-color: var(--iui-color-background);
   --_iui-slider-thumb-cursor: grab;
   --_iui-slider-thumb-size: var(--iui-size-m);
-  --_iui-slider-ticks-placement: 37px; // TODO: Figure out a calc for this
   --_iui-slider-tick-size: var(--iui-size-s);
   --_iui-slider-tick-thickness: 1px;
   --_iui-slider-track-color: var(--iui-color-border-accent);
@@ -38,7 +37,7 @@
     }
 
     .iui-slider-ticks {
-      margin-block-start: var(--_iui-slider-ticks-placement);
+      transform: translateY(50%);
     }
 
     .iui-slider-tick {
@@ -100,7 +99,7 @@
 
     .iui-slider-ticks {
       flex-direction: column-reverse;
-      margin-inline-start: var(--_iui-slider-ticks-placement);
+      transform: translateX(50%);
     }
 
     .iui-slider-tick {
