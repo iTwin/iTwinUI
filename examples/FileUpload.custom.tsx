@@ -28,8 +28,9 @@ export default () => {
   return (
     <FileUpload
       onFileDropped={(files) => {
-        setFiles(files);
-        action(`${files.length} files uploaded`)();
+        const fileArray = Array.from(files);
+        setFiles(fileArray);
+        console.log(`${files.length} files uploaded`);
       }}
     >
       <FileUploadCard
