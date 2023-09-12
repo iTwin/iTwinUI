@@ -140,7 +140,6 @@ it('should work in vertical orientation', () => {
     '.iui-button-group[data-iui-orientation="vertical"]',
   ) as HTMLElement;
   expect(group).toBeTruthy();
-  expect(group).not.toHaveClass('iui-button-group');
   expect(group.children).toHaveLength(2);
 });
 
