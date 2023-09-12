@@ -34,7 +34,7 @@
     "vite": "^4.1.5"
   },
   "scripts": {
-    "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
+    "build": "tsc -p tsconfig.build.json && dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
     "dev": "sb dev -p 6006 --no-open --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",

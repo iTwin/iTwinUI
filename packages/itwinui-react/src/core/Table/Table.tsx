@@ -318,11 +318,14 @@ export type TableProps<
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
-const flattenColumns = (columns: Column[]): Column[] => {
-  const flatColumns: Column[] = [];
+const flattenColumns = <T extends Record<string, unknown>>(
+  columns: Column<T>[],
+): Column<T>[] => {
+  const flatColumns: Column<T>[] = [];
   columns.forEach((column) => {
     flatColumns.push(column);
     if ('columns' in column) {
+      // @ts-expect-error - Since nested columns are not supported from a types perspective
       flatColumns.push(...flattenColumns(column.columns));
     }
   });
@@ -438,7 +441,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const flatColumns = flattenColumns(columns as Column[]);
+    const flatColumns = flattenColumns(columns);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
 
@@ -724,7 +727,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns as Column<T>[];
+    lastPassedColumns.current = columns;
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
