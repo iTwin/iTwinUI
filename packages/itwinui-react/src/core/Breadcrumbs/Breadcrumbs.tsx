@@ -9,8 +9,12 @@ import {
   useOverflow,
   SvgChevronRight,
   Box,
+  createWarningLogger,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Button } from '../Buttons/Button/index.js';
+
+const logWarningInDev = createWarningLogger();
 
 type BreadcrumbsProps = {
   /**
@@ -179,6 +183,8 @@ const BreadcrumbsComponent = React.forwardRef((props, ref) => {
   );
 }) as PolymorphicForwardRefComponent<'nav', BreadcrumbsProps>;
 
+// ----------------------------------------------------------------------------
+
 const ListItem = ({
   item,
   isActive,
@@ -186,23 +192,40 @@ const ListItem = ({
   item: React.ReactNode;
   isActive: boolean;
 }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let children = item as any;
+
+  if (
+    children?.type === 'span' ||
+    children?.type === 'a' ||
+    children?.type === Button
+  ) {
+    logWarningInDev(
+      'Directly using Button/a/span as Breadcrumbs children is deprecated, please use `Breadcrumbs.Item` instead.',
+    );
+    children = <BreadcrumbsItem {...children.props} />;
+  }
+
   return (
     <Box as='li' className={'iui-breadcrumbs-item'}>
-      {React.isValidElement(item)
-        ? React.cloneElement(item as JSX.Element, {
-            'aria-current':
-              item.props['aria-current'] ?? isActive ? 'location' : undefined,
-          })
-        : item}
+      {children &&
+        React.cloneElement(children, {
+          'aria-current':
+            children.props['aria-current'] ?? isActive ? 'location' : undefined,
+        })}
     </Box>
   );
 };
+
+// ----------------------------------------------------------------------------
 
 const Separator = ({ separator }: Pick<BreadcrumbsProps, 'separator'>) => (
   <Box as='li' className='iui-breadcrumbs-separator' aria-hidden>
     {separator ?? <SvgChevronRight />}
   </Box>
 );
+
+// ----------------------------------------------------------------------------
 
 const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const { children: childrenProp, className, ...rest } = props;
@@ -223,6 +246,8 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   );
 }) as PolymorphicForwardRefComponent<'a'>;
 BreadcrumbsItem.displayName = 'Breadcrumbs.Item';
+
+// ----------------------------------------------------------------------------
 
 export const Breadcrumbs = Object.assign(BreadcrumbsComponent, {
   /**
