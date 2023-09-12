@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import type { CellProps, Row, TableInstance, TableState } from 'react-table';
+import type {
+  CellProps,
+  Row,
+  TableInstance,
+  TableState,
+} from '../../react-table/react-table.js';
 import {
   Box,
   useIntersection,
