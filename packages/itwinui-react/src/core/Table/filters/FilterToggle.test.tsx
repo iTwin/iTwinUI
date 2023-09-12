@@ -5,7 +5,7 @@
 
 import { render, type RenderResult, screen } from '@testing-library/react';
 import * as React from 'react';
-import type { HeaderGroup } from '../../../react-table/react-table.js';
+import type { HeaderGroup } from 'react-table';
 import { FilterToggle, type FilterToggleProps } from './FilterToggle.js';
 import { tableFilters } from './tableFilters.js';
 

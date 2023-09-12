@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { CellRendererProps } from '../../../react-table/react-table.js';
+import type { CellRendererProps } from 'react-table';
 import { Box, getRandomValue } from '../../utils/index.js';
 
 export type EditableCellProps<T extends Record<string, unknown>> =

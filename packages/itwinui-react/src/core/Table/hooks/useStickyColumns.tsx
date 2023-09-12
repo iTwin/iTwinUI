@@ -2,13 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { actions } from '../../../react-table/react-table.js';
-import type {
-  ActionType,
-  Hooks,
-  TableInstance,
-  TableState,
-} from '../../../react-table/react-table.js';
+import { actions } from 'react-table';
+import type { ActionType, Hooks, TableInstance, TableState } from 'react-table';
 
 actions.setScrolledLeft = 'setScrolledLeft';
 actions.setScrolledRight = 'setScrolledRight';

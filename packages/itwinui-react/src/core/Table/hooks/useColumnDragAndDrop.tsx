@@ -3,11 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import type * as React from 'react';
-import {
-  actions,
-  makePropGetter,
-  useGetLatest,
-} from '../../../react-table/react-table.js';
+import { actions, makePropGetter, useGetLatest } from 'react-table';
 import type {
   ActionType,
   HeaderGroup,
@@ -16,7 +12,7 @@ import type {
   TableInstance,
   TableKeyedProps,
   TableState,
-} from '../../../react-table/react-table.js';
+} from 'react-table';
 import styles from '../../../styles.js';
 
 const REORDER_ACTIONS = {

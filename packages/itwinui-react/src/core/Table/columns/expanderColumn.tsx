@@ -4,11 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { SvgChevronRight } from '../../utils/index.js';
-import type {
-  CellProps,
-  CellRendererProps,
-  Row,
-} from '../../../react-table/react-table.js';
+import type { CellProps, CellRendererProps, Row } from 'react-table';
 import { IconButton } from '../../Buttons/index.js';
 import { DefaultCell } from '../cells/index.js';
 

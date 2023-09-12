@@ -2,12 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type {
-  ActionType,
-  Row,
-  TableInstance,
-  TableState,
-} from '../../../react-table/react-table.js';
+import type { ActionType, Row, TableInstance, TableState } from 'react-table';
 
 /**
  * Handles subrow selection and validation.
