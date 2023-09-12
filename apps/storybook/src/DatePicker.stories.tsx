@@ -8,6 +8,7 @@ import React from 'react';
 import {
   DatePicker,
   IconButton,
+  Popover,
   TimePicker,
   generateLocalizedStrings,
 } from '@itwin/itwinui-react';
@@ -51,12 +52,8 @@ export const Basic: Story<DatePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
+      <Popover
+        content={
           <DatePicker
             {...rest}
             date={currentDate}
@@ -64,8 +61,14 @@ export const Basic: Story<DatePickerProps> = (args) => {
             localizedNames={localizedNames}
             setFocus={setFocus}
           />
-        </div>
-      )}
+        }
+        applyBackground
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
     </>
   );
 };

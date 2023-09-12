@@ -257,7 +257,8 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
               returnFocus
             >
               <Box
-                as={(applyBackground ? Surface : 'div') as 'div'}
+                as={(applyBackground ? Surface : 'div') as typeof Surface}
+                elevation={applyBackground ? 2 : undefined}
                 {...popover.getFloatingProps(rest)}
                 ref={popoverRef}
               >
