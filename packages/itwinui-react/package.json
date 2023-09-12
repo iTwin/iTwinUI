@@ -20,10 +20,7 @@
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
-    "./esm": "./esm/index.js",
-    "./cjs/core/utils": "./cjs/core/utils/index.js",
-    "./esm/core/utils": "./esm/core/utils/index.js",
-    "./*": "./*"
+    "./esm": "./esm/index.js"
   },
   "files": [
     "cjs",
