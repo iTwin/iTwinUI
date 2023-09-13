@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import type { HeaderGroup } from 'react-table';
+import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import type { TableFilterProps } from '../types.js';
 import { TextFilter } from './TextFilter.js';
 
