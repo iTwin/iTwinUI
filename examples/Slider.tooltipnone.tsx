@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Slider, Text, Label } from '@itwin/itwinui-react';
+import { Slider, Text, Label, InputGrid } from '@itwin/itwinui-react';
 
 export default () => {
   const labelId = React.useId();
@@ -27,7 +27,7 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid style={{ width: 'min(100%, 300px)' }}>
       <Label id={labelId} as='div'>
         Choose a start date
       </Label>
@@ -61,6 +61,6 @@ export default () => {
           </div>
         }
       />
-    </div>
+    </InputGrid>
   );
 };
