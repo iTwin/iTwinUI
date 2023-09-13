@@ -189,9 +189,9 @@ export const Combined: Story<TimePickerProps> = (args) => {
           })}
           readOnly
         />
-        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+        <InputWithDecorations.Button onClick={() => setOpened((v) => !v)}>
           <SvgCalendar />
-        </IconButton>
+        </InputWithDecorations.Button>
       </InputWithDecorations>
       {opened && (
         <div>
