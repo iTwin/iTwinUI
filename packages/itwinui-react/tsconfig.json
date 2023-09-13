@@ -20,7 +20,14 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      // This is only to avoid the missing types error when importing non-types from `react-table`
+      // But importing types MUST be done using the file path and not the package name
+      "react-table": ["src/react-table/react-table.ts"]
+    }
   },
+
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }

@@ -27,11 +27,6 @@ import type { TablePaginatorRendererProps } from '../core/Table/index.js';
 import * as TableTypes from './react-table.js';
 import type { Column } from './react-table.js';
 
-// Importing from react-table should not be possible internally.
-// Because doing so could cause unexpected `any`s in the type definitions.
-// @ts-expect-error
-import * as _TableTypes from 'react-table';
-
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
 

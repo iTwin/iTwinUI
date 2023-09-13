@@ -15,7 +15,7 @@ import {
   usePagination,
   useColumnOrder,
   useGlobalFilter,
-} from '../../react-table/react-table.js';
+} from 'react-table';
 import type {
   CellProps,
   HeaderGroup,
