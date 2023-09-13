@@ -7,7 +7,6 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import {
   TimePicker,
-  IconButton,
   InputWithDecorations,
   MeridiemType,
 } from '@itwin/itwinui-react';
@@ -59,9 +58,9 @@ export const Basic: Story<TimePickerProps> = (args) => {
           })}
           readOnly
         />
-        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+        <InputWithDecorations.Button onClick={() => setOpened((v) => !v)}>
           <SvgCalendar />
-        </IconButton>
+        </InputWithDecorations.Button>
       </InputWithDecorations>
       {opened && (
         <div>
@@ -120,9 +119,9 @@ export const CustomRenderers: Story<TimePickerProps> = (args) => {
           })}
           readOnly
         />
-        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+        <InputWithDecorations.Button onClick={() => setOpened((v) => !v)}>
           <SvgCalendar />
-        </IconButton>
+        </InputWithDecorations.Button>
       </InputWithDecorations>
       {opened && (
         <div>
