@@ -1023,3 +1023,29 @@ it('should update live region when selection changes', async () => {
   await userEvent.click(options[0]);
   expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });
+
+it('should pass props to statusMessage and endIcon', async () => {
+  const { container, getByText } = render(
+    <ComboBox
+      options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
+      message='test message'
+      status='negative'
+      statusMessageProps={{
+        contentProps: { className: 'my-message-content' },
+        iconProps: { className: 'my-message-icon' },
+      }}
+      endIconProps={{ className: 'my-end-icon' }}
+    />,
+  );
+
+  const endIcon = container.querySelector(
+    '.iui-svg-icon.iui-end-icon.my-end-icon',
+  );
+  expect(endIcon).toBeTruthy();
+  const messageIcon = container.querySelector(
+    '.iui-status-message > .iui-svg-icon.my-message-icon',
+  );
+  expect(messageIcon).toBeTruthy();
+  const statusContent = getByText('test message');
+  expect(statusContent).toHaveClass('my-message-content');
+});
