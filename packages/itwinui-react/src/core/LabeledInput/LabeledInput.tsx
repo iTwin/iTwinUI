@@ -34,9 +34,6 @@ export type LabeledInputProps = {
   wrapperProps?: React.ComponentProps<typeof InputGrid>;
   /**
    * Set display style of label.
-   * Supported values:
-   * - 'default' - label appears above input.
-   * - 'inline' - appears in the same line as input.
    * @default 'default'
    */
   displayStyle?: 'default' | 'inline';
