@@ -25,6 +25,7 @@ $bg-800: hsl(203 $bg-saturation ($bg-lightness-gap * 8));
 $bg-900: hsl(203 $bg-saturation ($bg-lightness-gap * 9));
 $bg-1000: hsl(203 $bg-saturation ($bg-lightness-gap * 10));
 $bg-1100: hsl(203 $bg-saturation ($bg-lightness-gap * 11));
+$bg-1200: hsl(203 $bg-saturation ($bg-lightness-gap * 12));
 
 $bg-informational-0: hsl(207 19% 27%); // Selection
 $bg-informational-1: hsl(203 100% 36%); // Button
@@ -117,7 +118,7 @@ $opacities: (
   // #endregion
   // #region Border variables
   --iui-color-border-subtle: #{hex($bg-1000)};
-  --iui-color-border: #{hex($bg-1100)};
+  --iui-color-border: #{hex($bg-1200)};
   --iui-color-border-foreground: #{hex($fg-800)};
   --iui-color-border-foreground-hover: #{hex($fg-600)};
   --iui-color-border-disabled: #{hex($bg-1000)};
