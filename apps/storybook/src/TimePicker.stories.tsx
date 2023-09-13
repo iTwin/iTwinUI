@@ -8,7 +8,7 @@ import React from 'react';
 import {
   TimePicker,
   IconButton,
-  LabeledInput,
+  InputWithDecorations,
   MeridiemType,
 } from '@itwin/itwinui-react';
 import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
@@ -52,21 +52,17 @@ export const Basic: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', { timeStyle: 'short' })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
-            <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
+      <InputWithDecorations style={{ width: 150 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: 'short',
+          })}
+          readOnly
+        />
+        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+          <SvgCalendar />
+        </IconButton>
+      </InputWithDecorations>
       {opened && (
         <div>
           <TimePicker
@@ -117,21 +113,17 @@ export const CustomRenderers: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', { timeStyle: 'short' })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
-            <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
+      <InputWithDecorations style={{ width: 150 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: 'short',
+          })}
+          readOnly
+        />
+        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+          <SvgCalendar />
+        </IconButton>
+      </InputWithDecorations>
       {opened && (
         <div>
           <TimePicker
@@ -190,23 +182,17 @@ export const Combined: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', {
-          timeStyle: inputValueType,
-        })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
-            <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
+      <InputWithDecorations style={{ width: 150 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: inputValueType,
+          })}
+          readOnly
+        />
+        <IconButton styleType='borderless' onClick={() => setOpened((v) => !v)}>
+          <SvgCalendar />
+        </IconButton>
+      </InputWithDecorations>
       {opened && (
         <div>
           <TimePicker
