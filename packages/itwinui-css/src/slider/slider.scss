@@ -2,15 +2,14 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
+$iui-slider-container-gap: var(--iui-size-s);
+$iui-slider-tick-size: var(--iui-size-s);
+$iui-slider-tick-thickness: 1px;
+
 // #region Slider container
 .iui-slider-container {
-  --_iui-slider-container-gap: var(--iui-size-s);
   --_iui-slider-rail-color: var(--iui-color-border);
-  --_iui-slider-thumb-border-color: var(--iui-color-border-foreground);
-  --_iui-slider-thumb-color: var(--iui-color-background);
   --_iui-slider-thumb-size: var(--iui-size-m);
-  --_iui-slider-tick-size: var(--iui-size-s);
-  --_iui-slider-tick-thickness: 1px;
   --_iui-slider-track-color: var(--iui-color-border-accent);
   --_iui-slider-track-thickness: calc(var(--_iui-slider-thumb-size) * 0.25);
 
@@ -27,12 +26,12 @@
     }
 
     .iui-slider-min {
-      margin-inline-end: var(--_iui-slider-container-gap);
+      margin-inline-end: $iui-slider-container-gap;
       justify-content: end;
     }
 
     .iui-slider-max {
-      margin-inline-start: var(--_iui-slider-container-gap);
+      margin-inline-start: $iui-slider-container-gap;
     }
 
     .iui-slider-ticks {
@@ -41,11 +40,11 @@
 
     .iui-slider-tick {
       flex-direction: column;
-      inline-size: var(--_iui-slider-tick-thickness);
+      inline-size: $iui-slider-tick-thickness;
 
       &::before {
-        inline-size: var(--_iui-slider-tick-thickness);
-        block-size: var(--_iui-slider-tick-size);
+        inline-size: $iui-slider-tick-thickness;
+        block-size: $iui-slider-tick-size;
       }
     }
 
@@ -89,11 +88,11 @@
     }
 
     .iui-slider-min {
-      margin-block-start: var(--_iui-slider-container-gap);
+      margin-block-start: $iui-slider-container-gap;
     }
 
     .iui-slider-max {
-      margin-block-end: var(--_iui-slider-container-gap);
+      margin-block-end: $iui-slider-container-gap;
     }
 
     .iui-slider-ticks {
@@ -102,11 +101,11 @@
     }
 
     .iui-slider-tick {
-      block-size: var(--_iui-slider-tick-thickness);
+      block-size: $iui-slider-tick-thickness;
 
       &::before {
-        inline-size: var(--_iui-slider-tick-size);
-        block-size: var(--_iui-slider-tick-thickness);
+        inline-size: $iui-slider-tick-size;
+        block-size: $iui-slider-tick-thickness;
       }
     }
 
