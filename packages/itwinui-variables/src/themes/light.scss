@@ -164,4 +164,6 @@ $opacities: (
   --iui-color-warning-hsl: #{get-hsl($fg-warning-2)};
   --iui-color-negative-hsl: #{get-hsl($fg-negative-2)};
   // #endregion
+
+  --iui-shadow-color: #{hsl(0 0% 0% / var(--iui-opacity-5))};
 }
