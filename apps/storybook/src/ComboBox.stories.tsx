@@ -317,6 +317,7 @@ export const Basic: StoryFn = (args: Partial<ComboBoxProps>) => {
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
       {...args}
+      endIcon={<SvgCamera />}
     />
   );
 };

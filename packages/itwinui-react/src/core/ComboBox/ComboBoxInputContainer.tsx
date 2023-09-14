@@ -14,23 +14,11 @@ import { ComboBoxStateContext } from './helpers.js';
 type ComboBoxInputContainerProps = Pick<
   InputContainerProps,
   'status' | 'message' | 'disabled'
-> & {
-  statusMessageProps?: Pick<
-    React.ComponentProps<typeof StatusMessage>,
-    'iconProps' | 'contentProps'
-  >;
-};
+>;
 
 export const ComboBoxInputContainer = React.forwardRef(
   (props, forwardedRef) => {
-    const {
-      className,
-      status,
-      message,
-      children,
-      statusMessageProps,
-      ...rest
-    } = props;
+    const { className, status, message, children, ...rest } = props;
 
     const { id } = useSafeContext(ComboBoxStateContext);
 
@@ -40,9 +28,7 @@ export const ComboBoxInputContainer = React.forwardRef(
         status={status}
         statusMessage={
           typeof message === 'string' ? (
-            <StatusMessage status={status} {...statusMessageProps}>
-              {message}
-            </StatusMessage>
+            <StatusMessage status={status}>{message}</StatusMessage>
           ) : (
             React.isValidElement(message) &&
             React.cloneElement(message as JSX.Element, { status })

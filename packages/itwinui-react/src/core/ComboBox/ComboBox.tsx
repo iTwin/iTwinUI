@@ -28,7 +28,6 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
-import type { StatusMessage } from '../StatusMessage/index.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -108,12 +107,9 @@ export type ComboBoxProps<T> = {
    */
   endIconProps?: React.ComponentProps<typeof ComboBoxEndIcon>;
   /**
-   * status message props.
+   *
    */
-  statusMessageProps?: Pick<
-    React.ComponentProps<typeof StatusMessage>,
-    'iconProps' | 'contentProps'
-  >;
+  endIcon?: React.ReactNode;
   /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
@@ -182,7 +178,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     inputProps,
     endIconProps,
     dropdownMenuProps,
-    statusMessageProps,
+    endIcon,
     emptyStateMessage = 'No options found',
     itemRenderer,
     enableVirtualization = false,
@@ -555,11 +551,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             hide,
           }}
         >
-          <ComboBoxInputContainer
-            disabled={inputProps?.disabled}
-            statusMessageProps={statusMessageProps}
-            {...rest}
-          >
+          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
             <>
               <ComboBoxInput
                 value={inputValue}
@@ -578,11 +570,15 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 }
               />
             </>
-            <ComboBoxEndIcon
-              disabled={inputProps?.disabled}
-              isOpen={isOpen}
-              {...endIconProps}
-            />
+            {!!endIcon ? (
+              <ComboBoxEndIcon>{endIcon}</ComboBoxEndIcon>
+            ) : (
+              <ComboBoxEndIcon
+                {...endIconProps}
+                disabled={inputProps?.disabled}
+                isOpen={isOpen}
+              />
+            )}
 
             {multiple ? (
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
