@@ -203,7 +203,9 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
                   setIsSubmenuVisible(false);
               }}
             >
-              <Menu ref={subMenuRef}>{subMenuItems}</Menu>
+              <Menu ref={subMenuRef} className='iui-scroll'>
+                {subMenuItems}
+              </Menu>
             </div>
           }
         >
