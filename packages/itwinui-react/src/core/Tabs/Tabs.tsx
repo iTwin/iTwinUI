@@ -169,27 +169,28 @@ const TabList = React.forwardRef((props, ref) => {
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
   const newActiveIndex = React.useRef(0);
 
-  // sets activeValue to whichever tab has the isActive prop
+  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
+  const newFocusedIndex = React.useRef<number | undefined>();
+  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
+
   useIsomorphicLayoutEffect(() => {
     // Should only call on the first render since activeValue cannot be initialized in TabsWrapper
-    if (
-      activeValue === undefined &&
-      React.isValidElement(items[0]) &&
-      setActiveValue
-    ) {
-      setActiveValue(items[0].props.value as string);
-      return;
-    }
-    items.forEach((item) => {
-      if (React.isValidElement(item) && item.props.isActive && setActiveValue) {
-        const value = item.props.value as string;
-        if (value !== activeValue) {
-          setActiveValue(value);
-        }
-      }
-    });
-  }, [items, activeValue]);
+    const activeItem = items.find(
+      (item) => React.isValidElement(item) && item.props.isActive,
+    );
 
+    if (React.isValidElement(activeItem) && !!activeItem) {
+      const value = activeItem.props.value as string;
+      if (value !== activeValue) {
+        setActiveValue(value);
+      }
+    } else {
+      React.isValidElement(items[0]) &&
+        setActiveValue(items[0].props.value as string);
+    }
+  }, []);
+
+  // When activeValue change
   useIsomorphicLayoutEffect(() => {
     items.forEach((item, index) => {
       if (React.isValidElement(item) && item.props.value === activeValue) {
@@ -197,7 +198,17 @@ const TabList = React.forwardRef((props, ref) => {
         return;
       }
     });
-  }, [activeValue]);
+  }, [items, activeValue]);
+
+  // When focusedValue change
+  useIsomorphicLayoutEffect(() => {
+    items.forEach((item, index) => {
+      if (React.isValidElement(item) && item.props.value === focusedValue) {
+        newFocusedIndex.current = index;
+        return;
+      }
+    });
+  }, [items, focusedValue]);
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
@@ -206,17 +217,16 @@ const TabList = React.forwardRef((props, ref) => {
         newActiveIndex.current
       ] as HTMLElement;
       const activeTabRect = activeTab.getBoundingClientRect();
-      setStripeProperties &&
-        setStripeProperties({
-          ...(orientation === 'horizontal' && {
-            '--stripe-width': `${activeTabRect.width}px`,
-            '--stripe-left': `${activeTab.offsetLeft}px`,
-          }),
-          ...(orientation === 'vertical' && {
-            '--stripe-height': `${activeTabRect.height}px`,
-            '--stripe-top': `${activeTab.offsetTop}px`,
-          }),
-        });
+      setStripeProperties({
+        ...(orientation === 'horizontal' && {
+          '--stripe-width': `${activeTabRect.width}px`,
+          '--stripe-left': `${activeTab.offsetLeft}px`,
+        }),
+        ...(orientation === 'vertical' && {
+          '--stripe-height': `${activeTabRect.height}px`,
+          '--stripe-top': `${activeTab.offsetTop}px`,
+        }),
+      });
     }
   }, [type, orientation, tabsWidth, activeValue]);
 
@@ -227,24 +237,12 @@ const TabList = React.forwardRef((props, ref) => {
         if (tab.props.onActivated) {
           tab.props.onActivated();
         } else {
-          setActiveValue && setActiveValue(tab.props.value as string);
+          setActiveValue(tab.props.value as string);
         }
       }
     },
     [items, setActiveValue],
   );
-
-  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
-  const newFocusedIndex = React.useRef<number | undefined>();
-
-  useIsomorphicLayoutEffect(() => {
-    items.forEach((item, index) => {
-      if (React.isValidElement(item) && item.props.value === focusedValue) {
-        newFocusedIndex.current = index;
-        return;
-      }
-    });
-  }, [focusedValue]);
 
   React.useEffect(() => {
     if (tablistRef.current && newFocusedIndex.current !== undefined) {
@@ -252,8 +250,6 @@ const TabList = React.forwardRef((props, ref) => {
       (tab as HTMLElement)?.focus();
     }
   }, [focusedValue, onTabClick, focusActivationMode]);
-
-  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
   const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
     const ownerDoc = tablistRef.current;
@@ -401,6 +397,7 @@ const TabList = React.forwardRef((props, ref) => {
   const [scrollingPlacement, setScrollingPlacement] = React.useState<
     string | undefined
   >(undefined);
+
   const determineScrollingPlacement = React.useCallback(() => {
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
@@ -719,9 +716,95 @@ const TabsPanel = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
 TabsPanel.displayName = 'Tabs.Panel';
 
-const TabsComponent = () => {
-  return <></>;
-};
+// ----------------------------------------------------------------------------
+// Tabs legacy component
+
+type TabsLegacyProps = {
+  /**
+   * Content displayed to the right/bottom of the horizontal/vertical tabs
+   *
+   * If `type = 'pill'`, `actions` is not applicable.
+   */
+  actions?: React.ReactNode[];
+  /**
+   * Elements shown for each tab.
+   * Recommended to pass an array of `Tab` components.
+   */
+  labels: React.ReactNode[];
+  /**
+   * Handler for activating a tab.
+   */
+  onTabSelected?: (index: number) => void;
+  /**
+   * Index of the active tab.
+   */
+  activeIndex?: number;
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
+  /**
+   * Color of the bar on the active tab.
+   * @default 'blue'
+   */
+  color?: 'blue' | 'green';
+  /**
+   * Custom CSS class name for tabs.
+   */
+  tabsClassName?: string;
+  /**
+   * Custom CSS class name for tab panel.
+   */
+  contentClassName?: string;
+  /**
+   * Custom CSS class name for the tabs wrapper.
+   */
+  wrapperClassName?: string;
+  /**
+   * Content inside the tab panel.
+   */
+  children?: React.ReactNode;
+} & TabsOrientationProps &
+  TabsOverflowProps;
+
+const TabsComponent = React.forwardRef((props, forwardedRef) => {
+  const {
+    overflowOptions,
+    actions,
+    labels,
+    activeIndex,
+    onTabSelected,
+    focusActivationMode = 'auto',
+    type,
+    color,
+    orientation = 'horizontal',
+    tabsClassName,
+    contentClassName,
+    wrapperClassName,
+    children,
+    ...rest
+  } = props;
+
+  return (
+    <TabsWrapper
+      className={wrapperClassName}
+      type={type}
+      orientation={orientation}
+      overflowOptions={overflowOptions}
+      {...rest}
+    >
+      <TabList color={color} className={tabsClassName} ref={forwardedRef}>
+        {labels}
+      </TabList>
+
+      {actions && <TabsActions>{actions}</TabsActions>}
+
+      {children}
+    </TabsWrapper>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
 
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
@@ -841,7 +924,7 @@ export const TabsContext = React.createContext<
       /**
        * Handler for setting the value of the active tab.
        */
-      setActiveValue?: (value: string) => void;
+      setActiveValue: (value: string) => void;
       /**
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
@@ -849,7 +932,7 @@ export const TabsContext = React.createContext<
       /**
        * Handler for setting the hasSublabel flag.
        */
-      setStripeProperties?: (stripeProperties: object) => void;
+      setStripeProperties: (stripeProperties: object) => void;
     }
   | undefined
 >(undefined);
