@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 export { Table } from './Table.js';
-export type { TableProps, TablePaginatorRendererProps } from './Table.js';
+export type { TablePaginatorRendererProps } from './Table.js';
 
 export { BaseFilter, FilterButtonBar, tableFilters } from './filters/index.js';
 export type {

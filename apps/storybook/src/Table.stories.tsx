@@ -10,7 +10,8 @@ import type {
   Row,
   TableInstance,
   TableState,
-} from 'react-table';
+  TableOptions,
+} from '@itwin/itwinui-react/react-table';
 import {
   Checkbox,
   Code,
@@ -21,13 +22,10 @@ import {
   Table,
   Text,
   tableFilters,
-  TableFilterValue,
-  TableProps,
   Tooltip,
   DefaultCell,
   EditableCell,
   TablePaginator,
-  TablePaginatorRendererProps,
   ActionColumn,
   Anchor,
   SelectionColumn,
@@ -36,6 +34,10 @@ import {
   Radio,
   ProgressRadial,
   BaseFilter,
+} from '@itwin/itwinui-react';
+import type {
+  TableFilterValue,
+  TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
@@ -47,6 +49,10 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+import { StoryFn } from '@storybook/react';
+
+type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
+  React.ComponentProps<typeof Table<T>>;
 
 export default {
   title: 'Core/Table',
@@ -172,7 +178,7 @@ export const SelectableMulti = () => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onSelect']>;
 
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
@@ -245,7 +251,7 @@ export const Sortable = () => {
   const onSort = useCallback(
     (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onSort']>;
 
   const columns = useMemo(
     () => [
@@ -440,7 +446,7 @@ export const Filters = () => {
     (
       filters: TableFilterValue<TableStoryDataType>[],
       state: TableState,
-      filteredData: Row<{ name: string; description: string }>[],
+      filteredData: Row<TableStoryDataType>[],
     ) => {
       // rowInfo is used due to JSON errors when displaying row data
       let rowInfo = '[';
@@ -456,7 +462,7 @@ export const Filters = () => {
       )();
     },
     [],
-  );
+  ) satisfies NonNullable<TableProps['onFilter']>;
 
   return (
     <Table
@@ -554,7 +560,7 @@ export const Expandable = () => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -615,7 +621,7 @@ export const ExpandableSubrows = () => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -826,7 +832,7 @@ export const RowInViewport = () => {
 
   const onRowInViewport = useCallback((rowData) => {
     action(`Row in view: ${JSON.stringify(rowData)}`)();
-  }, []);
+  }, []) satisfies NonNullable<TableProps['onRowInViewport']>;
 
   return (
     <>
@@ -1052,7 +1058,7 @@ export const ControlledState = () => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance>();
+  const tableInstance = React.useRef<TableInstance<DemoData>>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
@@ -1070,7 +1076,7 @@ export const ControlledState = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<DemoData>[];
 
   const data: DemoData[] = useMemo(
     () => [
@@ -1135,9 +1141,24 @@ export const ControlledState = () => {
         name: 'Row 2',
         description: 'Description 2',
         subRows: [
-          { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
-          { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
-          { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+          {
+            id: '2.1',
+            name: 'Row 2.1',
+            description: 'Description 2.1',
+            subRows: [],
+          },
+          {
+            id: '2.2',
+            name: 'Row 2.2',
+            description: 'Description 2.2',
+            subRows: [],
+          },
+          {
+            id: '2.3',
+            name: 'Row 2.3',
+            description: 'Description 2.3',
+            subRows: [],
+          },
         ],
       },
       { id: '3', name: 'Row 3', description: 'Description 3', subRows: [] },
@@ -1180,18 +1201,28 @@ export const ControlledState = () => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        stateReducer={useCallback((newState, action, prevState, instance) => {
-          tableInstance.current = instance;
-          return newState;
-        }, [])}
+        stateReducer={
+          useCallback((newState, action, prevState, instance) => {
+            tableInstance.current = instance;
+            return newState;
+          }, []) satisfies NonNullable<TableOptions<DemoData>['stateReducer']>
+        }
         isSelectable
-        onSelect={useCallback((selected) => {
-          setSelectedRows(selected ?? []);
-        }, [])}
-        onExpand={useCallback((expanded) => {
-          setExpandedRows(expanded);
-        }, [])}
-        getRowId={useCallback((rowData) => rowData.id, [])}
+        onSelect={
+          useCallback((selected) => {
+            setSelectedRows(selected ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onSelect']>
+        }
+        onExpand={
+          useCallback((expanded) => {
+            setExpandedRows(expanded ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onExpand']>
+        }
+        getRowId={
+          useCallback((rowData) => rowData.id, []) satisfies NonNullable<
+            TableOptions<DemoData>['getRowId']
+          >
+        }
         data={data}
       />
     </>
@@ -1462,9 +1493,9 @@ export const Full2 = () => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
+  const rowProps = useCallback((row: Row<TableStoryDataType>) => {
     return {
-      status: row.original.status,
+      status: row.original.status satisfies TableStoryDataType['status'],
     };
   }, []);
 
@@ -1590,7 +1621,7 @@ export const Localized = () => {
 };
 
 Localized.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -1614,7 +1645,7 @@ export const Condensed = () => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -1864,7 +1895,7 @@ export const WithPaginator = () => {
 };
 
 WithPaginator.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2073,7 +2104,7 @@ export const WithManualPaginatorAndFilter = () => {
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2231,7 +2262,7 @@ export const CustomFilter = () => {
 };
 
 CustomFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2335,7 +2366,7 @@ export const ResizableColumns = () => {
   );
 
   const [columnResizeMode, setColumnResizeMode] =
-    React.useState<TableProps['columnResizeMode']>('fit');
+    React.useState<TableProps<TableStoryDataType>['columnResizeMode']>('fit');
 
   return (
     <>
@@ -2563,7 +2594,7 @@ export const HorizontalScroll = () => {
 };
 
 HorizontalScroll.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
@@ -2904,7 +2935,7 @@ export const CustomizedColumns = () => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps<(typeof data)[number]>['onExpand']>;
 
   const data = useMemo(
     () => [
@@ -2952,9 +2983,9 @@ export const CustomizedColumns = () => {
         Header: 'Name',
         accessor: 'name',
         cellRenderer: (props) => (
-          <DefaultCell
+          <DefaultCell<(typeof data)[number]>
             {...props}
-            isDisabled={(rowData) =>
+            isDisabled={(rowData: (typeof data)[number]) =>
               isCellDisabled(rowData) || isRowDisabled(rowData)
             }
           />
@@ -3000,6 +3031,11 @@ export const ColumnManager = () => {
     id: string;
     startDate: Date;
     endDate: Date;
+    price: string;
+    color: string;
+    stock: number;
+    rating: string;
+    location: string;
   };
 
   const columns = useMemo(
@@ -3314,7 +3350,7 @@ export const StickyColumns = () => {
 };
 
 StickyColumns.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
@@ -3338,6 +3374,7 @@ export const StatusAndCellIcons = () => {
           props: CellRendererProps<{
             startIcon: JSX.Element;
             endIcon: JSX.Element;
+            isLoading?: boolean;
           }>,
         ) => (
           <DefaultCell

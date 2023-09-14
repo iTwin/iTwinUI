@@ -108,12 +108,11 @@ it('should work with menu items', async () => {
 
   expect(document.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
-  expect(menuItem).toBeTruthy();
+  expect(menuItem).toBeVisible();
   await userEvent.click(menuItem);
 
-  expect(tippy).not.toBeVisible();
+  expect(menuItem).not.toBeVisible();
 });
 
 it('should support polymorphic `as` prop', async () => {

@@ -3,18 +3,26 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, useMergedRefs, SvgCaretRightSmall } from '../utils/index.js';
+import {
+  SvgCaretRightSmall,
+  usePopover,
+  Portal,
+  useMergedRefs,
+  useId,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
+import { flushSync } from 'react-dom';
 
 /**
  * Context used to provide menu item ref to sub-menu items.
  */
 const MenuItemContext = React.createContext<{
   ref: React.RefObject<HTMLElement> | undefined;
-}>({ ref: undefined });
+  setIsNestedSubmenuVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}>({ ref: undefined, setIsNestedSubmenuVisible: () => {} });
 
 export type MenuItemProps = {
   /**
@@ -80,7 +88,7 @@ export type MenuItemProps = {
 /**
  * Basic menu item component. Should be used inside `Menu` component for each item.
  */
-export const MenuItem = React.forwardRef((props, ref) => {
+export const MenuItem = React.forwardRef((props, forwardedRef) => {
   const {
     children,
     isSelected,
@@ -89,26 +97,38 @@ export const MenuItem = React.forwardRef((props, ref) => {
     onClick,
     sublabel,
     size = !!sublabel ? 'large' : 'default',
-    startIcon: startIconProp,
     icon,
-    endIcon: endIconProp,
+    startIcon = icon,
     badge,
+    endIcon = badge,
     role = 'menuitem',
     subMenuItems = [],
     ...rest
   } = props;
 
   const menuItemRef = React.useRef<HTMLElement>(null);
-  const refs = useMergedRefs(menuItemRef, ref);
-
-  const { ref: parentMenuItemRef } = React.useContext(MenuItemContext);
-
-  const subMenuRef = React.useRef<HTMLDivElement>(null);
+  const [focusOnSubmenu, setFocusOnSubmenu] = React.useState(false);
+  const submenuId = useId();
 
   const [isSubmenuVisible, setIsSubmenuVisible] = React.useState(false);
+  const [isNestedSubmenuVisible, setIsNestedSubmenuVisible] =
+    React.useState(false);
+  const parent = React.useContext(MenuItemContext);
 
-  const startIcon = startIconProp ?? icon;
-  const endIcon = endIconProp ?? badge;
+  const onVisibleChange = (open: boolean) => {
+    setIsSubmenuVisible(open);
+
+    // we don't want parent to close when mouse goes into a nested submenu,
+    // so we need to let the parent know whether the submenu is still open.
+    parent.setIsNestedSubmenuVisible(open);
+  };
+
+  const popover = usePopover({
+    visible: isSubmenuVisible || isNestedSubmenuVisible,
+    onVisibleChange,
+    placement: 'right-start',
+    trigger: { hover: true, focus: true },
+  });
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
     if (event.altKey) {
@@ -126,15 +146,28 @@ export const MenuItem = React.forwardRef((props, ref) => {
       case 'ArrowRight': {
         if (subMenuItems.length > 0) {
           setIsSubmenuVisible(true);
+
+          // flush and reset state so we are ready to focus again next time
+          flushSync(() => setFocusOnSubmenu(true));
+          setFocusOnSubmenu(false);
+
           event.preventDefault();
           event.stopPropagation();
         }
         break;
       }
       case 'ArrowLeft': {
-        parentMenuItemRef?.current?.focus();
+        if (parent.ref) {
+          parent.ref.current?.focus();
+          parent.setIsNestedSubmenuVisible(false);
+        }
         event.stopPropagation();
         event.preventDefault();
+        break;
+      }
+      case 'Escape': {
+        // focus might get lost if submenu closes so move it back to parent
+        parent.ref?.current?.focus();
         break;
       }
       default:
@@ -142,31 +175,33 @@ export const MenuItem = React.forwardRef((props, ref) => {
     }
   };
 
-  const listItem = (
+  const handlers = {
+    onClick: () => !disabled && onClick?.(value),
+    onKeyDown,
+  };
+
+  return (
     <ListItem
       as='div'
       actionable
       size={size}
       active={isSelected}
       disabled={disabled}
-      onClick={() => !disabled && onClick?.(value)}
-      ref={refs}
+      ref={useMergedRefs(
+        menuItemRef,
+        forwardedRef,
+        subMenuItems.length > 0 ? popover.refs.setReference : null,
+      )}
       role={role}
       tabIndex={disabled || role === 'presentation' ? undefined : -1}
       aria-selected={isSelected}
-      aria-haspopup={subMenuItems.length > 0}
+      aria-haspopup={subMenuItems.length > 0 ? 'true' : undefined}
+      aria-controls={subMenuItems.length > 0 ? submenuId : undefined}
+      aria-expanded={subMenuItems.length > 0 ? popover.open : undefined}
       aria-disabled={disabled}
-      onKeyDown={onKeyDown}
-      onMouseEnter={() => setIsSubmenuVisible(true)}
-      onMouseLeave={(e) => {
-        if (
-          !(e.relatedTarget instanceof Node) ||
-          !subMenuRef.current?.contains(e.relatedTarget as Node)
-        ) {
-          setIsSubmenuVisible(false);
-        }
-      }}
-      {...rest}
+      {...(subMenuItems.length === 0
+        ? { ...handlers, ...rest }
+        : popover.getReferenceProps({ ...handlers, ...rest }))}
     >
       {startIcon && (
         <ListItem.Icon as='span' aria-hidden>
@@ -187,34 +222,30 @@ export const MenuItem = React.forwardRef((props, ref) => {
           {endIcon}
         </ListItem.Icon>
       )}
-    </ListItem>
-  );
 
-  return subMenuItems.length === 0 ? (
-    listItem
-  ) : (
-    <MenuItemContext.Provider value={{ ref: menuItemRef }}>
-      <Popover
-        placement='right-start'
-        visible={isSubmenuVisible}
-        appendTo='parent'
-        content={
-          <div
-            onMouseLeave={() => setIsSubmenuVisible(false)}
-            onBlur={(e) => {
-              !!(e.relatedTarget instanceof Node) &&
-                !subMenuRef.current?.contains(e.relatedTarget as Node) &&
-                !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
-                setIsSubmenuVisible(false);
-            }}
+      {subMenuItems.length > 0 && popover.open && (
+        <Portal>
+          <MenuItemContext.Provider
+            value={{ ref: menuItemRef, setIsNestedSubmenuVisible }}
           >
-            <Menu ref={subMenuRef}>{subMenuItems}</Menu>
-          </div>
-        }
-      >
-        {listItem}
-      </Popover>
-    </MenuItemContext.Provider>
+            <Menu
+              setFocus={focusOnSubmenu}
+              ref={popover.refs.setFloating}
+              {...popover.getFloatingProps({
+                id: submenuId,
+                onPointerMove: () => {
+                  // pointer might move into a nested submenu and set isSubmenuVisible to false,
+                  // so we need to flip it back to true when pointer re-enters this submenu.
+                  setIsSubmenuVisible(true);
+                },
+              })}
+            >
+              {subMenuItems}
+            </Menu>
+          </MenuItemContext.Provider>
+        </Portal>
+      )}
+    </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
 

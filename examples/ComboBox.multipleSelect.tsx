@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox, Label } from '@itwin/itwinui-react';
+import { ComboBox, Label, InputGrid } from '@itwin/itwinui-react';
 
 export default () => {
   const options = React.useMemo(
@@ -23,7 +23,7 @@ export default () => {
   ]);
 
   return (
-    <>
+    <InputGrid>
       <Label htmlFor='housing-input'> Select housing type </Label>
       <ComboBox
         options={options}
@@ -34,6 +34,6 @@ export default () => {
           setSelectedOptions(selected);
         }}
       />
-    </>
+    </InputGrid>
   );
 };

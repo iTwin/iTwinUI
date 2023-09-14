@@ -250,7 +250,7 @@ More examples can be found in the [style guide](./STYLEGUIDE.md).
 
 Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
 
-Use `yarn test` to run the tests. Add `--watch` flag if you want tests to rerun after changes.
+Use `yarn test:unit` to run the unit tests. Run `yarn test:unit:watch` if you want unit tests to rerun after changes.
 
 We usually do not use `describe` block and our test case should start with 'should'.
 

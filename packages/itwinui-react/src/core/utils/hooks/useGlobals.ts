@@ -4,13 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ThemeContext } from '../../ThemeProvider/ThemeContext.js';
-
-let isDev = false;
-
-// wrapping in try-catch because process might be undefined
-try {
-  isDev = process.env.NODE_ENV !== 'production';
-} catch {}
+import { isDev } from '../functions/dev.js';
 
 const didLogWarning = {
   fontSize: false,

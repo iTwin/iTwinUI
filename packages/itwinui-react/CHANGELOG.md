@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.0-dev.9
+
+### Major Changes
+
+- [#1506](https://github.com/iTwin/iTwinUI/pull/1506): Replaced `tippy.js` with `floating-ui` in all popover-based components. While the basic usage is unchanged, all advanced props from tippy are no longer available.
+
+  Components affected: Select, ComboBox, DropdownMenu, DropdownButton, SplitButton.
+
+### Minor Changes
+
+- [#1506](https://github.com/iTwin/iTwinUI/pull/1506): Added new `Popover` component for public use.
+
 ## 3.0.0-dev.8
 
 ### Major Changes
