@@ -3,20 +3,28 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { FileUpload, FileUploadCard } from '@itwin/itwinui-react';
+import { FileUpload, LabeledInput } from '@itwin/itwinui-react';
 
 export default () => {
   const [files, setFiles] = React.useState<Array<File>>([]);
   return (
     <FileUpload
+      dragContent='Drop file to upload'
       onFileDropped={(files) => {
-        const fileArray = Array.from(files);
-        setFiles(fileArray);
+        setFiles(Array.from(files));
+        console.log(`${files.length} files uploaded`);
       }}
     >
-      <FileUploadCard
-        files={files}
-        onFilesChange={(files) => setFiles(files)}
+      <LabeledInput
+        placeholder='Type a message'
+        style={{
+          width: '100%',
+        }}
+        message={
+          files.length
+            ? `Attached: ${files.map((f) => f.name)}`
+            : 'Drag files to attach'
+        }
       />
     </FileUpload>
   );
