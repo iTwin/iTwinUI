@@ -11,6 +11,7 @@ import {
   ComboBoxRefsContext,
 } from './helpers.js';
 import type { Instance, Props } from 'tippy.js';
+import 'tippy.js/animations/shift-away.css';
 
 type ComboBoxDropdownProps = PopoverProps & { children: JSX.Element };
 
