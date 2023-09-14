@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
-import { Input, Label, Text } from '@itwin/itwinui-react';
+import { Input, Label, Text, InputGrid } from '@itwin/itwinui-react';
 
 type LabelProps = React.ComponentProps<typeof Label>;
 
@@ -40,12 +40,12 @@ Basic.args = {};
 
 export const Inline: Story<LabelProps> = (args) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <InputGrid labelPlacement='inline'>
       <Label htmlFor='text-input' displayStyle='inline' required {...args}>
         Name
       </Label>
       <Input id='text-input' defaultValue='James Bond' required />
-    </div>
+    </InputGrid>
   );
 };
 Inline.args = {
@@ -55,12 +55,12 @@ Inline.args = {
 
 export const Polymorphic: Story<LabelProps<'div'>> = (args) => {
   return (
-    <div style={{ display: 'flex' }}>
+    <InputGrid labelPlacement='inline'>
       <Label displayStyle='inline' as='div' {...args}>
         <Text isMuted>Name:</Text>
       </Label>
       <Text>James Bond</Text>
-    </div>
+    </InputGrid>
   );
 };
 Polymorphic.args = {

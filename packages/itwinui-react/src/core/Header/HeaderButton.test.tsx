@@ -166,8 +166,7 @@ it('should render menuItems correctly', async () => {
     ),
   ).toEqual(downArrow);
 
-  let menu = document.querySelector('.iui-menu') as HTMLElement;
-  expect(menu).toBeFalsy();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   await userEvent.click(button);
 
@@ -185,19 +184,15 @@ it('should render menuItems correctly', async () => {
     ),
   ).toEqual(upArrow);
 
-  const tippy = document.querySelector('[data-tippy-root]') as HTMLElement;
-  expect(tippy.style.visibility).toEqual('visible');
-
-  menu = document.querySelector('.iui-menu') as HTMLElement;
-  expect(menu).toBeTruthy();
-
+  const menu = document.querySelector('.iui-menu') as HTMLElement;
+  expect(menu).toBeVisible();
   expect(menu.querySelectorAll('[role=menuitem]')).toHaveLength(3);
 
   const menuItem = menu.querySelector('[role=menuitem]') as HTMLElement;
   expect(menuItem).toBeTruthy();
   await userEvent.click(menuItem);
 
-  expect(tippy).not.toBeVisible();
+  expect(menu).not.toBeVisible();
 
   expect(
     container.querySelector(

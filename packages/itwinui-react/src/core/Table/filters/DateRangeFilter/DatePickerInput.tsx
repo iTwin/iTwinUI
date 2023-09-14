@@ -100,55 +100,47 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <Popover
-      content={
-        <DatePicker
-          date={date}
-          onChange={onDateSelected}
-          setFocus
-          isDateDisabled={isDateDisabled}
-          localizedNames={localizedNames}
-        />
-      }
-      placement='bottom'
-      visible={isVisible}
-      onClickOutside={(_, e) => {
-        if (!buttonRef.current?.contains(e.target as Node)) {
-          close();
-        }
-      }}
-      appendTo='parent'
-    >
-      <InputGrid labelPlacement='inline' {...wrapperProps}>
-        <Label
-          as='label'
+    <InputGrid labelPlacement='inline' {...wrapperProps}>
+      <Label
+        as='label'
+        required={required}
+        disabled={disabled}
+        htmlFor={id}
+        {...labelProps}
+      >
+        {label}
+      </Label>
+      <InputWithDecorations {...inputWrapperProps}>
+        <InputWithDecorations.Input
+          id={id}
+          value={inputValue}
+          onChange={onInputChange}
           required={required}
           disabled={disabled}
-          htmlFor={id}
-          {...labelProps}
+          ref={forwardedRef}
+          {...rest}
+        />
+        <Popover
+          content={
+            <DatePicker
+              date={date}
+              onChange={onDateSelected}
+              setFocus
+              isDateDisabled={isDateDisabled}
+              localizedNames={localizedNames}
+            />
+          }
+          placement='bottom-end'
+          visible={isVisible}
+          onVisibleChange={setIsVisible}
+          closeOnOutsideClick
         >
-          {label}
-        </Label>
-        <InputWithDecorations {...inputWrapperProps}>
-          <InputWithDecorations.Input
-            id={id}
-            value={inputValue}
-            onChange={onInputChange}
-            onClick={close}
-            required={required}
-            disabled={disabled}
-            ref={forwardedRef}
-            {...rest}
-          />
-          <InputWithDecorations.Button
-            onClick={() => setIsVisible((v) => !v)}
-            ref={buttonRef}
-          >
+          <InputWithDecorations.Button aria-label='Date picker' ref={buttonRef}>
             <SvgCalendar />
           </InputWithDecorations.Button>
-        </InputWithDecorations>
-      </InputGrid>
-    </Popover>
+        </Popover>
+      </InputWithDecorations>
+    </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
 

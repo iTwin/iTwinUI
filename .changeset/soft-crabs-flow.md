@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': major
+'@itwin/itwinui-react': minor
 ---
 
-Added new `Breadcrumbs.Item` subcomponent to use for custom `a` and `button` elements within the `Breadcrumbs`
+Added new `Breadcrumbs.Item` subcomponent to use within `Breadcrumbs`. Directly passing `<a>`/`<Button>`/`<span>` as children is still supported but is deprecated.

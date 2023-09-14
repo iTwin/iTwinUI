@@ -34,6 +34,7 @@ import {
   SvgSortUp,
   useIsomorphicLayoutEffect,
   Box,
+  createWarningLogger,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle } from './utils.js';
@@ -68,13 +69,7 @@ const shiftRowSelectedAction = 'shiftRowSelected';
 export const tableResizeStartAction = 'tableResizeStart';
 const tableResizeEndAction = 'tableResizeEnd';
 
-let didLogWarning = false;
-let isDev = false;
-
-// wrapping in try-catch because process might be undefined
-try {
-  isDev = process.env.NODE_ENV !== 'production';
-} catch {}
+const logWarningInDev = createWarningLogger();
 
 export type TablePaginatorRendererProps = {
   /**
@@ -318,11 +313,14 @@ export type TableProps<
   scrollToRow?: (rows: Row<T>[], data: T[]) => number;
 } & Omit<CommonProps, 'title'>;
 
-const flattenColumns = (columns: Column[]): Column[] => {
-  const flatColumns: Column[] = [];
+const flattenColumns = <T extends Record<string, unknown>>(
+  columns: Column<T>[],
+): Column<T>[] => {
+  const flatColumns: Column<T>[] = [];
   columns.forEach((column) => {
     flatColumns.push(column);
     if ('columns' in column) {
+      // @ts-expect-error - Since nested columns are not supported from a types perspective
       flatColumns.push(...flattenColumns(column.columns));
     }
   });
@@ -438,7 +436,7 @@ export const Table = <
   }, [onBottomReached, onRowInViewport]);
 
   const hasManualSelectionColumn = React.useMemo(() => {
-    const flatColumns = flattenColumns(columns as Column[]);
+    const flatColumns = flattenColumns(columns);
     return flatColumns.some((column) => column.id === SELECTION_CELL_ID);
   }, [columns]);
 
@@ -628,12 +626,9 @@ export const Table = <
 
   if (columns.length === 1 && 'columns' in columns[0]) {
     headerGroups = _headerGroups.slice(1);
-    if (isDev && !didLogWarning) {
-      console.warn(
-        `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
-      );
-      didLogWarning = true;
-    }
+    logWarningInDev(
+      `Table's \`columns\` prop should not have a top-level \`Header\` or sub-columns. They are only allowed to be passed for backwards compatibility.\n See https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v2-migration-guide#breaking-changes`,
+    );
   }
 
   const ariaDataAttributes = Object.entries(rest).reduce(
@@ -724,7 +719,7 @@ export const Table = <
     if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
       instance.setColumnOrder([]);
     }
-    lastPassedColumns.current = columns as Column<T>[];
+    lastPassedColumns.current = columns;
   }, [columns, instance]);
 
   const paginatorRendererProps: TablePaginatorRendererProps = React.useMemo(
