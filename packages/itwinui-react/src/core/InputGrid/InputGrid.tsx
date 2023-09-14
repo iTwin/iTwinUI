@@ -10,6 +10,9 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 type InputGridOwnProps = {
   /**
    * Set display style of label.
+   * Supported values:
+   * - 'default' - label appears above input.
+   * - 'inline' - appears in the same line as input.
    * @default 'default'
    */
   labelPlacement?: 'default' | 'inline';
