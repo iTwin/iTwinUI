@@ -1024,15 +1024,20 @@ it('should update live region when selection changes', async () => {
   expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });
 
-it('should pass props to statusMessage and endIcon', async () => {
+it('should be customizable', async () => {
   const { container, getByText } = render(
     <ComboBox
       options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
-      message='test message'
+      message={
+        <StatusMessage contentProps={{ className: 'custom-message-class' }}>
+          My message
+        </StatusMessage>
+      }
       status='negative'
-      statusMessageProps={{
-        contentProps: { className: 'my-message-content' },
-        iconProps: { className: 'my-message-icon' },
+      className='my-input-wrapper'
+      inputProps={{ id: 'my-input-id' }}
+      dropdownMenuProps={{
+        className: 'my-menu-class',
       }}
       endIconProps={{ className: 'my-end-icon' }}
     />,
@@ -1042,10 +1047,15 @@ it('should pass props to statusMessage and endIcon', async () => {
     '.iui-svg-icon.iui-end-icon.my-end-icon',
   );
   expect(endIcon).toBeTruthy();
-  const messageIcon = container.querySelector(
-    '.iui-status-message > .iui-svg-icon.my-message-icon',
-  );
-  expect(messageIcon).toBeTruthy();
-  const statusContent = getByText('test message');
-  expect(statusContent).toHaveClass('my-message-content');
+  expect(container.querySelector('input#my-input-id')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-input-grid.my-input-wrapper'),
+  ).toBeTruthy();
+
+  fireEvent.focus(container.querySelector('input') as HTMLElement);
+  const list = document.querySelector('.iui-menu') as HTMLElement;
+  expect(list).toHaveClass('my-menu-class');
+
+  const statusContent = getByText('My message');
+  expect(statusContent).toHaveClass('custom-message-class');
 });
