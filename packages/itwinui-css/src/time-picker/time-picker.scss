@@ -9,17 +9,9 @@
   text-align: center;
   block-size: calc(var(--iui-size-s) * 26);
   display: inline-flex;
-  border-start-end-radius: var(--iui-border-radius-1);
-  border-end-end-radius: var(--iui-border-radius-1);
 
   &:not(:first-child) {
     border-inline-start: 1px solid var(--iui-color-border);
-  }
-
-  &:first-child {
-    box-shadow: var(--iui-shadow-1);
-    border-start-start-radius: var(--iui-border-radius-1);
-    border-end-start-radius: var(--iui-border-radius-1);
   }
 }
 
