@@ -770,31 +770,28 @@ type TabsLegacyProps = {
   TabsOverflowProps;
 
 const TabsComponent = React.forwardRef((props, forwardedRef) => {
+  let actions: Array<React.ReactNode> | undefined;
+  if (props.type !== 'pill' && props.actions) {
+    actions = props.actions;
+    props = { ...props };
+    delete props.actions;
+  }
+
   const {
-    overflowOptions,
-    actions,
     labels,
-    activeIndex,
-    onTabSelected,
-    focusActivationMode = 'auto',
-    type,
+    // activeIndex,
+    // onTabSelected,
+    // focusActivationMode = 'auto',
     color,
-    orientation = 'horizontal',
     tabsClassName,
-    contentClassName,
+    // contentClassName,
     wrapperClassName,
     children,
     ...rest
   } = props;
 
   return (
-    <TabsWrapper
-      className={wrapperClassName}
-      type={type}
-      orientation={orientation}
-      overflowOptions={overflowOptions}
-      {...rest}
-    >
+    <TabsWrapper className={wrapperClassName} {...rest}>
       <TabList color={color} className={tabsClassName} ref={forwardedRef}>
         {labels}
       </TabList>
@@ -805,6 +802,7 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
     </TabsWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
+TabsComponent.displayName = 'Tabs';
 
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
@@ -841,7 +839,7 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
 
 export const Tabs = Object.assign(TabsComponent, {
   /**
-   *
+   * A wrapper component for Tabs
    */
   Wrapper: TabsWrapper,
   /**

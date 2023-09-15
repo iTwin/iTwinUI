@@ -483,3 +483,36 @@ Vertical.argTypes = {
   type: { options: ['default', 'borderless'] },
   orientation: { control: { disable: true } },
 };
+
+export const LegacyTabs: Story<Partial<TabsProps>> = () => {
+  const [index, setIndex] = React.useState(0);
+  const getContent = () => {
+    return (
+      <Tabs.Panel value={index}>
+        {`Bentley Systems, Incorporated, is an American-based software
+            development company that develops, manufactures, licenses, sells and
+            supports computer software and services for the design,
+            construction, and operation of infrastructure. The company's
+            software serves the building, plant, civil, and geospatial markets
+            in the areas of architecture, engineering, construction (AEC) and
+            operations. Their software products are used to design, engineer,
+            build, and operate large constructed assets such as roadways,
+            railways, bridges, buildings, industrial plants, power plants, and
+            utility networks. The company re-invests 20% of their revenues in
+            research and development.`}
+      </Tabs.Panel>
+    );
+  };
+  return (
+    <Tabs
+      labels={[
+        <Tabs.Tab key={1} label='Item1' />,
+        <Tabs.Tab key={2} label='Item2' />,
+        <Tabs.Tab key={3} label='Item3' />,
+      ]}
+      onTabSelected={setIndex}
+    >
+      {getContent()}
+    </Tabs>
+  );
+};
