@@ -7,6 +7,7 @@
 - [#1573](https://github.com/iTwin/iTwinUI/pull/1573): Removed background from color-picker, date-picker/time-picker, and column-filter. Use `iui-surface` class to add it back.
 - [#1577](https://github.com/iTwin/iTwinUI/pull/1577): `iui-scroll` modifier is no longer needed on `iui-menu`.
 - [#1556](https://github.com/iTwin/iTwinUI/pull/1556): Items inside button-group no longer need a wrapping `<div>`.
+- [#1559](https://github.com/iTwin/iTwinUI/pull/1559): Changed `iui-button-group-vertical` class to `iui-button-group` with attribute `data-iui-orientation="vertical"`.
 
 ## 2.0.0-dev.8
 

@@ -6,7 +6,6 @@
 
 - [#1514](https://github.com/iTwin/iTwinUI/pull/1514): Table now has better type support. Users must now import types from `@itwin/itwinui-react/react-table` instead of from `@types/react-table`.
 - [#1433](https://github.com/iTwin/iTwinUI/pull/1433): Updated `exports` to prevent importing internal utilities.
-- [#1559](https://github.com/iTwin/iTwinUI/pull/1559): Changed `iui-button-group-vertical` class to `iui-button-group` with attribute `data-iui-orientation="vertical"`.
 
 ### Minor Changes
 
