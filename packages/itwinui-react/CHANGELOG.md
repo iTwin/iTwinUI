@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.8
+
+### Patch Changes
+
+- [#1576](https://github.com/iTwin/iTwinUI/pull/1576): Dropdown menus will now automatically become scrollable if there are too many menu items.
+- [#1578](https://github.com/iTwin/iTwinUI/pull/1578): Fixed missing animation in ComboBox.
+- [#1572](https://github.com/iTwin/iTwinUI/pull/1572): Adjusted borders and shadow values to be more prominent in dark theme.
+
 ## 2.12.7
 
 ### Patch Changes
