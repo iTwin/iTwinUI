@@ -11,6 +11,7 @@ import type {
 } from '../utils/index.js';
 import cx from 'classnames';
 import { ColorPickerContext } from './ColorPickerContext.js';
+import { Surface } from '../Surface/Surface.js';
 
 export const getColorValue = (color: ColorType | ColorValue | undefined) => {
   if (color instanceof ColorValue) {
@@ -47,6 +48,15 @@ type ColorPickerProps = {
    * @default false
    */
   showAlpha?: boolean;
+  /**
+   * Whether there is a background, border, shadow, etc.
+   *
+   * Should be set to true if used in a popover that doesn't have its own background,
+   * or set to false if the popover has its own background or embedding within a page.
+   *
+   * @default true
+   */
+  applyBackground?: boolean;
 };
 
 /**
@@ -70,6 +80,7 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
     onChange,
     onChangeComplete,
     showAlpha = false,
+    applyBackground = true,
     ...rest
   } = props;
 
@@ -127,6 +138,7 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
+      as={(applyBackground ? Surface : 'div') as typeof Surface}
       className={cx('iui-color-picker', className)}
       ref={useMergedRefs(ref, forwardedRef)}
       {...rest}
