@@ -190,6 +190,15 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.8
+
+### Patch Changes
+
+- [#1576](https://github.com/iTwin/iTwinUI/pull/1576): Dropdown menus will now automatically become scrollable if there are too many menu items. Also added delay to submenu.
+- [#1578](https://github.com/iTwin/iTwinUI/pull/1578): Fixed missing animation in ComboBox.
+- [#1572](https://github.com/iTwin/iTwinUI/pull/1572): Adjusted borders and shadow values to be more prominent in dark theme.
+- [#1575](https://github.com/iTwin/iTwinUI/pull/1575): ProgressRadial now stays inside container when using size="x-small".
+
 ## 2.12.7
 
 ### Patch Changes
