@@ -1,5 +1,11 @@
 # @itwin/itwinui-variables
 
+## 2.1.2
+
+### Patch Changes
+
+- [#1572](https://github.com/iTwin/iTwinUI/pull/1572): Adjusted borders and shadow values to be more prominent in dark theme.
+
 ## 2.1.1
 
 ### Patch Changes

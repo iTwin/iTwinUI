@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.4
+
+### Patch Changes
+
+- [#1575](https://github.com/iTwin/iTwinUI/pull/1575): ProgressRadial now stays inside container when size="x-small".
+
 ## 1.12.3
 
 ### Patch Changes
