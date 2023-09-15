@@ -570,6 +570,16 @@ import { default as FileUploadMainExampleRaw } from './FileUpload.main';
 const FileUploadMainExample = withThemeProvider(FileUploadMainExampleRaw);
 export { FileUploadMainExample };
 
+import { default as FileUploadWrappingInputExampleRaw } from './FileUpload.wrappinginput';
+const FileUploadWrappingInputExample = withThemeProvider(
+  FileUploadWrappingInputExampleRaw,
+);
+export { FileUploadWrappingInputExample };
+
+import { default as FileUploadCustomExampleRaw } from './FileUpload.custom';
+const FileUploadCustomExample = withThemeProvider(FileUploadCustomExampleRaw);
+export { FileUploadCustomExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as FlexMainExampleRaw } from './Flex.main';

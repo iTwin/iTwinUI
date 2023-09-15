@@ -1023,3 +1023,39 @@ it('should update live region when selection changes', async () => {
   await userEvent.click(options[0]);
   expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });
+
+it('should be customizable', async () => {
+  const { container, getByText } = render(
+    <ComboBox
+      options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
+      message={
+        <StatusMessage contentProps={{ className: 'custom-message-class' }}>
+          My message
+        </StatusMessage>
+      }
+      status='negative'
+      className='my-input-wrapper'
+      inputProps={{ id: 'my-input-id' }}
+      dropdownMenuProps={{
+        className: 'my-menu-class',
+      }}
+      endIconProps={{ className: 'my-end-icon' }}
+    />,
+  );
+
+  const endIcon = container.querySelector(
+    '.iui-svg-icon.iui-end-icon.my-end-icon',
+  );
+  expect(endIcon).toBeTruthy();
+  expect(container.querySelector('input#my-input-id')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-input-grid.my-input-wrapper'),
+  ).toBeTruthy();
+
+  fireEvent.focus(container.querySelector('input') as HTMLElement);
+  const list = document.querySelector('.iui-menu') as HTMLElement;
+  expect(list).toHaveClass('my-menu-class');
+
+  const statusContent = getByText('My message');
+  expect(statusContent).toHaveClass('custom-message-class');
+});
