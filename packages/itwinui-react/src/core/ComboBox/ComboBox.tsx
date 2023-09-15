@@ -107,10 +107,6 @@ export type ComboBoxProps<T> = {
    */
   endIconProps?: React.ComponentProps<typeof ComboBoxEndIcon>;
   /**
-   *
-   */
-  endIcon?: React.ReactNode;
-  /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
    * @default 'No options found'
@@ -178,7 +174,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     inputProps,
     endIconProps,
     dropdownMenuProps,
-    endIcon,
     emptyStateMessage = 'No options found',
     itemRenderer,
     enableVirtualization = false,
@@ -570,15 +565,11 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 }
               />
             </>
-            {!!endIcon ? (
-              <ComboBoxEndIcon>{endIcon}</ComboBoxEndIcon>
-            ) : (
-              <ComboBoxEndIcon
-                {...endIconProps}
-                disabled={inputProps?.disabled}
-                isOpen={isOpen}
-              />
-            )}
+            <ComboBoxEndIcon
+              {...endIconProps}
+              disabled={inputProps?.disabled}
+              isOpen={isOpen}
+            />
 
             {multiple ? (
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
