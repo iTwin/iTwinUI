@@ -3651,7 +3651,6 @@ it('should render action column with column manager', async () => {
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
 });
 
 it('should render dropdown menu with custom style and override default style', async () => {
@@ -3701,7 +3700,6 @@ it('should render dropdown menu with custom style and override default style', a
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
   expect(dropdownMenu).toHaveStyle('background-color: red');
@@ -4625,6 +4623,11 @@ it('should ignore top-level Header if one is passed', async () => {
       columns={[
         {
           Header: 'Header name',
+          // We expect to get `columns` does not exist type error.
+          // Because although `columns` is removed from the Column type (i.e. no sub-columns),
+          // we allow to pass `columns` in the top level Header for backward compatibility.
+          // (#1072: https://github.com/iTwin/iTwinUI/pull/1072)
+          // @ts-expect-error - `columns` does not exist in type ...
           columns: [
             {
               id: 'name',

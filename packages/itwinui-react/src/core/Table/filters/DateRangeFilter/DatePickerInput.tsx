@@ -128,6 +128,7 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
               setFocus
               isDateDisabled={isDateDisabled}
               localizedNames={localizedNames}
+              applyBackground={false}
             />
           }
           placement='bottom-end'

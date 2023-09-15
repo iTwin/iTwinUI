@@ -3,12 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 
 import { Breadcrumbs } from './Breadcrumbs.js';
 import { SvgChevronRight, SvgMore } from '../utils/index.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
+import { Button } from '../Buttons/index.js';
+import userEvent from '@testing-library/user-event';
 
 const renderComponent = (
   props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
@@ -159,4 +161,49 @@ it('should show the last item when only one can be visible', () => {
   expect(breadcrumbs[0].textContent).toEqual('…');
   expect(breadcrumbs[0].firstElementChild?.textContent).toContain('…');
   expect(breadcrumbs[1].textContent).toEqual('Item 2');
+});
+
+it('should support legacy api', async () => {
+  const onClick = jest.fn();
+
+  render(
+    <div data-testid='1'>
+      <Breadcrumbs>
+        <Button onClick={onClick}>Item 1</Button>
+        <a href='#'>Item 2</a>
+        <span>Item 3</span>
+      </Breadcrumbs>
+    </div>,
+  );
+  render(
+    <div data-testid='2'>
+      <Breadcrumbs>
+        <Breadcrumbs.Item onClick={onClick}>Item 1</Breadcrumbs.Item>
+        <Breadcrumbs.Item href='#'>Item 2</Breadcrumbs.Item>
+        <Breadcrumbs.Item>Item 3</Breadcrumbs.Item>
+      </Breadcrumbs>
+    </div>,
+  );
+
+  expect(screen.getByTestId('1').innerHTML).toEqual(
+    screen.getByTestId('2').innerHTML,
+  );
+
+  await userEvent.click(
+    screen.getByTestId('1').querySelector('button') as HTMLElement,
+  );
+  expect(onClick).toHaveBeenCalledTimes(1);
+  await userEvent.click(
+    screen.getByTestId('2').querySelector('button') as HTMLElement,
+  );
+  expect(onClick).toHaveBeenCalledTimes(2);
+
+  expect(screen.getByTestId('1').querySelector('a')).toHaveAttribute(
+    'href',
+    '#',
+  );
+  expect(screen.getByTestId('2').querySelector('a')).toHaveAttribute(
+    'href',
+    '#',
+  );
 });

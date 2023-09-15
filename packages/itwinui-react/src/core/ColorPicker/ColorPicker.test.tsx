@@ -569,3 +569,14 @@ it('should render color picker and handle onChangeCompleted when alpha is false'
     ColorValue.create({ h: 1, s: 100, l: 50 }),
   );
 });
+
+it.each([true, false])('should respect `applyBackground`', (value) => {
+  const { container } = render(
+    <ColorPicker applyBackground={value}>blah</ColorPicker>,
+  );
+  if (value) {
+    expect(container.querySelector('div')).toHaveClass('iui-surface');
+  } else {
+    expect(container.querySelector('div')).not.toHaveClass('iui-surface');
+  }
+});

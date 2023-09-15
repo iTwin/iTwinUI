@@ -20,7 +20,12 @@
     "noUnusedLocals": true,
     "skipLibCheck": true,
     "isolatedModules": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "baseUrl": ".",
+    "paths": {
+      // Since we don't depend on `@types/react-table`, we need to provide the types for it.
+      "react-table": ["src/react-table/react-table.ts"]
+    }
   },
   "exclude": ["node_modules", "cjs/**/*", "esm/**/*"]
 }

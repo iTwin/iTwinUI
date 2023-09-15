@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import cx from 'classnames';
 import * as React from 'react';
 import { Menu } from '../Menu/index.js';
 import {
@@ -66,7 +65,7 @@ const VirtualizedComboBoxMenu = (props: React.ComponentProps<'div'>) => {
 };
 
 export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
-  const { className, children, style, ...rest } = props;
+  const { children, style, ...rest } = props;
   const { id, enableVirtualization, popover } =
     useSafeContext(ComboBoxStateContext);
   const { menuRef } = useSafeContext(ComboBoxRefsContext);
@@ -81,7 +80,6 @@ export const ComboBoxMenu = React.forwardRef((props, forwardedRef) => {
           setFocus={false}
           role='listbox'
           ref={refs}
-          className={cx('iui-scroll', className)}
           {...popover.getFloatingProps({
             style: !enableVirtualization
               ? style
