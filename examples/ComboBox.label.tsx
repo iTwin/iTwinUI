@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox, Label } from '@itwin/itwinui-react';
+import { ComboBox, Label, InputGrid } from '@itwin/itwinui-react';
 
 export default () => {
   const [breakfast, setBreakfast] = React.useState('');
@@ -31,28 +31,31 @@ export default () => {
   );
 
   return (
-    <div style={{ textAlign: 'left' }}>
-      <Label htmlFor='breakfast-input'>Breakfast</Label>
-      <ComboBox
-        options={breakfastOptions}
-        value={breakfast}
-        onChange={setBreakfast}
-        inputProps={{
-          id: 'breakfast-input', // passing id to inputProps so it can be used in Label htmlFor
-          placeholder: 'Choose your meal',
-        }}
-      />
-      <br />
-      <Label htmlFor='lunch-input'>Lunch</Label>
-      <ComboBox
-        options={lunchOptions}
-        value={lunch}
-        onChange={setLunch}
-        inputProps={{
-          id: 'lunch-input', // passing id to inputProps so it can be used in Label htmlFor
-          placeholder: 'Choose your meal',
-        }}
-      />
-    </div>
+    <>
+      <InputGrid>
+        <Label htmlFor='breakfast-input'>Breakfast</Label>
+        <ComboBox
+          options={breakfastOptions}
+          value={breakfast}
+          onChange={setBreakfast}
+          inputProps={{
+            id: 'breakfast-input', // passing id to inputProps so it can be used in Label htmlFor
+            placeholder: 'Choose your meal',
+          }}
+        />
+      </InputGrid>
+      <InputGrid>
+        <Label htmlFor='lunch-input'>Lunch</Label>
+        <ComboBox
+          options={lunchOptions}
+          value={lunch}
+          onChange={setLunch}
+          inputProps={{
+            id: 'lunch-input', // passing id to inputProps so it can be used in Label htmlFor
+            placeholder: 'Choose your meal',
+          }}
+        />
+      </InputGrid>
+    </>
   );
 };

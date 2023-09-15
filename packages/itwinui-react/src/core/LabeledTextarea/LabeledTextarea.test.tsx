@@ -145,7 +145,6 @@ it('should render inline icon', () => {
   const { container, getByText } = render(
     <LabeledTextarea
       label='some label'
-      iconDisplayStyle='inline'
       svgIcon={<svg className='my-icon' />}
       message='My message'
     />,

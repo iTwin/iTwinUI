@@ -12,7 +12,7 @@ import {
   StatusMessage,
   SelectOption,
   MenuItemSkeleton,
-  Flex,
+  InputGrid,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 
@@ -383,7 +383,7 @@ export const WithLabel: StoryFn<Partial<ComboBoxProps>> = (args) => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
-    <Flex flexDirection='column' alignItems='unset' gap='2xs'>
+    <InputGrid>
       <Label htmlFor='combo-input'>Country</Label>
       <ComboBox
         options={options}
@@ -394,7 +394,7 @@ export const WithLabel: StoryFn<Partial<ComboBoxProps>> = (args) => {
         }}
         {...args}
       />
-    </Flex>
+    </InputGrid>
   );
 };
 WithLabel.args = {

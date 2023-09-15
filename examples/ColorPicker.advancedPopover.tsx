@@ -13,7 +13,7 @@ import {
   IconButton,
   Button,
 } from '@itwin/itwinui-react';
-import { Popover } from '@itwin/itwinui-react/esm/core/utils';
+import { Popover } from '@itwin/itwinui-react';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -65,7 +65,7 @@ export default () => {
               />
             </ColorPicker>
           }
-          appendTo={() => document.body}
+          portal={{ to: () => document.body }}
           visible={isOpen}
           placement='bottom-start'
         >

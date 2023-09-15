@@ -137,10 +137,9 @@ it('should work in vertical orientation', () => {
     </ButtonGroup>,
   );
   const group = container.querySelector(
-    '.iui-button-group-vertical',
+    '.iui-button-group[data-iui-orientation="vertical"]',
   ) as HTMLElement;
   expect(group).toBeTruthy();
-  expect(group).not.toHaveClass('iui-button-group');
   expect(group.children).toHaveLength(2);
 });
 
