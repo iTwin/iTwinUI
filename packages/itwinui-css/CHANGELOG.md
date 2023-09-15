@@ -110,6 +110,12 @@
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
 
+## 1.12.4
+
+### Patch Changes
+
+- [#1575](https://github.com/iTwin/iTwinUI/pull/1575): ProgressRadial now stays inside container when size="x-small".
+
 ## 1.12.3
 
 ### Patch Changes
