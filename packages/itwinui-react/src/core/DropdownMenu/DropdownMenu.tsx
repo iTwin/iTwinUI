@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import cx from 'classnames';
 import { useTheme, Popover, mergeRefs } from '../utils/index.js';
 import type {
   CommonProps,
@@ -96,7 +97,12 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
   return (
     <Popover
       content={
-        <Menu className={className} style={style} role={role} id={id}>
+        <Menu
+          className={cx('iui-scroll', className)}
+          style={style}
+          role={role}
+          id={id}
+        >
           {React.useMemo(() => menuItems(close), [menuItems, close])}
         </Menu>
       }
