@@ -82,7 +82,7 @@ const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === c
       width: 100%;
 
       &,
-      * {
+      :global(*) {
         font-size: var(--type--1);
       }
     }
@@ -99,6 +99,7 @@ const componentDoc = [...docgenResults].find((docs) => docs['displayName'] === c
     td {
       padding: var(--space-3) var(--space-2);
       max-width: 35ch;
+      overflow-wrap: break-word;
 
       &:first-child {
         padding-left: 0;

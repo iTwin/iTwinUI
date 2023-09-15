@@ -27,7 +27,7 @@ export default () => {
   /**
    * Ref is set on the last avatar for tooltip positioning.
    */
-  const avatarRef = React.useRef<HTMLDivElement>(null);
+  const [avatarRef, setAvatarRef] = React.useState<HTMLElement | null>(null);
 
   const maxIcons = 3;
   const arrayLength = maxIcons;
@@ -39,7 +39,7 @@ export default () => {
       <AvatarGroup
         iconSize='x-large'
         maxIcons={maxIcons}
-        countIconProps={{ ref: avatarRef }}
+        countIconProps={{ ref: setAvatarRef }}
       >
         {userNames.map((name, index) => (
           <Avatar
