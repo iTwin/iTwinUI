@@ -193,6 +193,7 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
           placement='right-start'
           visible={isSubmenuVisible}
           appendTo='parent'
+          delay={100}
           content={
             <div
               onMouseLeave={() => setIsSubmenuVisible(false)}
@@ -203,7 +204,9 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
                   setIsSubmenuVisible(false);
               }}
             >
-              <Menu ref={subMenuRef}>{subMenuItems}</Menu>
+              <Menu ref={subMenuRef} className='iui-scroll'>
+                {subMenuItems}
+              </Menu>
             </div>
           }
         >
