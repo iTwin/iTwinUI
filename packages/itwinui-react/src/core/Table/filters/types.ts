@@ -2,7 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { FieldType, FilterType, TableFilterProps } from 'react-table';
+import type {
+  FieldType,
+  FilterType,
+  TableFilterProps,
+} from '../../../react-table/react-table.js';
 
 export interface TableFilterValue<T extends Record<string, unknown>> {
   /**
