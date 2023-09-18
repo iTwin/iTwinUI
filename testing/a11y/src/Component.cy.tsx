@@ -6,6 +6,7 @@ import * as React from 'react';
 import * as allExamples from 'examples';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
+/* https://github.com/iTwin/iTwinUI/pull/1581 */
 type commonRulesKeys = 'ignore_color_contrast_violation';
 const commonRules: Record<commonRulesKeys, Record<string, any>> = {
   ignore_color_contrast_violation: {
