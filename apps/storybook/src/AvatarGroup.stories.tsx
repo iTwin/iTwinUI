@@ -25,7 +25,7 @@ export default {
   title: 'Core/AvatarGroup',
 } as Meta<AvatarGroupProps>;
 
-export const Basic: Story<AvatarGroupProps> = (args) => {
+export const Basic: Story<AvatarGroupProps> = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -37,7 +37,7 @@ export const Basic: Story<AvatarGroupProps> = (args) => {
   ];
 
   return (
-    <AvatarGroup {...args}>
+    <AvatarGroup iconSize='medium'>
       {userNames.map((name, index) => (
         <Avatar
           key={`${name}-${index}`}
@@ -53,12 +53,7 @@ export const Basic: Story<AvatarGroupProps> = (args) => {
   );
 };
 
-Basic.args = {
-  animated: false,
-  iconSize: 'medium',
-};
-
-export const Animated: Story<AvatarGroupProps> = (args) => {
+export const Animated: Story<AvatarGroupProps> = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -68,7 +63,7 @@ export const Animated: Story<AvatarGroupProps> = (args) => {
   ];
 
   return (
-    <AvatarGroup animated {...args}>
+    <AvatarGroup animated iconSize='medium'>
       {userNames.map((name, index) => (
         <Avatar
           key={`${name}-${index}`}
@@ -84,12 +79,7 @@ export const Animated: Story<AvatarGroupProps> = (args) => {
   );
 };
 
-Animated.args = {
-  animated: true,
-  iconSize: 'medium',
-};
-
-export const ManyAvatars: Story<AvatarGroupProps> = (args) => {
+export const ManyAvatars: Story<AvatarGroupProps> = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -110,7 +100,7 @@ export const ManyAvatars: Story<AvatarGroupProps> = (args) => {
 
   return (
     <>
-      <AvatarGroup {...args}>
+      <AvatarGroup iconSize='large'>
         {Array(110)
           .fill(null)
           .map((_, index) => userNames[index % userNames.length])
@@ -130,12 +120,7 @@ export const ManyAvatars: Story<AvatarGroupProps> = (args) => {
   );
 };
 
-ManyAvatars.args = {
-  animated: false,
-  iconSize: 'large',
-};
-
-export const NonStacked: Story<AvatarGroupProps> = (args) => {
+export const NonStacked: Story<AvatarGroupProps> = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -148,7 +133,7 @@ export const NonStacked: Story<AvatarGroupProps> = (args) => {
   ];
 
   return (
-    <AvatarGroup stacked={false} {...args}>
+    <AvatarGroup stacked={false} iconSize='medium'>
       {userNames.map((name, index) => (
         <Avatar
           key={`${name}-${index}`}
@@ -164,13 +149,7 @@ export const NonStacked: Story<AvatarGroupProps> = (args) => {
   );
 };
 
-NonStacked.args = {
-  animated: false,
-  stacked: false,
-  iconSize: 'medium',
-};
-
-export const WithTooltip: Story<AvatarGroupProps> = (args) => {
+export const WithTooltip: Story<AvatarGroupProps> = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -187,13 +166,12 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
    */
   const [countIcon, setCountIcon] = React.useState<HTMLElement | null>(null);
 
-  const arrayLength = args.maxIcons;
-  const usersSubArray = userNames.slice(arrayLength);
+  const usersSubArray = userNames.slice(5);
   const tooltipContent = usersSubArray.join(`\n`) as string;
 
   return (
     <>
-      <AvatarGroup {...args} countIconProps={{ ref: setCountIcon }}>
+      <AvatarGroup countIconProps={{ ref: setCountIcon }} iconSize='medium'>
         {userNames.map((name, index) => (
           <Avatar
             key={`${name}-${index}`}
@@ -214,9 +192,4 @@ export const WithTooltip: Story<AvatarGroupProps> = (args) => {
       />
     </>
   );
-};
-
-WithTooltip.args = {
-  animated: false,
-  iconSize: 'medium',
 };

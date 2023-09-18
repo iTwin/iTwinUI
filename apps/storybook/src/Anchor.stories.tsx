@@ -18,26 +18,14 @@ export default {
   argTypes: {},
 } as Meta;
 
-export const Basic: Story<AnchorProps> = (args) => {
-  return (
-    <Anchor href='https://www.example.com/' {...args}>
-      www.example.com
-    </Anchor>
-  );
-};
-Basic.args = {
-  href: 'https://www.example.com/',
-  children: 'www.example.com',
+export const Basic: Story<AnchorProps> = () => {
+  return <Anchor href='https://www.example.com/'>www.example.com</Anchor>;
 };
 
-export const AsButton: Story<AnchorProps<'button'>> = (args) => {
+export const AsButton: Story<AnchorProps> = () => {
   return (
-    <Anchor as='button' onClick={action('clicked')} {...args}>
-      perform action
+    <Anchor as='button' onClick={action('clicked')}>
+      Perform action
     </Anchor>
   );
 };
-AsButton.args = {
-  as: 'button',
-  children: 'perform action',
-} as AnchorProps<'button'>;
