@@ -23,6 +23,7 @@ $bg-600: hsl(203 $bg-saturation ($bg-lightness-gap * 6));
 $bg-700: hsl(203 $bg-saturation ($bg-lightness-gap * 7));
 $bg-800: hsl(203 $bg-saturation ($bg-lightness-gap * 8));
 $bg-900: hsl(203 $bg-saturation ($bg-lightness-gap * 9));
+$bg-1000: hsl(203 $bg-saturation ($bg-lightness-gap * 10));
 
 $bg-informational-0: hsl(203 10% 26%); // Selection
 $bg-informational-1: hsl(204 100% 28%); // Button
@@ -93,8 +94,12 @@ $opacities: (
   --iui-color-background-backdrop-hover: #{hex($bg-400)};
   --iui-color-background-disabled: #{hex($bg-200)};
   --iui-color-background-accent: var(--iui-color-background-informational);
-  --iui-color-background-accent-hover: var(--iui-color-background-informational-hover);
-  --iui-color-background-accent-muted: var(--iui-color-background-informational-muted);
+  --iui-color-background-accent-hover: var(
+    --iui-color-background-informational-hover
+  );
+  --iui-color-background-accent-muted: var(
+    --iui-color-background-informational-muted
+  );
   --iui-color-background-informational: #{hex($bg-informational-1)};
   --iui-color-background-informational-hover: #{hex($bg-informational-2)};
   --iui-color-background-informational-muted: #{hex($bg-informational-0)};
@@ -110,11 +115,11 @@ $opacities: (
   --iui-color-background-transparent-hover: #{hsl(0 0% 100% / 0.085)};
   // #endregion
   // #region Border variables
-  --iui-color-border-subtle: #{hex($bg-800)};
-  --iui-color-border: #{hex($bg-900)};
+  --iui-color-border-subtle: #{hex($bg-900)};
+  --iui-color-border: #{hex($bg-1000)};
   --iui-color-border-foreground: #{hex($fg-800)};
   --iui-color-border-foreground-hover: #{hex($fg-600)};
-  --iui-color-border-disabled: #{hex($bg-800)};
+  --iui-color-border-disabled: #{hex($bg-900)};
   --iui-color-border-accent: var(--iui-color-border-informational);
   --iui-color-border-informational: #{hex($fg-informational-1)};
   --iui-color-border-positive: #{hex($fg-positive-1)};

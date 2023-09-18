@@ -128,12 +128,14 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
               setFocus
               isDateDisabled={isDateDisabled}
               localizedNames={localizedNames}
+              applyBackground={false}
             />
           }
           placement='bottom-end'
           visible={isVisible}
           onVisibleChange={setIsVisible}
           closeOnOutsideClick
+          applyBackground
         >
           <InputWithDecorations.Button aria-label='Date picker' ref={buttonRef}>
             <SvgCalendar />

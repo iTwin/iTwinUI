@@ -56,6 +56,7 @@ export const FilterToggle = <T extends Record<string, unknown>>(
           visible={isVisible}
           onVisibleChange={setIsVisible}
           closeOnOutsideClick
+          applyBackground
         >
           <IconButton
             styleType='borderless'

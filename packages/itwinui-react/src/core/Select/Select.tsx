@@ -423,7 +423,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         <Portal>
           <Menu
             role='listbox'
-            className={cx('iui-scroll', menuClassName)}
+            className={menuClassName}
             id={`${uid}-menu`}
             key={`${uid}-menu`}
             {...popover.getFloatingProps({
