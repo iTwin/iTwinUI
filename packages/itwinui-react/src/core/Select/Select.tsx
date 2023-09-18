@@ -8,16 +8,16 @@ import { Menu, MenuItem } from '../Menu/index.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
-  Popover,
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
+  usePopover,
+  Portal,
+  useMergedRefs,
+  SvgCheckmark,
+  Icon,
 } from '../utils/index.js';
-import type {
-  PopoverProps,
-  PopoverInstance,
-  CommonProps,
-} from '../utils/index.js';
+import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
 
@@ -138,6 +138,10 @@ export type SelectProps<T> = {
    */
   size?: 'small' | 'large';
   /**
+   * Status of select.
+   */
+  status?: 'positive' | 'warning' | 'negative';
+  /**
    * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
    */
   itemRenderer?: (
@@ -153,16 +157,21 @@ export type SelectProps<T> = {
    */
   menuStyle?: React.CSSProperties;
   /**
-   * Props to customize {@link Popover} behavior.
-   * @see [tippy.js props](https://atomiks.github.io/tippyjs/v6/all-props/)
+   * Props to customize Popover behavior.
    */
-  popoverProps?: Omit<PopoverProps, 'onShow' | 'onHide' | 'disabled'>;
+  popoverProps?: Pick<
+    Parameters<typeof usePopover>[0],
+    | 'visible'
+    | 'onVisibleChange'
+    | 'placement'
+    | 'matchWidth'
+    | 'closeOnOutsideClick'
+  >;
   /**
    * Props to pass to the select button (trigger) element.
    */
   triggerProps?: React.ComponentPropsWithoutRef<'div'>;
 } & SelectMultipleTypeProps<T> &
-  Pick<PopoverProps, 'onShow' | 'onHide'> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
     'size' | 'disabled' | 'placeholder' | 'onChange'
@@ -233,63 +242,32 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     style,
     menuClassName,
     menuStyle,
-    onShow,
-    onHide,
-    popoverProps,
     multiple = false,
     triggerProps,
+    status,
+    popoverProps,
     ...rest
   } = props;
 
-  const [isOpenState, setIsOpen] = React.useState(false);
-  const isOpen = popoverProps?.visible ?? isOpenState;
+  const [isOpen, setIsOpen] = React.useState(false);
 
-  const [minWidth, setMinWidth] = React.useState(0);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
   const selectRef = React.useRef<HTMLDivElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
 
-  const onShowHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsOpen(true);
-      onShow?.(instance);
-    },
-    [onShow],
-  );
-
-  const onHideHandler = React.useCallback(
-    (instance: PopoverInstance) => {
-      setIsOpen(false);
-      selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-      onHide?.(instance);
-    },
-    [onHide],
-  );
-
-  React.useEffect(() => {
-    if (selectRef.current) {
-      setMinWidth(selectRef.current.offsetWidth);
-    }
-  }, [isOpen]);
-
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    if (event.altKey) {
+  const show = React.useCallback(() => {
+    if (disabled) {
       return;
     }
+    setIsOpen(true);
+    popoverProps?.onVisibleChange?.(true);
+  }, [disabled, popoverProps]);
 
-    switch (event.key) {
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        setIsOpen((o) => !o);
-        event.preventDefault();
-        break;
-      }
-      default:
-        break;
-    }
-  };
+  const hide = React.useCallback(() => {
+    setIsOpen(false);
+    selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
+    popoverProps?.onVisibleChange?.(false);
+  }, [popoverProps]);
 
   const menuItems = React.useMemo(() => {
     return options.map((option, index) => {
@@ -310,13 +288,14 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         key: `${label}-${index}`,
         isSelected,
         startIcon: startIcon,
+        endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
         onClick: () => {
           if (option.disabled) {
             return;
           }
           if (isSingleOnChange(onChange, multiple)) {
             onChange?.(option.value);
-            setIsOpen(false);
+            hide();
           } else {
             onChange?.(option.value, isSelected ? 'removed' : 'added');
           }
@@ -346,7 +325,7 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
         ...menuItem.props,
       });
     });
-  }, [itemRenderer, multiple, onChange, options, value]);
+  }, [hide, itemRenderer, multiple, onChange, options, value]);
 
   const selectedItems = React.useMemo(() => {
     if (value == null) {
@@ -361,53 +340,35 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
     return <SelectTag key={item.label} label={item.label} />;
   }, []);
 
+  const popover = usePopover({
+    visible: isOpen,
+    matchWidth: true,
+    closeOnOutsideClick: true,
+    ...popoverProps,
+    onVisibleChange: (open) => (open ? show() : hide()),
+  });
+
   return (
-    <Box
-      className={cx('iui-input-with-icon', className)}
-      style={style}
-      {...rest}
-    >
-      <Popover
-        content={
-          <Menu
-            role='listbox'
-            className={cx('iui-scroll', menuClassName)}
-            style={{
-              minWidth,
-              maxWidth: `min(${minWidth * 2}px, 90vw)`,
-              ...menuStyle,
-            }}
-            id={`${uid}-menu`}
-            key={`${uid}-menu`}
-          >
-            {menuItems}
-          </Menu>
-        }
-        placement='bottom-start'
-        aria={{ content: null }}
-        onShow={onShowHandler}
-        onHide={onHideHandler}
-        {...popoverProps}
-        visible={isOpen}
-        onClickOutside={(_, { target }) => {
-          if (!toggleButtonRef.current?.contains(target as Element)) {
-            setIsOpen(false);
-          }
-        }}
+    <>
+      <Box
+        className={cx('iui-input-with-icon', className)}
+        style={style}
+        {...rest}
+        ref={popover.refs.setPositionReference}
       >
         <Box
+          {...popover.getReferenceProps()}
           tabIndex={0}
           role='combobox'
-          ref={selectRef}
           data-iui-size={size}
-          onClick={() => !disabled && setIsOpen((o) => !o)}
-          onKeyDown={(e) => !disabled && onKeyDown(e)}
+          data-iui-status={status}
           aria-disabled={disabled}
           aria-autocomplete='none'
           aria-expanded={isOpen}
           aria-haspopup='listbox'
           aria-controls={`${uid}-menu`}
           {...triggerProps}
+          ref={useMergedRefs(selectRef, popover.refs.setReference)}
           className={cx(
             'iui-select-button',
             {
@@ -442,25 +403,44 @@ export const Select = <T,>(props: SelectProps<T>): JSX.Element => {
             />
           )}
         </Box>
-      </Popover>
-      <Box
-        as='span'
-        aria-hidden
-        ref={toggleButtonRef}
-        className={cx('iui-end-icon', {
-          'iui-actionable': !disabled,
-          'iui-disabled': disabled,
-          'iui-open': isOpen,
-        })}
-        onClick={() => !disabled && setIsOpen((o) => !o)}
-      >
-        <SvgCaretDownSmall />
+        <Icon
+          as='span'
+          aria-hidden
+          className={cx('iui-end-icon', {
+            'iui-disabled': disabled,
+            'iui-open': isOpen,
+          })}
+        >
+          <SvgCaretDownSmall />
+        </Icon>
+
+        {multiple ? (
+          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+        ) : null}
       </Box>
 
-      {multiple ? (
-        <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-      ) : null}
-    </Box>
+      {popover.open && (
+        <Portal>
+          <Menu
+            role='listbox'
+            className={menuClassName}
+            id={`${uid}-menu`}
+            key={`${uid}-menu`}
+            {...popover.getFloatingProps({
+              style: menuStyle,
+              onKeyDown: ({ key }) => {
+                if (key === 'Tab') {
+                  hide();
+                }
+              },
+            })}
+            ref={popover.refs.setFloating}
+          >
+            {menuItems}
+          </Menu>
+        </Portal>
+      )}
+    </>
   );
 };
 

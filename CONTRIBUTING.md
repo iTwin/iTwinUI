@@ -250,7 +250,7 @@ More examples can be found in the [style guide](./STYLEGUIDE.md).
 
 Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
 
-Use `yarn test` to run the tests. Add `--watch` flag if you want tests to rerun after changes.
+Use `yarn test:unit` to run the unit tests. Run `yarn test:unit:watch` if you want unit tests to rerun after changes.
 
 We usually do not use `describe` block and our test case should start with 'should'.
 
@@ -349,6 +349,30 @@ Notice how we do all of these things manually:
 - taking and comparing the screenshot using `cy.compareSnapshot` from [`cypress-image-diff-js`](https://github.com/uktrade/cypress-image-diff).
 
 We have full access to the [Cypress API](https://docs.cypress.io/api) so any additional interactions or custom logic can be easily added.
+
+### Accessibility testing
+
+We use an automated script to evaluate each component example for accessibility violations using [`cypress-axe`](https://github.com/component-driven/cypress-axe). The setup for this can be found in the `a11y` workspace, and the component examples can be found in the `examples` workspace.
+
+#### Running accessibility tests
+
+In the terminal: 
+
+- Run the command `yarn test --filter=a11y` to run automated accessibility tests for all examples.
+
+In the Cypress GUI:
+
+1. From the monorepo root, run `yarn workspace a11y open`. This will open the Cypress control panel where you can run the tests.
+2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
+3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
+
+##### Your results
+
+In the terminal, a table will be produced for each violating component with the Axe rule ID being violated and its description. 
+
+In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.  
+
+For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
 
 ---
 

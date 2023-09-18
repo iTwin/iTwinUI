@@ -8,6 +8,9 @@ build
 cjs
 esm
 
+# Build outputs
+react-table.d.ts
+
 # Compiled Styles
 src/**/*.css
 

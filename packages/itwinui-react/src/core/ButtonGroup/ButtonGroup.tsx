@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { FloatingDelayGroup } from '@floating-ui/react';
 
 type ButtonGroupProps = {
   /**
@@ -73,10 +74,7 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
   } = props;
 
   const items = React.useMemo(
-    () =>
-      React.Children.map(children, (child) =>
-        !!child ? <div>{child}</div> : undefined,
-      )?.filter(Boolean) ?? [],
+    () => React.Children.toArray(children).filter(Boolean),
     [children],
   );
 
@@ -88,46 +86,50 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
   const refs = useMergedRefs(overflowRef, ref);
 
   return (
-    <Box
-      className={cx(
-        {
-          'iui-button-group': orientation === 'horizontal',
-          'iui-button-group-vertical': orientation === 'vertical',
-          'iui-button-group-overflow-x':
-            !!overflowButton && orientation === 'horizontal',
-        },
-        className,
-      )}
-      ref={refs}
-      {...rest}
-    >
-      {(() => {
-        if (!(visibleCount < items.length)) {
-          return items;
+    <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
+      <Box
+        className={cx(
+          'iui-button-group',
+          {
+            'iui-button-group-overflow-x':
+              !!overflowButton && orientation === 'horizontal',
+          },
+          className,
+        )}
+        data-iui-orientation={
+          orientation === 'vertical' ? orientation : undefined
         }
+        ref={refs}
+        {...rest}
+      >
+        {(() => {
+          if (!(visibleCount < items.length)) {
+            return items;
+          }
 
-        const overflowStart =
-          overflowPlacement === 'start'
-            ? items.length - visibleCount
-            : visibleCount - 1;
+          const overflowStart =
+            overflowPlacement === 'start'
+              ? items.length - visibleCount
+              : visibleCount - 1;
 
-        return (
-          <>
-            {overflowButton && overflowPlacement === 'start' && (
-              <div>{overflowButton(overflowStart)}</div>
-            )}
+          return (
+            <>
+              {overflowButton &&
+                overflowPlacement === 'start' &&
+                overflowButton(overflowStart)}
 
-            {overflowPlacement === 'start'
-              ? items.slice(overflowStart + 1)
-              : items.slice(0, Math.max(0, overflowStart))}
+              {overflowPlacement === 'start'
+                ? items.slice(overflowStart + 1)
+                : items.slice(0, Math.max(0, overflowStart))}
 
-            {overflowButton && overflowPlacement === 'end' && (
-              <div>{overflowButton(overflowStart)}</div>
-            )}
-          </>
-        );
-      })()}
-    </Box>
+              {overflowButton &&
+                overflowPlacement === 'end' &&
+                overflowButton(overflowStart)}
+            </>
+          );
+        })()}
+      </Box>
+    </FloatingDelayGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', ButtonGroupProps>;
 

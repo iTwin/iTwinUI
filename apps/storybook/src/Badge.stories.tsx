@@ -5,7 +5,6 @@
 import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Badge } from '@itwin/itwinui-react';
-import { SoftBackgrounds } from '@itwin/itwinui-react/esm/core/utils';
 
 type BadgeProps = React.ComponentProps<typeof Badge>;
 
@@ -16,15 +15,6 @@ export default {
     style: { control: { disable: true } },
     id: { control: { disable: true } },
     title: { control: { disable: true } },
-    backgroundColor: {
-      options: [
-        'primary',
-        'positive',
-        'negative',
-        'warning',
-        ...Object.keys(SoftBackgrounds),
-      ],
-    },
   },
   title: 'Core/Badge',
 } as Meta<BadgeProps>;

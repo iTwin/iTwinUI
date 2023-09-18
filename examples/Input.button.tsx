@@ -3,22 +3,24 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { LabeledInput, IconButton } from '@itwin/itwinui-react';
+import { InputGrid, Label, InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgCloseSmall } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <>
-      <LabeledInput
-        label='Street'
-        defaultValue='1051 Faribault Road'
-        svgIcon={
-          <IconButton styleType='borderless' aria-label='Clear street input'>
+      <InputGrid>
+        <Label htmlFor='input-1'>Street</Label>
+        <InputWithDecorations>
+          <InputWithDecorations.Input
+            id='input-1'
+            defaultValue='1051 Faribault Road'
+          />
+          <InputWithDecorations.Button label='Clear'>
             <SvgCloseSmall />
-          </IconButton>
-        }
-        iconDisplayStyle='inline'
-      />
+          </InputWithDecorations.Button>
+        </InputWithDecorations>
+      </InputGrid>
     </>
   );
 };

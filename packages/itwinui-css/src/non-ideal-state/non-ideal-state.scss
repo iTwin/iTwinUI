@@ -39,14 +39,14 @@
   align-items: center;
   margin-block-end: var(--iui-size-xs);
 
-  > .iui-input-container {
+  > .iui-input-flex-container {
     display: inline-block;
     inline-size: 200px;
     text-align: start;
-    margin: 0 var(--iui-size-2xs) 0 0;
+    margin-inline-end: var(--iui-size-2xs);
   }
 
   > .iui-button {
-    margin: 0 var(--iui-size-2xs);
+    margin-inline: var(--iui-size-2xs);
   }
 }

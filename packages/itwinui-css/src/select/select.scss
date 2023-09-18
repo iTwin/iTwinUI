@@ -7,6 +7,10 @@
 @use '../button/borderless';
 
 @mixin iui-select-button {
+  --_iui-input-background-color: var(--iui-color-background);
+  --_iui-input-border-color: var(--iui-color-border-foreground);
+  --_iui-input-text-color: var(--iui-color-text);
+
   @include mixins.iui-focus($offset: -2px, $thickness: 2px);
   inline-size: 100%;
   border-radius: var(--iui-border-radius-1);
@@ -20,15 +24,15 @@
   user-select: none;
   position: relative;
   overflow: hidden;
-  color: var(--iui-color-text);
-  background-color: var(--iui-color-background);
-  border: 1px solid var(--iui-color-border-foreground);
+  color: var(--_iui-input-text-color);
+  background-color: var(--_iui-input-background-color);
+  border: 1px solid var(--_iui-input-border-color);
   line-height: var(--iui-size-l);
   @include iui-select-size;
 
   &.iui-disabled {
-    background-color: var(--iui-color-background-disabled);
-    border-color: var(--iui-color-border-disabled);
+    --_iui-input-background-color: var(--iui-color-background-disabled);
+    --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
     cursor: not-allowed;
   }
@@ -46,7 +50,8 @@
   }
 
   &.iui-placeholder {
-    color: var(--iui-color-text-disabled);
+    color: var(--iui-color-text-placeholder);
+    font-weight: var(--iui-font-weight-light);
   }
 }
 
@@ -72,8 +77,9 @@
 
 @mixin iui-select-tag-container {
   position: absolute;
+  inset-block: 0;
   // align wth Select's padding
-  inset: 0 calc(var(--iui-size-m) + var(--iui-size-l)) 0 var(--iui-size-s);
+  inset-inline: var(--iui-size-s) calc(var(--iui-size-m) + var(--iui-size-l));
   block-size: 100%;
   display: flex;
   align-items: center;
@@ -112,7 +118,7 @@
   @include base.iui-button;
   @include borderless.iui-button-borderless;
   @include tag.iui-tag-button;
-  padding: 0 var(--iui-size-2xs);
+  padding-inline: var(--iui-size-2xs);
   min-block-size: unset;
   min-inline-size: unset;
   block-size: 100%;

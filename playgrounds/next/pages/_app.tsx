@@ -1,4 +1,4 @@
-import type { AppProps } from 'next/app';
+import type { AppProps } from 'next/app.js';
 import css from 'styled-jsx/css';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import '@itwin/itwinui-react/styles.css';
@@ -22,7 +22,8 @@ const styles = css.global`
     margin: 0;
   }
   .app-wrapper {
-    padding: 2rem 1rem;
-    height: 100dvh;
+    padding-inline: 1rem;
+    padding-block: 2rem;
+    block-size: 100dvh;
   }
 `;

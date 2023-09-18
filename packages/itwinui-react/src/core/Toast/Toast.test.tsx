@@ -185,3 +185,26 @@ it('should close temporary toast after 7s', () => {
 
   jest.useRealTimers();
 });
+
+it('should pass content props correctly', () => {
+  const { container } = render(
+    <ToastProvider>
+      <Toast
+        isVisible={true}
+        type='persisting'
+        content='Job Processing Completed'
+        category='positive'
+        domProps={{
+          toastProps: { className: 'my-toast', style: { color: 'blue' } },
+          contentProps: { className: 'my-class', style: { color: 'red' } },
+        }}
+        id={1}
+      />
+    </ToastProvider>,
+  );
+
+  const toast = container.querySelector('.iui-toast.my-toast');
+  expect(toast).toHaveStyle({ color: 'blue' });
+  const content = container.querySelector('.iui-message.my-class');
+  expect(content).toHaveStyle({ color: 'red' });
+});

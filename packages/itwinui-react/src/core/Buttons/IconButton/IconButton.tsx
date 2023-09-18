@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { VisuallyHidden, Popover, Box, ButtonBase } from '../../utils/index.js';
+import { VisuallyHidden, Box, ButtonBase } from '../../utils/index.js';
+import { Tooltip } from '../../Tooltip/Tooltip.js';
 import type { ButtonProps } from '../Button/Button.js';
 import type { PolymorphicForwardRefComponent } from '../../utils/index.js';
 
@@ -18,7 +19,14 @@ export type IconButtonProps = {
    * Name of the button, shown in a tooltip and exposed to assistive technologies.
    */
   label?: React.ReactNode;
-} & Omit<ButtonProps, 'startIcon' | 'endIcon'>;
+  /**
+   * Passes props to IconButton icon.
+   */
+  iconProps?: React.ComponentProps<'span'>;
+} & Omit<
+  ButtonProps,
+  'startIcon' | 'endIcon' | 'startIconProps' | 'endIconProps' | 'labelProps'
+>;
 
 /**
  * Icon button
@@ -35,51 +43,39 @@ export const IconButton = React.forwardRef((props, ref) => {
     size,
     className,
     label,
+    iconProps,
     ...rest
   } = props;
 
-  return (
-    <IconButtonTooltip label={label}>
-      <ButtonBase
-        ref={ref}
-        className={cx('iui-button', className)}
-        data-iui-variant={styleType !== 'default' ? styleType : undefined}
-        data-iui-size={size}
-        data-iui-active={isActive}
-        aria-pressed={isActive}
-        {...rest}
+  const button = (
+    <ButtonBase
+      ref={ref}
+      className={cx('iui-button', className)}
+      data-iui-variant={styleType !== 'default' ? styleType : undefined}
+      data-iui-size={size}
+      data-iui-active={isActive}
+      aria-pressed={isActive}
+      {...rest}
+    >
+      <Box
+        as='span'
+        aria-hidden
+        {...iconProps}
+        className={cx('iui-button-icon', iconProps?.className)}
       >
-        <Box as='span' className='iui-button-icon' aria-hidden>
-          {children}
-        </Box>
-        {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
-      </ButtonBase>
-    </IconButtonTooltip>
+        {children}
+      </Box>
+      {label ? <VisuallyHidden>{label}</VisuallyHidden> : null}
+    </ButtonBase>
   );
-}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-
-const IconButtonTooltip = (props: {
-  label?: React.ReactNode;
-  children: React.ReactElement;
-}) => {
-  const { label, children } = props;
 
   return label ? (
-    <Popover
-      interactive={false}
-      offset={[0, 4]}
-      aria={{ content: null }}
-      content={
-        <Box aria-hidden='true' className='iui-tooltip'>
-          {label}
-        </Box>
-      }
-    >
-      {children}
-    </Popover>
+    <Tooltip content={label} ariaStrategy='none'>
+      {button}
+    </Tooltip>
   ) : (
-    children
+    button
   );
-};
+}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 
 export default IconButton;

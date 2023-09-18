@@ -9,24 +9,16 @@
   text-align: center;
   block-size: calc(var(--iui-size-s) * 26);
   display: inline-flex;
-  background-color: var(--iui-color-background);
-  border-start-end-radius: var(--iui-border-radius-1);
-  border-end-end-radius: var(--iui-border-radius-1);
 
   &:not(:first-child) {
     border-inline-start: 1px solid var(--iui-color-border);
-  }
-
-  &:first-child {
-    box-shadow: var(--iui-shadow-1);
-    border-start-start-radius: var(--iui-border-radius-1);
-    border-end-start-radius: var(--iui-border-radius-1);
   }
 }
 
 .iui-time,
 .iui-period {
-  padding: var(--iui-size-s) var(--iui-size-xs);
+  padding-block: var(--iui-size-s);
+  padding-inline: var(--iui-size-xs);
   overflow-y: auto;
   overflow-y: overlay;
   scrollbar-width: none;
@@ -41,7 +33,8 @@
 
     > li {
       @include mixins.iui-focus;
-      padding: calc(var(--iui-size-s) * 0.5) var(--iui-size-m);
+      padding-block: calc(var(--iui-size-s) * 0.5);
+      padding-inline: var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
 
       &:hover {

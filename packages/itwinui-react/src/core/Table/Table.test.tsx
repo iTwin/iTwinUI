@@ -1661,39 +1661,6 @@ it('should not trigger sorting when filter is clicked', async () => {
   expect(onSort).not.toHaveBeenCalled();
 });
 
-it('should render filter dropdown in the correct document', async () => {
-  const mockDocument = document.implementation.createHTMLDocument();
-  const div = mockDocument.createElement('div');
-  const mockContainer = mockDocument.body.appendChild(div);
-  const onFilter = jest.fn();
-  const mockedColumns = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-      Filter: tableFilters.TextFilter(),
-      fieldType: 'text',
-    },
-  ];
-  const { container } = renderComponent(
-    { columns: mockedColumns, onFilter },
-    undefined,
-    mockContainer,
-  );
-  expect(container.querySelector('.iui-table')).toBeTruthy();
-
-  const filterToggle = container.querySelector(
-    '.iui-table-filter-button',
-  ) as HTMLElement;
-  expect(filterToggle).toBeTruthy();
-  act(() => filterToggle.click());
-
-  await waitFor(() =>
-    expect(mockDocument.querySelector('.iui-table-column-filter')).toBeTruthy(),
-  );
-  expect(document.querySelector('.iui-table-column-filter')).toBeFalsy();
-});
-
 it('should rerender table when columns change', async () => {
   const data = mockedData();
   const { rerender } = render(
@@ -1996,17 +1963,17 @@ it('should render sub-rows with padding-left of 12+30*(row depth) for condensed 
 
   // First row has a row depth of zero, so padding-left is 12 + 30*0 = 12
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 12px',
+    'padding-inline-start: 12px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 12 + 30*2 = 72
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 72px',
+    'padding-inline-start: 72px',
   );
 
   // Second row has a row depth of one, so padding-left is 12 + 30*1 = 42
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 42px',
+    'padding-inline-start: 42px',
   );
 });
 
@@ -2027,17 +1994,17 @@ it('should render sub-rows with padding-left of 8+30*(row depth) for extra-conde
 
   // First row has a row depth of zero, so padding-left is 8 + 30*0 = 8
   expect(tableRows[0].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 8px',
+    'padding-inline-start: 8px',
   );
 
   // Expanded sub-row has a row depth of two, so padding-left is 8 + 30*2 = 68
   expect(tableRows[1].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 68px',
+    'padding-inline-start: 68px',
   );
 
   // Second row has a row depth of one, so padding-left is 8 + 30*1 = 38
   expect(tableRows[2].querySelector('.iui-table-cell')).toHaveStyle(
-    'padding-left: 38px',
+    'padding-inline-start: 38px',
   );
 });
 
@@ -3684,7 +3651,6 @@ it('should render action column with column manager', async () => {
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
 });
 
 it('should render dropdown menu with custom style and override default style', async () => {
@@ -3734,7 +3700,6 @@ it('should render dropdown menu with custom style and override default style', a
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
   expect(dropdownMenu).toHaveStyle('background-color: red');
@@ -4658,6 +4623,11 @@ it('should ignore top-level Header if one is passed', async () => {
       columns={[
         {
           Header: 'Header name',
+          // We expect to get `columns` does not exist type error.
+          // Because although `columns` is removed from the Column type (i.e. no sub-columns),
+          // we allow to pass `columns` in the top level Header for backward compatibility.
+          // (#1072: https://github.com/iTwin/iTwinUI/pull/1072)
+          // @ts-expect-error - `columns` does not exist in type ...
           columns: [
             {
               id: 'name',

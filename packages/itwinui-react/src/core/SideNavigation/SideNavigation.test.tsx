@@ -184,12 +184,14 @@ it('should only add tooltips to items when collapsed', async () => {
   mainItems.forEach((item, index) => {
     expect(
       queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
-    ).toBeFalsy();
+    ).not.toBeVisible();
     jest.useFakeTimers();
     fireEvent.mouseEnter(item);
     act(() => void jest.advanceTimersByTime(50));
     jest.useRealTimers();
-    getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' });
+    expect(
+      getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
+    ).toBeVisible();
   });
 
   // expanded
@@ -229,7 +231,7 @@ it('should handle custom class and style', () => {
   });
 
   const sidebar = container.querySelector(
-    '.iui-side-navigation-wrapper',
+    '.iui-side-navigation',
   ) as HTMLElement;
 
   expect(sidebar).toHaveClass('test-class');
@@ -273,4 +275,62 @@ it('should not show submenu if isSubmenuOpen is false', () => {
 
   expect(wrapper.querySelector('.iui-side-navigation-submenu')).toBeFalsy();
   expect(screen.queryByText('submenu content')).toBeFalsy();
+});
+
+it('passes custom props to subcomponents', () => {
+  const { container } = renderComponent({
+    className: 'custom-class',
+    style: { width: 60 },
+    wrapperProps: {
+      className: 'custom-wrapper-class',
+      style: { width: 70 },
+    },
+    contentProps: {
+      className: 'custom-sidenav-content-class',
+      style: { width: 80 },
+    },
+    topProps: {
+      className: 'custom-sidenav-top-class',
+      style: { width: 90 },
+    },
+    bottomProps: {
+      className: 'custom-sidenav-bottom-class',
+      style: { width: 100 },
+    },
+  });
+
+  // sidenav props test
+  const sidenavElement = container.querySelector(
+    '.iui-side-navigation.iui-collapsed.custom-class',
+  ) as HTMLElement;
+  expect(sidenavElement).toBeTruthy();
+  expect(sidenavElement.style.width).toBe('60px');
+
+  // wrapper props test
+  const wrapperElement = container.querySelector(
+    '.iui-side-navigation-wrapper.custom-wrapper-class',
+  ) as HTMLElement;
+  expect(wrapperElement).toBeTruthy();
+  expect(wrapperElement.style.width).toBe('70px');
+
+  // content props test
+  const contentElement = container.querySelector(
+    '.iui-sidenav-content.custom-sidenav-content-class',
+  ) as HTMLElement;
+  expect(contentElement).toBeTruthy();
+  expect(contentElement.style.width).toBe('80px');
+
+  // top props test
+  const topElement = container.querySelector(
+    '.iui-top.custom-sidenav-top-class',
+  ) as HTMLElement;
+  expect(topElement).toBeTruthy();
+  expect(topElement.style.width).toBe('90px');
+
+  // bottom props test
+  const bottomElement = container.querySelector(
+    '.iui-bottom.custom-sidenav-bottom-class',
+  ) as HTMLElement;
+  expect(bottomElement).toBeTruthy();
+  expect(bottomElement.style.width).toBe('100px');
 });

@@ -14,19 +14,15 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
+  usePopover,
 } from '../utils/index.js';
-import type {
-  PopoverProps,
-  InputContainerProps,
-  CommonProps,
-} from '../utils/index.js';
+import type { InputContainerProps, CommonProps } from '../utils/index.js';
 import {
   ComboBoxActionContext,
   comboBoxReducer,
   ComboBoxRefsContext,
   ComboBoxStateContext,
 } from './helpers.js';
-import { ComboBoxDropdown } from './ComboBoxDropdown.js';
 import { ComboBoxEndIcon } from './ComboBoxEndIcon.js';
 import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
@@ -105,7 +101,11 @@ export type ComboBoxProps<T> = {
   /**
    * Props to customize dropdown menu behavior.
    */
-  dropdownMenuProps?: PopoverProps;
+  dropdownMenuProps?: React.ComponentProps<'div'>;
+  /**
+   * End icon props.
+   */
+  endIconProps?: React.ComponentProps<typeof ComboBoxEndIcon>;
   /**
    * Message shown when no options are available.
    * If `JSX.Element` is provided, it will be rendered as is and won't be wrapped with `MenuExtraContent`.
@@ -172,13 +172,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     onChange,
     filterFunction,
     inputProps,
+    endIconProps,
     dropdownMenuProps,
     emptyStateMessage = 'No options found',
     itemRenderer,
     enableVirtualization = false,
     multiple = false,
-    onShow,
-    onHide,
+    onShow: onShowProp,
+    onHide: onHideProp,
     ...rest
   } = props;
 
@@ -192,8 +193,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);
-  const menuRef = React.useRef<HTMLUListElement>(null);
-  const toggleButtonRef = React.useRef<HTMLSpanElement>(null);
+  const menuRef = React.useRef<HTMLElement>(null);
   const onChangeProp = useLatestRef(onChange);
   const optionsRef = useLatestRef(options);
 
@@ -247,6 +247,19 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     },
   );
 
+  const onShowRef = useLatestRef(onShowProp);
+  const onHideRef = useLatestRef(onHideProp);
+
+  const show = React.useCallback(() => {
+    dispatch({ type: 'open' });
+    onShowRef.current?.();
+  }, [onShowRef]);
+
+  const hide = React.useCallback(() => {
+    dispatch({ type: 'close' });
+    onHideRef.current?.();
+  }, [onHideRef]);
+
   useIsomorphicLayoutEffect(() => {
     // When the dropdown opens
     if (isOpen) {
@@ -271,14 +284,6 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       }
     }
   }, [isOpen, multiple, optionsRef, selected]);
-
-  // Set min-width of menu to be same as input
-  const [minWidth, setMinWidth] = React.useState(0);
-  React.useEffect(() => {
-    if (inputRef.current) {
-      setMinWidth(inputRef.current.offsetWidth);
-    }
-  }, [isOpen]);
 
   // Update filtered options to the latest value options according to input value
   const [filteredOptions, setFilteredOptions] = React.useState(options);
@@ -309,7 +314,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const { value } = event.currentTarget;
       setInputValue(value);
-      dispatch({ type: 'open' }); // reopen when typing
+      show(); // reopen when typing
       setFilteredOptions(
         filterFunction?.(optionsRef.current, value) ??
           optionsRef.current.filter((option) =>
@@ -321,7 +326,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       }
       inputProps?.onChange?.(event);
     },
-    [filterFunction, focusedIndex, inputProps, optionsRef],
+    [filterFunction, focusedIndex, inputProps, optionsRef, show],
   );
 
   // When the value prop changes, update the selected index/indices
@@ -421,7 +426,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
         );
       } else {
         dispatch({ type: 'select', value: __originalIndex });
-        dispatch({ type: 'close' });
+        hide();
         onChangeHandler(__originalIndex);
       }
     },
@@ -432,6 +437,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
       onChangeHandler,
       selected,
       optionsRef,
+      hide,
     ],
   );
 
@@ -463,7 +469,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
           focused: focusedIndex === __originalIndex,
           'data-iui-index': __originalIndex,
           'data-iui-filtered-index': filteredIndex,
-          ref: mergeRefs(customItem.props.ref, (el: HTMLLIElement | null) => {
+          ref: mergeRefs(customItem.props.ref, (el: HTMLElement | null) => {
             if (!enableVirtualization && focusedIndex === __originalIndex) {
               el?.scrollIntoView({ block: 'nearest' });
             }
@@ -512,15 +518,22 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     [emptyStateMessage],
   );
 
+  const popover = usePopover({
+    visible: isOpen,
+    onVisibleChange: (open) => (open ? show() : hide()),
+    matchWidth: true,
+    closeOnOutsideClick: true,
+    trigger: { focus: true },
+  });
+
   return (
     <ComboBoxRefsContext.Provider
-      value={{ inputRef, menuRef, toggleButtonRef, optionsExtraInfoRef }}
+      value={{ inputRef, menuRef, optionsExtraInfoRef }}
     >
       <ComboBoxActionContext.Provider value={dispatch}>
         <ComboBoxStateContext.Provider
           value={{
             id,
-            minWidth,
             isOpen,
             focusedIndex,
             onClickHandler,
@@ -528,12 +541,16 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             filteredOptions,
             getMenuItem,
             multiple,
+            popover,
+            show,
+            hide,
           }}
         >
           <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
             <>
               <ComboBoxInput
                 value={inputValue}
+                disabled={inputProps?.disabled}
                 {...inputProps}
                 onChange={handleOnInput}
                 selectTags={
@@ -548,23 +565,21 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 }
               />
             </>
-            <ComboBoxEndIcon disabled={inputProps?.disabled} isOpen={isOpen} />
+            <ComboBoxEndIcon
+              {...endIconProps}
+              disabled={inputProps?.disabled}
+              isOpen={isOpen}
+            />
 
             {multiple ? (
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
             ) : null}
           </ComboBoxInputContainer>
-          <ComboBoxDropdown
-            {...dropdownMenuProps}
-            onShow={onShow}
-            onHide={onHide}
-          >
-            <ComboBoxMenu>
-              {filteredOptions.length > 0 && !enableVirtualization
-                ? filteredOptions.map(getMenuItem)
-                : emptyContent}
-            </ComboBoxMenu>
-          </ComboBoxDropdown>
+          <ComboBoxMenu as='div' {...dropdownMenuProps}>
+            {filteredOptions.length > 0 && !enableVirtualization
+              ? filteredOptions.map(getMenuItem)
+              : emptyContent}
+          </ComboBoxMenu>
         </ComboBoxStateContext.Provider>
       </ComboBoxActionContext.Provider>
     </ComboBoxRefsContext.Provider>

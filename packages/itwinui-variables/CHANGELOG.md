@@ -16,6 +16,24 @@
 
 - [#1302](https://github.com/iTwin/iTwinUI/pull/1302): All selectors have been wrapped with `:where` to nullify specificity.
 
+## 2.1.2
+
+### Patch Changes
+
+- [#1572](https://github.com/iTwin/iTwinUI/pull/1572): Adjusted borders and shadow values to be more prominent in dark theme.
+
+## 2.1.1
+
+### Patch Changes
+
+- [#1511](https://github.com/iTwin/iTwinUI/pull/1511): Add missing `iui-color-background-accent-hover` variable in light and dark themes.
+
+## 2.1.0
+
+### Minor Changes
+
+- [#1485](https://github.com/iTwin/iTwinUI/pull/1485): Added new `--iui-color-text-placeholder` variable.
+
 ## 2.0.0
 
 ### Major Changes

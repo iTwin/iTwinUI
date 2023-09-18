@@ -31,7 +31,7 @@ const renderComponent = (
 
 const assertBaseElement = (container: HTMLElement) => {
   const rootElement = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
 
   const input = rootElement.querySelector('.iui-input') as HTMLInputElement;
@@ -45,7 +45,7 @@ const assertBaseElement = (container: HTMLElement) => {
 
 it('should render in its most basic state', () => {
   const { container } = renderComponent();
-  const id = container.querySelector('.iui-input-container')?.id;
+  const id = container.querySelector('.iui-input-grid')?.id;
   const input = assertBaseElement(container);
 
   fireEvent.focus(input);
@@ -53,7 +53,7 @@ it('should render in its most basic state', () => {
   expect(input).toHaveAttribute('aria-controls', `${id}-list`);
   expect(input).toHaveAttribute('aria-autocomplete', 'list');
 
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLElement;
   expect(list).toBeVisible();
   expect(list.id).toEqual(`${id}-list`);
   expect(list).toHaveAttribute('role', 'listbox');
@@ -80,9 +80,13 @@ it('should render with selected value', () => {
   });
 });
 
-it('should render caret icon correctly', () => {
+it('should render caret icon correctly', async () => {
   const { container } = renderComponent();
-  let icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  let icon = container.querySelector(
+    '.iui-end-icon.iui-svg-icon > svg',
+  ) as HTMLElement;
+
+  const input = container.querySelector('input') as HTMLElement;
 
   const {
     container: { firstChild: caretDown },
@@ -92,16 +96,19 @@ it('should render caret icon correctly', () => {
   expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // open
-  fireEvent.click(icon);
-  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  await userEvent.click(input);
+  icon = container.querySelector('.iui-end-icon.iui-open > svg') as HTMLElement;
   expect(icon).toEqual(caretDown);
   expect(document.querySelector('.iui-menu')).toBeVisible();
+  const menuItem = document.querySelector('.iui-list-item') as HTMLElement;
 
   // close
-  fireEvent.click(icon);
-  icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
+  await userEvent.click(menuItem);
+  icon = container.querySelector(
+    '.iui-end-icon.iui-svg-icon > svg',
+  ) as HTMLElement;
   expect(icon).toEqual(caretDown);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should filter list according to text input', () => {
@@ -199,7 +206,7 @@ it('should select value on click', async () => {
   await userEvent.tab();
   await userEvent.click(getByText('Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(input.value).toEqual('Item 1');
 
   await userEvent.tab({ shift: true });
@@ -269,7 +276,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
   await userEvent.keyboard('{Enter}');
   items = document.querySelectorAll('.iui-list-item');
   expect(mockOnChange).toHaveBeenCalledWith(0);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen menu
   await userEvent.keyboard('{Enter}');
@@ -293,7 +300,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
   // select 2
   await userEvent.keyboard('{Enter}');
   expect(mockOnChange).toHaveBeenCalledWith(2);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
@@ -304,13 +311,13 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen and close
   await act(async () => void (await userEvent.keyboard('X')));
   expect(document.querySelector('.iui-menu')).toBeVisible();
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should handle keyboard navigation when virtualization is enabled', async () => {
@@ -386,7 +393,7 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
   await userEvent.keyboard('{Enter}');
   items = document.querySelectorAll('.iui-list-item');
   expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen menu
   await userEvent.keyboard('{Enter}');
@@ -441,7 +448,7 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
   // select 11
   await userEvent.keyboard('{Enter}');
   expect(mockOnChange).toHaveBeenCalledWith(11);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('{ArrowDown}')));
@@ -452,13 +459,13 @@ it('should handle keyboard navigation when virtualization is enabled', async () 
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen and close
   await act(async () => void (await userEvent.keyboard('X')));
   expect(document.querySelector('.iui-menu')).toBeVisible();
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should accept inputProps', () => {
@@ -473,9 +480,7 @@ it('should accept inputProps', () => {
   expect(input.id).toBe(inputId);
 
   fireEvent.focus(input);
-  expect(container.querySelector('.iui-input-container')?.id).toBe(
-    `${inputId}-cb`,
-  );
+  expect(container.querySelector('.iui-input-grid')?.id).toBe(`${inputId}-cb`);
   expect(document.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
 });
 
@@ -500,7 +505,7 @@ it('should work with custom itemRenderer', async () => {
   await userEvent.tab();
   await userEvent.click(getByText('CUSTOM Item 1'));
   expect(mockOnChange).toHaveBeenCalledWith(1);
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(input).toHaveValue('Item 1'); // the actual value of input doesn't change
 
   await userEvent.keyboard('{Enter}'); // reopen menu
@@ -526,8 +531,9 @@ it('should work with custom itemRenderer', async () => {
 it('should accept status prop', () => {
   const { container } = renderComponent({ status: 'negative' });
 
-  expect(container.querySelector('.iui-input-container')).toHaveClass(
-    'iui-negative',
+  expect(container.querySelector('.iui-input-grid')).toHaveAttribute(
+    'data-iui-status',
+    'negative',
   );
 });
 
@@ -540,9 +546,7 @@ it('should render with message', () => {
     ),
   });
   assertBaseElement(container);
-  const message = container.querySelector(
-    '.iui-message > .my-message',
-  ) as HTMLElement;
+  const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
 });
@@ -552,7 +556,7 @@ it('should render with message as string', () => {
     message: 'My message as string',
   });
   assertBaseElement(container);
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('My message as string');
 });
@@ -563,15 +567,15 @@ it('should render with message as string and status', () => {
     status: 'warning',
   });
   assertBaseElement(container);
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('My message as string');
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer).toHaveClass('iui-warning');
-  expect(inputContainer.querySelector('.iui-input-icon')).toBeTruthy();
+  expect(inputContainer).toHaveAttribute('data-iui-status', 'warning');
+  expect(inputContainer.querySelector('.iui-svg-icon')).toBeTruthy();
 });
 
 it('should render with custom icon', () => {
@@ -584,10 +588,10 @@ it('should render with custom icon', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer.querySelector('.iui-input-icon .my-icon')).toBeTruthy();
+  expect(inputContainer.querySelector('.iui-svg-icon .my-icon')).toBeTruthy();
 });
 
 it('should render with message and status', () => {
@@ -597,12 +601,12 @@ it('should render with message and status', () => {
   });
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLElement;
   assertBaseElement(container);
-  expect(inputContainer).toHaveClass('iui-positive');
-  expect(inputContainer.querySelector('.iui-input-icon')).toBeTruthy();
-  const message = container.querySelector('.iui-message') as HTMLElement;
+  expect(inputContainer).toHaveAttribute('data-iui-status', 'positive');
+  expect(inputContainer.querySelector('.iui-svg-icon')).toBeTruthy();
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
   expect(message.textContent).toBe('Text here');
 });
 
@@ -635,7 +639,7 @@ it('should use the latest onChange prop', async () => {
   expect(mockOnChange1).toHaveBeenNthCalledWith(1, 1);
 
   rerender(<ComboBox options={options} onChange={mockOnChange2} />);
-  await userEvent.tab({ shift: true }); // reopen menu
+  await userEvent.keyboard('{Enter}'); // reopen menu
   await userEvent.click(screen.getByText('Item 2'));
   expect(mockOnChange2).toHaveBeenNthCalledWith(1, 2);
   expect(mockOnChange1).toHaveBeenCalledTimes(1);
@@ -649,14 +653,15 @@ it('should call onExpand and onCollapse when dropdown is opened and closed', asy
     onHide: onCollapse,
   });
 
-  const icon = container.querySelector('.iui-end-icon svg') as HTMLElement;
-  await userEvent.click(icon);
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
-  expect(list).toBeVisible();
+  const input = container.querySelector('input') as HTMLElement;
+  await userEvent.click(input);
+  expect(document.querySelector('.iui-menu')).toBeVisible();
   expect(onExpand).toHaveBeenCalled();
 
-  await userEvent.click(icon);
-  expect(list).not.toBeVisible();
+  const menuItem = document.querySelector('.iui-list-item') as HTMLElement;
+
+  await userEvent.click(menuItem);
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
   expect(onCollapse).toHaveBeenCalled();
 });
 
@@ -720,7 +725,7 @@ it('should update options (have selected option in new options list)', async () 
 
   rerender(<ComboBox options={options2} onChange={mockOnChange} value={2} />);
   fireEvent.focus(input);
-  const list = document.querySelector('.iui-menu') as HTMLUListElement;
+  const list = document.querySelector('.iui-menu') as HTMLElement;
   expect(list).toBeVisible();
   expect(list.children).toHaveLength(4);
   expect(mockOnChange).not.toHaveBeenCalledTimes(2);
@@ -762,7 +767,7 @@ it('should select multiple options', async () => {
   );
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
   await userEvent.tab();
   await userEvent.click(screen.getByText('Item 1'));
@@ -800,7 +805,7 @@ it('should override multiple selected options', async () => {
   );
 
   const inputContainer = container.querySelector(
-    '.iui-input-container',
+    '.iui-input-grid',
   ) as HTMLDivElement;
 
   const tags = inputContainer.querySelectorAll('.iui-select-tag');
@@ -904,7 +909,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 
   // close
   await act(async () => void (await userEvent.keyboard('{Esc}')));
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 
   // reopen
   await act(async () => void (await userEvent.keyboard('X')));
@@ -922,7 +927,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 
   // close
   await userEvent.tab();
-  expect(document.querySelector('.iui-menu')).not.toBeVisible();
+  expect(document.querySelector('.iui-menu')).toBeFalsy();
 });
 
 it('should not crash when provided value in not in options when multiple enabled', async () => {
@@ -1017,4 +1022,40 @@ it('should update live region when selection changes', async () => {
 
   await userEvent.click(options[0]);
   expect(liveRegion).toHaveTextContent('Item 1, Item 2');
+});
+
+it('should be customizable', async () => {
+  const { container, getByText } = render(
+    <ComboBox
+      options={[0, 1, 2].map((value) => ({ value, label: `Item ${value}` }))}
+      message={
+        <StatusMessage contentProps={{ className: 'custom-message-class' }}>
+          My message
+        </StatusMessage>
+      }
+      status='negative'
+      className='my-input-wrapper'
+      inputProps={{ id: 'my-input-id' }}
+      dropdownMenuProps={{
+        className: 'my-menu-class',
+      }}
+      endIconProps={{ className: 'my-end-icon' }}
+    />,
+  );
+
+  const endIcon = container.querySelector(
+    '.iui-svg-icon.iui-end-icon.my-end-icon',
+  );
+  expect(endIcon).toBeTruthy();
+  expect(container.querySelector('input#my-input-id')).toBeTruthy();
+  expect(
+    container.querySelector('.iui-input-grid.my-input-wrapper'),
+  ).toBeTruthy();
+
+  fireEvent.focus(container.querySelector('input') as HTMLElement);
+  const list = document.querySelector('.iui-menu') as HTMLElement;
+  expect(list).toHaveClass('my-menu-class');
+
+  const statusContent = getByText('My message');
+  expect(statusContent).toHaveClass('custom-message-class');
 });

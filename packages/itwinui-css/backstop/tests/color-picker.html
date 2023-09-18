@@ -35,7 +35,7 @@
 
     <h2>Basic</h2>
     <section id="demo-basic">
-      <div class="iui-color-picker">
+      <div class="iui-color-picker iui-surface">
         <div class="iui-color-palette-wrapper">
           <div class="iui-color-palette">
             <span
@@ -202,7 +202,7 @@
     <section id="demo-advanced">
       <!-- RGBA -->
       <div
-        class="iui-color-picker"
+        class="iui-color-picker iui-surface"
         id="demo-advanced-interactions"
         style="--iui-color-picker-selected-color: rgb(255, 195, 53);"
       >
@@ -213,7 +213,7 @@
           >
             <div
               class="iui-color-dot"
-              style="--iui-color-dot-inset: 2% auto auto 79.2157%;"
+              style="--iui-color-dot-inset-block: 2% auto; --iui-color-dot-inset-inline: 79.2157% auto;"
               tabindex="0"
               id="test-color-dot"
             ></div>
@@ -266,7 +266,7 @@
               ></svg-swap>
             </button>
             <div class="iui-color-input-fields">
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -276,7 +276,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -286,7 +286,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -296,7 +296,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -357,7 +357,7 @@
 
       <!-- HSLA -->
       <div
-        class="iui-color-picker"
+        class="iui-color-picker iui-surface"
         style="--iui-color-picker-selected-color: rgb(255, 195, 53);"
       >
         <div class="iui-color-selection-wrapper">
@@ -367,7 +367,7 @@
           >
             <div
               class="iui-color-dot"
-              style="--iui-color-dot-inset: 2% auto auto 79.2157%;"
+              style="--iui-color-dot-inset-block: 2% auto; --iui-color-dot-inset-inline: 79.2157% auto;"
               tabindex="0"
             ></div>
           </div>
@@ -419,7 +419,7 @@
               ></svg-swap>
             </button>
             <div class="iui-color-input-fields">
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -429,7 +429,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -439,7 +439,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -449,7 +449,7 @@
                   data-iui-size="small"
                 />
               </div>
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   type="number"
                   min="0"
@@ -510,7 +510,7 @@
 
       <!-- HEX -->
       <div
-        class="iui-color-picker"
+        class="iui-color-picker iui-surface"
         style="--iui-color-picker-selected-color: rgb(255, 195, 53);"
       >
         <div class="iui-color-selection-wrapper">
@@ -520,7 +520,7 @@
           >
             <div
               class="iui-color-dot"
-              style="--iui-color-dot-inset: 2% auto auto 79.2157%;"
+              style="--iui-color-dot-inset-block: 2% auto; --iui-color-dot-inset-inline: 79.2157% auto;"
               tabindex="0"
             ></div>
           </div>
@@ -556,7 +556,7 @@
               ></svg-swap>
             </button>
             <div class="iui-color-input-fields">
-              <div class="iui-input-container">
+              <div class="iui-input-grid">
                 <input
                   value="#ffc335"
                   maxlength="7"

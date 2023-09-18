@@ -10,7 +10,8 @@ import type {
   Row,
   TableInstance,
   TableState,
-} from 'react-table';
+  TableOptions,
+} from '@itwin/itwinui-react/react-table';
 import {
   Checkbox,
   Code,
@@ -21,13 +22,10 @@ import {
   Table,
   Text,
   tableFilters,
-  TableFilterValue,
-  TableProps,
   Tooltip,
   DefaultCell,
   EditableCell,
   TablePaginator,
-  TablePaginatorRendererProps,
   ActionColumn,
   Anchor,
   SelectionColumn,
@@ -37,7 +35,10 @@ import {
   ProgressRadial,
   BaseFilter,
 } from '@itwin/itwinui-react';
-import { Story, Meta } from '@storybook/react';
+import type {
+  TableFilterValue,
+  TablePaginatorRendererProps,
+} from '@itwin/itwinui-react';
 import { useMemo, useState } from '@storybook/addons';
 import { action } from '@storybook/addon-actions';
 import {
@@ -48,59 +49,17 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+import { StoryFn } from '@storybook/react';
+
+type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
+  React.ComponentProps<typeof Table<T>>;
 
 export default {
   title: 'Core/Table',
   component: Table,
-  args: {
-    data: [
-      { name: 'Name1', description: 'Description1' },
-      { name: 'Name2', description: 'Description2' },
-      { name: 'Name3', description: 'Description3' },
-    ],
-    emptyTableContent: 'No data.',
-    density: 'default',
-    emptyFilteredTableContent: 'No results found. Clear or try another filter.',
-  },
-  argTypes: {
-    columns: { control: { disable: true } },
-    isSelectable: { control: { disable: true } },
-    selectionMode: { control: { disable: true } },
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-    initialState: { table: { disable: true } },
-    stateReducer: { table: { disable: true } },
-    useControlledState: { table: { disable: true } },
-    defaultColumn: { table: { disable: true } },
-    getSubRows: { table: { disable: true } },
-    getRowId: { table: { disable: true } },
-    manualRowSelectedKey: { table: { disable: true } },
-    autoResetSelectedRows: { table: { disable: true } },
-    selectSubRows: { table: { disable: true } },
-    manualSortBy: { table: { disable: true } },
-    defaultCanSort: { table: { disable: true } },
-    disableMultiSort: { table: { disable: true } },
-    isMultiSortEvent: { table: { disable: true } },
-    maxMultiSortColCount: { table: { disable: true } },
-    disableSortRemove: { table: { disable: true } },
-    disabledMultiRemove: { table: { disable: true } },
-    orderByFn: { table: { disable: true } },
-    sortTypes: { table: { disable: true } },
-    autoResetSortBy: { table: { disable: true } },
-    autoResetHiddenColumns: { table: { disable: true } },
-    autoResetFilters: { table: { disable: true } },
-    filterTypes: { table: { disable: true } },
-    defaultCanFilter: { table: { disable: true } },
-    manualFilters: { table: { disable: true } },
-    paginateExpandedRows: { table: { disable: true } },
-    expandSubRows: { table: { disable: true } },
-    autoResetExpanded: { table: { disable: true } },
-    manualExpandedKey: { table: { disable: true } },
-  },
-} as Meta<TableProps>;
+};
 
-export const Basic: Story<Partial<TableProps>> = (args) => {
+export const Basic = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -144,17 +103,10 @@ export const Basic: Story<Partial<TableProps>> = (args) => {
     [],
   );
 
-  return (
-    <Table
-      columns={columns}
-      data={data}
-      emptyTableContent='No data.'
-      {...args}
-    />
-  );
+  return <Table columns={columns} data={data} emptyTableContent='No data.' />;
 };
 
-export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
+export const SelectableSingle = () => {
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
@@ -213,14 +165,11 @@ export const SelectableSingle: Story<Partial<TableProps>> = (args) => {
       isSelectable={true}
       onRowClick={onRowClick}
       selectionMode='single'
-      {...args}
     />
   );
 };
 
-SelectableSingle.args = { isSelectable: true, selectionMode: 'single' };
-
-export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
+export const SelectableMulti = () => {
   const onSelect = useCallback(
     (rows, state) =>
       action(
@@ -229,7 +178,7 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onSelect']>;
 
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
@@ -290,14 +239,11 @@ export const SelectableMulti: Story<Partial<TableProps>> = (args) => {
       onSelect={onSelect}
       onRowClick={onRowClick}
       selectionMode='multi'
-      {...args}
     />
   );
 };
 
-SelectableMulti.args = { isSelectable: true, selectionMode: 'multi' };
-
-export const Sortable: Story<Partial<TableProps>> = (args) => {
+export const Sortable = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -305,7 +251,7 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
   const onSort = useCallback(
     (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onSort']>;
 
   const columns = useMemo(
     () => [
@@ -360,21 +306,11 @@ export const Sortable: Story<Partial<TableProps>> = (args) => {
       emptyTableContent='No data.'
       isSortable
       onSort={onSort}
-      {...args}
     />
   );
 };
 
-Sortable.args = {
-  data: [
-    { id: '1', name: 'Name1', description: 'Description1' },
-    { id: '3', name: 'Name3', description: 'Description3' },
-    { id: '2', name: 'Name2', description: 'Description2' },
-  ],
-  isSortable: true,
-};
-
-export const Filters: Story<Partial<TableProps>> = (args) => {
+export const Filters = () => {
   type TableStoryDataType = {
     index: number;
     name: string;
@@ -510,7 +446,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
     (
       filters: TableFilterValue<TableStoryDataType>[],
       state: TableState,
-      filteredData: Row<{ name: string; description: string }>[],
+      filteredData: Row<TableStoryDataType>[],
     ) => {
       // rowInfo is used due to JSON errors when displaying row data
       let rowInfo = '[';
@@ -526,7 +462,7 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
       )();
     },
     [],
-  );
+  ) satisfies NonNullable<TableProps['onFilter']>;
 
   return (
     <Table
@@ -534,41 +470,11 @@ export const Filters: Story<Partial<TableProps>> = (args) => {
       data={data}
       emptyTableContent='No data.'
       onFilter={onFilter}
-      {...args}
     />
   );
 };
 
-Filters.args = {
-  data: [
-    {
-      index: 1,
-      name: 'Name1',
-      description: 'Description1',
-      ids: ['1'],
-      startDate: new Date('May 1, 2021'),
-      endDate: '2021-05-31T21:00:00.000Z',
-    },
-    {
-      index: 2,
-      name: 'Name2',
-      description: 'Description2',
-      ids: ['2', '3', '4'],
-      startDate: new Date('May 2, 2021'),
-      endDate: '2021-06-01T21:00:00.000Z',
-    },
-    {
-      index: 3,
-      name: 'Name3',
-      description: 'Description3',
-      ids: ['3', '4'],
-      startDate: new Date('May 3, 2021'),
-      endDate: '2021-06-02T21:00:00.000Z',
-    },
-  ],
-};
-
-export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
+export const GlobalFilter = () => {
   type TableStoryDataType = {
     name: string;
     description: string;
@@ -640,24 +546,12 @@ export const GlobalFilter: Story<Partial<TableProps>> = (args) => {
         data={data}
         emptyTableContent='No data.'
         globalFilterValue={globalFilter}
-        {...args}
       />
     </div>
   );
 };
 
-GlobalFilter.args = {
-  data: [
-    { name: 'Name1', description: 'Description7' },
-    { name: 'Name2', description: 'Description7' },
-    { name: 'Name3', description: 'Description8' },
-    { name: 'Name4', description: 'Description8' },
-    { name: 'Name5', description: 'Description9' },
-    { name: 'Name6', description: 'Description9' },
-  ],
-};
-
-export const Expandable: Story<Partial<TableProps>> = (args) => {
+export const Expandable = () => {
   const onExpand = useCallback(
     (rows, state) =>
       action(
@@ -666,7 +560,7 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -713,16 +607,12 @@ export const Expandable: Story<Partial<TableProps>> = (args) => {
       emptyTableContent='No data.'
       subComponent={expandedSubComponent}
       onExpand={onExpand}
-      {...args}
+      isSelectable
     />
   );
 };
 
-Expandable.args = {
-  isSelectable: true,
-};
-
-export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
+export const ExpandableSubrows = () => {
   const onExpand = useCallback(
     (rows, state) =>
       action(
@@ -731,7 +621,7 @@ export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -812,64 +702,13 @@ export const ExpandableSubrows: Story<Partial<TableProps>> = (args) => {
         isSortable
         data={data}
         columns={columns}
-        {...args}
         onExpand={onExpand}
       />
     </>
   );
 };
 
-ExpandableSubrows.args = {
-  data: [
-    {
-      name: 'Row 1',
-      description: 'Description 1',
-      subRows: [
-        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
-        {
-          name: 'Row 1.2',
-          description: 'Description 1.2',
-          subRows: [
-            {
-              name: 'Row 1.2.1',
-              description: 'Description 1.2.1',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.2',
-              description: 'Description 1.2.2',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.3',
-              description: 'Description 1.2.3',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.4',
-              description: 'Description 1.2.4',
-              subRows: [],
-            },
-          ],
-        },
-        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
-        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
-      ],
-    },
-    {
-      name: 'Row 2',
-      description: 'Description 2',
-      subRows: [
-        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
-        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
-        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
-      ],
-    },
-    { name: 'Row 3', description: 'Description 3', subRows: [] },
-  ],
-};
-
-export const LazyLoading: Story<Partial<TableProps>> = (args) => {
+export const LazyLoading = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -936,7 +775,6 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
       onBottomReached={onBottomReached}
       isLoading={isLoading}
       isSortable
-      {...args}
       style={{ height: 440, maxHeight: '90vh' }}
       data={data}
       // Prevents from resetting filters and sorting when more data is loaded
@@ -946,15 +784,7 @@ export const LazyLoading: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-LazyLoading.args = {
-  isSortable: true,
-};
-
-LazyLoading.argTypes = {
-  isLoading: { control: { disable: true } },
-};
-
-export const RowInViewport: Story<Partial<TableProps>> = (args) => {
+export const RowInViewport = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -1002,7 +832,7 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
 
   const onRowInViewport = useCallback((rowData) => {
     action(`Row in view: ${JSON.stringify(rowData)}`)();
-  }, []);
+  }, []) satisfies NonNullable<TableProps['onRowInViewport']>;
 
   return (
     <>
@@ -1031,18 +861,13 @@ export const RowInViewport: Story<Partial<TableProps>> = (args) => {
         columns={columns}
         emptyTableContent='No data.'
         onRowInViewport={onRowInViewport}
-        {...args}
         data={data}
       />
     </>
   );
 };
 
-RowInViewport.argTypes = {
-  data: { control: { disable: true } },
-};
-
-export const DisabledRows: Story<Partial<TableProps>> = (args) => {
+export const DisabledRows = () => {
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
       action(`Row clicked: ${JSON.stringify(row.original)}`)(),
@@ -1119,21 +944,12 @@ export const DisabledRows: Story<Partial<TableProps>> = (args) => {
       onRowClick={onRowClick}
       subComponent={expandedSubComponent}
       isRowDisabled={isRowDisabled}
-      {...args}
+      isSelectable
     />
   );
 };
 
-DisabledRows.args = {
-  data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
-  ],
-  isSelectable: true,
-};
-
-export const Loading: Story<Partial<TableProps>> = (args) => {
+export const Loading = () => {
   const columns = useMemo(
     () => [
       {
@@ -1157,17 +973,11 @@ export const Loading: Story<Partial<TableProps>> = (args) => {
       data={[]}
       isLoading={true}
       emptyTableContent='No data.'
-      {...args}
     />
   );
 };
 
-Loading.args = {
-  data: [],
-  isLoading: true,
-};
-
-export const NoData: Story<Partial<TableProps>> = (args) => {
+export const NoData = () => {
   const columns = useMemo(
     () => [
       {
@@ -1191,16 +1001,11 @@ export const NoData: Story<Partial<TableProps>> = (args) => {
       data={[]}
       isLoading={false}
       emptyTableContent='No data.'
-      {...args}
     />
   );
 };
 
-NoData.args = {
-  data: [],
-};
-
-export const InitialState: Story<Partial<TableProps>> = (args) => {
+export const InitialState = () => {
   const columns = useMemo(
     () => [
       {
@@ -1241,30 +1046,11 @@ export const InitialState: Story<Partial<TableProps>> = (args) => {
         filters: [{ id: 'name', value: '1' }],
         selectedRowIds: { '0': true, '1': true, '4': true, '5': true },
       }}
-      {...args}
     />
   );
 };
 
-InitialState.args = {
-  data: [
-    { name: 'Name17', description: 'Description17' },
-    { name: 'Name18', description: 'Description18' },
-    { name: 'Name19', description: 'Description19' },
-    { name: 'Name20', description: 'Description20' },
-    { name: 'Name21', description: 'Description21' },
-    { name: 'Name22', description: 'Description22' },
-  ],
-  initialState: {
-    filters: [{ id: 'name', value: '1' }],
-    selectedRowIds: { '0': true, '1': true, '4': true, '5': true },
-  },
-};
-InitialState.argTypes = {
-  initialState: { table: { disable: false } },
-};
-
-export const ControlledState: Story<Partial<TableProps>> = (args) => {
+export const ControlledState = () => {
   type DemoData = {
     id: string;
     name: string;
@@ -1272,7 +1058,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
     subRows: DemoData[];
   };
 
-  const tableInstance = React.useRef<TableInstance>();
+  const tableInstance = React.useRef<TableInstance<DemoData>>();
   const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
   const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
 
@@ -1290,7 +1076,7 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       },
     ],
     [],
-  );
+  ) satisfies Column<DemoData>[];
 
   const data: DemoData[] = useMemo(
     () => [
@@ -1355,9 +1141,24 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
         name: 'Row 2',
         description: 'Description 2',
         subRows: [
-          { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
-          { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
-          { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
+          {
+            id: '2.1',
+            name: 'Row 2.1',
+            description: 'Description 2.1',
+            subRows: [],
+          },
+          {
+            id: '2.2',
+            name: 'Row 2.2',
+            description: 'Description 2.2',
+            subRows: [],
+          },
+          {
+            id: '2.3',
+            name: 'Row 2.3',
+            description: 'Description 2.3',
+            subRows: [],
+          },
         ],
       },
       { id: '3', name: 'Row 3', description: 'Description 3', subRows: [] },
@@ -1400,33 +1201,40 @@ export const ControlledState: Story<Partial<TableProps>> = (args) => {
       <Table
         columns={columns}
         emptyTableContent='No data.'
-        stateReducer={useCallback((newState, action, prevState, instance) => {
-          tableInstance.current = instance;
-          return newState;
-        }, [])}
+        stateReducer={
+          useCallback((newState, action, prevState, instance) => {
+            tableInstance.current = instance;
+            return newState;
+          }, []) satisfies NonNullable<TableOptions<DemoData>['stateReducer']>
+        }
         isSelectable
-        onSelect={useCallback((selected) => {
-          setSelectedRows(selected ?? []);
-        }, [])}
-        onExpand={useCallback((expanded) => {
-          setExpandedRows(expanded);
-        }, [])}
-        getRowId={useCallback((rowData) => rowData.id, [])}
-        {...args}
+        onSelect={
+          useCallback((selected) => {
+            setSelectedRows(selected ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onSelect']>
+        }
+        onExpand={
+          useCallback((expanded) => {
+            setExpandedRows(expanded ?? []);
+          }, []) satisfies NonNullable<TableProps<DemoData>['onExpand']>
+        }
+        getRowId={
+          useCallback((rowData) => rowData.id, []) satisfies NonNullable<
+            TableOptions<DemoData>['getRowId']
+          >
+        }
         data={data}
       />
     </>
   );
 };
 
-ControlledState.argTypes = {
-  data: { control: { disable: true } },
-};
-
-export const Full: Story<Partial<TableProps>> = (args) => {
+export const Full = () => {
   const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
 
-  const rowRefMap = React.useRef<Record<number, HTMLDivElement>>({});
+  const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
+    {},
+  );
 
   const isRowDisabled = useCallback(
     (rowData: { name: string; description: string }) => {
@@ -1509,7 +1317,10 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         },
         ref: (el: HTMLDivElement | null) => {
           if (el) {
-            rowRefMap.current[row.index] = el;
+            setRowRefMap((r) => {
+              r[row.index] = el;
+              return r;
+            });
           }
         },
       };
@@ -1530,10 +1341,9 @@ export const Full: Story<Partial<TableProps>> = (args) => {
         isSortable
         isResizable
         enableColumnReordering
-        {...args}
       />
       <Tooltip
-        reference={rowRefMap.current[hoveredRowIndex]}
+        reference={rowRefMap[hoveredRowIndex]}
         content={`Hovered over ${data[hoveredRowIndex].name}.`}
         placement='bottom'
       />
@@ -1541,19 +1351,7 @@ export const Full: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-Full.args = {
-  data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
-  ],
-  isSelectable: true,
-  isSortable: true,
-  isResizable: true,
-  enableColumnReordering: true,
-};
-
-export const Full2: Story<Partial<TableProps>> = (args) => {
+export const Full2 = () => {
   type TableStoryDataType = {
     product: string;
     price: number;
@@ -1695,9 +1493,9 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
     [isRowDisabled, menuItems],
   );
 
-  const rowProps = useCallback((row: Row<{ status: string | undefined }>) => {
+  const rowProps = useCallback((row: Row<TableStoryDataType>) => {
     return {
-      status: row.original.status,
+      status: row.original.status satisfies TableStoryDataType['status'],
     };
   }, []);
 
@@ -1733,7 +1531,6 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
           isSortable
           isResizable
           enableColumnReordering
-          {...args}
           data={data}
           style={{ height: '100%' }}
           enableVirtualization
@@ -1745,18 +1542,7 @@ export const Full2: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-Full2.args = {
-  isSelectable: true,
-  isSortable: true,
-  isResizable: true,
-  enableColumnReordering: true,
-};
-
-Full2.argTypes = {
-  data: { control: { disable: true } },
-};
-
-export const Localized: Story<Partial<TableProps>> = (args) => {
+export const Localized = () => {
   const columns = useMemo(
     () => [
       {
@@ -1824,7 +1610,6 @@ export const Localized: Story<Partial<TableProps>> = (args) => {
         emptyTableContent='No localized data.'
         isSelectable
         isSortable
-        {...args}
         columns={columns}
         data={generateData(0, 100)}
         pageSize={25}
@@ -1836,21 +1621,18 @@ export const Localized: Story<Partial<TableProps>> = (args) => {
 };
 
 Localized.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
 ];
 
-Localized.argTypes = {
-  data: { control: { disable: true } },
-};
 Localized.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const Condensed: Story<Partial<TableProps>> = (args) => {
+export const Condensed = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -1863,7 +1645,7 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps['onExpand']>;
 
   const columns = useMemo(
     () => [
@@ -1952,63 +1734,12 @@ export const Condensed: Story<Partial<TableProps>> = (args) => {
       data={data}
       emptyTableContent='No data.'
       density='condensed'
-      {...args}
       onExpand={onExpand}
     />
   );
 };
-Condensed.args = {
-  density: 'condensed',
-  data: [
-    {
-      name: 'Row 1',
-      description: 'Description 1',
-      subRows: [
-        { name: 'Row 1.1', description: 'Description 1.1', subRows: [] },
-        {
-          name: 'Row 1.2',
-          description: 'Description 1.2',
-          subRows: [
-            {
-              name: 'Row 1.2.1',
-              description: 'Description 1.2.1',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.2',
-              description: 'Description 1.2.2',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.3',
-              description: 'Description 1.2.3',
-              subRows: [],
-            },
-            {
-              name: 'Row 1.2.4',
-              description: 'Description 1.2.4',
-              subRows: [],
-            },
-          ],
-        },
-        { name: 'Row 1.3', description: 'Description 1.3', subRows: [] },
-        { name: 'Row 1.4', description: 'Description 1.4', subRows: [] },
-      ],
-    },
-    {
-      name: 'Row 2',
-      description: 'Description 2',
-      subRows: [
-        { name: 'Row 2.1', description: 'Description 2.1', subRows: [] },
-        { name: 'Row 2.2', description: 'Description 2.2', subRows: [] },
-        { name: 'Row 2.3', description: 'Description 2.3', subRows: [] },
-      ],
-    },
-    { name: 'Row 3', description: 'Description 3', subRows: [] },
-  ],
-};
 
-export const Editable: Story<Partial<TableProps>> = (args) => {
+export const Editable = () => {
   type TableStoryDataType = {
     name: string;
     description: string;
@@ -2076,7 +1807,6 @@ export const Editable: Story<Partial<TableProps>> = (args) => {
   return (
     <Table
       emptyTableContent='No data.'
-      {...args}
       columns={columns}
       data={data}
       isRowDisabled={isRowDisabled}
@@ -2089,11 +1819,7 @@ export const Editable: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-Editable.argTypes = {
-  data: { control: { disable: true } },
-};
-
-export const WithPaginator: Story<Partial<TableProps>> = (args) => {
+export const WithPaginator = () => {
   const columns = useMemo(
     () => [
       {
@@ -2158,7 +1884,6 @@ export const WithPaginator: Story<Partial<TableProps>> = (args) => {
         emptyTableContent='No data.'
         isSelectable
         isSortable
-        {...args}
         columns={columns}
         data={data}
         pageSize={25}
@@ -2169,29 +1894,19 @@ export const WithPaginator: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-WithPaginator.args = {
-  isSelectable: true,
-  isSortable: true,
-};
-
 WithPaginator.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
 ];
 
-WithPaginator.argTypes = {
-  data: { control: { disable: true } },
-};
 WithPaginator.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
-  args,
-) => {
+export const WithManualPaginatorAndFilter = () => {
   type RowData = {
     name: string;
     description: string;
@@ -2374,7 +2089,6 @@ export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
     <>
       <Table
         emptyTableContent='No data.'
-        {...args}
         isLoading={isLoading}
         columns={columns}
         data={data}
@@ -2390,21 +2104,18 @@ export const WithManualPaginatorAndFilter: Story<Partial<TableProps>> = (
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
 ];
 
-WithManualPaginatorAndFilter.argTypes = {
-  data: { control: { disable: true } },
-};
 WithManualPaginatorAndFilter.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const CustomFilter: Story<Partial<TableProps>> = (args) => {
+export const CustomFilter = () => {
   type RowData = {
     name: string;
     description: string;
@@ -2538,7 +2249,6 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
     <>
       <Table
         emptyTableContent='No data.'
-        {...args}
         isLoading={isLoading}
         columns={columns}
         data={data}
@@ -2552,21 +2262,18 @@ export const CustomFilter: Story<Partial<TableProps>> = (args) => {
 };
 
 CustomFilter.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
 ];
 
-CustomFilter.argTypes = {
-  data: { control: { disable: true } },
-};
 CustomFilter.parameters = {
   docs: { source: { excludeDecorators: true } },
 };
 
-export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
+export const ResizableColumns = () => {
   type TableStoryDataType = {
     index: number;
     name: string;
@@ -2659,15 +2366,11 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
   );
 
   const [columnResizeMode, setColumnResizeMode] =
-    React.useState<TableProps['columnResizeMode']>('fit');
+    React.useState<TableProps<TableStoryDataType>['columnResizeMode']>('fit');
 
   return (
     <>
-      <InputGroup
-        label='Resize mode'
-        displayStyle='inline'
-        style={{ marginBottom: 12 }}
-      >
+      <InputGroup label='Resize mode' displayStyle='inline'>
         <Radio
           name='choice'
           value='fit'
@@ -2689,44 +2392,13 @@ export const ResizableColumns: Story<Partial<TableProps>> = (args) => {
         emptyTableContent='No data.'
         isResizable
         isSortable
-        {...args}
         columnResizeMode={columnResizeMode}
       />
     </>
   );
 };
 
-ResizableColumns.args = {
-  isResizable: true,
-  data: [
-    {
-      index: 1,
-      name: 'Name1',
-      description: 'Description1',
-      id: '111',
-      startDate: new Date('May 1, 2021'),
-      endDate: new Date('Jun 1, 2021'),
-    },
-    {
-      index: 2,
-      name: 'Name2',
-      description: 'Description2',
-      id: '222',
-      startDate: new Date('May 2, 2021'),
-      endDate: new Date('Jun 2, 2021'),
-    },
-    {
-      index: 3,
-      name: 'Name3',
-      description: 'Description3',
-      id: '333',
-      startDate: new Date('May 3, 2021'),
-      endDate: new Date('Jun 3, 2021'),
-    },
-  ],
-};
-
-export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
+export const ZebraStripedRows = () => {
   const columns = useMemo(
     () => [
       {
@@ -2784,7 +2456,6 @@ export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
         isSelectable
         isSortable
         styleType='zebra-rows'
-        {...args}
         columns={columns}
         data={data}
         style={{ height: '100%' }}
@@ -2793,13 +2464,7 @@ export const ZebraStripedRows: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-ZebraStripedRows.args = {
-  isSelectable: true,
-  isSortable: true,
-  styleType: 'zebra-rows',
-};
-
-export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
+export const HorizontalScroll = () => {
   const data = useMemo(
     () => [
       {
@@ -2924,88 +2589,12 @@ export const HorizontalScroll: Story<Partial<TableProps>> = (args) => {
       data={data}
       emptyTableContent='No data.'
       style={{ height: '100%' }}
-      {...args}
     />
   );
 };
 
-HorizontalScroll.args = {
-  data: [
-    {
-      product: 'Product 1',
-      price: 5,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 2',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 3',
-      price: 2.99,
-      quantity: 1500,
-      rating: '3/5',
-      deliveryTime: 7,
-    },
-    {
-      product: 'Product 4',
-      price: 20,
-      quantity: 50,
-      rating: '4/5',
-      deliveryTime: 2,
-    },
-    {
-      product: 'Product 5',
-      price: 1.99,
-      quantity: 700,
-      rating: '5/5',
-      deliveryTime: 1,
-    },
-    {
-      product: 'Product 6',
-      price: 499,
-      quantity: 30,
-      rating: '5/5',
-      deliveryTime: 20,
-    },
-    {
-      product: 'Product 7',
-      price: 13.99,
-      quantity: 130,
-      rating: '1/5',
-      deliveryTime: 30,
-    },
-    {
-      product: 'Product 8',
-      price: 5.99,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 9',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 10',
-      price: 2.99,
-      quantity: 200,
-      rating: '3/5',
-      deliveryTime: 17,
-    },
-  ],
-};
-
 HorizontalScroll.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
@@ -3018,7 +2607,7 @@ HorizontalScroll.decorators = [
   ),
 ];
 
-export const Virtualized: Story<Partial<TableProps>> = (args) => {
+export const Virtualized = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
   ) => action(props.row.original.name)();
@@ -3069,19 +2658,13 @@ export const Virtualized: Story<Partial<TableProps>> = (args) => {
       enableVirtualization
       columns={columns}
       emptyTableContent='No data.'
-      {...args}
       style={{ maxHeight: '90vh' }}
       data={data}
     />
   );
 };
 
-Virtualized.argTypes = {
-  isLoading: { control: { disable: true } },
-  data: { control: { disable: true } },
-};
-
-export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
+export const ScrollToRow = () => {
   type TableStoryDataType = {
     id: string;
     name: string;
@@ -3144,7 +2727,6 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
       columns={columns}
       emptyTableContent='No data.'
       isSortable
-      {...args}
       style={{ maxHeight: '90vh' }}
       data={data}
       scrollToRow={React.useCallback(
@@ -3156,12 +2738,7 @@ export const ScrollToRow: Story<Partial<TableProps>> = (args) => {
   );
 };
 
-ScrollToRow.argTypes = {
-  isLoading: { control: { disable: true } },
-  data: { control: { disable: true } },
-};
-
-export const VirtualizedSubRows: Story<Partial<TableProps>> = (args) => {
+export const VirtualizedSubRows = () => {
   const columns = useMemo(
     () => [
       {
@@ -3217,19 +2794,13 @@ export const VirtualizedSubRows: Story<Partial<TableProps>> = (args) => {
       enableVirtualization
       columns={columns}
       emptyTableContent='No data.'
-      {...args}
       style={{ maxHeight: '90vh' }}
       data={data}
     />
   );
 };
 
-VirtualizedSubRows.argTypes = {
-  isLoading: { control: { disable: true } },
-  data: { control: { disable: true } },
-};
-
-export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
+export const DraggableColumns = () => {
   const data = useMemo(
     () => [
       {
@@ -3351,89 +2922,11 @@ export const DraggableColumns: Story<Partial<TableProps>> = (args) => {
       data={data}
       emptyTableContent='No data.'
       isSelectable
-      {...args}
     />
   );
 };
 
-DraggableColumns.args = {
-  data: [
-    {
-      product: 'Product 1',
-      price: 5,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 2',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 3',
-      price: 2.99,
-      quantity: 1500,
-      rating: '3/5',
-      deliveryTime: 7,
-    },
-    {
-      product: 'Product 4',
-      price: 20,
-      quantity: 50,
-      rating: '4/5',
-      deliveryTime: 2,
-    },
-    {
-      product: 'Product 5',
-      price: 1.99,
-      quantity: 700,
-      rating: '5/5',
-      deliveryTime: 1,
-    },
-    {
-      product: 'Product 6',
-      price: 499,
-      quantity: 30,
-      rating: '5/5',
-      deliveryTime: 20,
-    },
-    {
-      product: 'Product 7',
-      price: 13.99,
-      quantity: 130,
-      rating: '1/5',
-      deliveryTime: 30,
-    },
-    {
-      product: 'Product 8',
-      price: 5.99,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 9',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 10',
-      price: 2.99,
-      quantity: 200,
-      rating: '3/5',
-      deliveryTime: 17,
-    },
-  ],
-  enableColumnReordering: true,
-  isSelectable: true,
-};
-
-export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
+export const CustomizedColumns = () => {
   const onExpand = useCallback(
     (rows, state) =>
       action(
@@ -3442,7 +2935,7 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
         )}`,
       )(),
     [],
-  );
+  ) satisfies NonNullable<TableProps<(typeof data)[number]>['onExpand']>;
 
   const data = useMemo(
     () => [
@@ -3490,9 +2983,9 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
         Header: 'Name',
         accessor: 'name',
         cellRenderer: (props) => (
-          <DefaultCell
+          <DefaultCell<(typeof data)[number]>
             {...props}
-            isDisabled={(rowData) =>
+            isDisabled={(rowData: (typeof data)[number]) =>
               isCellDisabled(rowData) || isRowDisabled(rowData)
             }
           />
@@ -3526,22 +3019,11 @@ export const CustomizedColumns: Story<Partial<TableProps>> = (args) => {
       rowProps={({ index }) => ({
         onClick: (e) => index === 0 && e.preventDefault(),
       })}
-      {...args}
     />
   );
 };
 
-CustomizedColumns.args = {
-  isSelectable: true,
-  data: [
-    { name: 'Name1', description: 'Description1' },
-    { name: 'Name2', description: 'Description2' },
-    { name: 'Name3', description: 'Description3' },
-    { name: 'Name4', description: 'Description4' },
-  ],
-};
-
-export const ColumnManager: Story<Partial<TableProps>> = (args) => {
+export const ColumnManager = () => {
   type TableStoryDataType = {
     index: number;
     name: string;
@@ -3549,6 +3031,11 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
     id: string;
     startDate: Date;
     endDate: Date;
+    price: string;
+    color: string;
+    stock: number;
+    rating: string;
+    location: string;
   };
 
   const columns = useMemo(
@@ -3701,82 +3188,11 @@ export const ColumnManager: Story<Partial<TableProps>> = (args) => {
       columns={columns}
       data={data}
       emptyTableContent='No data.'
-      {...args}
     />
   );
 };
 
-ColumnManager.args = {
-  data: [
-    {
-      index: 1,
-      name: 'Name1',
-      description: 'Description1',
-      id: '111',
-      startDate: new Date('May 1, 2021'),
-      endDate: new Date('Jun 1, 2021'),
-      price: '$1.00',
-      color: 'Red',
-      stock: 10,
-      rating: '5/5',
-      location: 'Philadelphia, Pennsylvania',
-    },
-    {
-      index: 2,
-      name: 'Name2',
-      description: 'Description2',
-      id: '222',
-      startDate: new Date('May 2, 2021'),
-      endDate: new Date('Jun 2, 2021'),
-      price: '$2.00',
-      color: 'Green',
-      stock: 20,
-      rating: '4/5',
-      location: 'Philadelphia, Pennsylvania',
-    },
-    {
-      index: 3,
-      name: 'Name3',
-      description: 'Description3',
-      id: '333',
-      startDate: new Date('May 3, 2021'),
-      endDate: new Date('Jun 3, 2021'),
-      price: '$3.00',
-      color: 'Green',
-      stock: 30,
-      rating: '3/5',
-      location: 'Philadelphia, Pennsylvania',
-    },
-    {
-      index: 4,
-      name: 'Name4',
-      description: 'Description4',
-      id: '444',
-      startDate: new Date('May 4, 2021'),
-      endDate: new Date('Jun 4, 2021'),
-      price: '$4.00',
-      color: 'Yellow',
-      stock: 40,
-      rating: '2/5',
-      location: 'Philadelphia, Pennsylvania',
-    },
-    {
-      index: 5,
-      name: 'Name5',
-      description: 'Description5',
-      id: '555',
-      startDate: new Date('May 5, 2021'),
-      endDate: new Date('Jun 5, 2021'),
-      price: '$5.00',
-      color: 'Purple',
-      stock: 50,
-      rating: '1/5',
-      location: 'Philadelphia, Pennsylvania',
-    },
-  ],
-};
-
-export const StickyColumns: Story<Partial<TableProps>> = (args) => {
+export const StickyColumns = () => {
   const data = useMemo(
     () => [
       {
@@ -3929,88 +3345,12 @@ export const StickyColumns: Story<Partial<TableProps>> = (args) => {
       emptyTableContent='No data.'
       style={{ height: '100%' }}
       isResizable
-      {...args}
     />
   );
 };
 
-StickyColumns.args = {
-  data: [
-    {
-      product: 'Product 1',
-      price: 5,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 2',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 3',
-      price: 2.99,
-      quantity: 1500,
-      rating: '3/5',
-      deliveryTime: 7,
-    },
-    {
-      product: 'Product 4',
-      price: 20,
-      quantity: 50,
-      rating: '4/5',
-      deliveryTime: 2,
-    },
-    {
-      product: 'Product 5',
-      price: 1.99,
-      quantity: 700,
-      rating: '5/5',
-      deliveryTime: 1,
-    },
-    {
-      product: 'Product 6',
-      price: 499,
-      quantity: 30,
-      rating: '5/5',
-      deliveryTime: 20,
-    },
-    {
-      product: 'Product 7',
-      price: 13.99,
-      quantity: 130,
-      rating: '1/5',
-      deliveryTime: 30,
-    },
-    {
-      product: 'Product 8',
-      price: 5.99,
-      quantity: 500,
-      rating: '4/5',
-      deliveryTime: 5,
-    },
-    {
-      product: 'Product 9',
-      price: 12,
-      quantity: 1200,
-      rating: '1/5',
-      deliveryTime: 25,
-    },
-    {
-      product: 'Product 10',
-      price: 2.99,
-      quantity: 200,
-      rating: '3/5',
-      deliveryTime: 17,
-    },
-  ],
-};
-
 StickyColumns.decorators = [
-  (Story) => (
+  (Story: StoryFn) => (
     <div
       style={{
         height: '375px',
@@ -4023,7 +3363,7 @@ StickyColumns.decorators = [
   ),
 ];
 
-export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
+export const StatusAndCellIcons = () => {
   const columns = useMemo(
     () => [
       {
@@ -4034,6 +3374,7 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
           props: CellRendererProps<{
             startIcon: JSX.Element;
             endIcon: JSX.Element;
+            isLoading?: boolean;
           }>,
         ) => (
           <DefaultCell
@@ -4141,7 +3482,6 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
 
   return (
     <Table
-      {...args}
       columns={columns}
       data={data}
       emptyTableContent='No data.'
@@ -4150,9 +3490,4 @@ export const StatusAndCellIcons: Story<Partial<TableProps>> = (args) => {
       rowProps={rowProps}
     />
   );
-};
-
-StatusAndCellIcons.args = {
-  isSelectable: true,
-  selectionMode: 'multi',
 };

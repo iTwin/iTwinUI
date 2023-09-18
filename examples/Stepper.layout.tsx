@@ -10,6 +10,7 @@ import {
   Label,
   Stepper,
   InputGroup,
+  InputGrid,
   Radio,
 } from '@itwin/itwinui-react';
 
@@ -27,7 +28,7 @@ export default () => {
     setDisableProgress(true);
   }, [currentStep]);
   const stepOne = (
-    <>
+    <InputGrid>
       <Label required>Name</Label>
       <Input
         key='name'
@@ -38,7 +39,7 @@ export default () => {
       />
       <Label>Occupation</Label>
       <Input key='occupation' placeholder='Enter occupation' />
-    </>
+    </InputGrid>
   );
 
   const stepTwo = (
@@ -60,7 +61,7 @@ export default () => {
   );
 
   const stepThree = (
-    <>
+    <InputGrid>
       <Label required>Why is this your favorite color</Label>
       <Input
         key='explanation'
@@ -69,7 +70,7 @@ export default () => {
           setDisableProgress(!value);
         }}
       />
-    </>
+    </InputGrid>
   );
 
   const steps = [stepOne, stepTwo, stepThree];
