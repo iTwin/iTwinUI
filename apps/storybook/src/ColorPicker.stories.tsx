@@ -95,7 +95,6 @@ export const Basic: Story<ColorPickerProps> = (args) => {
         }
         visible={isOpen}
         placement='bottom-start'
-        applyBackground
       >
         <IconButton onClick={() => setIsOpen((open) => !open)}>
           <ColorSwatch
@@ -164,7 +163,6 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
           }
           visible={isOpen}
           placement='bottom-start'
-          applyBackground
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch
@@ -244,7 +242,6 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
           }
           visible={isOpen}
           placement='bottom-start'
-          applyBackground
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch

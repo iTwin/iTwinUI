@@ -68,7 +68,6 @@ export default () => {
           portal={{ to: () => document.body }}
           visible={isOpen}
           placement='bottom-start'
-          applyBackground
         >
           <IconButton onClick={() => setIsOpen((open) => !open)}>
             <ColorSwatch

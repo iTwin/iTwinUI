@@ -62,7 +62,6 @@ export const Basic: Story<DatePickerProps> = (args) => {
             setFocus={setFocus}
           />
         }
-        applyBackground
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
