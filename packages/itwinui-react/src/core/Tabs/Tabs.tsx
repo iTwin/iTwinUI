@@ -139,6 +139,10 @@ type TabListOwnProps = {
    * Tab items.
    */
   children: React.ReactNode[] | React.ReactNode;
+  /**
+   * Handler for activating a tab.
+   */
+  onTabSelected?: (index: number) => void;
 };
 
 const TabList = React.forwardRef((props, ref) => {
@@ -147,6 +151,7 @@ const TabList = React.forwardRef((props, ref) => {
     children,
     color = 'blue',
     focusActivationMode = 'auto',
+    onTabSelected,
     ...rest
   } = props;
 
@@ -232,6 +237,9 @@ const TabList = React.forwardRef((props, ref) => {
 
   const onTabClick = React.useCallback(
     (index: number) => {
+      if (onTabSelected) {
+        onTabSelected(index);
+      }
       const tab = items[index];
       if (React.isValidElement(tab)) {
         if (tab.props.onActivated) {
@@ -241,7 +249,7 @@ const TabList = React.forwardRef((props, ref) => {
         }
       }
     },
-    [items, setActiveValue],
+    [items, setActiveValue, onTabSelected],
   );
 
   React.useEffect(() => {
@@ -779,12 +787,12 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
 
   const {
     labels,
-    // activeIndex,
-    // onTabSelected,
-    // focusActivationMode = 'auto',
+    activeIndex,
+    onTabSelected,
+    focusActivationMode,
     color,
     tabsClassName,
-    // contentClassName,
+    contentClassName,
     wrapperClassName,
     children,
     ...rest
@@ -792,13 +800,23 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
 
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
-      <TabList color={color} className={tabsClassName} ref={forwardedRef}>
+      <TabList
+        color={color}
+        className={tabsClassName}
+        focusActivationMode={focusActivationMode}
+        onTabSelected={onTabSelected}
+        ref={forwardedRef}
+      >
         {labels}
       </TabList>
 
       {actions && <TabsActions>{actions}</TabsActions>}
 
-      {children}
+      {children && (
+        <TabsPanel className={contentClassName} value={`${activeIndex}`}>
+          {children}
+        </TabsPanel>
+      )}
     </TabsWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
