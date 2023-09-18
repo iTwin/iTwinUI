@@ -23,7 +23,9 @@
     "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      // Since we don't depend on `@types/react-table`, we need to provide the types for it.
+      // This is only to avoid the missing types error when importing non-types from `react-table`
+      // But importing types MUST be done using the file path and not the package name
+      // See: https://github.com/iTwin/iTwinUI/pull/1570
       "react-table": ["src/react-table/react-table.ts"]
     }
   },

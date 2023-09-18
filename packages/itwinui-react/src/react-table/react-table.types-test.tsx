@@ -24,11 +24,8 @@ import {
 import type { TablePaginatorRendererProps } from '../core/Table/index.js';
 
 // Table types can be imported with an alias or selective types can be imported too.
-import * as _TableTypes from 'src/react-table/react-table.js';
-import type { Column } from 'src/react-table/react-table.js';
-
-// Can import types from file or by package name.
-import * as TableTypes from 'react-table';
+import * as TableTypes from './react-table.js';
+import type { Column } from './react-table.js';
 
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
@@ -42,8 +39,8 @@ import {
   MenuItem,
   Text,
   Tooltip,
-} from 'src/core/index.js';
-import { SvgMore } from 'src/core/utils/index.js';
+} from '../index.js';
+import { SvgMore } from '../core/utils/index.js';
 
 /**
  * Confirm that `satisfies` on columns does not give any unnecessary type errors.
