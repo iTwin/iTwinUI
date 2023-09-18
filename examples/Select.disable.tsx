@@ -6,8 +6,6 @@ import * as React from 'react';
 import { LabeledSelect } from '@itwin/itwinui-react';
 
 export default () => {
-  const labelId = React.useId();
-
   return (
     <LabeledSelect
       disabled

@@ -11,8 +11,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const labelId = React.useId();
-
   return (
     <LabeledSelect
       label={'Choose feeling'}

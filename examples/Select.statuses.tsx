@@ -21,8 +21,6 @@ export default () => {
     },
   ];
 
-  const labelId = React.useId();
-
   return (
     <LabeledSelect
       label={'Choose color'}
