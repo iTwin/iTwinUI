@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { useState } from '@storybook/addons';
 import React from 'react';
@@ -34,9 +34,9 @@ export default {
   },
 } as Meta<BreadcrumbsProps>;
 
-export const Basic: Story<BreadcrumbsProps> = (args) => {
+export const Basic = () => {
   return (
-    <Breadcrumbs {...args}>
+    <Breadcrumbs>
       <Breadcrumbs.Item key={0} onClick={() => action('Root')()}>
         Root
       </Breadcrumbs.Item>
@@ -50,9 +50,9 @@ export const Basic: Story<BreadcrumbsProps> = (args) => {
   );
 };
 
-export const Links: Story<BreadcrumbsProps> = (args) => {
+export const Links = () => {
   return (
-    <Breadcrumbs {...args}>
+    <Breadcrumbs>
       <Breadcrumbs.Item key={0} href='/'>
         iTwinUI
       </Breadcrumbs.Item>
@@ -64,9 +64,9 @@ export const Links: Story<BreadcrumbsProps> = (args) => {
   );
 };
 
-export const CustomSeparator: Story<BreadcrumbsProps> = (args) => {
+export const CustomSeparator = () => {
   return (
-    <Breadcrumbs separator={<SvgChevronRightDouble />} {...args}>
+    <Breadcrumbs separator={<SvgChevronRightDouble />}>
       <Breadcrumbs.Item key={0} onClick={() => action('Root')()}>
         Root
       </Breadcrumbs.Item>
@@ -79,11 +79,8 @@ export const CustomSeparator: Story<BreadcrumbsProps> = (args) => {
     </Breadcrumbs>
   );
 };
-CustomSeparator.args = {
-  separator: <SvgChevronRightDouble />,
-};
 
-export const Overflow: Story<BreadcrumbsProps> = (args) => {
+export const Overflow = () => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
@@ -97,12 +94,12 @@ export const Overflow: Story<BreadcrumbsProps> = (args) => {
 
   return (
     <div style={{ maxWidth: '50%', border: '1px solid lightpink', padding: 8 }}>
-      <Breadcrumbs {...args}>{items}</Breadcrumbs>
+      <Breadcrumbs>{items}</Breadcrumbs>
     </div>
   );
 };
 
-export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
+export const CustomOverflowBackButton = () => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
@@ -142,7 +139,6 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
             </Tooltip>
           );
         }}
-        {...args}
       >
         {items}
       </Breadcrumbs>
@@ -150,7 +146,7 @@ export const CustomOverflowBackButton: Story<BreadcrumbsProps> = (args) => {
   );
 };
 
-export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
+export const CustomOverflowDropdown = () => {
   const items = Array(10)
     .fill(null)
     .map((_, index) => (
@@ -201,7 +197,6 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
             </IconButton>
           </DropdownMenu>
         )}
-        {...args}
       >
         {items}
       </Breadcrumbs>
@@ -209,7 +204,7 @@ export const CustomOverflowDropdown: Story<BreadcrumbsProps> = (args) => {
   );
 };
 
-export const FolderNavigation: Story<BreadcrumbsProps> = (args) => {
+export const FolderNavigation = () => {
   const items = React.useMemo(
     () => ['Root', 'Level 1', 'Level 2', 'Level 3', 'Level 4'],
     [],
@@ -270,7 +265,7 @@ export const FolderNavigation: Story<BreadcrumbsProps> = (args) => {
           onBlur={() => setIsEditing(false)}
         />
       ) : (
-        <Breadcrumbs {...args}>{breadcrumbItems}</Breadcrumbs>
+        <Breadcrumbs>{breadcrumbItems}</Breadcrumbs>
       )}
     </div>
   );

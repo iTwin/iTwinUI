@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 import { Blockquote } from '@itwin/itwinui-react';
 
@@ -11,38 +11,28 @@ type BlockquoteProps = React.ComponentProps<typeof Blockquote>;
 export default {
   title: 'Typography/Blockquote',
   component: Blockquote,
-  args: {
-    children: 'This is a quote',
-    cite: '',
-  },
 } as Meta<BlockquoteProps>;
 
-export const Basic: Story<BlockquoteProps> = (args) => {
-  return <Blockquote {...args}>{args.children}</Blockquote>;
+export const Basic = () => {
+  return <Blockquote>This is a quote</Blockquote>;
 };
 
-export const WithFooter: Story<BlockquoteProps> = (args) => {
-  const { children, cite, footer, ...rest } = args;
+export const WithFooter = () => {
   return (
-    <Blockquote cite={cite} footer={footer} {...rest}>
-      {children}
+    <Blockquote
+      cite='https://www.bentley.com/en'
+      footer={
+        <>
+          — Greg Bentley, <cite>NasdaqListed</cite>
+        </>
+      }
+    >
+      <p>
+        For 36 years we have served engineers with our software, passionately
+        believing that better performing and more resilient infrastructure is
+        essential to improve the quality of life for people everywhere, sustain
+        our environment, and grow our economies.
+      </p>
     </Blockquote>
   );
-};
-
-WithFooter.args = {
-  children: (
-    <p>
-      For 36 years we have served engineers with our software, passionately
-      believing that better performing and more resilient infrastructure is
-      essential to improve the quality of life for people everywhere, sustain
-      our environment, and grow our economies.
-    </p>
-  ),
-  cite: 'https://www.bentley.com/en',
-  footer: (
-    <>
-      — Greg Bentley, <cite>NasdaqListed</cite>
-    </>
-  ),
 };
