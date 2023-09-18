@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { InputGroup, Radio } from '@itwin/itwinui-react';
-import { SvgSmileyHappy, SvgSmileySad } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
