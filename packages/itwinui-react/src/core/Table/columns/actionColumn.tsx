@@ -13,7 +13,6 @@ import { MenuItem } from '../../Menu/index.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
-import cx from 'classnames';
 
 const ACTION_CELL_ID = 'iui-table-action';
 
@@ -125,7 +124,6 @@ export const ActionColumn = <T extends Record<string, unknown>>({
             setIsOpen(open);
             dropdownMenuProps?.onVisibleChange?.(open);
           }}
-          className={cx('iui-scroll', dropdownMenuProps.className)}
         >
           <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>
             <SvgColumnManager />

@@ -10,7 +10,8 @@ export default () => {
   return (
     <FileUpload
       onFileDropped={(files) => {
-        setFiles(files);
+        const fileArray = Array.from(files);
+        setFiles(fileArray);
       }}
     >
       <FileUploadCard
