@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 import { getUserColor, Avatar } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
@@ -23,7 +23,7 @@ export default {
   },
 } as Meta<AvatarProps>;
 
-export const Basic: Story<AvatarProps> = () => {
+export const Basic = () => {
   return (
     <Avatar
       abbreviation='TR'
@@ -33,7 +33,7 @@ export const Basic: Story<AvatarProps> = () => {
   );
 };
 
-export const WithImage: Story<AvatarProps> = () => {
+export const WithImage = () => {
   return (
     <Avatar
       size='large'
@@ -47,7 +47,7 @@ export const WithImage: Story<AvatarProps> = () => {
   );
 };
 
-export const WithIcon: Story<AvatarProps> = () => {
+export const WithIcon = () => {
   return (
     <Avatar
       size='large'
@@ -59,7 +59,7 @@ export const WithIcon: Story<AvatarProps> = () => {
   );
 };
 
-export const Sizes: Story<AvatarProps> = () => {
+export const Sizes = () => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
       <Avatar
@@ -90,7 +90,7 @@ export const Sizes: Story<AvatarProps> = () => {
   );
 };
 
-export const Statuses: Story<AvatarProps> = () => {
+export const Statuses = () => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
       <Avatar
@@ -125,7 +125,7 @@ export const Statuses: Story<AvatarProps> = () => {
   );
 };
 
-export const CustomStatusTranslation: Story<AvatarProps> = () => {
+export const CustomStatusTranslation = () => {
   return (
     <Avatar
       size='large'

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 import {
   getUserColor,
@@ -25,7 +25,7 @@ export default {
   title: 'Core/AvatarGroup',
 } as Meta<AvatarGroupProps>;
 
-export const Basic: Story<AvatarGroupProps> = () => {
+export const Basic = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -53,7 +53,7 @@ export const Basic: Story<AvatarGroupProps> = () => {
   );
 };
 
-export const Animated: Story<AvatarGroupProps> = () => {
+export const Animated = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -79,7 +79,7 @@ export const Animated: Story<AvatarGroupProps> = () => {
   );
 };
 
-export const ManyAvatars: Story<AvatarGroupProps> = () => {
+export const ManyAvatars = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -120,7 +120,7 @@ export const ManyAvatars: Story<AvatarGroupProps> = () => {
   );
 };
 
-export const NonStacked: Story<AvatarGroupProps> = () => {
+export const NonStacked = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',
@@ -149,7 +149,7 @@ export const NonStacked: Story<AvatarGroupProps> = () => {
   );
 };
 
-export const WithTooltip: Story<AvatarGroupProps> = () => {
+export const WithTooltip = () => {
   const userNames = [
     'Terry Rivers',
     'Robin Mercer',

@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 import { Badge } from '@itwin/itwinui-react';
 
@@ -19,34 +19,19 @@ export default {
   title: 'Core/Badge',
 } as Meta<BadgeProps>;
 
-export const Basic: Story<BadgeProps> = ({ backgroundColor, children }) => {
-  return <Badge backgroundColor={backgroundColor}>{children}</Badge>;
+export const Basic = () => {
+  return <Badge backgroundColor='skyblue'>Label</Badge>;
 };
 
-Basic.args = {
-  backgroundColor: 'skyblue',
-  children: 'Label',
-};
-
-export const LongLabel: Story<BadgeProps> = ({
-  backgroundColor,
-  title,
-  children,
-}) => {
+export const LongLabel = () => {
   return (
-    <Badge backgroundColor={backgroundColor} title={title}>
-      {children}
+    <Badge backgroundColor='skyblue' title='Long label that gets truncated'>
+      Long label that gets truncated
     </Badge>
   );
 };
 
-LongLabel.args = {
-  backgroundColor: 'skyblue',
-  children: 'Long label that gets truncated',
-  title: 'Long label that gets truncated',
-};
-
-export const Statuses: Story<BadgeProps> = () => {
+export const Statuses = () => {
   return (
     <div style={{ display: 'flex', gap: 8 }}>
       <Badge backgroundColor='positive'>Success</Badge>
@@ -55,8 +40,4 @@ export const Statuses: Story<BadgeProps> = () => {
       <Badge backgroundColor='warning'>Warning</Badge>
     </div>
   );
-};
-
-Statuses.parameters = {
-  controls: { hideNoControlsWarning: true },
 };

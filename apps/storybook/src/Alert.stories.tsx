@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { Meta, Story } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
@@ -19,7 +19,7 @@ export default {
   },
 } as Meta<AlertProps>;
 
-export const Informational: Story<AlertProps> = () => {
+export const Informational = () => {
   return (
     <Alert.Wrapper type='informational'>
       <Alert.Icon />
@@ -34,7 +34,7 @@ export const Informational: Story<AlertProps> = () => {
   );
 };
 
-export const Positive: Story<AlertProps> = () => {
+export const Positive = () => {
   return (
     <Alert.Wrapper type='positive'>
       <Alert.Icon />
@@ -49,7 +49,7 @@ export const Positive: Story<AlertProps> = () => {
   );
 };
 
-export const Warning: Story<AlertProps> = () => {
+export const Warning = () => {
   return (
     <Alert.Wrapper type='warning'>
       <Alert.Icon />
@@ -64,7 +64,7 @@ export const Warning: Story<AlertProps> = () => {
   );
 };
 
-export const Negative: Story<AlertProps> = () => {
+export const Negative = () => {
   return (
     <Alert.Wrapper type='negative'>
       <Alert.Icon />
@@ -79,7 +79,7 @@ export const Negative: Story<AlertProps> = () => {
   );
 };
 
-export const Sticky: Story<AlertProps> = () => {
+export const Sticky = () => {
   return (
     <div
       style={{
@@ -143,7 +143,7 @@ export const Sticky: Story<AlertProps> = () => {
   );
 };
 
-export const Empty: Story<AlertProps> = () => {
+export const Empty = () => {
   return (
     <Alert.Wrapper type='informational'>
       <Alert.Icon />
@@ -152,7 +152,7 @@ export const Empty: Story<AlertProps> = () => {
   );
 };
 
-export const CustomIcon: Story<AlertProps> = () => {
+export const CustomIcon = () => {
   return (
     <Alert.Wrapper type='informational'>
       <Alert.Icon>
