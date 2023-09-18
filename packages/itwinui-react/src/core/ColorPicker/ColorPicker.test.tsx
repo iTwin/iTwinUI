@@ -575,8 +575,10 @@ it.each([true, false])('should respect `applyBackground`', (value) => {
     <ColorPicker applyBackground={value}>blah</ColorPicker>,
   );
   if (value) {
-    expect(container.querySelector('div')).toHaveClass('iui-surface');
+    expect(container.querySelector('div')).toHaveClass('iui-popover-surface');
   } else {
-    expect(container.querySelector('div')).not.toHaveClass('iui-surface');
+    expect(container.querySelector('div')).not.toHaveClass(
+      'iui-popover-surface',
+    );
   }
 });
