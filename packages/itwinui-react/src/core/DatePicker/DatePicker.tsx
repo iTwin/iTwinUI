@@ -17,6 +17,7 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import { TimePicker } from '../TimePicker/index.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';
+import { Surface } from '../Surface/index.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -223,6 +224,15 @@ type DatePickerProps = {
    * Disabled dates cannot be selected.
    */
   isDateDisabled?: (date: Date) => boolean;
+  /**
+   * Whether there is a background, border, shadow, etc.
+   *
+   * Should be set to true if used in a popover that doesn't have its own background,
+   * or set to false if the popover has its own background or embedding within a page.
+   *
+   * @default true
+   */
+  applyBackground?: boolean;
 } & DateRangePickerProps &
   Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
@@ -261,6 +271,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     dayProps,
     weekProps,
     isDateDisabled,
+    applyBackground = true,
     ...rest
   } = props;
 
@@ -564,6 +575,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
+      as={(applyBackground ? Surface : 'div') as typeof Surface}
       className={cx('iui-date-picker', className)}
       ref={forwardedRef as React.Ref<HTMLDivElement>}
       {...rest}

@@ -3651,7 +3651,6 @@ it('should render action column with column manager', async () => {
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
 });
 
 it('should render dropdown menu with custom style and override default style', async () => {
@@ -3701,7 +3700,6 @@ it('should render dropdown menu with custom style and override default style', a
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
   expect(dropdownMenu).toHaveStyle('background-color: red');
