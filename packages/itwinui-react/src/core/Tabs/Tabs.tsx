@@ -512,7 +512,7 @@ type TabOwnProps = {
   onActivated?: () => void;
 };
 
-const Tab = React.forwardRef((props, ref) => {
+export const Tab = React.forwardRef((props, ref) => {
   const {
     className,
     children,
@@ -787,7 +787,6 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
 
   const {
     labels,
-    activeIndex,
     onTabSelected,
     focusActivationMode,
     color,
@@ -807,15 +806,22 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
         onTabSelected={onTabSelected}
         ref={forwardedRef}
       >
-        {labels}
+        {labels.map((label, index) =>
+          React.cloneElement(label as JSX.Element, {
+            value: index,
+          }),
+        )}
       </TabList>
 
       {actions && <TabsActions>{actions}</TabsActions>}
 
       {children && (
-        <TabsPanel className={contentClassName} value={`${activeIndex}`}>
+        <Box
+          className={cx('iui-tabs-content', contentClassName)}
+          role='tabpanel'
+        >
           {children}
-        </TabsPanel>
+        </Box>
       )}
     </TabsWrapper>
   );

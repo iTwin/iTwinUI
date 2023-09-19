@@ -6,7 +6,7 @@
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import { Meta, Story } from '@storybook/react/';
 import React from 'react';
-import { Button, Tabs } from '@itwin/itwinui-react';
+import { Button, Tabs, Tab } from '@itwin/itwinui-react';
 
 type TabsProps = React.ComponentProps<typeof Tabs>;
 
@@ -499,9 +499,9 @@ export const LegacyTabs: Story<Partial<TabsProps>> = () => {
   return (
     <Tabs
       labels={[
-        <Tabs.Tab key={1} label='Item1' value={0} />,
-        <Tabs.Tab key={2} label='Item2' value={1} />,
-        <Tabs.Tab key={3} label='Item3' value={2} />,
+        <Tab key={1} label='Item1' />,
+        <Tab key={2} label='Item2' />,
+        <Tab key={3} label='Item3' />,
       ]}
       onTabSelected={setIndex}
     >
