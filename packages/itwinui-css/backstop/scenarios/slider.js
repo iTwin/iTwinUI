@@ -6,19 +6,21 @@ const { scenario, hover, focus } = require('../scenarioHelper');
 
 module.exports = [
   // Slider types
-  scenario('Type Horizontal', {
+  scenario('Type Default', {
     selectors: ['#demo-horizontal'],
     viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type Horizontal extras', {
+  scenario('Type Range', {
     selectors: ['#demo-horizontal-extras'],
     viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type Vertical', {
+  scenario('Type Default Vertical', {
     selectors: ['#demo-vertical'],
+    viewports: [{ width: 800, height: 600 }],
   }),
-  scenario('Type Vertical extras', {
+  scenario('Type Range Vertical', {
     selectors: ['#demo-vertical-extras'],
+    viewports: [{ width: 800, height: 600 }],
   }),
 
   // Hover & focus states
