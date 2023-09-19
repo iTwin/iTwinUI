@@ -12,7 +12,7 @@ const commonRules: Record<commonRulesKeys, Record<string, any>> = {
   ignore_color_contrast_violation: {
     id: 'color-contrast',
     enabled: true,
-    selector: ':not(.iui-root, [data-iui-theme]) .iui-time > ol > li)',
+    selector: ':not(.iui-root, [data-iui-theme]) .iui-time > ol > li',
   },
 };
 
