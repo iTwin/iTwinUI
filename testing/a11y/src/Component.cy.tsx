@@ -6,13 +6,14 @@ import * as React from 'react';
 import * as allExamples from 'examples';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
-/* https://github.com/iTwin/iTwinUI/pull/1581 */
+// We are disabling few rules on certain elements to ignore false positives.
+// See: https://github.com/iTwin/iTwinUI/pull/1581
 type commonRulesKeys = 'ignore_color_contrast_violation';
 const commonRules: Record<commonRulesKeys, Record<string, any>> = {
   ignore_color_contrast_violation: {
     id: 'color-contrast',
     enabled: true,
-    selector: ':not(.iui-root, [data-iui-theme]) .iui-time > ol > li',
+    selector: ':not(._iui3-time > ol > li)',
   },
 };
 
@@ -44,6 +45,8 @@ describe('Should have no WCAG violations', () => {
           Component: name,
           'Rule ID': id,
           Description: help,
+          //NodeLength: nodes.length,
+          //NodeFirst: nodes.map((n) => n['html']),
         }));
         cy.task('table', violationData);
       });
