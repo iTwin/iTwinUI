@@ -45,8 +45,6 @@ describe('Should have no WCAG violations', () => {
           Component: name,
           'Rule ID': id,
           Description: help,
-          //NodeLength: nodes.length,
-          //NodeFirst: nodes.map((n) => n['html']),
         }));
         cy.task('table', violationData);
       });
