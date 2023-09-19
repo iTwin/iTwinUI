@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta } from '@storybook/react';
 import React from 'react';
 import {
   getUserColor,
@@ -11,19 +10,11 @@ import {
   AvatarGroup,
 } from '@itwin/itwinui-react';
 
-type AvatarGroupProps = React.ComponentProps<typeof AvatarGroup>;
-
 export default {
   component: AvatarGroup,
   subcomponents: { Avatar },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
   title: 'Core/AvatarGroup',
-} as Meta<AvatarGroupProps>;
+};
 
 export const Basic = () => {
   const userNames = [

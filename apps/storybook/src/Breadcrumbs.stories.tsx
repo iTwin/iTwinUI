@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { useState } from '@storybook/addons';
 import React from 'react';
@@ -21,18 +20,10 @@ import {
   SvgMore,
 } from '@itwin/itwinui-icons-react';
 
-type BreadcrumbsProps = React.ComponentProps<typeof Breadcrumbs>;
-
 export default {
   component: Breadcrumbs,
   title: 'Core/Breadcrumbs',
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
-} as Meta<BreadcrumbsProps>;
+};
 
 export const Basic = () => {
   return (

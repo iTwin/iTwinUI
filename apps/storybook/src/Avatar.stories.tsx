@@ -2,26 +2,14 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta } from '@storybook/react';
 import React from 'react';
 import { getUserColor, Avatar } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
 
-type AvatarProps = React.ComponentProps<typeof Avatar>;
-
 export default {
   title: 'Core/Avatar',
   component: Avatar,
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    image: { control: { disable: true } },
-  },
-} as Meta<AvatarProps>;
+};
 
 export const Basic = () => {
   return (

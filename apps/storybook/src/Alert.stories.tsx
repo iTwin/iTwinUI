@@ -3,21 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
 import React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
-type AlertProps = React.ComponentProps<typeof Alert>;
 
 export default {
   title: 'Core/Alert',
   component: Alert,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-} as Meta<AlertProps>;
+};
 
 export const Informational = () => {
   return (

@@ -4,26 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Meta } from '@storybook/react';
 import { Button, NotificationMarker } from '@itwin/itwinui-react';
 import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
 import { SvgEmail } from '@itwin/itwinui-icons-react';
 
-type ButtonProps = React.ComponentProps<typeof Button>;
-
 export default {
   title: 'Buttons/Button',
   component: Button,
-  argTypes: {
-    onClick: { control: { disable: true } },
-    startIcon: { control: { disable: true } },
-    endIcon: { control: { disable: true } },
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    type: { control: { disable: true } },
-    as: { type: { name: 'string', required: false } },
-  },
-} as Meta<ButtonProps>;
+};
 
 export const CallToAction = () => {
   return (

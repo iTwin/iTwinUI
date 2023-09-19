@@ -2,16 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta } from '@storybook/react';
 import React from 'react';
 import { Blockquote } from '@itwin/itwinui-react';
-
-type BlockquoteProps = React.ComponentProps<typeof Blockquote>;
 
 export default {
   title: 'Typography/Blockquote',
   component: Blockquote,
-} as Meta<BlockquoteProps>;
+};
 
 export const Basic = () => {
   return <Blockquote>This is a quote</Blockquote>;

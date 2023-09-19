@@ -20,21 +20,12 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-type ButtonGroupProps = React.ComponentProps<typeof ButtonGroup>;
 
 export default {
   title: 'Buttons/ButtonGroup',
   component: ButtonGroup,
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
-} as Meta<ButtonGroupProps>;
+};
 
 export const WithIcons = () => {
   return (
