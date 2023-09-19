@@ -3,15 +3,15 @@
 @use '../mixins';
 
 $iui-slider-container-gap: var(--iui-size-s);
+$iui-slider-thumb-size: var(--iui-size-m);
 $iui-slider-tick-size: var(--iui-size-s);
 $iui-slider-tick-thickness: 1px;
 
 // #region Slider container
 .iui-slider-container {
   --_iui-slider-rail-color: var(--iui-color-border);
-  --_iui-slider-thumb-size: var(--iui-size-m);
   --_iui-slider-track-color: var(--iui-color-border-accent);
-  --_iui-slider-track-thickness: calc(var(--_iui-slider-thumb-size) * 0.25);
+  --_iui-slider-track-thickness: calc(#{$iui-slider-thumb-size} * 0.25);
 
   display: grid;
 
@@ -49,7 +49,7 @@ $iui-slider-tick-thickness: 1px;
     }
 
     .iui-slider {
-      block-size: calc(var(--_iui-slider-thumb-size) + 2px);
+      block-size: calc($iui-slider-thumb-size + 2px);
       touch-action: pan-x;
 
       &::before {
@@ -111,7 +111,7 @@ $iui-slider-tick-thickness: 1px;
     }
 
     .iui-slider {
-      inline-size: calc(var(--_iui-slider-thumb-size) + 2px);
+      inline-size: calc($iui-slider-thumb-size + 2px);
       touch-action: pan-y;
 
       &::before {
@@ -218,8 +218,8 @@ $iui-slider-tick-thickness: 1px;
 .iui-slider-thumb {
   box-sizing: content-box;
   position: absolute;
-  block-size: var(--_iui-slider-thumb-size);
-  inline-size: var(--_iui-slider-thumb-size);
+  block-size: $iui-slider-thumb-size;
+  inline-size: $iui-slider-thumb-size;
   border-radius: 100%;
   z-index: 1;
   cursor: grab;
