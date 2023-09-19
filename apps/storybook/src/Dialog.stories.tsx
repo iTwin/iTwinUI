@@ -5,7 +5,6 @@
 import React from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
 import { action } from '@storybook/addon-actions';
-import { Meta, Story } from '@storybook/react';
 
 export default {
   title: 'Core/Dialog',
@@ -13,9 +12,9 @@ export default {
   parameters: {
     controls: { hideNoControlsWarning: true },
   },
-} as Meta;
+};
 
-export const Basic: Story = () => {
+export const Basic = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -70,7 +69,7 @@ export const Basic: Story = () => {
   );
 };
 
-export const Modal: Story = () => {
+export const Modal = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -135,7 +134,7 @@ export const Modal: Story = () => {
   );
 };
 
-export const DraggableAndResizable: Story = () => {
+export const DraggableAndResizable = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -197,12 +196,8 @@ export const DraggableAndResizable: Story = () => {
   );
 };
 
-export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
-  const [isDialogOpen, setIsDialogOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    setIsDialogOpen(isOpen);
-  }, [isOpen]);
+export const DraggableRelativeToContainer = () => {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
 
   const closeDialog = () => {
     setIsDialogOpen(false);
@@ -248,7 +243,6 @@ export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
       <Dialog
         isOpen={isDialogOpen}
         onClose={onClose}
-        {...rest}
         closeOnEsc
         isDismissible
         isDraggable
@@ -278,7 +272,7 @@ export const DraggableRelativeToContainer: Story = ({ isOpen, ...rest }) => {
   );
 };
 
-export const Placement: Story = ({ ...rest }) => {
+export const Placement = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const closeDialog = () => {
@@ -312,7 +306,6 @@ export const Placement: Story = ({ ...rest }) => {
       <Dialog
         isOpen={isOpen}
         placement={'top-left'}
-        {...rest}
         onClose={onClose}
         closeOnEsc
         isDismissible

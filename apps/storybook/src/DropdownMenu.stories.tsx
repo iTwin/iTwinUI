@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
@@ -23,17 +22,10 @@ import {
 } from '@itwin/itwinui-icons-react';
 import { useState } from '@storybook/addons';
 
-type DropdownMenuProps = React.ComponentProps<typeof DropdownMenu>;
-
 export default {
   title: 'Core/DropdownMenu',
   component: DropdownMenu,
   subcomponents: { MenuItem, MenuDivider, MenuExtraContent },
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
   parameters: {
     docs: {
       source: {
@@ -41,10 +33,9 @@ export default {
       },
     },
   },
-} as Meta<DropdownMenuProps>;
+};
 
-export const Basic: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const Basic = () => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -61,7 +52,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>
@@ -72,8 +63,7 @@ export const Basic: Story<DropdownMenuProps> = (args) => {
 // Body height is the same as Select component height therefore clicking outside would not close dropdown.
 Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
 
-export const WithStartIcons: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const WithStartIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
     close();
@@ -94,7 +84,7 @@ export const WithStartIcons: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>
@@ -106,8 +96,7 @@ WithStartIcons.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
-export const WithEndIcons: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const WithEndIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
     action(`${actionName} clicked!`)();
     close();
@@ -128,7 +117,7 @@ export const WithEndIcons: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>
@@ -140,8 +129,7 @@ WithEndIcons.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
-export const WithSublabels: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const WithSublabels = () => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -174,7 +162,7 @@ export const WithSublabels: Story<DropdownMenuProps> = (args) => {
   ];
   return (
     <div style={{ minHeight: 200 }}>
-      <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+      <DropdownMenu menuItems={dropdownMenuItems}>
         <IconButton>
           <SvgMore />
         </IconButton>
@@ -187,8 +175,7 @@ WithSublabels.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
-export const Submenu: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const Submenu = () => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -238,7 +225,7 @@ export const Submenu: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>
@@ -250,8 +237,7 @@ Submenu.decorators = [
   (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
 ];
 
-export const WithSeparator: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
+export const WithSeparator = () => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -272,7 +258,7 @@ export const WithSeparator: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>
@@ -284,9 +270,7 @@ WithSeparator.decorators = [
   (Story) => <div style={{ minHeight: 200 }}>{Story()}</div>,
 ];
 
-export const WithContent: Story<DropdownMenuProps> = (args) => {
-  const { menuItems, ...rest } = args;
-
+export const WithContent = () => {
   const onClick = (item: string, close: () => void) => () => {
     action(`'${item}' clicked!`)();
     close();
@@ -321,7 +305,7 @@ export const WithContent: Story<DropdownMenuProps> = (args) => {
     </MenuItem>,
   ];
   return (
-    <DropdownMenu menuItems={menuItems || dropdownMenuItems} {...rest}>
+    <DropdownMenu menuItems={dropdownMenuItems}>
       <IconButton>
         <SvgMore />
       </IconButton>

@@ -4,10 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Story, Meta } from '@storybook/react';
 import { MenuItem, DropdownButton } from '@itwin/itwinui-react';
-
-type DropdownButtonProps = React.ComponentProps<typeof DropdownButton>;
 
 export default {
   title: 'Buttons/DropdownButton',
@@ -16,10 +13,9 @@ export default {
     style: { control: { disable: true } },
     className: { control: { disable: true } },
   },
-} as Meta<DropdownButtonProps>;
+};
 
-export const Basic: Story<DropdownButtonProps> = (args) => {
-  const { menuItems, children, ...rest } = args;
+export const Basic = () => {
   const onClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -37,13 +33,5 @@ export const Basic: Story<DropdownButtonProps> = (args) => {
     </MenuItem>,
   ];
 
-  return (
-    <DropdownButton menuItems={menuItems || buttonMenuItems} {...rest}>
-      {children}
-    </DropdownButton>
-  );
-};
-
-Basic.args = {
-  children: 'Default',
+  return <DropdownButton menuItems={buttonMenuItems}>Default</DropdownButton>;
 };
