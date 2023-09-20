@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.0.0-dev.9
+
+### Major Changes
+
+- [#1573](https://github.com/iTwin/iTwinUI/pull/1573): Removed background from color-picker, date-picker/time-picker, and column-filter. Use `iui-surface` class to add it back.
+- [#1577](https://github.com/iTwin/iTwinUI/pull/1577): `iui-scroll` modifier is no longer needed on `iui-menu`.
+- [#1556](https://github.com/iTwin/iTwinUI/pull/1556): Items inside button-group no longer need a wrapping `<div>`.
+- [#1559](https://github.com/iTwin/iTwinUI/pull/1559): Changed `iui-button-group-vertical` class to `iui-button-group` with attribute `data-iui-orientation="vertical"`.
+
 ## 2.0.0-dev.8
 
 ### Major Changes
@@ -109,6 +118,12 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.12.4
+
+### Patch Changes
+
+- [#1575](https://github.com/iTwin/iTwinUI/pull/1575): ProgressRadial now stays inside container when size="x-small".
 
 ## 1.12.3
 

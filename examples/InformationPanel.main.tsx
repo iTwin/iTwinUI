@@ -13,6 +13,7 @@ import {
   Label,
   Table,
   Text,
+  InputGrid,
 } from '@itwin/itwinui-react';
 import * as React from 'react';
 
@@ -48,24 +49,33 @@ export default () => {
         </InformationPanelHeader>
         <InformationPanelBody>
           <InformationPanelContent displayStyle='inline'>
-            <Label htmlFor='name-input'>File name</Label>
-            <Input
-              size='small'
-              id='name-input'
-              value={`Row ${openRowIndex ?? 0}`}
-              readOnly
-            />
-
-            <Label htmlFor='author-input'>Author</Label>
-            <Input
-              size='small'
-              id='author-input'
-              defaultValue='DJ Terry'
-              readOnly
-            />
-
-            <Label htmlFor='year-input'>Year</Label>
-            <Input size='small' id='year-input' defaultValue='2021' readOnly />
+            <InputGrid>
+              <Label htmlFor='name-input'>File name</Label>
+              <Input
+                size='small'
+                id='name-input'
+                value={`Row ${openRowIndex ?? 0}`}
+                readOnly
+              />
+            </InputGrid>
+            <InputGrid>
+              <Label htmlFor='author-input'>Author</Label>
+              <Input
+                size='small'
+                id='author-input'
+                defaultValue='DJ Terry'
+                readOnly
+              />
+            </InputGrid>
+            <InputGrid>
+              <Label htmlFor='year-input'>Year</Label>
+              <Input
+                size='small'
+                id='year-input'
+                defaultValue='2021'
+                readOnly
+              />
+            </InputGrid>
           </InformationPanelContent>
         </InformationPanelBody>
       </InformationPanel>

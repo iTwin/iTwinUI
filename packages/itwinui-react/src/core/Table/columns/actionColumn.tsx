@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { HeaderProps } from 'react-table';
+import type { HeaderProps } from '../../../react-table/react-table.js';
 import { Checkbox } from '../../Checkbox/index.js';
 import { SvgColumnManager } from '../../utils/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
@@ -13,7 +13,6 @@ import { MenuItem } from '../../Menu/index.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';
-import cx from 'classnames';
 
 const ACTION_CELL_ID = 'iui-table-action';
 
@@ -121,15 +120,10 @@ export const ActionColumn = <T extends Record<string, unknown>>({
         <DropdownMenu
           {...dropdownMenuProps}
           menuItems={headerCheckBoxes}
-          onHide={(i) => {
-            setIsOpen(false);
-            dropdownMenuProps.onHide?.(i);
+          onVisibleChange={(open) => {
+            setIsOpen(open);
+            dropdownMenuProps?.onVisibleChange?.(open);
           }}
-          onShow={(i) => {
-            setIsOpen(true);
-            dropdownMenuProps.onShow?.(i);
-          }}
-          className={cx('iui-scroll', dropdownMenuProps.className)}
         >
           <IconButton styleType='borderless' isActive={isOpen} ref={buttonRef}>
             <SvgColumnManager />

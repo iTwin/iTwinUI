@@ -5,7 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-icons-react": "2",
-    "@itwin/itwinui-react": "3.0.0-dev.8",
+    "@itwin/itwinui-react": "3.0.0-dev.10",
     "@storybook/addon-a11y": "~7.0.2",
     "@storybook/addon-actions": "~7.0.2",
     "@storybook/addon-essentials": "~7.0.2",
@@ -34,7 +34,7 @@
     "vite": "^4.1.5"
   },
   "scripts": {
-    "build": "dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
+    "build": "tsc -p tsconfig.build.json && dotenv -v NODE_OPTIONS=\"--max-old-space-size=4096\" sb build",
     "dev": "sb dev -p 6006 --no-open --quiet",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",

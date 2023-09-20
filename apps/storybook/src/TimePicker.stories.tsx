@@ -7,9 +7,9 @@ import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import {
   TimePicker,
-  IconButton,
-  LabeledInput,
+  InputWithDecorations,
   MeridiemType,
+  Popover,
 } from '@itwin/itwinui-react';
 import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
 
@@ -39,7 +39,6 @@ export const Basic: Story<TimePickerProps> = (args) => {
     use12Hours = false,
     ...rest
   } = args;
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(new Date(date));
   const onChange = (date: Date) => {
     setCurrentDate(date);
@@ -52,32 +51,32 @@ export const Basic: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', { timeStyle: 'short' })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
+      <InputWithDecorations style={{ width: 150 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: 'short',
+          })}
+          readOnly
+        />
+
+        <Popover
+          applyBackground
+          placement='bottom-end'
+          content={
+            <TimePicker
+              {...rest}
+              date={currentDate}
+              onChange={onChange}
+              setFocusHour={setFocusHour}
+              use12Hours={use12Hours}
+            />
+          }
+        >
+          <InputWithDecorations.Button>
             <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
-      {opened && (
-        <div>
-          <TimePicker
-            {...rest}
-            date={currentDate}
-            onChange={onChange}
-            setFocusHour={setFocusHour}
-            use12Hours={use12Hours}
-          />
-        </div>
-      )}
+          </InputWithDecorations.Button>
+        </Popover>
+      </InputWithDecorations>
     </>
   );
 };
@@ -104,7 +103,6 @@ export const CustomRenderers: Story<TimePickerProps> = (args) => {
       meridiem === 'AM' ? 'Before' : 'After',
     ...rest
   } = args;
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(new Date(date));
   const onChange = (date: Date) => {
     setCurrentDate(date);
@@ -117,35 +115,34 @@ export const CustomRenderers: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', { timeStyle: 'short' })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
+      <InputWithDecorations style={{ width: 200 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: 'short',
+          })}
+          readOnly
+        />
+        <Popover
+          applyBackground
+          placement='bottom-end'
+          content={
+            <TimePicker
+              {...rest}
+              date={currentDate}
+              onChange={onChange}
+              setFocusHour={setFocusHour}
+              use12Hours={use12Hours}
+              hourRenderer={hourRenderer}
+              minuteRenderer={minuteRenderer}
+              meridiemRenderer={meridiemRenderer}
+            />
+          }
+        >
+          <InputWithDecorations.Button>
             <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
-      {opened && (
-        <div>
-          <TimePicker
-            {...rest}
-            date={currentDate}
-            onChange={onChange}
-            setFocusHour={setFocusHour}
-            use12Hours={use12Hours}
-            hourRenderer={hourRenderer}
-            minuteRenderer={minuteRenderer}
-            meridiemRenderer={meridiemRenderer}
-          />
-        </div>
-      )}
+          </InputWithDecorations.Button>
+        </Popover>
+      </InputWithDecorations>
     </>
   );
 };
@@ -175,7 +172,6 @@ export const Combined: Story<TimePickerProps> = (args) => {
     useCombinedRenderer = true,
     ...rest
   } = args;
-  const [opened, setOpened] = React.useState(false);
   const [currentDate, setCurrentDate] = React.useState(new Date(date));
   const onChange = (date: Date) => {
     setCurrentDate(date);
@@ -190,39 +186,36 @@ export const Combined: Story<TimePickerProps> = (args) => {
   }, [date]);
   return (
     <>
-      <LabeledInput
-        displayStyle='inline'
-        value={currentDate.toLocaleTimeString('en-US', {
-          timeStyle: inputValueType,
-        })}
-        svgIcon={
-          <IconButton
-            styleType='borderless'
-            onClick={() => setOpened((v) => !v)}
-          >
+      <InputWithDecorations style={{ width: 150 }} id='time-input'>
+        <InputWithDecorations.Input
+          value={currentDate.toLocaleTimeString('en-US', {
+            timeStyle: inputValueType,
+          })}
+          readOnly
+        />
+        <Popover
+          applyBackground
+          placement='bottom-end'
+          content={
+            <TimePicker
+              {...rest}
+              date={currentDate}
+              onChange={onChange}
+              setFocusHour={setFocusHour}
+              useCombinedRenderer={useCombinedRenderer}
+              precision={precision}
+              hourStep={hourStep}
+              minuteStep={minuteStep}
+              secondStep={secondStep}
+              use12Hours={use12Hours}
+            />
+          }
+        >
+          <InputWithDecorations.Button>
             <SvgCalendar />
-          </IconButton>
-        }
-        style={{ width: 150 }}
-        readOnly
-        id='time-input'
-      />
-      {opened && (
-        <div>
-          <TimePicker
-            {...rest}
-            date={currentDate}
-            onChange={onChange}
-            setFocusHour={setFocusHour}
-            useCombinedRenderer={useCombinedRenderer}
-            precision={precision}
-            hourStep={hourStep}
-            minuteStep={minuteStep}
-            secondStep={secondStep}
-            use12Hours={use12Hours}
-          />
-        </div>
-      )}
+          </InputWithDecorations.Button>
+        </Popover>
+      </InputWithDecorations>
     </>
   );
 };

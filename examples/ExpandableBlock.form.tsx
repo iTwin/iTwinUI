@@ -9,17 +9,26 @@ import {
   Input,
   InputGroup,
   Radio,
+  InputGrid,
 } from '@itwin/itwinui-react';
 
 export default () => {
   const nameSection = (
     <>
-      <Label htmlFor='name' required>
-        Name
-      </Label>
-      <Input id='name' key='name' placeholder='Enter name' />
-      <Label htmlFor='occupation'>Occupation</Label>
-      <Input id='occupation' key='occupation' placeholder='Enter occupation' />
+      <InputGrid>
+        <Label htmlFor='name' required>
+          Name
+        </Label>
+        <Input id='name' key='name' placeholder='Enter name' />
+      </InputGrid>
+      <InputGrid>
+        <Label htmlFor='occupation'>Occupation</Label>
+        <Input
+          id='occupation'
+          key='occupation'
+          placeholder='Enter occupation'
+        />
+      </InputGrid>
     </>
   );
 

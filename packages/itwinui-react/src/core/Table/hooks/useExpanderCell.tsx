@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { CellProps, ColumnInstance, Hooks, Row } from 'react-table';
+import type {
+  CellProps,
+  ColumnInstance,
+  Hooks,
+  Row,
+} from '../../../react-table/react-table.js';
 import { ExpanderColumn, EXPANDER_CELL_ID } from '../columns/index.js';
 
 export const useExpanderCell =

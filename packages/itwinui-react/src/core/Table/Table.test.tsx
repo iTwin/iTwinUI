@@ -19,7 +19,7 @@ import {
   tableFilters,
 } from './filters/index.js';
 import { actions } from 'react-table';
-import type { CellProps, Column, Row } from 'react-table';
+import type { CellProps, Column, Row } from '../../react-table/react-table.js';
 import { InputGroup } from '../InputGroup/index.js';
 import { Radio } from '../Radio/index.js';
 import {
@@ -1659,39 +1659,6 @@ it('should not trigger sorting when filter is clicked', async () => {
 
   expect(onFilter).toHaveBeenCalled();
   expect(onSort).not.toHaveBeenCalled();
-});
-
-it('should render filter dropdown in the correct document', async () => {
-  const mockDocument = document.implementation.createHTMLDocument();
-  const div = mockDocument.createElement('div');
-  const mockContainer = mockDocument.body.appendChild(div);
-  const onFilter = jest.fn();
-  const mockedColumns = [
-    {
-      id: 'name',
-      Header: 'Name',
-      accessor: 'name',
-      Filter: tableFilters.TextFilter(),
-      fieldType: 'text',
-    },
-  ];
-  const { container } = renderComponent(
-    { columns: mockedColumns, onFilter },
-    undefined,
-    mockContainer,
-  );
-  expect(container.querySelector('.iui-table')).toBeTruthy();
-
-  const filterToggle = container.querySelector(
-    '.iui-table-filter-button',
-  ) as HTMLElement;
-  expect(filterToggle).toBeTruthy();
-  act(() => filterToggle.click());
-
-  await waitFor(() =>
-    expect(mockDocument.querySelector('.iui-table-column-filter')).toBeTruthy(),
-  );
-  expect(document.querySelector('.iui-table-column-filter')).toBeFalsy();
 });
 
 it('should rerender table when columns change', async () => {
@@ -3684,7 +3651,6 @@ it('should render action column with column manager', async () => {
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
 });
 
 it('should render dropdown menu with custom style and override default style', async () => {
@@ -3734,7 +3700,6 @@ it('should render dropdown menu with custom style and override default style', a
 
   const dropdownMenu = document.querySelector('.iui-menu') as HTMLDivElement;
   expect(dropdownMenu).toBeTruthy();
-  expect(dropdownMenu.classList.contains('iui-scroll')).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
   expect(dropdownMenu).toHaveStyle('background-color: red');
@@ -4658,6 +4623,11 @@ it('should ignore top-level Header if one is passed', async () => {
       columns={[
         {
           Header: 'Header name',
+          // We expect to get `columns` does not exist type error.
+          // Because although `columns` is removed from the Column type (i.e. no sub-columns),
+          // we allow to pass `columns` in the top level Header for backward compatibility.
+          // (#1072: https://github.com/iTwin/iTwinUI/pull/1072)
+          // @ts-expect-error - `columns` does not exist in type ...
           columns: [
             {
               id: 'name',

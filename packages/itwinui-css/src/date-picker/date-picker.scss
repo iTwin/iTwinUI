@@ -84,7 +84,6 @@ $iui-date-picker-cell-height: 36px;
 $iui-date-picker-today-circle-size: 32px;
 
 .iui-date-picker {
-  @include surface.iui-surface;
   user-select: none;
   display: inline-grid;
   grid-template-columns: 1fr auto;

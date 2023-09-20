@@ -76,11 +76,13 @@
 }
 
 .iui-button-group {
-  @include button-group.iui-button-group;
-}
+  &:where(:not([data-iui-orientation='vertical'])) {
+    @include button-group.iui-button-group(horizontal);
+  }
 
-.iui-button-group-vertical {
-  @include button-group.iui-button-group(vertical);
+  &:where([data-iui-orientation='vertical']) {
+    @include button-group.iui-button-group(vertical);
+  }
 }
 
 .iui-button-group-overflow-x {

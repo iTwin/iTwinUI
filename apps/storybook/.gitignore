@@ -4,3 +4,6 @@ cypress-visual-screenshots/comparison
 cypress-visual-screenshots/diff
 cypress-visual-report
 cypress/screenshots
+
+# Compiled files
+dist
