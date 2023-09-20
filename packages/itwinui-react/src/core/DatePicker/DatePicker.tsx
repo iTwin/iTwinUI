@@ -17,7 +17,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton/index.js';
 import { TimePicker } from '../TimePicker/index.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';
-import { Surface } from '../Surface/index.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {
   return (
@@ -575,8 +574,11 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      as={(applyBackground ? Surface : 'div') as typeof Surface}
-      className={cx('iui-date-picker', className)}
+      className={cx(
+        'iui-date-picker',
+        { 'iui-popover-surface': applyBackground },
+        className,
+      )}
       ref={forwardedRef as React.Ref<HTMLDivElement>}
       {...rest}
     >
