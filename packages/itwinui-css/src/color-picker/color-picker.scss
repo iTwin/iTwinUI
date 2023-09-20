@@ -193,14 +193,12 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
 
   &::after {
     content: '';
-    grid-row: 1 / 3;
     display: flex;
-    grid-area: inherit;
-    grid-column-start: 1;
     inline-size: 100%;
     block-size: var(--_iui-slider-track-thickness);
     background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
     forced-color-adjust: none;
+    position: absolute;
   }
 }
 
