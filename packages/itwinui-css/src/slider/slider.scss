@@ -13,6 +13,10 @@ $iui-slider-tick-thickness: 1px;
   --_iui-slider-track-color: var(--iui-color-border-accent);
   --_iui-slider-track-thickness: calc(#{$iui-slider-thumb-size} * 0.25);
 
+  --iui-slider-track-position-start: 0;
+  --iui-slider-track-position-end: var(--iui-slider-percentage);
+  --iui-slider-thumb-position: var(--iui-slider-percentage);
+
   display: grid;
 
   &[data-iui-orientation='horizontal'] {
@@ -53,7 +57,6 @@ $iui-slider-tick-thickness: 1px;
       touch-action: pan-x;
 
       &::before {
-        grid-column-start: 1;
         inline-size: 100%;
       }
     }
@@ -64,12 +67,12 @@ $iui-slider-tick-thickness: 1px;
     }
 
     .iui-slider-track {
-      inset-inline-start: 0;
-      inset-block-start: 50%;
-      transform: translateY(-50%);
+      inset-inline-start: var(--iui-slider-track-position-start);
+      inset-inline-end: var(--iui-slider-track-position-end);
     }
 
     .iui-slider-thumb {
+      inset-inline-start: var(--iui-slider-thumb-position);
       transform: translateX(-50%);
     }
   }
@@ -116,7 +119,6 @@ $iui-slider-tick-thickness: 1px;
 
       &::before {
         block-size: 100%;
-        grid-row-start: 1;
       }
     }
 
@@ -126,12 +128,12 @@ $iui-slider-tick-thickness: 1px;
     }
 
     .iui-slider-track {
-      inset-block-end: 0;
-      inset-inline-start: 50%;
-      transform: translateX(-50%);
+      inset-block-end: var(--iui-slider-track-position-start);
+      inset-block-start: var(--iui-slider-track-position-end);
     }
 
     .iui-slider-thumb {
+      inset-block-end: var(--iui-slider-thumb-position);
       transform: translateY(50%);
     }
   }
@@ -194,11 +196,13 @@ $iui-slider-tick-thickness: 1px;
 
 // #region Slider
 .iui-slider {
-  display: grid;
   position: relative;
   cursor: pointer;
   isolation: isolate;
   grid-area: content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.iui-grabbing {
     cursor: grabbing;
@@ -208,7 +212,6 @@ $iui-slider-tick-thickness: 1px;
     content: '';
     display: flex;
     background: var(--_iui-slider-rail-color);
-    grid-area: inherit;
     @media (forced-colors: active) {
       --_iui-slider-rail-color: CanvasText;
     }
