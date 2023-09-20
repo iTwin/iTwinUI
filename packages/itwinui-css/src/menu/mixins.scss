@@ -14,7 +14,10 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 @mixin iui-menu {
   --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items
 
-  @include surface.iui-surface;
+  @include surface.iui-surface(
+    $border-color: var(--iui-color-border),
+    $elevation: var(--iui-shadow-2),
+  );
   max-block-size: var(--iui-menu-max-height);
   border-radius: var(--iui-border-radius-1);
 
