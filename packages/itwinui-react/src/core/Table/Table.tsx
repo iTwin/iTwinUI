@@ -25,7 +25,7 @@ import type {
   ActionType,
   TableInstance,
   Column,
-} from 'react-table';
+} from '../../react-table/react-table.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
 import {
   useGlobals,

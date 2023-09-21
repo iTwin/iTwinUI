@@ -12,7 +12,7 @@ import type {
   TableInstance,
   TableKeyedProps,
   TableState,
-} from 'react-table';
+} from '../../../react-table/react-table.js';
 import styles from '../../../styles.js';
 
 const REORDER_ACTIONS = {

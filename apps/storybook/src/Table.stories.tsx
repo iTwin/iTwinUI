@@ -9,7 +9,6 @@ import type {
   Column,
   Row,
   TableInstance,
-  TableState,
   TableOptions,
 } from '@itwin/itwinui-react/react-table';
 import {
@@ -92,7 +91,7 @@ export const Basic = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column[];
 
   const data = useMemo(
     () => [
@@ -101,7 +100,7 @@ export const Basic = () => {
       { name: 'Name3', description: 'Description3' },
     ],
     [],
-  );
+  ) as Record<string, unknown>[];
 
   return <Table columns={columns} data={data} emptyTableContent='No data.' />;
 };
@@ -348,7 +347,7 @@ export const Filters = () => {
   );
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    () => [
       {
         id: 'index',
         Header: '#',
@@ -410,7 +409,7 @@ export const Filters = () => {
       },
     ],
     [formatDate, translatedLabels],
-  );
+  ) satisfies Column<TableStoryDataType>[];
 
   const data = useMemo(
     () => [
@@ -418,7 +417,7 @@ export const Filters = () => {
         index: 1,
         name: 'Name1',
         description: 'Description1',
-        ids: ['1'],
+        ids: [1],
         startDate: new Date('May 1, 2021'),
         endDate: '2021-05-31T21:00:00.000Z',
       },
@@ -426,7 +425,7 @@ export const Filters = () => {
         index: 2,
         name: 'Name2',
         description: 'Description2',
-        ids: ['2', '3', '4'],
+        ids: [2, 3, 4],
         startDate: new Date('May 2, 2021'),
         endDate: '2021-06-01T21:00:00.000Z',
       },
@@ -434,35 +433,28 @@ export const Filters = () => {
         index: 3,
         name: 'Name3',
         description: 'Description3',
-        ids: ['3', '4'],
+        ids: [3, 4],
         startDate: new Date('May 3, 2021'),
         endDate: '2021-06-02T21:00:00.000Z',
       },
     ],
     [],
-  );
+  ) satisfies TableStoryDataType[];
 
-  const onFilter = React.useCallback(
-    (
-      filters: TableFilterValue<TableStoryDataType>[],
-      state: TableState,
-      filteredData: Row<TableStoryDataType>[],
-    ) => {
-      // rowInfo is used due to JSON errors when displaying row data
-      let rowInfo = '[';
-      filteredData.forEach((row) => {
-        rowInfo += `${JSON.stringify(row.original)},`;
-      });
-      rowInfo = rowInfo.slice(0, rowInfo.length - 1);
-      rowInfo += ']';
-      action(
-        `Filter changed. Filters: ${JSON.stringify(
-          filters,
-        )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
-      )();
-    },
-    [],
-  ) satisfies NonNullable<TableProps['onFilter']>;
+  const onFilter = React.useCallback((filters, state, filteredData) => {
+    // rowInfo is used due to JSON errors when displaying row data
+    let rowInfo = '[';
+    filteredData?.forEach((row) => {
+      rowInfo += `${JSON.stringify(row.original)},`;
+    });
+    rowInfo = rowInfo.slice(0, rowInfo.length - 1);
+    rowInfo += ']';
+    action(
+      `Filter changed. Filters: ${JSON.stringify(
+        filters,
+      )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
+    )();
+  }, []) satisfies NonNullable<TableProps['onFilter']>;
 
   return (
     <Table
@@ -480,9 +472,10 @@ export const GlobalFilter = () => {
     description: string;
   };
 
-  const onClickHandler = (
-    props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  const onClickHandler = React.useCallback(
+    (props: CellProps<TableStoryDataType>) => action(props.row.original.name)(),
+    [],
+  );
 
   const columns = useMemo(
     () => [
@@ -513,10 +506,10 @@ export const GlobalFilter = () => {
         },
       },
     ],
-    [],
+    [onClickHandler],
   );
 
-  const data = useMemo<TableStoryDataType[]>(
+  const data = useMemo(
     () => [
       { name: 'Name1', description: 'Description7' },
       { name: 'Name2', description: 'Description7' },
@@ -950,6 +943,11 @@ export const DisabledRows = () => {
 };
 
 export const Loading = () => {
+  type CustomStoryDataType = {
+    name: string;
+    description: string;
+  };
+
   const columns = useMemo(
     () => [
       {
@@ -965,10 +963,10 @@ export const Loading = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<CustomStoryDataType>[];
 
   return (
-    <Table
+    <Table<CustomStoryDataType>
       columns={columns}
       data={[]}
       isLoading={true}
@@ -978,6 +976,11 @@ export const Loading = () => {
 };
 
 export const NoData = () => {
+  type CustomStoryDataType = {
+    name: string;
+    description: string;
+  };
+
   const columns = useMemo(
     () => [
       {
@@ -993,10 +996,10 @@ export const NoData = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<CustomStoryDataType>[];
 
   return (
-    <Table
+    <Table<CustomStoryDataType>
       columns={columns}
       data={[]}
       isLoading={false}
@@ -1078,7 +1081,7 @@ export const ControlledState = () => {
     [],
   ) satisfies Column<DemoData>[];
 
-  const data: DemoData[] = useMemo(
+  const data = useMemo(
     () => [
       {
         id: '1',
@@ -1409,7 +1412,7 @@ export const Full2 = () => {
   }, []);
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    () => [
       {
         id: 'product',
         Header: 'Product',
@@ -1491,7 +1494,7 @@ export const Full2 = () => {
       },
     ],
     [isRowDisabled, menuItems],
-  );
+  ) satisfies Column<TableStoryDataType>[];
 
   const rowProps = useCallback((row: Row<TableStoryDataType>) => {
     return {
@@ -1785,7 +1788,7 @@ export const Editable = () => {
   );
 
   const columns = React.useMemo(
-    (): Column<TableStoryDataType>[] => [
+    () => [
       {
         id: 'name',
         Header: 'Name',
@@ -2243,7 +2246,7 @@ export const CustomFilter = () => {
       accessor: 'description',
       maxWidth: 200,
     },
-  ];
+  ] satisfies Column<RowData>[];
 
   return (
     <>
@@ -2284,7 +2287,7 @@ export const ResizableColumns = () => {
   };
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    () => [
       {
         id: 'index',
         Header: '#',
@@ -2333,7 +2336,7 @@ export const ResizableColumns = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<TableStoryDataType>[];
 
   const data = useMemo(
     () => [
@@ -2542,7 +2545,7 @@ export const HorizontalScroll = () => {
   );
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    () => [
       {
         id: 'product',
         Header: 'Product',
@@ -2581,7 +2584,7 @@ export const HorizontalScroll = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<(typeof data)[0]>[];
 
   return (
     <Table
@@ -2706,7 +2709,7 @@ export const ScrollToRow = () => {
     [onClickHandler],
   );
 
-  const data: TableStoryDataType[] = useMemo(() => {
+  const data = useMemo(() => {
     const size = 100000;
     const arr = new Array(size);
     for (let i = 0; i < size; ++i) {
@@ -2973,7 +2976,7 @@ export const CustomizedColumns = () => {
   );
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    () => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
       }),
@@ -3005,7 +3008,7 @@ export const CustomizedColumns = () => {
       isCellDisabled,
       isRowDisabled,
     ],
-  );
+  ) satisfies Column<(typeof data)[number]>[];
 
   return (
     <Table
@@ -3039,7 +3042,7 @@ export const ColumnManager = () => {
   };
 
   const columns = useMemo(
-    (): Column<TableStoryDataType>[] => [
+    () => [
       {
         id: 'index',
         Header: '#',
@@ -3110,7 +3113,7 @@ export const ColumnManager = () => {
       }),
     ],
     [],
-  );
+  ) satisfies Column<TableStoryDataType>[];
   const data = useMemo(
     () => [
       {
@@ -3281,7 +3284,7 @@ export const StickyColumns = () => {
   }, []);
 
   const columns = useMemo(
-    (): Column<(typeof data)[number]>[] => [
+    () => [
       {
         id: 'product',
         Header: 'Product',
@@ -3336,7 +3339,7 @@ export const StickyColumns = () => {
       },
     ],
     [menuItems],
-  );
+  ) satisfies Column<(typeof data)[number]>[];
 
   return (
     <Table
@@ -3364,19 +3367,23 @@ StickyColumns.decorators = [
 ];
 
 export const StatusAndCellIcons = () => {
+  type CustomStoryDataType = {
+    name: string;
+    modified: string;
+    size: string;
+    startIcon?: JSX.Element;
+    endIcon?: JSX.Element;
+    status?: 'positive' | 'negative' | 'warning';
+    isLoading?: boolean;
+  };
+
   const columns = useMemo(
     () => [
       {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
-        cellRenderer: (
-          props: CellRendererProps<{
-            startIcon: JSX.Element;
-            endIcon: JSX.Element;
-            isLoading?: boolean;
-          }>,
-        ) => (
+        cellRenderer: (props: CellRendererProps<CustomStoryDataType>) => (
           <DefaultCell
             {...props}
             startIcon={props.cellProps.row.original.startIcon}
@@ -3395,11 +3402,7 @@ export const StatusAndCellIcons = () => {
         Header: 'Modified',
         accessor: 'modified',
         maxWidth: 200,
-        cellRenderer: (
-          props: CellRendererProps<{
-            status: 'positive' | 'warning' | 'negative' | undefined;
-          }>,
-        ) => {
+        cellRenderer: (props: CellRendererProps<CustomStoryDataType>) => {
           return (
             <DefaultCell
               {...props}
@@ -3416,7 +3419,7 @@ export const StatusAndCellIcons = () => {
       },
     ],
     [],
-  );
+  ) satisfies Column<CustomStoryDataType>[];
 
   const data = useMemo(
     () => [
@@ -3458,27 +3461,14 @@ export const StatusAndCellIcons = () => {
       },
     ],
     [],
-  );
+  ) satisfies CustomStoryDataType[];
 
-  const rowProps = useCallback(
-    (
-      row: Row<{
-        name: string;
-        modified: string;
-        size: string;
-        startIcon: JSX.Element;
-        endIcon: JSX.Element;
-        status?: 'positive' | 'negative' | 'warning';
-        isLoading?: boolean;
-      }>,
-    ) => {
-      return {
-        status: row.original.status,
-        isLoading: row.original.isLoading,
-      };
-    },
-    [],
-  );
+  const rowProps = useCallback((row: Row<CustomStoryDataType>) => {
+    return {
+      status: row.original.status,
+      isLoading: row.original.isLoading,
+    };
+  }, []);
 
   return (
     <Table

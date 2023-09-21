@@ -43,7 +43,7 @@ import type {
   TableInstance,
   TableKeyedProps,
   TableState,
-} from 'react-table';
+} from '../../../react-table/react-table.js';
 
 export const useResizeColumns =
   <T extends Record<string, unknown>>(

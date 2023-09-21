@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { Hooks, IdType, Row, TableInstance } from 'react-table';
+import type {
+  Hooks,
+  IdType,
+  Row,
+  TableInstance,
+} from '../../../react-table/react-table.js';
 
 export const useSubRowSelection = <T extends Record<string, unknown>>(
   hooks: Hooks<T>,

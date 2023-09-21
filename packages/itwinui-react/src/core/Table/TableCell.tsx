@@ -8,7 +8,7 @@ import type {
   CellProps,
   CellRendererProps,
   TableInstance,
-} from 'react-table';
+} from '../../react-table/react-table.js';
 import cx from 'classnames';
 import { getCellStyle, getStickyStyle } from './utils.js';
 import { SubRowExpander } from './SubRowExpander.js';
