@@ -552,8 +552,10 @@ it('should prevent selecting disabled dates', async () => {
 it.each([true, false])('should respect `applyBackground`', (value) => {
   const { container } = render(<DatePicker applyBackground={value} />);
   if (value) {
-    expect(container.querySelector('div')).toHaveClass('iui-surface');
+    expect(container.querySelector('div')).toHaveClass('iui-popover-surface');
   } else {
-    expect(container.querySelector('div')).not.toHaveClass('iui-surface');
+    expect(container.querySelector('div')).not.toHaveClass(
+      'iui-popover-surface',
+    );
   }
 });
