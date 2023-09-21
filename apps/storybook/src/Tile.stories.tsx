@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
@@ -21,28 +20,14 @@ import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
 
-type TileProps = React.ComponentProps<typeof Tile>;
-
 export default {
   component: Tile,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    variant: { control: 'radio', options: ['default', 'folder'] },
-  },
-  args: {
-    variant: 'default',
-    isDisabled: false,
-    isNew: false,
-    isLoading: false,
-  },
   title: 'Core/Tile',
-} as Meta<TileProps>;
+};
 
-export const Basic: Story<TileProps> = (args) => {
+export const Basic = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper>
       <Tile.Name name='Stadium' />
       <Tile.ThumbnailArea>
         <Tile.BadgeContainer>
@@ -75,9 +60,9 @@ export const Basic: Story<TileProps> = (args) => {
   );
 };
 
-export const AllProps: Story<TileProps> = (args) => {
+export const AllProps = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper isSelected>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Stadium</Tile.NameLabel>
@@ -130,19 +115,10 @@ export const AllProps: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-AllProps.argTypes = {
-  ...Basic.argTypes,
-  variant: { control: { disable: true } },
-};
-AllProps.args = {
-  ...Basic.args,
-  isSelected: true,
-};
-
-export const Actionable: Story<TileProps> = (args) => {
+export const Actionable = () => {
   const [selected, setSelected] = React.useState(false);
   return (
-    <Tile.Wrapper isSelected={selected} {...args}>
+    <Tile.Wrapper isSelected={selected}>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -172,14 +148,10 @@ export const Actionable: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-Actionable.argTypes = { ...Basic.argTypes };
-Actionable.args = {
-  ...Basic.args,
-};
 
-export const AnchorLink: Story<TileProps> = (args) => {
+export const AnchorLink = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>
@@ -209,14 +181,10 @@ export const AnchorLink: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-AnchorLink.argTypes = { ...Basic.argTypes };
-AnchorLink.args = {
-  ...Basic.args,
-};
 
-export const Condensed: Story<TileProps> = (args) => {
+export const Condensed = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Condensed</Tile.NameLabel>
@@ -239,16 +207,10 @@ export const Condensed: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-Condensed.argTypes = {
-  ...Basic.argTypes,
-};
-Condensed.args = {
-  ...Basic.args,
-};
 
-export const WithAvatar: Story<TileProps> = (args) => {
+export const WithAvatar = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Some User</Tile.NameLabel>
@@ -284,16 +246,10 @@ export const WithAvatar: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-WithAvatar.argTypes = {
-  ...Basic.argTypes,
-};
-WithAvatar.args = {
-  ...Basic.args,
-};
 
-export const Folder: Story<TileProps> = (args) => {
+export const Folder = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper variant='folder'>
       <Tile.ThumbnailArea>
         <Tile.ThumbnailPicture>
           <SvgFolder />
@@ -320,18 +276,10 @@ export const Folder: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-Folder.argTypes = {
-  ...Basic.argTypes,
-  variant: { control: { disable: true } },
-};
-Folder.args = {
-  ...Basic.args,
-  variant: 'folder',
-};
 
-export const Status: Story<TileProps> = (args) => {
+export const Status = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper status='positive'>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -358,18 +306,10 @@ export const Status: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-Status.argTypes = {
-  ...Basic.argTypes,
-  status: { control: 'radio', options: ['positive', 'warning', 'negative'] },
-};
-Status.args = {
-  ...Basic.args,
-  status: 'positive',
-};
 
-export const Loading: Story<TileProps> = (args) => {
+export const Loading = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper isLoading>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -396,19 +336,10 @@ export const Loading: Story<TileProps> = (args) => {
     </Tile.Wrapper>
   );
 };
-Loading.argTypes = {
-  ...Basic.argTypes,
-  isNew: { control: { disable: true } },
-  isDisabled: { control: { disable: true } },
-};
-Loading.args = {
-  ...Basic.args,
-  isLoading: true,
-};
 
-export const Disabled: Story<TileProps> = (args) => {
+export const Disabled = () => {
   return (
-    <Tile.Wrapper {...args}>
+    <Tile.Wrapper isDisabled>
       <Tile.Name>
         <Tile.NameIcon />
         <Tile.NameLabel>Tile Name</Tile.NameLabel>
@@ -444,12 +375,4 @@ export const Disabled: Story<TileProps> = (args) => {
       </Tile.Buttons>
     </Tile.Wrapper>
   );
-};
-Disabled.argTypes = {
-  ...Basic.argTypes,
-  isLoading: { control: { disable: true } },
-};
-Disabled.args = {
-  ...Basic.args,
-  isDisabled: true,
 };

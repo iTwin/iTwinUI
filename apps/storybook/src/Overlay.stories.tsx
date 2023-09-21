@@ -2,11 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
 import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
-
-type OverlayProps = React.ComponentProps<typeof Overlay>;
 
 export default {
   component: Overlay,
@@ -15,9 +12,9 @@ export default {
     style: { control: { disable: true } },
   },
   title: 'Core/Overlay',
-} as Meta<OverlayProps>;
+};
 
-export const Linear: Story<OverlayProps> = () => {
+export const Linear = () => {
   const wrapperStyle = {
     border: '1px solid var(--iui-color-border)',
     position: 'relative',
@@ -44,7 +41,7 @@ export const Linear: Story<OverlayProps> = () => {
   );
 };
 
-export const Radial: Story<OverlayProps> = () => {
+export const Radial = () => {
   const wrapperStyle = {
     border: '1px solid var(--iui-color-border)',
     position: 'relative',
@@ -70,5 +67,3 @@ export const Radial: Story<OverlayProps> = () => {
     </Overlay.Wrapper>
   );
 };
-Linear.args = {};
-Radial.args = {};

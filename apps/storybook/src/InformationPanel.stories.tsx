@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { CellProps } from '@itwin/itwinui-react/react-table';
 import { action } from '@storybook/addon-actions';
@@ -22,8 +21,6 @@ import {
   Textarea,
 } from '@itwin/itwinui-react';
 
-type InformationPanelProps = React.ComponentProps<typeof InformationPanel>;
-
 export default {
   component: InformationPanel,
   subcomponents: {
@@ -32,23 +29,13 @@ export default {
     InformationPanelBody,
     InformationPanelContent,
   },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
-  args: {
-    orientation: 'vertical',
-    resizable: true,
-  },
   title: 'Core/InformationPanel',
   parameters: {
     docs: { source: { excludeDecorators: true } },
   },
-} as Meta<InformationPanelProps>;
+};
 
-export const Basic: Story<InformationPanelProps> = (args) => {
+export const Basic = () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>();
 
   const columns = React.useMemo(
@@ -73,7 +60,6 @@ export const Basic: Story<InformationPanelProps> = (args) => {
     <InformationPanelWrapper>
       <Table columns={columns} data={data} emptyTableContent='No data.' />
       <InformationPanel
-        {...args}
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
       >
         <InformationPanelHeader
@@ -129,7 +115,7 @@ Basic.decorators = [
   ),
 ];
 
-export const Horizontal: Story<InformationPanelProps> = (args) => {
+export const Horizontal = () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>();
 
   const columns = React.useMemo(
@@ -155,7 +141,6 @@ export const Horizontal: Story<InformationPanelProps> = (args) => {
       <Table columns={columns} data={data} emptyTableContent='No data.' />
       <InformationPanel
         orientation='horizontal'
-        {...args}
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
       >
         <InformationPanelHeader
@@ -200,10 +185,9 @@ export const Horizontal: Story<InformationPanelProps> = (args) => {
     </InformationPanelWrapper>
   );
 };
-Horizontal.args = { orientation: 'horizontal' };
 Horizontal.decorators = [...Basic.decorators];
 
-export const CustomActions: Story<InformationPanelProps> = (args) => {
+export const CustomActions = () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>();
   const [isEditing, setIsEditing] = React.useState(false);
 
@@ -231,7 +215,7 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
     <InformationPanelWrapper>
       <Table columns={columns} data={data} emptyTableContent='No data.' />
 
-      <InformationPanel {...args} isOpen={openRowIndex != undefined}>
+      <InformationPanel isOpen={openRowIndex != undefined}>
         <InformationPanelHeader
           onClose={() => {
             setOpenRowIndex(undefined);
@@ -295,7 +279,7 @@ export const CustomActions: Story<InformationPanelProps> = (args) => {
 };
 CustomActions.decorators = [...Basic.decorators];
 
-export const CustomWidth: Story<InformationPanelProps> = (args) => {
+export const CustomWidth = () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const lorem100 = `Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus veniam dicta error doloremque libero sit est. Voluptatum nam modi, ex illum veritatis nobis omnis porro quod harum optio minus magnam tenetur quia dolor quis natus, eius, suscipit hic? Nobis deleniti obcaecati, sequi mollitia vero magnam error quidem, voluptatem asperiores repudiandae, molestias sit et voluptatibus magni. Sequi delectus, sunt eaque corrupti architecto modi suscipit? Quos in itaque dolore voluptas saepe natus repellat ad qui dolores. Incidunt temporibus ut, unde maxime nam explicabo saepe aspernatur molestiae iste libero neque, alias corporis laboriosam fugiat ad. Dicta neque quos fuga odit quae sequi dolore!`;
@@ -315,7 +299,6 @@ export const CustomWidth: Story<InformationPanelProps> = (args) => {
       <InformationPanel
         style={{ width: '40%', maxWidth: '70%' }} // should be set in CSS using a custom className
         isOpen={isOpen}
-        {...args}
         orientation='vertical'
       >
         <InformationPanelHeader

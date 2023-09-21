@@ -4,10 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Story, Meta } from '@storybook/react';
 import { IdeasButton } from '@itwin/itwinui-react';
-
-type IdeasButtonProps = React.ComponentProps<typeof IdeasButton>;
 
 export default {
   title: 'Buttons/IdeasButton',
@@ -15,19 +12,17 @@ export default {
   parameters: {
     docs: { inlineStories: false },
   },
-  argTypes: {
-    onClick: { control: { disable: true } },
-  },
-} as Meta<IdeasButtonProps>;
-
-export const Ideas: Story<IdeasButtonProps> = (args) => {
-  return <IdeasButton onClick={action('clicked')} {...args} />;
 };
 
-export const LocalizedIdeas: Story<IdeasButtonProps> = (args) => {
-  return <IdeasButton onClick={action('clicked')} {...args} />;
+export const Ideas = () => {
+  return <IdeasButton onClick={action('clicked')} />;
 };
 
-LocalizedIdeas.args = {
-  feedbackLabel: 'Localized feedback',
+export const LocalizedIdeas = () => {
+  return (
+    <IdeasButton
+      feedbackLabel='Localized feedback'
+      onClick={action('clicked')}
+    />
+  );
 };

@@ -9,10 +9,6 @@ import { MenuItem, DropdownButton } from '@itwin/itwinui-react';
 export default {
   title: 'Buttons/DropdownButton',
   component: DropdownButton,
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-  },
 };
 
 export const Basic = () => {

@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { useState } from '@storybook/addons';
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Fieldset,
@@ -13,24 +12,18 @@ import {
   ToggleSwitch,
 } from '@itwin/itwinui-react';
 
-type FieldsetProps = React.ComponentProps<typeof Fieldset>;
-
 export default {
   title: 'Input/Fieldset',
   component: Fieldset,
-  argTypes: {
-    children: { control: { disable: true } },
-  },
-} as Meta<FieldsetProps>;
+};
 
-export const Basic: Story<FieldsetProps> = (args) => {
+export const Basic = () => {
   const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
     <Fieldset
       legend='General Settings'
       style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
-      {...args}
     >
       <LabeledSelect
         label='Resolution'
@@ -59,9 +52,8 @@ export const Basic: Story<FieldsetProps> = (args) => {
     </Fieldset>
   );
 };
-Basic.args = { legend: 'General Settings', disabled: false };
 
-export const Disabled: Story<FieldsetProps> = (args) => {
+export const Disabled = () => {
   const [value, setValue] = useState<number | undefined>(undefined);
 
   return (
@@ -69,7 +61,6 @@ export const Disabled: Story<FieldsetProps> = (args) => {
       legend='General Settings'
       style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
       disabled
-      {...args}
     >
       <LabeledSelect
         label='Resolution'
@@ -98,4 +89,3 @@ export const Disabled: Story<FieldsetProps> = (args) => {
     </Fieldset>
   );
 };
-Disabled.args = { legend: 'General Settings', disabled: true };

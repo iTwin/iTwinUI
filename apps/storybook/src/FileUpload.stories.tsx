@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
 import { useState } from 'react';
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   FileUpload,
@@ -19,28 +18,17 @@ import {
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
 
-type FileUploadProps = React.ComponentProps<typeof FileUpload>;
-
 export default {
   component: FileUpload,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    title: { control: { disable: true } },
-    id: { control: { disable: true } },
-    onFileDropped: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
   title: 'Core/FileUpload',
-} as Meta<FileUploadProps>;
+};
 
-export const WrappingInput: Story<FileUploadProps> = (args) => {
+export const WrappingInput = () => {
   const [files, setFiles] = useState<Array<File>>([]);
 
   return (
     <FileUpload
       dragContent='Drop file to upload'
-      {...args}
       onFileDropped={(files) => {
         setFiles(Array.from(files));
         action(`${files.length} files uploaded`)();
@@ -59,15 +47,10 @@ export const WrappingInput: Story<FileUploadProps> = (args) => {
   );
 };
 
-WrappingInput.args = {
-  dragContent: 'Drop file to upload',
-};
-
-export const DefaultFileUploadCard: Story<FileUploadProps> = (args) => {
+export const DefaultFileUploadCard = () => {
   const [files, setFiles] = useState<Array<File>>([]);
   return (
     <FileUpload
-      {...args}
       onFileDropped={(files) => {
         setFiles(files);
         action(`${files.length} files uploaded`)();
@@ -81,7 +64,7 @@ export const DefaultFileUploadCard: Story<FileUploadProps> = (args) => {
   );
 };
 
-export const CustomFileUploadCard: Story<FileUploadProps> = (args) => {
+export const CustomFileUploadCard = () => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   const [files, setFiles] = React.useState<File[]>([]);
 
@@ -98,7 +81,6 @@ export const CustomFileUploadCard: Story<FileUploadProps> = (args) => {
   );
   return (
     <FileUpload
-      {...args}
       onFileDropped={(files) => {
         setFiles(files);
         action(`${files.length} files uploaded`)();

@@ -4,63 +4,28 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { ProgressRadial } from '@itwin/itwinui-react';
-import { Story, Meta } from '@storybook/react';
-
-type ProgressRadialProps = React.ComponentProps<typeof ProgressRadial>;
 
 export default {
   title: 'ProgressIndicators/ProgressRadial',
   component: ProgressRadial,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
-  args: {
-    value: 50,
-  },
-} as Meta<ProgressRadialProps>;
-
-export const Determinate: Story<ProgressRadialProps> = (args) => {
-  const { value = 50, ...rest } = args;
-  return <ProgressRadial value={value} {...rest} />;
 };
 
-export const Indeterminate: Story<ProgressRadialProps> = (args) => {
-  const { indeterminate = true, ...rest } = args;
-  return <ProgressRadial indeterminate={indeterminate} {...rest} />;
+export const Determinate = () => {
+  return <ProgressRadial value={50} />;
 };
 
-Indeterminate.args = {
-  indeterminate: true,
+export const Indeterminate = () => {
+  return <ProgressRadial indeterminate />;
 };
 
-export const Positive: Story<ProgressRadialProps> = (args) => {
-  const { status = 'positive', ...rest } = args;
-  return <ProgressRadial status={status} {...rest} />;
+export const Positive = () => {
+  return <ProgressRadial status={'positive'} value={50} />;
 };
 
-Positive.args = {
-  status: 'positive',
+export const Negative = () => {
+  return <ProgressRadial status={'negative'} value={50} />;
 };
 
-export const Negative: Story<ProgressRadialProps> = (args) => {
-  const { status = 'negative', ...rest } = args;
-  return <ProgressRadial status={status} {...rest} />;
-};
-
-Negative.args = {
-  status: 'negative',
-};
-
-export const DeterminateWithContent: Story<ProgressRadialProps> = (args) => {
-  const { value = 50, ...rest } = args;
-  return (
-    <ProgressRadial value={value} {...rest}>
-      {args.children}
-    </ProgressRadial>
-  );
-};
-
-DeterminateWithContent.args = {
-  children: '50',
+export const DeterminateWithContent = () => {
+  return <ProgressRadial value={50}>50</ProgressRadial>;
 };

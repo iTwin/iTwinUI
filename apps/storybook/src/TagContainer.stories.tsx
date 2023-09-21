@@ -2,26 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Tag, TagContainer } from '@itwin/itwinui-react';
-
-type TagContainerProps = React.ComponentProps<typeof TagContainer>;
 
 export default {
   component: TagContainer,
   title: 'Core/TagContainer',
-  argTypes: {
-    style: { table: { disable: true } },
-    className: { table: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
-} as Meta<TagContainerProps>;
+};
 
-export const BasicTagsContainer: Story<TagContainerProps> = ({ ...rest }) => {
+export const BasicTagsContainer = () => {
   return (
-    <TagContainer {...rest}>
+    <TagContainer>
       <Tag variant='basic'>Tag 1</Tag>
       <Tag variant='basic'>Tag 2</Tag>
       <Tag variant='basic'>Tag 3</Tag>
@@ -29,9 +20,9 @@ export const BasicTagsContainer: Story<TagContainerProps> = ({ ...rest }) => {
   );
 };
 
-export const DefaultTagsContainer: Story<TagContainerProps> = ({ ...rest }) => {
+export const DefaultTagsContainer = () => {
   return (
-    <TagContainer {...rest}>
+    <TagContainer>
       <Tag>Tag 1</Tag>
       <Tag>Tag 2</Tag>
       <Tag>Tag 3</Tag>
@@ -39,11 +30,9 @@ export const DefaultTagsContainer: Story<TagContainerProps> = ({ ...rest }) => {
   );
 };
 
-export const ScrollableDefaultTagsContainer: Story<TagContainerProps> = ({
-  ...rest
-}) => {
+export const ScrollableDefaultTagsContainer = () => {
   return (
-    <TagContainer overflow='scroll' {...rest} style={{ maxWidth: 200 }}>
+    <TagContainer overflow='scroll' style={{ maxWidth: 200 }}>
       <Tag>Tag 1</Tag>
       <Tag>Tag 2</Tag>
       <Tag>Tag 3</Tag>
@@ -55,15 +44,9 @@ export const ScrollableDefaultTagsContainer: Story<TagContainerProps> = ({
   );
 };
 
-ScrollableDefaultTagsContainer.args = {
-  overflow: 'scroll',
-};
-
-export const TruncatedBasicTagsContainer: Story<TagContainerProps> = ({
-  ...rest
-}) => {
+export const TruncatedBasicTagsContainer = () => {
   return (
-    <TagContainer overflow='truncate' {...rest} style={{ maxWidth: 200 }}>
+    <TagContainer overflow='truncate' style={{ maxWidth: 200 }}>
       <Tag variant='basic'>Tag 1</Tag>
       <Tag variant='basic'>Tag 2</Tag>
       <Tag variant='basic'>Tag 3</Tag>
@@ -73,8 +56,4 @@ export const TruncatedBasicTagsContainer: Story<TagContainerProps> = ({
       <Tag variant='basic'>Tag 7</Tag>
     </TagContainer>
   );
-};
-
-TruncatedBasicTagsContainer.args = {
-  overflow: 'truncate',
 };

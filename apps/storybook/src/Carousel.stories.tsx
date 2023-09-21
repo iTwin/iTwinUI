@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Carousel, Text, Code } from '@itwin/itwinui-react';
 
@@ -20,7 +19,7 @@ export default {
   },
 } as Meta<CarouselProps>;
 
-export const Basic: Story<CarouselProps> = (args) => {
+export const Basic: Story<CarouselProps> = () => {
   const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
@@ -35,7 +34,7 @@ export const Basic: Story<CarouselProps> = (args) => {
   ];
 
   return (
-    <Carousel style={{ width: 'min(800px, 90vw)' }} {...args}>
+    <Carousel style={{ width: 'min(800px, 90vw)' }}>
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -60,7 +59,7 @@ export const Basic: Story<CarouselProps> = (args) => {
   );
 };
 
-export const Controlled: Story<CarouselProps> = (args) => {
+export const Controlled: Story<CarouselProps> = () => {
   const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
@@ -78,7 +77,6 @@ export const Controlled: Story<CarouselProps> = (args) => {
 
   return (
     <Carousel
-      {...args}
       style={{ width: 'min(800px, 90vw)' }}
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}

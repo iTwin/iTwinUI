@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
@@ -12,33 +11,13 @@ import {
   ModalContent,
 } from '@itwin/itwinui-react';
 
-type ModalProps = React.ComponentProps<typeof Modal>;
-
 export default {
   title: 'Core/Modal',
   component: Modal,
-  args: {
-    title: 'This is the title',
-  },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    onClose: { control: { disable: true } },
-    ownerDocument: { control: { disable: true } },
-  },
-} as Meta<ModalProps>;
+};
 
-export const Basic: Story<ModalProps> = ({
-  isOpen,
-  title = 'This is the title',
-  ...rest
-}) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
+export const Basic = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -70,10 +49,9 @@ export const Basic: Story<ModalProps> = ({
       </Button>
       <Modal
         isOpen={isModalOpen}
-        title={title}
+        title='This is the title'
         onClose={onClose}
         onKeyDown={action('onKeyDown', { depth: 1 })}
-        {...rest}
       >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -95,16 +73,8 @@ export const Basic: Story<ModalProps> = ({
   );
 };
 
-export const NonDismissibleModal: Story<ModalProps> = ({
-  isOpen,
-  title = 'This is the title',
-  ...rest
-}) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
+export const NonDismissibleModal = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -136,11 +106,10 @@ export const NonDismissibleModal: Story<ModalProps> = ({
       </Button>
       <Modal
         isOpen={isModalOpen}
-        title={title}
+        title='This is the title'
         onClose={onClose}
         onKeyDown={action('onKeyDown', { depth: 1 })}
         isDismissible={false}
-        {...rest}
       >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -162,20 +131,8 @@ export const NonDismissibleModal: Story<ModalProps> = ({
   );
 };
 
-NonDismissibleModal.args = {
-  isDismissible: false,
-};
-
-export const OutsideClickAndEscDoesNotClose: Story<ModalProps> = ({
-  isOpen,
-  title = 'This is the title',
-  ...rest
-}) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
+export const OutsideClickAndEscDoesNotClose = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -207,12 +164,11 @@ export const OutsideClickAndEscDoesNotClose: Story<ModalProps> = ({
       </Button>
       <Modal
         isOpen={isModalOpen}
-        title={title}
+        title='This is the title'
         onClose={onClose}
         onKeyDown={action('onKeyDown', { depth: 1 })}
         closeOnEsc={false}
         closeOnExternalClick={false}
-        {...rest}
       >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -234,21 +190,8 @@ export const OutsideClickAndEscDoesNotClose: Story<ModalProps> = ({
   );
 };
 
-OutsideClickAndEscDoesNotClose.args = {
-  closeOnEsc: false,
-  closeOnExternalClick: false,
-};
-
-export const FullPageModal: Story<ModalProps> = ({
-  isOpen,
-  title = 'This is the title',
-  ...rest
-}) => {
-  const [isModalOpen, setIsModalOpen] = React.useState(isOpen);
-
-  React.useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
+export const FullPageModal = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -280,11 +223,10 @@ export const FullPageModal: Story<ModalProps> = ({
       </Button>
       <Modal
         isOpen={isModalOpen}
-        title={title}
+        title='This is the title'
         onClose={onClose}
         onKeyDown={action('onKeyDown', { depth: 1 })}
         styleType='fullPage'
-        {...rest}
       >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -304,8 +246,4 @@ export const FullPageModal: Story<ModalProps> = ({
       </Modal>
     </>
   );
-};
-
-FullPageModal.args = {
-  styleType: 'fullPage',
 };

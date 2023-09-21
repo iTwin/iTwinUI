@@ -3,35 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import { Meta, Story } from '@storybook/react/';
 import React from 'react';
 import { Button, Tab, Tabs } from '@itwin/itwinui-react';
-
-type TabsProps = React.ComponentProps<typeof Tabs>;
 
 export default {
   title: 'Core/Tabs',
   component: Tabs,
   subcomponents: { Tab },
-  args: {
-    focusActivationMode: 'auto',
-    color: 'blue',
-    orientation: 'horizontal',
-    actions: [
-      <Button key={'Small'} size={'small'}>
-        Small size button
-      </Button>,
-      <Button key={'Normal'}>Normal size button</Button>,
-    ],
-  },
-  argTypes: {
-    children: { control: { disable: true } },
-    style: { control: { disable: true } },
-    orientation: { control: 'radio', options: ['horizontal', 'vertical'] },
-  },
-} as Meta<TabsProps>;
+};
 
-export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
+export const DefaultTabs = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
@@ -50,23 +31,20 @@ export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
         <Tab key={2} label='Item2' />,
         <Tab key={3} label='Item3' />,
       ]}
-      {...args}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>
   );
 };
-DefaultTabs.args = {
-  type: 'default',
-  labels: [
-    <Tab key={1} label='Item1' />,
-    <Tab key={2} label='Item2' />,
-    <Tab key={3} label='Item3' />,
-  ],
-};
 
-export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
+export const BorderlessTabs = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
@@ -86,23 +64,20 @@ export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
         <Tab key={3} label='Item3' />,
       ]}
       type='borderless'
-      {...args}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>
   );
 };
-BorderlessTabs.args = {
-  labels: [
-    <Tab key={1} label='Item1' />,
-    <Tab key={2} label='Item2' />,
-    <Tab key={3} label='Item3' />,
-  ],
-  type: 'borderless',
-};
 
-export const PillTabs: Story<Partial<TabsProps>> = (args) => {
+export const PillTabs = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
@@ -122,25 +97,19 @@ export const PillTabs: Story<Partial<TabsProps>> = (args) => {
           <Tab key={index} startIcon={<SvgStar />} />
         ))}
       type='pill'
-      {...args}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>
   );
 };
-PillTabs.args = {
-  labels: Array(3)
-    .fill(null)
-    .map((_, index) => <Tab key={index} startIcon={<SvgStar />} />),
-  type: 'pill',
-};
-PillTabs.argTypes = {
-  orientation: { control: { disable: true } },
-  actions: { control: { disable: true } },
-};
-
-export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
+export const SublabelsAndIcons = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
@@ -166,29 +135,20 @@ export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
           />
         ))}
       type='borderless'
-      {...args}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>
   );
 };
-SublabelsAndIcons.args = {
-  labels: Array(3)
-    .fill(null)
-    .map((_, index) => (
-      <Tab
-        key={index}
-        label={`Item${index}`}
-        sublabel={`Sublabel ${index}`}
-        startIcon={<SvgStar />}
-        disabled={index === 2}
-      />
-    )),
-  type: 'borderless',
-};
 
-export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
+export const HorizontalOverflow = () => {
   const [activeIndex, setActiveIndex] = React.useState(10);
   const getContent = () => {
     switch (activeIndex) {
@@ -250,7 +210,6 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         type='default'
         labels={labels}
         overflowOptions={{ useOverflow: true }}
-        {...args}
         onTabSelected={setActiveIndex}
         activeIndex={activeIndex}
         actions={[<Button key={'button'}>Button</Button>]}
@@ -260,31 +219,8 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
     </div>
   );
 };
-HorizontalOverflow.args = {
-  type: 'default',
-  labels: [
-    <Tab key={1} label='Item 1' />,
-    <Tab key={2} label='Item 2' />,
-    <Tab key={3} label='Item 3' />,
-    <Tab key={4} label='Item 4' />,
-    <Tab key={5} label='Item 5' />,
-    <Tab key={6} label='Item 6' disabled />,
-    <Tab key={7} label='Item 7' />,
-    <Tab key={8} label='Item 8' />,
-    <Tab key={9} label='Item 9' disabled />,
-    <Tab key={10} label='Item 10' />,
-    <Tab key={11} label='Item 11' />,
-    <Tab key={12} label='Item 12' />,
-    <Tab key={13} label='Very long item number thirteen' />,
-  ],
-};
-HorizontalOverflow.argTypes = {
-  type: { options: ['default', 'borderless'] },
-  orientation: { control: { disable: true } },
-  actions: { control: { disable: true } },
-};
 
-export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
+export const VerticalOverflow = () => {
   const [activeIndex, setActiveIndex] = React.useState(10);
   const getContent = () => {
     switch (activeIndex) {
@@ -347,7 +283,6 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
         type='default'
         labels={labels}
         overflowOptions={{ useOverflow: true }}
-        {...args}
         onTabSelected={setActiveIndex}
         activeIndex={activeIndex}
         actions={[<Button key={'button'}>Button</Button>]}
@@ -357,32 +292,8 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
     </div>
   );
 };
-VerticalOverflow.args = {
-  orientation: 'vertical',
-  type: 'default',
-  labels: [
-    <Tab key={1} label='Item 1' />,
-    <Tab key={2} label='Item 2' />,
-    <Tab key={3} label='Item 3' />,
-    <Tab key={4} label='Item 4' />,
-    <Tab key={5} label='Item 5' />,
-    <Tab key={6} label='Item 6' disabled />,
-    <Tab key={7} label='Item 7' />,
-    <Tab key={8} label='Item 8' />,
-    <Tab key={9} label='Item 9' disabled />,
-    <Tab key={10} label='Item 10' />,
-    <Tab key={11} label='Item 11' />,
-    <Tab key={12} label='Item 12' />,
-    <Tab key={13} label='Very long item number thirteen' />,
-  ],
-};
-VerticalOverflow.argTypes = {
-  type: { options: ['default', 'borderless'] },
-  orientation: { control: { disable: true } },
-  actions: { control: { disable: true } },
-};
 
-export const Vertical: Story<Partial<TabsProps>> = (args) => {
+export const Vertical = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
@@ -408,28 +319,15 @@ export const Vertical: Story<Partial<TabsProps>> = (args) => {
             startIcon={<SvgStar />}
           />
         ))}
-      {...args}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>
   );
-};
-Vertical.args = {
-  orientation: 'vertical',
-  labels: Array(3)
-    .fill(null)
-    .map((_, index) => (
-      <Tab
-        key={index}
-        label={`Item${index}`}
-        sublabel={`Sublabel ${index}`}
-        startIcon={<SvgStar />}
-      />
-    )),
-  type: 'borderless',
-};
-Vertical.argTypes = {
-  type: { options: ['default', 'borderless'] },
-  orientation: { control: { disable: true } },
 };
