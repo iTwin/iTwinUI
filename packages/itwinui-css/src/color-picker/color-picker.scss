@@ -4,18 +4,22 @@
 @use '../button/borderless';
 @use '../mixins';
 
-@mixin iui-transparent-background($size: var(--iui-size-m)) {
-  background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
-  background-size: $size $size;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #C7CCD1 25%,
-    transparent 25%,
-    transparent 75%,
-    #C7CCD1 75%,
-    #C7CCD1
-  ),
-    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
+@mixin iui-transparent-background($size: var(--iui-size-m), $variant: swatch) {
+  forced-color-adjust: none;
+  background-position: 0 0, 0 0, calc($size * 0.5) calc($size * 0.5);
+  background-size: auto, $size $size, $size $size;
+
+  @if $variant == 'opacityslider' {
+    background-image:
+      linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%),
+      repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
+      repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
+  } @else {
+    background-image:
+      linear-gradient(to right, var(--iui-color-swatch-background, transparent) 0%, var(--iui-color-swatch-background, transparent) 100%),
+      repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
+      repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -52,20 +56,8 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   border-radius: $iui-color-swatch-border-radius;
   position: relative;
   background-color: var(--iui-color-swatch-background);
-  forced-color-adjust: none;
   @include iui-transparent-background;
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    inset-block-start: 0;
-    inline-size: inherit;
-    block-size: inherit;
-    border-radius: inherit;
-    background-color: inherit;
-    box-shadow: $iui-inset-box-shadow;
-  }
+  box-shadow: $iui-inset-box-shadow;
 
   &:hover {
     box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
@@ -186,20 +178,8 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   );
 }
 
-.iui-opacity-slider .iui-slider {
-  &::before {
-    @include iui-transparent-background($size: var(--iui-size-xs));
-  }
-
-  &::after {
-    content: '';
-    display: flex;
-    inline-size: 100%;
-    block-size: var(--_iui-slider-track-thickness);
-    background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
-    forced-color-adjust: none;
-    position: absolute;
-  }
+.iui-opacity-slider .iui-slider::before {
+  @include iui-transparent-background($size: var(--iui-size-xs), $variant: opacityslider);
 }
 
 .iui-color-dot {
