@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.5
+
+### Patch Changes
+
+- [#1586](https://github.com/iTwin/iTwinUI/pull/1586): Fixed an issue with toggle-switch border styles not working in popout windows.
+
 ## 1.12.4
 
 ### Patch Changes
