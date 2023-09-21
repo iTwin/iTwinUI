@@ -14,8 +14,8 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
-  usePopover,
 } from '../utils/index.js';
+import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../utils/index.js';
 import {
   ComboBoxActionContext,

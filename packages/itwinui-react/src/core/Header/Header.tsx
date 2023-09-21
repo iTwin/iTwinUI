@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 
 import { SvgMoreVertical, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';

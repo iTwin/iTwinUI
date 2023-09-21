@@ -12,7 +12,7 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
-import type { DropdownButtonProps } from '../Buttons/DropdownButton/DropdownButton.js';
+import type { DropdownButtonProps } from '../Buttons/DropdownButton.js';
 
 export const HeaderDropdownButton = React.forwardRef((props, ref) => {
   const { menuItems, className, children, ...rest } = props;

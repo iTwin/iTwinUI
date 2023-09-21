@@ -9,7 +9,6 @@ import {
   SvgMore,
   SvgNew,
   SvgCheckmark,
-  LinkAction,
   useSafeContext,
   supportsHas,
   polymorphic,
@@ -19,6 +18,7 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { DropdownMenu } from '../DropdownMenu/index.js';
 import { IconButton } from '../Buttons/index.js';
 import { ProgressRadial } from '../ProgressIndicators/index.js';
+import { LinkAction } from '../LinkAction/LinkAction.js';
 
 const TileContext = React.createContext<
   | {

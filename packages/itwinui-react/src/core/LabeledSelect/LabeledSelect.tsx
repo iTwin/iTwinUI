@@ -6,11 +6,12 @@ import * as React from 'react';
 
 import { Select } from '../Select/index.js';
 import type { SelectProps } from '../Select/Select.js';
-import { StatusIconMap, useId, Icon } from '../utils/index.js';
+import { StatusIconMap, useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
+import { Icon } from '../Icon/Icon.js';
 
 export type LabeledSelectProps<T> = {
   /**

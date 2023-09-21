@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { SelectOption } from '../Select/Select.js';
-import type { usePopover } from '../utils/index.js';
+import type { usePopover } from '../Popover/Popover.js';
 
 type ComboBoxAction =
   | { type: 'multiselect'; value: number[] }

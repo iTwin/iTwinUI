@@ -5,7 +5,6 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  Icon,
   useSafeContext,
   polymorphic,
   StatusIconMap,
@@ -15,6 +14,7 @@ import {
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/index.js';
+import { Icon } from '../Icon/Icon.js';
 
 const AlertContext = React.createContext<
   | {

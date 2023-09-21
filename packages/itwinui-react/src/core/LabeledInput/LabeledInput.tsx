@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { StatusIconMap, useId, Icon } from '../utils/index.js';
+import { StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/index.js';
 import { InputWithDecorations } from '../InputWithDecorations/index.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { Label } from '../Label/Label.js';
+import { Icon } from '../Icon/Icon.js';
 
 export type LabeledInputProps = {
   /**

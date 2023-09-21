@@ -8,7 +8,7 @@ import { Checkbox } from '../../Checkbox/index.js';
 import { SvgColumnManager } from '../../utils/index.js';
 import { DropdownMenu } from '../../DropdownMenu/index.js';
 import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
-import { IconButton } from '../../Buttons/IconButton/index.js';
+import { IconButton } from '../../Buttons/IconButton.js';
 import { MenuItem } from '../../Menu/index.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';

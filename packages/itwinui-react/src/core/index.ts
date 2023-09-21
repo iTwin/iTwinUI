@@ -199,11 +199,16 @@ export {
   getUserColor,
   ColorValue,
   MiddleTextTruncation,
-  LinkBox,
-  LinkAction,
-  Icon,
-  Flex,
-  VisuallyHidden,
-  Divider,
-  Popover,
 } from './utils/index.js';
+
+export { LinkBox, LinkAction } from './LinkAction/LinkAction.js';
+
+export { VisuallyHidden } from './VisuallyHidden/VisuallyHidden.js';
+
+export { Icon } from './Icon/Icon.js';
+
+export { Flex } from './Flex/Flex.js';
+
+export { Popover } from './Popover/Popover.js';
+
+export { Divider } from './Divider/Divider.js';

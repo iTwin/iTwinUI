@@ -11,15 +11,15 @@ import {
   useId,
   AutoclearingHiddenLiveRegion,
   Box,
-  usePopover,
   Portal,
   useMergedRefs,
   SvgCheckmark,
-  Icon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import SelectTag from './SelectTag.js';
 import SelectTagContainer from './SelectTagContainer.js';
+import { Icon } from '../Icon/Icon.js';
+import { usePopover } from '../Popover/Popover.js';
 
 const isMultipleEnabled = <T,>(
   variable: (T | undefined) | (T[] | undefined),

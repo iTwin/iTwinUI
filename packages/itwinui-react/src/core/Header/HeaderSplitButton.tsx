@@ -12,7 +12,7 @@ import {
   ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { SplitButtonProps } from '../Buttons/SplitButton/SplitButton.js';
+import type { SplitButtonProps } from '../Buttons/SplitButton.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
 
 export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {
