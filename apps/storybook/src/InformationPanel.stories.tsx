@@ -30,9 +30,6 @@ export default {
     InformationPanelContent,
   },
   title: 'Core/InformationPanel',
-  parameters: {
-    docs: { source: { excludeDecorators: true } },
-  },
 };
 
 export const Basic = () => {

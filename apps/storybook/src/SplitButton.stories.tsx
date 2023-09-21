@@ -9,11 +9,6 @@ import { MenuItem, SplitButton } from '@itwin/itwinui-react';
 export default {
   title: 'Buttons/SplitButton',
   component: SplitButton,
-  parameters: {
-    docs: {
-      source: { excludeDecorators: true },
-    },
-  },
   decorators: [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>],
 };
 

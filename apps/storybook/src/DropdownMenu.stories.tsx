@@ -26,13 +26,6 @@ export default {
   title: 'Core/DropdownMenu',
   component: DropdownMenu,
   subcomponents: { MenuItem, MenuDivider, MenuExtraContent },
-  parameters: {
-    docs: {
-      source: {
-        excludeDecorators: true,
-      },
-    },
-  },
 };
 
 export const Basic = () => {

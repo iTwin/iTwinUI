@@ -9,9 +9,6 @@ import { action } from '@storybook/addon-actions';
 export default {
   title: 'Core/Dialog',
   component: Dialog,
-  parameters: {
-    controls: { hideNoControlsWarning: true },
-  },
 };
 
 export const Basic = () => {

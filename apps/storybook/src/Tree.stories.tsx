@@ -16,7 +16,6 @@ import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default {
   component: Tree,
-  parameters: { controls: { hideNoControlsWarning: true } },
   title: 'Core/Tree',
 };
 

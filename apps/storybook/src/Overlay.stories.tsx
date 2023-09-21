@@ -7,10 +7,6 @@ import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
   component: Overlay,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
   title: 'Core/Overlay',
 };
 

@@ -7,9 +7,6 @@ import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
 import { action } from '@storybook/addon-actions';
 
 export default {
-  parameters: {
-    controls: { expanded: true },
-  },
   title: 'Core/Toasts',
 };
 

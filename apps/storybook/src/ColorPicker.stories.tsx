@@ -97,7 +97,6 @@ export const Basic = () => {
     </>
   );
 };
-Basic.args = {};
 
 export const Advanced = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -177,8 +176,6 @@ export const Advanced = () => {
   );
 };
 
-Advanced.args = {};
-
 export const WithAlpha = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
@@ -254,5 +251,3 @@ export const WithAlpha = () => {
     </>
   );
 };
-
-WithAlpha.args = {};

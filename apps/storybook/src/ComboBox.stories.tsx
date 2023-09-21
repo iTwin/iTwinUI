@@ -25,9 +25,6 @@ export default {
       </div>
     ),
   ],
-  parameters: {
-    docs: { source: { excludeDecorators: true } },
-  },
   title: 'Core/ComboBox',
 };
 
