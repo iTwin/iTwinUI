@@ -39,7 +39,7 @@ export type ModalProps = {
   onKeyDown?: React.KeyboardEventHandler;
   /**
    * Id of the root where the modal will be rendered in.
-   * @default 'iui-react-portal-container'
+   * @default 'iui2-react-portal-container'
    */
   modalRootId?: string;
   /**
@@ -85,7 +85,7 @@ export const Modal = (props: ModalProps) => {
     onClose,
     title,
     children,
-    modalRootId = 'iui-react-portal-container',
+    modalRootId = 'iui2-react-portal-container',
     ownerDocument = getDocument(),
     ...rest
   } = props;

@@ -9,7 +9,7 @@ import type { ToastCategory, ToastProps } from './Toast.js';
 import { ToastWrapper } from './ToastWrapper.js';
 import type { ToastWrapperHandle } from './ToastWrapper.js';
 
-const TOASTS_CONTAINER_ID = 'iui-toasts-container';
+const TOASTS_CONTAINER_ID = 'iui2-toasts-container';
 
 export type ToasterSettings = {
   /**
