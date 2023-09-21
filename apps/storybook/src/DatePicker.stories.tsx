@@ -31,15 +31,14 @@ export const Basic = () => {
 
   return (
     <>
-      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-        <SvgCalendar />
-      </IconButton>
+      <Popover
+        content={<DatePicker date={currentDate} onChange={onChange} setFocus />}
+      >
+        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
       <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
-      {opened && (
-        <div style={{ marginTop: 4 }}>
-          <DatePicker date={currentDate} onChange={onChange} setFocus />
-        </div>
-      )}
     </>
   );
 };
@@ -56,21 +55,20 @@ export const WithTime = () => {
 
   return (
     <>
-      <Popover
-        content={
+      <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
+        <SvgCalendar />
+      </IconButton>
+      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
+      {opened && (
+        <div style={{ marginTop: 4 }}>
           <DatePicker
             date={currentDate}
             onChange={onChange}
             setFocus
             showTime
           />
-        }
-      >
-        <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
-          <SvgCalendar />
-        </IconButton>
-      </Popover>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
+        </div>
+      )}
     </>
   );
 };
