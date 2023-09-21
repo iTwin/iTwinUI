@@ -68,7 +68,7 @@
   border-radius: var(--iui-border-radius-round);
   transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
   background-color: var(--iui-color-background);
-  border: $iui-toggle-switch-border-thickness solid var(--iui-color-border-foreground);
+  border: $iui-toggle-switch-border-thickness solid;
 
   &-label {
     grid-area: label;
