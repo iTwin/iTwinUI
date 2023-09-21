@@ -6,6 +6,15 @@ $surface-padding: var(--iui-size-2xs);
 
 .iui-surface {
   @include base.iui-surface;
+
+  &:where(:has(.iui-surface-body), :has(.iui-surface-header), [data-iui-layout='true']) {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.iui-popover-surface {
+  @include base.iui-surface($border-color: var(--iui-color-border), $elevation: var(--iui-shadow-2));
 }
 
 .iui-surface-header {
@@ -13,7 +22,7 @@ $surface-padding: var(--iui-size-2xs);
   flex-shrink: 0;
   align-items: center;
   overflow: hidden;
-  border-block-end: 1px solid var(--iui-surface-border-color);
+  border-block-end: 1px solid var(--iui-color-border-subtle);
   padding: $surface-padding;
   scrollbar-gutter: stable both-edges;
 }

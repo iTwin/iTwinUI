@@ -102,7 +102,6 @@ export { LabeledSelect } from './LabeledSelect/index.js';
 export { LabeledTextarea } from './LabeledTextarea/index.js';
 
 export {
-  Menu,
   MenuItem,
   MenuDivider,
   MenuExtraContent,

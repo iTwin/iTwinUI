@@ -11,7 +11,6 @@ import type {
 } from '../utils/index.js';
 import cx from 'classnames';
 import { ColorPickerContext } from './ColorPickerContext.js';
-import { Surface } from '../Surface/Surface.js';
 
 export const getColorValue = (color: ColorType | ColorValue | undefined) => {
   if (color instanceof ColorValue) {
@@ -138,8 +137,11 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      as={(applyBackground ? Surface : 'div') as typeof Surface}
-      className={cx('iui-color-picker', className)}
+      className={cx(
+        'iui-color-picker',
+        { 'iui-popover-surface': applyBackground },
+        className,
+      )}
       ref={useMergedRefs(ref, forwardedRef)}
       {...rest}
     >
