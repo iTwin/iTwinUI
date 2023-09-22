@@ -69,7 +69,7 @@ afterEach(() => {
   // This is the only thing I found to help with
   // warning for calling `createRoot` on element, which already had it.
   // Something is not fully reset in tests (this happens between multiple tests, not in single one)
-  const container = document.querySelector('#iui-toasts-container');
+  const container = document.querySelector('#iui2-toasts-container');
   if (!!container) {
     container.remove();
   }
