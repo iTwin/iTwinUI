@@ -5,123 +5,60 @@
 /* eslint-disable react/jsx-key */
 import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
 import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ProgressLinear, Icon } from '@itwin/itwinui-react';
-
-type ProgressLinearProps = React.ComponentProps<typeof ProgressLinear>;
 
 export default {
   title: 'ProgressIndicators/ProgressLinear',
   component: ProgressLinear,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    title: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-} as Meta<ProgressLinearProps>;
-
-export const Determinate: Story<ProgressLinearProps> = (args) => {
-  const { value = 50, ...rest } = args;
-  return <ProgressLinear value={value} {...rest} />;
 };
 
-Determinate.args = {
-  value: 50,
+export const Determinate = () => {
+  return <ProgressLinear value={50} />;
 };
 
-export const DeterminateAnimated: Story<ProgressLinearProps> = (args) => {
-  const { value = 50, isAnimated = true, ...rest } = args;
-  return <ProgressLinear value={value} isAnimated={isAnimated} {...rest} />;
+export const DeterminateAnimated = () => {
+  return <ProgressLinear value={50} isAnimated />;
 };
 
-DeterminateAnimated.args = {
-  isAnimated: true,
-  value: 50,
+export const Indeterminate = () => {
+  return <ProgressLinear indeterminate />;
 };
 
-export const Indeterminate: Story<ProgressLinearProps> = (args) => {
-  const { indeterminate = true, ...rest } = args;
-  return <ProgressLinear indeterminate={indeterminate} {...rest} />;
+export const LabeledCenter = () => {
+  return <ProgressLinear value={50} labels={['Centered Label']} />;
 };
 
-Indeterminate.args = {
-  indeterminate: true,
+export const LabeledLeftRight = () => {
+  return <ProgressLinear value={50} labels={['Loading...', '50%']} />;
 };
 
-export const LabeledCenter: Story<ProgressLinearProps> = (args) => {
-  const { value = 50, labels = ['Centered Label'], ...rest } = args;
-  return <ProgressLinear value={value} labels={labels} {...rest} />;
-};
-
-LabeledCenter.args = {
-  labels: ['Centered Label'],
-  value: 50,
-};
-
-export const LabeledLeftRight: Story<ProgressLinearProps> = (args) => {
-  const { value = 50, labels = ['Loading...', '50%'], ...rest } = args;
-  return <ProgressLinear value={value} labels={labels} {...rest} />;
-};
-
-LabeledLeftRight.args = {
-  labels: ['Loading...', '50%'],
-  value: 50,
-};
-
-export const Positive: Story<ProgressLinearProps> = (args) => {
-  const {
-    value = 100,
-    labels = [
-      'Upload done!',
-      <Icon>
-        <SvgStatusSuccessHollow />
-      </Icon>,
-    ],
-    status = 'positive',
-    ...rest
-  } = args;
+export const Positive = () => {
   return (
-    <ProgressLinear value={value} labels={labels} status={status} {...rest} />
+    <ProgressLinear
+      value={100}
+      labels={[
+        'Upload done!',
+        <Icon>
+          <SvgStatusSuccessHollow />
+        </Icon>,
+      ]}
+      status='positive'
+    />
   );
 };
 
-Positive.args = {
-  labels: [
-    'Upload done!',
-    <Icon>
-      <SvgStatusSuccessHollow />
-    </Icon>,
-  ],
-  status: 'positive',
-  value: 100,
-};
-
-export const Negative: Story<ProgressLinearProps> = (args) => {
-  const {
-    value = 45,
-    labels = [
-      'Upload failed',
-      <Icon>
-        <SvgStatusErrorHollow />
-      </Icon>,
-    ],
-    status = 'negative',
-    ...rest
-  } = args;
+export const Negative = () => {
   return (
-    <ProgressLinear value={value} labels={labels} status={status} {...rest} />
+    <ProgressLinear
+      value={45}
+      labels={[
+        'Upload failed',
+        <Icon>
+          <SvgStatusErrorHollow />
+        </Icon>,
+      ]}
+      status='negative'
+    />
   );
-};
-
-Negative.args = {
-  labels: [
-    'Upload failed',
-    <Icon>
-      <SvgStatusErrorHollow />
-    </Icon>,
-  ],
-  status: 'negative',
-  value: 45,
 };

@@ -3,25 +3,18 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
-type AlertProps = React.ComponentProps<typeof Alert>;
 
 export default {
   title: 'Core/Alert',
   component: Alert,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-} as Meta<AlertProps>;
+};
 
-export const Informational: Story<AlertProps> = (args) => {
+export const Informational = () => {
   return (
-    <Alert.Wrapper type='informational' {...args}>
+    <Alert.Wrapper type='informational'>
       <Alert.Icon />
       <Alert.Message>
         This is an informational message.
@@ -34,14 +27,9 @@ export const Informational: Story<AlertProps> = (args) => {
   );
 };
 
-Informational.args = {
-  children: 'This is an informational message.',
-  type: 'informational',
-};
-
-export const Positive: Story<AlertProps> = (args) => {
+export const Positive = () => {
   return (
-    <Alert.Wrapper type='positive' {...args}>
+    <Alert.Wrapper type='positive'>
       <Alert.Icon />
       <Alert.Message>
         This is a positive message.
@@ -54,14 +42,9 @@ export const Positive: Story<AlertProps> = (args) => {
   );
 };
 
-Positive.args = {
-  children: 'This is a positive message.',
-  type: 'positive',
-};
-
-export const Warning: Story<AlertProps> = (args) => {
+export const Warning = () => {
   return (
-    <Alert.Wrapper type='warning' {...args}>
+    <Alert.Wrapper type='warning'>
       <Alert.Icon />
       <Alert.Message>
         This is a warning message.
@@ -74,14 +57,9 @@ export const Warning: Story<AlertProps> = (args) => {
   );
 };
 
-Warning.args = {
-  children: 'This is a warning message.',
-  type: 'warning',
-};
-
-export const Negative: Story<AlertProps> = (args) => {
+export const Negative = () => {
   return (
-    <Alert.Wrapper type='negative' {...args}>
+    <Alert.Wrapper type='negative'>
       <Alert.Icon />
       <Alert.Message>
         This is a negative message.
@@ -94,12 +72,7 @@ export const Negative: Story<AlertProps> = (args) => {
   );
 };
 
-Negative.args = {
-  children: 'This is a negative message.',
-  type: 'negative',
-};
-
-export const Sticky: Story<AlertProps> = (args) => {
+export const Sticky = () => {
   return (
     <div
       style={{
@@ -109,7 +82,7 @@ export const Sticky: Story<AlertProps> = (args) => {
         border: 'solid 0.5px',
       }}
     >
-      <Alert.Wrapper type='informational' isSticky={true} {...args}>
+      <Alert.Wrapper type='informational' isSticky={true}>
         <Alert.Icon />
         <Alert.Message>
           This is sticky!
@@ -163,29 +136,18 @@ export const Sticky: Story<AlertProps> = (args) => {
   );
 };
 
-Sticky.args = {
-  children: 'This is sticky!',
-  type: 'informational',
-  isSticky: true,
-};
-
-export const Empty: Story<AlertProps> = (args) => {
+export const Empty = () => {
   return (
-    <Alert.Wrapper type='informational' {...args}>
+    <Alert.Wrapper type='informational'>
       <Alert.Icon />
       <Alert.Message>This is an empty info message.</Alert.Message>
     </Alert.Wrapper>
   );
 };
 
-Empty.args = {
-  children: 'This is empty info message.',
-  type: 'informational',
-};
-
-export const CustomIcon: Story<AlertProps> = (args) => {
+export const CustomIcon = () => {
   return (
-    <Alert.Wrapper type='informational' {...args}>
+    <Alert.Wrapper type='informational'>
       <Alert.Icon>
         <SvgSmileyHappy />
       </Alert.Icon>
@@ -195,9 +157,4 @@ export const CustomIcon: Story<AlertProps> = (args) => {
       </Alert.CloseButton>
     </Alert.Wrapper>
   );
-};
-
-CustomIcon.args = {
-  children: 'This is an info message with a custom icon.',
-  type: 'informational',
 };

@@ -2,44 +2,26 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { getUserColor, Avatar } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
 
-type AvatarProps = React.ComponentProps<typeof Avatar>;
-
 export default {
   title: 'Core/Avatar',
   component: Avatar,
-  args: {
-    backgroundColor: getUserColor('Terry Rivers'),
-    title: 'Terry Rivers',
-    abbreviation: 'TR',
-  },
-  argTypes: {
-    backgroundColor: {
-      control: 'color',
-    },
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    image: { control: { disable: true } },
-  },
-} as Meta<AvatarProps>;
+};
 
-export const Basic: Story<AvatarProps> = (args) => {
+export const Basic = () => {
   return (
     <Avatar
       abbreviation='TR'
       backgroundColor={getUserColor('Terry Rivers')}
       title='Terry Rivers'
-      {...args}
     />
   );
 };
 
-export const WithImage: Story<AvatarProps> = (args) => {
+export const WithImage = () => {
   return (
     <Avatar
       size='large'
@@ -49,19 +31,11 @@ export const WithImage: Story<AvatarProps> = (args) => {
         <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
       }
       title='Terry Rivers'
-      {...args}
     />
   );
 };
 
-WithImage.args = {
-  size: 'large',
-  image: (
-    <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-  ),
-};
-
-export const WithIcon: Story<AvatarProps> = (args) => {
+export const WithIcon = () => {
   return (
     <Avatar
       size='large'
@@ -69,17 +43,11 @@ export const WithIcon: Story<AvatarProps> = (args) => {
       backgroundColor={getUserColor('Terry Rivers')}
       image={<SvgUser />}
       title='Terry Rivers'
-      {...args}
     />
   );
 };
 
-WithIcon.args = {
-  size: 'large',
-  image: <SvgUser />,
-};
-
-export const Sizes: Story<AvatarProps> = (args) => {
+export const Sizes = () => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
       <Avatar
@@ -87,38 +55,30 @@ export const Sizes: Story<AvatarProps> = (args) => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='medium'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='x-large'
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
     </div>
   );
 };
 
-Sizes.argTypes = {
-  size: { control: { disable: true } },
-};
-
-export const Statuses: Story<AvatarProps> = (args) => {
+export const Statuses = () => {
   return (
     <div style={{ display: 'flex', gap: 4, placeItems: 'center' }}>
       <Avatar
@@ -127,7 +87,6 @@ export const Statuses: Story<AvatarProps> = (args) => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='large'
@@ -135,7 +94,6 @@ export const Statuses: Story<AvatarProps> = (args) => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='large'
@@ -143,7 +101,6 @@ export const Statuses: Story<AvatarProps> = (args) => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
       <Avatar
         size='large'
@@ -151,21 +108,12 @@ export const Statuses: Story<AvatarProps> = (args) => {
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
         title='Terry Rivers'
-        {...args}
       />
     </div>
   );
 };
 
-Statuses.args = {
-  size: 'large',
-};
-
-Statuses.argTypes = {
-  status: { control: { disable: true } },
-};
-
-export const CustomStatusTranslation: Story<AvatarProps> = (args) => {
+export const CustomStatusTranslation = () => {
   return (
     <Avatar
       size='large'
@@ -179,19 +127,6 @@ export const CustomStatusTranslation: Story<AvatarProps> = (args) => {
         offline: 'Disconnected',
         online: 'Available',
       }}
-      {...args}
     />
   );
-};
-
-CustomStatusTranslation.args = {
-  size: 'large',
-  status: 'away',
-  abbreviation: 'TR',
-  translatedStatusTitles: {
-    away: 'AFK',
-    busy: 'Do not disturb!',
-    offline: 'Disconnected',
-    online: 'Available',
-  },
 };

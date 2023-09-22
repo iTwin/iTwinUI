@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   ColorPicker,
@@ -19,19 +18,11 @@ import {
 import { action } from '@storybook/addon-actions';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
-type ColorPickerProps = React.ComponentProps<typeof ColorPicker>;
-
 export default {
   component: ColorPicker,
   subcomponents: { ColorBuilder, ColorPalette, ColorInputPanel, ColorSwatch },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    children: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
   title: 'Core/ColorPicker',
-} as Meta<ColorPickerProps>;
+};
 
 const ColorsList = [
   { color: '#ffffff', name: 'WHITE' },
@@ -66,7 +57,7 @@ const ColorsList = [
   { color: '#ffc335', name: 'RISE-N-SHINE' },
 ];
 
-export const Basic: Story<ColorPickerProps> = (args) => {
+export const Basic = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [activeColor, setActiveColor] = React.useState(ColorsList[5]);
   const [colorName, setColorName] = React.useState(ColorsList[5].name);
@@ -87,7 +78,6 @@ export const Basic: Story<ColorPickerProps> = (args) => {
         content={
           <ColorPicker
             selectedColor={activeColor.color}
-            {...args}
             onChangeComplete={onColorChanged}
           >
             <ColorPalette colors={ColorsList.map(({ color }) => color)} />
@@ -107,9 +97,8 @@ export const Basic: Story<ColorPickerProps> = (args) => {
     </>
   );
 };
-Basic.args = {};
 
-export const Advanced: Story<ColorPickerProps> = (args) => {
+export const Advanced = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
     ColorValue.create({ h: 0, s: 100, l: 50 }),
@@ -143,7 +132,6 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
           content={
             <ColorPicker
               selectedColor={selectedColor}
-              {...args}
               onChangeComplete={onColorChanged}
             >
               <ColorBuilder />
@@ -188,9 +176,7 @@ export const Advanced: Story<ColorPickerProps> = (args) => {
   );
 };
 
-Advanced.args = {};
-
-export const WithAlpha: Story<ColorPickerProps> = (args) => {
+export const WithAlpha = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [selectedColor, setSelectedColor] = React.useState<ColorValue>(
     ColorValue.create({ r: 90, g: 105, b: 115, a: 0.4 }),
@@ -224,7 +210,6 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
           content={
             <ColorPicker
               selectedColor={selectedColor}
-              {...args}
               onChangeComplete={onColorChanged}
               showAlpha={true}
             >
@@ -266,5 +251,3 @@ export const WithAlpha: Story<ColorPickerProps> = (args) => {
     </>
   );
 };
-
-WithAlpha.args = {};
