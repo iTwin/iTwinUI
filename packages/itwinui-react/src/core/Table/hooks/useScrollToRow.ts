@@ -54,7 +54,7 @@ export function useScrollToRow<T extends Record<string, unknown>>({
       return;
     }
 
-    rowRefs.current[pageRef.current[scrollToIndex].id]?.scrollIntoView();
+    rowRefs.current[pageRef.current[scrollToIndex]?.id]?.scrollIntoView();
   }, [enableVirtualization, scrollToIndex]);
 
   const tableRowRef = React.useCallback((row: Row<T>) => {
