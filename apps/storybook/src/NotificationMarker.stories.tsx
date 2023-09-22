@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Text,
@@ -12,22 +11,8 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgNotification } from '@itwin/itwinui-icons-react';
 
-type NotificationMarkerProps = React.ComponentProps<typeof NotificationMarker>;
-
 export default {
   component: NotificationMarker,
-  args: {
-    enabled: true,
-    pulsing: false,
-  },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    status: {
-      control: 'radio',
-      options: ['primary', 'positive', 'warning', 'negative', 'white'],
-    },
-  },
   title: 'Core/NotificationMarker',
   decorators: [
     (Story) => (
@@ -42,126 +27,97 @@ export default {
       </div>
     ),
   ],
-} as Meta<NotificationMarkerProps>;
+};
 
-export const Basic: Story<NotificationMarkerProps> = (args) => {
+export const Basic = () => {
   return (
     <>
-      <NotificationMarker {...args}>
+      <NotificationMarker status='primary'>
         <SvgNotification width={16} height={16} fill='currentColor' />
       </NotificationMarker>
-      <NotificationMarker {...args}>Normal</NotificationMarker>
+      <NotificationMarker status='primary'>Normal</NotificationMarker>
     </>
   );
 };
 
-Basic.args = {
-  status: 'primary',
-};
-
-export const WithButtons: Story<NotificationMarkerProps> = (args) => {
+export const WithButtons = () => {
   return (
     <>
       <IconButton styleType='borderless'>
-        <NotificationMarker {...args}>
+        <NotificationMarker status='primary'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
       <Button styleType='borderless'>
-        <NotificationMarker {...args}>Inbox</NotificationMarker>
+        <NotificationMarker status='primary'>Inbox</NotificationMarker>
       </Button>
     </>
   );
 };
 
-WithButtons.args = {
-  status: 'primary',
-};
-
-export const Pulsing: Story<NotificationMarkerProps> = (args) => {
+export const Pulsing = () => {
   return (
     <>
       <IconButton styleType='borderless'>
-        <NotificationMarker status='primary' {...args}>
+        <NotificationMarker status='negative' pulsing>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='primary' {...args}>
+      <NotificationMarker status='negative' pulsing>
         <Text style={{ fontWeight: '700' }}>URGENT</Text>
       </NotificationMarker>
     </>
   );
 };
 
-Pulsing.args = {
-  status: 'negative',
-  pulsing: true,
-};
-
-export const Status: Story<NotificationMarkerProps> = (args) => {
+export const Status = () => {
   return (
     <>
-      <NotificationMarker status='primary' {...args}>
-        Primary
-      </NotificationMarker>
+      <NotificationMarker status='primary'>Primary</NotificationMarker>
       <IconButton styleType='borderless'>
-        <NotificationMarker status='primary' {...args}>
+        <NotificationMarker status='primary'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='positive' {...args}>
-        Positive
-      </NotificationMarker>
+      <NotificationMarker status='positive'>Positive</NotificationMarker>
       <IconButton styleType='borderless'>
-        <NotificationMarker status='positive' {...args}>
+        <NotificationMarker status='positive'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='warning' {...args}>
-        Warning
-      </NotificationMarker>
+      <NotificationMarker status='warning'>Warning</NotificationMarker>
       <IconButton styleType='borderless'>
-        <NotificationMarker status='warning' {...args}>
+        <NotificationMarker status='warning'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='negative' {...args}>
-        Negative
-      </NotificationMarker>
+      <NotificationMarker status='negative'>Negative</NotificationMarker>
       <IconButton styleType='borderless'>
-        <NotificationMarker status='negative' {...args}>
+        <NotificationMarker status='negative'>
           <SvgNotification />
         </NotificationMarker>
       </IconButton>
 
-      <NotificationMarker status='white' {...args}>
-        White
-      </NotificationMarker>
+      <NotificationMarker status='white'>White</NotificationMarker>
       <div style={{ display: 'flex', columnGap: '10px' }}>
         <IconButton styleType='high-visibility'>
-          <NotificationMarker status='white' {...args}>
+          <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>
         </IconButton>
         <IconButton styleType='cta'>
-          <NotificationMarker status='white' {...args}>
+          <NotificationMarker status='white'>
             <SvgNotification />
           </NotificationMarker>
         </IconButton>
       </div>
     </>
   );
-};
-
-Status.argTypes = {
-  status: {
-    control: false,
-  },
 };
 
 Status.decorators = [

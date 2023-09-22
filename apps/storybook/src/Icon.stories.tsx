@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Icon, Slider, Flex } from '@itwin/itwinui-react';
 import {
@@ -13,36 +12,20 @@ import {
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
 
-type IconProps = React.ComponentProps<typeof Icon>;
-
 export default {
   component: Icon,
   title: 'Utilities/Icon',
-  argTypes: {
-    size: {
-      control: 'radio',
-      options: ['auto', 'small', 'medium', 'large'],
-    },
-    fill: {
-      control: 'radio',
-      options: ['default', 'informational', 'positive', 'warning', 'negative'],
-    },
-  },
-} as Meta<IconProps>;
+};
 
-export const Default: Story<IconProps> = (args) => {
+export const Default = () => {
   return (
-    <Icon {...args}>
+    <Icon>
       <SvgPlaceholder />
     </Icon>
   );
 };
-Default.args = {
-  size: 'medium',
-  fill: 'default',
-};
 
-export const Padded: Story<IconProps> = (args) => {
+export const Padded = () => {
   return (
     <Flex
       style={{
@@ -50,37 +33,31 @@ export const Padded: Story<IconProps> = (args) => {
         width: 'fit-content',
       }}
     >
-      <Icon {...args}>
+      <Icon padded>
         <SvgPlaceholder />
       </Icon>
     </Flex>
   );
 };
-Padded.args = {
-  size: 'medium',
-  fill: 'default',
-  padded: true,
-};
 
-export const Statuses: Story<IconProps> = (args) => {
+export const Statuses = () => {
   return (
     <>
-      <Icon fill='informational' {...args}>
+      <Icon fill='informational'>
         <SvgInfoCircular />
       </Icon>
-      <Icon fill='negative' {...args}>
+      <Icon fill='negative'>
         <SvgStatusError />
       </Icon>
-      <Icon fill='positive' {...args}>
+      <Icon fill='positive'>
         <SvgStatusSuccess />
       </Icon>
-      <Icon fill='warning' {...args}>
+      <Icon fill='warning'>
         <SvgStatusWarning />
       </Icon>
     </>
   );
 };
-Statuses.args = {};
 Statuses.decorators = [
   (Story) => (
     <div style={{ display: 'flex', gap: 4 }}>
@@ -89,34 +66,29 @@ Statuses.decorators = [
   ),
 ];
 
-export const Sizes: Story<IconProps> = (args) => {
+export const Sizes = () => {
   return (
     <>
-      <Icon size='small' {...args}>
+      <Icon size='small'>
         <SvgPlaceholder />
       </Icon>
-      <Icon size='medium' {...args}>
+      <Icon size='medium'>
         <SvgPlaceholder />
       </Icon>
-      <Icon size='large' {...args}>
+      <Icon size='large'>
         <SvgPlaceholder />
       </Icon>
     </>
   );
 };
-Sizes.args = {};
 Sizes.decorators = Statuses.decorators;
 
-export const Autoscale: Story<IconProps> = (args) => {
+export const Autoscale = () => {
   return (
-    <Icon {...args}>
+    <Icon>
       <SvgPlaceholder />
     </Icon>
   );
-};
-Autoscale.args = {
-  size: 'auto',
-  fill: 'default',
 };
 Autoscale.decorators = [
   (Story) => (

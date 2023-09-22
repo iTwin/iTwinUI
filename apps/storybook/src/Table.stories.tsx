@@ -1631,10 +1631,6 @@ Localized.decorators = [
   ),
 ];
 
-Localized.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const Condensed = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
@@ -1905,10 +1901,6 @@ WithPaginator.decorators = [
   ),
 ];
 
-WithPaginator.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const WithManualPaginatorAndFilter = () => {
   type RowData = {
     name: string;
@@ -2114,10 +2106,6 @@ WithManualPaginatorAndFilter.decorators = [
   ),
 ];
 
-WithManualPaginatorAndFilter.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const CustomFilter = () => {
   type RowData = {
     name: string;
@@ -2271,10 +2259,6 @@ CustomFilter.decorators = [
     </div>
   ),
 ];
-
-CustomFilter.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
 
 export const ResizableColumns = () => {
   type TableStoryDataType = {

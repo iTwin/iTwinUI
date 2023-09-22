@@ -2,12 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { List, ListItem } from '@itwin/itwinui-react';
 import { SvgCheckmark, SvgPlaceholder } from '@itwin/itwinui-icons-react';
-
-type ListItemProps = React.ComponentProps<typeof ListItem>;
 
 export default {
   component: List,
@@ -19,25 +16,15 @@ export default {
       </div>
     ),
   ],
-  argTypes: {
-    active: { type: 'boolean' },
-    actionable: { type: 'boolean' },
-    focused: { type: 'boolean' },
-    disabled: { type: 'boolean' },
-    size: {
-      options: ['large'],
-      control: { type: 'select' },
-    },
-  },
-} as Meta<ListItemProps>;
+};
 
-export const Basic: Story<ListItemProps> = (args) => {
+export const Basic = () => {
   return (
     <>
       <List>
-        <ListItem {...args}>Item 1</ListItem>
-        <ListItem {...args}>Item 2</ListItem>
-        <ListItem {...args} size='large'>
+        <ListItem>Item 1</ListItem>
+        <ListItem>Item 2</ListItem>
+        <ListItem size='large'>
           <ListItem.Content>
             <div>Item 3</div>
             <ListItem.Description>
@@ -49,18 +36,17 @@ export const Basic: Story<ListItemProps> = (args) => {
     </>
   );
 };
-Basic.args = {};
 
-export const WithIcon: Story<ListItemProps> = (args) => {
+export const WithIcon = () => {
   return (
     <List>
-      <ListItem {...args}>
+      <ListItem>
         <ListItem.Icon aria-hidden>
           <SvgPlaceholder />
         </ListItem.Icon>
         <ListItem.Content>Item 1</ListItem.Content>
       </ListItem>
-      <ListItem {...args}>
+      <ListItem>
         <ListItem.Icon aria-hidden>
           <SvgPlaceholder />
         </ListItem.Icon>
@@ -69,7 +55,7 @@ export const WithIcon: Story<ListItemProps> = (args) => {
           <SvgCheckmark />
         </ListItem.Icon>
       </ListItem>
-      <ListItem {...args}>
+      <ListItem>
         <ListItem.Icon aria-hidden>
           <SvgPlaceholder />
         </ListItem.Icon>
@@ -78,27 +64,20 @@ export const WithIcon: Story<ListItemProps> = (args) => {
     </List>
   );
 };
-WithIcon.args = {};
 
-export const Actionable: Story<ListItemProps> = (args) => {
+export const Actionable = () => {
   return (
     <List>
-      <ListItem {...args}>Item 1</ListItem>
-      <ListItem {...args} active>
+      <ListItem actionable>Item 1</ListItem>
+      <ListItem actionable active>
         <ListItem.Content>Item 2</ListItem.Content>
         <ListItem.Icon aria-hidden>
           <SvgCheckmark />
         </ListItem.Icon>
       </ListItem>
-      <ListItem {...args} disabled>
+      <ListItem actionable disabled>
         Item 3
       </ListItem>
     </List>
   );
-};
-Actionable.args = {
-  actionable: true,
-};
-Actionable.argTypes = {
-  actionable: { control: { disable: true } },
 };

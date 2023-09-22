@@ -2,25 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Carousel, Text, Code } from '@itwin/itwinui-react';
 
-type CarouselProps = React.ComponentProps<typeof Carousel>;
-
 export default {
   component: Carousel,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
   title: 'Core/Carousel',
-  parameters: {
-    docs: { source: { excludeDecorators: true } },
-  },
-} as Meta<CarouselProps>;
+};
 
-export const Basic: Story<CarouselProps> = (args) => {
+export const Basic = () => {
   const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
@@ -35,7 +25,7 @@ export const Basic: Story<CarouselProps> = (args) => {
   ];
 
   return (
-    <Carousel style={{ width: 'min(800px, 90vw)' }} {...args}>
+    <Carousel style={{ width: 'min(800px, 90vw)' }}>
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -60,7 +50,7 @@ export const Basic: Story<CarouselProps> = (args) => {
   );
 };
 
-export const Controlled: Story<CarouselProps> = (args) => {
+export const Controlled = () => {
   const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
@@ -78,7 +68,6 @@ export const Controlled: Story<CarouselProps> = (args) => {
 
   return (
     <Carousel
-      {...args}
       style={{ width: 'min(800px, 90vw)' }}
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}
@@ -106,13 +95,9 @@ export const Controlled: Story<CarouselProps> = (args) => {
     </Carousel>
   );
 };
-Controlled.args = {};
-Controlled.argTypes = {
-  activeSlideIndex: { control: { disable: true } },
-};
 
 const useId = () => 'my-custom-carousel';
-export const OnlyDots: Story<CarouselProps> = () => {
+export const OnlyDots = () => {
   const gradients = [
     { from: '#cc2b5e', to: '#753a88' },
     { from: '#00467f', to: '#a5cc82' },
@@ -194,9 +179,6 @@ export const OnlyDots: Story<CarouselProps> = () => {
     </section>
   );
 };
-OnlyDots.args = {};
-OnlyDots.parameters = { controls: { hideNoControlsWarning: true } };
-OnlyDots.argTypes = { activeSlideIndex: { control: { disable: true } } };
 OnlyDots.decorators = [
   (Story) => (
     <div style={{ display: 'inline-grid', gap: '1rem' }}>

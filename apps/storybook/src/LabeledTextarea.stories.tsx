@@ -3,132 +3,87 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
-
-type LabeledTextareaProps = React.ComponentProps<typeof LabeledTextarea>;
 
 export default {
   title: 'Input/LabeledTextarea',
   component: LabeledTextarea,
-  argTypes: {
-    textareaClassName: { control: { disable: true } },
-    textareaStyle: { control: { disable: true } },
-    svgIcon: { control: { disable: true } },
-  },
-  args: {
-    placeholder: 'This is a textarea',
-    label: 'Textarea Label',
-    message: 'Display Message',
-    displayStyle: 'default',
-    disabled: false,
-  },
-} as Meta<LabeledTextareaProps>;
+};
 
-export const Basic: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Basic = () => {
   return (
     <LabeledTextarea
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
-      {...args}
     />
   );
 };
 
-export const Disabled: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Disabled = () => {
   return (
     <LabeledTextarea
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
       disabled={true}
-      {...args}
     />
   );
 };
 
-Disabled.args = {
-  disabled: true,
-};
-
-export const Positive: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Positive = () => {
   return (
     <LabeledTextarea
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
       status='positive'
-      {...args}
     />
   );
 };
 
-Positive.args = {
-  status: 'positive',
-};
-
-export const Warning: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Warning = () => {
   return (
     <LabeledTextarea
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
       status='warning'
-      {...args}
     />
   );
 };
 
-Warning.args = {
-  status: 'warning',
-};
-
-export const Negative: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Negative = () => {
   return (
     <LabeledTextarea
       label='Textarea Label'
       message='Display Message'
       placeholder='This is a textarea'
       status='negative'
-      {...args}
     />
   );
 };
 
-Negative.args = {
-  status: 'negative',
-};
-
-export const WithCustomIcon: Story<Partial<LabeledTextareaProps>> = (args) => {
-  const { message: textMessage, ...rest } = args;
+export const WithCustomIcon = () => {
   return (
     <LabeledTextarea
-      placeholder='Enter text here'
-      label='This is a label'
+      placeholder='This is a textarea'
+      label='Textarea Label'
       message={
-        <StatusMessage startIcon={<SvgCamera />}>{textMessage}</StatusMessage>
+        <StatusMessage startIcon={<SvgCamera />}>Display Message</StatusMessage>
       }
-      {...rest}
     />
   );
 };
 
-export const Inline: Story<Partial<LabeledTextareaProps>> = (args) => {
+export const Inline = () => {
   return (
     <LabeledTextarea
-      placeholder='Enter text here'
+      placeholder='This is a textarea'
       status='negative'
-      label='This is a label'
+      label='Textarea Label'
       displayStyle='inline'
-      {...args}
     />
   );
-};
-
-Inline.args = {
-  status: 'negative',
-  displayStyle: 'inline',
-  message: undefined,
 };

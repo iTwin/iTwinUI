@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { StoryFn, Meta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
@@ -15,18 +14,10 @@ import {
   InputGrid,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
-
 type ComboBoxProps = React.ComponentProps<typeof ComboBox>;
 
 export default {
   component: ComboBox,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    options: { control: { disable: true } },
-    dropdownMenuProps: { control: { disable: true } },
-  },
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 'clamp(300px, 50%, 100%)', minHeight: 380 }}>
@@ -34,11 +25,8 @@ export default {
       </div>
     ),
   ],
-  parameters: {
-    docs: { source: { excludeDecorators: true } },
-  },
   title: 'Core/ComboBox',
-} as Meta<ComboBoxProps>;
+};
 
 const countriesList = [
   { label: 'Afghanistan', value: 'AF' },
@@ -308,7 +296,7 @@ const fetchOptions = async (): Promise<SelectOption<string>[]> => {
   });
 };
 
-export const Basic: StoryFn = (args: Partial<ComboBoxProps>) => {
+export const Basic = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -316,18 +304,11 @@ export const Basic: StoryFn = (args: Partial<ComboBoxProps>) => {
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
-      {...args}
     />
   );
 };
-Basic.args = {
-  inputProps: { placeholder: 'Select a country' },
-} as ComboBoxProps;
-Basic.argTypes = {
-  value: { control: { disable: true } },
-};
 
-export const Controlled: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const Controlled = () => {
   const options = React.useMemo(() => countriesList, []);
   const [countryValue, setCountryValue] = React.useState<string>('CA');
 
@@ -335,7 +316,6 @@ export const Controlled: StoryFn<Partial<ComboBoxProps>> = (args) => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      {...args}
       value={countryValue}
       onChange={(value: string) => {
         action(value)();
@@ -344,9 +324,8 @@ export const Controlled: StoryFn<Partial<ComboBoxProps>> = (args) => {
     />
   );
 };
-Controlled.args = { ...Basic.args, value: 'CA' };
 
-export const DisabledItems: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const DisabledItems = () => {
   const options = React.useMemo(
     () =>
       countriesList.map(
@@ -373,13 +352,11 @@ export const DisabledItems: StoryFn<Partial<ComboBoxProps>> = (args) => {
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
-      {...args}
     />
   );
 };
-DisabledItems.args = { ...Basic.args };
 
-export const WithLabel: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const WithLabel = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -392,16 +369,12 @@ export const WithLabel: StoryFn<Partial<ComboBoxProps>> = (args) => {
           id: 'combo-input', // passing id to inputProps so it can be used in Label htmlFor
           placeholder: 'Select a country',
         }}
-        {...args}
       />
     </InputGrid>
   );
 };
-WithLabel.args = {
-  inputProps: { id: 'combo-input', placeholder: 'Select a country' },
-} as ComboBoxProps;
 
-export const WithStatus: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const WithStatus = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -410,16 +383,11 @@ export const WithStatus: StoryFn<Partial<ComboBoxProps>> = (args) => {
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
       status='negative'
-      {...args}
     />
   );
 };
-WithStatus.args = {
-  inputProps: { placeholder: 'Select a country' },
-  status: 'negative',
-};
 
-export const CustomRenderer: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const CustomRenderer = () => {
   const options = React.useMemo(() => countriesList, []);
   const [selectedValue, setSelectedValue] = React.useState('AF');
 
@@ -451,15 +419,11 @@ export const CustomRenderer: StoryFn<Partial<ComboBoxProps>> = (args) => {
       value={selectedValue}
       onChange={onChange}
       itemRenderer={itemRenderer}
-      {...args}
     />
   );
 };
-CustomRenderer.args = {
-  inputProps: { placeholder: 'Select a country' },
-};
 
-export const WithMessage: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const WithMessage = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -468,18 +432,11 @@ export const WithMessage: StoryFn<Partial<ComboBoxProps>> = (args) => {
       message='This is a message'
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
-      {...args}
     />
   );
 };
-WithMessage.args = {
-  inputProps: { placeholder: 'Select a country' },
-  message: 'This is a message',
-};
 
-export const WithCustomMessageIcon: StoryFn<Partial<ComboBoxProps>> = (
-  args,
-) => {
+export const WithCustomMessageIcon = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -492,18 +449,11 @@ export const WithCustomMessageIcon: StoryFn<Partial<ComboBoxProps>> = (
       }
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
-      {...args}
     />
   );
 };
-WithCustomMessageIcon.args = {
-  inputProps: { placeholder: 'Select a country' },
-  message: (
-    <StatusMessage startIcon={<SvgCamera />}>This is a message</StatusMessage>
-  ),
-};
 
-export const Loading: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const Loading = () => {
   const [options, setOptions] = React.useState<SelectOption<string>[]>([]);
   const [selectedValue, setSelectedValue] = React.useState<string>();
   const [isLoading, setIsLoading] = React.useState(true);
@@ -540,7 +490,6 @@ export const Loading: StoryFn<Partial<ComboBoxProps>> = (args) => {
       inputProps={{ placeholder: 'Select a country' }}
       value={selectedValue}
       onChange={onChange}
-      {...args}
       emptyStateMessage={emptyContent}
       options={options}
       onShow={React.useCallback(async () => {
@@ -553,11 +502,8 @@ export const Loading: StoryFn<Partial<ComboBoxProps>> = (args) => {
     />
   );
 };
-Loading.args = {
-  inputProps: { placeholder: 'Select a country' },
-};
 
-export const Virtualized: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const Virtualized = () => {
   const options = React.useMemo(() => countriesList, []);
 
   return (
@@ -566,19 +512,11 @@ export const Virtualized: StoryFn<Partial<ComboBoxProps>> = (args) => {
       inputProps={{ placeholder: 'Select a country' }}
       onChange={(value: string) => action(value ?? '')()}
       enableVirtualization
-      {...args}
     />
   );
 };
-Virtualized.args = {
-  inputProps: { placeholder: 'Select a country' },
-  enableVirtualization: true,
-} as ComboBoxProps;
-Virtualized.argTypes = {
-  value: { control: { disable: true } },
-};
 
-export const MultipleSelect: StoryFn<Partial<ComboBoxProps>> = (args) => {
+export const MultipleSelect = () => {
   const options = React.useMemo(() => countriesList, []);
   const [selectedOptions, setSelectedOptions] = React.useState<string[]>([
     'CA',
@@ -589,7 +527,6 @@ export const MultipleSelect: StoryFn<Partial<ComboBoxProps>> = (args) => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      {...args}
       multiple
       value={selectedOptions}
       onChange={(selected, event) => {
