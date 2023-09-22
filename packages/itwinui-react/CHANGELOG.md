@@ -202,6 +202,19 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.10
+
+### Patch Changes
+
+- [#1590](https://github.com/iTwin/iTwinUI/pull/1590): Fixed undefined property access in `useScrollToRow`.
+- [#1587](https://github.com/iTwin/iTwinUI/pull/1587): Fixed an issue where v2 toasts and modals were being added to v1 containers.
+
+## 2.12.9
+
+### Patch Changes
+
+- [#1586](https://github.com/iTwin/iTwinUI/pull/1586): Fixed an issue with toggle-switch border styles not working in popout windows.
+
 ## 2.12.8
 
 ### Patch Changes
