@@ -694,7 +694,7 @@
       </div>
     </section>
 
-    <!-- <script>
+    <script>
       function setTooltip(percent, tooltip, sliderContainer) {
         if (getIsVerticalSlider(sliderContainer)) {
           if (tooltip) {
@@ -710,39 +710,34 @@
       }
 
       function setThumbAndTrack(percent, thumb, otherThumb, progress, sliderContainer, mode) {
+        thumb.style = `--iui-slider-thumb-position: ${percent}%`;
         if (getIsVerticalSlider(sliderContainer)) {
           if (mode === "progress") {
-            thumb.style.bottom = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
+            progress.style = `--iui-slider-track-position: ${progressPercent}% 0`;
             console.log(`${percent}%`);
           }
           else if (mode === "range-left") {
             otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-            thumb.style.bottom = `${percent}%`;
-            progress.style.bottom = `${percent}%`;
+            progress.style = `--iui-slider-track-position: ${100 - otherThumb.getAttribute("aria-valuenow")}% ${percent}%`;
             console.log(`${percent}% - ${otherThumb.getAttribute("aria-valuenow")}%`);
           } else if (mode === "range-right") {
             otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-            thumb.style.bottom = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.top = `${progressPercent}%`;
+            progress.style = `--iui-slider-track-position: ${progressPercent}% ${otherThumb.getAttribute("aria-valuenow")}%`;
             console.log(`${otherThumb.getAttribute("aria-valuenow")}% - ${percent}%`);
           }
         } else {
           if (mode === "progress") {
-            thumb.style.left = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
+            progress.style = `--iui-slider-track-position: 0 ${progressPercent}%`;
           } else if (mode === "range-left") {
             otherThumb && otherThumb.setAttribute("aria-valuemin", percent + 1);
-            thumb.style.left = `${percent}%`;
-            progress.style.left = `${percent}%`;
+            progress.style = `--iui-slider-track-position: ${percent}% ${100 - otherThumb.getAttribute("aria-valuenow")}%`;
           } else if (mode === "range-right") {
             otherThumb && otherThumb.setAttribute("aria-valuemax", percent - 1);
-            thumb.style.left = `${percent}%`;
             var progressPercent = 100 - percent;
-            progress.style.right = `${progressPercent}%`;
+            progress.style = `--iui-slider-track-position: ${otherThumb.getAttribute("aria-valuenow")}% ${progressPercent}%`;
           }
         }
       }
@@ -908,6 +903,6 @@
 
       initializeAllProgressSliders();
       initializeAllRangeSliders();
-    </script> -->
+    </script>
   </body>
 </html>
