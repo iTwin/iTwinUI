@@ -14,9 +14,7 @@
   },
   "lint-staged": {
     "*.{scss}": [
-      "prettier --write"
-    ],
-    "*.{scss,html}": [
+      "prettier --write",
       "stylelint --fix"
     ],
     "*.{scss,html,js}": [
