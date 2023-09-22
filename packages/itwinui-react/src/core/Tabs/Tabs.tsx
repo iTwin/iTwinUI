@@ -90,6 +90,7 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     children,
     orientation = 'horizontal',
     type = 'default',
+
     ...rest
   } = props;
 
@@ -139,10 +140,8 @@ type TabListOwnProps = {
    * Tab items.
    */
   children: React.ReactNode[] | React.ReactNode;
-  /**
-   * Handler for activating a tab.
-   */
-  onTabSelected?: (index: number) => void;
+  activeValue?: string;
+  setActiveValue?: (value: string) => void;
 };
 
 const TabList = React.forwardRef((props, ref) => {
@@ -151,15 +150,16 @@ const TabList = React.forwardRef((props, ref) => {
     children,
     color = 'blue',
     focusActivationMode = 'auto',
-    onTabSelected,
+    activeValue: activeValueProp,
+    setActiveValue: setActiveValueProp,
     ...rest
   } = props;
 
   const {
     orientation,
     type,
-    activeValue,
-    setActiveValue,
+    activeValue: activeValueContext,
+    setActiveValue: setActiveValueContext,
     overflowOptions,
     setStripeProperties,
   } = useSafeContext(TabsContext);
@@ -168,6 +168,10 @@ const TabList = React.forwardRef((props, ref) => {
     () => (Array.isArray(children) ? children : [children]),
     [children],
   );
+
+  const activeValue = activeValueProp || activeValueContext;
+  const setActiveValue = setActiveValueProp || setActiveValueContext;
+
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
@@ -237,9 +241,6 @@ const TabList = React.forwardRef((props, ref) => {
 
   const onTabClick = React.useCallback(
     (index: number) => {
-      if (onTabSelected) {
-        onTabSelected(index);
-      }
       const tab = items[index];
       if (React.isValidElement(tab)) {
         if (tab.props.onActivated) {
@@ -249,7 +250,7 @@ const TabList = React.forwardRef((props, ref) => {
         }
       }
     },
-    [items, setActiveValue, onTabSelected],
+    [items, setActiveValue],
   );
 
   React.useEffect(() => {
@@ -797,19 +798,44 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
+
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
       <TabList
         color={color}
         className={tabsClassName}
         focusActivationMode={focusActivationMode}
-        onTabSelected={onTabSelected}
         ref={forwardedRef}
       >
         {labels.map((label, index) =>
-          React.cloneElement(label as JSX.Element, {
-            value: index,
-          }),
+          React.isValidElement(label) ? (
+            React.cloneElement(label as JSX.Element, {
+              value: index,
+              active: index === currentActiveIndex,
+              'aria-selected': index === currentActiveIndex,
+              tabIndex: index === 1 ? 0 : -1,
+              onClick: (args: unknown) => {
+                onTabSelected?.(index);
+                setCurrentActiveIndex(index);
+                label.props.onClick?.(args);
+              },
+            })
+          ) : (
+            <Tab
+              key={index}
+              label={label}
+              className={cx({
+                'iui-active': index === currentActiveIndex,
+              })}
+              tabIndex={index === currentActiveIndex ? 0 : -1}
+              onClick={() => {
+                onTabSelected?.(index);
+                setCurrentActiveIndex(index);
+              }}
+              aria-selected={index === currentActiveIndex}
+            />
+          ),
         )}
       </TabList>
 
@@ -866,23 +892,11 @@ type TabLegacyProps = {
  * ];
  */
 export const Tab = React.forwardRef((props, forwardedRef) => {
-  const {
-    label,
-    sublabel,
-    startIcon,
-    children,
-    active = false,
-    ...rest
-  } = props;
+  const { label, sublabel, startIcon, children, ...rest } = props;
 
   return (
     <>
-      <TabHeader
-        ref={forwardedRef}
-        value='random-value'
-        isActive={active}
-        {...rest}
-      >
+      <TabHeader {...rest} value='sads' ref={forwardedRef}>
         {startIcon && <TabIcon>{startIcon}</TabIcon>}
         <TabLabel>{label}</TabLabel>
         {sublabel && <TabDescription>{sublabel}</TabDescription>}
