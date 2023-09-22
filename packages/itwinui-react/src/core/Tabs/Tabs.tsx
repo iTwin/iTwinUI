@@ -512,7 +512,7 @@ type TabOwnProps = {
   onActivated?: () => void;
 };
 
-export const Tab = React.forwardRef((props, ref) => {
+const TabHeader = React.forwardRef((props, ref) => {
   const {
     className,
     children,
@@ -626,7 +626,7 @@ export const Tab = React.forwardRef((props, ref) => {
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
-Tab.displayName = 'Tabs.Tab';
+TabHeader.displayName = 'Tabs.Tab';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabIcon component
@@ -828,6 +828,70 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
 }) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
 TabsComponent.displayName = 'Tabs';
 
+type TabLegacyProps = {
+  /**
+   * The main label shown in the tab.
+   */
+  label?: React.ReactNode;
+  /**
+   * Secondary label shown below the main label.
+   */
+  sublabel?: React.ReactNode;
+  /**
+   * Svg icon shown before the labels.
+   */
+  startIcon?: JSX.Element;
+  /**
+   * Control whether the tab is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Custom content appended to the tab.
+   */
+  children?: React.ReactNode;
+  /**
+   * Whether the tab has active styling.
+   *
+   * This will be automatically set by the parent `Tabs` component.
+   */
+  active?: boolean;
+};
+
+/**
+ * Individual tab component to be used in the `labels` prop of `Tabs`.
+ * @example
+ * const tabs = [
+ *   <Tab label='Label 1' sublabel='Description 1' />,
+ *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
+ * ];
+ */
+export const Tab = React.forwardRef((props, forwardedRef) => {
+  const {
+    label,
+    sublabel,
+    startIcon,
+    children,
+    active = false,
+    ...rest
+  } = props;
+
+  return (
+    <>
+      <TabHeader
+        ref={forwardedRef}
+        value='random-value'
+        isActive={active}
+        {...rest}
+      >
+        {startIcon && <TabIcon>{startIcon}</TabIcon>}
+        <TabLabel>{label}</TabLabel>
+        {sublabel && <TabDescription>{sublabel}</TabDescription>}
+        {children}
+      </TabHeader>
+    </>
+  );
+}) as PolymorphicForwardRefComponent<'button', TabLegacyProps>;
+
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
@@ -901,7 +965,7 @@ export const Tabs = Object.assign(TabsComponent, {
    * </Tabs.Tab>
    *
    */
-  Tab: Tab,
+  Tab: TabHeader,
   /**
    * Tab icon subcomponent which places an icon on the left side of the tab.
    */
