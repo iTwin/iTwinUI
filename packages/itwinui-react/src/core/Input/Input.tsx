@@ -26,7 +26,6 @@ export type InputProps = {
 /**
  * Basic input component
  * @example
- * <Input setFocus />
  * <Input disabled />
  * <Input size='small' />
  */
