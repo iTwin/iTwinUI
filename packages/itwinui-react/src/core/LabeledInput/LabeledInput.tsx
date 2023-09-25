@@ -64,7 +64,7 @@ export type LabeledInputProps = {
  * <LabeledInput label='My label' />
  * <LabeledInput disabled label='My label' />
  * <LabeledInput status='positive' label='Positive' />
- * <LabeledInput status='negative' label='Negative' setFocus />
+ * <LabeledInput status='negative' label='Negative' />
  */
 export const LabeledInput = React.forwardRef((props, ref) => {
   const uid = useId();
