@@ -4,39 +4,23 @@
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
 import { useEffect } from '@storybook/addons';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
-
-type ExpandableBlockProps = React.ComponentProps<typeof ExpandableBlock>;
 
 export default {
   title: 'Core/ExpandableBlock',
   component: ExpandableBlock,
-  argTypes: {
-    onToggle: {
-      action: 'isExpanding',
-    },
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-  args: {
-    children: 'Content in block!',
-  },
-} as Meta<ExpandableBlockProps>;
+};
 
-export const Basic: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const Basic = () => {
   return (
-    <ExpandableBlock title='Basic Block' {...args}>
-      Content in block!
-    </ExpandableBlock>
+    <ExpandableBlock title='Basic Block'>Content in block!</ExpandableBlock>
   );
 };
 
-export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const WithCaption = () => {
   return (
-    <ExpandableBlock.Wrapper {...args}>
+    <ExpandableBlock.Wrapper>
       <ExpandableBlock.Trigger>
         <ExpandableBlock.ExpandIcon />
         <ExpandableBlock.LabelArea>
@@ -44,12 +28,12 @@ export const WithCaption: Story<Partial<ExpandableBlockProps>> = (args) => {
           <ExpandableBlock.Caption>basic caption</ExpandableBlock.Caption>
         </ExpandableBlock.LabelArea>
       </ExpandableBlock.Trigger>
-      <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+      <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 };
 
-export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const Accordion = () => {
   useEffect(() => {
     return () => action('', { clearOnStoryChange: true })();
   }, []);
@@ -57,23 +41,18 @@ export const Accordion: Story<Partial<ExpandableBlockProps>> = (args) => {
   return (
     <>
       {[...Array(3).fill(null)].map((_, index) => (
-        <ExpandableBlock.Wrapper key={index} {...args}>
+        <ExpandableBlock.Wrapper key={index}>
           <ExpandableBlock.Trigger label={`Basic Block #${index + 1}`} />
-          <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+          <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
         </ExpandableBlock.Wrapper>
       ))}
     </>
   );
 };
 
-Accordion.argTypes = {
-  isExpanded: { control: { disable: true } },
-  onToggle: { control: { disable: true } },
-};
-
-export const StatusIcon: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const StatusIcon = () => {
   return (
-    <ExpandableBlock.Wrapper status='positive' {...args}>
+    <ExpandableBlock.Wrapper status='positive'>
       <ExpandableBlock.Trigger>
         <ExpandableBlock.ExpandIcon />
         <ExpandableBlock.LabelArea>
@@ -81,46 +60,34 @@ export const StatusIcon: Story<Partial<ExpandableBlockProps>> = (args) => {
         </ExpandableBlock.LabelArea>
         <ExpandableBlock.EndIcon />
       </ExpandableBlock.Trigger>
-      <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+      <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 };
 
-StatusIcon.args = {
-  status: 'positive',
-};
-
-export const Small: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const Small = () => {
   return (
-    <ExpandableBlock.Wrapper size='small' {...args}>
+    <ExpandableBlock.Wrapper size='small'>
       <ExpandableBlock.Trigger label='Basic Block' />
-      <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+      <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 };
 
-Small.args = {
-  size: 'small',
-};
-
-export const Borderless: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const Borderless = () => {
   return (
-    <ExpandableBlock.Wrapper styleType='borderless' {...args}>
+    <ExpandableBlock.Wrapper styleType='borderless'>
       <ExpandableBlock.Trigger label='Basic Block' />
-      <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+      <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 };
 
-Borderless.args = {
-  styleType: 'borderless',
-};
-
-export const Disabled: Story<Partial<ExpandableBlockProps>> = (args) => {
+export const Disabled = () => {
   return (
-    <ExpandableBlock.Wrapper disabled {...args}>
+    <ExpandableBlock.Wrapper disabled>
       <ExpandableBlock.Trigger label='Disabled Block' />
-      <ExpandableBlock.Content>{args.children}</ExpandableBlock.Content>
+      <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>
   );
 };

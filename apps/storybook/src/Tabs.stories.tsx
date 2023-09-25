@@ -4,11 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 /* eslint-disable react/jsx-key */
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import { Meta, Story } from '@storybook/react/';
 import React from 'react';
 import { Button, Tabs, Tab } from '@itwin/itwinui-react';
-
-type TabsProps = React.ComponentProps<typeof Tabs>;
 
 export default {
   title: 'Core/Tabs',
@@ -504,6 +501,12 @@ export const LegacyTabs: Story<Partial<TabsProps>> = () => {
         <Tab key={3} label='Item3' />,
       ]}
       onTabSelected={setIndex}
+      actions={[
+        <Button key={'Small'} size={'small'}>
+          Small size button
+        </Button>,
+        <Button key={'Normal'}>Normal size button</Button>,
+      ]}
     >
       {getContent()}
     </Tabs>

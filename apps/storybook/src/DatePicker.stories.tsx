@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { action } from '@storybook/addon-actions';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import {
   DatePicker,
@@ -14,54 +13,26 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
-type DatePickerProps = React.ComponentProps<typeof DatePicker>;
-
 export default {
   title: 'Core/DatePicker',
   component: DatePicker,
   subcomponents: { TimePicker },
-  argTypes: {
-    onChange: { control: { disable: true } },
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    date: { control: 'date' },
-  },
-  args: {
-    setFocus: true,
-  },
-} as Meta<DatePickerProps>;
+};
 
-export const Basic: Story<DatePickerProps> = (args) => {
-  const {
-    date = new Date(2021, 4, 11, 14, 55, 22),
-    setFocus = true,
-    localizedNames,
-    ...rest
-  } = args;
+export const Basic = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(date);
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 55, 22),
+  );
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
   };
 
-  React.useEffect(() => {
-    setCurrentDate(new Date(date));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [date]);
   return (
     <>
       <Popover
-        content={
-          <DatePicker
-            {...rest}
-            date={currentDate}
-            onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
-          />
-        }
+        content={<DatePicker date={currentDate} onChange={onChange} setFocus />}
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -72,29 +43,16 @@ export const Basic: Story<DatePickerProps> = (args) => {
   );
 };
 
-Basic.args = {
-  date: new Date(2021, 4, 11, 14, 55, 22),
-};
-
-export const WithTime: Story<DatePickerProps> = (args) => {
-  const {
-    date = new Date(2021, 4, 11, 14, 55, 22),
-    setFocus = true,
-    showTime = true,
-    localizedNames,
-    ...rest
-  } = args;
+export const WithTime = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(date);
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 55, 22),
+  );
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
   };
 
-  React.useEffect(() => {
-    setCurrentDate(new Date(date));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [date]);
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -104,12 +62,10 @@ export const WithTime: Story<DatePickerProps> = (args) => {
       {opened && (
         <div style={{ marginTop: 4 }}>
           <DatePicker
-            {...rest}
             date={currentDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
-            showTime={showTime}
+            setFocus
+            showTime
           />
         </div>
       )}
@@ -117,33 +73,16 @@ export const WithTime: Story<DatePickerProps> = (args) => {
   );
 };
 
-WithTime.args = {
-  date: new Date(2021, 4, 11, 14, 55, 22),
-  setFocus: true,
-  showTime: true,
-};
-
-export const WithCombinedTime: Story<DatePickerProps> = (args) => {
-  const {
-    date = new Date(2021, 4, 11, 14, 55, 22),
-    setFocus = true,
-    showTime = true,
-    useCombinedRenderer = true,
-    use12Hours = true,
-    localizedNames,
-    ...rest
-  } = args;
+export const WithCombinedTime = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(date);
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 55, 22),
+  );
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
   };
 
-  React.useEffect(() => {
-    setCurrentDate(new Date(date));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [date]);
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -153,14 +92,12 @@ export const WithCombinedTime: Story<DatePickerProps> = (args) => {
       {opened && (
         <div style={{ marginTop: 4 }}>
           <DatePicker
-            {...rest}
             date={currentDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
-            showTime={showTime}
-            useCombinedRenderer={useCombinedRenderer}
-            use12Hours={use12Hours}
+            setFocus
+            showTime
+            useCombinedRenderer
+            use12Hours
           />
         </div>
       )}
@@ -168,32 +105,16 @@ export const WithCombinedTime: Story<DatePickerProps> = (args) => {
   );
 };
 
-WithCombinedTime.args = {
-  date: new Date(2021, 4, 11, 14, 55, 22),
-  setFocus: true,
-  showTime: true,
-  useCombinedRenderer: true,
-  use12Hours: true,
-};
-
-export const Localized: Story<DatePickerProps> = (args) => {
-  const {
-    date = new Date(2021, 4, 11, 14, 55, 22),
-    setFocus = true,
-    localizedNames = generateLocalizedStrings('ja'),
-    ...rest
-  } = args;
+export const Localized = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(date);
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 55, 22),
+  );
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
   };
 
-  React.useEffect(() => {
-    setCurrentDate(new Date(date));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [date]);
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -203,41 +124,25 @@ export const Localized: Story<DatePickerProps> = (args) => {
       {opened && (
         <div style={{ marginTop: 4 }}>
           <DatePicker
-            {...rest}
             date={currentDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
+            localizedNames={generateLocalizedStrings('ja')}
+            setFocus
           />
         </div>
       )}
     </>
   );
 };
-
-Localized.args = {
-  date: new Date(2021, 4, 11, 14, 55, 22),
-  localizedNames: generateLocalizedStrings('ja'),
-};
-
-export const WithYear: Story<DatePickerProps> = (args) => {
-  const {
-    date = new Date(2021, 4, 11, 14, 55, 22),
-    setFocus = true,
-    localizedNames,
-    ...rest
-  } = args;
+export const WithYear = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentDate, setCurrentDate] = React.useState(date);
+  const [currentDate, setCurrentDate] = React.useState(
+    new Date(2021, 4, 11, 14, 55, 22),
+  );
   const onChange = (date: Date) => {
     setCurrentDate(date);
     action(`New date value: ${date}`, { clearOnStoryChange: false })();
   };
-
-  React.useEffect(() => {
-    setCurrentDate(new Date(date));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [date]);
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -248,11 +153,9 @@ export const WithYear: Story<DatePickerProps> = (args) => {
         <div style={{ marginTop: 4 }}>
           <DatePicker
             showYearSelection
-            {...rest}
             date={currentDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
+            setFocus
           />
         </div>
       )}
@@ -260,22 +163,14 @@ export const WithYear: Story<DatePickerProps> = (args) => {
   );
 };
 
-WithYear.args = {
-  date: new Date(2021, 4, 11, 14, 55, 22),
-  showYearSelection: true,
-};
-
-export const Range: Story<DatePickerProps> = (args) => {
-  const {
-    setFocus = true,
-    localizedNames,
-    startDate = new Date(2022, 6, 13, 14, 55, 22),
-    endDate = new Date(2022, 6, 27, 14, 55, 22),
-    ...rest
-  } = args;
+export const Range = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentStartDate, setCurrentStartDate] = React.useState(startDate);
-  const [currentEndDate, setCurrentEndDate] = React.useState(endDate);
+  const [currentStartDate, setCurrentStartDate] = React.useState(
+    new Date(2022, 6, 13, 14, 55, 22),
+  );
+  const [currentEndDate, setCurrentEndDate] = React.useState(
+    new Date(2022, 6, 27, 14, 55, 22),
+  );
   const onChange = (startDate: Date, endDate?: Date) => {
     setCurrentStartDate(startDate);
     endDate && setCurrentEndDate(endDate);
@@ -285,12 +180,6 @@ export const Range: Story<DatePickerProps> = (args) => {
     endDate &&
       action(`New end date value: ${endDate}`, { clearOnStoryChange: false })();
   };
-
-  React.useEffect(() => {
-    setCurrentStartDate(new Date(startDate));
-    setCurrentEndDate(new Date(endDate));
-    return () => action('', { clearOnStoryChange: true })();
-  }, [startDate, endDate]);
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -305,13 +194,11 @@ export const Range: Story<DatePickerProps> = (args) => {
       {opened && (
         <div style={{ marginTop: 4 }}>
           <DatePicker
-            {...rest}
             enableRangeSelect
             startDate={currentStartDate}
             endDate={currentEndDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
+            setFocus
           />
         </div>
       )}
@@ -319,22 +206,14 @@ export const Range: Story<DatePickerProps> = (args) => {
   );
 };
 
-Range.args = {
-  startDate: new Date(2022, 6, 13, 14, 55, 22),
-  endDate: new Date(2022, 6, 27, 14, 55, 22),
-};
-
-export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
-  const {
-    setFocus = true,
-    localizedNames,
-    startDate = new Date(2022, 6, 13, 14, 55, 22),
-    endDate = new Date(2022, 6, 17, 14, 55, 22),
-    ...rest
-  } = args;
+export const SomeDatesDisabled = () => {
   const [opened, setOpened] = React.useState(false);
-  const [currentStartDate, setCurrentStartDate] = React.useState(startDate);
-  const [currentEndDate, setCurrentEndDate] = React.useState(endDate);
+  const [currentStartDate, setCurrentStartDate] = React.useState(
+    new Date(2022, 6, 13, 14, 55, 22),
+  );
+  const [currentEndDate, setCurrentEndDate] = React.useState(
+    new Date(2022, 6, 17, 14, 55, 22),
+  );
 
   // only allow selecting dates in July 11-22
   const isDateDisabled = (date: Date) => {
@@ -352,12 +231,6 @@ export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
     endDate && setCurrentEndDate(endDate);
   };
 
-  // sync with story controls
-  React.useEffect(() => {
-    setCurrentStartDate(new Date(startDate));
-    setCurrentEndDate(new Date(endDate));
-  }, [startDate, endDate]);
-
   return (
     <>
       <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
@@ -372,22 +245,15 @@ export const SomeDatesDisabled: Story<DatePickerProps> = (args) => {
       {opened && (
         <div style={{ marginTop: 4 }}>
           <DatePicker
-            {...rest}
             enableRangeSelect
             startDate={currentStartDate}
             endDate={currentEndDate}
             onChange={onChange}
-            localizedNames={localizedNames}
-            setFocus={setFocus}
+            setFocus
             isDateDisabled={isDateDisabled}
           />
         </div>
       )}
     </>
   );
-};
-
-SomeDatesDisabled.args = {
-  startDate: new Date(2022, 6, 13, 14, 55, 22),
-  endDate: new Date(2022, 6, 17, 14, 55, 22),
 };

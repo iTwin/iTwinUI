@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Tree,
@@ -15,19 +14,12 @@ import {
 import { action } from '@storybook/addon-actions';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
-type TreeProps = React.ComponentProps<typeof Tree>;
-
 export default {
   component: Tree,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
-  parameters: { controls: { hideNoControlsWarning: true } },
   title: 'Core/Tree',
-} as Meta<TreeProps>;
+};
 
-export const Basic: Story<TreeProps> = () => {
+export const Basic = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -116,7 +108,7 @@ export const Basic: Story<TreeProps> = () => {
   );
 };
 
-export const Full: Story<TreeProps> = () => {
+export const Full = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -240,7 +232,7 @@ export const Full: Story<TreeProps> = () => {
   );
 };
 
-export const AsyncLoading: Story<TreeProps> = () => {
+export const AsyncLoading = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -371,7 +363,7 @@ export const AsyncLoading: Story<TreeProps> = () => {
   );
 };
 
-export const CustomizedExpander: Story<TreeProps> = () => {
+export const CustomizedExpander = () => {
   type StoryData = {
     id: string;
     label: string;
@@ -514,7 +506,7 @@ export const CustomizedExpander: Story<TreeProps> = () => {
   );
 };
 
-export const Virtualized: Story<TreeProps> = () => {
+export const Virtualized = () => {
   type StoryData = {
     id: string;
     label: string;
