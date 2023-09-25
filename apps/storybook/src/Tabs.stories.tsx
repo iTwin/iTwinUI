@@ -10,21 +10,11 @@ import { Button, Tabs, Tab } from '@itwin/itwinui-react';
 export default {
   title: 'Core/Tabs',
   component: Tabs,
-  args: {
-    focusActivationMode: 'auto',
-    color: 'blue',
-    orientation: 'horizontal',
-  },
-  argTypes: {
-    children: { control: { disable: true } },
-    style: { control: { disable: true } },
-    orientation: { control: 'radio', options: ['horizontal', 'vertical'] },
-  },
-} as Meta<TabsProps>;
+};
 
-export const DefaultTabs: Story<Partial<TabsProps>> = (args) => {
+export const DefaultTabs = () => {
   return (
-    <Tabs.Wrapper {...args}>
+    <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab label='Item1' value='tab1' />
         <Tabs.Tab label='Item2' value='tab2' />
@@ -72,9 +62,9 @@ DefaultTabs.args = {
   type: 'default',
 };
 
-export const BorderlessTabs: Story<Partial<TabsProps>> = (args) => {
+export const BorderlessTabs = () => {
   return (
-    <Tabs.Wrapper type='borderless' {...args}>
+    <Tabs.Wrapper type='borderless'>
       <Tabs.TabList>
         <Tabs.Tab value='item1' label='Item1' />
         <Tabs.Tab value='item2' label='Item2' />
@@ -122,9 +112,9 @@ BorderlessTabs.args = {
   type: 'borderless',
 };
 
-export const PillTabs: Story<Partial<TabsProps>> = (args) => {
+export const PillTabs = () => {
   return (
-    <Tabs.Wrapper type='pill' {...args}>
+    <Tabs.Wrapper type='pill'>
       <Tabs.TabList>
         <Tabs.Tab value='item1'>
           <Tabs.TabIcon>
@@ -182,9 +172,9 @@ PillTabs.argTypes = {
   orientation: { control: { disable: true } },
 };
 
-export const SublabelsAndIcons: Story<Partial<TabsProps>> = (args) => {
+export const SublabelsAndIcons = () => {
   return (
-    <Tabs.Wrapper type='borderless' {...args}>
+    <Tabs.Wrapper type='borderless'>
       <Tabs.TabList>
         <Tabs.Tab value='item0'>
           <Tabs.TabIcon>
@@ -252,7 +242,7 @@ SublabelsAndIcons.args = {
   type: 'borderless',
 };
 
-export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
+export const HorizontalOverflow = () => {
   const [active, setActive] = React.useState('Item 11');
 
   const tabData = [
@@ -281,7 +271,7 @@ export const HorizontalOverflow: Story<Partial<TabsProps>> = (args) => {
         padding: 8,
       }}
     >
-      <Tabs.Wrapper overflowOptions={{ useOverflow: true }} {...args}>
+      <Tabs.Wrapper overflowOptions={{ useOverflow: true }}>
         <Tabs.TabList>
           {tabData?.map((item, index) => {
             return (
@@ -327,7 +317,7 @@ HorizontalOverflow.argTypes = {
   orientation: { control: { disable: true } },
 };
 
-export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
+export const VerticalOverflow = () => {
   const [active, setActive] = React.useState('Item 11');
 
   const tabData = [
@@ -358,7 +348,6 @@ export const VerticalOverflow: Story<Partial<TabsProps>> = (args) => {
       <Tabs.Wrapper
         orientation='vertical'
         overflowOptions={{ useOverflow: true }}
-        {...args}
       >
         <Tabs.TabList>
           {tabData?.map((item, index) => {
@@ -406,9 +395,9 @@ VerticalOverflow.argTypes = {
   orientation: { control: { disable: true } },
 };
 
-export const Vertical: Story<Partial<TabsProps>> = (args) => {
+export const Vertical = () => {
   return (
-    <Tabs.Wrapper orientation='vertical' type='borderless' {...args}>
+    <Tabs.Wrapper orientation='vertical' type='borderless'>
       <Tabs.TabList>
         <Tabs.Tab value='item0'>
           <Tabs.TabIcon>
@@ -481,7 +470,7 @@ Vertical.argTypes = {
   orientation: { control: { disable: true } },
 };
 
-export const LegacyTabs: Story<Partial<TabsProps>> = () => {
+export const LegacyTabs = () => {
   const [index, setIndex] = React.useState(0);
   const getContent = () => {
     switch (index) {
