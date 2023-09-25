@@ -6,8 +6,8 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Button } from './Button.js';
 import type { ButtonProps } from './Button.js';
-import { DropdownMenu } from '../DropdownMenu/index.js';
-import type { DropdownMenuProps } from '../DropdownMenu/index.js';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
+import type { DropdownMenuProps } from '../DropdownMenu/DropdownMenu.js';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 

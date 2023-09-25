@@ -15,9 +15,9 @@ import {
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { DropdownMenu } from '../DropdownMenu/index.js';
-import { IconButton } from '../Buttons/index.js';
-import { ProgressRadial } from '../ProgressIndicators/index.js';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import { LinkAction } from '../LinkAction/LinkAction.js';
 
 const TileContext = React.createContext<

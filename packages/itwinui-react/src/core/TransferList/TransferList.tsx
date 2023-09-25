@@ -13,8 +13,9 @@ import {
   polymorphic,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { List, ListItem } from '../List/index.js';
-import { Label } from '../Label/index.js';
+import { List } from '../List/List.js';
+import { ListItem } from '../List/ListItem.js';
+import { Label } from '../Label/Label.js';
 
 // ----------------------------------------------------------------------------
 // TransferListComponent

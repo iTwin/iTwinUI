@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Menu, MenuItem } from '../Menu/index.js';
+import { Menu } from '../Menu/Menu.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import type { MenuItemProps } from '../Menu/MenuItem.js';
 import {
   SvgCaretDownSmall,
@@ -16,8 +17,8 @@ import {
   SvgCheckmark,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import SelectTag from './SelectTag.js';
-import SelectTagContainer from './SelectTagContainer.js';
+import { SelectTag } from './SelectTag.js';
+import { SelectTagContainer } from './SelectTagContainer.js';
 import { Icon } from '../Icon/Icon.js';
 import { usePopover } from '../Popover/Popover.js';
 

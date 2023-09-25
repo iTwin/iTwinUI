@@ -6,9 +6,9 @@ import * as React from 'react';
 import cx from 'classnames';
 import { StatusIconMap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { InputGrid } from '../InputGrid/index.js';
-import { Label } from '../Label/index.js';
-import { StatusMessage } from '../StatusMessage/index.js';
+import { InputGrid } from '../InputGrid/InputGrid.js';
+import { Label } from '../Label/Label.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 
 type InputGroupProps = {
   /**

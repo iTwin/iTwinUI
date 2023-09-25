@@ -7,7 +7,7 @@ import cx from 'classnames';
 import type { HeaderGroup } from '../../../react-table/react-table.js';
 import { useGlobals, SvgFilterHollow, SvgFilter } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { IconButton } from '../../Buttons/index.js';
+import { IconButton } from '../../Buttons/IconButton.js';
 import { Popover } from '../../Popover/Popover.js';
 
 export type FilterToggleProps<T extends Record<string, unknown>> = {

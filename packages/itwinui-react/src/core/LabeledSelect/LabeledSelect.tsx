@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 
-import { Select } from '../Select/index.js';
+import { Select } from '../Select/Select.js';
 import type { SelectProps } from '../Select/Select.js';
 import { StatusIconMap, useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';

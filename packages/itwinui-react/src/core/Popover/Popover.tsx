@@ -34,7 +34,7 @@ import {
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Portal } from '../utils/components/Portal.js';
 import type { PortalProps } from '../utils/components/Portal.js';
-import { ThemeProvider } from '../ThemeProvider/index.js';
+import { ThemeProvider } from '../ThemeProvider/ThemeProvider.js';
 
 type PopoverOptions = {
   /**

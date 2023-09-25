@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Tooltip } from '../Tooltip/index.js';
+import { Tooltip } from '../Tooltip/Tooltip.js';
 import type { SliderProps } from './Slider.js';
 import { Box } from '../utils/index.js';
 

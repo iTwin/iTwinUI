@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Input } from '../Input/index.js';
+import { Input } from '../Input/Input.js';
 import {
   useSafeContext,
   useMergedRefs,

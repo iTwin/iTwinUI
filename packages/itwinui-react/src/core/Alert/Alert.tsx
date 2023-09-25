@@ -13,7 +13,7 @@ import {
   ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 import { Icon } from '../Icon/Icon.js';
 
 const AlertContext = React.createContext<

@@ -3,10 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { MenuExtraContent } from '../Menu/index.js';
-import type { SelectOption } from '../Select/index.js';
-import SelectTag from '../Select/SelectTag.js';
-import { Text } from '../Typography/index.js';
+import { MenuExtraContent } from '../Menu/MenuExtraContent.js';
+import type { SelectOption } from '../Select/Select.js';
+import { SelectTag } from '../Select/SelectTag.js';
+import { Text } from '../Typography/Text.js';
 import type { Input } from '../Input/Input.js';
 import {
   getRandomValue,
