@@ -221,6 +221,7 @@ const TabList = React.forwardRef((props, ref) => {
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
+    console.log(activeValue);
     if (type !== 'default' && tablistRef.current != undefined && activeValue) {
       const activeTab = tablistRef.current.children[
         newActiveIndex.current
@@ -521,6 +522,7 @@ const TabHeader = React.forwardRef((props, ref) => {
     label,
     isActive = false,
     onActivated,
+    onClick: onClickProp,
     ...rest
   } = props;
 
@@ -529,7 +531,8 @@ const TabHeader = React.forwardRef((props, ref) => {
   const { onTabClick, setFocusedValue, focusActivationMode } =
     useSafeContext(TabListContext);
 
-  const onClick = () => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    onClickProp && onClickProp(event);
     setFocusedValue && setFocusedValue(value);
     if (onActivated) {
       onActivated();
@@ -791,6 +794,7 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
     onTabSelected,
     focusActivationMode,
     color,
+    activeIndex,
     tabsClassName,
     contentClassName,
     wrapperClassName,
@@ -798,26 +802,26 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(0);
-
+  const [currentActiveValue, setCurrentActiveValue] = React.useState<string>();
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
       <TabList
         color={color}
         className={tabsClassName}
         focusActivationMode={focusActivationMode}
+        activeValue={currentActiveValue}
+        setActiveValue={(value) => setCurrentActiveValue(value)}
         ref={forwardedRef}
       >
-        {labels.map((label, index) =>
-          React.isValidElement(label) ? (
+        {labels.map((label, index) => {
+          const tabIndex = `label-${index}`;
+          return React.isValidElement(label) ? (
             React.cloneElement(label as JSX.Element, {
-              value: index,
-              active: index === currentActiveIndex,
-              'aria-selected': index === currentActiveIndex,
-              tabIndex: index === 1 ? 0 : -1,
+              value: tabIndex,
+              active: activeIndex === index || tabIndex === currentActiveValue,
               onClick: (args: unknown) => {
                 onTabSelected?.(index);
-                setCurrentActiveIndex(index);
+                setCurrentActiveValue(tabIndex);
                 label.props.onClick?.(args);
               },
             })
@@ -825,18 +829,14 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
             <Tab
               key={index}
               label={label}
-              className={cx({
-                'iui-active': index === currentActiveIndex,
-              })}
-              tabIndex={index === currentActiveIndex ? 0 : -1}
+              active={activeIndex === index || tabIndex === currentActiveValue}
               onClick={() => {
                 onTabSelected?.(index);
-                setCurrentActiveIndex(index);
+                setCurrentActiveValue(tabIndex);
               }}
-              aria-selected={index === currentActiveIndex}
             />
-          ),
-        )}
+          );
+        })}
       </TabList>
 
       {actions && <TabsActions>{actions}</TabsActions>}
@@ -884,6 +884,9 @@ type TabLegacyProps = {
 };
 
 /**
+ * Legacy Tab component.
+ * For full functionality use composition API.
+ *
  * Individual tab component to be used in the `labels` prop of `Tabs`.
  * @example
  * const tabs = [
@@ -892,11 +895,17 @@ type TabLegacyProps = {
  * ];
  */
 export const Tab = React.forwardRef((props, forwardedRef) => {
-  const { label, sublabel, startIcon, children, ...rest } = props;
+  const { label, sublabel, startIcon, children, active, value, key, ...rest } =
+    props;
 
   return (
     <>
-      <TabHeader {...rest} value='sads' ref={forwardedRef}>
+      <TabHeader
+        {...rest}
+        value={value ?? `label-${key}`}
+        ref={forwardedRef}
+        isActive={active}
+      >
         {startIcon && <TabIcon>{startIcon}</TabIcon>}
         <TabLabel>{label}</TabLabel>
         {sublabel && <TabDescription>{sublabel}</TabDescription>}
@@ -904,7 +913,10 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
       </TabHeader>
     </>
   );
-}) as PolymorphicForwardRefComponent<'button', TabLegacyProps>;
+}) as PolymorphicForwardRefComponent<
+  'button',
+  TabLegacyProps & { value?: string }
+>;
 
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
