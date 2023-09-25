@@ -139,7 +139,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-x: overlay;
+      overflow-x: auto;
 
       &[data-iui-scroll-placement='start'] {
         /* stylelint-disable-next-line property-no-vendor-prefix */
@@ -198,7 +198,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     &[data-iui-overflow='true'] {
-      overflow-y: overlay;
+      overflow-y: auto;
       min-inline-size: min-content;
 
       &[data-iui-scroll-placement='start'] {

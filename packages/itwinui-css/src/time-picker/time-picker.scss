@@ -20,7 +20,6 @@
   padding-block: var(--iui-size-s);
   padding-inline: var(--iui-size-xs);
   overflow-y: auto;
-  overflow-y: overlay;
   scrollbar-width: none;
 
   &:not(:first-child) {
