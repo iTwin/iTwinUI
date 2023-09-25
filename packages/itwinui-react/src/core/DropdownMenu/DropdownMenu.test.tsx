@@ -5,8 +5,8 @@
 import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import DropdownMenu, { type DropdownMenuProps } from './DropdownMenu.js';
-import { Button } from '../Buttons/index.js';
-import { MenuItem } from '../Menu/index.js';
+import { Button } from '../Buttons/Button.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import userEvent from '@testing-library/user-event';
 
 function assertBaseElement(menu: HTMLElement, role = 'menu') {

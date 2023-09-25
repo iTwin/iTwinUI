@@ -10,8 +10,8 @@ import {
   SvgCaretUpSmall,
 } from '../utils/index.js';
 
-import HeaderButton from './HeaderButton.js';
-import { MenuItem } from '../Menu/index.js';
+import { HeaderButton } from './HeaderButton.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import userEvent from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {

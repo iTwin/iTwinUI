@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { useGlobals } from '../../../utils/index.js';
-import { Input } from '../../../Input/index.js';
+import { Input } from '../../../Input/Input.js';
 import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';

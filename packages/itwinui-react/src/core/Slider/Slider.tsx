@@ -8,7 +8,7 @@ import { getBoundedValue, useEventListener, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Track } from './Track.js';
 import { Thumb } from './Thumb.js';
-import type { Tooltip } from '../Tooltip/index.js';
+import type { Tooltip } from '../Tooltip/Tooltip.js';
 
 /**
  * Determines which segments are shown with color.
