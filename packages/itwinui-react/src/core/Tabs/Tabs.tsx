@@ -200,26 +200,6 @@ const TabList = React.forwardRef((props, ref) => {
     }
   }, []);
 
-  // When activeValue change
-  useIsomorphicLayoutEffect(() => {
-    items.forEach((item, index) => {
-      if (React.isValidElement(item) && item.props.value === activeValue) {
-        newActiveIndex.current = index;
-        return;
-      }
-    });
-  }, [items, activeValue]);
-
-  // When focusedValue change
-  useIsomorphicLayoutEffect(() => {
-    items.forEach((item, index) => {
-      if (React.isValidElement(item) && item.props.value === focusedValue) {
-        newFocusedIndex.current = index;
-        return;
-      }
-    });
-  }, [items, focusedValue]);
-
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
     console.log(activeValue);
@@ -240,27 +220,6 @@ const TabList = React.forwardRef((props, ref) => {
       });
     }
   }, [type, orientation, tabsWidth, activeValue]);
-
-  const onTabClick = React.useCallback(
-    (index: number) => {
-      const tab = items[index];
-      if (React.isValidElement(tab)) {
-        if (tab.props.onActivated) {
-          tab.props.onActivated();
-        } else {
-          setActiveValue(tab.props.value as string);
-        }
-      }
-    },
-    [items, setActiveValue],
-  );
-
-  React.useEffect(() => {
-    if (tablistRef.current && newFocusedIndex.current !== undefined) {
-      const tab = tablistRef.current.children[newFocusedIndex.current];
-      (tab as HTMLElement)?.focus();
-    }
-  }, [focusedValue, onTabClick, focusActivationMode]);
 
   const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
     const ownerDoc = tablistRef.current;
@@ -477,7 +436,6 @@ const TabList = React.forwardRef((props, ref) => {
     >
       <TabListContext.Provider
         value={{
-          onTabClick,
           setFocusedValue,
           focusActivationMode,
           hasSublabel,
@@ -658,27 +616,22 @@ TabLabel.displayName = 'Tabs.TabLabel';
 
 const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
-  const { type } = useSafeContext(TabsContext);
   const { hasSublabel, setHasSublabel } = useSafeContext(TabListContext);
 
-  useIsomorphicLayoutEffect(() => {
-    type !== 'pill' && !hasSublabel && setHasSublabel && setHasSublabel(true);
-  }, []);
-
-  if (type !== 'pill') {
-    return (
-      <Box
-        as='span'
-        className={cx('iui-tab-description', className)}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </Box>
-    );
-  } else {
-    return <></>;
+  if (!hasSublabel) {
+    setHasSublabel(true);
   }
+
+  return (
+    <Box
+      as='span'
+      className={cx('iui-tab-description', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
 }) as PolymorphicForwardRefComponent<'span'>;
 TabDescription.displayName = 'Tabs.TabDescription';
 
@@ -688,17 +641,11 @@ TabDescription.displayName = 'Tabs.TabDescription';
 const TabsActions = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { type } = useSafeContext(TabsContext);
-
-  if (type !== 'pill') {
-    return (
-      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
-        {children}
-      </Box>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+      {children}
+    </Box>
+  );
 }) as PolymorphicForwardRefComponent<'div'>;
 TabsActions.displayName = 'Tabs.Actions';
 
@@ -1065,22 +1012,22 @@ export const TabListContext = React.createContext<
       /**
        * Handler for setting the value of the focused tab.
        */
-      setFocusedValue?: (value: string) => void;
+      setFocusedValue: (value: string) => void;
       /**
        * Control whether focusing tabs (using arrow keys) should automatically select them.
        * Use 'manual' if tab panel content is not preloaded.
        * @default 'auto'
        */
-      focusActivationMode?: 'auto' | 'manual';
+      focusActivationMode: 'auto' | 'manual';
       /**
        * Flag whether any of the tabs have a sublabel.
        * Used for determining tab size.
        */
-      hasSublabel?: boolean;
+      hasSublabel: boolean;
       /**
        * Handler for setting the hasSublabel flag.
        */
-      setHasSublabel?: (hasSublabel: boolean) => void;
+      setHasSublabel: (hasSublabel: boolean) => void;
     }
   | undefined
 >(undefined);
