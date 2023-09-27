@@ -15,6 +15,7 @@ import {
   useResizeObserver,
   ButtonBase,
 } from '../utils/index.js';
+import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import styles from '../../styles.js';
 
@@ -635,9 +636,15 @@ TabHeader.displayName = 'Tabs.Tab';
 // ----------------------------------------------------------------------------
 // Tabs.TabIcon component
 
-const TabIcon = polymorphic.span('iui-tab-icon', {
-  'aria-hidden': true,
-});
+const TabIcon = React.forwardRef((props, ref) => {
+  return (
+    <Icon
+      {...props}
+      className={cx('iui-tab-icon', props?.className)}
+      ref={ref}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Icon>>;
 TabIcon.displayName = 'Tabs.TabIcon';
 
 // ----------------------------------------------------------------------------

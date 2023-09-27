@@ -79,7 +79,6 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-tab-icon {
     &,
     svg {
-      @include mixins.iui-icon-style('m');
       grid-area: icon;
     }
 
