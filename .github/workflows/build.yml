@@ -21,20 +21,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: npm install
+      - run: npm ci
 
   install-windows:
     name: Install node modules (windows)
@@ -48,24 +37,12 @@ jobs:
         with:
           node-version: 18.x
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - name: yarn
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      - name: npm ci
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 3
-          command: yarn
+          command: npm ci
 
   audit:
     name: Audit node modules
@@ -79,19 +56,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - run: npm run audit
+      - run: npm ci
+      - run: npm audit
 
   build:
     name: Build and lint packages
@@ -108,21 +76,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
       - run: npm run lint
       - run: npm run lint:copyright
-      - run: npm run build --filter="{./packages/*}..."
+      - run: npm run build -- --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
@@ -136,19 +96,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
-      - run: npm run build --filter=website --filter="{./playgrounds/*}..."
+      - run: npm run build -- --filter=website --filter="{./playgrounds/*}..."
 
   deploy-gh-pages:
     name: Push static files to github pages
@@ -168,26 +120,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
       - name: Build html test pages
-        run: npm run build --filter=itwinui-css
+        run: npm run build -- --filter=itwinui-css
 
       - name: Build portal
         run: npm run build --base "/iTwinUI/${{ env.base_folder }} --workspace=portal"
 
       - name: Build storybook
-        run: npm run build --filter=storybook
+        run: npm run build -- --filter=storybook
 
       - name: List folders to preserve (open PRs and 'dev')
         id: clean_exclude_folders
@@ -253,21 +197,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 18.X
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
       - run: npm run test --coverage --workspace=@itwin/itwinui-react
 
@@ -288,29 +224,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 18.X
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
-      - name: npm run test --filter=itwinui-css
+      - name: npm run test -- --filter=itwinui-css
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: npm run test --filter=itwinui-css
+          command: npm run test -- --filter=itwinui-css
 
       - name: Publish test results artifact
         if: failure()
@@ -328,23 +256,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 18.X
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
-      - run: npm run test --filter=storybook
+      - run: npm run test -- --filter=storybook
 
       - name: Publish test results artifact
         if: failure()
@@ -353,6 +273,7 @@ jobs:
         with:
           name: 'cypress-visual-screenshots'
           path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'
+
   a11y:
     name: Test for a11y violations
     needs: install
@@ -365,22 +286,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+          cache: 'npm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: npm install
 
-      - run: npm run build --filter=itwinui-react
+      - run: npm run build -- --filter=itwinui-react
 
       - uses: cypress-io/github-action@v5
         with:
           working-directory: testing/a11y
           component: true
-          install-command: yarn

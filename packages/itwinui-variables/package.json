@@ -31,10 +31,10 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "sass": "^1.53.0"
+    "sass": "^1.68.0"
   },
   "scripts": {
-    "build": "sass --no-source-map src/index.scss:index.css src/os.scss:os.css",
-    "dev": "sass src/index.scss:index.css src/os.scss:os.css --watch"
+    "build": "npx sass --no-source-map src/index.scss:index.css src/os.scss:os.css",
+    "dev": "npx sass src/index.scss:index.css src/os.scss:os.css --watch"
   }
 }

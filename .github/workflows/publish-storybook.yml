@@ -16,7 +16,7 @@ jobs:
           node-version: 18.x
 
       - run: npm install
-      - run: npm run build --filter=storybook
+      - run: npm run build -- --filter=storybook
 
       - name: Host storybook under /react
         uses: JamesIves/github-pages-deploy-action@v4

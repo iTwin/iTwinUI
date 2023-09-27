@@ -49,8 +49,8 @@ jobs:
           node-version: 18.x
           registry-url: https://registry.npmjs.org/
 
-      - run: npm run install
-      - run: npm run build --filter={./packages/*}...
+      - run: npm install
+      - run: npm run build -- --filter={./packages/*}...
 
       - run: npm publish --access public --tag ${{ inputs.tag }}
         working-directory: './packages/${{ inputs.package }}/'

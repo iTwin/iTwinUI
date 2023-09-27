@@ -18,7 +18,7 @@
       "stylelint --fix"
     ],
     "*.{scss,html,js}": [
-      "npm run lint:copyright --fix"
+      "npm run lint:copyright -- --fix"
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
@@ -39,20 +39,20 @@
     "approve:react": "npm run approve --workspace=storybook",
     "clean:images": "npm run clean:images --workspace=@itwin/itwinui-css",
     "clean": "turbo run clean && rimraf node_modules",
-    "release": "npm run build --filter={./packages/*}... && changeset publish"
+    "release": "npm run build -- --filter={./packages/*}... && changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "^2.26.0",
+    "@changesets/cli": "^2.26.2",
     "chokidar-cli": "^3.0.0",
-    "concurrently": "^7.6.0",
+    "concurrently": "^8.2.1",
     "cross-env": "^7.0.3",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.2.1",
-    "patch-package": "~6.5.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^14.0.1",
+    "patch-package": "~8.0.0",
     "prettier": "2.8.8",
     "rimraf": "^3.0.2",
-    "turbo": "~1.6.3"
+    "turbo": "~1.9.0"
   },
   "overrides": {
     "hosted-git-info": "6.1.1",
@@ -73,12 +73,12 @@
     "yaml": "^2.2.2",
     "semver": "^7.5.2",
     "optionator": "~0.9.3",
-    "typescript": "~5.1.6",
-    "@cypress/request": "^3.0.0"
+    "typescript": "~5.1.6"
   },
   "engines": {
-    "npm": ">=7.0.0",
+    "npm": ">=8.0.0",
     "node": ">=16.0.0"
   },
+  "packageManager": "npm@8.0.0",
   "prettier": "configs/prettier-config"
 }
