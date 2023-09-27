@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-/* eslint-disable react/jsx-key */
 import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
 import React from 'react';
 import { Button, Tabs, Tab } from '@itwin/itwinui-react';
@@ -16,9 +15,9 @@ export const DefaultTabs = () => {
   return (
     <Tabs.Wrapper>
       <Tabs.TabList>
-        <Tabs.Tab label='Item1' value='tab1' />
-        <Tabs.Tab label='Item2' value='tab2' />
-        <Tabs.Tab label='Item3' value='tab3' />
+        <Tabs.Tab label='Apple' value='tab1' />
+        <Tabs.Tab label='Orange' value='tab2' />
+        <Tabs.Tab label='Grape' value='tab3' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -29,31 +28,32 @@ export const DefaultTabs = () => {
       </Tabs.Actions>
 
       <Tabs.Panel value='tab1'>
-        Bentley Systems, Incorporated, is an American-based software development
-        company that develops, manufactures, licenses, sells and supports
-        computer software and services for the design, construction, and
-        operation of infrastructure. The company&apos;s software serves the
-        building, plant, civil, and geospatial markets in the areas of
-        architecture, engineering, construction (AEC) and operations. Their
-        software products are used to design, engineer, build, and operate large
-        constructed assets such as roadways, railways, bridges, buildings,
-        industrial plants, power plants, and utility networks. The company
-        re-invests 20% of their revenues in research and development.
+        An apple is a round, edible fruit produced by an apple tree (Malus
+        domestica). Apple trees are cultivated worldwide and are the most widely
+        grown species in the genus Malus. The tree originated in Central Asia,
+        where its wild ancestor, Malus sieversii, is still found. Apples have
+        been grown for thousands of years in Asia and Europe and were introduced
+        to North America by European colonists. Apples have religious and
+        mythological significance in many cultures, including Norse, Greek, and
+        European Christian tradition.
       </Tabs.Panel>
       <Tabs.Panel value='tab2'>
-        Bentley Systems is headquartered in Exton, Pennsylvania, United States,
-        but has development, sales and other departments in over 50 countries.
-        The company had revenues of $700 million in 2018.
+        An orange is a fruit of various citrus species in the family Rutaceae
+        (see list of plants known as orange); it primarily refers to Citrus x
+        sinensis, which is also called sweet orange, to distinguish it from the
+        related Citrus x aurantium, referred to as bitter orange. The sweet
+        orange reproduces asexually (apomixis through nucellar embryony);
+        varieties of the sweet orange arise through mutations.
       </Tabs.Panel>
       <Tabs.Panel value='tab3'>
-        Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
-        They introduced the commercial version of PseudoStation in 1985, which
-        allowed users of Intergraphs VAX systems to use low-cost graphics
-        terminals to view and modify the designs on their Intergraph IGDS
-        (Interactive Graphics Design System) installations. Their first product
-        was shown to potential users who were polled as to what they would be
-        willing to pay for it. They averaged the answers, arriving at a price of
-        $7,943. A DOS-based version of MicroStation was introduced in 1986.
+        A grape is a fruit, botanically a berry, of the deciduous woody vines of
+        the flowering plant genus Vitis. Grapes are a non-climacteric type of
+        fruit, generally occurring in clusters. The cultivation of grapes began
+        perhaps 8,000 years ago, and the fruit has been used as human food over
+        history. Eaten fresh or in dried form (as raisins, currants and
+        sultanas), grapes also hold cultural significance in many parts of the
+        world, particularly for their role in winemaking. Other grape-derived
+        products include various types of jam, juice, vinegar and oil.
       </Tabs.Panel>
     </Tabs.Wrapper>
   );
@@ -66,9 +66,9 @@ export const BorderlessTabs = () => {
   return (
     <Tabs.Wrapper type='borderless'>
       <Tabs.TabList>
-        <Tabs.Tab value='item1' label='Item1' />
-        <Tabs.Tab value='item2' label='Item2' />
-        <Tabs.Tab value='item3' label='Item3' />
+        <Tabs.Tab value='item1' label='Pear' />
+        <Tabs.Tab value='item2' label='Cherry' />
+        <Tabs.Tab value='item3' label='Peach' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -79,31 +79,28 @@ export const BorderlessTabs = () => {
       </Tabs.Actions>
 
       <Tabs.Panel value='item1'>
-        Bentley Systems, Incorporated, is an American-based software development
-        company that develops, manufactures, licenses, sells and supports
-        computer software and services for the design, construction, and
-        operation of infrastructure. The company&apos;s software serves the
-        building, plant, civil, and geospatial markets in the areas of
-        architecture, engineering, construction (AEC) and operations. Their
-        software products are used to design, engineer, build, and operate large
-        constructed assets such as roadways, railways, bridges, buildings,
-        industrial plants, power plants, and utility networks. The company
-        re-invests 20% of their revenues in research and development.
+        Pears are fruits produced and consumed around the world, growing on a
+        tree and harvested in late summer into mid-autumn. The pear tree and
+        shrub are a species of genus Pyrus, in the family Rosaceae, bearing the
+        pomaceous fruit of the same name. Several species of pears are valued
+        for their edible fruit and juices, while others are cultivated as trees.
       </Tabs.Panel>
       <Tabs.Panel value='item2'>
-        Bentley Systems is headquartered in Exton, Pennsylvania, United States,
-        but has development, sales and other departments in over 50 countries.
-        The company had revenues of $700 million in 2018.
+        {`A cherry is the fruit of many plants of the genus Prunus, and is a
+        fleshy drupe (stone fruit). Commercial cherries are obtained from
+        cultivars of several species, such as the sweet Prunus avium and the
+        sour Prunus cerasus. The name "cherry" also refers to the cherry tree
+        and its wood, and is sometimes applied to almonds and visually similar
+        flowering trees in the genus Prunus, as in "ornamental cherry" or
+        "cherry blossom". Wild cherry may refer to any of the cherry species
+        growing outside cultivation, although Prunus avium is often referred to
+        specifically by the name "wild cherry" in the British Isles.`}
       </Tabs.Panel>
       <Tabs.Panel value='item3'>
-        Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
-        They introduced the commercial version of PseudoStation in 1985, which
-        allowed users of Intergraphs VAX systems to use low-cost graphics
-        terminals to view and modify the designs on their Intergraph IGDS
-        (Interactive Graphics Design System) installations. Their first product
-        was shown to potential users who were polled as to what they would be
-        willing to pay for it. They averaged the answers, arriving at a price of
-        $7,943. A DOS-based version of MicroStation was introduced in 1986.
+        The peach (Prunus persica) is a deciduous tree first domesticated and
+        cultivated in Zhejiang province of Eastern China. It bears edible juicy
+        fruits with various characteristics, most called peaches and others (the
+        glossy-skinned, non-fuzzy varieties), nectarines.
       </Tabs.Panel>
     </Tabs.Wrapper>
   );
@@ -276,6 +273,7 @@ export const HorizontalOverflow = () => {
           {tabData?.map((item, index) => {
             return (
               <Tabs.Tab
+                key={`tab${index + 1}`}
                 value={`tab${index + 1}`}
                 isActive={item.name === active}
                 disabled={item.disabled}
@@ -353,6 +351,7 @@ export const VerticalOverflow = () => {
           {tabData?.map((item, index) => {
             return (
               <Tabs.Tab
+                key={`tab${index + 1}`}
                 value={`tab${index + 1}`}
                 isActive={item.name === active}
                 disabled={item.disabled}
