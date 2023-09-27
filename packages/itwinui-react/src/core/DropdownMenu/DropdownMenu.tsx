@@ -16,7 +16,7 @@ import type {
   PortalProps,
 } from '../utils/index.js';
 import { Menu } from '../Menu/Menu.js';
-import { Popover, usePopover } from '../Popover/Popover.js';
+import { usePopover } from '../Popover/Popover.js';
 
 export type DropdownMenuProps = {
   /**
@@ -37,7 +37,7 @@ export type DropdownMenuProps = {
    */
   children: React.ReactNode;
 } & Pick<
-  React.ComponentProps<typeof Popover>,
+  Parameters<typeof usePopover>[0],
   'visible' | 'onVisibleChange' | 'placement' | 'matchWidth'
 > &
   React.ComponentPropsWithoutRef<'ul'> &
