@@ -23,13 +23,9 @@ $borderless-horizontal-tab-min-height: calc(
 }
 
 @mixin iui-tabs {
-  @include mixins.iui-reset;
   position: relative;
-  list-style: none;
-  user-select: none;
 
   .iui-tab {
-    @include mixins.iui-reset;
     font-family: inherit;
     position: relative;
     display: grid;
