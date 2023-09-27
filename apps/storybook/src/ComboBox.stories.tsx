@@ -334,7 +334,7 @@ export const DisabledItems = () => {
             ...country,
             sublabel: `${country.value}${index % 2 ? ' -- disabled' : ''}`,
             disabled: index % 2 !== 0,
-            icon: (
+            startIcon: (
               <img
                 loading='lazy'
                 style={{ width: 20, height: 15 }}
