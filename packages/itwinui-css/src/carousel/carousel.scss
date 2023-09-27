@@ -5,7 +5,6 @@
 
 @mixin hide-scrollbar {
   overflow-x: auto;
-  overflow-x: overlay;
 
   // hide scrollbar
   &::-webkit-scrollbar {
