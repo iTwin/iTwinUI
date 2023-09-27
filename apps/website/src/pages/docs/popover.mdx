@@ -41,7 +41,7 @@ Popover handles positioning using an external library called [Floating UI](float
 
 ### Portals
 
-It is important to know that before calculating the position, the popover gets [portaled](https://react.dev/reference/react-dom/createPortal) into the nearest `ThemeProvider` to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Popover's `portal` prop or the ThemeProvider's `portalContainer` prop. The portaling technique can often lead to issues with keyboard accessibility; Popover is designed to handle these accessibility considerations.
+It is important to know that before calculating the position, the popover gets [portaled](https://react.dev/reference/react-dom/createPortal) into the nearest `ThemeProvider` to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Popover's `portal` prop or the ThemeProvider's `portalContainer` prop. Using portals can often lead to issues with keyboard accessibility, so Popover adds some additional logic (described below).
 
 ## Accessibility
 
