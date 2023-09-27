@@ -23,12 +23,14 @@ import {
   useFocus,
   safePolygon,
   useRole,
+  FloatingPortal,
 } from '@floating-ui/react';
 import type { SizeOptions, Placement } from '@floating-ui/react';
 import {
   Box,
   cloneElementWithRef,
   useControlledState,
+  useId,
   useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -54,12 +56,10 @@ type PopoverOptions = {
   onVisibleChange?: (visible: boolean) => void;
   /**
    * If true, the popover will close when clicking outside it.
+   *
+   * @default true
    */
   closeOnOutsideClick?: boolean;
-  /**
-   * Whether the popover should match the width of the trigger.
-   */
-  matchWidth?: boolean;
 };
 
 // keep public api small to start with
@@ -101,6 +101,10 @@ type PopoverInternalProps = {
    */
   trigger?: Partial<Record<'hover' | 'click' | 'focus', boolean>>;
   role?: 'dialog' | 'menu' | 'listbox';
+  /**
+   * Whether the popover should match the width of the trigger.
+   */
+  matchWidth?: boolean;
 };
 
 // ----------------------------------------------------------------------------
@@ -193,8 +197,16 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
 // ----------------------------------------------------------------------------
 
 type PopoverPublicProps = {
+  /**
+   * Content displayed inside the popover.
+   */
   content?: React.ReactNode;
   children?: React.ReactNode;
+  /**
+   * Whether the popover adds recommended CSS for background-color, box-shadow, etc.
+   *
+   * @default false
+   */
   applyBackground?: boolean;
 } & PortalProps &
   PopoverOptions;
@@ -209,16 +221,15 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     //
     // popover options
     visible,
-    placement,
+    placement = 'bottom-start',
     onVisibleChange,
-    closeOnOutsideClick,
-    matchWidth,
+    closeOnOutsideClick = true,
     //
     // dom props
     className,
     children,
     content,
-    applyBackground,
+    applyBackground = false,
     ...rest
   } = props;
 
@@ -227,7 +238,6 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement,
     onVisibleChange,
     closeOnOutsideClick,
-    matchWidth,
     role: 'dialog',
   });
 
@@ -239,36 +249,46 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     setPopoverElement,
   );
 
+  const triggerId = `${useId()}-trigger`;
+  const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
+
   return (
     <>
       {cloneElementWithRef(children, (children) => ({
+        id: children.props.id || triggerId,
         ...popover.getReferenceProps(children.props),
         ref: popover.refs.setReference,
       }))}
 
       {popover.open ? (
         <Portal portal={portal}>
-          <ThemeProvider
-            portalContainer={popoverElement} // portal nested popovers into this one
-          >
-            <FloatingFocusManager
-              context={popover.context}
-              modal={false}
-              initialFocus={-1}
-              returnFocus
+          <FloatingPortal>
+            <ThemeProvider
+              portalContainer={popoverElement} // portal nested popovers into this one
             >
-              <Box
-                className={cx(
-                  { 'iui-popover-surface': applyBackground },
-                  className,
-                )}
-                {...popover.getFloatingProps(rest)}
-                ref={popoverRef}
+              <FloatingFocusManager
+                context={popover.context}
+                modal={false}
+                initialFocus={popover.refs.floating}
               >
-                {content}
-              </Box>
-            </FloatingFocusManager>
-          </ThemeProvider>
+                <Box
+                  className={cx(
+                    { 'iui-popover-surface': applyBackground },
+                    className,
+                  )}
+                  aria-labelledby={
+                    !hasAriaLabel
+                      ? popover.refs.domReference.current?.id
+                      : undefined
+                  }
+                  {...popover.getFloatingProps(rest)}
+                  ref={popoverRef}
+                >
+                  {content}
+                </Box>
+              </FloatingFocusManager>
+            </ThemeProvider>
+          </FloatingPortal>
         </Portal>
       ) : null}
     </>
