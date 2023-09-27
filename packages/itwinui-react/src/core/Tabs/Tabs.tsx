@@ -17,7 +17,6 @@ import {
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import styles from '../../styles.js';
 
 // ----------------------------------------------------------------------------
 // TabsWrapper
@@ -96,6 +95,7 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   } = props;
 
   const [activeValue, setActiveValue] = React.useState<string | undefined>();
+  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
   const [stripeProperties, setStripeProperties] = React.useState({});
 
   return (
@@ -113,6 +113,8 @@ const TabsWrapper = React.forwardRef((props, ref) => {
           setActiveValue,
           overflowOptions,
           setStripeProperties,
+          focusedValue,
+          setFocusedValue,
         }}
       >
         {children}
@@ -176,10 +178,6 @@ const TabList = React.forwardRef((props, ref) => {
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
-  const newActiveIndex = React.useRef(0);
-
-  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
-  const newFocusedIndex = React.useRef<number | undefined>();
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
   useIsomorphicLayoutEffect(() => {
@@ -200,17 +198,15 @@ const TabList = React.forwardRef((props, ref) => {
   }, []);
 
   const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
+    e.preventDefault();
+
     const ownerDoc = tablistRef.current;
     if (ownerDoc === null) {
       return;
     }
 
     let scrollLeft = ownerDoc?.scrollLeft ?? 0;
-    if (e.deltaY > 0 || e.deltaX > 0) {
-      scrollLeft += 25;
-    } else if (e.deltaY < 0 || e.deltaX < 0) {
-      scrollLeft -= 25;
-    }
+    scrollLeft += e.deltaY < 0 ? -30 : 30;
     ownerDoc.scrollLeft = scrollLeft;
   }, []);
 
@@ -228,119 +224,6 @@ const TabList = React.forwardRef((props, ref) => {
 
     ownerDoc.addEventListener('wheel', enableHorizontalScroll);
   }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
-
-  const isTabHidden = (tab: HTMLElement, isVertical: boolean) => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    const fadeBuffer = isVertical
-      ? ownerDoc.offsetHeight * 0.05
-      : ownerDoc.offsetWidth * 0.05;
-    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
-    const visibleEnd = isVertical
-      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
-      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
-    const tabStart = isVertical ? tab.offsetTop : tab.offsetLeft;
-    const tabEnd = isVertical
-      ? tab.offsetTop + tab.offsetHeight
-      : tab.offsetLeft + tab.offsetWidth;
-
-    if (
-      tabStart > visibleStart + fadeBuffer &&
-      tabEnd < visibleEnd - fadeBuffer
-    ) {
-      return 0; // tab is visible
-    } else if (tabStart < visibleStart + fadeBuffer) {
-      return -1; // tab is before visible section
-    } else {
-      return 1; // tab is after visible section
-    }
-  };
-
-  const easeInOutQuad = (
-    time: number,
-    beginning: number,
-    change: number,
-    duration: number,
-  ) => {
-    if ((time /= duration / 2) < 1) {
-      return (change / 2) * time * time + beginning;
-    }
-    return (-change / 2) * (--time * (time - 2) - 1) + beginning;
-  };
-
-  const scrollToTab = React.useCallback(
-    (
-      list: HTMLDivElement,
-      tab: HTMLElement,
-      duration: number,
-      isVertical: boolean,
-      tabPlacement: number,
-    ) => {
-      const start = isVertical ? list.scrollTop : list.scrollLeft;
-      let change = 0;
-      let currentTime = 0;
-      const increment = 20;
-      const fadeBuffer = isVertical
-        ? list.offsetHeight * 0.05
-        : list.offsetWidth * 0.05;
-
-      if (tabPlacement < 0) {
-        // if tab is before visible section
-        change = isVertical
-          ? tab.offsetTop - list.scrollTop
-          : tab.offsetLeft - list.scrollLeft;
-        change -= fadeBuffer; // give some space so the tab isn't covered by the fade
-      } else {
-        // tab is after visible section
-        change = isVertical
-          ? tab.offsetTop -
-            (list.scrollTop + list.offsetHeight) +
-            tab.offsetHeight
-          : tab.offsetLeft -
-            (list.scrollLeft + list.offsetWidth) +
-            tab.offsetWidth;
-        change += fadeBuffer; // give some space so the tab isn't covered by the fade
-      }
-
-      const animateScroll = () => {
-        currentTime += increment;
-        const val = easeInOutQuad(currentTime, start, change, duration);
-        if (isVertical) {
-          list.scrollTop = val;
-        } else {
-          list.scrollLeft = val;
-        }
-        if (currentTime < duration) {
-          setTimeout(animateScroll, increment);
-        }
-      };
-      animateScroll();
-    },
-    [],
-  );
-
-  // scroll to focused/active tab if it is not visible with overflow
-  useIsomorphicLayoutEffect(() => {
-    setTimeout(() => {
-      const ownerDoc = tablistRef.current;
-      const scrollToIndex =
-        newFocusedIndex.current ?? newActiveIndex.current ?? 0;
-      if (ownerDoc !== null && overflowOptions?.useOverflow) {
-        const tab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
-          scrollToIndex
-        ] as HTMLElement;
-        const isVertical = orientation === 'vertical';
-        const tabPlacement = isTabHidden(tab, isVertical);
-
-        if (tabPlacement) {
-          scrollToTab(ownerDoc, tab, 100, isVertical, tabPlacement);
-        }
-      }
-    }, 50);
-  }, [overflowOptions?.useOverflow, focusedValue, orientation, scrollToTab]);
 
   const [scrollingPlacement, setScrollingPlacement] = React.useState<
     string | undefined
@@ -362,11 +245,11 @@ const TabList = React.forwardRef((props, ref) => {
       : ownerDoc.scrollWidth;
 
     if (
-      Math.abs(visibleStart - 0) < 1 &&
+      Math.abs(visibleStart) < 1 &&
       Math.abs(visibleEnd - totalTabsSpace) < 1
     ) {
       setScrollingPlacement(undefined);
-    } else if (Math.abs(visibleStart - 0) < 1) {
+    } else if (Math.abs(visibleStart) < 1) {
       setScrollingPlacement('start');
     } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
       setScrollingPlacement('end');
@@ -374,6 +257,7 @@ const TabList = React.forwardRef((props, ref) => {
       setScrollingPlacement('center');
     }
   }, [orientation, setScrollingPlacement]);
+
   // apply correct mask when tabs list is resized
   const [resizeRef] = useResizeObserver(determineScrollingPlacement);
   resizeRef(tablistRef?.current);
@@ -414,7 +298,6 @@ const TabList = React.forwardRef((props, ref) => {
     >
       <TabListContext.Provider
         value={{
-          setFocusedValue,
           focusActivationMode,
           hasSublabel,
           setHasSublabel,
@@ -468,12 +351,27 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     orientation,
     activeValue,
     setActiveValue,
+    focusedValue,
+    setFocusedValue,
     type,
     setStripeProperties,
   } = useSafeContext(TabsContext);
-  const { onTabClick, setFocusedValue, focusActivationMode, tabsWidth } =
+  const { onTabClick, focusActivationMode, tabsWidth } =
     useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
+
+  useIsomorphicLayoutEffect(() => {
+    if (
+      (isActive || activeValue === value || focusedValue === value) &&
+      tabRef.current
+    ) {
+      tabRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'center',
+      });
+    }
+  }, [isActive, activeValue]);
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
@@ -997,6 +895,14 @@ export const TabsContext = React.createContext<
        */
       setActiveValue: (value: string) => void;
       /**
+       * The value prop of the active tab.
+       */
+      focusedValue?: string;
+      /**
+       * Handler for setting the value of the active tab.
+       */
+      setFocusedValue: (value: string) => void;
+      /**
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
       overflowOptions?: OverflowOptions;
@@ -1014,10 +920,6 @@ export const TabListContext = React.createContext<
        * Handler for clicking a tab given its index.
        */
       onTabClick?: (index: number) => void;
-      /**
-       * Handler for setting the value of the focused tab.
-       */
-      setFocusedValue: (value: string) => void;
       /**
        * Control whether focusing tabs (using arrow keys) should automatically select them.
        * Use 'manual' if tab panel content is not preloaded.
