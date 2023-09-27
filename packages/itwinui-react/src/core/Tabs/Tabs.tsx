@@ -162,7 +162,6 @@ const TabList = React.forwardRef((props, ref) => {
     activeValue: activeValueContext,
     setActiveValue: setActiveValueContext,
     overflowOptions,
-    setStripeProperties,
   } = useSafeContext(TabsContext);
 
   const items = React.useMemo(
@@ -199,27 +198,6 @@ const TabList = React.forwardRef((props, ref) => {
         setActiveValue(items[0].props.value as string);
     }
   }, []);
-
-  // CSS custom properties to place the active stripe
-  useIsomorphicLayoutEffect(() => {
-    console.log(activeValue);
-    if (type !== 'default' && tablistRef.current != undefined && activeValue) {
-      const activeTab = tablistRef.current.children[
-        newActiveIndex.current
-      ] as HTMLElement;
-      const activeTabRect = activeTab.getBoundingClientRect();
-      setStripeProperties({
-        ...(orientation === 'horizontal' && {
-          '--stripe-width': `${activeTabRect.width}px`,
-          '--stripe-left': `${activeTab.offsetLeft}px`,
-        }),
-        ...(orientation === 'vertical' && {
-          '--stripe-height': `${activeTabRect.height}px`,
-          '--stripe-top': `${activeTab.offsetTop}px`,
-        }),
-      });
-    }
-  }, [type, orientation, tabsWidth, activeValue]);
 
   const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
     const ownerDoc = tablistRef.current;
@@ -440,6 +418,7 @@ const TabList = React.forwardRef((props, ref) => {
           focusActivationMode,
           hasSublabel,
           setHasSublabel,
+          tabsWidth,
         }}
       >
         {children}
@@ -473,7 +452,7 @@ type TabOwnProps = {
   onActivated?: () => void;
 };
 
-const TabHeader = React.forwardRef((props, ref) => {
+const TabHeader = React.forwardRef((props, forwardedRef) => {
   const {
     className,
     children,
@@ -485,19 +464,45 @@ const TabHeader = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  const { orientation, activeValue, setActiveValue } =
-    useSafeContext(TabsContext);
-  const { onTabClick, setFocusedValue, focusActivationMode } =
+  const {
+    orientation,
+    activeValue,
+    setActiveValue,
+    type,
+    setStripeProperties,
+  } = useSafeContext(TabsContext);
+  const { onTabClick, setFocusedValue, focusActivationMode, tabsWidth } =
     useSafeContext(TabListContext);
+  const tabRef = React.useRef<HTMLButtonElement>();
+
+  // CSS custom properties to place the active stripe
+  useIsomorphicLayoutEffect(() => {
+    if (
+      type !== 'default' &&
+      (isActive || activeValue === value) &&
+      tabRef.current
+    ) {
+      const currentTabRect = tabRef.current.getBoundingClientRect();
+      setStripeProperties({
+        ...(orientation === 'horizontal' && {
+          '--stripe-width': `${currentTabRect.width}px`,
+          '--stripe-left': `${tabRef.current.offsetLeft}px`,
+        }),
+        ...(orientation === 'vertical' && {
+          '--stripe-height': `${currentTabRect.height}px`,
+          '--stripe-top': `${tabRef.current.offsetTop}px`,
+        }),
+      });
+    }
+  }, [type, orientation, tabsWidth, activeValue]);
 
   const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     onClickProp && onClickProp(event);
     setFocusedValue && setFocusedValue(value);
     if (onActivated) {
       onActivated();
-    } else {
-      setActiveValue && setActiveValue(value);
     }
+    setActiveValue(value);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -582,7 +587,7 @@ const TabHeader = React.forwardRef((props, ref) => {
       onKeyDown={onKeyDown}
       aria-selected={value === activeValue || isActive}
       aria-controls={value}
-      ref={ref}
+      ref={useMergedRefs(tabRef, forwardedRef)}
       {...rest}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
@@ -1028,6 +1033,7 @@ export const TabListContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setHasSublabel: (hasSublabel: boolean) => void;
+      tabsWidth: number;
     }
   | undefined
 >(undefined);
