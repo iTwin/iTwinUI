@@ -34,7 +34,7 @@ jobs:
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
-          publish: yarn release
+          publish: npm run release
           title: Release packages
           commit: Release packages
         env:

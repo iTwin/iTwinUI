@@ -34,7 +34,7 @@ jobs:
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn
+        run: npm install
 
   install-windows:
     name: Install node modules (windows)
@@ -91,7 +91,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn audit
+      - run: npm run audit
 
   build:
     name: Build and lint packages
@@ -120,9 +120,9 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn lint
-      - run: yarn lint:copyright
-      - run: yarn build --filter="{./packages/*}..."
+      - run: npm run lint
+      - run: npm run lint:copyright
+      - run: npm run build --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
@@ -148,7 +148,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build --filter=website --filter="{./playgrounds/*}..."
+      - run: npm run build --filter=website --filter="{./playgrounds/*}..."
 
   deploy-gh-pages:
     name: Push static files to github pages
@@ -181,13 +181,13 @@ jobs:
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Build html test pages
-        run: yarn build --filter=itwinui-css
+        run: npm run build --filter=itwinui-css
 
       - name: Build portal
-        run: yarn workspace portal build --base "/iTwinUI/${{ env.base_folder }}"
+        run: npm run build --base "/iTwinUI/${{ env.base_folder }} --workspace=portal"
 
       - name: Build storybook
-        run: yarn build --filter=storybook
+        run: npm run build --filter=storybook
 
       - name: List folders to preserve (open PRs and 'dev')
         id: clean_exclude_folders
@@ -269,7 +269,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn workspace @itwin/itwinui-react test --coverage
+      - run: npm run test --coverage --workspace=@itwin/itwinui-react
 
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v1.16
@@ -304,13 +304,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - name: yarn test --filter=itwinui-css
+      - name: npm run test --filter=itwinui-css
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: yarn test --filter=itwinui-css
+          command: npm run test --filter=itwinui-css
 
       - name: Publish test results artifact
         if: failure()
@@ -344,7 +344,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test --filter=storybook
+      - run: npm run test --filter=storybook
 
       - name: Publish test results artifact
         if: failure()
@@ -377,7 +377,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build --filter=itwinui-react
+      - run: npm run build --filter=itwinui-react
 
       - uses: cypress-io/github-action@v5
         with:

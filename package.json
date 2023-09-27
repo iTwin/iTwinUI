@@ -18,7 +18,7 @@
       "stylelint --fix"
     ],
     "*.{scss,html,js}": [
-      "yarn lint:copyright --fix"
+      "npm run lint:copyright --fix"
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
@@ -35,11 +35,11 @@
     "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
-    "approve:css": "yarn workspace @itwin/itwinui-css approve",
-    "approve:react": "yarn workspace storybook approve",
-    "clean:images": "yarn workspace @itwin/itwinui-css clean:images",
+    "approve:css": "npm run approve --workspace-@itwin/itwinui-css",
+    "approve:react": "npm run approve --workspace=storybook",
+    "clean:images": "npm run clean:images --workspace=@itwin/itwinui-css",
     "clean": "turbo run clean && rimraf node_modules",
-    "release": "yarn build --filter={./packages/*}... && changeset publish"
+    "release": "npm run build --filter={./packages/*}... && changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
@@ -50,11 +50,11 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.2.1",
     "patch-package": "~6.5.1",
-    "prettier": "2.8.0",
+    "prettier": "2.8.8",
     "rimraf": "^3.0.2",
     "turbo": "~1.6.3"
   },
-  "resolutions": {
+  "overrides": {
     "hosted-git-info": "6.1.1",
     "jimp": "0.16.2",
     "trim-newlines": "3.0.1",
@@ -80,6 +80,5 @@
     "npm": ">=7.0.0",
     "node": ">=16.0.0"
   },
-  "packageManager": "yarn@1.22.18",
   "prettier": "configs/prettier-config"
 }

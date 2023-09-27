@@ -55,25 +55,25 @@
     "ux"
   ],
   "scripts": {
-    "build": "yarn clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json && yarn build:styles && yarn build:post",
+    "build": "npm run clean:build && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && tsc -p tsconfig.react-table.json && npm run build:styles && npm run build:post",
     "build:styles": "vite build src/styles.js",
     "build:watch": "concurrently \"tsc -p tsconfig.cjs.json --watch\" \"tsc -p tsconfig.esm.json --watch\"",
     "build:post": "node ./scripts/postBuild.mjs",
     "clean:build": "rimraf esm && rimraf cjs && rimraf react-table.d.ts",
     "clean:coverage": "rimraf coverage",
-    "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
-    "test": "yarn test:types && yarn test:unit",
+    "clean": "rimraf .turbo && npm run clean:coverage && npm run clean:build && rimraf node_modules",
+    "test": "npm run test:types && npm run test:unit",
     "test:unit": "jest",
     "test:unit:watch": "jest --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
     "lint": "eslint \"**/*.{js,ts,tsx}\" --max-warnings=0",
-    "lint:fix": "yarn lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
-    "dev": "yarn clean:build && concurrently \"yarn dev:esm\" \"yarn dev:cjs\" \"yarn build:styles --watch\" \"yarn dev:types\"",
+    "lint:fix": "npm run lint --fix && node ../../scripts/copyrightLinter.js --fix \"*/**/*.{js,ts,tsx}\"",
+    "dev": "npm run clean:build && concurrently \"npm run dev:esm\" \"npm run dev:cjs\" \"npm run build:styles --watch\" \"npm run dev:types\"",
     "dev:esm": "swc src -d esm --watch",
     "dev:cjs": "swc src -d cjs --watch -C module.type=commonjs",
     "dev:types": "concurrently \"tsc -p tsconfig.cjs.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.esm.json --emitDeclarationOnly --watch --preserveWatchOutput\" \"tsc -p tsconfig.react-table.json --watch --preserveWatchOutput\"",
-    "dev:styles": "yarn build:styles --watch"
+    "dev:styles": "npm run build:styles --watch"
   },
   "dependencies": {
     "@floating-ui/react": "^0.25.4",
