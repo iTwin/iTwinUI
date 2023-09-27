@@ -13,7 +13,7 @@ import {
 } from './Tree.js';
 import { TreeNode } from './TreeNode.js';
 import userEvent from '@testing-library/user-event';
-import { Checkbox } from '../Checkbox/index.js';
+import { Checkbox } from '../Checkbox/Checkbox.js';
 
 type TestData = {
   id: string;

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { SvgChevronRight } from '../utils/index.js';
 import type { Cell, CellProps } from '../../react-table/react-table.js';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 
 export type SubRowExpanderProps<T extends Record<string, unknown>> = {
   cell: Cell<T>;

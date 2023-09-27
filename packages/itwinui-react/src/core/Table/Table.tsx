@@ -26,7 +26,7 @@ import type {
   TableInstance,
   Column,
 } from '../../react-table/react-table.js';
-import { ProgressRadial } from '../ProgressIndicators/index.js';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
 import {
   useGlobals,
   useResizeObserver,

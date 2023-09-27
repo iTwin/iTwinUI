@@ -26,8 +26,7 @@ inquirer
     makeDir(reactDirectory);
     writeFile(reactComponentFactory(reactDirectory, componentPascal));
     writeFile(reactComponentTestFactory(reactDirectory, componentPascal));
-    writeFile(reactComponentIndexFactory(reactDirectory, componentPascal));
-    appendFile(reactIndexAppendFactory(reactDirectory, componentPascal));
+    appendFile(reactIndexAppendFactory(componentPascal));
 
     const storyDirectory = 'apps/storybook/src';
     writeFile(storiesFactory(storyDirectory, componentPascal));
@@ -36,10 +35,6 @@ inquirer
     const cssPkgDirectory = `packages/itwinui-css`;
     const cssComponentDirectory = `${cssPkgDirectory}/src/${componentKebab}`;
     makeDir(cssComponentDirectory);
-    writeFile(cssComponentIndexFactory(cssComponentDirectory, componentKebab));
-    writeFile(
-      cssComponentClassesFactory(cssComponentDirectory, componentKebab),
-    );
     writeFile(cssComponentFactory(cssComponentDirectory, componentKebab));
     appendFile(cssGlobalAllFactory(`${cssPkgDirectory}/src`, componentKebab));
 
@@ -61,7 +56,7 @@ import * as React from 'react';
 import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type ${componentName}Props = {};
+type ${componentName}Props = {};
 
 /**
  * Describe me here!
@@ -71,9 +66,7 @@ export type ${componentName}Props = {};
 export const ${componentName} = React.forwardRef((props, forwardedRef) => {
   const { ...rest } = props;
   return <Box ref={forwardedRef} {...rest} />;
-}) as Polymorphic.ForwardRefComponent<'div', ${componentName}Props>;
-
-export default ${componentName};
+}) as PolymorphicForwardRefComponent<'div', ${componentName}Props>;
 `,
   };
 };
@@ -85,19 +78,15 @@ const storiesFactory = (directory, componentName) => {
     template: `${copyrightBannerJs}
 import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
-import { ${componentName}, ${componentName}Props } from '@itwin/itwinui-react';
+import { ${componentName} } from '@itwin/itwinui-react';
 
 export default {
   component: ${componentName},
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
   title: 'Core/${componentName}',
-} as Meta<${componentName}Props>;
+};
 
-export const Basic: Story<${componentName}Props> = (args) => {
-  return <${componentName} {...args} />;
+export const Basic = () => {
+  return <${componentName} />;
 };
 `,
   };
@@ -124,18 +113,6 @@ describe('${componentName}', () => {
   };
 };
 
-/** Creates index.tsx file under component directory */
-const reactComponentIndexFactory = (directory, componentName) => {
-  return {
-    path: `${directory}/index.ts`,
-    template: `${copyrightBannerJs}
-export { ${componentName} } from './${componentName}';
-export type { ${componentName}Props } from './${componentName}';
-export default './${componentName}';
-`,
-  };
-};
-
 /** Creates .test.tsx file under component directory */
 const reactComponentTestFactory = (directory, componentName) => {
   return {
@@ -144,7 +121,7 @@ const reactComponentTestFactory = (directory, componentName) => {
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { ${componentName} } from './${componentName}';
+import { ${componentName} } from './${componentName}.js';
 
 it('should render in its most basic state', () => {
   // TODO: Make sure all required props are passed in here
@@ -164,35 +141,10 @@ it('should be improved', () => {
 /** Appends component exports to the main barrel file */
 const reactIndexAppendFactory = (directory, componentName) => {
   return {
-    path: `${directory.split('/').slice(0, -1).join('/')}/index.ts`,
+    path: 'packages/itwinui-react/src/index.ts',
     template: `
-export { ${componentName} } from './${componentName}';
-export type { ${componentName}Props } from './${componentName}';
+export { ${componentName} } from './${componentName}/${componentName}.js';
 `,
-  };
-};
-
-/** Creates index.scss under component directory */
-const cssComponentIndexFactory = (directory, componentName) => {
-  return {
-    path: `${directory}/index.scss`,
-    template: `${copyrightBannerScss}\n@import './${componentName}';\n`,
-  };
-};
-
-/** Creates classes.scss under component directory */
-const cssComponentClassesFactory = (directory, componentName) => {
-  const template = `${copyrightBannerScss}
-@import './index';
-
-.iui-${componentName} {
-  @include iui-${componentName};
-}
-`;
-
-  return {
-    path: `${directory}/classes.scss`,
-    template: template,
   };
 };
 
@@ -200,7 +152,7 @@ const cssComponentClassesFactory = (directory, componentName) => {
 const cssGlobalAllFactory = (directory, componentName) => {
   return {
     path: `${directory}/all.scss`,
-    template: `@import './${componentName}/classes';\n`,
+    template: `@forward '${componentName}/${componentName}';\n`,
   };
 };
 
@@ -208,7 +160,7 @@ const cssGlobalAllFactory = (directory, componentName) => {
 const cssComponentFactory = (directory, componentName) => {
   return {
     path: `${directory}/${componentName}.scss`,
-    template: `${copyrightBannerScss}\n@mixin iui-${componentName} {};\n`,
+    template: `${copyrightBannerScss}\n\n.iui-${componentName} {};\n`,
   };
 };
 

@@ -6,7 +6,7 @@ import cx from 'classnames';
 import * as React from 'react';
 import { SvgCloseSmall, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 
 type TagProps = {
   /**

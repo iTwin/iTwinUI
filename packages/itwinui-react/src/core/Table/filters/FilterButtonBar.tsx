@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { Box, useGlobals } from '../../utils/index.js';
 import type { CommonProps } from '../../utils/index.js';
-import { Button } from '../../Buttons/index.js';
+import { Button } from '../../Buttons/Button.js';
 
 export type FilterButtonBarTranslation = {
   filter: string;

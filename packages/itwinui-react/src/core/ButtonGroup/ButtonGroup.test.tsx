@@ -8,7 +8,8 @@ import * as React from 'react';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 
 import { ButtonGroup } from './ButtonGroup.js';
-import { Button, IconButton } from '../Buttons/index.js';
+import { Button } from '../Buttons/Button.js';
+import { IconButton } from '../Buttons/IconButton.js';
 
 it('should render with two buttons', () => {
   const { container } = render(

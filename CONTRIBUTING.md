@@ -121,13 +121,11 @@ It ensures all needed imports are added and files are created.
 For a component named `Alert`, the `createComponent` script will add/modify the following files:
 
 - packages/itwinui-css/src/**alert/alert.scss**: framework-agnostic component styles
-- packages/itwinui-css/src/**alert/classes.scss**: all user-facing class names/attributes
 - packages/itwinui-css/backstop/tests/**alert.html**: html test cases for component css
 - packages/itwinui-css/backstop/scenarios/**alert.js**: visual test scenarios for html
 - packages/itwinui-react/src/core/**Alert/Alert.tsx**: react component
 - packages/itwinui-react/src/core/**Alert/Alert.test.tsx**: unit tests for react component
-- packages/itwinui-react/src/core/**Alert/index.ts**: barrel file for component exports
-- packages/itwinui-react/src/core/**index.ts**: barrel file containing all public exports
+- packages/itwinui-react/src/**index.ts**: barrel file containing all public exports
 - apps/storybook/src/**Alert.stories.tsx**: common demo states and examples ("stories")
 - apps/storybook/src/**Alert.test.tsx**: cypress visual tests for stories
 - apps/website/src/pages/docs/**alert.mdx**: documentation page for the component
@@ -142,8 +140,6 @@ packages/itwinui-css
 |   |
 |   + - alert
 |       + - > alert.scss
-|       + - > classes.scss
-|       + - > index.scss
 |
 | - backstop
 |   |
@@ -154,14 +150,13 @@ packages/itwinui-react
 |
 | - src
 |   |
+|   + - > index.ts
+|   |
 |   + - core
 |       |
 |       + - Alert
 |       |   + - > Alert.test.tsx
 |       |   + - > Alert.tsx
-|       |   + - > index.ts
-|       |
-|       + - > index.ts
 |
 apps/storybook
 |   |

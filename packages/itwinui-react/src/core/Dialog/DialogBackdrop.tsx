@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Backdrop } from '../Backdrop/index.js';
+import { Backdrop } from '../Backdrop/Backdrop.js';
 import type { BackdropProps } from '../Backdrop/Backdrop.js';
 import { useMergedRefs } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';

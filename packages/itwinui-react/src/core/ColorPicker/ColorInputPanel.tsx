@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { IconButton } from '../Buttons/index.js';
-import { Input } from '../Input/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { Input } from '../Input/Input.js';
 import { ColorValue, SvgSwap, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';

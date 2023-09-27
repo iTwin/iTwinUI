@@ -12,12 +12,12 @@ import {
   mergeEventHandlers,
   polymorphic,
   Box,
-  VisuallyHidden,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
 import { FileEmptyCard } from './FileEmptyCard.js';
-import { Anchor } from '../Typography/Anchor/Anchor.js';
+import { Anchor } from '../Typography/Anchor.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 const toBytes = (bytes: number) => {
   const units = [' bytes', 'KB', 'MB', 'GB', 'TB'];

@@ -14,8 +14,8 @@ import {
   useId,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton/index.js';
-import { TimePicker } from '../TimePicker/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { TimePicker } from '../TimePicker/TimePicker.js';
 import type { TimePickerProps } from '../TimePicker/TimePicker.js';
 
 const isSameDay = (a: Date | undefined, b: Date | undefined) => {

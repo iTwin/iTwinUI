@@ -10,18 +10,18 @@ import {
   SvgCloseSmall,
   useSafeContext,
   useId,
-  Icon,
   useMergedRefs,
   mergeEventHandlers,
   Box,
 } from '../utils/index.js';
 import type {
-  IconProps,
   PolymorphicForwardRefComponent,
   InputFlexContainerProps,
 } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton/index.js';
-import type { IconButtonProps } from '../Buttons/IconButton/IconButton.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import type { IconButtonProps } from '../Buttons/IconButton.js';
+import { Icon } from '../Icon/Icon.js';
+import type { IconProps } from '../Icon/Icon.js';
 
 const SearchBoxContext = React.createContext<
   | {

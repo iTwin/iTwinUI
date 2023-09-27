@@ -5,8 +5,8 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Box } from './Box.js';
-import { Label } from '../../Label/index.js';
-import { StatusMessage } from '../../StatusMessage/index.js';
+import { Label } from '../../Label/Label.js';
+import { StatusMessage } from '../../StatusMessage/StatusMessage.js';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 
 export type InputContainerProps = {
