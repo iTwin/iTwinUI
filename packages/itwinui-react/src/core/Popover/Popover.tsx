@@ -202,7 +202,7 @@ type PopoverPublicProps = {
    */
   content?: React.ReactNode;
   /**
-   * Element that triggers the popover.
+   * Element that triggers the popover. Should usually be a button.
    */
   children?: React.ReactNode;
   /**
@@ -215,8 +215,10 @@ type PopoverPublicProps = {
   PopoverOptions;
 
 /**
- * A utility component to help with positioning of floating content.
- * Built on top of [`floating-ui`](https://floating-ui.com/)
+ * A utility component to help with positioning of floating content relative to a trigger.
+ * Built on top of [`floating-ui`](https://floating-ui.com/).
+ *
+ * @see https://itwinui.bentley.com/docs/popover
  *
  * @example
  * <Popover content='This is a popover'>
