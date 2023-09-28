@@ -201,9 +201,12 @@ type PopoverPublicProps = {
    * Content displayed inside the popover.
    */
   content?: React.ReactNode;
+  /**
+   * Element that triggers the popover.
+   */
   children?: React.ReactNode;
   /**
-   * Whether the popover adds recommended CSS for background-color, box-shadow, etc.
+   * Whether the popover adds recommended CSS (background-color, box-shadow, etc.) to itself.
    *
    * @default false
    */
@@ -214,6 +217,11 @@ type PopoverPublicProps = {
 /**
  * A utility component to help with positioning of floating content.
  * Built on top of [`floating-ui`](https://floating-ui.com/)
+ *
+ * @example
+ * <Popover content='This is a popover'>
+ *   <Button>Show popover</Button>
+ * </Popover>
  */
 export const Popover = React.forwardRef((props, forwardedRef) => {
   const {
