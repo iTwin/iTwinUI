@@ -521,9 +521,11 @@ const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   const { hasSublabel, setHasSublabel } = useSafeContext(TabListContext);
 
-  if (!hasSublabel) {
-    setHasSublabel(true);
-  }
+  React.useEffect(() => {
+    if (!hasSublabel) {
+      setHasSublabel(true);
+    }
+  }, [hasSublabel, setHasSublabel]);
 
   return (
     <Box
@@ -567,21 +569,18 @@ const TabsPanel = React.forwardRef((props, ref) => {
 
   const { activeValue } = useSafeContext(TabsContext);
 
-  if (value === activeValue) {
-    return (
-      <Box
-        className={cx('iui-tabs-content', className)}
-        role='tabpanel'
-        id={value}
-        ref={ref}
-        {...rest}
-      >
-        {children}
-      </Box>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <Box
+      className={cx('iui-tabs-content', className)}
+      role='tabpanel'
+      data-iui-hidden={activeValue !== value ? true : undefined}
+      id={value}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
 }) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
 TabsPanel.displayName = 'Tabs.Panel';
 
