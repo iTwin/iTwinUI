@@ -5,10 +5,9 @@
 import * as React from 'react';
 import {
   Breadcrumbs,
-  DropdownMenu,
+  DropdownButton,
   MenuItem,
   Input,
-  IconButton,
 } from '@itwin/itwinui-react';
 import { SvgFolder } from '@itwin/itwinui-icons-react';
 
@@ -44,7 +43,10 @@ export default () => {
     <div
       style={{ display: 'inline-flex', width: 418, justifyContent: 'center' }}
     >
-      <DropdownMenu
+      <DropdownButton
+        startIcon={<SvgFolder aria-hidden />}
+        styleType='borderless'
+        aria-label='All levels'
         menuItems={(close) =>
           items.map((item, index) => (
             <MenuItem
@@ -59,11 +61,7 @@ export default () => {
             </MenuItem>
           ))
         }
-      >
-        <IconButton styleType='borderless' label='All levels'>
-          <SvgFolder />
-        </IconButton>
-      </DropdownMenu>
+      />
 
       {isEditing ? (
         <Input
