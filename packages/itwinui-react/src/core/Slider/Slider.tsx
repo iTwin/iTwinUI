@@ -482,13 +482,9 @@ export const Slider = React.forwardRef((props, ref) => {
 
   return (
     <Box
+      as='div'
       ref={ref}
-      className={cx(
-        'iui-slider-component-container',
-        `iui-slider-${orientation}`,
-        { 'iui-disabled': disabled },
-        className,
-      )}
+      className={cx('iui-slider-container', className)}
       {...rest}
     >
       {minValueLabel && (
@@ -500,12 +496,22 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
+      {maxValueLabel && (
+        <Box
+          as='span'
+          {...maxProps}
+          className={cx('iui-slider-max', maxProps?.className)}
+        >
+          {maxValueLabel}
+        </Box>
+      )}
       <Box
         as='div'
         ref={containerRef}
         {...railContainerProps}
         className={cx(
-          'iui-slider-container',
+          'iui-slider',
+          'iui-progress-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
@@ -516,8 +522,18 @@ export const Slider = React.forwardRef((props, ref) => {
         <Box
           as='div'
           {...railProps}
-          className={cx('iui-slider-rail', railProps?.className)}
-        />
+          className={cx('iui-slider-track', railProps?.className)}
+        >
+          <Track
+            trackDisplayMode={trackDisplay}
+            sliderMin={min}
+            sliderMax={max}
+            values={currentValues}
+            orientation={orientation}
+            {...trackProps}
+          />
+          {tickMarkArea}
+        </Box>
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -541,25 +557,7 @@ export const Slider = React.forwardRef((props, ref) => {
             />
           );
         })}
-        <Track
-          trackDisplayMode={trackDisplay}
-          sliderMin={min}
-          sliderMax={max}
-          values={currentValues}
-          orientation={orientation}
-          {...trackProps}
-        />
-        {tickMarkArea}
       </Box>
-      {maxValueLabel && (
-        <Box
-          as='span'
-          {...maxProps}
-          className={cx('iui-slider-max', maxProps?.className)}
-        >
-          {maxValueLabel}
-        </Box>
-      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SliderProps>;
