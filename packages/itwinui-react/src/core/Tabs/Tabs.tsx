@@ -637,7 +637,7 @@ type TabsLegacyProps = {
 } & TabsOrientationProps &
   TabsOverflowProps;
 
-const TabsComponent = React.forwardRef((props, forwardedRef) => {
+const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
   let actions: Array<React.ReactNode> | undefined;
   if (props.type !== 'pill' && props.actions) {
     actions = props.actions;
@@ -708,7 +708,7 @@ const TabsComponent = React.forwardRef((props, forwardedRef) => {
     </TabsWrapper>
   );
 }) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
-TabsComponent.displayName = 'Tabs';
+LegacyTabsComponent.displayName = 'Tabs';
 
 type TabLegacyProps = {
   /**
@@ -807,7 +807,7 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
  *
  */
 
-export const Tabs = Object.assign(TabsComponent, {
+export const Tabs = Object.assign(LegacyTabsComponent, {
   /**
    * A wrapper component for Tabs
    */
