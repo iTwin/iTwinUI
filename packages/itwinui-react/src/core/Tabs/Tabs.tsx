@@ -95,7 +95,6 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   } = props;
 
   const [activeValue, setActiveValue] = React.useState<string | undefined>();
-  const [focusedValue, setFocusedValue] = React.useState<string | undefined>();
   const [stripeProperties, setStripeProperties] = React.useState({});
 
   return (
@@ -113,8 +112,6 @@ const TabsWrapper = React.forwardRef((props, ref) => {
           setActiveValue,
           overflowOptions,
           setStripeProperties,
-          focusedValue,
-          setFocusedValue,
         }}
       >
         {children}
@@ -351,20 +348,14 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     orientation,
     activeValue,
     setActiveValue,
-    focusedValue,
-    setFocusedValue,
     type,
     setStripeProperties,
   } = useSafeContext(TabsContext);
-  const { onTabClick, focusActivationMode, tabsWidth } =
-    useSafeContext(TabListContext);
+  const { focusActivationMode, tabsWidth } = useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
 
   useIsomorphicLayoutEffect(() => {
-    if (
-      (isActive || activeValue === value || focusedValue === value) &&
-      tabRef.current
-    ) {
+    if ((isActive || activeValue === value) && tabRef.current) {
       tabRef.current.scrollIntoView({
         behavior: 'smooth',
         block: 'center',
@@ -394,13 +385,16 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     }
   }, [type, orientation, tabsWidth, activeValue]);
 
-  const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    onClickProp && onClickProp(event);
-    setFocusedValue && setFocusedValue(value);
+  const onClickHander = (_value: string) => {
     if (onActivated) {
       onActivated();
     }
-    setActiveValue(value);
+    setActiveValue(_value);
+  };
+
+  const onClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    onClickProp && onClickProp(event);
+    onClickHander(value);
   };
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -424,8 +418,10 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
         } while (items[newIndex].ariaDisabled);
 
         const newValue = items[newIndex].getAttribute('aria-controls');
-        newValue && setFocusedValue && setFocusedValue(newValue);
-        focusActivationMode === 'auto' && onTabClick && onTabClick(newIndex);
+        if (newValue) {
+          focusActivationMode === 'auto' && onClickHander(newValue);
+          (items[newIndex] as HTMLElement).focus();
+        }
       }
     };
 
@@ -894,14 +890,6 @@ export const TabsContext = React.createContext<
        */
       setActiveValue: (value: string) => void;
       /**
-       * The value prop of the active tab.
-       */
-      focusedValue?: string;
-      /**
-       * Handler for setting the value of the active tab.
-       */
-      setFocusedValue: (value: string) => void;
-      /**
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
       overflowOptions?: OverflowOptions;
@@ -915,10 +903,6 @@ export const TabsContext = React.createContext<
 
 export const TabListContext = React.createContext<
   | {
-      /**
-       * Handler for clicking a tab given its index.
-       */
-      onTabClick?: (index: number) => void;
       /**
        * Control whether focusing tabs (using arrow keys) should automatically select them.
        * Use 'manual' if tab panel content is not preloaded.
