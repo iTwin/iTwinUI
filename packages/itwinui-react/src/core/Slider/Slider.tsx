@@ -234,7 +234,6 @@ export const Slider = React.forwardRef((props, ref) => {
     railContainerProps,
     minProps,
     maxProps,
-    railProps,
     trackProps,
     tickProps,
     ticksProps,
@@ -482,9 +481,13 @@ export const Slider = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='div'
       ref={ref}
       className={cx('iui-slider-container', className)}
+      data-iui-orientation={orientation}
+      data-iui-disabled={disabled}
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      style={{ '--iui-slider-thumb-position': '50%' }}
       {...rest}
     >
       {minValueLabel && (
@@ -511,7 +514,7 @@ export const Slider = React.forwardRef((props, ref) => {
         {...railContainerProps}
         className={cx(
           'iui-slider',
-          'iui-progress-slider',
+          'iui-slider-progress',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
@@ -521,19 +524,12 @@ export const Slider = React.forwardRef((props, ref) => {
       >
         <Box
           as='div'
-          {...railProps}
-          className={cx('iui-slider-track', railProps?.className)}
-        >
-          <Track
-            trackDisplayMode={trackDisplay}
-            sliderMin={min}
-            sliderMax={max}
-            values={currentValues}
-            orientation={orientation}
-            {...trackProps}
-          />
-          {tickMarkArea}
-        </Box>
+          {...trackProps}
+          className={cx('iui-slider-track', trackProps?.className)}
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          style={{ '--iui-slider-track-position': '0 {progressPercent}%' }}
+        />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -557,6 +553,15 @@ export const Slider = React.forwardRef((props, ref) => {
             />
           );
         })}
+        <Track
+          trackDisplayMode={trackDisplay}
+          sliderMin={min}
+          sliderMax={max}
+          values={currentValues}
+          orientation={orientation}
+          {...trackProps}
+        />
+        {tickMarkArea}
       </Box>
     </Box>
   );
