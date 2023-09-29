@@ -486,13 +486,6 @@ export const Slider = React.forwardRef((props, ref) => {
       className={cx('iui-slider-container', className)}
       data-iui-orientation={orientation}
       data-iui-disabled={disabled}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      style={{
-        ...(orientation === 'vertical'
-          ? { '--iui-slider-thumb-position': '50%', height: '500px' }
-          : { '--iui-slider-thumb-position': '50%' }),
-      }}
       {...rest}
     >
       {minValueLabel && (
@@ -553,7 +546,6 @@ export const Slider = React.forwardRef((props, ref) => {
               step={step}
               sliderMin={min}
               sliderMax={max}
-              orientation={orientation}
             />
           );
         })}

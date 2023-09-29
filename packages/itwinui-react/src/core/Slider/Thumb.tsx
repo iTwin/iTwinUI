@@ -5,7 +5,6 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { Tooltip } from '../Tooltip/index.js';
-import type { SliderProps } from './Slider.js';
 import { Box } from '../utils/index.js';
 
 type ThumbProps = {
@@ -65,7 +64,7 @@ type ThumbProps = {
    * Additional props for Thumb.
    */
   thumbProps?: React.HTMLAttributes<HTMLDivElement>;
-} & Pick<SliderProps, 'orientation'>;
+};
 
 /**
  * Thumb is a local component used to show and modify the values maintained by the Slider.
@@ -87,7 +86,6 @@ export const Thumb = (props: ThumbProps) => {
     tooltipProps,
     thumbProps,
     disabled,
-    orientation,
   } = props;
   const thumbRef = React.useRef<HTMLDivElement>(null);
   const handleOnKeyboardEvent = React.useCallback(
@@ -159,9 +157,9 @@ export const Thumb = (props: ThumbProps) => {
         ref={thumbRef}
         style={{
           ...style,
-          ...(orientation === 'horizontal'
-            ? { insetInlineStart: `${lowPercent}%` }
-            : { insetBlockEnd: `${lowPercent}%` }),
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          '--iui-slider-thumb-position': `${lowPercent}%`,
         }}
         className={cx(
           'iui-slider-thumb',
