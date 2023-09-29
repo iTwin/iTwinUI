@@ -17,6 +17,10 @@
   }
 }
 
+.iui-tabs-actions-wrapper {
+  @include base.iui-tabs-actions-wrapper;
+}
+
 .iui-tabs-actions {
   @include base.iui-tabs-actions;
 }

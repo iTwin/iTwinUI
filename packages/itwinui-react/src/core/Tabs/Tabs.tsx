@@ -37,12 +37,6 @@ type TabsOverflowProps =
        * Options that can be specified to deal with tabs overflowing the allotted space.
        */
       overflowOptions?: OverflowOptions;
-      /**
-       * Type of the tabs.
-       *
-       * If `type = 'pill' | 'borderless'`, `overflowOptions` is not applicable.
-       * @default 'default'
-       */
       type?: 'default';
     }
   | {
@@ -168,8 +162,8 @@ const TabList = React.forwardRef((props, ref) => {
     [children],
   );
 
-  const activeValue = activeValueProp || activeValueContext;
-  const setActiveValue = setActiveValueProp || setActiveValueContext;
+  const activeValue = activeValueProp ?? activeValueContext;
+  const setActiveValue = setActiveValueProp ?? setActiveValueContext;
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
@@ -329,7 +323,7 @@ type TabOwnProps = {
   /**
    * Callback fired when the isActive prop changes.
    */
-  onActivated?: () => void;
+  onActiveChange?: () => void;
 };
 
 const TabHeader = React.forwardRef((props, forwardedRef) => {
@@ -339,7 +333,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     value,
     label,
     isActive = false,
-    onActivated,
+    onActiveChange,
     onClick: onClickProp,
     ...rest
   } = props;
@@ -386,9 +380,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
   }, [type, orientation, tabsWidth, activeValue]);
 
   const onClickHander = (_value: string) => {
-    if (onActivated) {
-      onActivated();
-    }
+    onActiveChange && onActiveChange();
     setActiveValue(_value);
   };
 
@@ -459,7 +451,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       case 'Spacebar': {
         event.preventDefault();
         if (focusActivationMode === 'manual') {
-          onActivated ? onActivated() : setActiveValue && setActiveValue(value);
+          onActiveChange ? onActiveChange() : setActiveValue(value);
         }
         break;
       }
@@ -539,15 +531,27 @@ TabDescription.displayName = 'Tabs.TabDescription';
 // ----------------------------------------------------------------------------
 // Tabs.Actions component
 
+type TabsActionsOwnProps = {
+  /**
+   * Passes props to the wrapper component for the actions
+   */
+  wrapperProps?: React.ComponentPropsWithRef<'div'>;
+};
+
 const TabsActions = React.forwardRef((props, ref) => {
-  const { className, children, ...rest } = props;
+  const { wrapperProps, className, children, ...rest } = props;
 
   return (
-    <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
-      {children}
+    <Box
+      {...wrapperProps}
+      className={cx('iui-tabs-actions-wrapper', wrapperProps?.className)}
+    >
+      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+        {children}
+      </Box>
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'div', TabsActionsOwnProps>;
 TabsActions.displayName = 'Tabs.Actions';
 
 // ----------------------------------------------------------------------------
@@ -875,7 +879,7 @@ export const TabsContext = React.createContext<
       /**
        * Type of the tabs.
        */
-      type?: string;
+      type?: 'default' | 'borderless' | 'pill';
       /**
        * Orientation of the tabs.
        * @default 'horizontal'
