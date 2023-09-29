@@ -445,6 +445,7 @@ export const Slider = React.forwardRef((props, ref) => {
           as='div'
           {...ticksProps}
           className={cx('iui-slider-ticks', ticksProps?.className)}
+          aria-hidden='true'
         >
           {tickLabels.map((label, index) => (
             <Box
@@ -487,7 +488,11 @@ export const Slider = React.forwardRef((props, ref) => {
       data-iui-disabled={disabled}
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      style={{ '--iui-slider-thumb-position': '50%' }}
+      style={{
+        ...(orientation === 'vertical'
+          ? { '--iui-slider-thumb-position': '50%', height: '500px' }
+          : { '--iui-slider-thumb-position': '50%' }),
+      }}
       {...rest}
     >
       {minValueLabel && (
@@ -508,13 +513,13 @@ export const Slider = React.forwardRef((props, ref) => {
           {maxValueLabel}
         </Box>
       )}
+      {tickMarkArea}
       <Box
-        as='div'
         ref={containerRef}
         {...railContainerProps}
         className={cx(
           'iui-slider',
-          'iui-slider-progress',
+          'iui-progress-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
@@ -522,13 +527,13 @@ export const Slider = React.forwardRef((props, ref) => {
         )}
         onPointerDown={handlePointerDownOnSlider}
       >
-        <Box
-          as='div'
+        <Track
+          trackDisplayMode={trackDisplay}
+          sliderMin={min}
+          sliderMax={max}
+          values={currentValues}
+          orientation={orientation}
           {...trackProps}
-          className={cx('iui-slider-track', trackProps?.className)}
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          style={{ '--iui-slider-track-position': '0 {progressPercent}%' }}
         />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
@@ -537,7 +542,6 @@ export const Slider = React.forwardRef((props, ref) => {
             <Thumb
               key={thisThumbProps?.id ?? index}
               index={index}
-              disabled={disabled}
               isActive={activeThumbIndex === index}
               onThumbActivated={onThumbActivated}
               onThumbValueChanged={onThumbValueChanged}
@@ -553,15 +557,6 @@ export const Slider = React.forwardRef((props, ref) => {
             />
           );
         })}
-        <Track
-          trackDisplayMode={trackDisplay}
-          sliderMin={min}
-          sliderMax={max}
-          values={currentValues}
-          orientation={orientation}
-          {...trackProps}
-        />
-        {tickMarkArea}
       </Box>
     </Box>
   );

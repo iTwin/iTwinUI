@@ -156,7 +156,6 @@ export const Thumb = (props: ThumbProps) => {
     >
       <Box
         {...rest}
-        data-index={index}
         ref={thumbRef}
         style={{
           ...style,
