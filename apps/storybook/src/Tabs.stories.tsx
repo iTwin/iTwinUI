@@ -15,9 +15,9 @@ export const DefaultTabs = () => {
   return (
     <Tabs.Wrapper>
       <Tabs.TabList>
-        <Tabs.Tab label='Apple' value='tab1' />
-        <Tabs.Tab label='Orange' value='tab2' />
-        <Tabs.Tab label='Grape' value='tab3' />
+        <Tabs.Tab label='Apple' value='apple' />
+        <Tabs.Tab label='Orange' value='orange' />
+        <Tabs.Tab label='Grape' value='grape' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -27,7 +27,7 @@ export const DefaultTabs = () => {
         <Button key={'Normal'}>Normal size button</Button>
       </Tabs.Actions>
 
-      <Tabs.Panel value='tab1'>
+      <Tabs.Panel value='apple'>
         An apple is a round, edible fruit produced by an apple tree (Malus
         domestica). Apple trees are cultivated worldwide and are the most widely
         grown species in the genus Malus. The tree originated in Central Asia,
@@ -37,7 +37,7 @@ export const DefaultTabs = () => {
         mythological significance in many cultures, including Norse, Greek, and
         European Christian tradition.
       </Tabs.Panel>
-      <Tabs.Panel value='tab2'>
+      <Tabs.Panel value='orange'>
         An orange is a fruit of various citrus species in the family Rutaceae
         (see list of plants known as orange); it primarily refers to Citrus x
         sinensis, which is also called sweet orange, to distinguish it from the
@@ -45,7 +45,7 @@ export const DefaultTabs = () => {
         orange reproduces asexually (apomixis through nucellar embryony);
         varieties of the sweet orange arise through mutations.
       </Tabs.Panel>
-      <Tabs.Panel value='tab3'>
+      <Tabs.Panel value='grape'>
         A grape is a fruit, botanically a berry, of the deciduous woody vines of
         the flowering plant genus Vitis. Grapes are a non-climacteric type of
         fruit, generally occurring in clusters. The cultivation of grapes began
@@ -63,9 +63,9 @@ export const BorderlessTabs = () => {
   return (
     <Tabs.Wrapper type='borderless'>
       <Tabs.TabList>
-        <Tabs.Tab value='item1' label='Pear' />
-        <Tabs.Tab value='item2' label='Cherry' />
-        <Tabs.Tab value='item3' label='Peach' />
+        <Tabs.Tab value='pear' label='Pear' />
+        <Tabs.Tab value='cherry' label='Cherry' />
+        <Tabs.Tab value='peach' label='Peach' />
       </Tabs.TabList>
 
       <Tabs.Actions>
@@ -75,14 +75,14 @@ export const BorderlessTabs = () => {
         <Button key={'Normal'}>Normal size button</Button>
       </Tabs.Actions>
 
-      <Tabs.Panel value='item1'>
+      <Tabs.Panel value='pear'>
         Pears are fruits produced and consumed around the world, growing on a
         tree and harvested in late summer into mid-autumn. The pear tree and
         shrub are a species of genus Pyrus, in the family Rosaceae, bearing the
         pomaceous fruit of the same name. Several species of pears are valued
         for their edible fruit and juices, while others are cultivated as trees.
       </Tabs.Panel>
-      <Tabs.Panel value='item2'>
+      <Tabs.Panel value='cherry'>
         {`A cherry is the fruit of many plants of the genus Prunus, and is a
         fleshy drupe (stone fruit). Commercial cherries are obtained from
         cultivars of several species, such as the sweet Prunus avium and the
@@ -93,7 +93,7 @@ export const BorderlessTabs = () => {
         growing outside cultivation, although Prunus avium is often referred to
         specifically by the name "wild cherry" in the British Isles.`}
       </Tabs.Panel>
-      <Tabs.Panel value='item3'>
+      <Tabs.Panel value='peach'>
         The peach (Prunus persica) is a deciduous tree first domesticated and
         cultivated in Zhejiang province of Eastern China. It bears edible juicy
         fruits with various characteristics, most called peaches and others (the
@@ -107,26 +107,26 @@ export const PillTabs = () => {
   return (
     <Tabs.Wrapper type='pill'>
       <Tabs.TabList>
-        <Tabs.Tab value='tab1'>
+        <Tabs.Tab value='apple'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab2'>
+        <Tabs.Tab value='orange'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab3'>
+        <Tabs.Tab value='grape'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
         </Tabs.Tab>
       </Tabs.TabList>
 
-      <Tabs.Panel value='tab1'>
+      <Tabs.Panel value='apple'>
         An apple is a round, edible fruit produced by an apple tree (Malus
         domestica). Apple trees are cultivated worldwide and are the most widely
         grown species in the genus Malus. The tree originated in Central Asia,
@@ -136,7 +136,7 @@ export const PillTabs = () => {
         mythological significance in many cultures, including Norse, Greek, and
         European Christian tradition.
       </Tabs.Panel>
-      <Tabs.Panel value='tab2'>
+      <Tabs.Panel value='orange'>
         An orange is a fruit of various citrus species in the family Rutaceae
         (see list of plants known as orange); it primarily refers to Citrus x
         sinensis, which is also called sweet orange, to distinguish it from the
@@ -144,7 +144,7 @@ export const PillTabs = () => {
         orange reproduces asexually (apomixis through nucellar embryony);
         varieties of the sweet orange arise through mutations.
       </Tabs.Panel>
-      <Tabs.Panel value='tab3'>
+      <Tabs.Panel value='grape'>
         A grape is a fruit, botanically a berry, of the deciduous woody vines of
         the flowering plant genus Vitis. Grapes are a non-climacteric type of
         fruit, generally occurring in clusters. The cultivation of grapes began
@@ -170,7 +170,7 @@ export const SublabelsAndIcons = () => {
           <Tabs.TabDescription>Red fruit</Tabs.TabDescription>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab1'>
+        <Tabs.Tab value='apple'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
@@ -178,7 +178,7 @@ export const SublabelsAndIcons = () => {
           <Tabs.TabDescription>Orange fruit</Tabs.TabDescription>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab2' disabled>
+        <Tabs.Tab value='orange' disabled>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
@@ -204,7 +204,7 @@ export const SublabelsAndIcons = () => {
         mythological significance in many cultures, including Norse, Greek, and
         European Christian tradition.
       </Tabs.Panel>
-      <Tabs.Panel value='tab1'>
+      <Tabs.Panel value='apple'>
         An orange is a fruit of various citrus species in the family Rutaceae
         (see list of plants known as orange); it primarily refers to Citrus x
         sinensis, which is also called sweet orange, to distinguish it from the
@@ -212,7 +212,7 @@ export const SublabelsAndIcons = () => {
         orange reproduces asexually (apomixis through nucellar embryony);
         varieties of the sweet orange arise through mutations.
       </Tabs.Panel>
-      <Tabs.Panel value='tab2'>
+      <Tabs.Panel value='orange'>
         A grape is a fruit, botanically a berry, of the deciduous woody vines of
         the flowering plant genus Vitis. Grapes are a non-climacteric type of
         fruit, generally occurring in clusters. The cultivation of grapes began
@@ -370,7 +370,7 @@ export const Vertical = () => {
   return (
     <Tabs.Wrapper orientation='vertical' type='borderless'>
       <Tabs.TabList>
-        <Tabs.Tab value='tab1'>
+        <Tabs.Tab value='apple'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
@@ -378,7 +378,7 @@ export const Vertical = () => {
           <Tabs.TabDescription>Red fruit</Tabs.TabDescription>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab2'>
+        <Tabs.Tab value='orange'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
@@ -386,7 +386,7 @@ export const Vertical = () => {
           <Tabs.TabDescription>Orange fruit</Tabs.TabDescription>
         </Tabs.Tab>
 
-        <Tabs.Tab value='tab3'>
+        <Tabs.Tab value='grape'>
           <Tabs.TabIcon>
             <SvgStar />
           </Tabs.TabIcon>
@@ -402,7 +402,7 @@ export const Vertical = () => {
         <Button key={'Normal'}>Normal size button</Button>
       </Tabs.Actions>
 
-      <Tabs.Panel value='tab1'>
+      <Tabs.Panel value='apple'>
         An apple is a round, edible fruit produced by an apple tree (Malus
         domestica). Apple trees are cultivated worldwide and are the most widely
         grown species in the genus Malus. The tree originated in Central Asia,
@@ -412,7 +412,7 @@ export const Vertical = () => {
         mythological significance in many cultures, including Norse, Greek, and
         European Christian tradition.
       </Tabs.Panel>
-      <Tabs.Panel value='tab2'>
+      <Tabs.Panel value='orange'>
         An orange is a fruit of various citrus species in the family Rutaceae
         (see list of plants known as orange); it primarily refers to Citrus x
         sinensis, which is also called sweet orange, to distinguish it from the
@@ -420,7 +420,7 @@ export const Vertical = () => {
         orange reproduces asexually (apomixis through nucellar embryony);
         varieties of the sweet orange arise through mutations.
       </Tabs.Panel>
-      <Tabs.Panel value='tab3'>
+      <Tabs.Panel value='grape'>
         A grape is a fruit, botanically a berry, of the deciduous woody vines of
         the flowering plant genus Vitis. Grapes are a non-climacteric type of
         fruit, generally occurring in clusters. The cultivation of grapes began
