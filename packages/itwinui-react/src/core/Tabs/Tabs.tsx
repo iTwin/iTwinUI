@@ -659,6 +659,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
   } = props;
 
   const [currentActiveValue, setCurrentActiveValue] = React.useState<string>();
+
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
       <TabList
@@ -670,25 +671,26 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         ref={forwardedRef}
       >
         {labels.map((label, index) => {
-          const tabIndex = `label-${index}`;
+          const tabValue = `label-${index}`;
           return React.isValidElement(label) ? (
             React.cloneElement(label as JSX.Element, {
-              value: tabIndex,
-              active: activeIndex === index || tabIndex === currentActiveValue,
+              value: tabValue,
+              active: activeIndex === index || tabValue === currentActiveValue,
               onClick: (args: unknown) => {
                 onTabSelected?.(index);
-                setCurrentActiveValue(tabIndex);
+                setCurrentActiveValue(tabValue);
                 label.props.onClick?.(args);
               },
             })
           ) : (
             <Tab
               key={index}
+              value={tabValue}
               label={label}
-              active={activeIndex === index || tabIndex === currentActiveValue}
+              active={activeIndex === index || tabValue === currentActiveValue}
               onClick={() => {
                 onTabSelected?.(index);
-                setCurrentActiveValue(tabIndex);
+                setCurrentActiveValue(tabValue);
               }}
             />
           );
@@ -751,14 +753,14 @@ type TabLegacyProps = {
  * ];
  */
 export const Tab = React.forwardRef((props, forwardedRef) => {
-  const { label, sublabel, startIcon, children, active, value, key, ...rest } =
+  const { label, sublabel, startIcon, children, active, value, ...rest } =
     props;
 
   return (
     <>
       <TabHeader
         {...rest}
-        value={value ?? `label-${key}`}
+        value={value ?? `panel-${label}`}
         ref={forwardedRef}
         isActive={active}
       >
