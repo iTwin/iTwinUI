@@ -660,6 +660,14 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
 
   const [currentActiveValue, setCurrentActiveValue] = React.useState<string>();
 
+  const findActiveIndex = () => {
+    return (
+      labels.findIndex(
+        (label, index) => currentActiveValue === `label-${index}`,
+      ) ?? `label-0`
+    );
+  };
+
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
       <TabList
@@ -703,6 +711,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         <Box
           className={cx('iui-tabs-content', contentClassName)}
           role='tabpanel'
+          aria-labelledby={`label-${findActiveIndex()}`}
         >
           {children}
         </Box>
