@@ -265,7 +265,7 @@ export const HorizontalOverflow = () => {
                 isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
-                onActivated={() => {
+                onActiveChange={() => {
                   setActive(item.name);
                 }}
               />
@@ -336,7 +336,7 @@ export const VerticalOverflow = () => {
                 isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
-                onActivated={() => {
+                onActiveChange={() => {
                   setActive(item.name);
                 }}
               />
