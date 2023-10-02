@@ -298,14 +298,13 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     if (isActive) {
       tabRef.current?.scrollIntoView({
         behavior: 'smooth',
-        block: 'center',
-        inline: 'center',
+        block: 'nearest',
+        inline: 'nearest',
       });
     }
   }, [isActive]);
 
-  // CSS custom properties to place the active stripe
-  useIsomorphicLayoutEffect(() => {
+  const updateStripe = () => {
     if (type !== 'default' && isActive) {
       const currentTabRect = tabRef.current?.getBoundingClientRect();
       setStripeProperties({
@@ -319,7 +318,17 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
         }),
       });
     }
-  }, [type, orientation, tabsWidth]);
+  };
+
+  // CSS custom properties to place the active stripe
+  useIsomorphicLayoutEffect(() => {
+    updateStripe();
+  }, [
+    type,
+    orientation,
+    isActive,
+    tabsWidth, // to fix visual artifact on initial render
+  ]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.altKey) {
