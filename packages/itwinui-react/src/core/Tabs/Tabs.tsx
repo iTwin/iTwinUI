@@ -188,34 +188,6 @@ const TabList = React.forwardRef((props, ref) => {
     }
   }, []);
 
-  const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
-    e.preventDefault();
-
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    let scrollLeft = ownerDoc?.scrollLeft ?? 0;
-    scrollLeft += e.deltaY < 0 ? -30 : 30;
-    ownerDoc.scrollLeft = scrollLeft;
-  }, []);
-
-  // allow normal mouse wheels to scroll horizontally for horizontal overflow
-  React.useEffect(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    if (!overflowOptions?.useOverflow || orientation === 'vertical') {
-      ownerDoc.removeEventListener('wheel', enableHorizontalScroll);
-      return;
-    }
-
-    ownerDoc.addEventListener('wheel', enableHorizontalScroll);
-  }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
-
   const [scrollingPlacement, setScrollingPlacement] = React.useState<
     string | undefined
   >(undefined);
