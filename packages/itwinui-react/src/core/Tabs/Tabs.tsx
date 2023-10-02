@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useSafeContext,
@@ -324,26 +325,28 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     if (event.altKey) {
       return;
     }
+    const allTabs = Array.from(
+      event.currentTarget.parentElement?.children ?? [],
+    );
 
     /** focus next tab if delta is +1, previous tab if -1 */
     const focusTab = (delta = +1) => {
       const currentTab = event.currentTarget as Element;
 
-      const items =
-        event.currentTarget.parentElement &&
-        Array.from(event.currentTarget.parentElement.children);
+      let nextTab: Element | undefined = currentTab;
+      if (delta === +1) {
+        nextTab = nextTab?.nextElementSibling ?? allTabs?.at(0);
+      } else if (delta === -1) {
+        nextTab = nextTab?.previousElementSibling ?? allTabs?.at(-1);
+      }
 
-      let newIndex = items && items.findIndex((item) => item === currentTab);
+      if (nextTab instanceof HTMLElement) {
+        nextTab?.focus();
 
-      if (items && newIndex !== null) {
-        do {
-          newIndex = (newIndex + delta + items.length) % items.length;
-        } while (items[newIndex].getAttribute('aria-disabled'));
-
-        const newValue = items[newIndex].getAttribute('aria-controls');
-        if (newValue && focusActivationMode === 'auto') {
-          // onClickHander(newValue);
-          (items[newIndex] as HTMLElement).focus();
+        if (focusActivationMode === 'auto') {
+          ReactDOM.flushSync(() => {
+            onActiveChange?.(); // TODO: fix this (stale state)
+          });
         }
       }
     };
@@ -374,15 +377,6 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
         if (orientation === 'horizontal') {
           focusTab(-1);
           event.preventDefault();
-        }
-        break;
-      }
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        event.preventDefault();
-        if (focusActivationMode === 'manual') {
-          onActiveChange?.();
         }
         break;
       }
