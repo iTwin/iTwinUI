@@ -53,7 +53,7 @@ When the popover opens, keyboard focus will be moved to the popover. When it clo
 
 If you have a good candidate for receiving focus, then you can manually `focus()` it using a [ref](https://react.dev/learn/manipulating-the-dom-with-refs) or use `autoFocus` where possible. This should be done thoughtfully, and the element receiving focus should usually be located near the beginning of the popover, with not too much content preceding it.
 
-The following example shows how you can focus an input when the popover opens. This button is preceded by a heading associated with the popover using `aria-labelledby`. As a result, when the popover opens, the heading is automatically announced to a screen reader user.
+The following example shows how you can focus an input when the popover opens. This input is preceded by a heading associated with the popover using `aria-labelledby`. As a result, when the popover opens, the heading is automatically announced to a screen reader user, ensuring they didn't miss any content located before the input.
 
 <LiveExample src='Popover.focus.tsx'>
   <AllExamples.PopoverFocusExample client:load />
