@@ -37,6 +37,7 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
             cell.row.toggleRowExpanded();
           }}
           disabled={isDisabled}
+          aria-expanded={cell.row.isExpanded}
         >
           {
             <SvgChevronRight
