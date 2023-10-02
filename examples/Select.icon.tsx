@@ -18,17 +18,17 @@ export default () => {
         {
           value: 'happy',
           label: 'Happy',
-          icon: <SvgSmileyHappy />,
+          startIcon: <SvgSmileyHappy />,
         },
         {
           value: 'neutral',
           label: 'Neutral',
-          icon: <SvgSmileyNeutral />,
+          startIcon: <SvgSmileyNeutral />,
         },
         {
           value: 'sad',
           label: 'Sad',
-          icon: <SvgSmileySad />,
+          startIcon: <SvgSmileySad />,
         },
       ]}
       placeholder={'How are you today?'}
