@@ -535,6 +535,7 @@ export const Slider = React.forwardRef((props, ref) => {
             <Thumb
               key={thisThumbProps?.id ?? index}
               index={index}
+              disabled={disabled}
               isActive={activeThumbIndex === index}
               onThumbActivated={onThumbActivated}
               onThumbValueChanged={onThumbValueChanged}
