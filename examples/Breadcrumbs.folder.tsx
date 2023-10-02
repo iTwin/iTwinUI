@@ -46,6 +46,7 @@ export default () => {
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'
+        aria-label='All levels'
         menuItems={(close) =>
           items.map((item, index) => (
             <MenuItem
@@ -61,8 +62,10 @@ export default () => {
           ))
         }
       />
+
       {isEditing ? (
         <Input
+          aria-label='Path'
           defaultValue={items.slice(0, lastIndex + 1).join('/')}
           onChange={({ target: { value } }) => {
             const lastItem = value.substring(

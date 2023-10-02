@@ -45,9 +45,9 @@ export const Basic = () => {
 
 export const WithIcons = () => {
   const options = [
-    { value: 'happy', label: 'Happy', icon: <SvgSmileyHappy /> },
-    { value: 'neutral', label: 'Neutral', icon: <SvgSmileyNeutral /> },
-    { value: 'sad', label: 'Sad', icon: <SvgSmileySad /> },
+    { value: 'happy', label: 'Happy', startIcon: <SvgSmileyHappy /> },
+    { value: 'neutral', label: 'Neutral', startIcon: <SvgSmileyNeutral /> },
+    { value: 'sad', label: 'Sad', startIcon: <SvgSmileySad /> },
   ];
   const [value, setValue] = useState<string | undefined>(undefined);
   return (
