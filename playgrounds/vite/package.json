@@ -10,7 +10,7 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@itwin/itwinui-react": "3.0.0-dev.10",
+    "@itwin/itwinui-react": "3.0.0-dev.11",
     "@itwin/itwinui-icons-react": "2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"

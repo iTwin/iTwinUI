@@ -263,7 +263,7 @@ export default () => {
           countriesList.map((country) => ({
             ...country,
             sublabel: country.value,
-            icon: (
+            startIcon: (
               <img
                 loading='lazy'
                 style={{ width: 20, height: 15 }}

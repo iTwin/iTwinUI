@@ -5,7 +5,7 @@
   "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-icons-react": "2",
-    "@itwin/itwinui-react": "3.0.0-dev.10",
+    "@itwin/itwinui-react": "3.0.0-dev.11",
     "@storybook/addon-a11y": "~7.0.2",
     "@storybook/addon-actions": "~7.0.2",
     "@storybook/addon-essentials": "~7.0.2",

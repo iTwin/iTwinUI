@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.0.0-dev.10
+
+### Minor Changes
+
+- [#1565](https://github.com/iTwin/iTwinUI/pull/1565): Updated menu styling and added `iui-popover-surface` class for standalone popovers.
+
 ## 2.0.0-dev.9
 
 ### Major Changes
