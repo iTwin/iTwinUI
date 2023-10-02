@@ -9,37 +9,25 @@ export default () => {
   return (
     <Tabs.Wrapper>
       <Tabs.TabList>
-        <Tabs.Tab value='item1' label='Item1' />
-        <Tabs.Tab value='item2' label='Item2' />
-        <Tabs.Tab value='item3' label='Item3' />
+        <Tabs.Tab value='apple1' label='Apple' />
+        <Tabs.Tab value='orange1' label='Orange' />
+        <Tabs.Tab value='pear1' label='Pear' />
       </Tabs.TabList>
 
-      <Tabs.Panel value='item1'>
-        Bentley Systems, Incorporated, is an American-based software development
-        company that develops, manufactures, licenses, sells and supports
-        computer software and services for the design, construction, and
-        operation of infrastructure. The company&apos;s software serves the
-        building, plant, civil, and geospatial markets in the areas of
-        architecture, engineering, construction (AEC) and operations. Their
-        software products are used to design, engineer, build, and operate large
-        constructed assets such as roadways, railways, bridges, buildings,
-        industrial plants, power plants, and utility networks. The company
-        re-invests 20% of their revenues in research and development.
+      <Tabs.Panel value='apple1'>
+        An apple is a round, edible fruit produced by an apple tree (Malus
+        domestica). Apple trees are cultivated worldwide and are the most widely
+        grown species in the genus Malus.
       </Tabs.Panel>
-      <Tabs.Panel value='item2'>
-        Bentley Systems is headquartered in Exton, Pennsylvania, United States,
-        but has development, sales and other departments in over 50 countries.
-        The company had revenues of $700 million in 2018.
+      <Tabs.Panel value='orange1'>
+        An orange is a fruit of various citrus species in the family Rutaceae
+        (see list of plants known as orange); it primarily refers to Citrus x
+        sinensis, which is also called sweet orange, to distinguish it from the
+        related Citrus x aurantium, referred to as bitter orange.
       </Tabs.Panel>
-      <Tabs.Panel value='item3'>
-        Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.
-        They introduced the commercial version of PseudoStation in 1985, which
-        allowed users of Intergraphs VAX systems to use low-cost graphics
-        terminals to view and modify the designs on their Intergraph IGDS
-        (Interactive Graphics Design System) installations. Their first product
-        was shown to potential users who were polled as to what they would be
-        willing to pay for it. They averaged the answers, arriving at a price of
-        $7,943. A DOS-based version of MicroStation was introduced in 1986.
+      <Tabs.Panel value='pear1'>
+        Pears are fruits produced and consumed around the world, growing on a
+        tree and harvested in late summer into mid-autumn.
       </Tabs.Panel>
     </Tabs.Wrapper>
   );
