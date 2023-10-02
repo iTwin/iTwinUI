@@ -407,11 +407,11 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       if (items && newIndex !== null) {
         do {
           newIndex = (newIndex + delta + items.length) % items.length;
-        } while (items[newIndex].ariaDisabled);
+        } while (items[newIndex].getAttribute('aria-disabled'));
 
         const newValue = items[newIndex].getAttribute('aria-controls');
-        if (newValue) {
-          focusActivationMode === 'auto' && onClickHander(newValue);
+        if (newValue && focusActivationMode === 'auto') {
+          onClickHander(newValue);
           (items[newIndex] as HTMLElement).focus();
         }
       }
