@@ -2195,6 +2195,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '3');
           }}
           checked={filter === '3'}
+          autoFocus={filter === '3'} // moving focus to checked radio button when filter dialog opens
         />
         <Radio
           label="Contains '5'"
@@ -2202,6 +2203,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '5');
           }}
           checked={filter === '5'}
+          autoFocus={filter === '5'}
         />
         <Radio
           label="Contains '7'"
@@ -2209,6 +2211,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '7');
           }}
           checked={filter === '7'}
+          autoFocus={filter === '7'}
         />
         <Radio
           label='No filter'
@@ -2216,6 +2219,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '');
           }}
           checked={filter === ''}
+          autoFocus={filter === ''}
         />
       </BaseFilter>
     );
