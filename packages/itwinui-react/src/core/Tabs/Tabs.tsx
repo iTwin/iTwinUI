@@ -605,6 +605,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
 
   const [currentActiveValue, setCurrentActiveValue] = React.useState<string>();
 
+  // TODO: fix legacy active logic
   const findActiveIndex = () => {
     return (
       labels.findIndex(
@@ -636,7 +637,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
               },
             })
           ) : (
-            <Tab
+            <LegacyTab
               key={index}
               value={tabValue}
               label={label}
@@ -708,7 +709,7 @@ type TabLegacyProps = {
  *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
  * ];
  */
-export const Tab = React.forwardRef((props, forwardedRef) => {
+const LegacyTab = React.forwardRef((props, forwardedRef) => {
   const { label, sublabel, startIcon, children, active, value, ...rest } =
     props;
 
@@ -731,6 +732,11 @@ export const Tab = React.forwardRef((props, forwardedRef) => {
   'button',
   TabLegacyProps & { value?: string }
 >;
+
+// ----------------------------------------------------------------------------
+// exports
+
+export { LegacyTab as Tab };
 
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
