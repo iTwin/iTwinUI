@@ -51,9 +51,9 @@ The popover should generally be labeled using [`aria-labelledby`](https://develo
 
 When the popover opens, keyboard focus will be moved to the popover. When it closes, keyboard focus will move back to the trigger element. Additionally, keyboard focus will move back to the trigger when tabbing out of it.
 
-If you have a good candidate for receiving focus, then you can manually `focus()` it using a [ref](https://react.dev/learn/manipulating-the-dom-with-refs). This should be done thoughtfully, and the element receiving focus should usually be located near the beginning of the popover, with not too much content preceding it.
+If you have a good candidate for receiving focus, then you can manually `focus()` it using a [ref](https://react.dev/learn/manipulating-the-dom-with-refs) or use `autoFocus` where possible. This should be done thoughtfully, and the element receiving focus should usually be located near the beginning of the popover, with not too much content preceding it.
 
-The following example shows how you can focus a button when the popover opens. This button is preceded by a heading and some supplementary text, associated with the popover using `aria-labelledby` and `aria-describedby` respectively. As a result, when the popover opens, both the heading and the description are automatically exposed to a screen reader user.
+The following example shows how you can focus an input when the popover opens. This button is preceded by a heading associated with the popover using `aria-labelledby`. As a result, when the popover opens, the heading is automatically announced to a screen reader user.
 
 <LiveExample src='Popover.focus.tsx'>
   <AllExamples.PopoverFocusExample client:load />

@@ -3,12 +3,20 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Flex, Popover, Surface, Text } from '@itwin/itwinui-react';
+import {
+  Button,
+  Flex,
+  IconButton,
+  LabeledInput,
+  Popover,
+  Surface,
+  Text,
+} from '@itwin/itwinui-react';
+import { SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const idPrefix = React.useId();
   const headingId = `${idPrefix}-label`;
-  const descriptionId = `${idPrefix}-description`;
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -16,7 +24,6 @@ export default () => {
     <Popover
       applyBackground
       aria-labelledby={headingId}
-      aria-describedby={descriptionId}
       visible={isOpen}
       onVisibleChange={setIsOpen}
       style={{ maxWidth: '45ch', border: 'none' }}
@@ -24,31 +31,29 @@ export default () => {
         <Surface elevation={0}>
           <Surface.Header>
             <Text as='h3' id={headingId} variant='leading'>
-              Terms and conditions
+              Settings
             </Text>
           </Surface.Header>
           <Surface.Body isPadded>
-            <Flex flexDirection='column' alignItems='start'>
-              <Text as='p' id={descriptionId}>
-                (TODO: improve text) Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Voluptatem, voluptates impedit rem incidunt
-                excepturi accusamus facilis doloribus saepe quibusdam
-                reiciendis.
-              </Text>
+            <Flex flexDirection='column' alignItems='flex-end'>
+              <LabeledInput label='Quality' autoFocus />
+              <LabeledInput label='Grain' />
+              <LabeledInput label='Saturation' />
 
               <Button
-                ref={(el) => el?.focus()}
-                onClick={() => setIsOpen(false)}
                 styleType='high-visibility'
+                onClick={() => setIsOpen(false)}
               >
-                Agree
+                Apply
               </Button>
             </Flex>
           </Surface.Body>
         </Surface>
       }
     >
-      <Button>Details…</Button>
+      <IconButton label='Adjust settings'>
+        <SvgSettings />
+      </IconButton>
     </Popover>
   );
 };
