@@ -15,8 +15,7 @@ import {
 import { SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const idPrefix = React.useId();
-  const headingId = `${idPrefix}-label`;
+  const headingId = `${React.useId()}-label`;
 
   const [isOpen, setIsOpen] = React.useState(false);
 
@@ -36,7 +35,9 @@ export default () => {
           </Surface.Header>
           <Surface.Body isPadded>
             <Flex flexDirection='column' alignItems='flex-end'>
+              {/* this will be focused when popover opens */}
               <LabeledInput label='Quality' autoFocus />
+
               <LabeledInput label='Grain' />
               <LabeledInput label='Saturation' />
 
