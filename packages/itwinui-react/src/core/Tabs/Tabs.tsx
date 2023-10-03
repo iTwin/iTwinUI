@@ -393,6 +393,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ButtonBase
+      id={`tab-${value}`}
       className={cx('iui-tab', { 'iui-active': isActive }, className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
@@ -508,7 +509,7 @@ const TabsPanel = React.forwardRef((props, ref) => {
   return (
     <Box
       className={cx('iui-tabs-content', className)}
-      // aria-labelledby={``}
+      aria-labelledby={`tab-${value}`}
       role='tabpanel'
       hidden={activeValue !== value ? true : undefined}
       id={value}
