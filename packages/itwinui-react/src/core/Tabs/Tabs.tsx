@@ -288,6 +288,12 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
   const isActive =
     isActiveProp !== undefined ? isActiveProp : activeValueState === value;
 
+  React.useEffect(() => {
+    if (isActiveProp !== undefined && isActiveProp) {
+      setActiveValueState(value);
+    }
+  }, [isActiveProp, setActiveValueState, value]);
+
   const onActiveChange = React.useCallback(() => {
     setActiveValueState(value);
     onActiveChangeProp?.();
