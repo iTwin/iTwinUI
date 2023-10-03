@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   useSafeContext,
@@ -273,7 +272,6 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     label,
     isActive: isActiveProp,
     onActiveChange: onActiveChangeProp,
-    onClick: onClickProp,
     ...rest
   } = props;
 
@@ -339,53 +337,37 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       event.currentTarget.parentElement?.children ?? [],
     );
 
-    /** focus next tab if delta is +1, previous tab if -1 */
-    const focusTab = (delta = +1) => {
-      const currentTab = event.currentTarget as Element;
+    const nextTab = (tabRef.current?.nextElementSibling ??
+      allTabs.at(0)) as HTMLElement;
 
-      let nextTab: Element | undefined = currentTab;
-      if (delta === +1) {
-        nextTab = nextTab?.nextElementSibling ?? allTabs?.at(0);
-      } else if (delta === -1) {
-        nextTab = nextTab?.previousElementSibling ?? allTabs?.at(-1);
-      }
-
-      if (nextTab instanceof HTMLElement) {
-        nextTab?.focus();
-
-        if (focusActivationMode === 'auto') {
-          ReactDOM.flushSync(() => {
-            onActiveChange?.(); // TODO: fix this (stale state)
-          });
-        }
-      }
-    };
+    const previousTab = (tabRef.current?.previousElementSibling ??
+      allTabs.at(-1)) as HTMLElement;
 
     switch (event.key) {
       case 'ArrowDown': {
         if (orientation === 'vertical') {
-          focusTab(+1);
+          nextTab?.focus();
           event.preventDefault();
         }
         break;
       }
       case 'ArrowRight': {
         if (orientation === 'horizontal') {
-          focusTab(+1);
+          nextTab?.focus();
           event.preventDefault();
         }
         break;
       }
       case 'ArrowUp': {
         if (orientation === 'vertical') {
-          focusTab(-1);
+          previousTab?.focus();
           event.preventDefault();
         }
         break;
       }
       case 'ArrowLeft': {
         if (orientation === 'horizontal') {
-          focusTab(-1);
+          previousTab?.focus();
           event.preventDefault();
         }
         break;
@@ -414,12 +396,21 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       className={cx('iui-tab', { 'iui-active': isActive }, className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
-      onClick={mergeEventHandlers(onClickProp, () => onActiveChange?.())}
-      onKeyDown={onKeyDown}
       aria-selected={isActive}
       aria-controls={value}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
+      onClick={mergeEventHandlers(props.onClick, () => {
+        if (!props.disabled) {
+          onActiveChange?.();
+        }
+      })}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
+      onFocus={mergeEventHandlers(props.onFocus, () => {
+        if (focusActivationMode === 'auto' && !props.disabled) {
+          onActiveChange?.();
+        }
+      })}
     >
       {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
     </ButtonBase>
