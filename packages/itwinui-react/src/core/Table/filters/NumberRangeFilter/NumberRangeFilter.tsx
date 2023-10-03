@@ -8,7 +8,7 @@ import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
 import type { TableFilterProps } from '../types.js';
-import { LabeledInput } from '../../../LabeledInput/index.js';
+import { LabeledInput } from '../../../LabeledInput/LabeledInput.js';
 
 export type NumberRangeTranslation = {
   from: string;

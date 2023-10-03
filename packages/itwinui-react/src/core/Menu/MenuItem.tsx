@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   SvgCaretRightSmall,
-  usePopover,
   Portal,
   useMergedRefs,
   useId,
@@ -15,6 +14,7 @@ import { Menu } from './Menu.js';
 import { ListItem } from '../List/ListItem.js';
 import type { ListItemOwnProps } from '../List/ListItem.js';
 import { flushSync } from 'react-dom';
+import { usePopover } from '../Popover/Popover.js';
 
 /**
  * Context used to provide menu item ref to sub-menu items.

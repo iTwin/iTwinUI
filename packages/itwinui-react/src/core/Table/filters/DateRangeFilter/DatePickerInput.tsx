@@ -3,14 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Popover, SvgCalendar, isBefore, useId } from '../../../utils/index.js';
-import type { LabeledInput } from '../../../LabeledInput/index.js';
+import { SvgCalendar, isBefore, useId } from '../../../utils/index.js';
+import type { LabeledInput } from '../../../LabeledInput/LabeledInput.js';
 import type { PolymorphicForwardRefComponent } from '../../../utils/index.js';
-import { DatePicker } from '../../../DatePicker/index.js';
-import { InputGrid } from '../../../InputGrid/index.js';
-import { Label } from '../../../Label/index.js';
-import { InputWithDecorations } from '../../../InputWithDecorations/index.js';
+import { DatePicker } from '../../../DatePicker/DatePicker.js';
+import { InputGrid } from '../../../InputGrid/InputGrid.js';
+import { Label } from '../../../Label/Label.js';
+import { InputWithDecorations } from '../../../InputWithDecorations/InputWithDecorations.js';
 import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
+import { Popover } from '../../../Popover/Popover.js';
 
 export type DatePickerInputProps = {
   date?: Date;

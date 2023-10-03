@@ -2,21 +2,16 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { InputWithDecorations, Icon } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
-type InputWithDecorationsProps = React.ComponentProps<
-  typeof InputWithDecorations
->;
-
 export default {
   title: 'Input/InputWithDecorations',
   component: InputWithDecorations,
-} as Meta<InputWithDecorationsProps>;
+};
 
-export const Basic: Story<InputWithDecorationsProps> = () => {
+export const Basic = () => {
   return (
     <InputWithDecorations>
       <Icon padded>
@@ -30,7 +25,7 @@ export const Basic: Story<InputWithDecorationsProps> = () => {
   );
 };
 
-export const Disabled: Story<InputWithDecorationsProps> = () => {
+export const Disabled = () => {
   return (
     <InputWithDecorations isDisabled>
       <Icon padded>
@@ -44,7 +39,7 @@ export const Disabled: Story<InputWithDecorationsProps> = () => {
   );
 };
 
-export const Small: Story<InputWithDecorationsProps> = () => {
+export const Small = () => {
   return (
     <InputWithDecorations size='small'>
       <Icon size='s' padded>
@@ -58,7 +53,7 @@ export const Small: Story<InputWithDecorationsProps> = () => {
   );
 };
 
-export const Status: Story<InputWithDecorationsProps> = () => {
+export const Status = () => {
   return (
     <InputWithDecorations status='positive'>
       <Icon padded>

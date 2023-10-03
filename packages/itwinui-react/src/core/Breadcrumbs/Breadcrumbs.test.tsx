@@ -8,8 +8,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { Breadcrumbs } from './Breadcrumbs.js';
 import { SvgChevronRight, SvgMore } from '../utils/index.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
-import { IconButton } from '../Buttons/IconButton/index.js';
-import { Button } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { Button } from '../Buttons/Button.js';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = (

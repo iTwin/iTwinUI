@@ -5,7 +5,8 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import { Avatar, AvatarGroup } from '../../core/index.js';
+import { Avatar } from '../Avatar/Avatar.js';
+import { AvatarGroup } from './AvatarGroup.js';
 
 function generateAvatars(length: number) {
   const userNames = [

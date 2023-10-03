@@ -9,7 +9,7 @@ import type {
   CellRendererProps,
   Row,
 } from '../../../react-table/react-table.js';
-import { IconButton } from '../../Buttons/index.js';
+import { IconButton } from '../../Buttons/IconButton.js';
 import { DefaultCell } from '../cells/index.js';
 
 export const EXPANDER_CELL_ID = 'iui-table-expander';
@@ -71,6 +71,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
               row.toggleRowExpanded();
             }}
             disabled={isDisabled?.(props.row.original)}
+            aria-expanded={row.isExpanded}
           >
             {<SvgChevronRight />}
           </IconButton>

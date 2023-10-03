@@ -4,29 +4,15 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { action } from '@storybook/addon-actions';
-import { Story, Meta } from '@storybook/react';
 import { MenuItem, SplitButton } from '@itwin/itwinui-react';
-
-type SplitButtonProps = React.ComponentProps<typeof SplitButton>;
 
 export default {
   title: 'Buttons/SplitButton',
   component: SplitButton,
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    as: { type: { name: 'string', required: false } },
-  },
-  parameters: {
-    docs: {
-      source: { excludeDecorators: true },
-    },
-  },
   decorators: [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>],
-} as Meta<SplitButtonProps>;
+};
 
-export const Basic: Story<SplitButtonProps> = (args) => {
-  const { onClick, menuItems, children, ...rest } = args;
+export const Basic = () => {
   const onMenuItemClick = (index: number, close: () => void) => () => {
     action(`Item #${index} clicked!`)();
     close();
@@ -46,17 +32,11 @@ export const Basic: Story<SplitButtonProps> = (args) => {
 
   return (
     <SplitButton
-      onClick={onClick || action('Primary button clicked!')}
-      menuItems={menuItems || buttonMenuItems}
+      onClick={action('Primary button clicked!')}
+      menuItems={buttonMenuItems}
       styleType='default'
-      {...rest}
     >
-      {children}
+      Default
     </SplitButton>
   );
-};
-
-Basic.args = {
-  children: 'Default',
-  styleType: 'default',
 };

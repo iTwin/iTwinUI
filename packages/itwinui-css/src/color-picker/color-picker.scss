@@ -21,9 +21,6 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   overflow-y: auto;
   flex-direction: column;
   max-block-size: calc(var(--iui-size-s) * 42);
-  @supports (overflow-y: overlay) {
-    overflow-y: overlay;
-  }
   row-gap: var(--iui-size-s);
 }
 

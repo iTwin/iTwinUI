@@ -4,16 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Tooltip } from '@itwin/itwinui-react';
-import { Story, Meta } from '@storybook/react';
-
-type TooltipProps = React.ComponentProps<typeof Tooltip>;
-
 export default {
   title: 'Core/Tooltip',
   component: Tooltip,
-  args: {
-    content: 'Here I am!',
-    children: (
+};
+
+export const Top = () => {
+  return (
+    <Tooltip placement='top' content='Here I am!'>
       <div
         id='tooltip-target'
         style={{
@@ -24,65 +22,64 @@ export default {
       >
         Please, try to hover me!
       </div>
-    ),
-  },
-  argTypes: {
-    children: { control: { disable: true } },
-    visible: { control: { type: 'boolean' } },
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-} as Meta<TooltipProps>;
-
-export const Top: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
-  return (
-    <Tooltip placement={placement} {...rest}>
-      {children}
     </Tooltip>
   );
 };
 
-Top.args = { placement: 'top' };
-
-export const Right: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+export const Right = () => {
   return (
-    <Tooltip placement={placement} {...rest}>
-      {children}
+    <Tooltip placement='right' content='Here I am!'>
+      <div
+        id='tooltip-target'
+        style={{
+          marginTop: 40,
+          marginLeft: 100,
+          width: 'fit-content',
+        }}
+      >
+        Please, try to hover me!
+      </div>
     </Tooltip>
   );
 };
 
-Right.args = { placement: 'right' };
-
-export const Bottom: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+export const Bottom = () => {
   return (
-    <Tooltip placement={placement} {...rest}>
-      {children}
+    <Tooltip placement='bottom' content='Here I am!'>
+      <div
+        id='tooltip-target'
+        style={{
+          marginTop: 40,
+          marginLeft: 100,
+          width: 'fit-content',
+        }}
+      >
+        Please, try to hover me!
+      </div>
     </Tooltip>
   );
 };
 
-Bottom.args = { placement: 'bottom' };
-
-export const Left: Story<TooltipProps> = (args) => {
-  const { children, placement, ...rest } = args;
+export const Left = () => {
   return (
-    <Tooltip placement={placement} {...rest}>
-      {children}
+    <Tooltip placement='left' content='Here I am!'>
+      <div
+        id='tooltip-target'
+        style={{
+          marginTop: 40,
+          marginLeft: 100,
+          width: 'fit-content',
+        }}
+      >
+        Please, try to hover me!
+      </div>
     </Tooltip>
   );
 };
 
-Left.args = { placement: 'left' };
-
-export const Controlled: Story<TooltipProps> = (args) => {
-  const { visible = true, ...rest } = args;
+export const Controlled = () => {
   return (
-    <Tooltip visible={visible} {...rest}>
+    <Tooltip visible placement='left' content='Here I am!'>
       <div
         style={{
           marginTop: 40,
@@ -94,9 +91,4 @@ export const Controlled: Story<TooltipProps> = (args) => {
       </div>
     </Tooltip>
   );
-};
-
-Controlled.args = {
-  placement: 'left',
-  visible: true,
 };
