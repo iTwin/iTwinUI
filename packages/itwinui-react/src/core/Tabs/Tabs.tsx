@@ -510,7 +510,7 @@ const TabsPanel = React.forwardRef((props, ref) => {
       className={cx('iui-tabs-content', className)}
       // aria-labelledby={``}
       role='tabpanel'
-      data-iui-hidden={activeValue !== value ? true : undefined}
+      hidden={activeValue !== value ? true : undefined}
       id={value}
       ref={ref}
       {...rest}
