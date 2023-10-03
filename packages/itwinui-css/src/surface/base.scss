@@ -9,7 +9,7 @@
   $elevation: var(--iui-shadow-1)
 ) {
   background-color: var(--iui-surface-background-color, #{$background-color});
-  border: 1px solid var(--iui-surface-border-color, #{$border-color});
+  border: var(--iui-surface-border, #{1px solid $border-color});
   border-radius: var(--iui-surface-border-radius, #{$border-radius});
   box-shadow: var(--iui-surface-elevation, #{$elevation});
   color: var(--iui-color-text);
