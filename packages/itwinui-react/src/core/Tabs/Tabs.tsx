@@ -16,6 +16,7 @@ import {
   useResizeObserver,
   ButtonBase,
   mergeEventHandlers,
+  useControlledState,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -595,7 +596,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
     onTabSelected,
     focusActivationMode,
     color,
-    activeIndex,
+    activeIndex: activeIndexProp,
     tabsClassName,
     contentClassName,
     wrapperClassName,
@@ -603,16 +604,11 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [currentActiveValue, setCurrentActiveValue] = React.useState<string>();
-
-  // TODO: fix legacy active logic
-  const findActiveIndex = () => {
-    return (
-      labels.findIndex(
-        (label, index) => currentActiveValue === `label-${index}`,
-      ) ?? `label-0`
-    );
-  };
+  const [activeIndex, setActiveIndex] = useControlledState(
+    0,
+    activeIndexProp,
+    onTabSelected,
+  );
 
   return (
     <TabsWrapper className={wrapperClassName} {...rest}>
@@ -620,32 +616,23 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         color={color}
         className={tabsClassName}
         focusActivationMode={focusActivationMode}
-        // activeValue={currentActiveValue}
-        // setActiveValue={(value) => setCurrentActiveValue(value)}
         ref={forwardedRef}
       >
         {labels.map((label, index) => {
-          const tabValue = `label-${index}`;
+          const tabValue = `tab-${index}`;
           return React.isValidElement(label) ? (
             React.cloneElement(label as JSX.Element, {
               value: tabValue,
-              active: activeIndex === index || tabValue === currentActiveValue,
-              onClick: (args: unknown) => {
-                onTabSelected?.(index);
-                setCurrentActiveValue(tabValue);
-                label.props.onClick?.(args);
-              },
+              active: index === activeIndex,
+              onActiveChange: () => setActiveIndex(index),
             })
           ) : (
             <LegacyTab
               key={index}
               value={tabValue}
               label={label}
-              active={activeIndex === index || tabValue === currentActiveValue}
-              onClick={() => {
-                onTabSelected?.(index);
-                setCurrentActiveValue(tabValue);
-              }}
+              active={index === activeIndex}
+              onActiveChange={() => setActiveIndex(index)}
             />
           );
         })}
@@ -654,13 +641,9 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
       {actions && <TabsActions>{actions}</TabsActions>}
 
       {children && (
-        <Box // TODO: use Tabs.Panel
-          className={cx('iui-tabs-content', contentClassName)}
-          role='tabpanel'
-          aria-labelledby={`label-${findActiveIndex()}`}
-        >
+        <TabsPanel value={`tab-${activeIndex}`} className={contentClassName}>
           {children}
-        </Box>
+        </TabsPanel>
       )}
     </TabsWrapper>
   );
@@ -696,6 +679,12 @@ type TabLegacyProps = {
    * This will be automatically set by the parent `Tabs` component.
    */
   active?: boolean;
+  /**
+   * Callback fired when the tab becomes active.
+   *
+   * This will be automatically set by the parent `Tabs` component.
+   */
+  onActiveChange?: () => void;
 };
 
 /**
