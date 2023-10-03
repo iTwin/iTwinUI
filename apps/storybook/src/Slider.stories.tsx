@@ -167,37 +167,26 @@ export const CustomTickNoTooltip: Story<SliderProps> = (args) => {
   }, []);
 
   return (
-    <Slider
-      {...args}
-      onUpdate={updateDate}
-      onChange={updateDate}
-      tickLabels={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '20px',
-          }}
-        >
-          <Text
-            as='p'
-            style={{
-              width: '60px',
-              marginRight: '6px',
-            }}
-          >
-            {dateFormatter.format(currentDate)}
-          </Text>
-        </div>
-      }
-      tickProps={{ className: 'some-tick' }}
-    />
+    <div style={{ width: '50%' }}>
+      <Slider
+        {...args}
+        onUpdate={updateDate}
+        onChange={updateDate}
+        tickProps={{ className: 'some-tick' }}
+      />
+      <Text
+        as='p'
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        {dateFormatter.format(currentDate)}
+      </Text>
+    </div>
   );
 };
 
 CustomTickNoTooltip.args = {
-  style: { width: '50%' },
   min: 1,
   max: 365,
   values: [0],
