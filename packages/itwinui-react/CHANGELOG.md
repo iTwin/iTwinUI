@@ -213,6 +213,12 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.11
+
+### Patch Changes
+
+- [#1607](https://github.com/iTwin/iTwinUI/pull/1607): Add `aria-expanded` on table row expander button
+
 ## 2.12.10
 
 ### Patch Changes
