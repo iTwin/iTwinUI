@@ -1,0 +1,63 @@
+---
+title: Popover
+description: An overlay dialog placed next to a trigger element.
+layout: ./_layout.astro
+group: utilities
+thumbnail: #TODO
+---
+
+import PropsTable from '~/components/PropsTable.astro';
+import LiveExample from '~/components/LiveExample.astro';
+import * as AllExamples from 'examples';
+
+Popover is a utility component for displaying overlay content in a dialog that is placed relative to a trigger element.
+
+<LiveExample src='Popover.main.tsx'>
+  <AllExamples.PopoverMainExample client:load />
+</LiveExample>
+
+By default, Popover does not add any styling. The `applyBackground` prop can be used to add the recommended background, box-shadow, border, etc.
+
+## Usage
+
+The content shown inside the Popover is passed using the `content` prop. The trigger element is specified by the child element that Popover wraps around.
+
+For everything to work correctly, the trigger element must:
+
+- be a button
+- forward its ref
+- delegate (spread) any arbitrary props
+
+If you use a native `<button>` or iTwinUI's [`<Button>`](button) as the trigger, then all of this should be handled for you. Passing a non-interactive element (like `<div>`) is not advised, as it will break some [accessibility](#accessibility) expectations.
+
+## Positioning
+
+Popover handles positioning using an external library called [Floating UI](floating-ui.com/). To control which side the popover should be placed relative to its trigger, use the `placement` prop. If not enough space is available, then it will flip to the opposite side.
+
+<LiveExample src='Popover.placement.tsx'>
+  <AllExamples.PopoverPlacementExample client:load />
+</LiveExample>
+
+### Portals
+
+It is important to know that before calculating the position, the popover gets [portaled](https://react.dev/reference/react-dom/createPortal) into the nearest `ThemeProvider` to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Popover's `portal` prop or the ThemeProvider's `portalContainer` prop. Using portals can often lead to issues with keyboard accessibility, so Popover adds some additional logic (described below).
+
+## Accessibility
+
+Semantically speaking, popovers are dialogs that follow the [disclosure pattern](https://www.w3.org/WAI/ARIA/apg/patterns/disclosure/). The popover is opened by clicking on the trigger element or by pressing <kbd>Enter</kbd> or <kbd>Space</kbd> when the trigger has focus. The trigger element should almost always be a `<button>` underneath (rather than a non-interactive element such as `<div>`).
+
+The popover should generally be labeled using [`aria-labelledby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-labelledby). This label can be located inside the popover as a visible heading or hidden text. If `aria-labelledby` or `aria-label` is not passed to the Popover, then the trigger element will be used as the label by default. Additionally, an optional [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) can be used for any supplementary text.
+
+When the popover opens, keyboard focus will be moved to the popover. When it closes, keyboard focus will move back to the trigger element. Additionally, keyboard focus will move back to the trigger when tabbing out of it.
+
+If you have a good candidate for receiving focus, then you can manually `focus()` it using a [ref](https://react.dev/learn/manipulating-the-dom-with-refs) or use `autoFocus` where possible. This should be done thoughtfully, and the element receiving focus should usually be located near the beginning of the popover, with not too much content preceding it.
+
+The following example shows how you can focus an input when the popover opens. This input is preceded by a heading associated with the popover using `aria-labelledby`. As a result, when the popover opens, the heading is automatically announced to a screen reader user, ensuring they didn't miss any content located before the input.
+
+<LiveExample src='Popover.focus.tsx'>
+  <AllExamples.PopoverFocusExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/Popover/Popover.d.ts' />

@@ -71,6 +71,7 @@ export const ExpanderColumn = <T extends Record<string, unknown>>(
               row.toggleRowExpanded();
             }}
             disabled={isDisabled?.(props.row.original)}
+            aria-expanded={row.isExpanded}
           >
             {<SvgChevronRight />}
           </IconButton>
