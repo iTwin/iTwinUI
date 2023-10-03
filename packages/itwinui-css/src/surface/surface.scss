@@ -2,7 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use './base';
 
-$surface-padding: var(--iui-size-2xs);
+$surface-padding: var(--iui-size-s);
+$surface-padding-with-gutter: var(--iui-size-2xs);
 
 .iui-surface {
   @include base.iui-surface;
@@ -23,8 +24,7 @@ $surface-padding: var(--iui-size-2xs);
   align-items: center;
   overflow: hidden;
   border-block-end: 1px solid var(--iui-color-border-subtle);
-  padding: $surface-padding;
-  scrollbar-gutter: stable both-edges;
+  padding-inline: $surface-padding;
 }
 
 .iui-surface-body {
@@ -34,6 +34,11 @@ $surface-padding: var(--iui-size-2xs);
 
   &[data-iui-padded='true'] {
     scrollbar-gutter: stable both-edges;
-    padding: $surface-padding;
+    padding-inline: $surface-padding-with-gutter;
+    padding-block: $surface-padding;
+
+    @supports not (scrollbar-gutter: stable) {
+      padding-inline: $surface-padding;
+    }
   }
 }
