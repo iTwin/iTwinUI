@@ -94,7 +94,7 @@ WithCustomThumb.args = {
         alignItems: 'center',
         backgroundColor: '#999',
         width: '36px',
-        height: '26px',
+        height: '20px',
         borderRadius: '4px',
         transform: 'translateX(-19.2px)',
         top: 0,
