@@ -314,12 +314,12 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       const currentTabRect = tabRef.current?.getBoundingClientRect();
       setStripeProperties({
         ...(orientation === 'horizontal' && {
-          '--stripe-width': `${currentTabRect?.width}px`,
-          '--stripe-left': `${tabRef.current?.offsetLeft}px`,
+          '--iui-stripe-width': `${currentTabRect?.width}px`,
+          '--iui-stripe-left': `${tabRef.current?.offsetLeft}px`,
         }),
         ...(orientation === 'vertical' && {
-          '--stripe-height': `${currentTabRect?.height}px`,
-          '--stripe-top': `${tabRef.current?.offsetTop}px`,
+          '--iui-stripe-height': `${currentTabRect?.height}px`,
+          '--iui-stripe-top': `${tabRef.current?.offsetTop}px`,
         }),
       });
     }

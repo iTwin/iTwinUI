@@ -1510,8 +1510,8 @@
         const activeTab = tabs.querySelector('.iui-active');
         const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
         const setStripe = (activeEl) => {
-          tabs.style.setProperty('--stripe-left', `${activeEl.offsetLeft}px`);
-          tabs.style.setProperty('--stripe-width', `${activeEl.getBoundingClientRect().width}px`);
+          tabs.style.setProperty('--iui-stripe-left', `${activeEl.offsetLeft}px`);
+          tabs.style.setProperty('--iui-stripe-width', `${activeEl.getBoundingClientRect().width}px`);
         };
         setStripe(activeTab);
 
