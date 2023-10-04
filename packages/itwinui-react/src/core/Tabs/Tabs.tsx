@@ -407,11 +407,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
       aria-controls={value}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
-      onClick={mergeEventHandlers(props.onClick, () => {
-        if (!props.disabled) {
-          onActiveChange?.();
-        }
-      })}
+      onClick={mergeEventHandlers(props.onClick, () => onActiveChange?.())}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
         if (focusActivationMode === 'auto' && !props.disabled) {
