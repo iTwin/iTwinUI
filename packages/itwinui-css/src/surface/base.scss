@@ -8,9 +8,12 @@
   $border-radius: var(--iui-border-radius-1),
   $elevation: var(--iui-shadow-1)
 ) {
-  background-color: var(--iui-surface-background-color, #{$background-color});
-  border: var(--iui-surface-border, #{1px solid $border-color});
-  border-radius: var(--iui-surface-border-radius, #{$border-radius});
-  box-shadow: var(--iui-surface-elevation, #{$elevation});
+  --iui-surface-border: 1px solid #{$border-color};
+  --iui-surface-elevation: #{$elevation};
+
+  background-color: $background-color;
+  border: var(--iui-surface-border);
+  border-radius: $border-radius;
+  box-shadow: var(--iui-surface-elevation);
   color: var(--iui-color-text);
 }
