@@ -161,10 +161,6 @@ export type SliderProps = {
    */
   maxProps?: React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for slider-rail
-   */
-  railProps?: React.ComponentProps<'div'>;
-  /**
    * Allows props to be passed for slider-track
    */
   trackProps?: React.ComponentProps<'div'>;
