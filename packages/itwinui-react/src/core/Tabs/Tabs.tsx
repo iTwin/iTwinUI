@@ -16,6 +16,7 @@ import {
   ButtonBase,
   mergeEventHandlers,
   useControlledState,
+  useId,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -92,6 +93,8 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   const [activeValue, setActiveValue] = React.useState<string | undefined>();
   const [stripeProperties, setStripeProperties] = React.useState({});
 
+  const idPrefix = useId();
+
   return (
     <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
@@ -107,6 +110,7 @@ const TabsWrapper = React.forwardRef((props, ref) => {
           setActiveValue,
           overflowOptions,
           setStripeProperties,
+          idPrefix,
         }}
       >
         {children}
@@ -262,6 +266,10 @@ type TabOwnProps = {
    * Callback fired when the isActive prop changes.
    */
   onActiveChange?: () => void;
+  /**
+   * @deprecated Don't pass `id`, as it will be automatically set.
+   */
+  id?: string;
 };
 
 const TabHeader = React.forwardRef((props, forwardedRef) => {
@@ -281,6 +289,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     setActiveValue: setActiveValueState,
     type,
     setStripeProperties,
+    idPrefix,
   } = useSafeContext(TabsContext);
   const { focusActivationMode, tabsWidth } = useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
@@ -399,12 +408,12 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ButtonBase
-      id={`tab-${value}`}
+      id={`${idPrefix}-tab-${value}`}
       className={cx('iui-tab', { 'iui-active': isActive }, className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
-      aria-controls={value}
+      aria-controls={`${idPrefix}-panel-${value}`}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
       onClick={mergeEventHandlers(props.onClick, () => onActiveChange?.())}
@@ -501,20 +510,24 @@ type TabsPanelOwnProps = {
    * Value used to associate the panel with a given tab.
    */
   value: string;
+  /**
+   * @deprecated Don't pass `id`, as it will be automatically set.
+   */
+  id?: string;
 };
 
 const TabsPanel = React.forwardRef((props, ref) => {
   const { value, className, children, ...rest } = props;
 
-  const { activeValue } = useSafeContext(TabsContext);
+  const { activeValue, idPrefix } = useSafeContext(TabsContext);
 
   return (
     <Box
       className={cx('iui-tabs-content', className)}
-      aria-labelledby={`tab-${value}`}
+      aria-labelledby={`${idPrefix}-tab-${value}`}
       role='tabpanel'
       hidden={activeValue !== value ? true : undefined}
-      id={value}
+      id={`${idPrefix}-panel-${value}`}
       ref={ref}
       {...rest}
     >
@@ -613,7 +626,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
         ref={forwardedRef}
       >
         {labels.map((label, index) => {
-          const tabValue = `tab-${index}`;
+          const tabValue = `${index}`;
           return React.isValidElement(label) ? (
             React.cloneElement(label as JSX.Element, {
               value: tabValue,
@@ -635,7 +648,7 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
       {actions && <TabsActions>{actions}</TabsActions>}
 
       {children && (
-        <TabsPanel value={`tab-${activeIndex}`} className={contentClassName}>
+        <TabsPanel value={`${activeIndex}`} className={contentClassName}>
           {children}
         </TabsPanel>
       )}
@@ -848,6 +861,10 @@ export const TabsContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setStripeProperties: (stripeProperties: object) => void;
+      /**
+       * Unique id prefix to account for duplicate `value`s.
+       */
+      idPrefix: string;
     }
   | undefined
 >(undefined);
