@@ -1631,10 +1631,6 @@ Localized.decorators = [
   ),
 ];
 
-Localized.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const Condensed = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
@@ -1905,10 +1901,6 @@ WithPaginator.decorators = [
   ),
 ];
 
-WithPaginator.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const WithManualPaginatorAndFilter = () => {
   type RowData = {
     name: string;
@@ -2114,10 +2106,6 @@ WithManualPaginatorAndFilter.decorators = [
   ),
 ];
 
-WithManualPaginatorAndFilter.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
-
 export const CustomFilter = () => {
   type RowData = {
     name: string;
@@ -2207,6 +2195,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '3');
           }}
           checked={filter === '3'}
+          autoFocus={filter === '3'} // moving focus to checked radio button when filter dialog opens
         />
         <Radio
           label="Contains '5'"
@@ -2214,6 +2203,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '5');
           }}
           checked={filter === '5'}
+          autoFocus={filter === '5'}
         />
         <Radio
           label="Contains '7'"
@@ -2221,6 +2211,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '7');
           }}
           checked={filter === '7'}
+          autoFocus={filter === '7'}
         />
         <Radio
           label='No filter'
@@ -2228,6 +2219,7 @@ export const CustomFilter = () => {
             handleChange(value === 'on', '');
           }}
           checked={filter === ''}
+          autoFocus={filter === ''}
         />
       </BaseFilter>
     );
@@ -2271,10 +2263,6 @@ CustomFilter.decorators = [
     </div>
   ),
 ];
-
-CustomFilter.parameters = {
-  docs: { source: { excludeDecorators: true } },
-};
 
 export const ResizableColumns = () => {
   type TableStoryDataType = {

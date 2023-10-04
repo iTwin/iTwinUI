@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { HeaderProps } from '../../../react-table/react-table.js';
-import { Checkbox } from '../../Checkbox/index.js';
+import { Checkbox } from '../../Checkbox/Checkbox.js';
 import { SvgColumnManager } from '../../utils/index.js';
-import { DropdownMenu } from '../../DropdownMenu/index.js';
-import type { DropdownMenuProps } from '../../DropdownMenu/index.js';
-import { IconButton } from '../../Buttons/IconButton/index.js';
-import { MenuItem } from '../../Menu/index.js';
+import { DropdownMenu } from '../../DropdownMenu/DropdownMenu.js';
+import type { DropdownMenuProps } from '../../DropdownMenu/DropdownMenu.js';
+import { IconButton } from '../../Buttons/IconButton.js';
+import { MenuItem } from '../../Menu/MenuItem.js';
 import { tableResizeStartAction } from '../Table.js';
 import { SELECTION_CELL_ID } from './selectionColumn.js';
 import { EXPANDER_CELL_ID } from './expanderColumn.js';

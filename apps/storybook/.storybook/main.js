@@ -13,6 +13,7 @@ export default {
       options: {
         measure: false,
         outline: false,
+        controls: false,
       },
     },
     'storybook-dark-mode',

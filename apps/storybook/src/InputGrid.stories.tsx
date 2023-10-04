@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Input,
@@ -16,15 +15,12 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
-type InputGridProps = React.ComponentProps<typeof InputGrid>;
-
 export default {
   component: InputGrid,
   title: 'Utilities/InputGrid',
-  argTypes: {},
-} as Meta<InputGridProps>;
+};
 
-export const WithInput: Story<InputGridProps> = () => {
+export const WithInput = () => {
   return (
     <InputGrid>
       <Label htmlFor='input-id'>This is label</Label>
@@ -34,7 +30,7 @@ export const WithInput: Story<InputGridProps> = () => {
   );
 };
 
-export const WithInputWithDecorations: Story<InputGridProps> = () => {
+export const WithInputWithDecorations = () => {
   return (
     <InputGrid>
       <Label htmlFor='input-id'>This is label</Label>
@@ -55,7 +51,7 @@ export const WithInputWithDecorations: Story<InputGridProps> = () => {
   );
 };
 
-export const WithSelect: Story<InputGridProps> = () => {
+export const WithSelect = () => {
   const options = [
     { value: 1, label: 'Bali' },
     { value: 2, label: 'Hawaii' },
@@ -78,7 +74,7 @@ export const WithSelect: Story<InputGridProps> = () => {
   );
 };
 
-export const WithSearch: Story<InputGridProps> = () => {
+export const WithSearch = () => {
   return (
     <InputGrid labelPlacement='inline'>
       <Label htmlFor='input-id'>This is label</Label>

@@ -6,8 +6,8 @@ import * as React from 'react';
 import cx from 'classnames';
 import { SvgChevronRight } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton/index.js';
-import type { IconButtonProps } from '../Buttons/IconButton/IconButton.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import type { IconButtonProps } from '../Buttons/IconButton.js';
 
 type TreeNodeExpanderProps = {
   isExpanded?: boolean;

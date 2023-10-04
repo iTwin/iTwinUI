@@ -8,7 +8,7 @@ import type {
   CellRendererProps,
   HeaderProps,
 } from '../../../react-table/react-table.js';
-import { Checkbox } from '../../Checkbox/index.js';
+import { Checkbox } from '../../Checkbox/Checkbox.js';
 import { DefaultCell } from '../cells/index.js';
 
 export const SELECTION_CELL_ID = 'iui-table-checkbox-selector';

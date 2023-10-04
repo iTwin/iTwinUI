@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusMessage } from '../StatusMessage/index.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { InputContainer, useSafeContext, Box } from '../utils/index.js';
 import type {
   InputContainerProps,

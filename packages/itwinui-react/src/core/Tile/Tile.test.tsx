@@ -6,9 +6,10 @@ import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 
 import { Tile } from './Tile.js';
-import { Badge } from '../Badge/index.js';
-import { Button, IconButton } from '../Buttons/index.js';
-import { MenuItem } from '../Menu/index.js';
+import { Badge } from '../Badge/Badge.js';
+import { Button } from '../Buttons/Button.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import { SvgClose as SvgPlaceholder } from '../utils/index.js';
 import userEvent from '@testing-library/user-event';
 

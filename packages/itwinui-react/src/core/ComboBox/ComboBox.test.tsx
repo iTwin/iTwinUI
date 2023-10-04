@@ -10,8 +10,8 @@ import {
   type ComboBoxProps,
 } from './ComboBox.js';
 import { SvgCaretDownSmall } from '../utils/index.js';
-import { MenuItem } from '../Menu/index.js';
-import { StatusMessage } from '../StatusMessage/index.js';
+import { MenuItem } from '../Menu/MenuItem.js';
+import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import userEvent from '@testing-library/user-event';
 
 const renderComponent = (

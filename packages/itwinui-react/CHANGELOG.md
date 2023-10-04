@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0-dev.11
+
+### Major Changes
+
+- [#1583](https://github.com/iTwin/iTwinUI/pull/1583): Bumped minimum react version to 17. If you're still on react 16, please update to react 17 (which has no breaking changes).
+- [#1565](https://github.com/iTwin/iTwinUI/pull/1565): Removed `Menu` component. Use `DropdownMenu` instead.
+
+### Patch Changes
+
+- [#1605](https://github.com/iTwin/iTwinUI/pull/1605): Added `'use client'` directive for React Server Components support.
+
 ## 3.0.0-dev.10
 
 ### Major Changes
@@ -201,6 +212,25 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.12.11
+
+### Patch Changes
+
+- [#1607](https://github.com/iTwin/iTwinUI/pull/1607): Add `aria-expanded` on table row expander button
+
+## 2.12.10
+
+### Patch Changes
+
+- [#1590](https://github.com/iTwin/iTwinUI/pull/1590): Fixed undefined property access in `useScrollToRow`.
+- [#1587](https://github.com/iTwin/iTwinUI/pull/1587): Fixed an issue where v2 toasts and modals were being added to v1 containers.
+
+## 2.12.9
+
+### Patch Changes
+
+- [#1586](https://github.com/iTwin/iTwinUI/pull/1586): Fixed an issue with toggle-switch border styles not working in popout windows.
 
 ## 2.12.8
 

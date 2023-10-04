@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { DropdownMenu } from '../DropdownMenu/index.js';
+import { DropdownMenu } from '../DropdownMenu/DropdownMenu.js';
 import {
   SvgCaretDownSmall,
   SvgCaretUpSmall,
@@ -12,7 +12,7 @@ import {
   ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { SplitButtonProps } from '../Buttons/SplitButton/SplitButton.js';
+import type { SplitButtonProps } from '../Buttons/SplitButton.js';
 import { HeaderBasicButton } from './HeaderBasicButton.js';
 
 export const HeaderSplitButton = React.forwardRef((props, forwardedRef) => {

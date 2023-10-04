@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import SelectTag from './SelectTag.js';
+import { SelectTag } from './SelectTag.js';
 
 type SelectTagContainerProps = {
   /**

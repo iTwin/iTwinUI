@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { Dialog } from '../Dialog/index.js';
+import { Dialog } from '../Dialog/Dialog.js';
 import type { DialogMainProps } from '../Dialog/DialogMain.js';
 
 type ModalProps = {

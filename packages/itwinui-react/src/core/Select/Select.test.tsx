@@ -9,7 +9,7 @@ import Select, {
   type SelectMultipleTypeProps,
 } from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
-import { MenuItem } from '../Menu/index.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import userEvent from '@testing-library/user-event';
 
 function assertSelect(
@@ -95,7 +95,7 @@ it('should show value with icon inside select', () => {
     options: [...new Array(3)].map((_, index) => ({
       label: `Test${index}`,
       value: index,
-      icon: <SvgSmileyHappy />,
+      startIcon: <SvgSmileyHappy />,
     })),
   });
 
@@ -243,7 +243,7 @@ it('should show menu items with icons', () => {
     options: [...new Array(3)].map((_, index) => ({
       label: `Test${index}`,
       value: index,
-      icon: <SvgSmileyHappy />,
+      startIcon: <SvgSmileyHappy />,
     })),
   });
 

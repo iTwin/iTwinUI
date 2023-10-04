@@ -15,7 +15,7 @@ import type {
   HsvColor,
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
-import { Slider } from '../Slider/index.js';
+import { Slider } from '../Slider/Slider.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
 const getVerticalPercentageOfRectangle = (rect: DOMRect, pointer: number) => {

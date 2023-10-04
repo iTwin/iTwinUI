@@ -21,9 +21,6 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   overflow-y: auto;
   flex-direction: column;
   max-block-size: calc(var(--iui-size-s) * 42);
-  @supports (overflow-y: overlay) {
-    overflow-y: overlay;
-  }
   row-gap: var(--iui-size-s);
 }
 
@@ -39,8 +36,14 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   forced-color-adjust: none;
   background-position: 0 0, calc(var(--iui-size-m) * 0.5) calc(var(--iui-size-m) * 0.5);
   background-size: var(--iui-size-m) var(--iui-size-m);
-  background-image:
-    repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
+  background-image: repeating-linear-gradient(
+    45deg,
+    #C7CCD1 25%,
+    transparent 25%,
+    transparent 75%,
+    #C7CCD1 75%,
+    #C7CCD1
+  ),
     repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 
   &::after {
@@ -178,8 +181,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   forced-color-adjust: none;
   background-position: 0, 0, calc(var(--iui-size-xs) * 0.5) calc(var(--iui-size-xs) * 0.5);
   background-size: auto, var(--iui-size-xs), var(--iui-size-xs);
-  background-image:
-    linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%),
+  background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%),
     repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
     repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 }

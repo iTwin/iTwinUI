@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import { CarouselContext } from './CarouselContext.js';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 import { CarouselDotsList } from './CarouselDotsList.js';
 import { Box, SvgChevronLeft, SvgChevronRight } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';

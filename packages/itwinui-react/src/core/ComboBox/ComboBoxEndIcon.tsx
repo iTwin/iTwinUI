@@ -4,8 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { SvgCaretDownSmall, Icon } from '../utils/index.js';
+import { SvgCaretDownSmall } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Icon } from '../Icon/Icon.js';
 
 type ComboBoxEndIconProps = {
   disabled?: boolean;

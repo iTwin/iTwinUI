@@ -5,9 +5,9 @@
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
 import { Fieldset } from './Fieldset.js';
-import { InputGroup } from '../InputGroup/index.js';
-import { ToggleSwitch } from '../ToggleSwitch/index.js';
-import { Select } from '../Select/index.js';
+import { InputGroup } from '../InputGroup/InputGroup.js';
+import { ToggleSwitch } from '../ToggleSwitch/ToggleSwitch.js';
+import { Select } from '../Select/Select.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(
