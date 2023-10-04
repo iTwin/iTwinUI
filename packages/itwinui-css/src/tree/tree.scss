@@ -2,19 +2,26 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$iui-active-outline: thin solid var(--iui-color-border-accent);
-
-// padding of small borderless button + 1px transparent border
-$iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
-
-// width of small borderless button (button is 1:1 ratio)
-$iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
+$iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 .iui-tree {
   @include mixins.iui-reset;
+  --_iui-expander-button-width: calc(var(--iui-component-height) + 2px);
+  --_iui-tree-node-padding-inline: var(--iui-size-xs);
+
   list-style: none;
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
+
+  &[data-iui-size='small'] {
+    --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
+    --_iui-tree-node-padding-inline: var(--iui-size-2xs);
+  }
+
+  &[data-iui-size='large'] {
+    --_iui-expander-button-width: calc(var(--iui-component-height-large) + 2px);
+    --_iui-tree-node-padding-inline: var(--iui-size-s);
+  }
 }
 
 .iui-sub-tree {
@@ -41,24 +48,24 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 .iui-tree-node {
   display: flex;
   cursor: pointer;
-  padding-inline: var(--iui-size-xs);
+  padding-inline: var(--_iui-tree-node-padding-inline);
   align-items: center;
   border-radius: var(--iui-border-radius-1);
 
   &-checkbox {
-    margin-inline-end: var(--iui-size-xs);
+    margin-inline-end: var(--_iui-tree-node-padding-inline);
   }
 
   &-content {
     display: flex;
     align-items: center;
-    min-block-size: calc(var(--iui-size-s) * 3);
-    margin-inline-start: calc(#{$iui-expander-button-width} * (var(--level, 0)));
+    min-block-size: var(--_iui-expander-button-width);
+    margin-inline-start: calc(var(--_iui-expander-button-width) * (var(--level, 0)));
     overflow: hidden;
-    padding-inline-start: var(--iui-size-3xs);
+    padding-inline-start: var(--iui-size-3xs); // TODO: Why?
 
     &-icon {
-      margin-inline: $iui-expander-inline-padding;
+      margin-inline: var(--_iui-tree-node-padding-inline);
 
       &,
       svg {
@@ -70,7 +77,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
       }
 
       &:first-child {
-        margin-inline-start: calc($iui-expander-button-width + $iui-expander-inline-padding);
+        margin-inline-start: calc(var(--_iui-expander-button-width) + var(--_iui-tree-node-padding-inline));
       }
     }
 
@@ -86,10 +93,10 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
     &-label {
       min-inline-size: 0;
-      padding-inline-start: $iui-expander-inline-padding;
+      padding-inline-start: var(--_iui-tree-node-padding-inline);
 
       &:first-child {
-        margin-inline-start: $iui-expander-button-width;
+        margin-inline-start: var(--_iui-expander-button-width);
       }
     }
 
