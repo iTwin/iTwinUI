@@ -17,6 +17,7 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
+  useLatestRef,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -298,15 +299,21 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const isActive =
     isActiveProp !== undefined ? isActiveProp : activeValueState === value;
 
+  const activeValueRef = useLatestRef(activeValueState);
+
+  // keep isActive prop in sync with activeValue in context (for use in Panel)
   React.useEffect(() => {
-    if (isActiveProp !== undefined && isActiveProp) {
+    if (isActiveProp) {
       setActiveValueState(value);
     }
-  }, [isActiveProp, setActiveValueState, value]);
+  }, [isActiveProp, setActiveValueState, value, activeValueRef]);
 
   const onActiveChange = React.useCallback(() => {
-    setActiveValueState(value);
-    onActiveChangeProp?.();
+    if (!!onActiveChangeProp) {
+      onActiveChangeProp();
+    } else {
+      setActiveValueState(value);
+    }
   }, [setActiveValueState, value, onActiveChangeProp]);
 
   useIsomorphicLayoutEffect(() => {
