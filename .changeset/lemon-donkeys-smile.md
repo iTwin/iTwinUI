@@ -1,5 +1,6 @@
 ---
-'@itwin/itwinui-react': major
+'@itwin/itwinui-react': minor
 ---
 
-Tabs composition has been updated such that it is now made up of customizable subcomponents, thus removing the `actions`, `labels`, `tabsClassName`, `contentClassName`, and `wrapperClassName` props and the `Tab` class
+Added composition API to Tab. Subcomponents: Wrapper, TabList, Tab, TabLabel, TabIcon, TabDescription, Actions, Panel.
+
