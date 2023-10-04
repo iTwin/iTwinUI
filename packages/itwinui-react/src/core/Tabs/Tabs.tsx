@@ -67,7 +67,20 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
-type TabsWrapperOwnProps = TabsOrientationProps & TabsOverflowProps;
+type TabsWrapperOwnProps = {
+  /**
+   * Color of the bar on the active tab.
+   * @default 'blue'
+   */
+  color?: 'blue' | 'green';
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
+} & TabsOrientationProps &
+  TabsOverflowProps;
 
 const TabsWrapper = React.forwardRef((props, ref) => {
   // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
@@ -87,11 +100,14 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     children,
     orientation = 'horizontal',
     type = 'default',
+    focusActivationMode = 'auto',
+    color = 'blue',
     ...rest
   } = props;
 
   const [activeValue, setActiveValue] = React.useState<string | undefined>();
   const [stripeProperties, setStripeProperties] = React.useState({});
+  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
   const idPrefix = useId();
 
@@ -111,6 +127,10 @@ const TabsWrapper = React.forwardRef((props, ref) => {
           overflowOptions,
           setStripeProperties,
           idPrefix,
+          focusActivationMode,
+          hasSublabel,
+          setHasSublabel,
+          color,
         }}
       >
         {children}
@@ -125,38 +145,21 @@ TabsWrapper.displayName = 'Tabs.Wrapper';
 
 type TabListOwnProps = {
   /**
-   * Color of the bar on the active tab.
-   * @default 'blue'
-   */
-  color?: 'blue' | 'green';
-  /**
-   * Control whether focusing tabs (using arrow keys) should automatically select them.
-   * Use 'manual' if tab panel content is not preloaded.
-   * @default 'auto'
-   */
-  focusActivationMode?: 'auto' | 'manual';
-  /**
    * Tab items.
    */
   children: React.ReactNode[];
 };
 
 const TabList = React.forwardRef((props, ref) => {
-  const {
-    className,
-    children,
-    color = 'blue',
-    focusActivationMode = 'auto',
-    ...rest
-  } = props;
+  const { className, children, ...rest } = props;
 
-  const { orientation, type, overflowOptions } = useSafeContext(TabsContext);
+  const { orientation, type, overflowOptions, hasSublabel, color } =
+    useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
-  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
   const [scrollingPlacement, setScrollingPlacement] = React.useState<
     string | undefined
@@ -231,9 +234,6 @@ const TabList = React.forwardRef((props, ref) => {
     >
       <TabListContext.Provider
         value={{
-          focusActivationMode,
-          hasSublabel,
-          setHasSublabel,
           tabsWidth,
         }}
       >
@@ -272,7 +272,7 @@ type TabOwnProps = {
   id?: string;
 };
 
-const TabHeader = React.forwardRef((props, forwardedRef) => {
+const Tab = React.forwardRef((props, forwardedRef) => {
   const {
     className,
     children,
@@ -290,8 +290,9 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     type,
     setStripeProperties,
     idPrefix,
+    focusActivationMode,
   } = useSafeContext(TabsContext);
-  const { focusActivationMode, tabsWidth } = useSafeContext(TabListContext);
+  const { tabsWidth } = useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive =
@@ -428,7 +429,7 @@ const TabHeader = React.forwardRef((props, forwardedRef) => {
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
-TabHeader.displayName = 'Tabs.Tab';
+Tab.displayName = 'Tabs.Tab';
 
 // ----------------------------------------------------------------------------
 // Tabs.TabIcon component
@@ -455,7 +456,7 @@ TabLabel.displayName = 'Tabs.TabLabel';
 
 const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
-  const { hasSublabel, setHasSublabel } = useSafeContext(TabListContext);
+  const { hasSublabel, setHasSublabel } = useSafeContext(TabsContext);
 
   useIsomorphicLayoutEffect(() => {
     if (!hasSublabel) {
@@ -618,13 +619,13 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
   );
 
   return (
-    <TabsWrapper className={wrapperClassName} {...rest}>
-      <TabList
-        color={color}
-        className={tabsClassName}
-        focusActivationMode={focusActivationMode}
-        ref={forwardedRef}
-      >
+    <TabsWrapper
+      className={wrapperClassName}
+      focusActivationMode={focusActivationMode}
+      color={color}
+      {...rest}
+    >
+      <TabList className={tabsClassName} ref={forwardedRef}>
         {labels.map((label, index) => {
           const tabValue = `${index}`;
           return React.isValidElement(label) ? (
@@ -711,7 +712,7 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
 
   return (
     <>
-      <TabHeader
+      <Tab
         {...rest}
         value={value ?? `panel-${label}`}
         ref={forwardedRef}
@@ -721,7 +722,7 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
         <TabLabel>{label}</TabLabel>
         {sublabel && <TabDescription>{sublabel}</TabDescription>}
         {children}
-      </TabHeader>
+      </Tab>
     </>
   );
 }) as PolymorphicForwardRefComponent<
@@ -737,7 +738,7 @@ export { LegacyTab as Tab };
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
  * @example
- * <Tabs>
+ * <Tabs.Wrapper>
  *   <Tabs.TabList>
  *     <Tabs.Tab value='tab1' label='Label 1' />
  *     <Tabs.Tab value='tab2' label='Label 2' />
@@ -751,20 +752,21 @@ export { LegacyTab as Tab };
  *   <Tabs.Panel value='tab1'>Content 1</Tabs.Panel>
  *   <Tabs.Panel value='tab2'>Content 2</Tabs.Panel>
  *   <Tabs.Panel value='tab3'>Content 3</Tabs.Panel>
- * </Tabs>
+ * </Tabs.Wrapper>
  *
  * @example
  * <Tabs orientation='vertical'/>
  *
  * @example
- * <Tabs.Tab value='sample'>
+ * <Tabs.Wrapper focusActivationMode='manual'>
+ *  <Tabs.Tab value='sample'>
  *   <Tabs.TabIcon>
  *     <SvgPlaceholder />
  *   </Tabs.TabIcon>
  *   <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
  *   <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
- * </Tabs.Tab>
- *
+ *  </Tabs.Tab>
+ * </Tabs.Wrapper>
  */
 
 export const Tabs = Object.assign(LegacyTabsComponent, {
@@ -782,7 +784,7 @@ export const Tabs = Object.assign(LegacyTabsComponent, {
    * </Tabs.TabList>
    *
    * @example
-   * <Tabs.TabList color='green'>
+   * <Tabs.TabList>
    *   <Tabs.Tab value='tab1' label='Green Tab' />
    * </Tabs.TabList>
    *
@@ -807,7 +809,7 @@ export const Tabs = Object.assign(LegacyTabsComponent, {
    * </Tabs.Tab>
    *
    */
-  Tab: TabHeader,
+  Tab: Tab,
   /**
    * Tab icon subcomponent which places an icon on the left side of the tab.
    */
@@ -865,12 +867,6 @@ export const TabsContext = React.createContext<
        * Unique id prefix to account for duplicate `value`s.
        */
       idPrefix: string;
-    }
-  | undefined
->(undefined);
-
-export const TabListContext = React.createContext<
-  | {
       /**
        * Control whether focusing tabs (using arrow keys) should automatically select them.
        * Use 'manual' if tab panel content is not preloaded.
@@ -886,6 +882,16 @@ export const TabListContext = React.createContext<
        * Handler for setting the hasSublabel flag.
        */
       setHasSublabel: (hasSublabel: boolean) => void;
+      /**
+       * Color of the bar on the active tab.
+       */
+      color?: 'blue' | 'green';
+    }
+  | undefined
+>(undefined);
+
+export const TabListContext = React.createContext<
+  | {
       tabsWidth: number;
     }
   | undefined
