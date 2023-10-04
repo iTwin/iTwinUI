@@ -1,5 +1,15 @@
 # Changelog
 
+## 3.0.0-dev.12
+
+### Minor Changes
+
+- [#1610](https://github.com/iTwin/iTwinUI/pull/1610): Added `border` prop to `Surface`.
+
+### Patch Changes
+
+- [#1609](https://github.com/iTwin/iTwinUI/pull/1609): Adjusted padding value for `Surface.Body`.
+
 ## 3.0.0-dev.11
 
 ### Major Changes
