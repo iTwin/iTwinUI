@@ -342,6 +342,6 @@ $borderless-horizontal-tab-min-height: calc(
   grid-area: tabs-content;
 
   &[hidden='true'] {
-    display: none;
+    display: none !important;
   }
 }
