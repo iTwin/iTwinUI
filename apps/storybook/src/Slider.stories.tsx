@@ -68,10 +68,9 @@ export const WithCustomThumb = () => {
             alignItems: 'center',
             backgroundColor: '#999',
             width: '36px',
-            height: '20px',
+            height: '26px',
             borderRadius: '4px',
             transform: 'translateX(-19.2px)',
-            top: 0,
           },
           children: (
             <span
