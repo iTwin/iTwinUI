@@ -54,6 +54,7 @@ export default () => {
           {tabData?.map((item) => {
             return (
               <Tabs.Tab
+                key={item.name}
                 value={item.name}
                 isActive={item.name === active}
                 label={item.name}
@@ -66,7 +67,9 @@ export default () => {
         </Tabs.TabList>
 
         {tabData.map((item) => (
-          <Tabs.Panel value={item.name}>{item.content}</Tabs.Panel>
+          <Tabs.Panel key={item.name} value={item.name}>
+            {item.content}
+          </Tabs.Panel>
         ))}
       </Tabs.Wrapper>
     </div>
