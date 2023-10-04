@@ -448,7 +448,7 @@ const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   const { hasSublabel, setHasSublabel } = useSafeContext(TabListContext);
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (!hasSublabel) {
       setHasSublabel(true);
     }
