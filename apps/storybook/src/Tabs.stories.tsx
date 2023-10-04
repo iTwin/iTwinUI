@@ -257,11 +257,11 @@ export const HorizontalOverflow = () => {
     >
       <Tabs.Wrapper overflowOptions={{ useOverflow: true }}>
         <Tabs.TabList>
-          {tabData?.map((item, index) => {
+          {tabData?.map((item) => {
             return (
               <Tabs.Tab
-                key={`tab${index + 1}`}
-                value={`tab${index + 1}`}
+                key={item.name}
+                value={item.name}
                 isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
@@ -277,19 +277,21 @@ export const HorizontalOverflow = () => {
           <Button key={'button'}>Button</Button>
         </Tabs.Actions>
 
-        <Tabs.Panel value='tab1'>Tab Content One</Tabs.Panel>
-        <Tabs.Panel value='tab2'>Tab Content Two</Tabs.Panel>
-        <Tabs.Panel value='tab3'>Tab Content Three</Tabs.Panel>
-        <Tabs.Panel value='tab4'>Tab Content Four</Tabs.Panel>
-        <Tabs.Panel value='tab5'>Tab Content Five</Tabs.Panel>
-        <Tabs.Panel value='tab6'>Tab Content Six</Tabs.Panel>
-        <Tabs.Panel value='tab7'>Tab Content Seven</Tabs.Panel>
-        <Tabs.Panel value='tab8'>Tab Content Eight</Tabs.Panel>
-        <Tabs.Panel value='tab9'>Tab Content Nine</Tabs.Panel>
-        <Tabs.Panel value='tab10'>Tab Content Ten</Tabs.Panel>
-        <Tabs.Panel value='tab11'>Tab Content Eleven</Tabs.Panel>
-        <Tabs.Panel value='tab12'>Tab Content Twelve</Tabs.Panel>
-        <Tabs.Panel value='tab13'>Tab Content Thirteen</Tabs.Panel>
+        <Tabs.Panel value='Item 1'>Tab Content One</Tabs.Panel>
+        <Tabs.Panel value='Item 2'>Tab Content Two</Tabs.Panel>
+        <Tabs.Panel value='Item 3'>Tab Content Three</Tabs.Panel>
+        <Tabs.Panel value='Item 4'>Tab Content Four</Tabs.Panel>
+        <Tabs.Panel value='Item 5'>Tab Content Five</Tabs.Panel>
+        <Tabs.Panel value='Item 6'>Tab Content Six</Tabs.Panel>
+        <Tabs.Panel value='Item 7'>Tab Content Seven</Tabs.Panel>
+        <Tabs.Panel value='Item 8'>Tab Content Eight</Tabs.Panel>
+        <Tabs.Panel value='Item 9'>Tab Content Nine</Tabs.Panel>
+        <Tabs.Panel value='Item 10'>Tab Content Ten</Tabs.Panel>
+        <Tabs.Panel value='Item 11'>Tab Content Eleven</Tabs.Panel>
+        <Tabs.Panel value='Item 12'>Tab Content Twelve</Tabs.Panel>
+        <Tabs.Panel value='Very long item number thirteen'>
+          Tab Content Thirteen
+        </Tabs.Panel>
       </Tabs.Wrapper>
     </div>
   );
