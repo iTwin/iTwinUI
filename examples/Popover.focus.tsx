@@ -25,9 +25,9 @@ export default () => {
       aria-labelledby={headingId}
       visible={isOpen}
       onVisibleChange={setIsOpen}
-      style={{ maxWidth: '45ch', border: 'none' }}
+      style={{ maxWidth: '45ch' }}
       content={
-        <Surface elevation={0}>
+        <Surface elevation={0} border={false}>
           <Surface.Header>
             <Text as='h3' id={headingId} variant='leading'>
               Settings

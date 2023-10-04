@@ -31,6 +31,22 @@ it.each([
   );
 });
 
+it('should allow customizing border', () => {
+  const { container: container1 } = render(
+    <Surface border={false}>lalala</Surface>,
+  );
+  expect(container1.querySelector('div')).toHaveStyle(
+    '--iui-surface-border: none;',
+  );
+
+  const { container: container2 } = render(
+    <Surface border={'1px solid hotpink'}>lalala</Surface>,
+  );
+  expect(container2.querySelector('div')).toHaveStyle(
+    '--iui-surface-border: 1px solid hotpink;',
+  );
+});
+
 it('should add className and style correctly', () => {
   const { container } = render(
     <Surface className='test-class' style={{ color: 'grey' }}>
