@@ -17,7 +17,6 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
-  useLatestRef,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -80,6 +79,28 @@ type TabsWrapperOwnProps = {
    * @default 'auto'
    */
   focusActivationMode?: 'auto' | 'manual';
+  /**
+   * Value of the tab that should be active on initial render.
+   *
+   * Should be used for uncontrolled state (when no `value` passed).
+   *
+   * If not specified, then first tab will be active by default.
+   */
+  defaultValue?: string;
+  /**
+   * Value of the active tab for controlled state.
+   */
+  value?: string;
+  /**
+   * Function that gets called when active tab is changed.
+   *
+   * Should be used alongside `activeValue` prop.
+   */
+  onValueChange?: (value: string) => void;
+  /**
+   * @deprecated Do not use.
+   */
+  defaultChecked?: never; // To remove `defaultChecked` from `<div>` props.
 } & TabsOrientationProps &
   TabsOverflowProps;
 
@@ -103,10 +124,17 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     type = 'default',
     focusActivationMode = 'auto',
     color = 'blue',
+    defaultValue,
+    value: activeValueProp,
+    onValueChange,
     ...rest
   } = props;
 
-  const [activeValue, setActiveValue] = React.useState<string | undefined>();
+  const [activeValue, setActiveValue] = useControlledState(
+    defaultValue,
+    activeValueProp,
+    onValueChange,
+  );
   const [stripeProperties, setStripeProperties] = React.useState({});
   const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
 
@@ -259,35 +287,18 @@ type TabOwnProps = {
    */
   label?: string | React.ReactNode;
   /**
-   * Flag whether the tab is active.
-   * @default 'false'
-   */
-  isActive?: boolean;
-  /**
-   * Callback fired when the isActive prop changes.
-   */
-  onActiveChange?: () => void;
-  /**
    * @deprecated Don't pass `id`, as it will be automatically set.
    */
   id?: string;
 };
 
 const Tab = React.forwardRef((props, forwardedRef) => {
-  const {
-    className,
-    children,
-    value,
-    label,
-    isActive: isActiveProp,
-    onActiveChange: onActiveChangeProp,
-    ...rest
-  } = props;
+  const { className, children, value, label, ...rest } = props;
 
   const {
     orientation,
-    activeValue: activeValueState,
-    setActiveValue: setActiveValueState,
+    activeValue,
+    setActiveValue,
     type,
     setStripeProperties,
     idPrefix,
@@ -296,25 +307,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const { tabsWidth } = useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
 
-  const isActive =
-    isActiveProp !== undefined ? isActiveProp : activeValueState === value;
-
-  const activeValueRef = useLatestRef(activeValueState);
-
-  // keep isActive prop in sync with activeValue in context (for use in Panel)
-  React.useEffect(() => {
-    if (isActiveProp) {
-      setActiveValueState(value);
-    }
-  }, [isActiveProp, setActiveValueState, value, activeValueRef]);
-
-  const onActiveChange = React.useCallback(() => {
-    if (!!onActiveChangeProp) {
-      onActiveChangeProp();
-    } else {
-      setActiveValueState(value);
-    }
-  }, [setActiveValueState, value, onActiveChangeProp]);
+  const isActive = activeValue === value;
 
   useIsomorphicLayoutEffect(() => {
     if (isActive) {
@@ -403,15 +396,15 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   // use first tab as active if no `isActive` passed.
   const setInitialActiveRef = React.useCallback(
     (element: HTMLElement) => {
-      if (activeValueState !== undefined) {
+      if (activeValue !== undefined) {
         return;
       }
 
       if (element?.matches(':first-of-type')) {
-        setActiveValueState(value);
+        setActiveValue(value);
       }
     },
-    [activeValueState, setActiveValueState, value],
+    [activeValue, setActiveValue, value],
   );
 
   return (
@@ -424,11 +417,11 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       aria-controls={`${idPrefix}-panel-${value}`}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
-      onClick={mergeEventHandlers(props.onClick, () => onActiveChange?.())}
+      onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
         if (focusActivationMode === 'auto' && !props.disabled) {
-          onActiveChange?.();
+          setActiveValue(value);
         }
       })}
     >
@@ -595,6 +588,10 @@ type TabsLegacyProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
+
+  // To remove `defaultValue` and `defaultChecked` from `<div>` props.
+  defaultValue?: never;
+  defaultChecked?: never;
 } & TabsOrientationProps &
   TabsOverflowProps;
 
@@ -630,6 +627,8 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
       className={wrapperClassName}
       focusActivationMode={focusActivationMode}
       color={color}
+      value={`${activeIndex}`}
+      onValueChange={(value) => setActiveIndex(Number(value))}
       {...rest}
     >
       <TabList className={tabsClassName} ref={forwardedRef}>
@@ -638,17 +637,9 @@ const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
           return React.isValidElement(label) ? (
             React.cloneElement(label as JSX.Element, {
               value: tabValue,
-              active: index === activeIndex,
-              onActiveChange: () => setActiveIndex(index),
             })
           ) : (
-            <LegacyTab
-              key={index}
-              value={tabValue}
-              label={label}
-              active={index === activeIndex}
-              onActiveChange={() => setActiveIndex(index)}
-            />
+            <LegacyTab key={index} value={tabValue} label={label} />
           );
         })}
       </TabList>
@@ -689,17 +680,11 @@ type TabLegacyProps = {
    */
   children?: React.ReactNode;
   /**
-   * Whether the tab has active styling.
+   * `value` of the tab.
    *
-   * This will be automatically set by the parent `Tabs` component.
+   * Will be set by parent `Tabs` component.
    */
-  active?: boolean;
-  /**
-   * Callback fired when the tab becomes active.
-   *
-   * This will be automatically set by the parent `Tabs` component.
-   */
-  onActiveChange?: () => void;
+  value?: string;
 };
 
 /**
@@ -714,17 +699,11 @@ type TabLegacyProps = {
  * ];
  */
 const LegacyTab = React.forwardRef((props, forwardedRef) => {
-  const { label, sublabel, startIcon, children, active, value, ...rest } =
-    props;
+  const { label, sublabel, startIcon, children, value, ...rest } = props;
 
   return (
     <>
-      <Tab
-        {...rest}
-        value={value ?? `panel-${label}`}
-        ref={forwardedRef}
-        isActive={active}
-      >
+      <Tab {...rest} value={value as string} ref={forwardedRef}>
         {startIcon && <TabIcon>{startIcon}</TabIcon>}
         <TabLabel>{label}</TabLabel>
         {sublabel && <TabDescription>{sublabel}</TabDescription>}
@@ -732,10 +711,7 @@ const LegacyTab = React.forwardRef((props, forwardedRef) => {
       </Tab>
     </>
   );
-}) as PolymorphicForwardRefComponent<
-  'button',
-  TabLegacyProps & { value?: string }
->;
+}) as PolymorphicForwardRefComponent<'button', TabLegacyProps>;
 
 // ----------------------------------------------------------------------------
 // exports

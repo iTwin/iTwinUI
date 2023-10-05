@@ -230,19 +230,23 @@ export const HorizontalOverflow = () => {
   const [active, setActive] = React.useState('Item 11');
 
   const tabData = [
-    { name: 'Item 1', disabled: false },
-    { name: 'Item 2', disabled: false },
-    { name: 'Item 3', disabled: false },
-    { name: 'Item 4', disabled: false },
-    { name: 'Item 5', disabled: false },
-    { name: 'Item 6', disabled: true },
-    { name: 'Item 7', disabled: false },
-    { name: 'Item 8', disabled: false },
-    { name: 'Item 9', disabled: true },
-    { name: 'Item 10', disabled: false },
-    { name: 'Item 11', disabled: false },
-    { name: 'Item 12', disabled: false },
-    { name: 'Very long item number thirteen', disabled: false },
+    { name: 'Item 1', content: 'Tab Content One', disabled: false },
+    { name: 'Item 2', content: 'Tab Content Two', disabled: false },
+    { name: 'Item 3', content: 'Tab Content Three', disabled: false },
+    { name: 'Item 4', content: 'Tab Content Four', disabled: false },
+    { name: 'Item 5', content: 'Tab Content Five', disabled: false },
+    { name: 'Item 6', content: 'Tab Content Six', disabled: true },
+    { name: 'Item 7', content: 'Tab Content Seven', disabled: false },
+    { name: 'Item 8', content: 'Tab Content Eight', disabled: false },
+    { name: 'Item 9', content: 'Tab Content Nine', disabled: true },
+    { name: 'Item 10', content: 'Tab Content Ten', disabled: false },
+    { name: 'Item 11', content: 'Tab Content Eleven', disabled: false },
+    { name: 'Item 12', content: 'Tab Content Twelve', disabled: false },
+    {
+      name: 'Very long item number thirteen',
+      content: 'Tab Content Thirteen',
+      disabled: false,
+    },
   ];
 
   return (
@@ -255,19 +259,19 @@ export const HorizontalOverflow = () => {
         padding: 8,
       }}
     >
-      <Tabs.Wrapper overflowOptions={{ useOverflow: true }}>
+      <Tabs.Wrapper
+        overflowOptions={{ useOverflow: true }}
+        value={active}
+        onValueChange={setActive}
+      >
         <Tabs.TabList>
           {tabData?.map((item) => {
             return (
               <Tabs.Tab
                 key={item.name}
                 value={item.name}
-                isActive={item.name === active}
                 disabled={item.disabled}
                 label={item.name}
-                onActiveChange={() => {
-                  setActive(item.name);
-                }}
               />
             );
           })}
@@ -277,21 +281,11 @@ export const HorizontalOverflow = () => {
           <Button key={'button'}>Button</Button>
         </Tabs.Actions>
 
-        <Tabs.Panel value='Item 1'>Tab Content One</Tabs.Panel>
-        <Tabs.Panel value='Item 2'>Tab Content Two</Tabs.Panel>
-        <Tabs.Panel value='Item 3'>Tab Content Three</Tabs.Panel>
-        <Tabs.Panel value='Item 4'>Tab Content Four</Tabs.Panel>
-        <Tabs.Panel value='Item 5'>Tab Content Five</Tabs.Panel>
-        <Tabs.Panel value='Item 6'>Tab Content Six</Tabs.Panel>
-        <Tabs.Panel value='Item 7'>Tab Content Seven</Tabs.Panel>
-        <Tabs.Panel value='Item 8'>Tab Content Eight</Tabs.Panel>
-        <Tabs.Panel value='Item 9'>Tab Content Nine</Tabs.Panel>
-        <Tabs.Panel value='Item 10'>Tab Content Ten</Tabs.Panel>
-        <Tabs.Panel value='Item 11'>Tab Content Eleven</Tabs.Panel>
-        <Tabs.Panel value='Item 12'>Tab Content Twelve</Tabs.Panel>
-        <Tabs.Panel value='Very long item number thirteen'>
-          Tab Content Thirteen
-        </Tabs.Panel>
+        {tabData.map((item) => (
+          <Tabs.Panel key={item.name} value={item.name}>
+            {item.content}
+          </Tabs.Panel>
+        ))}
       </Tabs.Wrapper>
     </div>
   );
@@ -301,19 +295,23 @@ export const VerticalOverflow = () => {
   const [active, setActive] = React.useState('Item 11');
 
   const tabData = [
-    { name: 'Item 1', disabled: false },
-    { name: 'Item 2', disabled: false },
-    { name: 'Item 3', disabled: false },
-    { name: 'Item 4', disabled: false },
-    { name: 'Item 5', disabled: false },
-    { name: 'Item 6', disabled: true },
-    { name: 'Item 7', disabled: false },
-    { name: 'Item 8', disabled: false },
-    { name: 'Item 9', disabled: true },
-    { name: 'Item 10', disabled: false },
-    { name: 'Item 11', disabled: false },
-    { name: 'Item 12', disabled: false },
-    { name: 'Very long item number thirteen', disabled: false },
+    { name: 'Item 1', content: 'Tab Content One', disabled: false },
+    { name: 'Item 2', content: 'Tab Content Two', disabled: false },
+    { name: 'Item 3', content: 'Tab Content Three', disabled: false },
+    { name: 'Item 4', content: 'Tab Content Four', disabled: false },
+    { name: 'Item 5', content: 'Tab Content Five', disabled: false },
+    { name: 'Item 6', content: 'Tab Content Six', disabled: true },
+    { name: 'Item 7', content: 'Tab Content Seven', disabled: false },
+    { name: 'Item 8', content: 'Tab Content Eight', disabled: false },
+    { name: 'Item 9', content: 'Tab Content Nine', disabled: true },
+    { name: 'Item 10', content: 'Tab Content ten', disabled: false },
+    { name: 'Item 11', content: 'Tab Content Eleven', disabled: false },
+    { name: 'Item 12', content: 'Tab Content Twelve', disabled: false },
+    {
+      name: 'Very long item number thirteen',
+      content: 'Tab Content Thirteen',
+      disabled: false,
+    },
   ];
   return (
     <div
@@ -328,19 +326,17 @@ export const VerticalOverflow = () => {
       <Tabs.Wrapper
         orientation='vertical'
         overflowOptions={{ useOverflow: true }}
+        value={active}
+        onValueChange={setActive}
       >
         <Tabs.TabList>
-          {tabData?.map((item, index) => {
+          {tabData?.map((item) => {
             return (
               <Tabs.Tab
-                key={`tab${index + 1}`}
-                value={`tab${index + 1}`}
-                isActive={item.name === active}
+                key={item.name}
+                value={item.name}
                 disabled={item.disabled}
                 label={item.name}
-                onActiveChange={() => {
-                  setActive(item.name);
-                }}
               />
             );
           })}
@@ -350,19 +346,11 @@ export const VerticalOverflow = () => {
           <Button key={'button'}>Button</Button>
         </Tabs.Actions>
 
-        <Tabs.Panel value='tab1'>Tab Content One</Tabs.Panel>
-        <Tabs.Panel value='tab2'>Tab Content Two</Tabs.Panel>
-        <Tabs.Panel value='tab3'>Tab Content Three</Tabs.Panel>
-        <Tabs.Panel value='tab4'>Tab Content Four</Tabs.Panel>
-        <Tabs.Panel value='tab5'>Tab Content Five</Tabs.Panel>
-        <Tabs.Panel value='tab6'>Tab Content Six</Tabs.Panel>
-        <Tabs.Panel value='tab7'>Tab Content Seven</Tabs.Panel>
-        <Tabs.Panel value='tab8'>Tab Content Eight</Tabs.Panel>
-        <Tabs.Panel value='tab9'>Tab Content Nine</Tabs.Panel>
-        <Tabs.Panel value='tab10'>Tab Content Ten</Tabs.Panel>
-        <Tabs.Panel value='tab11'>Tab Content Eleven</Tabs.Panel>
-        <Tabs.Panel value='tab12'>Tab Content Twelve</Tabs.Panel>
-        <Tabs.Panel value='tab13'>Tab Content Thirteen</Tabs.Panel>
+        {tabData.map((item) => (
+          <Tabs.Panel key={item.name} value={item.name}>
+            {item.content}
+          </Tabs.Panel>
+        ))}
       </Tabs.Wrapper>
     </div>
   );
@@ -474,6 +462,7 @@ export const LegacyTabs = () => {
         <Tab key={2} label='Orange' />,
         <Tab key={3} label='Grape' />,
       ]}
+      activeIndex={index}
       onTabSelected={setIndex}
       actions={[
         <Button key={'Small'} size={'small'}>
