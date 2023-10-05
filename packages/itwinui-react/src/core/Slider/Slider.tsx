@@ -493,22 +493,12 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
-      {maxValueLabel && (
-        <Box
-          as='span'
-          {...maxProps}
-          className={cx('iui-slider-max', maxProps?.className)}
-        >
-          {maxValueLabel}
-        </Box>
-      )}
       {tickMarkArea}
       <Box
         ref={containerRef}
         {...railContainerProps}
         className={cx(
           'iui-slider',
-          'iui-progress-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
@@ -516,14 +506,6 @@ export const Slider = React.forwardRef((props, ref) => {
         )}
         onPointerDown={handlePointerDownOnSlider}
       >
-        <Track
-          trackDisplayMode={trackDisplay}
-          sliderMin={min}
-          sliderMax={max}
-          values={currentValues}
-          orientation={orientation}
-          {...trackProps}
-        />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -546,7 +528,24 @@ export const Slider = React.forwardRef((props, ref) => {
             />
           );
         })}
+        <Track
+          trackDisplayMode={trackDisplay}
+          sliderMin={min}
+          sliderMax={max}
+          values={currentValues}
+          orientation={orientation}
+          {...trackProps}
+        />
       </Box>
+      {maxValueLabel && (
+        <Box
+          as='span'
+          {...maxProps}
+          className={cx('iui-slider-max', maxProps?.className)}
+        >
+          {maxValueLabel}
+        </Box>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SliderProps>;

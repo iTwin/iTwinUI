@@ -155,12 +155,12 @@ export const Thumb = (props: ThumbProps) => {
       <Box
         {...rest}
         ref={thumbRef}
-        style={{
-          ...style,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          '--iui-slider-thumb-position': `${lowPercent}%`,
-        }}
+        style={
+          {
+            ...style,
+            '--iui-slider-thumb-position': `${lowPercent}%`,
+          } as React.CSSProperties
+        }
         className={cx(
           'iui-slider-thumb',
           { 'iui-active': isActive },
