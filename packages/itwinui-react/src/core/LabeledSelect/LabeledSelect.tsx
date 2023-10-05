@@ -88,77 +88,81 @@ export type LabeledSelectProps<T> = {
  *   svgIcon={<SvgCamera />}
  * />
  */
-export const LabeledSelect = <T,>(
-  props: LabeledSelectProps<T>,
-): JSX.Element => {
-  const {
-    className,
-    disabled = false,
-    label,
-    message,
-    status,
-    svgIcon,
-    displayStyle = 'default',
-    style,
-    required = false,
-    triggerProps,
-    wrapperProps,
-    labelProps,
-    messageContentProps,
-    messageIconProps,
-    ...rest
-  } = props;
+export const LabeledSelect = React.forwardRef(
+  <T,>(
+    props: LabeledSelectProps<T>,
+    forwardedRef: React.ForwardedRef<HTMLElement>,
+  ) => {
+    const {
+      className,
+      disabled = false,
+      label,
+      message,
+      status,
+      svgIcon,
+      displayStyle = 'default',
+      style,
+      required = false,
+      triggerProps,
+      wrapperProps,
+      labelProps,
+      messageContentProps,
+      messageIconProps,
+      ...rest
+    } = props;
 
-  const labelId = `${useId()}-label`;
+    const labelId = `${useId()}-label`;
 
-  const icon = () => {
-    if (svgIcon) {
-      return <Icon>{svgIcon}</Icon>;
-    }
-    if (status && message) {
-      return StatusIconMap[status]();
-    }
-    return undefined;
-  };
+    const icon = () => {
+      if (svgIcon) {
+        return <Icon>{svgIcon}</Icon>;
+      }
+      if (status && message) {
+        return StatusIconMap[status]();
+      }
+      return undefined;
+    };
 
-  return (
-    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
-      {label && (
-        <Label
-          as='div'
-          required={required}
+    return (
+      <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+        {label && (
+          <Label
+            as='div'
+            required={required}
+            disabled={disabled}
+            id={labelId}
+            {...labelProps}
+          >
+            {label}
+          </Label>
+        )}
+        <Select
           disabled={disabled}
-          id={labelId}
-          {...labelProps}
-        >
-          {label}
-        </Label>
-      )}
-      <Select
-        disabled={disabled}
-        className={className}
-        style={style}
-        status={status}
-        {...rest}
-        triggerProps={{
-          'aria-labelledby': labelId,
-          ...triggerProps,
-        }}
-      />
-      {typeof message === 'string' ? (
-        <StatusMessage
+          className={className}
+          style={style}
           status={status}
-          startIcon={displayStyle === 'default' ? icon() : undefined}
-          iconProps={messageIconProps}
-          contentProps={messageContentProps}
-        >
-          {message}
-        </StatusMessage>
-      ) : (
-        message
-      )}
-    </InputGrid>
-  );
-};
+          {...rest}
+          ref={forwardedRef}
+          triggerProps={{
+            'aria-labelledby': labelId,
+            ...triggerProps,
+          }}
+        />
+        {typeof message === 'string' ? (
+          <StatusMessage
+            status={status}
+            startIcon={displayStyle === 'default' ? icon() : undefined}
+            iconProps={messageIconProps}
+            contentProps={messageContentProps}
+          >
+            {message}
+          </StatusMessage>
+        ) : (
+          message
+        )}
+      </InputGrid>
+    );
+  },
+);
 
 export default LabeledSelect;
