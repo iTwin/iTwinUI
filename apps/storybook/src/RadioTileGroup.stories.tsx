@@ -4,20 +4,17 @@
  *--------------------------------------------------------------------------------------------*/
 import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
 import SvgWindows from '@itwin/itwinui-icons-react/cjs/icons/Windows';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { RadioTile, RadioTileGroup } from '@itwin/itwinui-react';
-
-type RadioTileGroupProps = React.ComponentProps<typeof RadioTileGroup>;
 
 export default {
   title: 'Input/RadioTileGroup',
   component: RadioTileGroup,
-} as Meta<RadioTileGroupProps>;
+};
 
-export const Monochrome: Story<RadioTileGroupProps> = (args) => {
+export const Monochrome = () => {
   return (
-    <RadioTileGroup {...args}>
+    <RadioTileGroup label='Choose type'>
       <RadioTile
         label='Web'
         description='Dimensions in px'
@@ -60,13 +57,9 @@ export const Monochrome: Story<RadioTileGroupProps> = (args) => {
   );
 };
 
-Monochrome.args = {
-  label: 'Choose type',
-};
-
-export const Colored: Story<RadioTileGroupProps> = (args) => {
+export const Colored = () => {
   return (
-    <RadioTileGroup {...args}>
+    <RadioTileGroup label='Map indicator type'>
       <RadioTile
         label='Google Maps'
         icon={
@@ -139,8 +132,4 @@ export const Colored: Story<RadioTileGroupProps> = (args) => {
       />
     </RadioTileGroup>
   );
-};
-
-Colored.args = {
-  label: 'Map indicator type',
 };

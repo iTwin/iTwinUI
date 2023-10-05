@@ -822,6 +822,19 @@ export { OverlaySubExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as PopoverMainExampleRaw } from './Popover.main';
+export const PopoverMainExample = withThemeProvider(PopoverMainExampleRaw);
+
+import { default as PopoverPlacementExampleRaw } from './Popover.placement';
+export const PopoverPlacementExample = withThemeProvider(
+  PopoverPlacementExampleRaw,
+);
+
+import { default as PopoverFocusExampleRaw } from './Popover.focus';
+export const PopoverFocusExample = withThemeProvider(PopoverFocusExampleRaw);
+
+// ----------------------------------------------------------------------------
+
 import { default as ProgressLinearMainExampleRaw } from './ProgressLinear.main';
 const ProgressLinearMainExample = withThemeProvider(
   ProgressLinearMainExampleRaw,

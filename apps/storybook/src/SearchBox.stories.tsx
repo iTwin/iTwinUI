@@ -2,35 +2,21 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Meta, StoryFn } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { SearchBox, Text, Divider } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
 
-type SearchBoxProps = React.ComponentProps<typeof SearchBox>;
-
 export default {
   component: SearchBox,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
-  args: {
-    isDisabled: false,
-  },
   title: 'Input/SearchBox',
-} as Meta<SearchBoxProps>;
-
-export const Basic: StoryFn<SearchBoxProps> = (args) => {
-  return <SearchBox inputProps={{ placeholder: 'Basic search' }} {...args} />;
 };
 
-Basic.args = {
-  isDisabled: false,
+export const Basic = () => {
+  return <SearchBox inputProps={{ placeholder: 'Basic search' }} />;
 };
 
-export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
+export const BasicWithCustomItems = () => {
   return (
     <SearchBox>
       <SearchBox.Button title='Search button' />
@@ -54,7 +40,7 @@ export const BasicWithCustomItems: StoryFn<SearchBoxProps> = () => {
   );
 };
 
-export const BasicWithStatus: StoryFn<SearchBoxProps> = () => {
+export const BasicWithStatus = () => {
   return (
     <SearchBox
       inputProps={{ placeholder: 'Search with warning' }}
@@ -63,13 +49,13 @@ export const BasicWithStatus: StoryFn<SearchBoxProps> = () => {
   );
 };
 
-export const Expandable: StoryFn<SearchBoxProps> = () => {
+export const Expandable = () => {
   return (
     <SearchBox expandable inputProps={{ placeholder: 'Expandable search' }} />
   );
 };
 
-export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
+export const ExpandableWithCustomItems = () => {
   return (
     <SearchBox expandable>
       <SearchBox.CollapsedState />
@@ -88,11 +74,11 @@ export const ExpandableWithCustomItems: StoryFn<SearchBoxProps> = () => {
   );
 };
 
-export const Small: StoryFn<SearchBoxProps> = () => {
+export const Small = () => {
   return <SearchBox size='small' inputProps={{ placeholder: 'Search...' }} />;
 };
 
-export const WithCustomAction: StoryFn<SearchBoxProps> = () => {
+export const WithCustomAction = () => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpand = () => {

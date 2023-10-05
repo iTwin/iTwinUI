@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import { Checkbox } from '../Checkbox/index.js';
-import { Radio } from '../Radio/index.js';
+import { Checkbox } from '../Checkbox/Checkbox.js';
+import { Radio } from '../Radio/Radio.js';
 
 import { InputGroup } from './InputGroup.js';
 

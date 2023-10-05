@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Icon } from '../utils/index.js';
+import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
-import { LabeledInput } from '../LabeledInput/index.js';
+import { LabeledInput } from '../LabeledInput/LabeledInput.js';
 
 type LabeledTextareaProps = {
   /**

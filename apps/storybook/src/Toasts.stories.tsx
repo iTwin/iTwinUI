@@ -3,103 +3,34 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
 import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
-import { ToastProps } from '@itwin/itwinui-react/esm/core/Toast/Toast';
-import { ToasterSettings } from '@itwin/itwinui-react/esm/core/Toast/Toaster';
+import { action } from '@storybook/addon-actions';
 
 export default {
-  argTypes: {
-    content: {
-      description:
-        'Content of the Toast message. Can be passed in as a string or a jsx element.',
-      type: { required: true, name: 'string' },
-    },
-    type: {
-      options: ['persisting', 'temporary'],
-      control: {
-        type: 'select',
-      },
-      description:
-        'Persisting or Temporary. Persisting Toasts will not be closed automatically, and will contain a close button. Temporary Toasts will automatically close after 7 seconds and will not contain a close button.',
-    },
-    duration: {
-      description: 'Duration of the toast, in milliseconds.',
-    },
-    hasCloseButton: {
-      description: 'Boolean indicating when the close button is visible.',
-    },
-    link: {
-      description:
-        'Object to display a link on the toast. Has two properties, one for the title of the link, and another for the onClick event.',
-    },
-    onRemove: {
-      action: 'Toast removed!',
-    },
-    placement: {
-      options: [
-        'top',
-        'top-start',
-        'top-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-      ],
-      control: {
-        type: 'select',
-      },
-      table: { defaultValue: { summary: 'top' } },
-      description:
-        'Changes placement of toasts. *-start indicated left side of viewport. *-end - right side of viewport.',
-    },
-    order: {
-      options: ['descending', 'ascending'],
-      control: {
-        type: 'select',
-      },
-      description: `Order of toasts. Descending places toasts from newest to oldest (new toasts appear on the top of the list). Ascending - from oldest to newest (new toasts appear on the bottom of the list). When placement is set and order not specified, toasts are ordered by placement. Top placement sets order 'descending', bottom placement sets order 'ascending'.`,
-    },
-  },
-  args: {
-    duration: 7000,
-    type: 'temporary',
-    hasCloseButton: true,
-    link: {
-      title: 'Link',
-      onClick: () => {
-        alert('Link was clicked!');
-      },
-    },
-  },
-  parameters: {
-    controls: { expanded: true },
-  },
   title: 'Core/Toasts',
-} as Meta<ToastProps & ToasterSettings>;
+};
 
-export const Positive: Story<ToastProps & ToasterSettings> = ({
-  content,
-  duration,
-  hasCloseButton,
-  link,
-  type,
-  onRemove,
-  placement,
-  order,
-}) => {
+export const Positive = () => {
   const toaster = useToaster();
 
   const displayPositiveToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
-    toaster.positive(content, {
-      duration,
-      hasCloseButton,
-      link,
-      type,
-      onRemove,
+    toaster.positive('This is a positive toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
     });
   };
 
@@ -118,33 +49,27 @@ export const Positive: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-Positive.args = {
-  content: 'This is a positive toast message',
-};
-
-export const Negative: Story<ToastProps & ToasterSettings> = ({
-  duration,
-  hasCloseButton,
-  content,
-  type,
-  link,
-  onRemove,
-  placement,
-  order,
-}) => {
+export const Negative = () => {
   const toaster = useToaster();
 
   const displayNegativeToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
-    toaster.negative(content, {
-      duration,
-      hasCloseButton,
-      link,
-      type,
-      onRemove,
+    toaster.negative('This is a negative toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
     });
   };
 
@@ -163,33 +88,27 @@ export const Negative: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-Negative.args = {
-  content: 'This is a negative toast message',
-};
-
-export const Informational: Story<ToastProps & ToasterSettings> = ({
-  duration,
-  hasCloseButton,
-  content,
-  type,
-  link,
-  onRemove,
-  placement,
-  order,
-}) => {
+export const Informational = () => {
   const toaster = useToaster();
 
   const displayInformationalToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
-    toaster.informational(content, {
-      duration,
-      hasCloseButton,
-      link,
-      type,
-      onRemove,
+    toaster.informational('This is an informational toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
     });
   };
 
@@ -208,24 +127,28 @@ export const Informational: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-Informational.args = {
-  content: 'This is an informational toast message',
-};
-
-export const Warning: Story<ToastProps & ToasterSettings> = ({
-  content,
-  placement,
-  order,
-  ...options
-}) => {
+export const Warning = () => {
   const toaster = useToaster();
 
   const displayWarningToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
-    toaster.warning(content, { ...options });
+    toaster.warning('This is a warning toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
+    });
   };
 
   return (
@@ -243,24 +166,27 @@ export const Warning: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-Warning.args = {
-  content: 'This is a warning toast message',
-};
-
-export const PositionChanged: Story<ToastProps & ToasterSettings> = ({
-  content,
-  placement,
-  order,
-  ...options
-}) => {
+export const PositionChanged = () => {
   const toaster = useToaster();
 
   const displayPositionChangedToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'bottom-end',
-      order: order,
+      placement: 'bottom-end',
     });
-    toaster.informational(content, { ...options });
+    toaster.informational('This is a toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
+    });
   };
 
   return (
@@ -278,35 +204,28 @@ export const PositionChanged: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-PositionChanged.args = {
-  content: 'This is a toast message',
-  placement: 'bottom-end',
-};
-
-export const AnchorToButton: Story<ToastProps & ToasterSettings> = ({
-  content,
-  duration,
-  hasCloseButton,
-  link,
-  type,
-  onRemove,
-  placement,
-  order,
-}) => {
+export const AnchorToButton = () => {
   const toaster = useToaster();
 
   const buttonRef = React.useRef(null);
   const displayPositiveToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
-    toaster.positive(content, {
-      duration,
-      hasCloseButton,
-      link,
-      type,
-      onRemove,
+    toaster.positive('This is a positive toast message', {
+      duration: 7000,
+      hasCloseButton: true,
+      link: {
+        title: 'Link',
+        onClick: () => {
+          alert('Link was clicked!');
+        },
+      },
+      type: 'temporary',
+      onRemove: () => {
+        action('Toast removed!');
+      },
       animateOutTo: buttonRef.current,
     });
   };
@@ -330,25 +249,13 @@ export const AnchorToButton: Story<ToastProps & ToasterSettings> = ({
   );
 };
 
-AnchorToButton.args = {
-  content: 'This is a positive toast message',
-};
-
-export const CloseIndividual: Story<ToastProps & ToasterSettings> = ({
-  duration,
-  hasCloseButton,
-  link,
-  type,
-  onRemove,
-  placement,
-  order,
-}) => {
+export const CloseIndividual = () => {
   const toaster = useToaster();
 
   const displayProcessToast = () => {
     toaster.setSettings({
-      placement: placement ?? 'top',
-      order: order ?? 'descending',
+      placement: 'top',
+      order: 'descending',
     });
     const { close } = toaster.informational(
       <div
@@ -366,22 +273,36 @@ export const CloseIndividual: Story<ToastProps & ToasterSettings> = ({
         Your process is running...
       </div>,
       {
-        duration,
-        hasCloseButton,
-        link,
-        type,
-        onRemove,
+        duration: 7000,
+        hasCloseButton: true,
+        link: {
+          title: 'Link',
+          onClick: () => {
+            alert('Link was clicked!');
+          },
+        },
+        type: 'persisting',
+        onRemove: () => {
+          action('Toast removed!');
+        },
       },
     );
 
     setTimeout(() => {
       close();
       toaster.positive('Process completed', {
-        duration,
-        hasCloseButton,
-        link,
-        type: 'temporary',
-        onRemove,
+        duration: 7000,
+        hasCloseButton: true,
+        link: {
+          title: 'Link',
+          onClick: () => {
+            alert('Link was clicked!');
+          },
+        },
+        type: 'persisting',
+        onRemove: () => {
+          action('Toast removed!');
+        },
       });
     }, 3000);
   };
@@ -393,8 +314,4 @@ export const CloseIndividual: Story<ToastProps & ToasterSettings> = ({
       </Button>
     </>
   );
-};
-
-CloseIndividual.args = {
-  type: 'persisting',
 };

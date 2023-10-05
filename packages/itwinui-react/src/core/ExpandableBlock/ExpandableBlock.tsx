@@ -7,7 +7,6 @@ import * as React from 'react';
 import {
   StatusIconMap,
   SvgChevronRight,
-  Icon,
   Box,
   useSafeContext,
   polymorphic,
@@ -15,6 +14,7 @@ import {
   ButtonBase,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Icon } from '../Icon/Icon.js';
 
 const ExpandableBlockContext = React.createContext<
   | ({

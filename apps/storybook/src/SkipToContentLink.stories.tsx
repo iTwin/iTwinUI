@@ -2,22 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { SkipToContentLink, Text, Kbd, Anchor } from '@itwin/itwinui-react';
 
-type SkipToContentLinkProps = React.ComponentProps<typeof SkipToContentLink>;
-
 export default {
   component: SkipToContentLink,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
   title: 'Core/SkipToContentLink',
-} as Meta<SkipToContentLinkProps>;
+};
 
-export const Basic: Story<SkipToContentLinkProps> = () => {
+export const Basic = () => {
   return (
     <>
       <SkipToContentLink href='#main-content' />
@@ -52,7 +45,7 @@ export const Basic: Story<SkipToContentLinkProps> = () => {
   );
 };
 
-export const CustomText: Story<SkipToContentLinkProps> = () => {
+export const CustomText = () => {
   return (
     <>
       <SkipToContentLink href='#main-content'>

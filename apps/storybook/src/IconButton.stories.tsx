@@ -5,78 +5,45 @@
 import React from 'react';
 import { action } from '@storybook/addon-actions';
 import { IconButton } from '@itwin/itwinui-react';
-import { Story, Meta } from '@storybook/react';
 import { SvgAdd } from '@itwin/itwinui-icons-react';
-
-type IconButtonProps = React.ComponentProps<typeof IconButton>;
 
 export default {
   title: 'Buttons/IconButton',
   component: IconButton,
-  argTypes: {
-    onClick: { control: { disable: true } },
-    as: { type: { name: 'string', required: false } },
-    styleType: {
-      control: 'select',
-    },
-  },
-} as Meta<IconButtonProps>;
+};
 
-export const Add: Story<IconButtonProps> = (args) => {
+export const Add = () => {
   return (
-    <IconButton label='Add' onClick={action('clicked')} {...args}>
+    <IconButton label='Add' onClick={action('clicked')}>
       <SvgAdd />
     </IconButton>
   );
 };
 
-Add.args = {
-  label: 'Add',
-  isActive: false,
-};
-
-export const SmallActiveAdd: Story<IconButtonProps> = (args) => {
+export const SmallActiveAdd = () => {
   return (
-    <IconButton label='Add' onClick={action('clicked')} isActive {...args}>
+    <IconButton label='Add' onClick={action('clicked')} isActive size='small'>
       <SvgAdd />
     </IconButton>
   );
 };
 
-SmallActiveAdd.args = {
-  label: 'Add',
-  size: 'small',
-  isActive: true,
-};
-
-export const HighVisibilityAdd: Story<IconButtonProps> = (args) => {
-  return (
-    <IconButton label='Add' onClick={action('clicked')} {...args}>
-      <SvgAdd />
-    </IconButton>
-  );
-};
-
-HighVisibilityAdd.args = {
-  label: 'Add',
-  isActive: false,
-  styleType: 'high-visibility',
-};
-
-export const Borderless: Story<IconButtonProps> = ({ styleType, ...rest }) => {
+export const HighVisibilityAdd = () => {
   return (
     <IconButton
       label='Add'
-      styleType={styleType}
       onClick={action('clicked')}
-      {...rest}
+      styleType='high-visibility'
     >
       <SvgAdd />
     </IconButton>
   );
 };
 
-Borderless.args = {
-  label: 'Add',
-  styleType: 'borderless',
+export const Borderless = () => {
+  return (
+    <IconButton label='Add' styleType='borderless' onClick={action('clicked')}>
+      <SvgAdd />
+    </IconButton>
+  );
 };

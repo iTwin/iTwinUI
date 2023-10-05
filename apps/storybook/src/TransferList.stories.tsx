@@ -3,10 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 /* eslint-disable react/jsx-key */
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { TransferList, IconButton } from '@itwin/itwinui-react';
-
 import {
   SvgChevronLeft,
   SvgChevronRight,
@@ -14,18 +12,12 @@ import {
   SvgChevronRightDouble,
 } from '@itwin/itwinui-icons-react';
 
-type TransferListProps = React.ComponentProps<typeof TransferList>;
-
 export default {
   component: TransferList,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-  },
   title: 'Core/TransferList',
-} as Meta<TransferListProps>;
+};
 
-export const Basic: Story<TransferListProps> = (args) => {
+export const Basic = () => {
   type TransferItemDataType = {
     name: string;
     active: boolean;
@@ -68,7 +60,7 @@ export const Basic: Story<TransferListProps> = (args) => {
   };
 
   return (
-    <TransferList {...args}>
+    <TransferList>
       <TransferList.ListboxWrapper>
         <TransferList.Listbox>
           {optionData?.map((item, index) => {
@@ -156,9 +148,8 @@ export const Basic: Story<TransferListProps> = (args) => {
     </TransferList>
   );
 };
-Basic.args = {};
 
-export const WithLabel: Story<TransferListProps> = (args) => {
+export const WithLabel = () => {
   type TransferItemDataType = {
     name: string;
     active: boolean;
@@ -201,7 +192,7 @@ export const WithLabel: Story<TransferListProps> = (args) => {
   };
 
   return (
-    <TransferList {...args}>
+    <TransferList>
       <TransferList.ListboxWrapper>
         <TransferList.ListboxLabel>Options</TransferList.ListboxLabel>
         <TransferList.Listbox>
@@ -291,4 +282,3 @@ export const WithLabel: Story<TransferListProps> = (args) => {
     </TransferList>
   );
 };
-WithLabel.args = {};

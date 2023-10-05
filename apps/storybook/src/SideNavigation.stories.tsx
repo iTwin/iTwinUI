@@ -10,7 +10,6 @@ import {
   SvgSettings,
 } from '@itwin/itwinui-icons-react';
 import { useState } from '@storybook/addons';
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   SideNavigation,
@@ -22,19 +21,9 @@ import {
   Anchor,
 } from '@itwin/itwinui-react';
 
-type SideNavigationProps = React.ComponentProps<typeof SideNavigation>;
-
 export default {
   component: SideNavigation,
   subcomponents: { SidenavButton, SidenavSubmenu, SidenavSubmenuHeader },
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    items: { control: { disable: true } },
-    secondaryItems: { control: { disable: true } },
-    submenu: { control: { disable: true } },
-  },
   decorators: [
     (Story) => (
       <div style={{ height: 'calc(100vh - 24px)' }}>
@@ -42,14 +31,12 @@ export default {
       </div>
     ),
   ],
-  parameters: { docs: { source: { excludeDecorators: true } } },
   title: 'Core/SideNavigation',
-} as Meta<SideNavigationProps>;
+};
 
-export const Basic: Story<SideNavigationProps> = (args) => {
+export const Basic = () => {
   return (
     <SideNavigation
-      {...args}
       items={[
         <SidenavButton startIcon={<SvgHome />} key={0}>
           Home
@@ -70,7 +57,7 @@ export const Basic: Story<SideNavigationProps> = (args) => {
   );
 };
 
-export const ActiveItem: Story<SideNavigationProps> = (args) => {
+export const ActiveItem = () => {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const mainItems = [...Array(3).fill(null)].map((_, index) => (
@@ -86,7 +73,6 @@ export const ActiveItem: Story<SideNavigationProps> = (args) => {
 
   return (
     <SideNavigation
-      {...args}
       items={mainItems}
       secondaryItems={[
         <SidenavButton startIcon={<SvgSettings />} key={3}>
@@ -97,7 +83,7 @@ export const ActiveItem: Story<SideNavigationProps> = (args) => {
   );
 };
 
-export const Submenu: Story<SideNavigationProps> = (args) => {
+export const Submenu = () => {
   const itemsData = [
     { label: 'Home', icon: <SvgHome /> },
     { label: 'Issues', icon: <SvgFlag /> },
@@ -132,7 +118,6 @@ export const Submenu: Story<SideNavigationProps> = (args) => {
   return (
     <div style={{ display: 'flex', height: '100%' }}>
       <SideNavigation
-        {...args}
         expanderPlacement='bottom'
         items={items.slice(0, 3)}
         secondaryItems={[items[3]]}

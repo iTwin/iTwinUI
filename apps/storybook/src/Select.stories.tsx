@@ -3,25 +3,15 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
-import { StoryFn, Meta } from '@storybook/react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
 import { useState } from '@storybook/addons';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
 
-type SelectProps = React.ComponentProps<typeof Select>;
-
 export default {
   title: 'Input/Select',
   component: Select,
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-    menuStyle: { control: { disable: true } },
-    menuClassName: { control: { disable: true } },
-  },
   decorators: [
     (Story, context) =>
       context.story.includes('Truncate Middle Text') ? (
@@ -34,148 +24,86 @@ export default {
         </div>
       ),
   ],
-} as Meta<SelectProps>;
-
-export const Basic: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 1, label: 'Item #1' },
-      { value: 2, label: 'Item #2', disabled: true },
-      { value: 3, label: 'Item #3' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
-  const [value, setValue] = useState<number | undefined>(undefined);
-  return (
-    <Select<number>
-      {...rest}
-      options={options}
-      value={value}
-      onChange={setValue}
-      placeholder={placeholder}
-    />
-  );
 };
 
-Basic.args = {
-  placeholder: 'Placeholder text',
-  options: [
+export const Basic = () => {
+  const options = [
     { value: 1, label: 'Item #1' },
     { value: 2, label: 'Item #2', disabled: true },
     { value: 3, label: 'Item #3' },
-  ],
+  ];
+  const [value, setValue] = useState<number | undefined>(undefined);
+  return (
+    <Select<number>
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder='Placeholder text'
+    />
+  );
 };
 
-export const WithIcons: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 'happy', label: 'Happy', icon: <SvgSmileyHappy /> },
-      { value: 'neutral', label: 'Neutral', icon: <SvgSmileyNeutral /> },
-      { value: 'sad', label: 'Sad', icon: <SvgSmileySad /> },
-    ],
-    placeholder = 'How are you today?',
-    ...rest
-  } = args;
+export const WithIcons = () => {
+  const options = [
+    { value: 'happy', label: 'Happy', startIcon: <SvgSmileyHappy /> },
+    { value: 'neutral', label: 'Neutral', startIcon: <SvgSmileyNeutral /> },
+    { value: 'sad', label: 'Sad', startIcon: <SvgSmileySad /> },
+  ];
   const [value, setValue] = useState<string | undefined>(undefined);
   return (
     <Select<string>
-      {...rest}
       options={options}
       value={value}
       onChange={setValue}
-      placeholder={placeholder}
+      placeholder='How are you today?'
     />
   );
 };
 
-WithIcons.args = {
-  placeholder: 'How are you today?',
-  options: [
-    { value: 'happy', label: 'Happy', icon: <SvgSmileyHappy /> },
-    { value: 'neutral', label: 'Neutral', icon: <SvgSmileyNeutral /> },
-    { value: 'sad', label: 'Sad', icon: <SvgSmileySad /> },
-  ],
-};
-
-export const WithSelectedValue: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 1, label: 'Item #1' },
-      { value: 2, label: 'Item #2' },
-      { value: 3, label: 'Item #3' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+export const WithSelectedValue = () => {
+  const options = [
+    { value: 1, label: 'Item #1' },
+    { value: 2, label: 'Item #2' },
+    { value: 3, label: 'Item #3' },
+  ];
   const [value, setValue] = useState<number>(2);
   return (
     <Select<number>
       options={options}
       value={value}
       onChange={setValue}
-      placeholder={placeholder}
+      placeholder='Placeholder text'
       popoverProps={{ visible: true }}
-      {...rest}
     />
   );
 };
 
-WithSelectedValue.args = {
-  placeholder: 'Placeholder text',
-  options: [
+export const Disabled = () => {
+  const options = [
     { value: 1, label: 'Item #1' },
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
-  ],
-  value: 2,
-  popoverProps: { visible: true },
-};
-
-export const Disabled: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 1, label: 'Item #1' },
-      { value: 2, label: 'Item #2' },
-      { value: 3, label: 'Item #3' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+  ];
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
         disabled
-        {...rest}
         options={options}
         value={value}
         onChange={setValue}
-        placeholder={placeholder}
+        placeholder='Placeholder text'
       />
     </div>
   );
 };
 
-Disabled.args = {
-  disabled: true,
-  options: [
+export const DisabledWithSelectedValue = () => {
+  const options = [
     { value: 1, label: 'Item #1' },
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
-  ],
-};
-
-export const DisabledWithSelectedValue: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 1, label: 'Item #1' },
-      { value: 2, label: 'Item #2' },
-      { value: 3, label: 'Item #3' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+  ];
   const [value, setValue] = useState<number>(2);
   return (
     <div style={{ minHeight: 350 }}>
@@ -183,105 +111,60 @@ export const DisabledWithSelectedValue: StoryFn<SelectProps> = (args) => {
         options={options}
         value={value}
         onChange={setValue}
-        placeholder={placeholder}
+        placeholder='Placeholder text'
         disabled
-        {...rest}
       />
     </div>
   );
 };
 
-DisabledWithSelectedValue.args = {
-  disabled: true,
-  options: [
-    { value: 1, label: 'Item #1' },
-    { value: 2, label: 'Item #2' },
-    { value: 3, label: 'Item #3' },
-  ],
-};
-
-export const ManyItems: StoryFn<SelectProps> = (args) => {
-  const { placeholder = 'Placeholder text', options, ...rest } = args;
+export const ManyItems = () => {
   const [value, setValue] = useState<number | undefined>(undefined);
   return (
     <Select<number>
-      {...rest}
-      options={
-        options ||
-        [...Array(20).fill(null)].map((_, index) => ({
-          label: `Item #${index}`,
-          value: index,
-        }))
-      }
+      options={[...Array(20).fill(null)].map((_, index) => ({
+        label: `Item #${index}`,
+        value: index,
+      }))}
       value={value}
       onChange={setValue}
-      placeholder={placeholder}
+      placeholder='Placeholder text'
     />
   );
 };
-
-ManyItems.args = {
-  placeholder: 'Placeholder text',
-};
-
-ManyItems.argTypes = {
-  options: { control: { disable: true } },
-};
-
-export const Sublabels: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 1, label: 'Item #1', sublabel: 'Sublabel #1' },
-      { value: 2, label: 'Item #2', sublabel: 'Sublabel #2' },
-      { value: 3, label: 'Item #3', sublabel: 'Sublabel #3' },
-    ],
-    placeholder = 'Placeholder text',
-    size = 'large',
-    ...rest
-  } = args;
-  const [value, setValue] = useState<number | undefined>(undefined);
-  return (
-    <Select<number>
-      {...rest}
-      options={options}
-      value={value}
-      onChange={setValue}
-      placeholder={placeholder}
-      size={size}
-    />
-  );
-};
-
-Sublabels.args = {
-  placeholder: 'Placeholder text',
-  size: 'large',
-  options: [
+export const Sublabels = () => {
+  const options = [
     { value: 1, label: 'Item #1', sublabel: 'Sublabel #1' },
     { value: 2, label: 'Item #2', sublabel: 'Sublabel #2' },
     { value: 3, label: 'Item #3', sublabel: 'Sublabel #3' },
-  ],
+  ];
+  const [value, setValue] = useState<number | undefined>(undefined);
+  return (
+    <Select<number>
+      options={options}
+      value={value}
+      onChange={setValue}
+      placeholder='Placeholder text'
+      size='large'
+    />
+  );
 };
 
-export const Custom: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      { value: 'yellow', label: 'Yellow' },
-      { value: 'green', label: 'Green' },
-      { value: 'red', label: 'Red' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+export const Custom = () => {
+  const options = [
+    { value: 'yellow', label: 'Yellow' },
+    { value: 'green', label: 'Green' },
+    { value: 'red', label: 'Red' },
+  ];
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     undefined,
   );
   return (
     <Select<string>
-      {...rest}
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
-      placeholder={placeholder}
+      placeholder='Placeholder text'
       itemRenderer={(option) => (
         <MenuItem style={{ color: option.value }}>{option.label}</MenuItem>
       )}
@@ -292,30 +175,17 @@ export const Custom: StoryFn<SelectProps> = (args) => {
   );
 };
 
-Custom.args = {
-  placeholder: 'Placeholder text',
-  options: [
-    { value: 'yellow', label: 'Yellow' },
-    { value: 'green', label: 'Green' },
-    { value: 'red', label: 'Red' },
-  ],
-};
-
-export const TruncateMiddleText: StoryFn<SelectProps> = (args) => {
-  const {
-    options = [
-      {
-        value:
-          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
-        label:
-          'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
-      },
-      { value: 'ShortNameFile.jpg', label: 'ShortNameFile.jpg' },
-      { value: 'SomeOtherFile.dgn', label: 'SomeOtherFile.dgn' },
-    ],
-    placeholder = 'Placeholder text',
-    ...rest
-  } = args;
+export const TruncateMiddleText = () => {
+  const options = [
+    {
+      value:
+        'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+      label:
+        'MyFileWithAReallyLongNameThatWillBeTruncatedBecauseItIsReallyThatLongSoHardToBelieve_FinalVersion_V2.html',
+    },
+    { value: 'ShortNameFile.jpg', label: 'ShortNameFile.jpg' },
+    { value: 'SomeOtherFile.dgn', label: 'SomeOtherFile.dgn' },
+  ];
   const [selectedValue, setSelectedValue] = useState<string | undefined>(
     options[0].value,
   );
@@ -331,11 +201,10 @@ export const TruncateMiddleText: StoryFn<SelectProps> = (args) => {
 
   return (
     <Select<string>
-      {...rest}
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
-      placeholder={placeholder}
+      placeholder='Placeholder text'
       itemRenderer={(option) => (
         <MenuItem>
           <MiddleTextTruncation
@@ -351,13 +220,11 @@ export const TruncateMiddleText: StoryFn<SelectProps> = (args) => {
   );
 };
 
-export const Multi: StoryFn<SelectProps> = (args) => {
-  const { placeholder = 'Placeholder text', ...rest } = args;
+export const Multi = () => {
   const [value, setValue] = useState<number[]>([]);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
-        {...rest}
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,
@@ -370,29 +237,19 @@ export const Multi: StoryFn<SelectProps> = (args) => {
               : [...prev, val],
           )
         }
-        placeholder={placeholder}
+        placeholder='Placeholder text'
         multiple
       />
     </div>
   );
 };
 
-Multi.args = {
-  placeholder: 'Placeholder text',
-};
-
-Multi.argTypes = {
-  options: { control: { disable: true } },
-};
-
-export const MultiCustomRenderer: StoryFn<SelectProps> = (args) => {
-  const { placeholder = 'Placeholder text', ...rest } = args;
+export const MultiCustomRenderer = () => {
   const [value, setValue] = useState<number[]>([]);
 
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
-        {...rest}
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,
@@ -405,7 +262,7 @@ export const MultiCustomRenderer: StoryFn<SelectProps> = (args) => {
               : [...(prev ?? []), val],
           )
         }
-        placeholder={placeholder}
+        placeholder='Placeholder text'
         multiple
         selectedItemRenderer={(options) => (
           <>{options.map((option) => option.label).join(', ')}</>
@@ -413,12 +270,4 @@ export const MultiCustomRenderer: StoryFn<SelectProps> = (args) => {
       />
     </div>
   );
-};
-
-MultiCustomRenderer.args = {
-  placeholder: 'Placeholder text',
-};
-
-MultiCustomRenderer.argTypes = {
-  options: { control: { disable: true } },
 };

@@ -2,63 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Flex } from '@itwin/itwinui-react';
-
-type FlexProps = React.ComponentProps<typeof Flex>;
 
 export default {
   component: Flex,
   title: 'Utilities/Flex',
-  argTypes: {
-    display: {
-      control: 'radio',
-      options: ['flex', 'inline-flex'],
-    },
-    gap: {
-      control: 'radio',
-      defaultValue: 'xs',
-      options: ['3xs', '2xs', 'xs', 's', 'm', 'l', 'xl', '2xl', '3xl'],
-    },
-    flexDirection: {
-      control: 'radio',
-      options: ['row', 'row-reverse', 'column', 'column-reverse'],
-    },
-    alignItems: {
-      control: 'radio',
-      defaultValue: 'center',
-      options: [
-        'normal',
-        'flex-start',
-        'flex-end',
-        'center',
-        'baseline',
-        'space-between',
-        'space-around',
-        'space-evenly',
-        'stretch',
-      ],
-    },
-    justifyContent: {
-      control: 'radio',
-      options: [
-        'normal',
-        'flex-start',
-        'flex-end',
-        'center',
-        'baseline',
-        'space-between',
-        'space-around',
-        'space-evenly',
-        'stretch',
-      ],
-    },
-    flexWrap: {
-      control: 'radio',
-      options: ['wrap', 'nowrap'],
-    },
-  },
   decorators: [
     (Story) => (
       <div className='demo-flex-wrapper'>
@@ -81,11 +30,11 @@ export default {
       </div>
     ),
   ],
-} as Meta<FlexProps>;
+};
 
-export const Basic: Story<FlexProps> = (args) => {
+export const Basic = () => {
   return (
-    <Flex {...args}>
+    <Flex>
       <div>1</div>
       <div>2</div>
       <div>3</div>
@@ -93,9 +42,9 @@ export const Basic: Story<FlexProps> = (args) => {
   );
 };
 
-export const WithSpacer: Story<FlexProps> = (args) => {
+export const WithSpacer = () => {
   return (
-    <Flex {...args}>
+    <Flex>
       <div>1</div>
       <div>2</div>
 
@@ -108,9 +57,9 @@ export const WithSpacer: Story<FlexProps> = (args) => {
   );
 };
 
-export const WithFlexItem: Story<FlexProps> = (args) => {
+export const WithFlexItem = () => {
   return (
-    <Flex {...args}>
+    <Flex>
       <Flex.Item flex='1'>
         <div>1</div>
       </Flex.Item>
@@ -126,11 +75,11 @@ export const WithFlexItem: Story<FlexProps> = (args) => {
   );
 };
 
-export const IndividualGaps: Story<FlexProps> = (args) => {
+export const IndividualGaps = () => {
   return (
     <>
       {/* '2xl' gap between all items that don't specify `gapBefore` or `gapAfter` */}
-      <Flex gap='2xl' {...args}>
+      <Flex gap='2xl'>
         <Flex.Item>
           <div>1</div>
         </Flex.Item>
@@ -159,7 +108,4 @@ export const IndividualGaps: Story<FlexProps> = (args) => {
       </Flex>
     </>
   );
-};
-IndividualGaps.args = {
-  gap: '2xl',
 };

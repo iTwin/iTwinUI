@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   defaultFooterElements,
@@ -11,34 +10,16 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
 
-type FooterProps = React.ComponentProps<typeof Footer>;
-
 export default {
   title: 'Core/Footer',
   component: Footer,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-  },
-} as Meta<FooterProps>;
-
-export const Basic: Story<FooterProps> = ({
-  translatedTitles,
-  ...rest
-}: FooterProps) => {
-  return <Footer translatedTitles={translatedTitles} {...rest} />;
 };
 
-Basic.args = {
-  translatedTitles: {
-    cookies: 'Cookies translated',
-  },
-} as FooterProps;
+export const Basic = () => {
+  return <Footer translatedTitles={{ cookies: 'Cookies translated' }} />;
+};
 
-export const AppendedCustomElements: Story<FooterProps> = ({
-  ...rest
-}: FooterProps) => {
+export const AppendedCustomElements = () => {
   return (
     <Footer
       customElements={[
@@ -47,14 +28,11 @@ export const AppendedCustomElements: Story<FooterProps> = ({
           url: 'https://www.bentley.com/',
         },
       ]}
-      {...rest}
     />
   );
 };
 
-export const OnlyCustomElements: Story<FooterProps> = ({
-  ...rest
-}: FooterProps) => {
+export const OnlyCustomElements = () => {
   return (
     <Footer
       customElements={() => [
@@ -63,14 +41,11 @@ export const OnlyCustomElements: Story<FooterProps> = ({
         { title: 'Custom Element 3' },
         { title: 'Custom Element 4' },
       ]}
-      {...rest}
     />
   );
 };
 
-export const CustomizedDefaultAndCustomElements: Story<FooterProps> = ({
-  ...rest
-}: FooterProps) => {
+export const CustomizedDefaultAndCustomElements = () => {
   const customElements = (defaultElements: FooterElement[]) => {
     const customUrls: Record<string, string> = {
       privacy: 'https://www.bentley.com/',
@@ -100,22 +75,18 @@ export const CustomizedDefaultAndCustomElements: Story<FooterProps> = ({
     return [...customizedDefaultElements, ...customElements];
   };
 
-  return <Footer customElements={customElements} {...rest} />;
+  return <Footer customElements={customElements} />;
 };
 
-export const BottomFixed: Story<FooterProps> = ({ ...rest }: FooterProps) => {
+export const BottomFixed = () => {
   return (
     <div>
-      <Footer style={{ position: 'fixed', bottom: 0 }} {...rest} />
+      <Footer style={{ position: 'fixed', bottom: 0 }} />
     </div>
   );
 };
 
-BottomFixed.parameters = {
-  docs: { inlineStories: false },
-};
-
-export const CustomContent: Story<FooterProps> = ({ ...rest }: FooterProps) => {
+export const CustomContent = () => {
   const customItem = (
     <Footer.Item key='copyright'>
       <SvgSmileyHappyHollow style={{ width: 12, height: 12, marginRight: 4 }} />
@@ -123,7 +94,7 @@ export const CustomContent: Story<FooterProps> = ({ ...rest }: FooterProps) => {
     </Footer.Item>
   );
   return (
-    <Footer {...rest}>
+    <Footer>
       <Footer.List>
         {[
           customItem,

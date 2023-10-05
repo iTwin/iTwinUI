@@ -4,9 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { IconButton, Button, DropdownButton } from '../Buttons/index.js';
-import { ProgressRadial } from '../ProgressIndicators/index.js';
-import { MenuItem } from '../Menu/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
+import { Button } from '../Buttons/Button.js';
+import { DropdownButton } from '../Buttons/DropdownButton.js';
+import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
+import { MenuItem } from '../Menu/MenuItem.js';
 import {
   getBoundedValue,
   useGlobals,

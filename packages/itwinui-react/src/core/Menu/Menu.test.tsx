@@ -8,8 +8,8 @@ import MenuItem from './MenuItem.js';
 import Menu from './Menu.js';
 import { MenuDivider } from './MenuDivider.js';
 import { MenuExtraContent } from './MenuExtraContent.js';
-import { Checkbox } from '../Checkbox/index.js';
-import { Button } from '../Buttons/index.js';
+import { Checkbox } from '../Checkbox/Checkbox.js';
+import { Button } from '../Buttons/Button.js';
 
 const testLabels = ['Test0', 'Test1', 'Test2'];
 

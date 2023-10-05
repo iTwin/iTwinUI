@@ -29,6 +29,19 @@ const getSurfaceElevationValue = (elevation: SurfaceProps['elevation']) => {
   }
 };
 
+/** Returns correct border value based on prop */
+const getBorderValue = (border: boolean | string | undefined) => {
+  if (typeof border === 'string') {
+    return border;
+  }
+
+  if (border === false) {
+    return 'none';
+  }
+
+  return '';
+};
+
 // ----------------------------------------------------------------------------
 // Surface.Header component
 
@@ -86,6 +99,14 @@ type SurfaceProps = {
    */
   elevation?: 0 | 1 | 2 | 3 | 4 | 5;
   /**
+   * Sets the border of the surface.
+   *
+   * Can be a boolean to toggle the default border, or a string value to specify a custom border.
+   *
+   * @default true
+   */
+  border?: boolean | string;
+  /**
    * Content in the surface.
    */
   children: React.ReactNode;
@@ -103,12 +124,20 @@ type SurfaceProps = {
  */
 export const Surface = Object.assign(
   React.forwardRef((props, ref) => {
-    const { elevation, className, style, children, ...rest } = props;
+    const {
+      elevation,
+      border = true,
+      className,
+      style,
+      children,
+      ...rest
+    } = props;
 
     const [hasLayout, setHasLayout] = React.useState(false);
 
     const _style = {
       '--iui-surface-elevation': getSurfaceElevationValue(elevation),
+      '--iui-surface-border': getBorderValue(border),
       ...style,
     };
     return (

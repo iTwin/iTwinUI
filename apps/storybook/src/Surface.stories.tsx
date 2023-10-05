@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import {
   Surface,
@@ -16,23 +15,12 @@ import {
 } from '@itwin/itwinui-react';
 import { SvgActivity, SvgSettings } from '@itwin/itwinui-icons-react';
 
-type SurfaceProps = React.ComponentProps<typeof Surface>;
-type SurfaceBodyProps = React.ComponentProps<typeof Surface.Body>;
-
 export default {
   component: Surface,
-  argTypes: {
-    className: { control: { disable: true } },
-    style: { control: { disable: true } },
-    id: { control: { disable: true } },
-    elevation: {
-      options: [0, 1, 2, 3, 4, 5],
-    },
-  },
   title: 'Core/Surface',
-} as Meta<SurfaceProps>;
+};
 
-export const Basic: Story<SurfaceProps> = ({ elevation }) => {
+export const Basic = () => {
   const cardStyle = {
     height: '100px',
     display: 'flex',
@@ -41,22 +29,19 @@ export const Basic: Story<SurfaceProps> = ({ elevation }) => {
     padding: '12px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle}>
-      <p>
+    <Surface elevation={1} style={cardStyle}>
+      <Text>
         The Surface container allows content to appear elevated through the use
         of a drop shadow. Change the <Code>elevation</Code> property of the
         component to adjust the shadow level.
-      </p>
+      </Text>
     </Surface>
   );
 };
 
-Basic.args = { elevation: 1 };
-
-export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, isPadded } = args;
+export const Custom = () => {
   return (
-    <Surface elevation={elevation} {...args}>
+    <Surface elevation={1}>
       <Surface.Header>
         <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
           <Text variant='subheading' as='h2'>
@@ -67,8 +52,8 @@ export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
           </IconButton>
         </Flex>
       </Surface.Header>
-      <Surface.Body isPadded={isPadded}>
-        <p>
+      <Surface.Body isPadded>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -76,30 +61,25 @@ export const Custom: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        </Text>
       </Surface.Body>
     </Surface>
   );
 };
 
-Custom.args = { elevation: 1, isPadded: true };
-
-export const OverflowWithButtonFooter: Story<
-  SurfaceProps & SurfaceBodyProps
-> = (args) => {
-  const { elevation, isPadded } = args;
+export const OverflowWithButtonFooter = () => {
   const cardStyle = {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle}>
+    <Surface elevation={1} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & button footer
         </Text>
       </Surface.Header>
-      <Surface.Body isPadded={isPadded}>
-        <p>
+      <Surface.Body isPadded>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -127,7 +107,7 @@ export const OverflowWithButtonFooter: Story<
           voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
           sint occaecat cupidatat non proident, sunt in culpa qui officia
           deserunt mollit anim id est laborum.
-        </p>
+        </Text>
       </Surface.Body>
       <Divider />
       <Button styleType='borderless'>View All</Button>
@@ -135,14 +115,7 @@ export const OverflowWithButtonFooter: Story<
   );
 };
 
-OverflowWithButtonFooter.args = {
-  elevation: 1,
-  isPadded: true,
-};
-
-export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, isPadded } = args;
-
+export const NoPadding = () => {
   const listStyle = {
     padding: 'var(--iui-size-s)',
     position: 'relative',
@@ -151,13 +124,13 @@ export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
     maxHeight: '300px',
   };
   return (
-    <Surface elevation={elevation} style={cardStyle}>
+    <Surface elevation={1} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with overflow & no body padding
         </Text>
       </Surface.Header>
-      <Surface.Body isPadded={isPadded}>
+      <Surface.Body isPadded={false}>
         <Flex flexDirection='column' style={{ flex: '1' }}>
           <ul
             style={{
@@ -197,23 +170,19 @@ export const NoPadding: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
   );
 };
 
-NoPadding.args = { elevation: 1, isPadded: false };
-
-export const EmptyState: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
-  const { elevation, isPadded } = args;
-
+export const EmptyState = () => {
   const cardStyle = {
     height: '300px',
   };
 
   return (
-    <Surface elevation={elevation} style={cardStyle}>
+    <Surface elevation={1} style={cardStyle}>
       <Surface.Header>
         <Text variant='subheading' as='h2'>
           Surface with empty state
         </Text>
       </Surface.Header>
-      <Surface.Body style={{ display: 'flex' }} isPadded={isPadded}>
+      <Surface.Body style={{ display: 'flex' }} isPadded>
         <Flex
           justifyContent={'center'}
           alignItems={'center'}
@@ -229,5 +198,3 @@ export const EmptyState: Story<SurfaceProps & SurfaceBodyProps> = (args) => {
     </Surface>
   );
 };
-
-EmptyState.args = { elevation: 1, isPadded: true };

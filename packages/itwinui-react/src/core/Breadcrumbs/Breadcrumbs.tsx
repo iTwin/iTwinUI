@@ -12,7 +12,7 @@ import {
   createWarningLogger,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { Button } from '../Buttons/Button/index.js';
+import { Button } from '../Buttons/Button.js';
 
 const logWarningInDev = createWarningLogger();
 

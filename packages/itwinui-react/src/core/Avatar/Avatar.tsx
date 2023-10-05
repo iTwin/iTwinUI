@@ -4,16 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import {
-  Box,
-  VisuallyHidden,
-  SoftBackgrounds,
-  isSoftBackground,
-} from '../utils/index.js';
+import { Box, SoftBackgrounds, isSoftBackground } from '../utils/index.js';
 import type {
   AnyString,
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 /**
  * Helper function that returns one of the preset badge color values.

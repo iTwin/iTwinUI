@@ -20,25 +20,16 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { Meta, Story } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-
-type ButtonGroupProps = React.ComponentProps<typeof ButtonGroup>;
 
 export default {
   title: 'Buttons/ButtonGroup',
   component: ButtonGroup,
-  argTypes: {
-    style: { control: { disable: true } },
-    className: { control: { disable: true } },
-    id: { control: { disable: true } },
-    children: { control: { disable: true } },
-  },
-} as Meta<ButtonGroupProps>;
+};
 
-export const WithIcons: Story<ButtonGroupProps> = (args) => {
+export const WithIcons = () => {
   return (
-    <ButtonGroup {...args}>
+    <ButtonGroup>
       <IconButton onClick={action('Clicked add!')}>
         <SvgAdd />
       </IconButton>
@@ -55,7 +46,7 @@ export const WithIcons: Story<ButtonGroupProps> = (args) => {
   );
 };
 
-export const Overflow: Story<ButtonGroupProps> = (args) => {
+export const Overflow = () => {
   const items = Array.from({ length: 10 }, (_, index) => (
     <IconButton key={index} label={`Item #${index}`}>
       <SvgPlaceholder />
@@ -80,16 +71,10 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
             return (
               <DropdownMenu
                 menuItems={(close) => {
-                  const length =
-                    args.overflowPlacement === 'start'
-                      ? overflowStart + 1
-                      : items.length - overflowStart;
+                  const length = items.length - overflowStart;
 
                   return Array.from({ length }, (_, _index) => {
-                    const index =
-                      args.overflowPlacement === 'start'
-                        ? _index
-                        : overflowStart + _index;
+                    const index = overflowStart + _index;
 
                     return (
                       <MenuItem
@@ -109,7 +94,6 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
               </DropdownMenu>
             );
           }}
-          {...args}
         >
           {items}
         </ButtonGroup>
@@ -117,14 +101,10 @@ export const Overflow: Story<ButtonGroupProps> = (args) => {
     </>
   );
 };
-Overflow.args = {
-  overflowPlacement: 'end',
-  orientation: 'horizontal',
-};
 
-export const InputButtonCombo: Story<ButtonGroupProps> = (args) => {
+export const InputButtonCombo = () => {
   return (
-    <ButtonGroup {...args}>
+    <ButtonGroup>
       <Input
         defaultValue='Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuYXV0aDAuY29tLyIsImF1ZCI6Imh0dHBzOi8vYXBpLmV4YW1wbGUuY29tL2NhbGFuZGFyL3YxLyIsInN1YiI6InVzcl8xMjMiLCJpYXQiOjE0NTg3ODU3OTYsImV4cCI6MTQ1ODg3MjE5Nn0.CA7eaHjIHz5NxeIJoFK9krqaeZrPLwmMmgI_XiQiIkQ'
         readOnly
@@ -144,14 +124,10 @@ export const InputButtonCombo: Story<ButtonGroupProps> = (args) => {
     </ButtonGroup>
   );
 };
-InputButtonCombo.args = {
-  orientation: 'horizontal',
-};
-InputButtonCombo.parameters = {};
 
-export const Vertical: Story<ButtonGroupProps> = (args) => {
+export const Vertical = () => {
   return (
-    <ButtonGroup orientation='vertical' {...args}>
+    <ButtonGroup orientation='vertical'>
       <IconButton onClick={action('Clicked add!')}>
         <SvgAdd />
       </IconButton>
@@ -167,11 +143,8 @@ export const Vertical: Story<ButtonGroupProps> = (args) => {
     </ButtonGroup>
   );
 };
-Vertical.args = {
-  orientation: 'vertical',
-};
 
-export const VerticalOverflow: Story<ButtonGroupProps> = (args) => {
+export const VerticalOverflow = () => {
   const buttons = Array(10)
     .fill(null)
     .map((_, index) => (
@@ -215,15 +188,10 @@ export const VerticalOverflow: Story<ButtonGroupProps> = (args) => {
           </IconButton>
         </DropdownMenu>
       )}
-      {...args}
     >
       {buttons}
     </ButtonGroup>
   );
-};
-VerticalOverflow.args = {
-  overflowPlacement: 'end',
-  orientation: 'vertical',
 };
 VerticalOverflow.decorators = [
   (Story) => (

@@ -3,11 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
-import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { ToggleSwitch } from '@itwin/itwinui-react';
-
-type ToggleSwitchProps = React.ComponentProps<typeof ToggleSwitch>;
 
 export default {
   title: 'Input/ToggleSwitch',
@@ -19,79 +16,38 @@ export default {
       </div>
     ),
   ],
-} as Meta<ToggleSwitchProps>;
-
-export const Basic: Story<ToggleSwitchProps> = (args) => {
-  return <ToggleSwitch defaultChecked {...args} />;
 };
 
-export const Small: Story<ToggleSwitchProps> = (args) => {
-  const { size = 'small', ...rest } = args;
-  return <ToggleSwitch defaultChecked size={size} {...rest} />;
+export const Basic = () => {
+  return <ToggleSwitch defaultChecked />;
 };
 
-Small.args = {
-  size: 'small',
+export const Small = () => {
+  return <ToggleSwitch defaultChecked size='small' />;
 };
 
-export const DisabledChecked: Story<ToggleSwitchProps> = (args) => {
-  const { disabled = true, ...rest } = args;
-  return <ToggleSwitch defaultChecked disabled={disabled} {...rest} />;
+export const DisabledChecked = () => {
+  return <ToggleSwitch defaultChecked disabled />;
 };
 
-DisabledChecked.args = {
-  disabled: true,
+export const DisabledUnchecked = () => {
+  return <ToggleSwitch disabled />;
 };
 
-export const DisabledUnchecked: Story<ToggleSwitchProps> = (args) => {
-  const { disabled = true, ...rest } = args;
-  return <ToggleSwitch disabled={disabled} {...rest} />;
-};
-
-DisabledUnchecked.args = {
-  disabled: true,
-};
-
-export const LabelRight: Story<ToggleSwitchProps> = (args) => {
-  const {
-    label = 'This is a right label',
-    labelPosition = 'right',
-    ...rest
-  } = args;
+export const LabelRight = () => {
   return (
     <ToggleSwitch
       defaultChecked
-      label={label}
-      labelPosition={labelPosition}
-      {...rest}
+      label='This is a right label'
+      labelPosition='right'
     />
   );
 };
 
-LabelRight.args = {
-  label: 'This is a right label',
-  labelPosition: 'right',
+export const LabelLeft = () => {
+  return <ToggleSwitch label='This is a left label' labelPosition='left' />;
 };
 
-export const LabelLeft: Story<ToggleSwitchProps> = (args) => {
-  const {
-    label = 'This is a left label',
-    labelPosition = 'left',
-    ...rest
-  } = args;
-  return <ToggleSwitch label={label} labelPosition={labelPosition} {...rest} />;
-};
-
-LabelLeft.args = {
-  label: 'This is a left label',
-  labelPosition: 'left',
-};
-
-export const WithIcon: Story<ToggleSwitchProps> = (args) => {
-  const { icon = <SvgCheckmark />, ...rest } = args;
-  return <ToggleSwitch defaultChecked icon={icon} {...rest} />;
-};
-
-WithIcon.args = {
-  icon: <SvgCheckmark />,
+export const WithIcon = () => {
+  return <ToggleSwitch defaultChecked icon={<SvgCheckmark />} />;
 };

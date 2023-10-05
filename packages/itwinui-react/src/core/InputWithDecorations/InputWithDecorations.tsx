@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { Box, InputFlexContainer, useSafeContext } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/index.js';
+import { IconButton } from '../Buttons/IconButton.js';
 import type { InputProps } from '../Input/Input.js';
 
 const InputWithDecorationsContext = React.createContext<

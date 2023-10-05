@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { Story, Meta } from '@storybook/react';
 import React from 'react';
 import { Anchor, Button, NonIdealState } from '@itwin/itwinui-react';
 import {
@@ -18,233 +17,209 @@ import {
 } from '@itwin/itwinui-illustrations-react';
 import { action } from '@storybook/addon-actions';
 
-type NonIdealStateProps = React.ComponentProps<typeof NonIdealState>;
-
 export default {
   title: 'Core/NonIdealState',
   component: NonIdealState,
-  argTypes: {
-    id: { control: { disable: true } },
-    svg: { control: { disable: true } },
-    actions: { control: { disable: true } },
-  },
-} as Meta<NonIdealStateProps>;
-
-export const Redirect: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
-);
-Redirect.args = {
-  svg: <SvgRedirect />,
-  heading: 'Redirect',
-  description: (
-    <>
-      Requested page has been moved permanently.
-      <br />
-      Unable to fulfill request.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
 };
 
-export const Unauthorized: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const Redirect = () => (
+  <NonIdealState
+    svg={<SvgRedirect />}
+    heading='Redirect'
+    description={
+      <>
+        Requested page has been moved permanently.
+        <br />
+        Unable to fulfill request.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-Unauthorized.args = {
-  svg: <Svg401 />,
-  heading: 'Unauthorized',
-  description: (
-    <>
-      You do not have permission to access this server.
-      <br />
-      Unable to fulfill request.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
+export const Unauthorized = () => (
+  <NonIdealState
+    svg={<Svg401 />}
+    heading='Unauthorized'
+    description={
+      <>
+        You do not have permission to access this server.
+        <br />
+        Unable to fulfill request.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
+);
 
-export const Forbidden: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const Forbidden = () => (
+  <NonIdealState
+    svg={<Svg403 />}
+    heading='Forbidden'
+    description={
+      <>
+        You do not have permission to access this server.
+        <br />
+        Unable to fulfill request.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-Forbidden.args = {
-  svg: <Svg403 />,
-  heading: 'Forbidden',
-  description: (
-    <>
-      You do not have permission to access this server.
-      <br />
-      Unable to fulfill request.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const PageNotFound: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const PageNotFound = () => (
+  <NonIdealState
+    svg={<Svg404 />}
+    heading='Page not found'
+    description={
+      <>
+        We can not find the iModel that you are looking for or it does not
+        exist.
+        <br />
+        Visit the iModel HUB or contact our support team.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-PageNotFound.args = {
-  svg: <Svg404 />,
-  heading: 'Page not found',
-  description: (
-    <>
-      We can not find the iModel that you are looking for or it does not exist.
-      <br />
-      Visit the iModel HUB or contact our support team.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const TimeOut: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const TimeOut = () => (
+  <NonIdealState
+    svg={<SvgTimedOut />}
+    heading='Timed out'
+    description={
+      <>
+        Your request timed out.
+        <br />
+        Please try again.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-TimeOut.args = {
-  svg: <SvgTimedOut />,
-  heading: 'Timed out',
-  description: (
-    <>
-      Your request timed out.
-      <br />
-      Please try again.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const InternalServerError: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const InternalServerError = () => (
+  <NonIdealState
+    svg={<Svg500 />}
+    heading='Internal server error'
+    description='Please retry again. If this continues to happen, please contact our support team or visit the iModel HUB.'
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-InternalServerError.args = {
-  svg: <Svg500 />,
-  heading: 'Internal server error',
-  description:
-    'Please retry again. If this continues to happen, please contact our support team or visit the iModel HUB.',
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const BadGateway: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const BadGateway = () => (
+  <NonIdealState
+    svg={<Svg502 />}
+    heading='Bad gateway'
+    description='The server encountered a temporary error. Please try again in 30 seconds or visit iModel HUB.'
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-BadGateway.args = {
-  svg: <Svg502 />,
-  heading: 'Bad gateway',
-  description:
-    'The server encountered a temporary error. Please try again in 30 seconds or visit iModel HUB.',
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const ServiceUnavailable: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const ServiceUnavailable = () => (
+  <NonIdealState
+    svg={<Svg503 />}
+    heading='Service unavailable'
+    description='This service is being worked on. Please come back in a little bit or visit iModel HUB.'
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-ServiceUnavailable.args = {
-  svg: <Svg503 />,
-  heading: 'Service unavailable',
-  description:
-    'This service is being worked on. Please come back in a little bit or visit iModel HUB.',
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const Generic: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const Generic = () => (
+  <NonIdealState
+    svg={<SvgError />}
+    heading='Error'
+    description="We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team."
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-Generic.args = {
-  svg: <SvgError />,
-  heading: 'Error',
-  description:
-    "We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team.",
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const CustomHtmlMessage: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const CustomHtmlMessage = () => (
+  <NonIdealState
+    svg={<SvgError />}
+    heading='Error'
+    description={
+      <>
+        A React component with an{' '}
+        <Anchor href='https://www.bentley.com' target='_blank' rel='noreferrer'>
+          anchor
+        </Anchor>{' '}
+        may be passed.
+      </>
+    }
+    actions={
+      <>
+        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+          Retry
+        </Button>
+        <Button onClick={action('Contacting')}>Contact us</Button>
+      </>
+    }
+  />
 );
-CustomHtmlMessage.args = {
-  svg: <SvgError />,
-  heading: 'Error',
-  description: (
-    <>
-      A React component with an{' '}
-      <Anchor href='https://www.bentley.com' target='_blank' rel='noreferrer'>
-        anchor
-      </Anchor>{' '}
-      may be passed.
-    </>
-  ),
-  actions: (
-    <>
-      <Button onClick={action('Retrying')} styleType={'high-visibility'}>
-        Retry
-      </Button>
-      <Button onClick={action('Contacting')}>Contact us</Button>
-    </>
-  ),
-};
 
-export const WithoutMessageOrButtons: Story<NonIdealStateProps> = (props) => (
-  <NonIdealState {...props} />
+export const WithoutMessageOrButtons = () => (
+  <NonIdealState svg={<SvgError />} />
 );
-WithoutMessageOrButtons.args = {
-  svg: <SvgError />,
-};
