@@ -377,7 +377,6 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
   // select 1
   fireEvent.keyDown(tabs[1], { key: 'Enter' });
-  console.log('should be called 1');
   expect(mockonActivated1).toBeCalled();
 
   // 1 -> 0
