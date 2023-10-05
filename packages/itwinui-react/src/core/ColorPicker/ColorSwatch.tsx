@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { ColorValue, Box } from '../utils/index.js';
+import { ColorValue, Box, ButtonBase } from '../utils/index.js';
 import type {
   ColorType,
   PolymorphicForwardRefComponent,
@@ -41,6 +41,7 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
 
   return (
     <Box
+      as={(!!onClick ? ButtonBase : 'span') as 'button'}
       className={cx('iui-color-swatch', { 'iui-active': isActive }, className)}
       style={
         {
@@ -49,12 +50,11 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
         } as React.CSSProperties
       }
       onClick={onClick}
-      tabIndex={isActive ? 0 : -1}
-      aria-selected={isActive}
+      aria-pressed={isActive}
       ref={ref}
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'div', ColorSwatchProps>;
+}) as PolymorphicForwardRefComponent<'button', ColorSwatchProps>;
 
 export default ColorSwatch;
