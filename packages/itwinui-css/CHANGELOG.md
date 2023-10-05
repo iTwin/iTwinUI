@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.0-dev.11
+
+### Major Changes
+
+- [#1610](https://github.com/iTwin/iTwinUI/pull/1610): Replaced `--iui-surface-border-color` with `--iui-surface-border` for full customization of border. Also removed `--iui-surface-border-radius` and `--iui-surface-background-color`.
+
+### Patch Changes
+
+- [#1609](https://github.com/iTwin/iTwinUI/pull/1609): Adjusted padding value for `Surface.Body`.
+
 ## 2.0.0-dev.10
 
 ### Minor Changes

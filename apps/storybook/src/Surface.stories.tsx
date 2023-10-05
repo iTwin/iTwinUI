@@ -30,11 +30,11 @@ export const Basic = () => {
   };
   return (
     <Surface elevation={1} style={cardStyle}>
-      <p>
+      <Text>
         The Surface container allows content to appear elevated through the use
         of a drop shadow. Change the <Code>elevation</Code> property of the
         component to adjust the shadow level.
-      </p>
+      </Text>
     </Surface>
   );
 };
@@ -53,7 +53,7 @@ export const Custom = () => {
         </Flex>
       </Surface.Header>
       <Surface.Body isPadded>
-        <p>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -61,7 +61,7 @@ export const Custom = () => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        </Text>
       </Surface.Body>
     </Surface>
   );
@@ -79,7 +79,7 @@ export const OverflowWithButtonFooter = () => {
         </Text>
       </Surface.Header>
       <Surface.Body isPadded>
-        <p>
+        <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -107,7 +107,7 @@ export const OverflowWithButtonFooter = () => {
           voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
           sint occaecat cupidatat non proident, sunt in culpa qui officia
           deserunt mollit anim id est laborum.
-        </p>
+        </Text>
       </Surface.Body>
       <Divider />
       <Button styleType='borderless'>View All</Button>
