@@ -12,7 +12,6 @@ import {
   useIsomorphicLayoutEffect,
   useMergedRefs,
   useContainerWidth,
-  useResizeObserver,
   ButtonBase,
   mergeEventHandlers,
   useControlledState,
@@ -182,65 +181,13 @@ type TabListOwnProps = {
 const TabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { orientation, type, overflowOptions, hasSublabel, color } =
+  const { type, overflowOptions, hasSublabel, color } =
     useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
-
-  const [scrollingPlacement, setScrollingPlacement] = React.useState<
-    string | undefined
-  >(undefined);
-
-  const determineScrollingPlacement = React.useCallback(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    const isVertical = orientation === 'vertical';
-    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
-    const visibleEnd = isVertical
-      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
-      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
-    const totalTabsSpace = isVertical
-      ? ownerDoc.scrollHeight
-      : ownerDoc.scrollWidth;
-
-    if (
-      Math.abs(visibleStart) < 1 &&
-      Math.abs(visibleEnd - totalTabsSpace) < 1
-    ) {
-      setScrollingPlacement(undefined);
-    } else if (Math.abs(visibleStart) < 1) {
-      setScrollingPlacement('start');
-    } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
-      setScrollingPlacement('end');
-    } else {
-      setScrollingPlacement('center');
-    }
-  }, [orientation, setScrollingPlacement]);
-
-  // apply correct mask when tabs list is resized
-  const [resizeRef] = useResizeObserver(determineScrollingPlacement);
-  resizeRef(tablistRef?.current);
-
-  // check if overflow tabs are scrolled to far edges
-  React.useEffect(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    if (!overflowOptions?.useOverflow) {
-      ownerDoc.removeEventListener('scroll', determineScrollingPlacement);
-      return;
-    }
-
-    ownerDoc.addEventListener('scroll', determineScrollingPlacement);
-  }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
 
   return (
     <Box
@@ -256,7 +203,6 @@ const TabList = React.forwardRef((props, ref) => {
         className,
       )}
       data-iui-overflow={overflowOptions?.useOverflow}
-      data-iui-scroll-placement={scrollingPlacement}
       role='tablist'
       ref={refs}
       {...rest}
@@ -313,8 +259,8 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     if (isActive) {
       tabRef.current?.scrollIntoView({
         behavior: 'smooth',
-        block: 'nearest',
-        inline: 'nearest',
+        block: 'center',
+        inline: 'center',
       });
     }
   }, [isActive]);
