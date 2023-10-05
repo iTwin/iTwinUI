@@ -160,7 +160,7 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
 });
 
 it('should render green tabs', () => {
-  const { container } = renderComponent({}, { color: 'green' });
+  const { container } = renderComponent({ color: 'green' }, {});
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
@@ -216,9 +216,9 @@ it('should set active tab', () => {
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
-  expect(tabs[0].className).not.toHaveAttribute('aria-selected', 'true');
-  expect(tabs[1].className).not.toHaveAttribute('aria-selected', 'true');
-  expect(tabs[2].className).toHaveAttribute('aria-selected', 'true');
+  expect(tabs[0]).toHaveAttribute('aria-selected', 'false');
+  expect(tabs[1]).toHaveAttribute('aria-selected', 'false');
+  expect(tabs[2]).toHaveAttribute('aria-selected', 'true');
 });
 
 it('should add .iui-large if tabs have sublabel', () => {
@@ -341,9 +341,9 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
   const mockonActivated1 = jest.fn();
 
   const { container } = renderComponent(
+    { focusActivationMode: 'manual' },
     {},
-    {},
-    <Tabs.Wrapper focusActivationMode='manual'>
+    <>
       <Tabs.TabList>
         <Tabs.Tab
           value='tab0'
@@ -364,7 +364,7 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
       <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
       <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
       <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
-    </Tabs.Wrapper>,
+    </>,
   );
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
@@ -377,6 +377,7 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
   // select 1
   fireEvent.keyDown(tabs[1], { key: 'Enter' });
+  console.log('should be called 1');
   expect(mockonActivated1).toBeCalled();
 
   // 1 -> 0
