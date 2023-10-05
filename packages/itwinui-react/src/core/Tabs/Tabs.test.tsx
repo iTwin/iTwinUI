@@ -216,9 +216,9 @@ it('should set active tab', () => {
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(3);
-  expect(tabs[0].className).not.toContain('iui-tab iui-active');
-  expect(tabs[1].className).not.toContain('iui-tab iui-active');
-  expect(tabs[2].className).toContain('iui-tab iui-active');
+  expect(tabs[0].className).not.toHaveAttribute('aria-selected', 'true');
+  expect(tabs[1].className).not.toHaveAttribute('aria-selected', 'true');
+  expect(tabs[2].className).toHaveAttribute('aria-selected', 'true');
 });
 
 it('should add .iui-large if tabs have sublabel', () => {

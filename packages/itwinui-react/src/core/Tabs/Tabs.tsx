@@ -417,7 +417,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   return (
     <ButtonBase
       id={`${idPrefix}-tab-${value}`}
-      className={cx('iui-tab', { 'iui-active': isActive }, className)}
+      className={cx('iui-tab', className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}

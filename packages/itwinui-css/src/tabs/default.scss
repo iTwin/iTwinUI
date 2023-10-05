@@ -20,7 +20,7 @@
       background-color: var(--iui-color-background);
     }
 
-    &.iui-active {
+    &[aria-selected='true'] {
       background-color: var(--iui-color-background);
     }
 
@@ -35,7 +35,7 @@
   }
 
   .iui-horizontal & {
-    .iui-tab.iui-active {
+    .iui-tab[aria-selected='true'] {
       border-block-end-color: transparent;
     }
 
@@ -53,7 +53,7 @@
   }
 
   .iui-vertical & {
-    .iui-tab.iui-active {
+    .iui-tab[aria-selected='true'] {
       border-inline-end-color: transparent;
     }
 
