@@ -167,7 +167,7 @@ it('should render green tabs', () => {
   expect(tabContainer.className).toContain('iui-green');
 });
 
-it('should call onActivated when switching tabs', () => {
+it('should call onActiveChange when switching tabs', () => {
   const onActivated = jest.fn();
 
   const { container } = renderComponent(
@@ -179,7 +179,7 @@ it('should call onActivated when switching tabs', () => {
         <Tabs.Tab value='tab1' key={1} label='Label 1' />
         <Tabs.Tab
           value='tab2'
-          onActivated={onActivated()}
+          onActiveChange={onActivated()}
           key={2}
           label='Label 2'
         />
@@ -275,19 +275,19 @@ it.each(['horizontal', 'vertical'] as const)(
           <Tabs.Tab
             value='tab0'
             isActive
-            onActivated={mockonActivated0}
+            onActiveChange={mockonActivated0}
             key={0}
             label='Label 0'
           />
           <Tabs.Tab
             value='tab1'
-            onActivated={mockonActivated1}
+            onActiveChange={mockonActivated1}
             key={1}
             label='Label 1'
           />
           <Tabs.Tab
             value='tab2'
-            onActivated={mockonActivated2}
+            onActiveChange={mockonActivated2}
             key={2}
             label='Label 2'
           />
@@ -343,18 +343,18 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
   const { container } = renderComponent(
     {},
     {},
-    <>
-      <Tabs.TabList focusActivationMode='manual'>
+    <Tabs.Wrapper focusActivationMode='manual'>
+      <Tabs.TabList>
         <Tabs.Tab
           value='tab0'
-          onActivated={mockonActivated0}
+          onActiveChange={mockonActivated0}
           isActive
           key={0}
           label='Label 0'
         />
         <Tabs.Tab
           value='tab1'
-          onActivated={mockonActivated1}
+          onActiveChange={mockonActivated1}
           key={1}
           label='Label 1'
         />
@@ -364,7 +364,7 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
       <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
       <Tabs.Panel value='tab1'>Test Content 1</Tabs.Panel>
       <Tabs.Panel value='tab2'>Test Content 2</Tabs.Panel>
-    </>,
+    </Tabs.Wrapper>,
   );
 
   const tablist = container.querySelector('.iui-tabs') as HTMLElement;
@@ -409,6 +409,7 @@ it('should render a Tab in its most basic state', () => {
     <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab' label='Tab label' />
+        <Tabs.Tab value='tab' label='Tab label' />
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
@@ -423,6 +424,10 @@ it('should render with sublabel', () => {
   const { container } = render(
     <Tabs.Wrapper>
       <Tabs.TabList>
+        <Tabs.Tab value='tab'>
+          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
+        </Tabs.Tab>
         <Tabs.Tab value='tab'>
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
           <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
@@ -452,6 +457,12 @@ it('should render with icon', () => {
           </Tabs.TabIcon>
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
         </Tabs.Tab>
+        <Tabs.Tab value='tab'>
+          <Tabs.TabIcon>
+            <SvgPlaceholder />
+          </Tabs.TabIcon>
+          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+        </Tabs.Tab>
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
@@ -471,6 +482,7 @@ it('should render in disabled state', () => {
   const { container } = render(
     <Tabs.Wrapper>
       <Tabs.TabList>
+        <Tabs.Tab value='tab' disabled label='Tab label' />
         <Tabs.Tab value='tab' disabled label='Tab label' />
       </Tabs.TabList>
     </Tabs.Wrapper>,
