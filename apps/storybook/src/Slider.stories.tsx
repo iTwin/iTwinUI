@@ -123,7 +123,10 @@ export const CustomTickNoTooltip = () => {
     new Date(Date.UTC(2019, 0, 1)),
   );
 
-  const updateDate = useCallback((values: ReadonlyArray<number>) => {
+  const [values, setValues] = React.useState([0]);
+
+  const updateDate = useCallback((values: number[]) => {
+    setValues(values);
     const newDate = new Date(Date.UTC(2019, 0, values[0]));
     setCurrentDate(newDate);
   }, []);
@@ -133,7 +136,7 @@ export const CustomTickNoTooltip = () => {
       <Slider
         min={1}
         max={365}
-        values={[0]}
+        values={values}
         tooltipProps={() => {
           return { visible: false };
         }}
