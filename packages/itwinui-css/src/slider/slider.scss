@@ -84,6 +84,8 @@ $iui-slider-tick-thickness: 1px;
       'min';
     justify-items: center;
     inline-size: fit-content;
+    block-size: 100%;
+    min-block-size: 30px;
 
     .iui-slider-min,
     .iui-slider-max {
