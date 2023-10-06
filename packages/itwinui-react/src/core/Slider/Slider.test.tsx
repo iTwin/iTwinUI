@@ -46,6 +46,7 @@ const defaultSingleValue = [50];
 
 const assertBaseElement = (container: HTMLElement) => {
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   expect(container.querySelector('.iui-slider-thumb')).toBeTruthy();
 };
 
@@ -98,6 +99,7 @@ it('should render all custom classNames correctly', () => {
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   expect(container.querySelector('.iui-slider-thumb')).toBeFalsy();
 });
 
@@ -120,6 +122,7 @@ it('should not render track if value is below specified min/max', () => {
 it('should not render track if value is above specified min/max', () => {
   const { container } = render(<Slider values={[60]} min={20} max={40} />);
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
   expect(element).toHaveStyle('--iui-slider-thumb-position: 100%');
@@ -129,6 +132,10 @@ it('should not render track if value is above specified min/max', () => {
 it('should render disabled component', () => {
   const { container } = render(<Slider values={defaultSingleValue} disabled />);
   assertBaseElement(container);
+  expect(container.querySelector('.iui-slider-container')).toHaveAttribute(
+    'data-iui-disabled',
+    'true',
+  );
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-disabled')).toEqual('true');
