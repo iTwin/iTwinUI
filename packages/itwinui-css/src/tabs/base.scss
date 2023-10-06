@@ -151,19 +151,19 @@ $borderless-horizontal-tab-min-height: calc(
 
     @keyframes scroll-shadow-inset {
       from {
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
       }
 
       5% {
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
       95% {
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
       to {
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
       }
     }
   }
@@ -206,19 +206,19 @@ $borderless-horizontal-tab-min-height: calc(
 
     @keyframes scroll-shadow-inset {
       from {
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
       }
 
       5% {
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
       95% {
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
       to {
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+        mask-image: linear-gradient(0deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
       }
     }
   }
