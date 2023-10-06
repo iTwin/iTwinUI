@@ -82,9 +82,7 @@ it('should render vertical tabs', () => {
 
 it('should allow horizontal scrolling when overflowOptions useOverflow is true', () => {
   const { container } = renderComponent(
-    {
-      overflowOptions: { useOverflow: true },
-    },
+    {},
     {},
     <>
       <Tabs.TabList>
@@ -113,7 +111,6 @@ it('should allow horizontal scrolling when overflowOptions useOverflow is true',
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(9);
@@ -123,7 +120,6 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
   const { container } = renderComponent(
     {
       orientation: 'vertical',
-      overflowOptions: { useOverflow: true },
     },
     {},
     <>
@@ -153,7 +149,6 @@ it('should allow vertical scrolling when overflowOptions useOverflow is true', (
 
   const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
   expect(tabContainer).toBeTruthy();
-  expect(tabContainer).toHaveAttribute('data-iui-overflow', 'true');
 
   const tabs = container.querySelectorAll('.iui-tab');
   expect(tabs.length).toBe(9);
@@ -171,18 +166,13 @@ it('should call onActiveChange when switching tabs', () => {
   const onActivated = jest.fn();
 
   const { container } = renderComponent(
-    {},
+    { onValueChange: onActivated },
     {},
     <>
       <Tabs.TabList>
         <Tabs.Tab value='tab0' key={0} label='Label 0' />
         <Tabs.Tab value='tab1' key={1} label='Label 1' />
-        <Tabs.Tab
-          value='tab2'
-          onActiveChange={onActivated()}
-          key={2}
-          label='Label 2'
-        />
+        <Tabs.Tab value='tab2' key={2} label='Label 2' />
       </Tabs.TabList>
 
       <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
@@ -199,13 +189,13 @@ it('should call onActiveChange when switching tabs', () => {
 
 it('should set active tab', () => {
   const { container } = renderComponent(
-    {},
+    { value: 'tab2' },
     {},
     <>
       <Tabs.TabList>
         <Tabs.Tab value='tab0' key={0} label='Label 0' />
         <Tabs.Tab value='tab1' key={1} label='Label 1' />
-        <Tabs.Tab isActive value='tab2' key={2} label='Label 2' />
+        <Tabs.Tab value='tab2' key={2} label='Label 2' />
       </Tabs.TabList>
 
       <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
@@ -263,34 +253,20 @@ it('should add .iui-large if tabs have sublabel', () => {
 it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
   async (orientation) => {
-    const mockonActivated0 = jest.fn();
-    const mockonActivated1 = jest.fn();
-    const mockonActivated2 = jest.fn();
+    const mockonActivated = jest.fn();
 
     const { container } = renderComponent(
-      { orientation: orientation },
+      {
+        orientation: orientation,
+        value: 'tab0',
+        onValueChange: mockonActivated,
+      },
       {},
       <>
         <Tabs.TabList>
-          <Tabs.Tab
-            value='tab0'
-            isActive
-            onActiveChange={mockonActivated0}
-            key={0}
-            label='Label 0'
-          />
-          <Tabs.Tab
-            value='tab1'
-            onActiveChange={mockonActivated1}
-            key={1}
-            label='Label 1'
-          />
-          <Tabs.Tab
-            value='tab2'
-            onActiveChange={mockonActivated2}
-            key={2}
-            label='Label 2'
-          />
+          <Tabs.Tab value='tab0' key={0} label='Label 0' />
+          <Tabs.Tab value='tab1' key={1} label='Label 1' />
+          <Tabs.Tab value='tab2' key={2} label='Label 2' />
         </Tabs.TabList>
 
         <Tabs.Panel value='tab0'>Test Content 0</Tabs.Panel>
@@ -307,57 +283,49 @@ it.each(['horizontal', 'vertical'] as const)(
 
     // alt key
     fireEvent.keyDown(tabs[0], { key: nextTabKey, altKey: true });
-    expect(mockonActivated0).not.toHaveBeenCalled();
+    expect(mockonActivated).not.toHaveBeenCalled();
 
     // 0 -> 1
     fireEvent.keyDown(tabs[0], { key: nextTabKey });
-    expect(mockonActivated1).toBeCalled();
+    expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
 
     // 1 -> 2
     fireEvent.keyDown(tabs[1], { key: nextTabKey });
-    expect(mockonActivated2).toBeCalled();
+    expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 0
     fireEvent.keyDown(tabs[2], { key: nextTabKey });
-    expect(mockonActivated0).toBeCalled();
+    expect(mockonActivated).toBeCalledWith('tab0');
     expect(document.activeElement).toBe(tabs[0]);
 
     // 0 -> 2
     fireEvent.keyDown(tabs[0], { key: previousTabKey });
-    expect(mockonActivated2).toBeCalled();
+    expect(mockonActivated).toBeCalledWith('tab2');
     expect(document.activeElement).toBe(tabs[2]);
 
     // 2 -> 1
     fireEvent.keyDown(tabs[2], { key: previousTabKey });
-    expect(mockonActivated1).toBeCalled();
+    expect(mockonActivated).toBeCalledWith('tab1');
     expect(document.activeElement).toBe(tabs[1]);
   },
 );
 
 it('should handle keypresses when focusActivationMode is manual', async () => {
-  const mockonActivated0 = jest.fn();
-  const mockonActivated1 = jest.fn();
+  const mockonActivated = jest.fn();
 
   const { container } = renderComponent(
-    { focusActivationMode: 'manual' },
+    {
+      focusActivationMode: 'manual',
+      onValueChange: mockonActivated,
+      value: 'tab0',
+    },
     {},
     <>
       <Tabs.TabList>
-        <Tabs.Tab
-          value='tab0'
-          onActiveChange={mockonActivated0}
-          isActive
-          key={0}
-          label='Label 0'
-        />
-        <Tabs.Tab
-          value='tab1'
-          onActiveChange={mockonActivated1}
-          key={1}
-          label='Label 1'
-        />
+        <Tabs.Tab value='tab0' key={0} label='Label 0' />
+        <Tabs.Tab value='tab1' key={1} label='Label 1' />
         <Tabs.Tab value='tab2' key={2} label='Label 2' />
       </Tabs.TabList>
 
@@ -372,21 +340,21 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
 
   // 0 -> 1
   fireEvent.keyDown(tabs[0], { key: 'ArrowRight' });
-  expect(mockonActivated1).not.toBeCalled();
+  expect(mockonActivated).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[1]);
 
   // select 1
   fireEvent.keyDown(tabs[1], { key: 'Enter' });
-  expect(mockonActivated1).toBeCalled();
+  expect(mockonActivated).toBeCalledWith('tab1');
 
   // 1 -> 0
   fireEvent.keyDown(tabs[1], { key: 'ArrowLeft' });
-  expect(mockonActivated0).not.toBeCalled();
+  expect(mockonActivated).not.toBeCalled();
   expect(document.activeElement).toBe(tabs[0]);
 
   // select 0
   fireEvent.keyDown(tabs[0], { key: ' ' });
-  expect(mockonActivated0).toBeCalled();
+  expect(mockonActivated).toBeCalledWith('tab0');
 });
 
 it('should set focused index when tab is clicked', () => {

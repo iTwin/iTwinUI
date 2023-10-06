@@ -23,29 +23,6 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 // ----------------------------------------------------------------------------
 // TabsWrapper
 
-type OverflowOptions = {
-  /**
-   * Whether to allow tabs list to scroll when there is overflow,
-   * i.e. when there is not enough space to fit all the tabs.
-   *
-   * Not applicable to types `pill` and `borderless`.
-   */
-  useOverflow?: boolean;
-};
-
-type TabsOverflowProps =
-  | {
-      /**
-       * Options that can be specified to deal with tabs overflowing the allotted space.
-       */
-      overflowOptions?: OverflowOptions;
-      type?: 'default';
-    }
-  | {
-      overflowOptions?: undefined;
-      type: 'pill' | 'borderless';
-    };
-
 type TabsOrientationProps =
   | {
       /**
@@ -100,22 +77,9 @@ type TabsWrapperOwnProps = {
    * @deprecated Do not use.
    */
   defaultChecked?: never; // To remove `defaultChecked` from `<div>` props.
-} & TabsOrientationProps &
-  TabsOverflowProps;
+} & TabsOrientationProps;
 
 const TabsWrapper = React.forwardRef((props, ref) => {
-  // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
-  let overflowOptions: OverflowOptions | undefined;
-  if (
-    props.type !== 'borderless' &&
-    props.type !== 'pill' &&
-    props.overflowOptions
-  ) {
-    overflowOptions = props.overflowOptions;
-    props = { ...props };
-    delete props.overflowOptions;
-  }
-
   const {
     className,
     children,
@@ -152,7 +116,6 @@ const TabsWrapper = React.forwardRef((props, ref) => {
           type,
           activeValue,
           setActiveValue,
-          overflowOptions,
           setStripeProperties,
           idPrefix,
           focusActivationMode,
@@ -181,8 +144,7 @@ type TabListOwnProps = {
 const TabList = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
-  const { type, overflowOptions, hasSublabel, color } =
-    useSafeContext(TabsContext);
+  const { type, hasSublabel, color } = useSafeContext(TabsContext);
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
@@ -202,7 +164,6 @@ const TabList = React.forwardRef((props, ref) => {
         },
         className,
       )}
-      data-iui-overflow={overflowOptions?.useOverflow}
       role='tablist'
       ref={refs}
       {...rest}
@@ -534,12 +495,27 @@ type TabsLegacyProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
+  /**
+   * @deprecated Tabs can be scrollable by default
+   *
+   * Options that can be specified to deal with tabs overflowing the allotted space.
+   */
+  overflowOptions?: {
+    /**
+     * @deprecated
+     *
+     * Whether to allow tabs list to scroll when there is overflow,
+     * i.e. when there is not enough space to fit all the tabs.
+     *
+     * Not applicable to types `pill` and `borderless`.
+     */
+    useOverflow?: boolean;
+  };
 
   // To remove `defaultValue` and `defaultChecked` from `<div>` props.
   defaultValue?: never;
   defaultChecked?: never;
-} & TabsOrientationProps &
-  TabsOverflowProps;
+} & TabsOrientationProps;
 
 const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
   let actions: Array<React.ReactNode> | undefined;
@@ -784,10 +760,6 @@ export const TabsContext = React.createContext<
        * Handler for setting the value of the active tab.
        */
       setActiveValue: React.Dispatch<React.SetStateAction<string>>;
-      /**
-       * Options that can be specified to deal with tabs overflowing the allotted space.
-       */
-      overflowOptions?: OverflowOptions;
       /**
        * Handler for setting the hasSublabel flag.
        */
