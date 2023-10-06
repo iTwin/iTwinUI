@@ -259,11 +259,7 @@ export const HorizontalOverflow = () => {
         padding: 8,
       }}
     >
-      <Tabs.Wrapper
-        overflowOptions={{ useOverflow: true }}
-        value={active}
-        onValueChange={setActive}
-      >
+      <Tabs.Wrapper value={active} onValueChange={setActive}>
         <Tabs.TabList>
           {tabData?.map((item) => {
             return (
@@ -325,7 +321,6 @@ export const VerticalOverflow = () => {
     >
       <Tabs.Wrapper
         orientation='vertical'
-        overflowOptions={{ useOverflow: true }}
         value={active}
         onValueChange={setActive}
       >

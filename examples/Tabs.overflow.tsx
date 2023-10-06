@@ -49,19 +49,16 @@ export default () => {
 
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
-      <Tabs.Wrapper overflowOptions={{ useOverflow: true }}>
+      <Tabs.Wrapper
+        value={active}
+        onValueChange={(value) => {
+          setActive(value);
+        }}
+      >
         <Tabs.TabList>
           {tabData?.map((item) => {
             return (
-              <Tabs.Tab
-                key={item.name}
-                value={item.name}
-                isActive={item.name === active}
-                label={item.name}
-                onActiveChange={() => {
-                  setActive(item.name);
-                }}
-              />
+              <Tabs.Tab key={item.name} value={item.name} label={item.name} />
             );
           })}
         </Tabs.TabList>
