@@ -319,7 +319,7 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
     {
       focusActivationMode: 'manual',
       onValueChange: mockonActivated,
-      value: 'tab0',
+      defaultValue: 'tab0',
     },
     {},
     <>
@@ -365,11 +365,11 @@ it('should set focused index when tab is clicked', () => {
 
   // click 1
   fireEvent.click(tabs[1]);
-  expect(document.activeElement).toBe(tabs[1]);
+  expect(tabs[1]).toHaveAttribute('aria-selected', 'true');
 
   // 1 -> 2
   fireEvent.keyDown(tabs[1], { key: 'ArrowRight' });
-  expect(document.activeElement).toBe(tabs[2]);
+  expect(tabs[2]).toHaveAttribute('aria-selected', 'true');
 });
 
 it('should render a Tab in its most basic state', () => {
