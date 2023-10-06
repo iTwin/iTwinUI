@@ -10,7 +10,7 @@ import type {
   TableInstance,
   TableState,
 } from '../../react-table/react-table.js';
-import { useIntersection, useMergedRefs } from '../utils/index.js';
+import { Box, useIntersection, useMergedRefs } from '../utils/index.js';
 import { TableCell } from './TableCell.js';
 
 /**
@@ -104,7 +104,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
 
   return (
     <>
-      <div
+      <Box
         {...mergedProps}
         ref={refs}
         onClick={(event) => {
@@ -126,14 +126,14 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
             />
           );
         })}
-      </div>
+      </Box>
       {subComponent && (
-        <div
+        <Box
           className={cx('iui-table-row', 'iui-table-expanded-content')}
           aria-disabled={isDisabled}
         >
           {subComponent(row)}
-        </div>
+        </Box>
       )}
     </>
   );
