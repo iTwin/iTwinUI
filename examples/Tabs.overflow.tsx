@@ -45,7 +45,7 @@ const tabData = [
 ];
 
 export default () => {
-  const [active, setActive] = React.useState('Bentley Overview');
+  const [active, setActive] = React.useState('Cherry');
 
   return (
     <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
