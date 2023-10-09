@@ -741,7 +741,7 @@ export const Tabs = Object.assign(LegacyTabsComponent, {
   Panel: TabsPanel,
 });
 
-export const TabsContext = React.createContext<
+const TabsContext = React.createContext<
   | {
       /**
        * Type of the tabs.
@@ -791,7 +791,7 @@ export const TabsContext = React.createContext<
   | undefined
 >(undefined);
 
-export const TabListContext = React.createContext<
+const TabListContext = React.createContext<
   | {
       tabsWidth: number;
     }
