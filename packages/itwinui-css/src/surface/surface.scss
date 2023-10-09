@@ -25,6 +25,7 @@ $surface-padding-with-gutter: var(--iui-size-2xs);
   overflow: hidden;
   border-block-end: 1px solid var(--iui-color-border-subtle);
   padding-inline: $surface-padding;
+  min-block-size: var(--iui-component-height);
 }
 
 .iui-surface-body {
