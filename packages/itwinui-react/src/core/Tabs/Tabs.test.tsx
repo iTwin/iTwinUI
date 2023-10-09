@@ -4,8 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import { Tabs } from './Tabs.js';
+import { Tabs, Tab } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
+import userEvent from '@testing-library/user-event';
+import Button from '../Buttons/Button.js';
 
 type TabsProps = React.ComponentProps<typeof Tabs.Wrapper>;
 type TabListProps = React.ComponentProps<typeof Tabs.TabList>;
@@ -162,7 +164,7 @@ it('should render green tabs', () => {
   expect(tabContainer.className).toContain('iui-green');
 });
 
-it('should call onActiveChange when switching tabs', () => {
+it('should call onValueChange when switching tabs', () => {
   const onActivated = jest.fn();
 
   const { container } = renderComponent(
@@ -344,16 +346,16 @@ it('should handle keypresses when focusActivationMode is manual', async () => {
   expect(document.activeElement).toBe(tabs[1]);
 
   // select 1
-  fireEvent.keyDown(tabs[1], { key: 'Enter' });
+  await userEvent.keyboard('{enter}');
   expect(mockonActivated).toBeCalledWith('tab1');
 
   // 1 -> 0
   fireEvent.keyDown(tabs[1], { key: 'ArrowLeft' });
-  expect(mockonActivated).not.toBeCalled();
+  expect(mockonActivated).not.toBeCalledTimes(2);
   expect(document.activeElement).toBe(tabs[0]);
 
   // select 0
-  fireEvent.keyDown(tabs[0], { key: ' ' });
+  await userEvent.keyboard('{enter}');
   expect(mockonActivated).toBeCalledWith('tab0');
 });
 
@@ -377,13 +379,16 @@ it('should render a Tab in its most basic state', () => {
     <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab' label='Tab label' />
-        <Tabs.Tab value='tab' label='Tab label' />
+        <Tabs.Tab value='tab2' label='Tab label 2' />
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
-  expect(container.querySelector('button.iui-tab')).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-label') as HTMLElement;
+  const tabs = container.querySelectorAll('button.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0]).toBeTruthy();
+
+  const label = tabs[0].querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 });
@@ -396,20 +401,22 @@ it('should render with sublabel', () => {
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
           <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
         </Tabs.Tab>
-        <Tabs.Tab value='tab'>
-          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
-          <Tabs.TabDescription>Sub-label</Tabs.TabDescription>
+        <Tabs.Tab value='tab2'>
+          <Tabs.TabLabel>Tab label 2</Tabs.TabLabel>
+          <Tabs.TabDescription>Sub-label 2</Tabs.TabDescription>
         </Tabs.Tab>
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
-  expect(container.querySelector('button.iui-tab')).toBeTruthy();
+  const tabs = container.querySelectorAll('button.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0]).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-label') as HTMLElement;
+  const label = tabs[0].querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 
-  const description = container.querySelector(
+  const description = tabs[0].querySelector(
     '.iui-tab-description',
   ) as HTMLElement;
   expect(description.textContent).toBe('Sub-label');
@@ -425,25 +432,27 @@ it('should render with icon', () => {
           </Tabs.TabIcon>
           <Tabs.TabLabel>Tab label</Tabs.TabLabel>
         </Tabs.Tab>
-        <Tabs.Tab value='tab'>
+        <Tabs.Tab value='tab2'>
           <Tabs.TabIcon>
             <SvgPlaceholder />
           </Tabs.TabIcon>
-          <Tabs.TabLabel>Tab label</Tabs.TabLabel>
+          <Tabs.TabLabel>Tab label 2</Tabs.TabLabel>
         </Tabs.Tab>
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
-  expect(container.querySelector('button.iui-tab')).toBeTruthy();
+  const tabs = container.querySelectorAll('button.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0]).toBeTruthy();
 
-  const label = container.querySelector('.iui-tab-label') as HTMLElement;
+  const label = tabs[0].querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
 
   const {
     container: { firstChild: placeholderIcon },
   } = render(<SvgPlaceholder />);
-  expect(container.querySelector('.iui-tab-icon svg')).toEqual(placeholderIcon);
+  expect(tabs[0].querySelector('.iui-tab-icon svg')).toEqual(placeholderIcon);
 });
 
 it('should render in disabled state', () => {
@@ -451,16 +460,44 @@ it('should render in disabled state', () => {
     <Tabs.Wrapper>
       <Tabs.TabList>
         <Tabs.Tab value='tab' disabled label='Tab label' />
-        <Tabs.Tab value='tab' disabled label='Tab label' />
+        <Tabs.Tab value='tab2' disabled label='Tab label 2' />
       </Tabs.TabList>
     </Tabs.Wrapper>,
   );
+  const tabs = container.querySelectorAll('button.iui-tab');
+  expect(tabs.length).toBe(2);
+  expect(tabs[0]).toBeTruthy();
 
-  const tab = container.querySelector('button.iui-tab') as HTMLButtonElement;
+  const tab = tabs[0] as HTMLButtonElement;
   expect(tab).toBeTruthy();
   expect(tab).toHaveAttribute('aria-disabled', 'true');
 
-  const label = container.querySelector('.iui-tab-label') as HTMLElement;
+  const label = tab.querySelector('.iui-tab-label') as HTMLElement;
   expect(label).toBeTruthy();
   expect(label.textContent).toBe('Tab label');
+});
+
+it('should support Tabs with legacy api', () => {
+  const { container } = render(
+    <Tabs
+      labels={[
+        <Tab key='tab1' label='Label 1' />,
+        <Tab key='tab2' label='Label 2' />,
+        <Tab key='tab3' label='Label 3' />,
+      ]}
+      actions={[
+        <Button key='action-button' size='small'>
+          Test Button
+        </Button>,
+      ]}
+    >
+      Test Content 1
+    </Tabs>,
+  );
+
+  const tabContainer = container.querySelector('.iui-tabs') as HTMLElement;
+  expect(tabContainer).toBeTruthy();
+  expect(tabContainer).toHaveClass('iui-default');
+  expect(tabContainer.querySelectorAll('.iui-tab').length).toBe(3);
+  screen.getByText('Test Content 1');
 });
