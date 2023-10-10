@@ -10,6 +10,7 @@ import type {
   PolymorphicForwardRefComponent,
 } from '../utils/index.js';
 import { getColorValue } from './ColorPicker.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 type ColorSwatchProps = {
   /**
@@ -50,10 +51,12 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
         } as React.CSSProperties
       }
       onClick={onClick}
-      aria-pressed={isActive ? 'true' : undefined}
+      aria-pressed={!!onClick && isActive ? 'true' : undefined}
       ref={ref}
       {...rest}
-    />
+    >
+      {props.children ?? <VisuallyHidden>{colorString}</VisuallyHidden>}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', ColorSwatchProps>;
 
