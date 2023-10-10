@@ -302,6 +302,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
         }}
         min={0}
         max={359}
+        thumbProps={() => ({ 'aria-label': 'Hue' })}
       />
 
       {showAlpha && (
@@ -326,6 +327,7 @@ export const ColorBuilder = React.forwardRef((props, ref) => {
               '--iui-color-picker-selected-color': hueColorString,
             } as React.CSSProperties
           }
+          thumbProps={() => ({ 'aria-label': 'Opacity' })}
         />
       )}
     </Box>
