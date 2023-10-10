@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': major
 ---
 
-Deprecated `overflowOptions` and `useOveflow` props in Tabs.
+Tabs are now always scrollable. Deprecated `overflowOptions` prop.
