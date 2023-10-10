@@ -127,7 +127,7 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
           );
         })}
       </Box>
-      {subComponent && (
+      {subComponent && row.isExpanded && (
         <Box
           className={cx('iui-table-row', 'iui-table-expanded-content')}
           aria-disabled={isDisabled}
