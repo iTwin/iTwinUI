@@ -73,13 +73,9 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-icon {
-    &,
-    svg {
-      grid-area: icon;
-    }
+    grid-area: icon;
 
     svg {
-      fill: var(--iui-color-icon);
       transition: fill var(--iui-duration-1) ease-out;
     }
 
