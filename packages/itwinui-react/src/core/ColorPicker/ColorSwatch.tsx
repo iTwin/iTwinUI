@@ -55,7 +55,9 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {props.children ?? <VisuallyHidden>{colorString}</VisuallyHidden>}
+      {props.children ?? (
+        <VisuallyHidden>{colorString.toUpperCase()}</VisuallyHidden>
+      )}
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', ColorSwatchProps>;
