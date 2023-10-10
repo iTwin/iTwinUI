@@ -300,7 +300,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     }
   };
 
-  // use first tab as active if no `isActive` passed.
+  // use first tab as active if no `value` passed.
   const setInitialActiveRef = React.useCallback(
     (element: HTMLElement) => {
       if (activeValue !== undefined) {
