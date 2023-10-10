@@ -316,7 +316,6 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ButtonBase
-      id={`${idPrefix}-tab-${value}`}
       className={cx('iui-tab', className)}
       role='tab'
       tabIndex={isActive ? 0 : -1}
@@ -324,6 +323,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       aria-controls={`${idPrefix}-panel-${value}`}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
+      id={`${idPrefix}-tab-${value}`}
       onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
@@ -435,9 +435,9 @@ const TabsPanel = React.forwardRef((props, ref) => {
       aria-labelledby={`${idPrefix}-tab-${value}`}
       role='tabpanel'
       hidden={activeValue !== value ? true : undefined}
-      id={`${idPrefix}-panel-${value}`}
       ref={ref}
       {...rest}
+      id={`${idPrefix}-panel-${value}`}
     >
       {children}
     </Box>
