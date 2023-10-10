@@ -70,7 +70,7 @@ type TabsWrapperOwnProps = {
   /**
    * Function that gets called when active tab is changed.
    *
-   * Should be used alongside `activeValue` prop.
+   * Should be used alongside `value` prop.
    */
   onValueChange?: (value: string) => void;
   /**
