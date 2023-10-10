@@ -441,7 +441,6 @@ export const Slider = React.forwardRef((props, ref) => {
           as='div'
           {...ticksProps}
           className={cx('iui-slider-ticks', ticksProps?.className)}
-          aria-hidden='true'
         >
           {tickLabels.map((label, index) => (
             <Box
@@ -481,7 +480,7 @@ export const Slider = React.forwardRef((props, ref) => {
       ref={ref}
       className={cx('iui-slider-container', className)}
       data-iui-orientation={orientation}
-      data-iui-disabled={disabled}
+      data-iui-disabled={disabled ? 'true' : undefined}
       {...rest}
     >
       {minValueLabel && (
