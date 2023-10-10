@@ -50,7 +50,7 @@ export const ColorSwatch = React.forwardRef((props, ref) => {
         } as React.CSSProperties
       }
       onClick={onClick}
-      aria-pressed={isActive}
+      aria-pressed={isActive ? 'true' : undefined}
       ref={ref}
       {...rest}
     />
