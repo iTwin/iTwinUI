@@ -164,6 +164,8 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab {
+    flex-shrink: 0;
+
     &::after {
       inline-size: 100%;
       block-size: 0;
