@@ -1,8 +1,7 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': major
 ---
 
 - Removed iui-slider-rail element and corresponding railProps. 
 - Slider container now uses data-iui-orientation and data-iui-disabled attributes for orientation and disabling the track respectively. 
-- Thumb uses this style = --iui-slider-thumb-position: {lowPercent} instead of style = ? { insetInlineStart: {lowPercent} } : { insetBlockEnd: {lowPercent} }.
-- Fixed Slider with CustomTickNoToolTip inside storybook by controlling the state.
+- Using --iui-slider-thumb-position to style thumb.

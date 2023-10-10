@@ -136,7 +136,6 @@ it('should render disabled component', () => {
     'data-iui-disabled',
     'true',
   );
-  expect(container.querySelector('.iui-slider-container')).toBeTruthy();
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-disabled')).toEqual('true');
 });
