@@ -16,9 +16,6 @@ const _React = React;
 const useIsomorphicInsertionEffect =
   _React.useInsertionEffect ?? useIsomorphicLayoutEffect;
 
-/** This lives outside the hook, because we only want to load styles once, no matter what.  */
-let loaded = false;
-
 /**
  * Dynamically loads the iTwinUI styles as a constructed stylesheet,
  * falling back to a regular `<style>` tag in `<head>`.
@@ -29,11 +26,17 @@ export const useStyles = (options?: {
 }) => {
   const context = _React.useContext(ThemeContext);
 
-  const includeCss = options?.includeCss ??
-    context?.includeCss ?? { withLayer: true };
-
   useIsomorphicInsertionEffect(() => {
-    if (loaded || !includeCss) {
+    if (!context) {
+      return;
+    }
+
+    const loaded = context.stylesLoaded;
+
+    const includeCss = options?.includeCss ??
+      context?.includeCss ?? { withLayer: true };
+
+    if (loaded.current || !includeCss) {
       return;
     }
 
@@ -46,8 +49,8 @@ export const useStyles = (options?: {
 
     loadStyles({ withLayer, document });
 
-    loaded = true;
-  }, [context, options, includeCss]);
+    loaded.current = true;
+  }, [context, options]);
 };
 
 // ----------------------------------------------------------------------------
@@ -75,8 +78,8 @@ const loadStyles = ({ withLayer = true, document = () => getDocument() }) => {
     'adoptedStyleSheets' in Document.prototype &&
     'replaceSync' in CSSStyleSheet.prototype;
 
-  if (supportsAdopting) {
-    const sheet = new CSSStyleSheet();
+  if (supportsAdopting && _document.defaultView) {
+    const sheet = new _document.defaultView.CSSStyleSheet();
     (sheet as any).replaceSync(cssText);
     _document.adoptedStyleSheets = [..._document.adoptedStyleSheets, sheet];
   } else {

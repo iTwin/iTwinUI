@@ -134,8 +134,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
+  const stylesLoaded = React.useRef(
+    parentContext?.stylesLoaded.current ?? false,
+  );
+
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef, includeCss }),
+    () => ({ theme, themeOptions, rootRef, includeCss, stylesLoaded }),
     [theme, themeOptions, includeCss],
   );
 
@@ -179,6 +183,7 @@ export const ThemeContext = React.createContext<
       themeOptions?: ThemeOptions;
       rootRef: React.RefObject<HTMLElement>;
       includeCss?: IncludeCssProps['includeCss'];
+      stylesLoaded: React.MutableRefObject<boolean>;
     }
   | undefined
 >(undefined);
