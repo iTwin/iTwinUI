@@ -134,13 +134,24 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
 
-  const stylesLoaded = React.useRef(
-    parentContext?.stylesLoaded.current ?? false,
-  );
+  const newStylesLoaded = React.useRef(false);
+  const stylesLoaded = parentContext?.stylesLoaded ?? newStylesLoaded;
 
   const contextValue = React.useMemo(
-    () => ({ theme, themeOptions, rootRef, includeCss, stylesLoaded }),
-    [theme, themeOptions, includeCss],
+    () => ({
+      theme,
+      themeOptions,
+      rootRef,
+      includeCss,
+      stylesLoaded,
+    }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- we do include themeOptions below (indirectly)
+    [
+      theme,
+      JSON.stringify(themeOptions), // eslint-disable-line react-hooks/exhaustive-deps -- we want to stringify themeOptions as it's a new object each time
+      includeCss,
+      stylesLoaded,
+    ],
   );
 
   // if no children, then fallback to this wrapper component which calls useTheme
