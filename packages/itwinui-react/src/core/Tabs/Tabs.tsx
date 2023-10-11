@@ -221,20 +221,19 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   const isActive = activeValue === value;
 
-  // Scroll into view animation behavior based on user motion preference
-  const scrollBehavior = isMotionOk() ? 'smooth' : 'auto';
-
   useIsomorphicLayoutEffect(() => {
     if (isActive) {
-      orientation === 'horizontal'
-        ? tabRef.current?.scrollIntoView({
-            behavior: scrollBehavior,
-            inline: 'center',
-          })
-        : tabRef.current?.scrollIntoView({
-            behavior: scrollBehavior,
-            block: 'center',
-          });
+      if (orientation === 'horizontal') {
+        tabRef.current?.scrollIntoView({
+          inline: 'center',
+          behavior: isMotionOk() ? 'smooth' : 'auto',
+        });
+      } else {
+        tabRef.current?.scrollIntoView({
+          block: 'center',
+          behavior: isMotionOk() ? 'smooth' : 'auto',
+        });
+      }
     }
   }, [isActive]);
 
