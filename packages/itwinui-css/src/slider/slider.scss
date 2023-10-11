@@ -84,8 +84,6 @@ $iui-slider-tick-thickness: 1px;
       'min';
     justify-items: center;
     inline-size: fit-content;
-    block-size: 100%;
-    min-block-size: 30px;
 
     .iui-slider-min,
     .iui-slider-max {
@@ -117,6 +115,7 @@ $iui-slider-tick-thickness: 1px;
     .iui-slider {
       inline-size: calc($iui-slider-thumb-size + 2px);
       touch-action: pan-y;
+      min-block-size: 300px;
 
       &::before {
         block-size: 100%;
