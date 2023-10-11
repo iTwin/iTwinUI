@@ -111,9 +111,9 @@ const TabsWrapper = React.forwardRef((props, ref) => {
   return (
     <Box
       className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
-      style={stripeProperties}
-      ref={ref}
       {...rest}
+      style={{ ...stripeProperties, ...props?.style }}
+      ref={ref}
     >
       <TabsContext.Provider
         value={{
