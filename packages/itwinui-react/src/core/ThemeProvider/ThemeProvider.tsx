@@ -145,11 +145,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
       includeCss,
       stylesLoaded,
     }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps -- we do include themeOptions below (indirectly)
+    // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       theme,
-      JSON.stringify(themeOptions), // eslint-disable-line react-hooks/exhaustive-deps -- we want to stringify themeOptions as it's a new object each time
-      includeCss,
+      JSON.stringify(themeOptions), // eslint-disable-line react-hooks/exhaustive-deps
+      JSON.stringify(includeCss), // eslint-disable-line react-hooks/exhaustive-deps
       stylesLoaded,
     ],
   );
