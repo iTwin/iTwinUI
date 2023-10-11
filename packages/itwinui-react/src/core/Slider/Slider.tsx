@@ -161,10 +161,6 @@ export type SliderProps = {
    */
   maxProps?: React.ComponentProps<'span'>;
   /**
-   * Allows props to be passed for slider-rail
-   */
-  railProps?: React.ComponentProps<'div'>;
-  /**
    * Allows props to be passed for slider-track
    */
   trackProps?: React.ComponentProps<'div'>;
@@ -234,7 +230,6 @@ export const Slider = React.forwardRef((props, ref) => {
     railContainerProps,
     minProps,
     maxProps,
-    railProps,
     trackProps,
     tickProps,
     ticksProps,
@@ -483,12 +478,9 @@ export const Slider = React.forwardRef((props, ref) => {
   return (
     <Box
       ref={ref}
-      className={cx(
-        'iui-slider-component-container',
-        `iui-slider-${orientation}`,
-        { 'iui-disabled': disabled },
-        className,
-      )}
+      className={cx('iui-slider-container', className)}
+      data-iui-orientation={orientation}
+      data-iui-disabled={disabled ? 'true' : undefined}
       {...rest}
     >
       {minValueLabel && (
@@ -500,12 +492,12 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
+      {tickMarkArea}
       <Box
-        as='div'
         ref={containerRef}
         {...railContainerProps}
         className={cx(
-          'iui-slider-container',
+          'iui-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
@@ -513,11 +505,6 @@ export const Slider = React.forwardRef((props, ref) => {
         )}
         onPointerDown={handlePointerDownOnSlider}
       >
-        <Box
-          as='div'
-          {...railProps}
-          className={cx('iui-slider-rail', railProps?.className)}
-        />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -537,7 +524,6 @@ export const Slider = React.forwardRef((props, ref) => {
               step={step}
               sliderMin={min}
               sliderMax={max}
-              orientation={orientation}
             />
           );
         })}
@@ -549,7 +535,6 @@ export const Slider = React.forwardRef((props, ref) => {
           orientation={orientation}
           {...trackProps}
         />
-        {tickMarkArea}
       </Box>
       {maxValueLabel && (
         <Box
