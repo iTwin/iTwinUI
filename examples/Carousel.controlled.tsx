@@ -27,6 +27,7 @@ export default () => {
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}
     >
+      <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -45,7 +46,6 @@ export default () => {
           </Carousel.Slide>
         ))}
       </Carousel.Slider>
-      <Carousel.Navigation />
     </Carousel>
   );
 };

@@ -30,7 +30,7 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
     throw new Error('CarouselSlide must be used within Carousel');
   }
 
-  const { isManuallyUpdating, setCurrentIndex } = context;
+  const { isManuallyUpdating, currentIndex, setCurrentIndex } = context;
 
   const updateActiveIndexOnScroll = React.useCallback(() => {
     // only update index if scroll was triggered by browser
@@ -49,14 +49,15 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='li'
       className={cx('iui-carousel-slider-item', className)}
       role='tabpanel'
       aria-roledescription='slide'
+      tabIndex={index === currentIndex ? 0 : undefined}
       ref={refs}
+      {...{ inert: index !== currentIndex ? '' : undefined }}
       {...rest}
     >
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', CarouselSlideProps>;
+}) as PolymorphicForwardRefComponent<'div', CarouselSlideProps>;
