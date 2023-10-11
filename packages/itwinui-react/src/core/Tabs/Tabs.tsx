@@ -507,18 +507,11 @@ type TabsLegacyProps = {
    */
   children?: React.ReactNode;
   /**
-   * @deprecated Tabs can be scrollable by default
-   *
-   * Options that can be specified to deal with tabs overflowing the allotted space.
+   * @deprecated Tabs will now overflow by default, so this prop does nothing.
    */
   overflowOptions?: {
     /**
-     * @deprecated
-     *
-     * Whether to allow tabs list to scroll when there is overflow,
-     * i.e. when there is not enough space to fit all the tabs.
-     *
-     * Not applicable to types `pill` and `borderless`.
+     * @deprecated Tabs will now overflow by default, so this prop does nothing.
      */
     useOverflow?: boolean;
   };
