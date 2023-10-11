@@ -336,7 +336,7 @@ $borderless-horizontal-tab-min-height: calc(
 @mixin iui-tabs-content {
   grid-area: tabs-content;
 
-  &[hidden='true'] {
+  &[hidden] {
     display: none !important;
   }
 }
