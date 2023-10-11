@@ -8,6 +8,8 @@ import {
   ColorPicker,
   ColorValue,
   ColorSwatch,
+  Button,
+  Popover,
 } from '@itwin/itwinui-react';
 
 export default () => {
@@ -44,6 +46,7 @@ export default () => {
     { color: '#ffc335', name: 'RISE-N-SHINE' },
   ];
 
+  const [isOpen, setIsOpen] = React.useState(false);
   const [activeColor, setActiveColor] = React.useState(ColorsList[5]);
   const [colorName, setColorName] = React.useState(ColorsList[5].name);
 
@@ -54,23 +57,32 @@ export default () => {
     );
     setActiveColor(ColorsList[index]);
     setColorName(ColorsList[index].name);
+    setIsOpen(false);
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'flex', flexDirection: 'row', gap: 10 }}>
-        <ColorSwatch
-          style={{ pointerEvents: 'none' }}
-          color={activeColor.color}
-        />
-        <span>{colorName}</span>
-      </div>
-      <ColorPicker
-        selectedColor={activeColor.color}
-        onChangeComplete={onColorChanged}
+    <Popover
+      visible={isOpen}
+      onVisibleChange={setIsOpen}
+      content={
+        <ColorPicker
+          selectedColor={activeColor.color}
+          onChangeComplete={onColorChanged}
+        >
+          <ColorPalette colors={ColorsList.map(({ color }) => color)} />
+        </ColorPicker>
+      }
+    >
+      <Button
+        startIcon={
+          <ColorSwatch
+            style={{ pointerEvents: 'none' }}
+            color={activeColor.color}
+          />
+        }
       >
-        <ColorPalette colors={ColorsList.map(({ color }) => color)} />
-      </ColorPicker>
-    </div>
+        {colorName}
+      </Button>
+    </Popover>
   );
 };
