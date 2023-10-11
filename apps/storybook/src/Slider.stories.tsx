@@ -132,7 +132,7 @@ export const CustomTickNoTooltip = () => {
   }, []);
 
   return (
-    <div style={{ width: '50%' }}>
+    <>
       <Slider
         min={1}
         max={365}
@@ -155,9 +155,17 @@ export const CustomTickNoTooltip = () => {
       >
         {dateFormatter.format(currentDate)}
       </Text>
-    </div>
+    </>
   );
 };
+
+CustomTickNoTooltip.decorators = [
+  (Story) => (
+    <div style={{ width: '50%' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export const DecimalIncrement = () => {
   return <Slider min={0} max={50} step={2.5} values={[25]} />;
