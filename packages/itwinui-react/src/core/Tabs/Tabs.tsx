@@ -81,7 +81,7 @@ type TabsWrapperOwnProps = {
   /**
    * @deprecated Do not use.
    */
-  defaultChecked?: never; // To remove `defaultChecked` from `<div>` props.
+  defaultChecked?: never; // Removing `defaultChecked` from `<div>` props.
 } & TabsOrientationProps;
 
 const TabsWrapper = React.forwardRef((props, ref) => {
@@ -523,7 +523,7 @@ type TabsLegacyProps = {
     useOverflow?: boolean;
   };
 
-  // To remove `defaultValue` and `defaultChecked` from `<div>` props.
+  // Removing `defaultValue` and `defaultChecked` from `<div>` props.
   defaultValue?: never;
   defaultChecked?: never;
 } & TabsOrientationProps;
@@ -653,7 +653,7 @@ export { LegacyTab as Tab };
 
 /**
  * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
- * Use 'value' prop to associate Tab with Panel.
+ * `Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
  * @example
  * <Tabs.Wrapper>
  *   <Tabs.TabList>
