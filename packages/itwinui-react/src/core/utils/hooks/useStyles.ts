@@ -16,6 +16,9 @@ const _React = React;
 const useIsomorphicInsertionEffect =
   _React.useInsertionEffect ?? useIsomorphicLayoutEffect;
 
+/** This lives outside the hook, because we only want to load styles once, no matter what.  */
+let loaded = false;
+
 /**
  * Dynamically loads the iTwinUI styles as a constructed stylesheet,
  * falling back to a regular `<style>` tag in `<head>`.
@@ -25,13 +28,12 @@ export const useStyles = (options?: {
   document?: () => Document | undefined;
 }) => {
   const context = _React.useContext(ThemeContext);
-  const loaded = _React.useRef(false);
 
   const includeCss = options?.includeCss ??
     context?.includeCss ?? { withLayer: true };
 
   useIsomorphicInsertionEffect(() => {
-    if (loaded.current || !includeCss) {
+    if (loaded || !includeCss) {
       return;
     }
 
@@ -44,7 +46,7 @@ export const useStyles = (options?: {
 
     loadStyles({ withLayer, document });
 
-    loaded.current = true;
+    loaded = true;
   }, [context, options, includeCss]);
 };
 
