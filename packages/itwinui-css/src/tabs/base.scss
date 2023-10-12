@@ -108,12 +108,6 @@ $borderless-horizontal-tab-min-height: calc(
     }
   }
 
-  &[data-iui-overflow='true'] {
-    .iui-tab {
-      white-space: nowrap;
-    }
-  }
-
   ~ .iui-tabs-content {
     padding-block-start: var(--iui-size-s);
     padding-block-end: var(--iui-size-s);
@@ -133,6 +127,7 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tabs {
     display: flex;
+    container-type: inline-size;
 
     &.iui-borderless {
       min-block-size: $borderless-horizontal-tab-min-height;
@@ -165,6 +160,7 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tab {
     flex-shrink: 0;
+    max-inline-size: 60cqi;
 
     &::after {
       inline-size: 100%;
