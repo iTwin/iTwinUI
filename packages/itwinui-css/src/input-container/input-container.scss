@@ -194,7 +194,7 @@
     padding-inline: var(--iui-size-s);
     padding-block: var(--_iui-input-padding-block);
 
-    &:is(:not(:first-child)) {
+    &:where(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
     }
 

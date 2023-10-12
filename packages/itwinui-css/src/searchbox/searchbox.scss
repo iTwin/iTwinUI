@@ -42,4 +42,8 @@
   &:is(:first-child) {
     margin-inline: var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
   }
+
+  + .iui-search-input {
+    padding-inline-start: 0;
+  }
 }

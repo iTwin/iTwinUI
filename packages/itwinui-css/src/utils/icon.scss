@@ -27,7 +27,7 @@ $default-fill: var(--iui-color-icon-muted);
   @each $size in 's', 'm', 'l', 'auto' {
     &[data-iui-icon-size='#{$size}'] {
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
-      --_iui-svg-margin-inline: calc(#{map.get($icon-sizes, $size)});
+      --_iui-svg-margin-inline: #{map.get($icon-sizes, $size)};
     }
   }
 
@@ -45,6 +45,10 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    margin-inline: var(--_iui-svg-margin-inline, --iui-size-s);
+    margin-inline: var(--_iui-svg-margin-inline, var(--iui-size-s));
+  }
+
+  & + & {
+    margin-inline-start: 0;
   }
 }
