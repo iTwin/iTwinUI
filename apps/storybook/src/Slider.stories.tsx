@@ -16,7 +16,11 @@ export default {
       <div
         style={{
           ...(context.story.includes('Vertical')
-            ? { height: 'calc(100vh - 24px)', width: 'fit-content' }
+            ? {
+                height: 'calc(100vh - 24px)',
+                width: 'fit-content',
+                display: 'grid',
+              }
             : {}),
         }}
       >
@@ -172,13 +176,5 @@ export const DecimalIncrement = () => {
 };
 
 export const Vertical = () => {
-  return (
-    <Slider
-      values={[50]}
-      orientation='vertical'
-      railContainerProps={{
-        style: { height: 'calc(100vh - 100px)' },
-      }}
-    />
-  );
+  return <Slider values={[50]} orientation='vertical' />;
 };
