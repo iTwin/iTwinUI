@@ -300,7 +300,7 @@ export const VerticalOverflow = () => {
     { name: 'Item 7', content: 'Tab Content Seven', disabled: false },
     { name: 'Item 8', content: 'Tab Content Eight', disabled: false },
     { name: 'Item 9', content: 'Tab Content Nine', disabled: true },
-    { name: 'Item 10', content: 'Tab Content ten', disabled: false },
+    { name: 'Item 10', content: 'Tab Content Ten', disabled: false },
     { name: 'Item 11', content: 'Tab Content Eleven', disabled: false },
     { name: 'Item 12', content: 'Tab Content Twelve', disabled: false },
     {
