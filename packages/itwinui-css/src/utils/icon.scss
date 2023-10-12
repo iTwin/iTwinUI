@@ -47,6 +47,7 @@ $default-fill: var(--iui-color-icon-muted);
     padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
   }
 
+  // collapse padding between adjacent icons
   & + & {
     padding-inline-start: 0;
   }

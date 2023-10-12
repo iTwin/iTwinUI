@@ -43,6 +43,7 @@
     padding-inline: var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
   }
 
+  // collapse padding between icon and input
   + .iui-search-input {
     padding-inline-start: 0;
   }
