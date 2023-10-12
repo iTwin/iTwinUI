@@ -116,7 +116,7 @@ $iui-slider-tick-thickness: 1px;
     .iui-slider {
       inline-size: calc($iui-slider-thumb-size + 2px);
       touch-action: pan-y;
-      min-block-size: var(--iui-size-2xl);
+      min-block-size: var(--iui-size-xl);
 
       &::before {
         block-size: 100%;

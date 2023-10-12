@@ -172,5 +172,13 @@ export const DecimalIncrement = () => {
 };
 
 export const Vertical = () => {
-  return <Slider values={[50]} orientation='vertical' />;
+  return (
+    <Slider
+      values={[50]}
+      orientation='vertical'
+      railContainerProps={{
+        style: { height: 'calc(100vh - 100px)' },
+      }}
+    />
+  );
 };
