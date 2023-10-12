@@ -9,26 +9,91 @@ group: core
 
 import PropsTable from '~/components/PropsTable.astro';
 import LiveExample from '~/components/LiveExample.astro';
-import Placeholder from '~/components/Placeholder.astro';
 import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='core-tabs' />
 
 <LiveExample src='Tabs.main.tsx'>
   <AllExamples.TabsMainExample client:load />
 </LiveExample>
 
-## Usage
+### Composition API
+
+You can build Tabs with subcomponents that are fully customizable.
+
+We provide:
+
+- `Tabs.Wrapper`
+- `Tabs.List`
+- `Tabs.Tab`
+- `Tabs.TabIcon`
+- `Tabs.TabLabel`
+- `Tabs.TabDescription`
+- `Tabs.Actions`
+- `Tabs.Panel`
+
+`Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
+
+### Props API
+
+You can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+
+A list of all available props can be found at the end of this [page](#props).
+
+<LiveExample src='Tabs.legacy.tsx'>
+  <AllExamples.TabsLegacyExample client:load />
+</LiveExample>
+
+## Variants
+
+### Horizontal
+
+<LiveExample src='Tabs.horizontal.tsx'>
+  <AllExamples.TabsHorizontalExample client:load />
+</LiveExample>
+
+### Vertical
+
+<LiveExample src='Tabs.vertical.tsx'>
+  <AllExamples.TabsVerticalExample client:load />
+</LiveExample>
+
+### Borderless
+
+As their name implies, borderless tabs have no frame or stroke surrounding them. The label appears on top of the content, above a stroke that separates it from the text area. The stroke cuts off beneath the active tab, so it can be visually associated with its respective content.
+
+<LiveExample src='Tabs.borderless.tsx'>
+  <AllExamples.TabsBorderlessExample client:load />
+</LiveExample>
+
+### Pill
+
+Pill tabs are meant to be used with content that belong to a similar category. They act like a filter for toggling through different states of similar content.
+
+<LiveExample src='Tabs.pill.tsx'>
+  <AllExamples.TabsPillExample client:load />
+</LiveExample>
+
+### Actions
+
+You can add action buttons to the end of tab list.
+
+<LiveExample src='Tabs.actions.tsx'>
+  <AllExamples.TabsActionsExample client:load />
+</LiveExample>
 
 ### Overflow
 
-If the available space does not allow all the tabs to be displayed, set `useOverflow` of `OverflowOptions` to true. This allows tabs to be scrollable.
+If the available space does not allow all the tabs to be displayed, tabs become scrollable.
 
 <LiveExample src='Tabs.overflow.tsx'>
   <AllExamples.TabsOverflowExample client:load />
 </LiveExample>
+
+## Usage
+
+- Use [borderless tabs](#borderless) when the tabbed content can be easily told apart from its surroundings (or lack thereof).
+- The maximum recommended amount of [pill tabs](#pill) is 4.
 
 ## Props
 
