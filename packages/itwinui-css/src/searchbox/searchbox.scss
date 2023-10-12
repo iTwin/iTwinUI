@@ -3,14 +3,14 @@
 
 .iui-searchbox {
   // To match borderless button left padding + border
-  --_iui-flex-input-icon-margin: 10px;
+  --_iui-flex-input-icon-padding: 10px;
 
   &[data-iui-size='small'] {
-    --_iui-flex-input-icon-margin: 5px;
+    --_iui-flex-input-icon-padding: 5px;
   }
 
   &[data-iui-size='large'] {
-    --_iui-flex-input-icon-margin: 16px;
+    --_iui-flex-input-icon-padding: 16px;
   }
 }
 
@@ -37,10 +37,10 @@
 }
 
 .iui-search-icon {
-  margin-inline: var(--iui-size-s);
+  padding-inline: var(--iui-size-s);
 
   &:is(:first-child) {
-    margin-inline: var(--_iui-flex-input-icon-margin, 10px); // To match borderless button left padding + border
+    padding-inline: var(--_iui-flex-input-icon-padding, 10px); // To match borderless button left padding + border
   }
 
   + .iui-search-input {

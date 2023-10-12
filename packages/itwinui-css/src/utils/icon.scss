@@ -17,7 +17,6 @@ $default-fill: var(--iui-color-icon-muted);
   display: inline-flex;
   flex-shrink: 0;
 
-  &,
   svg {
     inline-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
     block-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
@@ -27,7 +26,7 @@ $default-fill: var(--iui-color-icon-muted);
   @each $size in 's', 'm', 'l', 'auto' {
     &[data-iui-icon-size='#{$size}'] {
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
-      --_iui-svg-margin-inline: #{map.get($icon-sizes, $size)};
+      --_iui-svg-padding-inline: #{map.get($icon-sizes, $size)};
     }
   }
 
@@ -45,10 +44,10 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    margin-inline: var(--_iui-svg-margin-inline, var(--iui-size-s));
+    padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
   }
 
   & + & {
-    margin-inline-start: 0;
+    padding-inline-start: 0;
   }
 }
