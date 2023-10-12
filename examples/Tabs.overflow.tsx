@@ -3,57 +3,72 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tabs, Tab } from '@itwin/itwinui-react';
+import { Tabs } from '@itwin/itwinui-react';
+
+const tabData = [
+  {
+    name: 'Apple',
+    content: `An apple is a round, edible fruit produced by an apple tree (Malus
+    domestica). Apple trees are cultivated worldwide and are the most widely
+    grown species in the genus Malus.`,
+  },
+  {
+    name: 'Orange',
+    content: `An orange is a fruit of various citrus species in the family Rutaceae
+  (see list of plants known as orange); it primarily refers to Citrus x
+  sinensis, which is also called sweet orange, to distinguish it from the
+  related Citrus x aurantium, referred to as bitter orange.`,
+  },
+  {
+    name: 'Pear',
+    content: `Pears are fruits produced and consumed around the world, growing on a
+  tree and harvested in late summer into mid-autumn.`,
+  },
+  {
+    name: 'Grape',
+    content: `A grape is a fruit, botanically a berry, of the deciduous woody vines of
+  the flowering plant genus Vitis. Grapes are a non-climacteric type of
+  fruit, generally occurring in clusters.`,
+  },
+  {
+    name: 'Cherry',
+    content: `A cherry is the fruit of many plants of the genus Prunus, and is a
+  fleshy drupe (stone fruit). Commercial cherries are obtained from
+  cultivars of several species, such as the sweet Prunus avium and the
+  sour Prunus cerasus.`,
+  },
+  {
+    name: 'Peach',
+    content: `The peach (Prunus persica) is a deciduous tree first domesticated and
+  cultivated in Zhejiang province of Eastern China.`,
+  },
+];
 
 export default () => {
-  const [index, setIndex] = React.useState(0);
-  const getContent = () => {
-    switch (index) {
-      case 0:
-        return 'Bentley Systems, Incorporated, is an American-based software development company that develops, manufactures, licenses, sells and supports computer software and services for the design, construction, and operation of infrastructure.';
-      case 1:
-        return "The company's software serves the building, plant, civil, and geospatial markets in the areas of architecture, engineering, construction (AEC) and operations.";
-      case 2:
-        return 'Their software products are used to design, engineer, build, and operate large constructed assets such as roadways, railways, bridges, buildings, industrial plants, power plants, and utility networks.';
-      case 3:
-        return 'The company re-invests 20% of their revenues in research and development.';
-      case 4:
-        return 'Bentley Systems is headquartered in Exton, Pennsylvania, United States, but has development, sales and other departments in over 50 countries.';
-      case 5:
-        return 'The company had revenues of $700 million in 2018.';
-      case 6:
-        return 'Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984.';
-      default:
-        return 'They introduced the commercial version of PseudoStation in 1985, which allowed users of Intergraphs VAX systems to use low-cost graphics terminals to view and modify the designs on their Intergraph IGDS (Interactive Graphics Design System) installations.';
-    }
-  };
-  const labels = [
-    <Tab key={1} label='Bentley Overview' />,
-    <Tab key={2} label='Markets' />,
-    <Tab key={3} label='Uses' />,
-    <Tab key={4} label='Reinvestment' />,
-    <Tab key={5} label='Location' />,
-    <Tab key={6} label='Revenue' />,
-    <Tab key={7} label='Founders' />,
-    <Tab key={8} label='History' />,
-  ];
+  const [active, setActive] = React.useState('Cherry');
 
   return (
-    <div
-      style={{
-        maxInlineSize: 425,
-        border: '1px solid lightpink',
-        padding: 8,
-      }}
-    >
-      <Tabs
-        labels={labels}
-        overflowOptions={{ useOverflow: true }}
-        onTabSelected={setIndex}
-        activeIndex={index}
+    <div style={{ maxWidth: 425, border: '1px solid lightpink', padding: 8 }}>
+      <Tabs.Wrapper
+        value={active}
+        onValueChange={(value) => {
+          setActive(value);
+        }}
       >
-        {getContent()}
-      </Tabs>
+        <Tabs.TabList>
+          {tabData?.map((item) => {
+            return (
+              <Tabs.Tab key={item.name} value={item.name} label={item.name} />
+            );
+          })}
+        </Tabs.TabList>
+
+        {tabData.map((item) => (
+          <Tabs.Panel key={item.name} value={item.name}>
+            {item.content}
+          </Tabs.Panel>
+        ))}
+      </Tabs.Wrapper>
     </div>
   );
 };
