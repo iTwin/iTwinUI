@@ -5,44 +5,28 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {
-  useMergedRefs,
-  getBoundedValue,
-  useContainerWidth,
-  useIsomorphicLayoutEffect,
-  useIsClient,
-  useResizeObserver,
+  useSafeContext,
   Box,
+  polymorphic,
+  useIsClient,
+  useIsomorphicLayoutEffect,
+  useMergedRefs,
+  useContainerWidth,
+  ButtonBase,
+  mergeEventHandlers,
+  useControlledState,
+  useId,
+  getWindow,
 } from '../utils/index.js';
-import { Tab } from './Tab.js';
-import styles from '../../styles.js';
+import { Icon } from '../Icon/Icon.js';
+import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-export type OverflowOptions = {
-  /**
-   * Whether to allow tabs list to scroll when there is overflow,
-   * i.e. when there is not enough space to fit all the tabs.
-   *
-   * Not applicable to types `pill` and `borderless`.
-   */
-  useOverflow?: boolean;
-};
+// Checking user motion preference for scroll into view animation
+const isMotionOk = () =>
+  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
 
-type TabsOverflowProps =
-  | {
-      /**
-       * Options that can be specified to deal with tabs overflowing the allotted space.
-       */
-      overflowOptions?: OverflowOptions;
-      /**
-       * Type of the tabs.
-       *
-       * If `orientation = 'vertical'`, `pill` is not applicable.
-       * @default 'default'
-       */
-      type?: 'default';
-    }
-  | {
-      type: 'pill' | 'borderless';
-    };
+// ----------------------------------------------------------------------------
+// TabsWrapper
 
 type TabsOrientationProps =
   | {
@@ -64,27 +48,424 @@ type TabsOrientationProps =
       type?: 'default' | 'borderless';
     };
 
-type TabsTypeProps =
-  | {
-      /**
-       * Type of the tabs.
-       *
-       * If `orientation = 'vertical'`, `pill` is not applicable.
-       * @default 'default'
-       */
-      type?: 'default' | 'borderless';
-      /**
-       * Content displayed to the right/bottom of the horizontal/vertical tabs
-       *
-       * If `type = 'pill'`, `actions` is not applicable.
-       */
-      actions?: React.ReactNode[];
-    }
-  | {
-      type: 'pill';
-    };
+type TabsWrapperOwnProps = {
+  /**
+   * Color of the bar on the active tab.
+   * @default 'blue'
+   */
+  color?: 'blue' | 'green';
+  /**
+   * Control whether focusing tabs (using arrow keys) should automatically select them.
+   * Use 'manual' if tab panel content is not preloaded.
+   * @default 'auto'
+   */
+  focusActivationMode?: 'auto' | 'manual';
+  /**
+   * Value of the tab that should be active on initial render.
+   *
+   * Should be used for uncontrolled state (when no `value` passed).
+   *
+   * If not specified, then first tab will be active by default.
+   */
+  defaultValue?: string;
+  /**
+   * Value of the active tab for controlled state.
+   */
+  value?: string;
+  /**
+   * Function that gets called when active tab is changed.
+   *
+   * Should be used alongside `value` prop.
+   */
+  onValueChange?: (value: string) => void;
+  /**
+   * @deprecated Do not use.
+   */
+  defaultChecked?: never; // Removing `defaultChecked` from `<div>` props.
+} & TabsOrientationProps;
 
-export type TabsProps = {
+const TabsWrapper = React.forwardRef((props, ref) => {
+  const {
+    className,
+    children,
+    orientation = 'horizontal',
+    type = 'default',
+    focusActivationMode = 'auto',
+    color = 'blue',
+    defaultValue,
+    value: activeValueProp,
+    onValueChange,
+    ...rest
+  } = props;
+
+  const [activeValue, setActiveValue] = useControlledState(
+    defaultValue,
+    activeValueProp,
+    onValueChange,
+  );
+  const [stripeProperties, setStripeProperties] = React.useState({});
+  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
+
+  const idPrefix = useId();
+
+  return (
+    <Box
+      className={cx('iui-tabs-wrapper', `iui-${orientation}`, className)}
+      {...rest}
+      style={{ ...stripeProperties, ...props?.style }}
+      ref={ref}
+    >
+      <TabsContext.Provider
+        value={{
+          orientation,
+          type,
+          activeValue,
+          setActiveValue,
+          setStripeProperties,
+          idPrefix,
+          focusActivationMode,
+          hasSublabel,
+          setHasSublabel,
+          color,
+        }}
+      >
+        {children}
+      </TabsContext.Provider>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsWrapperOwnProps>;
+TabsWrapper.displayName = 'Tabs.Wrapper';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabList component
+
+type TabListOwnProps = {
+  /**
+   * Tab items.
+   */
+  children: React.ReactNode[];
+};
+
+const TabList = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+
+  const { type, hasSublabel, color } = useSafeContext(TabsContext);
+
+  const isClient = useIsClient();
+  const tablistRef = React.useRef<HTMLDivElement>(null);
+  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
+  const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
+
+  return (
+    <Box
+      className={cx(
+        'iui-tabs',
+        `iui-${type}`,
+        {
+          'iui-green': color === 'green',
+          'iui-animated': type !== 'default' && isClient,
+          'iui-not-animated': type !== 'default' && !isClient,
+          'iui-large': hasSublabel,
+        },
+        className,
+      )}
+      role='tablist'
+      ref={refs}
+      {...rest}
+    >
+      <TabListContext.Provider
+        value={{
+          tabsWidth,
+        }}
+      >
+        {children}
+      </TabListContext.Provider>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabListOwnProps>;
+TabList.displayName = 'Tabs.TabList';
+
+// ----------------------------------------------------------------------------
+// Tabs.Tab component
+
+type TabOwnProps = {
+  /**
+   * Value used to associate the tab with a given panel.
+   */
+  value: string;
+  /**
+   * Tab label used for simple Tab construction.
+   * Cannot be used with tabs that have icons or descriptions.
+   */
+  label?: string | React.ReactNode;
+  /**
+   * @deprecated Don't pass `id`, as it will be automatically set.
+   */
+  id?: string;
+};
+
+const Tab = React.forwardRef((props, forwardedRef) => {
+  const { className, children, value, label, ...rest } = props;
+
+  const {
+    orientation,
+    activeValue,
+    setActiveValue,
+    type,
+    setStripeProperties,
+    idPrefix,
+    focusActivationMode,
+  } = useSafeContext(TabsContext);
+  const { tabsWidth } = useSafeContext(TabListContext);
+  const tabRef = React.useRef<HTMLButtonElement>();
+
+  const isActive = activeValue === value;
+
+  useIsomorphicLayoutEffect(() => {
+    if (isActive) {
+      if (orientation === 'horizontal') {
+        tabRef.current?.scrollIntoView({
+          inline: 'center',
+          behavior: isMotionOk() ? 'smooth' : 'auto',
+        });
+      } else {
+        tabRef.current?.scrollIntoView({
+          block: 'center',
+          behavior: isMotionOk() ? 'smooth' : 'auto',
+        });
+      }
+    }
+  }, [isActive]);
+
+  const updateStripe = () => {
+    const currentTabRect = tabRef.current?.getBoundingClientRect();
+    setStripeProperties({
+      '--iui-tabs-stripe-size':
+        orientation === 'horizontal'
+          ? `${currentTabRect?.width}px`
+          : `${currentTabRect?.height}px`,
+      '--iui-tabs-stripe-position':
+        orientation === 'horizontal'
+          ? `${tabRef.current?.offsetLeft}px`
+          : `${tabRef.current?.offsetTop}px`,
+    });
+  };
+
+  // CSS custom properties to place the active stripe
+  useIsomorphicLayoutEffect(() => {
+    if (type !== 'default' && isActive) {
+      updateStripe();
+    }
+  }, [
+    type,
+    orientation,
+    isActive,
+    tabsWidth, // to fix visual artifact on initial render
+  ]);
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.altKey) {
+      return;
+    }
+    const allTabs = Array.from(
+      event.currentTarget.parentElement?.children ?? [],
+    );
+
+    const nextTab = (tabRef.current?.nextElementSibling ??
+      allTabs.at(0)) as HTMLElement;
+
+    const previousTab = (tabRef.current?.previousElementSibling ??
+      allTabs.at(-1)) as HTMLElement;
+
+    switch (event.key) {
+      case 'ArrowDown': {
+        if (orientation === 'vertical') {
+          nextTab?.focus();
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowRight': {
+        if (orientation === 'horizontal') {
+          nextTab?.focus();
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowUp': {
+        if (orientation === 'vertical') {
+          previousTab?.focus();
+          event.preventDefault();
+        }
+        break;
+      }
+      case 'ArrowLeft': {
+        if (orientation === 'horizontal') {
+          previousTab?.focus();
+          event.preventDefault();
+        }
+        break;
+      }
+      default:
+        break;
+    }
+  };
+
+  // use first tab as active if no `value` passed.
+  const setInitialActiveRef = React.useCallback(
+    (element: HTMLElement) => {
+      if (activeValue !== undefined) {
+        return;
+      }
+
+      if (element?.matches(':first-of-type')) {
+        setActiveValue(value);
+      }
+    },
+    [activeValue, setActiveValue, value],
+  );
+
+  return (
+    <ButtonBase
+      className={cx('iui-tab', className)}
+      role='tab'
+      tabIndex={isActive ? 0 : -1}
+      aria-selected={isActive}
+      aria-controls={`${idPrefix}-panel-${value}`}
+      ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
+      {...rest}
+      id={`${idPrefix}-tab-${value}`}
+      onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
+      onFocus={mergeEventHandlers(props.onFocus, () => {
+        if (focusActivationMode === 'auto' && !props.disabled) {
+          setActiveValue(value);
+        }
+      })}
+    >
+      {label ? <Tabs.TabLabel>{label}</Tabs.TabLabel> : children}
+    </ButtonBase>
+  );
+}) as PolymorphicForwardRefComponent<'button', TabOwnProps>;
+Tab.displayName = 'Tabs.Tab';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabIcon component
+
+const TabIcon = React.forwardRef((props, ref) => {
+  return (
+    <Icon
+      {...props}
+      className={cx('iui-tab-icon', props?.className)}
+      ref={ref}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Icon>>;
+TabIcon.displayName = 'Tabs.TabIcon';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabLabel component
+
+const TabLabel = polymorphic.span('iui-tab-label');
+TabLabel.displayName = 'Tabs.TabLabel';
+
+// ----------------------------------------------------------------------------
+// Tabs.TabDescription component
+
+const TabDescription = React.forwardRef((props, ref) => {
+  const { className, children, ...rest } = props;
+  const { hasSublabel, setHasSublabel } = useSafeContext(TabsContext);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!hasSublabel) {
+      setHasSublabel(true);
+    }
+  }, [hasSublabel, setHasSublabel]);
+
+  return (
+    <Box
+      as='span'
+      className={cx('iui-tab-description', className)}
+      ref={ref}
+      {...rest}
+    >
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'span'>;
+TabDescription.displayName = 'Tabs.TabDescription';
+
+// ----------------------------------------------------------------------------
+// Tabs.Actions component
+
+type TabsActionsOwnProps = {
+  /**
+   * Passes props to the wrapper component for the actions
+   */
+  wrapperProps?: React.ComponentPropsWithRef<'div'>;
+};
+
+const TabsActions = React.forwardRef((props, ref) => {
+  const { wrapperProps, className, children, ...rest } = props;
+
+  return (
+    <Box
+      {...wrapperProps}
+      className={cx('iui-tabs-actions-wrapper', wrapperProps?.className)}
+    >
+      <Box className={cx('iui-tabs-actions', className)} ref={ref} {...rest}>
+        {children}
+      </Box>
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsActionsOwnProps>;
+TabsActions.displayName = 'Tabs.Actions';
+
+// ----------------------------------------------------------------------------
+// Tabs.Panel component
+
+type TabsPanelOwnProps = {
+  /**
+   * Value used to associate the panel with a given tab.
+   */
+  value: string;
+  /**
+   * @deprecated Don't pass `id`, as it will be automatically set.
+   */
+  id?: string;
+};
+
+const TabsPanel = React.forwardRef((props, ref) => {
+  const { value, className, children, ...rest } = props;
+
+  const { activeValue, idPrefix } = useSafeContext(TabsContext);
+
+  return (
+    <Box
+      className={cx('iui-tabs-content', className)}
+      aria-labelledby={`${idPrefix}-tab-${value}`}
+      role='tabpanel'
+      hidden={activeValue !== value ? true : undefined}
+      ref={ref}
+      {...rest}
+      id={`${idPrefix}-panel-${value}`}
+    >
+      {children}
+    </Box>
+  );
+}) as PolymorphicForwardRefComponent<'div', TabsPanelOwnProps>;
+TabsPanel.displayName = 'Tabs.Panel';
+
+// ----------------------------------------------------------------------------
+// Tabs legacy component
+
+type TabsLegacyProps = {
+  /**
+   * Content displayed to the right/bottom of the horizontal/vertical tabs
+   *
+   * If `type = 'pill'`, `actions` is not applicable.
+   */
+  actions?: React.ReactNode[];
   /**
    * Elements shown for each tab.
    * Recommended to pass an array of `Tab` components.
@@ -125,65 +506,35 @@ export type TabsProps = {
    * Content inside the tab panel.
    */
   children?: React.ReactNode;
-} & TabsOrientationProps &
-  TabsTypeProps &
-  TabsOverflowProps;
+  /**
+   * @deprecated Tabs will now overflow by default, so this prop does nothing.
+   */
+  overflowOptions?: {
+    /**
+     * @deprecated Tabs will now overflow by default, so this prop does nothing.
+     */
+    useOverflow?: boolean;
+  };
 
-/**
- * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
- * @example
- * const tabs = [
- *   <Tab label='Label 1' />,
- *   <Tab label='Label 2' />,
- *   <Tab label='Label 3' />,
- * ];
- * <Tabs labels={tabs} />
- *
- * @example
- * <Tabs orientation='vertical' labels={tabs} />
- *
- * @example
- * const tabsWithSublabels = [
- *   <Tab label='Label 1' sublabel='First tab' />,
- *   <Tab label='Label 2' sublabel='Active tab' />,
- * ];
- * <Tabs labels={tabsWithSublabels} activeIndex={1} />
- *
- * @example
- * const tabsWithIcons = [
- *   <Tab label='Label 1' icon={<SvgPlaceholder />} />,
- *   <Tab label='Label 2' icon={<SvgPlaceholder />} />,
- * ];
- * <Tabs labels={tabsWithIcons} type='pill' />
- */
-export const Tabs = (props: TabsProps) => {
-  // Separate actions from props to avoid adding it to the DOM (using {...rest})
+  // Removing `defaultValue` and `defaultChecked` from `<div>` props.
+  defaultValue?: never;
+  defaultChecked?: never;
+} & TabsOrientationProps;
+
+const LegacyTabsComponent = React.forwardRef((props, forwardedRef) => {
   let actions: Array<React.ReactNode> | undefined;
   if (props.type !== 'pill' && props.actions) {
     actions = props.actions;
     props = { ...props };
     delete props.actions;
   }
-  // Separate overflowOptions from props to avoid adding it to the DOM (using {...rest})
-  let overflowOptions: OverflowOptions | undefined;
-  if (
-    props.type !== 'borderless' &&
-    props.type !== 'pill' &&
-    props.overflowOptions
-  ) {
-    overflowOptions = props.overflowOptions;
-    props = { ...props };
-    delete props.overflowOptions;
-  }
 
   const {
     labels,
-    activeIndex,
     onTabSelected,
-    focusActivationMode = 'auto',
-    type = 'default',
-    color = 'blue',
-    orientation = 'horizontal',
+    focusActivationMode,
+    color,
+    activeIndex: activeIndexProp,
     tabsClassName,
     contentClassName,
     wrapperClassName,
@@ -191,420 +542,265 @@ export const Tabs = (props: TabsProps) => {
     ...rest
   } = props;
 
-  const isClient = useIsClient();
-
-  const tablistRef = React.useRef<HTMLUListElement>(null);
-  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
-  const refs = useMergedRefs(tablistRef, tablistSizeRef);
-
-  const [currentActiveIndex, setCurrentActiveIndex] = React.useState(() =>
-    activeIndex != null
-      ? getBoundedValue(activeIndex, 0, labels.length - 1)
-      : 0,
-  );
-  useIsomorphicLayoutEffect(() => {
-    if (activeIndex != null && currentActiveIndex !== activeIndex) {
-      setCurrentActiveIndex(getBoundedValue(activeIndex, 0, labels.length - 1));
-    }
-  }, [activeIndex, currentActiveIndex, labels.length]);
-
-  // CSS custom properties to place the active stripe
-  const [stripeProperties, setStripeProperties] = React.useState({});
-  useIsomorphicLayoutEffect(() => {
-    if (type !== 'default' && tablistRef.current != undefined) {
-      const activeTab = tablistRef.current.children[
-        currentActiveIndex
-      ] as HTMLElement;
-      const activeTabRect = activeTab.getBoundingClientRect();
-
-      setStripeProperties({
-        ...(orientation === 'horizontal' && {
-          '--stripe-width': `${activeTabRect.width}px`,
-          '--stripe-left': `${activeTab.offsetLeft}px`,
-        }),
-        ...(orientation === 'vertical' && {
-          '--stripe-height': `${activeTabRect.height}px`,
-          '--stripe-top': `${activeTab.offsetTop}px`,
-        }),
-      });
-    }
-  }, [currentActiveIndex, type, orientation, tabsWidth]);
-
-  const [focusedIndex, setFocusedIndex] = React.useState<number | undefined>();
-  React.useEffect(() => {
-    if (tablistRef.current && focusedIndex !== undefined) {
-      const tab = tablistRef.current.querySelectorAll(`.${styles['iui-tab']}`)[
-        focusedIndex
-      ];
-      (tab as HTMLElement)?.focus();
-    }
-  }, [focusedIndex]);
-
-  const [hasSublabel, setHasSublabel] = React.useState(false); // used for setting size
-  useIsomorphicLayoutEffect(() => {
-    setHasSublabel(
-      type !== 'pill' && // pill tabs should never have sublabels
-        !!tablistRef.current?.querySelector(
-          `.${styles['iui-tab-description']}`, // check directly for the sublabel class
-        ),
-    );
-  }, [type]);
-
-  const enableHorizontalScroll = React.useCallback((e: WheelEvent) => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    let scrollLeft = ownerDoc?.scrollLeft ?? 0;
-    if (e.deltaY > 0 || e.deltaX > 0) {
-      scrollLeft += 25;
-    } else if (e.deltaY < 0 || e.deltaX < 0) {
-      scrollLeft -= 25;
-    }
-    ownerDoc.scrollLeft = scrollLeft;
-  }, []);
-
-  // allow normal mouse wheels to scroll horizontally for horizontal overflow
-  React.useEffect(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    if (!overflowOptions?.useOverflow || orientation === 'vertical') {
-      ownerDoc.removeEventListener('wheel', enableHorizontalScroll);
-      return;
-    }
-
-    ownerDoc.addEventListener('wheel', enableHorizontalScroll);
-  }, [overflowOptions?.useOverflow, orientation, enableHorizontalScroll]);
-
-  const isTabHidden = (activeTab: HTMLElement, isVertical: boolean) => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    const fadeBuffer = isVertical
-      ? ownerDoc.offsetHeight * 0.05
-      : ownerDoc.offsetWidth * 0.05;
-    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
-    const visibleEnd = isVertical
-      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
-      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
-    const tabStart = isVertical ? activeTab.offsetTop : activeTab.offsetLeft;
-    const tabEnd = isVertical
-      ? activeTab.offsetTop + activeTab.offsetHeight
-      : activeTab.offsetLeft + activeTab.offsetWidth;
-
-    if (
-      tabStart > visibleStart + fadeBuffer &&
-      tabEnd < visibleEnd - fadeBuffer
-    ) {
-      return 0; // tab is visible
-    } else if (tabStart < visibleStart + fadeBuffer) {
-      return -1; // tab is before visible section
-    } else {
-      return 1; // tab is after visible section
-    }
-  };
-
-  const easeInOutQuad = (
-    time: number,
-    beginning: number,
-    change: number,
-    duration: number,
-  ) => {
-    if ((time /= duration / 2) < 1) {
-      return (change / 2) * time * time + beginning;
-    }
-    return (-change / 2) * (--time * (time - 2) - 1) + beginning;
-  };
-
-  const scrollToTab = React.useCallback(
-    (
-      list: HTMLUListElement,
-      activeTab: HTMLElement,
-      duration: number,
-      isVertical: boolean,
-      tabPlacement: number,
-    ) => {
-      const start = isVertical ? list.scrollTop : list.scrollLeft;
-      let change = 0;
-      let currentTime = 0;
-      const increment = 20;
-      const fadeBuffer = isVertical
-        ? list.offsetHeight * 0.05
-        : list.offsetWidth * 0.05;
-
-      if (tabPlacement < 0) {
-        // if tab is before visible section
-        change = isVertical
-          ? activeTab.offsetTop - list.scrollTop
-          : activeTab.offsetLeft - list.scrollLeft;
-        change -= fadeBuffer; // give some space so the active tab isn't covered by the fade
-      } else {
-        // tab is after visible section
-        change = isVertical
-          ? activeTab.offsetTop -
-            (list.scrollTop + list.offsetHeight) +
-            activeTab.offsetHeight
-          : activeTab.offsetLeft -
-            (list.scrollLeft + list.offsetWidth) +
-            activeTab.offsetWidth;
-        change += fadeBuffer; // give some space so the active tab isn't covered by the fade
-      }
-
-      const animateScroll = () => {
-        currentTime += increment;
-        const val = easeInOutQuad(currentTime, start, change, duration);
-        if (isVertical) {
-          list.scrollTop = val;
-        } else {
-          list.scrollLeft = val;
-        }
-        if (currentTime < duration) {
-          setTimeout(animateScroll, increment);
-        }
-      };
-      animateScroll();
-    },
-    [],
-  );
-
-  // scroll to active tab if it is not visible with overflow
-  useIsomorphicLayoutEffect(() => {
-    setTimeout(() => {
-      const ownerDoc = tablistRef.current;
-      if (
-        ownerDoc !== null &&
-        overflowOptions?.useOverflow &&
-        currentActiveIndex !== undefined
-      ) {
-        const activeTab = ownerDoc.querySelectorAll(`.${styles['iui-tab']}`)[
-          currentActiveIndex
-        ] as HTMLElement;
-        const isVertical = orientation === 'vertical';
-        const tabPlacement = isTabHidden(activeTab, isVertical);
-
-        if (tabPlacement) {
-          scrollToTab(ownerDoc, activeTab, 100, isVertical, tabPlacement);
-        }
-      }
-    }, 50);
-  }, [
-    overflowOptions?.useOverflow,
-    currentActiveIndex,
-    focusedIndex,
-    orientation,
-    scrollToTab,
-  ]);
-
-  const [scrollingPlacement, setScrollingPlacement] = React.useState<
-    string | undefined
-  >(undefined);
-  const determineScrollingPlacement = React.useCallback(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    const isVertical = orientation === 'vertical';
-    const visibleStart = isVertical ? ownerDoc.scrollTop : ownerDoc.scrollLeft;
-    const visibleEnd = isVertical
-      ? ownerDoc.scrollTop + ownerDoc.offsetHeight
-      : ownerDoc.scrollLeft + ownerDoc.offsetWidth;
-    const totalTabsSpace = isVertical
-      ? ownerDoc.scrollHeight
-      : ownerDoc.scrollWidth;
-
-    if (
-      Math.abs(visibleStart - 0) < 1 &&
-      Math.abs(visibleEnd - totalTabsSpace) < 1
-    ) {
-      setScrollingPlacement(undefined);
-    } else if (Math.abs(visibleStart - 0) < 1) {
-      setScrollingPlacement('start');
-    } else if (Math.abs(visibleEnd - totalTabsSpace) < 1) {
-      setScrollingPlacement('end');
-    } else {
-      setScrollingPlacement('center');
-    }
-  }, [orientation, setScrollingPlacement]);
-  // apply correct mask when tabs list is resized
-  const [resizeRef] = useResizeObserver(determineScrollingPlacement);
-  resizeRef(tablistRef?.current);
-
-  // check if overflow tabs are scrolled to far edges
-  React.useEffect(() => {
-    const ownerDoc = tablistRef.current;
-    if (ownerDoc === null) {
-      return;
-    }
-
-    if (!overflowOptions?.useOverflow) {
-      ownerDoc.removeEventListener('scroll', determineScrollingPlacement);
-      return;
-    }
-
-    ownerDoc.addEventListener('scroll', determineScrollingPlacement);
-  }, [overflowOptions?.useOverflow, determineScrollingPlacement]);
-
-  const onTabClick = React.useCallback(
-    (index: number) => {
-      if (onTabSelected) {
-        onTabSelected(index);
-      }
-      setCurrentActiveIndex(index);
-    },
-    [onTabSelected],
-  );
-
-  const onKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
-    // alt + arrow keys are used by browser / assistive technologies
-    if (event.altKey) {
-      return;
-    }
-
-    const isTabDisabled = (index: number) => {
-      const tab = labels[index];
-      return React.isValidElement(tab) && tab.props.disabled;
-    };
-
-    let newIndex = focusedIndex ?? currentActiveIndex;
-
-    /** focus next tab if delta is +1, previous tab if -1 */
-    const focusTab = (delta = +1) => {
-      do {
-        newIndex = (newIndex + delta + labels.length) % labels.length;
-      } while (isTabDisabled(newIndex) && newIndex !== focusedIndex);
-      setFocusedIndex(newIndex);
-      focusActivationMode === 'auto' && onTabClick(newIndex);
-    };
-
-    switch (event.key) {
-      case 'ArrowDown': {
-        if (orientation === 'vertical') {
-          focusTab(+1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowRight': {
-        if (orientation === 'horizontal') {
-          focusTab(+1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowUp': {
-        if (orientation === 'vertical') {
-          focusTab(-1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'ArrowLeft': {
-        if (orientation === 'horizontal') {
-          focusTab(-1);
-          event.preventDefault();
-        }
-        break;
-      }
-      case 'Enter':
-      case ' ':
-      case 'Spacebar': {
-        event.preventDefault();
-        if (focusActivationMode === 'manual' && focusedIndex !== undefined) {
-          onTabClick(focusedIndex);
-        }
-        break;
-      }
-      default:
-        break;
-    }
-  };
-
-  const createTab = React.useCallback(
-    (label: React.ReactNode, index: number) => {
-      const onClick = () => {
-        setFocusedIndex(index);
-        onTabClick(index);
-      };
-      return (
-        <li key={index}>
-          {!React.isValidElement(label) ? (
-            <Tab
-              label={label}
-              className={cx({
-                'iui-active': index === currentActiveIndex,
-              })}
-              tabIndex={index === currentActiveIndex ? 0 : -1}
-              onClick={onClick}
-              aria-selected={index === currentActiveIndex}
-            />
-          ) : (
-            React.cloneElement(label as JSX.Element, {
-              active: index === currentActiveIndex,
-              'aria-selected': index === currentActiveIndex,
-              tabIndex: index === currentActiveIndex ? 0 : -1,
-              onClick: (args: unknown) => {
-                onClick();
-                label.props.onClick?.(args);
-              },
-            })
-          )}
-        </li>
-      );
-    },
-    [currentActiveIndex, onTabClick],
+  const [activeIndex, setActiveIndex] = useControlledState(
+    0,
+    activeIndexProp,
+    onTabSelected,
   );
 
   return (
-    <Box
-      className={cx('iui-tabs-wrapper', `iui-${orientation}`, wrapperClassName)}
-      style={stripeProperties}
+    <TabsWrapper
+      className={wrapperClassName}
+      focusActivationMode={focusActivationMode}
+      color={color}
+      value={`${activeIndex}`}
+      onValueChange={(value) => setActiveIndex(Number(value))}
+      {...rest}
     >
-      <Box
-        as='ul'
-        className={cx(
-          'iui-tabs',
-          `iui-${type}`,
-          {
-            'iui-green': color === 'green',
-            'iui-animated': type !== 'default' && isClient,
-            'iui-not-animated': type !== 'default' && !isClient,
-            'iui-large': hasSublabel,
-          },
-          tabsClassName,
-        )}
-        data-iui-overflow={overflowOptions?.useOverflow}
-        data-iui-scroll-placement={scrollingPlacement}
-        role='tablist'
-        ref={refs}
-        onKeyDown={onKeyDown}
-        {...rest}
-      >
-        {labels.map((label, index) => createTab(label, index))}
-      </Box>
+      <TabList className={tabsClassName} ref={forwardedRef}>
+        {labels.map((label, index) => {
+          const tabValue = `${index}`;
+          return React.isValidElement(label) ? (
+            React.cloneElement(label as JSX.Element, {
+              value: tabValue,
+            })
+          ) : (
+            <LegacyTab key={index} value={tabValue} label={label} />
+          );
+        })}
+      </TabList>
 
-      {actions && (
-        <Box className='iui-tabs-actions-wrapper'>
-          <Box className='iui-tabs-actions'>{actions}</Box>
-        </Box>
-      )}
+      {actions && <TabsActions>{actions}</TabsActions>}
 
       {children && (
-        <Box
-          className={cx('iui-tabs-content', contentClassName)}
-          role='tabpanel'
-        >
+        <TabsPanel value={`${activeIndex}`} className={contentClassName}>
           {children}
-        </Box>
+        </TabsPanel>
       )}
-    </Box>
+    </TabsWrapper>
   );
+}) as PolymorphicForwardRefComponent<'div', TabsLegacyProps>;
+LegacyTabsComponent.displayName = 'Tabs';
+
+// ----------------------------------------------------------------------------
+
+type TabLegacyProps = {
+  /**
+   * The main label shown in the tab.
+   */
+  label?: React.ReactNode;
+  /**
+   * Secondary label shown below the main label.
+   */
+  sublabel?: React.ReactNode;
+  /**
+   * Svg icon shown before the labels.
+   */
+  startIcon?: JSX.Element;
+  /**
+   * Control whether the tab is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Custom content appended to the tab.
+   */
+  children?: React.ReactNode;
+  /**
+   * `value` of the tab.
+   *
+   * Will be set by parent `Tabs` component.
+   */
+  value?: string;
 };
+
+/**
+ * Legacy Tab component.
+ * For full functionality use composition API.
+ *
+ * Individual tab component to be used in the `labels` prop of `Tabs`.
+ * @example
+ * const tabs = [
+ *   <Tab label='Label 1' sublabel='Description 1' />,
+ *   <Tab label='Label 2' startIcon={<SvgPlaceholder />} />,
+ * ];
+ */
+const LegacyTab = React.forwardRef((props, forwardedRef) => {
+  const { label, sublabel, startIcon, children, value, ...rest } = props;
+
+  return (
+    <>
+      <Tab {...rest} value={value as string} ref={forwardedRef}>
+        {startIcon && <TabIcon>{startIcon}</TabIcon>}
+        <TabLabel>{label}</TabLabel>
+        {sublabel && <TabDescription>{sublabel}</TabDescription>}
+        {children}
+      </Tab>
+    </>
+  );
+}) as PolymorphicForwardRefComponent<'button', TabLegacyProps>;
+
+// ----------------------------------------------------------------------------
+// exports
+
+export { LegacyTab as Tab };
+
+/**
+ * Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+ * `Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
+ * @example
+ * <Tabs.Wrapper>
+ *   <Tabs.TabList>
+ *     <Tabs.Tab value='tab1' label='Label 1' />
+ *     <Tabs.Tab value='tab2' label='Label 2' />
+ *     <Tabs.Tab value='tab3' label='Label 3' />
+ *   </Tabs.TabList>
+ *   <Tabs.ActionsWrapper>
+ *     <Tabs.Actions>
+ *       <Button>Sample Button</Button>
+ *     </Tabs.Actions>
+ *   </Tabs.ActionsWrapper>
+ *   <Tabs.Panel value='tab1'>Content 1</Tabs.Panel>
+ *   <Tabs.Panel value='tab2'>Content 2</Tabs.Panel>
+ *   <Tabs.Panel value='tab3'>Content 3</Tabs.Panel>
+ * </Tabs.Wrapper>
+ *
+ * @example
+ * <Tabs orientation='vertical'/>
+ *
+ * @example
+ * <Tabs.Wrapper focusActivationMode='manual'>
+ *  <Tabs.Tab value='sample'>
+ *   <Tabs.TabIcon>
+ *     <SvgPlaceholder />
+ *   </Tabs.TabIcon>
+ *   <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
+ *   <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
+ *  </Tabs.Tab>
+ * </Tabs.Wrapper>
+ */
+
+export const Tabs = Object.assign(LegacyTabsComponent, {
+  /**
+   * A wrapper component for Tabs
+   */
+  Wrapper: TabsWrapper,
+  /**
+   * Tablist subcomponent which contains all of the tab subcomponents.
+   * @example
+   * <Tabs.TabList>
+   *   <Tabs.Tab value='tab1' label='Label 1' />
+   *   <Tabs.Tab value='tab2' label='Label 2' />
+   *   <Tabs.Tab value='tab3' label='Label 3' />
+   * </Tabs.TabList>
+   *
+   * @example
+   * <Tabs.TabList>
+   *   <Tabs.Tab value='tab1' label='Green Tab' />
+   * </Tabs.TabList>
+   *
+   * @example
+   * <Tabs.TabList focusActivationMode='manual'>
+   *   <Tabs.Tab value='tab1' label='Manual Focus Tab' />
+   * </Tabs.TabList>
+   */
+  TabList: TabList,
+  /**
+   * Tab subcomponent which is used for each of the tabs.
+   * @example
+   * <Tabs.Tab value='tab1' label='Label 1' />
+   *
+   * @example
+   * <Tabs.Tab value='sample'>
+   *   <Tabs.TabIcon>
+   *     <SvgPlaceholder />
+   *   </Tabs.TabIcon>
+   *   <Tabs.TabLabel>Sample Label</Tabs.TabLabel>
+   *   <Tabs.TabDescription>Sample Description</Tabs.TabDescription>
+   * </Tabs.Tab>
+   *
+   */
+  Tab: Tab,
+  /**
+   * Tab icon subcomponent which places an icon on the left side of the tab.
+   */
+  TabIcon: TabIcon,
+  /**
+   * Tab label subcomponent which holds the tab's label.
+   */
+  TabLabel: TabLabel,
+  /**
+   * Tab description subcomponent which places a description under the tab label.
+   */
+  TabDescription: TabDescription,
+  /**
+   * Tab actions subcomponent which contains action buttons that are placed at the end of the tabs.
+   */
+  Actions: TabsActions,
+  /**
+   * Tab panel subcomponent which contains the tab's content.
+   * @example
+   * <Tabs.Panel value='tab1'>
+   *   Sample Panel
+   * </Tabs.Panel>
+   */
+  Panel: TabsPanel,
+});
+
+const TabsContext = React.createContext<
+  | {
+      /**
+       * Type of the tabs.
+       */
+      type?: 'default' | 'borderless' | 'pill';
+      /**
+       * Orientation of the tabs.
+       * @default 'horizontal'
+       */
+      orientation?: 'horizontal' | 'vertical';
+      /**
+       * The value prop of the active tab.
+       */
+      activeValue?: string;
+      /**
+       * Handler for setting the value of the active tab.
+       */
+      setActiveValue: React.Dispatch<React.SetStateAction<string>>;
+      /**
+       * Handler for setting the hasSublabel flag.
+       */
+      setStripeProperties: (stripeProperties: object) => void;
+      /**
+       * Unique id prefix to account for duplicate `value`s.
+       */
+      idPrefix: string;
+      /**
+       * Control whether focusing tabs (using arrow keys) should automatically select them.
+       * Use 'manual' if tab panel content is not preloaded.
+       * @default 'auto'
+       */
+      focusActivationMode: 'auto' | 'manual';
+      /**
+       * Flag whether any of the tabs have a sublabel.
+       * Used for determining tab size.
+       */
+      hasSublabel: boolean;
+      /**
+       * Handler for setting the hasSublabel flag.
+       */
+      setHasSublabel: (hasSublabel: boolean) => void;
+      /**
+       * Color of the bar on the active tab.
+       */
+      color?: 'blue' | 'green';
+    }
+  | undefined
+>(undefined);
+
+const TabListContext = React.createContext<
+  | {
+      tabsWidth: number;
+    }
+  | undefined
+>(undefined);
 
 export default Tabs;

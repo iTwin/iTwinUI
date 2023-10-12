@@ -1380,44 +1380,38 @@
               class="iui-tabs-wrapper iui-horizontal"
               id="demo-pill-2"
             >
-              <ul
+              <div
                 class="iui-tabs iui-pill iui-not-animated"
                 role="tablist"
                 aria-label="Tab group name"
               >
-                <li>
-                  <button
-                    class="iui-tab iui-active"
-                    role="tab"
-                    aria-selected="true"
-                    aria-controls="active-tab"
-                  >
-                    <span class="iui-tab-label">Properties</span>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="iui-tab"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="documents-tab"
-                    id="test-tab-5"
-                  >
-                    <span class="iui-tab-label">Documents</span>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    class="iui-tab"
-                    role="tab"
-                    aria-selected="false"
-                    aria-controls="projects-tab"
-                    id="test-tab-6"
-                  >
-                    <span class="iui-tab-label">Projects</span>
-                  </button>
-                </li>
-              </ul>
+                <button
+                  class="iui-tab iui-button-base iui-active"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="active-tab"
+                >
+                  <span class="iui-tab-label">Properties</span>
+                </button>
+                <button
+                  class="iui-tab iui-button-base iui-button-base"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="documents-tab"
+                  id="test-tab-5"
+                >
+                  <span class="iui-tab-label">Documents</span>
+                </button>
+                <button
+                  class="iui-tab iui-button-base iui-button-base"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="projects-tab"
+                  id="test-tab-6"
+                >
+                  <span class="iui-tab-label">Projects</span>
+                </button>
+              </div>
               <div class="iui-tab-stripe"></div>
               <div
                 class="iui-tabs-content"
@@ -1516,8 +1510,8 @@
         const activeTab = tabs.querySelector('.iui-active');
         const tabpanels = [...wrapper.querySelectorAll('.iui-tabs-content')];
         const setStripe = (activeEl) => {
-          tabs.style.setProperty('--stripe-left', `${activeEl.offsetLeft}px`);
-          tabs.style.setProperty('--stripe-width', `${activeEl.getBoundingClientRect().width}px`);
+          tabs.style.setProperty('--iui-tabs-stripe-position', `${activeEl.offsetLeft}px`);
+          tabs.style.setProperty('--iui-tabs-stripe-size', `${activeEl.getBoundingClientRect().width}px`);
         };
         setStripe(activeTab);
 

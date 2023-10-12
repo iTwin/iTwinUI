@@ -6,7 +6,7 @@
   justify-content: space-evenly;
   gap: var(--iui-size-3xs);
 
-  > li {
+  > .iui-tab {
     flex: 1 1 0;
   }
 
@@ -15,12 +15,13 @@
       background-color: var(--iui-color-background-transparent-hover);
     }
 
-    &.iui-active:hover {
+    &[aria-selected='true']:hover {
       background-color: var(--iui-color-background-positive-muted);
     }
   }
 
   .iui-tab {
+    display: flex;
     padding: var(--iui-size-2xs);
     background-color: transparent;
     inline-size: 100%;
@@ -36,7 +37,7 @@
       background-color: var(--iui-color-background-transparent-hover);
     }
 
-    &.iui-active:hover {
+    &[aria-selected='true']:hover {
       background-color: var(--iui-color-background-accent-muted);
     }
 
