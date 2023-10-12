@@ -223,6 +223,12 @@
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
 
+## 2.12.12
+
+### Patch Changes
+
+- [#1625](https://github.com/iTwin/iTwinUI/pull/1625): Fixed an issue where components rendered in a popout window were throwing a stylesheet-related error.
+
 ## 2.12.11
 
 ### Patch Changes
