@@ -3,33 +3,32 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tabs, Tab } from '@itwin/itwinui-react';
+import { Tabs } from '@itwin/itwinui-react';
 
 export default () => {
-  const [index, setIndex] = React.useState(0);
-  const getContent = () => {
-    switch (index) {
-      case 0:
-        return "Bentley Systems, Incorporated, is an American-based software development company that develops, manufactures, licenses, sells and supports computer software and services for the design, construction, and operation of infrastructure. The company's software serves the building, plant, civil, and geospatial markets in the areas of architecture, engineering, construction (AEC) and operations. Their software products are used to design, engineer, build, and operate large constructed assets such as roadways, railways, bridges, buildings, industrial plants, power plants, and utility networks. The company re-invests 20% of their revenues in research and development.";
-      case 1:
-        return 'Bentley Systems is headquartered in Exton, Pennsylvania, United States, but has development, sales and other departments in over 50 countries. The company had revenues of $700 million in 2018.';
-      default:
-        return 'Keith A. Bentley and Barry J. Bentley founded Bentley Systems in 1984. They introduced the commercial version of PseudoStation in 1985, which allowed users of Intergraphs VAX systems to use low-cost graphics terminals to view and modify the designs on their Intergraph IGDS (Interactive Graphics Design System) installations.';
-    }
-  };
   return (
-    <div style={{ paddingInline: 48 }}>
-      <Tabs
-        orientation='horizontal'
-        labels={[
-          <Tab key={1} label='Item1' />,
-          <Tab key={2} label='Item2' />,
-          <Tab key={3} label='Item3' />,
-        ]}
-        onTabSelected={setIndex}
-      >
-        {getContent()}
-      </Tabs>
-    </div>
+    <Tabs.Wrapper>
+      <Tabs.TabList>
+        <Tabs.Tab value='apple' label='Apple' key='apple' />
+        <Tabs.Tab value='orange' label='Orange' key='orange' />
+        <Tabs.Tab value='pear' label='Pear' key='pear' />
+      </Tabs.TabList>
+
+      <Tabs.Panel value='apple' key='apple'>
+        An apple is a round, edible fruit produced by an apple tree (Malus
+        domestica). Apple trees are cultivated worldwide and are the most widely
+        grown species in the genus Malus.
+      </Tabs.Panel>
+      <Tabs.Panel value='orange' key='orange'>
+        An orange is a fruit of various citrus species in the family Rutaceae
+        (see list of plants known as orange); it primarily refers to Citrus x
+        sinensis, which is also called sweet orange, to distinguish it from the
+        related Citrus x aurantium, referred to as bitter orange.
+      </Tabs.Panel>
+      <Tabs.Panel value='pear' key='pear'>
+        Pears are fruits produced and consumed around the world, growing on a
+        tree and harvested in late summer into mid-autumn.
+      </Tabs.Panel>
+    </Tabs.Wrapper>
   );
 };
