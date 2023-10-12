@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useIntersection, useMergedRefs } from '../utils/index.js';
+import {
+  Box,
+  mergeEventHandlers,
+  useIntersection,
+  useMergedRefs,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 
@@ -56,6 +61,12 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
       ref={refs}
       {...{ inert: index !== currentIndex ? '' : undefined }}
       {...rest}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, (event) => {
+        // prevent default browser scrolling on arrow keys because focus will get lost when slide switches
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+        }
+      })}
     >
       {children}
     </Box>
