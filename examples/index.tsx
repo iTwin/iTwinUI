@@ -1069,10 +1069,6 @@ import { default as TabsLegacyExampleRaw } from './Tabs.legacy';
 const TabsLegacyExample = withThemeProvider(TabsLegacyExampleRaw);
 export { TabsLegacyExample };
 
-import { default as TabsHorizontalExampleRaw } from './Tabs.horizontal';
-const TabsHorizontalExample = withThemeProvider(TabsHorizontalExampleRaw);
-export { TabsHorizontalExample };
-
 import { default as TabsVerticalExampleRaw } from './Tabs.vertical';
 const TabsVerticalExample = withThemeProvider(TabsVerticalExampleRaw);
 export { TabsVerticalExample };
