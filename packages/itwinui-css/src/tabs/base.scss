@@ -23,25 +23,28 @@ $borderless-horizontal-tab-min-height: calc(
 }
 
 @mixin iui-tabs {
-  @include mixins.iui-reset;
   position: relative;
-  list-style: none;
-  user-select: none;
 
   .iui-tab {
-    @include mixins.iui-reset;
     font-family: inherit;
     position: relative;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto minmax(min-content, 1fr);
+    grid-template-rows: auto minmax(0, auto);
+    grid-template-areas:
+      'icon label'
+      'icon description';
     align-items: center;
+    align-content: center;
     font-size: var(--iui-font-size-1);
     min-block-size: calc(var(--iui-size-m) * 2.5);
     block-size: 100%;
     cursor: pointer;
     color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
+    text-align: start;
 
-    &.iui-active {
+    &[aria-selected='true'] {
       color: var(--iui-color-text-accent);
 
       .iui-tab-icon svg {
@@ -70,25 +73,25 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-icon {
-    &,
-    svg {
-      @include mixins.iui-icon-style('m');
-    }
+    grid-area: icon;
 
     svg {
-      fill: var(--iui-color-icon);
       transition: fill var(--iui-duration-1) ease-out;
     }
 
-    + .iui-tab-label {
+    ~ .iui-tab-label,
+    ~ .iui-tab-description {
       margin-inline-start: var(--iui-size-xs);
     }
   }
 
   .iui-tab-description {
+    @include mixins.iui-line-clamp(3);
+    max-inline-size: 60ch;
     display: none;
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
+    grid-area: description;
   }
 
   &.iui-green .iui-tab {
@@ -96,18 +99,12 @@ $borderless-horizontal-tab-min-height: calc(
       outline-color: var(--iui-color-text-positive);
     }
 
-    &.iui-active {
+    &[aria-selected='true'] {
       color: var(--iui-color-text-positive);
 
       .iui-tab-icon svg {
         fill: currentColor;
       }
-    }
-  }
-
-  &[data-iui-overflow='true'] {
-    .iui-tab {
-      white-space: nowrap;
     }
   }
 
@@ -118,12 +115,9 @@ $borderless-horizontal-tab-min-height: calc(
 }
 
 @mixin iui-tab-label {
-  text-align: start;
+  grid-area: label;
   max-inline-size: 60ch;
-
-  > * {
-    @include mixins.iui-line-clamp(3);
-  }
+  @include mixins.iui-line-clamp(3);
 }
 
 @mixin iui-tabs-horizontal {
@@ -133,47 +127,47 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tabs {
     display: flex;
+    container-type: inline-size;
 
     &.iui-borderless {
       min-block-size: $borderless-horizontal-tab-min-height;
     }
 
-    &[data-iui-overflow='true'] {
-      overflow-x: auto;
+    overflow-x: auto;
+    animation-name: scroll-shadow-inset-horizontal;
+    animation-timing-function: linear;
+    /* stylelint-disable-next-line property-no-unknown */
+    animation-timeline: scroll(self inline);
 
-      &[data-iui-scroll-placement='start'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+    @keyframes scroll-shadow-inset-horizontal {
+      from {
+        mask-image: linear-gradient(90deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
       }
 
-      &[data-iui-scroll-placement='center'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+      5% {
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
-      &[data-iui-scroll-placement='end'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(
-          90deg,
-          transparent 0%,
-          rgb(0, 0, 0) 5%,
-          rgb(0, 0, 0) 100%,
-          transparent 100%
-        );
-        mask-image: linear-gradient(90deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+      95% {
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+      }
+
+      to {
+        mask-image: linear-gradient(90deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
       }
     }
   }
 
   .iui-tab {
+    flex-shrink: 0;
+    max-inline-size: 60cqi;
+
     &::after {
       inline-size: 100%;
       block-size: 0;
     }
 
-    &.iui-active::after {
+    &[aria-selected='true']::after {
       block-size: var(--iui-size-3xs);
     }
   }
@@ -186,10 +180,10 @@ $borderless-horizontal-tab-min-height: calc(
   block-size: 100%;
 
   .iui-tabs {
-    li,
     .iui-tab {
       inline-size: 100%;
       white-space: nowrap;
+      block-size: auto;
     }
 
     ~ .iui-tabs-content {
@@ -197,26 +191,27 @@ $borderless-horizontal-tab-min-height: calc(
       overflow: auto;
     }
 
-    &[data-iui-overflow='true'] {
-      overflow-y: auto;
-      min-inline-size: min-content;
+    overflow-y: auto;
+    animation-name: scroll-shadow-inset-vertical;
+    animation-timing-function: linear;
+    /* stylelint-disable-next-line property-no-unknown */
+    animation-timeline: scroll(self inline);
 
-      &[data-iui-scroll-placement='start'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 100%, transparent 100%);
+    @keyframes scroll-shadow-inset-vertical {
+      from {
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 100%, transparent 100%);
       }
 
-      &[data-iui-scroll-placement='center'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 5%, rgb(0, 0, 0) 95%, transparent 100%);
+      5% {
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
       }
 
-      &[data-iui-scroll-placement='end'] {
-        /* stylelint-disable-next-line property-no-vendor-prefix */
-        -webkit-mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
-        mask-image: linear-gradient(0deg, transparent 0%, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 95%, transparent 100%);
+      95% {
+        mask-image: linear-gradient(0deg, transparent 0%, #000 5%, #000 95%, transparent 100%);
+      }
+
+      to {
+        mask-image: linear-gradient(0deg, transparent 0%, #000 0%, #000 95%, transparent 100%);
       }
     }
   }
@@ -227,7 +222,7 @@ $borderless-horizontal-tab-min-height: calc(
       block-size: 100%;
     }
 
-    &.iui-active::after {
+    &[aria-selected='true']::after {
       inline-size: var(--iui-size-3xs);
     }
   }
@@ -240,7 +235,7 @@ $borderless-horizontal-tab-min-height: calc(
     background-color: var(--iui-color-border-accent);
   }
 
-  .iui-active::after {
+  [aria-selected='true']::after {
     @media (prefers-reduced-motion: no-preference) {
       transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
     }
@@ -265,8 +260,8 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-horizontal &::after {
     inset-block-start: calc(100% - #{var(--iui-size-3xs)});
     block-size: var(--iui-size-3xs);
-    inset-inline-start: var(--stripe-left);
-    inline-size: var(--stripe-width);
+    inset-inline-start: var(--iui-tabs-stripe-position);
+    inline-size: var(--iui-tabs-stripe-size);
     @media (prefers-reduced-motion: no-preference) {
       transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
     }
@@ -275,8 +270,8 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-vertical &::after {
     inset-inline-start: calc(100% - #{var(--iui-size-3xs)});
     inline-size: var(--iui-size-3xs);
-    inset-block-start: var(--stripe-top);
-    block-size: var(--stripe-height);
+    inset-block-start: var(--iui-tabs-stripe-position);
+    block-size: var(--iui-tabs-stripe-size);
     @media (prefers-reduced-motion: no-preference) {
       transition: top var(--iui-duration-1) ease-out;
     }
@@ -336,4 +331,8 @@ $borderless-horizontal-tab-min-height: calc(
 
 @mixin iui-tabs-content {
   grid-area: tabs-content;
+
+  &[hidden] {
+    display: none !important;
+  }
 }
