@@ -583,7 +583,7 @@ export const Expandable = () => {
 
   const expandedSubComponent = useCallback(
     (row: Row) => (
-      <div style={{ padding: 16 }}>
+      <div>
         <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
@@ -919,7 +919,7 @@ export const DisabledRows = () => {
 
   const expandedSubComponent = useCallback(
     (row: Row) => (
-      <div style={{ padding: 16 }}>
+      <div>
         <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
@@ -1301,7 +1301,7 @@ export const Full = () => {
 
   const expandedSubComponent = useCallback(
     (row: Row) => (
-      <div style={{ padding: 16 }}>
+      <div>
         <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
@@ -2953,7 +2953,7 @@ export const CustomizedColumns = () => {
 
   const subComponent = useCallback(
     (row: Row) => (
-      <div style={{ padding: 16 }}>
+      <div>
         <Text variant='leading'>Extra information</Text>
         <pre>
           <code>{JSON.stringify({ values: row.values }, null, 2)}</code>
