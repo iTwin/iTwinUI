@@ -19,9 +19,11 @@ import * as AllExamples from 'examples';
 
 ## Usage
 
+### Composition API
+
 You can build Tabs with subcomponents that are fully customizable.
 
-```
+```js
 <Tabs.Wrapper>
   <Tabs.TabList>
     <Tabs.Tab value='apple' label='Apple' key='apple' />
@@ -42,9 +44,41 @@ You can build Tabs with subcomponents that are fully customizable.
 
 `Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
 
-You can also use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
+You can also build `Tabs.Tab` with subcomponents.
 
+```js
+<Tabs.Tab value='apple' key='apple'>
+  <Tabs.TabIcon>
+    <SvgAppleIcon />
+  </Tabs.TabIcon>
+  <Tabs.TabLabel>Apple</Tabs.TabLabel>
+  <Tabs.TabDescription>A red fruit</Tabs.TabDescription>
+</Tabs.Tab>
 ```
+
+### Props API
+
+Alternatively, you can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+
+The following code is equivalent to the composition example above:
+
+```js
+<Tabs
+  labels={[
+    <Tab key='apple' label='Apple' />,
+    <Tab key='orange' label='Orange' />,
+    <Tab key='pear' label='Pear' />,
+  ]}
+>
+  {/* … content for active tab */}
+</Tabs>
+```
+
+### Controlled state
+
+You can use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
+
+```js
 <Tabs.Wrapper value={myLocalValue} onValueChange={setMyLocalValue}>
   <Tabs.TabList>
     <Tabs.Tab value='apple' label='Apple' key='apple' />
@@ -61,34 +95,6 @@ You can also use `value` and `onValueChange` in `Tabs.Wrapper` to have fully con
     {/*...Content for pear*/}
   </Tabs.Panel>
 </Tabs.Wrapper>
-```
-
-`Tabs.Wrapper` also has `defaultValue` prop. You can set any tab to be active by default using this.
-
-You can also build `Tabs.Tab` with subcomponents.
-
-```
-<Tabs.Tab value='apple' key='apple'>
-  <Tabs.TabIcon><SvgAppleIcon /></Tabs.TabIcon>
-  <Tabs.TabLabel>Apple</Tabs.TabLabel>
-  <Tabs.TabDescription>A red fruit</Tabs.TabDescription>
-</Tabs.Tab>
-```
-
-Alternatively, you can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
-
-The following code is equivalent to the composition example above:
-
-```
-<Tabs
-  labels={[
-    <Tab key='apple' label='Apple' />,
-    <Tab key='orange' label='Orange' />,
-    <Tab key='pear' label='Pear' />,
-  ]}
->
-  {/* … content for active tab */}
-</Tabs>
 ```
 
 ## Variants
