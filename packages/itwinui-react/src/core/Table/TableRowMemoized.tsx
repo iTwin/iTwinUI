@@ -143,7 +143,6 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
       )}
     </>
   );
-  8;
 };
 
 const hasAnySelectedSubRow = <T extends Record<string, unknown>>(
