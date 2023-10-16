@@ -353,6 +353,7 @@ jobs:
         with:
           name: 'cypress-visual-screenshots'
           path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'
+
   a11y:
     name: Test for a11y violations
     needs: install
@@ -383,4 +384,5 @@ jobs:
         with:
           working-directory: testing/a11y
           component: true
+          browser: chrome
           install-command: yarn
