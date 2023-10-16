@@ -1065,10 +1065,6 @@ import { default as TabsActionsExampleRaw } from './Tabs.actions';
 const TabsActionsExample = withThemeProvider(TabsActionsExampleRaw);
 export { TabsActionsExample };
 
-import { default as TabsLegacyExampleRaw } from './Tabs.legacy';
-const TabsLegacyExample = withThemeProvider(TabsLegacyExampleRaw);
-export { TabsLegacyExample };
-
 import { default as TabsVerticalExampleRaw } from './Tabs.vertical';
 const TabsVerticalExample = withThemeProvider(TabsVerticalExampleRaw);
 export { TabsVerticalExample };

@@ -17,32 +17,79 @@ import * as AllExamples from 'examples';
   <AllExamples.TabsMainExample client:load />
 </LiveExample>
 
-### Composition API
+## Usage
 
 You can build Tabs with subcomponents that are fully customizable.
 
-We provide:
-
-- `Tabs.Wrapper`
-- `Tabs.List`
-- `Tabs.Tab`
-- `Tabs.TabIcon`
-- `Tabs.TabLabel`
-- `Tabs.TabDescription`
-- `Tabs.Actions`
-- `Tabs.Panel`
+```
+<Tabs.Wrapper>
+  <Tabs.TabList>
+    <Tabs.Tab value='apple' label='Apple' key='apple' />
+    <Tabs.Tab value='orange' label='Orange' key='orange' />
+    <Tabs.Tab value='pear' label='Pear' key='pear' />
+  </Tabs.TabList>
+  <Tabs.Panel value='apple' key='apple'>
+    {/*...Content for apple*/}
+  </Tabs.Panel>
+  <Tabs.Panel value='orange' key='orange'>
+    {/*...Content for orange*/}
+  </Tabs.Panel>
+  <Tabs.Panel value='pear' key='pear'>
+    {/*...Content for pear*/}
+  </Tabs.Panel>
+</Tabs.Wrapper>
+```
 
 `Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
 
-### Props API
+You can also use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
 
-You can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+```
+<Tabs.Wrapper value={myLocalValue} onValueChange={setMyLocalValue}>
+  <Tabs.TabList>
+    <Tabs.Tab value='apple' label='Apple' key='apple' />
+    <Tabs.Tab value='orange' label='Orange' key='orange' />
+    <Tabs.Tab value='pear' label='Pear' key='pear' />
+  </Tabs.TabList>
+  <Tabs.Panel value='apple' key='apple'>
+    {/*...Content for apple*/}
+  </Tabs.Panel>
+  <Tabs.Panel value='orange' key='orange'>
+    {/*...Content for orange*/}
+  </Tabs.Panel>
+  <Tabs.Panel value='pear' key='pear'>
+    {/*...Content for pear*/}
+  </Tabs.Panel>
+</Tabs.Wrapper>
+```
 
-A list of all available props can be found at the end of this [page](#props).
+`Tabs.Wrapper` also has `defaultValue` prop. You can set any tab to be active by default using this.
 
-<LiveExample src='Tabs.legacy.tsx'>
-  <AllExamples.TabsLegacyExample client:load />
-</LiveExample>
+You can also build `Tabs.Tab` with subcomponents.
+
+```
+<Tabs.Tab value='apple' key='apple'>
+  <Tabs.TabIcon><SvgAppleIcon /></Tabs.TabIcon>
+  <Tabs.TabLabel>Apple</Tabs.TabLabel>
+  <Tabs.TabDescription>A red fruit</Tabs.TabDescription>
+</Tabs.Tab>
+```
+
+Alternatively, you can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+
+The following code is equivalent to the composition example above:
+
+```
+<Tabs
+  labels={[
+    <Tab key='apple' label='Apple' />,
+    <Tab key='orange' label='Orange' />,
+    <Tab key='pear' label='Pear' />,
+  ]}
+>
+  {/* … content for active tab */}
+</Tabs>
+```
 
 ## Variants
 
@@ -54,7 +101,9 @@ A list of all available props can be found at the end of this [page](#props).
 
 ### Borderless
 
-As their name implies, borderless tabs have no frame or stroke surrounding them. The label appears on top of the content, above a stroke that separates it from the text area. The stroke cuts off beneath the active tab, so it can be visually associated with its respective content.
+As their name implies, borderless tabs have no frame or stroke surrounding them.
+
+Use borderless tabs when the tabbed content can be easily told apart from its surroundings (or lack thereof).
 
 <LiveExample src='Tabs.borderless.tsx'>
   <AllExamples.TabsBorderlessExample client:load />
@@ -63,6 +112,8 @@ As their name implies, borderless tabs have no frame or stroke surrounding them.
 ### Pill
 
 Pill tabs are meant to be used with content that belong to a similar category. They act like a filter for toggling through different states of similar content.
+
+The maximum recommended amount of pill tabs is 4.
 
 <LiveExample src='Tabs.pill.tsx'>
   <AllExamples.TabsPillExample client:load />
@@ -83,12 +134,3 @@ If the available space does not allow all the tabs to be displayed, tabs become 
 <LiveExample src='Tabs.overflow.tsx'>
   <AllExamples.TabsOverflowExample client:load />
 </LiveExample>
-
-## Usage
-
-- Use [borderless tabs](#borderless) when the tabbed content can be easily told apart from its surroundings (or lack thereof).
-- The maximum recommended amount of [pill tabs](#pill) is 4.
-
-## Props
-
-<PropsTable path={frontmatter.propsPath} />
