@@ -10,9 +10,13 @@ import type {
   TableInstance,
   TableState,
 } from '../../react-table/react-table.js';
-import { Box, useIntersection, useMergedRefs } from '../utils/index.js';
+import {
+  Box,
+  useIntersection,
+  useMergedRefs,
+  WithCSSTransition,
+} from '../utils/index.js';
 import { TableCell } from './TableCell.js';
-
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
  * Using `isLast` here instead of passing data length to avoid re-renders of all rows when more data is added. Now only the last row re-renders.
@@ -128,15 +132,18 @@ export const TableRow = <T extends Record<string, unknown>>(props: {
         })}
       </Box>
       {subComponent && (
-        <Box
-          className={cx('iui-table-row', 'iui-table-expanded-content')}
-          aria-disabled={isDisabled}
-        >
-          {subComponent(row)}
-        </Box>
+        <WithCSSTransition in={row.isExpanded}>
+          <Box
+            className={cx('iui-table-row', 'iui-table-expanded-content')}
+            aria-disabled={isDisabled}
+          >
+            {subComponent(row)}
+          </Box>
+        </WithCSSTransition>
       )}
     </>
   );
+  8;
 };
 
 const hasAnySelectedSubRow = <T extends Record<string, unknown>>(

@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
 import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
+import styles from '../../../styles.js';
 
 export const WithCSSTransition = (
   props: Partial<CSSTransitionProps> & {
@@ -41,7 +42,12 @@ export const WithCSSTransition = (
         node.style[`min${dimensionCamelCase}`] = 'initial';
         node.style[dimension] = '0px';
       }}
-      classNames='iui'
+      classNames={{
+        enter: styles['iui-enter'],
+        enterActive: styles['iui-enter-active'],
+        exit: styles['iui-exit'],
+        exitActive: styles['iui-exit-active'],
+      }}
       {...rest}
     >
       {React.isValidElement(children) ? (
