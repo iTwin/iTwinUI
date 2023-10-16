@@ -17,7 +17,7 @@ const axeConfigPerExample = (example) => {
     // false positive only in CI
     case 'InputStatusExample': {
       return {
-        rules: [{ id: 'color-contrast', enabled: !process.env.CI }],
+        rules: [{ id: 'color-contrast', enabled: Cypress.env('CI') }],
       };
     }
   }
