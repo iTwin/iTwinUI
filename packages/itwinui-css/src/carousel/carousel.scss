@@ -14,12 +14,14 @@
 }
 
 .iui-carousel {
+  display: grid;
   overflow: hidden;
   @include mixins.iui-focus($offset: 4px);
   border-radius: var(--iui-border-radius-1);
 }
 
 .iui-carousel-slider {
+  order: -1; // slides need to be visually before the dots
   display: flex;
   gap: var(--iui-size-xs);
   list-style: none;
@@ -32,6 +34,10 @@
     inline-size: 100%;
     flex-shrink: 0;
     scroll-snap-align: center;
+
+    &:focus-visible {
+      outline-offset: -2px;
+    }
   }
 }
 
@@ -46,20 +52,26 @@
     display: flex;
     align-items: center;
     flex: 1;
-
-    button[data-pressed='true'] {
-      outline-offset: -1px;
-      outline: 1px solid var(--iui-color-border-accent);
-    }
   }
 
   &-dots {
     @include mixins.iui-reset;
-    @include mixins.iui-focus;
     max-inline-size: calc(var(--iui-size-2xl) * 4);
     border-radius: var(--iui-border-radius-1);
     white-space: nowrap;
     @include hide-scrollbar;
+
+    &:has(:focus-visible) {
+      outline: 2px solid var(--iui-color-border-accent);
+      outline-offset: -1px;
+    }
+
+    @supports not selector(:has(+ *)) {
+      &:focus-within {
+        outline: 2px solid var(--iui-color-border-accent);
+        outline-offset: -1px;
+      }
+    }
   }
 
   &-dot {
@@ -98,6 +110,10 @@
       @media (forced-colors: active) {
         border-width: var(--iui-size-xs);
       }
+    }
+
+    &:focus {
+      outline-color: transparent; // parent already has focus outline
     }
   }
 

@@ -15,7 +15,6 @@ const CarouselNavigationComponent = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='nav'
       className={cx('iui-carousel-navigation', className)}
       ref={ref}
       {...rest}
@@ -35,7 +34,7 @@ const CarouselNavigationComponent = React.forwardRef((props, ref) => {
       )}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'nav'>;
+}) as PolymorphicForwardRefComponent<'div'>;
 
 /** Button for switching to previous slide */
 const PreviousButton = React.forwardRef((props, ref) => {
@@ -44,20 +43,14 @@ const PreviousButton = React.forwardRef((props, ref) => {
     throw new Error('CarouselNavigation should be used inside Carousel');
   }
 
-  const {
-    slideCount,
-    currentIndex,
-    setCurrentIndex,
-    keysPressed,
-    scrollToSlide,
-  } = context;
+  const { slideCount, currentIndex, setCurrentIndex, scrollToSlide } = context;
 
   return (
     <IconButton
       styleType='borderless'
       size='small'
       tabIndex={-1}
-      data-pressed={keysPressed['ArrowLeft'] || undefined}
+      aria-label='Previous'
       ref={ref}
       {...props}
       onClick={(e) => {
@@ -82,20 +75,14 @@ const NextButton = React.forwardRef((props, ref) => {
     throw new Error('CarouselNavigation should be used inside Carousel');
   }
 
-  const {
-    slideCount,
-    currentIndex,
-    setCurrentIndex,
-    keysPressed,
-    scrollToSlide,
-  } = context;
+  const { slideCount, currentIndex, setCurrentIndex, scrollToSlide } = context;
 
   return (
     <IconButton
       styleType='borderless'
       size='small'
       tabIndex={-1}
-      data-pressed={keysPressed['ArrowRight'] || undefined}
+      aria-label='Next'
       ref={ref}
       {...props}
       onClick={(e) => {
