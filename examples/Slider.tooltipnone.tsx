@@ -46,21 +46,10 @@ export default () => {
         }}
         onUpdate={updateValue}
         onChange={updateValue}
-        tickLabels={
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginTop: '20px',
-            }}
-          >
-            <Text variant='body' style={{ width: '60px', marginRight: '6px' }}>
-              {dateFormatter.format(currentValue.date)}
-            </Text>
-          </div>
-        }
       />
+      <Text variant='body' style={{ textAlign: 'center' }}>
+        {dateFormatter.format(currentValue.date)}
+      </Text>
     </InputGrid>
   );
 };
