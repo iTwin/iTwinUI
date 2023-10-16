@@ -171,9 +171,7 @@ $iui-slider-tick-thickness: 1px;
 .iui-slider-ticks {
   position: relative;
   display: flex;
-  pointer-events: none;
   justify-content: space-between;
-  user-select: none;
   grid-area: content;
   z-index: -1;
 }
@@ -181,7 +179,6 @@ $iui-slider-tick-thickness: 1px;
 .iui-slider-tick {
   position: relative;
   display: flex;
-  pointer-events: none;
   align-items: center;
   color: var(--_iui-slider-tick-text-color);
 
