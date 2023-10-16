@@ -149,9 +149,9 @@ export type SliderProps = {
    */
   maxLabel?: React.ReactNode;
   /**
-   * Additional props for container `<div>` that hold the slider rail, thumbs, and tracks.
+   * Additional props for container `<div>` that hold the slider thumbs, and tracks.
    */
-  railContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+  trackContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
    * Allows props to be passed for slider-min
    */
@@ -227,7 +227,7 @@ export const Slider = React.forwardRef((props, ref) => {
     onUpdate,
     thumbProps,
     className,
-    railContainerProps,
+    trackContainerProps,
     minProps,
     maxProps,
     trackProps,
@@ -495,13 +495,13 @@ export const Slider = React.forwardRef((props, ref) => {
       {tickMarkArea}
       <Box
         ref={containerRef}
-        {...railContainerProps}
+        {...trackContainerProps}
         className={cx(
           'iui-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
-          railContainerProps?.className,
+          trackContainerProps?.className,
         )}
         onPointerDown={handlePointerDownOnSlider}
       >

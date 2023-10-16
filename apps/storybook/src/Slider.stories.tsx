@@ -91,7 +91,7 @@ export const WithCustomThumb = () => {
       values={[50]}
       minLabel={<SvgSmileySad />}
       maxLabel={<SvgSmileyHappy />}
-      railContainerProps={{ style: { margin: '0 8px' } }}
+      trackContainerProps={{ style: { margin: '0 8px' } }}
     />
   );
 };

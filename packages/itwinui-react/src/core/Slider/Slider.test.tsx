@@ -241,20 +241,20 @@ it('should take class and style', () => {
   expect(slider.style.width).toBe('350px');
 });
 
-it('should take railContainerProps', () => {
+it('should take trackContainerProps', () => {
   // common use case is when custom thumb is bigger than default and we must change left/right margin
-  const railContainerProps = { style: { margin: '0 8px' } };
+  const trackContainerProps = { style: { margin: '0 8px' } };
   const { container } = render(
     <Slider
       values={defaultSingleValue}
-      railContainerProps={railContainerProps}
+      trackContainerProps={trackContainerProps}
     />,
   );
-  const railContainer = container.querySelector(
+  const trackContainer = container.querySelector(
     '.iui-slider',
   ) as HTMLDivElement;
-  expect(railContainer.style.marginLeft).toBe('8px');
-  expect(railContainer.style.marginRight).toBe('8px');
+  expect(trackContainer.style.marginLeft).toBe('8px');
+  expect(trackContainer.style.marginRight).toBe('8px');
 });
 
 it('should render tick marks', () => {
