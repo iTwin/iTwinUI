@@ -9,20 +9,6 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 // We are disabling few rules on certain elements to ignore false positives.
 const axeConfigPerExample = (example) => {
   switch (example) {
-    // See: https://github.com/iTwin/iTwinUI/pull/1581
-    case 'DatePickerWithCombinedTimeExample':
-    case 'DatePickerWithTimeExample': {
-      return {
-        rules: [
-          {
-            id: 'color-contrast',
-            enabled: true,
-            selector: ':not(._iui3-time > ol > li)',
-          },
-        ],
-      };
-    }
-
     // disabled elements do not need to meet contrast requirements
     case 'TileLoadingExample': {
       return {
