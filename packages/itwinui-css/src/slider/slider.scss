@@ -112,11 +112,10 @@ $iui-slider-tick-thickness: 1px;
       }
     }
 
-    // Added min-block-size to show that slider exists.
     .iui-slider {
       inline-size: calc($iui-slider-thumb-size + 2px);
       touch-action: pan-y;
-      min-block-size: var(--iui-size-xl);
+      min-block-size: var(--iui-size-xl); // Added min-block-size to show that slider exists.
 
       &::before {
         block-size: 100%;
