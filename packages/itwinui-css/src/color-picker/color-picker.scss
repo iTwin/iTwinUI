@@ -4,22 +4,6 @@
 @use '../button/borderless';
 @use '../mixins';
 
-@mixin iui-transparent-background($size: var(--iui-size-m)) {
-  background-position: 0 0, calc($size * 0.5) calc($size * 0.5);
-  background-size: $size $size;
-  background-image: repeating-linear-gradient(
-    45deg,
-    #C7CCD1 25%,
-    transparent 25%,
-    transparent 75%,
-    #C7CCD1 75%,
-    #C7CCD1
-  ),
-    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
-}
-
-// ----------------------------------------------------------------------------
-
 $iui-color-picker-content-width: calc(var(--iui-size-l) * 9 + var(--iui-size-xs) * 8); // (9 swatches per row) + (gaps)
 $iui-color-picker-max-width: calc(var(--iui-size-l) * 10 + var(--iui-size-xs) * 9); // (10 swatches per row) + (gaps)
 $iui-color-swatch-border-radius: 5px;
@@ -50,7 +34,11 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   position: relative;
   background-color: var(--iui-color-swatch-background);
   forced-color-adjust: none;
-  @include iui-transparent-background;
+  background-position: 0 0, calc(var(--iui-size-m) * 0.5) calc(var(--iui-size-m) * 0.5);
+  background-size: var(--iui-size-m) var(--iui-size-m);
+  background-image:
+    repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 
   &::after {
     content: '';
@@ -146,6 +134,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   display: flex;
   flex-direction: column;
   min-inline-size: $iui-color-picker-content-width;
+  gap: var(--iui-size-xs);
 }
 
 .iui-color-field {
@@ -158,60 +147,38 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
   forced-color-adjust: none;
   background-image: linear-gradient(0deg, rgb(0, 0, 0), transparent),
     linear-gradient(90deg, rgb(255, 255, 255), var(--iui-color-field-hue));
+}
 
-  &:not(:last-child) {
-    margin-block-end: calc(var(--iui-size-s) * 0.5);
+.iui-hue-slider .iui-slider,
+.iui-opacity-slider .iui-slider {
+  --_iui-slider-track-thickness: var(--iui-size-xs);
+
+  &::before {
+    forced-color-adjust: none;
   }
 }
 
-.iui-hue-slider {
-  $red: #F00;
-  $yellow: #FF0;
-  $blue: #03F;
-  $magenta: #C3F;
-
-  .iui-slider-container {
-    .iui-slider-rail {
-      block-size: var(--iui-size-xs);
-      forced-color-adjust: none;
-      background: linear-gradient(
-        to right,
-        $red 0%,
-        $yellow 17%,
-        rgb(0, 255, 0) 33%,
-        rgb(0, 255, 255) 50%,
-        $blue 67%,
-        $magenta 83%,
-        $red 100%
-      );
-    }
-
-    .iui-slider-thumb {
-      inset-block-start: 7px;
-    }
-  }
+.iui-hue-slider .iui-slider::before {
+  --_iui-slider-rail-color: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%) 0%,
+    hsl(60, 100%, 50%) 17%,
+    hsl(120, 100%, 50%) 33%,
+    hsl(180, 100%, 50%) 50%,
+    hsl(240, 100%, 50%) 67%,
+    hsl(300, 100%, 50%) 83%,
+    hsl(0, 100%, 50%) 100%
+  );
 }
 
-.iui-opacity-slider {
-  .iui-slider-container {
-    .iui-slider-rail {
-      block-size: var(--iui-size-xs);
-      forced-color-adjust: none;
-      @include iui-transparent-background($size: var(--iui-size-xs));
-
-      &::before {
-        display: block;
-        content: '';
-        inline-size: 100%;
-        block-size: 100%;
-        background-image: linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%);
-      }
-    }
-
-    .iui-slider-thumb {
-      inset-block-start: 7px;
-    }
-  }
+.iui-opacity-slider .iui-slider::before {
+  forced-color-adjust: none;
+  background-position: 0, 0, calc(var(--iui-size-xs) * 0.5) calc(var(--iui-size-xs) * 0.5);
+  background-size: auto, var(--iui-size-xs), var(--iui-size-xs);
+  background-image:
+    linear-gradient(to right, transparent 0%, var(--iui-color-picker-selected-color) 100%),
+    repeating-linear-gradient(45deg, #C7CCD1 25%, transparent 25%, transparent 75%, #C7CCD1 75%, #C7CCD1),
+    repeating-linear-gradient(45deg, #C7CCD1 25%, #EDEFF2 25%, #EDEFF2 75%, #C7CCD1 75%, #C7CCD1);
 }
 
 .iui-color-dot {
