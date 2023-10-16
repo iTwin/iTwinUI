@@ -7,12 +7,11 @@ import { Slider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ height: '300px' }}>
-      <Slider
-        thumbProps={() => ({ 'aria-label': `Choose a value` })}
-        values={[50]}
-        orientation='vertical'
-      />
-    </div>
+    <Slider
+      thumbProps={() => ({ 'aria-label': `Choose a value` })}
+      values={[50]}
+      orientation='vertical'
+      style={{ height: '300px' }}
+    />
   );
 };

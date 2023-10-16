@@ -149,9 +149,9 @@ export type SliderProps = {
    */
   maxLabel?: React.ReactNode;
   /**
-   * Additional props for container `<div>` that hold the slider rail, thumbs, and tracks.
+   * Additional props for container `<div>` that hold the slider thumbs, and tracks.
    */
-  railContainerProps?: React.HTMLAttributes<HTMLDivElement>;
+  trackContainerProps?: React.HTMLAttributes<HTMLDivElement>;
   /**
    * Allows props to be passed for slider-min
    */
@@ -160,10 +160,6 @@ export type SliderProps = {
    * Allows props to be passed for slider-max
    */
   maxProps?: React.ComponentProps<'span'>;
-  /**
-   * Allows props to be passed for slider-rail
-   */
-  railProps?: React.ComponentProps<'div'>;
   /**
    * Allows props to be passed for slider-track
    */
@@ -231,10 +227,9 @@ export const Slider = React.forwardRef((props, ref) => {
     onUpdate,
     thumbProps,
     className,
-    railContainerProps,
+    trackContainerProps,
     minProps,
     maxProps,
-    railProps,
     trackProps,
     tickProps,
     ticksProps,
@@ -483,12 +478,9 @@ export const Slider = React.forwardRef((props, ref) => {
   return (
     <Box
       ref={ref}
-      className={cx(
-        'iui-slider-component-container',
-        `iui-slider-${orientation}`,
-        { 'iui-disabled': disabled },
-        className,
-      )}
+      className={cx('iui-slider-container', className)}
+      data-iui-orientation={orientation}
+      data-iui-disabled={disabled ? 'true' : undefined}
       {...rest}
     >
       {minValueLabel && (
@@ -501,23 +493,17 @@ export const Slider = React.forwardRef((props, ref) => {
         </Box>
       )}
       <Box
-        as='div'
         ref={containerRef}
-        {...railContainerProps}
+        {...trackContainerProps}
         className={cx(
-          'iui-slider-container',
+          'iui-slider',
           {
             'iui-grabbing': undefined !== activeThumbIndex,
           },
-          railContainerProps?.className,
+          trackContainerProps?.className,
         )}
         onPointerDown={handlePointerDownOnSlider}
       >
-        <Box
-          as='div'
-          {...railProps}
-          className={cx('iui-slider-rail', railProps?.className)}
-        />
         {currentValues.map((thumbValue, index) => {
           const [minVal, maxVal] = getAllowableThumbRange(index);
           const thisThumbProps = thumbProps?.(index);
@@ -537,7 +523,6 @@ export const Slider = React.forwardRef((props, ref) => {
               step={step}
               sliderMin={min}
               sliderMax={max}
-              orientation={orientation}
             />
           );
         })}
@@ -549,8 +534,8 @@ export const Slider = React.forwardRef((props, ref) => {
           orientation={orientation}
           {...trackProps}
         />
-        {tickMarkArea}
       </Box>
+      {tickMarkArea}
       {maxValueLabel && (
         <Box
           as='span'

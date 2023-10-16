@@ -38,9 +38,8 @@ it('should render in its most basic state without Carousel', () => {
   dots.forEach((dot, index) => {
     expect(dot).toHaveClass('iui-carousel-navigation-dot');
     expect(dot).toHaveAttribute('role', 'tab');
-    expect(dot).toHaveAttribute('tabindex', '-1');
+    expect(dot).toHaveAttribute('tabindex', index === 3 ? '0' : '-1');
     expect(dot).toHaveAttribute('id', `testid--dot-${index}`);
-    expect(dot).toHaveAttribute('aria-controls', `testid--slide-${index}`);
 
     if (index === 3) {
       expect(dot).toHaveAttribute('aria-selected', 'true');

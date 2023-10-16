@@ -25,7 +25,6 @@ export default () => {
               height: 'var(--iui-component-height-small)',
               borderRadius: 'var(--iui-border-radius-1)',
               transform: 'translateX(calc(var(--iui-size-xl) * 0.5 * -1))',
-              top: '1px',
             },
             children: (
               <span
