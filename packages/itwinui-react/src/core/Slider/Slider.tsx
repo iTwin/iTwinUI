@@ -492,7 +492,6 @@ export const Slider = React.forwardRef((props, ref) => {
           {minValueLabel}
         </Box>
       )}
-      {tickMarkArea}
       <Box
         ref={containerRef}
         {...trackContainerProps}
@@ -536,6 +535,7 @@ export const Slider = React.forwardRef((props, ref) => {
           {...trackProps}
         />
       </Box>
+      {tickMarkArea}
       {maxValueLabel && (
         <Box
           as='span'
