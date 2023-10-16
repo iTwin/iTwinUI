@@ -12,6 +12,7 @@ $iui-slider-tick-thickness: 1px;
   --_iui-slider-rail-color: var(--iui-color-border);
   --_iui-slider-track-color: var(--iui-color-border-accent);
   --_iui-slider-track-thickness: calc(#{$iui-slider-thumb-size} * 0.25);
+  isolation: isolate;
 
   display: grid;
 
@@ -174,6 +175,7 @@ $iui-slider-tick-thickness: 1px;
   justify-content: space-between;
   user-select: none;
   grid-area: content;
+  z-index: -1;
 }
 
 .iui-slider-tick {
