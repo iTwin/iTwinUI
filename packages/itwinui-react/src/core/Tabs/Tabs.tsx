@@ -16,14 +16,10 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
-  getWindow,
+  useLatestRef,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-
-// Checking user motion preference for scroll into view animation
-const isMotionOk = () =>
-  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
 
 // ----------------------------------------------------------------------------
 // TabsWrapper
@@ -220,39 +216,37 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive = activeValue === value;
+  const isActiveRef = useLatestRef(isActive);
 
+  // Scroll to active tab only on initial render
   useIsomorphicLayoutEffect(() => {
-    if (isActive) {
-      if (orientation === 'horizontal') {
-        tabRef.current?.scrollIntoView({
-          inline: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      } else {
-        tabRef.current?.scrollIntoView({
-          block: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      }
+    if (isActiveRef.current) {
+      tabRef.current?.parentElement?.scrollTo({
+        [orientation === 'horizontal' ? 'left' : 'top']:
+          tabRef.current?.[
+            orientation === 'horizontal' ? 'offsetLeft' : 'offsetTop'
+          ] - 4, // leave some room near the start
+        behavior: 'instant', // not using 'smooth' to reduce layout shift on page load
+      });
     }
-  }, [isActive]);
-
-  const updateStripe = () => {
-    const currentTabRect = tabRef.current?.getBoundingClientRect();
-    setStripeProperties({
-      '--iui-tabs-stripe-size':
-        orientation === 'horizontal'
-          ? `${currentTabRect?.width}px`
-          : `${currentTabRect?.height}px`,
-      '--iui-tabs-stripe-position':
-        orientation === 'horizontal'
-          ? `${tabRef.current?.offsetLeft}px`
-          : `${tabRef.current?.offsetTop}px`,
-    });
-  };
+  }, []);
 
   // CSS custom properties to place the active stripe
   useIsomorphicLayoutEffect(() => {
+    const updateStripe = () => {
+      const currentTabRect = tabRef.current?.getBoundingClientRect();
+      setStripeProperties({
+        '--iui-tabs-stripe-size':
+          orientation === 'horizontal'
+            ? `${currentTabRect?.width}px`
+            : `${currentTabRect?.height}px`,
+        '--iui-tabs-stripe-position':
+          orientation === 'horizontal'
+            ? `${tabRef.current?.offsetLeft}px`
+            : `${tabRef.current?.offsetTop}px`,
+      });
+    };
+
     if (type !== 'default' && isActive) {
       updateStripe();
     }
@@ -335,7 +329,10 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
       id={`${idPrefix}-tab-${value}`}
-      onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
+      onClick={mergeEventHandlers(props.onClick, () => {
+        setActiveValue(value);
+        tabRef.current?.scrollIntoView({ block: 'nearest' });
+      })}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
         if (focusActivationMode === 'auto' && !props.disabled) {
