@@ -33,6 +33,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
         React.isValidElement(child)
           ? React.cloneElement(child as JSX.Element, {
               id: `${idPrefix}--slide-${index}`,
+              'aria-labelledby': `${idPrefix}--dot-${index}`,
               index,
             })
           : child,
@@ -44,7 +45,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     setSlideCount(items.length);
   }, [items.length, setSlideCount]);
 
-  const sliderRef = React.useRef<HTMLOListElement>(null);
+  const sliderRef = React.useRef<HTMLElement>(null);
   const refs = useMergedRefs(sliderRef, ref);
 
   scrollToSlide.current = (
@@ -86,14 +87,13 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='ol'
-      aria-live='polite'
       className={cx('iui-carousel-slider', className)}
       ref={refs}
       onScroll={handleOnScroll}
+      tabIndex={-1} // this prevents undesirable tabbing to the list in Firefox/Chrome
       {...rest}
     >
       {items}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'ol'>;
+}) as PolymorphicForwardRefComponent<'div'>;

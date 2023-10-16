@@ -26,7 +26,10 @@ export default () => {
             abbreviation='TR'
             backgroundColor={getUserColor('Terry Rivers')}
             image={
-              <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
+              <img
+                src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png'
+                alt=''
+              />
             }
             title='Terry Rivers'
           />

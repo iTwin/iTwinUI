@@ -34,17 +34,22 @@ export default () => {
       }}
       style={{ display: 'inline-grid', width: 'min(200px, 50vw)' }}
     >
-      <ol
+      <Carousel.DotsList
+        id={id}
+        length={gradients.length}
+        currentIndex={current}
+        onSlideChange={(_i) => setCurrent(_i)}
+        style={{ justifySelf: 'center', maxWidth: 'min(200px, 50vw)' }}
+      />
+      <div
         style={{
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
           display: 'grid',
           grid: `[slide] 1fr / [slide] 1fr`,
+          order: '-1',
         }}
       >
         {gradients.map(({ from, to }, index) => (
-          <li
+          <div
             key={index}
             role='tabpanel'
             id={`${id}-slide-${index}`}
@@ -77,16 +82,9 @@ export default () => {
             >
               {index + 1}
             </div>
-          </li>
+          </div>
         ))}
-      </ol>
-      <Carousel.DotsList
-        id={id}
-        length={gradients.length}
-        currentIndex={current}
-        onSlideChange={(_i) => setCurrent(_i)}
-        style={{ justifySelf: 'center', maxWidth: 'min(200px, 50vw)' }}
-      />
+      </div>
     </section>
   );
 };
