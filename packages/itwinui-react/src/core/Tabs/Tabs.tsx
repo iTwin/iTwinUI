@@ -329,12 +329,10 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
       id={`${idPrefix}-tab-${value}`}
-      onClick={mergeEventHandlers(props.onClick, () => {
-        setActiveValue(value);
-        tabRef.current?.scrollIntoView({ block: 'nearest' });
-      })}
+      onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
+        tabRef.current?.scrollIntoView({ block: 'nearest' });
         if (focusActivationMode === 'auto' && !props.disabled) {
           setActiveValue(value);
         }
