@@ -9,9 +9,17 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 // We are disabling few rules on certain elements to ignore false positives.
 const axeConfigPerExample = (example) => {
   switch (example) {
-    case 'TileLoadingExample': // disabled elements do not need to meet contrast requirements
-    case 'InputStatusExample': // false positive only in CI
+    // disabled elements do not need to meet contrast requirements
+    case 'TileLoadingExample': {
       return { rules: [{ id: 'color-contrast', enabled: false }] };
+    }
+
+    // false positive only in CI
+    case 'InputStatusExample': {
+      return {
+        rules: [{ id: 'color-contrast', enabled: !process.env.CI }],
+      };
+    }
   }
 };
 
