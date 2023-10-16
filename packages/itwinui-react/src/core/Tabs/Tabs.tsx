@@ -16,15 +16,9 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
-  getWindow,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-
-// Checking user motion preference for scroll into view animation
-const isMotionOk = () =>
-  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
-
 // ----------------------------------------------------------------------------
 // TabsWrapper
 
@@ -220,22 +214,6 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive = activeValue === value;
-
-  useIsomorphicLayoutEffect(() => {
-    if (isActive) {
-      if (orientation === 'horizontal') {
-        tabRef.current?.scrollIntoView({
-          inline: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      } else {
-        tabRef.current?.scrollIntoView({
-          block: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      }
-    }
-  }, [isActive]);
 
   const updateStripe = () => {
     const currentTabRect = tabRef.current?.getBoundingClientRect();

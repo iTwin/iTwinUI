@@ -24,6 +24,7 @@ $borderless-horizontal-tab-min-height: calc(
 
 @mixin iui-tabs {
   position: relative;
+  scroll-behavior: smooth;
 
   .iui-tab {
     font-family: inherit;
@@ -43,9 +44,21 @@ $borderless-horizontal-tab-min-height: calc(
     color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
     text-align: start;
+    scroll-margin: var(--iui-size-m);
 
     &[aria-selected='true'] {
       color: var(--iui-color-text-accent);
+      animation: scroll-into-view 1.5s;
+
+      @keyframes scroll-into-view {
+        from {
+          scroll-snap-align: center;
+        }
+
+        to {
+          scroll-snap-align: unset;
+        }
+      }
 
       .iui-tab-icon svg {
         fill: currentColor;
@@ -128,6 +141,7 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-tabs {
     display: flex;
     container-type: inline-size;
+    scroll-snap-type: x mandatory;
 
     &.iui-borderless {
       min-block-size: $borderless-horizontal-tab-min-height;
@@ -180,6 +194,8 @@ $borderless-horizontal-tab-min-height: calc(
   block-size: 100%;
 
   .iui-tabs {
+    scroll-snap-type: y mandatory;
+
     .iui-tab {
       inline-size: 100%;
       white-space: nowrap;
