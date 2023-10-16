@@ -68,6 +68,7 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
         context.setCurrentIndex(index);
         context.scrollToSlide.current(index);
       }
+      (listRef.current?.children[index] as HTMLElement)?.focus();
       onSlideChange?.(index);
     },
     [context, onSlideChange],
@@ -127,13 +128,12 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
         return (
           <CarouselDot
             key={index}
-            aria-label={`Slide ${index}`}
+            aria-label={`Slide ${index + 1}`}
             isActive={index === currentIndex}
             onClick={() => handleSlideChange(index)}
             isSmall={isSecondSmallDot}
             isSmaller={isFirstSmallDot || isClipped}
             id={idPrefix && `${idPrefix}--dot-${index}`}
-            aria-controls={idPrefix && `${idPrefix}--slide-${index}`}
           />
         );
       });
@@ -168,6 +168,30 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
     }
   }, [currentIndex, firstVisibleDotIndex, slideCount, visibleCount, width]);
 
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+      return;
+    }
+
+    const key = event.key;
+    if (key === 'ArrowLeft' || key === 'ArrowRight') {
+      event.preventDefault();
+    }
+  };
+
+  const handleKeyUp = (event: React.KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowLeft': {
+        handleSlideChange((slideCount + currentIndex - 1) % slideCount);
+        break;
+      }
+      case 'ArrowRight': {
+        handleSlideChange((slideCount + currentIndex + 1) % slideCount);
+        break;
+      }
+    }
+  };
+
   return (
     <>
       <Box
@@ -175,6 +199,9 @@ export const CarouselDotsList = React.forwardRef((props, ref) => {
         role='tablist'
         aria-label='Slides'
         ref={refs}
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        tabIndex={-1} // this prevents undesirable tabbing to the list in Firefox/Chrome
         {...rest}
       >
         {children ?? dots}

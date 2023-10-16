@@ -21,6 +21,7 @@ export default () => {
 
   return (
     <Carousel style={{ maxWidth: '100%' }}>
+      <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -39,7 +40,6 @@ export default () => {
           </Carousel.Slide>
         ))}
       </Carousel.Slider>
-      <Carousel.Navigation />
     </Carousel>
   );
 };
