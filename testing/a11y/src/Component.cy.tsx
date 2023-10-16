@@ -7,23 +7,29 @@ import * as allExamples from 'examples';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
 // We are disabling few rules on certain elements to ignore false positives.
-// See: https://github.com/iTwin/iTwinUI/pull/1581
-type commonRulesKeys = 'ignore_color_contrast_violation';
-const commonRules: Record<commonRulesKeys, Record<string, any>> = {
-  ignore_color_contrast_violation: {
-    id: 'color-contrast',
-    enabled: true,
-    selector: ':not(._iui3-time > ol > li)',
-  },
-};
+const axeConfigPerExample = (example) => {
+  switch (example) {
+    // See: https://github.com/iTwin/iTwinUI/pull/1581
+    case 'DatePickerWithCombinedTimeExample':
+    case 'DatePickerWithTimeExample': {
+      return {
+        rules: [
+          {
+            id: 'color-contrast',
+            enabled: true,
+            selector: ':not(._iui3-time > ol > li)',
+          },
+        ],
+      };
+    }
 
-const axeConfigPerExample = {
-  DatePickerWithCombinedTimeExample: {
-    rules: [commonRules.ignore_color_contrast_violation],
-  },
-  DatePickerWithTimeExample: {
-    rules: [commonRules.ignore_color_contrast_violation],
-  },
+    // disabled elements do not need to meet contrast requirements
+    case 'TileLoadingExample': {
+      return {
+        rules: [{ id: 'color-contrast', enabled: false }],
+      };
+    }
+  }
 };
 
 describe('Should have no WCAG violations', () => {
@@ -38,7 +44,7 @@ describe('Should have no WCAG violations', () => {
         axeCorePath: Cypress.env('axeCorePath'),
       });
 
-      cy.configureAxe(axeConfigPerExample[name]);
+      cy.configureAxe(axeConfigPerExample(name));
 
       cy.checkA11y(undefined, undefined, (violations) => {
         const violationData = violations.map(({ id, help }) => ({
