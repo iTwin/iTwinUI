@@ -61,51 +61,10 @@ const CarouselComponent = React.forwardRef((props, ref) => {
     scrollToSlide.current(userActiveIndex, {
       instant: justMounted.current,
     });
-
-    // re-focus the carousel for keyboard nav, but not on first mount
-    // because it shows outline and might interfere with other components
-    if (!justMounted.current) {
-      carouselRef.current?.focus({ preventScroll: true });
-    }
-
     justMounted.current = false;
   }, [userActiveIndex]);
 
   const [slideCount, setSlideCount] = React.useState(0);
-
-  const [keysPressed, setKeysPressed] = React.useState<Record<string, boolean>>(
-    {},
-  );
-
-  const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
-      return;
-    }
-
-    const key = event.key;
-    if (key === 'ArrowLeft' || key === 'ArrowRight') {
-      setKeysPressed((old) => ({ ...old, [key]: true }));
-    }
-  };
-
-  const handleKeyUp = (event: React.KeyboardEvent) => {
-    switch (event.key) {
-      case 'ArrowLeft': {
-        setKeysPressed((old) => ({ ...old, ArrowLeft: false }));
-        const prevIndex = (slideCount + currentIndex - 1) % slideCount;
-        scrollToSlide.current(prevIndex);
-        setCurrentIndex(prevIndex);
-        break;
-      }
-      case 'ArrowRight': {
-        setKeysPressed((old) => ({ ...old, ArrowRight: false }));
-        const nextIndex = (slideCount + currentIndex + 1) % slideCount;
-        scrollToSlide.current(nextIndex);
-        setCurrentIndex(nextIndex);
-        break;
-      }
-    }
-  };
 
   const userOnSlideChange = useLatestRef(onSlideChange);
   React.useEffect(() => {
@@ -116,9 +75,6 @@ const CarouselComponent = React.forwardRef((props, ref) => {
     <Box
       as='section'
       aria-roledescription='carousel'
-      tabIndex={0}
-      onKeyDown={handleKeyDown}
-      onKeyUp={handleKeyUp}
       ref={refs}
       className={cx('iui-carousel', className)}
       {...rest}
@@ -130,7 +86,6 @@ const CarouselComponent = React.forwardRef((props, ref) => {
           setCurrentIndex,
           slideCount,
           setSlideCount,
-          keysPressed,
           idPrefix: id,
           isManuallyUpdating,
           scrollToSlide,
@@ -144,7 +99,8 @@ const CarouselComponent = React.forwardRef((props, ref) => {
 
 /**
  * The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is
- * located below the slides, consisting of "dots" and "previous"/"next" buttons, used for changing slides.
+ * shown below the slides, consisting of "dots" and "previous"/"next" buttons, used for changing slides; this navigation
+ * section must be present _before_ the slides in DOM order, even though it is visually shown below the slides.
  *
  * The currently shown slide can also be changed using the left/right arrow keys or by dragging on a touch device.
  *
@@ -152,18 +108,24 @@ const CarouselComponent = React.forwardRef((props, ref) => {
  *
  * @example
  * <Carousel>
+ *   <Carousel.Navigation />
  *   <Carousel.Slider>
  *     <Carousel.Slide>...</Carousel.Slide>
  *     <Carousel.Slide>...</Carousel.Slide>
  *     <Carousel.Slide>...</Carousel.Slide>
  *   </Carousel.Slider>
- *   <Carousel.Navigation />
  * </Carousel>
  */
 export const Carousel = Object.assign(CarouselComponent, {
   Slider: CarouselSlider,
   Slide: CarouselSlide,
+  /**
+   * Contains the dots and previous/next buttons for navigating the slides. Must be present _before_ the slides in DOM.
+   */
   Navigation: CarouselNavigation,
+  /**
+   * Contains the dots for activating the slides. Must be present _before_ the slides in DOM.
+   */
   DotsList: CarouselDotsList,
   Dot: CarouselDot,
 });

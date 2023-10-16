@@ -26,7 +26,7 @@ export const CarouselDot = React.forwardRef((props, ref) => {
   return (
     <ButtonBase
       role='tab'
-      tabIndex={-1}
+      tabIndex={isActive ? 0 : -1}
       className={cx(
         'iui-carousel-navigation-dot',
         {
