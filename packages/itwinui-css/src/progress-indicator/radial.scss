@@ -12,6 +12,7 @@
   height: var(--_iui-progress-indicator-radial-size);
 
   > .iui-radial {
+    display: inline-block;
     height: 100%;
     width: 100%;
     position: absolute;
