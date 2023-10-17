@@ -1065,6 +1065,10 @@ import { default as TabsActionsExampleRaw } from './Tabs.actions';
 const TabsActionsExample = withThemeProvider(TabsActionsExampleRaw);
 export { TabsActionsExample };
 
+import { default as TabsControlledExampleRaw } from './Tabs.controlled';
+const TabsControlledExample = withThemeProvider(TabsControlledExampleRaw);
+export { TabsControlledExample };
+
 import { default as TabsVerticalExampleRaw } from './Tabs.vertical';
 const TabsVerticalExample = withThemeProvider(TabsVerticalExampleRaw);
 export { TabsVerticalExample };

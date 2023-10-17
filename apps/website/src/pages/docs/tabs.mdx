@@ -83,25 +83,11 @@ The following code is equivalent to the composition example above:
 
 You can use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
 
-```tsx
-<Tabs.Wrapper value={myLocalValue} onValueChange={setMyLocalValue}>
-  <Tabs.TabList>
-    <Tabs.Tab value='apple' label='Apple' key='apple' />
-    <Tabs.Tab value='orange' label='Orange' key='orange' />
-    <Tabs.Tab value='pear' label='Pear' key='pear' />
-  </Tabs.TabList>
+You can also change tab that is active on component render using `defaultValue` prop.
 
-  <Tabs.Panel value='apple' key='apple'>
-    {/*...Content for apple*/}
-  </Tabs.Panel>
-  <Tabs.Panel value='orange' key='orange'>
-    {/*...Content for orange*/}
-  </Tabs.Panel>
-  <Tabs.Panel value='pear' key='pear'>
-    {/*...Content for pear*/}
-  </Tabs.Panel>
-</Tabs.Wrapper>
-```
+<LiveExample src='Tabs.controlled.tsx'>
+  <AllExamples.TabsControlledExample client:load />
+</LiveExample>
 
 ## Variants
 
