@@ -332,7 +332,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
-        tabRef.current?.scrollIntoView({ block: 'nearest' });
+        tabRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         if (focusActivationMode === 'auto' && !props.disabled) {
           setActiveValue(value);
         }
