@@ -17,6 +17,7 @@ import {
   WithCSSTransition,
 } from '../utils/index.js';
 import { TableCell } from './TableCell.js';
+
 /**
  * Memoization is needed to avoid unnecessary re-renders of all rows when additional data is added when lazy-loading.
  * Using `isLast` here instead of passing data length to avoid re-renders of all rows when more data is added. Now only the last row re-renders.
