@@ -2,51 +2,154 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$thumb-height: var(--iui-size-m); // 16px
-$track-height: var(--iui-size-2xs); // 4px
-$tick-height: var(--iui-size-s); // 12px
+$iui-slider-container-gap: var(--iui-size-s);
+$iui-slider-thumb-size: var(--iui-size-m);
+$iui-slider-tick-size: var(--iui-size-s);
+$iui-slider-tick-thickness: 1px;
 
-.iui-slider-component-container {
-  display: flex;
-  align-items: flex-start;
+// #region Slider container
+.iui-slider-container {
+  --_iui-slider-rail-color: var(--iui-color-border);
+  --_iui-slider-track-color: var(--iui-color-border-accent);
+  --_iui-slider-track-thickness: calc(#{$iui-slider-thumb-size} * 0.25);
+  isolation: isolate;
 
-  &.iui-disabled {
-    cursor: not-allowed;
+  display: grid;
 
-    .iui-slider-container {
-      cursor: not-allowed;
-      pointer-events: none;
+  &[data-iui-orientation='horizontal'] {
+    $slider-position-horizontal: 0 var(--iui-slider-thumb-position);
+
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: 'min content max';
+    align-items: center;
+
+    .iui-slider-min,
+    .iui-slider-max {
+      align-items: center;
     }
 
-    .iui-slider-rail {
-      background-color: var(--iui-color-background-disabled);
+    .iui-slider-min {
+      margin-inline-end: $iui-slider-container-gap;
+      justify-content: end;
     }
 
-    .iui-slider-thumb {
-      cursor: not-allowed;
-      background-color: var(--iui-color-border);
-      border-color: var(--iui-color-border);
-      @media (forced-colors: active) {
-        background-color: GrayText;
-        border-color: GrayText;
+    .iui-slider-max {
+      margin-inline-start: $iui-slider-container-gap;
+    }
+
+    .iui-slider-ticks {
+      transform: translateY(50%);
+    }
+
+    .iui-slider-tick {
+      flex-direction: column;
+      inline-size: $iui-slider-tick-thickness;
+
+      &::before {
+        inline-size: $iui-slider-tick-thickness;
+        block-size: $iui-slider-tick-size;
       }
+    }
+
+    .iui-slider {
+      block-size: calc($iui-slider-thumb-size + 2px);
+      touch-action: pan-x;
+
+      &::before {
+        inline-size: 100%;
+      }
+    }
+
+    .iui-slider::before,
+    .iui-slider-track {
+      block-size: var(--_iui-slider-track-thickness);
     }
 
     .iui-slider-track {
-      background-color: var(--iui-color-border);
-      @media (forced-colors: active) {
-        background-color: GrayText;
+      inset-inline: var(--iui-slider-track-position, #{$slider-position-horizontal});
+    }
+
+    .iui-slider-thumb {
+      inset-inline-start: var(--iui-slider-thumb-position);
+      transform: translateX(-50%);
+    }
+  }
+
+  &[data-iui-orientation='vertical'] {
+    $slider-position-vertical: var(--iui-slider-thumb-position) 0;
+
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+      'max'
+      'content'
+      'min';
+    justify-items: center;
+    inline-size: fit-content;
+
+    .iui-slider-min,
+    .iui-slider-max {
+      justify-content: center;
+    }
+
+    .iui-slider-min {
+      margin-block-start: $iui-slider-container-gap;
+    }
+
+    .iui-slider-max {
+      margin-block-end: $iui-slider-container-gap;
+    }
+
+    .iui-slider-ticks {
+      flex-direction: column-reverse;
+      transform: translateX(50%);
+    }
+
+    .iui-slider-tick {
+      block-size: $iui-slider-tick-thickness;
+
+      &::before {
+        inline-size: $iui-slider-tick-size;
+        block-size: $iui-slider-tick-thickness;
       }
     }
 
-    .iui-slider-min,
-    .iui-slider-max,
-    .iui-slider-tick {
-      user-select: none;
-      color: var(--iui-color-text-disabled);
-      @media (forced-colors: active) {
-        color: GrayText;
+    .iui-slider {
+      inline-size: calc($iui-slider-thumb-size + 2px);
+      touch-action: pan-y;
+      min-block-size: var(--iui-size-xl); // Added min-block-size to show that slider exists.
+
+      &::before {
+        block-size: 100%;
       }
+    }
+
+    .iui-slider::before,
+    .iui-slider-track {
+      inline-size: var(--_iui-slider-track-thickness);
+    }
+
+    .iui-slider-track {
+      inset-block: var(--iui-slider-track-position, #{$slider-position-vertical});
+    }
+
+    .iui-slider-thumb {
+      inset-block-end: var(--iui-slider-thumb-position);
+      transform: translateY(50%);
+    }
+  }
+
+  &[data-iui-disabled='true'] {
+    cursor: not-allowed;
+    color: var(--iui-color-text-disabled);
+
+    --_iui-slider-rail-color: var(--iui-color-background-disabled);
+    --_iui-slider-track-color: var(--iui-color-border);
+    @media (forced-colors: active) {
+      --_iui-slider-track-color: GrayText;
+    }
+
+    .iui-slider {
+      pointer-events: none;
     }
   }
 }
@@ -55,198 +158,99 @@ $tick-height: var(--iui-size-s); // 12px
 .iui-slider-max {
   user-select: all;
   display: flex;
-  justify-content: center;
-
-  svg {
-    @include mixins.iui-icon-style('m');
-    @include mixins.iui-icon-color;
-  }
 }
 
-.iui-slider-container {
+.iui-slider-min {
+  grid-area: min;
+}
+
+.iui-slider-max {
+  grid-area: max;
+}
+
+.iui-slider-ticks {
   position: relative;
-  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  grid-area: content;
+  z-index: -1;
+}
+
+.iui-slider-tick {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--_iui-slider-tick-text-color);
+
+  &::before {
+    content: '';
+    background-color: var(--iui-color-border);
+    @media (forced-colors: active) {
+      background-color: CanvasText;
+    }
+  }
+}
+// #endregion Slider container
+
+// #region Slider
+.iui-slider {
+  position: relative;
   cursor: pointer;
-  touch-action: pan-y;
   isolation: isolate;
+  grid-area: content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &.iui-grabbing {
     cursor: grabbing;
   }
-}
 
-.iui-slider-rail {
-  position: absolute;
-  background-color: var(--iui-color-border);
-  @media (forced-colors: active) {
-    background-color: CanvasText;
+  &::before {
+    content: '';
+    display: flex;
+    background: var(--_iui-slider-rail-color);
+    @media (forced-colors: active) {
+      --_iui-slider-rail-color: CanvasText;
+    }
   }
 }
 
 .iui-slider-thumb {
   box-sizing: content-box;
   position: absolute;
-  block-size: $thumb-height;
-  inline-size: $thumb-height;
+  block-size: $iui-slider-thumb-size;
+  inline-size: $iui-slider-thumb-size;
   border-radius: 100%;
   z-index: 1;
   cursor: grab;
   @include mixins.iui-focus($thickness: 2px);
   background: var(--iui-color-background);
   border: 1px solid var(--iui-color-border-foreground);
-  @media (forced-colors: active) {
-    background: Canvas;
-    border: 1px solid CanvasText;
-  }
 
   &:active {
     cursor: grabbing;
+  }
+
+  &[aria-disabled='true'] {
+    border-color: var(--iui-color-border);
+    background: var(--iui-color-border);
+    cursor: not-allowed;
+
+    @media (forced-colors: active) {
+      border-color: GrayText;
+      background: GrayText;
+    }
   }
 }
 
 .iui-slider-track {
   pointer-events: none;
+  background-color: var(--_iui-slider-track-color);
   position: absolute;
-  inset-block-start: var(--iui-size-s);
-  background-color: var(--iui-color-border-accent);
+
   @media (forced-colors: active) {
-    background-color: Highlight;
+    --_iui-slider-track-color: Highlight;
   }
 }
-
-.iui-slider-ticks {
-  position: relative;
-  display: flex;
-  pointer-events: none;
-  justify-content: space-between;
-  user-select: none;
-
-  .iui-slider-tick {
-    position: relative;
-    display: flex;
-    pointer-events: none;
-    justify-content: center;
-    align-items: center;
-
-    &::before {
-      background-color: var(--iui-color-border);
-      @media (forced-colors: active) {
-        background-color: CanvasText;
-      }
-    }
-  }
-}
-
-.iui-slider-horizontal {
-  min-block-size: calc(var(--iui-size-s) * 2);
-
-  .iui-slider-rail {
-    inline-size: 100%;
-    block-size: $track-height;
-    inset-block-start: var(--iui-size-s);
-  }
-
-  .iui-slider-thumb {
-    inset-block-start: calc($track-height + 1px); // position center of thumb in center of track
-    transform: translateX(-50%);
-  }
-
-  .iui-slider-track {
-    block-size: $track-height;
-    inset-inline-start: 0;
-  }
-
-  .iui-slider-ticks {
-    padding-block-start: var(--iui-size-m);
-
-    .iui-slider-tick {
-      flex-direction: column;
-      inline-size: 1px;
-
-      &::before {
-        content: '';
-        inline-size: 1px;
-        block-size: $tick-height;
-      }
-    }
-  }
-
-  .iui-slider-min,
-  .iui-slider-max {
-    margin-block-start: var(--iui-size-3xs);
-    min-inline-size: var(--iui-size-l);
-    flex-direction: row;
-
-    svg {
-      margin-block-start: var(--iui-size-2xs);
-    }
-  }
-
-  .iui-slider-min {
-    margin-inline-end: var(--iui-size-s);
-    text-align: end;
-  }
-
-  .iui-slider-max {
-    margin-inline-start: var(--iui-size-s);
-  }
-}
-
-.iui-slider-vertical {
-  flex-direction: column-reverse;
-  min-inline-size: calc(var(--iui-size-s) * 2);
-  block-size: 100%;
-
-  .iui-slider-rail {
-    inline-size: $track-height;
-    block-size: 100%;
-    inset-inline-start: var(--iui-size-s);
-  }
-
-  .iui-slider-thumb {
-    transform: translateY(50%);
-    inset-inline-start: calc($track-height + 1px);
-  }
-
-  .iui-slider-track {
-    inline-size: $track-height;
-    inset-block-end: 0;
-    inset-inline-start: var(--iui-size-s);
-  }
-
-  .iui-slider-ticks {
-    padding-inline-start: var(--iui-size-m);
-    flex-direction: column-reverse;
-    align-items: flex-start;
-    block-size: 100%;
-
-    .iui-slider-tick {
-      flex: row;
-      block-size: 1px;
-
-      &::before {
-        content: '';
-        inline-size: $tick-height;
-        block-size: 1px;
-        margin-inline-end: $tick-height;
-      }
-    }
-  }
-
-  .iui-slider-min,
-  .iui-slider-max {
-    margin-inline-start: calc(var(--iui-size-3xs) + var(--iui-size-s));
-    text-align: center;
-    transform: translate(-50%, 0);
-    min-block-size: var(--iui-size-l);
-    flex-direction: column;
-  }
-
-  .iui-slider-min {
-    margin-block-start: var(--iui-size-s);
-  }
-
-  .iui-slider-max {
-    margin-block-end: var(--iui-size-s);
-  }
-}
+// #endregion Slider

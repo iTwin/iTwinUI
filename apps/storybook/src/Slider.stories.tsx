@@ -16,7 +16,11 @@ export default {
       <div
         style={{
           ...(context.story.includes('Vertical')
-            ? { height: 'calc(100vh - 24px)', width: 'fit-content' }
+            ? {
+                height: 'calc(100vh - 24px)',
+                width: 'fit-content',
+                display: 'grid',
+              }
             : {}),
         }}
       >
@@ -71,7 +75,6 @@ export const WithCustomThumb = () => {
             height: '26px',
             borderRadius: '4px',
             transform: 'translateX(-19.2px)',
-            top: 0,
           },
           children: (
             <span
@@ -88,7 +91,7 @@ export const WithCustomThumb = () => {
       values={[50]}
       minLabel={<SvgSmileySad />}
       maxLabel={<SvgSmileyHappy />}
-      railContainerProps={{ style: { margin: '0 8px' } }}
+      trackContainerProps={{ style: { margin: '0 8px' } }}
     />
   );
 };
@@ -124,49 +127,49 @@ export const CustomTickNoTooltip = () => {
     new Date(Date.UTC(2019, 0, 1)),
   );
 
-  const updateDate = useCallback((values: ReadonlyArray<number>) => {
+  const [values, setValues] = React.useState([0]);
+
+  const updateDate = useCallback((values: number[]) => {
+    setValues(values);
     const newDate = new Date(Date.UTC(2019, 0, values[0]));
     setCurrentDate(newDate);
   }, []);
 
   return (
-    <Slider
-      style={{ width: '50%' }}
-      min={1}
-      max={365}
-      values={[0]}
-      tooltipProps={() => {
-        return { visible: false };
-      }}
-      minLabel={'Date'}
-      maxLabel={''}
-      orientation={'horizontal'}
-      onUpdate={updateDate}
-      onChange={updateDate}
-      tickLabels={
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            marginTop: '20px',
-          }}
-        >
-          <Text
-            as='p'
-            style={{
-              width: '60px',
-              marginRight: '6px',
-            }}
-          >
-            {dateFormatter.format(currentDate)}
-          </Text>
-        </div>
-      }
-      tickProps={{ className: 'some-tick' }}
-    />
+    <>
+      <Slider
+        min={1}
+        max={365}
+        values={values}
+        tooltipProps={() => {
+          return { visible: false };
+        }}
+        minLabel={'Date'}
+        maxLabel={''}
+        orientation={'horizontal'}
+        onUpdate={updateDate}
+        onChange={updateDate}
+        tickProps={{ className: 'some-tick' }}
+      />
+      <Text
+        as='p'
+        style={{
+          textAlign: 'center',
+        }}
+      >
+        {dateFormatter.format(currentDate)}
+      </Text>
+    </>
   );
 };
+
+CustomTickNoTooltip.decorators = [
+  (Story) => (
+    <div style={{ width: '50%' }}>
+      <Story />
+    </div>
+  ),
+];
 
 export const DecimalIncrement = () => {
   return <Slider min={0} max={50} step={2.5} values={[25]} />;

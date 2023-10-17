@@ -45,11 +45,8 @@ afterAll(() => {
 const defaultSingleValue = [50];
 
 const assertBaseElement = (container: HTMLElement) => {
-  expect(
-    container.querySelector('.iui-slider-component-container'),
-  ).toBeTruthy();
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
-  expect(container.querySelector('.iui-slider-rail')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   expect(container.querySelector('.iui-slider-thumb')).toBeTruthy();
 };
 
@@ -68,7 +65,6 @@ it('should render all custom classNames correctly', () => {
       tickLabels={['0', '25', '50', '75', '100']}
       minProps={{ className: 'some-min' }}
       maxProps={{ className: 'some-max' }}
-      railProps={{ className: 'some-rail' }}
       trackProps={{ className: 'some-track' }}
       tickProps={{ className: 'some-tick' }}
       ticksProps={{ className: 'some-ticks' }}
@@ -83,10 +79,6 @@ it('should render all custom classNames correctly', () => {
   expect(container.querySelector('.iui-slider-max')).toHaveClass(
     'iui-slider-max',
     'some-max',
-  );
-  expect(container.querySelector('.iui-slider-rail')).toHaveClass(
-    'iui-slider-rail',
-    'some-rail',
   );
   expect(container.querySelector('.iui-slider-track')).toHaveClass(
     'iui-slider-track',
@@ -106,11 +98,8 @@ it('should render all custom classNames correctly', () => {
 
 it('should not render thumbs if no values are defined', () => {
   const { container } = render(<Slider values={[]} />);
-  expect(
-    container.querySelector('.iui-slider-component-container'),
-  ).toBeTruthy();
   expect(container.querySelector('.iui-slider-container')).toBeTruthy();
-  expect(container.querySelector('.iui-slider-rail')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   expect(container.querySelector('.iui-slider-thumb')).toBeFalsy();
 });
 
@@ -118,7 +107,7 @@ it('should not render track if min and max are same value', () => {
   const { container } = render(<Slider values={[10]} min={20} max={20} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.insetInlineStart).toBe('0%');
+  expect(element).toHaveStyle('--iui-slider-thumb-position: 0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
@@ -126,27 +115,27 @@ it('should not render track if value is below specified min/max', () => {
   const { container } = render(<Slider values={[10]} min={20} max={40} />);
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.insetInlineStart).toBe('0%');
+  expect(element).toHaveStyle('--iui-slider-thumb-position: 0%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
 it('should not render track if value is above specified min/max', () => {
   const { container } = render(<Slider values={[60]} min={20} max={40} />);
-  expect(
-    container.querySelector('.iui-slider-component-container'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-slider-container')).toBeTruthy();
+  expect(container.querySelector('.iui-slider')).toBeTruthy();
   const element = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(element).toBeTruthy();
-  expect(element.style.insetInlineStart).toBe('100%');
+  expect(element).toHaveStyle('--iui-slider-thumb-position: 100%');
   expect(container.querySelector('.iui-slider-track')).toBeFalsy();
 });
 
 it('should render disabled component', () => {
   const { container } = render(<Slider values={defaultSingleValue} disabled />);
   assertBaseElement(container);
-  expect(
-    container.querySelector('.iui-slider-component-container.iui-disabled'),
-  ).toBeTruthy();
+  expect(container.querySelector('.iui-slider-container')).toHaveAttribute(
+    'data-iui-disabled',
+    'true',
+  );
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb.getAttribute('aria-disabled')).toEqual('true');
 });
@@ -246,26 +235,26 @@ it('should take class and style', () => {
     />,
   );
   const slider = container.querySelector(
-    '.iui-slider-component-container.my-class',
+    '.iui-slider-container.my-class',
   ) as HTMLDivElement;
   expect(slider).toBeTruthy();
   expect(slider.style.width).toBe('350px');
 });
 
-it('should take railContainerProps', () => {
+it('should take trackContainerProps', () => {
   // common use case is when custom thumb is bigger than default and we must change left/right margin
-  const railContainerProps = { style: { margin: '0 8px' } };
+  const trackContainerProps = { style: { margin: '0 8px' } };
   const { container } = render(
     <Slider
       values={defaultSingleValue}
-      railContainerProps={railContainerProps}
+      trackContainerProps={trackContainerProps}
     />,
   );
-  const railContainer = container.querySelector(
-    '.iui-slider-container',
+  const trackContainer = container.querySelector(
+    '.iui-slider',
   ) as HTMLDivElement;
-  expect(railContainer.style.marginLeft).toBe('8px');
-  expect(railContainer.style.marginRight).toBe('8px');
+  expect(trackContainer.style.marginLeft).toBe('8px');
+  expect(trackContainer.style.marginRight).toBe('8px');
 });
 
 it('should render tick marks', () => {
@@ -570,7 +559,7 @@ it('should move thumb when pointer down on rail', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   expect(sliderContainer.getBoundingClientRect().left).toBe(10);
   expect(sliderContainer.getBoundingClientRect().right).toBe(1010);
@@ -610,7 +599,7 @@ it('should move thumb when pointer down on rail (vertical)', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   expect(sliderContainer.getBoundingClientRect().top).toBe(0);
   expect(sliderContainer.getBoundingClientRect().bottom).toBe(1000);
@@ -645,7 +634,7 @@ it('should move to closest step when pointer down on rail', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   /* fire a pointer down event 30% down the slider
    * 0 - .25 - .5 - .75 - 1 so closet to .3 is .25
@@ -678,7 +667,7 @@ it('should move to closest step when pointer down on rail (vertical)', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   /* fire a pointer down event 30% down the slider
    * 0 - .25 - .5 - .75 - 1 so closet to .3 is .25
@@ -705,7 +694,7 @@ it('should move closest thumb when pointer down on rail', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   /* fire a pointer down event 70% down the the slider */
   act(() => {
@@ -735,7 +724,7 @@ it('should move closest thumb when pointer down on rail (vertical)', () => {
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   /* fire a pointer down event 70% down the the slider */
   act(() => {
@@ -902,7 +891,7 @@ it('should activate thumb on pointerDown and move to closest step on move/ no up
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb).toBeTruthy();
@@ -966,7 +955,7 @@ it('should activate thumb on pointerDown and move to closest step on move/ no up
 
   assertBaseElement(container);
   const sliderContainer = container.querySelector(
-    '.iui-slider-container',
+    '.iui-slider',
   ) as HTMLDivElement;
   const thumb = container.querySelector('.iui-slider-thumb') as HTMLDivElement;
   expect(thumb).toBeTruthy();
