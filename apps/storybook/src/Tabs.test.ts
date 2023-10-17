@@ -23,7 +23,7 @@ describe('Tabs', () => {
 
       if (testName === 'Horizontal Overflow') {
         cy.get('#storybook-root').within(() => {
-          cy.get('[role=tab]').last().focus();
+          cy.get('[role=tab]').last().click();
         });
         cy.wait(500);
         cy.compareSnapshot(`${testName} (Scroll end)`);
@@ -31,7 +31,7 @@ describe('Tabs', () => {
         // cy somehow loses tabs list and does not focus on first element so getting it again.
         cy.focused().blur();
         cy.get('#storybook-root').within(() => {
-          cy.get('[role=tab]').first().focus();
+          cy.get('[role=tab]').first().click();
         });
         cy.wait(500);
         cy.compareSnapshot(`${testName} (Scroll start)`);
