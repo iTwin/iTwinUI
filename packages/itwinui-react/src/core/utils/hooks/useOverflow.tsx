@@ -78,7 +78,9 @@ export const useOverflow = <T extends HTMLElement>(
     if (availableSize < requiredSize) {
       const avgItemSize = requiredSize / visibleCount;
       const visibleItems = Math.floor(availableSize / avgItemSize);
-      setVisibleCount(visibleItems);
+      /* When first item is larger than the container - visibleItems count is 0, 
+      We can assume that at least some part of the first item is visible and return 1. */
+      setVisibleCount(visibleItems > 0 ? visibleItems : 1);
     } else if (needsFullRerender.current) {
       const childrenSize = Array.from(containerRef.current.children).reduce(
         (sum: number, child: HTMLElement) => sum + child[`offset${dimension}`],
