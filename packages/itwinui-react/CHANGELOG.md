@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.13
+
+### Patch Changes
+
+- [#1634](https://github.com/iTwin/iTwinUI/pull/1634): Fix overflow visible items count when item is larger than container.
+
 ## 2.12.12
 
 ### Patch Changes
