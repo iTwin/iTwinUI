@@ -1081,10 +1081,6 @@ import { default as TabsPillExampleRaw } from './Tabs.pill';
 const TabsPillExample = withThemeProvider(TabsPillExampleRaw);
 export { TabsPillExample };
 
-import { default as TabsOverflowExampleRaw } from './Tabs.overflow';
-const TabsOverflowExample = withThemeProvider(TabsOverflowExampleRaw);
-export { TabsOverflowExample };
-
 // ----------------------------------------------------------------------------
 
 import { default as TagMainExampleRaw } from './Tag.main';
