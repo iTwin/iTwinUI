@@ -45,7 +45,11 @@ You can build Tabs with subcomponents that are fully customizable.
 
 `Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
 
-You can also build `Tabs.Tab` with subcomponents.
+`Tabs.Tab` has `label` prop for ease of use. You can also build `Tabs.Tab` with subcomponents and add sublabel and icon to your tab.
+
+```tsx
+<Tabs.Tab value='apple' key='apple' label='Apple' />
+```
 
 ```tsx
 <Tabs.Tab value='apple' key='apple'>
@@ -86,6 +90,7 @@ You can use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controll
     <Tabs.Tab value='orange' label='Orange' key='orange' />
     <Tabs.Tab value='pear' label='Pear' key='pear' />
   </Tabs.TabList>
+
   <Tabs.Panel value='apple' key='apple'>
     {/*...Content for apple*/}
   </Tabs.Panel>
