@@ -81,9 +81,9 @@ The following code is equivalent to the [composition example](#composition-api) 
 
 ### Controlled state
 
-You can use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
+By default, the tabs maintain their own state. You can specify the initially active tab using the `defaultValue` prop in `Tabs.Wrapper`; the tabs will continue to maintain their own state after the initial render.
 
-You can also change tab that is active on component render using `defaultValue` prop.
+If you need to manually maintain the active state, you can use `value` and `onValueChange` props in `Tabs.Wrapper`.
 
 <LiveExample src='Tabs.controlled.tsx'>
   <AllExamples.TabsControlledExample client:load />
