@@ -25,6 +25,10 @@ $borderless-horizontal-tab-min-height: calc(
 @mixin iui-tabs {
   position: relative;
 
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+
   .iui-tab {
     font-family: inherit;
     position: relative;
@@ -43,6 +47,7 @@ $borderless-horizontal-tab-min-height: calc(
     color: var(--iui-color-text);
     transition: background-color var(--iui-duration-1) ease-out;
     text-align: start;
+    scroll-margin: var(--iui-size-m);
 
     &[aria-selected='true'] {
       color: var(--iui-color-text-accent);
