@@ -23,13 +23,14 @@ import * as AllExamples from 'examples';
 
 You can build Tabs with subcomponents that are fully customizable.
 
-```js
+```tsx
 <Tabs.Wrapper>
   <Tabs.TabList>
     <Tabs.Tab value='apple' label='Apple' key='apple' />
     <Tabs.Tab value='orange' label='Orange' key='orange' />
     <Tabs.Tab value='pear' label='Pear' key='pear' />
   </Tabs.TabList>
+
   <Tabs.Panel value='apple' key='apple'>
     {/*...Content for apple*/}
   </Tabs.Panel>
@@ -46,7 +47,7 @@ You can build Tabs with subcomponents that are fully customizable.
 
 You can also build `Tabs.Tab` with subcomponents.
 
-```js
+```tsx
 <Tabs.Tab value='apple' key='apple'>
   <Tabs.TabIcon>
     <SvgAppleIcon />
@@ -62,7 +63,7 @@ Alternatively, you can use Tabs directly with labels, actions, and children as p
 
 The following code is equivalent to the composition example above:
 
-```js
+```tsx
 <Tabs
   labels={[
     <Tab key='apple' label='Apple' />,
@@ -78,7 +79,7 @@ The following code is equivalent to the composition example above:
 
 You can use `value` and `onValueChange` in `Tabs.Wrapper` to have fully controlled state. You are manually controlling active tab in the example bellow.
 
-```js
+```tsx
 <Tabs.Wrapper value={myLocalValue} onValueChange={setMyLocalValue}>
   <Tabs.TabList>
     <Tabs.Tab value='apple' label='Apple' key='apple' />
