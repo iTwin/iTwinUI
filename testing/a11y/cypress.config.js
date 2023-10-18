@@ -18,7 +18,7 @@ export default defineConfig({
         plugins: [react()],
       },
     },
-    env: { axeCorePath },
+    env: { axeCorePath, CI: process.env.CI },
     video: false,
     numTestsKeptInMemory: !process.env.CI ? 500 : undefined,
     screenshotOnRunFailure: false,

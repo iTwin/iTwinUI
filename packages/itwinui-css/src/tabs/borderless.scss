@@ -17,7 +17,7 @@
       background-color: var(--iui-color-background-transparent-hover);
     }
 
-    &.iui-active {
+    &[aria-selected='true'] {
       background-color: var(--iui-color-background-accent-muted);
     }
   }
@@ -35,7 +35,7 @@
   }
 
   &.iui-green {
-    .iui-active {
+    [aria-selected='true'] {
       background-color: var(--iui-color-background-positive-muted);
     }
   }

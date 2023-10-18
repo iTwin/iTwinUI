@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  ColorValue,
-  getFocusableElements,
-  useMergedRefs,
-  Box,
-} from '../utils/index.js';
+import { ColorValue, Box } from '../utils/index.js';
 import type {
   ColorType,
   PolymorphicForwardRefComponent,
@@ -50,88 +45,6 @@ export const ColorPalette = React.forwardRef((props, ref) => {
   const { activeColor, setActiveColor, onChangeComplete } =
     useColorPickerContext();
 
-  const [focusedIndex, setFocusedIndex] = React.useState<number>();
-
-  // callback ref to set tabindex=0 on first child if none of the swatches are tabbable
-  const setDefaultTabIndex = (el: HTMLDivElement) => {
-    if (el && !el.querySelector('[tabindex="0"]')) {
-      el.firstElementChild?.setAttribute('tabindex', '0');
-    }
-  };
-
-  const paletteRef = React.useRef<HTMLDivElement>(null);
-  const paletteRefs = useMergedRefs(paletteRef, setDefaultTabIndex);
-
-  // Color palette arrow key navigation
-  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (event.altKey) {
-      return;
-    }
-
-    const swatches = getFocusableElements(paletteRef.current) as HTMLElement[];
-
-    if (!swatches.length) {
-      return;
-    }
-
-    const currentIndex = swatches.findIndex(
-      (swatch) => swatch === paletteRef.current?.ownerDocument.activeElement,
-    );
-    if (currentIndex < 0) {
-      return;
-    }
-    let newIndex = -1;
-
-    switch (event.key) {
-      case 'ArrowDown': {
-        // Look for next ColorSwatch with same offsetLeft value
-        newIndex = swatches.findIndex(
-          (swatch, index) =>
-            index > currentIndex &&
-            swatch.offsetLeft === swatches[currentIndex].offsetLeft,
-        );
-        break;
-      }
-      case 'ArrowUp': {
-        // Look backwards for next ColorSwatch with same offsetLeft value
-        for (let i = currentIndex - 1; i >= 0; i--) {
-          if (swatches[i].offsetLeft === swatches[currentIndex].offsetLeft) {
-            newIndex = i;
-            break;
-          }
-        }
-        break;
-      }
-      case 'ArrowLeft':
-        newIndex = Math.max(currentIndex - 1, 0);
-        break;
-      case 'ArrowRight':
-        newIndex = Math.min(currentIndex + 1, swatches.length - 1);
-        break;
-      case 'Enter':
-      case ' ':
-      case 'Spacebar':
-        swatches[currentIndex].click();
-        event.preventDefault();
-        return;
-    }
-
-    if (newIndex >= 0 && newIndex < swatches.length) {
-      setFocusedIndex(newIndex);
-      event.preventDefault();
-    }
-  };
-
-  // call focus() when focusedIndex changes
-  React.useEffect(() => {
-    if (focusedIndex != null) {
-      const swatches = getFocusableElements(
-        paletteRef.current,
-      ) as HTMLElement[];
-      swatches[focusedIndex]?.focus();
-    }
-  }, [focusedIndex]);
-
   return (
     <Box
       className={cx('iui-color-palette-wrapper', className)}
@@ -139,11 +52,7 @@ export const ColorPalette = React.forwardRef((props, ref) => {
       {...rest}
     >
       {label && <Box className='iui-color-picker-section-label'>{label}</Box>}
-      <Box
-        className='iui-color-palette'
-        onKeyDown={handleKeyDown}
-        ref={paletteRefs}
-      >
+      <Box className='iui-color-palette'>
         {children}
         {colors &&
           colors.map((_color, index) => {
@@ -152,8 +61,7 @@ export const ColorPalette = React.forwardRef((props, ref) => {
               <ColorSwatch
                 key={index}
                 color={color}
-                onClick={(event) => {
-                  event.preventDefault();
+                onClick={() => {
                   onChangeComplete?.(color);
                   setActiveColor(color);
                 }}

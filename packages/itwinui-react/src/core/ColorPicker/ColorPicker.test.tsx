@@ -154,14 +154,15 @@ it('should set the dot positions', () => {
     '.iui-slider-thumb',
   )[0] as HTMLElement;
   expect(sliderDot).toBeTruthy();
-  expect(sliderDot.style.insetInlineStart).toEqual('11.699164345403899%');
-
+  expect(sliderDot).toHaveStyle(
+    '--iui-slider-thumb-position: 11.699164345403899%',
+  );
   // Set the correct position on the opacity slider
   const opacityDot = container.querySelectorAll(
     '.iui-slider-thumb',
   )[1] as HTMLElement;
   expect(opacityDot).toBeTruthy();
-  expect(opacityDot.style.insetInlineStart).toEqual('80%');
+  expect(opacityDot).toHaveStyle('--iui-slider-thumb-position: 80%');
 });
 
 it('should handle arrow key navigation on hue slider dot', () => {
@@ -185,28 +186,32 @@ it('should handle arrow key navigation on hue slider dot', () => {
 
   const sliderDot = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(sliderDot).toBeTruthy();
-  expect(sliderDot.style.insetInlineStart).toEqual('0%');
+  expect(sliderDot).toHaveStyle('--iui-slider-thumb-position: 0%');
 
   // Go right
   fireEvent.keyDown(sliderDot, { key: 'ArrowRight' });
   fireEvent.keyDown(sliderDot, { key: 'ArrowRight' });
   fireEvent.keyUp(sliderDot, { key: 'ArrowRight' }); // Releasing keyboard triggers calling onChangeCompleted
   expect(onSelectionChanged).toHaveBeenCalledTimes(1);
-  expect(sliderDot.style.insetInlineStart).toEqual('0.5571030640668524%');
+  expect(sliderDot).toHaveStyle(
+    '--iui-slider-thumb-position: 0.5571030640668524%',
+  );
   expect(colorBuilder).toHaveStyle('--iui-color-field-hue: #ff0800');
 
   // Go left
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
   fireEvent.keyUp(sliderDot, { key: 'ArrowLeft' });
   expect(onSelectionChanged).toHaveBeenCalledTimes(2);
-  expect(sliderDot.style.insetInlineStart).toEqual('0.2785515320334262%');
+  expect(sliderDot).toHaveStyle(
+    '--iui-slider-thumb-position: 0.2785515320334262%',
+  );
   expect(colorBuilder).toHaveStyle('--iui-color-field-hue: #ff0400');
 
   // Go left to edge
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
-  expect(sliderDot.style.insetInlineStart).toEqual('0%');
+  expect(sliderDot).toHaveStyle('--iui-slider-thumb-position: 0%');
   fireEvent.keyDown(sliderDot, { key: 'ArrowLeft' });
-  expect(sliderDot.style.insetInlineStart).toEqual('0%');
+  expect(sliderDot).toHaveStyle('--iui-slider-thumb-position: 0%');
 });
 
 it('should handle arrow key navigation on color dot', () => {
@@ -233,7 +238,7 @@ it('should handle arrow key navigation on color dot', () => {
 
   const sliderDot = container.querySelector('.iui-slider-thumb') as HTMLElement;
   expect(sliderDot).toBeTruthy();
-  expect(sliderDot.style.insetInlineStart).toEqual('0%');
+  expect(sliderDot).toHaveStyle('--iui-slider-thumb-position: 0%');
 
   const colorDot = container.querySelector('.iui-color-dot') as HTMLElement;
   expect(colorDot).toBeTruthy();
@@ -511,7 +516,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
     '.iui-slider-thumb',
   )[1] as HTMLElement;
   expect(opacityDot).toBeTruthy();
-  expect(opacityDot.style.insetInlineStart).toEqual('100%');
+  expect(opacityDot).toHaveStyle('--iui-slider-thumb-position: 100%');
 
   // Go left
   fireEvent.keyDown(opacityDot, { key: 'ArrowLeft' });
@@ -520,7 +525,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
     1,
     ColorValue.create({ h: 0, s: 100, l: 50, a: 0.99 }),
   );
-  expect(opacityDot.style.insetInlineStart).toEqual('99%');
+  expect(opacityDot).toHaveStyle('--iui-slider-thumb-position: 99%');
 
   // Go right
   fireEvent.keyDown(opacityDot, { key: 'ArrowRight' });
@@ -529,7 +534,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
     2,
     ColorValue.create({ h: 0, s: 100, l: 50, a: 1 }),
   );
-  expect(opacityDot.style.insetInlineStart).toEqual('100%');
+  expect(opacityDot).toHaveStyle('--iui-slider-thumb-position: 100%');
 });
 
 it('should render color picker and handle onChangeCompleted when alpha is false', () => {

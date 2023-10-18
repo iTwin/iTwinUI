@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.0.0-dev.12
+
+### Major Changes
+
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): Using `aria-selected` instead of `iui-active` in Tabs to set active styling.
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): Combined tabs stripe variables: `--iui-stripe-left` and `--iui-stripe-top` into `--iui-tabs-stripe-position`; `--iui-stripe-width` and `--iui-stripe-height` into `--iui-tabs-stripe-size`.
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): `data-iui-scroll-placement` attributes in Tabs were removed. Updated tabs start and end masks to be applied on scroll animation.
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): The `iui-tabs` element has changed from `<ul>` to `<div>`. `iui-tabs` children are no longer wrapped in an `<li>` element.
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): The `iui-tab-label` wrapper class has been removed. The `iui-tab-label` class now applies to the `<span>` which holds the tab's label. `iui-tab-description` is now a `<span>` element.
+
 ## 2.0.0-dev.11
 
 ### Major Changes

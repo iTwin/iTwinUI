@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0.0-dev.13
+
+### Major Changes
+
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): Tabs are now always scrollable. Deprecated `overflowOptions` prop.
+
+### Minor Changes
+
+- [#1548](https://github.com/iTwin/iTwinUI/pull/1548): Added composition API to Tab. Subcomponents: Wrapper, TabList, Tab, TabLabel, TabIcon, TabDescription, Actions, Panel.
+
+### Patch Changes
+
+- [#1618](https://github.com/iTwin/iTwinUI/pull/1618): Improved accessibility of ColorPicker/ColorPalette/ColorSwatch.
+
 ## 3.0.0-dev.12
 
 ### Minor Changes
@@ -222,6 +236,18 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
+## 2.12.13
+
+### Patch Changes
+
+- [#1634](https://github.com/iTwin/iTwinUI/pull/1634): Fix overflow visible items count when item is larger than container.
+
+## 2.12.12
+
+### Patch Changes
+
+- [#1625](https://github.com/iTwin/iTwinUI/pull/1625): Fixed an issue where components rendered in a popout window were throwing a stylesheet-related error.
 
 ## 2.12.11
 

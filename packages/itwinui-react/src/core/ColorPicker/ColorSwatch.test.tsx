@@ -11,7 +11,7 @@ it('should render in its most basic state with ColorValue', () => {
   const { container } = render(
     <ColorSwatch color={ColorValue.create('hsla(210, 11%, 65%, 1.00)')} />,
   );
-  const swatch = container.querySelector('.iui-color-swatch');
+  const swatch = container.querySelector('span.iui-color-swatch');
   expect(swatch).toBeTruthy();
   // required due to precision error going from hsl -> tbgr -> hsl
   expect(swatch).toHaveStyle({
@@ -62,7 +62,7 @@ it('should render active color swatch', () => {
   expect(swatch?.classList).toContain('iui-active');
 });
 
-it('should set --iui-color-swatch-background', () => {
+it('should set --iui-color-swatch-background', () => {
   const { container } = render(<ColorSwatch color={'#9BA5AF'} />);
   const swatch = container.querySelector('.iui-color-swatch') as HTMLElement;
   expect(swatch).toBeTruthy();
@@ -81,4 +81,23 @@ it('should handle color swatch onClick', () => {
   const swatch = container.querySelector('.iui-color-swatch') as HTMLElement;
   fireEvent.click(swatch);
   expect(onColorClick).toHaveBeenCalledTimes(1);
+});
+
+it('should render button when onClick is passed', () => {
+  const { container } = render(
+    <ColorSwatch color='#9BA5AF' onClick={jest.fn()} />,
+  );
+  const swatch = container.querySelector('button.iui-color-swatch');
+  expect(swatch).toHaveTextContent('#9BA5AF');
+  expect(swatch).not.toHaveAttribute('aria-pressed');
+});
+
+it('should set aria-pressed when isActive and onClick are passed', () => {
+  const { container } = render(
+    <ColorSwatch color='#9BA5AF' onClick={jest.fn()} isActive />,
+  );
+  expect(container.querySelector('button')).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  );
 });
