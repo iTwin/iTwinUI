@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.0.0-dev.14
+
+### Major Changes
+
+- [#1626](https://github.com/iTwin/iTwinUI/pull/1626): Improved carousel accessibility and changed the markup so that the dots are present before the slides.
+- [#1469](https://github.com/iTwin/iTwinUI/pull/1469): - Updated internal DOM structure in Slider.
+
+### Patch Changes
+
+- [#1632](https://github.com/iTwin/iTwinUI/pull/1632): Adjusted gap between adjacent icons in searchbox.
+
 ## 3.0.0-dev.13
 
 ### Major Changes
@@ -236,6 +247,7 @@
 
 - Updated dependencies:
   - @itwin/itwinui-css@2.0.0-dev.0
+
 ## 2.12.14
 
 ### Patch Changes
