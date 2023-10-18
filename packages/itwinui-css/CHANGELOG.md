@@ -5,7 +5,7 @@
 ### Major Changes
 
 - [#1626](https://github.com/iTwin/iTwinUI/pull/1626): Improved carousel accessibility and changed the markup so that the dots are present before the slides.
-- [#1469](https://github.com/iTwin/iTwinUI/pull/1469): - Replaced `iui-slider-vertical` class modifier with `data-iui-orientation`.
+- [#1469](https://github.com/iTwin/iTwinUI/pull/1469): Replaced `iui-slider-vertical` class modifier with `data-iui-orientation`.
   - `iui-slider-rail` class is now `::before` pseudo element of `iui-slider`.
 
 ### Patch Changes
