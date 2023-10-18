@@ -16,14 +16,10 @@ import {
   mergeEventHandlers,
   useControlledState,
   useId,
-  getWindow,
+  useLatestRef,
 } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-
-// Checking user motion preference for scroll into view animation
-const isMotionOk = () =>
-  getWindow()?.matchMedia?.('(prefers-reduced-motion: no-preference)')?.matches;
 
 // ----------------------------------------------------------------------------
 // TabsWrapper
@@ -220,22 +216,20 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive = activeValue === value;
+  const isActiveRef = useLatestRef(isActive);
 
+  // Scroll to active tab only on initial render
   useIsomorphicLayoutEffect(() => {
-    if (isActive) {
-      if (orientation === 'horizontal') {
-        tabRef.current?.scrollIntoView({
-          inline: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      } else {
-        tabRef.current?.scrollIntoView({
-          block: 'center',
-          behavior: isMotionOk() ? 'smooth' : 'auto',
-        });
-      }
+    if (isActiveRef.current) {
+      tabRef.current?.parentElement?.scrollTo({
+        [orientation === 'horizontal' ? 'left' : 'top']:
+          tabRef.current?.[
+            orientation === 'horizontal' ? 'offsetLeft' : 'offsetTop'
+          ] - 4, // leave some room near the start
+        behavior: 'instant', // not using 'smooth' to reduce layout shift on page load
+      });
     }
-  }, [isActive]);
+  }, []);
 
   const updateStripe = () => {
     const currentTabRect = tabRef.current?.getBoundingClientRect();
@@ -338,6 +332,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
+        tabRef.current?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         if (focusActivationMode === 'auto' && !props.disabled) {
           setActiveValue(value);
         }

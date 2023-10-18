@@ -252,7 +252,7 @@ export const HorizontalOverflow = () => {
   return (
     <div
       style={{
-        width: '50%',
+        width: '60%',
         maxWidth: 800,
         minWidth: 250,
         border: '1px solid lightpink',
