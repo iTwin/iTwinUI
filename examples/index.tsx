@@ -1061,9 +1061,25 @@ import { default as TabsMainExampleRaw } from './Tabs.main';
 const TabsMainExample = withThemeProvider(TabsMainExampleRaw);
 export { TabsMainExample };
 
-import { default as TabsOverflowExampleRaw } from './Tabs.overflow';
-const TabsOverflowExample = withThemeProvider(TabsOverflowExampleRaw);
-export { TabsOverflowExample };
+import { default as TabsActionsExampleRaw } from './Tabs.actions';
+const TabsActionsExample = withThemeProvider(TabsActionsExampleRaw);
+export { TabsActionsExample };
+
+import { default as TabsControlledExampleRaw } from './Tabs.controlled';
+const TabsControlledExample = withThemeProvider(TabsControlledExampleRaw);
+export { TabsControlledExample };
+
+import { default as TabsVerticalExampleRaw } from './Tabs.vertical';
+const TabsVerticalExample = withThemeProvider(TabsVerticalExampleRaw);
+export { TabsVerticalExample };
+
+import { default as TabsBorderlessExampleRaw } from './Tabs.borderless';
+const TabsBorderlessExample = withThemeProvider(TabsBorderlessExampleRaw);
+export { TabsBorderlessExample };
+
+import { default as TabsPillExampleRaw } from './Tabs.pill';
+const TabsPillExample = withThemeProvider(TabsPillExampleRaw);
+export { TabsPillExample };
 
 // ----------------------------------------------------------------------------
 
