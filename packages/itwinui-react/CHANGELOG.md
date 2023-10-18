@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.14
+
+### Patch Changes
+
+- [#1643](https://github.com/iTwin/iTwinUI/pull/1643): Fixed an issue where ProgressRadial was not respecting explicit size.
+
 ## 2.12.13
 
 ### Patch Changes
