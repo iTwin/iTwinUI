@@ -143,6 +143,7 @@
   isolation: isolate;
   min-block-size: var(--_iui-input-min-height);
   block-size: fit-content;
+  line-height: var(--iui-size-l);
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
