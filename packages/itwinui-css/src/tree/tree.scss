@@ -6,8 +6,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 .iui-tree {
   @include mixins.iui-reset;
-  --_iui-expander-button-width: calc(var(--iui-component-height) + 2px);
+  --_iui-expander-button-width: var(--iui-component-height);
   --_iui-tree-node-padding-inline: var(--iui-size-xs);
+  --_iui-tree-node-content-icon-margin-inline: calc(var(--_iui-tree-node-padding-inline) + 2px);
 
   list-style: none;
   border-radius: var(--iui-border-radius-1);
@@ -16,11 +17,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &[data-iui-size='small'] {
     --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
-  }
-
-  &[data-iui-size='large'] {
-    --_iui-expander-button-width: calc(var(--iui-component-height-large) + 2px);
-    --_iui-tree-node-padding-inline: var(--iui-size-s);
+    --_iui-tree-node-content-icon-margin-inline: calc(var(--_iui-tree-node-padding-inline) + 1px);
   }
 }
 
@@ -62,10 +59,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     min-block-size: var(--_iui-expander-button-width);
     margin-inline-start: calc(var(--_iui-expander-button-width) * (var(--level, 0)));
     overflow: hidden;
-    padding-inline-start: var(--iui-size-3xs); // TODO: Why?
 
     &-icon {
-      margin-inline: var(--_iui-tree-node-padding-inline);
+      margin-inline: var(--_iui-tree-node-content-icon-margin-inline);
 
       &,
       svg {
