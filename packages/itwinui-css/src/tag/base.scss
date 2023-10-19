@@ -46,6 +46,7 @@
 
 @mixin iui-tag-label {
   @include text-mixins.iui-text;
+  line-height: var(--iui-size-l);
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

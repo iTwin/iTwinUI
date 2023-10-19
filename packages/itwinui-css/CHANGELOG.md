@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.0.0-dev.13
+
+### Major Changes
+
+- [#1626](https://github.com/iTwin/iTwinUI/pull/1626): Improved carousel accessibility and changed the markup so that the dots are present before the slides.
+- [#1469](https://github.com/iTwin/iTwinUI/pull/1469): Replaced `iui-slider-vertical` class modifier with `data-iui-orientation`.
+  - `iui-slider-rail` class is now `::before` pseudo element of `iui-slider`.
+
+### Patch Changes
+
+- [#1632](https://github.com/iTwin/iTwinUI/pull/1632): Adjusted gap between adjacent icons in searchbox.
+
 ## 2.0.0-dev.12
 
 ### Major Changes
@@ -144,6 +156,12 @@
 - [#1304](https://github.com/iTwin/iTwinUI/pull/1304): Instead of cloning passed icons to set classes on them, the classes will now be set on a wrapping element. Affected components: `Header`, `Select`, `MenuItem`, `RadioTile`, `Tabs`, `ToggleSwitch`, `TreeNode`, `InputContainer` (and all input variants).
 - [#1269](https://github.com/iTwin/iTwinUI/pull/1269): All dialog variants have `flex` applied by default. This means the content should be wrapped with `Dialog.Content` or `ModalContent` for optimal layout.
 - [#1270](https://github.com/iTwin/iTwinUI/pull/1270): Change `line-height` to use a unitless value.
+
+## 1.12.6
+
+### Patch Changes
+
+- [#1643](https://github.com/iTwin/iTwinUI/pull/1643): Fixed an issue where ProgressRadial was not respecting explicit size.
 
 ## 1.12.5
 
