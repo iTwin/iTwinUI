@@ -14,8 +14,6 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='core-header' />
-
 <LiveExample src='Header.main.tsx'>
   <AllExamples.HeaderMainExample client:load />
 </LiveExample>
@@ -25,6 +23,26 @@ The headers seen when in our CONNECT Portal environment. A header sits at the to
 ## Main CONNECT Portal header
 
 The CONNECT portal header contains the services menu, home, enterprise, assets and projects links beginning from left to right. From right to left there is the user profile, help, and notification links.
+
+## Types
+
+### Full Header
+
+<LiveExample src='Header.full.tsx'>
+  <AllExamples.HeaderFullExample client:load />
+</LiveExample>
+
+### Slim Header
+
+<LiveExample src='Header.slim.tsx'>
+  <AllExamples.HeaderSlimExample client:load />
+</LiveExample>
+
+### Center Content
+
+<LiveExample src='Header.center.tsx'>
+  <AllExamples.HeaderCenterExample client:load />
+</LiveExample>
 
 Header with circular callouts, numbered from 1 to 8.
 
