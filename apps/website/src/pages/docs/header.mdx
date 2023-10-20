@@ -24,26 +24,6 @@ The headers seen when in our CONNECT Portal environment. A header sits at the to
 
 The CONNECT portal header contains the services menu, home, enterprise, assets and projects links beginning from left to right. From right to left there is the user profile, help, and notification links.
 
-## Types
-
-### Full Header
-
-<LiveExample src='Header.full.tsx'>
-  <AllExamples.HeaderFullExample client:load />
-</LiveExample>
-
-### Slim Header
-
-<LiveExample src='Header.slim.tsx'>
-  <AllExamples.HeaderSlimExample client:load />
-</LiveExample>
-
-### Center Content
-
-<LiveExample src='Header.center.tsx'>
-  <AllExamples.HeaderCenterExample client:load />
-</LiveExample>
-
 Header with circular callouts, numbered from 1 to 8.
 
 - Services menu
@@ -88,6 +68,32 @@ Secondary header with circular callouts, numbered from 1 to 5.
 ## Consolidated header
 
 One of the top complaints we received was that our headers visibly takes up too much space on the screen. When the user is focusing on their work, we use the consolidated header. Additional data can be displayed based on hover and/or where you are located within the app. For example, when in a 3D working environment you’ll see the consolidated header, but when you switch to the backstage you see the normal header.
+
+## Customizations
+
+### Full Header
+
+Have default header with additional elements.
+
+<LiveExample src='Header.full.tsx'>
+  <AllExamples.HeaderFullExample client:load />
+</LiveExample>
+
+### Slim Header
+
+Make header slim using `isSlim` property.
+
+<LiveExample src='Header.slim.tsx'>
+  <AllExamples.HeaderSlimExample client:load />
+</LiveExample>
+
+### Center Content
+
+Have header with content placed in center.
+
+<LiveExample src='Header.center.tsx'>
+  <AllExamples.HeaderCenterExample client:load />
+</LiveExample>
 
 ## Accessibility
 
