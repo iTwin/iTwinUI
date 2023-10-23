@@ -189,19 +189,19 @@ jobs:
       - name: Build storybook
         run: yarn build --filter=storybook
 
-      - name: List folders to preserve (open PRs and 'dev')
+      - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
         uses: actions/github-script@v4
         with:
           result-encoding: string
           script: |
-            return ['dev', ...((await github.pulls.list({
+            return ['legacy', ...((await github.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open'
             })).data.map(pr => pr.number).join('\n'))]
 
-      - name: Host portal under / or /dev
+      - name: Host portal under / or /legacy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
