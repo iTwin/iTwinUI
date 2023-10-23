@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.0-dev.15
+
+### Patch Changes
+
+- [#1649](https://github.com/iTwin/iTwinUI/pull/1649): ThemeProvider will now inherit `portalContainer` if also inheriting theme.
+
 ## 3.0.0-dev.14
 
 ### Major Changes
