@@ -11,8 +11,8 @@
     "clean": "rimraf .turbo && rimraf node_modules && rimraf dist"
   },
   "dependencies": {
-    "@itwin/itwinui-css": "2.0.0-dev.13",
-    "@itwin/itwinui-variables": "3.0.0-dev.1",
+    "@itwin/itwinui-css": "2.0.0",
+    "@itwin/itwinui-variables": "3.0.0",
     "astro": "2"
   }
 }
