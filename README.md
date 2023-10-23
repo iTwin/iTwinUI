@@ -23,6 +23,10 @@ iTwinUI consists of the following packages:
 
 ---
 
+🆕 **iTwinUI v3** is now available! To upgrade from an older version, check out the [v3 migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide).
+
+---
+
 ## Usage
 
 The easiest way to get started with iTwinUI is by using React components from `@itwin/itwinui-react`:
