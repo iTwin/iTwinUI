@@ -21,7 +21,28 @@ iTwinUI consists of the following packages:
 - [`@itwin/itwinui-variables`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-variables/README.md) - CSS variables for iTwinUI's design tokens
 - [`@itwin/itwinui-react`](https://github.com/iTwin/iTwinUI/blob/main/packages/itwinui-react/README.md) - react components that consume `@itwin/itwinui-css`
 
-Check out the README for each of those packages for more details on how to use them.
+---
+
+## Usage
+
+The easiest way to get started with iTwinUI is by using React components from `@itwin/itwinui-react`:
+
+```jsx
+import { ThemeProvider, Button } from '@itwin/itwinui-react';
+import '@itwin/itwinui-react/styles.css';
+
+export default function App() {
+  return (
+    <>
+      <ThemeProvider theme='light'>
+        <Button>Hello!</Button>
+      </ThemeProvider>
+    </>
+  );
+}
+```
+
+For more details, check out the [iTwinUI documentation website](https://itwinui.bentley.com).
 
 ---
 
