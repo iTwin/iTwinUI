@@ -9,7 +9,7 @@
     "clean": "rimraf .turbo && rimraf node_modules"
   },
   "dependencies": {
-    "@itwin/itwinui-react": "3.0.0",
+    "@itwin/itwinui-react": "*",
     "axe-core": "^4.8.2",
     "cypress": "13.2.0",
     "cypress-axe": "^1.5.0",
