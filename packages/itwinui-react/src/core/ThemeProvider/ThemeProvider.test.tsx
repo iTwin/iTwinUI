@@ -188,10 +188,9 @@ it('should respect the portalContainer prop', async () => {
 
   const InPortal = () => {
     const { portalContainer } = React.useContext(ThemeContext) || {};
-    return (
-      portalContainer &&
-      ReactDOM.createPortal(<div>in portal!</div>, portalContainer)
-    );
+    return portalContainer
+      ? ReactDOM.createPortal(<div>in portal!</div>, portalContainer)
+      : null;
   };
 
   const { getByText } = render(
@@ -204,4 +203,27 @@ it('should respect the portalContainer prop', async () => {
   getByText('not in portal');
   expect(document.querySelector('my-portals .iui-toast-wrapper')).toBeTruthy();
   expect(document.querySelector('my-portals')).toHaveTextContent('in portal!');
+});
+
+it('should inherit the portalContainer if inheriting theme', async () => {
+  const InPortal = () => {
+    const { portalContainer } = React.useContext(ThemeContext) || {};
+    return portalContainer
+      ? ReactDOM.createPortal(<div>in portal!</div>, portalContainer)
+      : null;
+  };
+
+  render(
+    <ThemeProvider data-outer>
+      <ThemeProvider data-inner>
+        <InPortal />
+      </ThemeProvider>
+    </ThemeProvider>,
+  );
+
+  const outer = document.querySelector('[data-outer]');
+  const inner = document.querySelector('[data-inner]');
+
+  expect(outer).toHaveTextContent('in portal!');
+  expect(inner).not.toHaveTextContent('in portal!');
 });
