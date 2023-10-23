@@ -6,6 +6,7 @@ import { addons } from '@storybook/addons';
 import { themes } from '@storybook/theming';
 import React from 'react';
 import { lightTheme, darkTheme } from './itwinTheme';
+import { V2Note } from './V2Note';
 
 const channel = addons.getChannel();
 
@@ -62,7 +63,7 @@ export default {
         document.body.dataset.iuiContrast = highContrast ? 'high' : 'default';
       }, [highContrast]);
 
-      return Story(); // builder-vite does not allow JSX here so we call Story as a function
+      return [Story(), V2Note()]; // builder-vite does not allow JSX here so we call Story as a function
     },
   ],
 };

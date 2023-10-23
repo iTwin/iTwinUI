@@ -1,26 +1,25 @@
 import { Meta } from '@storybook/addon-docs';
+import itwinuiLight from '../.storybook/public/itwin.svg';
+import itwinuiDark from '../.storybook/public/itwin-dark.svg';
 
 <Meta title='Overview' />
 
 <center>
   <h1>
     <picture>
-      <source
-        media='(prefers-color-scheme: dark)'
-        srcSet='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-dark-logo.png'
-      />
-      <img
-        src='https://itwinplatformcdn.azureedge.net/iTwinUI/iTwinUI-new-logo.png'
-        alt='iTwinUI logo'
-      />
+      <source media='(prefers-color-scheme: dark)' srcSet={itwinuiDark} />
+      <img src={itwinuiLight} alt='iTwinUI logo' />
     </picture>
   </h1>
 </center>
 
+| ⚠️ This is the storybook for iTwinUI-react v2. For the latest version, please visit [https://itwin.github.io/iTwinUI](https://itwin.github.io/iTwinUI). |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+
 ## What is iTwinUI-react?
 
 iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
-The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI/react) to see the components in action.
+The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css).
 
 ## Installation
 
@@ -59,9 +58,7 @@ import { ThemeProvider } from '@itwin/itwinui-react';
 
 const App = () => (
   <>
-    <ThemeProvider theme='dark'>
-      {/* Your components go here. */}
-    </ThemeProvider>
+    <ThemeProvider theme='dark'>{/* Your components go here. */}</ThemeProvider>
   </>
 );
 ```

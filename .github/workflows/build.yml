@@ -4,10 +4,8 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
-      - dev
+      - legacy/*
   pull_request:
-  merge_group:
 
 jobs:
   install:
@@ -120,12 +118,11 @@ jobs:
     name: Push static files to github pages
     needs: install
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'pull_request' || github.event_name == 'push' }}
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
       cancel-in-progress: true
     env:
-      base_folder: ${{ github.event.number || github.ref_name != 'main' && github.ref_name || '' }}
+      base_folder: ${{ github.event.number || github.ref_name }}
 
     steps:
       - uses: actions/checkout@v3
@@ -155,26 +152,13 @@ jobs:
       - name: Build storybook
         run: yarn build --filter=storybook
 
-      - name: List folders to preserve (open PRs and 'dev')
-        id: clean_exclude_folders
-        uses: actions/github-script@v4
-        with:
-          result-encoding: string
-          script: |
-            return ['dev', ...((await github.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open'
-            })).data.map(pr => pr.number).join('\n'))]
-
-      - name: Host portal under / or /dev
+      - name: Host portal under /
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
           single-commit: true
           folder: ${{ github.workspace }}/apps/portal/dist
           target-folder: ${{ env.base_folder }}
-          clean-exclude: ${{ steps.clean_exclude_folders.outputs.result }}
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
@@ -195,21 +179,6 @@ jobs:
           target-folder: ${{ env.base_folder }}/react
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
-
-      - name: Post deploy preview link under Checks
-        if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: '${{ github.event.pull_request.head.sha }}',
-              state: 'success',
-              context: 'Deploy preview',
-              description: 'Live preview of the current branch',
-              target_url: 'https://itwin.github.io/iTwinUI/${{ github.event.number }}',
-            })
 
   unit-test:
     name: Run unit tests
