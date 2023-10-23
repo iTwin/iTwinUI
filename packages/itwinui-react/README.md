@@ -25,16 +25,14 @@
 iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
 The goal of this package is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [documentation website](https://itwinui.bentley.com/) to detailed documentation and examples of all components.
 
+🆕 Check out the [v3 migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide) if you're upgrading from an older version.
+
 ---
 
 ## Installation
 
 ```
 npm install @itwin/itwinui-react
-```
-
-```
-yarn add @itwin/itwinui-react
 ```
 
 ---
