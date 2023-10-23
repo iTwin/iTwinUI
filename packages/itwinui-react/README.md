@@ -2,10 +2,10 @@
   <picture>
     <source
       media='(prefers-color-scheme: dark)'
-      srcset='https://itwin.github.io/iTwinUI/dev/logo-dark.svg'
+      srcset='https://itwin.github.io/iTwinUI/logo-dark.svg'
     />
     <img
-      src='https://itwin.github.io/iTwinUI/dev/logo.svg'
+      src='https://itwin.github.io/iTwinUI/logo.svg'
       alt='iTwinUI logo'
     />
   </picture>
