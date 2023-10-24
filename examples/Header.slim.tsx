@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import { action } from '@storybook/addon-actions';
 import {
   Avatar,
   Header,
@@ -12,6 +13,8 @@ import {
   IconButton,
   MenuItem,
 } from '@itwin/itwinui-react';
+import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
+import SvgHelpCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/HelpCircularHollow';
 
 export default () => {
   const menuItems = (close: () => void) => [
@@ -48,24 +51,20 @@ export default () => {
               onClick={() => {}}
               menuItems={menuItems}
             />,
-            <HeaderButton
-              key='iModel'
-              name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
-              onClick={() => {}}
-            />,
-            <HeaderButton
-              key='version'
-              name='Version C'
-              menuItems={menuItems}
-              isActive={true}
-            />,
           ]}
         />
       }
       actions={[
+        <IconButton
+          key='notif'
+          onClick={() => action('Clicked on the notification bell')()}
+          styleType='borderless'
+        >
+          <SvgNotification />
+        </IconButton>,
+        <IconButton styleType='borderless' aria-label='help'>
+          <SvgHelpCircularHollow />
+        </IconButton>,
         <IconButton styleType='borderless' aria-label='View profile'>
           <Avatar
             size='medium'

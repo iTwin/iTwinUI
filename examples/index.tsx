@@ -622,7 +622,7 @@ import { default as HeaderMainExampleRaw } from './Header.main';
 const HeaderMainExample = withThemeProvider(HeaderMainExampleRaw);
 export { HeaderMainExample };
 
-import { default as HeaderFullExampleRaw } from './Header.full';
+import { default as HeaderFullExampleRaw } from './Header.menuitems';
 const HeaderFullExample = withThemeProvider(HeaderFullExampleRaw);
 export { HeaderFullExample };
 

@@ -30,7 +30,7 @@ export default () => {
   const searchBar = (
     <>
       <style>
-        {`.center-input { border-radius: 22px; width: 20vw; transition: all 0.2s ease }`}
+        {`.center-input { border-radius: 22px; width: 10vw; transition: all 0.2s ease }`}
         {`.iui-slim .iui-center { align-items: unset }`}
         {`.iui-slim .center-input { min-height: unset }`}
         {`@media (max-width: 768px) { .center-input { display: none; } }`}
@@ -59,20 +59,6 @@ export default () => {
               description='YJC-2249'
               onClick={() => {}}
               menuItems={menuItems}
-            />,
-            <HeaderButton
-              key='iModel'
-              name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
-              onClick={() => {}}
-            />,
-            <HeaderButton
-              key='version'
-              name='Version C'
-              menuItems={menuItems}
-              isActive={true}
             />,
           ]}
         />

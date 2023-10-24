@@ -54,20 +54,6 @@ export default () => {
               onClick={() => {}}
               menuItems={menuItems}
             />,
-            <HeaderButton
-              key='iModel'
-              name='iModel B'
-              startIcon={
-                <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
-              }
-              onClick={() => {}}
-            />,
-            <HeaderButton
-              key='version'
-              name='Version C'
-              menuItems={menuItems}
-              isActive={true}
-            />,
           ]}
         />
       }
