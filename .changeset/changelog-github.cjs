@@ -15,10 +15,15 @@ module.exports = {
 
     // make API call to find PR number associated with the commit
     const prOrCommit = await (async () => {
+      const token = process.env.GITHUB_TOKEN;
+
       try {
         const { number } = (
           await fetch(
             `https://api.github.com/repos/${options.repo}/commits/${commit}/pulls`,
+            token
+              ? { headers: { authorization: `Bearer ${token}` } }
+              : undefined,
           ).then((r) => r.json())
         ).find((r) => r.merge_commit_sha.includes(commit));
 
