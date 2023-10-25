@@ -199,7 +199,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               state: 'open'
-            })).data.map(pr => pr.number).join(','))]
+            })).data.map(pr => pr.number))].join('\n')
 
       - name: Host portal under / or /legacy
         uses: JamesIves/github-pages-deploy-action@v4
