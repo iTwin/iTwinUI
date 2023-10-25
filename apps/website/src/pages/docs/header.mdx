@@ -20,43 +20,39 @@ import * as AllExamples from 'examples';
 
 The first thing most people look at when they arrive at a new web page is the header. It is usually stuck at the top of the page. The header contains vital information about your company's name and function, as well as the purpose of the specific page.
 
+## Usage
+
+The main `<header>` compnent is consisted of various subcomponents and can be customized accordingly by modifying its props.
+
+- Logo can be added using the `appLogo` prop and specifying the desired logo under the `<HeaderLogo>` subcomponent.
+- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the `<HeaderButton>` subcomponent, allowing users to interact. For the dropdown menu, the `menuItems` prop can be used inside the `<HeaderButton>` for showing items and `onClick()` properties for handling actions.
+- Buttons/Icons/Content can be displayed towards the left of menuitems using the `actions` prop.
+
 ## Customizations
 
 Alter standard header section by adding new custom elements and content.
 
-### Header with MenuItems
+### Full Header
 
-Have default header with menu items using `breadcrumbs` prop.
+Have default header with additional items.
 
-<LiveExample src='Header.menuitems.tsx'>
+<LiveExample src='Header.full.tsx'>
   <AllExamples.HeaderFullExample client:load />
 </LiveExample>
 
 ### Slim Header
 
-Make header slim using `isSlim` property.
+Make header slim using `isSlim` property. This can be used when working in a 3D environment.
 
 <LiveExample src='Header.slim.tsx'>
   <AllExamples.HeaderSlimExample client:load />
 </LiveExample>
 
-### Center Content
-
-Have header with content placed in center.
-
-<LiveExample src='Header.center.tsx'>
-  <AllExamples.HeaderCenterExample client:load />
-</LiveExample>
-
-## Consolidated header
-
-One of the top complaints we received was that our headers visibly takes up too much space on the screen. When the user is focusing on their work, we use the consolidated header. Additional data can be displayed based on hover and/or where you are located within the app. For example, when in a 3D working environment you’ll see the consolidated header, but when you switch to the backstage you see the normal header.
-
 ## Accessibility
 
 For accessibility reasons, certain users strictly use their keyboard for navigating digital interfaces. We need to ensure the header doesn’t get in the way of these users every time they want to access a page’s main content. To make their experience more efficient, include a Skip to main content link to allow keyboard users to bypass the navigation header and skip directly to the page’s content.
 
-Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, read the Skip to main content [article](https://www.freecodecamp.org/news/how-to-add-skip-to-main-content-links-to-a-website/), and check out the Skip to main content [component](https://itwin.github.io/iTwinUI/react/?path=/story/core-skiptocontentlink--basic).
+Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, read the Skip to main content article, and check out the Skip to main content component.
 
 ## Props
 
