@@ -22,14 +22,14 @@ const parameters = getParameters({
       content: {
         main: 'src/index.tsx',
         dependencies: {
-          '@itwin/itwinui-react': '2',
+          '@itwin/itwinui-react': '3',
           '@itwin/itwinui-icons-react': '2',
           react: '18',
           'react-dom': '18',
         },
         devDependencies: {
           'react-scripts': '5',
-          typescript: '4',
+          typescript: '5',
         },
         scripts: {
           start: 'react-scripts start',
@@ -56,6 +56,7 @@ const parameters = getParameters({
       isBinary: false,
       content: outdent`import React from 'react';
         import { createRoot } from 'react-dom/client';
+        import '@itwin/itwinui-react/styles.css';
         import './styles.css';
         import App from './App';
         import { ThemeProvider } from '@itwin/itwinui-react';

@@ -35,9 +35,10 @@ type RootProps = {
    * This can cause a flash of incorrect theme on first render.
    *
    * The 'inherit' option is intended to be used by packages, to enable incremental adoption
-   * of iTwinUI v2 in app that might be using v1 in other places.
+   * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
+   * if no parent theme is found. Additionally, it will attempt to inherit the `portalContainer` if possible.
    *
-   * @default 'light'
+   * @default 'inherit'
    */
   theme?: ThemeType | 'inherit';
   themeOptions?: Pick<ThemeOptions, 'highContrast'> & {
@@ -120,19 +121,29 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  const [parentTheme, rootRef, parentContext] = useParentTheme();
+  const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
+
+  /**
+   * We will portal our portal container into `portalContainer` prop (if specified),
+   * or inherit `portalContainer` from context (if also inheriting theme).
+   */
+  const portaledPortalContainer =
+    portalContainerProp ||
+    (themeProp === 'inherit' ? parentContext?.portalContainer : undefined);
+
   const [portalContainer, setPortalContainer] = useControlledState(
     null,
-    portalContainerProp,
+    portaledPortalContainer,
   );
-
-  const [parentTheme, rootRef] = useParentTheme();
-  const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
 
   const shouldApplyBackground = themeOptions?.applyBackground ?? !parentTheme;
 
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, portalContainer }),
-    [theme, themeOptions, portalContainer],
+    // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [theme, JSON.stringify(themeOptions), portalContainer],
   );
 
   return (
@@ -147,10 +158,10 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
         <ToastProvider>
           {children}
 
-          {portalContainerProp ? (
-            ReactDOM.createPortal(<Toaster />, portalContainerProp)
+          {portaledPortalContainer ? (
+            ReactDOM.createPortal(<Toaster />, portaledPortalContainer)
           ) : (
-            <div ref={setPortalContainer}>
+            <div ref={setPortalContainer} style={{ display: 'contents' }}>
               <Toaster />
             </div>
           )}
@@ -219,5 +230,9 @@ const useParentTheme = () => {
     );
   }, []);
 
-  return [parentContext?.theme ?? parentThemeState, rootRef] as const;
+  return [
+    parentContext?.theme ?? parentThemeState,
+    rootRef,
+    parentContext,
+  ] as const;
 };

@@ -4,7 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useIntersection, useMergedRefs } from '../utils/index.js';
+import {
+  Box,
+  mergeEventHandlers,
+  useIntersection,
+  useMergedRefs,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 
@@ -30,7 +35,7 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
     throw new Error('CarouselSlide must be used within Carousel');
   }
 
-  const { isManuallyUpdating, setCurrentIndex } = context;
+  const { isManuallyUpdating, currentIndex, setCurrentIndex } = context;
 
   const updateActiveIndexOnScroll = React.useCallback(() => {
     // only update index if scroll was triggered by browser
@@ -49,14 +54,21 @@ export const CarouselSlide = React.forwardRef((props, ref) => {
 
   return (
     <Box
-      as='li'
       className={cx('iui-carousel-slider-item', className)}
       role='tabpanel'
       aria-roledescription='slide'
+      tabIndex={index === currentIndex ? 0 : undefined}
       ref={refs}
+      {...{ inert: index !== currentIndex ? '' : undefined }}
       {...rest}
+      onKeyDown={mergeEventHandlers(props.onKeyDown, (event) => {
+        // prevent default browser scrolling on arrow keys because focus will get lost when slide switches
+        if (event.key === 'ArrowLeft' || event.key === 'ArrowRight') {
+          event.preventDefault();
+        }
+      })}
     >
       {children}
     </Box>
   );
-}) as PolymorphicForwardRefComponent<'li', CarouselSlideProps>;
+}) as PolymorphicForwardRefComponent<'div', CarouselSlideProps>;

@@ -6,7 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Input } from '../Input/Input.js';
-import { ColorValue, SvgSwap, Box } from '../utils/index.js';
+import { ColorValue, SvgSwap, Box, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useColorPickerContext } from './ColorPickerContext.js';
 
@@ -174,6 +174,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
       maxLength={showAlpha ? 9 : 7}
       minLength={1}
       placeholder='HEX'
+      aria-label='Hex'
       value={input[0]}
       onChange={(event) => {
         const value = event.target.value.startsWith('#')
@@ -204,6 +205,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         max='359'
         step='.1'
         placeholder='H'
+        aria-label='Hue'
         value={input[0] ?? ''}
         onChange={(event) => {
           setInput([event.target.value, input[1], input[2], input[3]]);
@@ -233,6 +235,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         max='100'
         step='.1'
         placeholder='S'
+        aria-label='Saturation'
         value={input[1] ?? ''}
         onChange={(event) => {
           setInput([input[0], event.target.value, input[2], input[3]]);
@@ -262,6 +265,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         max='100'
         step='.1'
         placeholder='L'
+        aria-label='Lightness'
         value={input[2] ?? ''}
         onChange={(event) => {
           setInput([input[0], input[1], event.target.value, input[3]]);
@@ -293,6 +297,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           max='1'
           step='.01'
           placeholder='A'
+          aria-label='Alpha'
           value={input[3] ?? ''}
           onChange={(event) => {
             setInput([input[0], input[1], input[2], event.target.value]);
@@ -327,6 +332,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         min='0'
         max='255'
         placeholder='R'
+        aria-label='Red'
         value={input[0] ?? ''}
         onChange={(event) => {
           setInput([event.target.value, input[1], input[2], input[3]]);
@@ -356,6 +362,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         min='0'
         max='255'
         placeholder='G'
+        aria-label='Green'
         value={input[1] ?? ''}
         onChange={(event) => {
           setInput([input[0], event.target.value, input[2], input[3]]);
@@ -385,6 +392,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
         min='0'
         max='255'
         placeholder={'B'}
+        aria-label='Blue'
         value={input[2] ?? ''}
         onChange={(event) => {
           setInput([input[0], input[1], event.target.value, input[3]]);
@@ -415,6 +423,7 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
           max='1'
           step='.01'
           placeholder='A'
+          aria-label='Alpha'
           value={input[3] ?? ''}
           onChange={(event) => {
             setInput([input[0], input[1], input[2], event.target.value]);
@@ -441,14 +450,16 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
     </>
   );
 
+  const labelId = useId();
+
   return (
     <Box
       className={cx('iui-color-input-wrapper', className)}
       ref={ref}
       {...rest}
     >
-      <Box className='iui-color-picker-section-label'>
-        {showAlpha && currentFormat != 'hex'
+      <Box className='iui-color-picker-section-label' id={labelId}>
+        {showAlpha && currentFormat !== 'hex'
           ? currentFormat.toUpperCase() + 'A'
           : currentFormat.toUpperCase()}
       </Box>
@@ -458,11 +469,17 @@ export const ColorInputPanel = React.forwardRef((props, ref) => {
             styleType='borderless'
             onClick={swapColorFormat}
             size='small'
+            label='Switch format'
           >
             <SvgSwap />
           </IconButton>
         )}
-        <Box ref={inputsContainerRef} className='iui-color-input-fields'>
+        <Box
+          ref={inputsContainerRef}
+          className='iui-color-input-fields'
+          role={currentFormat !== 'hex' ? 'group' : undefined}
+          aria-labelledby={currentFormat !== 'hex' ? labelId : undefined}
+        >
           {currentFormat === 'hex' && hexInputField}
           {currentFormat === 'rgb' && rgbInputs}
           {currentFormat === 'hsl' && hslInputs}

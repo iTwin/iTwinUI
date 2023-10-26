@@ -23,10 +23,6 @@ export const CarouselContext = React.createContext<
        */
       setSlideCount: (length: number | ((old: number) => void)) => void;
       /**
-       * Stateful value of the left/right arrow keys currently pressed.
-       */
-      keysPressed: Record<string, boolean>;
-      /**
        * Prefix used for setting id for internal carousel components.
        */
       idPrefix: string;

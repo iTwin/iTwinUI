@@ -26,6 +26,7 @@ export const Basic = () => {
 
   return (
     <Carousel style={{ width: 'min(800px, 90vw)' }}>
+      <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -45,7 +46,6 @@ export const Basic = () => {
           </Carousel.Slide>
         ))}
       </Carousel.Slider>
-      <Carousel.Navigation />
     </Carousel>
   );
 };
@@ -72,6 +72,7 @@ export const Controlled = () => {
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}
     >
+      <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
@@ -91,7 +92,6 @@ export const Controlled = () => {
           </Carousel.Slide>
         ))}
       </Carousel.Slider>
-      <Carousel.Navigation />
     </Carousel>
   );
 };
@@ -126,17 +126,22 @@ export const OnlyDots = () => {
       }}
       style={{ display: 'inline-grid', width: 'min(90vw, 40vh)' }}
     >
-      <ol
+      <Carousel.DotsList
+        id={id}
+        length={gradients.length}
+        currentIndex={current}
+        onSlideChange={(_i) => setCurrent(_i)}
+        style={{ justifySelf: 'center', maxWidth: 'min(100%, 200px)' }}
+      />
+      <div
         style={{
-          listStyle: 'none',
-          margin: 0,
-          padding: 0,
           display: 'grid',
           grid: `[slide] 1fr / [slide] 1fr`,
+          order: '-1',
         }}
       >
         {gradients.map(({ from, to }, index) => (
-          <li
+          <div
             key={index}
             role='tabpanel'
             id={`${id}-slide-${index}`}
@@ -166,16 +171,9 @@ export const OnlyDots = () => {
             >
               {index + 1}
             </div>
-          </li>
+          </div>
         ))}
-      </ol>
-      <Carousel.DotsList
-        id={id}
-        length={gradients.length}
-        currentIndex={current}
-        onSlideChange={(_i) => setCurrent(_i)}
-        style={{ justifySelf: 'center', maxWidth: 'min(100%, 200px)' }}
-      />
+      </div>
     </section>
   );
 };

@@ -7,14 +7,25 @@ const faviconHref = isDev ? 'favicon-dev.svg' : 'favicon.svg';
 const links = [
   { name: 'html pages', href: isDev ? 'http://localhost:5173' : 'css' },
   { name: 'storybook', href: isDev ? 'http://localhost:6006' : 'react' },
+  {
+    name: 'docs website',
+    href: isDev ? 'http://localhost:1700' : 'https://itwinui.bentley.com',
+  },
   ...(isDev
     ? [
-        { name: 'docs website', href: 'http://localhost:1700' },
         { name: 'vite playground', href: 'http://localhost:1701' },
         { name: 'next playground', href: 'http://localhost:1702' },
         { name: 'astro playground', href: 'http://localhost:1703' },
       ]
     : [
+        {
+          name: 'v3 migration guide',
+          href: 'https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide',
+        },
+        {
+          name: 'v2 storybook',
+          href: 'https://itwin.github.io/iTwinUI/legacy/v2/react/',
+        },
         { name: 'faq', href: 'https://github.com/iTwin/iTwinUI/wiki/FAQ' },
         {
           name: 'styling',

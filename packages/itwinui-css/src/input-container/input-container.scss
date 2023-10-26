@@ -143,6 +143,7 @@
   isolation: isolate;
   min-block-size: var(--_iui-input-min-height);
   block-size: fit-content;
+  line-height: var(--iui-size-l);
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {
@@ -194,7 +195,7 @@
     padding-inline: var(--iui-size-s);
     padding-block: var(--_iui-input-padding-block);
 
-    &:is(:not(:first-child)) {
+    &:where(:not(:first-child)) {
       padding-inline-start: var(--iui-size-2xs);
     }
 

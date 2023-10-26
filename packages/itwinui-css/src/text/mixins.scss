@@ -28,16 +28,7 @@
     body: var(--iui-font-weight-normal),
     small: var(--iui-font-weight-normal),
   );
-  $line-heights: (
-    headline: calc(2 * var(--iui-size-l)),
-    title: calc(1.5 * var(--iui-size-l)),
-    subheading: calc(1.5 * var(--iui-size-l)),
-    leading: var(--iui-size-l),
-    body: var(--iui-size-l),
-    small: var(--iui-size-l),
-  );
   $type: if(map.has-key($sizes, $type), $type, body);
   font-size: map.get($sizes, $type);
   font-weight: map.get($weights, $type);
-  line-height: map.get($line-heights, $type);
 }

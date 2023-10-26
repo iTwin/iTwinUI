@@ -41,6 +41,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     }
 
     > :where(.iui-tile-name) {
+      margin-block-start: var(--iui-size-s);
       margin-block-end: calc(var(--iui-size-s) * 0.5);
     }
   }
@@ -291,7 +292,6 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   display: grid;
   background-color: var(--iui-color-background-zebra);
   border-block-end: 1px solid var(--iui-color-border);
-  margin-block-end: var(--iui-size-s);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;

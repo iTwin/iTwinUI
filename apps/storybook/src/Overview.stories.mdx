@@ -7,9 +7,9 @@ import { Meta } from '@storybook/addon-docs';
     <picture>
       <source
         media='(prefers-color-scheme: dark)'
-        srcset='https://itwin.github.io/iTwinUI/dev/logo-dark.svg'
+        srcset='https://itwin.github.io/iTwinUI/logo-dark.svg'
       />
-      <img src='https://itwin.github.io/iTwinUI/dev/logo.svg' alt='iTwinUI' />
+      <img src='https://itwin.github.io/iTwinUI/logo.svg' alt='iTwinUI' />
     </picture>
   </h1>
 </center>
@@ -42,9 +42,7 @@ import '@itwin/itwinui-react/styles.css';
 export default function App() {
   return (
     <>
-      <ThemeProvider>
-        {/* Your components go here. */}
-      </ThemeProvider>
+      <ThemeProvider>{/* Your components go here. */}</ThemeProvider>
     </>
   );
 }
@@ -52,10 +50,10 @@ export default function App() {
 
 ThemeProvider has a `theme` prop which accepts one of the following values:
 
-  - `light` (default)
-  - `dark`
-  - `os` (respects the color scheme of the operating system)
-  - `inherit`
+- `light` (default)
+- `dark`
+- `os` (respects the color scheme of the operating system)
+- `inherit`
 
 ---
 
