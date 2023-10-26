@@ -19,59 +19,21 @@ import * as AllExamples from 'examples';
 
 An alert is an element that notifies the user of something important that is not user initiated. If you need to alert the user because of something they did, consider using a [toast](toast) notification or an inline message. Instead, an alert is used to notify the user of something unrelated to what they just did. Examples of this might be announcing a new feature within the product, or alerting the user of scheduled server maintenance and downtime.
 
+## Usage
+
+### Composition API
+
+### Legacy API
+
 ## Variants
 
 The alert message must be concise, we recommend no more than 256 characters. If you feel the need to explain in further detail, you may use an optional hyperlink at the end of the alert message to explain more on a new page. You may also include an optional close icon (close icon is required for [sticky](#sticky) alerts).
 
-### Informational
+The type of alert that must be displayed can be specified by utilizing the `type` prop. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
 
-Default style when there is no defined status for the alert. Inform users about events that they should be aware of, but that are not disruptive to their work.
-
-<LiveExample src='Alert.informational.tsx'>
-  <AllExamples.AlertInformationalExample client:load />
+<LiveExample src='Alert.types.tsx'>
+  <AllExamples.AlertTypesExample client:load />
 </LiveExample>
-
-### Positive
-
-The positive alert is used to inform the user of a positive status.
-
-<LiveExample src='Alert.positive.tsx'>
-  <AllExamples.AlertPositiveExample client:load />
-</LiveExample>
-
-### Warning
-
-The warning alert is used to inform the user of something that is not currently disruptive to their work, but may be soon or eventually.
-
-<LiveExample src='Alert.warning.tsx'>
-  <AllExamples.AlertWarningExample client:load />
-</LiveExample>
-
-### Negative
-
-Use this only when the system is broken. Leave the technical details behind and explain the problem to the user in an easily understood tone. Mention when the problem might get solved, if it applies.
-
-<LiveExample src='Alert.negative.tsx'>
-  <AllExamples.AlertNegativeExample client:load />
-</LiveExample>
-
-### Multilines
-
-All alerts may support multiple lines if necessary. We recommend keeping it brief and keep the message as concise as possible.
-
-## Placement
-
-The alert notification can display in two different ways:
-
-### Inline
-
-An inline alert appears embedded within the copy of the site as a block element. This means that when the user scrolls, the alert scrolls as well.
-
-<LiveExample src='Alert.inline.tsx'>
-  <AllExamples.AlertInlineExample client:load />
-</LiveExample>
-
-Inline alerts can optionally be dismissible. Once the alert is dismissed, the content below it will shift upwards due to the alert no longer consuming space.
 
 ### Sticky
 
@@ -82,6 +44,14 @@ A sticky alert appears full width stuck at the top of the window frame. That mea
 </LiveExample>
 
 It is up to the development team wether or not the sticky alert should push the rest of the content down or not.
+
+### Multilines
+
+All alerts may support multiple lines if necessary. We recommend keeping it brief and keep the message as concise as possible.
+
+### Inline
+
+All alerts support inline placement. Inline alerts can optionally be dismissible. Once the alert is dismissed, the content below it will shift upwards due to the alert no longer consuming space.
 
 ## Props
 
