@@ -12,7 +12,7 @@ import {
   MenuItem,
   Avatar,
 } from '@itwin/itwinui-react';
-import { SvgNotification, SvgImodel } from '@itwin/itwinui-icons-react';
+import { SvgNotification, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const menuItems = (close: () => void) => [
@@ -29,7 +29,7 @@ export default () => {
 
   return (
     <Header
-      appLogo={<HeaderLogo logo={<SvgImodel />} placeholder='Acme' />}
+      appLogo={<HeaderLogo logo={<SvgPlaceholder />}>Acme</HeaderLogo>}
       breadcrumbs={
         <HeaderBreadcrumbs
           items={[
@@ -58,7 +58,11 @@ export default () => {
         />
       }
       actions={[
-        <IconButton key='notif' styleType='borderless'>
+        <IconButton
+          key='notif'
+          styleType='borderless'
+          aria-label='View Notifications'
+        >
           <SvgNotification />
         </IconButton>,
         <IconButton styleType='borderless' aria-label='View Profile'>

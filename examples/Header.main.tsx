@@ -12,7 +12,7 @@ import {
   IconButton,
   MenuItem,
 } from '@itwin/itwinui-react';
-import { SvgImodel } from '@itwin/itwinui-icons-react';
+import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const menuItems = (close: () => void) => [
@@ -29,7 +29,7 @@ export default () => {
 
   return (
     <Header
-      appLogo={<HeaderLogo logo={<SvgImodel />} placeholder='Acme' />}
+      appLogo={<HeaderLogo logo={<SvgPlaceholder />}>Acme</HeaderLogo>}
       breadcrumbs={
         <HeaderBreadcrumbs
           items={[

@@ -22,13 +22,18 @@ The first thing most people look at when they arrive at a new web page is the he
 
 ## Usage
 
-`<Header>` consists of various subcomponents and can be customized by modifying its props.
+### `<Header>` component
+
+It consists of various subcomponents and can be customized by modifying its props.
 
 - Logo can be added using the `appLogo` prop and specifying the desired logo under the `<HeaderLogo>` subcomponent.
 - Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the `<HeaderButton>` subcomponent. For a dropdown menu, the `menuItems` prop can be used inside the `<HeaderButton>` for showing items and `onClick()` property for handling actions.
-- Buttons/Icons/Content can be displayed towards the left of menuItems using the `actions` prop. `menuItems` expects a list of MenuItems components. They are the items shown in the dropdown menu.
+- Buttons/Icons/Content can be displayed towards the left of menuItems using the `actions` prop.
+- `menuItems` are typically an array of items used to create dropdown menus, allowing users to select from a list of options or perform specific actions. When passed as a prop, it expects a list of MenuItems components. Each `MenuItem` has a `value` (the label displayed) and an `onClick` function that takes the `close` argument (for closing).
 
-`<HeaderButton>` subcomponent is designed to offer a range of behaviors that are dependent on the props that are passed to it.
+### `<HeaderButton>` subcomponent
+
+It is designed to offer a range of behaviors that are dependent on the props that are passed to it.
 
 - `onClick` prop: behaves like a standard button.
 - When set as='a' and `href` prop: behaves like a regular anchor link.
