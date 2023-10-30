@@ -21,29 +21,37 @@ An alert is an element that notifies the user of something important that is not
 
 ## Usage
 
-### Composition API
-
-### Legacy API
-
-## Variants
-
 The alert message must be concise, we recommend no more than 256 characters. If you feel the need to explain in further detail, you may use an optional hyperlink at the end of the alert message to explain more on a new page. You may also include an optional close icon (close icon is required for [sticky](#sticky) alerts).
 
-The type of alert that must be displayed can be specified by utilizing the `type` prop. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
+### Composition API
+
+You can build Alerts with subcomponents that are fully customizable.
+
+We provide:
+
+- AlertWrapper
+- AlertIcon
+- AlertMessage
+- AlertAction
+- AlertCloseButton
 
 <LiveExample src='Alert.types.tsx'>
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
-### Sticky
+The type of alert that must be displayed can be specified by utilizing the `type` prop. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
 
-A sticky alert appears full width stuck at the top of the window frame. That means if the user scrolls, the alert stays at the top of the frame and as the content scrolls underneath it. A sticky alert must always be dismissible. The alert appears above all other UI elements except for toast notifications and modals.
+## Sticky Alert
+
+An alert can be fixed at the top of a user's screen, even if they scroll down the page by passing the `isSticky` prop to the `<Alert.Wrapper>` component. It's important to note that sticky alerts must always be dismissible. Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
 
 <LiveExample src='Alert.sticky.tsx'>
   <AllExamples.AlertStickyExample client:load />
 </LiveExample>
 
 It is up to the development team wether or not the sticky alert should push the rest of the content down or not.
+
+## Placement
 
 ### Multilines
 
