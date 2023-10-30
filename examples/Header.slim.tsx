@@ -12,6 +12,7 @@ import {
   IconButton,
   MenuItem,
 } from '@itwin/itwinui-react';
+import { SvgNotification, SvgImodel } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const menuItems = (close: () => void) => [
@@ -29,21 +30,13 @@ export default () => {
   return (
     <Header
       isSlim
-      appLogo={
-        <HeaderLogo
-          logo={
-            <svg viewBox='0 0 16 16' aria-hidden='true'>
-              <path d='m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1' />
-            </svg>
-          }
-        />
-      }
+      appLogo={<HeaderLogo logo={<SvgImodel />} placeholder='Acme' />}
       breadcrumbs={
         <HeaderBreadcrumbs
           items={[
             <HeaderButton
               key='project'
-              name='Project A (Super Size Edition)'
+              name='Project A'
               description='YJC-2249'
               onClick={() => {}}
               menuItems={menuItems}
@@ -67,14 +60,7 @@ export default () => {
       }
       actions={[
         <IconButton styleType='borderless' aria-label='View profile'>
-          <Avatar
-            size='medium'
-            abbreviation='TR'
-            image={
-              <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/user-placeholder.png' />
-            }
-            title='Terry Rivers'
-          />
+          <Avatar abbreviation='TR' title='Terry Rivers' />
         </IconButton>,
       ]}
     />

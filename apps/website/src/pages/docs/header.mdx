@@ -25,24 +25,24 @@ The first thing most people look at when they arrive at a new web page is the he
 `<Header>` consists of various subcomponents and can be customized by modifying its props.
 
 - Logo can be added using the `appLogo` prop and specifying the desired logo under the `<HeaderLogo>` subcomponent.
-- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the `<HeaderButton>` subcomponent. For a dropdown menu, the `menuItems` prop can be used inside the `<HeaderButton>` for showing items and `onClick()` properties for handling actions.
-- Buttons/Icons/Content can be displayed towards the left of menuitems using the `actions` prop.
+- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the `<HeaderButton>` subcomponent. For a dropdown menu, the `menuItems` prop can be used inside the `<HeaderButton>` for showing items and `onClick()` property for handling actions.
+- Buttons/Icons/Content can be displayed towards the left of menuItems using the `actions` prop. `menuItems` expects a list of MenuItems components. They are the items shown in the dropdown menu.
 
-## Customizations
+`<HeaderButton>` subcomponent is designed to offer a range of behaviors that are dependent on the props that are passed to it.
 
-Alter standard header section by adding new custom elements and content.
-
-### Full Header
-
-Default header with additional items.
+- `onClick` prop: behaves like a standard button.
+- When set as='a' and `href` prop: behaves like a regular anchor link.
+- `menuItems` prop: behaves like a dropdown button.
+- Both `menuItems` and `onClick/href` prop: behaves like a split button, where the left part is the main button/link and the right part opens a dropdown menu.
+- `isActive` prop: behaves as an active button.
 
 <LiveExample src='Header.full.tsx'>
   <AllExamples.HeaderFullExample client:load />
 </LiveExample>
 
-### Slim Header
+## Slim Header
 
-Make header slim using `isSlim` property. This can be used when working in a 3D environment.
+Make header slim using `isSlim` property. This property is helpful when the header takes too much space or when working in a 3D environment.
 
 <LiveExample src='Header.slim.tsx'>
   <AllExamples.HeaderSlimExample client:load />
@@ -52,7 +52,7 @@ Make header slim using `isSlim` property. This can be used when working in a 3D 
 
 For accessibility reasons, certain users strictly use their keyboard for navigating digital interfaces. We need to ensure the header doesn’t get in the way of these users every time they want to access a page’s main content. To make their experience more efficient, include a Skip to main content link to allow keyboard users to bypass the navigation header and skip directly to the page’s content.
 
-Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, check out the Skip to main content component.
+Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, check out the `SkipToContentLink` component.
 
 ## Props
 
