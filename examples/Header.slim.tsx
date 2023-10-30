@@ -12,7 +12,7 @@ import {
   IconButton,
   MenuItem,
 } from '@itwin/itwinui-react';
-import { SvgNotification, SvgImodel } from '@itwin/itwinui-icons-react';
+import { SvgImodel } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const menuItems = (close: () => void) => [
