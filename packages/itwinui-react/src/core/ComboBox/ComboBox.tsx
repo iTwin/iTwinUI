@@ -557,28 +557,29 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 flex: 1,
               }}
             >
-              <ComboBoxInput
-                value={inputValue}
-                disabled={inputProps?.disabled}
-                {...inputProps}
-                onChange={handleOnInput}
-                selectTags={
-                  isMultipleEnabled(selected, multiple)
-                    ? selected.map((index) => {
-                        const item = optionsRef.current[index];
-                        return (
-                          <SelectTag key={item.label} label={item.label} />
-                        );
-                      })
-                    : undefined
-                }
-                style={{
-                  outline: 'none',
-                }}
-              />
-              {/* <ComboBoxClearIcon */}
+              <>
+                <ComboBoxInput
+                  value={inputValue}
+                  disabled={inputProps?.disabled}
+                  {...inputProps}
+                  onChange={handleOnInput}
+                  selectTags={
+                    isMultipleEnabled(selected, multiple)
+                      ? selected.map((index) => {
+                          const item = optionsRef.current[index];
+                          return (
+                            <SelectTag key={item.label} label={item.label} />
+                          );
+                        })
+                      : undefined
+                  }
+                  style={{
+                    outline: 'none',
+                  }}
+                />
+                {/* <ComboBoxClearIcon */}
 
-              {/* <InputWithDecorations.Button
+                {/* <InputWithDecorations.Button
               onClick={() => {
                 if (!isOpen) {
                   show();
@@ -587,12 +588,13 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                 }
               }}
             > */}
-              <ComboBoxEndIcon
-                {...endIconProps}
-                disabled={inputProps?.disabled}
-                isOpen={isOpen}
-              />
-              {/* </InputWithDecorations.Button> */}
+                <ComboBoxEndIcon
+                  {...endIconProps}
+                  disabled={inputProps?.disabled}
+                  isOpen={isOpen}
+                />
+                {/* </InputWithDecorations.Button> */}
+              </>
             </ComboBoxInputContainer>
 
             <Divider />
@@ -600,7 +602,7 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             <InputWithDecorations.Button
               {...endIconProps}
               disabled={inputProps?.disabled}
-              isOpen={isOpen}
+              // isOpen={isOpen}
               onClick={() => {
                 if (isMultipleEnabled(selected, multiple)) {
                   dispatch({ type: 'multiselect', value: [] });
