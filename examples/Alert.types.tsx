@@ -6,7 +6,8 @@ import * as React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
-  const types = ['positive', 'warning', 'negative'];
+  type AlertType = 'positive' | 'warning' | 'negative';
+  const types: AlertType[] = ['positive', 'warning', 'negative'];
   return (
     <>
       {types.map((type, index) => (
