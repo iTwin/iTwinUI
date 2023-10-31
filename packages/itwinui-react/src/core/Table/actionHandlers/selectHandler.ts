@@ -152,7 +152,7 @@ export const onShiftSelectHandler = <T extends Record<string, unknown>>(
   const isLastSelectedRowIdSelected =
     state.lastSelectedRowId != null
       ? !!state.selectedRowIds[state.lastSelectedRowId]
-      : false;
+      : true; // When no row is selected before shift click, start selecting from first row to clicked row
 
   // If ctrl + shift click, do not lose previous selection
   // If shift click, start new selection
