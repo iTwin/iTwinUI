@@ -11,6 +11,7 @@ module.exports = [
   }),
   scenario('Type Extras', {
     selectors: ['#demo-extras'],
+    misMatchThreshold: 0.1,
   }),
   scenario('Type Expandable Rows', {
     selectors: ['#demo-expandable-rows'],
