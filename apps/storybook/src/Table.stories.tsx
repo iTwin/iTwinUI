@@ -1850,7 +1850,12 @@ export const WithPaginator = () => {
       return {
         name: `Name ${keyValue}`,
         description: `Description ${keyValue}`,
-        subRows: depth < 2 ? [] : [],
+        subRows:
+          depth < 2
+            ? Array(Math.round(index % 5))
+                .fill(null)
+                .map((_, index) => generateItem(index, keyValue, depth + 1))
+            : [],
       };
     },
     [],
@@ -1881,9 +1886,6 @@ export const WithPaginator = () => {
         columns={columns}
         data={data}
         pageSize={25}
-        onSelect={(selectedData, tableState) => {
-          console.log(selectedData, tableState);
-        }}
         paginatorRenderer={paginator}
         style={{ height: '100%' }}
       />
