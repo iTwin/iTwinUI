@@ -7,12 +7,12 @@ import type {
   Row,
   TableInstance,
   TableState,
-  // IdType,
+  IdType,
 } from '../../../react-table/react-table.js';
 
 /**
  * Handles subrow selection and validation.
- * - Calls onSelect callback with selected data
+ * - Calls onSelect() with selected data
  * - Subrow selection: Selecting a row and calling this method automatically selects all the subrows that can be selected
  * - Validation: Ensures that any disabled/unselectable row/subrow is not selected
  */
@@ -30,45 +30,36 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     return;
   }
 
-  isRowDisabled?.(instance.initialRows.at(0)?.original as T);
+  const newSelectedRowIds = {} as Record<IdType<T>, boolean>;
 
-  const newSelectedRowIds = newState.selectedRowIds;
-  // const newSelectedRowIds = {} as Record<IdType<T>, boolean>;
+  const handleRow = (row: Row<T>) => {
+    if (isRowDisabled?.(row.original)) {
+      return false;
+    }
 
-  // const handleRow = (row: Row<T>) => {
-  //   if (isRowDisabled?.(row.original)) {
-  //     return false;
-  //   }
+    let isAllSubSelected = true;
+    row.initialSubRows.forEach((subRow) => {
+      const result = handleRow(subRow);
+      if (!result) {
+        isAllSubSelected = false;
+      }
+    });
 
-  //   let isAllSubSelected = true;
-  //   row.initialSubRows.forEach((subRow) => {
-  //     const result = handleRow(subRow);
-  //     if (!result) {
-  //       isAllSubSelected = false;
-  //     }
-  //   });
-
-  //   // If `selectSubRows` is false, then no need to select sub-rows and just check current selection state.
-  //   // If a row doesn't have sub-rows then check its selection state.
-  //   // If it has sub-rows then check whether all of them are selected.
-  //   if (
-  //     (!instance.selectSubRows && newState.selectedRowIds[row.id]) ||
-  //     (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
-  //     (row.initialSubRows.length && isAllSubSelected)
-  //   ) {
-  //     newSelectedRowIds[row.id as IdType<T>] = true;
-  //   }
-  //   return !!newSelectedRowIds[row.id];
-  // };
-  // instance.initialRows.forEach((row) => handleRow(row));
+    // If `selectSubRows` is false, then no need to select sub-rows and just check current selection state.
+    // If a row doesn't have sub-rows then check its selection state.
+    // If it has sub-rows then check whether all of them are selected.
+    if (
+      (!instance.selectSubRows && newState.selectedRowIds[row.id]) ||
+      (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
+      (row.initialSubRows.length && isAllSubSelected)
+    ) {
+      newSelectedRowIds[row.id as IdType<T>] = true;
+    }
+    return !!newSelectedRowIds[row.id];
+  };
+  instance.initialRows.forEach((row) => handleRow(row));
 
   const selectedData = getSelectedData(newSelectedRowIds, instance);
-  // const selectedData = [] as any;
-  // console.log(
-  //   'new selected data',
-  //   newSelectedRowIds,
-  //   // selectedData.map((d) => (d.name as string).split(' ')[1]),
-  // );
 
   newState.selectedRowIds = newSelectedRowIds;
   onSelect?.(selectedData, newState);
@@ -139,8 +130,6 @@ export const onShiftSelectHandler = <T extends Record<string, unknown>>(
   ) => void,
   isRowDisabled?: (rowData: T) => boolean,
 ) => {
-  // console.log('onShiftSelectHandler', state, action);
-
   if (instance == null) {
     return state;
   }
@@ -176,22 +165,13 @@ export const onShiftSelectHandler = <T extends Record<string, unknown>>(
     .slice(startIndex, endIndex + 1)
     .forEach((r) => (selectedRowIds[r.id] = isLastSelectedRowIdSelected));
 
-  // 2. Select all children of the last row (endIndex)
+  // 2. All children of the last row (endIndex) also are assigned the state of the last selected row
   // Since lastRow's children come after endIndex + 1 (not selected in step 1)
   const handleRow = (row: Row<T>) => {
     selectedRowIds[row.id] = isLastSelectedRowIdSelected;
     row.subRows.forEach((r) => handleRow(r));
   };
   handleRow(instance.flatRows[endIndex]);
-
-  console.log({
-    startIndex,
-    endIndex,
-    lastSelectedRowId: state.lastSelectedRowId,
-    isLastSelectedRowIdSelected,
-    new: selectedRowIds,
-    old: state.selectedRowIds,
-  });
 
   const newState = {
     ...state,
