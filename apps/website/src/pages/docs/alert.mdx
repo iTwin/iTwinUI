@@ -29,19 +29,23 @@ You can build Alerts with subcomponents that are fully customizable.
 
 We provide:
 
-- AlertWrapper
-- AlertIcon
-- AlertMessage
-- AlertAction
-- AlertCloseButton
+- Alert.Wrapper
+- Alert.Icon
+- Alert.Message
+- Alert.Action
+- Alert.CloseButton
+
+The type of alert can be specified by utilizing the `type` prop inside `<Alert.Wrapper>`. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
+
+By passing the `onClick` prop to `<Alert.Action>` or `<Alert.CloseButton>`, the user can interact with the alert to show additional information or to close. A console message can be logged for event response.
 
 <LiveExample src='Alert.types.tsx'>
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
-The type of alert that must be displayed can be specified by utilizing the `type` prop. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
+## Variants
 
-## Sticky Alert
+### Sticky Alert
 
 An alert can be fixed at the top of a user's screen, even if they scroll down the page by passing the `isSticky` prop to the `<Alert.Wrapper>` component. It's important to note that sticky alerts must always be dismissible. Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
 
@@ -51,15 +55,13 @@ An alert can be fixed at the top of a user's screen, even if they scroll down th
 
 It is up to the development team wether or not the sticky alert should push the rest of the content down or not.
 
-## Placement
+### Inline
+
+All alerts support inline placement. Inline alerts can optionally be dismissible. Once the alert is dismissed, the content below it will shift upwards due to the alert no longer consuming space.
 
 ### Multilines
 
 All alerts may support multiple lines if necessary. We recommend keeping it brief and keep the message as concise as possible.
-
-### Inline
-
-All alerts support inline placement. Inline alerts can optionally be dismissible. Once the alert is dismissed, the content below it will shift upwards due to the alert no longer consuming space.
 
 ## Props
 
