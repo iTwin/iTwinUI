@@ -14,6 +14,7 @@ import {
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
+  SvgCloseSmall,
 } from '../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../utils/index.js';
@@ -28,6 +29,8 @@ import { ComboBoxInput } from './ComboBoxInput.js';
 import { ComboBoxInputContainer } from './ComboBoxInputContainer.js';
 import { ComboBoxMenu } from './ComboBoxMenu.js';
 import { ComboBoxMenuItem } from './ComboBoxMenuItem.js';
+import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
+import { Divider } from '../Divider/Divider.js';
 
 // Type guard for enabling multiple
 const isMultipleEnabled = <T,>(
@@ -546,8 +549,14 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
             hide,
           }}
         >
-          <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
-            <>
+          <InputWithDecorations {...rest}>
+            <ComboBoxInputContainer
+              disabled={inputProps?.disabled}
+              {...rest}
+              style={{
+                flex: 1,
+              }}
+            >
               <ComboBoxInput
                 value={inputValue}
                 disabled={inputProps?.disabled}
@@ -563,18 +572,52 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
                       })
                     : undefined
                 }
+                style={{
+                  outline: 'none',
+                }}
               />
-            </>
-            <ComboBoxEndIcon
+              {/* <ComboBoxClearIcon */}
+
+              {/* <InputWithDecorations.Button
+              onClick={() => {
+                if (!isOpen) {
+                  show();
+                } else {
+                  hide();
+                }
+              }}
+            > */}
+              <ComboBoxEndIcon
+                {...endIconProps}
+                disabled={inputProps?.disabled}
+                isOpen={isOpen}
+              />
+              {/* </InputWithDecorations.Button> */}
+            </ComboBoxInputContainer>
+
+            <Divider />
+
+            <InputWithDecorations.Button
               {...endIconProps}
               disabled={inputProps?.disabled}
               isOpen={isOpen}
-            />
+              onClick={() => {
+                if (isMultipleEnabled(selected, multiple)) {
+                  dispatch({ type: 'multiselect', value: [] });
+                  onChangeHandler(-1);
+                } else {
+                  dispatch({ type: 'select', value: -1 });
+                  onChangeHandler(-1);
+                }
+              }}
+            >
+              <SvgCloseSmall />
+            </InputWithDecorations.Button>
 
             {multiple ? (
               <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
             ) : null}
-          </ComboBoxInputContainer>
+          </InputWithDecorations>
           <ComboBoxMenu as='div' {...dropdownMenuProps}>
             {filteredOptions.length > 0 && !enableVirtualization
               ? filteredOptions.map(getMenuItem)
