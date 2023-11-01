@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.1
+
+### Patch Changes
+
+- [#1661](https://github.com/iTwin/iTwinUI/pull/1661): Fixed Select re-rendering infinitely when used with React 17.
+
 ## 3.0.0
 
 Welcome to the v3 release of `@itwin/itwinui-react`. 🎉
@@ -61,6 +67,7 @@ This release includes a few breaking changes which have been briefly listed belo
 - [#1328](https://github.com/iTwin/iTwinUI/pull/1328): Added new `Overlay` component with customizable subcomponents: `Overlay.Wrapper`, `Overlay.HiddenContent`, `Overlay.Overlay`.
 - [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added `status` prop to `Input`, `Textarea` and `Select`.
 - [#1355](https://github.com/iTwin/iTwinUI/pull/1355): Added two new components for building complex input layouts.
+
   - `InputGrid` for the "outer" layout (label, inputs and statusMessage)
   - `InputWithDecorations` for the "inner" layout (start icon/button, end icon/button)
 
