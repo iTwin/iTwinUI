@@ -36,7 +36,8 @@ type RootProps = {
    *
    * The 'inherit' option is intended to be used by packages, to enable incremental adoption
    * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
-   * if no parent theme is found. Additionally, it will attempt to inherit the `portalContainer` if possible.
+   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`
+   * and `portalContainer` (if possible).
    *
    * @default 'inherit'
    */
@@ -116,13 +117,22 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   const {
     theme: themeProp = 'inherit',
     children,
-    themeOptions,
+    themeOptions = {},
     portalContainer: portalContainerProp,
     ...rest
   } = props;
 
   const [parentTheme, rootRef, parentContext] = useParentTheme();
   const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
+
+  // default apply background only for topmost ThemeProvider
+  themeOptions.applyBackground ??= !parentTheme;
+
+  // default inherit highContrast option from parent if also inheriting base theme
+  themeOptions.highContrast ??=
+    themeProp === 'inherit'
+      ? parentContext?.themeOptions?.highContrast
+      : undefined;
 
   /**
    * We will portal our portal container into `portalContainer` prop (if specified),
@@ -137,8 +147,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     portaledPortalContainer,
   );
 
-  const shouldApplyBackground = themeOptions?.applyBackground ?? !parentTheme;
-
   const contextValue = React.useMemo(
     () => ({ theme, themeOptions, portalContainer }),
     // we do include all dependencies below, but we want to stringify the objects as they could be different on each render
@@ -150,7 +158,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     <ThemeContext.Provider value={contextValue}>
       <Root
         theme={theme}
-        shouldApplyBackground={shouldApplyBackground}
         themeOptions={themeOptions}
         ref={useMergedRefs(forwardedRef, rootRef)}
         {...rest}
@@ -176,19 +183,13 @@ export default ThemeProvider;
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {
-  const {
-    theme,
-    children,
-    themeOptions,
-    shouldApplyBackground,
-    className,
-    ...rest
-  } = props;
+  const { theme, children, themeOptions, className, ...rest } = props;
 
   const prefersDark = useMediaQuery('(prefers-color-scheme: dark)');
   const prefersHighContrast = useMediaQuery('(prefers-contrast: more)');
   const shouldApplyDark = theme === 'dark' || (theme === 'os' && prefersDark);
   const shouldApplyHC = themeOptions?.highContrast ?? prefersHighContrast;
+  const shouldApplyBackground = themeOptions?.applyBackground;
 
   return (
     <Box
