@@ -1,29 +1,29 @@
 {
-	"name": "next-playground",
-	"type": "module",
-	"version": "0.1.0",
-	"private": true,
-	"scripts": {
-		"dev": "next dev -p 1702",
-		"build": "next build",
-		"start": "next start",
-		"lint": "next lint",
-		"clean": "rimraf .turbo && rimraf node_modules && rimraf .next"
-	},
-	"dependencies": {
-		"@itwin/itwinui-react": "*",
-		"@types/node": "^18.11.9",
-		"@types/react": "^18.0.25",
-		"@types/react-dom": "^18.0.9",
-		"next": "^13.5.6",
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"typescript": "~5.1.6"
-	},
+  "name": "next-playground",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 1702",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf .next"
+  },
+  "dependencies": {
+    "@itwin/itwinui-react": "*",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "@types/react-dom": "^18.0.9",
+    "next": "^13.5.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "~5.1.6"
+  },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
       "prettier --write"
     ]
   },
-	"prettier": "configs/prettier-config.js"
+  "prettier": "configs/prettier-config.js"
 }
