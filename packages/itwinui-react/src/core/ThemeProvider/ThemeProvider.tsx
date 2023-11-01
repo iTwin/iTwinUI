@@ -36,7 +36,8 @@ type RootProps = {
    *
    * The 'inherit' option is intended to be used by packages, to enable incremental adoption
    * of iTwinUI while respecting the theme set by the consuming app. It will fall back to 'light'
-   * if no parent theme is found. Additionally, it will attempt to inherit the `portalContainer` if possible.
+   * if no parent theme is found. Additionally, it will attempt to inherit `themeOptions.highContrast`
+   * and `portalContainer` (if possible).
    *
    * @default 'inherit'
    */
@@ -127,7 +128,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   // default apply background only for topmost ThemeProvider
   themeOptions.applyBackground ??= !parentTheme;
 
-  // inherit highContrast option from parent if also inheriting base theme
+  // default inherit highContrast option from parent if also inheriting base theme
   themeOptions.highContrast ??=
     themeProp === 'inherit'
       ? parentContext?.themeOptions?.highContrast
