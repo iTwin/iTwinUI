@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.15
+
+### Patch Changes
+
+- df057f24: Fixed `ThemeProvider` to correctly inherit `highContrast` option when using `theme="inherit"`.
+
 ## 2.12.14
 
 ### Patch Changes
