@@ -120,7 +120,7 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
   const {
     theme: themeProp,
     children,
-    themeOptions,
+    themeOptions = {},
     includeCss = { withLayer: true },
     ...rest
   } = props;
@@ -133,6 +133,12 @@ export const ThemeProvider = React.forwardRef((props, ref) => {
 
   const theme =
     themeProp === 'inherit' ? parentContext?.theme ?? 'light' : themeProp;
+
+  // default inherit highContrast option from parent if also inheriting base theme
+  themeOptions.highContrast ??=
+    themeProp === 'inherit'
+      ? parentContext?.themeOptions?.highContrast
+      : undefined;
 
   const newStylesLoaded = React.useRef(false);
   const stylesLoaded = parentContext?.stylesLoaded ?? newStylesLoaded;
