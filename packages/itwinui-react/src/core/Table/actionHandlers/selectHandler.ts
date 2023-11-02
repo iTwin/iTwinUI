@@ -2,10 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import type { ActionType, Row, TableInstance, TableState } from 'react-table';
+import type {
+  ActionType,
+  Row,
+  TableInstance,
+  TableState,
+  IdType,
+} from 'react-table';
 
 /**
  * Handles subrow selection and validation.
+ * - Calls onSelect() with selected data
  * - Subrow selection: Selecting a row and calling this method automatically selects all the subrows that can be selected
  * - Validation: Ensures that any disabled/unselectable row/subrow is not selected
  */
@@ -23,7 +30,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
     return;
   }
 
-  const newSelectedRowIds = {} as Record<string, boolean>;
+  const newSelectedRowIds = {} as Record<IdType<T>, boolean>;
 
   const handleRow = (row: Row<T>) => {
     if (isRowDisabled?.(row.original)) {
@@ -46,7 +53,7 @@ const onSelectHandler = <T extends Record<string, unknown>>(
       (!row.initialSubRows.length && newState.selectedRowIds[row.id]) ||
       (row.initialSubRows.length && isAllSubSelected)
     ) {
-      newSelectedRowIds[row.id] = true;
+      newSelectedRowIds[row.id as IdType<T>] = true;
     }
     return !!newSelectedRowIds[row.id];
   };
@@ -142,21 +149,25 @@ export const onShiftSelectHandler = <T extends Record<string, unknown>>(
     endIndex = temp;
   }
 
+  const isLastSelectedRowIdSelected =
+    state.lastSelectedRowId == null || // When no row is selected before shift click, start selecting from first row to clicked row
+    !!state.selectedRowIds[state.lastSelectedRowId];
+
   // If ctrl + shift click, do not lose previous selection
   // If shift click, start new selection
   const selectedRowIds: Record<string, boolean> = !!action.ctrlPressed
-    ? state.selectedRowIds
+    ? { ...state.selectedRowIds }
     : {};
 
-  // 1. Select all rows between start and end
+  // 1. All rows between start and end are assigned the state of the last selected row
   instance.flatRows
     .slice(startIndex, endIndex + 1)
-    .forEach((r) => (selectedRowIds[r.id] = true));
+    .forEach((r) => (selectedRowIds[r.id] = isLastSelectedRowIdSelected));
 
-  // 2. Select all children of the last row (endIndex)
+  // 2. All children of the last row (endIndex) also are assigned the state of the last selected row
   // Since lastRow's children come after endIndex + 1 (not selected in step 1)
   const handleRow = (row: Row<T>) => {
-    selectedRowIds[row.id] = true;
+    selectedRowIds[row.id] = isLastSelectedRowIdSelected;
     row.subRows.forEach((r) => handleRow(r));
   };
   handleRow(instance.flatRows[endIndex]);
