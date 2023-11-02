@@ -30,7 +30,7 @@
     "approve": "cypress-image-diff -u",
     "cy": "cypress open",
     "cy:run": "cypress run",
-    "clean": "rimraf .turbo && rimraf node_modules && rimraf storybook-static"
+    "clean": "rimraf .turbo && rimraf node_modules && rimraf build"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
