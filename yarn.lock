@@ -1435,15 +1435,15 @@
   resolved "https://registry.yarnpkg.com/@floating-ui/utils/-/utils-0.1.6.tgz#22958c042e10b67463997bd6ea7115fe28cbcaf9"
   integrity sha512-OfX7E2oUDYxtBvsuS4e/jSn4Q9Qb6DzgeYtsAdkPZ47znpoNsMgZw0+tVijiv3uGNR6dgNlty6r9rzIzHjtd/A==
 
-"@fontsource/noto-sans-mono@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.npmjs.org/@fontsource/noto-sans-mono/-/noto-sans-mono-4.5.11.tgz"
-  integrity sha512-AhORX8FAWObQvhx+jm52ainEYlgdImrIDnecxhk6P3zRtXNg6lHMjE5QPdxupjG2iLNWSaM66JYTOF38qzLD5A==
+"@fontsource/noto-sans-mono@5":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans-mono/-/noto-sans-mono-5.0.17.tgz#d5b6d0cebe55e8b4d52a7f6f57134c00d6bbdd21"
+  integrity sha512-jzOP/feipXm9aF1HYYkjuQrmW/gLChh9oFl6v7h+646NNwMYQPkHhlx3nBSaGQbjrBiWyeTXGu2D4kOsQ0XtZQ==
 
-"@fontsource/noto-sans@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.npmjs.org/@fontsource/noto-sans/-/noto-sans-4.5.11.tgz"
-  integrity sha512-lBX7FCjIjSrQ+iMuXUuO+mbjbnUsJyZANg/04PgkeeAYe+cwnX81ibbgrAk1F56M6/btIrWQoDjxsK6Sz8KoVQ==
+"@fontsource/noto-sans@5":
+  version "5.0.17"
+  resolved "https://registry.yarnpkg.com/@fontsource/noto-sans/-/noto-sans-5.0.17.tgz#ce2044d79516c000b6e1e2bd76356e322360a5a1"
+  integrity sha512-VcnKA99cE8OgRiy6O3T6xCKirsguD5+MYrGrbBWYA3m3fqDArCr66eEvR3iuTngGLbTODJq4bzc6yfaiGZu/pQ==
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"

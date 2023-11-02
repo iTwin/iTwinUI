@@ -3,6 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 
+ @import '@fontsource/noto-sans';
+ @import '@fontsource/noto-sans-mono';
+ @import '@fontsource/noto-sans/400-italic.css';
+ @import '@fontsource/noto-sans/600.css';
+ @import '@fontsource/noto-sans/300.css';
+ @import '@fontsource/noto-sans/800.css';
+
 .ladle-addons {
   background-color: var(--iui-color-background-backdrop);
   padding-block: 4px;

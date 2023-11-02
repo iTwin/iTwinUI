@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {},
   "devDependencies": {
+    "@fontsource/noto-sans": "5",
+    "@fontsource/noto-sans-mono": "5",
     "@itwin/itwinui-icons-react": "2",
     "@itwin/itwinui-react": "*",
     "@ladle/react": "^3.3.1",
