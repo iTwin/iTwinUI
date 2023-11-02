@@ -14,4 +14,9 @@ export default {
     'overview--readme',
     ...stories.filter((s) => s !== 'overview--readme'),
   ],
+  addons: {
+    a11y: {
+      enabled: process.env.NODE_ENV === 'development',
+    },
+  },
 };

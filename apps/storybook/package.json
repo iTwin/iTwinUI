@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json && ladle build",
-    "dev": "ladle serve",
+    "dev": "dotenv -v NODE_ENV=development -- ladle serve",
     "preview": "ladle preview",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
