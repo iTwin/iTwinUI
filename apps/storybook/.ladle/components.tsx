@@ -29,10 +29,12 @@ export const Provider: GlobalProvider = ({ children }) => {
     });
   }, []);
 
-  // propagate theme to <body> element for page background
+  // propagate theme to <html> element for page background
   React.useLayoutEffect(() => {
-    document.body.dataset.iuiTheme = theme;
-    document.body.dataset.iuiContrast = highContrast ? 'high' : 'default';
+    document.documentElement.dataset.iuiTheme = theme;
+    document.documentElement.dataset.iuiContrast = highContrast
+      ? 'high'
+      : 'default';
   }, [theme, highContrast]);
 
   return (
