@@ -76,7 +76,6 @@ const storiesFactory = (directory, componentName) => {
   return {
     path: `${directory}/${componentName}.stories.tsx`,
     template: `${copyrightBannerJs}
-import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
 import { ${componentName} } from '@itwin/itwinui-react';
 

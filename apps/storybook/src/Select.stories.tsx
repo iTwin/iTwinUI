@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
-import { useState } from '@storybook/addons';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
@@ -32,7 +31,7 @@ export const Basic = () => {
     { value: 2, label: 'Item #2', disabled: true },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <Select<number>
       options={options}
@@ -49,7 +48,7 @@ export const WithIcons = () => {
     { value: 'neutral', label: 'Neutral', startIcon: <SvgSmileyNeutral /> },
     { value: 'sad', label: 'Sad', startIcon: <SvgSmileySad /> },
   ];
-  const [value, setValue] = useState<string | undefined>(undefined);
+  const [value, setValue] = React.useState<string | undefined>(undefined);
   return (
     <Select<string>
       options={options}
@@ -66,7 +65,7 @@ export const WithSelectedValue = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = React.useState<number>(2);
   return (
     <Select<number>
       options={options}
@@ -84,7 +83,7 @@ export const Disabled = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
@@ -104,7 +103,7 @@ export const DisabledWithSelectedValue = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = React.useState<number>(2);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
@@ -119,7 +118,7 @@ export const DisabledWithSelectedValue = () => {
 };
 
 export const ManyItems = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <Select<number>
       options={[...Array(20).fill(null)].map((_, index) => ({
@@ -138,7 +137,7 @@ export const Sublabels = () => {
     { value: 2, label: 'Item #2', sublabel: 'Sublabel #2' },
     { value: 3, label: 'Item #3', sublabel: 'Sublabel #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <Select<number>
       options={options}
@@ -156,7 +155,7 @@ export const Custom = () => {
     { value: 'green', label: 'Green' },
     { value: 'red', label: 'Red' },
   ];
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
     undefined,
   );
   return (
@@ -186,7 +185,7 @@ export const TruncateMiddleText = () => {
     { value: 'ShortNameFile.jpg', label: 'ShortNameFile.jpg' },
     { value: 'SomeOtherFile.dgn', label: 'SomeOtherFile.dgn' },
   ];
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
     options[0].value,
   );
 
@@ -221,7 +220,7 @@ export const TruncateMiddleText = () => {
 };
 
 export const Multi = () => {
-  const [value, setValue] = useState<number[]>([]);
+  const [value, setValue] = React.useState<number[]>([]);
   return (
     <div style={{ minHeight: 350 }}>
       <Select<number>
@@ -245,7 +244,7 @@ export const Multi = () => {
 };
 
 export const MultiCustomRenderer = () => {
-  const [value, setValue] = useState<number[]>([]);
+  const [value, setValue] = React.useState<number[]>([]);
 
   return (
     <div style={{ minHeight: 350 }}>

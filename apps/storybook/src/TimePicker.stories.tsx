@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
   TimePicker,
@@ -23,7 +22,7 @@ export const Basic = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New Time value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New Time value: ${date}`);
   };
   return (
     <>
@@ -62,7 +61,7 @@ export const CustomRenderers = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New Time value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New Time value: ${date}`);
   };
 
   return (
@@ -114,7 +113,7 @@ export const Combined = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New Time value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New Time value: ${date}`);
   };
   const inputValueType = 'short';
 

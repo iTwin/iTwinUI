@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { MenuItem, SplitButton } from '@itwin/itwinui-react';
 
 export default {
@@ -14,7 +13,7 @@ export default {
 
 export const Basic = () => {
   const onMenuItemClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
 
@@ -32,7 +31,7 @@ export const Basic = () => {
 
   return (
     <SplitButton
-      onClick={action('Primary button clicked!')}
+      onClick={console.log('Primary button clicked!')}
       menuItems={buttonMenuItems}
       styleType='default'
     >

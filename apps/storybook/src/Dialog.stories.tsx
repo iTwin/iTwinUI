@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Core/Dialog',
@@ -19,21 +18,21 @@ export const Basic = () => {
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+    console.log('onClose', { depth: 1 })(event);
     closeDialog();
   };
 
   const primaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Primary button')(event);
+    console.log('Primary button')(event);
     closeDialog();
   };
 
   const secondaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Secondary button')(event);
+    console.log('Secondary button')(event);
     closeDialog();
   };
 
@@ -74,21 +73,21 @@ export const Modal = () => {
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+    console.log('onClose', { depth: 1 })(event);
     closeDialog();
   };
 
   const primaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Primary button')(event);
+    console.log('Primary button')(event);
     closeDialog();
   };
 
   const secondaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Secondary button')(event);
+    console.log('Secondary button')(event);
     closeDialog();
   };
 
@@ -107,7 +106,7 @@ export const Modal = () => {
         setFocus
         isDismissible
       >
-        <Dialog.Backdrop onKeyDown={action('onKeyDown', { depth: 1 })} />
+        <Dialog.Backdrop onKeyDown={console.log('onKeyDown', { depth: 1 })} />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
           <Dialog.Content>
@@ -139,21 +138,21 @@ export const DraggableAndResizable = () => {
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+    console.log('onClose', { depth: 1 })(event);
     closeDialog();
   };
 
   const primaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Primary button')(event);
+    console.log('Primary button')(event);
     closeDialog();
   };
 
   const secondaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Secondary button')(event);
+    console.log('Secondary button')(event);
     closeDialog();
   };
 
@@ -201,21 +200,21 @@ export const DraggableRelativeToContainer = () => {
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+    console.log('onClose', { depth: 1 })(event);
     closeDialog();
   };
 
   const primaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Primary button')(event);
+    console.log('Primary button')(event);
     closeDialog();
   };
 
   const secondaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Secondary button')(event);
+    console.log('Secondary button')(event);
     closeDialog();
   };
 
@@ -277,21 +276,21 @@ export const Placement = () => {
   };
 
   const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+    console.log('onClose', { depth: 1 })(event);
     closeDialog();
   };
 
   const primaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Primary button')(event);
+    console.log('Primary button')(event);
     closeDialog();
   };
 
   const secondaryButtonHandle = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ) => {
-    action('Secondary button')(event);
+    console.log('Secondary button')(event);
     closeDialog();
   };
 

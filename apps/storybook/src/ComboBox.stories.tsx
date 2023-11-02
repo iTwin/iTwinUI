@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
   ComboBox,
@@ -303,7 +302,7 @@ export const Basic = () => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
     />
   );
 };
@@ -318,7 +317,7 @@ export const Controlled = () => {
       inputProps={{ placeholder: 'Select a country' }}
       value={countryValue}
       onChange={(value: string) => {
-        action(value)();
+        console.log(value);
         setCountryValue(value);
       }}
     />
@@ -351,7 +350,7 @@ export const DisabledItems = () => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
     />
   );
 };
@@ -364,7 +363,7 @@ export const WithLabel = () => {
       <Label htmlFor='combo-input'>Country</Label>
       <ComboBox
         options={options}
-        onChange={(value: string) => action(value ?? '')()}
+        onChange={(value: string) => console.log(value ?? '')}
         inputProps={{
           id: 'combo-input', // passing id to inputProps so it can be used in Label htmlFor
           placeholder: 'Select a country',
@@ -381,7 +380,7 @@ export const WithStatus = () => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
       status='negative'
     />
   );
@@ -392,7 +391,7 @@ export const CustomRenderer = () => {
   const [selectedValue, setSelectedValue] = React.useState('AF');
 
   const onChange = React.useCallback((value: string) => {
-    action(value ?? '')();
+    console.log(value ?? '');
     setSelectedValue(value);
   }, []);
 
@@ -431,7 +430,7 @@ export const WithMessage = () => {
       options={options}
       message='This is a message'
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
     />
   );
 };
@@ -448,7 +447,7 @@ export const WithCustomMessageIcon = () => {
         </StatusMessage>
       }
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
     />
   );
 };
@@ -459,7 +458,7 @@ export const Loading = () => {
   const [isLoading, setIsLoading] = React.useState(true);
 
   const onChange = React.useCallback((value: string) => {
-    action(value ?? '')();
+    console.log(value ?? '');
     setSelectedValue(value);
   }, []);
 
@@ -510,7 +509,7 @@ export const Virtualized = () => {
     <ComboBox
       options={options}
       inputProps={{ placeholder: 'Select a country' }}
-      onChange={(value: string) => action(value ?? '')()}
+      onChange={(value: string) => console.log(value ?? '')}
       enableVirtualization
     />
   );
@@ -530,7 +529,7 @@ export const MultipleSelect = () => {
       multiple
       value={selectedOptions}
       onChange={(selected, event) => {
-        action(event.value + ' ' + event.type ?? '')();
+        console.log(event.value + ' ' + event.type ?? '');
         setSelectedOptions(selected);
       }}
     />
