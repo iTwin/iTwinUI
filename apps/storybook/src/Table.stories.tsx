@@ -898,7 +898,7 @@ export const DisabledRows = () => {
             ) : (
               <Anchor
                 as='button'
-                onClick={console.log(props.row.original.name)}
+                onClick={() => console.log(props.row.original.name)}
               >
                 Click me!
               </Anchor>
@@ -1626,7 +1626,7 @@ export const Localized = () => {
 };
 
 Localized.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -1896,7 +1896,7 @@ export const WithPaginator = () => {
 };
 
 WithPaginator.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2101,7 +2101,7 @@ export const WithManualPaginatorAndFilter = () => {
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2259,7 +2259,7 @@ export const CustomFilter = () => {
 };
 
 CustomFilter.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
@@ -2587,7 +2587,7 @@ export const HorizontalScroll = () => {
 };
 
 HorizontalScroll.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div
       style={{
         height: '375px',
@@ -3344,7 +3344,7 @@ export const StickyColumns = () => {
 };
 
 StickyColumns.decorators = [
-  (Story) => (
+  (Story: () => React.ReactElement) => (
     <div
       style={{
         height: '375px',

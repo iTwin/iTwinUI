@@ -31,7 +31,7 @@ export const Basic = () => {
 
   return (
     <SplitButton
-      onClick={console.log('Primary button clicked!')}
+      onClick={() => console.log('Primary button clicked!')}
       menuItems={buttonMenuItems}
       styleType='default'
     >
