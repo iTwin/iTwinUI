@@ -33,7 +33,9 @@ Cypress.on('uncaught:exception', (err, runnable) => {
  * @param {string} storyName
  */
 Cypress.storyId = (storyPath, storyName) => {
-  return `${storyPath.replace('/', '-').toLowerCase()}--${storyName
-    .replaceAll(' ', '-')
-    .toLowerCase()}`;
+  const [category, component] = storyPath.split('/');
+  return `${category}--${component}--${storyName.replaceAll(
+    ' ',
+    '-',
+  )}`.toLowerCase();
 };

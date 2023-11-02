@@ -9,7 +9,7 @@ describe('WorkflowDiagram', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
 
       if (testName.includes('Tooltip')) {
         cy.get('#storybook-root').within(() => {

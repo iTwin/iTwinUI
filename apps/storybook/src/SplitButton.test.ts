@@ -9,7 +9,7 @@ describe('SplitButton', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       cy.get('#storybook-root').within(() => {
         cy.get('button').last().click();

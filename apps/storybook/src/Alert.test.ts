@@ -17,7 +17,7 @@ describe('Alert', () => {
   tests.forEach((testName) => {
     it(testName, () => {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(testName);
     });
   });

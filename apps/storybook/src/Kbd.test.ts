@@ -13,7 +13,7 @@ describe('Kbd', () => {
       .toLowerCase()}--${testName.replaceAll(' ', '-').toLowerCase()}`;
 
     it(testName, () => {
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(testName);
     });
   });
