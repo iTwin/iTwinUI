@@ -17,22 +17,18 @@ export const Basic = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -72,22 +68,18 @@ export const Modal = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -106,7 +98,7 @@ export const Modal = () => {
         setFocus
         isDismissible
       >
-        <Dialog.Backdrop onKeyDown={console.log('onKeyDown', { depth: 1 })} />
+        <Dialog.Backdrop onKeyDown={() => console.log('onKeyDown')} />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
           <Dialog.Content>
@@ -137,22 +129,18 @@ export const DraggableAndResizable = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -199,22 +187,18 @@ export const DraggableRelativeToContainer = () => {
     setIsDialogOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -275,22 +259,18 @@ export const Placement = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
