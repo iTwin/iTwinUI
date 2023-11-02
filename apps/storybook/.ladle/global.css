@@ -2,15 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const preset = require('configs/eslint-preset');
 
-module.exports = {
-  ...preset,
-  extends: [...preset.extends],
-  ignorePatterns: [
-    '**/node_modules/**',
-    '**/cypress/**',
-    '.eslintrc.js',
-    'scripts/**',
-  ],
-};
+.ladle-addons {
+  background-color: var(--iui-color-background-backdrop);
+  padding-block: 4px;
+}
+
+a.ladle-markdown {
+  color: var(--iui-color-text-accent);
+}
+
+main {
+  position: relative;
+  transform: translateZ(0);
+}
