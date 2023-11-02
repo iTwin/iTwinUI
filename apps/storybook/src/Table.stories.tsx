@@ -1758,7 +1758,7 @@ export const Editable = () => {
 
   const onCellEdit = useCallback(
     (columnId: string, value: string, rowData: TableStoryDataType) => {
-      console.log('onCellEdit')({ columnId, value, rowData });
+      console.log({ columnId, value, rowData });
       setData((oldData) => {
         const newData = [...oldData];
         const index = oldData.indexOf(rowData);
