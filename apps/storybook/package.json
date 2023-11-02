@@ -25,6 +25,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json && ladle build",
     "dev": "ladle serve",
+    "preview": "ladle preview",
     "lint": "eslint \"**/*.{ts,tsx}\" --max-warnings=0",
     "test": "node scripts/run-tests.js",
     "approve": "cypress-image-diff -u",
