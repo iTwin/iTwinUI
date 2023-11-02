@@ -156,7 +156,7 @@ export const onShiftSelectHandler = <T extends Record<string, unknown>>(
   // If ctrl + shift click, do not lose previous selection
   // If shift click, start new selection
   const selectedRowIds: Record<string, boolean> = !!action.ctrlPressed
-    ? state.selectedRowIds
+    ? { ...state.selectedRowIds }
     : {};
 
   // 1. All rows between start and end are assigned the state of the last selected row
