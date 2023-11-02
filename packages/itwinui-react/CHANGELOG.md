@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.2
+
+### Patch Changes
+
+- [#1663](https://github.com/iTwin/iTwinUI/pull/1663): Fixed `ThemeProvider` to correctly inherit `highContrast` option when using `theme="inherit"`.
+
 ## 3.0.1
 
 ### Patch Changes

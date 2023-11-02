@@ -158,13 +158,14 @@ it('should default applyBackground to false when inheriting theme', () => {
 
 it('should inherit theme by default', () => {
   const { container } = render(
-    <ThemeProvider theme='dark'>
+    <ThemeProvider theme='dark' themeOptions={{ highContrast: true }}>
       <ThemeProvider id='nested'>Test</ThemeProvider>
     </ThemeProvider>,
   );
 
   const nested = container.querySelector('#nested');
   expect(nested).toHaveAttribute('data-iui-theme', 'dark');
+  expect(nested).toHaveAttribute('data-iui-contrast', 'high');
 });
 
 it('should inherit theme from data attribute if no context found', () => {
