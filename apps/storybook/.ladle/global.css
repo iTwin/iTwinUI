@@ -15,6 +15,10 @@
   padding-block: 4px;
 }
 
+#ladle-root {
+  padding: 1rem;
+}
+
 a.ladle-markdown {
   color: var(--iui-color-text-accent);
 }
