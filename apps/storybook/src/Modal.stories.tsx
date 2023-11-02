@@ -22,22 +22,18 @@ export const Basic = () => {
     setIsModalOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeModal();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeModal();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeModal();
   };
 
@@ -50,7 +46,7 @@ export const Basic = () => {
         isOpen={isModalOpen}
         title='This is the title'
         onClose={onClose}
-        onKeyDown={console.log('onKeyDown', { depth: 1 })}
+        onKeyDown={() => console.log('onKeyDown')}
       >
         <ModalContent>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
@@ -79,22 +75,18 @@ export const NonDismissibleModal = () => {
     setIsModalOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeModal();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeModal();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeModal();
   };
 
@@ -107,7 +99,7 @@ export const NonDismissibleModal = () => {
         isOpen={isModalOpen}
         title='This is the title'
         onClose={onClose}
-        onKeyDown={console.log('onKeyDown', { depth: 1 })}
+        onKeyDown={() => console.log('onKeyDown')}
         isDismissible={false}
       >
         <ModalContent>
@@ -137,22 +129,18 @@ export const OutsideClickAndEscDoesNotClose = () => {
     setIsModalOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeModal();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeModal();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeModal();
   };
 
@@ -165,7 +153,7 @@ export const OutsideClickAndEscDoesNotClose = () => {
         isOpen={isModalOpen}
         title='This is the title'
         onClose={onClose}
-        onKeyDown={console.log('onKeyDown', { depth: 1 })}
+        onKeyDown={() => console.log('onKeyDown')}
         closeOnEsc={false}
         closeOnExternalClick={false}
       >
@@ -196,22 +184,18 @@ export const FullPageModal = () => {
     setIsModalOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    console.log('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeModal();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeModal();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    console.log('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeModal();
   };
 
@@ -224,7 +208,7 @@ export const FullPageModal = () => {
         isOpen={isModalOpen}
         title='This is the title'
         onClose={onClose}
-        onKeyDown={console.log('onKeyDown', { depth: 1 })}
+        onKeyDown={() => console.log('onKeyDown')}
         styleType='fullPage'
       >
         <ModalContent>

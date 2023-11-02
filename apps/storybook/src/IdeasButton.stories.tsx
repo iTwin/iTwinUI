@@ -11,14 +11,14 @@ export default {
 };
 
 export const Ideas = () => {
-  return <IdeasButton onClick={console.log('clicked')} />;
+  return <IdeasButton onClick={() => console.log('clicked')} />;
 };
 
 export const LocalizedIdeas = () => {
   return (
     <IdeasButton
       feedbackLabel='Localized feedback'
-      onClick={console.log('clicked')}
+      onClick={() => console.log('clicked')}
     />
   );
 };

@@ -13,7 +13,7 @@ export default {
 
 export const Add = () => {
   return (
-    <IconButton label='Add' onClick={console.log('clicked')}>
+    <IconButton label='Add' onClick={() => console.log('clicked')}>
       <SvgAdd />
     </IconButton>
   );
@@ -23,7 +23,7 @@ export const SmallActiveAdd = () => {
   return (
     <IconButton
       label='Add'
-      onClick={console.log('clicked')}
+      onClick={() => console.log('clicked')}
       isActive
       size='small'
     >
@@ -36,7 +36,7 @@ export const HighVisibilityAdd = () => {
   return (
     <IconButton
       label='Add'
-      onClick={console.log('clicked')}
+      onClick={() => console.log('clicked')}
       styleType='high-visibility'
     >
       <SvgAdd />
@@ -49,7 +49,7 @@ export const Borderless = () => {
     <IconButton
       label='Add'
       styleType='borderless'
-      onClick={console.log('clicked')}
+      onClick={() => console.log('clicked')}
     >
       <SvgAdd />
     </IconButton>

@@ -27,13 +27,13 @@ export const RadioGroup = () => {
         <Radio
           name='choice'
           value='option1'
-          onChange={console.log('Clicked option 1!')}
+          onChange={() => console.log('Clicked option 1!')}
           label={option1Label}
         />
         <Radio
           name='choice'
           value='option2'
-          onChange={console.log('Clicked option 2!')}
+          onChange={() => console.log('Clicked option 2!')}
           label={option2Label}
         />
       </InputGroup>

@@ -14,7 +14,7 @@ export default {
 
 export const CallToAction = () => {
   return (
-    <Button onClick={console.log('clicked')} styleType='cta'>
+    <Button onClick={() => console.log('clicked')} styleType='cta'>
       Call To Action Button
     </Button>
   );
@@ -22,7 +22,7 @@ export const CallToAction = () => {
 
 export const HighVisibility = () => {
   return (
-    <Button onClick={console.log('clicked')} styleType='high-visibility'>
+    <Button onClick={() => console.log('clicked')} styleType='high-visibility'>
       High Visibility Button
     </Button>
   );
@@ -30,7 +30,7 @@ export const HighVisibility = () => {
 
 export const Default = () => {
   return (
-    <Button onClick={console.log('clicked')} styleType='default'>
+    <Button onClick={() => console.log('clicked')} styleType='default'>
       Default Button
     </Button>
   );
@@ -39,7 +39,7 @@ export const Default = () => {
 export const WithIcon = () => {
   return (
     <Button
-      onClick={console.log('clicked')}
+      onClick={() => console.log('clicked')}
       startIcon={<SvgAdd />}
       styleType='high-visibility'
     >
@@ -52,7 +52,7 @@ export const WithNotification = () => {
   return (
     <div style={{ display: 'flex', gap: '10px' }}>
       <Button
-        onClick={console.log('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker status='white'>
             <SvgEmail />
@@ -63,7 +63,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={console.log('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker status='white'>
             <SvgEmail />
@@ -74,7 +74,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={console.log('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker>
             <SvgEmail />
@@ -85,7 +85,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={console.log('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker>
             <SvgEmail />

@@ -21,7 +21,7 @@ export const Informational = () => {
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={console.log('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -36,7 +36,7 @@ export const Positive = () => {
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={console.log('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -51,7 +51,7 @@ export const Warning = () => {
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={console.log('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -66,7 +66,7 @@ export const Negative = () => {
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={console.log('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -89,7 +89,7 @@ export const Sticky = () => {
             More Info.
           </Alert.Action>
         </Alert.Message>
-        <Alert.CloseButton onClick={console.log('Close!')} />
+        <Alert.CloseButton onClick={() => console.log('Close!')} />
       </Alert.Wrapper>
       <p style={{ margin: 0, padding: '8px' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -151,7 +151,7 @@ export const CustomIcon = () => {
         <SvgSmileyHappy />
       </Alert.Icon>
       <Alert.Message>This is an info message with a custom icon.</Alert.Message>
-      <Alert.CloseButton onClick={console.log('Close!')}>
+      <Alert.CloseButton onClick={() => console.log('Close!')}>
         <SvgPlaceholder />
       </Alert.CloseButton>
     </Alert.Wrapper>

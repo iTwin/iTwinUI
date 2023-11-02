@@ -16,7 +16,7 @@ export const Basic = () => {
 
 export const AsButton = () => {
   return (
-    <Anchor as='button' onClick={console.log('clicked')}>
+    <Anchor as='button' onClick={() => console.log('clicked')}>
       Perform action
     </Anchor>
   );
