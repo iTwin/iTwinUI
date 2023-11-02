@@ -8,6 +8,7 @@ export default {
   stories: 'src/**/*.stories.{js,jsx,ts,tsx,mdx}',
   port: 6006,
   previewPort: 6006,
+  base: './', // relative paths needed for deploying to gh-pages subpaths
   defaultStory: 'overview--readme',
   storyOrder: (stories) => [
     'overview--readme',
