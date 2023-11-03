@@ -7,10 +7,7 @@ describe('Kbd', () => {
   const tests = ['Basic', 'Predefined Key'];
 
   tests.forEach((testName) => {
-    const id = `${storyPath
-      .replace('/', '-')
-      .replace(' ', '-')
-      .toLowerCase()}--${testName.replaceAll(' ', '-').toLowerCase()}`;
+    const id = Cypress.storyId(storyPath, testName);
 
     it(testName, () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
