@@ -10,64 +10,31 @@
   </h1>
 </center>
 
-## What is iTwinUI-react?
+This site demonstrates stories for all react components from [iTwinUI](https://github.com/iTwin/iTwinUI) v3. For more detailed guidance, visit the [documentation site](https://itwinui.bentley.com).
 
-iTwinUI-react is a React component library for [iTwinUI](https://github.com/iTwin/iTwinUI).
-The goal of this project is to provide React components that make it easier to use the styles from [`@itwin/itwinui-css`](https://github.com/iTwin/iTwinUI/tree/main/packages/itwinui-css). Check out the [demo website](https://itwin.github.io/iTwinUI/react) to see the components in action.
+If you're using an older version of iTwinUI, we highly recommend upgrading (see [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide)). In the meantime, you might find these links useful:
 
-## Installation
+- [v1 storybook](https://itwin.github.io/iTwinUI-react)
+- [v2 storybook](https://itwin.github.io/iTwinUI/legacy/v2/react)
 
-```
-npm install @itwin/itwinui-react
-```
-
-```
-yarn add @itwin/itwinui-react
-```
-
----
-
-## Setup
-
-Wrap your application entrypoint in `ThemeProvider` and import `styles.css`.
+## Basic usage
 
 ```jsx
-import { ThemeProvider } from '@itwin/itwinui-react';
+import { ThemeProvider, Button } from '@itwin/itwinui-react';
 import '@itwin/itwinui-react/styles.css';
 
 export default function App() {
   return (
     <>
-      <ThemeProvider>{/* Your components go here. */}</ThemeProvider>
+      <ThemeProvider theme='light'>
+        <Button>Hello!</Button>
+      </ThemeProvider>
     </>
   );
 }
 ```
 
-ThemeProvider has a `theme` prop which accepts one of the following values:
-
-- `light` (default)
-- `dark`
-- `os` (respects the color scheme of the operating system)
-- `inherit`
-
----
-
-## Usage
-
-After setting up ThemeProvider and styles, import the component you want and start using it!
-
-```jsx
-import { Button } from '@itwin/itwinui-react';
-
-const Page = () => <Button>Hello!</Button>;
-```
-
-Check out this template for a live interactive demo:
-
 [![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)
-
----
 
 ## FAQ
 
