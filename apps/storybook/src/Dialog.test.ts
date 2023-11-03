@@ -16,7 +16,7 @@ describe('Dialog', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.get('#storybook-root').within(() => {
+      cy.get('#ladle-root').within(() => {
         cy.get('button').first().click();
       });
       cy.compareSnapshot(testName);

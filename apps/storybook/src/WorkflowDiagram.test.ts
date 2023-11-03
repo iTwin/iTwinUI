@@ -12,7 +12,7 @@ describe('WorkflowDiagram', () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
 
       if (testName.includes('Tooltip')) {
-        cy.get('#storybook-root').within(() => {
+        cy.get('#ladle-root').within(() => {
           cy.get('li').first().trigger('mouseenter'); // trigger tooltip
           cy.wait(50);
         });

@@ -20,7 +20,7 @@ describe('SearchBox', () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(testName);
       if (!testName.includes('Basic') && testName !== 'Small') {
-        cy.get('#storybook-root').within(() => {
+        cy.get('#ladle-root').within(() => {
           cy.get('button').first().click();
         });
         cy.compareSnapshot(`${testName} (Open)`);

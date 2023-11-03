@@ -41,7 +41,7 @@ describe('Table', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
 
-      cy.get('#storybook-root').within(() => {
+      cy.get('#ladle-root').within(() => {
         switch (testName) {
           case 'Column Manager': {
             cy.get('[role=columnheader] button').last().click();

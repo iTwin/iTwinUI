@@ -10,7 +10,7 @@ describe('SkipToContentLink', () => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
-      cy.get('#storybook-root').within(() => {
+      cy.get('#ladle-root').within(() => {
         cy.get('a').first().focus();
       });
       cy.compareSnapshot(testName);
