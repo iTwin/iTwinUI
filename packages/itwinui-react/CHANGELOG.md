@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.3
+
+### Patch Changes
+
+- [#1660](https://github.com/iTwin/iTwinUI/pull/1660): Made Table's Ctrl+Shift click implementation more consistent with Windows Explorer's implementation.
+- [#1660](https://github.com/iTwin/iTwinUI/pull/1660): Fixed occasional mismatch between the Table's visually selected rows and Table state's selected rows
+
 ## 3.0.2
 
 ### Patch Changes

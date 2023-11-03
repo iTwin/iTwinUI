@@ -463,12 +463,15 @@ it('should handle row clicks', async () => {
   expect(onSelect).toHaveBeenCalledTimes(8);
   expect(onRowClick).toHaveBeenCalledTimes(7);
 
+  // Shift click special case test #3
+  // Shift click makes makes all rows from lastSelectedRowId to clicked row to have the same selection state as the clicked row
+  // So when lastSelectedRowId is un-selected, all rows in the shift select range are also unselected.
   await user.keyboard('{Shift>}'); // Hold Shift
   await user.click(getByText(data[0].name));
 
-  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[2]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
+  expect(rows[1]).not.toHaveAttribute('aria-selected');
+  expect(rows[2]).not.toHaveAttribute('aria-selected');
   expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(rows[4]).not.toHaveAttribute('aria-selected');
   expect(onSelect).toHaveBeenCalledTimes(9);
@@ -477,34 +480,36 @@ it('should handle row clicks', async () => {
   await user.keyboard('{/Shift}{Control>}'); // Release Shift and Hold Control
   await user.click(getByText(data[4].name)); // lastSelectedRowId = 2 -> 4 (Ctrl click updates lastSelectedRowId)
   await user.keyboard('{Control>}'); // Keep holding Control
-  await user.click(getByText(data[7].name)); // lastSelectedRowId = 4 -> 7 (Ctrl click updates lastSelectedRowId)
+  await user.click(getByText(data[2].name)); // lastSelectedRowId = 4 -> 2 (Ctrl click updates lastSelectedRowId)
+  await user.keyboard('{Control>}'); // Keep holding Control
+  await user.click(getByText(data[7].name)); // lastSelectedRowId = 2-> 7 (Ctrl click updates lastSelectedRowId)
 
-  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
+  expect(rows[1]).not.toHaveAttribute('aria-selected');
   expect(rows[2]).toHaveAttribute('aria-selected', 'true');
   expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(rows[4]).toHaveAttribute('aria-selected', 'true');
   expect(rows[5]).not.toHaveAttribute('aria-selected');
   expect(rows[6]).not.toHaveAttribute('aria-selected');
   expect(rows[7]).toHaveAttribute('aria-selected', 'true');
-  expect(onSelect).toHaveBeenCalledTimes(11);
-  expect(onRowClick).toHaveBeenCalledTimes(10);
+  expect(onSelect).toHaveBeenCalledTimes(12);
+  expect(onRowClick).toHaveBeenCalledTimes(11);
 
   // Ctrl + Shift click test
-  // Previous selection (0, 1, 2, 4) should be preserved and added to new shift click selection (7 to 5)
+  // Previous selection (2, 4) should be preserved and added to new shift click selection (7 to 5)
   await user.keyboard('{Control>}{Shift>}'); // Hold Ctrl and Shift
   await user.click(getByText(data[5].name));
 
-  expect(rows[0]).toHaveAttribute('aria-selected', 'true');
-  expect(rows[1]).toHaveAttribute('aria-selected', 'true');
+  expect(rows[0]).not.toHaveAttribute('aria-selected');
+  expect(rows[1]).not.toHaveAttribute('aria-selected');
   expect(rows[2]).toHaveAttribute('aria-selected', 'true');
   expect(rows[3]).not.toHaveAttribute('aria-selected');
   expect(rows[4]).toHaveAttribute('aria-selected', 'true');
   expect(rows[5]).toHaveAttribute('aria-selected', 'true');
   expect(rows[6]).toHaveAttribute('aria-selected', 'true');
   expect(rows[7]).toHaveAttribute('aria-selected', 'true');
-  expect(onSelect).toHaveBeenCalledTimes(12);
-  expect(onRowClick).toHaveBeenCalledTimes(11);
+  expect(onSelect).toHaveBeenCalledTimes(13);
+  expect(onRowClick).toHaveBeenCalledTimes(12);
 });
 
 it('should handle sub-rows shift click selection', async () => {
