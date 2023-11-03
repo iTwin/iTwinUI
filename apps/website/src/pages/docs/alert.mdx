@@ -25,7 +25,7 @@ The alert message must be concise, we recommend no more than 256 characters. If 
 
 ### Composition API
 
-You can build Alerts with subcomponents that are fully customizable.
+You can build Alerts with sub-components that are fully customizable.
 
 We provide:
 
@@ -43,25 +43,19 @@ By passing the `onClick` prop to `<Alert.Action>` or `<Alert.CloseButton>`, the 
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
-## Variants
+### Legacy API
 
-### Sticky Alert
+Alternatively, you can use Alerts directly with type, onClick. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
 
-An alert can be fixed at the top of a user's screen, even if they scroll down the page by passing the `isSticky` prop to the `<Alert.Wrapper>` component. It's important to note that sticky alerts must always be dismissible. Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
+## Sticky Alert
+
+To fix an alert at the top of a user's screen even if they scroll down the page, pass `isSticky` to `<Alert.Wrapper>`. It's important to note that sticky alerts must always be dismissible. Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
 
 <LiveExample src='Alert.sticky.tsx'>
   <AllExamples.AlertStickyExample client:load />
 </LiveExample>
 
 It is up to the development team wether or not the sticky alert should push the rest of the content down or not.
-
-### Inline
-
-All alerts support inline placement. Inline alerts can optionally be dismissible. Once the alert is dismissed, the content below it will shift upwards due to the alert no longer consuming space.
-
-### Multilines
-
-All alerts may support multiple lines if necessary. We recommend keeping it brief and keep the message as concise as possible.
 
 ## Props
 
