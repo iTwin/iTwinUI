@@ -21,7 +21,7 @@ import {
 } from '@itwin/itwinui-react';
 import {
   SvgHelpCircularHollow,
-  SvgVersion,
+  SvgPin,
   SvgNetwork,
   SvgNotification,
   SvgImodel,
@@ -147,7 +147,7 @@ export const Full = () => {
               key='version'
               name='Version C'
               onClick={() => console.log('Clicked on the Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
             />,
           ]}
         />
@@ -226,7 +226,7 @@ export const Basic = () => {
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -288,7 +288,7 @@ export const Slim = () => {
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -349,7 +349,7 @@ export const CenterContent = () => {
               key='version'
               name='Version C'
               onClick={() => console.log('Clicked on the Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
