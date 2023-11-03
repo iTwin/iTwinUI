@@ -20,7 +20,7 @@ describe('Table', () => {
     'Global Filter',
     'Initial State',
     'Full',
-    'Full 2',
+    'Full2',
     'Horizontal Scroll',
     'Loading',
     'Localized',
