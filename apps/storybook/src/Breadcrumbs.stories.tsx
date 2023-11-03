@@ -2,8 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
-import { useState } from '@storybook/addons';
 import React from 'react';
 import {
   IconButton,
@@ -28,13 +26,13 @@ export default {
 export const Basic = () => {
   return (
     <Breadcrumbs>
-      <Breadcrumbs.Item key={0} onClick={() => action('Root')()}>
+      <Breadcrumbs.Item key={0} onClick={() => console.log('Root')}>
         Root
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item key={1} onClick={() => action('Item 1')()}>
+      <Breadcrumbs.Item key={1} onClick={() => console.log('Item 1')}>
         Item 1
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item key={2} onClick={() => action('Item 2')()}>
+      <Breadcrumbs.Item key={2} onClick={() => console.log('Item 2')}>
         Item 2
       </Breadcrumbs.Item>
     </Breadcrumbs>
@@ -58,13 +56,13 @@ export const Links = () => {
 export const CustomSeparator = () => {
   return (
     <Breadcrumbs separator={<SvgChevronRightDouble />}>
-      <Breadcrumbs.Item key={0} onClick={() => action('Root')()}>
+      <Breadcrumbs.Item key={0} onClick={() => console.log('Root')}>
         Root
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item key={1} onClick={() => action('Item 1')()}>
+      <Breadcrumbs.Item key={1} onClick={() => console.log('Item 1')}>
         Item 1
       </Breadcrumbs.Item>
-      <Breadcrumbs.Item key={2} onClick={() => action('Item 2')()}>
+      <Breadcrumbs.Item key={2} onClick={() => console.log('Item 2')}>
         Item 2
       </Breadcrumbs.Item>
     </Breadcrumbs>
@@ -77,7 +75,7 @@ export const Overflow = () => {
     .map((_, index) => (
       <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => console.log(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
       </Breadcrumbs.Item>
@@ -96,7 +94,7 @@ export const CustomOverflowBackButton = () => {
     .map((_, index) => (
       <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => console.log(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
       </Breadcrumbs.Item>
@@ -121,7 +119,7 @@ export const CustomOverflowBackButton = () => {
               <IconButton
                 aria-label={`Item ${previousBreadcrumb}`}
                 onClick={() => {
-                  action(`Visit breadcrumb ${previousBreadcrumb}`)();
+                  console.log(`Visit breadcrumb ${previousBreadcrumb}`);
                 }}
                 styleType='borderless'
               >
@@ -143,7 +141,7 @@ export const CustomOverflowDropdown = () => {
     .map((_, index) => (
       <Breadcrumbs.Item
         key={index}
-        onClick={() => action(`Clicked on breadcrumb ${index + 1}`)()}
+        onClick={() => console.log(`Clicked on breadcrumb ${index + 1}`)}
       >
         Item {index}
       </Breadcrumbs.Item>
@@ -168,7 +166,7 @@ export const CustomOverflowDropdown = () => {
                 .map((_, _index) => {
                   const index = visibleCount > 1 ? _index + 1 : _index;
                   const onClick = () => {
-                    action(`Visit breadcrumb ${index}`)();
+                    console.log(`Visit breadcrumb ${index}`);
                     close();
                   };
                   return (
@@ -181,7 +179,7 @@ export const CustomOverflowDropdown = () => {
           >
             <IconButton
               aria-label='Dropdown with more breadcrumbs'
-              onClick={() => action('Clicked on overflow icon')()}
+              onClick={() => console.log('Clicked on overflow icon')}
               styleType='borderless'
             >
               <SvgMore />
@@ -201,8 +199,8 @@ export const FolderNavigation = () => {
     [],
   );
 
-  const [lastIndex, setLastIndex] = useState(items.length - 1);
-  const [isEditing, setIsEditing] = useState(false);
+  const [lastIndex, setLastIndex] = React.useState(items.length - 1);
+  const [isEditing, setIsEditing] = React.useState(false);
 
   const breadcrumbItems = React.useMemo(
     () =>

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Core/Toasts',
@@ -29,7 +28,7 @@ export const Positive = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
     });
   };
@@ -68,7 +67,7 @@ export const Negative = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
     });
   };
@@ -107,7 +106,7 @@ export const Informational = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
     });
   };
@@ -146,7 +145,7 @@ export const Warning = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
     });
   };
@@ -184,7 +183,7 @@ export const PositionChanged = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
     });
   };
@@ -224,7 +223,7 @@ export const AnchorToButton = () => {
       },
       type: 'temporary',
       onRemove: () => {
-        action('Toast removed!');
+        console.log('Toast removed!');
       },
       animateOutTo: buttonRef.current,
     });
@@ -283,7 +282,7 @@ export const CloseIndividual = () => {
         },
         type: 'persisting',
         onRemove: () => {
-          action('Toast removed!');
+          console.log('Toast removed!');
         },
       },
     );
@@ -301,7 +300,7 @@ export const CloseIndividual = () => {
         },
         type: 'persisting',
         onRemove: () => {
-          action('Toast removed!');
+          console.log('Toast removed!');
         },
       });
     }, 3000);

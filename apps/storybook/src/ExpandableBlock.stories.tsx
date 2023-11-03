@@ -2,8 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
-import { useEffect } from '@storybook/addons';
 import React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
 
@@ -34,10 +32,6 @@ export const WithCaption = () => {
 };
 
 export const Accordion = () => {
-  useEffect(() => {
-    return () => action('', { clearOnStoryChange: true })();
-  }, []);
-
   return (
     <>
       {[...Array(3).fill(null)].map((_, index) => (

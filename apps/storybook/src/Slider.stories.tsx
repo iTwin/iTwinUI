@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useMemo, useCallback, useState } from '@storybook/addons';
 import { Text, Slider } from '@itwin/itwinui-react';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
@@ -115,7 +114,7 @@ export const CustomTooltip = () => {
 };
 
 export const CustomTickNoTooltip = () => {
-  const dateFormatter = useMemo(() => {
+  const dateFormatter = React.useMemo(() => {
     return new Intl.DateTimeFormat('default', {
       month: 'short',
       day: '2-digit',
@@ -123,13 +122,13 @@ export const CustomTickNoTooltip = () => {
     });
   }, []);
 
-  const [currentDate, setCurrentDate] = useState(
+  const [currentDate, setCurrentDate] = React.useState(
     new Date(Date.UTC(2019, 0, 1)),
   );
 
   const [values, setValues] = React.useState([0]);
 
-  const updateDate = useCallback((values: number[]) => {
+  const updateDate = React.useCallback((values: number[]) => {
     setValues(values);
     const newDate = new Date(Date.UTC(2019, 0, values[0]));
     setCurrentDate(newDate);

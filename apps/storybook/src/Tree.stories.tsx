@@ -11,7 +11,6 @@ import {
   TreeNodeExpander,
   ProgressRadial,
 } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -38,13 +37,13 @@ export const Basic = () => {
     (nodeId: string, isExpanded: boolean) => {
       if (isExpanded) {
         setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        action(`Expanded node ${nodeId}`)();
+        console.log(`Expanded node ${nodeId}`);
       } else {
         setExpandedNodes((oldExpanded) => ({
           ...oldExpanded,
           [nodeId]: false,
         }));
-        action(`Closed node ${nodeId}`)();
+        console.log(`Closed node ${nodeId}`);
       }
     },
     [],
@@ -127,13 +126,13 @@ export const Full = () => {
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
-        action(`Selected node ${nodeId}`)();
+        console.log(`Selected node ${nodeId}`);
       } else {
         setSelectedNodes((oldSelected) => ({
           ...oldSelected,
           [nodeId]: false,
         }));
-        action(`Unselected node ${nodeId}`)();
+        console.log(`Unselected node ${nodeId}`);
       }
     },
     [],
@@ -150,13 +149,13 @@ export const Full = () => {
     (nodeId: string, isExpanded: boolean) => {
       if (isExpanded) {
         setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        action(`Expanded node ${nodeId}`)();
+        console.log(`Expanded node ${nodeId}`);
       } else {
         setExpandedNodes((oldExpanded) => ({
           ...oldExpanded,
           [nodeId]: false,
         }));
-        action(`Closed node ${nodeId}`)();
+        console.log(`Closed node ${nodeId}`);
       }
     },
     [],
@@ -263,13 +262,13 @@ export const AsyncLoading = () => {
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
-        action(`Selected node ${nodeId}`)();
+        console.log(`Selected node ${nodeId}`);
       } else {
         setSelectedNodes((oldSelected) => ({
           ...oldSelected,
           [nodeId]: false,
         }));
-        action(`Unselected node ${nodeId}`)();
+        console.log(`Unselected node ${nodeId}`);
       }
     },
     [],
@@ -298,13 +297,13 @@ export const AsyncLoading = () => {
       }
       if (isExpanded) {
         setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        action(`Expanded node ${nodeId}`)();
+        console.log(`Expanded node ${nodeId}`);
       } else {
         setExpandedNodes((oldExpanded) => ({
           ...oldExpanded,
           [nodeId]: false,
         }));
-        action(`Closed node ${nodeId}`)();
+        console.log(`Closed node ${nodeId}`);
       }
     },
     [],
@@ -382,13 +381,13 @@ export const CustomizedExpander = () => {
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
-        action(`Selected node ${nodeId}`)();
+        console.log(`Selected node ${nodeId}`);
       } else {
         setSelectedNodes((oldSelected) => ({
           ...oldSelected,
           [nodeId]: false,
         }));
-        action(`Unselected node ${nodeId}`)();
+        console.log(`Unselected node ${nodeId}`);
       }
     },
     [],
@@ -405,13 +404,13 @@ export const CustomizedExpander = () => {
     (nodeId: string, isExpanded: boolean) => {
       if (isExpanded) {
         setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        action(`Expanded node ${nodeId}`)();
+        console.log(`Expanded node ${nodeId}`);
       } else {
         setExpandedNodes((oldExpanded) => ({
           ...oldExpanded,
           [nodeId]: false,
         }));
-        action(`Closed node ${nodeId}`)();
+        console.log(`Closed node ${nodeId}`);
       }
     },
     [],
@@ -525,13 +524,13 @@ export const Virtualized = () => {
     (nodeId: string, isSelected: boolean) => {
       if (isSelected) {
         setSelectedNodes((oldSelected) => ({ ...oldSelected, [nodeId]: true }));
-        action(`Selected node ${nodeId}`)();
+        console.log(`Selected node ${nodeId}`);
       } else {
         setSelectedNodes((oldSelected) => ({
           ...oldSelected,
           [nodeId]: false,
         }));
-        action(`Unselected node ${nodeId}`)();
+        console.log(`Unselected node ${nodeId}`);
       }
     },
     [],
@@ -548,13 +547,13 @@ export const Virtualized = () => {
     (nodeId: string, isExpanded: boolean) => {
       if (isExpanded) {
         setExpandedNodes((oldExpanded) => ({ ...oldExpanded, [nodeId]: true }));
-        action(`Expanded node ${nodeId}`)();
+        console.log(`Expanded node ${nodeId}`);
       } else {
         setExpandedNodes((oldExpanded) => ({
           ...oldExpanded,
           [nodeId]: false,
         }));
-        action(`Closed node ${nodeId}`)();
+        console.log(`Closed node ${nodeId}`);
       }
     },
     [],

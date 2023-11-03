@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { MenuItem, DropdownButton } from '@itwin/itwinui-react';
 
 export default {
@@ -13,7 +12,7 @@ export default {
 
 export const Basic = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
 
