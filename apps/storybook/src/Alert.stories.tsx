@@ -8,7 +8,6 @@ import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Alert',
-  component: Alert,
 };
 
 export const Informational = () => {

@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
+import { SvgCheckmark } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { ToggleSwitch } from '@itwin/itwinui-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/ToggleSwitch',
-  component: ToggleSwitch,
   decorators: [
     (Story) => (
       <div style={{ padding: '5.5px 0' }}>
@@ -16,7 +16,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return <ToggleSwitch defaultChecked />;

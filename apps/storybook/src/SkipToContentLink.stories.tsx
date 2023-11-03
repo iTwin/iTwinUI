@@ -6,7 +6,6 @@ import React from 'react';
 import { SkipToContentLink, Text, Kbd, Anchor } from '@itwin/itwinui-react';
 
 export default {
-  component: SkipToContentLink,
   title: 'Core/SkipToContentLink',
 };
 

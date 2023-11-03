@@ -13,7 +13,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: Icon,
   title: 'Utilities/Icon',
 };
 

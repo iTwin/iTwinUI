@@ -7,7 +7,6 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 
 export default {
   title: 'Core/ExpandableBlock',
-  component: ExpandableBlock,
 };
 
 export const Basic = () => {

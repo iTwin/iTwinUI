@@ -13,7 +13,6 @@ import {
 
 export default {
   title: 'Input/Fieldset',
-  component: Fieldset,
 };
 
 export const Basic = () => {

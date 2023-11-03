@@ -19,10 +19,9 @@ import {
   IconButton,
   Anchor,
 } from '@itwin/itwinui-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
-  component: SideNavigation,
-  subcomponents: { SidenavButton, SidenavSubmenu, SidenavSubmenuHeader },
   decorators: [
     (Story) => (
       <div style={{ height: 'calc(100vh - 24px)' }}>
@@ -31,7 +30,7 @@ export default {
     ),
   ],
   title: 'Core/SideNavigation',
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (

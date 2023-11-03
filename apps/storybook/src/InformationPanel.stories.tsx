@@ -21,13 +21,6 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  component: InformationPanel,
-  subcomponents: {
-    InformationPanelWrapper,
-    InformationPanelHeader,
-    InformationPanelBody,
-    InformationPanelContent,
-  },
   title: 'Core/InformationPanel',
 };
 

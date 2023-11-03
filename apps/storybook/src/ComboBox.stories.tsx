@@ -13,10 +13,10 @@ import {
   InputGrid,
 } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
+import { StoryDefault } from '@ladle/react';
 type ComboBoxProps = React.ComponentProps<typeof ComboBox>;
 
 export default {
-  component: ComboBox,
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 'clamp(300px, 50%, 100%)', minHeight: 380 }}>
@@ -25,7 +25,7 @@ export default {
     ),
   ],
   title: 'Core/ComboBox',
-};
+} satisfies StoryDefault;
 
 const countriesList = [
   { label: 'Afghanistan', value: 'AF' },

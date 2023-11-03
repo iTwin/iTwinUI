@@ -19,20 +19,16 @@ import {
   Select,
   MenuDivider,
 } from '@itwin/itwinui-react';
-import SvgHelpCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/HelpCircularHollow';
-import SvgVersion from '@itwin/itwinui-icons-react/cjs/icons/Pin';
-import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
-import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
-import { SvgImodel } from '@itwin/itwinui-icons-react';
+import {
+  SvgHelpCircularHollow,
+  SvgVersion,
+  SvgNetwork,
+  SvgNotification,
+  SvgImodel,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Header',
-  component: Header,
-  subcomponents: {
-    HeaderBreadcrumbs,
-    HeaderLogo,
-    HeaderButton,
-  },
 };
 
 const buildClickHandler =

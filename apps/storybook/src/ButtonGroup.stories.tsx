@@ -23,7 +23,6 @@ import {
 
 export default {
   title: 'Buttons/ButtonGroup',
-  component: ButtonGroup,
 };
 
 export const WithIcons = () => {

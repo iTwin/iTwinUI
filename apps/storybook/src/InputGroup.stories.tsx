@@ -15,7 +15,6 @@ import {
 
 export default {
   title: 'Input/InputGroup',
-  component: InputGroup,
 };
 
 export const RadioGroup = () => {

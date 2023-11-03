@@ -22,8 +22,6 @@ import {
 
 export default {
   title: 'Core/DropdownMenu',
-  component: DropdownMenu,
-  subcomponents: { MenuItem, MenuDivider, MenuExtraContent },
 };
 
 export const Basic = () => {

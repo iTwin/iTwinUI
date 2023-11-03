@@ -6,7 +6,6 @@ import React from 'react';
 import { Carousel, Text, Code } from '@itwin/itwinui-react';
 
 export default {
-  component: Carousel,
   title: 'Core/Carousel',
 };
 

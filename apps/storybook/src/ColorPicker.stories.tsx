@@ -18,8 +18,6 @@ import {
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: ColorPicker,
-  subcomponents: { ColorBuilder, ColorPalette, ColorInputPanel, ColorSwatch },
   title: 'Core/ColorPicker',
 };
 
