@@ -21,7 +21,7 @@ An alert is an element that notifies the user of something important that is not
 
 ## Usage
 
-The alert message must be concise, we recommend no more than 256 characters. If you feel the need to explain in further detail, you may use an optional hyperlink at the end of the alert message to explain more on a new page. You may also include an optional close icon (close icon is required for [sticky](#sticky) alerts).
+The alert message must be concise, we recommend no more than 256 characters. If you feel the need to explain in further detail, you may use an optional [hyperlink](#alertaction) at the end of the alert message to explain more on a new page. You may also include an optional close icon (close icon is required for [sticky](#sticky) alerts).
 
 ### Composition API
 
@@ -35,17 +35,56 @@ We provide:
 - Alert.Action
 - Alert.CloseButton
 
-The type of alert can be specified by utilizing the `type` prop inside `<Alert.Wrapper>`. There are four distinct types of alerts that can be chosen from, namely positive, negative, warning, or informational. Positive alerts are an indication that a task or action has been successfully completed, while warning alerts require attention but do not result in any immediate disruption. Negative alerts, however, signify system outages or failures. Informational alerts are intended to provide users with updates on non-disruptive tasks or work.
+The type of alert can be specified by utilizing the `type` prop inside `<Alert.Wrapper>`. There are four distinct types of alerts that can be chosen from:
 
-By passing the `onClick` prop to `<Alert.Action>` or `<Alert.CloseButton>`, the user can interact with the alert to show additional information or to close. A console message can be logged for event response.
+- positive : indication of a task or action that has been successfully completed. 
+- warning : requires attention but do not result in any immediate disruption.
+- negative : signify system outages or failures.
+- informational : intended to provide users with updates on non-disruptive tasks or work.
 
 <LiveExample src='Alert.types.tsx'>
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
+#### `<Alert.Action>`
+
+By passing different props to `<Alert.Action>`, the user can interact with the alert to show additional information, redirected to other link or to close. A console message can be logged for event response.
+
+- When `as='a'` and `href` props are set, it behaves like a regular anchor link.
+- when `onClick` is passed, it behaves as a normal button.
+
 ### Legacy API
 
-Alternatively, you can use Alerts directly with type, onClick. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+Alternatively, you can use Alerts directly with type, onClose and some deprecated props like clickableText and clickableTextProps. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+
+The following code is equivalent to the [composition example](#composition-api) above:
+
+```tsx
+<Alert
+  type='positive'
+  clickableText='More Info.'
+  onClose={action('Close!')}
+  clickableTextProps={{
+    onClick: action('Clicked more info!'),
+  }}
+></Alert>
+<Alert
+  type='warning'
+  clickableText='More Info.'
+  onClose={action('Close!')}
+  clickableTextProps={{
+    onClick: action('Clicked more info!'),
+  }}
+></Alert>
+<Alert
+  type='negative'
+  clickableText='More Info.'
+  onClose={action('Close!')}
+  clickableTextProps={{
+    onClick: action('Clicked more info!'),
+  }}
+></Alert>
+```
 
 ## Sticky Alert
 
