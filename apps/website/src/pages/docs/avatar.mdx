@@ -23,29 +23,31 @@ The avatar is an essential UI component, making it easier to identify a person o
 
 Different properties can be passed to the `<Avatar>` component to customize it according to the user's needs.
 
-- `title` prop can be used to specify the name or title associated with the avatar.
 - `abbreviation` prop allows users to provide a short abbreviation or initials for the avatar.
 - `image` prop can be passed to set a custom image source or icon that will be displayed within the avatar.
 
 ### Sizes
 
-Avatars can be displayed in various sizes, including `small`, `medium`, `large`, and `x-large`. These options offer users the flexibility to choose the most appropriate avatar size.
+Avatars can be displayed in various sizes including `small`, `medium`, `large`, and `x-large`.
 
 <LiveExample src='Avatar.sizes.tsx'>
   <AllExamples.AvatarSizesExample client:load />
 </LiveExample>
 
-By making use of the `size` prop and selecting one of the predefined values mentioned above, you can easily set the size of the `Avatar` component.
-
 ### Status indicators
 
-Status indicators are indicators that display in the bottom right of the avatar. Statuses can be set using the `status` prop. The available statuses are: `online`, `away`, `busy` and `offline`.
+Status indicators are indicators that display in the bottom right of the avatar. Statuses can be set using the `status` prop. The available statuses are:
+
+- `online`
+- `away`
+- `busy`
+- `offline`
+
+We suggest not using statuses on the small size avatar.
 
 <LiveExample src='Avatar.statuses.tsx'>
   <AllExamples.AvatarStatusesExample client:load />
 </LiveExample>
-
-We suggest not using statuses on the small size avatar.
 
 ## Variants
 
