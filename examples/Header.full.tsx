@@ -48,7 +48,6 @@ export default () => {
               startIcon={
                 <img src='https://itwinplatformcdn.azureedge.net/iTwinUI/stadium.png' />
               }
-              onClick={() => {}}
             />,
             <HeaderButton
               key='version'
