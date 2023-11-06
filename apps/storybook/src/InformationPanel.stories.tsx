@@ -19,6 +19,7 @@ import {
   Label,
   Textarea,
 } from '@itwin/itwinui-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Core/InformationPanel',
@@ -102,7 +103,7 @@ Basic.decorators = [
       <Story />
     </>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Horizontal = () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>();
@@ -317,4 +318,4 @@ CustomWidth.decorators = [
       <Story />
     </>
   ),
-];
+] satisfies StoryDecorator[];

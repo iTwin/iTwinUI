@@ -11,6 +11,7 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Utilities/Icon',
@@ -63,7 +64,7 @@ Statuses.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Sizes = () => {
   return (
@@ -95,7 +96,7 @@ Autoscale.decorators = [
       <Story />
     </AutoScaleContraption>
   ),
-];
+] satisfies StoryDecorator[];
 
 /** Helper component to demonstrate auto-scaling text using a slider to adjust font size */
 const AutoScaleContraption = ({ children }: { children: React.ReactNode }) => {

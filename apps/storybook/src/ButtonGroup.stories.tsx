@@ -20,6 +20,7 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Buttons/ButtonGroup',
@@ -202,4 +203,4 @@ VerticalOverflow.decorators = [
       </div>
     </>
   ),
-];
+] satisfies StoryDecorator[];

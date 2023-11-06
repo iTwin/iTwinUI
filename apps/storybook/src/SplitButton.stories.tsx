@@ -8,7 +8,13 @@ import type { StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Buttons/SplitButton',
-  decorators: [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>],
+  decorators: [
+    (Story) => (
+      <div style={{ minHeight: 150 }}>
+        <Story />
+      </div>
+    ),
+  ],
 } satisfies StoryDefault;
 
 export const Basic = () => {

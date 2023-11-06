@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Carousel, Text, Code } from '@itwin/itwinui-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Core/Carousel',
@@ -190,4 +191,4 @@ OnlyDots.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
