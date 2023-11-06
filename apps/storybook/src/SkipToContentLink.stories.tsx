@@ -6,7 +6,6 @@ import React from 'react';
 import { SkipToContentLink, Text, Kbd, Anchor } from '@itwin/itwinui-react';
 
 export default {
-  component: SkipToContentLink,
   title: 'Core/SkipToContentLink',
 };
 
@@ -21,16 +20,12 @@ export const Basic = () => {
         <Kbd>&crarr;</Kbd>
         &nbsp;after focusing on skip-to-content-link to skip to the main content
         below. <Anchor href='#'>This link will be skipped.</Anchor> <br />
-        <em>
-          Note that because of constraints with storybook, the link will open a
-          new tab.
-        </em>
       </Text>
       <div
         style={{
           border: 'solid 1px var(--iui-color-background-border)',
           height: 1000,
-          padding: '11px 12px',
+          padding: 12,
         }}
         id='main-content'
       >
@@ -58,16 +53,12 @@ export const CustomText = () => {
         <Kbd>&crarr;</Kbd>
         &nbsp;after focusing on skip-to-content-link to skip to the main content
         below. <Anchor href='#'>This link will be skipped.</Anchor> <br />
-        <em>
-          Note that because of constraints with storybook, the link will open a
-          new tab.
-        </em>
       </Text>
       <div
         style={{
           border: 'solid 1px var(--iui-color-background-border)',
           height: 1000,
-          padding: '11px 12px',
+          padding: 12,
         }}
         id='main-content'
       >

@@ -2,13 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
+import { SvgStar } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { Button, Tabs, Tab } from '@itwin/itwinui-react';
 
 export default {
   title: 'Core/Tabs',
-  component: Tabs,
 };
 
 export const DefaultTabs = () => {

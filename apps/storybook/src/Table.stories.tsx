@@ -46,13 +46,13 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
+import type { StoryDecorator } from '@ladle/react';
 
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
 
 export default {
   title: 'Core/Table',
-  component: Table,
 };
 
 export const Basic = () => {
@@ -1626,12 +1626,12 @@ export const Localized = () => {
 };
 
 Localized.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Condensed = () => {
   const onClickHandler = (
@@ -1896,12 +1896,12 @@ export const WithPaginator = () => {
 };
 
 WithPaginator.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const WithManualPaginatorAndFilter = () => {
   type RowData = {
@@ -2101,12 +2101,12 @@ export const WithManualPaginatorAndFilter = () => {
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const CustomFilter = () => {
   type RowData = {
@@ -2259,12 +2259,12 @@ export const CustomFilter = () => {
 };
 
 CustomFilter.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const ResizableColumns = () => {
   type TableStoryDataType = {
@@ -2587,7 +2587,7 @@ export const HorizontalScroll = () => {
 };
 
 HorizontalScroll.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div
       style={{
         height: '375px',
@@ -2598,7 +2598,7 @@ HorizontalScroll.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Virtualized = () => {
   const onClickHandler = (
@@ -3344,7 +3344,7 @@ export const StickyColumns = () => {
 };
 
 StickyColumns.decorators = [
-  (Story: () => React.ReactElement) => (
+  (Story) => (
     <div
       style={{
         height: '375px',
@@ -3355,7 +3355,7 @@ StickyColumns.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const StatusAndCellIcons = () => {
   type CustomStoryDataType = {

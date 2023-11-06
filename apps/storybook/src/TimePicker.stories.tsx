@@ -6,14 +6,13 @@ import React from 'react';
 import {
   TimePicker,
   InputWithDecorations,
-  MeridiemType,
+  type MeridiemType,
   Popover,
 } from '@itwin/itwinui-react';
-import SvgCalendar from '@itwin/itwinui-icons-react/cjs/icons/Calendar';
+import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/TimePicker',
-  component: TimePicker,
 };
 
 export const Basic = () => {

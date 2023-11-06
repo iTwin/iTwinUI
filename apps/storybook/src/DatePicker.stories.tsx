@@ -7,15 +7,12 @@ import {
   DatePicker,
   IconButton,
   Popover,
-  TimePicker,
   generateLocalizedStrings,
 } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/DatePicker',
-  component: DatePicker,
-  subcomponents: { TimePicker },
 };
 
 export const Basic = () => {

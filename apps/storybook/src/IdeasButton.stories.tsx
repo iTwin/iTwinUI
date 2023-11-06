@@ -7,7 +7,6 @@ import { IdeasButton } from '@itwin/itwinui-react';
 
 export default {
   title: 'Buttons/IdeasButton',
-  component: IdeasButton,
 };
 
 export const Ideas = () => {

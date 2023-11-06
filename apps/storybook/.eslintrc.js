@@ -6,7 +6,7 @@ const preset = require('configs/eslint-preset');
 
 module.exports = {
   ...preset,
-  extends: [...preset.extends, 'plugin:storybook/recommended'],
+  extends: [...preset.extends],
   ignorePatterns: [
     '**/node_modules/**',
     '**/cypress/**',

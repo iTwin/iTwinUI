@@ -19,7 +19,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: Breadcrumbs,
   title: 'Core/Breadcrumbs',
 };
 

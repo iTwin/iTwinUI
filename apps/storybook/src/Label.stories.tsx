@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Input, Label, Text, InputGrid } from '@itwin/itwinui-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
-  component: Label,
   title: 'Typography/Label',
   decorators: [
     (Story) => (
@@ -15,7 +15,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (

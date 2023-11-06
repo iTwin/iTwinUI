@@ -7,7 +7,6 @@ import { Anchor } from '@itwin/itwinui-react';
 
 export default {
   title: 'Typography/Anchor',
-  component: Anchor,
 };
 
 export const Basic = () => {

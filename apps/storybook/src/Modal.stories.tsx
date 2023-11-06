@@ -12,7 +12,6 @@ import {
 
 export default {
   title: 'Core/Modal',
-  component: Modal,
 };
 
 export const Basic = () => {

@@ -18,7 +18,6 @@ import {
 
 export default {
   title: 'Core/NonIdealState',
-  component: NonIdealState,
 };
 
 export const Redirect = () => (

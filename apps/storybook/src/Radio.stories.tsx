@@ -7,7 +7,6 @@ import { Radio } from '@itwin/itwinui-react';
 
 export default {
   title: 'Input/Radio',
-  component: Radio,
 };
 
 export const Basic = () => {
