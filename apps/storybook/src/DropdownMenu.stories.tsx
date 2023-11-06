@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
   IconButton,
@@ -20,7 +19,6 @@ import {
   SvgMove,
   SvgPlaceholder,
 } from '@itwin/itwinui-icons-react';
-import { useState } from '@storybook/addons';
 
 export default {
   title: 'Core/DropdownMenu',
@@ -30,7 +28,7 @@ export default {
 
 export const Basic = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -58,7 +56,7 @@ Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
 
 export const WithStartIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
-    action(`${actionName} clicked!`)();
+    console.log(`${actionName} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -91,7 +89,7 @@ WithStartIcons.decorators = [
 
 export const WithEndIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
-    action(`${actionName} clicked!`)();
+    console.log(`${actionName} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -124,7 +122,7 @@ WithEndIcons.decorators = [
 
 export const WithSublabels = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -170,7 +168,7 @@ WithSublabels.decorators = [
 
 export const Submenu = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -232,7 +230,7 @@ Submenu.decorators = [
 
 export const WithSeparator = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -265,11 +263,11 @@ WithSeparator.decorators = [
 
 export const WithContent = () => {
   const onClick = (item: string, close: () => void) => () => {
-    action(`'${item}' clicked!`)();
+    console.log(`'${item}' clicked!`);
     close();
   };
 
-  const [userType, setUserType] = useState('User');
+  const [userType, setUserType] = React.useState('User');
 
   const dropdownMenuItems = (close: () => void) => [
     <MenuExtraContent key={0}>

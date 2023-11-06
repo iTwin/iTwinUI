@@ -5,7 +5,6 @@
 import React from 'react';
 import { LabeledSelect } from '@itwin/itwinui-react';
 import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
-import { useState } from '@storybook/addons';
 
 export default {
   title: 'Input/LabeledSelect',
@@ -21,7 +20,7 @@ export default {
 };
 
 export const Basic = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label='This is a label'
@@ -39,7 +38,7 @@ export const Basic = () => {
 };
 
 export const Positive = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label='This is a label'
@@ -58,7 +57,7 @@ export const Positive = () => {
 };
 
 export const Warning = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label='This is a label'
@@ -77,7 +76,7 @@ export const Warning = () => {
 };
 
 export const Negative = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label='This is a label'
@@ -96,7 +95,7 @@ export const Negative = () => {
 };
 
 export const WithCustomIcon = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <LabeledSelect<number>
       label='This is a label'

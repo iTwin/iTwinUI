@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Core/Dialog',
@@ -18,22 +17,18 @@ export const Basic = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -73,22 +68,18 @@ export const Modal = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -107,7 +98,7 @@ export const Modal = () => {
         setFocus
         isDismissible
       >
-        <Dialog.Backdrop onKeyDown={action('onKeyDown', { depth: 1 })} />
+        <Dialog.Backdrop onKeyDown={() => console.log('onKeyDown')} />
         <Dialog.Main>
           <Dialog.TitleBar titleText='Best dialog ever' />
           <Dialog.Content>
@@ -138,22 +129,18 @@ export const DraggableAndResizable = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -200,22 +187,18 @@ export const DraggableRelativeToContainer = () => {
     setIsDialogOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 
@@ -276,22 +259,18 @@ export const Placement = () => {
     setIsOpen(false);
   };
 
-  const onClose = (event: React.SyntheticEvent<Element, Event>) => {
-    action('onClose', { depth: 1 })(event);
+  const onClose = () => {
+    console.log('onClose');
     closeDialog();
   };
 
-  const primaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Primary button')(event);
+  const primaryButtonHandle = () => {
+    console.log('Primary button');
     closeDialog();
   };
 
-  const secondaryButtonHandle = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ) => {
-    action('Secondary button')(event);
+  const secondaryButtonHandle = () => {
+    console.log('Secondary button');
     closeDialog();
   };
 

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Typography/Anchor',
@@ -17,7 +16,7 @@ export const Basic = () => {
 
 export const AsButton = () => {
   return (
-    <Anchor as='button' onClick={action('clicked')}>
+    <Anchor as='button' onClick={() => console.log('clicked')}>
       Perform action
     </Anchor>
   );

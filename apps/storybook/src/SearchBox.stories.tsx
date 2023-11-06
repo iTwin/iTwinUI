@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { SearchBox, Text, Divider } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
@@ -82,12 +81,12 @@ export const WithCustomAction = () => {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpand = () => {
-    action('Expanding searchbox');
+    console.log('Expanding searchbox');
     setExpanded(true);
   };
 
   const handleCollapse = () => {
-    action('Collapsing searchbox');
+    console.log('Collapsing searchbox');
     setExpanded(false);
   };
 

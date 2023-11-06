@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { IdeasButton } from '@itwin/itwinui-react';
 
 export default {
@@ -12,14 +11,14 @@ export default {
 };
 
 export const Ideas = () => {
-  return <IdeasButton onClick={action('clicked')} />;
+  return <IdeasButton onClick={() => console.log('clicked')} />;
 };
 
 export const LocalizedIdeas = () => {
   return (
     <IdeasButton
       feedbackLabel='Localized feedback'
-      onClick={action('clicked')}
+      onClick={() => console.log('clicked')}
     />
   );
 };

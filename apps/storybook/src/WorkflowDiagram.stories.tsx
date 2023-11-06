@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { WorkflowDiagram } from '@itwin/itwinui-react';
 
@@ -13,7 +12,7 @@ export default {
 
 export const Basic = () => {
   const onStepClick = (index: number) => {
-    action(`Clicked index: ${index}`)();
+    console.log(`Clicked index: ${index}`);
   };
   return (
     <WorkflowDiagram
@@ -32,7 +31,7 @@ export const Basic = () => {
 
 export const WithTooltips = () => {
   const onStepClick = (index: number) => {
-    action(`Clicked index: ${index}`)();
+    console.log(`Clicked index: ${index}`);
   };
   return (
     <WorkflowDiagram
