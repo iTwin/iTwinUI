@@ -29,6 +29,10 @@ The first thing most people look at when they arrive at a new web page is the he
 - The `actions` prop can be used to add any arbitrary buttons and content near the right end of the header.
 - The `menuItems` prop can be used to show any additional actions inside an overflow menu located to the right of `actions`.
 
+<LiveExample src='Header.full.tsx'>
+  <AllExamples.HeaderFullExample client:load />
+</LiveExample>
+
 ### `<HeaderButton>` subcomponent
 
 `HeaderButton` is designed to offer a range of behaviors that are dependent on the props that are passed to it.
@@ -39,10 +43,6 @@ The first thing most people look at when they arrive at a new web page is the he
 - Both `menuItems` and `onClick`/`href` props: behaves like a split button, where the left part is the main button/link and the right part opens a dropdown menu.
 
 The `isActive` prop can be used to indicate the current breadcrumb.
-
-<LiveExample src='Header.full.tsx'>
-  <AllExamples.HeaderFullExample client:load />
-</LiveExample>
 
 ## Slim Header
 
