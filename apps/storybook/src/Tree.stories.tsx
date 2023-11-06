@@ -6,7 +6,7 @@ import React from 'react';
 import {
   Tree,
   TreeNode,
-  NodeData,
+  type NodeData,
   Checkbox,
   TreeNodeExpander,
   ProgressRadial,
@@ -14,7 +14,6 @@ import {
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: Tree,
   title: 'Core/Tree',
 };
 

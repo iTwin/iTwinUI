@@ -19,11 +19,10 @@ import {
   SvgMove,
   SvgPlaceholder,
 } from '@itwin/itwinui-icons-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Core/DropdownMenu',
-  component: DropdownMenu,
-  subcomponents: { MenuItem, MenuDivider, MenuExtraContent },
 };
 
 export const Basic = () => {
@@ -52,7 +51,13 @@ export const Basic = () => {
 };
 
 // Body height is the same as Select component height therefore clicking outside would not close dropdown.
-Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
+Basic.decorators = [
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithStartIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
@@ -84,8 +89,12 @@ export const WithStartIcons = () => {
 };
 
 WithStartIcons.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithEndIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
@@ -117,8 +126,12 @@ export const WithEndIcons = () => {
 };
 
 WithEndIcons.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithSublabels = () => {
   const onClick = (index: number, close: () => void) => () => {
@@ -163,8 +176,12 @@ export const WithSublabels = () => {
 };
 
 WithSublabels.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const Submenu = () => {
   const onClick = (index: number, close: () => void) => () => {
@@ -225,8 +242,12 @@ export const Submenu = () => {
 };
 
 Submenu.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithSeparator = () => {
   const onClick = (index: number, close: () => void) => () => {
@@ -258,8 +279,12 @@ export const WithSeparator = () => {
 };
 
 WithSeparator.decorators = [
-  (Story) => <div style={{ minHeight: 200 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 200 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithContent = () => {
   const onClick = (item: string, close: () => void) => () => {
@@ -305,5 +330,9 @@ export const WithContent = () => {
 };
 
 WithContent.decorators = [
-  (Story) => <div style={{ minHeight: 250 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 250 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];

@@ -18,7 +18,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: FileUpload,
   title: 'Core/FileUpload',
 };
 

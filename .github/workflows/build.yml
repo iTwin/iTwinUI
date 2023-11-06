@@ -225,7 +225,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/apps/storybook/storybook-static
+          folder: ${{ github.workspace }}/apps/storybook/build
           target-folder: ${{ env.base_folder }}/react
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com

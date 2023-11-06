@@ -19,20 +19,16 @@ import {
   Select,
   MenuDivider,
 } from '@itwin/itwinui-react';
-import SvgHelpCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/HelpCircularHollow';
-import SvgVersion from '@itwin/itwinui-icons-react/cjs/icons/Pin';
-import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
-import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
-import { SvgImodel } from '@itwin/itwinui-icons-react';
+import {
+  SvgHelpCircularHollow,
+  SvgPin,
+  SvgNetwork,
+  SvgNotification,
+  SvgImodel,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Header',
-  component: Header,
-  subcomponents: {
-    HeaderBreadcrumbs,
-    HeaderLogo,
-    HeaderButton,
-  },
 };
 
 const buildClickHandler =
@@ -151,7 +147,7 @@ export const Full = () => {
               key='version'
               name='Version C'
               onClick={() => console.log('Clicked on the Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
             />,
           ]}
         />
@@ -230,7 +226,7 @@ export const Basic = () => {
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -292,7 +288,7 @@ export const Slim = () => {
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -353,7 +349,7 @@ export const CenterContent = () => {
               key='version'
               name='Version C'
               onClick={() => console.log('Clicked on the Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}

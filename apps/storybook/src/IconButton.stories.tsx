@@ -8,7 +8,6 @@ import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/IconButton',
-  component: IconButton,
 };
 
 export const Add = () => {

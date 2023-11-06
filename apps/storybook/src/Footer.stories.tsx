@@ -6,13 +6,12 @@ import React from 'react';
 import {
   defaultFooterElements,
   Footer,
-  FooterElement,
+  type FooterElement,
 } from '@itwin/itwinui-react';
 import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Footer',
-  component: Footer,
 };
 
 export const Basic = () => {

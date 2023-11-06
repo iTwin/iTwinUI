@@ -11,8 +11,6 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  component: AvatarGroup,
-  subcomponents: { Avatar },
   title: 'Core/AvatarGroup',
 };
 
