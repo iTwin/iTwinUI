@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { LabeledSelect } from '@itwin/itwinui-react';
-import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
+import { SvgCamera } from '@itwin/itwinui-icons-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/LabeledSelect',
-  component: LabeledSelect,
   decorators: [
     (Story) => (
       // Body height is the same as Select component height therefore clicking outside would not close dropdown.
@@ -17,7 +17,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   const [value, setValue] = React.useState<number | undefined>(undefined);

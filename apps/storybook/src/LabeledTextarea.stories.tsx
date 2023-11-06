@@ -2,13 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
+import { SvgCamera } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
 
 export default {
   title: 'Input/LabeledTextarea',
-  component: LabeledTextarea,
 };
 
 export const Basic = () => {

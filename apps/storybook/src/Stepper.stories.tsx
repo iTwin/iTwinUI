@@ -3,11 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Stepper, StepperLocalization } from '@itwin/itwinui-react';
+import { Stepper, type StepperLocalization } from '@itwin/itwinui-react';
 
 export default {
   title: 'Core/Stepper',
-  component: Stepper,
 };
 
 export const Basic = () => {

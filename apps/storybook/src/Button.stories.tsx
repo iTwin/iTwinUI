@@ -4,12 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Button, NotificationMarker } from '@itwin/itwinui-react';
-import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
-import { SvgEmail } from '@itwin/itwinui-icons-react';
+import { SvgAdd, SvgEmail } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/Button',
-  component: Button,
 };
 
 export const CallToAction = () => {

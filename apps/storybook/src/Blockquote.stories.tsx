@@ -7,7 +7,6 @@ import { Blockquote } from '@itwin/itwinui-react';
 
 export default {
   title: 'Typography/Blockquote',
-  component: Blockquote,
 };
 
 export const Basic = () => {

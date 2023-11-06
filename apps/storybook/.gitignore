@@ -1,4 +1,3 @@
-storybook-static
 **/.snapshot-report
 cypress-visual-screenshots/comparison
 cypress-visual-screenshots/diff
@@ -7,3 +6,4 @@ cypress/screenshots
 
 # Compiled files
 dist
+build

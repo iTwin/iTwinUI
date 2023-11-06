@@ -4,16 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
-import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
-import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+import {
+  SvgSmileyHappy,
+  SvgSmileyNeutral,
+  SvgSmileySad,
+} from '@itwin/itwinui-icons-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/Select',
-  component: Select,
   decorators: [
-    (Story, context) =>
-      context.story.includes('Truncate Middle Text') ? (
+    (Story, context) => {
+      return context.globalState.story.includes('truncate-middle-text') ? (
         <div style={{ minHeight: 365, width: 300 }}>
           <Story />
         </div>
@@ -21,9 +23,10 @@ export default {
         <div style={{ minHeight: 365 }}>
           <Story />
         </div>
-      ),
+      );
+    },
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   const options = [
@@ -33,7 +36,7 @@ export const Basic = () => {
   ];
   const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -50,7 +53,7 @@ export const WithIcons = () => {
   ];
   const [value, setValue] = React.useState<string | undefined>(undefined);
   return (
-    <Select<string>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -67,7 +70,7 @@ export const WithSelectedValue = () => {
   ];
   const [value, setValue] = React.useState<number>(2);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -86,7 +89,7 @@ export const Disabled = () => {
   const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         disabled
         options={options}
         value={value}
@@ -106,7 +109,7 @@ export const DisabledWithSelectedValue = () => {
   const [value, setValue] = React.useState<number>(2);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={options}
         value={value}
         onChange={setValue}
@@ -120,7 +123,7 @@ export const DisabledWithSelectedValue = () => {
 export const ManyItems = () => {
   const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={[...Array(20).fill(null)].map((_, index) => ({
         label: `Item #${index}`,
         value: index,
@@ -139,7 +142,7 @@ export const Sublabels = () => {
   ];
   const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -159,7 +162,7 @@ export const Custom = () => {
     undefined,
   );
   return (
-    <Select<string>
+    <Select
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
@@ -199,7 +202,7 @@ export const TruncateMiddleText = () => {
   );
 
   return (
-    <Select<string>
+    <Select
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
@@ -223,7 +226,7 @@ export const Multi = () => {
   const [value, setValue] = React.useState<number[]>([]);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,
@@ -248,7 +251,7 @@ export const MultiCustomRenderer = () => {
 
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,

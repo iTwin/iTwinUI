@@ -10,9 +10,9 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgNotification } from '@itwin/itwinui-icons-react';
+import type { StoryDecorator, StoryDefault } from '@ladle/react';
 
 export default {
-  component: NotificationMarker,
   title: 'Core/NotificationMarker',
   decorators: [
     (Story) => (
@@ -27,7 +27,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (
@@ -135,4 +135,4 @@ Status.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];

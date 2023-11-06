@@ -7,7 +7,6 @@ import { Text } from '@itwin/itwinui-react';
 
 export default {
   title: 'Typography/Text',
-  component: Text,
 };
 
 export const Basic = () => {

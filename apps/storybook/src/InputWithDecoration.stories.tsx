@@ -8,7 +8,6 @@ import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Input/InputWithDecorations',
-  component: InputWithDecorations,
 };
 
 export const Basic = () => {

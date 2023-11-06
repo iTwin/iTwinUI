@@ -4,17 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Text, Slider } from '@itwin/itwinui-react';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
-import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+import { SvgSmileyHappy, SvgSmileySad } from '@itwin/itwinui-icons-react';
+import type { StoryDecorator, StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/Slider',
-  component: Slider,
   decorators: [
     (Story, context) => (
       <div
         style={{
-          ...(context.story.includes('Vertical')
+          ...(context.globalState.story.includes('vertical')
             ? {
                 height: 'calc(100vh - 24px)',
                 width: 'fit-content',
@@ -27,7 +26,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return <Slider values={[50]} />;
@@ -128,8 +127,8 @@ export const CustomTickNoTooltip = () => {
 
   const [values, setValues] = React.useState([0]);
 
-  const updateDate = React.useCallback((values: number[]) => {
-    setValues(values);
+  const updateDate = React.useCallback((values: readonly number[]) => {
+    setValues([...values]);
     const newDate = new Date(Date.UTC(2019, 0, values[0]));
     setCurrentDate(newDate);
   }, []);
@@ -168,7 +167,7 @@ CustomTickNoTooltip.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const DecimalIncrement = () => {
   return <Slider min={0} max={50} step={2.5} values={[25]} />;

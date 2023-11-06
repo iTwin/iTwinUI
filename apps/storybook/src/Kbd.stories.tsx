@@ -7,7 +7,6 @@ import { Kbd, KbdKeys } from '@itwin/itwinui-react';
 
 export default {
   title: 'Typography/Keyboard Key',
-  component: Kbd,
 };
 
 export const Basic = () => {

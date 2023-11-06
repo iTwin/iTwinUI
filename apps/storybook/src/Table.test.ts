@@ -20,7 +20,7 @@ describe('Table', () => {
     'Global Filter',
     'Initial State',
     'Full',
-    'Full 2',
+    'Full2',
     'Horizontal Scroll',
     'Loading',
     'Localized',
@@ -39,9 +39,9 @@ describe('Table', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
 
-      cy.get('#storybook-root').within(() => {
+      cy.get('#ladle-root').within(() => {
         switch (testName) {
           case 'Column Manager': {
             cy.get('[role=columnheader] button').last().click();
