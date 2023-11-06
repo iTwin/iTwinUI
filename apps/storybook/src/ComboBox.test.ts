@@ -20,7 +20,7 @@ describe('ComboBox', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       cy.get('input').focus();
       if (testName === 'Multiple Select') {

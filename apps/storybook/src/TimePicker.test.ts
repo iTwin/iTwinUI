@@ -9,8 +9,8 @@ describe('TimePicker', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
-      cy.get('#storybook-root').within(() => {
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
+      cy.get('#ladle-root').within(() => {
         cy.get('button').last().click();
         cy.get('input').parent().hide();
       });

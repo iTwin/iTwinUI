@@ -3,19 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { Button, NotificationMarker } from '@itwin/itwinui-react';
-import SvgAdd from '@itwin/itwinui-icons-react/cjs/icons/Add';
-import { SvgEmail } from '@itwin/itwinui-icons-react';
+import { SvgAdd, SvgEmail } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/Button',
-  component: Button,
 };
 
 export const CallToAction = () => {
   return (
-    <Button onClick={action('clicked')} styleType='cta'>
+    <Button onClick={() => console.log('clicked')} styleType='cta'>
       Call To Action Button
     </Button>
   );
@@ -23,7 +20,7 @@ export const CallToAction = () => {
 
 export const HighVisibility = () => {
   return (
-    <Button onClick={action('clicked')} styleType='high-visibility'>
+    <Button onClick={() => console.log('clicked')} styleType='high-visibility'>
       High Visibility Button
     </Button>
   );
@@ -31,7 +28,7 @@ export const HighVisibility = () => {
 
 export const Default = () => {
   return (
-    <Button onClick={action('clicked')} styleType='default'>
+    <Button onClick={() => console.log('clicked')} styleType='default'>
       Default Button
     </Button>
   );
@@ -40,7 +37,7 @@ export const Default = () => {
 export const WithIcon = () => {
   return (
     <Button
-      onClick={action('clicked')}
+      onClick={() => console.log('clicked')}
       startIcon={<SvgAdd />}
       styleType='high-visibility'
     >
@@ -53,7 +50,7 @@ export const WithNotification = () => {
   return (
     <div style={{ display: 'flex', gap: '10px' }}>
       <Button
-        onClick={action('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker status='white'>
             <SvgEmail />
@@ -64,7 +61,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={action('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker status='white'>
             <SvgEmail />
@@ -75,7 +72,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={action('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker>
             <SvgEmail />
@@ -86,7 +83,7 @@ export const WithNotification = () => {
         Inbox
       </Button>
       <Button
-        onClick={action('clicked')}
+        onClick={() => console.log('clicked')}
         startIcon={
           <NotificationMarker>
             <SvgEmail />

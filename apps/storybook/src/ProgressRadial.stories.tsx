@@ -7,7 +7,6 @@ import { ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
   title: 'ProgressIndicators/ProgressRadial',
-  component: ProgressRadial,
 };
 
 export const Determinate = () => {

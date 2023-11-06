@@ -20,26 +20,25 @@ import {
   SvgPlaceholder,
   SvgMore,
 } from '@itwin/itwinui-icons-react';
-import { action } from '@storybook/addon-actions';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Buttons/ButtonGroup',
-  component: ButtonGroup,
 };
 
 export const WithIcons = () => {
   return (
     <ButtonGroup>
-      <IconButton onClick={action('Clicked add!')}>
+      <IconButton onClick={() => console.log('Clicked add!')}>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={action('Clicked edit!')} isActive>
+      <IconButton onClick={() => console.log('Clicked edit!')} isActive>
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={action('Clicked delete!')}>
+      <IconButton disabled onClick={() => console.log('Clicked delete!')}>
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={action('Clicked undo!')}>
+      <IconButton onClick={() => console.log('Clicked undo!')}>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
@@ -116,7 +115,7 @@ export const InputButtonCombo = () => {
           await navigator.clipboard.writeText(
             `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL2V4YW1wbGUuYXV0aDAuY29tLyIsImF1ZCI6Imh0dHBzOi8vYXBpLmV4YW1wbGUuY29tL2NhbGFuZGFyL3YxLyIsInN1YiI6InVzcl8xMjMiLCJpYXQiOjE0NTg3ODU3OTYsImV4cCI6MTQ1ODg3MjE5Nn0.CA7eaHjIHz5NxeIJoFK9krqaeZrPLwmMmgI_XiQiIkQ`,
           );
-          action('Copied bearer token to clipboard')();
+          console.log('Copied bearer token to clipboard');
         }}
       >
         Copy
@@ -128,16 +127,16 @@ export const InputButtonCombo = () => {
 export const Vertical = () => {
   return (
     <ButtonGroup orientation='vertical'>
-      <IconButton onClick={action('Clicked add!')}>
+      <IconButton onClick={() => console.log('Clicked add!')}>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={action('Clicked edit!')} isActive>
+      <IconButton onClick={() => console.log('Clicked edit!')} isActive>
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={action('Clicked delete!')}>
+      <IconButton disabled onClick={() => console.log('Clicked delete!')}>
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={action('Clicked undo!')}>
+      <IconButton onClick={() => console.log('Clicked undo!')}>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
@@ -150,7 +149,7 @@ export const VerticalOverflow = () => {
     .map((_, index) => (
       <IconButton
         key={index}
-        onClick={() => action(`Clicked on button ${index + 1}`)()}
+        onClick={() => console.log(`Clicked on button ${index + 1}`)}
       >
         <SvgPlaceholder />
       </IconButton>
@@ -168,7 +167,7 @@ export const VerticalOverflow = () => {
               .map((_, _index) => {
                 const index = overflowStart + _index;
                 const onClick = () => {
-                  action(`Clicked button ${index} (overflow)`)();
+                  console.log(`Clicked button ${index} (overflow)`);
                   close();
                 };
                 return (
@@ -183,7 +182,7 @@ export const VerticalOverflow = () => {
               })
           }
         >
-          <IconButton onClick={() => action('Clicked on overflow icon')()}>
+          <IconButton onClick={() => console.log('Clicked on overflow icon')}>
             <SvgMore />
           </IconButton>
         </DropdownMenu>
@@ -204,4 +203,4 @@ VerticalOverflow.decorators = [
       </div>
     </>
   ),
-];
+] satisfies StoryDecorator[];

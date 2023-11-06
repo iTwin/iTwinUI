@@ -4,17 +4,18 @@
  *--------------------------------------------------------------------------------------------*/
 import React, { useCallback } from 'react';
 import { MenuItem, Select, MiddleTextTruncation } from '@itwin/itwinui-react';
-import { useState } from '@storybook/addons';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
-import SvgSmileyNeutral from '@itwin/itwinui-icons-react/cjs/icons/SmileyNeutral';
-import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+import {
+  SvgSmileyHappy,
+  SvgSmileyNeutral,
+  SvgSmileySad,
+} from '@itwin/itwinui-icons-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/Select',
-  component: Select,
   decorators: [
-    (Story, context) =>
-      context.story.includes('Truncate Middle Text') ? (
+    (Story, context) => {
+      return context.globalState.story.includes('truncate-middle-text') ? (
         <div style={{ minHeight: 365, width: 300 }}>
           <Story />
         </div>
@@ -22,9 +23,10 @@ export default {
         <div style={{ minHeight: 365 }}>
           <Story />
         </div>
-      ),
+      );
+    },
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   const options = [
@@ -32,9 +34,9 @@ export const Basic = () => {
     { value: 2, label: 'Item #2', disabled: true },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -49,9 +51,9 @@ export const WithIcons = () => {
     { value: 'neutral', label: 'Neutral', startIcon: <SvgSmileyNeutral /> },
     { value: 'sad', label: 'Sad', startIcon: <SvgSmileySad /> },
   ];
-  const [value, setValue] = useState<string | undefined>(undefined);
+  const [value, setValue] = React.useState<string | undefined>(undefined);
   return (
-    <Select<string>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -66,9 +68,9 @@ export const WithSelectedValue = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = React.useState<number>(2);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -84,10 +86,10 @@ export const Disabled = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         disabled
         options={options}
         value={value}
@@ -104,10 +106,10 @@ export const DisabledWithSelectedValue = () => {
     { value: 2, label: 'Item #2' },
     { value: 3, label: 'Item #3' },
   ];
-  const [value, setValue] = useState<number>(2);
+  const [value, setValue] = React.useState<number>(2);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={options}
         value={value}
         onChange={setValue}
@@ -119,9 +121,9 @@ export const DisabledWithSelectedValue = () => {
 };
 
 export const ManyItems = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={[...Array(20).fill(null)].map((_, index) => ({
         label: `Item #${index}`,
         value: index,
@@ -138,9 +140,9 @@ export const Sublabels = () => {
     { value: 2, label: 'Item #2', sublabel: 'Sublabel #2' },
     { value: 3, label: 'Item #3', sublabel: 'Sublabel #3' },
   ];
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
   return (
-    <Select<number>
+    <Select
       options={options}
       value={value}
       onChange={setValue}
@@ -156,11 +158,11 @@ export const Custom = () => {
     { value: 'green', label: 'Green' },
     { value: 'red', label: 'Red' },
   ];
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
     undefined,
   );
   return (
-    <Select<string>
+    <Select
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
@@ -186,7 +188,7 @@ export const TruncateMiddleText = () => {
     { value: 'ShortNameFile.jpg', label: 'ShortNameFile.jpg' },
     { value: 'SomeOtherFile.dgn', label: 'SomeOtherFile.dgn' },
   ];
-  const [selectedValue, setSelectedValue] = useState<string | undefined>(
+  const [selectedValue, setSelectedValue] = React.useState<string | undefined>(
     options[0].value,
   );
 
@@ -200,7 +202,7 @@ export const TruncateMiddleText = () => {
   );
 
   return (
-    <Select<string>
+    <Select
       options={options}
       value={selectedValue}
       onChange={setSelectedValue}
@@ -221,10 +223,10 @@ export const TruncateMiddleText = () => {
 };
 
 export const Multi = () => {
-  const [value, setValue] = useState<number[]>([]);
+  const [value, setValue] = React.useState<number[]>([]);
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,
@@ -245,11 +247,11 @@ export const Multi = () => {
 };
 
 export const MultiCustomRenderer = () => {
-  const [value, setValue] = useState<number[]>([]);
+  const [value, setValue] = React.useState<number[]>([]);
 
   return (
     <div style={{ minHeight: 350 }}>
-      <Select<number>
+      <Select
         options={[...Array(20).fill(null)].map((_, index) => ({
           label: `Item #${index}`,
           value: index,

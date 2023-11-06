@@ -16,7 +16,7 @@ describe('Avatar', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
 
       // Hide images if present to avoid uncertainties in testing
       if (testName === 'With Image') {

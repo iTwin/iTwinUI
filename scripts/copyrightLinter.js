@@ -25,7 +25,7 @@ const filePaths = fg.sync(pattern, {
     '**/esm/**/*',
     '**/cjs/**/*',
     '**/dist/**/*',
-    '**/storybook-static/**/*',
+    '**/build/**/*',
     '**/playgrounds/**/*',
     '**/cra-sandbox/**/*',
   ],

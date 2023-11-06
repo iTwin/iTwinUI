@@ -2,14 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Alert',
-  component: Alert,
 };
 
 export const Informational = () => {
@@ -18,11 +16,11 @@ export const Informational = () => {
       <Alert.Icon />
       <Alert.Message>
         This is an informational message.
-        <Alert.Action onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => console.log('Clicked more info!')}>
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={action('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -33,11 +31,11 @@ export const Positive = () => {
       <Alert.Icon />
       <Alert.Message>
         This is a positive message.
-        <Alert.Action onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => console.log('Clicked more info!')}>
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={action('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -48,11 +46,11 @@ export const Warning = () => {
       <Alert.Icon />
       <Alert.Message>
         This is a warning message.
-        <Alert.Action onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => console.log('Clicked more info!')}>
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={action('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -63,11 +61,11 @@ export const Negative = () => {
       <Alert.Icon />
       <Alert.Message>
         This is a negative message.
-        <Alert.Action onClick={() => action('Clicked more info!')}>
+        <Alert.Action onClick={() => console.log('Clicked more info!')}>
           More Info.
         </Alert.Action>
       </Alert.Message>
-      <Alert.CloseButton onClick={action('Close!')} />
+      <Alert.CloseButton onClick={() => console.log('Close!')} />
     </Alert.Wrapper>
   );
 };
@@ -86,11 +84,11 @@ export const Sticky = () => {
         <Alert.Icon />
         <Alert.Message>
           This is sticky!
-          <Alert.Action onClick={() => action('Clicked more info!')}>
+          <Alert.Action onClick={() => console.log('Clicked more info!')}>
             More Info.
           </Alert.Action>
         </Alert.Message>
-        <Alert.CloseButton onClick={action('Close!')} />
+        <Alert.CloseButton onClick={() => console.log('Close!')} />
       </Alert.Wrapper>
       <p style={{ margin: 0, padding: '8px' }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -152,7 +150,7 @@ export const CustomIcon = () => {
         <SvgSmileyHappy />
       </Alert.Icon>
       <Alert.Message>This is an info message with a custom icon.</Alert.Message>
-      <Alert.CloseButton onClick={action('Close!')}>
+      <Alert.CloseButton onClick={() => console.log('Close!')}>
         <SvgPlaceholder />
       </Alert.CloseButton>
     </Alert.Wrapper>

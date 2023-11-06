@@ -4,9 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Flex } from '@itwin/itwinui-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
-  component: Flex,
   title: 'Utilities/Flex',
   decorators: [
     (Story) => (
@@ -30,7 +30,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (

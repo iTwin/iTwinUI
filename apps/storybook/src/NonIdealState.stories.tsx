@@ -15,11 +15,9 @@ import {
   SvgRedirect,
   SvgTimedOut,
 } from '@itwin/itwinui-illustrations-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'Core/NonIdealState',
-  component: NonIdealState,
 };
 
 export const Redirect = () => (
@@ -35,10 +33,13 @@ export const Redirect = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -56,10 +57,13 @@ export const Unauthorized = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -78,10 +82,13 @@ export const Forbidden = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -101,10 +108,13 @@ export const PageNotFound = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -123,10 +133,13 @@ export const TimeOut = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -139,10 +152,13 @@ export const InternalServerError = () => (
     description='Please retry again. If this continues to happen, please contact our support team or visit the iModel HUB.'
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -155,10 +171,13 @@ export const BadGateway = () => (
     description='The server encountered a temporary error. Please try again in 30 seconds or visit iModel HUB.'
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -171,10 +190,13 @@ export const ServiceUnavailable = () => (
     description='This service is being worked on. Please come back in a little bit or visit iModel HUB.'
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -187,10 +209,13 @@ export const Generic = () => (
     description="We can't find the iModel that you are looking for or it does not exist. Visit the iModel HUB or contact our support team."
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />
@@ -211,10 +236,13 @@ export const CustomHtmlMessage = () => (
     }
     actions={
       <>
-        <Button onClick={action('Retrying')} styleType={'high-visibility'}>
+        <Button
+          onClick={() => console.log('Retrying')}
+          styleType={'high-visibility'}
+        >
           Retry
         </Button>
-        <Button onClick={action('Contacting')}>Contact us</Button>
+        <Button onClick={() => console.log('Contacting')}>Contact us</Button>
       </>
     }
   />

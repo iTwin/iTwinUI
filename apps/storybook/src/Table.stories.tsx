@@ -38,8 +38,6 @@ import type {
   TableFilterValue,
   TablePaginatorRendererProps,
 } from '@itwin/itwinui-react';
-import { useMemo, useState } from '@storybook/addons';
-import { action } from '@storybook/addon-actions';
 import {
   SvgDetails,
   SvgMore,
@@ -48,22 +46,21 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
-import { StoryFn } from '@storybook/react';
+import type { StoryDecorator } from '@ladle/react';
 
 type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
 
 export default {
   title: 'Core/Table',
-  component: Table,
 };
 
 export const Basic = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -93,7 +90,7 @@ export const Basic = () => {
     [],
   ) satisfies Column[];
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -108,11 +105,11 @@ export const Basic = () => {
 export const SelectableSingle = () => {
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
-      action(`Row clicked: ${JSON.stringify(row.original)}`)(),
+      console.log(`Row clicked: ${JSON.stringify(row.original)}`),
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -135,7 +132,7 @@ export const SelectableSingle = () => {
               as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
-                action(props.row.original.name)();
+                console.log(props.row.original.name);
               }}
             >
               Click me!
@@ -147,7 +144,7 @@ export const SelectableSingle = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -171,21 +168,21 @@ export const SelectableSingle = () => {
 export const SelectableMulti = () => {
   const onSelect = useCallback(
     (rows, state) =>
-      action(
+      console.log(
         `Selected rows: ${JSON.stringify(rows)}, Table state: ${JSON.stringify(
           state,
         )}`,
-      )(),
+      ),
     [],
   ) satisfies NonNullable<TableProps['onSelect']>;
 
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
-      action(`Row clicked: ${JSON.stringify(row.original)}`)(),
+      console.log(`Row clicked: ${JSON.stringify(row.original)}`),
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -208,7 +205,7 @@ export const SelectableMulti = () => {
               as='button'
               onClick={(e) => {
                 e.stopPropagation(); // prevent row selection when clicking on link
-                action(props.row.original.name)();
+                console.log(props.row.original.name);
               }}
             >
               Click me!
@@ -220,7 +217,7 @@ export const SelectableMulti = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -245,14 +242,15 @@ export const SelectableMulti = () => {
 export const Sortable = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
   const onSort = useCallback(
-    (state) => action(`Sort changed. Table state: ${JSON.stringify(state)}`)(),
+    (state) =>
+      console.log(`Sort changed. Table state: ${JSON.stringify(state)}`),
     [],
   ) satisfies NonNullable<TableProps['onSort']>;
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'id',
@@ -289,7 +287,7 @@ export const Sortable = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { id: '1', name: 'Name1', description: 'Description1' },
       { id: '3', name: 'Name3', description: 'Description3' },
@@ -319,7 +317,7 @@ export const Filters = () => {
     endDate: string;
   };
 
-  const translatedLabels = useMemo(
+  const translatedLabels = React.useMemo(
     () => ({
       filter: 'Filter',
       clear: 'Clear',
@@ -329,7 +327,7 @@ export const Filters = () => {
     [],
   );
 
-  const formatter = useMemo(
+  const formatter = React.useMemo(
     () =>
       new Intl.DateTimeFormat('en-us', {
         month: 'short',
@@ -346,7 +344,7 @@ export const Filters = () => {
     [formatter],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'index',
@@ -411,7 +409,7 @@ export const Filters = () => {
     [formatDate, translatedLabels],
   ) satisfies Column<TableStoryDataType>[];
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         index: 1,
@@ -449,11 +447,11 @@ export const Filters = () => {
     });
     rowInfo = rowInfo.slice(0, rowInfo.length - 1);
     rowInfo += ']';
-    action(
+    console.log(
       `Filter changed. Filters: ${JSON.stringify(
         filters,
       )}, State: ${JSON.stringify(state)}, Rows: ${rowInfo}`,
-    )();
+    );
   }, []) satisfies NonNullable<TableProps['onFilter']>;
 
   return (
@@ -473,11 +471,12 @@ export const GlobalFilter = () => {
   };
 
   const onClickHandler = React.useCallback(
-    (props: CellProps<TableStoryDataType>) => action(props.row.original.name)(),
+    (props: CellProps<TableStoryDataType>) =>
+      console.log(props.row.original.name),
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -509,7 +508,7 @@ export const GlobalFilter = () => {
     [onClickHandler],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description7' },
       { name: 'Name2', description: 'Description7' },
@@ -521,7 +520,7 @@ export const GlobalFilter = () => {
     [],
   );
 
-  const [globalFilter, setGlobalFilter] = useState('');
+  const [globalFilter, setGlobalFilter] = React.useState('');
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -547,15 +546,15 @@ export const GlobalFilter = () => {
 export const Expandable = () => {
   const onExpand = useCallback(
     (rows, state) =>
-      action(
+      console.log(
         `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
           state,
         )}`,
-      )(),
+      ),
     [],
   ) satisfies NonNullable<TableProps['onExpand']>;
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -572,7 +571,7 @@ export const Expandable = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -608,15 +607,15 @@ export const Expandable = () => {
 export const ExpandableSubrows = () => {
   const onExpand = useCallback(
     (rows, state) =>
-      action(
+      console.log(
         `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
           state,
         )}`,
-      )(),
+      ),
     [],
   ) satisfies NonNullable<TableProps['onExpand']>;
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -704,9 +703,9 @@ export const ExpandableSubrows = () => {
 export const LazyLoading = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -746,12 +745,12 @@ export const LazyLoading = () => {
       }));
   };
 
-  const [data, setData] = useState(() => generateData(0, 100));
+  const [data, setData] = React.useState(() => generateData(0, 100));
 
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const onBottomReached = useCallback(() => {
-    action('Bottom reached!')();
+    console.log('Bottom reached!');
     setIsLoading(true);
     // Simulating request
     setTimeout(() => {
@@ -780,9 +779,9 @@ export const LazyLoading = () => {
 export const RowInViewport = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -812,7 +811,7 @@ export const RowInViewport = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () =>
       Array(100)
         .fill(null)
@@ -824,7 +823,7 @@ export const RowInViewport = () => {
   );
 
   const onRowInViewport = useCallback((rowData) => {
-    action(`Row in view: ${JSON.stringify(rowData)}`)();
+    console.log(`Row in view: ${JSON.stringify(rowData)}`);
   }, []) satisfies NonNullable<TableProps['onRowInViewport']>;
 
   return (
@@ -863,7 +862,7 @@ export const RowInViewport = () => {
 export const DisabledRows = () => {
   const onRowClick = useCallback(
     (event: React.MouseEvent, row: Row) =>
-      action(`Row clicked: ${JSON.stringify(row.original)}`)(),
+      console.log(`Row clicked: ${JSON.stringify(row.original)}`),
     [],
   );
 
@@ -874,7 +873,7 @@ export const DisabledRows = () => {
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -897,7 +896,10 @@ export const DisabledRows = () => {
             {isRowDisabled(props.row.original) ? (
               <>Click me!</>
             ) : (
-              <Anchor as='button' onClick={action(props.row.original.name)}>
+              <Anchor
+                as='button'
+                onClick={() => console.log(props.row.original.name)}
+              >
                 Click me!
               </Anchor>
             )}
@@ -908,7 +910,7 @@ export const DisabledRows = () => {
     [isRowDisabled],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -948,7 +950,7 @@ export const Loading = () => {
     description: string;
   };
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -981,7 +983,7 @@ export const NoData = () => {
     description: string;
   };
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1009,7 +1011,7 @@ export const NoData = () => {
 };
 
 export const InitialState = () => {
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1027,7 +1029,7 @@ export const InitialState = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name17', description: 'Description17' },
       { name: 'Name18', description: 'Description18' },
@@ -1062,10 +1064,10 @@ export const ControlledState = () => {
   };
 
   const tableInstance = React.useRef<TableInstance<DemoData>>();
-  const [selectedRows, setSelectedRows] = useState<DemoData[]>([]);
-  const [expandedRows, setExpandedRows] = useState<DemoData[]>([]);
+  const [selectedRows, setSelectedRows] = React.useState<DemoData[]>([]);
+  const [expandedRows, setExpandedRows] = React.useState<DemoData[]>([]);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1081,7 +1083,7 @@ export const ControlledState = () => {
     [],
   ) satisfies Column<DemoData>[];
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         id: '1',
@@ -1233,7 +1235,7 @@ export const ControlledState = () => {
 };
 
 export const Full = () => {
-  const [hoveredRowIndex, setHoveredRowIndex] = useState(0);
+  const [hoveredRowIndex, setHoveredRowIndex] = React.useState(0);
 
   const [rowRefMap, setRowRefMap] = React.useState<Record<number, HTMLElement>>(
     {},
@@ -1257,7 +1259,7 @@ export const Full = () => {
     ];
   }, []);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1290,7 +1292,7 @@ export const Full = () => {
     [menuItems],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -1315,7 +1317,7 @@ export const Full = () => {
     (row: Row<{ name: string; description: string }>) => {
       return {
         onMouseEnter: () => {
-          action(`Hovered over ${row.original.name}`)();
+          console.log(`Hovered over ${row.original.name}`);
           setHoveredRowIndex(row.index);
         },
         ref: (el: HTMLDivElement | null) => {
@@ -1388,7 +1390,7 @@ export const Full2 = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () =>
       Array(100)
         .fill(null)
@@ -1411,7 +1413,7 @@ export const Full2 = () => {
     ];
   }, []);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'product',
@@ -1502,7 +1504,7 @@ export const Full2 = () => {
     };
   }, []);
 
-  const [globalFilterValue, setGlobalFilterValue] = useState('');
+  const [globalFilterValue, setGlobalFilterValue] = React.useState('');
 
   return (
     <div
@@ -1546,7 +1548,7 @@ export const Full2 = () => {
 };
 
 export const Localized = () => {
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1576,7 +1578,7 @@ export const Localized = () => {
       }));
   };
 
-  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
       <TablePaginator
@@ -1624,29 +1626,29 @@ export const Localized = () => {
 };
 
 Localized.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Condensed = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
   const onExpand = useCallback(
     (rows, state) =>
-      action(
+      console.log(
         `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
           state,
         )}`,
-      )(),
+      ),
     [],
   ) satisfies NonNullable<TableProps['onExpand']>;
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1756,7 +1758,7 @@ export const Editable = () => {
 
   const onCellEdit = useCallback(
     (columnId: string, value: string, rowData: TableStoryDataType) => {
-      action('onCellEdit')({ columnId, value, rowData });
+      console.log({ columnId, value, rowData });
       setData((oldData) => {
         const newData = [...oldData];
         const index = oldData.indexOf(rowData);
@@ -1819,7 +1821,7 @@ export const Editable = () => {
 };
 
 export const WithPaginator = () => {
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -1861,7 +1863,7 @@ export const WithPaginator = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () =>
       Array(5005)
         .fill(null)
@@ -1869,7 +1871,7 @@ export const WithPaginator = () => {
     [generateItem],
   );
 
-  const pageSizeList = useMemo(() => [10, 25, 50], []);
+  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
       <TablePaginator {...props} pageSizeList={pageSizeList} />
@@ -1894,12 +1896,12 @@ export const WithPaginator = () => {
 };
 
 WithPaginator.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const WithManualPaginatorAndFilter = () => {
   type RowData = {
@@ -1907,19 +1909,19 @@ export const WithManualPaginatorAndFilter = () => {
     description: string;
   };
 
-  const pageSizeList = useMemo(() => [10, 25, 50], []);
-  const maxRowsCount = useMemo(() => 60000, []);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [currentPageSize, setCurrentPageSize] = useState(pageSizeList[0]);
-  const [filter, setFilter] = useState({
+  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const maxRowsCount = React.useMemo(() => 60000, []);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [currentPage, setCurrentPage] = React.useState(0);
+  const [currentPageSize, setCurrentPageSize] = React.useState(pageSizeList[0]);
+  const [filter, setFilter] = React.useState({
     name: '',
     description: '',
   } as RowData);
-  const [filteredData, setFilteredData] = useState(
+  const [filteredData, setFilteredData] = React.useState(
     undefined as unknown as RowData[],
   );
-  const [totalRowsCount, setTotalRowsCount] = useState(maxRowsCount);
+  const [totalRowsCount, setTotalRowsCount] = React.useState(maxRowsCount);
 
   const generateData = (start: number, end: number) => {
     return Array(end - start)
@@ -1939,7 +1941,7 @@ export const WithManualPaginatorAndFilter = () => {
       });
   };
 
-  const [data, setData] = useState(() => generateData(0, 25));
+  const [data, setData] = React.useState(() => generateData(0, 25));
 
   const isPassFilter = React.useCallback(
     (dataRow: RowData, filter: RowData) => {
@@ -2099,12 +2101,12 @@ export const WithManualPaginatorAndFilter = () => {
 };
 
 WithManualPaginatorAndFilter.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const CustomFilter = () => {
   type RowData = {
@@ -2112,10 +2114,10 @@ export const CustomFilter = () => {
     description: string;
   };
 
-  const rowsCount = useMemo(() => 100, []);
-  const [isLoading, setIsLoading] = useState(false);
-  const [filter, setFilter] = useState('');
-  const [filteredData, setFilteredData] = useState(
+  const rowsCount = React.useMemo(() => 100, []);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [filter, setFilter] = React.useState('');
+  const [filteredData, setFilteredData] = React.useState(
     undefined as unknown as RowData[],
   );
 
@@ -2134,7 +2136,7 @@ export const CustomFilter = () => {
       });
   };
 
-  const [data, setData] = useState(() => generateData(0, 100));
+  const [data, setData] = React.useState(() => generateData(0, 100));
 
   const isPassFilter = React.useCallback(
     (dataRow: RowData, filter: RowData) => {
@@ -2257,12 +2259,12 @@ export const CustomFilter = () => {
 };
 
 CustomFilter.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div style={{ height: '90vh' }}>
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const ResizableColumns = () => {
   type TableStoryDataType = {
@@ -2274,7 +2276,7 @@ export const ResizableColumns = () => {
     endDate: Date;
   };
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'index',
@@ -2326,7 +2328,7 @@ export const ResizableColumns = () => {
     [],
   ) satisfies Column<TableStoryDataType>[];
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         index: 1,
@@ -2390,7 +2392,7 @@ export const ResizableColumns = () => {
 };
 
 export const ZebraStripedRows = () => {
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -2432,7 +2434,7 @@ export const ZebraStripedRows = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () =>
       Array(10)
         .fill(null)
@@ -2456,7 +2458,7 @@ export const ZebraStripedRows = () => {
 };
 
 export const HorizontalScroll = () => {
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         product: 'Product 1',
@@ -2532,7 +2534,7 @@ export const HorizontalScroll = () => {
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'product',
@@ -2585,7 +2587,7 @@ export const HorizontalScroll = () => {
 };
 
 HorizontalScroll.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div
       style={{
         height: '375px',
@@ -2596,14 +2598,14 @@ HorizontalScroll.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Virtualized = () => {
   const onClickHandler = (
     props: CellProps<{ name: string; description: string }>,
-  ) => action(props.row.original.name)();
+  ) => console.log(props.row.original.name);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -2632,7 +2634,7 @@ export const Virtualized = () => {
     [],
   );
 
-  const data = useMemo(() => {
+  const data = React.useMemo(() => {
     const size = 100000;
     const arr = new Array(size);
     for (let i = 0; i < size; ++i) {
@@ -2662,11 +2664,12 @@ export const ScrollToRow = () => {
     description: string;
   };
   const onClickHandler = React.useCallback(
-    (props: CellProps<TableStoryDataType>) => action(props.row.original.name)(),
+    (props: CellProps<TableStoryDataType>) =>
+      console.log(props.row.original.name),
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -2697,7 +2700,7 @@ export const ScrollToRow = () => {
     [onClickHandler],
   );
 
-  const data = useMemo(() => {
+  const data = React.useMemo(() => {
     const size = 100000;
     const arr = new Array(size);
     for (let i = 0; i < size; ++i) {
@@ -2730,7 +2733,7 @@ export const ScrollToRow = () => {
 };
 
 export const VirtualizedSubRows = () => {
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -2772,7 +2775,7 @@ export const VirtualizedSubRows = () => {
     [],
   );
 
-  const data = useMemo(
+  const data = React.useMemo(
     () =>
       Array(10000)
         .fill(null)
@@ -2792,7 +2795,7 @@ export const VirtualizedSubRows = () => {
 };
 
 export const DraggableColumns = () => {
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         product: 'Product 1',
@@ -2868,7 +2871,7 @@ export const DraggableColumns = () => {
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     (): Column[] => [
       {
         id: 'product',
@@ -2920,15 +2923,15 @@ export const DraggableColumns = () => {
 export const CustomizedColumns = () => {
   const onExpand = useCallback(
     (rows, state) =>
-      action(
+      console.log(
         `Expanded rows: ${JSON.stringify(rows)}. Table state: ${JSON.stringify(
           state,
         )}`,
-      )(),
+      ),
     [],
   ) satisfies NonNullable<TableProps<(typeof data)[number]>['onExpand']>;
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       { name: 'Name1', description: 'Description1' },
       { name: 'Name2', description: 'Description2' },
@@ -2963,7 +2966,7 @@ export const CustomizedColumns = () => {
     [],
   );
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       SelectionColumn({
         isDisabled: isCheckboxDisabled,
@@ -3029,7 +3032,7 @@ export const ColumnManager = () => {
     location: string;
   };
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'index',
@@ -3102,7 +3105,7 @@ export const ColumnManager = () => {
     ],
     [],
   ) satisfies Column<TableStoryDataType>[];
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         index: 1,
@@ -3184,7 +3187,7 @@ export const ColumnManager = () => {
 };
 
 export const StickyColumns = () => {
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         product: 'Product 1',
@@ -3271,7 +3274,7 @@ export const StickyColumns = () => {
     ];
   }, []);
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'product',
@@ -3341,7 +3344,7 @@ export const StickyColumns = () => {
 };
 
 StickyColumns.decorators = [
-  (Story: StoryFn) => (
+  (Story) => (
     <div
       style={{
         height: '375px',
@@ -3352,7 +3355,7 @@ StickyColumns.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const StatusAndCellIcons = () => {
   type CustomStoryDataType = {
@@ -3365,7 +3368,7 @@ export const StatusAndCellIcons = () => {
     isLoading?: boolean;
   };
 
-  const columns = useMemo(
+  const columns = React.useMemo(
     () => [
       {
         id: 'name',
@@ -3409,7 +3412,7 @@ export const StatusAndCellIcons = () => {
     [],
   ) satisfies Column<CustomStoryDataType>[];
 
-  const data = useMemo(
+  const data = React.useMemo(
     () => [
       {
         name: 'alfa.mp3',

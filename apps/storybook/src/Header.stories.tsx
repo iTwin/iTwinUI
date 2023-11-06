@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
   getUserColor,
@@ -20,28 +19,21 @@ import {
   Select,
   MenuDivider,
 } from '@itwin/itwinui-react';
-import SvgHelpCircularHollow from '@itwin/itwinui-icons-react/cjs/icons/HelpCircularHollow';
-import SvgVersion from '@itwin/itwinui-icons-react/cjs/icons/Pin';
-import SvgNetwork from '@itwin/itwinui-icons-react/cjs/icons/Network';
-import SvgNotification from '@itwin/itwinui-icons-react/cjs/icons/Notification';
-import { SvgImodel } from '@itwin/itwinui-icons-react';
-import { useState } from '@storybook/addons';
-
-type HeaderProps = React.ComponentProps<typeof Header>;
+import {
+  SvgHelpCircularHollow,
+  SvgPin,
+  SvgNetwork,
+  SvgNotification,
+  SvgImodel,
+} from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/Header',
-  component: Header,
-  subcomponents: {
-    HeaderBreadcrumbs,
-    HeaderLogo,
-    HeaderButton,
-  },
-} as Meta<HeaderProps>;
+};
 
 const buildClickHandler =
   (menu: string, close: () => void) => (item: string) => {
-    action(`Menu '${menu}', ${item} clicked!`)();
+    console.log(`Menu '${menu}', ${item} clicked!`);
     close();
   };
 
@@ -71,7 +63,7 @@ const buildMenu = (menu: string) => (close: () => void) =>
   ];
 
 export const Full = () => {
-  const [userType, setUserType] = useState('User');
+  const [userType, setUserType] = React.useState('User');
 
   const avatarMenuItems = (close: () => void) => [
     <MenuExtraContent key={0}>
@@ -121,7 +113,7 @@ export const Full = () => {
               <path d='m12.6 13.4c-1.2-1.5-2.1-3.1-2.4-5.5-2.7 3.9-4.6 4.2-5.7 2.4l-1.2 5.7h-2.2l3.5-14.1 1.8-.4c-.1.5-1.4 6.2.6 7 2 .7 4.6-8.5 4.6-8.5l2.2.4c-1.6 3.7-1.6 7.6 1.1 10.9l-2.3 2.1' />
             </svg>
           }
-          onClick={() => action('Clicked on the title')()}
+          onClick={() => console.log('Clicked on the title')}
         >
           Microstation
         </HeaderLogo>
@@ -131,7 +123,7 @@ export const Full = () => {
           items={[
             <HeaderButton
               key='project'
-              onClick={() => action('Clicked on the Project')()}
+              onClick={() => console.log('Clicked on the Project')}
               menuItems={buildMenu('Project')}
               name='Project A (Super Size Edition)'
               description='YJC-2249'
@@ -140,7 +132,7 @@ export const Full = () => {
             />,
             <HeaderButton
               key='iModel'
-              onClick={() => action('Clicked on the iModel')()}
+              onClick={() => console.log('Clicked on the iModel')}
               menuItems={buildMenu('iModel')}
               name='iModel B'
               startIcon={
@@ -154,8 +146,8 @@ export const Full = () => {
             <HeaderButton
               key='version'
               name='Version C'
-              onClick={() => action('Clicked on the Version')()}
-              startIcon={<SvgVersion />}
+              onClick={() => console.log('Clicked on the Version')}
+              startIcon={<SvgPin />}
             />,
           ]}
         />
@@ -163,7 +155,7 @@ export const Full = () => {
       actions={[
         <IconButton
           key='notif'
-          onClick={() => action('Clicked on the notification bell')()}
+          onClick={() => console.log('Clicked on the notification bell')}
           styleType='borderless'
         >
           <SvgNotification />
@@ -216,7 +208,7 @@ export const Basic = () => {
               name='Project A (Super Size Edition)'
               description='YJC-2249'
               startIcon={<SvgNetwork />}
-              onClick={() => action('Clicked on the Project')()}
+              onClick={() => console.log('Clicked on the Project')}
               menuItems={buildMenu('Project')}
             />,
             <HeaderButton
@@ -228,13 +220,13 @@ export const Basic = () => {
                   style={{ objectFit: 'cover' }}
                 />
               }
-              onClick={() => action('Clicked on the iModel')()}
+              onClick={() => console.log('Clicked on the iModel')}
             />,
             <HeaderButton
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -278,7 +270,7 @@ export const Slim = () => {
               name='Project A (Super Size Edition)'
               description='YJC-2249'
               startIcon={<SvgNetwork />}
-              onClick={() => action('Clicked on the Project')()}
+              onClick={() => console.log('Clicked on the Project')}
               menuItems={buildMenu('Project')}
             />,
             <HeaderButton
@@ -290,13 +282,13 @@ export const Slim = () => {
                   style={{ objectFit: 'cover' }}
                 />
               }
-              onClick={() => action('Clicked on the iModel')()}
+              onClick={() => console.log('Clicked on the iModel')}
             />,
             <HeaderButton
               key='version'
               name='Version C'
               menuItems={buildMenu('Version')}
-              startIcon={<SvgVersion />}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}
@@ -339,7 +331,7 @@ export const CenterContent = () => {
               name='Project A'
               description='YJC-2249'
               startIcon={<SvgNetwork />}
-              onClick={() => action('Clicked on the Project')()}
+              onClick={() => console.log('Clicked on the Project')}
               menuItems={buildMenu('Project')}
             />,
             <HeaderButton
@@ -351,13 +343,13 @@ export const CenterContent = () => {
                   style={{ objectFit: 'cover' }}
                 />
               }
-              onClick={() => action('Clicked on the iModel')()}
+              onClick={() => console.log('Clicked on the iModel')}
             />,
             <HeaderButton
               key='version'
               name='Version C'
-              onClick={() => action('Clicked on the Version')()}
-              startIcon={<SvgVersion />}
+              onClick={() => console.log('Clicked on the Version')}
+              startIcon={<SvgPin />}
               isActive={true}
             />,
           ]}

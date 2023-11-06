@@ -17,9 +17,6 @@ src/**/*.css
 # CSS modules output
 styles.css
 
-# Storybook
-storybook-static/*
-
 # Yalc
 .yalc/*
 yalc.lock

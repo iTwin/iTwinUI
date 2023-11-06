@@ -6,7 +6,6 @@ import React from 'react';
 import { Tooltip } from '@itwin/itwinui-react';
 export default {
   title: 'Core/Tooltip',
-  component: Tooltip,
 };
 
 export const Top = () => {
