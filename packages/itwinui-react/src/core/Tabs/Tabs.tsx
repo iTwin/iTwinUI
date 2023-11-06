@@ -649,11 +649,9 @@ export { LegacyTab as Tab };
  *     <Tabs.Tab value='tab2' label='Label 2' />
  *     <Tabs.Tab value='tab3' label='Label 3' />
  *   </Tabs.TabList>
- *   <Tabs.ActionsWrapper>
- *     <Tabs.Actions>
- *       <Button>Sample Button</Button>
- *     </Tabs.Actions>
- *   </Tabs.ActionsWrapper>
+ *   <Tabs.Actions>
+ *     <Button>Sample Button</Button>
+ *   </Tabs.Actions>
  *   <Tabs.Panel value='tab1'>Content 1</Tabs.Panel>
  *   <Tabs.Panel value='tab2'>Content 2</Tabs.Panel>
  *   <Tabs.Panel value='tab3'>Content 3</Tabs.Panel>
