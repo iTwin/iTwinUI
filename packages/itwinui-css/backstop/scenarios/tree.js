@@ -25,6 +25,10 @@ module.exports = [
     selectors: ['#demo-icons'],
     viewports: [{ width: 800, height: 600 }],
   }),
+  scenario('Sizes', {
+    selectors: ['#demo-sizes'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
 
   // Hover states
   scenario('State hover tree node', {
