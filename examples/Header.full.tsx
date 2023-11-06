@@ -41,6 +41,8 @@ export default () => {
               menuItems={menuItems}
             />,
             <HeaderButton
+              as='a'
+              href=''
               key='iModel'
               name='iModel B'
               startIcon={

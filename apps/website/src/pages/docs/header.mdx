@@ -22,24 +22,23 @@ The first thing most people look at when they arrive at a new web page is the he
 
 ## Usage
 
-### `<Header>` component
-
-It consists of various subcomponents and can be customized by modifying its props.
+`Header` consists of various subcomponents and can be customized by modifying its props.
 
 - Logo can be added using the `appLogo` prop and specifying the desired logo under the `<HeaderLogo>` subcomponent.
-- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the `<HeaderButton>` subcomponent. For a dropdown menu, the `menuItems` prop can be used inside the `<HeaderButton>` for showing items and `onClick()` property for handling actions.
-- Buttons/Icons/Content can be displayed towards the left of menuItems using the `actions` prop.
-- `menuItems` are typically an array of items used to create dropdown menus, allowing users to select from a list of options or perform specific actions. When passed as a prop, it expects a list of MenuItems components. Each `MenuItem` has a `value` (the label displayed) and an `onClick` function that takes the `close` argument (for closing).
+- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the [`<HeaderButton>` subcomponent](#headerbutton-subcomponent).
+- The `actions` prop can be used to add any arbitrary buttons and content near the right end of the header.
+- The `menuItems` prop can be used to show any additional actions inside an overflow menu located to the right of `actions`.
 
 ### `<HeaderButton>` subcomponent
 
-It is designed to offer a range of behaviors that are dependent on the props that are passed to it.
+`HeaderButton` is designed to offer a range of behaviors that are dependent on the props that are passed to it.
 
 - `onClick` prop: behaves like a standard button.
-- When set as='a' and `href` prop: behaves like a regular anchor link.
+- as='a' and `href` props: behaves like a regular anchor link.
 - `menuItems` prop: behaves like a dropdown button.
-- Both `menuItems` and `onClick/href` prop: behaves like a split button, where the left part is the main button/link and the right part opens a dropdown menu.
-- `isActive` prop: behaves as an active button.
+- Both `menuItems` and `onClick`/`href` props: behaves like a split button, where the left part is the main button/link and the right part opens a dropdown menu.
+
+The `isActive` prop can be used to indicate the current breadcrumb.
 
 <LiveExample src='Header.full.tsx'>
   <AllExamples.HeaderFullExample client:load />
