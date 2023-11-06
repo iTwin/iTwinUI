@@ -7,7 +7,6 @@ import { Textarea } from '@itwin/itwinui-react';
 
 export default {
   title: 'Input/Textarea',
-  component: Textarea,
 };
 
 export const Basic = () => {

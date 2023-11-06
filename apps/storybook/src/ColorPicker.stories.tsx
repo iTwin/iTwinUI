@@ -15,12 +15,9 @@ import {
   ColorInputPanel,
   Popover,
 } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: ColorPicker,
-  subcomponents: { ColorBuilder, ColorPalette, ColorInputPanel, ColorSwatch },
   title: 'Core/ColorPicker',
 };
 
@@ -69,7 +66,7 @@ export const Basic = () => {
     );
     setActiveColor(ColorsList[index]);
     setColorName(ColorsList[index].name);
-    action(`Selected ${ColorsList[index].color}`)();
+    console.log(`Selected ${ColorsList[index].color}`);
   };
 
   return (
@@ -111,7 +108,7 @@ export const Advanced = () => {
 
   const onColorChanged = (color: ColorValue) => {
     setSelectedColor(color);
-    action(`Selected ${getDisplayString(color)}`)();
+    console.log(`Selected ${getDisplayString(color)}`);
   };
 
   const getDisplayString = (color = selectedColor) => {
@@ -189,7 +186,7 @@ export const WithAlpha = () => {
 
   const onColorChanged = (color: ColorValue) => {
     setSelectedColor(color);
-    action(`Selected ${getDisplayString(color)}`)();
+    console.log(`Selected ${getDisplayString(color)}`);
   };
 
   const getDisplayString = (color = selectedColor) => {

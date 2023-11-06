@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import { useState } from 'react';
 import React from 'react';
 import {
@@ -19,7 +18,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: FileUpload,
   title: 'Core/FileUpload',
 };
 
@@ -31,7 +29,7 @@ export const WrappingInput = () => {
       dragContent='Drop file to upload'
       onFileDropped={(files) => {
         setFiles(Array.from(files));
-        action(`${files.length} files uploaded`)();
+        console.log(`${files.length} files uploaded`);
       }}
     >
       <LabeledInput
@@ -53,7 +51,7 @@ export const DefaultFileUploadCard = () => {
     <FileUpload
       onFileDropped={(files) => {
         setFiles(files);
-        action(`${files.length} files uploaded`)();
+        console.log(`${files.length} files uploaded`);
       }}
     >
       <FileUploadCard
@@ -83,7 +81,7 @@ export const CustomFileUploadCard = () => {
     <FileUpload
       onFileDropped={(files) => {
         setFiles(files);
-        action(`${files.length} files uploaded`)();
+        console.log(`${files.length} files uploaded`);
       }}
     >
       <FileUploadCard

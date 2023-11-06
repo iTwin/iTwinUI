@@ -5,9 +5,9 @@
 import React from 'react';
 import { List, ListItem } from '@itwin/itwinui-react';
 import { SvgCheckmark, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
-  component: List,
   title: 'Core/List',
   decorators: [
     (Story) => (
@@ -16,7 +16,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (

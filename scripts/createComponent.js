@@ -76,7 +76,6 @@ const storiesFactory = (directory, componentName) => {
   return {
     path: `${directory}/${componentName}.stories.tsx`,
     template: `${copyrightBannerJs}
-import { Story, Meta } from '@storybook/react';
 import * as React from 'react';
 import { ${componentName} } from '@itwin/itwinui-react';
 
@@ -104,7 +103,7 @@ describe('${componentName}', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(testName);
     });
   });

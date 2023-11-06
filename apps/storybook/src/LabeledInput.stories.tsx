@@ -3,13 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
-import SvgCamera from '@itwin/itwinui-icons-react/cjs/icons/Camera';
+import { SvgCamera } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { LabeledInput, StatusMessage } from '@itwin/itwinui-react';
 
 export default {
   title: 'Input/LabeledInput',
-  component: LabeledInput,
 };
 
 export const Basic = () => {

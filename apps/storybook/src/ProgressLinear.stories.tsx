@@ -2,15 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-/* eslint-disable react/jsx-key */
-import SvgStatusErrorHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusErrorHollow';
-import SvgStatusSuccessHollow from '@itwin/itwinui-icons-react/cjs/icons/StatusSuccessHollow';
+import {
+  SvgStatusErrorHollow,
+  SvgStatusSuccessHollow,
+} from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { ProgressLinear, Icon } from '@itwin/itwinui-react';
 
 export default {
   title: 'ProgressIndicators/ProgressLinear',
-  component: ProgressLinear,
 };
 
 export const Determinate = () => {
@@ -39,7 +39,7 @@ export const Positive = () => {
       value={100}
       labels={[
         'Upload done!',
-        <Icon>
+        <Icon key='icon'>
           <SvgStatusSuccessHollow />
         </Icon>,
       ]}
@@ -54,7 +54,7 @@ export const Negative = () => {
       value={45}
       labels={[
         'Upload failed',
-        <Icon>
+        <Icon key='icon'>
           <SvgStatusErrorHollow />
         </Icon>,
       ]}

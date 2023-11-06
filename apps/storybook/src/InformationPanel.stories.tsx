@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { CellProps } from '@itwin/itwinui-react/react-table';
-import { action } from '@storybook/addon-actions';
 import { SvgEdit } from '@itwin/itwinui-icons-react';
 import {
   InformationPanel,
@@ -20,15 +19,9 @@ import {
   Label,
   Textarea,
 } from '@itwin/itwinui-react';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
-  component: InformationPanel,
-  subcomponents: {
-    InformationPanelWrapper,
-    InformationPanelHeader,
-    InformationPanelBody,
-    InformationPanelContent,
-  },
   title: 'Core/InformationPanel',
 };
 
@@ -62,7 +55,7 @@ export const Basic = () => {
         <InformationPanelHeader
           onClose={() => {
             setOpenRowIndex(-1);
-            action('Panel closed')();
+            console.log('Panel closed');
           }}
         >
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
@@ -110,7 +103,7 @@ Basic.decorators = [
       <Story />
     </>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const Horizontal = () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>();
@@ -143,7 +136,7 @@ export const Horizontal = () => {
         <InformationPanelHeader
           onClose={() => {
             setOpenRowIndex(-1);
-            action('Panel closed')();
+            console.log('Panel closed');
           }}
         >
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
@@ -217,7 +210,7 @@ export const CustomActions = () => {
           onClose={() => {
             setOpenRowIndex(undefined);
             setIsEditing(false);
-            action('Panel closed')();
+            console.log('Panel closed');
           }}
           actions={
             <IconButton
@@ -301,7 +294,7 @@ export const CustomWidth = () => {
         <InformationPanelHeader
           onClose={() => {
             setIsOpen(false);
-            action('Panel closed')();
+            console.log('Panel closed');
           }}
         >
           <Text variant='subheading'>Details</Text>
@@ -325,4 +318,4 @@ CustomWidth.decorators = [
       <Story />
     </>
   ),
-];
+] satisfies StoryDecorator[];

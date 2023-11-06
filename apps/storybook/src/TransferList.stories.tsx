@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-/* eslint-disable react/jsx-key */
 import React from 'react';
 import { TransferList, IconButton } from '@itwin/itwinui-react';
 import {
@@ -13,7 +12,6 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  component: TransferList,
   title: 'Core/TransferList',
 };
 
@@ -66,6 +64,7 @@ export const Basic = () => {
           {optionData?.map((item, index) => {
             return (
               <TransferList.Item
+                key={item.name}
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -127,6 +126,7 @@ export const Basic = () => {
           {appliedData.map((item, index) => {
             return (
               <TransferList.Item
+                key={item.name}
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -199,6 +199,7 @@ export const WithLabel = () => {
           {optionData?.map((item, index) => {
             return (
               <TransferList.Item
+                key={item.name}
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {
@@ -261,6 +262,7 @@ export const WithLabel = () => {
           {appliedData.map((item, index) => {
             return (
               <TransferList.Item
+                key={item.name}
                 actionable
                 active={item.active}
                 onActiveChange={(isActive: boolean) => {

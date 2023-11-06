@@ -9,7 +9,7 @@ describe('Tooltip', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.get('#tooltip-target').trigger('mouseenter');
       cy.wait(50);
       cy.compareSnapshot(testName);

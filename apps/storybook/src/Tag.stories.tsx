@@ -4,16 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { Tag } from '@itwin/itwinui-react';
-import { action } from '@storybook/addon-actions';
 
 export default {
-  component: Tag,
   title: 'Core/Tag',
 };
 
 export const Default = () => {
   const onRemove = () => {
-    action('Closed me!');
+    console.log('Closed me!');
   };
   return <Tag onRemove={onRemove}>{`I'm a tag`}</Tag>;
 };

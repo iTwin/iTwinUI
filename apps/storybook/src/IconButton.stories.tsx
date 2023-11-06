@@ -3,18 +3,16 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import { IconButton } from '@itwin/itwinui-react';
 import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Buttons/IconButton',
-  component: IconButton,
 };
 
 export const Add = () => {
   return (
-    <IconButton label='Add' onClick={action('clicked')}>
+    <IconButton label='Add' onClick={() => console.log('clicked')}>
       <SvgAdd />
     </IconButton>
   );
@@ -22,7 +20,12 @@ export const Add = () => {
 
 export const SmallActiveAdd = () => {
   return (
-    <IconButton label='Add' onClick={action('clicked')} isActive size='small'>
+    <IconButton
+      label='Add'
+      onClick={() => console.log('clicked')}
+      isActive
+      size='small'
+    >
       <SvgAdd />
     </IconButton>
   );
@@ -32,7 +35,7 @@ export const HighVisibilityAdd = () => {
   return (
     <IconButton
       label='Add'
-      onClick={action('clicked')}
+      onClick={() => console.log('clicked')}
       styleType='high-visibility'
     >
       <SvgAdd />
@@ -42,7 +45,11 @@ export const HighVisibilityAdd = () => {
 
 export const Borderless = () => {
   return (
-    <IconButton label='Add' styleType='borderless' onClick={action('clicked')}>
+    <IconButton
+      label='Add'
+      styleType='borderless'
+      onClick={() => console.log('clicked')}
+    >
       <SvgAdd />
     </IconButton>
   );

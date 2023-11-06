@@ -3,19 +3,17 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { useMemo, useCallback, useState } from '@storybook/addons';
 import { Text, Slider } from '@itwin/itwinui-react';
-import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
-import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
+import { SvgSmileyHappy, SvgSmileySad } from '@itwin/itwinui-icons-react';
+import type { StoryDecorator, StoryDefault } from '@ladle/react';
 
 export default {
   title: 'Input/Slider',
-  component: Slider,
   decorators: [
     (Story, context) => (
       <div
         style={{
-          ...(context.story.includes('Vertical')
+          ...(context.globalState.story.includes('vertical')
             ? {
                 height: 'calc(100vh - 24px)',
                 width: 'fit-content',
@@ -28,7 +26,7 @@ export default {
       </div>
     ),
   ],
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return <Slider values={[50]} />;
@@ -115,7 +113,7 @@ export const CustomTooltip = () => {
 };
 
 export const CustomTickNoTooltip = () => {
-  const dateFormatter = useMemo(() => {
+  const dateFormatter = React.useMemo(() => {
     return new Intl.DateTimeFormat('default', {
       month: 'short',
       day: '2-digit',
@@ -123,14 +121,14 @@ export const CustomTickNoTooltip = () => {
     });
   }, []);
 
-  const [currentDate, setCurrentDate] = useState(
+  const [currentDate, setCurrentDate] = React.useState(
     new Date(Date.UTC(2019, 0, 1)),
   );
 
   const [values, setValues] = React.useState([0]);
 
-  const updateDate = useCallback((values: number[]) => {
-    setValues(values);
+  const updateDate = React.useCallback((values: readonly number[]) => {
+    setValues([...values]);
     const newDate = new Date(Date.UTC(2019, 0, values[0]));
     setCurrentDate(newDate);
   }, []);
@@ -169,7 +167,7 @@ CustomTickNoTooltip.decorators = [
       <Story />
     </div>
   ),
-];
+] satisfies StoryDecorator[];
 
 export const DecimalIncrement = () => {
   return <Slider min={0} max={50} step={2.5} values={[25]} />;

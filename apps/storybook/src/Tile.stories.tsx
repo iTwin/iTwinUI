@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
   Badge,
@@ -14,14 +13,15 @@ import {
   Tile,
   Avatar,
 } from '@itwin/itwinui-react';
-import SvgFolder from '@itwin/itwinui-icons-react/cjs/icons/Folder';
-import SvgImodelHollow from '@itwin/itwinui-icons-react/cjs/icons/ImodelHollow';
-import SvgInfo from '@itwin/itwinui-icons-react/cjs/icons/Info';
-import SvgStar from '@itwin/itwinui-icons-react/cjs/icons/Star';
-import SvgTag from '@itwin/itwinui-icons-react/cjs/icons/Tag';
+import {
+  SvgFolder,
+  SvgImodelHollow,
+  SvgInfo,
+  SvgStar,
+  SvgTag,
+} from '@itwin/itwinui-icons-react';
 
 export default {
-  component: Tile,
   title: 'Core/Tile',
 };
 
@@ -41,10 +41,10 @@ export const Basic = () => {
           station. This is the largest sample iModel.
         </Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -89,10 +89,10 @@ export const AllProps = () => {
           station. This is the largest sample iModel.
         </Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -105,10 +105,10 @@ export const AllProps = () => {
         </Tile.Metadata>
       </Tile.ContentArea>
       <Tile.Buttons>
-        <Button key={1} onClick={action('clicked left button')}>
+        <Button key={1} onClick={() => console.log('clicked left button')}>
           Manage
         </Button>
-        <Button key={2} onClick={action('clicked right button')}>
+        <Button key={2} onClick={() => console.log('clicked right button')}>
           Projects
         </Button>
       </Tile.Buttons>
@@ -196,10 +196,10 @@ export const Condensed = () => {
       </Tile.ThumbnailArea>
       <Tile.ContentArea>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -235,10 +235,10 @@ export const WithAvatar = () => {
       <Tile.ContentArea>
         <Tile.Description>User Description</Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -262,10 +262,10 @@ export const Folder = () => {
       <Tile.ContentArea>
         <Tile.Description>Folder description</Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -292,10 +292,10 @@ export const Status = () => {
       <Tile.ContentArea>
         <Tile.Description>Description</Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -322,10 +322,10 @@ export const Loading = () => {
       <Tile.ContentArea>
         <Tile.Description>Description</Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>
@@ -355,10 +355,10 @@ export const Disabled = () => {
       <Tile.ContentArea>
         <Tile.Description>Description</Tile.Description>
         <Tile.MoreOptions>
-          <MenuItem key={1} onClick={action('clicked item 1')}>
+          <MenuItem key={1} onClick={() => console.log('clicked item 1')}>
             Item 1
           </MenuItem>
-          <MenuItem key={2} onClick={action('clicked item 2')}>
+          <MenuItem key={2} onClick={() => console.log('clicked item 2')}>
             Item 2
           </MenuItem>
         </Tile.MoreOptions>

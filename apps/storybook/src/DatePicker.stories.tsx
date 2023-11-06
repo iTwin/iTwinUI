@@ -2,21 +2,17 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { action } from '@storybook/addon-actions';
 import React from 'react';
 import {
   DatePicker,
   IconButton,
   Popover,
-  TimePicker,
   generateLocalizedStrings,
 } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default {
   title: 'Core/DatePicker',
-  component: DatePicker,
-  subcomponents: { TimePicker },
 };
 
 export const Basic = () => {
@@ -26,7 +22,7 @@ export const Basic = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New date value: ${date}`);
   };
 
   return (
@@ -50,7 +46,7 @@ export const WithTime = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New date value: ${date}`);
   };
 
   return (
@@ -80,7 +76,7 @@ export const WithCombinedTime = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New date value: ${date}`);
   };
 
   return (
@@ -112,7 +108,7 @@ export const Localized = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New date value: ${date}`);
   };
 
   return (
@@ -141,7 +137,7 @@ export const WithYear = () => {
   );
   const onChange = (date: Date) => {
     setCurrentDate(date);
-    action(`New date value: ${date}`, { clearOnStoryChange: false })();
+    console.log(`New date value: ${date}`);
   };
   return (
     <>
@@ -174,11 +170,13 @@ export const Range = () => {
   const onChange = (startDate: Date, endDate?: Date) => {
     setCurrentStartDate(startDate);
     endDate && setCurrentEndDate(endDate);
-    action(`New start date value: ${startDate}`, {
+    console.log(`New start date value: ${startDate}`, {
       clearOnStoryChange: false,
-    })();
+    });
     endDate &&
-      action(`New end date value: ${endDate}`, { clearOnStoryChange: false })();
+      console.log(`New end date value: ${endDate}`, {
+        clearOnStoryChange: false,
+      });
   };
   return (
     <>

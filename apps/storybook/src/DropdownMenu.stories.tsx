@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { action } from '@storybook/addon-actions';
 import {
   DropdownMenu,
   IconButton,
@@ -20,17 +19,15 @@ import {
   SvgMove,
   SvgPlaceholder,
 } from '@itwin/itwinui-icons-react';
-import { useState } from '@storybook/addons';
+import { StoryDecorator } from '@ladle/react';
 
 export default {
   title: 'Core/DropdownMenu',
-  component: DropdownMenu,
-  subcomponents: { MenuItem, MenuDivider, MenuExtraContent },
 };
 
 export const Basic = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -54,11 +51,17 @@ export const Basic = () => {
 };
 
 // Body height is the same as Select component height therefore clicking outside would not close dropdown.
-Basic.decorators = [(Story) => <div style={{ minHeight: 150 }}>{Story()}</div>];
+Basic.decorators = [
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithStartIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
-    action(`${actionName} clicked!`)();
+    console.log(`${actionName} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -86,12 +89,16 @@ export const WithStartIcons = () => {
 };
 
 WithStartIcons.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithEndIcons = () => {
   const onClick = (actionName: string, close: () => void) => () => {
-    action(`${actionName} clicked!`)();
+    console.log(`${actionName} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -119,12 +126,16 @@ export const WithEndIcons = () => {
 };
 
 WithEndIcons.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithSublabels = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -165,12 +176,16 @@ export const WithSublabels = () => {
 };
 
 WithSublabels.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const Submenu = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -227,12 +242,16 @@ export const Submenu = () => {
 };
 
 Submenu.decorators = [
-  (Story) => <div style={{ minHeight: 150 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 150 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithSeparator = () => {
   const onClick = (index: number, close: () => void) => () => {
-    action(`Item #${index} clicked!`)();
+    console.log(`Item #${index} clicked!`);
     close();
   };
   const dropdownMenuItems = (close: () => void) => [
@@ -260,16 +279,20 @@ export const WithSeparator = () => {
 };
 
 WithSeparator.decorators = [
-  (Story) => <div style={{ minHeight: 200 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 200 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];
 
 export const WithContent = () => {
   const onClick = (item: string, close: () => void) => () => {
-    action(`'${item}' clicked!`)();
+    console.log(`'${item}' clicked!`);
     close();
   };
 
-  const [userType, setUserType] = useState('User');
+  const [userType, setUserType] = React.useState('User');
 
   const dropdownMenuItems = (close: () => void) => [
     <MenuExtraContent key={0}>
@@ -307,5 +330,9 @@ export const WithContent = () => {
 };
 
 WithContent.decorators = [
-  (Story) => <div style={{ minHeight: 250 }}>{Story()}</div>,
-];
+  (Story) => (
+    <div style={{ minHeight: 250 }}>
+      <Story />
+    </div>
+  ),
+] satisfies StoryDecorator[];

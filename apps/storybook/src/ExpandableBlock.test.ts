@@ -17,7 +17,7 @@ describe('ExpandableBlock', () => {
   tests.forEach((testName) => {
     it(testName, function () {
       const id = Cypress.storyId(storyPath, testName);
-      cy.visit('iframe', { qs: { id } });
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(`${testName} (Closed)`);
       if (testName !== 'Disabled') {
         cy.get('[type=button]').first().click();

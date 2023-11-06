@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { useState } from '@storybook/addons';
 import React from 'react';
 import {
   Fieldset,
@@ -14,11 +13,10 @@ import {
 
 export default {
   title: 'Input/Fieldset',
-  component: Fieldset,
 };
 
 export const Basic = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
 
   return (
     <Fieldset
@@ -54,7 +52,7 @@ export const Basic = () => {
 };
 
 export const Disabled = () => {
-  const [value, setValue] = useState<number | undefined>(undefined);
+  const [value, setValue] = React.useState<number | undefined>(undefined);
 
   return (
     <Fieldset

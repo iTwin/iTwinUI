@@ -9,7 +9,6 @@ import {
   SvgPlaceholder,
   SvgSettings,
 } from '@itwin/itwinui-icons-react';
-import { useState } from '@storybook/addons';
 import React from 'react';
 import {
   SideNavigation,
@@ -20,10 +19,9 @@ import {
   IconButton,
   Anchor,
 } from '@itwin/itwinui-react';
+import type { StoryDefault } from '@ladle/react';
 
 export default {
-  component: SideNavigation,
-  subcomponents: { SidenavButton, SidenavSubmenu, SidenavSubmenuHeader },
   decorators: [
     (Story) => (
       <div style={{ height: 'calc(100vh - 24px)' }}>
@@ -32,7 +30,7 @@ export default {
     ),
   ],
   title: 'Core/SideNavigation',
-};
+} satisfies StoryDefault;
 
 export const Basic = () => {
   return (
@@ -58,7 +56,7 @@ export const Basic = () => {
 };
 
 export const ActiveItem = () => {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
+  const [activeIndex, setActiveIndex] = React.useState<number>(0);
 
   const mainItems = [...Array(3).fill(null)].map((_, index) => (
     <SidenavButton
@@ -91,9 +89,9 @@ export const Submenu = () => {
     { label: 'Settings', icon: <SvgSettings /> },
   ];
 
-  const [activeItem, setActiveItem] = useState(2);
-  const [isSubmenuOpen, setIsSubmenuOpen] = useState(true);
-  const [activeSubItem, setActiveSubItem] = useState(0);
+  const [activeItem, setActiveItem] = React.useState(2);
+  const [isSubmenuOpen, setIsSubmenuOpen] = React.useState(true);
+  const [activeSubItem, setActiveSubItem] = React.useState(0);
 
   const items = itemsData.map(({ label, icon }, index) => (
     <SidenavButton
