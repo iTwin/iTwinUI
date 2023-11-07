@@ -19,7 +19,7 @@ import * as AllExamples from 'examples';
 </LiveExample>
 
 The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is
-located below the slides, consisting of "dots" and "previous"/"next" buttons, used for changing slides.
+located below the slides, consisting of ["dots"](#dots-list) and ["previous"/"next"](#navigation) buttons, used for changing slides.
 
 The currently shown slide can also be changed using the left/right arrow keys or by dragging on a touch device.
 
@@ -27,7 +27,7 @@ The currently shown slide can also be changed using the left/right arrow keys or
 
 ### Controlled State
 
-Carousels can be controlled externally by using the properties `activeSlideIndex` and `onSlideChange`.
+By default, the carousel maintain their own state. it can be controlled externally by using the properties `activeSlideIndex` and `onSlideChange`.
 
 <LiveExample src='Carousel.controlled.tsx'>
   <AllExamples.CarouselControlledExample client:load />
