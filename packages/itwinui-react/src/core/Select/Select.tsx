@@ -444,10 +444,11 @@ export const Select = React.forwardRef(
               })}
               ref={(node) => {
                 // early return if ref is already set, to prevent repeated re-renders
-                if (popover.refs.floating.current || !node) {
-                  return;
+                if (node && !popover.refs.floating.current) {
+                  popover.refs.setFloating(node);
+                } else if (!node) {
+                  popover.refs.setFloating(null);
                 }
-                popover.refs.setFloating(node);
               }}
             >
               {menuItems}
