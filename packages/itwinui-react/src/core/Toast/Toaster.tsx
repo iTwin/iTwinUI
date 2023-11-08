@@ -42,8 +42,9 @@ export type ToastOptions = Omit<
 export const useToaster = () => {
   const dispatch = useSafeContext(ToasterDispatchContext);
 
-  const showToast = React.useCallback(
-    (category: ToastCategory) =>
+  return React.useMemo(() => {
+    const showToast =
+      (category: ToastCategory) =>
       (content: React.ReactNode, options?: ToastOptions) => {
         const id = nextId();
 
@@ -53,22 +54,21 @@ export const useToaster = () => {
         });
 
         return { close: () => dispatch({ type: 'remove', id }) };
-      },
-    [dispatch],
-  );
+      };
 
-  return {
-    positive: showToast('positive'),
-    informational: showToast('informational'),
-    negative: showToast('negative'),
-    warning: showToast('warning'),
-    closeAll: () => {
-      dispatch({ type: 'close-all' });
-    },
-    setSettings: (settings: Partial<ToasterSettings>) => {
-      dispatch({ type: 'settings', settings });
-    },
-  };
+    return {
+      positive: showToast('positive'),
+      informational: showToast('informational'),
+      negative: showToast('negative'),
+      warning: showToast('warning'),
+      closeAll: () => {
+        dispatch({ type: 'close-all' });
+      },
+      setSettings: (settings: Partial<ToasterSettings>) => {
+        dispatch({ type: 'settings', settings });
+      },
+    };
+  }, [dispatch]);
 };
 
 // ----------------------------------------------------------------------------
