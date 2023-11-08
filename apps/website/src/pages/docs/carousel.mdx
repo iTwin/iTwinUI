@@ -61,13 +61,13 @@ This component uses a composition approach, similar to most of the other compone
 
 ### Navigation
 
-The `Carousel.Navigation` component by default consists of the `PreviousButton` and `NextButton` shown on the left and right, and the `Carousel.DotsList` component shown in the middle. `children` can be specified to override what is shown in this navigation section.
+The `Carousel.Navigation` component by default consists of the `PreviousButton` and `NextButton` shown on the left and right and the `Carousel.DotsList` component shown in the middle. The navigation section must be present before the slides in DOM order.`children` can be specified to override what is shown in this navigation section.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselNavigation.d.ts'} />
 
 ### Dots List
 
-The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
+The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide. It must be present before the slides in DOM order. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDotsList.d.ts'} />
 
