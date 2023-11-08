@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Memoize `useToaster` return value so it can be more reliably used in dependency arrays.
+Memoize `useToaster`'s return value so that it can be more reliably used in dependency arrays.
