@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.16
+
+### Patch Changes
+
+- fa3a1c35: Made Table's Ctrl+Shift click implementation more consistent with Windows Explorer's implementation.
+- fa3a1c35: Fixed occasional mismatch between the Table's visually selected rows and Table state's selected rows
+- 9f7f66a0: Memoized `useId` fallback for react 17, to prevent unnecessary rerenders.
+
 ## 2.12.15
 
 ### Patch Changes
