@@ -6,13 +6,11 @@ import * as React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
-  type AlertType = 'positive' | 'warning' | 'negative';
-  const types: AlertType[] = ['positive', 'warning', 'negative'];
   return (
     <>
-      {types.map((type, index) => (
+      {(['positive', 'warning', 'negative'] as const).map((type) => (
         <Alert.Wrapper
-          key={index}
+          key={type}
           type={type}
           style={{ minWidth: 'min(100%, 350px)' }}
         >

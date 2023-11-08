@@ -17,27 +17,29 @@ import * as AllExamples from 'examples';
   <AllExamples.AlertMainExample client:load />
 </LiveExample>
 
-An alert is an element that notifies the user of something important that is not user initiated. If you need to alert the user because of something they did, consider using a [toast](toast) notification or an inline message. Instead, an alert is used to notify the user of something unrelated to what they just did. Examples of this might be announcing a new feature within the product, or alerting the user of scheduled server maintenance and downtime.
+The alert message must be concise, it is recommended to have no more than 256 characters. If you need to provide additional information, consider using an optional [hyperlink](#alertaction) at the end of the alert message to explain more on a new page. You may also include an optional close icon (a close icon is mandatory for [sticky](#sticky) alerts).
+Additionally it's important to note that alerts are intended to inform users of information that is unrelated to their recent actions. Examples of alerts include announcing new product features or notifying the user of scheduled server maintenance and downtime.
 
 ## Usage
-
-The alert message must be concise, we recommend no more than 256 characters. If you feel the need to explain in further detail, you may use an optional [hyperlink](#alertaction) at the end of the alert message to explain more on a new page. You may also include an optional close icon (close icon is required for [sticky](#sticky) alerts).
 
 ### Composition API
 
 You can build Alerts with sub-components that are fully customizable.
 
-We provide:
-
-- Alert.Wrapper
-- Alert.Icon
-- Alert.Message
-- Alert.Action
-- Alert.CloseButton
+```tsx
+<Alert.Wrapper type='positive'>
+  <Alert.Icon />
+  <Alert.Message>
+    This is an alert
+    <Alert.Action onClick={() => console.log('Clicked more info!')}>Learn more</Alert.Action>
+  </Alert.Message>
+  <Alert.CloseButton onClick={() => console.log('CLOSED')} />
+</Alert.Wrapper>
+```
 
 The type of alert can be specified by utilizing the `type` prop inside `<Alert.Wrapper>`. There are four distinct types of alerts that can be chosen from:
 
-- positive : indication of a task or action that has been successfully completed. 
+- positive : indication of a task or action that has been successfully completed.
 - warning : requires attention but do not result in any immediate disruption.
 - negative : signify system outages or failures.
 - informational : intended to provide users with updates on non-disruptive tasks or work.
@@ -46,16 +48,9 @@ The type of alert can be specified by utilizing the `type` prop inside `<Alert.W
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
-#### `<Alert.Action>`
-
-By passing different props to `<Alert.Action>`, the user can interact with the alert to show additional information, redirected to other link or to close. A console message can be logged for event response.
-
-- When `as='a'` and `href` props are set, it behaves like a regular anchor link.
-- when `onClick` is passed, it behaves as a normal button.
-
 ### Legacy API
 
-Alternatively, you can use Alerts directly with type, onClose and some deprecated props like clickableText and clickableTextProps. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
+Alternatively, you can use `Alert` directly, without any subcomponents. Although this pattern can suffice for simple cases, we strongly recommend using composition API for more flexibility. Some of the legacy props like `clickableText`/`clickableTextProps` may be removed in the future, as they encourage bad patterns.
 
 The following code is equivalent to the [composition example](#composition-api) above:
 
@@ -63,28 +58,19 @@ The following code is equivalent to the [composition example](#composition-api) 
 <Alert
   type='positive'
   clickableText='More Info.'
-  onClose={action('Close!')}
+  onClose={() => console.log('Close!')}
   clickableTextProps={{
-    onClick: action('Clicked more info!'),
-  }}
-></Alert>
-<Alert
-  type='warning'
-  clickableText='More Info.'
-  onClose={action('Close!')}
-  clickableTextProps={{
-    onClick: action('Clicked more info!'),
-  }}
-></Alert>
-<Alert
-  type='negative'
-  clickableText='More Info.'
-  onClose={action('Close!')}
-  clickableTextProps={{
-    onClick: action('Clicked more info!'),
+    onClick={() => console.log('Clicked more info!')},
   }}
 ></Alert>
 ```
+
+### `<Alert.Action>`
+
+By passing different props to `<Alert.Action>`, the user can interact with the alert to show additional information, redirected to other link or to close.
+
+- When `href` is passed, it behaves like a regular anchor link.
+- when `onClick` is passed, it behaves as a normal button.
 
 ## Sticky Alert
 
