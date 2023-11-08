@@ -21,11 +21,7 @@ export default function ComboBoxDemo() {
 
   return (
     <ThemeProvider theme='dark'>
-      <ComboBox
-        options={options}
-        inputProps={{ placeholder: 'Pick a fruit, any fruit' }}
-        dropdownMenuProps={{ appendTo: 'parent' }}
-      />
+      <ComboBox options={options} inputProps={{ placeholder: 'Pick a fruit, any fruit' }} />
     </ThemeProvider>
   );
 }
