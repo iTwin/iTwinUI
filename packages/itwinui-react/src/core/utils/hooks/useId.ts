@@ -18,4 +18,6 @@ export const useId = () => {
 // This is needed to avoid bundlers trying to import non-existing export.
 // Read more: https://github.com/webpack/webpack/issues/14814
 const _React = React;
-const useUniqueValue = _React.useId ?? (() => getRandomValue(10));
+
+const useUniqueValue =
+  _React.useId ?? (() => React.useMemo(() => getRandomValue(10), []));

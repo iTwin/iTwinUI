@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.4
+
+### Patch Changes
+
+- [#1682](https://github.com/iTwin/iTwinUI/pull/1682): Memoize `useToaster`'s return value so that it can be more reliably used in dependency arrays.
+- [#1681](https://github.com/iTwin/iTwinUI/pull/1681): Fixed an issue where `Select`'s menu was being positioned incorrectly after its first render.
+
 ## 3.0.3
 
 ### Patch Changes
