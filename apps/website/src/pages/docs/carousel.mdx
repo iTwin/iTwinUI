@@ -18,12 +18,13 @@ import * as AllExamples from 'examples';
   <AllExamples.CarouselMainExample client:load />
 </LiveExample>
 
-The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is
-located below the slides, consisting of "dots" ([Carousel.DotsList](#dots-list)) and "previous"/"next" ([Carousel.Navigation](#navigation)) buttons, used for changing slides.
+The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is located below the slides, consisting of "dots" ([Carousel.DotsList](#carouseldotslist)) and "previous"/"next" ([Carousel.Navigation](#carouselnavigation)) buttons, used for changing slides.
 
-The currently shown slide can also be changed using the left/right arrow keys or by dragging on a touch device.
+<PropsTable path={frontmatter.propsPath} />
 
 ## Usage
+
+By default, the usage of all subcomponents is not mandatory. We have taken extra care to reduce verbosity while designing the Carousel API.
 
 ### Controlled State
 
@@ -41,25 +42,21 @@ By default, the carousel maintains its own state. But it can also be controlled 
   <AllExamples.CarouselOnlyDotsExample client:load />
 </LiveExample>
 
-## Props
-
-<PropsTable path={frontmatter.propsPath} />
-
 ## Subcomponents
 
 This component uses a composition approach, similar to most of the other components.
 
-### Slider
+### Carousel.Slider
 
 `Carousel.Slider` is the scrollable list that should consist of `Carousel.Slide` components.
 
-### Slide
+### Carousel.Slide
 
 `Carousel.Slide` is used for the actual slide content. The content can be specified through `children`. It is recommended that the slide content bring its own dimensions (esp. height) and that the dimensions should be the same for all slides.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselSlide.d.ts'} />
 
-### Navigation
+### Carousel.Navigation
 
 The `Carousel.Navigation` component by default consists of the `PreviousButton` and `NextButton` shown on the left and right and the `Carousel.DotsList` component shown in the middle. `children` can be specified to override what is shown in this navigation section.
 
@@ -67,16 +64,20 @@ The `Carousel.Navigation` component by default consists of the `PreviousButton` 
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselNavigation.d.ts'} />
 
-### Dots List
+### Carousel.DotsList
 
 The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
 
-**Important**: The component must always be present before the slides in DOM order.
+**Important**: The `Carousel.DotsList` component must always be present before the slides in DOM order. In addition, this subcomponent is optional and can also be used standalone.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDotsList.d.ts'} />
 
-### Dot
+### Carousel.Dot
 
 `Carousel.Dot` is the actual "dot" component used to activate a slide on clicking. It should be used as a child of `Carousel.Dots`.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDot.d.ts'} />
+
+## Accessibility
+
+The `Carousel` component is designed to provide visually appealing user interface for users with disabilities. Users can navigate through the carousel using the arrow keys (Left/Right) or by dragging on a touch screen device.
