@@ -24,7 +24,7 @@ export default {
       </div>
     ),
   ],
-  title: 'Core/ComboBox',
+  title: 'ComboBox',
 } satisfies StoryDefault;
 
 const countriesList = [
@@ -342,7 +342,7 @@ export const DisabledItems = () => {
                 alt=''
               />
             ),
-          } as SelectOption<string>),
+          }) as SelectOption<string>,
       ),
     [],
   );

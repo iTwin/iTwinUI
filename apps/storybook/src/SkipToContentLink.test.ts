@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('SkipToContentLink', () => {
-  const storyPath = 'Core/SkipToContentLink';
+  const storyPath = 'SkipToContentLink';
   const tests = ['Basic', 'Custom Text'];
 
   tests.forEach((testName) => {

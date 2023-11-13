@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Overlay, ProgressLinear, ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Overlay',
+  title: 'Overlay',
 };
 
 export const Linear = () => {

@@ -7,7 +7,7 @@ import { Alert } from '@itwin/itwinui-react';
 import { SvgPlaceholder, SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Alert',
+  title: 'Alert',
 };
 
 export const Informational = () => {

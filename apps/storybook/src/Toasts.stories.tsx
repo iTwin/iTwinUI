@@ -6,7 +6,7 @@ import React from 'react';
 import { Button, useToaster, ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Toasts',
+  title: 'Toasts',
 };
 
 export const Positive = () => {

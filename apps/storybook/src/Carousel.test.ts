@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Carousel', () => {
-  const storyPath = 'Core/Carousel';
+  const storyPath = 'Carousel';
   const tests = ['Basic', 'Controlled'];
 
   tests.forEach((testName) => {

@@ -13,7 +13,7 @@ import { SvgNotification } from '@itwin/itwinui-icons-react';
 import type { StoryDecorator, StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Core/NotificationMarker',
+  title: 'NotificationMarker',
   decorators: [
     (Story) => (
       <div

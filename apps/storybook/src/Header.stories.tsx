@@ -28,7 +28,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Header',
+  title: 'Header',
 };
 
 const buildClickHandler =
@@ -37,30 +37,17 @@ const buildClickHandler =
     close();
   };
 
-const buildMenu = (menu: string) => (close: () => void) =>
-  [
-    <MenuItem
-      key={1}
-      value={'Item #1'}
-      onClick={buildClickHandler(menu, close)}
-    >
-      {menu} item #1
-    </MenuItem>,
-    <MenuItem
-      key={2}
-      value={'Item #2'}
-      onClick={buildClickHandler(menu, close)}
-    >
-      {menu} item #2
-    </MenuItem>,
-    <MenuItem
-      key={3}
-      value={'Item #3'}
-      onClick={buildClickHandler(menu, close)}
-    >
-      {menu} item #3
-    </MenuItem>,
-  ];
+const buildMenu = (menu: string) => (close: () => void) => [
+  <MenuItem key={1} value={'Item #1'} onClick={buildClickHandler(menu, close)}>
+    {menu} item #1
+  </MenuItem>,
+  <MenuItem key={2} value={'Item #2'} onClick={buildClickHandler(menu, close)}>
+    {menu} item #2
+  </MenuItem>,
+  <MenuItem key={3} value={'Item #3'} onClick={buildClickHandler(menu, close)}>
+    {menu} item #3
+  </MenuItem>,
+];
 
 export const Full = () => {
   const [userType, setUserType] = React.useState('User');

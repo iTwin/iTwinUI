@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('InputWithDecorations', () => {
-  const storyPath = 'Input/InputWithDecorations';
+  const storyPath = 'InputWithDecorations';
   const tests = ['Basic', 'Disabled', 'Small', 'Status'];
 
   tests.forEach((testName) => {

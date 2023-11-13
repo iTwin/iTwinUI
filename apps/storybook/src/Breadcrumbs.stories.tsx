@@ -19,7 +19,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Breadcrumbs',
+  title: 'Breadcrumbs',
 };
 
 export const Basic = () => {

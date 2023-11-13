@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('LabeledInput', () => {
-  const storyPath = 'Input/LabeledInput';
+  const storyPath = 'LabeledInput';
   const tests = [
     'Basic',
     'Disabled',

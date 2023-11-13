@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('IconButton', () => {
-  const storyPath = 'Buttons/IconButton';
+  const storyPath = 'IconButton';
   const tests = [
     'Add',
     'Borderless',

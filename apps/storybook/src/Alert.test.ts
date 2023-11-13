@@ -2,17 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as Stories from './Alert.stories.js';
+
 describe('Alert', () => {
-  const storyPath = 'Core/Alert';
-  const tests = [
-    'Positive',
-    'Negative',
-    'Warning',
-    'Informational',
-    'Empty',
-    'Sticky',
-    'Custom Icon',
-  ];
+  const storyPath = Stories.default.title;
+  const tests = Object.keys(Stories).filter((name) => name !== 'default');
 
   tests.forEach((testName) => {
     it(testName, () => {
