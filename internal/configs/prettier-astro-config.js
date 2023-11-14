@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 module.exports = {
-  plugins: [require('prettier-plugin-astro')],
+  plugins: ['prettier-plugin-astro'],
   printWidth: 100,
   singleQuote: true,
   jsxSingleQuote: true,

@@ -43,7 +43,7 @@ const { command } = Astro.props;
           }
         });
       }
-    }
+    },
   );
 </script>
 
@@ -53,7 +53,9 @@ const { command } = Astro.props;
       position: relative;
       padding: var(--space-2) var(--space-4);
       border-radius: var(--border-radius-1);
-      box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+      box-shadow:
+        0 0 1px var(--color-highlight-1),
+        0 0 10px var(--color-highlight-2);
       outline: 1px solid transparent;
       display: flex;
       gap: var(--space-3);
@@ -62,7 +64,9 @@ const { command } = Astro.props;
       transition: box-shadow var(--transition-speed) ease;
 
       &:hover {
-        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+        box-shadow:
+          0 0 10px var(--color-highlight-1),
+          0 0 20px var(--color-highlight-2);
       }
     }
 

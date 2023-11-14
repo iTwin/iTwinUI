@@ -22,6 +22,7 @@ export default defineConfig({
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeToc],
   },
   server: { port: 1700 },
+  scopedStyleStrategy: 'where',
   vite: {
     ssr: {
       noExternal: [
@@ -67,7 +68,7 @@ function rehypeToc() {
         },
         ...headings,
       ],
-      tocOptions
+      tocOptions,
     );
     return {
       type: 'root',

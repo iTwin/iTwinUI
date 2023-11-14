@@ -16,7 +16,7 @@ export default function ComboBoxDemo() {
       { label: 'Kiwi', value: 'kiwi' },
       { label: 'Orange', value: 'orange' },
     ],
-    []
+    [],
   );
 
   return (
