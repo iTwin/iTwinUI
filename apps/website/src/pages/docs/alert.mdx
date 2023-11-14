@@ -43,10 +43,6 @@ By default, Alerts will use `type='informational'`. The `type` prop can be chang
 - `'warning'`: requires attention but does not result in any immediate disruption.
 - `'negative'`: signify system outages or failures.
 
-<LiveExample src='Alert.types.tsx'>
-  <AllExamples.AlertTypesExample client:load />
-</LiveExample>
-
 ### Legacy API
 
 Alternatively, you can use `Alert` directly, without any subcomponents. Although this pattern can suffice for simple cases, we strongly recommend using composition API for more flexibility. Some of the legacy props like `clickableText`/`clickableTextProps` may be removed in the future, as they encourage bad patterns.
@@ -56,8 +52,8 @@ The following code is equivalent to the [composition example](#composition-api) 
 ```tsx
 <Alert
   type='positive'
-  clickableText='More Info.'
-  onClose={() => console.log('Close!')}
+  clickableText='Learn More'
+  onClose={() => console.log('CLOSED')}
   clickableTextProps={{
     onClick={() => console.log('Clicked more info!')},
   }}
@@ -70,6 +66,12 @@ The `Alert.Action` subcomponent can be used to provide additional information th
 
 - When `href` is passed, it behaves like a regular anchor link.
 - when `onClick` is passed, it behaves as a normal button.
+
+## Statuses
+
+<LiveExample src='Alert.types.tsx'>
+  <AllExamples.AlertTypesExample client:load />
+</LiveExample>
 
 ## Sticky Alert
 
