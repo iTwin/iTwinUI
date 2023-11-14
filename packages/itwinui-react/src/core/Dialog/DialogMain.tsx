@@ -75,7 +75,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const [style, setStyle] = React.useState<React.CSSProperties>();
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(dialogRef, ref);
+  const [dialogElement, setDialogElement] = React.useState<HTMLElement>();
   const hasBeenResized = React.useRef(false);
   const previousFocusedElement = React.useRef<HTMLElement | null>();
 
@@ -159,6 +159,8 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
+  const roundedTransformStyle = useRoundedTransform(dialogElement);
+
   const content = (
     <Box
       className={cx(
@@ -172,11 +174,15 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={refs}
+      ref={useMergedRefs(dialogRef, ref, setDialogElement)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
-      data-iui-placement={placement}
+      // we set it to empty string to remove CSS for default placement (after we know transform values in JS)
+      data-iui-placement={
+        placement ?? roundedTransformStyle.transform ? '' : undefined
+      }
       style={{
+        ...(!placement && roundedTransformStyle),
         transform,
         ...style,
         ...propStyle,
@@ -236,3 +242,25 @@ export const DialogMain = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 
 export default DialogMain;
+
+// ----------------------------------------------------------------------------
+
+const useRoundedTransform = (element?: HTMLElement) => {
+  const [roundedStyles, setRoundedStyles] = React.useState<React.CSSProperties>(
+    {},
+  );
+
+  React.useEffect(() => {
+    if (!element) {
+      return;
+    }
+
+    const { x, y } = element.getBoundingClientRect();
+
+    setRoundedStyles({
+      transform: `translate(${Math.round(x)}px, ${Math.round(y)}px)`,
+    });
+  }, [element]);
+
+  return roundedStyles;
+};
