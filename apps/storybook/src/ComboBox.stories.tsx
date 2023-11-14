@@ -342,7 +342,7 @@ export const DisabledItems = () => {
                 alt=''
               />
             ),
-          } as SelectOption<string>),
+          }) as SelectOption<string>,
       ),
     [],
   );

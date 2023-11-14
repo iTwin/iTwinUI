@@ -155,14 +155,15 @@ it('should show provided index on first render', () => {
     return { height: 40 } as DOMRect;
   });
 
-  jest
-    .spyOn(HTMLElement.prototype, 'scrollTo')
-    .mockImplementation(function (this: HTMLElement, options) {
-      this.scrollTop = (options as ScrollToOptions).top ?? 0;
-      fireEvent.scroll(this, {
-        target: { scrollTop: (options as ScrollToOptions).top ?? 0 },
-      });
+  jest.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
+    this: HTMLElement,
+    options,
+  ) {
+    this.scrollTop = (options as ScrollToOptions).top ?? 0;
+    fireEvent.scroll(this, {
+      target: { scrollTop: (options as ScrollToOptions).top ?? 0 },
     });
+  });
   const data = generateDataArray(1000);
   const { container } = render(
     <div style={{ overflow: 'auto', height: 400 }} id='scroller'>
@@ -196,14 +197,15 @@ it('should render parent as ul', () => {
     return { height: 40 } as DOMRect;
   });
 
-  jest
-    .spyOn(HTMLElement.prototype, 'scrollTo')
-    .mockImplementation(function (this: HTMLElement, options) {
-      this.scrollTop = (options as ScrollToOptions).top ?? 0;
-      fireEvent.scroll(this, {
-        target: { scrollTop: (options as ScrollToOptions).top ?? 0 },
-      });
+  jest.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
+    this: HTMLElement,
+    options,
+  ) {
+    this.scrollTop = (options as ScrollToOptions).top ?? 0;
+    fireEvent.scroll(this, {
+      target: { scrollTop: (options as ScrollToOptions).top ?? 0 },
     });
+  });
   const data = generateDataArray(4000);
   const MyComponentToRender = () => {
     const { outerProps, innerProps, visibleChildren } = useVirtualization({

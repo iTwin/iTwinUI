@@ -42,8 +42,9 @@ export const tableFilters = {
    */
   TextFilter:
     (translatedLabels?: FilterButtonBarTranslation) =>
-    <T extends Record<string, unknown>>(props: TableFilterProps<T>) =>
-      <TextFilter {...props} translatedLabels={translatedLabels} />,
+    <T extends Record<string, unknown>>(props: TableFilterProps<T>) => (
+      <TextFilter {...props} translatedLabels={translatedLabels} />
+    ),
   /**
    * Date range filter.
    *
@@ -56,8 +57,9 @@ export const tableFilters = {
    */
   DateRangeFilter:
     (options?: DateRangeFilterOptions) =>
-    <T extends Record<string, unknown>>(props: TableFilterProps<T>) =>
-      <DateRangeFilter {...props} {...options} />,
+    <T extends Record<string, unknown>>(props: TableFilterProps<T>) => (
+      <DateRangeFilter {...props} {...options} />
+    ),
   /**
    * Number range filter.
    *
@@ -68,6 +70,7 @@ export const tableFilters = {
    */
   NumberRangeFilter:
     (translatedLabels?: NumberRangeTranslation & FilterButtonBarTranslation) =>
-    <T extends Record<string, unknown>>(props: NumberRangeFilterProps<T>) =>
-      <NumberRangeFilter {...props} translatedLabels={translatedLabels} />,
+    <T extends Record<string, unknown>>(props: NumberRangeFilterProps<T>) => (
+      <NumberRangeFilter {...props} translatedLabels={translatedLabels} />
+    ),
 };
