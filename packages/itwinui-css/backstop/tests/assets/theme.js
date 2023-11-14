@@ -136,9 +136,8 @@ class ThemeButton extends HTMLElement {
     // set default state
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     const prefersHC = window.matchMedia('(prefers-contrast: more)').matches;
-    this.shadowRoot.querySelector(
-      `input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`,
-    ).checked = true;
+    this.shadowRoot.querySelector(`input[value=${prefersDark ? 'dark' : 'light'}${prefersHC ? '-hc' : ''}`).checked =
+      true;
     document.body.dataset.iuiTheme = prefersDark ? 'dark' : 'light';
     document.body.dataset.iuiContrast = prefersHC ? 'high' : undefined;
     document.body.classList.toggle('iui-root', true);

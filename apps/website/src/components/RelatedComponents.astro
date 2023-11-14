@@ -38,11 +38,15 @@ const { components, ...rest } = Astro.props;
       gap: var(--space-3);
       padding: var(--space-4);
       border-radius: var(--border-radius-1);
-      box-shadow: 0 0 1px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+      box-shadow:
+        0 0 1px var(--color-highlight-1),
+        0 0 10px var(--color-highlight-2);
       transition: box-shadow var(--transition-speed) ease;
 
       &:where(:hover, :focus-within) {
-        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+        box-shadow:
+          0 0 10px var(--color-highlight-1),
+          0 0 20px var(--color-highlight-2);
       }
     }
 
