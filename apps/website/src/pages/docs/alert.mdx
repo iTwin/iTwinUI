@@ -74,7 +74,7 @@ By passing different props to `<Alert.Action>`, the user can interact with the a
 
 ## Sticky Alert
 
-To fix an alert at the top of a user's screen even if they scroll down the page, pass `isSticky` to `<Alert.Wrapper>`. It's important to note that sticky alerts must always be dismissible. Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
+Use the `isSticky` prop to fix an alert at the top of a user's screen even if they scroll down the page. It's important to note that sticky alerts must always be dismissible (using the close button). Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
 
 <LiveExample src='Alert.sticky.tsx'>
   <AllExamples.AlertStickyExample client:load />
