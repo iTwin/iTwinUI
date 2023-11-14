@@ -13,8 +13,8 @@ import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Avatar.initials.tsx'>
-  <AllExamples.AvatarInitialsExample client:load />
+<LiveExample src='Avatar.main.tsx'>
+  <AllExamples.AvatarMainExample client:load />
 </LiveExample>
 
 The avatar is an essential UI component, making it easier to identify a person or organization by their photo, icon, or initials.
@@ -25,6 +25,12 @@ Different properties can be passed to the `<Avatar>` component to customize it a
 
 - `abbreviation` prop allows users to provide a short abbreviation or initials for the avatar.
 - `image` prop can be passed to set a custom image source or icon that will be displayed within the avatar.
+
+<LiveExample src='Avatar.types.tsx'>
+  <AllExamples.AvatarTypesExample client:load />
+</LiveExample>
+
+It is recommended to display an avatar with initials or an icon for users without a profile picture. It should show one or two letters or the first letter of their email if no name is provided.
 
 ### Sizes
 
@@ -49,23 +55,13 @@ We suggest not using statuses on the small size avatar.
   <AllExamples.AvatarStatusesExample client:load />
 </LiveExample>
 
-## Variants
-
-An avatar can be customized to show initials, icons, and pictures.
-
-<LiveExample src='Avatar.main.tsx'>
-  <AllExamples.AvatarMainExample client:load />
-</LiveExample>
-
-When no profile picture is uploaded, an avatar with the user's initials is shown. It can display one or two letters, or the first letter of their email if no name is provided. You may use an icon instead. Once a photo is uploaded, it replaces the initials/icon.
-
-### Avatar Group
+## Avatar Group
 
 Avatars can be displayed in a list to represent a group of people using `<AvatarGroup>` component.
 
 ### Stacked
 
-To save on space, the avatars can overlay each other. Note that when using the stacked group that you can not display [status indicators](#status-indicators).
+By default or passing `stacked` prop, the avatars can overlay each other to save space. Note that when using the stacked group that you can not display [status indicators](#status-indicators).
 
 <LiveExample src='Avatar.groupstacked.tsx'>
   <AllExamples.AvatarGroupStackedExample client:load />
