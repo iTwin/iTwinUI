@@ -37,12 +37,6 @@ You can build Alerts with sub-components that are fully customizable.
 </Alert.Wrapper>
 ```
 
-By default, Alerts will use `type='informational'`. The `type` prop can be changed to a specific status.
-
-- `'positive'`: indication of a task that has been successfully completed.
-- `'warning'`: requires attention but does not result in any immediate disruption.
-- `'negative'`: signify system outages or failures.
-
 ### Legacy API
 
 Alternatively, you can use `Alert` directly, without any subcomponents. Although this pattern can suffice for simple cases, we strongly recommend using composition API for more flexibility. Some of the legacy props like `clickableText`/`clickableTextProps` may be removed in the future, as they encourage bad patterns.
@@ -68,6 +62,12 @@ The `Alert.Action` subcomponent can be used to provide additional information th
 - when `onClick` is passed, it behaves as a normal button.
 
 ## Statuses
+
+By default, Alerts will use `type='informational'`. The `type` prop can be changed to a specific status.
+
+- `'positive'`: indication of a task that has been successfully completed.
+- `'warning'`: requires attention but does not result in any immediate disruption.
+- `'negative'`: signify system outages or failures.
 
 <LiveExample src='Alert.types.tsx'>
   <AllExamples.AlertTypesExample client:load />
