@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Label', () => {
-  const storyPath = 'Typography/Label';
+  const storyPath = 'Label';
   const tests = ['Basic', 'Inline', 'Polymorphic'];
 
   tests.forEach((testName) => {

@@ -7,7 +7,7 @@ import React from 'react';
 import { RadioTile, RadioTileGroup } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/RadioTileGroup',
+  title: 'RadioTileGroup',
 };
 
 export const Monochrome = () => {

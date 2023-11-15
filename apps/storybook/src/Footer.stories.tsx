@@ -11,7 +11,7 @@ import {
 import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Footer',
+  title: 'Footer',
 };
 
 export const Basic = () => {

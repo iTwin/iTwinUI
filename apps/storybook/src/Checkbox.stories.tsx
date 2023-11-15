@@ -6,7 +6,7 @@ import React from 'react';
 import { Checkbox } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/Checkbox',
+  title: 'Checkbox',
 };
 
 export const Basic = () => {

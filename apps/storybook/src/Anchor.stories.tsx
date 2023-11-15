@@ -6,7 +6,7 @@ import React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Typography/Anchor',
+  title: 'Anchor',
 };
 
 export const Basic = () => {

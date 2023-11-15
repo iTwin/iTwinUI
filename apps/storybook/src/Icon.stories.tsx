@@ -14,7 +14,7 @@ import {
 import { StoryDecorator } from '@ladle/react';
 
 export default {
-  title: 'Utilities/Icon',
+  title: 'Icon',
 };
 
 export const Default = () => {

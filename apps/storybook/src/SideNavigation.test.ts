@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('SideNavigation', () => {
-  const storyPath = 'Core/SideNavigation';
+  const storyPath = 'SideNavigation';
   const tests = ['Basic', 'Active Item', 'Submenu'];
 
   tests.forEach((testName) => {

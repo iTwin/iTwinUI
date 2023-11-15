@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('DropdownMenu', () => {
-  const storyPath = 'Core/DropdownMenu';
+  const storyPath = 'DropdownMenu';
   const tests = [
     'Basic',
     'Submenu',

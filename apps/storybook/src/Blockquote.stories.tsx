@@ -6,7 +6,7 @@ import React from 'react';
 import { Blockquote } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Typography/Blockquote',
+  title: 'Blockquote',
 };
 
 export const Basic = () => {

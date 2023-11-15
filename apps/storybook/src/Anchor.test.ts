@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Anchor', () => {
-  const storyPath = 'Typography/Anchor';
+  const storyPath = 'Anchor';
   const tests = ['Basic', 'As Button'];
 
   tests.forEach((testName) => {

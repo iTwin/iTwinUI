@@ -7,7 +7,7 @@ import { Button, NotificationMarker } from '@itwin/itwinui-react';
 import { SvgAdd, SvgEmail } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Buttons/Button',
+  title: 'Button',
 };
 
 export const CallToAction = () => {

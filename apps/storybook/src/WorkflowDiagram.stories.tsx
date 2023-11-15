@@ -6,7 +6,7 @@ import React from 'react';
 import { WorkflowDiagram } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/WorkflowDiagram',
+  title: 'WorkflowDiagram',
 };
 
 export const Basic = () => {

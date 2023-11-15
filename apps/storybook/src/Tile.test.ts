@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Tile', () => {
-  const storyPath = 'Core/Tile';
+  const storyPath = 'Tile';
   const tests = [
     'Basic',
     'All Props',

@@ -11,7 +11,7 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Modal',
+  title: 'Modal',
 };
 
 export const Basic = () => {

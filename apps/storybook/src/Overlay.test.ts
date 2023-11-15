@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Overlay', () => {
-  const storyPath = 'Core/Overlay';
+  const storyPath = 'Overlay';
   const tests = ['Linear', 'Radial'];
 
   tests.forEach((testName) => {

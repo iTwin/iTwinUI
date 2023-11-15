@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('TimePicker', () => {
-  const storyPath = 'Core/TimePicker';
+  const storyPath = 'TimePicker';
   const tests = ['Basic', 'Custom Renderers', 'Combined'];
 
   tests.forEach((testName) => {

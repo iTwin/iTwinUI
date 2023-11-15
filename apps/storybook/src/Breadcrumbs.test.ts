@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Breadcrumbs', () => {
-  const storyPath = 'Core/Breadcrumbs';
+  const storyPath = 'Breadcrumbs';
   const tests = [
     'Basic',
     'Custom Separator',

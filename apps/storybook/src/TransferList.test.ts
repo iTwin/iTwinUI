@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('TransferList', () => {
-  const storyPath = 'Core/TransferList';
+  const storyPath = 'TransferList';
   const tests = ['Basic', 'With Label'];
 
   tests.forEach((testName) => {

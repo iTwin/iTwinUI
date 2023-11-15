@@ -8,7 +8,7 @@ import { ToggleSwitch } from '@itwin/itwinui-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Input/ToggleSwitch',
+  title: 'ToggleSwitch',
   decorators: [
     (Story) => (
       <div style={{ padding: '5.5px 0' }}>

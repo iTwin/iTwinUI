@@ -7,7 +7,7 @@ import { InputWithDecorations, Icon } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Input/InputWithDecorations',
+  title: 'InputWithDecorations',
 };
 
 export const Basic = () => {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('NonIdealState', () => {
-  const storyPath = 'Core/NonIdealState';
+  const storyPath = 'NonIdealState';
   const tests = [
     'Bad Gateway',
     'Page Not Found',

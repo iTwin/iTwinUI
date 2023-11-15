@@ -6,7 +6,7 @@ import React from 'react';
 import { Badge } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Badge',
+  title: 'Badge',
 };
 
 export const Basic = () => {

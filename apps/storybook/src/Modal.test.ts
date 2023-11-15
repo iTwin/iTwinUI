@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Modal', () => {
-  const storyPath = 'Core/Modal';
+  const storyPath = 'Modal';
   const tests = ['Basic', 'Full Page Modal', 'Non Dismissible Modal'];
 
   tests.forEach((testName) => {
