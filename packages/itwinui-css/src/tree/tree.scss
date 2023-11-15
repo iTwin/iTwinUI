@@ -17,7 +17,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &[data-iui-size='small'] {
     --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
-    --_iui-tree-node-content-icon-margin-inline: calc(var(--_iui-tree-node-padding-inline) + 1px);
+    --_iui-tree-node-content-icon-margin-inline: calc(
+      var(--_iui-tree-node-padding-inline) + var(--iui-size-3xs) + 1px
+    ); // THIS NEEDS TO EQUAL 7
   }
 }
 
@@ -63,12 +65,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     &-icon {
       margin-inline: var(--_iui-tree-node-content-icon-margin-inline);
 
-      &,
       svg {
         @include mixins.iui-icon-style('m');
-      }
-
-      svg {
         @include mixins.iui-icon-color;
       }
 
@@ -89,7 +87,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
     &-label {
       min-inline-size: 0;
-      padding-inline-start: var(--_iui-tree-node-padding-inline);
+      // padding-inline-start: var(--_iui-tree-node-padding-inline);
 
       &:first-child {
         margin-inline-start: var(--_iui-expander-button-width);

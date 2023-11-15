@@ -20,6 +20,13 @@
       import "@itwin/itwinui-icons-elements/chevron-right";
       import "@itwin/itwinui-icons-elements/placeholder";
     </script>
+    <script>
+      customElements.define('svg-chevron-right-small', class extends HTMLElement {
+        connectedCallback() {
+          this.innerHTML = `<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" width="1rem" height="1rem" fill="var(--iui-color-icon-muted, currentColor)"><path d="m5.525 2-1.05 1.05L9.425 8l-4.95 4.95L5.525 14l6-6-6-6Z"/></svg>`;
+        }
+      });
+    </script>
     <style>
       @import url("./assets/demo.css") layer(demo);
       @import url('@itwin/itwinui-variables') layer(variables);
@@ -1240,13 +1247,14 @@
                 data-iui-size="small"
                 type="button"
               >
-                <svg-chevron-right
+                <svg-chevron-right-small
                   class="iui-button-icon iui-tree-node-content-expander-icon  iui-tree-node-content-expander-icon-expanded"
                   aria-hidden="true"
-                ></svg-chevron-right>
+                ></svg-chevron-right-small>
               </button>
               <svg-placeholder
-                class="iui-tree-node-content-icon"
+                class="iui-svg-icon iui-tree-node-content-icon"
+                data-iui-icon-size="s"
                 aria-hidden="true"
               ></svg-placeholder>
               <span class="iui-tree-node-content-label">
@@ -1280,13 +1288,14 @@
                     data-iui-size="small"
                     type="button"
                   >
-                    <svg-chevron-right
+                    <svg-chevron-right-small
                       class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
                       aria-hidden="true"
-                    ></svg-chevron-right>
+                    ></svg-chevron-right-small>
                   </button>
                   <svg-placeholder
-                    class="iui-tree-node-content-icon"
+                    class="iui-svg-icon iui-tree-node-content-icon"
+                    data-iui-icon-size="s"
                     aria-hidden="true"
                   ></svg-placeholder>
                   <span class="iui-tree-node-content-label">
@@ -1314,7 +1323,8 @@
                     />
                     <div class="iui-tree-node-content">
                       <svg-placeholder
-                        class="iui-tree-node-content-icon"
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
                         aria-hidden="true"
                       ></svg-placeholder>
                       <span class="iui-tree-node-content-label">
@@ -1339,7 +1349,8 @@
                     />
                     <div class="iui-tree-node-content">
                       <svg-placeholder
-                        class="iui-tree-node-content-icon"
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
                         aria-hidden="true"
                       ></svg-placeholder>
                       <span class="iui-tree-node-content-label">
@@ -1371,13 +1382,14 @@
                 data-iui-size="small"
                 type="button"
               >
-                <svg-chevron-right
+                <svg-chevron-right-small
                   class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
                   aria-hidden="true"
-                ></svg-chevron-right>
+                ></svg-chevron-right-small>
               </button>
               <svg-placeholder
-                class="iui-tree-node-content-icon"
+                class="iui-svg-icon iui-tree-node-content-icon"
+                data-iui-icon-size="s"
                 aria-hidden="true"
               ></svg-placeholder>
               <span class="iui-tree-node-content-label">
@@ -1412,13 +1424,14 @@
                     data-iui-size="small"
                     type="button"
                   >
-                    <svg-chevron-right
+                    <svg-chevron-right-small
                       class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
                       aria-hidden="true"
-                    ></svg-chevron-right>
+                    ></svg-chevron-right-small>
                   </button>
                   <svg-placeholder
-                    class="iui-tree-node-content-icon"
+                    class="iui-svg-icon iui-tree-node-content-icon"
+                    data-iui-icon-size="s"
                     aria-hidden="true"
                   ></svg-placeholder>
                   <span class="iui-tree-node-content-label">
@@ -1452,13 +1465,14 @@
                         data-iui-size="small"
                         type="button"
                       >
-                        <svg-chevron-right
+                        <svg-chevron-right-small
                           class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
                           aria-hidden="true"
-                        ></svg-chevron-right>
+                        ></svg-chevron-right-small>
                       </button>
                       <svg-placeholder
-                        class="iui-tree-node-content-icon"
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
                         aria-hidden="true"
                       ></svg-placeholder>
                       <span class="iui-tree-node-content-label">
@@ -1486,7 +1500,8 @@
                         />
                         <div class="iui-tree-node-content">
                           <svg-placeholder
-                            class="iui-tree-node-content-icon"
+                            class="iui-svg-icon iui-tree-node-content-icon"
+                            data-iui-icon-size="s"
                             aria-hidden="true"
                           ></svg-placeholder>
                           <span class="iui-tree-node-content-label">
@@ -1519,13 +1534,14 @@
                         data-iui-size="small"
                         type="button"
                       >
-                        <svg-chevron-right
+                        <svg-chevron-right-small
                           class="iui-button-icon iui-tree-node-content-expander-icon"
                           aria-hidden="true"
-                        ></svg-chevron-right>
+                        ></svg-chevron-right-small>
                       </button>
                       <svg-placeholder
-                        class="iui-tree-node-content-icon"
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
                         aria-hidden="true"
                       ></svg-placeholder>
                       <span class="iui-tree-node-content-label">
@@ -1844,7 +1860,7 @@
                         ></svg-chevron-right>
                       </button>
                       <svg-placeholder
-                        class="iui-tree-node-content-icon"
+                        class="iui-svg-icon iui-tree-node-content-icon"
                         aria-hidden="true"
                       ></svg-placeholder>
                       <span class="iui-tree-node-content-label">
