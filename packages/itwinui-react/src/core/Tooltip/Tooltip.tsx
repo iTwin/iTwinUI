@@ -159,8 +159,8 @@ const useTooltip = (options: TooltipOptions = {}) => {
       ariaStrategy === 'description'
         ? { 'aria-describedby': id }
         : ariaStrategy === 'label'
-        ? { 'aria-labelledby': id }
-        : {},
+          ? { 'aria-labelledby': id }
+          : {},
     [ariaStrategy, id],
   );
 

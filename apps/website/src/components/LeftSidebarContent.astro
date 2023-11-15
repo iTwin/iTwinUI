@@ -14,23 +14,23 @@ const introPages = docsPages.filter((page) => !page.group);
 const sections = new Map<string, typeof docsPages>();
 sections.set(
   'core',
-  docsPages.filter((item) => item.group === 'core')
+  docsPages.filter((item) => item.group === 'core'),
 );
 sections.set(
   'buttons',
-  docsPages.filter((item) => item.group === 'buttons')
+  docsPages.filter((item) => item.group === 'buttons'),
 );
 sections.set(
   'inputs',
-  docsPages.filter((item) => item.group === 'inputs')
+  docsPages.filter((item) => item.group === 'inputs'),
 );
 sections.set(
   'typography',
-  docsPages.filter((item) => item.group === 'typography')
+  docsPages.filter((item) => item.group === 'typography'),
 );
 sections.set(
   'utilities',
-  docsPages.filter((item) => item.group === 'utilities')
+  docsPages.filter((item) => item.group === 'utilities'),
 );
 ---
 
