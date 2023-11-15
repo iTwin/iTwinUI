@@ -13,8 +13,8 @@ const componentPages = (await Astro.glob('./*.mdx'))
   .filter((page) => page.group);
 ---
 
-<Layout content={{ title: 'Components' }}
-  ><main>
+<Layout content={{ title: 'Components' }}>
+  <main>
     <ul class='card-list'>
       {
         componentPages.map((page) => (

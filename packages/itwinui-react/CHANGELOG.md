@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.5
+
+### Patch Changes
+
+- [#1683](https://github.com/iTwin/iTwinUI/pull/1683): Improved `ExpandableBlock` animation so that it doesn't push content outside its bounds.
+- [#1687](https://github.com/iTwin/iTwinUI/pull/1687): Fixed `Overlay` component to correctly add polyfill for `inert`.
+
 ## 3.0.4
 
 ### Patch Changes

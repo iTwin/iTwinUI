@@ -34,7 +34,9 @@ const { url, title, description, image, class: className, ...rest } = Astro.prop
       transition: box-shadow var(--transition-speed) ease;
 
       &:where(:hover, :focus-within) {
-        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+        box-shadow:
+          0 0 10px var(--color-highlight-1),
+          0 0 20px var(--color-highlight-2);
       }
     }
     a {
