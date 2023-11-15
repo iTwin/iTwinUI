@@ -6,7 +6,7 @@ import React from 'react';
 import { MenuItem, DropdownButton } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Buttons/DropdownButton',
+  title: 'DropdownButton',
 };
 
 export const Basic = () => {

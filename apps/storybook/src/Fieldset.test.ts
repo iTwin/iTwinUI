@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Fieldset', () => {
-  const storyPath = 'Input/Fieldset';
+  const storyPath = 'Fieldset';
   const tests = ['Basic', 'Disabled'];
 
   tests.forEach((testName) => {

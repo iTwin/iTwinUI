@@ -6,7 +6,7 @@ import React from 'react';
 import { Stepper, type StepperLocalization } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Stepper',
+  title: 'Stepper',
 };
 
 export const Basic = () => {

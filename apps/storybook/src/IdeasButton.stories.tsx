@@ -6,7 +6,7 @@ import React from 'react';
 import { IdeasButton } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Buttons/IdeasButton',
+  title: 'IdeasButton',
 };
 
 export const Ideas = () => {

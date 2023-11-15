@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Slider', () => {
-  const storyPath = 'Input/Slider';
+  const storyPath = 'Slider';
   const tests = [
     'Basic',
     'Custom Tick No Tooltip',

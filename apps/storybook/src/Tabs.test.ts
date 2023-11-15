@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Tabs', () => {
-  const storyPath = 'Core/Tabs';
+  const storyPath = 'Tabs';
   const tests = [
     'Default Tabs',
     'Borderless Tabs',

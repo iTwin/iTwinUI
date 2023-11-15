@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Badge', () => {
-  const storyPath = 'Core/Badge';
+  const storyPath = 'Badge';
   const tests = ['Basic', 'Long Label', 'Statuses'];
 
   tests.forEach((testName) => {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Select', () => {
-  const storyPath = 'Input/Select';
+  const storyPath = 'Select';
   const tests = [
     'Basic',
     'Custom',

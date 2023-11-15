@@ -23,7 +23,7 @@ import {
 import { StoryDecorator } from '@ladle/react';
 
 export default {
-  title: 'Buttons/ButtonGroup',
+  title: 'ButtonGroup',
 };
 
 export const WithIcons = () => {

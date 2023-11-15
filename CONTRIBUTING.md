@@ -319,7 +319,7 @@ Inside the `apps/storybook` workspace, the `src/` directory has a set of `-.stor
 
 ```ts
 describe('Alert', () => {
-  const storyPath = 'Core/Alert';
+  const storyPath = 'Alert';
   const tests = [
     'Positive',
     'Negative',

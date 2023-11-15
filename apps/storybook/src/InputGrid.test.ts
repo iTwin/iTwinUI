@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('InputGrid', () => {
-  const storyPath = 'Utilities/InputGrid';
+  const storyPath = 'InputGrid';
 
   const tests = [
     'With Input',

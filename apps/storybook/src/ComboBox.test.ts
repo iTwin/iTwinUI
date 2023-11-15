@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('ComboBox', () => {
-  const storyPath = 'Core/ComboBox';
+  const storyPath = 'ComboBox';
   const tests = [
     'Basic',
     'Controlled',

@@ -6,7 +6,7 @@ import React from 'react';
 import { Button, Code, Dialog } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Dialog',
+  title: 'Dialog',
 };
 
 export const Basic = () => {

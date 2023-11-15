@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('InputGroup', () => {
-  const storyPath = 'Input/InputGroup';
+  const storyPath = 'InputGroup';
   const tests = ['Checkbox Group', 'Radio Group', 'Toggle Group'];
 
   tests.forEach((testName) => {

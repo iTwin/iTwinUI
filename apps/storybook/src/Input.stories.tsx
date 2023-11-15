@@ -6,7 +6,7 @@ import React from 'react';
 import { Input } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/Input',
+  title: 'Input',
 };
 
 export const Basic = () => {

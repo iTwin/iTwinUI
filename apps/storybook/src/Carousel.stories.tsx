@@ -7,7 +7,7 @@ import { Carousel, Text, Code } from '@itwin/itwinui-react';
 import { StoryDecorator } from '@ladle/react';
 
 export default {
-  title: 'Core/Carousel',
+  title: 'Carousel',
 };
 
 export const Basic = () => {

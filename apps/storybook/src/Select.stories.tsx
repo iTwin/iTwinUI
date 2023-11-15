@@ -12,7 +12,7 @@ import {
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Input/Select',
+  title: 'Select',
   decorators: [
     (Story, context) => {
       return context.globalState.story.includes('truncate-middle-text') ? (
