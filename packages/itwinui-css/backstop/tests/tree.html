@@ -1876,6 +1876,632 @@
       </ul>
     </section>
 
+    <hr />
+    <h2>With lines</h2>
+    <section id="demo-lines">
+      <ul
+        class="iui-tree"
+        role="tree"
+        data-iui-size="small"
+        data-iui-lines="true"
+      >
+        <li
+          class="iui-tree-item"
+          role="treeitem"
+          tabindex="0"
+          aria-expanded="true"
+        >
+          <div class="iui-tree-node">
+            <input
+              class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+              type="checkbox"
+              checked
+            />
+            <div class="iui-tree-node-content">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+                data-iui-size="small"
+                type="button"
+              >
+                <svg-chevron-right-small
+                  class="iui-button-icon iui-tree-node-content-expander-icon  iui-tree-node-content-expander-icon-expanded"
+                  aria-hidden="true"
+                ></svg-chevron-right-small>
+              </button>
+              <svg-placeholder
+                class="iui-svg-icon iui-tree-node-content-icon"
+                data-iui-icon-size="s"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tree-node-content-label">
+                <div class="iui-tree-node-content-title">Facility 1</div>
+              </span>
+            </div>
+          </div>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+            style='--level: 1;'
+          >
+            <li
+              class="iui-tree-item"
+              role="treeitem"
+              tabindex="0"
+              aria-expanded="true"
+            >
+              <div class="iui-tree-node">
+                <input
+                  class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                  type="checkbox"
+                  checked
+                />
+                <div class="iui-tree-node-content">
+                  <button
+                    class="iui-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    type="button"
+                  >
+                    <svg-chevron-right-small
+                      class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                      aria-hidden="true"
+                    ></svg-chevron-right-small>
+                  </button>
+                  <svg-placeholder
+                    class="iui-svg-icon iui-tree-node-content-icon"
+                    data-iui-icon-size="s"
+                    aria-hidden="true"
+                  ></svg-placeholder>
+                  <span class="iui-tree-node-content-label">
+                    <div class="iui-tree-node-content-title">Unit 1</div>
+                  </span>
+                </div>
+              </div>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+                style='--level: 2;'
+              >
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <svg-placeholder
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System A</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <svg-placeholder
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System B</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li
+          class="iui-tree-item"
+          role="treeitem"
+          tabindex="0"
+          aria-expanded="true"
+        >
+          <div class="iui-tree-node">
+            <input
+              class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+              type="checkbox"
+              checked
+            />
+            <div class="iui-tree-node-content">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+                data-iui-size="small"
+                type="button"
+              >
+                <svg-chevron-right-small
+                  class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                  aria-hidden="true"
+                ></svg-chevron-right-small>
+              </button>
+              <svg-placeholder
+                class="iui-svg-icon iui-tree-node-content-icon"
+                data-iui-icon-size="s"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tree-node-content-label">
+                <div class="iui-tree-node-content-title">Facility 2</div>
+                <div class="iui-tree-node-content-caption">A basic description.</div>
+              </span>
+            </div>
+          </div>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+            style='--level: 1;'
+          >
+            <li
+              class="iui-tree-item"
+              role="treeitem"
+              tabindex="0"
+              aria-expanded="true"
+            >
+              <div class="iui-tree-node">
+                <input
+                  class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                  type="checkbox"
+                  checked
+                />
+                <div class="iui-tree-node-content">
+                  <button
+                    class="iui-button"
+                    data-iui-variant="borderless"
+                    data-iui-size="small"
+                    type="button"
+                  >
+                    <svg-chevron-right-small
+                      class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                      aria-hidden="true"
+                    ></svg-chevron-right-small>
+                  </button>
+                  <svg-placeholder
+                    class="iui-svg-icon iui-tree-node-content-icon"
+                    data-iui-icon-size="s"
+                    aria-hidden="true"
+                  ></svg-placeholder>
+                  <span class="iui-tree-node-content-label">
+                    <div class="iui-tree-node-content-title">Unit 1</div>
+                  </span>
+                </div>
+              </div>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+                style='--level: 2;'
+              >
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                  aria-expanded="true"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <button
+                        class="iui-button"
+                        data-iui-variant="borderless"
+                        data-iui-size="small"
+                        type="button"
+                      >
+                        <svg-chevron-right-small
+                          class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                          aria-hidden="true"
+                        ></svg-chevron-right-small>
+                      </button>
+                      <svg-placeholder
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System A</div>
+                      </span>
+                    </div>
+                  </div>
+                  <ul
+                    class='iui-sub-tree'
+                    role="group"
+                    style='--level: 3;'
+                  >
+                    <li
+                      class="iui-tree-item"
+                      role="treeitem"
+                      tabindex="0"
+                    >
+                      <div class="iui-tree-node">
+                        <input
+                          class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                          type="checkbox"
+                          checked
+                        />
+                        <div class="iui-tree-node-content">
+                          <svg-placeholder
+                            class="iui-svg-icon iui-tree-node-content-icon"
+                            data-iui-icon-size="s"
+                            aria-hidden="true"
+                          ></svg-placeholder>
+                          <span class="iui-tree-node-content-label">
+                            <div class="iui-tree-node-content-title">Subsystem</div>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                  aria-expanded="false"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <button
+                        class="iui-button"
+                        data-iui-variant="borderless"
+                        data-iui-size="small"
+                        type="button"
+                      >
+                        <svg-chevron-right-small
+                          class="iui-button-icon iui-tree-node-content-expander-icon"
+                          aria-hidden="true"
+                        ></svg-chevron-right-small>
+                      </button>
+                      <svg-placeholder
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        data-iui-icon-size="s"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System B</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <br />
+
+      <ul
+        class="iui-tree"
+        role="tree"
+        data-iui-lines="true"
+      >
+        <li
+          class="iui-tree-item"
+          role="treeitem"
+          tabindex="0"
+          aria-expanded="true"
+        >
+          <div class="iui-tree-node">
+            <input
+              class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+              type="checkbox"
+              checked
+            />
+            <div class="iui-tree-node-content">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+                type="button"
+              >
+                <svg-chevron-right
+                  class="iui-button-icon iui-tree-node-content-expander-icon  iui-tree-node-content-expander-icon-expanded"
+                  aria-hidden="true"
+                ></svg-chevron-right>
+              </button>
+              <svg-placeholder
+                class="iui-tree-node-content-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tree-node-content-label">
+                <div class="iui-tree-node-content-title">Facility 1</div>
+              </span>
+            </div>
+          </div>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+            style='--level: 1;'
+          >
+            <li
+              class="iui-tree-item"
+              role="treeitem"
+              tabindex="0"
+              aria-expanded="true"
+            >
+              <div class="iui-tree-node">
+                <input
+                  class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                  type="checkbox"
+                  checked
+                />
+                <div class="iui-tree-node-content">
+                  <button
+                    class="iui-button"
+                    data-iui-variant="borderless"
+                    type="button"
+                  >
+                    <svg-chevron-right
+                      class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                      aria-hidden="true"
+                    ></svg-chevron-right>
+                  </button>
+                  <svg-placeholder
+                    class="iui-tree-node-content-icon"
+                    aria-hidden="true"
+                  ></svg-placeholder>
+                  <span class="iui-tree-node-content-label">
+                    <div class="iui-tree-node-content-title">Unit 1</div>
+                  </span>
+                </div>
+              </div>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+                style='--level: 2;'
+              >
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <svg-placeholder
+                        class="iui-tree-node-content-icon"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System A</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <svg-placeholder
+                        class="iui-tree-node-content-icon"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System B</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li
+          class="iui-tree-item"
+          role="treeitem"
+          tabindex="0"
+          aria-expanded="true"
+        >
+          <div class="iui-tree-node">
+            <input
+              class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+              type="checkbox"
+              checked
+            />
+            <div class="iui-tree-node-content">
+              <button
+                class="iui-button"
+                data-iui-variant="borderless"
+                type="button"
+              >
+                <svg-chevron-right
+                  class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                  aria-hidden="true"
+                ></svg-chevron-right>
+              </button>
+              <svg-placeholder
+                class="iui-tree-node-content-icon"
+                aria-hidden="true"
+              ></svg-placeholder>
+              <span class="iui-tree-node-content-label">
+                <div class="iui-tree-node-content-title">Facility 2</div>
+                <div class="iui-tree-node-content-caption">A basic description.</div>
+              </span>
+            </div>
+          </div>
+          <ul
+            class='iui-sub-tree'
+            role="group"
+            style='--level: 1;'
+          >
+            <li
+              class="iui-tree-item"
+              role="treeitem"
+              tabindex="0"
+              aria-expanded="true"
+            >
+              <div class="iui-tree-node">
+                <input
+                  class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                  type="checkbox"
+                  checked
+                />
+                <div class="iui-tree-node-content">
+                  <button
+                    class="iui-button"
+                    data-iui-variant="borderless"
+                    type="button"
+                  >
+                    <svg-chevron-right
+                      class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                      aria-hidden="true"
+                    ></svg-chevron-right>
+                  </button>
+                  <svg-placeholder
+                    class="iui-tree-node-content-icon"
+                    aria-hidden="true"
+                  ></svg-placeholder>
+                  <span class="iui-tree-node-content-label">
+                    <div class="iui-tree-node-content-title">Unit 1</div>
+                  </span>
+                </div>
+              </div>
+              <ul
+                class='iui-sub-tree'
+                role="group"
+                style='--level: 2;'
+              >
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                  aria-expanded="true"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <button
+                        class="iui-button"
+                        data-iui-variant="borderless"
+                        type="button"
+                      >
+                        <svg-chevron-right
+                          class="iui-button-icon iui-tree-node-content-expander-icon iui-tree-node-content-expander-icon-expanded"
+                          aria-hidden="true"
+                        ></svg-chevron-right>
+                      </button>
+                      <svg-placeholder
+                        class="iui-tree-node-content-icon"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System A</div>
+                      </span>
+                    </div>
+                  </div>
+                  <ul
+                    class='iui-sub-tree'
+                    role="group"
+                    style='--level: 3;'
+                  >
+                    <li
+                      class="iui-tree-item"
+                      role="treeitem"
+                      tabindex="0"
+                    >
+                      <div class="iui-tree-node">
+                        <input
+                          class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                          type="checkbox"
+                          checked
+                        />
+                        <div class="iui-tree-node-content">
+                          <svg-placeholder
+                            class="iui-tree-node-content-icon"
+                            aria-hidden="true"
+                          ></svg-placeholder>
+                          <span class="iui-tree-node-content-label">
+                            <div class="iui-tree-node-content-title">Subsystem</div>
+                          </span>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </li>
+                <li
+                  class="iui-tree-item"
+                  role="treeitem"
+                  tabindex="0"
+                  aria-expanded="false"
+                >
+                  <div class="iui-tree-node">
+                    <input
+                      class="iui-checkbox iui-checkbox-visibility iui-tree-node-checkbox"
+                      type="checkbox"
+                      checked
+                    />
+                    <div class="iui-tree-node-content">
+                      <button
+                        class="iui-button"
+                        data-iui-variant="borderless"
+                        type="button"
+                      >
+                        <svg-chevron-right
+                          class="iui-button-icon iui-tree-node-content-expander-icon"
+                          aria-hidden="true"
+                        ></svg-chevron-right>
+                      </button>
+                      <svg-placeholder
+                        class="iui-svg-icon iui-tree-node-content-icon"
+                        aria-hidden="true"
+                      ></svg-placeholder>
+                      <span class="iui-tree-node-content-label">
+                        <div class="iui-tree-node-content-title">System B</div>
+                      </span>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
     <script>
       document.querySelectorAll('.iui-tree').forEach((tree) => {
         tree.querySelectorAll('.iui-tree-node').forEach((el) => {
