@@ -56,7 +56,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   &-content {
     display: flex;
     align-items: center;
-    min-block-size: var(--_iui-expander-button-width);
+    min-block-size: calc(var(--_iui-expander-button-width) + var(--iui-size-2xs));
     margin-inline-start: calc(var(--_iui-expander-button-width) * 0.5 * var(--level, 0));
     overflow: hidden;
 
