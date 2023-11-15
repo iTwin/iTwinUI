@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.0.5
+
+### Patch Changes
+
+- [#1683](https://github.com/iTwin/iTwinUI/pull/1683): Improved `ExpandableBlock` animation so that it doesn't push content outside its bounds.
+- [#1687](https://github.com/iTwin/iTwinUI/pull/1687): Fixed `Overlay` component to correctly add polyfill for `inert`.
+
+## 3.0.4
+
+### Patch Changes
+
+- [#1682](https://github.com/iTwin/iTwinUI/pull/1682): Memoize `useToaster`'s return value so that it can be more reliably used in dependency arrays.
+- [#1681](https://github.com/iTwin/iTwinUI/pull/1681): Fixed an issue where `Select`'s menu was being positioned incorrectly after its first render.
+
 ## 3.0.3
 
 ### Patch Changes

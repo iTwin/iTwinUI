@@ -50,52 +50,20 @@
     list-style: none;
     padding: 0;
   }
-
-  @media (pointer: fine) and (hover: hover) {
-    :root {
-      --scrollbar-left-padding: 7px;
-      --scrollbar-right-offset: 7px;
-      --scrollbar-thumb-size: 10px;
-    }
-
-    ::-webkit-scrollbar {
-      /* total = 24px = 7px (left padding) + 10px (thumb) + 7px (right offset) */
-      --_scrollbar-size: calc(
-        var(--scrollbar-left-padding) + var(--scrollbar-thumb-size) +
-        var(--scrollbar-right-offset)
-      );
-      inline-size: var(--_scrollbar-size);
-      block-size: var(--_scrollbar-size);
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--scrollbar-color, hsl(0 0% 65% / 0.7));
-      border-radius: 9e9px;
-      border: 4px solid transparent;
-      border-width: var(--scrollbar-left-padding) var(--scrollbar-right-offset)
-        var(--scrollbar-right-offset) var(--scrollbar-left-padding);
-      background-clip: content-box;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background-color: var(--scrollbar-hover-color, hsl(0 0% 65% / 0.85));
-    }
-  }
 }
-
 
 @layer globals {
   :root {
     /* #region Light */
-    --color-background-1--light: #FFF;
-    --color-background-2--light: #FFF;
-    --color-background-3--light: #FFF;
+    --color-background-1--light: #fff;
+    --color-background-2--light: #fff;
+    --color-background-3--light: #fff;
     /* #endregion */
 
     /* #region Dark */
     --color-background-1--dark: hsl(221deg 33% 17%);
     --color-background-2--dark: hsl(221deg 47% 11%);
-    --color-background-3--dark: #FFF;
+    --color-background-3--dark: #fff;
     --color-text--dark: hsl(210deg 6% 85%);
     --color-subtext--dark: hsl(221deg 16% 68%);
     --color-mutedtext--dark: hsl(221deg, 6%, 52%);

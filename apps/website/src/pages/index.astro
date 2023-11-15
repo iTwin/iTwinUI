@@ -291,7 +291,9 @@ const currentPage = new URL(Astro.request.url).pathname;
 
       .main-button:hover,
       .join-us:hover {
-        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+        box-shadow:
+          0 0 10px var(--color-highlight-1),
+          0 0 20px var(--color-highlight-2);
       }
       .highlight-text {
         background: var(--color-highlight-gradient);
@@ -299,7 +301,9 @@ const currentPage = new URL(Astro.request.url).pathname;
         -webkit-text-fill-color: transparent;
       }
       .glow {
-        box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+        box-shadow:
+          0 0 10px var(--color-highlight-1),
+          0 0 20px var(--color-highlight-2);
       }
       .centered-content {
         display: flex;
@@ -341,7 +345,9 @@ const currentPage = new URL(Astro.request.url).pathname;
         transition: box-shadow var(--transition-speed) ease;
 
         &:where(:hover, :focus-within) {
-          box-shadow: 0 0 10px var(--color-highlight-1), 0 0 20px var(--color-highlight-2);
+          box-shadow:
+            0 0 10px var(--color-highlight-1),
+            0 0 20px var(--color-highlight-2);
         }
 
         a {
@@ -423,7 +429,9 @@ const currentPage = new URL(Astro.request.url).pathname;
         transition: box-shadow var(--transition-speed) ease;
 
         &:hover {
-          box-shadow: 0 0 5px var(--color-highlight-1), 0 0 10px var(--color-highlight-2);
+          box-shadow:
+            0 0 5px var(--color-highlight-1),
+            0 0 10px var(--color-highlight-2);
         }
 
         a {

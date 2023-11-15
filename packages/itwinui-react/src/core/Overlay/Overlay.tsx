@@ -8,11 +8,13 @@ import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type OverlayComponentProps = {
   /**
-   * The sub-component elements of Overlay.
+   * Page elements that are blurred by the Overlay. Will become blurred and inert.
    */
   children?: React.ReactNode;
   /**
-   * Placeholder for Progress Indicator in Overlay
+   * Content shown inside the Overlay, on top of the blurred content.
+   *
+   * Can be used to show a loading indicator.
    */
   content?: React.ReactNode;
 };
@@ -24,7 +26,7 @@ const OverlayComponent = React.forwardRef((props, forwardedRef) => {
 
   return (
     <OverlayWrapper ref={forwardedRef} {...rest}>
-      <OverlayMessage>{content}</OverlayMessage>
+      <OverlayOverlay>{content}</OverlayOverlay>
       <OverlayHiddenContent>{children}</OverlayHiddenContent>
     </OverlayWrapper>
   );
@@ -46,8 +48,8 @@ OverlayHiddenContent.displayName = 'Overlay.HiddenContent';
 
 // --------------------------------------------------------------------------------
 
-const OverlayMessage = polymorphic('iui-overlay');
-OverlayMessage.displayName = 'Overlay.Overlay';
+const OverlayOverlay = polymorphic('iui-overlay');
+OverlayOverlay.displayName = 'Overlay.Overlay';
 
 // --------------------------------------------------------------------------------
 
@@ -57,48 +59,42 @@ OverlayWrapper.displayName = 'Overlay.Wrapper';
 // --------------------------------------------------------------------------------
 
 /**
+ * The Overlay component can be used to hide some UI while its content is loading or revalidating,
+ * and display a loading indicator on top of it.
  *
- * This is an Overlay Component.
- *
+ * The hidden content gets blurred and becomes inert so it cannot be interacted with.
  *
  * @example
- * <Overlay content="loading">
- * content beneath the overlay... (text, img, etc.)
+ * <Overlay content="loading…">
+ *   content beneath the overlay… (text, img, etc.)
  * </Overlay>
- *
- *
- * This is an Overlay Component using subcomponents.
- *
  *
  * @example
  * <Overlay.Wrapper>
- *  <Overlay.Overlay>
- *    loading...
- *  <Overlay.Overlay>
- *  <Overlay.HiddenContent>
- *    content beneath the overlay... (text, img, etc.)
- *  <Overlay.HiddenContent />
+ *   <Overlay.Overlay>
+ *     loading…
+ *   <Overlay.Overlay>
+ *   <Overlay.HiddenContent>
+ *     content beneath the overlay… (text, img, etc.)
+ *   <Overlay.HiddenContent />
  * </Overlay.Wrapper>
- *
- *
  */
 export const Overlay = Object.assign(OverlayComponent, {
   /**
-   *
    * The main component is a wrapper to hold the
-   * Overlay HiddenContent and Overlay Message.
+   * `Overlay.HiddenContent` and `Overlay.Overlay`.
    */
   Wrapper: OverlayWrapper,
   /**
-   * HiddenContent houses page elements that are blurred by the
-   * Overlay.
+   * `Overlay.HiddenContent` houses page elements that are blurred by the
+   * Overlay. These elements will become inert when the overlay is active.
    */
   HiddenContent: OverlayHiddenContent,
   /**
-   *  Message contains the progress indicator and loading message
-   *  for the Overlay. It sits on top of the HiddenContent.
+   * `Overlay.Overlay` sits on top of the HiddenContent, and can show
+   * any arbitrary content like a progress indicator and loading message.
    */
-  Overlay: OverlayMessage,
+  Overlay: OverlayOverlay,
 });
 
 const useInertPolyfill = () => {
@@ -107,11 +103,11 @@ const useInertPolyfill = () => {
     'https://cdn.jsdelivr.net/npm/wicg-inert@3.1.2/dist/inert.min.js';
 
   React.useEffect(() => {
-    async () => {
+    (async () => {
       if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
         await dynamicImport(modulePath);
         loaded.current = true;
       }
-    };
+    })();
   }, []);
 };

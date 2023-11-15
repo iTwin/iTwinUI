@@ -43,7 +43,6 @@
     --_iui-expandable-block-background-color: transparent;
     --_iui-expandable-block-content-padding: none;
     --_iui-expandable-block-header-background-color-disabled: transparent;
-    --_iui-expandable-block-header-background-color-hover: var(--iui-color-background-transparent-hover);
     --_iui-expandable-block-header-focus-offset: -1px;
     --_iui-expandable-block-header-focus-thickness: 1px;
 
@@ -157,10 +156,10 @@
   display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
+  transition: all var(--iui-duration-1) ease-out;
+  transition-property: opacity;
   @media (prefers-reduced-motion: no-preference) {
-    transition: grid-template-rows var(--iui-duration-1), visibility var(--iui-duration-1),
-      transform var(--iui-duration-1);
-    transition-timing-function: ease-out;
+    transition-property: grid-template-rows, visibility, opacity, transform;
   }
 
   > div {
@@ -184,6 +183,7 @@
   }
 
   :where(.iui-expandable-block:not([data-iui-expanded='true'])) & {
-    transform: translateY(-100%);
+    opacity: 0;
+    transform: translateY(-1rem);
   }
 }
