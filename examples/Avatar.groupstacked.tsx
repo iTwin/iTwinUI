@@ -7,7 +7,7 @@ import { AvatarGroup, Avatar, getUserColor } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <AvatarGroup stacked iconSize='x-large'>
+    <AvatarGroup iconSize='x-large'>
       <Avatar
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
