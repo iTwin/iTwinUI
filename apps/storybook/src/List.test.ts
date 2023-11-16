@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('NotificationMarker', () => {
-  const storyPath = 'Core/List';
+  const storyPath = 'List';
 
   const tests = ['Basic', 'With Icon', 'Actionable'];
 

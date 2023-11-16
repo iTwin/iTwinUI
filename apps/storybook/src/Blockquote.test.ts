@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Blockquote', () => {
-  const storyPath = 'Typography/Blockquote';
+  const storyPath = 'Blockquote';
   const tests = ['Basic', 'With Footer'];
 
   tests.forEach((testName) => {

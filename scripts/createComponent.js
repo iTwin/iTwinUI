@@ -81,7 +81,7 @@ import { ${componentName} } from '@itwin/itwinui-react';
 
 export default {
   component: ${componentName},
-  title: 'Core/${componentName}',
+  title: '${componentName}',
 };
 
 export const Basic = () => {
@@ -97,7 +97,7 @@ const storyTestsFactory = (directory, componentName) => {
     path: `${directory}/${componentName}.test.ts`,
     template: `${copyrightBannerJs}
 describe('${componentName}', () => {
-  const storyPath = 'Core/${componentName}';
+  const storyPath = '${componentName}';
   const tests = ['Basic'];
 
   tests.forEach((testName) => {

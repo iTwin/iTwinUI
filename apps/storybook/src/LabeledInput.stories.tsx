@@ -8,7 +8,7 @@ import React from 'react';
 import { LabeledInput, StatusMessage } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/LabeledInput',
+  title: 'LabeledInput',
 };
 
 export const Basic = () => {

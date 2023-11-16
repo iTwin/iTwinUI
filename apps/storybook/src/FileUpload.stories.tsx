@@ -18,7 +18,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/FileUpload',
+  title: 'FileUpload',
 };
 
 export const WrappingInput = () => {

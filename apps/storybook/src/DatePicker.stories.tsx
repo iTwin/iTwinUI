@@ -12,7 +12,7 @@ import {
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/DatePicker',
+  title: 'DatePicker',
 };
 
 export const Basic = () => {

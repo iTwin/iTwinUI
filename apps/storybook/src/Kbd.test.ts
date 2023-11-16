@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Kbd', () => {
-  const storyPath = 'Typography/Keyboard Key';
+  const storyPath = 'Keyboard Key';
   const tests = ['Basic', 'Predefined Key'];
 
   tests.forEach((testName) => {

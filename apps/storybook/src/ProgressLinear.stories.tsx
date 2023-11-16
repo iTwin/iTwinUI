@@ -10,7 +10,7 @@ import React from 'react';
 import { ProgressLinear, Icon } from '@itwin/itwinui-react';
 
 export default {
-  title: 'ProgressIndicators/ProgressLinear',
+  title: 'ProgressLinear',
 };
 
 export const Determinate = () => {
