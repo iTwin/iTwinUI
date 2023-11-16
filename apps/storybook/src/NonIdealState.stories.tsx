@@ -17,7 +17,7 @@ import {
 } from '@itwin/itwinui-illustrations-react';
 
 export default {
-  title: 'Core/NonIdealState',
+  title: 'NonIdealState',
 };
 
 export const Redirect = () => (

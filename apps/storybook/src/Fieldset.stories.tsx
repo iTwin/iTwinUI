@@ -12,7 +12,7 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/Fieldset',
+  title: 'Fieldset',
 };
 
 export const Basic = () => {

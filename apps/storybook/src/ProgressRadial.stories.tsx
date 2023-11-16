@@ -6,7 +6,7 @@ import React from 'react';
 import { ProgressRadial } from '@itwin/itwinui-react';
 
 export default {
-  title: 'ProgressIndicators/ProgressRadial',
+  title: 'ProgressRadial',
 };
 
 export const Determinate = () => {

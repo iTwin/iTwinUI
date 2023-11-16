@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('NotificationMarker', () => {
-  const storyPath = 'Core/NotificationMarker';
+  const storyPath = 'NotificationMarker';
 
   // WithButtons, Pulsing, Status are intentionally left out.
   // This is because they all use IconButton/Button that cause visual testing bugs/fails.

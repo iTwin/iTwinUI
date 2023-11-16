@@ -7,7 +7,7 @@ import { IconButton } from '@itwin/itwinui-react';
 import { SvgAdd } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Buttons/IconButton',
+  title: 'IconButton',
 };
 
 export const Add = () => {

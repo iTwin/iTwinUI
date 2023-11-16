@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Radio', () => {
-  const storyPath = 'Input/Radio';
+  const storyPath = 'Radio';
   const tests = ['Basic', 'Disabled', 'Negative', 'Positive', 'Warning'];
 
   tests.forEach((testName) => {

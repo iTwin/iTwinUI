@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('WorkflowDiagram', () => {
-  const storyPath = 'Core/WorkflowDiagram';
+  const storyPath = 'WorkflowDiagram';
   const tests = ['Basic', 'With Tooltips'];
 
   tests.forEach((testName) => {

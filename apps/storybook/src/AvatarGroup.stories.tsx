@@ -11,7 +11,7 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/AvatarGroup',
+  title: 'AvatarGroup',
 };
 
 export const Basic = () => {

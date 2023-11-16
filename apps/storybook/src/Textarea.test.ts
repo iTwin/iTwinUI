@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Textarea', () => {
-  const storyPath = 'Input/Textarea';
+  const storyPath = 'Textarea';
   const tests = ['Basic', 'Disabled'];
 
   tests.forEach((testName) => {

@@ -8,7 +8,7 @@ import { SvgCheckmark, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Core/List',
+  title: 'List',
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 'clamp(300px, 50%, 100%)' }}>

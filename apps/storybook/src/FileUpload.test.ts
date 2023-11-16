@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('FileUpload', () => {
-  const storyPath = 'Core/FileUpload';
+  const storyPath = 'FileUpload';
   const tests = [
     'Wrapping Input',
     'Default File Upload Card',

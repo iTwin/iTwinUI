@@ -7,7 +7,7 @@ import React from 'react';
 import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/LabeledTextarea',
+  title: 'LabeledTextarea',
 };
 
 export const Basic = () => {

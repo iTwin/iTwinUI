@@ -29,12 +29,11 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 
 /**
  * Helper function to get the story id from the base path and the story name.
- * @param {string} storyPath
+ * @param {string} component
  * @param {string} storyName
  */
-Cypress.storyId = (storyPath, storyName) => {
-  storyPath = storyPath.replaceAll(' ', '-');
+Cypress.storyId = (component, storyName) => {
+  component = component.replaceAll(' ', '-');
   storyName = storyName.replaceAll(' ', '-');
-  const [category, component] = storyPath.split('/');
-  return `${category}--${component}--${storyName}`.toLowerCase();
+  return `${component}--${storyName}`.toLowerCase();
 };

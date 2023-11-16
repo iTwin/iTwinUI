@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('DatePicker', () => {
-  const storyPath = 'Core/DatePicker';
+  const storyPath = 'DatePicker';
   const tests = [
     'Basic',
     'Localized',

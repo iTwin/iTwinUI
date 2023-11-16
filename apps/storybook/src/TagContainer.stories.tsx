@@ -6,7 +6,7 @@ import React from 'react';
 import { Tag, TagContainer } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/TagContainer',
+  title: 'TagContainer',
 };
 
 export const BasicTagsContainer = () => {

@@ -18,7 +18,7 @@ import {
 import { SvgSwap } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/ColorPicker',
+  title: 'ColorPicker',
 };
 
 const ColorsList = [

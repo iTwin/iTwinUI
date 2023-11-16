@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Checkbox', () => {
-  const storyPath = 'Input/Checkbox';
+  const storyPath = 'Checkbox';
   const tests = [
     'Basic',
     'Disabled',

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('ProgressRadial', () => {
-  const storyPath = 'ProgressIndicators/ProgressRadial';
+  const storyPath = 'ProgressRadial';
   const tests = [
     'Determinate',
     'Determinate With Content',
