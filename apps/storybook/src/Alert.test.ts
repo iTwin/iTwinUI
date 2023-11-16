@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Alert', () => {
-  const storyPath = 'Core/Alert';
+  const storyPath = 'Alert';
   const tests = [
     'Positive',
     'Negative',

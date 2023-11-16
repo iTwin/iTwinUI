@@ -52,7 +52,7 @@ type TableProps<T extends Record<string, unknown> = Record<string, unknown>> =
   React.ComponentProps<typeof Table<T>>;
 
 export default {
-  title: 'Core/Table',
+  title: 'Table',
 };
 
 export const Basic = () => {

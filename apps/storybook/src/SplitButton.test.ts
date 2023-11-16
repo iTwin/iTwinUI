@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('SplitButton', () => {
-  const storyPath = 'Buttons/SplitButton';
+  const storyPath = 'SplitButton';
   const tests = ['Basic'];
 
   tests.forEach((testName) => {

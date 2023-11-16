@@ -8,7 +8,7 @@ import { SvgCamera } from '@itwin/itwinui-icons-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Input/LabeledSelect',
+  title: 'LabeledSelect',
   decorators: [
     (Story) => (
       // Body height is the same as Select component height therefore clicking outside would not close dropdown.

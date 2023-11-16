@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Icon', () => {
-  const storyPath = 'Utilities/Icon';
+  const storyPath = 'Icon';
 
   const tests = [
     'Default',

@@ -37,6 +37,18 @@ export const Provider: GlobalProvider = ({ children }) => {
       : 'default';
   }, [theme, highContrast]);
 
+  // redirect old storybook paths to new ones
+  React.useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const oldPath = params.get('path');
+    if (oldPath && !params.get('story')) {
+      const story = oldPath.substring((oldPath.indexOf('-') ?? 0) + 1);
+      if (story) {
+        window.location.href = `${window.location.href}&story=${story}`;
+      }
+    }
+  }, []);
+
   return (
     <ThemeProvider
       theme={theme}

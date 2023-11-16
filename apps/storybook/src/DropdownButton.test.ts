@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('DropdownButton', () => {
-  const storyPath = 'Buttons/DropdownButton';
+  const storyPath = 'DropdownButton';
   const tests = ['Basic'];
 
   tests.forEach((testName) => {

@@ -12,7 +12,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/TransferList',
+  title: 'TransferList',
 };
 
 export const Basic = () => {

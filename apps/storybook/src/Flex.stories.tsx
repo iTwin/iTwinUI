@@ -7,7 +7,7 @@ import { Flex } from '@itwin/itwinui-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Utilities/Flex',
+  title: 'Flex',
   decorators: [
     (Story) => (
       <div className='demo-flex-wrapper'>

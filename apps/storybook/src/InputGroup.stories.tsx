@@ -14,7 +14,7 @@ import {
 } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Input/InputGroup',
+  title: 'InputGroup',
 };
 
 export const RadioGroup = () => {

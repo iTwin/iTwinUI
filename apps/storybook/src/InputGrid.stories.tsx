@@ -16,7 +16,7 @@ import {
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Utilities/InputGrid',
+  title: 'InputGrid',
 };
 
 export const WithInput = () => {

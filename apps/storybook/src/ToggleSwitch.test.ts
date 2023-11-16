@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('ToggleSwitch', () => {
-  const storyPath = 'Input/ToggleSwitch';
+  const storyPath = 'ToggleSwitch';
   const tests = [
     'Basic',
     'Small',

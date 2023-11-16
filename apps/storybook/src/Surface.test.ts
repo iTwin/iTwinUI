@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Surface', () => {
-  const storyPath = 'Core/Surface';
+  const storyPath = 'Surface';
   const tests = [
     'Basic',
     'Custom',

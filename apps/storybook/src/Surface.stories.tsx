@@ -16,7 +16,7 @@ import {
 import { SvgActivity, SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Surface',
+  title: 'Surface',
 };
 
 export const Basic = () => {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Stepper', () => {
-  const storyPath = 'Core/Stepper';
+  const storyPath = 'Stepper';
   const tests = ['Basic', 'Long', 'Localized Long', 'With Tooltips'];
 
   tests.forEach((testName) => {

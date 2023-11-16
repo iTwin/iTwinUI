@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Flex', () => {
-  const storyPath = 'Utilities/Flex';
+  const storyPath = 'Flex';
   const tests = ['Basic', 'With Spacer', 'With Flex Item', 'Individual Gaps'];
 
   tests.forEach((testName) => {

@@ -7,7 +7,7 @@ import { MenuItem, SplitButton } from '@itwin/itwinui-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Buttons/SplitButton',
+  title: 'SplitButton',
   decorators: [
     (Story) => (
       <div style={{ minHeight: 150 }}>

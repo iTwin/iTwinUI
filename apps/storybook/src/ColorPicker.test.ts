@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('ColorPicker', () => {
-  const storyPath = 'Core/ColorPicker';
+  const storyPath = 'ColorPicker';
   const tests = ['Basic', 'Advanced', 'With Alpha'];
 
   tests.forEach((testName) => {
