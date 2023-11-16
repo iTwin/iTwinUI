@@ -26,31 +26,13 @@ import { default as AlertMainExampleRaw } from './Alert.main';
 const AlertMainExample = withThemeProvider(AlertMainExampleRaw);
 export { AlertMainExample };
 
-import { default as AlertInlineExampleRaw } from './Alert.inline';
-const AlertInlineExample = withThemeProvider(AlertInlineExampleRaw);
-export { AlertInlineExample };
-
-import { default as AlertInformationalExampleRaw } from './Alert.informational';
-const AlertInformationalExample = withThemeProvider(
-  AlertInformationalExampleRaw,
-);
-export { AlertInformationalExample };
-
-import { default as AlertPositiveExampleRaw } from './Alert.positive';
-const AlertPositiveExample = withThemeProvider(AlertPositiveExampleRaw);
-export { AlertPositiveExample };
-
-import { default as AlertNegativeExampleRaw } from './Alert.negative';
-const AlertNegativeExample = withThemeProvider(AlertNegativeExampleRaw);
-export { AlertNegativeExample };
+import { default as AlertTypesExampleRaw } from './Alert.types';
+const AlertTypesExample = withThemeProvider(AlertTypesExampleRaw);
+export { AlertTypesExample };
 
 import { default as AlertStickyExampleRaw } from './Alert.sticky';
 const AlertStickyExample = withThemeProvider(AlertStickyExampleRaw);
 export { AlertStickyExample };
-
-import { default as AlertWarningExampleRaw } from './Alert.warning';
-const AlertWarningExample = withThemeProvider(AlertWarningExampleRaw);
-export { AlertWarningExample };
 
 // ----------------------------------------------------------------------------
 
