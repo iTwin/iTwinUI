@@ -610,6 +610,14 @@ import { default as HeaderMainExampleRaw } from './Header.main';
 const HeaderMainExample = withThemeProvider(HeaderMainExampleRaw);
 export { HeaderMainExample };
 
+import { default as HeaderFullExampleRaw } from './Header.full';
+const HeaderFullExample = withThemeProvider(HeaderFullExampleRaw);
+export { HeaderFullExample };
+
+import { default as HeaderSlimExampleRaw } from './Header.slim';
+const HeaderSlimExample = withThemeProvider(HeaderSlimExampleRaw);
+export { HeaderSlimExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as InformationPanelMainExampleRaw } from './InformationPanel.main';
