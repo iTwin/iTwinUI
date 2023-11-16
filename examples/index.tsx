@@ -36,13 +36,9 @@ export { AlertStickyExample };
 
 // ----------------------------------------------------------------------------
 
-import { default as AvatarMainExampleRaw } from './Avatar.main';
-const AvatarMainExample = withThemeProvider(AvatarMainExampleRaw);
-export { AvatarMainExample };
-
-import { default as AvatarGroupExampleRaw } from './Avatar.group';
-const AvatarGroupExample = withThemeProvider(AvatarGroupExampleRaw);
-export { AvatarGroupExample };
+import { default as AvatarTypesExampleRaw } from './Avatar.types';
+const AvatarTypesExample = withThemeProvider(AvatarTypesExampleRaw);
+export { AvatarTypesExample };
 
 import { default as AvatarGroupAnimatedExampleRaw } from './Avatar.groupanimated';
 const AvatarGroupAnimatedExample = withThemeProvider(
@@ -68,17 +64,9 @@ const AvatarGroupStackedExample = withThemeProvider(
 );
 export { AvatarGroupStackedExample };
 
-import { default as AvatarIconExampleRaw } from './Avatar.icon';
-const AvatarIconExample = withThemeProvider(AvatarIconExampleRaw);
-export { AvatarIconExample };
-
-import { default as AvatarInitialsExampleRaw } from './Avatar.initials';
-const AvatarInitialsExample = withThemeProvider(AvatarInitialsExampleRaw);
-export { AvatarInitialsExample };
-
-import { default as AvatarPictureExampleRaw } from './Avatar.picture';
-const AvatarPictureExample = withThemeProvider(AvatarPictureExampleRaw);
-export { AvatarPictureExample };
+import { default as AvatarMainExampleRaw } from './Avatar.main';
+const AvatarMainExample = withThemeProvider(AvatarMainExampleRaw);
+export { AvatarMainExample };
 
 import { default as AvatarSizesExampleRaw } from './Avatar.sizes';
 const AvatarSizesExample = withThemeProvider(AvatarSizesExampleRaw);
