@@ -183,7 +183,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
       }
       style={{
         ...(!placement && roundedTransformStyle),
-        transform,
+        ...((isResizable || isDraggable) && transform),
         ...style,
         ...propStyle,
       }}
