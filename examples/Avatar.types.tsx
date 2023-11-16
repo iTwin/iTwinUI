@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Avatar, getUserColor } from '@itwin/itwinui-react';
+import { Avatar, getUserColor, Flex } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
 
 const imgSrc =
@@ -11,13 +11,7 @@ const imgSrc =
 
 export default () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: 'var(--iui-size-s)',
-        placeItems: 'center',
-      }}
-    >
+    <Flex>
       <Avatar
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}
@@ -41,6 +35,6 @@ export default () => {
         size='x-large'
         status='busy'
       />
-    </div>
+    </Flex>
   );
 };
