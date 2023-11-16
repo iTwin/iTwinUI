@@ -6,11 +6,12 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   FocusTrap,
-  getTranslateValues,
+  getTranslateValuesFromElement,
   Resizer,
   useMergedRefs,
   useIsomorphicLayoutEffect,
   Box,
+  getTranslateValues,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
@@ -141,7 +142,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
       return;
     }
     const rect = dialogRef.current?.getBoundingClientRect();
-    const [translateX, translateY] = getTranslateValues(dialogRef.current);
+    const [translateX, translateY] = getTranslateValuesFromElement(
+      dialogRef.current,
+    );
     setStyle((oldStyle) => ({
       ...oldStyle,
       inlineSize: rect?.width,
@@ -159,7 +162,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  const roundedTransformStyle = useRoundedTransform(dialogElement);
+  const roundedTransformStyle = useRoundedTransform(dialogElement, {
+    transform,
+  });
 
   const content = (
     <Box
@@ -177,13 +182,8 @@ export const DialogMain = React.forwardRef((props, ref) => {
       ref={useMergedRefs(dialogRef, ref, setDialogElement)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
-      // we set it to empty string to remove CSS for default placement (after we know transform values in JS)
-      data-iui-placement={
-        placement ?? roundedTransformStyle.transform ? '' : undefined
-      }
       style={{
         ...(!placement && roundedTransformStyle),
-        ...((isResizable || isDraggable) && { transform }),
         ...style,
         ...propStyle,
       }}
@@ -245,7 +245,10 @@ export default DialogMain;
 
 // ----------------------------------------------------------------------------
 
-const useRoundedTransform = (element?: HTMLElement) => {
+const useRoundedTransform = (
+  element?: HTMLElement,
+  { transform }: { transform?: string } = {},
+) => {
   const [roundedStyles, setRoundedStyles] = React.useState<React.CSSProperties>(
     {},
   );
@@ -255,12 +258,14 @@ const useRoundedTransform = (element?: HTMLElement) => {
       return;
     }
 
-    const { x, y } = element.getBoundingClientRect();
+    const [x, y] = transform
+      ? getTranslateValues(transform)
+      : getTranslateValuesFromElement(element);
 
     setRoundedStyles({
       transform: `translate(${Math.round(x)}px, ${Math.round(y)}px)`,
     });
-  }, [element]);
+  }, [element, transform]);
 
   return roundedStyles;
 };
