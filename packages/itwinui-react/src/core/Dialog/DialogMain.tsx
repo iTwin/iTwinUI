@@ -12,6 +12,7 @@ import {
   useIsomorphicLayoutEffect,
   Box,
   getTranslateValues,
+  roundByDPR,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
@@ -263,7 +264,7 @@ const useRoundedTransform = (
       : getTranslateValuesFromElement(element);
 
     setRoundedStyles({
-      transform: `translate(${Math.round(x)}px, ${Math.round(y)}px)`,
+      transform: `translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`,
     });
   }, [element, transform]);
 
