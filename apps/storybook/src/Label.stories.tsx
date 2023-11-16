@@ -7,7 +7,7 @@ import { Input, Label, Text, InputGrid } from '@itwin/itwinui-react';
 import type { StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Typography/Label',
+  title: 'Label',
   decorators: [
     (Story) => (
       <div style={{ maxWidth: 'clamp(300px, 50%, 100%)' }}>

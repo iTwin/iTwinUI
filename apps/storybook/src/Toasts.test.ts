@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('Toasts', () => {
-  const storyPath = 'Core/Toasts';
+  const storyPath = 'Toasts';
   const tests = [
     'Anchor To Button',
     'Informational',

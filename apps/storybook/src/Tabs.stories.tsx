@@ -7,7 +7,7 @@ import React from 'react';
 import { Button, Tabs, Tab } from '@itwin/itwinui-react';
 
 export default {
-  title: 'Core/Tabs',
+  title: 'Tabs',
 };
 
 export const DefaultTabs = () => {

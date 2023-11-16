@@ -28,7 +28,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Header',
+  title: 'Header',
 };
 
 const buildClickHandler =

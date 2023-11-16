@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('TagContainer', () => {
-  const storyPath = 'Core/TagContainer';
+  const storyPath = 'TagContainer';
   const tests = [
     'Basic Tags Container',
     'Default Tags Container',

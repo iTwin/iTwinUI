@@ -22,7 +22,7 @@ import {
 import { StoryDecorator } from '@ladle/react';
 
 export default {
-  title: 'Core/DropdownMenu',
+  title: 'DropdownMenu',
 };
 
 export const Basic = () => {

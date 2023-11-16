@@ -29,7 +29,7 @@ export default {
       </div>
     ),
   ],
-  title: 'Core/SideNavigation',
+  title: 'SideNavigation',
 } satisfies StoryDefault;
 
 export const Basic = () => {

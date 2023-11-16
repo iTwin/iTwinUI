@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('InformationPanel', () => {
-  const storyPath = 'Core/InformationPanel';
+  const storyPath = 'InformationPanel';
   const tests = ['Basic', 'Custom Actions', 'Custom Width', 'Horizontal'];
 
   tests.forEach((testName) => {

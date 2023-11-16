@@ -7,7 +7,7 @@ import { getUserColor, Avatar } from '@itwin/itwinui-react';
 import { SvgUser } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Avatar',
+  title: 'Avatar',
 };
 
 export const Basic = () => {

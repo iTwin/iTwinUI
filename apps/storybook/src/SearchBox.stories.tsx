@@ -7,7 +7,7 @@ import { SearchBox, Text, Divider } from '@itwin/itwinui-react';
 import { SvgCaretDownSmall, SvgCaretUpSmall } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Input/SearchBox',
+  title: 'SearchBox',
 };
 
 export const Basic = () => {

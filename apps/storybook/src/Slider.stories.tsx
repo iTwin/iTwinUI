@@ -8,7 +8,7 @@ import { SvgSmileyHappy, SvgSmileySad } from '@itwin/itwinui-icons-react';
 import type { StoryDecorator, StoryDefault } from '@ladle/react';
 
 export default {
-  title: 'Input/Slider',
+  title: 'Slider',
   decorators: [
     (Story, context) => (
       <div

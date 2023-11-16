@@ -22,7 +22,7 @@ import {
 } from '@itwin/itwinui-icons-react';
 
 export default {
-  title: 'Core/Tile',
+  title: 'Tile',
 };
 
 export const Basic = () => {

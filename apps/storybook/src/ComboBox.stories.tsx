@@ -24,7 +24,7 @@ export default {
       </div>
     ),
   ],
-  title: 'Core/ComboBox',
+  title: 'ComboBox',
 } satisfies StoryDefault;
 
 const countriesList = [

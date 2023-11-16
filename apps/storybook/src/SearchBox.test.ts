@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('SearchBox', () => {
-  const storyPath = 'Input/SearchBox';
+  const storyPath = 'SearchBox';
   const tests = [
     'Basic',
     'Basic With Status',

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 describe('RadioTileGroup', () => {
-  const storyPath = 'Input/RadioTileGroup';
+  const storyPath = 'RadioTileGroup';
   const tests = ['Colored', 'Monochrome'];
 
   tests.forEach((testName) => {
