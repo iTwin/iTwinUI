@@ -24,6 +24,7 @@
     "@types/react": "*",
     "astro": "^3",
     "examples": "*",
+    "htm": "^3",
     "lz-string": "^1.4.4",
     "nanoid": "*",
     "nanostores": "^0.9.0",

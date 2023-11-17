@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { html } from 'htm/react';
 
 const currentPage = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname.slice(0, -1)
@@ -11,6 +12,15 @@ const utilityComponents = await getCollection(
   'docs',
   ({ data: { group } }) => group === 'utilities',
 );
+
+const NavLink = ({ slug = '', title = '', ...props }) => {
+  const url = `/docs/${slug}`;
+  const isCurrent = currentPage === url;
+
+  return html`<a href="${slug}" aria-current=${isCurrent ? 'page' : 'false'} ...${props}>
+    ${title}
+  </a>`;
+};
 ---
 
 <nav aria-labelledby='grid-left'>
@@ -19,12 +29,7 @@ const utilityComponents = await getCollection(
       {
         introPages.map(({ slug, data }) => (
           <li class='nav-link'>
-            <a
-              href={`/docs/${slug}`}
-              aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
-            >
-              {data.title}
-            </a>
+            <NavLink slug={slug} title={data.title} />
           </li>
         ))
       }
@@ -35,12 +40,7 @@ const utilityComponents = await getCollection(
       {
         mainComponents.map(({ slug, data }) => (
           <li class='nav-link'>
-            <a
-              href={`/docs/${slug}`}
-              aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
-            >
-              {data.title}
-            </a>
+            <NavLink slug={slug} title={data.title} />
           </li>
         ))
       }
@@ -52,12 +52,7 @@ const utilityComponents = await getCollection(
         {
           utilityComponents.map(({ slug, data }) => (
             <li class='nav-link'>
-              <a
-                href={`/docs/${slug}`}
-                aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
-              >
-                {data.title}
-              </a>
+              <NavLink slug={slug} title={data.title} />
             </li>
           ))
         }
@@ -129,7 +124,7 @@ const utilityComponents = await getCollection(
       }
     }
 
-    .nav-link a {
+    .nav-link :global(a) {
       margin: 1px;
       padding: 0.3rem var(--space-5);
       font: inherit;
@@ -152,39 +147,39 @@ const utilityComponents = await getCollection(
         display: flex;
         align-items: center;
       }
-    }
 
-    .nav-link a[aria-current='page'] {
-      background-color: var(--color-active);
-      color: var(--color-text);
-      position: relative;
+      &[aria-current='page'] {
+        background-color: var(--color-active);
+        color: var(--color-text);
+        position: relative;
 
-      // scroll to current link when page loads, without any JS.
-      // based on https://oh-snap.netlify.app/#scroll-start-trick
-      animation: scroll-into-view 1.5s;
+        // scroll to current link when page loads, without any JS.
+        // based on https://oh-snap.netlify.app/#scroll-start-trick
+        animation: scroll-into-view 1.5s;
 
-      @keyframes scroll-into-view {
-        from {
-          scroll-snap-align: center;
+        @keyframes scroll-into-view {
+          from {
+            scroll-snap-align: center;
+          }
+          to {
+            scroll-snap-align: unset;
+          }
         }
-        to {
-          scroll-snap-align: unset;
-        }
-      }
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        border-left: 2px solid var(--color-text);
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          border-left: 2px solid var(--color-text);
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
 
-        @media (max-width: 50em) {
-          border-width: 4px;
-          border-radius: 0;
+          @media (max-width: 50em) {
+            border-width: 4px;
+            border-radius: 0;
+          }
         }
       }
     }
