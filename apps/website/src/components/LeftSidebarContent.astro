@@ -23,41 +23,39 @@ const NavLink = ({ slug = '', title = '', ...props }) => {
 };
 ---
 
-<nav aria-labelledby='grid-left'>
-  <div class='nav-groups' id='main-navigation-list'>
+<nav aria-label='Main' id='main-navigation-list'>
+  <ul>
+    {
+      introPages.map(({ slug, data }) => (
+        <li class='nav-link'>
+          <NavLink slug={slug} title={data.title} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+  <ul>
+    {
+      mainComponents.map(({ slug, data }) => (
+        <li class='nav-link'>
+          <NavLink slug={slug} title={data.title} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class='nav-group'>
+    <h3 class='nav-group-subtitle'>Utilities</h3>
     <ul>
       {
-        introPages.map(({ slug, data }) => (
+        utilityComponents.map(({ slug, data }) => (
           <li class='nav-link'>
             <NavLink slug={slug} title={data.title} />
           </li>
         ))
       }
     </ul>
-
-    <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
-    <ul>
-      {
-        mainComponents.map(({ slug, data }) => (
-          <li class='nav-link'>
-            <NavLink slug={slug} title={data.title} />
-          </li>
-        ))
-      }
-    </ul>
-
-    <div class='nav-group'>
-      <h3 class='nav-group-subtitle'>Utilities</h3>
-      <ul>
-        {
-          utilityComponents.map(({ slug, data }) => (
-            <li class='nav-link'>
-              <NavLink slug={slug} title={data.title} />
-            </li>
-          ))
-        }
-      </ul>
-    </div>
   </div>
 </nav>
 
@@ -66,20 +64,14 @@ const NavLink = ({ slug = '', title = '', ...props }) => {
     nav {
       width: 100%;
       font-size: var(--type--1);
-
-      & ul {
-        list-style: none;
-        padding: 0;
-      }
-    }
-
-    .nav-groups {
       height: 100%;
       padding-top: var(--space-7);
       max-height: 100vh;
       min-width: 220px;
 
-      ul {
+      & ul {
+        list-style: none;
+        padding: 0;
         padding-block-end: var(--space-7);
       }
     }
