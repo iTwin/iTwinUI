@@ -17,7 +17,7 @@ const NavLink = ({ slug = '', title = '', ...props }) => {
   const url = `/docs/${slug}`;
   const isCurrent = currentPage === url;
 
-  return html`<a href="${slug}" aria-current=${isCurrent ? 'page' : 'false'} ...${props}>
+  return html`<a href="${url}" aria-current=${isCurrent ? 'page' : 'false'} ...${props}>
     ${title}
   </a>`;
 };
