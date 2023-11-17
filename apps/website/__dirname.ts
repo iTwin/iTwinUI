@@ -12,7 +12,7 @@ let __dirname = dirname(fileURLToPath(import.meta.url));
 
 // prod build runs in a weird path inside dist/ so we need to move it back a couple levels
 if (import.meta.env.PROD) {
-  __dirname = join(__dirname, '../../..');
+  __dirname = join(__dirname, '../..');
 }
 
 export default __dirname;
