@@ -8,8 +8,8 @@ const docs = defineCollection({
   type: 'content',
   schema: z.object({
     title: z.string(),
-    // description: z.string().optional(),
-    // thumbnail: z.string().optional(),
+    description: z.any(), // TODO: fix error when using string
+    thumbnail: z.any(), // TODO: fix error when using string
     group: z.string().optional(),
   }),
 });
