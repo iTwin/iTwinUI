@@ -163,7 +163,8 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  const roundedTransform = useRoundedTransform(dialogElement, {
+  const roundedTransform = useRoundedTransform({
+    element: dialogElement,
     transform,
   });
 
@@ -247,10 +248,16 @@ export default DialogMain;
 
 // ----------------------------------------------------------------------------
 
-const useRoundedTransform = (
-  element?: HTMLElement,
-  { transform }: { transform?: string } = {},
-) => {
+/**
+ * Rounds off an element's transform value based on the device's pixel grid, to avoid blurring.
+ */
+const useRoundedTransform = ({
+  element,
+  transform,
+}: {
+  element?: HTMLElement;
+  transform?: string;
+}) => {
   const [roundedStyles, setRoundedStyles] = React.useState(transform);
 
   useIsomorphicLayoutEffect(() => {
