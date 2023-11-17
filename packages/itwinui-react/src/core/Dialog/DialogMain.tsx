@@ -163,7 +163,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  const roundedTransformStyle = useRoundedTransform(dialogElement, {
+  const roundedTransform = useRoundedTransform(dialogElement, {
     transform,
   });
 
@@ -183,8 +183,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
       ref={useMergedRefs(dialogRef, ref, setDialogElement)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
+      data-iui-placement={placement}
       style={{
-        ...(!placement && roundedTransformStyle),
+        transform: roundedTransform,
         ...style,
         ...propStyle,
       }}
@@ -250,12 +251,10 @@ const useRoundedTransform = (
   element?: HTMLElement,
   { transform }: { transform?: string } = {},
 ) => {
-  const [roundedStyles, setRoundedStyles] = React.useState<React.CSSProperties>(
-    {},
-  );
+  const [roundedStyles, setRoundedStyles] = React.useState(transform);
 
-  React.useEffect(() => {
-    if (!element) {
+  useIsomorphicLayoutEffect(() => {
+    if (!element || !DOMMatrix) {
       return;
     }
 
@@ -263,9 +262,7 @@ const useRoundedTransform = (
       ? getTranslateValues(transform)
       : getTranslateValuesFromElement(element);
 
-    setRoundedStyles({
-      transform: `translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`,
-    });
+    setRoundedStyles(`translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`);
   }, [element, transform]);
 
   return roundedStyles;
