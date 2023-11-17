@@ -62,14 +62,20 @@ export const mergeEventHandlers =
  * @param element HTML element you want to get translate value of
  * @returns Translate values in pixels in an array `[translateX, translateY]`
  */
-export const getTranslateValues = (element: HTMLElement | null | undefined) => {
+export const getTranslateValuesFromElement = (
+  element: HTMLElement | null | undefined,
+) => {
   if (!element) {
     return [];
   }
 
   const transformValue =
     getComputedStyle(element).getPropertyValue('transform');
-  const matrix = new DOMMatrix(transformValue);
 
+  return getTranslateValues(transformValue);
+};
+
+export const getTranslateValues = (transformValue: string) => {
+  const matrix = new DOMMatrix(transformValue);
   return [matrix.m41, matrix.m42];
 };

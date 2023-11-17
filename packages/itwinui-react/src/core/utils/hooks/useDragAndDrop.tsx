@@ -3,7 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getTranslateValues, getWindow } from '../functions/index.js';
+import {
+  getTranslateValuesFromElement,
+  getWindow,
+} from '../functions/index.js';
 import { useEventListener } from './useEventListener.js';
 import { useResizeObserver } from './useResizeObserver.js';
 
@@ -47,7 +50,9 @@ export const useDragAndDrop = (
     const { top, right, bottom, left } =
       elementRef.current?.getBoundingClientRect();
 
-    let [newTranslateX, newTranslateY] = getTranslateValues(elementRef.current);
+    let [newTranslateX, newTranslateY] = getTranslateValuesFromElement(
+      elementRef.current,
+    );
 
     containerRectRef.current = getContainerRect(containerRef);
     if (bottom > containerRectRef.current.bottom) {
@@ -112,7 +117,7 @@ export const useDragAndDrop = (
         return;
       }
 
-      const [x, y] = getTranslateValues(elementRef.current);
+      const [x, y] = getTranslateValuesFromElement(elementRef.current);
       grabOffsetX.current = e.clientX - x;
       grabOffsetY.current = e.clientY - y;
 
