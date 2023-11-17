@@ -254,7 +254,7 @@ const useRoundedTransform = (
   const [roundedStyles, setRoundedStyles] = React.useState(transform);
 
   useIsomorphicLayoutEffect(() => {
-    if (!element || !DOMMatrix) {
+    if (!element || typeof DOMMatrix === 'undefined') {
       return;
     }
 
