@@ -1,71 +1,69 @@
 ---
+import { getCollection } from 'astro:content';
+
 const currentPage = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname.slice(0, -1)
   : Astro.url.pathname;
 
-const docsPages = (await Astro.glob('../pages/docs/*.mdx')).map(({ url, frontmatter }) => ({
-  url,
-  title: frontmatter.title,
-  group: frontmatter.group,
-}));
-
-const introPages = docsPages.filter((page) => !page.group);
-
-const sections = new Map<string, typeof docsPages>();
-sections.set(
-  'core',
-  docsPages.filter((item) => item.group === 'core'),
-);
-sections.set(
-  'buttons',
-  docsPages.filter((item) => item.group === 'buttons'),
-);
-sections.set(
-  'inputs',
-  docsPages.filter((item) => item.group === 'inputs'),
-);
-sections.set(
-  'typography',
-  docsPages.filter((item) => item.group === 'typography'),
-);
-sections.set(
-  'utilities',
-  docsPages.filter((item) => item.group === 'utilities'),
+const introPages = await getCollection('docs', ({ data: { group } }) => group === 'intro');
+const mainComponents = await getCollection('docs', ({ data: { group } }) => group === undefined);
+const utilityComponents = await getCollection(
+  'docs',
+  ({ data: { group } }) => group === 'utilities',
 );
 ---
 
 <nav aria-labelledby='grid-left'>
-  <ul class='nav-groups' id='main-navigation-list'>
-    {
-      introPages.map(({ url, title }) => (
-        <li class='nav-link'>
-          <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
-            {title}
-          </a>
-        </li>
-      ))
-    }
-
-    <li>
-      <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+  <div class='nav-groups' id='main-navigation-list'>
+    <ul>
       {
-        [...sections.entries()].map(([heading, list]) => (
-          <div class='nav-group'>
-            <h2 class='nav-group-subtitle'>{heading}</h2>
-            <ul>
-              {list.map(({ url, title }) => (
-                <li class='nav-link'>
-                  <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
-                    {title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        introPages.map(({ slug, data }) => (
+          <li class='nav-link'>
+            <a
+              href={`/docs/${slug}`}
+              aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
+            >
+              {data.title}
+            </a>
+          </li>
         ))
       }
-    </li>
-  </ul>
+    </ul>
+
+    <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+    <ul>
+      {
+        mainComponents.map(({ slug, data }) => (
+          <li class='nav-link'>
+            <a
+              href={`/docs/${slug}`}
+              aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
+            >
+              {data.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class='nav-group'>
+      <h3 class='nav-group-subtitle'>Utilities</h3>
+      <ul>
+        {
+          utilityComponents.map(({ slug, data }) => (
+            <li class='nav-link'>
+              <a
+                href={`/docs/${slug}`}
+                aria-current={`${currentPage === `/docs/${slug}` ? 'page' : 'false'}`}
+              >
+                {data.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </nav>
 
 <style lang='scss'>
@@ -86,16 +84,8 @@ sections.set(
       max-height: 100vh;
       min-width: 220px;
 
-      > li:last-of-type {
+      ul {
         padding-block-end: var(--space-7);
-      }
-
-      > li + li:not(.nav-link) {
-        margin-top: var(--space-5);
-
-        @media (max-width: 50em) {
-          margin-top: var(--space-7);
-        }
       }
     }
 
@@ -103,7 +93,7 @@ sections.set(
       color: var(--color-subtext);
       font-size: var(--type-0);
       font-weight: 600;
-      padding: 0.3rem var(--space-4);
+      padding: 0.3rem var(--space-5);
       margin-bottom: var(--space-2);
       text-decoration: none;
       text-transform: uppercase;
@@ -123,7 +113,6 @@ sections.set(
     }
 
     .nav-group-subtitle {
-      margin-top: var(--space-6);
       color: var(--color-mutedtext);
       font-size: var(--type--1);
       font-weight: 600;
