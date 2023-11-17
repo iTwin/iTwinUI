@@ -258,7 +258,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   // adds data-active to the first heading that is currently in viewport
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const id = entry.target.getAttribute('id');
+      const id = entry.target.getAttribute('id') ?? '';
       if (entry.isIntersecting) {
         currentlyInteresecting.add(id);
         updateActiveLink();
