@@ -20,6 +20,19 @@ import * as AllExamples from 'examples';
 
 The Carousel component consists of a set of slides, normally displayed one at a time. A navigation section is located below the slides, consisting of ["dots"](#dots-list) and ["previous"/"next"](#navigation) buttons, used for changing slides.
 
+The Carousel component is made up of [customizable subcomponents](#component-api). Here's what the basic usage looks like:
+
+````tsx
+<Carousel>
+<Carousel.Navigation />
+  <Carousel.Slider>
+    <Carousel.Slide>…</Carousel.Slide>
+    <Carousel.Slide>…</Carousel.Slide>
+    <Carousel.Slide>…</Carousel.Slide>
+    </Carousel.Slider>
+    </Carousel>
+> ```
+
 ## Usage
 
 ### Controlled State
@@ -79,3 +92,4 @@ Lastly, the carousel does not support auto-rotating slides, because that can lea
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
+````
