@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.6
+
+### Patch Changes
+
+- [#1693](https://github.com/iTwin/iTwinUI/pull/1693): Fixed an issue where Dialog content was appearing blurred on Windows.
+
 ## 3.0.5
 
 ### Patch Changes

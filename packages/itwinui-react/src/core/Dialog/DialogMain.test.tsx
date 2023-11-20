@@ -257,13 +257,15 @@ it('should not handle drag when dialog is not draggable', () => {
   const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
 
+  const originalTransform = dialog.style.transform;
+
   const titleBar = container.querySelector(
     '.iui-dialog-title-bar',
   ) as HTMLElement;
   expect(titleBar).toBeTruthy();
   fireEvent.pointerDown(titleBar, { clientX: 100, clientY: 100, button: 0 });
   fireEvent.pointerMove(titleBar, { clientX: 200, clientY: 200 });
-  expect(dialog.style.transform).toBe('');
+  expect(dialog.style.transform).toEqual(originalTransform);
   fireEvent.pointerUp(titleBar);
-  expect(dialog.style.transform).toBe('');
+  expect(dialog.style.transform).toEqual(originalTransform);
 });
