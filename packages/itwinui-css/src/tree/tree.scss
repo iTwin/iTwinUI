@@ -6,18 +6,17 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 .iui-tree {
   @include mixins.iui-reset;
-  --_iui-expander-button-width: var(--iui-component-height);
+  --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   --_iui-tree-node-padding-inline: var(--iui-size-xs);
-  --_iui-tree-node-content-icon-margin-inline: calc(var(--_iui-tree-node-padding-inline) + 2px);
+  --_iui-tree-row-height: calc(var(--iui-size-3xs) * 18);
 
   list-style: none;
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
 
   &[data-iui-size='small'] {
-    --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
-    --_iui-tree-node-content-icon-margin-inline: calc(var(--_iui-tree-node-padding-inline) + var(--iui-size-3xs) + 1px);
+    --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
   }
 
   &[data-iui-lines='true'] {
@@ -45,6 +44,10 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
         transition: background-color var(--iui-duration-1) ease;
         z-index: 1; // TODO: This gets the lines above the background hover, but not above the buttons when focused
       }
+    }
+
+    .iui-button {
+      z-index: 2;
     }
   }
 }
@@ -83,8 +86,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
   &-content {
     display: flex;
+    column-gap: var(--_iui-tree-node-padding-inline);
     align-items: center;
-    min-block-size: calc(var(--_iui-expander-button-width) + var(--iui-size-2xs));
+    min-block-size: var(--_iui-tree-row-height);
     margin-inline-start: calc(var(--_iui-expander-button-width) * 0.5 * var(--level, 0));
     overflow: hidden;
 
