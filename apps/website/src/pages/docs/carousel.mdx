@@ -81,9 +81,11 @@ The `Carousel.Navigation` component by default consists of the `PreviousButton` 
 
 ### Carousel.DotsList
 
-The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide. If used as a descendant of `Carousel`, then this component does not need any props or `children`. The props can be specified if this component is being used outside `Carousel`. `children` can be specified to override the individual dots that are shown.
+The `Carousel.DotsList` component shows a list of `Carousel.Dot` components which can be used to choose a specific slide.
 
-**Important**: When used standalone, this component must always be present before the slides in DOM order. It is also important to pay close attention to [accessibility](#accessibility), since you may be missing some parts that make the carousel pattern complete. For this reason, we do not recommend diverging from the standard usage unless you have a very strong need and are confident that you can implement it accessibly.
+If used as a descendant of `Carousel`, then this component does not need any props or `children`. `children` can be specified to override the individual dots that are shown. The props can be specified if this component is being used standalone (outside `Carousel`).
+
+When used standalone, it is important to pay close attention to [accessibility](#accessibility), since you may be missing some parts that make the carousel pattern complete. For this reason, we do not recommend diverging from the standard usage unless you have a very strong need and are confident that you can implement it accessibly.
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Carousel/CarouselDotsList.d.ts'} />
 
