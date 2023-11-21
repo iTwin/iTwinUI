@@ -3,4 +3,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Fixed a bug where Table was sometimes trigger sort after closing a filter popover.
+Fixed an issue where Table was sometimes triggering sort after filtering.
