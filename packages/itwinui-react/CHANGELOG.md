@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.17
+
+### Patch Changes
+
+- [#1698](https://github.com/iTwin/iTwinUI/pull/1698): Fixed an issue where submenu items were not appearing because of overflow on parent menu.
+
 ## 2.12.16
 
 ### Patch Changes
