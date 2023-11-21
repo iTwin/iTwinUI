@@ -121,13 +121,11 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
           if (subMenuItems.length > 0) {
             setIsSubmenuVisible(true);
             event.preventDefault();
-            event.stopPropagation();
           }
           break;
         }
         case 'ArrowLeft': {
           parentMenuItemRef?.current?.focus();
-          event.stopPropagation();
           event.preventDefault();
           break;
         }
@@ -192,16 +190,20 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         <Popover
           placement='right-start'
           visible={isSubmenuVisible}
-          appendTo='parent'
+          appendTo={(item) => {
+            // we want the div wrapping the parent menu because the menu has overflow,
+            // which can cause the submenu to be cut off
+            return item.parentElement?.parentElement as HTMLElement;
+          }}
           delay={100}
           content={
             <div
               onMouseLeave={() => setIsSubmenuVisible(false)}
-              onBlur={(e) => {
-                !!(e.relatedTarget instanceof Node) &&
-                  !subMenuRef.current?.contains(e.relatedTarget as Node) &&
-                  !subMenuRef.current?.isEqualNode(e.relatedTarget as Node) &&
+              onKeyDown={(e) => {
+                if (!e.altKey && e.key === 'ArrowLeft') {
                   setIsSubmenuVisible(false);
+                  e.stopPropagation();
+                }
               }}
             >
               <Menu ref={subMenuRef} className='iui-scroll'>

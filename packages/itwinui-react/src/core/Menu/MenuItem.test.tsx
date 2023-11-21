@@ -205,7 +205,7 @@ it('should show sub menu on hover', () => {
 
   // hover over menu item
   fireEvent.mouseOver(menuItem);
-  const subMenu = container.querySelectorAll(
+  const subMenu = document.querySelectorAll(
     '[data-tippy-root] .iui-menu-item',
   )[0] as HTMLLIElement;
   expect(subMenu.textContent).toBe('Test sub');
@@ -213,7 +213,7 @@ it('should show sub menu on hover', () => {
 
   // hover over sub menu item
   fireEvent.mouseOver(subMenu);
-  const subSubMenu = container.querySelectorAll(
+  const subSubMenu = document.querySelectorAll(
     '[data-tippy-root] .iui-menu-item',
   )[1] as HTMLLIElement;
   expect(subSubMenu.textContent).toBe('Test sub sub');
@@ -247,7 +247,7 @@ it('should handle key press with sub menus', async () => {
   // go right to open sub menu
   menuItem.focus();
   await userEvent.keyboard('{ArrowRight}');
-  const subTippy = container.querySelector('[data-tippy-root]') as HTMLElement;
+  const subTippy = document.querySelector('[data-tippy-root]') as HTMLElement;
   const subMenu = subTippy.querySelector('.iui-menu-item') as HTMLLIElement;
   expect(subMenu.textContent).toBe('Test sub');
   expect(container.ownerDocument.activeElement).toEqual(subMenu);
