@@ -76,7 +76,9 @@
         block-size: 100%;
         inline-size: var(--iui-size-3xs);
         margin-inline: auto;
-        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
+        transition:
+          background-color var(--iui-duration-1) ease-out,
+          width var(--iui-duration-1) ease-out;
         background-color: var(--iui-color-border);
       }
 
@@ -90,14 +92,21 @@
       opacity: 1;
     }
 
-    &:hover,
-    &:focus,
-    &:focus-within {
+    &:is(:hover, :focus-visible, :has(:focus-visible)) {
       background-color: var(--iui-color-background-hover);
 
-      .iui-table-sort,
-      .iui-table-filter-button {
+      :is(.iui-table-sort, .iui-table-filter-button) {
         opacity: 1;
+      }
+    }
+
+    @supports not selector(:has(+ *)) {
+      &:focus-within {
+        background-color: var(--iui-color-background-hover);
+
+        :is(.iui-table-sort, .iui-table-filter-button) {
+          opacity: 1;
+        }
       }
     }
   }
