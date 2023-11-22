@@ -35,11 +35,11 @@ type CarouselDotsListProps = {
  * @example
  * <Carousel>
  *   // ...
- *   <Carousel.Dots />
+ *   <Carousel.DotsList />
  * </Carousel>
  *
  * @example
- * <Carousel.Dots
+ * <Carousel.DotsList
  *   length={10}
  *   maxCount={3}
  *   currentIndex={current}
