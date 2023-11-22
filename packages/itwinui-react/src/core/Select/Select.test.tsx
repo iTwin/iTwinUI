@@ -589,16 +589,12 @@ it.each([true, false] as const)(
     // select option B
     await userEvent.click((await findAllByRole(document.body, 'option'))[1]);
 
-    if (multiple) {
-      expect(selectButton).toHaveTextContent('AB');
-    } else {
-      expect(selectButton).toHaveTextContent('B');
-    }
-
     // deselect option A
     if (multiple) {
+      expect(selectButton).toHaveTextContent('AB');
       await userEvent.click((await findAllByRole(document.body, 'option'))[0]);
-      expect(selectButton).toHaveTextContent('B');
     }
+
+    expect(selectButton).toHaveTextContent('B');
   },
 );
