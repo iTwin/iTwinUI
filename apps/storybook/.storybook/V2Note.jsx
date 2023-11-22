@@ -14,7 +14,7 @@ export const V2Note = () => {
         border: '1px solid',
         backgroundColor: 'var(--iui-color-background)',
       }}
-      hidden={window.location.pathname.includes('iframe')}
+      hidden={window.top?.location.pathname.includes('iframe')}
     >
       ⚠️ This is the storybook for iTwinUI-react v2.
       <br />
