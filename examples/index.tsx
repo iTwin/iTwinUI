@@ -224,10 +224,6 @@ const CarouselControlledExample = withThemeProvider(
 );
 export { CarouselControlledExample };
 
-import { default as CarouselOnlyDotsExampleRaw } from './Carousel.onlyDots';
-const CarouselOnlyDotsExample = withThemeProvider(CarouselOnlyDotsExampleRaw);
-export { CarouselOnlyDotsExample };
-
 // ----------------------------------------------------------------------------
 
 import { default as CheckboxMainExampleRaw } from './Checkbox.main';
