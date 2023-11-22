@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.7
+
+### Patch Changes
+
+- [#1700](https://github.com/iTwin/iTwinUI/pull/1700): Fixed an issue where Table was sometimes triggering sort after filtering.
+
 ## 3.0.6
 
 ### Patch Changes

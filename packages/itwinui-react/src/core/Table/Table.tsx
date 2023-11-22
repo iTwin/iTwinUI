@@ -979,7 +979,10 @@ export const Table = <
                         {column.render('Header')}
                         {(showFilterButton(column) ||
                           showSortButton(column)) && (
-                          <Box className='iui-table-header-actions-container'>
+                          <Box
+                            className='iui-table-header-actions-container'
+                            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                          >
                             {showFilterButton(column) && (
                               <FilterToggle column={column} />
                             )}
