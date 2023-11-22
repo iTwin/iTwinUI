@@ -1,71 +1,62 @@
 ---
+import { getCollection } from 'astro:content';
+import { html } from 'htm/react';
+
 const currentPage = Astro.url.pathname.endsWith('/')
   ? Astro.url.pathname.slice(0, -1)
   : Astro.url.pathname;
 
-const docsPages = (await Astro.glob('../pages/docs/*.mdx')).map(({ url, frontmatter }) => ({
-  url,
-  title: frontmatter.title,
-  group: frontmatter.group,
-}));
+const introPages = await getCollection('docs', ({ data: { group } }) => group === 'intro');
+const mainComponents = await getCollection('docs', ({ data: { group } }) => group === undefined);
+const utilityComponents = await getCollection(
+  'docs',
+  ({ data: { group } }) => group === 'utilities',
+);
 
-const introPages = docsPages.filter((page) => !page.group);
+const NavLink = ({ slug = '', title = '', ...props }) => {
+  const url = `/docs/${slug}`;
+  const isCurrent = currentPage === url;
 
-const sections = new Map<string, typeof docsPages>();
-sections.set(
-  'core',
-  docsPages.filter((item) => item.group === 'core'),
-);
-sections.set(
-  'buttons',
-  docsPages.filter((item) => item.group === 'buttons'),
-);
-sections.set(
-  'inputs',
-  docsPages.filter((item) => item.group === 'inputs'),
-);
-sections.set(
-  'typography',
-  docsPages.filter((item) => item.group === 'typography'),
-);
-sections.set(
-  'utilities',
-  docsPages.filter((item) => item.group === 'utilities'),
-);
+  return html`<a href="${url}" aria-current=${isCurrent ? 'page' : 'false'} ...${props}>
+    ${title}
+  </a>`;
+};
 ---
 
-<nav aria-labelledby='grid-left'>
-  <ul class='nav-groups' id='main-navigation-list'>
+<nav aria-label='Main' id='main-navigation-list'>
+  <ul>
     {
-      introPages.map(({ url, title }) => (
+      introPages.map(({ slug, data }) => (
         <li class='nav-link'>
-          <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
-            {title}
-          </a>
+          <NavLink slug={slug} title={data.title} />
         </li>
       ))
     }
+  </ul>
 
-    <li>
-      <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+  <h2 class='nav-group-title'><a href={'/docs/components'}>Components</a></h2>
+  <ul>
+    {
+      mainComponents.map(({ slug, data }) => (
+        <li class='nav-link'>
+          <NavLink slug={slug} title={data.title} />
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class='nav-group'>
+    <h3 class='nav-group-subtitle'>Utilities</h3>
+    <ul>
       {
-        [...sections.entries()].map(([heading, list]) => (
-          <div class='nav-group'>
-            <h2 class='nav-group-subtitle'>{heading}</h2>
-            <ul>
-              {list.map(({ url, title }) => (
-                <li class='nav-link'>
-                  <a href={url} aria-current={`${currentPage === url ? 'page' : 'false'}`}>
-                    {title}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        utilityComponents.map(({ slug, data }) => (
+          <li class='nav-link'>
+            <NavLink slug={slug} title={data.title} />
+          </li>
         ))
       }
-    </li>
-  </ul>
+    </ul>
+  </div>
 </nav>
 
 <style lang='scss'>
@@ -73,29 +64,15 @@ sections.set(
     nav {
       width: 100%;
       font-size: var(--type--1);
-
-      & ul {
-        list-style: none;
-        padding: 0;
-      }
-    }
-
-    .nav-groups {
       height: 100%;
       padding-top: var(--space-7);
       max-height: 100vh;
       min-width: 220px;
 
-      > li:last-of-type {
+      & ul {
+        list-style: none;
+        padding: 0;
         padding-block-end: var(--space-7);
-      }
-
-      > li + li:not(.nav-link) {
-        margin-top: var(--space-5);
-
-        @media (max-width: 50em) {
-          margin-top: var(--space-7);
-        }
       }
     }
 
@@ -103,7 +80,7 @@ sections.set(
       color: var(--color-subtext);
       font-size: var(--type-0);
       font-weight: 600;
-      padding: 0.3rem var(--space-4);
+      padding: 0.3rem var(--space-5);
       margin-bottom: var(--space-2);
       text-decoration: none;
       text-transform: uppercase;
@@ -123,7 +100,6 @@ sections.set(
     }
 
     .nav-group-subtitle {
-      margin-top: var(--space-6);
       color: var(--color-mutedtext);
       font-size: var(--type--1);
       font-weight: 600;
@@ -140,7 +116,7 @@ sections.set(
       }
     }
 
-    .nav-link a {
+    .nav-link :global(a) {
       margin: 1px;
       padding: 0.3rem var(--space-5);
       font: inherit;
@@ -163,39 +139,39 @@ sections.set(
         display: flex;
         align-items: center;
       }
-    }
 
-    .nav-link a[aria-current='page'] {
-      background-color: var(--color-active);
-      color: var(--color-text);
-      position: relative;
+      &[aria-current='page'] {
+        background-color: var(--color-active);
+        color: var(--color-text);
+        position: relative;
 
-      // scroll to current link when page loads, without any JS.
-      // based on https://oh-snap.netlify.app/#scroll-start-trick
-      animation: scroll-into-view 1.5s;
+        // scroll to current link when page loads, without any JS.
+        // based on https://oh-snap.netlify.app/#scroll-start-trick
+        animation: scroll-into-view 1.5s;
 
-      @keyframes scroll-into-view {
-        from {
-          scroll-snap-align: center;
+        @keyframes scroll-into-view {
+          from {
+            scroll-snap-align: center;
+          }
+          to {
+            scroll-snap-align: unset;
+          }
         }
-        to {
-          scroll-snap-align: unset;
-        }
-      }
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        border-left: 2px solid var(--color-text);
-        border-top-left-radius: 2px;
-        border-bottom-left-radius: 2px;
+        &::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          border-left: 2px solid var(--color-text);
+          border-top-left-radius: 2px;
+          border-bottom-left-radius: 2px;
 
-        @media (max-width: 50em) {
-          border-width: 4px;
-          border-radius: 0;
+          @media (max-width: 50em) {
+            border-width: 4px;
+            border-radius: 0;
+          }
         }
       }
     }
