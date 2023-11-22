@@ -15,6 +15,7 @@ import {
   Portal,
   useMergedRefs,
   SvgCheckmark,
+  useLatestRef,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { SelectTag } from './SelectTag.js';
@@ -236,8 +237,8 @@ export const Select = React.forwardRef(
 
     const {
       options,
-      value,
-      onChange,
+      value: valueProp,
+      onChange: onChangeProp,
       placeholder,
       disabled = false,
       size,
@@ -255,9 +256,12 @@ export const Select = React.forwardRef(
     } = props;
 
     const [isOpen, setIsOpen] = React.useState(false);
-
     const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
+    const [uncontrolledValue, setUncontrolledValue] = React.useState<T | T[]>();
+    const value = valueProp ?? uncontrolledValue;
+
+    const onChangeRef = useLatestRef(onChangeProp);
     const selectRef = React.useRef<HTMLDivElement>(null);
 
     const show = React.useCallback(() => {
@@ -298,11 +302,22 @@ export const Select = React.forwardRef(
             if (option.disabled) {
               return;
             }
-            if (isSingleOnChange(onChange, multiple)) {
-              onChange?.(option.value);
+
+            // update internal value state and also call external onChange
+            if (isSingleOnChange(onChangeRef.current, multiple)) {
+              setUncontrolledValue(option.value);
+              onChangeRef.current?.(option.value);
               hide();
             } else {
-              onChange?.(option.value, isSelected ? 'removed' : 'added');
+              setUncontrolledValue((prev: T[]) =>
+                isSelected
+                  ? prev?.filter((i) => option.value !== i)
+                  : [...(prev ?? []), option.value],
+              );
+              onChangeRef.current?.(
+                option.value,
+                isSelected ? 'removed' : 'added',
+              );
             }
 
             // update live region
@@ -330,7 +345,7 @@ export const Select = React.forwardRef(
           ...menuItem.props,
         });
       });
-    }, [hide, itemRenderer, multiple, onChange, options, value]);
+    }, [hide, itemRenderer, multiple, onChangeRef, options, value]);
 
     const selectedItems = React.useMemo(() => {
       if (value == null) {
