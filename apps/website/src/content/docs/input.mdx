@@ -3,9 +3,10 @@ title: Input
 description: An input lets users enter and edit data.
 propsPath: '@itwin/itwinui-react/esm/core/LabeledInput/LabeledInput.d.ts'
 thumbnail: Input
+related:
+  - textarea
+  - button
 ---
-
-import RelatedComponents from '~/components/RelatedComponents.astro';
 
 <p>{frontmatter.description}</p>
 
@@ -68,12 +69,3 @@ You may want to place the label somewhere separated from the input. This can be 
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
-
-## Related components
-
-<RelatedComponents
-  components={[
-    { title: 'Button', url: 'button' },
-    { title: 'Textarea', url: 'textarea' },
-  ]}
-/>
