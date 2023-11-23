@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { fireEvent, render } from '@testing-library/react';
+import { findAllByRole, fireEvent, render } from '@testing-library/react';
 import Select, {
   type SelectProps,
   type SelectMultipleTypeProps,
@@ -557,3 +557,44 @@ it('should update live region when selection changes', async () => {
   await userEvent.click(options[0]);
   expect(liveRegion).toHaveTextContent('Item 1, Item 2');
 });
+
+it.each([true, false] as const)(
+  'should work in uncontrolled mode (multiple=%s)',
+  async (multiple) => {
+    const { container } = render(
+      <Select
+        multiple={multiple}
+        options={[
+          { value: 'A', label: 'A' },
+          { value: 'B', label: 'B' },
+        ]}
+      />,
+    );
+
+    const selectButton = container.querySelector(
+      '[role=combobox]',
+    ) as HTMLElement;
+    await userEvent.click(selectButton);
+
+    // select option A
+    await userEvent.click((await findAllByRole(document.body, 'option'))[0]);
+
+    expect(selectButton).toHaveTextContent('A');
+
+    // reopen menu
+    if (!multiple) {
+      await userEvent.click(selectButton);
+    }
+
+    // select option B
+    await userEvent.click((await findAllByRole(document.body, 'option'))[1]);
+
+    // deselect option A
+    if (multiple) {
+      expect(selectButton).toHaveTextContent('AB');
+      await userEvent.click((await findAllByRole(document.body, 'option'))[0]);
+    }
+
+    expect(selectButton).toHaveTextContent('B');
+  },
+);

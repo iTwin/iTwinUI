@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.8
+
+### Patch Changes
+
+- [#1702](https://github.com/iTwin/iTwinUI/pull/1702): Fixed `Select` so that it works in uncontrolled mode (without `value`/`onChange` props).
+
 ## 3.0.7
 
 ### Patch Changes
