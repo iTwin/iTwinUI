@@ -23,7 +23,7 @@ export default defineConfig({
         './src/components/PropsTable.astro',
         './src/components/LiveExample.astro',
         './src/components/Placeholder.astro',
-        './src/components/AllExamples.ts',
+        { examples: 'AllExamples' },
       ],
     }),
     react(),
