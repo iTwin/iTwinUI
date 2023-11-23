@@ -1,15 +1,13 @@
 ---
-import { getEntries } from 'astro:content';
 import Global from '~/pages/_global.astro';
 import Header from '~/components/Header.astro';
 import LeftSidebar from '~/components/LeftSidebar.astro';
 import EditPageLink from '~/components/EditPageLink.astro';
 import FeedbackLink from '~/components/FeedbackLink.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
-
-const relatedPages = content.related ? await getEntries(content.related) : undefined;
 ---
 
 <Global content={content} currentPage={currentPage}>
@@ -20,20 +18,7 @@ const relatedPages = content.related ? await getEntries(content.related) : undef
       <h1 id='overview'>{content.title}</h1>
       <slot />
       <div class='aftermain'>
-        {
-          relatedPages && (
-            <>
-              <h2>Related components</h2>
-              <ul>
-                {relatedPages.map((page) => (
-                  <li>
-                    <a href={`/docs/${page.slug}`}>{page.data.title}</a>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )
-        }
+        {content.related ? <RelatedComponents related={content.related} /> : null}
         <hr />
         <EditPageLink page={currentPage} />
         <FeedbackLink page={currentPage} />
@@ -72,11 +57,6 @@ const relatedPages = content.related ? await getEntries(content.related) : undef
     .aftermain {
       grid-area: aftermain;
       display: grid;
-
-      ul {
-        font-size: var(--type-1);
-        margin-block: var(--space-5);
-      }
 
       hr {
         all: unset;
