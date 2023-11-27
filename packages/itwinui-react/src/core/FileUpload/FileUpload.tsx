@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, useMergedRefs } from '../utils/index.js';
+import { Box, mergeEventHandlers } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type FileUploadProps = {
@@ -16,7 +16,7 @@ type FileUploadProps = {
   /**
    * Callback fired when files are dropped onto the component.
    */
-  onFileDropped: (files: FileList) => void;
+  onFileDropped: (files: FileList, event: React.DragEvent) => void;
   /**
    * Component to wrap `FileUpload` around.
    * Either pass `FileUploadCard` (for default state) or a different component to wrap.
@@ -35,19 +35,10 @@ type FileUploadProps = {
  * <FileUpload onFileDropped={console.log}><FileUploadCard /></FileUpload>
  * <FileUpload dragContent='Drop file here' onFileDropped={console.log}><Textarea /></FileUpload>
  */
-export const FileUpload = React.forwardRef((props, ref) => {
-  const {
-    dragContent,
-    children,
-    onFileDropped,
-    className,
-    contentProps,
-    ...rest
-  } = props;
+export const FileUpload = React.forwardRef((props, forwardedRef) => {
+  const { dragContent, children, onFileDropped, contentProps, ...rest } = props;
 
   const [isDragActive, setIsDragActive] = React.useState(false);
-  const fileUploadRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(fileUploadRef, ref);
 
   const onDragOverHandler = (e: React.DragEvent) => {
     e.preventDefault();
@@ -69,10 +60,7 @@ export const FileUpload = React.forwardRef((props, ref) => {
     e.stopPropagation();
 
     // only set inactive if secondary target is outside the component
-    if (
-      isDragActive &&
-      !fileUploadRef.current?.contains(e.relatedTarget as Node)
-    ) {
+    if (isDragActive && !e.currentTarget?.contains(e.relatedTarget as Node)) {
       setIsDragActive(false);
     }
   };
@@ -83,19 +71,23 @@ export const FileUpload = React.forwardRef((props, ref) => {
 
     if (isDragActive) {
       setIsDragActive(false);
-      onFileDropped(e.dataTransfer?.files);
+      onFileDropped(e.dataTransfer?.files, e);
     }
   };
 
   return (
     <Box
-      className={cx('iui-file-upload', { 'iui-drag': isDragActive }, className)}
-      onDragEnter={onDragEnterHandler}
-      onDragOver={onDragOverHandler}
-      onDragLeave={onDragLeaveHandler}
-      onDrop={onDropHandler}
-      ref={refs}
       {...rest}
+      className={cx(
+        'iui-file-upload',
+        { 'iui-drag': isDragActive },
+        props?.className,
+      )}
+      ref={forwardedRef}
+      onDragEnter={mergeEventHandlers(props.onDragEnter, onDragEnterHandler)}
+      onDragOver={mergeEventHandlers(props.onDragOver, onDragOverHandler)}
+      onDragLeave={mergeEventHandlers(props.onDragLeave, onDragLeaveHandler)}
+      onDrop={mergeEventHandlers(props.onDrop, onDropHandler)}
     >
       {dragContent ? (
         children
