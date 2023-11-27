@@ -4,12 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import {
-  getRandomValue,
-  useMergedRefs,
-  Box,
-  useLatestRef,
-} from '../utils/index.js';
+import { useMergedRefs, Box, useLatestRef, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { CarouselContext } from './CarouselContext.js';
 import { CarouselSlider } from './CarouselSlider.js';
@@ -32,18 +27,15 @@ type CarouselProps = {
 };
 
 const CarouselComponent = React.forwardRef((props, ref) => {
+  const idPrefix = useId();
   const {
     activeSlideIndex: userActiveIndex = 0,
     onSlideChange,
     className,
     children,
+    id = idPrefix,
     ...rest
   } = props;
-
-  // Generate a stateful random id if not specified
-  const [id] = React.useState(
-    () => props.id ?? `iui-carousel-${getRandomValue(10)}`,
-  );
 
   const isManuallyUpdating = React.useRef(false);
   const carouselRef = React.useRef<HTMLElement>(null);
