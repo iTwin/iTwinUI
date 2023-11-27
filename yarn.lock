@@ -3466,6 +3466,14 @@ astring@^1.8.0:
   resolved "https://registry.npmjs.org/astring/-/astring-1.8.4.tgz"
   integrity sha512-97a+l2LBU3Op3bBQEff79i/E4jMD2ZLFD8rHx9B6mXyB2uQwhJQYfiDqUwtfjF4QA1F2qs//N6Cw8LetMbQjcw==
 
+astro-auto-import@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/astro-auto-import/-/astro-auto-import-0.4.1.tgz#d141266351802335edcaefa69bde098767aaa809"
+  integrity sha512-npD6XTGtxvN5Z3kvCQgZdKxSZKY1mcnMhgx8tK/lLXrbbSv5uuzNNygdOtiPvfrbjHZMEfZLJQBOsP6MVcDdTQ==
+  dependencies:
+    "@types/node" "^18.0.0"
+    acorn "^8.8.0"
+
 astro@3, astro@^3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/astro/-/astro-3.5.3.tgz#bf3166ea79748369b149ee163fb3ea41768d4c23"

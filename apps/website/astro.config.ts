@@ -10,13 +10,26 @@ import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
+import AutoImport from 'astro-auto-import';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://itwinui.bentley.com',
-  integrations: [react(), mdx(), sitemap()],
+  integrations: [
+    AutoImport({
+      imports: [
+        './src/components/PropsTable.astro',
+        './src/components/LiveExample.astro',
+        './src/components/Placeholder.astro',
+        { examples: 'AllExamples' },
+      ],
+    }),
+    react(),
+    mdx(),
+    sitemap(),
+  ],
   markdown: {
     syntaxHighlight: 'prism',
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeToc],

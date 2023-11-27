@@ -3,12 +3,11 @@ title: ComboBox
 description: A dropdown list that allows users to type a value to filter the options.
 propsPath: '@itwin/itwinui-react/esm/core/ComboBox/ComboBox.d.ts'
 thumbnail: ComboBox
+related:
+  - dropdownmenu
+  - select
+  - popover
 ---
-
-import PropsTable from '~/components/PropsTable.astro';
-import LiveExample from '~/components/LiveExample.astro';
-import RelatedComponents from '~/components/RelatedComponents.astro';
-import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -107,12 +106,3 @@ The property `itemRenderer` allows you to customize the combobox more specifical
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
-
-## Related components
-
-<RelatedComponents
-  components={[
-    { title: 'Dropdown menu', url: 'dropdownmenu' },
-    { title: 'Label', url: 'typography#label' },
-  ]}
-/>

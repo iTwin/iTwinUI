@@ -3,12 +3,10 @@ title: Expandable block
 description: A pattern for progressive disclosure of information.
 propsPath: '@itwin/itwinui-react/esm/core/ExpandableBlock/ExpandableBlock.d.ts'
 thumbnail: ExpandableBlock
+related:
+  - table
+  - tree
 ---
-
-import PropsTable from '~/components/PropsTable.astro';
-import LiveExample from '~/components/LiveExample.astro';
-import RelatedComponents from '~/components/RelatedComponents.astro';
-import * as AllExamples from 'examples';
 
 <p>{frontmatter.description}</p>
 
@@ -104,12 +102,3 @@ Use a [hierarchy tree](tree) when:
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
-
-## Related components
-
-<RelatedComponents
-  components={[
-    { title: 'Table', url: 'table' },
-    { title: 'Tree', url: 'tree' },
-  ]}
-/>

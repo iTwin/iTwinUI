@@ -23,6 +23,7 @@
     "@tippyjs/react": "4.2.6",
     "@types/react": "*",
     "astro": "^3",
+    "astro-auto-import": "^0.4.1",
     "examples": "*",
     "htm": "^3",
     "lz-string": "^1.4.4",
