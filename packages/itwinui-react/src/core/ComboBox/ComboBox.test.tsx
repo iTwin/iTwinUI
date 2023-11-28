@@ -480,8 +480,12 @@ it('should accept inputProps', () => {
   expect(input.id).toBe(inputId);
 
   fireEvent.focus(input);
-  expect(container.querySelector('.iui-input-grid')?.id).toBe(`${inputId}-cb`);
-  expect(document.querySelector('.iui-menu')?.id).toBe(`${inputId}-cb-list`);
+  expect(container.querySelector('.iui-input-grid')?.id).toBe(
+    `iui-${inputId}-cb`,
+  );
+  expect(document.querySelector('.iui-menu')?.id).toBe(
+    `iui-${inputId}-cb-list`,
+  );
 });
 
 it('should work with custom itemRenderer', async () => {

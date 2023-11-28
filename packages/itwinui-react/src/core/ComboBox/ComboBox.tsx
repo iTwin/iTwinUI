@@ -9,11 +9,11 @@ import { SelectTag } from '../Select/SelectTag.js';
 import { Text } from '../Typography/Text.js';
 import type { Input } from '../Input/Input.js';
 import {
-  getRandomValue,
   mergeRefs,
   useLatestRef,
   useIsomorphicLayoutEffect,
   AutoclearingHiddenLiveRegion,
+  useId,
 } from '../utils/index.js';
 import { usePopover } from '../Popover/Popover.js';
 import type { InputContainerProps, CommonProps } from '../utils/index.js';
@@ -166,6 +166,8 @@ const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
  * />
  */
 export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
+  const idPrefix = useId();
+
   const {
     options,
     value: valueProp,
@@ -180,16 +182,9 @@ export const ComboBox = <T,>(props: ComboBoxProps<T>) => {
     multiple = false,
     onShow: onShowProp,
     onHide: onHideProp,
+    id = inputProps?.id ? `iui-${inputProps.id}-cb` : idPrefix,
     ...rest
   } = props;
-
-  // Generate a stateful random id if not specified
-  const [id] = React.useState(
-    () =>
-      props.id ??
-      (inputProps?.id && `${inputProps.id}-cb`) ??
-      `iui-cb-${getRandomValue(10)}`,
-  );
 
   // Refs get set in subcomponents
   const inputRef = React.useRef<HTMLInputElement>(null);
