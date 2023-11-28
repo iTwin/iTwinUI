@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.9
+
+### Patch Changes
+
+- [#1705](https://github.com/iTwin/iTwinUI/pull/1705): Fixed a hydration mismatch warning due to `id` in `ComboBox` and `Carousel`.
+
 ## 3.0.8
 
 ### Patch Changes
