@@ -15,6 +15,8 @@ type FileUploadProps = {
   dragContent?: React.ReactNode;
   /**
    * Callback fired when files are dropped onto the component.
+   *
+   * The first argument is the `files` list, and the second argument is the underlying "drop" event.
    */
   onFileDropped: (files: FileList, event: React.DragEvent) => void;
   /**
