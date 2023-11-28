@@ -9,6 +9,7 @@ import { Tooltip } from '../Tooltip/Tooltip.js';
 import type { ButtonProps } from './Button.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
+import { ButtonGroupContext } from '../ButtonGroup/ButtonGroup.js';
 
 export type IconButtonProps = {
   /**
@@ -20,6 +21,14 @@ export type IconButtonProps = {
    * Name of the button, shown in a tooltip and exposed to assistive technologies.
    */
   label?: React.ReactNode;
+  /**
+   * Props passed to the Tooltip that contains the `label`.
+   * Can be used for customizing the tooltip's `placement`, etc.
+   */
+  labelProps?: Omit<
+    React.ComponentPropsWithoutRef<typeof Tooltip>,
+    'content' | 'reference' | 'ariaStrategy' | 'children'
+  >;
   /**
    * Passes props to IconButton icon.
    */
@@ -45,8 +54,11 @@ export const IconButton = React.forwardRef((props, ref) => {
     className,
     label,
     iconProps,
+    labelProps,
     ...rest
   } = props;
+
+  const buttonGroupOrientation = React.useContext(ButtonGroupContext);
 
   const button = (
     <ButtonBase
@@ -71,7 +83,12 @@ export const IconButton = React.forwardRef((props, ref) => {
   );
 
   return label ? (
-    <Tooltip content={label} ariaStrategy='none'>
+    <Tooltip
+      content={label}
+      ariaStrategy='none'
+      placement={buttonGroupOrientation === 'vertical' ? 'right' : 'top'}
+      {...labelProps}
+    >
       {button}
     </Tooltip>
   ) : (
