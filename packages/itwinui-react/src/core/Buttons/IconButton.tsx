@@ -84,10 +84,10 @@ export const IconButton = React.forwardRef((props, ref) => {
 
   return label ? (
     <Tooltip
-      content={label}
-      ariaStrategy='none'
       placement={buttonGroupOrientation === 'vertical' ? 'right' : 'top'}
       {...labelProps}
+      content={label}
+      ariaStrategy='none'
     >
       {button}
     </Tooltip>
