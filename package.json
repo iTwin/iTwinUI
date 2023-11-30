@@ -51,6 +51,7 @@
     "patch-package": "~6.5.1",
     "prettier": "~3.1.0",
     "rimraf": "^3.0.2",
+    "serve": "^14.2.1",
     "turbo": "~1.6.3"
   },
   "resolutions": {
