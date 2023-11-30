@@ -304,13 +304,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - name: yarn test --filter=itwinui-css
+      - name: yarn test --filter=css-workshop
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: yarn test --filter=itwinui-css
+          command: yarn test --filter=css-workshop
 
       - name: Publish test results artifact
         if: failure()

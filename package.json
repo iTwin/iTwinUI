@@ -35,7 +35,7 @@
     "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
-    "approve:css": "yarn workspace @itwin/itwinui-css approve",
+    "approve:css": "yarn workspace css-workshop approve",
     "approve:react": "yarn workspace storybook approve",
     "clean": "turbo run clean && rimraf node_modules",
     "release": "yarn build --filter={./packages/*}... && changeset publish"

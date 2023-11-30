@@ -271,7 +271,7 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 - Make sure Docker is running.
 - To run tests for a specific component, use this command:
-  `yarn workspace itwinui-css test --filter=[component_name]` (e.g. `yarn workspace itwinui-css test --filter=side-navigation`)
+  `yarn workspace css-workshop test --filter=[component_name]` (e.g. `yarn workspace css-workshop test --filter=side-navigation`)
 - To approve test images, run `yarn approve:css`.
 
 #### How to write tests:
