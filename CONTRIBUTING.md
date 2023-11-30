@@ -121,8 +121,8 @@ It ensures all needed imports are added and files are created.
 For a component named `Alert`, the `createComponent` script will add/modify the following files:
 
 - packages/itwinui-css/src/**alert/alert.scss**: framework-agnostic component styles
-- packages/itwinui-css/backstop/tests/**alert.html**: html test cases for component css
-- packages/itwinui-css/backstop/scenarios/**alert.js**: visual test scenarios for html
+- apps/css-workshop/pages/**alert.html**: html test cases for component css
+- apps/css-workshop/backstop/tests/**alert.js**: visual test scenarios for html
 - packages/itwinui-react/src/core/**Alert/Alert.tsx**: react component
 - packages/itwinui-react/src/core/**Alert/Alert.test.tsx**: unit tests for react component
 - packages/itwinui-react/src/**index.ts**: barrel file containing all public exports
@@ -276,9 +276,9 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 #### How to write tests:
 
-- Write the html in `packages/itwinui-css/backstop/tests/[component-name].html` displaying the elements you wish to test and their all possible states.
+- Write the html in `apps/css-workshop/backstop/tests/[component-name].html` displaying the elements you wish to test and their all possible states.
 
-- Write the test cases in `backstop/scenarios/[component-name].js` and ensure it exports scenarios list (see `backstop/scenarios/alert.js` for example).
+- Write the test cases in `backstop/tests/[component-name].js` and ensure it exports scenarios list (see `backstop/tests/alert.js` for example).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
     const { scenario } = require('./~scenarioHelper');

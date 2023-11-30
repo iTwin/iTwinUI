@@ -38,10 +38,10 @@ inquirer
     writeFile(cssComponentFactory(cssComponentDirectory, componentKebab));
     appendFile(cssGlobalAllFactory(`${cssPkgDirectory}/src`, componentKebab));
 
-    const backstopDirectory = `${cssPkgDirectory}/backstop`;
-    writeFile(demoHtmlFactory(`${backstopDirectory}/tests`, componentKebab));
+    const htmlDirectory = `apps/css-workshop`;
+    writeFile(demoHtmlFactory(`${htmlDirectory}/pages`, componentKebab));
     writeFile(
-      scenarioJsFactory(`${backstopDirectory}/scenarios`, componentKebab),
+      scenarioJsFactory(`${htmlDirectory}/backstop/tests`, componentKebab),
     );
   });
 
