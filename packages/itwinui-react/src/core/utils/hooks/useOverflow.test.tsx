@@ -57,7 +57,7 @@ it.each(['horizontal', 'vertical'] as const)(
   },
 );
 
-it('should overflow when there is not enough space  (string)', async () => {
+it('should overflow when there is not enough space (string)', async () => {
   jest
     .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(50)
