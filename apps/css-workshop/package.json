@@ -17,7 +17,7 @@
     "build": "vite build",
     "clean": "rimraf dist && rimraf node_modules && rimraf .turbo",
     "dev": "vite",
-    "preview": "npx -y serve dist -p 3050 -L",
+    "preview": "npx -y serve dist/pages -p 3050 -L",
     "approve": "backstop --config=./backstop/backstop.js approve",
     "test:only": "backstop --config=./backstop/backstop.js test --docker",
     "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --"
