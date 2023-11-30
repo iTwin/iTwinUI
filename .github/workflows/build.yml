@@ -181,7 +181,7 @@ jobs:
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Build html test pages
-        run: yarn build --filter=itwinui-css
+        run: yarn build --filter=css-workshop
 
       - name: Build portal
         run: yarn workspace portal build --base "/iTwinUI/${{ env.base_folder }}"
