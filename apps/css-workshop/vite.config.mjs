@@ -11,6 +11,7 @@ export default defineConfig({
   base: './',
   root: './pages',
   build: {
+    outDir: '../dist',
     rollupOptions: {
       input: Object.fromEntries(
         getComponentList().map((name) => [
