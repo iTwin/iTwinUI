@@ -1,0 +1,3 @@
+# Test Reference Files
+results/*
+!results/bitmaps_reference
