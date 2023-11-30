@@ -3,11 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 const fs = require('fs');
-const { click } = require('./~scenarioHelper');
 
 let scenarios = [];
-fs.readdirSync('backstop/scenarios/').forEach((file) => {
-  if (file === 'index.js') {
+fs.readdirSync('backstop/tests').forEach((file) => {
+  if (file === 'index.js' || file.startsWith('.') || file.startsWith('~')) {
     return;
   }
   const fileName = file.replace('.js', '');
