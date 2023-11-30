@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import userPlaceholder from './user-placeholder.png';
 
 const persons = {
   1: {
@@ -40,11 +41,7 @@ class Avatar extends HTMLElement {
         ${status ? 'data-iui-status=' + status : ''}
       >
         ${person.abbr}
-        ${
-          showPlaceholder
-            ? `<img src="./assets/user-placeholder.png" alt="" />`
-            : ''
-        }
+        ${showPlaceholder ? `<img src=${userPlaceholder} alt="" />` : ''}
       </span>`;
     this.insertAdjacentHTML('afterend', innerHtml);
     this.remove();
