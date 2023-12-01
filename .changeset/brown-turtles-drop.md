@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-css': patch
 ---
 
-Show overflow tag with correct overflow count even when only one very long option of Select/ComboBox (with `multiple=true`) is selected
+Truncate the `SelectTag` when only one tag is present in `SelectTagContainer`
