@@ -23,17 +23,6 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
   const [containerRef, visibleCount] = useOverflow(tags);
   const refs = useMergedRefs(ref, containerRef);
 
-  const visibleTags = (() => {
-    // When visibleCount is 0, slice should return empty array.
-    const lastVisibleTagIndex = visibleCount > 0 ? visibleCount : 0;
-
-    if (visibleCount < tags.length) {
-      return tags.slice(0, lastVisibleTagIndex);
-    } else {
-      return tags;
-    }
-  })();
-
   return (
     <Box
       className={cx('iui-select-tag-container', className)}
@@ -41,9 +30,9 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
       {...rest}
     >
       <>
-        {visibleTags}
+        {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
         {visibleCount < tags.length && (
-          <SelectTag label={`+${tags.length - visibleCount} item(s)`} />
+          <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
         )}
       </>
     </Box>
