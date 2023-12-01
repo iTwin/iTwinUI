@@ -19,6 +19,10 @@
   --iui-border-radius-round: 9999px;
 }
 
+@mixin border-thickness {
+  --iui-border-thickness: 1px;
+}
+
 // These variables are used for aligning things like inputs and buttons.
 @mixin component-heights {
   --iui-component-height-small: calc(var(--iui-size-s) * 2);
