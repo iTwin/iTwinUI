@@ -23,27 +23,6 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
   const [containerRef, visibleCount] = useOverflow(tags);
   const refs = useMergedRefs(ref, containerRef);
 
-  const visibleTags = (() => {
-    // - If visibleCount is 0
-    //   - tags.length === 1, show the first tag.
-    //     This is because although the *entire* tag is not visible,
-    //     we truncate the tag using CSS, so the first part of the tag is visible.
-    //   - tags.length > 1 or tags.length === 0, show no tags.
-    // - Else, show the first visibleCount tags.
-    const lastVisibleTagIndex = (() => {
-      if (visibleCount === 0) {
-        return tags.length === 1 ? 1 : 0;
-      }
-      return visibleCount;
-    })();
-
-    if (visibleCount < tags.length) {
-      return tags.slice(0, lastVisibleTagIndex);
-    } else {
-      return tags;
-    }
-  })();
-
   return (
     <Box
       className={cx('iui-select-tag-container', className)}
@@ -51,9 +30,9 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
       {...rest}
     >
       <>
-        {visibleTags}
+        {visibleCount < tags.length ? tags.slice(0, visibleCount - 1) : tags}
         {visibleCount < tags.length && (
-          <SelectTag label={`+${tags.length - visibleCount} item(s)`} />
+          <SelectTag label={`+${tags.length - visibleCount + 1} item(s)`} />
         )}
       </>
     </Box>

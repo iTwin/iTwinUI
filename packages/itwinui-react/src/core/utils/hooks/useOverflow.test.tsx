@@ -211,3 +211,27 @@ it('should hide items and then show them all when overflow is disabled', async (
     expect(container.querySelectorAll('span')).toHaveLength(100);
   });
 });
+
+it('should return 1 when item is bigger than the container', () => {
+  jest
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValueOnce(50)
+    .mockReturnValueOnce(100)
+    .mockReturnValue(50);
+  jest
+    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
+    .mockReturnValue(50);
+  jest
+    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
+    .mockReturnValue(60);
+
+  const { container } = render(
+    <MockComponent>
+      {[...Array(5)].map((_, i) => (
+        <span key={i}>Test {i}</span>
+      ))}
+    </MockComponent>,
+  );
+
+  expect(container.querySelectorAll('span')).toHaveLength(1);
+});
