@@ -181,7 +181,7 @@ jobs:
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
       - name: Build html test pages
-        run: yarn build --filter=itwinui-css
+        run: yarn build --filter=css-workshop
 
       - name: Build portal
         run: yarn workspace portal build --base "/iTwinUI/${{ env.base_folder }}"
@@ -216,7 +216,7 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/packages/itwinui-css/backstop/minified
+          folder: ${{ github.workspace }}/apps/css-workshop/dist
           target-folder: ${{ env.base_folder }}/css
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
@@ -304,13 +304,13 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - name: yarn test --filter=itwinui-css
+      - name: yarn test --filter=css-workshop
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: yarn test --filter=itwinui-css
+          command: yarn test --filter=css-workshop
 
       - name: Publish test results artifact
         if: failure()
@@ -318,7 +318,7 @@ jobs:
         uses: actions/upload-artifact@v2.2.3
         with:
           name: 'backstop_test_results'
-          path: '${{ github.workspace }}/packages/itwinui-css/backstop/results/'
+          path: '${{ github.workspace }}/apps/css-workshop/backstop/results/'
 
   visual-test-react:
     name: Run visual tests (react)
