@@ -102,11 +102,16 @@
   align-items: center;
   block-size: 80%;
   max-block-size: calc(var(--iui-size-s) * 3);
+
+  // Truncate when only one tag is present
+  &:only-child {
+    max-inline-size: 100%;
+  }
 }
 
 @mixin iui-select-tag-label {
   @include tag.iui-tag-label;
-  display: inline-flex;
+  display: block;
   align-items: center;
 
   .iui-select-button[data-iui-size='small'] & {
