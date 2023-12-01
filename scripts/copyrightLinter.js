@@ -19,7 +19,6 @@ const filePaths = fg.sync(pattern, {
   ignore: [
     '**/node_modules/**/*',
     '**/backstop/**/*.{css}',
-    '**/backstop/minified',
     '**/backstop/results',
     '**/coverage/**/*',
     '**/esm/**/*',
