@@ -23,7 +23,7 @@
     place-items: center;
     gap: var(--iui-size-xs);
     background-color: var(--iui-color-background-backdrop);
-    border: 1px solid var(--iui-color-background-backdrop);
+    border: var(--iui-border-thickness) solid var(--iui-color-background-backdrop);
     border-radius: var(--iui-border-radius-1);
 
     .iui-browse-input {
@@ -91,7 +91,7 @@
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
-  border: 1px solid var(--iui-color-border-subtle);
+  border: var(--iui-border-thickness) solid var(--iui-color-border-subtle);
   color: var(--iui-color-text);
   inline-size: 100%;
 
@@ -142,7 +142,7 @@
   gap: var(--iui-size-l);
   padding: var(--iui-size-m);
   border-radius: var(--iui-border-radius-1);
-  border: 1px solid var(--iui-color-border);
+  border: var(--iui-border-thickness) solid var(--iui-color-border);
   inline-size: 100%;
 
   &:focus-within {

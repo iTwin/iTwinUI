@@ -19,7 +19,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     -webkit-tap-highlight-color: transparent;
     transition: background-color var(--iui-duration-1) ease-out;
     @media (forced-colors: active) {
-      border: 1px solid CanvasText;
+      border: var(--iui-border-thickness) solid CanvasText;
       border-block-start-width: 0;
       border-block-end-width: 0;
     }
@@ -140,7 +140,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   gap: var(--iui-size-s);
   cursor: pointer;
   @media (forced-colors: active) {
-    border: 1px solid;
+    border: var(--iui-border-thickness) solid;
     border-block-start-width: 0;
     border-block-end-width: 0;
 

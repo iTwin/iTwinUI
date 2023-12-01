@@ -29,7 +29,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    box-shadow: inset 0 0 0 var(--iui-size-3xs) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
+    box-shadow: inset 0 0 0 calc(var(--iui-border-thickness) * 2) hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-5));
     z-index: 1;
   }
 
@@ -63,12 +63,12 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
       align-items: center;
       justify-content: center;
       position: absolute;
-      inset-inline-end: calc(0px - var(--iui-size-3xs));
-      inset-block-end: calc(0px - var(--iui-size-3xs));
+      inset-inline-end: calc(0px - (var(--iui-border-thickness) * 2));
+      inset-block-end: calc(0px - (var(--iui-border-thickness) * 2));
       inline-size: 25%;
       block-size: 25%;
       border-radius: 50%;
-      border: var(--iui-size-3xs) solid var(--iui-color-background);
+      border: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-background);
       background: var(--_iui-avatar-status-img) no-repeat center / var(--_iui-avatar-status-size, var(--iui-size-xs));
       background-color: var(--iui-color-border);
       z-index: 2;
@@ -108,7 +108,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
     color: var(--iui-color-text-muted);
 
     &::before {
-      box-shadow: inset 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
+      box-shadow: inset 0 0 0 calc(var(--iui-border-thickness) * 2) var(--iui-color-border);
     }
   }
 

@@ -5,7 +5,7 @@
 $iui-slider-container-gap: var(--iui-size-s);
 $iui-slider-thumb-size: var(--iui-size-m);
 $iui-slider-tick-size: var(--iui-size-s);
-$iui-slider-tick-thickness: 1px;
+$iui-slider-tick-thickness: var(--iui-border-thickness);
 
 // #region Slider container
 .iui-slider-container {
@@ -226,7 +226,7 @@ $iui-slider-tick-thickness: 1px;
   cursor: grab;
   @include mixins.iui-focus($thickness: 2px);
   background: var(--iui-color-background);
-  border: 1px solid var(--iui-color-border-foreground);
+  border: var(--iui-border-thickness) solid var(--iui-color-border-foreground);
 
   &:active {
     cursor: grabbing;

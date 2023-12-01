@@ -9,7 +9,7 @@
   padding: var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
-  border: 1px solid var(--iui-color-border);
+  border: var(--iui-border-thickness) solid var(--iui-color-border);
 }
 
 .iui-codeblock {
@@ -21,7 +21,7 @@
     align-items: center;
     border-radius: var(--iui-border-radius-1) var(--iui-border-radius-1) 0 0;
     background-color: var(--iui-color-background);
-    border: 1px solid var(--iui-color-border);
+    border: var(--iui-border-thickness) solid var(--iui-color-border);
     border-block-end: none;
 
     > .iui-title {
@@ -40,7 +40,7 @@
     overflow: auto;
     border-radius: 0 0 var(--iui-border-radius-1) var(--iui-border-radius-1);
     white-space: normal;
-    border: 1px solid var(--iui-color-border);
+    border: var(--iui-border-thickness) solid var(--iui-color-border);
     color: var(--iui-color-text);
     @include mixins.iui-focus;
 

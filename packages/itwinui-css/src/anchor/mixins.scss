@@ -26,7 +26,7 @@
 }
 
 @mixin iui-anchor-status($status: accent) {
-  @include mixins.iui-focus($color: var(--iui-color-text-#{$status}), $offset: 1px);
+  @include mixins.iui-focus($color: var(--iui-color-text-#{$status}), $offset: var(--iui-border-thickness));
   color: var(--iui-color-text-#{$status});
   -webkit-tap-highlight-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   @if $status != accent {

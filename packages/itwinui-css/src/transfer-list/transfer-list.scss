@@ -19,7 +19,7 @@
 .iui-transfer-list-listbox {
   @include surface.iui-surface($elevation: none);
   overflow-y: auto;
-  block-size: calc((var(--iui-component-height) - 1px) * 4.5);
+  block-size: calc((var(--iui-component-height) - var(--iui-border-thickness)) * 4.5);
 }
 
 .iui-transfer-list-toolbar {

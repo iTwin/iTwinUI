@@ -18,7 +18,7 @@
   user-select: none;
   cursor: pointer;
   white-space: nowrap;
-  border: 1px solid var(--_iui-button-border-color);
+  border: var(--iui-border-thickness) solid var(--_iui-button-border-color);
   background: var(--_iui-button-background-color);
   color: var(--_iui-button-text-color);
   gap: var(--_iui-button-gap);
@@ -68,15 +68,15 @@
 
 @mixin iui-button-dropdown($size: default) {
   @if $size == small {
-    padding-inline-end: calc(var(--iui-size-2xs) - 1px);
+    padding-inline-end: calc(var(--iui-size-2xs) - var(--iui-border-thickness));
   }
 
   @if $size == default {
-    padding-inline-end: calc(var(--iui-size-xs) - 1px);
+    padding-inline-end: calc(var(--iui-size-xs) - var(--iui-border-thickness));
   }
 
   @if $size == large {
-    padding-inline-end: calc(var(--iui-size-s) - 1px);
+    padding-inline-end: calc(var(--iui-size-s) - var(--iui-border-thickness));
   }
 }
 

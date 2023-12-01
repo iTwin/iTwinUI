@@ -8,7 +8,7 @@
   $border-radius: var(--iui-border-radius-1),
   $elevation: var(--iui-shadow-1)
 ) {
-  --iui-surface-border: 1px solid #{$border-color};
+  --iui-surface-border: var(--iui-border-thickness) solid #{$border-color};
   --iui-surface-elevation: #{$elevation};
 
   background-color: $background-color;

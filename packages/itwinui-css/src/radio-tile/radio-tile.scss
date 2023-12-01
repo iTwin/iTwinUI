@@ -11,7 +11,7 @@
   padding: var(--iui-size-xs);
   position: relative;
   z-index: 1;
-  outline: 1px solid var(--iui-color-border);
+  outline: var(--iui-border-thickness) solid var(--iui-color-border);
   background-color: var(--iui-color-background);
   transition: outline-color var(--iui-duration-1) ease-out;
 
@@ -33,7 +33,7 @@
 .iui-radio-tile-container {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 1px; // prevent overlapping from outline
+  gap: var(--iui-border-thickness); // prevent overlapping from outline
   user-select: none;
   // Create stacking context
   position: relative;
@@ -50,8 +50,8 @@
 
   &:checked {
     z-index: 3;
-    outline: 2px solid var(--iui-color-border-accent);
-    outline-offset: -2px;
+    outline: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-accent);
+    outline-offset: calc(var(--iui-border-thickness) * -2);
 
     @media (forced-colors: active) {
       outline-color: Highlight;
@@ -106,15 +106,15 @@
 
   &:disabled:checked {
     z-index: 3;
-    outline: var(--iui-size-3xs) solid var(--iui-color-border);
+    outline: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border);
     @media (forced-colors: active) {
       outline-color: GrayText;
     }
   }
 
   &:focus-visible {
-    outline-offset: -3px;
-    outline-width: 3px;
+    outline-offset: calc(var(--iui-border-thickness) * -3);
+    outline-width: calc(var(--iui-border-thickness) * 3);
   }
 }
 

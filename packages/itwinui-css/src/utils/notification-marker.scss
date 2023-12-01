@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 $iui-notification-marker-size: var(--iui-size-xs);
-$iui-notification-marker-spacing: var(--iui-size-3xs);
+$iui-notification-marker-spacing: calc(var(--iui-border-thickness) * 2);
 
 $iui-notification-marker-cutout-size: calc($iui-notification-marker-size + 2 * $iui-notification-marker-spacing);
 $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cutout-size);

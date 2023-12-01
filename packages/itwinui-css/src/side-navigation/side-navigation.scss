@@ -13,7 +13,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   flex-direction: column;
   block-size: 100%;
   background-color: var(--iui-color-background);
-  border-inline-end: 2px solid var(--iui-color-border);
+  border-inline-end: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border);
   @media (prefers-reduced-motion: no-preference) {
     transition: max-width var(--iui-duration-1) ease-out;
   }
@@ -51,7 +51,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     + .iui-sidenav-button.iui-expand {
       border: none;
-      border-block-start: 1px solid var(--iui-color-border);
+      border-block-start: var(--iui-border-thickness) solid var(--iui-color-border);
     }
   }
 
@@ -83,7 +83,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
     // Adds stripe to the right of active button
     --_iui-button-active-stripe-inset-block: 0;
-    --_iui-button-active-stripe-inset-inline: 100% -2px;
+    --_iui-button-active-stripe-inset-inline: 100% calc(var(--iui-border-thickness) * -2);
 
     &:not(.iui-expand) {
       block-size: calc(var(--iui-size-s) * 5);
@@ -139,7 +139,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
       --_iui-button-min-height: var(--iui-size-l);
       justify-content: center;
       border: none;
-      border-block-end: 1px solid var(--iui-color-border);
+      border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
       > .iui-button-icon svg {
         @include mixins.iui-icon-style('s');
@@ -160,7 +160,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   overflow-y: auto;
   resize: horizontal;
   background-color: var(--iui-color-background);
-  border-inline-end: 1px solid var(--iui-color-border);
+  border-inline-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
   @include mixins.iui-transition-group;
 

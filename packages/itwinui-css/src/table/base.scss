@@ -11,6 +11,8 @@
   @include iui-table-cell-icon;
 }
 
+// TODO: Table isn't done yet
+
 /// Preserves empty scrollbar space using scrollbar-gutter, with
 /// `overflow-y: scroll` (instead of `auto` or `overlay`) as Safari fallback.
 /// Must be included in both table-header-wrapper and table-body
@@ -37,7 +39,7 @@
   min-inline-size: 100%;
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
-  border-block-end: 1px solid var(--iui-color-border);
+  border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -169,8 +171,8 @@
 
   .iui-table-body & {
     .iui-table-cell {
-      border-block-start: solid 1px transparent;
-      border-block-end: solid 1px transparent;
+      border-block-start: var(--iui-border-thickness) solid transparent;
+      border-block-end: var(--iui-border-thickness) solid transparent;
       border-block-end-color: var(--iui-color-border);
       background-color: var(--iui-color-background);
       transition: border var(--iui-duration-1) ease-out;
@@ -215,9 +217,9 @@
 
     &.iui-table-expanded-content {
       overflow: hidden;
-      border-inline-start: 1px solid transparent;
-      border-inline-end: 1px solid transparent;
-      border-block-end: 1px solid var(--iui-color-border);
+      border-inline-start: var(--iui-border-thickness) solid transparent;
+      border-inline-end: var(--iui-border-thickness) solid transparent;
+      border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
       flex-shrink: 0;
       @include mixins.iui-transition-group;
     }
@@ -383,12 +385,12 @@
   word-break: break-word;
 
   &:first-of-type {
-    border-inline-start: solid 1px transparent;
+    border-inline-start: var(--iui-border-thickness) solid transparent;
     border-end-start-radius: inherit;
   }
 
   &:last-of-type {
-    border-inline-end: solid 1px transparent;
+    border-inline-end: var(--iui-border-thickness) solid transparent;
   }
 
   &.iui-slot {
@@ -429,15 +431,15 @@
   }
 
   &[contenteditable] {
-    outline-offset: -1px;
+    outline-offset: calc(var(--iui-border-thickness) * -1);
 
     &:hover {
-      outline: 1px solid var(--iui-color-border-accent);
+      outline: var(--iui-border-thickness) solid var(--iui-color-border-accent);
     }
 
     &:focus {
       background-color: var(--iui-color-background);
-      outline: 1px solid var(--iui-color-text-accent);
+      outline: var(--iui-border-thickness) solid var(--iui-color-text-accent);
     }
   }
 }
@@ -498,7 +500,7 @@
 
 @mixin iui-table-cell-shadow-base {
   position: absolute;
-  inset-block: -1px;
+  inset-block: calc(var(--iui-border-thickness) * -1);
   inline-size: var(--iui-size-l);
   pointer-events: none;
 

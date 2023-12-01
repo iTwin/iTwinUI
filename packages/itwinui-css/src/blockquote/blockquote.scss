@@ -12,7 +12,7 @@
   padding-inline: var(--iui-size-m);
   margin-block: var(--iui-size-s);
   text-align: justify;
-  border-inline-start: var(--iui-size-xs) solid var(--iui-color-border);
+  border-inline-start: calc(var(--iui-border-thickness) * 8) solid var(--iui-color-border);
 
   > footer {
     text-align: end;

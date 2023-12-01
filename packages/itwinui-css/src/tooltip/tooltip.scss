@@ -19,7 +19,7 @@
   z-index: 999;
   box-shadow: var(--iui-shadow-3);
   color: var(--iui-color-white);
-  border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
+  border: var(--iui-border-thickness) solid rgba(255, 255, 255, var(--iui-opacity-4));
 
   @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
 

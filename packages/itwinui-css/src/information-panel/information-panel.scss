@@ -18,14 +18,14 @@
 
     > .iui-resizer-bar {
       block-size: 100%;
-      inline-size: 1px;
+      inline-size: var(--iui-border-thickness);
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
       }
     }
 
     &:hover > .iui-resizer-bar {
-      inline-size: var(--iui-size-2xs);
+      inline-size: calc(var(--iui-border-thickness) * 4);
     }
   }
 }
@@ -46,7 +46,7 @@
 
     > .iui-resizer-bar {
       inline-size: 100%;
-      block-size: 1px;
+      block-size: var(--iui-border-thickness);
       @media (prefers-reduced-motion: no-preference) {
         transition: background-color var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out;
       }
@@ -106,7 +106,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: var(--iui-color-background);
-    border-block-end: 1px solid var(--iui-color-border);
+    border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
     .iui-information-header-label {
       display: flex;

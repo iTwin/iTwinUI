@@ -11,7 +11,7 @@
   display: inline-flex;
 
   &:not(:first-child) {
-    border-inline-start: 1px solid var(--iui-color-border);
+    border-inline-start: var(--iui-border-thickness) solid var(--iui-color-border);
   }
 }
 
@@ -23,7 +23,7 @@
   scrollbar-width: none;
 
   &:not(:first-child) {
-    border-inline-start: 1px solid var(--iui-color-border);
+    border-inline-start: var(--iui-border-thickness) solid var(--iui-color-border);
   }
 
   > ol {

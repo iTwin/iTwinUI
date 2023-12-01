@@ -21,7 +21,7 @@
   padding-inline: var(--iui-size-s);
   color: var(--_iui-input-text-color);
   background-color: var(--_iui-input-background-color);
-  border: 1px solid var(--_iui-input-border-color);
+  border: var(--iui-border-thickness) solid var(--_iui-input-border-color);
   transition: border-color var(--iui-duration-1) ease-out;
   @include iui-input-size;
 
@@ -136,7 +136,7 @@
   grid-area: 1 / -1;
 
   justify-self: end;
-  margin-inline-end: calc(var(--iui-size-xs) + 1px);
+  margin-inline-end: calc(var(--iui-size-xs) + var(--iui-border-thickness));
   position: relative; // Needed to show it on top of the input
   pointer-events: none;
 

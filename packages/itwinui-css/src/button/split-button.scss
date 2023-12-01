@@ -32,7 +32,7 @@
 
     border-start-start-radius: 0;
     border-end-start-radius: 0;
-    margin-inline-start: -1px;
+    margin-inline-start: calc(var(--iui-border-thickness) * -1);
     min-inline-size: unset;
 
     &[data-iui-variant='high-visibility'],

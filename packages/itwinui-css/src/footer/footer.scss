@@ -43,7 +43,7 @@
 
 .iui-legal-footer-separator {
   margin-inline: var(--iui-size-xs);
-  inline-size: 1px;
+  inline-size: var(--iui-border-thickness);
   block-size: var(--iui-size-s);
   background-color: var(--iui-color-border);
 }

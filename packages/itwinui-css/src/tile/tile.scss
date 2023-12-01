@@ -103,7 +103,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   @include mixins.iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
   --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
 
-  outline: solid 2px var(--iui-color-border-accent);
+  outline: solid calc(var(--iui-border-thickness) * 2) var(--iui-color-border-accent);
   background-color: var(--iui-color-background-accent-muted);
 }
 
@@ -177,7 +177,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
     grid-area: thumbnail;
     flex: 1;
     border-block-end: none;
-    border-inline-end: 1px solid var(--iui-color-border);
+    border-inline-end: var(--iui-border-thickness) solid var(--iui-color-border);
     margin: 0;
   }
 
@@ -291,7 +291,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   overflow: hidden;
   display: grid;
   background-color: var(--iui-color-background-zebra);
-  border-block-end: 1px solid var(--iui-color-border);
+  border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
   > * {
     grid-area: 1 / 1 / -1 / -1;
@@ -410,13 +410,13 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
     &,
     &:hover {
-      border-block-start: 1px solid var(--iui-color-border);
+      border-block-start: var(--iui-border-thickness) solid var(--iui-color-border);
       border-color: var(--iui-color-border);
     }
   }
 
   > button:not(:last-child) {
-    border-inline-end: 1px solid var(--iui-color-border);
+    border-inline-end: var(--iui-border-thickness) solid var(--iui-color-border);
   }
 }
 
@@ -453,11 +453,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   --_iui-tile-title-text-color: var(--iui-color-text-#{$status});
 
   .iui-tile-thumbnail {
-    box-shadow: 0 var(--iui-size-2xs) 0 var(--iui-color-border-#{$status});
+    box-shadow: 0 calc(var(--iui-border-thickness) * 4) 0 var(--iui-color-border-#{$status});
   }
 
   &.iui-folder .iui-tile-thumbnail {
-    box-shadow: var(--iui-size-2xs) 0 0 var(--iui-color-border-#{$status});
+    box-shadow: calc(var(--iui-border-thickness) * 4) 0 0 var(--iui-color-border-#{$status});
   }
 }
 

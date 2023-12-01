@@ -33,7 +33,7 @@
   &::before,
   &::after {
     content: '';
-    block-size: var(--iui-size-3xs);
+    block-size: calc(var(--iui-border-thickness) * 2);
     flex: 1 2 auto;
   }
 
@@ -60,6 +60,6 @@
   font-weight: var(--iui-font-weight-normal);
   text-align: center;
   background-color: var(--_iui-workflow-diagram-circle-background-color);
-  border: 1px solid var(--_iui-workflow-diagram-circle-border-color);
+  border: var(--iui-border-thickness) solid var(--_iui-workflow-diagram-circle-border-color);
   border-radius: var(--_iui-workflow-diagram-circle-border-radius);
 }

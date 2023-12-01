@@ -78,7 +78,7 @@
   justify-content: center;
   overflow-wrap: break-word;
   user-select: none;
-  border: 1px solid var(--_iui-stepper-step-border-color);
+  border: var(--iui-border-thickness) solid var(--_iui-stepper-step-border-color);
   background-color: var(--_iui-stepper-step-background-color);
   color: var(--_iui-stepper-step-number-color);
 
@@ -95,8 +95,8 @@
   }
 
   .iui-clickable:focus & {
-    outline: 2px solid var(--iui-color-border-positive);
-    outline-offset: -1px;
+    outline: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-positive);
+    outline-offset: calc(var(--iui-border-thickness) * -1);
   }
 
   .iui-clickable:focus:not(:focus-visible) & {
@@ -112,7 +112,7 @@
   &::before,
   &::after {
     content: '';
-    block-size: var(--iui-size-3xs);
+    block-size: calc(var(--iui-border-thickness) * 2);
     flex: 1 2 auto;
   }
 

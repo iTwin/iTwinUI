@@ -2,6 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'base';
 
+// TODO: Unfinished
 @mixin iui-tabs-default {
   @include base.iui-tab-not-animated;
 
@@ -9,7 +10,7 @@
     padding-block: var(--iui-size-2xs);
     padding-inline: var(--iui-size-m);
     background-color: var(--iui-color-background-backdrop);
-    border: 1px solid var(--iui-color-border);
+    border: var(--iui-border-thickness) solid var(--iui-color-border);
 
     &::after {
       inset-block-start: 0;
@@ -44,7 +45,7 @@
     }
 
     ~ .iui-tabs-content {
-      margin-block-start: -1px;
+      margin-block-start: calc(var(--iui-border-thickness) * -1);
     }
 
     :where(.iui-button) {
@@ -62,7 +63,7 @@
     }
 
     ~ .iui-tabs-content {
-      margin-inline-start: -1px;
+      margin-inline-start: calc(var(--iui-border-thickness) * -1);
     }
 
     :where(.iui-button) {
@@ -88,6 +89,6 @@
     padding-inline: var(--iui-size-m);
     padding-inline-end: var(--iui-size-m);
     background-color: var(--iui-color-background);
-    border: 1px solid var(--iui-color-border);
+    border: var(--iui-border-thickness) solid var(--iui-color-border);
   }
 }

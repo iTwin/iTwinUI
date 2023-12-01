@@ -15,8 +15,8 @@
   align-items: center;
   color: var(--iui-color-text);
   background-color: var(--iui-color-background);
-  border: 1px solid var(--_iui-alert-border-color);
-  box-shadow: inset var(--iui-size-2xs) 0 0 var(--_iui-alert-border-color);
+  border: var(--iui-border-thickness) solid var(--_iui-alert-border-color);
+  box-shadow: inset calc(var(--iui-border-thickness) * 4) 0 0 var(--_iui-alert-border-color);
   padding-inline-start: var(--iui-size-m);
   padding-inline-end: var(--iui-size-xs);
 

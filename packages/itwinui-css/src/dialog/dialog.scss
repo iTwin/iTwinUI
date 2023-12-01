@@ -35,7 +35,7 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   display: flex;
   flex-direction: column;
   @media (forced-colors: active) {
-    border: 1px solid;
+    border: var(--iui-border-thickness) solid;
   }
 
   // needed to prevent resizable dialog content from escaping when dialog is
@@ -127,7 +127,7 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 }
 
 .iui-dialog-draggable {
-  border: 1px solid var(--iui-color-border);
+  border: var(--iui-border-thickness) solid var(--iui-color-border);
 }
 
 .iui-dialog-animation {
@@ -167,7 +167,7 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   margin-block: calc(0px - var(--iui-size-s)) var(--iui-size-s);
   cursor: grab;
   background-color: var(--iui-color-background-backdrop);
-  border-block-end: 1px solid var(--iui-color-border);
+  border-block-end: var(--iui-border-thickness) solid var(--iui-color-border);
 
   &:active {
     cursor: grabbing;

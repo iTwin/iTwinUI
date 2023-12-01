@@ -22,7 +22,7 @@
 
 a.iui-tag-basic {
   @include anchor.iui-anchor;
-  @include mixins.iui-focus($offset: 1px);
+  @include mixins.iui-focus($offset: var(--iui-border-thickness));
 }
 
 .iui-tag-container {

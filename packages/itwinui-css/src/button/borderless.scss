@@ -16,8 +16,8 @@
   }
 
   &:where(:focus) {
-    outline-offset: -1px;
-    outline-width: 1px;
+    outline-offset: calc(var(--iui-border-thickness) * -1);
+    outline-width: var(--iui-border-thickness);
   }
 
   &:where([disabled], :disabled, [aria-disabled='true'], [data-iui-disabled='true']) {

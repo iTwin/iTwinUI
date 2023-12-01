@@ -4,7 +4,7 @@
 
 .iui-skip-to-content-link {
   @include mixins.iui-blur($opacity: 3);
-  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
+  @include mixins.iui-focus($offset: calc(var(--iui-border-thickness) * 2), $thickness: calc(var(--iui-border-thickness) * 2));
   color: var(--iui-color-white);
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;

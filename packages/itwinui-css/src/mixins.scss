@@ -14,7 +14,7 @@
   }
 }
 
-@mixin iui-focus($color: var(--iui-color-border-accent), $offset: -1px, $thickness: 1px) {
+@mixin iui-focus($color: var(--iui-color-border-accent), $offset: calc(var(--iui-border-thickness) * -1), $thickness: var(--iui-border-thickness)) {
   @include focus-visible {
     outline: $thickness solid $color;
     outline-offset: $offset;

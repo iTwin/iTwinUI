@@ -2,6 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins' as *;
 
+// TODO: Unfinished
+
 .iui-input-grid {
   display: grid;
   row-gap: var(--iui-size-2xs);
@@ -17,7 +19,7 @@
       margin: 0 var(--iui-size-m) 0 0;
 
       &.iui-required {
-        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
+        margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - var(--iui-border-thickness));
       }
     }
 
@@ -36,24 +38,24 @@
       @include iui-text-selection($status);
 
       .iui-input {
-        // #region Bottom padding to accomodate for status stripe
-        padding-block-end: calc(var(--iui-size-2xs) - 1px);
+        // #region Bottom padding to accommodate for status stripe
+        padding-block-end: calc(var(--iui-size-2xs) - var(--iui-border-thickness));
 
         &[data-iui-size='small'] {
           padding-block-end: 0;
         }
 
         &[data-iui-size='large'] {
-          padding-block-end: calc(var(--iui-size-xs) - 1px);
+          padding-block-end: calc(var(--iui-size-xs) - var(--iui-border-thickness));
         }
         // #endregion
 
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+        border-block-end: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-#{$status});
 
         &:focus {
-          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-          outline: 2px solid var(--iui-color-text-#{$status});
-          outline-offset: -2px;
+          border-block-end: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-#{$status});
+          outline: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-text-#{$status});
+          outline-offset: calc(var(--iui-border-thickness) * -2);
         }
 
         &:hover {
@@ -114,7 +116,7 @@
     margin: 0 var(--iui-size-m) 0 0;
 
     &.iui-required {
-      margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - 1px);
+      margin-inline-end: calc(var(--iui-size-2xs) * 1.5 - var(--iui-border-thickness));
     }
 
     display: inline-flex;
@@ -150,7 +152,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    border: 1px solid var(--_iui-input-border-color);
+    border: var(--iui-border-thickness) solid var(--_iui-input-border-color);
     border-radius: var(--iui-border-radius-1);
     transition: border-color var(--iui-duration-1) ease-out;
   }
@@ -161,8 +163,8 @@
 
   &:has(input:focus-visible),
   &:has(textarea:focus-visible) {
-    outline: 2px solid var(--_iui-input-accent-border-color);
-    outline-offset: -2px;
+    outline: calc(var(--iui-border-thickness) * 2) solid var(--_iui-input-accent-border-color);
+    outline-offset: calc(var(--iui-border-thickness) * -2);
 
     // Added to make sure border color is not visible with outline
     &::before {
@@ -172,8 +174,8 @@
 
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
-      outline: 2px solid var(--_iui-input-accent-border-color);
-      outline-offset: -2px;
+      outline: calc(var(--iui-border-thickness) * 2) solid var(--_iui-input-accent-border-color);
+      outline-offset: calc(var(--iui-border-thickness) * -2);
 
       // Added to make sure border color is not visible with outline
       &::before {
@@ -233,7 +235,7 @@
       --_iui-input-accent-border-color: var(--iui-color-border-#{$status});
 
       &::before {
-        border-block-end-width: var(--iui-size-3xs);
+        border-block-end-width: calc(var(--iui-border-thickness) * 2);
         border-block-end-color: var(--_iui-input-accent-border-color);
       }
 
@@ -274,23 +276,23 @@
 .iui-input-with-icon > .iui-select-button {
   @each $statusColor in informational, positive, warning, negative {
     &:where([data-iui-status='#{$statusColor}']) {
-      padding-block-end: calc(var(--iui-size-2xs) - 1px);
+      padding-block-end: calc(var(--iui-size-2xs) - var(--iui-border-thickness));
 
       &[data-iui-size='small'] {
         padding-block-end: 0;
       }
 
       &[data-iui-size='large'] {
-        padding-block-end: calc(var(--iui-size-xs) - 1px);
+        padding-block-end: calc(var(--iui-size-xs) - var(--iui-border-thickness));
       }
       // #endregion
 
-      border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
+      border-block-end: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-#{$statusColor});
 
       &:focus {
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
-        outline: 2px solid var(--iui-color-text-#{$statusColor});
-        outline-offset: -2px;
+        border-block-end: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-border-#{$statusColor});
+        outline: calc(var(--iui-border-thickness) * 2) solid var(--iui-color-text-#{$statusColor});
+        outline-offset: calc(var(--iui-border-thickness) * -2);
       }
 
       &:hover {

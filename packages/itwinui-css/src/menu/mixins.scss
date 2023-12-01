@@ -3,7 +3,7 @@
 @use '../mixins';
 @use '../surface/base' as surface;
 
-$iui-active-outline: 1px solid var(--iui-color-border-accent);
+$iui-active-outline: var(--iui-border-thickness) solid var(--iui-color-border-accent);
 
 @mixin iui-list {
   @include mixins.iui-reset;
@@ -12,7 +12,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 @mixin iui-menu {
-  --iui-menu-max-height: calc((var(--iui-component-height) - 1px) * 8.5); // Max 8.5 items
+  --iui-menu-max-height: calc((var(--iui-component-height) - var(--iui-border-thickness)) * 8.5); // Max 8.5 items
 
   @include surface.iui-surface($border-color: var(--iui-color-border), $elevation: var(--iui-shadow-2));
   max-block-size: var(--iui-menu-max-height);
@@ -46,7 +46,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   position: relative;
 
   + #{&} {
-    margin-block-start: -1px;
+    margin-block-start: calc(var(--iui-border-thickness) * -1);
   }
 
   &:where([data-iui-actionable='true'], .iui-menu-item, :has(.iui-link-action:hover)):where(:hover) {
@@ -74,7 +74,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     background-color: var(--iui-color-background-accent-muted);
     color: var(--iui-color-text-accent);
     outline: $iui-active-outline;
-    outline-offset: -1px;
+    outline-offset: calc(var(--iui-border-thickness) * -1);
     z-index: 1;
     --_iui-list-item-icon-fill: currentColor;
     --_iui-list-item-description-color: var(--iui-color-text-accent);
@@ -92,24 +92,24 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
   &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
     outline: $iui-active-outline;
-    outline-offset: -1px;
+    outline-offset: calc(var(--iui-border-thickness) * -1);
     z-index: 2;
 
     &:where(.iui-active, [data-iui-active='true']) {
-      outline-width: var(--iui-size-3xs);
-      outline-offset: -2px;
+      outline-width: calc(var(--iui-border-thickness) * 2);
+      outline-offset: calc(var(--iui-border-thickness) * -2);
     }
   }
 
   @supports not selector(:has(+ *)) {
     &:where(:focus-within) {
       outline: $iui-active-outline;
-      outline-offset: -1px;
+      outline-offset: calc(var(--iui-border-thickness) * -1);
       z-index: 2;
 
       &:where(.iui-active, [data-iui-active='true']) {
-        outline-width: var(--iui-size-3xs);
-        outline-offset: -2px;
+        outline-width: calc(var(--iui-border-thickness) * 2);
+        outline-offset: calc(var(--iui-border-thickness) * -2);
       }
     }
   }
@@ -169,9 +169,9 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 }
 
 @mixin iui-menu-divider {
-  block-size: 1px;
+  block-size: var(--iui-border-thickness);
   inline-size: calc(100% - #{var(--iui-size-l)});
-  margin-block: 1px;
+  margin-block: var(--iui-border-thickness);
   margin-inline: auto;
   background-color: var(--iui-color-border);
 }

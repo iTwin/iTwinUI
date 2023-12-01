@@ -71,8 +71,8 @@
   background-color: var(--_iui-checkbox-background-color);
   cursor: pointer;
   transition: outline-color var(--iui-duration-1) ease-out;
-  outline: solid 1px var(--_iui-checkbox-border-color);
-  outline-offset: -1px;
+  outline: var(--iui-border-thickness) solid var(--_iui-checkbox-border-color);
+  outline-offset: calc(var(--iui-border-thickness) * -1);
 
   // increase tap target size to 24x24 by default and allow adjusting through CSS var
   &::before {
@@ -105,7 +105,7 @@
     --_iui-checkbox-border-color: var(--iui-color-border-foreground-hover);
   }
 
-  @include mixins.iui-focus($thickness: 2px);
+  @include mixins.iui-focus($thickness: calc(var(--iui-border-thickness) * 2));
 
   &:disabled {
     --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
@@ -122,7 +122,7 @@
     --_iui-checkbox-border-color: transparent;
     --_iui-checkbox-background-color: transparent;
 
-    outline-width: 1px;
+    outline-width: var(--iui-border-thickness);
 
     &:where(:not(:checked):not(:indeterminate)) {
       --_iui-checkbox-svg-color: var(--iui-color-icon);

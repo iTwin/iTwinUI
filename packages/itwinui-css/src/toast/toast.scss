@@ -116,8 +116,8 @@
   min-block-size: calc(var(--iui-size-s) * 4);
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
-  border: 1px solid var(--iui-color-border);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)), var(--iui-shadow-5);
+  border: var(--iui-border-thickness) solid var(--iui-color-border);
+  box-shadow: 0 0 0 var(--iui-border-thickness) rgba(255, 255, 255, var(--iui-opacity-4)), var(--iui-shadow-5);
   overflow: hidden;
 
   > .iui-status-area {

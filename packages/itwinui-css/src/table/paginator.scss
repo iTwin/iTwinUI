@@ -16,7 +16,7 @@
   background-color: var(--iui-color-background);
   border-end-start-radius: var(--iui-border-radius-1);
   border-end-end-radius: var(--iui-border-radius-1);
-  border-block-start: 1px solid var(--iui-color-border);
+  border-block-start: var(--iui-border-thickness) solid var(--iui-color-border);
 
   > .iui-left,
   > .iui-center,

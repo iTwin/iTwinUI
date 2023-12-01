@@ -4,6 +4,8 @@
 @use '../text/mixins' as text-mixins;
 @use '../anchor/mixins' as anchor;
 
+// TODO: Focus overflow issue
+
 @mixin iui-tag-base {
   user-select: all;
   text-transform: lowercase;
@@ -30,7 +32,7 @@
   text-transform: none;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
-  border: 1px solid var(--iui-color-border-foreground);
+  border: var(--iui-border-thickness) solid var(--iui-color-border-foreground);
   background-color: var(--iui-color-background);
   color: var(--iui-color-text);
 

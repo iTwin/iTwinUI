@@ -5,10 +5,10 @@
 $iui-active-outline: thin solid var(--iui-color-border-accent);
 
 // padding of small borderless button + 1px transparent border
-$iui-expander-inline-padding: calc(var(--iui-size-2xs) + 1px);
+$iui-expander-inline-padding: calc(var(--iui-size-2xs) + var(--iui-border-thickness));
 
 // width of small borderless button (button is 1:1 ratio)
-$iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
+$iui-expander-button-width: calc(var(--iui-component-height-small) + (var(--iui-border-thickness) * 2));
 
 .iui-tree {
   @include mixins.iui-reset;
@@ -27,8 +27,8 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     outline: none;
 
     > .iui-tree-node {
-      outline: 1px solid var(--iui-color-border-accent);
-      outline-offset: -1px;
+      outline: var(--iui-border-thickness) solid var(--iui-color-border-accent);
+      outline-offset: calc(var(--iui-border-thickness) * -1);
 
       &.iui-active {
         outline: 2px solid var(--iui-color-border-accent);
@@ -123,7 +123,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   &.iui-active {
     background-color: var(--iui-color-background-accent-muted);
     outline: $iui-active-outline;
-    outline-offset: -1px;
+    outline-offset: calc(var(--iui-border-thickness) * -1);
   }
 
   &.iui-disabled {

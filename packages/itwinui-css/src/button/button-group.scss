@@ -26,6 +26,7 @@
 
     #{$childZindexSelector} {
       // Adds stripe to active button
+      // TODO: This isn't finished
       @if $orientation == 'horizontal' {
         --_iui-button-active-stripe-inset-block: #{var(--iui-size-3xs)} calc(100% - #{var(--iui-size-2xs)});
         --_iui-button-active-stripe-inset-inline: #{var(--iui-size-3xs)};
@@ -91,9 +92,9 @@
     // Use negative margin to make adjacent borders overlap
     + * {
       @if $orientation == 'horizontal' {
-        margin-inline-start: -1px;
+        margin-inline-start: calc(var(--iui-border-thickness) * -1);
       } @else {
-        margin-block-start: -1px;
+        margin-block-start: calc(var(--iui-border-thickness) * -1);
       }
     }
 
