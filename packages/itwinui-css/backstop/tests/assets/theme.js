@@ -53,7 +53,7 @@ class ThemeButton extends HTMLElement {
         backdrop-filter: blur(5px);
         display: inline-grid;
         cursor: pointer;
-        outline-offset: -1px;
+        outline-offset: calc(var(--iui-border-thickness) * -1);
         transition: background-color var(--iui-duration-1) ease;
         -webkit-tap-highlight-color: transparent;
       }
@@ -95,7 +95,7 @@ class ThemeButton extends HTMLElement {
         
         button[aria-label="Page settings"],
         .popup {
-          border: 1px solid;
+          border: var(--iui-border-thickness) solid;
         }
       }
       @media (prefers-reduced-motion: no-preference) {
@@ -111,7 +111,7 @@ class ThemeButton extends HTMLElement {
       fieldset {
         display: grid;
         border-radius: var(--iui-border-radius-1);
-        border: 1px solid var(--iui-color-border);
+        border: var(--iui-border-thickness) solid var(--iui-color-border);
       }
       fieldset > * {
         display: inline-flex;

@@ -73,7 +73,7 @@ h3 {
 }
 
 hr {
-  border-top: 1px solid var(--iui-color-border);
+  border-top: var(--iui-border-thickness) solid var(--iui-color-border);
   margin: 12px 0;
 }
 
