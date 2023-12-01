@@ -6,6 +6,7 @@ const fs = require('fs');
 
 let scenarios = [];
 fs.readdirSync('backstop/tests').forEach((file) => {
+  // excluding index, ~scenarioHelper, and OS files like .DS_Store
   if (file === 'index.js' || file.startsWith('.') || file.startsWith('~')) {
     return;
   }
