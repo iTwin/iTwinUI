@@ -1,5 +1,17 @@
 # Changelog
 
+## 3.0.11
+
+### Patch Changes
+
+- [#1716](https://github.com/iTwin/iTwinUI/pull/1716): Truncate the `select-tag` when only one tag is present in `select-tag-container`
+
+## 3.0.10
+
+### Patch Changes
+
+- [#1711](https://github.com/iTwin/iTwinUI/pull/1711): Fixed an issue with `Tree` nodes not taking up the full width.
+
 ## 3.0.9
 
 ### Patch Changes

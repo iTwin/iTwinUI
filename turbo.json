@@ -14,17 +14,17 @@
       "dependsOn": ["^build"],
       "outputs": ["esm/**", "cjs/**"]
     },
-    "storybook#build": {
+    "react-workshop#build": {
       "dependsOn": ["^build"],
       "outputs": ["build/**"]
     },
     "test": {
       "outputs": []
     },
-    "storybook#test": {
+    "react-workshop#test": {
       "dependsOn": ["build"]
     },
-    "@itwin/itwinui-css#test": {
+    "css-workshop#test": {
       "dependsOn": ["build"]
     },
     "a11y#test": {

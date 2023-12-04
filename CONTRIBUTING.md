@@ -78,8 +78,8 @@ By default, a portal will be opened containing links to all the different dev se
   - vite playground: `http://localhost:1701`
   - next playground: `http://localhost:1702`
   - astro playground: `http://localhost:1703`
-  - storybook: `http://localhost:6006` (storybook default)
-  - html test pages: `http://localhost:5173` (vite default)
+  - react workshop (stories): `http://localhost:6006`
+  - css workshop (html pages): `http://localhost:5173`
 
 ### Running bespoke commands
 
@@ -95,15 +95,15 @@ yarn workspace @itwin/itwinui-react test Alert
 yarn test Alert
 ```
 
-Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `storybook` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
+Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `react-workshop` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
 ```
 yarn workspace @itwin/itwinui-react build
-yarn workspace storybook build
+yarn workspace react-workshop build
 ```
 
 This is why it's recommended to use the turbo `--filter` syntax whenever possible.
 ```
-yarn build --filter=storybook
+yarn build --filter=react-workshop
 ```
 
 ---
@@ -121,13 +121,13 @@ It ensures all needed imports are added and files are created.
 For a component named `Alert`, the `createComponent` script will add/modify the following files:
 
 - packages/itwinui-css/src/**alert/alert.scss**: framework-agnostic component styles
-- packages/itwinui-css/backstop/tests/**alert.html**: html test cases for component css
-- packages/itwinui-css/backstop/scenarios/**alert.js**: visual test scenarios for html
+- apps/css-workshop/pages/**alert.html**: html test cases for component css
+- apps/css-workshop/backstop/tests/**alert.js**: visual test scenarios for html
 - packages/itwinui-react/src/core/**Alert/Alert.tsx**: react component
 - packages/itwinui-react/src/core/**Alert/Alert.test.tsx**: unit tests for react component
 - packages/itwinui-react/src/**index.ts**: barrel file containing all public exports
-- apps/storybook/src/**Alert.stories.tsx**: common demo states and examples ("stories")
-- apps/storybook/src/**Alert.test.tsx**: cypress visual tests for stories
+- apps/react-workshop/src/**Alert.stories.tsx**: common demo states and examples ("stories")
+- apps/react-workshop/src/**Alert.test.tsx**: cypress visual tests for stories
 - apps/website/src/pages/docs/**alert.mdx**: documentation page for the component
 
 <details>
@@ -158,7 +158,7 @@ packages/itwinui-react
 |       |   + - > Alert.test.tsx
 |       |   + - > Alert.tsx
 |
-apps/storybook
+apps/react-workshop
 |   |
 |   + - src
 |       |
@@ -271,33 +271,32 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 - Make sure Docker is running.
 - To run tests for a specific component, use this command:
-  `yarn workspace itwinui-css test --filter=[component_name]` (e.g. `yarn workspace itwinui-css test --filter=side-navigation`)
+  `yarn workspace css-workshop test --filter=[component_name]` (e.g. `yarn workspace css-workshop test --filter=side-navigation`)
 - To approve test images, run `yarn approve:css`.
-- To delete old/unused tests images, run `yarn clean:images`.
 
 #### How to write tests:
 
-- Write the html in `packages/itwinui-css/backstop/tests/[component-name].html` displaying the elements you wish to test and their all possible states.
+- Write the html in `apps/css-workshop/backstop/tests/[component-name].html` displaying the elements you wish to test and their all possible states.
 
-- Write the test cases in `backstop/scenarios/[component-name].js` and ensure it exports scenarios list (see `backstop/scenarios/alert.js` for example).
+- Write the test cases in `backstop/tests/[component-name].js` and ensure it exports scenarios list (see `backstop/tests/alert.js` for example).
   - Use `scenario` function from `scenarioHelper.js` to create a scenario where the first argument is test case name and the second one is options.
     ```js
-    const { scenario } = require('../scenarioHelper');
+    const { scenario } = require('./~scenarioHelper');
     module.exports = [scenario('basic')];
     ```
   - For actions like click, hover use according functions from `scenarioHelper.js` and pass them as scenario options `actions` property.
     ```js
-    const { scenario, hover } = require('../scenarioHelper');
+    const { scenario, hover } = require('./~scenarioHelper');
     module.exports = [scenario('hover', { actions: [hover('.element-selector')] })];
     ```
   - If you want to select only specific part of the test elements, pass `selectors` property to the options.
     ```js
-    const { scenario } = require('../scenarioHelper');
+    const { scenario } = require('./~scenarioHelper');
     module.exports = [scenario('selected part', { selectors: ['.selected-part-selector'] })];
     ```
   - If you want to hide some elements because they might be moving e.g. spinner, pass `hideSelectors` property to the options.
     ```js
-    const { scenario } = require('../scenarioHelper');
+    const { scenario } = require('./~scenarioHelper');
     module.exports = [scenario('hide part', { hideSelectors: ['.hide-selector'] })];
     ```
   - More information about options can be found in [BackstopJS GitHub](https://github.com/garris/BackstopJS#advanced-scenarios).
@@ -309,13 +308,13 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 #### Running visual tests
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. From the monorepo root, run `yarn test --filter=storybook`. This will build storybook and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace storybook test --spec="**/Alert.*"`. Don't forget to build storybook first (yarn build --filter=storybook).
+2. From the monorepo root, run `yarn test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace react-workshop test --spec="**/Alert.*"`. Don't forget to build react-workshop first (yarn build --filter=react-workshop).
 3. Once the tests finish running, you can approve any failing test images using `yarn approve:react`.
 
 #### Writing visual tests
 
-Inside the `apps/storybook` workspace, the `src/` directory has a set of `-.stories.tsx` files, each of which is accompanied by a `-.test.ts` file. Here's what a typical test file should look like:
+Inside the `apps/react-workshop` workspace, the `src/` directory has a set of `-.stories.tsx` files, each of which is accompanied by a `-.test.ts` file. Here's what a typical test file should look like:
 
 ```ts
 describe('Alert', () => {
