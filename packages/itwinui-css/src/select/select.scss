@@ -108,7 +108,6 @@
 @mixin iui-select-tag-label {
   @include tag.iui-tag-label;
   display: block;
-  align-items: center;
 
   .iui-select-button[data-iui-size='small'] & {
     font-size: var(--iui-font-size-0);
