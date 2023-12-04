@@ -8,6 +8,16 @@ import { useOverflow, useMergedRefs, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { FloatingDelayGroup } from '@floating-ui/react';
 
+// ----------------------------------------------------------------------------
+
+/** This context is used for letting descendant IconButtons know the ButtonGroup's orientation. */
+export const ButtonGroupContext = React.createContext<string | undefined>(
+  undefined,
+);
+ButtonGroupContext.displayName = 'ButtonGroupContext';
+
+// ----------------------------------------------------------------------------
+
 type ButtonGroupProps = {
   /**
    * Buttons in the ButtonGroup.
@@ -87,48 +97,50 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
 
   return (
     <FloatingDelayGroup delay={{ open: 50, close: 250 }}>
-      <Box
-        className={cx(
-          'iui-button-group',
-          {
-            'iui-button-group-overflow-x':
-              !!overflowButton && orientation === 'horizontal',
-          },
-          className,
-        )}
-        data-iui-orientation={
-          orientation === 'vertical' ? orientation : undefined
-        }
-        ref={refs}
-        {...rest}
-      >
-        {(() => {
-          if (!(visibleCount < items.length)) {
-            return items;
+      <ButtonGroupContext.Provider value={orientation}>
+        <Box
+          className={cx(
+            'iui-button-group',
+            {
+              'iui-button-group-overflow-x':
+                !!overflowButton && orientation === 'horizontal',
+            },
+            className,
+          )}
+          data-iui-orientation={
+            orientation === 'vertical' ? orientation : undefined
           }
+          ref={refs}
+          {...rest}
+        >
+          {(() => {
+            if (!(visibleCount < items.length)) {
+              return items;
+            }
 
-          const overflowStart =
-            overflowPlacement === 'start'
-              ? items.length - visibleCount
-              : visibleCount - 1;
+            const overflowStart =
+              overflowPlacement === 'start'
+                ? items.length - visibleCount
+                : visibleCount - 1;
 
-          return (
-            <>
-              {overflowButton &&
-                overflowPlacement === 'start' &&
-                overflowButton(overflowStart)}
+            return (
+              <>
+                {overflowButton &&
+                  overflowPlacement === 'start' &&
+                  overflowButton(overflowStart)}
 
-              {overflowPlacement === 'start'
-                ? items.slice(overflowStart + 1)
-                : items.slice(0, Math.max(0, overflowStart))}
+                {overflowPlacement === 'start'
+                  ? items.slice(overflowStart + 1)
+                  : items.slice(0, Math.max(0, overflowStart))}
 
-              {overflowButton &&
-                overflowPlacement === 'end' &&
-                overflowButton(overflowStart)}
-            </>
-          );
-        })()}
-      </Box>
+                {overflowButton &&
+                  overflowPlacement === 'end' &&
+                  overflowButton(overflowStart)}
+              </>
+            );
+          })()}
+        </Box>
+      </ButtonGroupContext.Provider>
     </FloatingDelayGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', ButtonGroupProps>;
