@@ -21,17 +21,23 @@ The info panel is reserved for complex tables, because it allows the user to gra
 The Information Panel component is made up of customizable subcomponents. Here’s what the basic usage looks like:
 
 ```tsx
-<InformationPanel.Wrapper>
-  <InformationPanel>
-    <InformationPanelHeader>
+<InformationPanelWrapper>
+  <Table ... /> // component to overlay
+  <InformationPanel isOpen={true}>
+    <InformationPanelHeader onClose={() => {}}>
+      <Text variant='subheading'>InfoPanel heading</Text>
     </InformationPanelHeader>
-    <InformationPanelBody>
-        <InformationPanelContent>
-        </InformationPanelContent>
+      <InformationPanelBody>
+      <Text>Metadata</Text>
+      <InformationPanelContent ... />
+      <Text>Attributes</Text>
+      <InformationPanelContent ... />
     </InformationPanelBody>
-  </InformationPanel>
+ </InformationPanel>
 </InformationPanelWrapper>
 ```
+
+By default, the Information Panel component is closed. It can be opened by setting `isOpen={true}`. The orientation and size of the panel can be set using the `orientation` and `resizable` prop respectively.
 
 ## Props
 
