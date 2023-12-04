@@ -29,16 +29,24 @@ export default {
 export const WithIcons = () => {
   return (
     <ButtonGroup>
-      <IconButton onClick={() => console.log('Clicked add!')}>
+      <IconButton label='Add' onClick={() => console.log('Clicked add!')}>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={() => console.log('Clicked edit!')} isActive>
+      <IconButton
+        label='Edit'
+        onClick={() => console.log('Clicked edit!')}
+        isActive
+      >
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={() => console.log('Clicked delete!')}>
+      <IconButton
+        disabled
+        label='Delete'
+        onClick={() => console.log('Clicked delete!')}
+      >
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={() => console.log('Clicked undo!')}>
+      <IconButton label='Undo' onClick={() => console.log('Clicked undo!')}>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
@@ -127,16 +135,24 @@ export const InputButtonCombo = () => {
 export const Vertical = () => {
   return (
     <ButtonGroup orientation='vertical'>
-      <IconButton onClick={() => console.log('Clicked add!')}>
+      <IconButton label='Add' onClick={() => console.log('Clicked add!')}>
         <SvgAdd />
       </IconButton>
-      <IconButton onClick={() => console.log('Clicked edit!')} isActive>
+      <IconButton
+        label='Edit'
+        onClick={() => console.log('Clicked edit!')}
+        isActive
+      >
         <SvgEdit />
       </IconButton>
-      <IconButton disabled onClick={() => console.log('Clicked delete!')}>
+      <IconButton
+        disabled
+        label='Delete'
+        onClick={() => console.log('Clicked delete!')}
+      >
         <SvgDelete />
       </IconButton>
-      <IconButton onClick={() => console.log('Clicked undo!')}>
+      <IconButton label='Undo' onClick={() => console.log('Clicked undo!')}>
         <SvgUndo />
       </IconButton>
     </ButtonGroup>
