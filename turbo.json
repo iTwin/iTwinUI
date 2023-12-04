@@ -14,14 +14,14 @@
       "dependsOn": ["^build"],
       "outputs": ["esm/**", "cjs/**"]
     },
-    "storybook#build": {
+    "react-workshop#build": {
       "dependsOn": ["^build"],
       "outputs": ["build/**"]
     },
     "test": {
       "outputs": []
     },
-    "storybook#test": {
+    "react-workshop#test": {
       "dependsOn": ["build"]
     },
     "css-workshop#test": {

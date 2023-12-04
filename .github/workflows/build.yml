@@ -180,14 +180,14 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - name: Build html test pages
+      - name: Build css-workshop
         run: yarn build --filter=css-workshop
 
       - name: Build portal
         run: yarn workspace portal build --base "/iTwinUI/${{ env.base_folder }}"
 
-      - name: Build storybook
-        run: yarn build --filter=storybook
+      - name: Build react-workshop
+        run: yarn build --filter=react-workshop
 
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
@@ -212,7 +212,7 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
-      - name: Host html pages under /css
+      - name: Host css-workshop under /css
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
@@ -221,11 +221,11 @@ jobs:
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
 
-      - name: Host storybook under /react
+      - name: Host react-workshop under /react
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/apps/storybook/build
+          folder: ${{ github.workspace }}/apps/react-workshop/build
           target-folder: ${{ env.base_folder }}/react
           git-config-name: github-actions[bot]
           git-config-email: github-actions[bot]@users.noreply.github.com
@@ -344,7 +344,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn test --filter=storybook
+      - run: yarn test --filter=react-workshop
 
       - name: Publish test results artifact
         if: failure()
@@ -352,7 +352,7 @@ jobs:
         uses: actions/upload-artifact@v3.0.0
         with:
           name: 'cypress-visual-screenshots'
-          path: '${{ github.workspace }}/apps/storybook/cypress-visual-screenshots'
+          path: '${{ github.workspace }}/apps/react-workshop/cypress-visual-screenshots'
 
   a11y:
     name: Test for a11y violations
