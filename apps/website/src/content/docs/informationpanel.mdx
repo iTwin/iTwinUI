@@ -1,13 +1,10 @@
 ---
 title: Information panel
 description: A way to view additional attributes without leaving the list of items.
-propsPath: '@itwin/itwinui-react/esm/core/InformationPanel/InformationPanel.d.ts'
 thumbnail: InformationPanel
 ---
 
 <p>{frontmatter.description}</p>
-
-<Placeholder componentPageName='informationpanel' />
 
 <LiveExample src='InformationPanel.main.tsx'>
   <AllExamples.InformationPanelMainExample client:load />
@@ -17,6 +14,25 @@ The information panel is a pattern used primarily in tables. It allows viewing o
 
 The info panel is reserved for complex tables, because it allows the user to gradually explore the content without overwhelming them with too many details. It also helps avoiding the unpleasant horizontal scrolling when the table gets too wide. Not every table requires an information panel.
 
+## Usage
+
+### Composition API
+
+The Information Panel component is made up of customizable subcomponents. Here’s what the basic usage looks like:
+
+```tsx
+<InformationPanel.Wrapper>
+  <InformationPanel>
+    <InformationPanelHeader>
+    </InformationPanelHeader>
+    <InformationPanelBody>
+        <InformationPanelContent>
+        </InformationPanelContent>
+    </InformationPanelBody>
+  </InformationPanel>
+</InformationPanelWrapper>
+```
+
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/InformationPanel/InformationPanel.d.ts'} />
