@@ -26,6 +26,12 @@ class ThemeButton extends HTMLElement {
             <label tabindex="-1"><input type="radio" name="background" value="bg1" /><span>Background</span></label>
             <label tabindex="-1"><input type="radio" name="background" value="bg2" checked /><span>Background backdrop</span></label>
           </fieldset>
+
+          <fieldset>
+            <legend>Border thickness</legend>
+            <label tabindex="-1"><input type="radio" name="borderThickness" value="original" checked /><span>Original</span></label>
+            <label tabindex="-1"><input type="radio" name="borderThickness" value="thick" /><span>Thick</span></label>
+          </fieldset>
         </article>
       </div>
     `;
@@ -162,7 +168,16 @@ class ThemeButton extends HTMLElement {
     if (_background === 'bg1') {
       document.body.style.backgroundColor = 'var(--iui-color-background)';
     } else {
-      document.body.removeAttribute('style');
+      document.body.style.backgroundColor =
+        'var(--iui-color-background-backdrop)';
+    }
+  };
+
+  changeBorderThickness = ({ target: { value: _borderThickness } }) => {
+    if (_borderThickness === 'thick') {
+      document.body.style.setProperty('--iui-border-thickness', '2px');
+    } else {
+      document.body.style.setProperty('--iui-border-thickness', '1px');
     }
   };
 
@@ -176,6 +191,12 @@ class ThemeButton extends HTMLElement {
       .forEach((radio) => {
         radio.addEventListener('change', this.changeBackground);
       });
+
+    this.shadowRoot
+      .querySelectorAll('input[name="borderThickness"]')
+      .forEach((radio) => {
+        radio.addEventListener('change', this.changeBorderThickness);
+      });
   }
 
   disconnectedCallback() {
@@ -187,6 +208,12 @@ class ThemeButton extends HTMLElement {
       .querySelectorAll('input[name="background"]')
       .forEach((radio) => {
         radio.removeEventListener('change', this.changeBackground);
+      });
+
+    this.shadowRoot
+      .querySelectorAll('input[name="borderThickness"]')
+      .forEach((radio) => {
+        radio.removeEventListener('change', this.changeBorderThickness);
       });
   }
 }
