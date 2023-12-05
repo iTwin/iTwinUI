@@ -23,7 +23,7 @@ type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
 >;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
-  const { onKeyDown: onKeyDownProp, selectTags, size, ...rest } = props;
+  const { selectTags, size, ...rest } = props;
 
   const {
     isOpen,
@@ -186,6 +186,26 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     ],
   );
 
+  /**
+   * This temporarily stores the state of `isOpen` before click event starts and resets it later.
+   * It is necessary because `isOpen` may have changed during the process of the click,
+   * e.g. because of focus, which could cause the menu to close immediately after opening.
+   */
+  const wasOpenBeforeClick = React.useRef(false);
+
+  const handlePointerDown = React.useCallback(() => {
+    wasOpenBeforeClick.current = isOpen;
+  }, [isOpen]);
+
+  const handleClick = React.useCallback(() => {
+    if (!wasOpenBeforeClick.current) {
+      show();
+    } else {
+      hide();
+    }
+    wasOpenBeforeClick.current = false;
+  }, [hide, show]);
+
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
   return (
@@ -208,8 +228,13 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
         {...popover.getReferenceProps({
-          onKeyDown: mergeEventHandlers(onKeyDownProp, handleKeyDown),
           ...rest,
+          onPointerDown: mergeEventHandlers(
+            props.onPointerDown,
+            handlePointerDown,
+          ),
+          onClick: mergeEventHandlers(props.onClick, handleClick),
+          onKeyDown: mergeEventHandlers(props.onKeyDown, handleKeyDown),
         })}
       />
 
