@@ -873,6 +873,21 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  // If host already hosts a shadow tree, catch the exception and do not re-add the shadow tree
+  try {
+    const host = document.querySelector('#host');
+    const shadow = host?.attachShadow({ mode: 'closed' });
+
+    const div = document.createElement('div');
+    div.style.height = '0';
+    div.style.width = `${headerRef.current?.scrollWidth}px`;
+    div.ariaHidden = 'true';
+
+    shadow?.appendChild(div);
+  } catch (e) {
+    // Do nothing
+  }
+
   return (
     <>
       <Box
@@ -1059,6 +1074,7 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <div id='host' />
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1085,7 +1101,14 @@ export const Table = <
             </Box>
           )}
           {isLoading && data.length !== 0 && (
-            <Box className='iui-table-row'>
+            <Box
+              className='iui-table-row'
+              // To center the row even when scrolling horizontally
+              style={{
+                position: 'sticky',
+                left: 0,
+              }}
+            >
               <Box
                 className='iui-table-cell'
                 style={{ justifyContent: 'center' }}

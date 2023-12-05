@@ -359,6 +359,9 @@
 
   // Empty & loading states
   > .iui-table-empty {
+    position: sticky;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
     text-align: center;
     padding: var(--iui-size-xl);
     display: flex;
