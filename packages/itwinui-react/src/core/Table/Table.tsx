@@ -878,7 +878,7 @@ export const Table = <
   // If host already hosts a shadow tree, catch the exception and do not re-add the shadow tree
   try {
     const host = tableBodyWidthSetterRef.current;
-    const shadow = host?.attachShadow({ mode: 'closed' });
+    const shadow = host?.attachShadow({ mode: 'open' });
 
     const div = document.createElement('div');
     div.style.height = '0';
