@@ -873,9 +873,11 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  const tableBodyWidthSetterRef = React.useRef<HTMLDivElement>(null);
+
   // If host already hosts a shadow tree, catch the exception and do not re-add the shadow tree
   try {
-    const host = document.querySelector('#host');
+    const host = tableBodyWidthSetterRef.current;
     const shadow = host?.attachShadow({ mode: 'closed' });
 
     const div = document.createElement('div');
@@ -1074,7 +1076,10 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <div id='host' />
+          <div
+            ref={tableBodyWidthSetterRef}
+            className='iui-table-body-width-setter'
+          />
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
