@@ -1076,10 +1076,7 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <div
-            ref={tableBodyWidthSetterRef}
-            className='iui-table-body-width-setter'
-          />
+          <div ref={tableBodyWidthSetterRef} />
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
