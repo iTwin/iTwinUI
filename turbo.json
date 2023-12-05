@@ -24,7 +24,7 @@
     "storybook#test": {
       "dependsOn": ["build"]
     },
-    "@itwin/itwinui-css#test": {
+    "css-workshop#test": {
       "dependsOn": ["build"]
     },
     "a11y#test": {

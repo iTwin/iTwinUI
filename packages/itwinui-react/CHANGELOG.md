@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.0.10
+
+### Patch Changes
+
+- [#1711](https://github.com/iTwin/iTwinUI/pull/1711): Fixed an issue with `Tree` nodes not taking up the full width.
+
 ## 3.0.9
 
 ### Patch Changes
