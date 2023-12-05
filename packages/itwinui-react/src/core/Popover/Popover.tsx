@@ -60,6 +60,21 @@ type PopoverOptions = {
    * @default true
    */
   closeOnOutsideClick?: boolean;
+  /**
+   * Middleware options.
+   *
+   * By default, `flip` and `shift` are enabled.
+   *
+   * @see https://floating-ui.com/docs/middleware
+   */
+  middleware?: {
+    offset?: number;
+    flip?: boolean;
+    shift?: boolean;
+    autoPlacement?: boolean;
+    hide?: boolean;
+    inline?: boolean;
+  };
 };
 
 // keep public api small to start with
@@ -81,19 +96,6 @@ type PopoverInternalProps = {
      */
     animationFrame?: boolean;
     layoutShift?: boolean;
-  };
-  /**
-   * Middleware options.
-   *
-   * @see https://floating-ui.com/docs/offset
-   */
-  middleware?: {
-    offset?: number;
-    flip?: boolean;
-    shift?: boolean;
-    autoPlacement?: boolean;
-    hide?: boolean;
-    inline?: boolean;
   };
   /**
    * By default, the popover will only open on click.
@@ -135,8 +137,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
-      middleware.flip && flip(),
-      middleware.shift && shift(),
+      middleware.flip !== false && flip(),
+      middleware.shift !== false && shift(),
       matchWidth &&
         size({
           apply: ({ rects }) => {
@@ -211,6 +213,12 @@ type PopoverPublicProps = {
    * @default false
    */
   applyBackground?: boolean;
+  /**
+   * This is used to position the popover relative to a different element than the trigger.
+   *
+   * Recommended to use state to store this element, rather than a ref.
+   */
+  positionReference?: HTMLElement;
 } & PortalProps &
   PopoverOptions;
 
@@ -234,6 +242,10 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     placement = 'bottom-start',
     onVisibleChange,
     closeOnOutsideClick = true,
+    middleware,
+    //
+    // extra props
+    positionReference,
     //
     // dom props
     className,
@@ -249,6 +261,7 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     onVisibleChange,
     closeOnOutsideClick,
     role: 'dialog',
+    middleware,
   });
 
   const [popoverElement, setPopoverElement] = React.useState<HTMLElement>();
@@ -261,6 +274,12 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
 
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
+
+  React.useEffect(() => {
+    if (positionReference) {
+      popover.refs.setPositionReference(positionReference);
+    }
+  }, [popover.refs, positionReference]);
 
   return (
     <>
