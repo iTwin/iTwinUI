@@ -1076,7 +1076,7 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <div ref={tableBodyWidthSetterRef} />
+          <div ref={tableBodyWidthSetterRef} aria-hidden />
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
