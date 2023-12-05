@@ -27,7 +27,7 @@
 
   &:focus {
     outline-color: var(--iui-color-white);
-    outline-offset: calc(var(--iui-border-thickness) * -2);
+    outline-offset: calc(var(--iui-border-thickness) * -3);
     outline-width: var(--iui-border-thickness);
   }
 
