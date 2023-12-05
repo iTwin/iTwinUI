@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-css",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "Bentley Systems",
   "license": "MIT",
   "main": "css/all.css",
@@ -37,39 +37,24 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "@itwin/itwinui-icons-elements": "0.2.0",
-    "autoprefixer": "^10.4.1",
-    "backstopjs": "~6.2.1",
     "chokidar": "^3.5.3",
-    "html-minifier": "^4.0.0",
     "lightningcss": "^1.21.5",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.31",
-    "postcss-scoper": "^1.0.11",
     "sass": "^1.63.6",
     "sass-embedded": "^1.63.6",
-    "serve": "^14.2.1",
     "stylelint": "^15.10.1",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-csstree-validator": "^3.0.0",
     "stylelint-scss": "^5.0.1",
-    "stylelint-use-logical": "^2.1.0",
-    "vite": "^4.1.5"
+    "stylelint-use-logical": "^2.1.0"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/* && yarn build:html",
+    "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/*",
     "build:css": "node ./scripts/generateCss.js src css",
-    "build:html": "vite build backstop/tests --config vite.config.ts",
-    "build:watch:scss": "node ./scripts/watchScss.mjs",
-    "clean": "rimraf ./css ./scss ./backstop/results/bitmaps_test",
-    "dev": "concurrently -n scss,html -k \"yarn build:watch:scss\" \"yarn vite backstop/tests --config vite.config.ts\"",
-    "preview": "serve backstop/minified -p 3050 -L",
-    "lint": "stylelint \"src/**/*.scss\"",
-    "approve": "backstop --config=./backstop/backstop.js approve",
-    "test:only": "backstop --config=./backstop/backstop.js test --docker",
-    "test": "npm-run-all -p -r \"preview\" \"test:only {1}\" --",
-    "clean:images": "node scripts/removeOldTestImages.js",
-    "print": "node scripts/print.js"
+    "dev": "node ./scripts/watchScss.mjs",
+    "clean": "rimraf ./css",
+    "lint": "stylelint \"src/**/*.scss\""
   },
   "prettier": "configs/prettier-scss-config.js"
 }

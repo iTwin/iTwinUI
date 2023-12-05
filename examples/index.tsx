@@ -26,41 +26,19 @@ import { default as AlertMainExampleRaw } from './Alert.main';
 const AlertMainExample = withThemeProvider(AlertMainExampleRaw);
 export { AlertMainExample };
 
-import { default as AlertInlineExampleRaw } from './Alert.inline';
-const AlertInlineExample = withThemeProvider(AlertInlineExampleRaw);
-export { AlertInlineExample };
-
-import { default as AlertInformationalExampleRaw } from './Alert.informational';
-const AlertInformationalExample = withThemeProvider(
-  AlertInformationalExampleRaw,
-);
-export { AlertInformationalExample };
-
-import { default as AlertPositiveExampleRaw } from './Alert.positive';
-const AlertPositiveExample = withThemeProvider(AlertPositiveExampleRaw);
-export { AlertPositiveExample };
-
-import { default as AlertNegativeExampleRaw } from './Alert.negative';
-const AlertNegativeExample = withThemeProvider(AlertNegativeExampleRaw);
-export { AlertNegativeExample };
+import { default as AlertTypesExampleRaw } from './Alert.types';
+const AlertTypesExample = withThemeProvider(AlertTypesExampleRaw);
+export { AlertTypesExample };
 
 import { default as AlertStickyExampleRaw } from './Alert.sticky';
 const AlertStickyExample = withThemeProvider(AlertStickyExampleRaw);
 export { AlertStickyExample };
 
-import { default as AlertWarningExampleRaw } from './Alert.warning';
-const AlertWarningExample = withThemeProvider(AlertWarningExampleRaw);
-export { AlertWarningExample };
-
 // ----------------------------------------------------------------------------
 
-import { default as AvatarMainExampleRaw } from './Avatar.main';
-const AvatarMainExample = withThemeProvider(AvatarMainExampleRaw);
-export { AvatarMainExample };
-
-import { default as AvatarGroupExampleRaw } from './Avatar.group';
-const AvatarGroupExample = withThemeProvider(AvatarGroupExampleRaw);
-export { AvatarGroupExample };
+import { default as AvatarTypesExampleRaw } from './Avatar.types';
+const AvatarTypesExample = withThemeProvider(AvatarTypesExampleRaw);
+export { AvatarTypesExample };
 
 import { default as AvatarGroupAnimatedExampleRaw } from './Avatar.groupanimated';
 const AvatarGroupAnimatedExample = withThemeProvider(
@@ -86,17 +64,9 @@ const AvatarGroupStackedExample = withThemeProvider(
 );
 export { AvatarGroupStackedExample };
 
-import { default as AvatarIconExampleRaw } from './Avatar.icon';
-const AvatarIconExample = withThemeProvider(AvatarIconExampleRaw);
-export { AvatarIconExample };
-
-import { default as AvatarInitialsExampleRaw } from './Avatar.initials';
-const AvatarInitialsExample = withThemeProvider(AvatarInitialsExampleRaw);
-export { AvatarInitialsExample };
-
-import { default as AvatarPictureExampleRaw } from './Avatar.picture';
-const AvatarPictureExample = withThemeProvider(AvatarPictureExampleRaw);
-export { AvatarPictureExample };
+import { default as AvatarMainExampleRaw } from './Avatar.main';
+const AvatarMainExample = withThemeProvider(AvatarMainExampleRaw);
+export { AvatarMainExample };
 
 import { default as AvatarSizesExampleRaw } from './Avatar.sizes';
 const AvatarSizesExample = withThemeProvider(AvatarSizesExampleRaw);
@@ -253,10 +223,6 @@ const CarouselControlledExample = withThemeProvider(
   CarouselControlledExampleRaw,
 );
 export { CarouselControlledExample };
-
-import { default as CarouselOnlyDotsExampleRaw } from './Carousel.onlyDots';
-const CarouselOnlyDotsExample = withThemeProvider(CarouselOnlyDotsExampleRaw);
-export { CarouselOnlyDotsExample };
 
 // ----------------------------------------------------------------------------
 
@@ -621,6 +587,14 @@ export { FooterCustomContentExample };
 import { default as HeaderMainExampleRaw } from './Header.main';
 const HeaderMainExample = withThemeProvider(HeaderMainExampleRaw);
 export { HeaderMainExample };
+
+import { default as HeaderFullExampleRaw } from './Header.full';
+const HeaderFullExample = withThemeProvider(HeaderFullExampleRaw);
+export { HeaderFullExample };
+
+import { default as HeaderSlimExampleRaw } from './Header.slim';
+const HeaderSlimExample = withThemeProvider(HeaderSlimExampleRaw);
+export { HeaderSlimExample };
 
 // ----------------------------------------------------------------------------
 

@@ -1,5 +1,55 @@
 # Changelog
 
+## 3.0.11
+
+### Patch Changes
+
+- [#1716](https://github.com/iTwin/iTwinUI/pull/1716): Truncate the `select-tag` when only one tag is present in `select-tag-container`
+
+## 3.0.10
+
+### Patch Changes
+
+- [#1711](https://github.com/iTwin/iTwinUI/pull/1711): Fixed an issue with `Tree` nodes not taking up the full width.
+
+## 3.0.9
+
+### Patch Changes
+
+- [#1705](https://github.com/iTwin/iTwinUI/pull/1705): Fixed a hydration mismatch warning due to `id` in `ComboBox` and `Carousel`.
+
+## 3.0.8
+
+### Patch Changes
+
+- [#1702](https://github.com/iTwin/iTwinUI/pull/1702): Fixed `Select` so that it works in uncontrolled mode (without `value`/`onChange` props).
+
+## 3.0.7
+
+### Patch Changes
+
+- [#1700](https://github.com/iTwin/iTwinUI/pull/1700): Fixed an issue where Table was sometimes triggering sort after filtering.
+
+## 3.0.6
+
+### Patch Changes
+
+- [#1693](https://github.com/iTwin/iTwinUI/pull/1693): Fixed an issue where Dialog content was appearing blurred on Windows.
+
+## 3.0.5
+
+### Patch Changes
+
+- [#1683](https://github.com/iTwin/iTwinUI/pull/1683): Improved `ExpandableBlock` animation so that it doesn't push content outside its bounds.
+- [#1687](https://github.com/iTwin/iTwinUI/pull/1687): Fixed `Overlay` component to correctly add polyfill for `inert`.
+
+## 3.0.4
+
+### Patch Changes
+
+- [#1682](https://github.com/iTwin/iTwinUI/pull/1682): Memoize `useToaster`'s return value so that it can be more reliably used in dependency arrays.
+- [#1681](https://github.com/iTwin/iTwinUI/pull/1681): Fixed an issue where `Select`'s menu was being positioned incorrectly after its first render.
+
 ## 3.0.3
 
 ### Patch Changes

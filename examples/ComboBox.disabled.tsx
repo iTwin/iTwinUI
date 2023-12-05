@@ -38,7 +38,7 @@ export default () => {
               course.hasPrereq ? ' - needs pre-requisite' : ''
             }`,
             disabled: course.hasPrereq,
-          } as SelectOption<string>),
+          }) as SelectOption<string>,
       ),
     [],
   );

@@ -1,0 +1,28 @@
+---
+title: Status message
+description: Component to display icon and text below the form field.
+thumbnail: #TODO
+group: utilities
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='StatusMessage.main.tsx' truncate={false}>
+  <AllExamples.StatusMessageMainExample client:load />
+</LiveExample>
+
+The StatusMessage component can be used with form fields, such as inputs, selects, etc.
+
+You can pass `StatusMessage` to any component that has `message` prop to fully customize rendered message.
+
+### Status
+
+Use `status` prop to set proper color to the message and its icon.
+
+<LiveExample src='StatusMessage.status.tsx'>
+  <AllExamples.StatusMessageStatusExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/StatusMessage/StatusMessage.d.ts' />

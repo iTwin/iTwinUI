@@ -1,0 +1,64 @@
+---
+title: Footer
+description: Legally required links that stick to the bottom of entry pages.
+propsPath: '@itwin/itwinui-react/esm/core/Footer/Footer.d.ts'
+thumbnail: Footer
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Footer.main.tsx' truncate={false}>
+  <AllExamples.FooterMainExample client:load />
+</LiveExample>
+
+The footer is fixed to the bottom of a web page, and contains your typical legally required links. The legal footer is only required to be displayed on pages that are considered a “main entry point into your application”. This means that the sign in and home page of any hub / app are good places to display the footer. You do not need to display the footer within an App UI widget, or deeper pages within an app. You can not include the footer on a page with infinite scrolling because you can not reach the bottom of the page.
+
+## Customizations
+
+Alter standard footer section by modifying elements or adding new custom elements and content.
+
+### Appended Custom Elements
+
+Along with the default elements, we can also append custom elements by passing an array of elements to the `customElements` prop. Each object in the array would have the `title` (label) and `url` (href) properties. If the `url` is not passed, then the element is rendered as plain text and not an anchor.
+
+<LiveExample src='Footer.appendedcustomelements.tsx'>
+  <AllExamples.FooterAppendCustomElementsExample client:load />
+</LiveExample>
+
+### Only Custom Elements
+
+To remove all default elements and only use custom elements, pass a function to the `customElements` prop. The function should return an array of objects, each with `title` (label) and `url` (href). Similar to the [above case](#appended-custom-elements), if `url` is not passed, the element is rendered as plain text and not an anchor.
+
+<LiveExample src='Footer.onlycustomelements.tsx'>
+  <AllExamples.FooterOnlyCustomElementsExample client:load />
+</LiveExample>
+
+### Customized Default And Custom Elements
+
+Add customized default and custom elements by creating `customUrls` and `translatedTitles` objects. Show Footer component by returning new array containing `customizedDefaultElements` and `customElements`which are default and custom elements respectively.
+
+<LiveExample src='Footer.customizeddefaultandcustomelements.tsx'>
+  <AllExamples.FooterCustomizedDefaultAndCustomElementsExample client:load />
+</LiveExample>
+
+### Custom Content
+
+Add custom content and icons to the Footer component. Construct custom elements by concatenating `customItem` with other `defaultFooterElements`.
+
+<LiveExample src='Footer.customcontent.tsx'>
+  <AllExamples.FooterCustomContentExample client:load />
+</LiveExample>
+
+## Appearance
+
+The footer text is centered within the frame it is being displayed within, not centered within the viewport. This takes into consideration things that indent the body frame such as the side navigation.
+
+The hyperlinks within the footer are styled visibly different and use the $iui-text-color-muted color rather than the typical $iui-color-foreground-primary color. This is done purposefully to help the footer content not be confused with the actual content of the app.
+
+Optionally, you may include a 2nd line of text to display version numbers and/or server location for debugging reasons. You may choose to display this line to specific users such as beta users or Bentley Systems employees only.
+
+If you feel the need to add additional links, you may append links to the end of the footer’s first line.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

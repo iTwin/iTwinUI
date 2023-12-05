@@ -21,3 +21,14 @@ export const getRandomValue = (length = 21) => {
   }
   return id;
 };
+
+/**
+ * Rounds a pixel value based on the device's pixel ratio. This ensures that values can be
+ * placed evenly on the device’s pixel grid, avoiding any blurring.
+ *
+ * @see https://floating-ui.com/docs/misc#subpixel-and-accelerated-positioning
+ */
+export const roundByDPR = (value: number) => {
+  const dpr = window.devicePixelRatio || 1;
+  return Math.round(value * dpr) / dpr;
+};

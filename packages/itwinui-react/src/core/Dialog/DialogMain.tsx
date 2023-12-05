@@ -6,11 +6,13 @@ import * as React from 'react';
 import cx from 'classnames';
 import {
   FocusTrap,
-  getTranslateValues,
+  getTranslateValuesFromElement,
   Resizer,
   useMergedRefs,
   useIsomorphicLayoutEffect,
   Box,
+  getTranslateValues,
+  roundByDPR,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
@@ -75,7 +77,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const [style, setStyle] = React.useState<React.CSSProperties>();
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const refs = useMergedRefs(dialogRef, ref);
+  const [dialogElement, setDialogElement] = React.useState<HTMLElement>();
   const hasBeenResized = React.useRef(false);
   const previousFocusedElement = React.useRef<HTMLElement | null>();
 
@@ -141,7 +143,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
       return;
     }
     const rect = dialogRef.current?.getBoundingClientRect();
-    const [translateX, translateY] = getTranslateValues(dialogRef.current);
+    const [translateX, translateY] = getTranslateValuesFromElement(
+      dialogRef.current,
+    );
     setStyle((oldStyle) => ({
       ...oldStyle,
       inlineSize: rect?.width,
@@ -159,6 +163,11 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
+  const roundedTransform = useRoundedTransform({
+    element: dialogElement,
+    transform,
+  });
+
   const content = (
     <Box
       className={cx(
@@ -172,12 +181,12 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={refs}
+      ref={useMergedRefs(dialogRef, ref, setDialogElement)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       data-iui-placement={placement}
       style={{
-        transform,
+        transform: roundedTransform,
         ...style,
         ...propStyle,
       }}
@@ -236,3 +245,32 @@ export const DialogMain = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 
 export default DialogMain;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Rounds off an element's transform value based on the device's pixel grid, to avoid blurring.
+ */
+const useRoundedTransform = ({
+  element,
+  transform,
+}: {
+  element?: HTMLElement;
+  transform?: string;
+}) => {
+  const [roundedStyles, setRoundedStyles] = React.useState(transform);
+
+  useIsomorphicLayoutEffect(() => {
+    if (!element || typeof DOMMatrix === 'undefined') {
+      return;
+    }
+
+    const [x, y] = transform
+      ? getTranslateValues(transform)
+      : getTranslateValuesFromElement(element);
+
+    setRoundedStyles(`translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`);
+  }, [element, transform]);
+
+  return roundedStyles;
+};

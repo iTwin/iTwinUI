@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.0.4
+
+### Patch Changes
+
+- [#1716](https://github.com/iTwin/iTwinUI/pull/1716): Truncate the `select-tag` when only one tag is present in `select-tag-container`
+
+## 2.0.3
+
+### Patch Changes
+
+- [#1711](https://github.com/iTwin/iTwinUI/pull/1711): Fixed an issue with `Tree` nodes not taking up the full width.
+
+## 2.0.2
+
+### Patch Changes
+
+- [#1700](https://github.com/iTwin/iTwinUI/pull/1700): Fixed an issue where Table was sometimes triggering sort after filtering.
+
+## 2.0.1
+
+### Patch Changes
+
+- [#1683](https://github.com/iTwin/iTwinUI/pull/1683): Improved `ExpandableBlock` animation so that it doesn't push content outside its bounds.
+
 ## 2.0.0
 
 Welcome to the v2 release of `@itwin/itwinui-css`. 🎉

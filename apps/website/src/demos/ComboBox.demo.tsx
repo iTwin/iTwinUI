@@ -16,16 +16,12 @@ export default function ComboBoxDemo() {
       { label: 'Kiwi', value: 'kiwi' },
       { label: 'Orange', value: 'orange' },
     ],
-    []
+    [],
   );
 
   return (
     <ThemeProvider theme='dark'>
-      <ComboBox
-        options={options}
-        inputProps={{ placeholder: 'Pick a fruit, any fruit' }}
-        dropdownMenuProps={{ appendTo: 'parent' }}
-      />
+      <ComboBox options={options} inputProps={{ placeholder: 'Pick a fruit, any fruit' }} />
     </ThemeProvider>
   );
 }

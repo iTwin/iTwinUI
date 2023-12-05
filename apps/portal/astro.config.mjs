@@ -13,6 +13,6 @@ export default defineConfig({
         ],
       },
     },
-    server: { open: true },
   },
+  server: { open: true, port: 3000 },
 });

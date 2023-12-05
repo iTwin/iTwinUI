@@ -1,0 +1,140 @@
+---
+title: Tile
+description: Tiles, also known as cards, contain content and actions about a single subject.
+propsPath: '@itwin/itwinui-react/esm/core/Tile/Tile.d.ts'
+thumbnail: Tile
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Tile.main.tsx'>
+  <AllExamples.TileMainExample client:load />
+</LiveExample>
+
+Tiles are containers that display content and actions pertaining to a single item or project. They should be easy to scan for relevant and actionable information. All text should be concise and placed in a way that clearly indicates informational hierarchy.
+
+### Composition API
+
+You can build Tiles with subcomponents that are fully customizable.
+
+We provide:
+
+- `Tile.Wrapper`
+- `Tile.ThumbnailArea`
+- `Tile.ThumbnailPicture`
+- `Tile.QuickAction`
+- `Tile.TypeIndicator`
+- `Tile.BadgeContainer`
+- `Tile.IconButton`
+- `Tile.Name`
+- `Tile.NameIcon`
+- `Tile.NameLabel`
+- `Tile.Action`
+- `Tile.ContentArea`
+- `Tile.Description`
+- `Tile.Metadata`
+- `Tile.MoreOptions`
+- `Tile.Buttons`
+
+<LiveExample src='Tile.composition.tsx'>
+  <AllExamples.TileCompositionExample client:load />
+</LiveExample>
+
+### Props API
+
+You can use Tile directly with name, thumbnail, description and other props. This pattern can suffice for simple cases.
+
+A list of all available props can be found [at the end](#props) of this page.
+
+<LiveExample src='Tile.props.tsx'>
+  <AllExamples.TilePropsExample client:load />
+</LiveExample>
+
+## Variants
+
+### Actionable
+
+Click on an actionable tile triggers an action.
+
+Actionable tiles have Tile.Action wrapped around tile name. It adds action to the name, increases click or touch target for said action and keeps accessibility for the best user experience.
+
+<LiveExample src='Tile.actionable.tsx'>
+  <AllExamples.TileActionableExample client:load />
+</LiveExample>
+
+Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link. This is because manually wrapping the Tile with an `<a href="...">` is not recommended for accessibility reasons.
+
+<LiveExample src='Tile.anchorlink.tsx'>
+  <AllExamples.TileAnchorLinkExample client:load style={{ padding: 50 }} />
+</LiveExample>
+
+A tile may have one or two buttons to perform actions. But there should not be more than two button actions.
+
+<LiveExample src='Tile.quickactions.tsx'>
+  <AllExamples.TileQuickActionsExample client:load />
+</LiveExample>
+
+### Avatar
+
+Avatar tile may look a little different from the rest of the tiles as the thumbnail area instead displays an avatar icon and online status indicator.
+
+<LiveExample src='Tile.avatar.tsx'>
+  <AllExamples.TileAvatarExample client:load />
+</LiveExample>
+
+### Condensed
+
+A condensed tile may include as little as the title, thumbnail, and the more options menu.
+
+<LiveExample src='Tile.condensed.tsx'>
+  <AllExamples.TileCondensedExample client:load />
+</LiveExample>
+
+### Folder
+
+A folder tile has a slightly unique visual appearance to differentiate it from the rest of the tiles. The folder is very short compared to other tiles, therefore folders can not appear mixed in with the other tiles & must be separated like the example below. It is up to the development team to decide what metadata makes the most sense to display in the bottom of the tile.
+
+<LiveExample src='Tile.folder.tsx'>
+  <AllExamples.TileFolderExample client:load />
+</LiveExample>
+
+## State
+
+### Status
+
+Tiles can have `positive`, `warning` and `negative` status.
+
+<LiveExample src='Tile.status.tsx'>
+  <AllExamples.TileStatusExample client:load />
+</LiveExample>
+
+### Disabled
+
+<LiveExample src='Tile.disabled.tsx'>
+  <AllExamples.TileDisabledExample client:load />
+</LiveExample>
+
+### Loading
+
+<LiveExample src='Tile.loading.tsx'>
+  <AllExamples.TileLoadingExample client:load />
+</LiveExample>
+
+### Selected
+
+A tile may be selected by the user to perform certain bulk tasks, such as moving them to another location, reordering them, duplicating projects, or deleting multiple at once.
+
+<LiveExample src='Tile.selected.tsx'>
+  <AllExamples.TileSelectedExample client:load />
+</LiveExample>
+
+## Usage guidelines
+
+- You may use [FluidGrid](https://itwin.github.io/iTwinUI-layouts/#/fluid-grid) from the [`itwinui-layouts`](https://github.com/iTwin/iTwinUI-layouts) package to display an array of Tiles.
+- All tiles must include a title plus additional information: an image or description text are the most common two.
+- [Folders](#folder) can not appear mixed in with the other tiles & must be separated in their own group.
+- The thumbnail area of a tile will not always display an image by default. Depending on app settings, some tiles may require the user to set that thumbnail photo themselves. If an app does not automatically generate a thumbnail image for the tile upon its creation, use a placeholder icon to populate the thumbnail area. Do not leave this area empty, as it may leave the impression that the content is unable to load.
+
+### Props
+
+<PropsTable path={frontmatter.propsPath} />

@@ -1,0 +1,28 @@
+---
+title: Radio
+description: Allows the user to choose only one of a predefined set of mutually exclusive options.
+propsPath: '@itwin/itwinui-react/esm/core/Radio/Radio.d.ts'
+thumbnail: Radio
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Radio.main.tsx' truncate={false}>
+  <AllExamples.RadioMainExample client:load />
+</LiveExample>
+
+A radio button unlike checkboxes, permit selection of a single item within a set. Use radio buttons when the user is required to make a choice in a list with only one selection allowed. For example, a list where the user can only answer with yes or no.
+
+A radio is not interchangeable with a [checkbox](checkbox). A radio must have at minimum 2 choice options and only one option can be checked. A checkbox, however, can have as many or as few items checked, and can be displayed as standalone or within a group of two or more.
+
+### Statuses
+
+If you ever need to display the status or severity of a single radio, you can apply a status on the radio. Before doing so, consider if using an [input group](inputgroup) with a status message makes more sense.
+
+<LiveExample src='Radio.statuses.tsx'>
+  <AllExamples.RadioStatusesExample client:load />
+</LiveExample>
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

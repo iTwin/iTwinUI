@@ -1,0 +1,56 @@
+---
+title: Header
+description: Header sits at the top of a page and is part of a consistent user experience and navigation.
+propsPath: '@itwin/itwinui-react/esm/core/Header/Header.d.ts'
+thumbnail: Header
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Header.main.tsx'>
+  <AllExamples.HeaderMainExample client:load />
+</LiveExample>
+
+The first thing most people look at when they arrive at a new web page is the header. The header contains vital information about your company's name and function, as well as the purpose of the specific page.
+
+## Usage
+
+`Header` consists of various subcomponents and can be customized by modifying its props.
+
+- Logo can be added using the `appLogo` prop and specifying the desired logo under the `<HeaderLogo>` subcomponent.
+- Breadcrumbs trail can be implemented using the `breadcrumbs` prop and `<HeaderBreadcrumbs>` subcomponent. Individual buttons can be added within the breadcrumbs trail using the [`<HeaderButton>` subcomponent](#headerbutton-subcomponent).
+- The `actions` prop can be used to add any arbitrary buttons and content near the right end of the header.
+- The `menuItems` prop can be used to show any additional actions inside an overflow menu located to the right of `actions`.
+
+<LiveExample src='Header.full.tsx'>
+  <AllExamples.HeaderFullExample client:load />
+</LiveExample>
+
+### `<HeaderButton>` subcomponent
+
+`HeaderButton` is designed to offer a range of behaviors that are dependent on the props that are passed to it.
+
+- `onClick` prop: behaves like a standard button.
+- `as='a'` and `href` props: behaves like a regular anchor link.
+- `menuItems` prop: behaves like a dropdown button.
+- Both `menuItems` and `onClick`/`href` props: behaves like a split button, where the left part is the main button/link and the right part opens a dropdown menu.
+
+The `isActive` prop can be used to indicate the current breadcrumb.
+
+## Slim Header
+
+Make header slim using `isSlim` property. This property is helpful when the header takes too much space or when working in a 3D environment.
+
+<LiveExample src='Header.slim.tsx'>
+  <AllExamples.HeaderSlimExample client:load />
+</LiveExample>
+
+## Accessibility
+
+For accessibility reasons, certain users strictly use their keyboard for navigating digital interfaces. We need to ensure the header doesn’t get in the way of these users every time they want to access a page’s main content. To make their experience more efficient, include a Skip to main content link to allow keyboard users to bypass the navigation header and skip directly to the page’s content.
+
+Without such a link, keyboard users will need to tab through the entire header every time they land on a new page. This makes their experience tedious and time-consuming. For more information, check out the `SkipToContentLink` component.
+
+## Props
+
+<PropsTable path={frontmatter.propsPath} />

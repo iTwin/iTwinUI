@@ -3,7 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { getBoundedValue, getTranslateValues } from '../functions/index.js';
+import {
+  getBoundedValue,
+  getTranslateValuesFromElement,
+} from '../functions/index.js';
 
 export type ResizerProps = {
   /**
@@ -52,9 +55,8 @@ export const Resizer = (props: ResizerProps) => {
     const initialPointerX = event.clientX;
     const initialPointerY = event.clientY;
 
-    const [initialTranslateX, initialTranslateY] = getTranslateValues(
-      elementRef.current,
-    );
+    const [initialTranslateX, initialTranslateY] =
+      getTranslateValuesFromElement(elementRef.current);
     const { width: initialWidth, height: initialHeight } =
       elementRef.current.getBoundingClientRect();
 

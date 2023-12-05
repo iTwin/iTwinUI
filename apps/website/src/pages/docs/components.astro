@@ -1,20 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from './_layout.astro';
 import Card from '~/components/Card.astro';
 
-const componentPages = (await Astro.glob('./*.mdx'))
-  .map(({ url, frontmatter }) => ({
-    url,
-    title: frontmatter.title,
-    description: frontmatter.description,
-    thumbnail: frontmatter.thumbnail,
-    group: frontmatter.group,
-  }))
-  .filter((page) => page.group);
+const componentPages = (
+  await getCollection('docs', ({ data: { group } }) => group !== 'intro')
+).map(({ slug, data }) => ({ url: `/docs/${slug}`, ...data }));
 ---
 
-<Layout content={{ title: 'Components' }}
-  ><main>
+<Layout content={{ title: 'Components' }}>
+  <main>
     <ul class='card-list'>
       {
         componentPages.map((page) => (

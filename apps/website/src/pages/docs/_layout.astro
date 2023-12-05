@@ -4,6 +4,7 @@ import Header from '~/components/Header.astro';
 import LeftSidebar from '~/components/LeftSidebar.astro';
 import EditPageLink from '~/components/EditPageLink.astro';
 import FeedbackLink from '~/components/FeedbackLink.astro';
+import RelatedComponents from '~/components/RelatedComponents.astro';
 
 const { content = {} } = Astro.props;
 const currentPage = new URL(Astro.request.url).pathname;
@@ -16,7 +17,8 @@ const currentPage = new URL(Astro.request.url).pathname;
     <div class='content-wrapper' id='article'>
       <h1 id='overview'>{content.title}</h1>
       <slot />
-      <div class='bottom-links'>
+      <div class='aftermain'>
+        {content.related ? <RelatedComponents related={content.related} /> : null}
         <hr />
         <EditPageLink page={currentPage} />
         <FeedbackLink page={currentPage} />
@@ -52,7 +54,7 @@ const currentPage = new URL(Astro.request.url).pathname;
       }
     }
 
-    .bottom-links {
+    .aftermain {
       grid-area: aftermain;
       display: grid;
 
@@ -222,12 +224,12 @@ const currentPage = new URL(Astro.request.url).pathname;
           }
         }
 
-        :global(:where(p, ul, ol):where(:not(.demo-iui-wrapper *))) {
+        :global(:where(p, ul, ol):where(:not(.demo-box *))) {
           color: var(--color-subtext);
           font-size: var(--type-1);
         }
 
-        :global(:where(code:not(pre code, .demo-iui-wrapper *))) {
+        :global(:where(code:not(pre code, .demo-box *))) {
           background-color: hsl(0deg 0% 50% / 0.2);
           padding: 0.15rem 0.5rem;
           border-radius: 0.25rem;
@@ -242,7 +244,7 @@ const currentPage = new URL(Astro.request.url).pathname;
           padding: 0.25rem;
         }
 
-        :global(:where(ul:not(.demo-iui-wrapper *))) {
+        :global(:where(ul:not(.demo-box *))) {
           display: grid;
           gap: var(--space-1);
         }
@@ -258,7 +260,7 @@ const currentPage = new URL(Astro.request.url).pathname;
   // adds data-active to the first heading that is currently in viewport
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      const id = entry.target.getAttribute('id');
+      const id = entry.target.getAttribute('id') ?? '';
       if (entry.isIntersecting) {
         currentlyInteresecting.add(id);
         updateActiveLink();
