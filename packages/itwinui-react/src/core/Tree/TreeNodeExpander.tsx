@@ -18,6 +18,7 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
   return (
     <IconButton
       styleType='borderless'
+      size='small'
       aria-label={isExpanded ? 'Collapse' : 'Expand'}
       ref={ref}
       {...rest}
