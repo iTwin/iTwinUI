@@ -15,7 +15,7 @@ const dockerProcess = spawn(
   // -w /e2e - makes `e2e` the working directory
   // scripts/entrypoint.sh - entrypoint script to run
   // args - cli args to forward to entrypoint scripts, e.g. for testing only one component using --spec Component.test.ts
-  `docker run --rm --entrypoint /bin/bash -v "${__dirname}/../../..":/e2e -w /e2e ${IMAGE_NAME} apps/storybook/scripts/entrypoint.sh ${args}`,
+  `docker run --rm --entrypoint /bin/bash -v "${__dirname}/../../..":/e2e -w /e2e ${IMAGE_NAME} apps/react-workshop/scripts/entrypoint.sh ${args}`,
   {
     stdio: 'inherit',
     shell: true,

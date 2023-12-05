@@ -28,7 +28,7 @@ inquirer
     writeFile(reactComponentTestFactory(reactDirectory, componentPascal));
     appendFile(reactIndexAppendFactory(componentPascal));
 
-    const storyDirectory = 'apps/storybook/src';
+    const storyDirectory = 'apps/react-workshop/src';
     writeFile(storiesFactory(storyDirectory, componentPascal));
     writeFile(storyTestsFactory(storyDirectory, componentPascal));
 
