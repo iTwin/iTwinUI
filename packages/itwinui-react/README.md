@@ -78,7 +78,7 @@ const Page = () => (
 
 Check out this template for a live interactive demo:
 
-[![Edit in CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/s/github/iTwin/iTwinUI/tree/main/cra-sandbox?file=/src/App.tsx)
+[![Edit in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)
 
 ---
 
