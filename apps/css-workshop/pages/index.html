@@ -28,7 +28,7 @@
     >
     <meta
       property="og:image"
-      content="https://raw.githubusercontent.com/iTwin/iTwinUI/gh-pages/backstop/assets/logo.png"
+      content="./assets/logo.png"
     >
     <meta
       property="og:image:alt"
@@ -49,7 +49,7 @@
 
     <link
       rel="icon"
-      href="https://raw.githubusercontent.com/iTwin/iTwinUI/gh-pages/backstop/assets/favicon.svg"
+      href="./assets/favicon.svg"
       type="image/svg+xml"
     />
     <link
@@ -59,7 +59,7 @@
     />
     <link
       rel="apple-touch-icon"
-      href="./assets/apple-touch-icon.png"
+      href="./assets/pwa-icon.png"
     />
     <link
       rel="manifest"
@@ -75,33 +75,23 @@
     </style>
 
     <style>
-    hr {
-      border-color: #C7CCD1;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      hr {
-        border-color: #2D373C;
-      }
-    }
-
-    .github-corner:hover .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
-    }
-    @keyframes octocat-wave {
-      0%, 100% { transform: rotate(0); }
-      20%, 60% { transform: rotate(-25deg); }
-      40%, 80% { transform: rotate(10deg); }
-    }
-    @media (max-width:500px) {
       .github-corner:hover .octo-arm {
-        animation: none;
-      }
-      .github-corner .octo-arm {
         animation: octocat-wave 560ms ease-in-out;
       }
-    }
-  </style>
+      @keyframes octocat-wave {
+        0%, 100% { transform: rotate(0); }
+        20%, 60% { transform: rotate(-25deg); }
+        40%, 80% { transform: rotate(10deg); }
+      }
+      @media (max-width:500px) {
+        .github-corner:hover .octo-arm {
+          animation: none;
+        }
+        .github-corner .octo-arm {
+          animation: octocat-wave 560ms ease-in-out;
+        }
+      }
+    </style>
   </head>
 
   <body
@@ -141,25 +131,25 @@
     <img
       alt="GitHub last commit"
       src="https://img.shields.io/github/last-commit/itwin/iTwinUI"
+      draggable="false"
     >
     <a
       href="https://www.npmjs.com/package/@itwin/itwinui-css"
       rel="nofollow"
+      style="text-decoration: none;"
     >
       <img
         src="https://camo.githubusercontent.com/d372d1dae45885e50fb718a9c0a1a20544a3b0205842ca6cc4447545249c0e73/68747470733a2f2f696d672e736869656c64732e696f2f6e706d2f762f40697477696e2f697477696e75692d637373"
         alt="itwinui-css on npm"
+        draggable="false"
         data-canonical-src="https://img.shields.io/npm/v/@itwin/itwinui-css"
-        style="max-width: 100%;"
       >
     </a>
-    <a
-      href="https://itwin.github.io/iTwinUI-react/"
-      target="_blank"
-    >
+    <a href="https://itwin.github.io/iTwinUI/react/">
       <img
-        src="https://raw.githubusercontent.com/storybookjs/brand/master/badge/badge-storybook.svg"
+        src="https://img.shields.io/badge/Ladle-174291"
         alt="iTwinUI-React stories"
+        draggable="false"
       >
     </a>
 
