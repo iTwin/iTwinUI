@@ -36,7 +36,7 @@
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
     "approve:css": "yarn workspace css-workshop approve",
-    "approve:react": "yarn workspace storybook approve",
+    "approve:react": "yarn workspace react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
     "release": "yarn build --filter={./packages/*}... && changeset publish"
   },
