@@ -1104,10 +1104,7 @@ export const Table = <
           )}
           {isLoading && data.length !== 0 && (
             <Box className='iui-table-row' data-iui-loading='true'>
-              <Box
-                className='iui-table-cell'
-                style={{ justifyContent: 'center' }}
-              >
+              <Box className='iui-table-cell'>
                 <ProgressRadial indeterminate size='small' />
               </Box>
             </Box>

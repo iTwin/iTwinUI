@@ -168,6 +168,11 @@
   &[data-iui-loading='true'] {
     position: sticky;
     inset-inline-start: 0;
+
+    // Center the progress radial within the cell/row
+    .iui-table-cell {
+      justify-content: center;
+    }
   }
 
   .iui-table-header & {
