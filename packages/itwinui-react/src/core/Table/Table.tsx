@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -873,24 +874,6 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  // If host already hosts a shadow tree, catch the exception and do not re-add the shadow tree
-  try {
-    const host = bodyRef.current;
-    const shadow = host?.attachShadow({ mode: 'open' });
-
-    const wrapper = document.createElement('slot');
-    shadow?.appendChild(wrapper);
-
-    const div = document.createElement('div');
-    div.style.height = '0';
-    div.style.width = `${headerRef.current?.scrollWidth}px`;
-    div.ariaHidden = 'true';
-
-    shadow?.appendChild(div);
-  } catch (e) {
-    // Do nothing
-  }
-
   return (
     <>
       <Box
@@ -1077,6 +1060,16 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowTemplate>
+            <slot />
+            <div
+              style={{
+                height: 0.1,
+                width: headerRef.current?.scrollWidth,
+              }}
+              aria-hidden
+            />
+          </ShadowTemplate>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1143,3 +1136,35 @@ export const Table = <
 };
 
 export default Table;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Wrapper around `<template>` element that attaches shadow root to its parent.
+ *
+ * Uses React portals to render the children into the shadow root.
+ */
+const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
+  const [root, setRoot] = React.useState<HTMLDivElement | null>(null);
+
+  const attachShadowRef = React.useCallback(
+    (template: HTMLTemplateElement | null) => {
+      const parent = template?.parentElement;
+      if (!template || !root || parent?.shadowRoot) {
+        return;
+      }
+
+      const shadowRoot = parent?.attachShadow({ mode: 'open' });
+      shadowRoot?.appendChild(root);
+    },
+    [root],
+  );
+
+  return (
+    <template ref={attachShadowRef}>
+      <div ref={setRoot} style={{ display: 'contents' }}>
+        {root && ReactDOM.createPortal(children, root)}
+      </div>
+    </template>
+  );
+};
