@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -1142,9 +1141,8 @@ export default Table;
 // ----------------------------------------------------------------------------
 
 /**
- * Wrapper around `<template>` element that attaches shadow root to its parent.
- *
- * Uses React portals to render the children into the shadow root.
+ * Wrapper around `<template>` element that attaches shadow root to its parent
+ * and moves its children into the shadow root.
  */
 const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
   const [root, setRoot] = React.useState<HTMLDivElement | null>(null);
@@ -1165,7 +1163,7 @@ const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
   return (
     <template ref={attachShadowRef}>
       <div ref={setRoot} style={{ display: 'contents' }}>
-        {root && ReactDOM.createPortal(children, root)}
+        {children}
       </div>
     </template>
   );
