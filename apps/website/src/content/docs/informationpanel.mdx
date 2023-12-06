@@ -23,17 +23,20 @@ The Information Panel component is made up of customizable subcomponents. Hereâ€
 ```tsx
 <InformationPanelWrapper>
   <Table ... /> // component to overlay
+
   <InformationPanel isOpen={true}>
     <InformationPanelHeader onClose={() => {}}>
       <Text variant='subheading'>InfoPanel heading</Text>
     </InformationPanelHeader>
-      <InformationPanelBody>
+
+    <InformationPanelBody>
       <Text>Metadata</Text>
       <InformationPanelContent ... />
       <Text>Attributes</Text>
       <InformationPanelContent ... />
     </InformationPanelBody>
- </InformationPanel>
+
+  </InformationPanel>
 </InformationPanelWrapper>
 ```
 
