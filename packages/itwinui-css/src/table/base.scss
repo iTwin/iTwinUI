@@ -163,6 +163,13 @@
     border-radius: inherit;
   }
 
+  // To center the row even when scrolling horizontally
+  // (when `isLoading && data.length !== 0`)
+  &[data-iui-loading='true'] {
+    position: sticky;
+    inset-inline-start: 0;
+  }
+
   .iui-table-header & {
     flex-grow: 1;
   }

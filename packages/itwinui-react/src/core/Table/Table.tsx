@@ -1103,14 +1103,7 @@ export const Table = <
             </Box>
           )}
           {isLoading && data.length !== 0 && (
-            <Box
-              className='iui-table-row'
-              // To center the row even when scrolling horizontally
-              style={{
-                position: 'sticky',
-                left: 0,
-              }}
-            >
+            <Box className='iui-table-row' data-iui-loading='true'>
               <Box
                 className='iui-table-cell'
                 style={{ justifyContent: 'center' }}
