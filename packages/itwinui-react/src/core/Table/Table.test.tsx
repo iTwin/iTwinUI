@@ -3380,7 +3380,7 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(body.scrollLeft).toBe(0);
 });
 
-it('should add a dummy div inside the shadow root that is inside the table body', () => {
+it('should add a shadow tree to table-body. Shadow tree should have a dummy div', () => {
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3412,11 +3412,8 @@ it('should add a dummy div inside the shadow root that is inside the table body'
     ],
   });
 
-  const body = container.querySelector('.iui-table-body') as HTMLDivElement;
-
-  // First div in table body should be the shadow host div
-  const host = body.querySelector('div');
-  expect(host).toBeTruthy();
+  // body serves as the shadow host
+  const host = container.querySelector('.iui-table-body') as HTMLDivElement;
 
   const dummyDiv = host?.shadowRoot?.querySelector('div');
   expect(dummyDiv).toBeTruthy();
