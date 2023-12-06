@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -1156,6 +1157,8 @@ const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
 
       const shadowRoot = parent?.attachShadow({ mode: 'open' });
       shadowRoot?.appendChild(root);
+
+      template.remove();
     },
     [root],
   );
@@ -1163,7 +1166,7 @@ const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
   return (
     <template ref={attachShadowRef}>
       <div ref={setRoot} style={{ display: 'contents' }}>
-        {children}
+        {root && ReactDOM.createPortal(children, root)}
       </div>
     </template>
   );
