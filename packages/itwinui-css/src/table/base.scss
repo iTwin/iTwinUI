@@ -231,7 +231,7 @@
 
     // #region Selection
     &:not([aria-selected='true']) + [aria-selected='true'] .iui-table-cell,
-    &[aria-selected='true']:nth-child(2) .iui-table-cell {
+    &[aria-selected='true']:first-child .iui-table-cell {
       border-block-end-color: transparent;
     }
 

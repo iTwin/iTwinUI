@@ -873,12 +873,13 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  const tableBodyWidthSetterRef = React.useRef<HTMLDivElement>(null);
-
   // If host already hosts a shadow tree, catch the exception and do not re-add the shadow tree
   try {
-    const host = tableBodyWidthSetterRef.current;
+    const host = bodyRef.current;
     const shadow = host?.attachShadow({ mode: 'open' });
+
+    const wrapper = document.createElement('slot');
+    shadow?.appendChild(wrapper);
 
     const div = document.createElement('div');
     div.style.height = '0';
@@ -1076,7 +1077,6 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <div ref={tableBodyWidthSetterRef} aria-hidden />
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
