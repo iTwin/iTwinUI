@@ -1063,11 +1063,13 @@ export const Table = <
           <ShadowTemplate>
             <slot />
             <div
-              style={{
-                height: 0.1,
-                width: headerRef.current?.scrollWidth,
-              }}
               aria-hidden
+              style={{
+                // This ensures that the table-body is always the same width as the table-header,
+                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                width: headerRef.current?.scrollWidth,
+                height: 0.1,
+              }}
             />
           </ShadowTemplate>
           {data.length !== 0 && (
