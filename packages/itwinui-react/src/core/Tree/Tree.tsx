@@ -60,7 +60,7 @@ export type TreeProps<T> = {
   /**
    * Modify size of the tree.
    */
-  size?: 'small';
+  size?: 'default' | 'small';
   /**
    * Render function that should return the node element.
    * Recommended to use `TreeNode` component.
