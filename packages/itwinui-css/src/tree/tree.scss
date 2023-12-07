@@ -4,9 +4,11 @@
 
 $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
+// width of small borderless button (button is 1:1 ratio)
+$iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
+
 .iui-tree {
   @include mixins.iui-reset;
-  --_iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   --_iui-tree-node-padding-inline: var(--iui-size-xs);
   --_iui-tree-row-height: calc(var(--iui-size-3xs) * 18);
 
@@ -57,7 +59,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     column-gap: var(--_iui-tree-node-padding-inline);
     align-items: center;
     min-block-size: var(--_iui-tree-row-height);
-    margin-inline-start: calc(var(--_iui-expander-button-width) * 0.5 * var(--level, 0));
+    margin-inline-start: calc(#{$iui-expander-button-width} * 0.5 * var(--level, 0));
     overflow: hidden;
     padding-inline-start: var(--iui-size-3xs);
     inline-size: 100%;
@@ -71,7 +73,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
       }
 
       &:first-child {
-        margin-inline-start: calc(var(--_iui-expander-button-width) + var(--_iui-tree-node-padding-inline));
+        margin-inline-start: calc(#{$iui-expander-button-width} + var(--_iui-tree-node-padding-inline));
       }
     }
 
@@ -91,7 +93,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
       // padding-inline-start: var(--_iui-tree-node-padding-inline);
 
       &:first-child {
-        margin-inline-start: var(--_iui-expander-button-width);
+        margin-inline-start: $iui-expander-button-width;
       }
     }
 
