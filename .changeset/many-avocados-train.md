@@ -3,4 +3,4 @@
 '@itwin/itwinui-css': minor
 ---
 
-Add small tree size option & decrease indentations.
+Add small size tree option & decrease indentations on default size tree.
