@@ -277,12 +277,11 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
 
   useIsomorphicLayoutEffect(() => {
-    if (positionReference) {
-      popover.refs.setPositionReference(positionReference);
+    if (!positionReference) {
+      return;
     }
-    return () => {
-      popover.refs.setPositionReference(null);
-    };
+    popover.refs.setPositionReference(positionReference);
+    return () => void popover.refs.setPositionReference(null);
   }, [popover.refs, positionReference]);
 
   return (
