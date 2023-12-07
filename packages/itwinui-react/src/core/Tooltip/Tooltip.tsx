@@ -196,8 +196,12 @@ const useTooltip = (options: TooltipOptions = {}) => {
       ...interactions.getReferenceProps(),
     }).forEach(([key, value]) => {
       if (typeof value === 'function') {
-        reference.addEventListener(domEventName(key), value);
-        cleanupValues[key] = value;
+        // manually add `.nativeEvent` (react concept) because floating-ui needs it
+        const patchedHandler = (event: Event) => {
+          value({ ...event, nativeEvent: event });
+        };
+        reference.addEventListener(domEventName(key), patchedHandler);
+        cleanupValues[key] = patchedHandler;
       } else if (value) {
         cleanupValues[key] = reference.getAttribute(key);
         reference.setAttribute(key, value);
