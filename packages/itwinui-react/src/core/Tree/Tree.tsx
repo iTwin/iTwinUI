@@ -58,6 +58,10 @@ export type NodeRenderProps<T> = Omit<NodeData<T>, 'subNodes'>;
 
 export type TreeProps<T> = {
   /**
+   * Modify size of the tree.
+   */
+  size?: 'small';
+  /**
    * Render function that should return the node element.
    * Recommended to use `TreeNode` component.
    * Must be memoized.
@@ -159,6 +163,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     className,
     nodeRenderer,
     getNode,
+    size,
     enableVirtualization = false,
     style,
     ...rest
@@ -334,6 +339,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           className={className}
+          data-iui-size={size}
           style={style}
           ref={treeRef}
           {...rest}
