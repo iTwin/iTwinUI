@@ -3415,11 +3415,7 @@ it('should add a shadow tree to table-body. Shadow tree should have a dummy div'
   // body serves as the shadow host
   const host = container.querySelector('.iui-table-body') as HTMLDivElement;
 
-  // Dummy div is wrapped inside a div. Thus, `div > div` and not just `div`
-  const dummyDiv = host?.shadowRoot?.querySelector('div >  div') satisfies
-    | HTMLDivElement
-    | null
-    | undefined;
+  const dummyDiv = host?.shadowRoot?.querySelector('div');
   expect(dummyDiv).toBeTruthy();
   expect(dummyDiv?.textContent).toBe('');
   expect(dummyDiv?.style.height).toBe('0.1px');

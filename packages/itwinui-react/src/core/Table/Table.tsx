@@ -1146,28 +1146,23 @@ export default Table;
  * and moves its children into the shadow root.
  */
 const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
-  const [root, setRoot] = React.useState<HTMLDivElement | null>(null);
+  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
 
   const attachShadowRef = React.useCallback(
     (template: HTMLTemplateElement | null) => {
       const parent = template?.parentElement;
-      if (!template || !root || parent?.shadowRoot) {
+      if (!template || !parent || parent.shadowRoot) {
         return;
       }
-
-      const shadowRoot = parent?.attachShadow({ mode: 'open' });
-      shadowRoot?.appendChild(root);
-
+      setShadowRoot(parent.attachShadow({ mode: 'open' }));
       template.remove();
     },
-    [root],
+    [],
   );
 
   return (
     <template ref={attachShadowRef}>
-      <div ref={setRoot} style={{ display: 'contents' }}>
-        {root && ReactDOM.createPortal(children, root)}
-      </div>
+      {shadowRoot && ReactDOM.createPortal(children, shadowRoot)}
     </template>
   );
 };
