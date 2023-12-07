@@ -119,11 +119,12 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     onVisibleChange,
     closeOnOutsideClick,
     autoUpdateOptions,
-    middleware = { flip: true, shift: true },
     matchWidth,
     trigger = { click: true, hover: false, focus: false },
     role,
   } = options;
+
+  const middleware = { flip: true, shift: true, ...options.middleware };
 
   const [open, onOpenChange] = useControlledState(
     false,
