@@ -138,8 +138,8 @@ export const usePopover = (options: PopoverOptions & PopoverInternalProps) => {
     whileElementsMounted: (...args) => autoUpdate(...args, autoUpdateOptions),
     middleware: [
       middleware.offset !== undefined && offset(middleware.offset),
-      middleware.flip !== false && flip(),
-      middleware.shift !== false && shift(),
+      middleware.flip && flip(),
+      middleware.shift && shift(),
       matchWidth &&
         size({
           apply: ({ rects }) => {
