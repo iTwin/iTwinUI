@@ -18,31 +18,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
     --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
   }
-
-  &[data-iui-lines='true'] {
-    &:hover,
-    &:focus-within {
-      --_iui-tree-line-color: var(--iui-color-border-subtle);
-    }
-
-    .iui-sub-tree {
-      position: relative;
-
-      &::before {
-        content: '';
-        inline-size: 1px;
-        block-size: 100%;
-        position: absolute;
-        inset: 0 auto 0
-          calc(
-            var(--_iui-expander-button-width) * 0.5 * var(--level, 0) +
-            (var(--iui-size-m) + var(--_iui-tree-node-padding-inline) * 2)
-          ); // TODO: The last part is added for checkboxes, how does this work without checkboxes? 🤔
-        background-color: var(--_iui-tree-line-color, transparent);
-        transition: background-color var(--iui-duration-1) ease;
-      }
-    }
-  }
 }
 
 .iui-sub-tree {
