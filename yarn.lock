@@ -1598,15 +1598,15 @@
   resolved "https://registry.npmjs.org/@istanbuljs/schema/-/schema-0.1.3.tgz"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
-"@itwin/itwinui-icons-elements@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/@itwin/itwinui-icons-elements/-/itwinui-icons-elements-0.2.0.tgz"
-  integrity sha512-X36rPIYIgIpPXeHrlCvAk/ruYhqZWdNZ7UPd4TKWbzuegJYAM8/rAiVGI+C5k7JgN2KqaIZx82lv9hL5FK9FuA==
+"@itwin/itwinui-icons-elements@0.20.0":
+  version "0.20.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-elements/-/itwinui-icons-elements-0.20.0.tgz#d9c00112a56ba91a0cf330c6ad84cf27b247ecf9"
+  integrity sha512-jVF4zJ/kQro2ssxxQrz7nAe0Wb+w+rJiLWSRNYI5Vc0Q9zv+XeDjenfyaGDOp+hfbaRuhKyTqt1q+Tw+KBa6Fg==
 
-"@itwin/itwinui-icons-react@2":
-  version "2.1.0"
-  resolved "https://registry.npmjs.org/@itwin/itwinui-icons-react/-/itwinui-icons-react-2.1.0.tgz"
-  integrity sha512-WQQNxyGWNwSGRF4AKtGfHNSKFoXJdvBAx+rvVD456BoNAAMj4QgvQqg+clvL/AhZ2Ec2g7JdYJtsSiWlZNSEZg==
+"@itwin/itwinui-icons-react@2.8.0":
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/@itwin/itwinui-icons-react/-/itwinui-icons-react-2.8.0.tgz#72d8d45b198e748479cd7ffb08f81bec6f39e1e8"
+  integrity sha512-FMXUrDFC7U827/QJNE603+FL6OvIngFss5B9YTSCXcrWuwVLAzJ+sFb+RQ/I1sc19qujYBkZ9asNqlHXM2O4Cg==
 
 "@itwin/itwinui-illustrations-react@^2.1.0":
   version "2.1.0"

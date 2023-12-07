@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@itwin/itwinui-react": "*",
-    "@itwin/itwinui-icons-react": "2",
+    "@itwin/itwinui-icons-react": "2.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

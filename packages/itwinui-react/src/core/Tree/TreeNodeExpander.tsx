@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { SvgChevronRight } from '../utils/index.js';
+import { SvgChevronRightSmall } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
@@ -23,7 +23,7 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      <SvgChevronRight
+      <SvgChevronRightSmall
         className={cx('iui-tree-node-content-expander-icon', {
           'iui-tree-node-content-expander-icon-expanded': isExpanded,
         })}
