@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.18
+
+### Patch Changes
+
+- a68561cf: Fixed an issue where Dialog content was appearing blurred on Windows.
+
 ## 2.12.17
 
 ### Patch Changes
