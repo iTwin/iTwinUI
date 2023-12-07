@@ -371,10 +371,15 @@
 
   // Empty & loading states
   > .iui-table-empty {
+    text-align: center;
     position: sticky;
     inset-inline-start: 50%;
     transform: translateX(-50%);
     padding: var(--iui-size-xl);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
     color: var(--iui-color-text-muted);
     background-color: var(--iui-color-background);
   }
