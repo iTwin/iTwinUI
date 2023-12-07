@@ -19,6 +19,13 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
   &[data-iui-size='small'] {
     --_iui-tree-node-padding-inline: var(--iui-size-2xs);
     --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
+
+    .iui-tree-node-content-icon {
+      &,
+      svg {
+        @include mixins.iui-icon-style('s');
+      }
+    }
   }
 }
 
@@ -65,6 +72,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     inline-size: 100%;
 
     &-icon {
+      &,
       svg {
         @include mixins.iui-icon-style('m');
         @include mixins.iui-icon-color;
