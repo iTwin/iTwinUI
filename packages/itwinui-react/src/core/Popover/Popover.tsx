@@ -31,6 +31,7 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
+  useIsomorphicLayoutEffect,
   useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -275,10 +276,13 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
   const triggerId = `${useId()}-trigger`;
   const hasAriaLabel = !!props['aria-labelledby'] || !!props['aria-label'];
 
-  React.useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (positionReference) {
       popover.refs.setPositionReference(positionReference);
     }
+    return () => {
+      popover.refs.setPositionReference(null);
+    };
   }, [popover.refs, positionReference]);
 
   return (
