@@ -604,6 +604,12 @@ const InformationPanelMainExample = withThemeProvider(
 );
 export { InformationPanelMainExample };
 
+import { default as InformationPanelVerticalExampleRaw } from './InformationPanel.vertical';
+const InformationPanelVerticalExample = withThemeProvider(
+  InformationPanelVerticalExampleRaw,
+);
+export { InformationPanelVerticalExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as InputGroupToggleSwitchExampleRaw } from './InputGroup.toggleSwitch';
