@@ -65,8 +65,6 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
     inline-size: 100%;
 
     &-icon {
-      margin-inline: var(--_iui-tree-node-content-icon-margin-inline);
-
       svg {
         @include mixins.iui-icon-style('m');
         @include mixins.iui-icon-color;
