@@ -20,8 +20,6 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &[data-iui-lines='true'] {
-    isolation: isolate;
-
     &:hover,
     &:focus-within {
       --_iui-tree-line-color: var(--iui-color-border-subtle);
@@ -42,12 +40,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
           ); // TODO: The last part is added for checkboxes, how does this work without checkboxes? 🤔
         background-color: var(--_iui-tree-line-color, transparent);
         transition: background-color var(--iui-duration-1) ease;
-        z-index: 1; // TODO: This gets the lines above the background hover, but not above the buttons when focused
       }
-    }
-
-    .iui-button {
-      z-index: 2;
     }
   }
 }
@@ -145,7 +138,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &:hover {
-    background-color: var(--iui-color-background-hover);
+    background-color: var(--iui-color-background-transparent-hover);
     color: var(--iui-color-text-hover);
 
     .iui-tree-node-content-caption {
