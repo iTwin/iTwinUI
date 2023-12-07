@@ -113,7 +113,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
   }
 
   &:hover {
-    background-color: var(--iui-color-background-transparent-hover);
+    background-color: var(--iui-color-background-hover);
     color: var(--iui-color-text-hover);
 
     .iui-tree-node-content-caption {
