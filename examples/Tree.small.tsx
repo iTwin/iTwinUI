@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Flex, NodeData, Tree, TreeNode } from '@itwin/itwinui-react';
+import { NodeData, Tree, TreeNode } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
@@ -73,41 +73,22 @@ export default () => {
   );
 
   return (
-    <Flex>
-      <Tree<TreeData>
-        style={{ width: 'min(100%, 260px)' }}
-        data={data}
-        size='small'
-        getNode={getNode}
-        nodeRenderer={React.useCallback(
-          ({ node, ...rest }) => (
-            <TreeNode
-              label={node.label}
-              onExpanded={onNodeExpanded}
-              icon={<SvgPlaceholder />}
-              {...rest}
-            />
-          ),
-          [onNodeExpanded],
-        )}
-      />
-
-      <Tree<TreeData>
-        style={{ width: 'min(100%, 260px)' }}
-        data={data}
-        getNode={getNode}
-        nodeRenderer={React.useCallback(
-          ({ node, ...rest }) => (
-            <TreeNode
-              label={node.label}
-              onExpanded={onNodeExpanded}
-              icon={<SvgPlaceholder />}
-              {...rest}
-            />
-          ),
-          [onNodeExpanded],
-        )}
-      />
-    </Flex>
+    <Tree<TreeData>
+      style={{ width: 'min(100%, 260px)' }}
+      data={data}
+      size='small'
+      getNode={getNode}
+      nodeRenderer={React.useCallback(
+        ({ node, ...rest }) => (
+          <TreeNode
+            label={node.label}
+            onExpanded={onNodeExpanded}
+            icon={<SvgPlaceholder />}
+            {...rest}
+          />
+        ),
+        [onNodeExpanded],
+      )}
+    />
   );
 };
