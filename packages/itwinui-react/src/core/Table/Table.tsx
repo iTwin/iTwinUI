@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -1059,6 +1060,18 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          <ShadowTemplate>
+            <slot />
+            <div
+              aria-hidden
+              style={{
+                // This ensures that the table-body is always the same width as the table-header,
+                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                width: headerRef.current?.scrollWidth,
+                height: 0.1,
+              }}
+            />
+          </ShadowTemplate>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1085,11 +1098,8 @@ export const Table = <
             </Box>
           )}
           {isLoading && data.length !== 0 && (
-            <Box className='iui-table-row'>
-              <Box
-                className='iui-table-cell'
-                style={{ justifyContent: 'center' }}
-              >
+            <Box className='iui-table-row' data-iui-loading='true'>
+              <Box className='iui-table-cell'>
                 <ProgressRadial indeterminate size='small' />
               </Box>
             </Box>
@@ -1128,3 +1138,31 @@ export const Table = <
 };
 
 export default Table;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * Wrapper around `<template>` element that attaches shadow root to its parent
+ * and moves its children into the shadow root.
+ */
+const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
+  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
+
+  const attachShadowRef = React.useCallback(
+    (template: HTMLTemplateElement | null) => {
+      const parent = template?.parentElement;
+      if (!template || !parent || parent.shadowRoot) {
+        return;
+      }
+      setShadowRoot(parent.attachShadow({ mode: 'open' }));
+      template.remove();
+    },
+    [],
+  );
+
+  return (
+    <template ref={attachShadowRef}>
+      {shadowRoot && ReactDOM.createPortal(children, shadowRoot)}
+    </template>
+  );
+};

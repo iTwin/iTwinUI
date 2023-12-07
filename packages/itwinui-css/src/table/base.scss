@@ -163,6 +163,18 @@
     border-radius: inherit;
   }
 
+  // To center the row even when scrolling horizontally
+  // (when `isLoading && data.length !== 0`)
+  &[data-iui-loading='true'] {
+    position: sticky;
+    inset-inline-start: 0;
+
+    // Center the progress radial within the cell/row
+    .iui-table-cell {
+      justify-content: center;
+    }
+  }
+
   .iui-table-header & {
     flex-grow: 1;
   }
@@ -360,13 +372,14 @@
   // Empty & loading states
   > .iui-table-empty {
     text-align: center;
+    position: sticky;
+    inset-inline-start: 50%;
+    transform: translateX(-50%);
     padding: var(--iui-size-xl);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
     flex-grow: 1;
-    align-self: center;
     color: var(--iui-color-text-muted);
     background-color: var(--iui-color-background);
   }
