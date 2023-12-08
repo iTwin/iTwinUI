@@ -604,11 +604,11 @@ const InformationPanelMainExample = withThemeProvider(
 );
 export { InformationPanelMainExample };
 
-import { default as InformationPanelVerticalExampleRaw } from './InformationPanel.vertical';
-const InformationPanelVerticalExample = withThemeProvider(
-  InformationPanelVerticalExampleRaw,
+import { default as InformationPanelHorizontalExampleRaw } from './InformationPanel.horizontal';
+const InformationPanelHorizontalExample = withThemeProvider(
+  InformationPanelHorizontalExampleRaw,
 );
-export { InformationPanelVerticalExample };
+export { InformationPanelHorizontalExample };
 
 // ----------------------------------------------------------------------------
 

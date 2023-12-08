@@ -10,9 +10,7 @@ thumbnail: InformationPanel
   <AllExamples.InformationPanelMainExample client:load />
 </LiveExample>
 
-The information panel is a pattern used primarily in tables. It allows viewing or editing additional details about selected item(s) without leaving the table.
-
-The info panel is reserved for complex tables, because it allows the user to gradually explore the content without overwhelming them with too many details. It also helps avoiding the unpleasant horizontal scrolling when the table gets too wide. Not every table requires an information panel.
+The Information Panel is designed for complex tables, offering a user-friendly way to explore content without overwhelming details or horizontal scrolling. It enhances data presentation in tables when needed.
 
 ## Usage
 
@@ -38,12 +36,28 @@ The Information Panel component is made up of customizable subcomponents. Hereâ€
 </InformationPanelWrapper>
 ```
 
-By default, the Information Panel component is closed. It can be opened by setting `isOpen={true}`. The orientation of the panel can be set using the `orientation` prop.
+### Overlay Component
 
-## Vertical Orientation
+The `InformationPanel` component is designed to overlay content on the page. It is typically used to display additional information or actions without navigating away from the current view. By default, the panel is closed. It can be opened by setting `isOpen={true}`.
 
-<LiveExample src='InformationPanel.Vertical.tsx'>
-  <AllExamples.InformationPanelVerticalExample client:load />
+### InformationPanelWrapper
+
+The `InformationPanelWrapper` is a container that is used to wrap and manage the placement of the `InformationPanel`. It helps in organizing and controlling the layout of the panel within the overall structure of the page.
+
+### InformationPanelContent
+
+The `InformationPanelContent` is used to display the content within `InformationPanel`. Inline/Block display style of the content can be set using the `displayStyle` prop.
+
+### onClose
+
+The `onClose` function is an event handler used to close or hide the `InformationPanel`. When this function is called, it sets the `openRowIndex` state to -1, effectively closing the panel.
+
+## Horizontal Orientation
+
+By default, the orientation of the Information Panel component is vertical. It can be changed by setting `orientation='horizontal'`.
+
+<LiveExample src='InformationPanel.horizontal.tsx'>
+  <AllExamples.InformationPanelHorizontalExample client:load />
 </LiveExample>
 
 ## Props
