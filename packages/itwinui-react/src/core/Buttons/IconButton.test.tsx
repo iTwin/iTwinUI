@@ -90,6 +90,8 @@ it('should support polymorphic `as` prop', () => {
 it('should pass props to IconButton parts', () => {
   const { container } = render(
     <IconButton
+      label='hello'
+      labelProps={{ className: 'the-label' }}
       iconProps={{ className: 'custom-icon-class', style: { width: 80 } }}
     >
       <SvgMore />
@@ -101,4 +103,8 @@ it('should pass props to IconButton parts', () => {
   ) as HTMLElement;
   expect(icon).toBeTruthy;
   expect(icon.style.width).toBe('80px');
+
+  const label = document.querySelector('.iui-tooltip') as HTMLElement;
+  expect(label).toHaveTextContent('hello');
+  expect(label).toHaveClass('the-label');
 });

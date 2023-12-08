@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.0.9",
+  "version": "3.0.11",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -76,14 +76,14 @@
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {
-    "@floating-ui/react": "^0.25.4",
+    "@floating-ui/react": "^0.26.3",
     "classnames": "^2.3.2",
     "react-table": "^7.8.0",
     "react-transition-group": "^4.4.5",
     "tslib": "^2.6.0"
   },
   "devDependencies": {
-    "@itwin/itwinui-css": "^2.0.2",
+    "@itwin/itwinui-css": "^2.0.4",
     "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@itwin/itwinui-variables": "3.0.0",
     "@swc/cli": "^0.1.62",
@@ -111,7 +111,7 @@
     "ts-jest": "^29.0.0",
     "ts-node": "^10.0.0",
     "typescript": "~5.1.6",
-    "vite": "^4.3.8"
+    "vite": "^4.5.1"
   },
   "peerDependencies": {
     "@itwin/itwinui-illustrations-react": "^2.1.0",

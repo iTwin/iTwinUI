@@ -28,7 +28,7 @@ inquirer
     writeFile(reactComponentTestFactory(reactDirectory, componentPascal));
     appendFile(reactIndexAppendFactory(componentPascal));
 
-    const storyDirectory = 'apps/storybook/src';
+    const storyDirectory = 'apps/react-workshop/src';
     writeFile(storiesFactory(storyDirectory, componentPascal));
     writeFile(storyTestsFactory(storyDirectory, componentPascal));
 
@@ -38,10 +38,10 @@ inquirer
     writeFile(cssComponentFactory(cssComponentDirectory, componentKebab));
     appendFile(cssGlobalAllFactory(`${cssPkgDirectory}/src`, componentKebab));
 
-    const backstopDirectory = `${cssPkgDirectory}/backstop`;
-    writeFile(demoHtmlFactory(`${backstopDirectory}/tests`, componentKebab));
+    const htmlDirectory = `apps/css-workshop`;
+    writeFile(demoHtmlFactory(`${htmlDirectory}/pages`, componentKebab));
     writeFile(
-      scenarioJsFactory(`${backstopDirectory}/scenarios`, componentKebab),
+      scenarioJsFactory(`${htmlDirectory}/backstop/tests`, componentKebab),
     );
   });
 
@@ -203,7 +203,7 @@ const demoHtmlFactory = (directory, componentName) => {
 /** Creates a .js file with a basic backstop visual test scenario */
 const scenarioJsFactory = (directory, componentName) => {
   const template = `${copyrightBannerJs}
-const { scenario } = require('../scenarioHelper');
+const { scenario } = require('./~scenarioHelper');
 
 module.exports = [
   scenario('default', {

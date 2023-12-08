@@ -1,10 +1,10 @@
-name: Publish storybook (manual)
+name: Publish react-workshop (manual)
 
 on:
   workflow_dispatch:
 
 jobs:
-  publish-storybook:
+  publish-react-workshop:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,13 +16,13 @@ jobs:
           node-version: 18.x
 
       - run: yarn
-      - run: yarn build --filter=storybook
+      - run: yarn build --filter=react-workshop
 
-      - name: Host storybook under /react
+      - name: Host react-workshop under /react
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: ${{ github.workspace }}/apps/storybook/build
+          folder: ${{ github.workspace }}/apps/react-workshop/build
           target-folder: ${{ github.event.number || '' }}/react
           clean: true
           git-config-name: github-actions[bot]
