@@ -187,9 +187,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-breadcrumb-button-dropdown-icon {
   @include mixins.iui-icon-style('m');
-  fill: currentColor;
   flex-shrink: 0;
   margin-inline-end: calc(0px - var(--iui-size-2xs));
+
+  &,
+  & > svg {
+    fill: currentColor;
+  }
 
   .iui-header-breadcrumb-button-split & {
     margin-inline-end: 0;

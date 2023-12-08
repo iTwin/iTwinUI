@@ -233,7 +233,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-status-icon {
   @include mixins.iui-icon-style('m');
   margin-inline-end: var(--iui-size-xs);
-  fill: var(--_iui-tile-status-icon-fill);
+
+  &,
+  & > svg {
+    fill: var(--_iui-tile-status-icon-fill);
+  }
 }
 
 @mixin iui-tile-name-label {
