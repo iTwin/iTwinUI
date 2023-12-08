@@ -11,6 +11,7 @@ import {
   Box,
   useIsomorphicLayoutEffect,
   useControlledState,
+  useLatestRef,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -134,6 +135,21 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       ? parentContext?.themeOptions?.highContrast
       : undefined;
 
+  // dispatch theme changes via native events for compatibility between different versions of iTwinUI
+  const dispatchThemeChangesRef = React.useCallback(
+    (root: HTMLElement | null) => {
+      if (!root) {
+        return;
+      }
+      root.dispatchEvent(
+        new CustomEvent('iui:themechange', {
+          detail: { theme, highContrast: themeOptions.highContrast },
+        }),
+      );
+    },
+    [theme, themeOptions.highContrast],
+  );
+
   /**
    * We will portal our portal container into `portalContainer` prop (if specified),
    * or inherit `portalContainer` from context (if also inheriting theme).
@@ -159,7 +175,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       <Root
         theme={theme}
         themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, rootRef)}
+        ref={useMergedRefs(forwardedRef, rootRef, dispatchThemeChangesRef)}
         {...rest}
       >
         <ToastProvider>
@@ -221,14 +237,39 @@ const useParentTheme = () => {
     parentContext?.theme,
   );
 
+  const parentThemeRef = useLatestRef(parentContext?.theme);
+
   useIsomorphicLayoutEffect(() => {
-    setParentTheme(
-      (old) =>
-        old ||
-        (rootRef.current?.parentElement
-          ?.closest('[data-iui-theme]')
-          ?.getAttribute('data-iui-theme') as ThemeType),
+    // bail if we already have theme from context
+    if (parentThemeRef.current) {
+      return;
+    }
+
+    // find parent theme from closest data-iui-theme attribute
+    const closestRoot =
+      rootRef.current?.parentElement?.closest('[data-iui-theme]');
+
+    if (!closestRoot) {
+      return;
+    }
+
+    // set theme for initial mount
+    setParentTheme(closestRoot?.getAttribute('data-iui-theme') as ThemeType);
+
+    // listen to theme changes for future updates
+    const controller = new AbortController();
+    closestRoot?.addEventListener(
+      'iui:themechange',
+      (event: CustomEvent) => {
+        setParentTheme(event.detail.theme);
+        // TODO: handle highContrast changes
+      },
+      { signal: controller.signal },
     );
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return [
