@@ -1,7 +1,6 @@
 ---
 title: File upload
-description: Keep the user informed of their file upload progress.
-propsPath: '@itwin/itwinui-react/esm/core/FileUpload/FileUpload.d.ts'
+description: Allow the user to upload files from their system.
 thumbnail: FileUpload
 ---
 
@@ -11,13 +10,33 @@ thumbnail: FileUpload
   <AllExamples.FileUploadMainExample client:load />
 </LiveExample>
 
-File uploading is a common interaction most users do multiple times per day. File uploading may happen in various different ways depending on the context. While the overall design may differ from UI to UI, the basics always stay the same: let the user know they can upload content, display upload status progress, and confirm that the upload’s status upon completion.
+File uploading is a common interaction that may happen in various different ways depending on the context. The general pattern involves:
 
-## Customizations
+1. Letting the user know they can upload content.
+2. Displaying upload status progress.
+3. Confirming the upload’s status upon completion.
 
-You can upload files using `FileUploadCard` and `FileEmptyCard` with subcomponents that are fully customizable.
+This page is mainly concerned with the first part of the process (before the upload actually starts). For showing progress, you can use a [dialog](dialog) with a [progress indicator](progressindicator) inside it.
 
-We provide:
+## Usage
+
+iTwinUI provides a few different components for working with file uploads.
+
+### FileUpload
+
+`FileUpload` is a simple wrapper component that can be used to add drag-and-drop behavior to _any_ component.
+
+<LiveExample src='FileUpload.wrappinginput.tsx'>
+  <AllExamples.FileUploadWrappingInputExample client:load />
+</LiveExample>
+
+The `onFileDropped` prop is called with two arguments: the file list and the underlying [`"drop"` event](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event). The file list can suffice for simple file uploads, while the event contains more data (for example, [`event.dataTransfer.items`](https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/items)) that can be useful if you have a more complex use case, such as directory uploads.
+
+### FileUploadCard
+
+`FileUploadCard` consists of a card-like UI that uses a [file input](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file) underneath. The empty state (when no file is uploaded) is specified using the `emptyCard` prop which is set to use `FileEmptyCard` by default.
+
+`FileUploadCard` includes the following sub-components:
 
 - `FileUploadCard.Action`
 - `FileUploadCard.Info`
@@ -26,26 +45,19 @@ We provide:
 - `FileUploadCard.Icon`
 - `FileUploadCard.Input`
 - `FileUploadCard.InputLabel`
+
+`FileEmptyCard` includes the following sub-components:
+
 - `FileEmptyCard.Icon`
 - `FileEmptyCard.Text`
 
-### Wrapping Input
-
-Drag and Drop Files along with an input.
-
-<LiveExample src='FileUpload.wrappinginput.tsx'>
-  <AllExamples.FileUploadWrappingInputExample client:load />
-</LiveExample>
-
-### Custom File Upload Card
-
-Change standard file upload card by adding custom label and text.
+The following example shows how some of these parts can be customized.
 
 <LiveExample src='FileUpload.custom.tsx'>
   <AllExamples.FileUploadCustomExample client:load />
 </LiveExample>
 
-## Usage
+## Usage guidelines
 
 ### Chat
 
@@ -67,4 +79,4 @@ In some cases, there may be a table with no files uploaded yet. In a situation l
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/FileUpload/FileUpload.d.ts'} />
