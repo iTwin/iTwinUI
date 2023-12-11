@@ -3,7 +3,7 @@
   "compilerOptions": {
     "target": "es2020",
     "module": "esnext",
-    "lib": ["es6", "dom"],
+    "lib": ["esnext", "dom"],
     "declaration": true,
     "esModuleInterop": true,
     "sourceMap": false,
