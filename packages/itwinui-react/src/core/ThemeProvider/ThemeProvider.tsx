@@ -123,17 +123,18 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const [parentTheme, rootRef, parentContext] = useParentTheme();
-  const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
+  const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+  const parent = useParentTheme(rootElement);
+  const theme = themeProp === 'inherit' ? parent.theme || 'light' : themeProp;
 
   // default apply background only for topmost ThemeProvider
-  themeOptions.applyBackground ??= !parentTheme;
+  themeOptions.applyBackground ??= !parent.theme;
 
   // default inherit highContrast option from parent if also inheriting base theme
   themeOptions.highContrast ??=
-    themeProp === 'inherit'
-      ? parentContext?.themeOptions?.highContrast
-      : undefined;
+    themeProp === 'inherit' ? parent.highContrast : undefined;
 
   // dispatch theme changes via native events for compatibility between different versions of iTwinUI
   const dispatchThemeChangesRef = React.useCallback(
@@ -156,7 +157,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
    */
   const portaledPortalContainer =
     portalContainerProp ||
-    (themeProp === 'inherit' ? parentContext?.portalContainer : undefined);
+    (themeProp === 'inherit' ? parent.context?.portalContainer : undefined);
 
   const [portalContainer, setPortalContainer] = useControlledState(
     null,
@@ -175,7 +176,11 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       <Root
         theme={theme}
         themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, rootRef, dispatchThemeChangesRef)}
+        ref={useMergedRefs(
+          forwardedRef,
+          setRootElement,
+          dispatchThemeChangesRef,
+        )}
         {...rest}
       >
         <ToastProvider>
@@ -230,11 +235,13 @@ const Root = React.forwardRef((props, forwardedRef) => {
  * Returns theme from either parent context or by reading the closest
  * data-iui-theme attribute if context is not found.
  */
-const useParentTheme = () => {
+const useParentTheme = (rootElement: HTMLElement | null) => {
   const parentContext = React.useContext(ThemeContext);
-  const rootRef = React.useRef<HTMLElement>(null);
   const [parentThemeState, setParentTheme] = React.useState(
     parentContext?.theme,
+  );
+  const [parentHighContrastState, setParentHighContrastState] = React.useState(
+    parentContext?.themeOptions?.highContrast,
   );
 
   const parentThemeRef = useLatestRef(parentContext?.theme);
@@ -246,8 +253,7 @@ const useParentTheme = () => {
     }
 
     // find parent theme from closest data-iui-theme attribute
-    const closestRoot =
-      rootRef.current?.parentElement?.closest('[data-iui-theme]');
+    const closestRoot = rootElement?.parentElement?.closest('[data-iui-theme]');
 
     if (!closestRoot) {
       return;
@@ -262,7 +268,7 @@ const useParentTheme = () => {
       'iui:themechange',
       (event: CustomEvent) => {
         setParentTheme(event.detail.theme);
-        // TODO: handle highContrast changes
+        setParentHighContrastState(event.detail.highContrast);
       },
       { signal: controller.signal },
     );
@@ -270,11 +276,12 @@ const useParentTheme = () => {
     return () => {
       controller.abort();
     };
-  }, []);
+  }, [rootElement, parentThemeRef]);
 
-  return [
-    parentContext?.theme ?? parentThemeState,
-    rootRef,
-    parentContext,
-  ] as const;
+  return {
+    theme: parentContext?.theme ?? parentThemeState,
+    highContrast:
+      parentContext?.themeOptions?.highContrast ?? parentHighContrastState,
+    context: parentContext,
+  } as const;
 };
