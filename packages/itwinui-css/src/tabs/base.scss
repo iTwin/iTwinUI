@@ -190,6 +190,7 @@ $borderless-horizontal-tab-min-height: calc(
     }
 
     display: grid;
+    align-content: start;
     overflow-y: auto;
     overflow-x: hidden;
     animation-name: scroll-shadow-inset-vertical;
