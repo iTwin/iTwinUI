@@ -126,7 +126,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
     null,
   );
-  const parent = useParentTheme(rootElement);
+  const parent = useParentThemeAndContext(rootElement);
   const theme = themeProp === 'inherit' ? parent.theme || 'light' : themeProp;
 
   // default apply background only for topmost ThemeProvider
@@ -232,10 +232,12 @@ const Root = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 /**
- * Returns theme from either parent context or by reading the closest
+ * Returns theme information from either parent ThemeContext or by reading the closest
  * data-iui-theme attribute if context is not found.
+ *
+ * Also returns the ThemeContext itself (if found).
  */
-const useParentTheme = (rootElement: HTMLElement | null) => {
+const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
   const parentContext = React.useContext(ThemeContext);
   const [parentThemeState, setParentTheme] = React.useState(
     parentContext?.theme,
