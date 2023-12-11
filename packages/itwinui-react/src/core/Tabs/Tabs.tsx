@@ -94,6 +94,14 @@ const TabsWrapper = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  // const [renderIndex, setRenderIndex] = React.useState(0);
+
+  // console.log({ renderIndex });
+
+  // React.useEffect(() => {
+  //   setRenderIndex((prev) => prev + 1);
+  // }, []);
+
   const [activeValue, setActiveValue] = useControlledState(
     defaultValue,
     activeValueProp,
@@ -149,7 +157,7 @@ const TabList = React.forwardRef((props, ref) => {
 
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
-  const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
+  const [tablistSizeRef, tabsWidth] = useContainerWidth(true);
   const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
 
   return (
@@ -217,6 +225,8 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   const isActive = activeValue === value;
   const isActiveRef = useLatestRef(isActive);
+
+  console.log({ name: 'Tab', condition: activeValue === value, value });
 
   // Scroll to active tab only on initial render
   useIsomorphicLayoutEffect(() => {
@@ -434,6 +444,8 @@ const TabsPanel = React.forwardRef((props, ref) => {
   const { value, className, children, ...rest } = props;
 
   const { activeValue, idPrefix } = useSafeContext(TabsContext);
+
+  // console.log({ name: 'TabsPanel', condition: activeValue !== value, value });
 
   return (
     <Box

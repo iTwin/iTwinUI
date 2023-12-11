@@ -32,14 +32,17 @@ $borderless-horizontal-tab-min-height: calc(
   .iui-tab {
     font-family: inherit;
     position: relative;
-    display: grid;
-    grid-template-columns: auto minmax(min-content, 1fr);
-    grid-template-rows: auto minmax(0, auto);
-    grid-template-areas:
-      'icon label'
-      'icon description';
+    // display: grid;
+    // grid-template-columns: auto minmax(min-content, 1fr);
+    // grid-template-rows: auto minmax(0, auto);
+    // grid-template-areas:
+    //   'icon label'
+    //   'icon description';
     align-items: center;
     align-content: center;
+
+    display: flex;
+
     font-size: var(--iui-font-size-1);
     min-block-size: calc(var(--iui-size-m) * 2.5);
     block-size: 100%;
@@ -132,7 +135,7 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tabs {
     display: flex;
-    container-type: inline-size;
+    // container-type: inline-size;
 
     &.iui-borderless {
       min-block-size: $borderless-horizontal-tab-min-height;
@@ -165,7 +168,7 @@ $borderless-horizontal-tab-min-height: calc(
 
   .iui-tab {
     flex-shrink: 0;
-    max-inline-size: 60cqi;
+    // max-inline-size: 60cqi;
 
     &::after {
       inline-size: 100%;
@@ -180,14 +183,13 @@ $borderless-horizontal-tab-min-height: calc(
 
 @mixin iui-tabs-vertical {
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
-  grid-template-columns: auto 1fr;
+  grid-template-columns: max-content 1fr;
   grid-template-rows: 1fr auto;
   block-size: 100%;
 
   .iui-tabs {
     .iui-tab {
       inline-size: 100%;
-      white-space: nowrap;
       block-size: auto;
     }
 
@@ -242,7 +244,9 @@ $borderless-horizontal-tab-min-height: calc(
 
   [aria-selected='true']::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
+      transition:
+        width var(--iui-duration-1) ease,
+        height var(--iui-duration-1) ease;
     }
   }
 
@@ -268,7 +272,9 @@ $borderless-horizontal-tab-min-height: calc(
     inset-inline-start: var(--iui-tabs-stripe-position);
     inline-size: var(--iui-tabs-stripe-size);
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
+      transition:
+        width var(--iui-duration-1) ease-out,
+        left var(--iui-duration-1) ease-out;
     }
   }
 

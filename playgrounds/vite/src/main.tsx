@@ -59,7 +59,7 @@ const ThemeButton = styled.button`
 `;
 
 createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Shell />
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <Shell />,
+  // </React.StrictMode>,
 );
