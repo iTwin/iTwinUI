@@ -12,6 +12,7 @@ import {
   useIsomorphicLayoutEffect,
   useControlledState,
   useLatestRef,
+  importCss,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -173,6 +174,10 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ThemeContext.Provider value={contextValue}>
+      {themeProp === 'inherit' && rootElement ? (
+        <FallbackStyles root={rootElement} />
+      ) : null}
+
       <Root
         theme={theme}
         themeOptions={themeOptions}
@@ -286,4 +291,38 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
       parentContext?.themeOptions?.highContrast ?? parentHighContrastState,
     context: parentContext,
   } as const;
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * When `@itwin/itwinui-react/styles.css` is not imported, we will attempt to
+ * dynamically import it (if possible) and fallback to loading it from a CDN.
+ */
+const FallbackStyles = ({ root }: { root: HTMLElement }) => {
+  useIsomorphicLayoutEffect(() => {
+    // bail if styles are already loaded
+    if (root.style.getPropertyValue('--_iui-version') === '3') {
+      return;
+    }
+
+    (async () => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await import('../../../styles.css');
+      } catch (error) {
+        console.log('Error loading styles.css locally', error);
+        const css = await importCss(
+          'https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@3/styles.css',
+        );
+        document.adoptedStyleSheets = [
+          ...document.adoptedStyleSheets,
+          css.default,
+        ];
+      }
+    })();
+  }, [root]);
+
+  return <></>;
 };
