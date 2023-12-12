@@ -180,23 +180,19 @@ $borderless-horizontal-tab-min-height: calc(
 
 @mixin iui-tabs-vertical {
   grid-template-areas: 'tabs tabs-content' 'tabs-actions tabs-content';
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto minmax(0, 1fr);
   grid-template-rows: 1fr auto;
   block-size: 100%;
 
   .iui-tabs {
-    .iui-tab {
-      inline-size: 100%;
-      white-space: nowrap;
-      block-size: auto;
-    }
-
     ~ .iui-tabs-content {
-      flex-grow: 1;
       overflow: auto;
     }
 
+    display: grid;
+    align-content: start;
     overflow-y: auto;
+    overflow-x: hidden;
     animation-name: scroll-shadow-inset-vertical;
     animation-timing-function: linear;
     /* stylelint-disable-next-line property-no-unknown */
@@ -242,7 +238,9 @@ $borderless-horizontal-tab-min-height: calc(
 
   [aria-selected='true']::after {
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease, height var(--iui-duration-1) ease;
+      transition:
+        width var(--iui-duration-1) ease,
+        height var(--iui-duration-1) ease;
     }
   }
 
@@ -268,7 +266,9 @@ $borderless-horizontal-tab-min-height: calc(
     inset-inline-start: var(--iui-tabs-stripe-position);
     inline-size: var(--iui-tabs-stripe-size);
     @media (prefers-reduced-motion: no-preference) {
-      transition: width var(--iui-duration-1) ease-out, left var(--iui-duration-1) ease-out;
+      transition:
+        width var(--iui-duration-1) ease-out,
+        left var(--iui-duration-1) ease-out;
     }
   }
 
