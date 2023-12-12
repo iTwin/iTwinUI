@@ -5,7 +5,6 @@
 
 /// category must be one of: informational, positive, warning, negative
 @mixin iui-toast-category($category) {
-  --_iui-toast-icon-color: var(--iui-color-icon-#{$category});
   border-color: var(--iui-color-border-#{$category});
 
   > .iui-message {
