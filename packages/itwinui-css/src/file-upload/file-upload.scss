@@ -31,8 +31,7 @@
     }
 
     > svg,
-    .iui-template-icon,
-    .iui-template-icon > svg {
+    :is(.iui-template-icon, .iui-template-icon > svg) {
       @include mixins.iui-icon-style('xl');
       @include mixins.iui-icon-color;
     }
