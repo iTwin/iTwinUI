@@ -18,6 +18,13 @@
       var(--iui-color-background-#{$category}-muted),
       var(--iui-color-background)
     );
+
+    > .iui-icon {
+      &,
+      > svg {
+        fill: var(--iui-color-icon-#{$category});
+      }
+    }
   }
 
   > .iui-toast-anchor {
@@ -104,7 +111,6 @@
 }
 
 .iui-toast {
-  --_iui-toast-icon-color: var(--iui-color-icon-muted);
   @include mixins.iui-reset;
   display: inline-flex;
   align-items: center;
@@ -133,7 +139,7 @@
 
       &,
       > svg {
-        fill: var(--_iui-toast-icon-color);
+        fill: var(--iui-color-icon-muted);
       }
     }
   }
