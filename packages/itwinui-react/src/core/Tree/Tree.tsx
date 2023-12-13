@@ -165,7 +165,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     className,
     nodeRenderer,
     getNode,
-    size,
+    size = 'default',
     enableVirtualization = false,
     style,
     ...rest
