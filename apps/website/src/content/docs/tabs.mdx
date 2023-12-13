@@ -99,9 +99,9 @@ If you need to reset the state of the inactive panels, you can pass a [`key`](ht
 
 ### Keyboard activation mode
 
-By default, tabs are activated automatically when focused with the keyboard. In other words, when a tab has keyboard focus, pressing the arrow keys to focus a different tab will automatically activate that tab.
+By default, tabs are activated automatically when focused (e.g. with keyboard). In other words, when a tab has keyboard focus, pressing the arrow keys to focus a different tab will automatically activate that tab.
 
-While the default behavior should work fine in many cases, it can hurt the user experience for keyboard users if the panel content is expensive to render or lazily loaded. You can set `focusActivationMode` to `"manual"` to disable automatic activation. This will allow the user to navigate between tabs with the arrow keys without activating them. The user can then activate a tab by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
+While the default behavior should work fine in many cases, it can hurt the user experience for keyboard users if the panel content is expensive to render or lazily loaded. In such cases, you can set `focusActivationMode` to `"manual"` to disable automatic activation. This will allow the user to navigate between tabs with the arrow keys without activating them. The user can then activate a tab by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
 
 ## Variants
 
