@@ -278,13 +278,14 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                   setScrollToIndex(parentNodeIndex);
                 }
               : undefined,
+            size,
           }}
         >
           {nodeRenderer(node.nodeProps)}
         </TreeContext.Provider>
       );
     },
-    [firstLevelNodesList.length, flatNodesList, nodeRenderer],
+    [firstLevelNodesList.length, flatNodesList, nodeRenderer, size],
   );
 
   const [scrollToIndex, setScrollToIndex] = React.useState<number>();
