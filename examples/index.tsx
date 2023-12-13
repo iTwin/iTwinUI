@@ -1222,9 +1222,9 @@ import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
 
-import { default as TreeSizeExampleRaw } from './Tree.small';
-const TreeSizeExample = withThemeProvider(TreeSizeExampleRaw);
-export { TreeSizeExample };
+import { default as TreeSmallExampleRaw } from './Tree.small';
+const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
+export { TreeSmallExample };
 
 // ----------------------------------------------------------------------------
 
