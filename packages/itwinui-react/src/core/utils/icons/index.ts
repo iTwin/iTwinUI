@@ -11,6 +11,7 @@ export * from './SvgClose.js';
 export * from './SvgCloseSmall.js';
 export * from './SvgChevronLeft.js';
 export * from './SvgChevronRight.js';
+export * from './SvgChevronRightSmall.js';
 export * from './SvgChevronLeftDouble.js';
 export * from './SvgChevronRightDouble.js';
 export * from './SvgCaretUpSmall.js';
