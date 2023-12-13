@@ -150,7 +150,12 @@ const TabList = React.forwardRef((props, ref) => {
   const isClient = useIsClient();
   const tablistRef = React.useRef<HTMLDivElement>(null);
   const [tablistSizeRef, tabsWidth] = useContainerWidth(type !== 'default');
-  const refs = useMergedRefs(ref, tablistRef, tablistSizeRef);
+  const refs = useMergedRefs(
+    ref,
+    tablistRef,
+    tablistSizeRef,
+    useScrollbarGutter(),
+  );
 
   return (
     <Box
@@ -325,10 +330,10 @@ const Tab = React.forwardRef((props, forwardedRef) => {
       role='tab'
       tabIndex={isActive ? 0 : -1}
       aria-selected={isActive}
-      aria-controls={`${idPrefix}-panel-${value}`}
+      aria-controls={`${idPrefix}-panel-${value.replaceAll(' ', '-')}`}
       ref={useMergedRefs(tabRef, forwardedRef, setInitialActiveRef)}
       {...rest}
-      id={`${idPrefix}-tab-${value}`}
+      id={`${idPrefix}-tab-${value.replaceAll(' ', '-')}`}
       onClick={mergeEventHandlers(props.onClick, () => setActiveValue(value))}
       onKeyDown={mergeEventHandlers(props.onKeyDown, onKeyDown)}
       onFocus={mergeEventHandlers(props.onFocus, () => {
@@ -438,12 +443,12 @@ const TabsPanel = React.forwardRef((props, ref) => {
   return (
     <Box
       className={cx('iui-tabs-content', className)}
-      aria-labelledby={`${idPrefix}-tab-${value}`}
+      aria-labelledby={`${idPrefix}-tab-${value.replaceAll(' ', '-')}`}
       role='tabpanel'
       hidden={activeValue !== value ? true : undefined}
       ref={ref}
       {...rest}
-      id={`${idPrefix}-panel-${value}`}
+      id={`${idPrefix}-panel-${value.replaceAll(' ', '-')}`}
     >
       {children}
     </Box>
@@ -797,3 +802,26 @@ const TabListContext = React.createContext<
 >(undefined);
 
 export default Tabs;
+
+// ----------------------------------------------------------------------------
+
+/**
+ * This conditionally adds `scrollbar-gutter: stable` only if the content overflows.
+ * This is a workaround to prevent layout shift that happens because of scrollbar width.
+ *
+ * @see https://github.com/iTwin/iTwinUI/issues/1627
+ */
+const useScrollbarGutter = () => {
+  return React.useCallback((element: HTMLElement | null) => {
+    if (element) {
+      if (element.scrollHeight > element.clientHeight) {
+        element.style.scrollbarGutter = 'stable';
+
+        // Safari fallback
+        if (!CSS.supports('scrollbar-gutter: stable')) {
+          element.style.overflowY = 'scroll';
+        }
+      }
+    }
+  }, []);
+};

@@ -23,13 +23,7 @@ type ComboBoxInputProps = { selectTags?: JSX.Element[] } & React.ComponentProps<
 >;
 
 export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
-  const {
-    onKeyDown: onKeyDownProp,
-    onClick: onClickProp,
-    selectTags,
-    size,
-    ...rest
-  } = props;
+  const { selectTags, size, ...rest } = props;
 
   const {
     isOpen,
@@ -192,13 +186,25 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     ],
   );
 
+  /**
+   * This temporarily stores the state of `isOpen` before click event starts and resets it later.
+   * It is necessary because `isOpen` may have changed during the process of the click,
+   * e.g. because of focus, which could cause the menu to close immediately after opening.
+   */
+  const wasOpenBeforeClick = React.useRef(false);
+
+  const handlePointerDown = React.useCallback(() => {
+    wasOpenBeforeClick.current = isOpen;
+  }, [isOpen]);
+
   const handleClick = React.useCallback(() => {
-    if (!isOpen) {
+    if (!wasOpenBeforeClick.current) {
       show();
     } else {
       hide();
     }
-  }, [hide, isOpen, show]);
+    wasOpenBeforeClick.current = false;
+  }, [hide, show]);
 
   const [tagContainerWidthRef, tagContainerWidth] = useContainerWidth();
 
@@ -206,7 +212,6 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
     <>
       <Input
         ref={refs}
-        onClick={mergeEventHandlers(onClickProp, handleClick)}
         aria-expanded={isOpen}
         aria-activedescendant={
           isOpen && focusedIndex != undefined && focusedIndex > -1
@@ -223,8 +228,13 @@ export const ComboBoxInput = React.forwardRef((props, forwardedRef) => {
         aria-describedby={multiple ? `${id}-selected-live` : undefined}
         size={size}
         {...popover.getReferenceProps({
-          onKeyDown: mergeEventHandlers(onKeyDownProp, handleKeyDown),
           ...rest,
+          onPointerDown: mergeEventHandlers(
+            props.onPointerDown,
+            handlePointerDown,
+          ),
+          onClick: mergeEventHandlers(props.onClick, handleClick),
+          onKeyDown: mergeEventHandlers(props.onKeyDown, handleKeyDown),
         })}
       />
 

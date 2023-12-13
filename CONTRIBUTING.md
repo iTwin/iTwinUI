@@ -271,7 +271,7 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 - Make sure Docker is running.
 - To run tests for a specific component, use this command:
-  `yarn workspace css-workshop test --filter=[component_name]` (e.g. `yarn workspace css-workshop test --filter=side-navigation`)
+  `yarn workspace css-workshop test --filter=[component_name]` (e.g. `yarn workspace css-workshop test --filter=side-navigation`). But don't forget to build css-workshop first (yarn build --filter=css-workshop).
 - To approve test images, run `yarn approve:css`.
 
 #### How to write tests:
@@ -309,7 +309,7 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
 2. From the monorepo root, run `yarn test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace react-workshop test --spec="**/Alert.*"`. Don't forget to build react-workshop first (yarn build --filter=react-workshop).
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `yarn workspace react-workshop test --spec="**/Alert.*"`. But don't forget to build react-workshop first (yarn build --filter=react-workshop).
 3. Once the tests finish running, you can approve any failing test images using `yarn approve:react`.
 
 #### Writing visual tests
