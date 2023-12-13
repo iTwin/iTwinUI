@@ -29,6 +29,10 @@ export type TreeContextProps = {
    * Function that scrolls to the node's parent node.
    */
   scrollToParent?: () => void;
+  /**
+   * Size of the tree.
+   */
+  size?: 'default' | 'small';
 };
 
 export const TreeContext = React.createContext<TreeContextProps | undefined>(
