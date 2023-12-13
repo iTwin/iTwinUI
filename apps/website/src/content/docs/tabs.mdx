@@ -37,9 +37,9 @@ You can build Tabs with subcomponents that are fully customizable.
 </Tabs.Wrapper>
 ```
 
-`Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`.
+`Tabs.Tab` and `Tabs.Panel` can be associated with each other by passing them the same `value`. `Tabs.Panel` will be shown when its `value` matches the `value` of the currently active `Tabs.Tab`.
 
-`Tabs.Tab` has `label` prop for ease of use. You can also build `Tabs.Tab` with subcomponents and add sublabel and icon to your tab.
+`Tabs.Tab` has a `label` prop for ease of use. You can also build `Tabs.Tab` with subcomponents and add sublabel and icon to your tab.
 
 ```tsx
 <Tabs.Tab value='apple' key='apple' label='Apple' />
@@ -59,7 +59,7 @@ You can build Tabs with subcomponents that are fully customizable.
 
 Alternatively, you can use Tabs directly with labels, actions, and children as panels. Although this pattern can suffice for simple cases, we strongly recommend using composition API for the best experience.
 
-The following code is equivalent to the [composition example](#composition-api) above:
+The following code is (mostly) equivalent to the [composition example](#composition-api) above:
 
 ```tsx
 <Tabs
@@ -73,6 +73,8 @@ The following code is equivalent to the [composition example](#composition-api) 
 </Tabs>
 ```
 
+One difference is that the legacy API requires the panel content to be conditionally rendered only for the currently active tab. This can be problematic if the content is expensive to render, or if you need to preserve some state when switching tabs.
+
 ### Controlled state
 
 By default, the tabs maintain their own state. You can specify the initially active tab using the `defaultValue` prop in `Tabs.Wrapper`; the tabs will continue to maintain their own state after the initial render.
@@ -82,6 +84,24 @@ If you need to manually maintain the active state, you can use `value` and `onVa
 <LiveExample src='Tabs.controlled.tsx'>
   <AllExamples.TabsControlledExample client:load />
 </LiveExample>
+
+### Resetting panel state
+
+When using the composition API, inactive panels will be hidden but will not be unmounted. This approach is more performant and preserves state.
+
+If you need to reset the state of the inactive panels, you can pass a [`key`](https://react.dev/reference/react/useState#resetting-state-with-a-key) to `Tabs.Panel`. For example, you can set the `key` to the currently active tab's value (following the [controlled state](#controlled-state) example from above).
+
+```tsx
+<Tabs.Panel value='apple' key={currentTabValue}>
+  …
+</Tabs.Panel>
+```
+
+### Keyboard activation mode
+
+By default, tabs are activated automatically when focused with the keyboard. In other words, when a tab has keyboard focus, pressing the arrow keys to focus a different tab will automatically activate that tab.
+
+While the default behavior should work fine in many cases, it can hurt the user experience for keyboard users if the panel content is expensive to render or lazily loaded. You can set `focusActivationMode` to `"manual"` to disable automatic activation. This will allow the user to navigate between tabs with the arrow keys without activating them. The user can then activate a tab by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
 
 ## Variants
 
