@@ -342,7 +342,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           className={className}
-          data-iui-size={size}
+          data-iui-size={size === 'small' ? 'small' : undefined}
           style={style}
           ref={treeRef}
           {...rest}
