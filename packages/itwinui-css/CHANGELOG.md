@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.0
+
+### Minor Changes
+
+- [#1676](https://github.com/iTwin/iTwinUI/pull/1676): Add small size tree option & decrease indentations on default size tree.
+- [#1725](https://github.com/iTwin/iTwinUI/pull/1725): Added an optional data attribute (`data-iui-loading`) to be used on a table row (`iui-table-row`) when it only contains loading content (e.g. ProgressRadial)
+
+### Patch Changes
+
+- [#1733](https://github.com/iTwin/iTwinUI/pull/1733): Fixed an overflow-related layout shift in vertical `Tabs`.
+
 ## 2.0.4
 
 ### Patch Changes

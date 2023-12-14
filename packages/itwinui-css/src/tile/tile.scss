@@ -129,7 +129,9 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   cursor: pointer;
-  transition: box-shadow var(--iui-duration-1) ease-in-out, transform var(--iui-duration-1) 50ms ease-in-out;
+  transition:
+    box-shadow var(--iui-duration-1) ease-in-out,
+    transform var(--iui-duration-1) 50ms ease-in-out;
 
   &:hover {
     box-shadow: var(--iui-shadow-4);
@@ -233,7 +235,11 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 @mixin iui-tile-status-icon {
   @include mixins.iui-icon-style('m');
   margin-inline-end: var(--iui-size-xs);
-  fill: var(--_iui-tile-status-icon-fill);
+
+  &,
+  > svg {
+    fill: var(--_iui-tile-status-icon-fill);
+  }
 }
 
 @mixin iui-tile-name-label {

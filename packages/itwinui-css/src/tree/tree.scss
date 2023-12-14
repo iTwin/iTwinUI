@@ -2,7 +2,7 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-$iui-active-outline: thin solid var(--iui-color-border-accent);
+$iui-active-outline: var(--iui-border-thickness) solid var(--iui-color-border-accent);
 
 // padding of small borderless button + 1px transparent border
 $iui-expander-inline-padding: calc(var(--iui-size-2xs) + var(--iui-border-thickness));
@@ -12,9 +12,17 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + (var(--iui-
 
 .iui-tree {
   @include mixins.iui-reset;
+  --_iui-tree-node-padding-inline: var(--iui-size-xs);
+  --_iui-tree-row-height: calc(var(--iui-size-3xs) * 18);
+
   list-style: none;
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
+
+  &[data-iui-size='small'] {
+    --_iui-tree-node-padding-inline: var(--iui-size-2xs);
+    --_iui-tree-row-height: calc(var(--iui-size-3xs) * 14);
+  }
 }
 
 .iui-sub-tree {
@@ -41,37 +49,37 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + (var(--iui-
 .iui-tree-node {
   display: flex;
   cursor: pointer;
-  padding-inline: var(--iui-size-xs);
+  padding-inline: var(--_iui-tree-node-padding-inline);
   align-items: center;
   border-radius: var(--iui-border-radius-1);
 
   &-checkbox {
-    margin-inline-end: var(--iui-size-xs);
+    margin-inline-end: var(--_iui-tree-node-padding-inline);
   }
 
   &-content {
     display: flex;
+    column-gap: var(--_iui-tree-node-padding-inline);
     align-items: center;
-    min-block-size: calc(var(--iui-size-s) * 3);
-    margin-inline-start: calc(#{$iui-expander-button-width} * (var(--level, 0)));
+    min-block-size: var(--_iui-tree-row-height);
+    margin-inline-start: calc(#{$iui-expander-button-width} * 0.5 * var(--level, 0));
     overflow: hidden;
     padding-inline-start: var(--iui-size-3xs);
     inline-size: 100%;
 
     &-icon {
-      margin-inline: $iui-expander-inline-padding;
-
       &,
       svg {
         @include mixins.iui-icon-style('m');
-      }
-
-      svg {
         @include mixins.iui-icon-color;
+
+        :where(.iui-tree[data-iui-size='small']) & {
+          @include mixins.iui-icon-style('s');
+        }
       }
 
       &:first-child {
-        margin-inline-start: calc($iui-expander-button-width + $iui-expander-inline-padding);
+        margin-inline-start: calc(#{$iui-expander-button-width} + var(--_iui-tree-node-padding-inline));
       }
     }
 
@@ -88,7 +96,6 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + (var(--iui-
     &-label {
       flex: 1;
       min-inline-size: 0;
-      padding-inline-start: $iui-expander-inline-padding;
 
       &:first-child {
         margin-inline-start: $iui-expander-button-width;

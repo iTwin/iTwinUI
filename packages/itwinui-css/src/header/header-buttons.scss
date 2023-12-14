@@ -187,9 +187,13 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 
 @mixin iui-header-breadcrumb-button-dropdown-icon {
   @include mixins.iui-icon-style('m');
-  fill: currentColor;
   flex-shrink: 0;
   margin-inline-end: calc(0px - var(--iui-size-2xs));
+
+  &,
+  > svg {
+    fill: currentColor;
+  }
 
   .iui-header-breadcrumb-button-split & {
     margin-inline-end: 0;
@@ -223,7 +227,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     font-size: var(--iui-font-size-0);
     color: var(--iui-color-text-muted);
     @media (prefers-reduced-motion: no-preference) {
-      transition: visibility 0s linear 0s, width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+      transition:
+        visibility 0s linear 0s,
+        width var(--iui-duration-1) ease-out,
+        height var(--iui-duration-1) ease-out,
         opacity var(--iui-duration-1) ease-out;
     }
 
@@ -283,7 +290,9 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     outline-offset: -2px;
     transition: filter var(--iui-duration-1) ease-out;
     @media (prefers-reduced-motion: no-preference) {
-      transition: filter var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
+      transition:
+        filter var(--iui-duration-1) ease-out,
+        transform var(--iui-duration-1) ease-out;
     }
   }
 

@@ -19,7 +19,10 @@
     );
 
     > .iui-icon {
-      fill: var(--iui-color-icon-#{$category});
+      &,
+      > svg {
+        fill: var(--iui-color-icon-#{$category});
+      }
     }
   }
 
@@ -130,7 +133,11 @@
 
     > .iui-icon {
       @include mixins.iui-icon-style('m');
-      fill: var(--iui-color-icon-muted);
+
+      &,
+      > svg {
+        fill: var(--iui-color-icon-muted);
+      }
     }
   }
 
