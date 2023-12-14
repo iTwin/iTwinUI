@@ -9,7 +9,7 @@
     "sourceMap": false,
     "allowJs": false,
     "jsx": "react",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "traceResolution": false,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
