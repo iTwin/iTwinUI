@@ -133,5 +133,7 @@
     ]
   },
   "prettier": "configs/prettier-config",
-  "sideEffects": false
+  "sideEffects": [
+    "styles.css"
+  ]
 }
