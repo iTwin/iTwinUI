@@ -172,7 +172,7 @@ export type SelectProps<T> = {
   /**
    * Props to pass to the select button (trigger) element.
    */
-  triggerProps?: React.ComponentPropsWithoutRef<'div'>;
+  triggerProps?: React.ComponentPropsWithRef<'div'>;
 } & SelectMultipleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
@@ -388,7 +388,11 @@ export const Select = React.forwardRef(
             aria-haspopup='listbox'
             aria-controls={`${uid}-menu`}
             {...triggerProps}
-            ref={useMergedRefs(selectRef, popover.refs.setReference)}
+            ref={useMergedRefs(
+              selectRef,
+              triggerProps?.ref,
+              popover.refs.setReference,
+            )}
             className={cx(
               'iui-select-button',
               {

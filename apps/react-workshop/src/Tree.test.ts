@@ -4,7 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Tree', () => {
   const storyPath = 'Tree';
-  const tests = ['Basic', 'Full', 'Customized Expander', 'Async Loading'];
+  const tests = [
+    'Basic',
+    'Full',
+    'Customized Expander',
+    'Async Loading',
+    'Small',
+  ];
 
   tests.forEach((testName) => {
     it(testName, function () {

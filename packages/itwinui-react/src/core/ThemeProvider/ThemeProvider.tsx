@@ -137,21 +137,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
   themeOptions.highContrast ??=
     themeProp === 'inherit' ? parent.highContrast : undefined;
 
-  // dispatch theme changes via native events for compatibility between different versions of iTwinUI
-  const dispatchThemeChangesRef = React.useCallback(
-    (root: HTMLElement | null) => {
-      if (!root) {
-        return;
-      }
-      root.dispatchEvent(
-        new CustomEvent('iui:themechange', {
-          detail: { theme, highContrast: themeOptions.highContrast },
-        }),
-      );
-    },
-    [theme, themeOptions.highContrast],
-  );
-
   /**
    * We will portal our portal container into `portalContainer` prop (if specified),
    * or inherit `portalContainer` from context (if also inheriting theme).
@@ -181,11 +166,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
       <Root
         theme={theme}
         themeOptions={themeOptions}
-        ref={useMergedRefs(
-          forwardedRef,
-          setRootElement,
-          dispatchThemeChangesRef,
-        )}
+        ref={useMergedRefs(forwardedRef, setRootElement)}
         {...rest}
       >
         <ToastProvider>
@@ -266,22 +247,26 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
       return;
     }
 
-    // set theme for initial mount
-    setParentTheme(closestRoot?.getAttribute('data-iui-theme') as ThemeType);
+    // helper function that updates state to match data attributes from closest root
+    const synchronizeTheme = () => {
+      setParentTheme(closestRoot?.getAttribute('data-iui-theme') as ThemeType);
+      setParentHighContrastState(
+        closestRoot?.getAttribute('data-iui-contrast') === 'high',
+      );
+    };
 
-    // listen to theme changes for future updates
-    const controller = new AbortController();
-    closestRoot?.addEventListener(
-      'iui:themechange',
-      (event: CustomEvent) => {
-        setParentTheme(event.detail.theme);
-        setParentHighContrastState(event.detail.highContrast);
-      },
-      { signal: controller.signal },
-    );
+    // set theme for initial mount
+    synchronizeTheme();
+
+    // use mutation observers to listen to future updates to data attributes
+    const observer = new MutationObserver(() => synchronizeTheme());
+    observer.observe(closestRoot, {
+      attributes: true,
+      attributeFilter: ['data-iui-theme', 'data-iui-contrast'],
+    });
 
     return () => {
-      controller.abort();
+      observer.disconnect();
     };
   }, [rootElement, parentThemeRef]);
 
