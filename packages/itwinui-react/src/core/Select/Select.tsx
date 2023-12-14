@@ -172,7 +172,7 @@ export type SelectProps<T> = {
   /**
    * Props to pass to the select button (trigger) element.
    */
-  triggerProps?: React.ComponentPropsWithoutRef<'div'>;
+  triggerProps?: React.ComponentProps<'div'>;
 } & SelectMultipleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
