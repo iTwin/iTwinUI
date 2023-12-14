@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.1
+
+### Patch Changes
+
+- [#1738](https://github.com/iTwin/iTwinUI/pull/1738): Added missing `sideEffects` to prevent tree-shaking `styles.css` in webpack.
+
 ## 3.1.0
 
 ### Minor Changes
