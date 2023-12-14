@@ -13,6 +13,7 @@ import {
   useControlledState,
   useLatestRef,
   importCss,
+  isJest,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -288,6 +289,11 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useIsomorphicLayoutEffect(() => {
     // bail if styles are already loaded
     if (root.style.getPropertyValue('--_iui-version') === '3') {
+      return;
+    }
+
+    // bail if jest because it does not support dynamic imports 🤷
+    if (isJest) {
       return;
     }
 
