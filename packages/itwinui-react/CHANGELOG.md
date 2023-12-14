@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.2
+
+### Patch Changes
+
+- [#1740](https://github.com/iTwin/iTwinUI/pull/1740): Fixed `Select` and `Slider` to allow passing refs into `triggerProps` and `thumbProps` respectively.
+
 ## 3.1.1
 
 ### Patch Changes
