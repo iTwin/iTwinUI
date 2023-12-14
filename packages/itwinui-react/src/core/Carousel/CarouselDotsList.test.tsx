@@ -6,7 +6,7 @@ import { render, screen, act } from '@testing-library/react';
 import * as React from 'react';
 import { CarouselDotsList } from './CarouselDotsList.js';
 import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const originalMatchMedia = window.matchMedia;
 beforeAll(() => {

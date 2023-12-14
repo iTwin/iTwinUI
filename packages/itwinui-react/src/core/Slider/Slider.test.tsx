@@ -5,7 +5,7 @@
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
 import { Slider } from './Slider.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const createBoundingClientRect = (
   left: number,

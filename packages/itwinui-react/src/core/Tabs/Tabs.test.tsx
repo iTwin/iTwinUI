@@ -6,7 +6,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { Tabs, Tab } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import Button from '../Buttons/Button.js';
 
 type TabsProps = React.ComponentProps<typeof Tabs.Wrapper>;

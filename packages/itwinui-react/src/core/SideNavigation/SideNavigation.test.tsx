@@ -9,7 +9,7 @@ import { SideNavigation } from './SideNavigation.js';
 import { SidenavButton } from './SidenavButton.js';
 import { SidenavSubmenu } from './SidenavSubmenu.js';
 import { SvgMore as SvgPlaceholder, SvgChevronRight } from '../utils//index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 function renderComponent(
   props?: Partial<React.ComponentProps<typeof SideNavigation>>,

@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should pass down the props through DialogContext', async () => {
   const onClose = jest.fn();
