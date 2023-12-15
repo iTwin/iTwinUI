@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.1.2
+
+### Patch Changes
+
+- [#1740](https://github.com/iTwin/iTwinUI/pull/1740): Fixed `Select` and `Slider` to allow passing refs into `triggerProps` and `thumbProps` respectively.
+
+## 3.1.1
+
+### Patch Changes
+
+- [#1738](https://github.com/iTwin/iTwinUI/pull/1738): Added missing `sideEffects` to prevent tree-shaking `styles.css` in webpack.
+
+## 3.1.0
+
+### Minor Changes
+
+- [#1731](https://github.com/iTwin/iTwinUI/pull/1731): ThemeProvider will now correctly inherit theme changes from a v2 ancestor.
+- [#1710](https://github.com/iTwin/iTwinUI/pull/1710): Added new `middleware` and `positionReference` props to `Popover` for more control over the positioning logic.
+- [#1676](https://github.com/iTwin/iTwinUI/pull/1676): Added `size="small` prop to `Tree`, and decreased indentations on default size tree.
+- [#1707](https://github.com/iTwin/iTwinUI/pull/1707): `FileUpload`'s `onFileDropped` prop will now expose the underlying drop event as the second argument. This can be useful for accessing information about the directory structure.
+- [#1709](https://github.com/iTwin/iTwinUI/pull/1709): `IconButton`s inside a vertical `ButtonGroup` will now show tooltips on the right side by default, to avoid obscuring adjacent buttons in the group. The behavior of these tooltips can also be customized using the new `labelProps` prop, which can contain `labelProps.placement`, etc.
+
+### Patch Changes
+
+- [#1733](https://github.com/iTwin/iTwinUI/pull/1733): Fixed an overflow-related layout shift in vertical `Tabs`.
+- [#1725](https://github.com/iTwin/iTwinUI/pull/1725): Table is now scrollable horizontally even when no rows are present.
+
 ## 3.0.11
 
 ### Patch Changes

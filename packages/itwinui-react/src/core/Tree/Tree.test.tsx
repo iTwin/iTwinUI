@@ -351,3 +351,9 @@ it('should set correct computed aria attributes to nodes', () => {
   expect(node3_1.getAttribute('aria-setsize')).toBe('2');
   expect(node3_1.getAttribute('aria-posinset')).toBe('1');
 });
+
+it('should respect size prop', () => {
+  const { container } = renderComponent({ props: { size: 'small' } });
+  const tree = container.querySelector('.iui-tree') as HTMLElement;
+  expect(tree).toHaveAttribute('data-iui-size', 'small');
+});

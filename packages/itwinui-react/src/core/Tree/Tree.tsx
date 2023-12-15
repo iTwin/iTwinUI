@@ -58,6 +58,12 @@ export type NodeRenderProps<T> = Omit<NodeData<T>, 'subNodes'>;
 
 export type TreeProps<T> = {
   /**
+   * Modify size of the tree.
+   * 
+   * @default 'default'
+   */
+  size?: 'default' | 'small';
+  /**
    * Render function that should return the node element.
    * Recommended to use `TreeNode` component.
    * Must be memoized.
@@ -159,6 +165,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
     className,
     nodeRenderer,
     getNode,
+    size = 'default',
     enableVirtualization = false,
     style,
     ...rest
@@ -273,13 +280,14 @@ export const Tree = <T,>(props: TreeProps<T>) => {
                   setScrollToIndex(parentNodeIndex);
                 }
               : undefined,
+            size,
           }}
         >
           {nodeRenderer(node.nodeProps)}
         </TreeContext.Provider>
       );
     },
-    [firstLevelNodesList.length, flatNodesList, nodeRenderer],
+    [firstLevelNodesList.length, flatNodesList, nodeRenderer, size],
   );
 
   const [scrollToIndex, setScrollToIndex] = React.useState<number>();
@@ -334,6 +342,7 @@ export const Tree = <T,>(props: TreeProps<T>) => {
           onKeyDown={handleKeyDown}
           onFocus={handleFocus}
           className={className}
+          data-iui-size={size === 'small' ? 'small' : undefined}
           style={style}
           ref={treeRef}
           {...rest}
