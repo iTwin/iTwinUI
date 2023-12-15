@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 
 import { Header } from './Header.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(

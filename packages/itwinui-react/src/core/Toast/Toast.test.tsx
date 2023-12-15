@@ -11,7 +11,7 @@ import {
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { ToastProvider } from './Toaster.js';
 
 it('renders the category classes & icons correctly', () => {

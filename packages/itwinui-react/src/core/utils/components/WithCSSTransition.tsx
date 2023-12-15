@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { CSSTransition } from 'react-transition-group';
-import type { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import styles from '../../../styles.js';
 
 export const WithCSSTransition = (
-  props: Partial<CSSTransitionProps> & {
+  props: Partial<React.ComponentPropsWithoutRef<typeof CSSTransition>> & {
     children: JSX.Element;
     dimension?: 'height' | 'width';
   },
@@ -24,21 +23,21 @@ export const WithCSSTransition = (
       in={visible}
       timeout={200}
       unmountOnExit={true}
-      onEnter={(node) => {
+      onEnter={(node: HTMLElement) => {
         node.style[`min${dimensionCamelCase}`] = 'initial';
         node.style[dimension] = '0px';
       }}
-      onEntering={(node) => {
+      onEntering={(node: HTMLElement) => {
         node.style[dimension] = `${expandedSize.current}px`;
       }}
-      onEntered={(node) => {
+      onEntered={(node: HTMLElement) => {
         node.style[`min${dimensionCamelCase}`] = '';
         node.style[dimension] = '';
       }}
-      onExit={(node) => {
+      onExit={(node: HTMLElement) => {
         node.style[dimension] = `${expandedSize.current}px`;
       }}
-      onExiting={(node) => {
+      onExiting={(node: HTMLElement) => {
         node.style[`min${dimensionCamelCase}`] = 'initial';
         node.style[dimension] = '0px';
       }}
