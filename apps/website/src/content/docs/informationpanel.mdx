@@ -1,6 +1,6 @@
 ---
 title: Information panel
-description: A way to view additional attributes without leaving the list of items.
+description: A side panel for viewing additional information without leaving the main context.
 thumbnail: InformationPanel
 ---
 
@@ -10,51 +10,62 @@ thumbnail: InformationPanel
   <AllExamples.InformationPanelMainExample client:load />
 </LiveExample>
 
-The Information Panel is designed for complex tables, offering a user-friendly way to explore content without overwhelming details or horizontal scrolling. It enhances data presentation in tables when needed.
+The information panel opens from the side of the screen and overlays the main content. It is typically used to display additional information or actions without navigating away from the current view. It is specifically designed to work well with complex [tables](table), which would otherwise get too wide.
 
 ## Usage
 
-The Information Panel component is made up of customizable subcomponents. Here’s what the basic usage looks like:
+There are two main pieces to this component:
+
+- The `InformationPanelWrapper` is used to wrap around the "main" view (e.g. Table) on which the panel will overlay.
+- The `InformationPanel` is the actual panel that is displayed. It will be positioned relative to `InformationPanelWrapper` and its visibility can be controlled by the `isOpen` prop.
 
 ```tsx
 <InformationPanelWrapper>
   <Table ... /> {/* component to overlay */}
 
-  <InformationPanel isOpen={true}>
-    <InformationPanelHeader onClose={() => {}}>
-      <Text variant='subheading'>InfoPanel heading</Text>
-    </InformationPanelHeader>
-
-    <InformationPanelBody>
-      <Text>Metadata</Text>
-      <InformationPanelContent ... />
-      <Text>Attributes</Text>
-      <InformationPanelContent ... />
-    </InformationPanelBody>
-
-  </InformationPanel>
+  <InformationPanel isOpen={true}>…</InformationPanel>
 </InformationPanelWrapper>
 ```
 
-### Overlay Component
+### Subcomponents
 
-The `InformationPanel` component is designed to overlay content on the page. It is typically used to display additional information or actions without navigating away from the current view. By default, the panel is closed. It can be opened by setting `isOpen={true}`.
+Inside the `InformationPanel` component, there are two main subcomponents that can be used to structure the content:
 
-### InformationPanelWrapper
+- The `InformationPanelHeader` is used to display a header at the top of the panel. It consists of a title, a close button (which will invoke the `onClose` callback when clicked), and optional actions on the right side (controlled by the `actions` prop).
+- The `InformationPanelBody` is used to display the main content of the panel. It can be contain any arbitrary content.
 
-The `InformationPanelWrapper` is a container that is used to wrap and manage the placement of the `InformationPanel`. It helps in organizing and controlling the layout of the panel within the overall structure of the page.
+```tsx
+<InformationPanel>
+  <InformationPanelHeader onClose={() => {}}>
+    <Text variant='subheading' as='h2'>
+      InfoPanel heading
+    </Text>
+  </InformationPanelHeader>
 
-### InformationPanelContent
+  <InformationPanelBody>…</InformationPanelBody>
+</InformationPanel>
+```
 
-The `InformationPanelContent` is used to display the content within `InformationPanel`. Inline/Block display style of the content can be set using the `displayStyle` prop.
+There is also an optional `InformationPanelContent`, which provides an easy way to display a list of key-value pairs. There can be multiple `InformationPanelContent` instances inside the `InformationPanelBody`. The key-value pairs can either be displayed in separate lines (default) or in the same line next to each other (using `displayStyle="inline"`).
 
-### onClose
+```tsx
+<InformationPanelContent displayStyle='inline'>
+  <Label htmlFor='name-input'>File name</Label>
+  <Input id='name-input' value='Alpha.mp3' />
 
-The `onClose` function is an event handler used to close or hide the `InformationPanel`. When this function is called, it sets the `openRowIndex` state to -1, effectively closing the panel.
+  <Label htmlFor='year-input'>Year</Label>
+  <Input id='year-input' value='2021' />
 
-## Horizontal Orientation
+  <Label htmlFor='path-input'>Path</Label>
+  <Input id='path-input' value='/Shared/Music/' />
+</InformationPanelContent>
+```
 
-By default, the orientation of the Information Panel component is vertical. It can be changed by setting `orientation='horizontal'`.
+## Horizontal orientation
+
+By default, the `orientation` of the Information Panel component is `"vertical"`. In this orientation, the panel appears from the right side of the screen.
+
+To make the panel appear from the bottom, `orientation='horizontal'` can be used.
 
 <LiveExample src='InformationPanel.horizontal.tsx'>
   <AllExamples.InformationPanelHorizontalExample client:load />
