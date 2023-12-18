@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { Alert } from './Alert.js';
 

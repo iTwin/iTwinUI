@@ -9,7 +9,7 @@ import {
   DateRangeFilter,
   type DateRangeFilterProps,
 } from './DateRangeFilter.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {

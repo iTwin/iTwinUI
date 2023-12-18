@@ -9,7 +9,7 @@ import {
   type FilterButtonBarProps,
 } from './FilterButtonBar.js';
 import { BaseFilter } from './BaseFilter.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const setFilter = jest.fn();
 const clearFilter = jest.fn();

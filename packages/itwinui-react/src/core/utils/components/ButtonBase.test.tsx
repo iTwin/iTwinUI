@@ -5,7 +5,7 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { ButtonBase } from './ButtonBase.js';
 
 it('renders default button correctly', async () => {

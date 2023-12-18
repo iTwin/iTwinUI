@@ -11,7 +11,7 @@ import { Button } from '../Buttons/Button.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { SvgClose as SvgPlaceholder } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(
