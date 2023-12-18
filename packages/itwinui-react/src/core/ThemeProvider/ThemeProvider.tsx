@@ -87,9 +87,9 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
    */
   portalContainer?: HTMLElement;
   /**
-   * This prop will be used to determine if `styles.css` should be automatically imported at runtime.
+   * This prop will be used to determine if `styles.css` should be automatically imported at runtime (if not already found).
    *
-   * When using `theme='inherit'`, styles will be automatically loaded if not already found.
+   * By default, this is enabled when using `theme='inherit'`.
    * This default behavior is useful for packages that want to support incremental adoption of latest iTwinUI,
    * without requiring consuming applications (that might still be using an older version) to manually import the CSS.
    *
