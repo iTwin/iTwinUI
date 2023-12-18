@@ -10,6 +10,6 @@
 
 @layer itwinui.v3 {
   .iui-root {
-    --_iui-version: 3;
+    --_iui-v3-loaded: yes;
   }
 }

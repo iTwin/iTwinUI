@@ -86,6 +86,16 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
    * </ThemeProvider>
    */
   portalContainer?: HTMLElement;
+  /**
+   * This prop will be used to determine if `styles.css` should be automatically imported at runtime.
+   *
+   * When using `theme='inherit'`, styles will be automatically loaded if not already found.
+   * This default behavior is useful for packages that want to support incremental adoption of latest iTwinUI,
+   * without requiring consuming applications (that might still be using an older version) to manually import the CSS.
+   *
+   * If true or false is passed, it will override the default behavior.
+   */
+  includeCss?: boolean;
 };
 
 /**
@@ -122,6 +132,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     children,
     themeOptions = {},
     portalContainer: portalContainerProp,
+    includeCss = themeProp === 'inherit',
     ...rest
   } = props;
 
@@ -160,9 +171,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      {themeProp === 'inherit' && rootElement ? (
-        <FallbackStyles root={rootElement} />
-      ) : null}
+      {includeCss && rootElement ? <FallbackStyles root={rootElement} /> : null}
 
       <Root
         theme={theme}
@@ -288,7 +297,7 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
 const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useIsomorphicLayoutEffect(() => {
     // bail if styles are already loaded
-    if (root.style.getPropertyValue('--_iui-version') === '3') {
+    if (root.style.getPropertyValue('--_iui-v3-loaded') === 'yes') {
       return;
     }
 
