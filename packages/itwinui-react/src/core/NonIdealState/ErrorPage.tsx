@@ -6,53 +6,34 @@ import * as React from 'react';
 import { Button } from '../Buttons/Button.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
-import { isDev } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-/**
- * If `@itwin/itwinui-illustrations-react` is not found, we will log an error
- * and return an empty component to prevent crashing the app.
- */
-const failGracefully = () => {
-  if (isDev) {
-    console.warn(
-      'ErrorPage component requires manually installing the @itwin/itwinui-illustrations-react package.\n' +
-        'If you are not using ErrorPage, you can safely ignore this warning.',
-    );
-  }
-  return { default: () => null };
-};
-
-const Svg401 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg401').catch(failGracefully),
+const Svg401 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg401'),
 );
-const Svg403 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg403').catch(failGracefully),
+const Svg403 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg403'),
 );
-const Svg404 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg404').catch(failGracefully),
+const Svg404 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg404'),
 );
-const Svg500 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg500').catch(failGracefully),
+const Svg500 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg500'),
 );
-const Svg502 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg502').catch(failGracefully),
+const Svg502 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg502'),
 );
-const Svg503 = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/Svg503').catch(failGracefully),
+const Svg503 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg503'),
 );
-const SvgError = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/SvgError').catch(failGracefully),
+const SvgError = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgError'),
 );
-const SvgRedirect = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/SvgRedirect').catch(
-    failGracefully,
-  ),
+const SvgRedirect = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgRedirect'),
 );
-const SvgTimedOut = React.lazy(() =>
-  import('@itwin/itwinui-illustrations-react/SvgTimedOut').catch(
-    failGracefully,
-  ),
+const SvgTimedOut = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgTimedOut'),
 );
 
 /** @deprecated Use `NonIdealState` instead. */
