@@ -292,7 +292,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       return;
     }
 
-    // bail if jest because it does not support dynamic imports 🤷
+    // bail if jest because it doesn't care about CSS 🤷
     if (isJest) {
       return;
     }
