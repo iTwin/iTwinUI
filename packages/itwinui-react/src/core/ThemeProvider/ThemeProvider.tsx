@@ -297,7 +297,7 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
 const FallbackStyles = ({ root }: { root: HTMLElement }) => {
   useIsomorphicLayoutEffect(() => {
     // bail if styles are already loaded
-    if (root.style.getPropertyValue('--_iui-v3-loaded') === 'yes') {
+    if (getComputedStyle(root).getPropertyValue('--_iui-v3-loaded') === 'yes') {
       return;
     }
 
