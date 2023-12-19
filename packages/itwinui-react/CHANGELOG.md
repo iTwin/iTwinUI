@@ -1,5 +1,19 @@
 # Changelog
 
+## 3.2.0
+
+### Minor Changes
+
+- [#1734](https://github.com/iTwin/iTwinUI/pull/1734): `ThemeProvider` will now attempt to automatically load `styles.css` if using `theme="inherit"` (or `includeCss` if using other themes).
+
+  While applications are still advised to manually import `styles.css`, this new behavior is intended to ease the migration for applications that may be using an older version of iTwinUI but want to consume dependencies that rely on iTwinUI v3.
+
+- [#1744](https://github.com/iTwin/iTwinUI/pull/1744): `@itwin/itwinui-illustrations-react` has been made a direct dependency again, to avoid issues with bundlers attempting to bundle it even if `ErrorPage` is not used anywhere.
+
+### Patch Changes
+
+- [#1742](https://github.com/iTwin/iTwinUI/pull/1742): Fixed `ErrorPage` to correctly lazy import from `@itwin/itwinui-illustrations-react`.
+
 ## 3.1.2
 
 ### Patch Changes
