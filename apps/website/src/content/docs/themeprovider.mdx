@@ -1,0 +1,140 @@
+---
+title: ThemeProvider
+description: # TODO
+thumbnail: # TODO
+---
+
+ThemeProvider must be used as an ancestor of all iTwinUI components. It provides theming and other necessary information to all components within the tree.
+
+```jsx
+<ThemeProvider>
+  <>{/* Your components go here. */}</>
+</ThemeProvider>
+```
+
+It is important to note that this component is not just a context provider, but also renders an actual DOM element. This is necessary for the theme to be [scoped](#scoping-and-nesting) within the tree.
+
+## Theming
+
+The `theme` prop can be set to either `"light"` or `"dark"`. This will automatically and performantly update the theme for the entire tree, by changing the values of [CSS variables](variables).
+
+```jsx
+<ThemeProvider theme='dark'>…</ThemeProvider>
+```
+
+This theme affects all components that use iTwinUI's CSS variables, including custom components and components from other packages.
+
+If you want to set the theme based on the user's operating system, you can use the `"os"` value. This relies on the [`prefers-color-scheme` query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme) to be executed within client-side JavaScript, so it may cause a [flash of incorrect theme](https://css-tricks.com/flash-of-inaccurate-color-theme-fart/) when using server-side rendering.
+
+```jsx
+<ThemeProvider theme='os'>…</ThemeProvider>
+```
+
+If a `theme` value is not specified, it will default to [`"inherit"`](#inheritance), which will inherit the theme from its ancestors and fall back to `"light"`.
+
+### High contrast mode
+
+To enable higher contrast versions of light and dark themes, `themeOptions.highContrast` can be used. By default, the [`prefers-contrast` query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) will be used to automatically enable high contrast themes if the user has a specified a preference for it in their operating system.
+
+```jsx
+<ThemeProvider
+  theme='dark'
+  themeOptions={{
+    highContrast: true,
+  }}
+/>
+```
+
+### Background
+
+By default, the topmost `ThemeProvider` in the tree will set the `background-color` to `var(--iui-color-background-backdrop)`, which is the recommended value for page background.
+
+If you want to explicitly control whether or not the backgrond is applied, you can override this behavior using `themeOptions.applyBackground`:
+
+```jsx
+<ThemeProvider
+  themeOptions={{
+    applyBackground: false, // or true
+  }}
+/>
+```
+
+## Scoping and nesting
+
+By default, `ThemeProvider` will only apply its theme to its descendants, i.e. components outside of the provider's subtree will not be affected.
+
+This is useful if you want to have multiple themes in your application, or if you want to use iTwinUI for only a portion of your application.
+
+`ThemeProvider`s can also be nested if you want to use a different theme for a portion of your application.
+
+```jsx
+<ThemeProvider theme='light'>
+  <Text>Uses light theme!</Text>
+
+  <ThemeProvider theme='dark'>
+    <Text>Uses dark theme!</Text>
+  </ThemeProvider>
+</ThemeProvider>
+```
+
+### Inheritance
+
+When using `theme="inherit"` (which is also the default value), `ThemeProvider` will inherit the theme from its ancestors, e.g. from a `ThemeProvider` higher up in the tree.
+
+The inherited theme can also come from an older version of iTwinUI or from standalone usage of [variables](variables). If no parent theme is found, it will fall back to `"light"`.
+
+This behavior is useful for packages that want to use iTwinUI components but don't want to force a theme on their users. The application using the package can then wrap its entire tree in a `ThemeProvider` to apply a theme, which will be inherited by the package's components.
+
+```jsx
+const PackageComponent = () => {
+  return (
+    <ThemeProvider>
+      <Text>Uses theme from application!</Text>
+    </ThemeProvider>
+  );
+};
+
+const Application = () => {
+  return (
+    <ThemeProvider theme='dark'>
+      <PackageComponent />
+    </ThemeProvider>
+  );
+};
+```
+
+## Portals
+
+By default, `ThemeProvider` will be also be re-used as a [portal](https://react.dev/reference/react-dom/createPortal) target for floating elements (e.g. [`Tooltip`](tooltip), [`Toast`](toast), [`DropdownMenu`](dropdownmenu), [`Dialog`](dialog), etc).
+
+If you want to specify a different element as the portal target for all components within a tree, the `portalContainer` prop can be used.
+
+When passing an element to this prop, it is recommended to use state. For example:
+
+```jsx
+const [myPortal, setMyPortal] = React.useState(null);
+
+<div ref={setMyPortal} />
+
+<ThemeProvider portalContainer={myPortal}>
+  …
+</ThemeProvider>
+```
+
+## CSS
+
+Starting with v3, applications are advised to manually import `styles.css` in their entrypoint:
+
+```js
+import '@itwin/itwinui-css/css/styles.css';
+```
+
+This works well for applications that already use iTwinUI v3, but it can be tricky if the application is still using an older version of iTwinUI and wants to consume a package that uses v3.
+
+To make this easier, `ThemeProvider` can automatically import `styles.css` if it is not already imported. By default, this is enabled when using [`theme='inherit'`](#inheritance).
+
+If you want to override this behavior, you can use the `importCss` prop:
+
+```jsx
+<ThemeProvider importCss={false}>…</ThemeProvider>
+```
