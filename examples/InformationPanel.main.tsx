@@ -14,7 +14,7 @@ import {
 } from '@itwin/itwinui-react';
 
 export default () => {
-  const [openRowIndex, setOpenRowIndex] = React.useState<number>();
+  const [openRowIndex, setOpenRowIndex] = React.useState<number>(-1);
 
   return (
     <InformationPanelWrapper>

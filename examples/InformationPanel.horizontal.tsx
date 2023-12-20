@@ -20,7 +20,7 @@ import {
 import { SvgWindowPopout } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [openRowIndex, setOpenRowIndex] = React.useState<number>();
+  const [openRowIndex, setOpenRowIndex] = React.useState<number>(-1);
 
   return (
     <InformationPanelWrapper>
