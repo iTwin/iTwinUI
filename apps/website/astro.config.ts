@@ -61,14 +61,6 @@ function rehypeToc() {
   } as any;
 
   return (tree, file) => {
-    let showTOC = true;
-
-    // ideally we would check if the frontmatter has a toc: false, but that is not available
-    // so we will hardcode the files we don't want a toc for
-    if (['index.mdx'].includes(file.history[0].split('/').pop()!)) {
-      showTOC = false;
-    }
-
     const headings = findHeadings(tree, tocOptions);
     if (!headings.length) return tree;
     const toc = createTOC(
@@ -87,7 +79,7 @@ function rehypeToc() {
       type: 'root',
       children: [
         // <aside> element with toc
-        showTOC && {
+        {
           type: 'element',
           tagName: 'aside',
           children: [toc],
