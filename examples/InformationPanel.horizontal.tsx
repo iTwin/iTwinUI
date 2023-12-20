@@ -7,11 +7,17 @@ import {
   Button,
   InformationPanel,
   InformationPanelBody,
+  InformationPanelContent,
   InformationPanelHeader,
   InformationPanelWrapper,
+  Input,
+  Label,
   Table,
   Text,
+  InputGrid,
+  IconButton,
 } from '@itwin/itwinui-react';
+import { SvgWindowPopout } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [openRowIndex, setOpenRowIndex] = React.useState<number>(-1);
@@ -25,7 +31,7 @@ export default () => {
             Header: 'Details',
             Cell: ({ row }) => (
               <Button onClick={() => setOpenRowIndex(row.index)}>
-                Click me
+                Details
               </Button>
             ),
           },
@@ -37,17 +43,52 @@ export default () => {
 
       <InformationPanel
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
+        orientation='horizontal'
       >
-        <InformationPanelHeader onClose={() => setOpenRowIndex(-1)}>
+        <InformationPanelHeader
+          onClose={() => setOpenRowIndex(-1)}
+          actions={
+            <IconButton
+              label='Open in new window'
+              styleType='borderless'
+              onClick={() => {}}
+            >
+              <SvgWindowPopout />
+            </IconButton>
+          }
+        >
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
         </InformationPanelHeader>
         <InformationPanelBody>
-          <Text as='p'>Content for row {openRowIndex ?? 0} goes here.</Text>
-          <Text as='p'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maxime
-            voluptatem praesentium nulla temporibus sit est officiis nobis
-            nostrum, accusamus natus?
-          </Text>
+          <InformationPanelContent displayStyle='inline'>
+            <InputGrid>
+              <Label htmlFor='name-input'>File name</Label>
+              <Input
+                size='small'
+                id='name-input'
+                value={`Row ${openRowIndex ?? 0}`}
+                readOnly
+              />
+            </InputGrid>
+            <InputGrid>
+              <Label htmlFor='author-input'>Author</Label>
+              <Input
+                size='small'
+                id='author-input'
+                defaultValue='DJ Terry'
+                readOnly
+              />
+            </InputGrid>
+            <InputGrid>
+              <Label htmlFor='year-input'>Year</Label>
+              <Input
+                size='small'
+                id='year-input'
+                defaultValue='2021'
+                readOnly
+              />
+            </InputGrid>
+          </InformationPanelContent>
         </InformationPanelBody>
       </InformationPanel>
     </InformationPanelWrapper>
