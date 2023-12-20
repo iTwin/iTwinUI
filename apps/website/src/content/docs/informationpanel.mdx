@@ -1,22 +1,83 @@
 ---
-title: Information panel
-description: A way to view additional attributes without leaving the list of items.
-propsPath: '@itwin/itwinui-react/esm/core/InformationPanel/InformationPanel.d.ts'
+title: InformationPanel
+description: A side panel for viewing additional information without leaving the main context.
 thumbnail: InformationPanel
 ---
 
 <p>{frontmatter.description}</p>
 
-<Placeholder componentPageName='informationpanel' />
-
 <LiveExample src='InformationPanel.main.tsx'>
   <AllExamples.InformationPanelMainExample client:load />
 </LiveExample>
 
-The information panel is a pattern used primarily in tables. It allows viewing or editing additional details about selected item(s) without leaving the table.
+The `InformationPanel` opens from the side of the screen and overlays the main content. It is typically used to display additional information or actions without navigating away from the current view. It is specifically designed to work well with complex [tables](table), which would otherwise start overflowing horizontally.
 
-The info panel is reserved for complex tables, because it allows the user to gradually explore the content without overwhelming them with too many details. It also helps avoiding the unpleasant horizontal scrolling when the table gets too wide. Not every table requires an information panel.
+## Usage
+
+There are two main pieces to this component:
+
+- The `InformationPanelWrapper` is used to wrap around the "main" view (e.g. Table) on which the panel will overlay.
+- The `InformationPanel` is the actual panel that is displayed. It will be positioned relative to `InformationPanelWrapper` and its visibility can be controlled by the `isOpen` prop.
+
+```tsx
+<InformationPanelWrapper>
+  <Table ... /> {/* component to overlay */}
+
+  <InformationPanel isOpen={true}>…</InformationPanel>
+</InformationPanelWrapper>
+```
+
+### Subcomponents
+
+Inside the `InformationPanel` component, there are two main subcomponents that can be used to structure the content:
+
+- The `InformationPanelHeader` is used to display a header at the top of the panel. It consists of a title, a close button (which will invoke the `onClose` callback when clicked), and optional actions on the right side (controlled by the `actions` prop).
+- The `InformationPanelBody` is used to display the main content of the panel. It can contain any arbitrary content.
+
+```tsx
+<InformationPanel>
+  <InformationPanelHeader
+    onClose={() => {}}
+    actions={
+      <IconButton label='Open in new window' styleType='borderless' onClick={() => {}}>
+        <SvgWindowPopout />
+      </IconButton>
+    }
+  >
+    <Text variant='subheading' as='h2'>
+      InfoPanel heading
+    </Text>
+  </InformationPanelHeader>
+
+  <InformationPanelBody>…</InformationPanelBody>
+</InformationPanel>
+```
+
+There is also an optional `InformationPanelContent`, which provides an easy way to display a list of key-value pairs. There can be multiple `InformationPanelContent` instances inside the `InformationPanelBody`. The key-value pairs can either be displayed on separate lines (default) or on the same line next to each other (using `displayStyle="inline"`).
+
+```tsx
+<InformationPanelContent displayStyle='inline'>
+  <Label htmlFor='name-input'>File name</Label>
+  <Input id='name-input' value='Alpha.mp3' />
+
+  <Label htmlFor='year-input'>Year</Label>
+  <Input id='year-input' value='2021' />
+
+  <Label htmlFor='path-input'>Path</Label>
+  <Input id='path-input' value='/Shared/Music/' />
+</InformationPanelContent>
+```
+
+## Horizontal orientation
+
+By default, the `orientation` of the Information Panel component is `"vertical"`. In this orientation, the panel appears from the right side of the screen.
+
+To make the panel appear from the bottom, `orientation='horizontal'` can be used.
+
+<LiveExample src='InformationPanel.horizontal.tsx'>
+  <AllExamples.InformationPanelHorizontalExample client:load />
+</LiveExample>
 
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path={'@itwin/itwinui-react/esm/core/InformationPanel/InformationPanel.d.ts'} />
