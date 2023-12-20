@@ -36,7 +36,14 @@ Inside the `InformationPanel` component, there are two main subcomponents that c
 
 ```tsx
 <InformationPanel>
-  <InformationPanelHeader onClose={() => {}}>
+  <InformationPanelHeader
+    onClose={() => {}}
+    actions={
+      <IconButton label='Open in new window' styleType='borderless' onClick={() => {}}>
+        <SvgWindowPopout />
+      </IconButton>
+    }
+  >
     <Text variant='subheading' as='h2'>
       InfoPanel heading
     </Text>
