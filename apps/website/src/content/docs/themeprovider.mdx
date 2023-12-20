@@ -79,7 +79,7 @@ This is useful if you want to have multiple themes in your application, or if yo
 
 ### Inheritance
 
-When using `theme="inherit"` (which is also the default value), `ThemeProvider` will inherit the theme from its ancestors, e.g. from a `ThemeProvider` higher up in the tree.
+When using `theme="inherit"` (which is also the default value), `ThemeProvider` will inherit the theme from its ancestors, e.g. from the nearest `ThemeProvider` higher up in the tree.
 
 The inherited theme can also come from an older version of iTwinUI or from standalone usage of [variables](variables). If no parent theme is found, it will fall back to `"light"`.
 
