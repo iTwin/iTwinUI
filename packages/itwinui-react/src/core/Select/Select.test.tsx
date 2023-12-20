@@ -10,7 +10,7 @@ import Select, {
 } from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 function assertSelect(
   select: HTMLElement,

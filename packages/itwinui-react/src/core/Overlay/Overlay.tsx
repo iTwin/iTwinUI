@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { Box, polymorphic, dynamicImport } from '../utils/index.js';
+import { Box, polymorphic } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type OverlayComponentProps = {
@@ -105,7 +105,7 @@ const useInertPolyfill = () => {
   React.useEffect(() => {
     (async () => {
       if (!HTMLElement.prototype.hasOwnProperty('inert') && !loaded.current) {
-        await dynamicImport(modulePath);
+        await import(/* webpackIgnore: true */ /* @vite-ignore */ modulePath);
         loaded.current = true;
       }
     })();
