@@ -49,7 +49,10 @@ To enable higher contrast versions of light and dark themes, `themeOptions.highC
 
 By default, only the topmost `ThemeProvider` in the tree will set the `background-color` to `var(--iui-color-background-backdrop)`, which is the recommended value for page background.
 
-If you want to explicitly control whether or not the backgrond is applied, you can override this behavior using `themeOptions.applyBackground`:
+If you want to explicitly control whether or not the backgrond is applied, you can override this behavior using `themeOptions.applyBackground`.
+
+- If `false`, the background will not be applied even if this is the topmost `ThemeProvider` in the tree.
+- If `true`, the background will be applied even if this is not the topmost `ThemeProvider` in the tree.
 
 ```jsx
 <ThemeProvider
