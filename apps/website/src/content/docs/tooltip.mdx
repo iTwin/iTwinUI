@@ -1,36 +1,73 @@
 ---
 title: Tooltip
-description: Tooltips display informative text when users hover over, focus on, or tap an element.
-propsPath: '@itwin/itwinui-react/esm/core/Tooltip/Tooltip.d.ts'
+description: Tooltips display informative text when users hover, focus, or tap an interactive element.
 thumbnail: Tooltip
+related:
+  - popover
+  - expandableblock
 ---
 
 <p>{frontmatter.description}</p>
+
+Make sure to read the [Accessibility](#accessibility) section for best practices before using tooltips.
+
+## Usage
+
+Wrap `Tooltip` around the element you want to use as the "trigger", and pass the tooltip text into the `content` prop.
 
 <LiveExample src='Tooltip.main.tsx' truncate={false}>
   <AllExamples.TooltipMainExample client:load />
 </LiveExample>
 
-A tooltip is a small container that typically appears above the element you are hovering with your cursor with a short, helpful text message.
+For everything to work correctly, the trigger element must:
 
-## Usage
+- be an interactive element, for example, a `<button>`
+- forward its ref
+- delegate (spread) any arbitrary props
 
-You should use up to 256 characters. Content other than text such as pictures, tables, etc., are not recommended. Mobile devices do not have a hover state. Thus, be cautious when using tooltips in desktop apps that have a mobile counterpart, since there is no determined way of replacing tooltips on mobile devices.
+## Positioning
 
-Examples of the many ways where tooltips can be used: [AvatarGroup](avatar#overflow), [Stepper](stepper#tooltip), and [Slider](slider#tooltips).
-
-It is not recommended to use tooltips to display critical information, or as a means to navigate an interface. They are necessary only when supplemental information is required. Functionality of the product should NOT be dependent on the user reading tooltips.
-
-Tooltips are enabled by default but can be turned off.
-
-### Placement
-
-Tooltips can also be customized such as changing the placement.
+`Tooltip` handles positioning using an external library called [Floating UI](floating-ui.com/). To control which side the tooltip should be placed relative to its trigger, use the `placement` prop (which defaults to `"top"`). If not enough space is available, then it will automatically flip to the opposite side.
 
 <LiveExample src='Tooltip.placement.tsx'>
   <AllExamples.TooltipPlacementExample client:load />
 </LiveExample>
 
+There are some advanced props available for more granular control over positioning, such as `autoUpdateOptions` and `middleware`. These are rarely needed in practice.
+
+### Portals
+
+It is important to know that before calculating the position, the tooltip gets [portaled](https://react.dev/reference/react-dom/createPortal) into the nearest [`ThemeProvider`](themeprovider) to avoid [stacking context](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_positioned_layout/Understanding_z-index/Stacking_context) issues. This behavior can be controlled using the Tooltip's `portal` prop or the ThemeProvider's [`portalContainer`](themeprovider#portals) prop.
+
+## Accessibility
+
+Tooltip has a few built-in accessibility features to help satisfy [WCAG Success Criteria 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html).
+
+- It will be triggered when the user focuses the trigger element using keyboard.
+- It can be dismissed using the <kbd>Escape</kbd> key.
+- The content can be hovered over using a mouse pointer, instead of automatically disappearing when the mouse leaves the trigger element.
+- For screen-reader support, the tooltip be associated with the trigger element using [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) by default. This behavior is controllable using the `ariaStrategy` prop.
+
+### Best practices
+
+- Tooltips should only be used to display supplemental information. Do **not** use tooltips to display critical information, or as a means to navigate an interface. Functionality of the product should **not** be dependent on the user reading tooltips.
+
+- Tooltip content should consist of short plain text, up to 256 characters. Do **not** use content other than text, such as links, pictures, tables, etc. If you need to display more interactive content, consider using a [Popover](popover) instead.
+
+- Tooltips should only be triggered by interactive elements, such as buttons, which can be focused using keyboard. Do **not** use tooltips for revealing truncated text and do **not** use plain icons as the trigger, as this pattern will not be accessible to keyboard users or screen-reader users.
+
+- Touchscreen devices do not have a hover state. Be cautious when using tooltips, since there is no determined way of replacing tooltips on mobile devices or tablets.
+
+## IconButtons
+
+If you are using a [`IconButton`](button#iconbutton) as the trigger, you can pass the `label` prop to it, instead of wrapping it in a `Tooltip` component. This will automatically add the tooltip functionality to the button and handle some other accessibility considerations as well.
+
+```tsx
+<IconButton label='Edit'>
+  <SvgEdit />
+</IconButton>
+```
+
 ## Props
 
-<PropsTable path={frontmatter.propsPath} />
+<PropsTable path='@itwin/itwinui-react/esm/core/Tooltip/Tooltip.d.ts' />

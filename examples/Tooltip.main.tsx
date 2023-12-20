@@ -7,7 +7,7 @@ import { Tooltip, Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Tooltip placement='top' content='I am a tooltip'>
+    <Tooltip content='I am a tooltip'>
       <Button>Please, hover me!</Button>
     </Tooltip>
   );
