@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as React from 'react';
 import {
   Button,
   InformationPanel,
@@ -14,11 +15,12 @@ import {
   Table,
   Text,
   InputGrid,
+  IconButton,
 } from '@itwin/itwinui-react';
-import * as React from 'react';
+import { SvgWindowPopout } from '@itwin/itwinui-icons-react';
 
 export default () => {
-  const [openRowIndex, setOpenRowIndex] = React.useState<number>(1);
+  const [openRowIndex, setOpenRowIndex] = React.useState<number>();
 
   return (
     <InformationPanelWrapper>
@@ -34,9 +36,7 @@ export default () => {
             ),
           },
         ]}
-        data={[...Array(3).fill(null)].map((_, index) => ({
-          name: `Row${index}`,
-        }))}
+        data={[{ name: 'Row0' }, { name: 'Row1' }, { name: 'Row2' }]}
         emptyTableContent='No data.'
         style={{ minWidth: '450px' }}
       />
@@ -45,7 +45,18 @@ export default () => {
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
         orientation='horizontal'
       >
-        <InformationPanelHeader onClose={() => setOpenRowIndex(-1)}>
+        <InformationPanelHeader
+          onClose={() => setOpenRowIndex(-1)}
+          actions={
+            <IconButton
+              label='Open in new window'
+              styleType='borderless'
+              onClick={() => {}}
+            >
+              <SvgWindowPopout />
+            </IconButton>
+          }
+        >
           <Text variant='subheading'>Row {openRowIndex ?? 0}</Text>
         </InformationPanelHeader>
         <InformationPanelBody>
