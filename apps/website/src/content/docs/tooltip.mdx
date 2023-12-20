@@ -41,11 +41,11 @@ It is important to know that before calculating the position, the tooltip gets [
 
 ## Accessibility
 
-Tooltip has a few built-in accessibility features to help satisfy [WCAG Success Criteria 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html).
+`Tooltip` has a few built-in accessibility features to help satisfy [WCAG Success Criteria 1.4.13](https://www.w3.org/WAI/WCAG22/Understanding/content-on-hover-or-focus.html).
 
-- It will be triggered when the user focuses the trigger element using keyboard.
-- It can be dismissed using the <kbd>Escape</kbd> key.
-- The content can be hovered over using a mouse pointer, instead of automatically disappearing when the mouse leaves the trigger element.
+- The tooltip will be shown when the trigger element is focused (e.g. using the <kbd>Tab</kbd> key).
+- The tooltip can be dismissed using the <kbd>Escape</kbd> key.
+- The content can be hovered over using a mouse pointer, instead of always disappearing when the pointer leaves the trigger element.
 - For screen-reader support, the tooltip will be associated with the trigger element using [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) by default. This behavior is controllable using the `ariaStrategy` prop.
 
 ### Best practices
