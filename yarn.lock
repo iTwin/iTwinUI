@@ -14559,18 +14559,7 @@ vite-tsconfig-paths@^4.2.1:
     globrex "^0.1.2"
     tsconfck "^2.1.0"
 
-vite@^5, vite@^5.0.10:
-  version "5.0.10"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.10.tgz#1e13ef5c3cf5aa4eed81f5df6d107b3c3f1f6356"
-  integrity sha512-2P8J7WWgmc355HUMlFrwofacvr98DAjoE52BfdbwQtyLH06XKwaL/FMnmKM2crF0iX4MpmMKoDlNCB1ok7zHCw==
-  dependencies:
-    esbuild "^0.19.3"
-    postcss "^8.4.32"
-    rollup "^4.2.0"
-  optionalDependencies:
-    fsevents "~2.3.3"
-
-vite@*, vite@^4, vite@^4.4.9:
+vite@*, vite@^4, vite@^4.4.9, vite@^4.5.1:
   version "4.5.1"
   resolved "https://registry.yarnpkg.com/vite/-/vite-4.5.1.tgz#3370986e1ed5dbabbf35a6c2e1fb1e18555b968a"
   integrity sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==
@@ -14580,6 +14569,17 @@ vite@*, vite@^4, vite@^4.4.9:
     rollup "^3.27.1"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vite@^5.0.10:
+  version "5.0.10"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.0.10.tgz#1e13ef5c3cf5aa4eed81f5df6d107b3c3f1f6356"
+  integrity sha512-2P8J7WWgmc355HUMlFrwofacvr98DAjoE52BfdbwQtyLH06XKwaL/FMnmKM2crF0iX4MpmMKoDlNCB1ok7zHCw==
+  dependencies:
+    esbuild "^0.19.3"
+    postcss "^8.4.32"
+    rollup "^4.2.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
 
 vitefu@^0.2.5:
   version "0.2.5"

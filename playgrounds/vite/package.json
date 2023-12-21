@@ -23,7 +23,7 @@
     "@vitejs/plugin-react": "^3.1.0",
     "configs": "*",
     "typescript": "~5.1.6",
-    "vite": "^5"
+    "vite": "^4"
   },
   "lint-staged": {
     "*.{tsx,ts,jsx,js}": [
