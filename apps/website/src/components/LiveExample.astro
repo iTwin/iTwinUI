@@ -35,9 +35,6 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 </div>
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <button data-copied='false'>
-    <span class='visually-hidden'>Copy to clipboard</span>
-  </button>
   <Code code={code} lang='tsx' theme={nightOwl} />
 </demo-code>
 
@@ -47,27 +44,12 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     class extends HTMLElement {
       connectedCallback() {
         const expandButton = this.querySelector('button[aria-expanded]') as HTMLElement;
-        const copyButton = this.querySelector('button[data-copied]') as HTMLElement;
-        const code = this.querySelector('pre');
+        const code = this.querySelector('pre') as HTMLElement;
 
         expandButton?.addEventListener('click', () => {
           const shouldExpand = expandButton.getAttribute('aria-expanded') === 'false';
           expandButton.setAttribute('aria-expanded', String(shouldExpand));
           code.inert = !shouldExpand;
-        });
-
-        copyButton?.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(code.innerText);
-            copyButton.dataset.copied = 'true';
-            copyButton.setAttribute('aria-description', 'Copied');
-
-            await new Promise((resolve) => setTimeout(resolve, 4000));
-            copyButton.dataset.copied = 'false';
-            copyButton.removeAttribute('aria-description');
-          } catch {
-            console.error('unable to copy :(');
-          }
         });
       }
     },
@@ -159,42 +141,6 @@ if (code.includes('Copyright (c) Bentley Systems')) {
           color: var(--color-text);
           border-color: var(--color-line-1);
         }
-      }
-
-      button[data-copied] {
-        top: 0.5rem;
-        right: 0.5rem;
-        padding: 0.5rem;
-        border-color: var(--color-line-2);
-        display: grid;
-        place-items: center;
-
-        --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z'></path></svg>");
-
-        &[data-copied='true'] {
-          --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 20 20'><path d='m7.032 13.907l-3.471-3.905a.75.75 0 0 0-1.122.996l4 4.5a.75.75 0 0 0 1.091.032l10.5-10.5a.75.75 0 0 0-1.06-1.06l-9.938 9.937Z'></path></svg>");
-        }
-
-        &::before {
-          content: '';
-          -webkit-mask: var(--_svg) no-repeat center / contain;
-          mask: var(--_svg) no-repeat center / contain;
-          width: 1rem;
-          height: 1rem;
-          background-color: currentColor;
-        }
-
-        &:hover {
-          border-color: currentColor;
-        }
-      }
-
-      &:not(:hover, :focus-within) button[data-copied] {
-        clip-path: inset(50%);
-        overflow: hidden;
-        width: 1px;
-        height: 1px;
-        white-space: nowrap;
       }
     }
   }

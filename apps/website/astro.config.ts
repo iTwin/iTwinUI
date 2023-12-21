@@ -31,7 +31,6 @@ export default defineConfig({
     react(),
     astroExpressiveCode({
       themes: [nightOwl],
-      frames: { showCopyToClipboardButton: false },
       cascadeLayer: 'thirdparty.ec',
       minSyntaxHighlightingColorContrast: 4.5,
       emitExternalStylesheet: true,
