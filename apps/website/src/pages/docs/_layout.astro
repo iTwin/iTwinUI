@@ -248,6 +248,10 @@ const currentPage = new URL(Astro.request.url).pathname;
           display: grid;
           gap: var(--space-1);
         }
+
+        :global(.expressive-code) {
+          overflow: auto;
+        }
       }
     }
   }

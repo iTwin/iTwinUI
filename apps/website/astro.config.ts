@@ -11,6 +11,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import AutoImport from 'astro-auto-import';
+import astroExpressiveCode from 'astro-expressive-code';
+import nightOwl from './nightOwl.mjs';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -27,24 +29,26 @@ export default defineConfig({
       ],
     }),
     react(),
+    astroExpressiveCode({
+      themes: [nightOwl],
+      cascadeLayer: 'thirdparty.ec',
+      minSyntaxHighlightingColorContrast: 4.5,
+      emitExternalStylesheet: true,
+      styleOverrides: {
+        borderColor: 'var(--color-line-2)',
+      },
+    }),
     mdx(),
     sitemap(),
   ],
   markdown: {
-    syntaxHighlight: 'prism',
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeToc],
   },
   server: { port: 1700 },
   scopedStyleStrategy: 'where',
   vite: {
     ssr: {
-      noExternal: [
-        '@fontsource/noto-sans',
-        '@tippyjs/react',
-        '@itwin/itwinui-react',
-        !isDev && '@itwin/itwinui-icons-react',
-        'examples',
-      ].filter(Boolean),
+      noExternal: ['@fontsource/noto-sans', '@tippyjs/react', '@itwin/itwinui-react', 'examples'],
     },
   },
 });

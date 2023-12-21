@@ -36,7 +36,7 @@ If a `theme` value is not specified, it will default to [`"inherit"`](#inheritan
 
 To enable higher contrast versions of light and dark themes, `themeOptions.highContrast` can be used. By default, the [`prefers-contrast` query](https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-contrast) will be used to automatically enable high contrast themes if the user has a specified a preference for it in their operating system.
 
-```jsx
+```jsx {4}
 <ThemeProvider
   theme='dark'
   themeOptions={{
@@ -54,7 +54,7 @@ If you want to explicitly control whether or not the background is applied, you 
 - If `false`, the background will not be applied even if this is the topmost `ThemeProvider` in the tree.
 - If `true`, the background will be applied even if this is not the topmost `ThemeProvider` in the tree.
 
-```jsx
+```jsx {3}
 <ThemeProvider
   themeOptions={{
     applyBackground: false, // or true
