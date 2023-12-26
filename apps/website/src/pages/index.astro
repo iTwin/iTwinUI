@@ -297,8 +297,13 @@ const currentPage = new URL(Astro.request.url).pathname;
       }
       .highlight-text {
         background: var(--color-highlight-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent;
+
+        &::selection {
+          color: CanvasText;
+          background-color: Highlight;
+        }
       }
       .glow {
         box-shadow:

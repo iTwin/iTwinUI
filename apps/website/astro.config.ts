@@ -12,7 +12,6 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import AutoImport from 'astro-auto-import';
 import astroExpressiveCode from 'astro-expressive-code';
-import nightOwl from './nightOwl.mjs';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -30,12 +29,14 @@ export default defineConfig({
     }),
     react(),
     astroExpressiveCode({
-      themes: [nightOwl],
+      themes: ['github-dark'],
       cascadeLayer: 'thirdparty.ec',
       minSyntaxHighlightingColorContrast: 4.5,
       emitExternalStylesheet: true,
       styleOverrides: {
         borderColor: 'var(--color-line-2)',
+        codeBackground: 'transparent',
+        codeFontSize: 'var(--type--1)',
       },
     }),
     mdx(),

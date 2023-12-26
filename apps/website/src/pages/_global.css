@@ -60,18 +60,12 @@
     /* #endregion */
 
     /* #region Dark */
-    --color-background-1--dark: hsl(221deg 33% 17%);
-    --color-background-2--dark: hsl(221deg 47% 11%);
+    --color-background-1--dark: hsl(220deg 17% 15%);
+    --color-background-2--dark: hsl(220deg 51% 8%)
     --color-background-3--dark: #fff;
     --color-text--dark: hsl(210deg 6% 85%);
     --color-subtext--dark: hsl(221deg 16% 68%);
     --color-mutedtext--dark: hsl(221deg, 6%, 52%);
-    --color-demo-gradient--dark: conic-gradient(
-      from -0.5turn at bottom right,
-      hsl(232deg 16% 24%),
-      hsl(212deg 32% 17%),
-      hsl(224deg 22% 22%)
-    );
     --color-active--dark: hsl(221deg 12% 27% / 40%);
     --color-line-1--dark: hsl(205deg 13% 54%);
     --color-line-2--dark: hsl(205deg 13% 35%);
@@ -103,8 +97,6 @@
     --color-text: var(--color-text--dark);
     --color-subtext: var(--color-subtext--dark);
     --color-mutedtext: var(--color-mutedtext--dark);
-    --color-demo-gradient: var(--color-demo-gradient--dark);
-    --color-sandbox-gradient: var(--color-demo-gradient--dark);
     --color-highlight-gradient: var(--color-highlight-gradient-1);
     --color-active: var(--color-active--dark);
     --color-line-1: var(--color-line-1--dark);
@@ -116,15 +108,15 @@
 
     /* TODO: rename these? ⬇️  */
 
-    /* #region Typography: https://utopia.fyi/type/calculator/?c=300,14,1.125,2100,17,1.2,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l */
-    --type--3: clamp(0.61rem, 0.61rem + 0vw, 0.62rem);
-    --type--2: clamp(0.69rem, 0.68rem + 0.04vw, 0.74rem);
-    --type--1: clamp(0.78rem, 0.76rem + 0.1vw, 0.89rem);
-    --type-0: clamp(0.88rem, 0.84rem + 0.17vw, 1.06rem);
-    --type-1: clamp(0.98rem, 0.94rem + 0.26vw, 1.28rem);
-    --type-2: clamp(1.11rem, 1.04rem + 0.38vw, 1.53rem);
-    --type-3: clamp(1.25rem, 1.15rem + 0.53vw, 1.84rem);
-    --type-4: clamp(1.4rem, 1.27rem + 0.71vw, 2.2rem);
+    /* #region Typography: https://utopia.fyi/type/calculator?c=300,14,1.2,2100,17,1.2,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --type--3: clamp(0.5063rem, 0.4881rem + 0.0967vw, 0.615rem);
+    --type--2: clamp(0.6075rem, 0.5857rem + 0.1161vw, 0.7381rem);
+    --type--1: clamp(0.7294rem, 0.7033rem + 0.1389vw, 0.8856rem);
+    --type-0: clamp(0.875rem, 0.8438rem + 0.1667vw, 1.0625rem);
+    --type-1: clamp(1.05rem, 1.0125rem + 0.2vw, 1.275rem);
+    --type-2: clamp(1.26rem, 1.215rem + 0.24vw, 1.53rem);
+    --type-3: clamp(1.5119rem, 1.4578rem + 0.2883vw, 1.8363rem);
+    --type-4: clamp(1.8144rem, 1.7496rem + 0.3456vw, 2.2031rem);
     /* #endregion */
 
     /* #region Spacing: https://utopia.fyi/space/calculator/?c=300,14,1.2,2100,18,1.25,5,2,&s=0.75|0.5|0.25|0.125,1.25|1.5|2|2.25,s-l */
