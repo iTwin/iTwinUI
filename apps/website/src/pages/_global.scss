@@ -89,20 +89,10 @@
     --color-highlight-2: hsl(232deg 78% 82%);
     --color-highlight-3: hsl(186deg 78% 79%);
     --color-highlight-4: hsl(232deg 70% 70%);
-    --color-highlight-gradient-1: linear-gradient(
+    --color-highlight-gradient: linear-gradient(
       135deg,
       var(--color-highlight-1),
       var(--color-highlight-2)
-    );
-    --color-highlight-gradient-2: linear-gradient(
-      135deg,
-      var(--color-highlight-2),
-      var(--color-highlight-3)
-    );
-    --color-highlight-gradient-3: linear-gradient(
-      135deg,
-      var(--color-highlight-3),
-      var(--color-highlight-1)
     );
 
     --font-body: 'Noto Sans', system-ui, sans-serif;
