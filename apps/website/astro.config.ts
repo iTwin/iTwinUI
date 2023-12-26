@@ -37,6 +37,10 @@ export default defineConfig({
         borderColor: 'var(--color-line-2)',
         codeBackground: 'transparent',
         codeFontSize: 'var(--type--1)',
+        frames: {
+          terminalBackground: 'transparent',
+          terminalTitlebarBackground: 'transparent',
+        },
       },
     }),
     mdx(),

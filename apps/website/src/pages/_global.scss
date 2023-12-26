@@ -7,6 +7,29 @@
 @import '@itwin/itwinui-react/styles.css' layer(thirdparty);
 @import '@itwin/itwinui-variables' layer(thirdparty);
 
+@mixin themeVar($name, $dark, $light: null) {
+  $darkName: '_#{$name}--dark';
+  $lightName: '_#{$name}--light';
+
+  --#{$darkName}: #{$dark};
+  @if ($light != null) {
+    --#{$lightName}: #{$light};
+  }
+
+  &,
+  &[data-theme='dark'] {
+    --#{$name}: var(--#{$darkName});
+  }
+
+  @media (prefers-color-scheme: light) {
+    --#{$name}: var(--#{$lightName});
+  }
+
+  &[data-theme='light'] {
+    --#{$name}: var(--#{$lightName});
+  }
+}
+
 @layer reset {
   *,
   *::before,
@@ -53,25 +76,15 @@
 
 @layer globals {
   :root {
-    /* #region Light */
-    --color-background-1--light: #fff;
-    --color-background-2--light: #fff;
-    --color-background-3--light: #fff;
-    /* #endregion */
+    @include themeVar(color-background-1, hsl(220deg 12% 19%));
+    @include themeVar(color-background-2, hsl(220deg 15% 12%));
+    @include themeVar(color-text, hsl(210deg 6% 85%));
+    @include themeVar(color-subtext, hsl(221deg 16% 68%));
+    @include themeVar(color-mutedtext, hsl(221deg 6% 52%));
+    @include themeVar(color-active, hsl(221deg 12% 27% / 40%));
+    @include themeVar(color-line-1, hsl(205deg 13% 54%));
+    @include themeVar(color-line-2, hsl(205deg 13% 35%));
 
-    /* #region Dark */
-    --color-background-1--dark: hsl(220deg 17% 15%);
-    --color-background-2--dark: hsl(220deg 51% 8%)
-    --color-background-3--dark: #fff;
-    --color-text--dark: hsl(210deg 6% 85%);
-    --color-subtext--dark: hsl(221deg 16% 68%);
-    --color-mutedtext--dark: hsl(221deg, 6%, 52%);
-    --color-active--dark: hsl(221deg 12% 27% / 40%);
-    --color-line-1--dark: hsl(205deg 13% 54%);
-    --color-line-2--dark: hsl(205deg 13% 35%);
-    /* #endregion */
-
-    /* #region Current */
     --color-highlight-1: hsl(314deg 57% 88%);
     --color-highlight-2: hsl(232deg 78% 82%);
     --color-highlight-3: hsl(186deg 78% 79%);
@@ -91,17 +104,6 @@
       var(--color-highlight-3),
       var(--color-highlight-1)
     );
-    --color-background-1: var(--color-background-1--dark);
-    --color-background-2: var(--color-background-2--dark);
-    --color-background-3: var(--color-background-3--dark);
-    --color-text: var(--color-text--dark);
-    --color-subtext: var(--color-subtext--dark);
-    --color-mutedtext: var(--color-mutedtext--dark);
-    --color-highlight-gradient: var(--color-highlight-gradient-1);
-    --color-active: var(--color-active--dark);
-    --color-line-1: var(--color-line-1--dark);
-    --color-line-2: var(--color-line-2--dark);
-    /* #endregion */
 
     --font-body: 'Noto Sans', system-ui, sans-serif;
     --font-mono: 'Noto Sans Mono', ui-monospace, monospace;
