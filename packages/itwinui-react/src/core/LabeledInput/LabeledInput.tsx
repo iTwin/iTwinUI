@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { InputFlexContainer, StatusIconMap, useId } from '../utils/index.js';
+import { Box, StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { Label } from '../Label/Label.js';
 import { Icon } from '../Icon/Icon.js';
+import cx from 'classnames';
 
 export type LabeledInputProps = {
   /**
@@ -104,25 +105,20 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         </Label>
       )}
 
-      <InputFlexContainer
-        status={status}
-        isDisabled={disabled}
+      <Box
+        className={cx('iui-input-with-icon', inputWrapperProps?.className)}
         {...inputWrapperProps}
       >
         <Input
           disabled={disabled}
           required={required}
+          status={status}
           id={id}
           ref={ref}
           {...rest}
         />
-        {shouldShowIcon && (
-          <Icon fill={status} padded {...iconProps}>
-            {icon}
-          </Icon>
-        )}
-      </InputFlexContainer>
-
+        {shouldShowIcon && <EndIcon status={status}>{icon}</EndIcon>}
+      </Box>
       {typeof message === 'string' ? (
         <StatusMessage
           status={status}
@@ -139,3 +135,25 @@ export const LabeledInput = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'input', LabeledInputProps>;
 
 export default LabeledInput;
+
+// ------------------------------------------------------------------------------------------------
+
+const EndIcon = React.forwardRef((props, ref) => {
+  const { children, className, status, ...rest } = props;
+
+  return (
+    <Icon
+      as='span'
+      className={cx('iui-end-icon', className)}
+      ref={ref}
+      fill={status}
+      padded={false}
+      {...rest}
+    >
+      {children}
+    </Icon>
+  );
+}) as PolymorphicForwardRefComponent<
+  'div',
+  Pick<LabeledInputProps, 'status' | 'iconProps'>
+>;
