@@ -76,6 +76,10 @@ it.each(['positive', 'negative', 'warning'] as const)(
     expect(input).toBeTruthy();
     expect(input).toHaveAttribute('data-iui-status', status);
     expect(input.querySelector('.iui-svg-icon')).toBeTruthy();
+    expect(input.querySelector('.iui-svg-icon')).toHaveAttribute(
+      'data-iui-icon-color',
+      status,
+    );
     getByText('some label');
   },
 );
@@ -175,8 +179,32 @@ it('should take custom icon', () => {
   assertBaseElement(container);
   getByText('some label');
   expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
-  expect(container.querySelector('.my-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
+  expect(container.querySelector('.iui-svg-icon > .my-icon')).toBeTruthy();
 });
+
+it.each(['positive', 'negative', 'warning'] as const)(
+  'should give status fill to custom icon',
+  (status) => {
+    const { container, getByText } = render(
+      <LabeledInput
+        label='some label'
+        displayStyle='inline'
+        svgIcon={<svg className='my-icon' />}
+        status={status}
+      />,
+    );
+    assertBaseElement(container);
+    getByText('some label');
+    expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
+    expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-svg-icon > .my-icon')).toBeTruthy();
+    expect(container.querySelector('.iui-svg-icon')).toHaveAttribute(
+      'data-iui-icon-color',
+      status,
+    );
+  },
+);
 
 it('should render inline icon', () => {
   const { container, queryByText, getByText } = render(

@@ -117,7 +117,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           {...rest}
         />
         {shouldShowIcon && (
-          <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
+          <Icon fill={status} padded {...iconProps}>
             {icon}
           </Icon>
         )}
