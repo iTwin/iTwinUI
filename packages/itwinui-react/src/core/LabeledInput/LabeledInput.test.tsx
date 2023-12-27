@@ -147,7 +147,6 @@ it('should take class and style on input', () => {
     '.iui-input-flex-container > input.my-class',
   ) as HTMLElement;
   expect(input).toBeTruthy();
-  console.log(input.style.width);
   expect(input.style.width).toBe('80px');
 });
 
