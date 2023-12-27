@@ -59,6 +59,9 @@ export default defineConfig({
     build: { cssMinify: false, assetsInlineLimit: 500 },
     plugins: [lightningCssVite()],
   },
+  devToolbar: {
+    enabled: false,
+  },
 });
 
 /** Opinionated vite plugin that uses lightningcss for transpilation and minification. */
