@@ -84,7 +84,9 @@
 
   .iui-clickable & {
     cursor: pointer;
-    transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out,
+    transition:
+      background-color var(--iui-duration-1) ease-out,
+      border-color var(--iui-duration-1) ease-out,
       color var(--iui-duration-1) ease-out;
 
     &:hover {
