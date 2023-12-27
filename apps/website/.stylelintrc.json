@@ -1,0 +1,6 @@
+{
+  "extends": ["configs/.stylelintrc.json"],
+  "rules": {
+    "selector-class-pattern": null
+  }
+}

@@ -26,7 +26,9 @@
   min-inline-size: var(--_iui-button-min-height);
   padding-block: var(--_iui-button-padding-block);
   padding-inline: var(--_iui-button-padding-inline);
-  transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+  transition:
+    background-color var(--iui-duration-1) ease-out,
+    border-color var(--iui-duration-1) ease-out;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   @include iui-button-size;

@@ -24,7 +24,9 @@ $iui-notification-marker-cutout-radius: calc(0.5 * $iui-notification-marker-cuto
     border-radius: 100%;
     background-color: var(--_iui-notification-marker-color);
     @media (prefers-reduced-motion: no-preference) {
-      transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+      transition:
+        background-color var(--iui-duration-1) ease-out,
+        border-color var(--iui-duration-1) ease-out;
     }
   }
 
