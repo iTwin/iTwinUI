@@ -15,4 +15,5 @@ body {
 .my-app-wrapper {
   height: 100dvh;
   padding: 2rem 1rem;
+  overflow: auto;
 }
