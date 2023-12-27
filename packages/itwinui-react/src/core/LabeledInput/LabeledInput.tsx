@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { StatusIconMap, useId } from '../utils/index.js';
+import { InputFlexContainer, StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
@@ -104,12 +104,12 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         </Label>
       )}
 
-      <InputWithDecorations
+      <InputFlexContainer
         status={status}
         isDisabled={disabled}
         {...inputWrapperProps}
       >
-        <InputWithDecorations.Input
+        <Input
           disabled={disabled}
           required={required}
           id={id}
@@ -121,7 +121,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
             {icon}
           </Icon>
         )}
-      </InputWithDecorations>
+      </InputFlexContainer>
 
       {typeof message === 'string' ? (
         <StatusMessage
