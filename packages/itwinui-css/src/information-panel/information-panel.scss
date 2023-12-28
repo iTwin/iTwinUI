@@ -20,7 +20,9 @@
       block-size: 100%;
       inline-size: 1px;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color var(--iui-duration-1) ease-out, width var(--iui-duration-1) ease-out;
+        transition:
+          background-color var(--iui-duration-1) ease-out,
+          width var(--iui-duration-1) ease-out;
       }
     }
 
@@ -48,7 +50,9 @@
       inline-size: 100%;
       block-size: 1px;
       @media (prefers-reduced-motion: no-preference) {
-        transition: background-color var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out;
+        transition:
+          background-color var(--iui-duration-1) ease-out,
+          height var(--iui-duration-1) ease-out;
       }
     }
 
@@ -76,7 +80,9 @@
   max-block-size: 100%;
   background-color: var(--iui-color-background);
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility var(--iui-duration-0) var(--iui-duration-1) ease-in, transform var(--iui-duration-1) ease-out,
+    transition:
+      visibility var(--iui-duration-0) var(--iui-duration-1) ease-in,
+      transform var(--iui-duration-1) ease-out,
       opacity var(--iui-duration-1) ease;
   }
 
@@ -172,7 +178,9 @@
     transform: translate(0);
 
     @media (prefers-reduced-motion: no-preference) {
-      transition: transform var(--iui-duration-1) ease-out, opacity var(--iui-duration-1) ease;
+      transition:
+        transform var(--iui-duration-1) ease-out,
+        opacity var(--iui-duration-1) ease;
     }
 
     > .iui-resizer {

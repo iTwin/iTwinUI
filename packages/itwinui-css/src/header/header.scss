@@ -55,7 +55,9 @@
     .iui-avatar {
       &,
       * {
-        transition: width var(--iui-duration-1) ease-out, height var(--iui-duration-1) ease-out,
+        transition:
+          width var(--iui-duration-1) ease-out,
+          height var(--iui-duration-1) ease-out,
           font-size var(--iui-duration-1) ease-out;
       }
     }
