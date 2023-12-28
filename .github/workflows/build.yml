@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-      - dev
   pull_request:
   merge_group:
 
@@ -231,7 +230,7 @@ jobs:
           git-config-email: github-actions[bot]@users.noreply.github.com
 
       - name: Post deploy preview link under Checks
-        if: github.ref != 'refs/heads/main' && github.ref != 'refs/heads/dev' && always()
+        if: github.ref != 'refs/heads/main' && always()
         uses: actions/github-script@v6
         with:
           script: |
