@@ -8,9 +8,9 @@ import { Kbd, KbdKeys } from '@itwin/itwinui-react';
 export default () => {
   return (
     <div style={{ display: 'flex', gap: '12px' }}>
-      <Kbd>{KbdKeys.Enter}</Kbd>
-      <Kbd>{KbdKeys.Command}</Kbd>
-      <Kbd>{KbdKeys.Down}</Kbd>
+      Press
+      <Kbd>{KbdKeys.Command}</Kbd>+<Kbd>K</Kbd>
+      to search.
     </div>
   );
 };
