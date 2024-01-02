@@ -50,7 +50,7 @@ export const DefaultFileUploadCard = () => {
   return (
     <FileUpload
       onFileDropped={(files) => {
-        setFiles(files);
+        setFiles(Array.from(files));
         console.log(`${files.length} files uploaded`);
       }}
     >
@@ -80,7 +80,7 @@ export const CustomFileUploadCard = () => {
   return (
     <FileUpload
       onFileDropped={(files) => {
-        setFiles(files);
+        setFiles(Array.from(files));
         console.log(`${files.length} files uploaded`);
       }}
     >
