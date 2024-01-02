@@ -1,0 +1,32 @@
+---
+title: LinkAction
+description: TODO
+---
+
+`LinkAction` is a utility component that makes it easier to create accessible [block links](https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html) (or buttons).
+
+<LiveExample src='LinkAction.main.tsx'>
+  <AllExamples.LinkActionMainExample client:load />
+</LiveExample>
+
+This component is useful in a wide range of situations when you need to increase the clickable area of an element (e.g. a card, a list item, etc.) without compromising semantics. It is used internally in [`Tile`](tile) and [`ListItem`](list) components.
+
+## Usage
+
+This component consists of two parts:
+
+1. `LinkBox`: A wrapper component that makes the entire area clickable.
+2. `LinkAction`: The actual link (or button) inside the wrapper.
+
+```jsx
+<LinkBox>
+  <LinkAction href='https://www.example.com'>Click me</LinkAction>
+  <p>Content outside the link.</p>
+</LinkBox>
+```
+
+Similar to the [`Anchor`](anchor) component, `LinkAction` supports the polymorphic `as` prop, which can be used to render a link from a client-side router, or even a `"button"`.
+
+### Props
+
+<PropsTable path='@itwin/itwinui-react/esm/core/LinkAction/LinkAction.d.ts' />
