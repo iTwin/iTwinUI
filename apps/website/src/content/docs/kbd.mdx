@@ -12,7 +12,7 @@ thumbnail: Keyboard
 
 ## Usage
 
-The `<Kbd>` component is a styled wrapper around the [`<kbd>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd).
+The `<Kbd>` component is a styled wrapper around the [`<kbd>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd). Here is what basic usage looks like:
 
 You can either pass custom key(s) as the `children` or use the `KbdKeys` enum which includes some of the common keyboard keys:
 
@@ -33,7 +33,9 @@ You can either pass custom key(s) as the `children` or use the `KbdKeys` enum wh
 ```tsx
 /* Custom KbdKeys  */
 <Kbd>A</Kbd>
+```
 
+```tsx
 /* Predefined KbdKeys */
 <Kbd>{KbdKeys.Enter}</Kbd>
 ```
