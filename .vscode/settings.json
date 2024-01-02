@@ -31,7 +31,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
-    "*.astro": "${capture}.tsx, ${capture).css",
+    "*.astro": "${capture}.tsx, ${capture).css, ${capture}.scss",
     "*.ts": "${capture}.test.ts",
     "*.tsx": "${capture}.ts, ${capture}.css, ${capture}.test.tsx",
     "*.stories.tsx": "${capture}.test.ts"
