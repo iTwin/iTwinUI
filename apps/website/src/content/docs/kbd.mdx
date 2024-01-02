@@ -14,15 +14,11 @@ thumbnail: Keyboard
 
 The `<Kbd>` component is a styled wrapper around the [`<kbd>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd).
 
-### Basic
-
 You can pass custom key(s) as the `children` parameter.
 
 ```tsx
 <Kbd>A</Kbd>
 ```
-
-### Predefined Key
 
 You can also use the `KbdKeys` enum which includes a convenient set of constants for common keyboard keys.
 
@@ -32,19 +28,21 @@ You can also use the `KbdKeys` enum which includes a convenient set of constants
 
 List of supported keys:
 
-- `KbdKeys.Command`
-- `KbdKeys.Shift`
-- `KbdKeys.Backspace`
-- `KbdKeys.Enter`
-- `KbdKeys.Eject`
-- `KbdKeys.Control`
-- `KbdKeys.Windows`
-- `KbdKeys.Apple`
-- `KbdKeys.Option`
-- `KbdKeys.Left`
-- `KbdKeys.Up`
-- `KbdKeys.Right`
-- `KbdKeys.Down`
+- `KbdKeys.Command` (⌘ Cmd)
+- `KbdKeys.Shift` (⇧ Shift)
+- `KbdKeys.Backspace` (⌫ Backspace)
+- `KbdKeys.Enter` (↵ Enter)
+- `KbdKeys.Eject` (⏏ Eject)
+- `KbdKeys.Control` (Ctrl)
+- `KbdKeys.Windows` (⊞ Win)
+- `KbdKeys.Apple` ()
+- `KbdKeys.Option` (⌥ Option)
+- `KbdKeys.Left` (←)
+- `KbdKeys.Up` (↑)
+- `KbdKeys.Right` (→)
+- `KbdKeys.Down` (↓)
+
+**Important**: Some of the keys are specific to operating system and may not be available universally.
 
 ## Props
 
