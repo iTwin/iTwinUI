@@ -192,7 +192,7 @@ export const DialogMain = React.forwardRef<HTMLDivElement, DialogMainProps>(
         tabIndex={-1}
         data-iui-placement={placement}
         style={{
-          transform: roundedTransform,
+          transform: styleType !== 'fullPage' ? roundedTransform : undefined,
           ...style,
           ...propStyle,
         }}
