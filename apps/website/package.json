@@ -27,6 +27,7 @@
     "astro-expressive-code": "^0.30.1",
     "examples": "*",
     "htm": "^3",
+    "lightningcss": "^1.22.1",
     "lz-string": "^1.4.4",
     "nanoid": "*",
     "nanostores": "^0.9.0",

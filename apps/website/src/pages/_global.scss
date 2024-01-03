@@ -1,0 +1,132 @@
+// Copyright (c) Bentley Systems, Incorporated. All rights reserved.
+// See LICENSE.md in the project root for license terms and full copyright notice.
+@import '@fontsource/noto-sans' layer(thirdparty);
+@import '@fontsource/noto-sans-mono' layer(thirdparty);
+@import '@fontsource/noto-sans/400-italic.css' layer(thirdparty);
+@import '@fontsource/noto-sans/600.css' layer(thirdparty);
+@import '@fontsource/noto-sans/300.css' layer(thirdparty);
+@import '@fontsource/noto-sans/800.css' layer(thirdparty);
+@import '@itwin/itwinui-react/styles.css' layer(thirdparty);
+@import '@itwin/itwinui-variables' layer(thirdparty);
+
+@mixin themeVar($name, $dark, $light: null) {
+  $darkName: '_#{$name}--dark';
+  $lightName: '_#{$name}--light';
+
+  --#{$darkName}: #{$dark};
+  @if ($light != null) {
+    --#{$lightName}: #{$light};
+  }
+
+  &,
+  &[data-theme='dark'] {
+    --#{$name}: var(--#{$darkName});
+  }
+
+  @media (prefers-color-scheme: light) {
+    --#{$name}: var(--#{$lightName});
+  }
+
+  &[data-theme='light'] {
+    --#{$name}: var(--#{$lightName});
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    margin: 0;
+    box-sizing: border-box;
+  }
+
+  :where(a) {
+    color: var(--color-highlight-2);
+  }
+
+  :where(p, h1, h2, h3, h4, h5, h6) {
+    font-weight: normal;
+    padding: 0;
+    max-inline-size: 75ch;
+  }
+
+  :where(h1, h2) {
+    line-height: 1.2;
+  }
+
+  :where(h1) {
+    font-size: var(--type-4);
+  }
+
+  :where(h2) {
+    font-size: var(--type-3);
+  }
+
+  :where(h3) {
+    font-size: var(--type-2);
+  }
+
+  :where(code, pre) {
+    font-family: var(--font-mono);
+  }
+
+  :where(ul:not(.content-wrapper *)) {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+@layer globals {
+  :root {
+    @include themeVar(color-background-1, hsl(220deg 12% 19%));
+    @include themeVar(color-background-2, hsl(220deg 15% 12%));
+    @include themeVar(color-text, hsl(210deg 6% 85%));
+    @include themeVar(color-subtext, hsl(221deg 16% 68%));
+    @include themeVar(color-mutedtext, hsl(221deg 6% 52%));
+    @include themeVar(color-active, hsl(221deg 12% 27% / 40%));
+    @include themeVar(color-line-1, hsl(205deg 13% 54%));
+    @include themeVar(color-line-2, hsl(205deg 13% 35%));
+
+    --color-highlight-1: hsl(314deg 57% 88%);
+    --color-highlight-2: hsl(232deg 78% 82%);
+    --color-highlight-3: hsl(186deg 78% 79%);
+    --color-highlight-4: hsl(232deg 70% 70%);
+    --color-highlight-gradient: linear-gradient(
+      135deg,
+      var(--color-highlight-1),
+      var(--color-highlight-2)
+    );
+
+    --font-body: 'Noto Sans', system-ui, sans-serif;
+    --font-mono: 'Noto Sans Mono', ui-monospace, monospace;
+
+    /* TODO: rename these? ⬇️  */
+
+    /* #region Typography: https://utopia.fyi/type/calculator?c=300,14,1.2,2100,17,1.2,4,3,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+    --type--3: clamp(0.5063rem, 0.4881rem + 0.0967vw, 0.615rem);
+    --type--2: clamp(0.6075rem, 0.5857rem + 0.1161vw, 0.7381rem);
+    --type--1: clamp(0.7294rem, 0.7033rem + 0.1389vw, 0.8856rem);
+    --type-0: clamp(0.875rem, 0.8438rem + 0.1667vw, 1.0625rem);
+    --type-1: clamp(1.05rem, 1.0125rem + 0.2vw, 1.275rem);
+    --type-2: clamp(1.26rem, 1.215rem + 0.24vw, 1.53rem);
+    --type-3: clamp(1.5119rem, 1.4578rem + 0.2883vw, 1.8363rem);
+    --type-4: clamp(1.8144rem, 1.7496rem + 0.3456vw, 2.2031rem);
+    /* #endregion */
+
+    /* #region Spacing: https://utopia.fyi/space/calculator/?c=300,14,1.2,2100,18,1.25,5,2,&s=0.75|0.5|0.25|0.125,1.25|1.5|2|2.25,s-l */
+    --space-0: clamp(0.13rem, 0.13rem + 0vw, 0.13rem);
+    --space-1: clamp(0.25rem, 0.24rem + 0.06vw, 0.31rem);
+    --space-2: clamp(0.44rem, 0.42rem + 0.11vw, 0.56rem);
+    --space-3: clamp(0.69rem, 0.66rem + 0.17vw, 0.88rem);
+    --space-4: clamp(0.88rem, 0.83rem + 0.22vw, 1.13rem);
+    --space-5: clamp(1.13rem, 1.07rem + 0.28vw, 1.44rem);
+    --space-6: clamp(1.31rem, 1.25rem + 0.33vw, 1.69rem);
+    --space-7: clamp(1.75rem, 1.67rem + 0.44vw, 2.25rem);
+    --space-8: clamp(2rem, 1.91rem + 0.5vw, 2.56rem);
+    /* #endregion */
+
+    --border-radius-1: var(--space-1);
+    --transition-speed: 0.2s;
+    --transition-speed-slow: 0.4s;
+  }
+}
