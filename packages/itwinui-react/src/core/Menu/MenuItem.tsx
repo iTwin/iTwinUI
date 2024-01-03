@@ -156,15 +156,11 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         onKeyDown={onKeyDown}
         onMouseEnter={() => setIsSubmenuVisible(true)}
         onMouseLeave={(e) => {
-          if (
-            !(
-              e.relatedTarget instanceof
-              e.relatedTarget.ownerDocument.defaultView.Node
-            ) ||
-            !subMenuRef.current?.contains(e.relatedTarget as Node)
-          ) {
-            setIsSubmenuVisible(false);
-          }
+          try {
+            if (!subMenuRef.current?.contains(e.relatedTarget as Node)) {
+              setIsSubmenuVisible(false);
+            }
+          } catch {}
         }}
         {...rest}
       >
