@@ -1,0 +1,49 @@
+---
+title: Kbd
+description: This component is used to display which key or combination of keys performs a given action.
+thumbnail: Kbd
+---
+
+<p>{frontmatter.description}</p>
+
+<LiveExample src='Kbd.main.tsx' truncate={false}>
+  <AllExamples.KbdMainExample client:load />
+</LiveExample>
+
+## Usage
+
+The `<Kbd>` component is a styled wrapper around the [`<kbd>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/kbd).
+
+You can pass custom key(s) as `children`.
+
+```tsx
+<Kbd>A</Kbd>
+```
+
+You can also use the `KbdKeys` object which includes a convenient set of constants for common modifier keys.
+
+```tsx
+<Kbd>{KbdKeys.Enter}</Kbd>
+```
+
+List of supported keys:
+
+- `KbdKeys.Command` (⌘ Cmd)
+- `KbdKeys.Shift` (⇧ Shift)
+- `KbdKeys.Backspace` (⌫ Backspace)
+- `KbdKeys.Enter` (↵ Enter)
+- `KbdKeys.Eject` (⏏ Eject)
+- `KbdKeys.Control` (Ctrl)
+- `KbdKeys.Windows` (⊞ Win)
+- `KbdKeys.Apple` ()
+- `KbdKeys.Option` (⌥ Option)
+- `KbdKeys.Left` (←)
+- `KbdKeys.Up` (↑)
+- `KbdKeys.Right` (→)
+- `KbdKeys.Down` (↓)
+
+**Important**: Some of the keys are specific to the operating system and may not be available universally.
+
+## Props
+
+<PropsTable path={'@itwin/itwinui-react/esm/core/Typography/Kbd.d.ts'} />
