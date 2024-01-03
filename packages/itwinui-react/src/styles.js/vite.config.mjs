@@ -12,7 +12,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
-    minify: false,
+    minify: true,
     cssMinify: false,
     lib: {
       entry: path.resolve(__dirname, './classes.mjs'),
