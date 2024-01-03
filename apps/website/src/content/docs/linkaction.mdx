@@ -1,6 +1,8 @@
 ---
 title: LinkAction
-description: TODO
+description: Helps create accessible block links.
+thumbnail: Anchor
+group: utilities
 ---
 
 `LinkAction` is a utility component that makes it easier to create accessible [block links](https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html) (or buttons).
@@ -9,7 +11,9 @@ description: TODO
   <AllExamples.LinkActionMainExample client:load />
 </LiveExample>
 
-This component is useful in a wide range of situations when you need to increase the clickable area of an element (e.g. a card, a list item, etc.) without compromising semantics. It is used internally in [`Tile`](tile) and [`ListItem`](list) components.
+This component is useful in a wide range of situations when you need to increase the clickable area of an element (e.g. a card, a list item, etc.) without compromising semantics. This means you can keep the link text concise and still make the entire area clickable, even if it includes other elements or extra padding.
+
+`LinkAction` is used internally in [`Tile`](tile) and [`ListItem`](list) components, and is also available for use in external components.
 
 ## Usage
 
@@ -25,7 +29,13 @@ This component consists of two parts:
 </LinkBox>
 ```
 
-Similar to the [`Anchor`](anchor) component, `LinkAction` supports the polymorphic `as` prop, which can be used to render a link from a client-side router, or even a `"button"`.
+Similar to the [`Anchor`](anchor) component, `LinkAction` supports the polymorphic `as` prop, which can be used to render a different link component (e.g. from a client-side router) or a `"button"` (e.g. when you want to trigger an action within the same page, rather than a page navigation).
+
+## Technical explanation
+
+The implementation of this component is based on [the pseudo-content trick](https://inclusive-components.design/cards/#thepseudocontenttrick), which makes the `LinkAction`'s `::after` pseudo-element expand to fill up all the available space of the `LinkBox` component. A side-effect of this is that the text inside the `LinkBox` will not be selectable, but this is usually not a problem.
+
+If your container includes other elements that should be clickable, you can set `position: relative` on them or give them a higher z-index.
 
 ### Props
 
