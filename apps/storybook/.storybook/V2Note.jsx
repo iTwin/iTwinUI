@@ -2,6 +2,8 @@ import React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
 
 export const V2Note = () => {
+  const hidden =
+    window.top?.location.pathname.includes('iframe') || window['Cypress'];
   return (
     <div
       style={{
@@ -14,7 +16,7 @@ export const V2Note = () => {
         border: '1px solid',
         backgroundColor: 'var(--iui-color-background)',
       }}
-      hidden={window.top?.location.pathname.includes('iframe')}
+      hidden={hidden}
     >
       ⚠️ This is the storybook for iTwinUI-react v2.
       <br />
