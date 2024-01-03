@@ -706,9 +706,9 @@ export { InputWithDecorationsDisabledExample };
 
 // ----------------------------------------------------------------------------
 
-import { default as KeyboardMainExampleRaw } from './Keyboard.main';
-const KeyboardMainExample = withThemeProvider(KeyboardMainExampleRaw);
-export { KeyboardMainExample };
+import { default as KbdMainExampleRaw } from './Kbd.main';
+const KbdMainExample = withThemeProvider(KbdMainExampleRaw);
+export { KbdMainExample };
 
 // ----------------------------------------------------------------------------
 
