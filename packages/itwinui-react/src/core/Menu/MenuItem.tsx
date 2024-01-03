@@ -157,7 +157,10 @@ export const MenuItem = React.forwardRef<HTMLLIElement, MenuItemProps>(
         onMouseEnter={() => setIsSubmenuVisible(true)}
         onMouseLeave={(e) => {
           if (
-            !(e.relatedTarget instanceof e.relatedTarget.ownerDocument.defaultView.Node) ||
+            !(
+              e.relatedTarget instanceof
+              e.relatedTarget.ownerDocument.defaultView.Node
+            ) ||
             !subMenuRef.current?.contains(e.relatedTarget as Node)
           ) {
             setIsSubmenuVisible(false);
