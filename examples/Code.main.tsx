@@ -8,7 +8,7 @@ import { Code } from '@itwin/itwinui-react';
 export default () => {
   return (
     <>
-      This is some <Code>inline code</Code>.
+      An example showing the use of the <Code>&lt;Code&gt;</Code> component.
     </>
   );
 };
