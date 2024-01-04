@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.12.19
+
+### Patch Changes
+
+- [#1765](https://github.com/iTwin/iTwinUI/pull/1765): Fix full page `Modal` not showing up.
+- [#1764](https://github.com/iTwin/iTwinUI/pull/1764): Fixed submenu items being unreachable in popout windows.
+
 ## 2.12.18
 
 ### Patch Changes
