@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.2
+
+### Patch Changes
+
+- [#1763](https://github.com/iTwin/iTwinUI/pull/1763): Reduced bundle size by optimizing how CSS modules are handled internally.
+
 ## 3.2.1
 
 ### Patch Changes
