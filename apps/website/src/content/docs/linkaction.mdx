@@ -35,14 +35,14 @@ Similar to the [`Anchor`](anchor) component, `LinkAction` supports the polymorph
 
 The implementation of this component is based on [the pseudo-content trick](https://inclusive-components.design/cards/#thepseudocontenttrick), which makes the `LinkAction`'s `::after` pseudo-element expand to fill up all the available space of the `LinkBox` component. A side-effect of this is that the text inside the `LinkBox` will not be selectable, but this is usually not a problem.
 
-If your container includes other elements that should be clickable, you can set `position: relative` on them or give them a higher z-index. This will make them appear on top of the `LinkBox` and receive the click event instead of the primary `LinkAction`.
+If your container includes other elements that should be clickable, you can set `position: relative` on them or give them a higher z-index. This will make them appear on top of the pseudo-element and therefore receive the click event instead of the primary `LinkAction`.
 
 ```jsx
 <LinkBox>
   <LinkAction href='#'>Primary link</LinkAction>
 
   <a href='#' style={{ position: 'relative' }}>
-    Secondary action
+    Secondary link
   </a>
 </LinkBox>
 ```
