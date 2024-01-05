@@ -23,7 +23,8 @@
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
-    "./esm": "./esm/index.js"
+    "./esm": "./esm/index.js",
+    "./package.json": "./package.json"
   },
   "files": [
     "cjs",
