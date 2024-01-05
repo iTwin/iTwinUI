@@ -7,8 +7,9 @@ import { Code } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <>
-      This is some <Code>inline code</Code>.
-    </>
+    <p>
+      The <Code>useId</Code> hook can be used to generate unique IDs for
+      labeling form elements.
+    </p>
   );
 };

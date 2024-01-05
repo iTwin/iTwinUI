@@ -1,6 +1,6 @@
 {
   "name": "@itwin/itwinui-react",
-  "version": "3.2.0",
+  "version": "3.2.3",
   "author": "Bentley Systems",
   "license": "MIT",
   "type": "module",
@@ -23,7 +23,8 @@
     },
     "./styles.css": "./styles.css",
     "./cjs": "./cjs/index.js",
-    "./esm": "./esm/index.js"
+    "./esm": "./esm/index.js",
+    "./package.json": "./package.json"
   },
   "files": [
     "cjs",

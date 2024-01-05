@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.2.3
+
+### Patch Changes
+
+- [#1772](https://github.com/iTwin/iTwinUI/pull/1772): Added `package.json` to exports map.
+
+## 3.2.2
+
+### Patch Changes
+
+- [#1763](https://github.com/iTwin/iTwinUI/pull/1763): Reduced bundle size by optimizing how CSS modules are handled internally.
+
+## 3.2.1
+
+### Patch Changes
+
+- [#1760](https://github.com/iTwin/iTwinUI/pull/1760): Fixed `ComboBox` to correctly merge `inputProps.style` with internal styles.
+
 ## 3.2.0
 
 ### Minor Changes
