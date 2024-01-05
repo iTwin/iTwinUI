@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.3
+
+### Patch Changes
+
+- [#1772](https://github.com/iTwin/iTwinUI/pull/1772): Added `package.json` to exports map.
+
 ## 3.2.2
 
 ### Patch Changes
