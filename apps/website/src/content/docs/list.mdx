@@ -36,7 +36,7 @@ Please note that this prop only provides the hover styling and does nothing else
 
 ### With `LinkAction`
 
-When `ListItem` contains a link, it is recommended to use `LinkAction` instead of a regular anchor link. This ensures that the tap target size (clickable area) of the link is as big as the whole list item, and that there is proper hover and focus styling. You can read more about this accessibility pattern from [Inclusive Components](https://inclusive-components.design/cards/).
+When `ListItem` contains a link, it is recommended to use [`LinkAction`](linkaction) instead of a regular anchor link. This increases the tap target size (clickable area) of the link to include the padding from list item, and ensures that there is proper hover and focus styling.
 
 <LiveExample src='List.links.tsx'>
   <AllExamples.ListLinksExample client:idle />
