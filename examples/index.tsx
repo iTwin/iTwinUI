@@ -718,6 +718,12 @@ export { LabelMainExample };
 
 // ----------------------------------------------------------------------------
 
+import { default as LinkActionMainExampleRaw } from './LinkAction.main';
+const LinkActionMainExample = withThemeProvider(LinkActionMainExampleRaw);
+export { LinkActionMainExample };
+
+// ----------------------------------------------------------------------------
+
 import { default as ListMainExampleRaw } from './List.main';
 const ListMainExample = withThemeProvider(ListMainExampleRaw);
 export { ListMainExample };
