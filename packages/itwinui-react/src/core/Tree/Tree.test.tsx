@@ -12,7 +12,7 @@ import {
   type TreeProps,
 } from './Tree.js';
 import { TreeNode } from './TreeNode.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { Checkbox } from '../Checkbox/Checkbox.js';
 
 type TestData = {
@@ -350,4 +350,10 @@ it('should set correct computed aria attributes to nodes', () => {
   expect(node3_1.getAttribute('aria-level')).toBe('2');
   expect(node3_1.getAttribute('aria-setsize')).toBe('2');
   expect(node3_1.getAttribute('aria-posinset')).toBe('1');
+});
+
+it('should respect size prop', () => {
+  const { container } = renderComponent({ props: { size: 'small' } });
+  const tree = container.querySelector('.iui-tree') as HTMLElement;
+  expect(tree).toHaveAttribute('data-iui-size', 'small');
 });

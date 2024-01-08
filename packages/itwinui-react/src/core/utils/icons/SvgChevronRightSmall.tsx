@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Kbd, KbdKeys } from '@itwin/itwinui-react';
+import { Svg } from './Svg.js';
 
-export default () => {
+export const SvgChevronRightSmall = (
+  props: React.ComponentPropsWithoutRef<'svg'>,
+) => {
   return (
-    <div style={{ display: 'flex', gap: '12px' }}>
-      <Kbd>{KbdKeys.Enter}</Kbd>
-      <Kbd>{KbdKeys.Command}</Kbd>
-      <Kbd>{KbdKeys.Down}</Kbd>
-    </div>
+    <Svg {...props}>
+      <path d='m5.525 2-1.05 1.05L9.425 8l-4.95 4.95L5.525 14l6-6-6-6Z' />
+    </Svg>
   );
 };

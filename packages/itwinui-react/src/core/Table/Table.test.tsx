@@ -33,7 +33,7 @@ import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
   SelectionColumn,
@@ -3378,6 +3378,50 @@ it('should sync body horizontal scroll with header scroll', () => {
   });
   expect(header.scrollLeft).toBe(0);
   expect(body.scrollLeft).toBe(0);
+});
+
+it('should add a shadow tree to table-body. Shadow tree should have a dummy div', () => {
+  const columnWidths = [400, 600, 200];
+  const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
+
+  // Mocking the scrollWidth of the table header
+  jest
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValue(columnWidthsSum);
+
+  const { container } = renderComponent({
+    columns: [
+      {
+        Header: 'Name',
+        accessor: 'name',
+        id: 'name',
+        width: columnWidths[0],
+      },
+      {
+        Header: 'Description',
+        accessor: 'description',
+        id: 'description',
+        width: columnWidths[1],
+      },
+      {
+        Header: 'View',
+        Cell: () => <>View</>,
+        id: 'view',
+        width: columnWidths[2],
+      },
+    ],
+  });
+
+  // body serves as the shadow host
+  const host = container.querySelector('.iui-table-body') as HTMLDivElement;
+
+  const dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).toBeTruthy();
+  expect(dummyDiv?.textContent).toBe('');
+  expect(dummyDiv?.style.height).toBe('0.1px');
+
+  // The dummy div should have the same width as the table header
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum}px`);
 });
 
 it.each([

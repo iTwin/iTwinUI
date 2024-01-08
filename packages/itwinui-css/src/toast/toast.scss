@@ -19,7 +19,10 @@
     );
 
     > .iui-icon {
-      fill: var(--iui-color-icon-#{$category});
+      &,
+      > svg {
+        fill: var(--iui-color-icon-#{$category});
+      }
     }
   }
 
@@ -117,7 +120,9 @@
   border-radius: var(--iui-border-radius-1);
   background-color: var(--iui-color-background);
   border: 1px solid var(--iui-color-border);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)), var(--iui-shadow-5);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, var(--iui-opacity-4)),
+    var(--iui-shadow-5);
   overflow: hidden;
 
   > .iui-status-area {
@@ -130,7 +135,11 @@
 
     > .iui-icon {
       @include mixins.iui-icon-style('m');
-      fill: var(--iui-color-icon-muted);
+
+      &,
+      > svg {
+        fill: var(--iui-color-icon-muted);
+      }
     }
   }
 

@@ -20,8 +20,11 @@
   transform: translateX(-50%) translateY(-170%);
   transition: background-color var(--iui-duration-1) ease-in-out;
   @media (prefers-reduced-motion: no-preference) {
-    transition: opacity var(--iui-duration-3) ease-in-out, background-color var(--iui-duration-3) ease-in-out,
-      transform var(--iui-duration-3) ease-in-out, box-shadow var(--iui-duration-3) ease-in-out;
+    transition:
+      opacity var(--iui-duration-3) ease-in-out,
+      background-color var(--iui-duration-3) ease-in-out,
+      transform var(--iui-duration-3) ease-in-out,
+      box-shadow var(--iui-duration-3) ease-in-out;
   }
 
   &:hover {
@@ -33,8 +36,11 @@
     transform: translateX(-50%) translateY(0);
     box-shadow: var(--iui-shadow-4);
     @media (prefers-reduced-motion: no-preference) {
-      transition: opacity var(--iui-duration-0) ease-in-out, background-color var(--iui-duration-1) ease-in-out,
-        transform var(--iui-duration-1) ease-in-out, box-shadow var(--iui-duration-1) ease-in-out;
+      transition:
+        opacity var(--iui-duration-0) ease-in-out,
+        background-color var(--iui-duration-1) ease-in-out,
+        transform var(--iui-duration-1) ease-in-out,
+        box-shadow var(--iui-duration-1) ease-in-out;
     }
   }
 }

@@ -32,7 +32,7 @@ The goal of this package is to provide React components that make it easier to u
 ## Installation
 
 ```
-npm install @itwin/itwinui-react
+npm add @itwin/itwinui-react
 ```
 
 ---
@@ -57,10 +57,10 @@ export default function App() {
 ```
 
 ThemeProvider has a `theme` prop which accepts one of the following values:
-  - `light` (default)
-  - `dark`
-  - `os` (respects the color scheme of the operating system)
-  - `inherit`
+  - `"light"`
+  - `"dark"`
+  - `"os"` (respects the color scheme of the operating system)
+  - `"inherit"` (default)
 
 ---
 
@@ -78,7 +78,7 @@ const Page = () => (
 
 Check out this template for a live interactive demo:
 
-[![Edit in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)
+[![Edit in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=src/App.tsx)
 
 ---
 

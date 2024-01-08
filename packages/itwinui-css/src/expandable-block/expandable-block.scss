@@ -117,7 +117,9 @@
   transform: var(--_iui-expandable-block-expander-icon-transform);
   transition: fill var(--iui-duration-1) ease-out;
   @media (prefers-reduced-motion: no-preference) {
-    transition: fill var(--iui-duration-1) ease-out, transform var(--iui-duration-1) ease-out;
+    transition:
+      fill var(--iui-duration-1) ease-out,
+      transform var(--iui-duration-1) ease-out;
   }
 }
 

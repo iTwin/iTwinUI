@@ -11,6 +11,9 @@ import {
   Box,
   useIsomorphicLayoutEffect,
   useControlledState,
+  useLatestRef,
+  importCss,
+  isJest,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -83,6 +86,16 @@ type ThemeProviderOwnProps = Pick<RootProps, 'theme'> & {
    * </ThemeProvider>
    */
   portalContainer?: HTMLElement;
+  /**
+   * This prop will be used to determine if `styles.css` should be automatically imported at runtime (if not already found).
+   *
+   * By default, this is enabled when using `theme='inherit'`.
+   * This default behavior is useful for packages that want to support incremental adoption of latest iTwinUI,
+   * without requiring consuming applications (that might still be using an older version) to manually import the CSS.
+   *
+   * If true or false is passed, it will override the default behavior.
+   */
+  includeCss?: boolean;
 };
 
 /**
@@ -119,20 +132,22 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     children,
     themeOptions = {},
     portalContainer: portalContainerProp,
+    includeCss = themeProp === 'inherit',
     ...rest
   } = props;
 
-  const [parentTheme, rootRef, parentContext] = useParentTheme();
-  const theme = themeProp === 'inherit' ? parentTheme || 'light' : themeProp;
+  const [rootElement, setRootElement] = React.useState<HTMLElement | null>(
+    null,
+  );
+  const parent = useParentThemeAndContext(rootElement);
+  const theme = themeProp === 'inherit' ? parent.theme || 'light' : themeProp;
 
   // default apply background only for topmost ThemeProvider
-  themeOptions.applyBackground ??= !parentTheme;
+  themeOptions.applyBackground ??= !parent.theme;
 
   // default inherit highContrast option from parent if also inheriting base theme
   themeOptions.highContrast ??=
-    themeProp === 'inherit'
-      ? parentContext?.themeOptions?.highContrast
-      : undefined;
+    themeProp === 'inherit' ? parent.highContrast : undefined;
 
   /**
    * We will portal our portal container into `portalContainer` prop (if specified),
@@ -140,7 +155,7 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
    */
   const portaledPortalContainer =
     portalContainerProp ||
-    (themeProp === 'inherit' ? parentContext?.portalContainer : undefined);
+    (themeProp === 'inherit' ? parent.context?.portalContainer : undefined);
 
   const [portalContainer, setPortalContainer] = useControlledState(
     null,
@@ -156,10 +171,12 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
 
   return (
     <ThemeContext.Provider value={contextValue}>
+      {includeCss && rootElement ? <FallbackStyles root={rootElement} /> : null}
+
       <Root
         theme={theme}
         themeOptions={themeOptions}
-        ref={useMergedRefs(forwardedRef, rootRef)}
+        ref={useMergedRefs(forwardedRef, setRootElement)}
         {...rest}
       >
         <ToastProvider>
@@ -211,29 +228,101 @@ const Root = React.forwardRef((props, forwardedRef) => {
 // ----------------------------------------------------------------------------
 
 /**
- * Returns theme from either parent context or by reading the closest
+ * Returns theme information from either parent ThemeContext or by reading the closest
  * data-iui-theme attribute if context is not found.
+ *
+ * Also returns the ThemeContext itself (if found).
  */
-const useParentTheme = () => {
+const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
   const parentContext = React.useContext(ThemeContext);
-  const rootRef = React.useRef<HTMLElement>(null);
   const [parentThemeState, setParentTheme] = React.useState(
     parentContext?.theme,
   );
+  const [parentHighContrastState, setParentHighContrastState] = React.useState(
+    parentContext?.themeOptions?.highContrast,
+  );
+
+  const parentThemeRef = useLatestRef(parentContext?.theme);
 
   useIsomorphicLayoutEffect(() => {
-    setParentTheme(
-      (old) =>
-        old ||
-        (rootRef.current?.parentElement
-          ?.closest('[data-iui-theme]')
-          ?.getAttribute('data-iui-theme') as ThemeType),
-    );
-  }, []);
+    // bail if we already have theme from context
+    if (parentThemeRef.current) {
+      return;
+    }
 
-  return [
-    parentContext?.theme ?? parentThemeState,
-    rootRef,
-    parentContext,
-  ] as const;
+    // find parent theme from closest data-iui-theme attribute
+    const closestRoot = rootElement?.parentElement?.closest('[data-iui-theme]');
+
+    if (!closestRoot) {
+      return;
+    }
+
+    // helper function that updates state to match data attributes from closest root
+    const synchronizeTheme = () => {
+      setParentTheme(closestRoot?.getAttribute('data-iui-theme') as ThemeType);
+      setParentHighContrastState(
+        closestRoot?.getAttribute('data-iui-contrast') === 'high',
+      );
+    };
+
+    // set theme for initial mount
+    synchronizeTheme();
+
+    // use mutation observers to listen to future updates to data attributes
+    const observer = new MutationObserver(() => synchronizeTheme());
+    observer.observe(closestRoot, {
+      attributes: true,
+      attributeFilter: ['data-iui-theme', 'data-iui-contrast'],
+    });
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [rootElement, parentThemeRef]);
+
+  return {
+    theme: parentContext?.theme ?? parentThemeState,
+    highContrast:
+      parentContext?.themeOptions?.highContrast ?? parentHighContrastState,
+    context: parentContext,
+  } as const;
+};
+
+// ----------------------------------------------------------------------------
+
+/**
+ * When `@itwin/itwinui-react/styles.css` is not imported, we will attempt to
+ * dynamically import it (if possible) and fallback to loading it from a CDN.
+ */
+const FallbackStyles = ({ root }: { root: HTMLElement }) => {
+  useIsomorphicLayoutEffect(() => {
+    // bail if styles are already loaded
+    if (getComputedStyle(root).getPropertyValue('--_iui-v3-loaded') === 'yes') {
+      return;
+    }
+
+    // bail if jest because it doesn't care about CSS 🤷
+    if (isJest) {
+      return;
+    }
+
+    (async () => {
+      try {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        await import('../../../styles.css');
+      } catch (error) {
+        console.log('Error loading styles.css locally', error);
+        const css = await importCss(
+          'https://cdn.jsdelivr.net/npm/@itwin/itwinui-react@3/styles.css',
+        );
+        document.adoptedStyleSheets = [
+          ...document.adoptedStyleSheets,
+          css.default,
+        ];
+      }
+    })();
+  }, [root]);
+
+  return <></>;
 };

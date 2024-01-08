@@ -7,7 +7,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { TablePaginator, type TablePaginatorProps } from './TablePaginator.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import * as UseContainerWidth from '../utils/hooks/useContainerWidth.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<TablePaginatorProps>) => {
   return render(

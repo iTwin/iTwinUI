@@ -1,7 +1,6 @@
 ---
 title: Getting started
 description: Get started with iTwinUI
-toc: false
 group: intro
 slug: ''
 ---
@@ -10,12 +9,10 @@ slug: ''
 
 ### Installation
 
-```shell
-npm install @itwin/itwinui-react
-```
+iTwinUI is offered primarily as a set of React components that work with React v17 and above. Start by installing `@itwin/itwinui-react` using your package manager of choice.
 
 ```shell
-yarn add @itwin/itwinui-react
+npm add @itwin/itwinui-react
 ```
 
 ### Setup
@@ -28,23 +25,18 @@ import '@itwin/itwinui-react/styles.css';
 
 export default function App() {
   return (
-    <>
-      <ThemeProvider>{/* Your components go here. */}</ThemeProvider>
-    </>
+    <ThemeProvider>
+      <>{/* Your components go here. */}</>
+    </ThemeProvider>
   );
 }
 ```
 
-ThemeProvider has a `theme` prop which accepts one of the following values:
-
-- `light` (default)
-- `dark`
-- `os` (respects the color scheme of the operating system)
-- `inherit`
+For more details, check out the [`ThemeProvider` documentation](/docs/themeprovider).
 
 ### Usage
 
-After setting up ThemeProvider and styles, import the component you want and start using it!
+After setting up ThemeProvider and styles, you can start using the [components](/docs/components) you want by importing them from the top-level `@itwin/itwinui-react` module.
 
 ```jsx
 import { Button } from '@itwin/itwinui-react';
@@ -54,7 +46,14 @@ const Page = () => <Button>Hello!</Button>;
 
 Check out this template for a live interactive demo:
 
-[![Edit in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)
+[![Edit in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=src/App.tsx)
+
+### Versioning
+
+This documentation is for the latest version of iTwinUI (v3). If you're using an older version of iTwinUI, we highly recommend upgrading (see [migration guide](https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide)). In the meantime, you might find these links useful:
+
+- [v1 storybook](https://itwin.github.io/iTwinUI-react)
+- [v2 storybook](https://itwin.github.io/iTwinUI/legacy/v2/react)
 
 ## For designers
 

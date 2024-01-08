@@ -89,6 +89,13 @@ it('should handle drag and drop events correctly', () => {
   expect(container.querySelector('.iui-file-upload.iui-drag')).toBeFalsy();
 
   fireEvent.dragEnter(component, mockDataTransfer);
+
   fireEvent.drop(component, mockDataTransfer);
-  expect(mockFn).toHaveBeenCalledWith([file]);
+  expect(mockFn).toHaveBeenCalledWith(
+    [file],
+    expect.objectContaining({
+      type: 'drop',
+      target: component,
+    }),
+  );
 });

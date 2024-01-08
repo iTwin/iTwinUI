@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 import { DialogBackdrop } from './DialogBackdrop.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', async () => {
   const onClose = jest.fn();

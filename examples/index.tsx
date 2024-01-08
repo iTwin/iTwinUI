@@ -604,6 +604,12 @@ const InformationPanelMainExample = withThemeProvider(
 );
 export { InformationPanelMainExample };
 
+import { default as InformationPanelHorizontalExampleRaw } from './InformationPanel.horizontal';
+const InformationPanelHorizontalExample = withThemeProvider(
+  InformationPanelHorizontalExampleRaw,
+);
+export { InformationPanelHorizontalExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as InputGroupToggleSwitchExampleRaw } from './InputGroup.toggleSwitch';
@@ -700,15 +706,21 @@ export { InputWithDecorationsDisabledExample };
 
 // ----------------------------------------------------------------------------
 
-import { default as KeyboardMainExampleRaw } from './Keyboard.main';
-const KeyboardMainExample = withThemeProvider(KeyboardMainExampleRaw);
-export { KeyboardMainExample };
+import { default as KbdMainExampleRaw } from './Kbd.main';
+const KbdMainExample = withThemeProvider(KbdMainExampleRaw);
+export { KbdMainExample };
 
 // ----------------------------------------------------------------------------
 
 import { default as LabelMainExampleRaw } from './Label.main';
 const LabelMainExample = withThemeProvider(LabelMainExampleRaw);
 export { LabelMainExample };
+
+// ----------------------------------------------------------------------------
+
+import { default as LinkActionMainExampleRaw } from './LinkAction.main';
+const LinkActionMainExample = withThemeProvider(LinkActionMainExampleRaw);
+export { LinkActionMainExample };
 
 // ----------------------------------------------------------------------------
 
@@ -1221,6 +1233,10 @@ export { TransferListMainExample };
 import { default as TreeMainExampleRaw } from './Tree.main';
 const TreeMainExample = withThemeProvider(TreeMainExampleRaw);
 export { TreeMainExample };
+
+import { default as TreeSmallExampleRaw } from './Tree.small';
+const TreeSmallExample = withThemeProvider(TreeSmallExampleRaw);
+export { TreeSmallExample };
 
 // ----------------------------------------------------------------------------
 

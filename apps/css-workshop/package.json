@@ -6,7 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "@itwin/itwinui-css": "*",
-    "@itwin/itwinui-icons-elements": "0.2.0",
+    "@itwin/itwinui-icons-elements": "0.20.0",
     "autoprefixer": "^10",
     "backstopjs": "~6.2.1",
     "html-minifier": "^4.0.0",

@@ -54,19 +54,23 @@ A list of all available props can be found [at the end](#props) of this page.
 
 ### Actionable
 
-Click on an actionable tile triggers an action.
+Clicking on an actionable tile triggers an action.
 
-Actionable tiles have Tile.Action wrapped around tile name. It adds action to the name, increases click or touch target for said action and keeps accessibility for the best user experience.
+Actionable tiles should use `Tile.Action` wrapped around the tile name. `Tile.Action` is a wrapper around [`LinkAction`](linkaction), which increases the tap target size (clickable area) and provides a more accesible experience.
 
 <LiveExample src='Tile.actionable.tsx'>
   <AllExamples.TileActionableExample client:load />
 </LiveExample>
 
-Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link. This is because manually wrapping the Tile with an `<a href="...">` is not recommended for accessibility reasons.
+Actionable tiles can also link to another page by passing the `href` prop to `Tile.Action`.
 
 <LiveExample src='Tile.anchorlink.tsx'>
   <AllExamples.TileAnchorLinkExample client:load style={{ padding: 50 }} />
 </LiveExample>
+
+**Important**: Adding `onClick` directly to the `Tile` or manually wrapping the Tile with an `<a href="...">` is not recommended for [accessibility reasons](https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html).
+
+#### Secondary actions
 
 A tile may have one or two buttons to perform actions. But there should not be more than two button actions.
 
