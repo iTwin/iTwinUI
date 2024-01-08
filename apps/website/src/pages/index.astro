@@ -31,7 +31,7 @@ const currentPage = new URL(Astro.request.url).pathname;
             class='banner'
             href='https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide'
           >
-            iTwinUI v3 is now available!
+            iTwinUI <span class='highlight-text v3'>v3</span> is now available!
           </HomepageBanner>
 
           <h1>For a <span class='highlight-text'>unified</span> experience</h1>
@@ -191,6 +191,10 @@ const currentPage = new URL(Astro.request.url).pathname;
 
         .banner {
           margin-block-end: var(--space-4);
+
+          .v3 {
+            font-weight: 600;
+          }
         }
       }
       .animated-logo-wrapper {
