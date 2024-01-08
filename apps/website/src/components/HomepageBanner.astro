@@ -1,0 +1,63 @@
+---
+import RightArrowIcon from '~/icons/RightArrowIcon.astro';
+
+type Props = {
+  href: string;
+  [key: string]: unknown;
+};
+
+const { href, ...props } = Astro.props;
+---
+
+<aside {...props}>
+  <a href={href}>
+    <slot />
+  </a>
+
+  <RightArrowIcon class='arrow' lineProps={{ class: 'line' }} />
+</aside>
+
+<style lang='scss'>
+  aside {
+    border: 1px solid var(--color-line-2);
+    background-color: var(--color-background-1);
+    border-radius: 9e9px;
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text);
+    padding-inline: 16px 8px;
+    padding-block: 4px;
+    gap: 4px;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+
+    :global(.line) {
+      opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+    }
+  }
+
+  a {
+    all: unset;
+  }
+
+  .arrow {
+    flex: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    transform: translateX(-6px);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  aside:hover {
+    border-color: var(--color-line-1);
+
+    :global(.line) {
+      opacity: 1;
+    }
+
+    .arrow {
+      transform: translateX(0);
+    }
+  }
+</style>
