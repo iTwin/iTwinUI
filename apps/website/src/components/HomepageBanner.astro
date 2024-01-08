@@ -61,5 +61,10 @@ const { href, ...props } = Astro.props;
         transform: translateX(0);
       }
     }
+
+    aside:focus-within {
+      outline: 2px solid var(--color-line-1);
+      outline-offset: 3px;
+    }
   }
 </style>
