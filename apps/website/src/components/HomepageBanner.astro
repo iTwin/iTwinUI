@@ -50,7 +50,7 @@ const { href, ...props } = Astro.props;
       transition: transform 0.2s ease-in-out;
     }
 
-    aside:hover {
+    aside:is(:hover, :focus-within) {
       border-color: var(--color-line-1);
 
       :global(.line) {
