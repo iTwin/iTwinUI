@@ -469,7 +469,8 @@ const SelectInnerFn = <T,>(
 };
 
 export const Select = React.forwardRef(SelectInnerFn) as <T>(
-  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+  props: SelectProps<T>,
+  forwardedRef: React.ForwardedRef<HTMLElement>,
 ) => ReturnType<typeof SelectInnerFn>;
 
 type SingleSelectButtonProps<T> = {
