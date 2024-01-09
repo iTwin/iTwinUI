@@ -228,250 +228,249 @@ export type SelectProps<T> = {
  *   )}
  * />
  */
+export const Select = React.forwardRef(
+  <T,>(
+    props: SelectProps<T>,
+    forwardedRef: React.ForwardedRef<HTMLElement>,
+  ) => {
+    const uid = useId();
 
-const SelectInnerFn = <T,>(
-  props: SelectProps<T>,
-  forwardedRef: React.ForwardedRef<HTMLElement>,
-) => {
-  const uid = useId();
+    const {
+      options,
+      value: valueProp,
+      onChange: onChangeProp,
+      placeholder,
+      disabled = false,
+      size,
+      itemRenderer,
+      selectedItemRenderer,
+      className,
+      style,
+      menuClassName,
+      menuStyle,
+      multiple = false,
+      triggerProps,
+      status,
+      popoverProps,
+      ...rest
+    } = props;
 
-  const {
-    options,
-    value: valueProp,
-    onChange: onChangeProp,
-    placeholder,
-    disabled = false,
-    size,
-    itemRenderer,
-    selectedItemRenderer,
-    className,
-    style,
-    menuClassName,
-    menuStyle,
-    multiple = false,
-    triggerProps,
-    status,
-    popoverProps,
-    ...rest
-  } = props;
+    const [isOpen, setIsOpen] = React.useState(false);
+    const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
+    const [uncontrolledValue, setUncontrolledValue] = React.useState<T | T[]>();
+    const value = valueProp ?? uncontrolledValue;
 
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<T | T[]>();
-  const value = valueProp ?? uncontrolledValue;
+    const onChangeRef = useLatestRef(onChangeProp);
+    const selectRef = React.useRef<HTMLDivElement>(null);
 
-  const onChangeRef = useLatestRef(onChangeProp);
-  const selectRef = React.useRef<HTMLDivElement>(null);
+    const show = React.useCallback(() => {
+      if (disabled) {
+        return;
+      }
+      setIsOpen(true);
+      popoverProps?.onVisibleChange?.(true);
+    }, [disabled, popoverProps]);
 
-  const show = React.useCallback(() => {
-    if (disabled) {
-      return;
-    }
-    setIsOpen(true);
-    popoverProps?.onVisibleChange?.(true);
-  }, [disabled, popoverProps]);
+    const hide = React.useCallback(() => {
+      setIsOpen(false);
+      selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
+      popoverProps?.onVisibleChange?.(false);
+    }, [popoverProps]);
 
-  const hide = React.useCallback(() => {
-    setIsOpen(false);
-    selectRef.current?.focus({ preventScroll: true }); // move focus back to select button
-    popoverProps?.onVisibleChange?.(false);
-  }, [popoverProps]);
+    const menuItems = React.useMemo(() => {
+      return options.map((option, index) => {
+        const isSelected = isMultipleEnabled(value, multiple)
+          ? value?.includes(option.value) ?? false
+          : value === option.value;
+        const menuItem: JSX.Element = itemRenderer ? (
+          itemRenderer(option, { close: () => setIsOpen(false), isSelected })
+        ) : (
+          <MenuItem>{option.label}</MenuItem>
+        );
 
-  const menuItems = React.useMemo(() => {
-    return options.map((option, index) => {
-      const isSelected = isMultipleEnabled(value, multiple)
-        ? value?.includes(option.value) ?? false
-        : value === option.value;
-      const menuItem: JSX.Element = itemRenderer ? (
-        itemRenderer(option, { close: () => setIsOpen(false), isSelected })
-      ) : (
-        <MenuItem>{option.label}</MenuItem>
-      );
+        const { label, icon, startIcon: startIconProp, ...restOption } = option;
 
-      const { label, icon, startIcon: startIconProp, ...restOption } = option;
+        const startIcon = startIconProp ?? icon;
 
-      const startIcon = startIconProp ?? icon;
+        return React.cloneElement<MenuItemProps>(menuItem, {
+          key: `${label}-${index}`,
+          isSelected,
+          startIcon: startIcon,
+          endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
+          onClick: () => {
+            if (option.disabled) {
+              return;
+            }
 
-      return React.cloneElement<MenuItemProps>(menuItem, {
-        key: `${label}-${index}`,
-        isSelected,
-        startIcon: startIcon,
-        endIcon: isSelected ? <SvgCheckmark aria-hidden /> : null,
-        onClick: () => {
-          if (option.disabled) {
-            return;
-          }
+            // update internal value state and also call external onChange
+            if (isSingleOnChange(onChangeRef.current, multiple)) {
+              setUncontrolledValue(option.value);
+              onChangeRef.current?.(option.value);
+              hide();
+            } else {
+              setUncontrolledValue((prev: T[]) =>
+                isSelected
+                  ? prev?.filter((i) => option.value !== i)
+                  : [...(prev ?? []), option.value],
+              );
+              onChangeRef.current?.(
+                option.value,
+                isSelected ? 'removed' : 'added',
+              );
+            }
 
-          // update internal value state and also call external onChange
-          if (isSingleOnChange(onChangeRef.current, multiple)) {
-            setUncontrolledValue(option.value);
-            onChangeRef.current?.(option.value);
-            hide();
-          } else {
-            setUncontrolledValue((prev: T[]) =>
-              isSelected
-                ? prev?.filter((i) => option.value !== i)
-                : [...(prev ?? []), option.value],
-            );
-            onChangeRef.current?.(
-              option.value,
-              isSelected ? 'removed' : 'added',
-            );
-          }
-
-          // update live region
-          if (isMultipleEnabled(value, multiple)) {
-            const prevSelectedValue = value || [];
-            const newSelectedValue = isSelected
-              ? prevSelectedValue.filter((i) => option.value !== i)
-              : [...prevSelectedValue, option.value];
-            setLiveRegionSelection(
-              options
-                .filter((i) => newSelectedValue.includes(i.value))
-                .map((item) => item.label)
-                .filter(Boolean)
-                .join(', '),
-            );
-          }
-        },
-        ref: (el: HTMLElement) => {
-          if (isSelected && !multiple) {
-            el?.scrollIntoView({ block: 'nearest' });
-          }
-        },
-        role: 'option',
-        ...restOption,
-        ...menuItem.props,
+            // update live region
+            if (isMultipleEnabled(value, multiple)) {
+              const prevSelectedValue = value || [];
+              const newSelectedValue = isSelected
+                ? prevSelectedValue.filter((i) => option.value !== i)
+                : [...prevSelectedValue, option.value];
+              setLiveRegionSelection(
+                options
+                  .filter((i) => newSelectedValue.includes(i.value))
+                  .map((item) => item.label)
+                  .filter(Boolean)
+                  .join(', '),
+              );
+            }
+          },
+          ref: (el: HTMLElement) => {
+            if (isSelected && !multiple) {
+              el?.scrollIntoView({ block: 'nearest' });
+            }
+          },
+          role: 'option',
+          ...restOption,
+          ...menuItem.props,
+        });
       });
+    }, [hide, itemRenderer, multiple, onChangeRef, options, value]);
+
+    const selectedItems = React.useMemo(() => {
+      if (value == null) {
+        return undefined;
+      }
+      return isMultipleEnabled(value, multiple)
+        ? options.filter((option) => value.some((val) => val === option.value))
+        : options.find((option) => option.value === value);
+    }, [multiple, options, value]);
+
+    const tagRenderer = React.useCallback((item: SelectOption<T>) => {
+      return <SelectTag key={item.label} label={item.label} />;
+    }, []);
+
+    const popover = usePopover({
+      visible: isOpen,
+      matchWidth: true,
+      closeOnOutsideClick: true,
+      ...popoverProps,
+      onVisibleChange: (open) => (open ? show() : hide()),
     });
-  }, [hide, itemRenderer, multiple, onChangeRef, options, value]);
 
-  const selectedItems = React.useMemo(() => {
-    if (value == null) {
-      return undefined;
-    }
-    return isMultipleEnabled(value, multiple)
-      ? options.filter((option) => value.some((val) => val === option.value))
-      : options.find((option) => option.value === value);
-  }, [multiple, options, value]);
-
-  const tagRenderer = React.useCallback((item: SelectOption<T>) => {
-    return <SelectTag key={item.label} label={item.label} />;
-  }, []);
-
-  const popover = usePopover({
-    visible: isOpen,
-    matchWidth: true,
-    closeOnOutsideClick: true,
-    ...popoverProps,
-    onVisibleChange: (open) => (open ? show() : hide()),
-  });
-
-  return (
-    <>
-      <Box
-        className={cx('iui-input-with-icon', className)}
-        style={style}
-        {...rest}
-        ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
-      >
+    return (
+      <>
         <Box
-          {...popover.getReferenceProps()}
-          tabIndex={0}
-          role='combobox'
-          data-iui-size={size}
-          data-iui-status={status}
-          aria-disabled={disabled}
-          aria-autocomplete='none'
-          aria-expanded={isOpen}
-          aria-haspopup='listbox'
-          aria-controls={`${uid}-menu`}
-          {...triggerProps}
-          ref={useMergedRefs(
-            selectRef,
-            triggerProps?.ref,
-            popover.refs.setReference,
-          )}
-          className={cx(
-            'iui-select-button',
-            {
-              'iui-placeholder':
-                (!selectedItems || selectedItems.length === 0) && !!placeholder,
-              'iui-disabled': disabled,
-            },
-            triggerProps?.className,
-          )}
+          className={cx('iui-input-with-icon', className)}
+          style={style}
+          {...rest}
+          ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
         >
-          {(!selectedItems || selectedItems.length === 0) && (
-            <Box as='span' className='iui-content'>
-              {placeholder}
-            </Box>
-          )}
-          {isMultipleEnabled(selectedItems, multiple) ? (
-            <MultipleSelectButton
-              selectedItems={selectedItems}
-              selectedItemsRenderer={
-                selectedItemRenderer as (
-                  options: SelectOption<T>[],
-                ) => JSX.Element
-              }
-              tagRenderer={tagRenderer}
-            />
-          ) : (
-            <SingleSelectButton
-              selectedItem={selectedItems}
-              selectedItemRenderer={
-                selectedItemRenderer as (option: SelectOption<T>) => JSX.Element
-              }
-            />
-          )}
-        </Box>
-        <Icon
-          as='span'
-          aria-hidden
-          className={cx('iui-end-icon', {
-            'iui-disabled': disabled,
-            'iui-open': isOpen,
-          })}
-        >
-          <SvgCaretDownSmall />
-        </Icon>
-
-        {multiple ? (
-          <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
-        ) : null}
-      </Box>
-
-      {popover.open && (
-        <Portal>
-          <Menu
-            role='listbox'
-            className={menuClassName}
-            id={`${uid}-menu`}
-            key={`${uid}-menu`}
-            {...popover.getFloatingProps({
-              style: menuStyle,
-              onKeyDown: ({ key }) => {
-                if (key === 'Tab') {
-                  hide();
-                }
+          <Box
+            {...popover.getReferenceProps()}
+            tabIndex={0}
+            role='combobox'
+            data-iui-size={size}
+            data-iui-status={status}
+            aria-disabled={disabled}
+            aria-autocomplete='none'
+            aria-expanded={isOpen}
+            aria-haspopup='listbox'
+            aria-controls={`${uid}-menu`}
+            {...triggerProps}
+            ref={useMergedRefs(
+              selectRef,
+              triggerProps?.ref,
+              popover.refs.setReference,
+            )}
+            className={cx(
+              'iui-select-button',
+              {
+                'iui-placeholder':
+                  (!selectedItems || selectedItems.length === 0) &&
+                  !!placeholder,
+                'iui-disabled': disabled,
               },
-            })}
-            ref={popover.refs.setFloating}
+              triggerProps?.className,
+            )}
           >
-            {menuItems}
-          </Menu>
-        </Portal>
-      )}
-    </>
-  );
-};
+            {(!selectedItems || selectedItems.length === 0) && (
+              <Box as='span' className='iui-content'>
+                {placeholder}
+              </Box>
+            )}
+            {isMultipleEnabled(selectedItems, multiple) ? (
+              <MultipleSelectButton
+                selectedItems={selectedItems}
+                selectedItemsRenderer={
+                  selectedItemRenderer as (
+                    options: SelectOption<T>[],
+                  ) => JSX.Element
+                }
+                tagRenderer={tagRenderer}
+              />
+            ) : (
+              <SingleSelectButton
+                selectedItem={selectedItems}
+                selectedItemRenderer={
+                  selectedItemRenderer as (
+                    option: SelectOption<T>,
+                  ) => JSX.Element
+                }
+              />
+            )}
+          </Box>
+          <Icon
+            as='span'
+            aria-hidden
+            className={cx('iui-end-icon', {
+              'iui-disabled': disabled,
+              'iui-open': isOpen,
+            })}
+          >
+            <SvgCaretDownSmall />
+          </Icon>
 
-export const Select = React.forwardRef(SelectInnerFn) as <T>(
-  props: SelectProps<T>,
-  forwardedRef: React.ForwardedRef<HTMLElement>,
-) => ReturnType<typeof SelectInnerFn>;
+          {multiple ? (
+            <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
+          ) : null}
+        </Box>
+
+        {popover.open && (
+          <Portal>
+            <Menu
+              role='listbox'
+              className={menuClassName}
+              id={`${uid}-menu`}
+              key={`${uid}-menu`}
+              {...popover.getFloatingProps({
+                style: menuStyle,
+                onKeyDown: ({ key }) => {
+                  if (key === 'Tab') {
+                    hide();
+                  }
+                },
+              })}
+              ref={popover.refs.setFloating}
+            >
+              {menuItems}
+            </Menu>
+          </Portal>
+        )}
+      </>
+    );
+  },
+);
 
 type SingleSelectButtonProps<T> = {
   selectedItem?: SelectOption<T>;
