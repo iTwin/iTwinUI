@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 /**
- * This test file to test some Table type related cases that have not been tested in other files
+ * This test file tests some Table type related cases that have not been tested in other files
  * (e.g. react-workshop, unit tests, etc.)
  */
 
