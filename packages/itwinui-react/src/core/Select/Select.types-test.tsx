@@ -7,24 +7,58 @@
  * (e.g. react-workshop, unit tests, etc.)
  */
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Select from './Select.js';
 
-const App = () => {
+() => {
+  const ref = useRef(null);
   return (
     <>
-      <Select<string>
+      <Select
         options={[
-          { value: '1', label: '1' },
-          { value: '2', label: '2' },
-          { value: '3', label: '3' },
+          { value: 1, label: 'Option 1' },
+          { value: 2, label: 'Option 2' },
+          { value: 3, label: 'Option 3' },
         ]}
         onChange={(value) => {
-          console.log(value);
+          return value;
+        }}
+        ref={ref}
+      />
+    </>
+  );
+};
+
+() => {
+  return (
+    <>
+      <Select<number>
+        options={[
+          { value: 1, label: 'Option 1' },
+          { value: 2, label: 'Option 2' },
+          { value: 3, label: 'Option 3' },
+        ]}
+        onChange={(value: number) => {
+          return value;
         }}
       />
     </>
   );
 };
 
-export default App;
+() => {
+  return (
+    <>
+      <Select<string>
+        options={[
+          { value: '1', label: 'Option 1' },
+          { value: '2', label: 'Option 2' },
+          { value: '3', label: 'Option 3' },
+        ]}
+        onChange={(value: string) => {
+          return value;
+        }}
+      />
+    </>
+  );
+};
