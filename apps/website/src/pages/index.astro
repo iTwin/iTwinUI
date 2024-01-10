@@ -15,6 +15,7 @@ import DialogDemo from '~/demos/Dialog.demo';
 import ComboBoxDemo from '~/demos/ComboBox.demo';
 import SliderDemo from '~/demos/Slider.demo';
 import FieldsetDemo from '~/demos/Fieldset.demo';
+import HomepageBanner from '~/components/HomepageBanner.astro';
 
 const currentPage = new URL(Astro.request.url).pathname;
 ---
@@ -26,6 +27,13 @@ const currentPage = new URL(Astro.request.url).pathname;
     <div class='title-box'>
       <div class='hero-box'>
         <div class='hero-text move-on-visible' data-move-on-visible-direction='right'>
+          <HomepageBanner
+            class='banner'
+            href='https://github.com/iTwin/iTwinUI/wiki/iTwinUI-react-v3-migration-guide'
+          >
+            iTwinUI <span class='highlight-text v3'>v3</span> is now available!
+          </HomepageBanner>
+
           <h1>For a <span class='highlight-text'>unified</span> experience</h1>
           <h2 class='subheading'>
             iTwinUI delivers common UI components and UI layouts bundled with accessibility best
@@ -179,6 +187,14 @@ const currentPage = new URL(Astro.request.url).pathname;
         @media (max-width: 50em) {
           grid-template-columns: 1fr;
           gap: var(--space-5);
+        }
+
+        .banner {
+          margin-block-end: var(--space-4);
+
+          .v3 {
+            font-weight: 600;
+          }
         }
       }
       .animated-logo-wrapper {
