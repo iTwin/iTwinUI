@@ -21,7 +21,8 @@ import Select from './Select.js';
           { value: 3, label: 'Option 3' },
         ]}
         onChange={(value) => {
-          return value;
+          const returnValue: number = value;
+          return returnValue;
         }}
         ref={ref}
       />
@@ -38,8 +39,9 @@ import Select from './Select.js';
           { value: 2, label: 'Option 2' },
           { value: 3, label: 'Option 3' },
         ]}
-        onChange={(value: number) => {
-          return value;
+        onChange={(value) => {
+          const returnValue: number = value;
+          return returnValue;
         }}
       />
     </>
@@ -55,8 +57,9 @@ import Select from './Select.js';
           { value: '2', label: 'Option 2' },
           { value: '3', label: 'Option 3' },
         ]}
-        onChange={(value: string) => {
-          return value;
+        onChange={(value) => {
+          const returnValue: string = value;
+          return returnValue;
         }}
       />
     </>
