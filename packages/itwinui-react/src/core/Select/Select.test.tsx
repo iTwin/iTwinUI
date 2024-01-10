@@ -598,3 +598,22 @@ it.each([true, false] as const)(
     expect(selectButton).toHaveTextContent('B');
   },
 );
+
+it('should allow passing ref to Select', () => {
+  const ref = React.createRef<HTMLElement>();
+  render(
+    <Select<number>
+      options={[
+        {
+          value: 1,
+          label: 'Option 1',
+        },
+      ]}
+      ref={ref}
+    />,
+  );
+
+  const selectRef = ref.current;
+  expect(selectRef).toBeDefined();
+  expect(selectRef?.tagName).toBe('DIV');
+});

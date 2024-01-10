@@ -188,3 +188,22 @@ it('should handle required attribute', () => {
 
   expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
 });
+
+it('should allow passing ref to LabeledSelect', () => {
+  const ref = React.createRef<HTMLElement>();
+  render(
+    <LabeledSelect<number>
+      options={[
+        {
+          value: 1,
+          label: 'Option 1',
+        },
+      ]}
+      ref={ref}
+    />,
+  );
+
+  const selectRef = ref.current;
+  expect(selectRef).toBeDefined();
+  expect(selectRef?.tagName).toBe('DIV');
+});
