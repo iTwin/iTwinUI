@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.2.4
+
+### Patch Changes
+
+- [#1774](https://github.com/iTwin/iTwinUI/pull/1774): Fixed `Select` and `LabeledSelect` to correctly handle generic types.
+
 ## 3.2.3
 
 ### Patch Changes
