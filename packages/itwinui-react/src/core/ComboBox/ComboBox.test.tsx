@@ -1065,10 +1065,9 @@ it('should be customizable', async () => {
 });
 
 it('should allow passing ref to ComboBox', () => {
-  const selectRef = React.createRef<HTMLElement>();
+  const comboboxRef = React.createRef<HTMLElement>();
   render(
-    <ComboBox options={[{ label: 'Item 1', value: 1 }]} ref={selectRef} />,
+    <ComboBox options={[{ label: 'Item 1', value: 1 }]} ref={comboboxRef} />,
   );
-  console.log(selectRef.current);
   expect(selectRef?.current).toHaveAttribute('role');
 });
