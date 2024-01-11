@@ -92,7 +92,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   const shouldShowIcon = svgIcon !== null && (svgIcon || (status && !message));
 
   return (
-    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+    <InputGrid labelPlacement={displayStyle} status={status} {...wrapperProps}>
       {label && (
         <Label
           as='label'

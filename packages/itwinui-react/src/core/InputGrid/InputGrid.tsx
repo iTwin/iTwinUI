@@ -16,6 +16,10 @@ type InputGridOwnProps = {
    * @default 'default'
    */
   labelPlacement?: 'default' | 'inline';
+  /**
+   * Status of the InputGrid (and its descendants).
+   */
+  status?: 'positive' | 'warning' | 'negative';
 };
 
 //-------------------------------------------------------------------------------
@@ -33,12 +37,19 @@ type InputGridOwnProps = {
  * </InputGrid>
  */
 export const InputGrid = React.forwardRef((props, ref) => {
-  const { children, className, labelPlacement = undefined, ...rest } = props;
+  const {
+    children,
+    className,
+    status,
+    labelPlacement = undefined,
+    ...rest
+  } = props;
 
   return (
     <Box
       className={cx('iui-input-grid', className)}
       data-iui-label-placement={labelPlacement}
+      data-iui-status={status}
       ref={ref}
       {...rest}
     >

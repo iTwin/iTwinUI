@@ -124,7 +124,11 @@ export const LabeledSelect = React.forwardRef(
     };
 
     return (
-      <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+      <InputGrid
+        labelPlacement={displayStyle}
+        status={status}
+        {...wrapperProps}
+      >
         {label && (
           <Label
             as='div'
