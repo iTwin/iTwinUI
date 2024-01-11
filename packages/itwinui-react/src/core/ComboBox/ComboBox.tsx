@@ -165,7 +165,6 @@ const getOptionId = (option: SelectOption<unknown>, idPrefix: string) => {
  *   onChange={() => {}}
  * />
  */
-
 export const ComboBox = React.forwardRef(
   <T,>(
     props: ComboBoxProps<T>,
