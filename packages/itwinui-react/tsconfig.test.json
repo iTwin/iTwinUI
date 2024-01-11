@@ -5,6 +5,7 @@
     "src/core/Table/**/*",
     "src/react-table/*",
     "src/core/Select/**/*",
-    "src/core/LabeledSelect/**/*"
+    "src/core/LabeledSelect/**/*",
+    "src/core/ComboBox/**/*"
   ]
 }
