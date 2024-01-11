@@ -552,8 +552,8 @@ export const ComboBox = React.forwardRef(
             <ComboBoxInputContainer disabled={inputProps?.disabled} {...rest}>
               <>
                 <ComboBoxInput
-                  value={inputValue}
                   ref={forwardedRef}
+                  value={inputValue}
                   disabled={inputProps?.disabled}
                   {...inputProps}
                   onChange={handleOnInput}

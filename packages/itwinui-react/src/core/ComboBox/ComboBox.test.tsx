@@ -1063,3 +1063,12 @@ it('should be customizable', async () => {
   const statusContent = getByText('My message');
   expect(statusContent).toHaveClass('custom-message-class');
 });
+
+it('should allow passing ref to ComboBox', () => {
+  const selectRef = React.createRef<HTMLElement>();
+  render(
+    <ComboBox options={[{ label: 'Item 1', value: 1 }]} ref={selectRef} />,
+  );
+  console.log(selectRef.current);
+  expect(selectRef?.current).toHaveAttribute('role');
+});
