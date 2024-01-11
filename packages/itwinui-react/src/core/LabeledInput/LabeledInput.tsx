@@ -117,7 +117,11 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           ref={ref}
           {...rest}
         />
-        {shouldShowIcon && <EndIcon status={status}>{icon}</EndIcon>}
+        {shouldShowIcon && (
+          <EndIcon status={status} {...iconProps}>
+            {icon}
+          </EndIcon>
+        )}
       </Box>
       {typeof message === 'string' ? (
         <StatusMessage
@@ -154,6 +158,8 @@ const EndIcon = React.forwardRef((props, ref) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<
-  'div',
-  Pick<LabeledInputProps, 'status' | 'iconProps'>
+  'span',
+  React.ComponentProps<typeof Icon> & {
+    status: 'positive' | 'warning' | 'negative' | undefined;
+  }
 >;

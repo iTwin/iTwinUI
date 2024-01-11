@@ -33,17 +33,20 @@ it('should show status', () => {
     <LabeledTextarea label='Label' status='negative' />,
   );
 
-  const input = container.querySelector('.iui-input-flex-container');
-  expect(input).toHaveAttribute('data-iui-status', 'negative');
+  const textareaContainer = container.querySelector('.iui-input-grid');
+  expect(textareaContainer).toBeTruthy();
+  expect(textareaContainer).toHaveAttribute('data-iui-status', 'negative');
+
+  const textarea = container.querySelector(
+    '.iui-input-grid > .iui-input-with-icon > textarea',
+  );
+  expect(textarea).toHaveAttribute('data-iui-status', 'negative');
 });
 
 it('should be disabled', () => {
   const { container } = render(
     <LabeledTextarea label='Label' disabled={true} />,
   );
-
-  const input = container.querySelector('.iui-input-flex-container');
-  expect(input).toHaveAttribute('data-iui-disabled', 'true');
 
   const textarea = container.querySelector('textarea') as HTMLTextAreaElement;
   expect(textarea).toBeTruthy();
