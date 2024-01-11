@@ -118,9 +118,13 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           {...rest}
         />
         {shouldShowIcon && (
-          <EndIcon status={status} {...iconProps}>
+          <Icon
+            fill={status}
+            {...iconProps}
+            className={cx('iui-end-icon', iconProps?.className)}
+          >
             {icon}
-          </EndIcon>
+          </Icon>
         )}
       </Box>
       {typeof message === 'string' ? (
@@ -139,27 +143,3 @@ export const LabeledInput = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'input', LabeledInputProps>;
 
 export default LabeledInput;
-
-// ------------------------------------------------------------------------------------------------
-
-const EndIcon = React.forwardRef((props, ref) => {
-  const { children, className, status, ...rest } = props;
-
-  return (
-    <Icon
-      as='span'
-      className={cx('iui-end-icon', className)}
-      ref={ref}
-      fill={status}
-      padded={false}
-      {...rest}
-    >
-      {children}
-    </Icon>
-  );
-}) as PolymorphicForwardRefComponent<
-  'span',
-  React.ComponentProps<typeof Icon> & {
-    status: 'positive' | 'warning' | 'negative' | undefined;
-  }
->;
