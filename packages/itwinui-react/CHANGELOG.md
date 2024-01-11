@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.20
+
+### Patch Changes
+
+- 9f1f3cff: Fixed `ComboBox` to correctly merge `inputProps.style` with internal styles.
+
 ## 2.12.19
 
 ### Patch Changes
