@@ -13,6 +13,7 @@ describe('LabeledInput', () => {
     'Positive',
     'Warning',
     'With Custom Icon',
+    'With Svg Icon',
     'With Message',
   ];
 

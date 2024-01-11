@@ -12,6 +12,7 @@ describe('LabeledTextarea', () => {
     'Positive',
     'Warning',
     'With Custom Icon',
+    'With Svg Icon',
   ];
 
   tests.forEach((testName) => {
