@@ -66,3 +66,41 @@ import LabeledSelect from './LabeledSelect.js';
     </>
   );
 };
+
+() => {
+  return (
+    <>
+      <LabeledSelect<string>
+        label='Select Label'
+        options={[
+          // There should be error: TS 2322
+          // @ts-expect-error (TS 2322): Type 'number' is not assignable to type 'string'.
+          { value: 1, label: 'Item #1' },
+        ]}
+        onChange={(value) => {
+          const returnValue: string = value;
+          return returnValue;
+        }}
+      />
+    </>
+  );
+};
+
+() => {
+  return (
+    <>
+      <LabeledSelect<string>
+        label='Select Label'
+        options={[
+          // There should be error: TS 2322
+          // @ts-expect-error (TS 2322): Type 'number' is not assignable to type 'string'.
+          { value: 1, label: 'Item #1' },
+        ]}
+        onChange={(value) => {
+          const returnValue: string = value;
+          return returnValue;
+        }}
+      />
+    </>
+  );
+};
