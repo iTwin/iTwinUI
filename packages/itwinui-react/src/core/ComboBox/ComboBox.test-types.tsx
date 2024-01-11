@@ -30,6 +30,38 @@ import ComboBox from './ComboBox.js';
 
 () => {
   return (
+    <ComboBox<number>
+      options={[
+        { label: 'Item 1', value: 1 },
+        { label: 'Item 2', value: 2 },
+        { label: 'Item 3', value: 3 },
+      ]}
+      onChange={(value) => {
+        const returnValue: number = value;
+        return returnValue;
+      }}
+    />
+  );
+};
+
+() => {
+  return (
+    <ComboBox<string>
+      options={[
+        { label: 'Item 1', value: `1` },
+        { label: 'Item 2', value: `2` },
+        { label: 'Item 3', value: `3` },
+      ]}
+      onChange={(value) => {
+        const returnValue: string = value;
+        return returnValue;
+      }}
+    />
+  );
+};
+
+() => {
+  return (
     <>
       <ComboBox
         options={[{ label: 'Item #1', value: 1 }]}
