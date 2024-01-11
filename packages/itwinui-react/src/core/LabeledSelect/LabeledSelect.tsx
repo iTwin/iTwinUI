@@ -167,6 +167,8 @@ export const LabeledSelect = React.forwardRef(
       </InputGrid>
     );
   },
-);
+) as <T>(
+  props: LabeledSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+) => JSX.Element;
 
 export default LabeledSelect;
