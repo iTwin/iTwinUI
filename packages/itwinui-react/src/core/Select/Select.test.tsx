@@ -600,20 +600,14 @@ it.each([true, false] as const)(
 );
 
 it('should allow passing ref to Select', () => {
-  const ref = React.createRef<HTMLElement>();
+  const selectRef = React.createRef<HTMLElement>();
   render(
-    <Select<number>
-      options={[
-        {
-          value: 1,
-          label: 'Option 1',
-        },
-      ]}
-      ref={ref}
+    <Select
+      options={[{ value: 1, label: 'Option 1' }]}
+      ref={selectRef}
+      data-select
     />,
   );
 
-  const selectRef = ref.current;
-  expect(selectRef).toBeDefined();
-  expect(selectRef?.tagName).toBe('DIV');
+  expect(selectRef?.current).toHaveAttribute('data-select');
 });
