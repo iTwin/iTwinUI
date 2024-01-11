@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': patch
+'@itwin/itwinui-react': minor
 ---
 
-Fixed `ComboBox` to allow setting ref and correctly handling generic types.
+`ComboBox` now forwards its `ref`
