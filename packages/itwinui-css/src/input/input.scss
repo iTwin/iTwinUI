@@ -109,9 +109,15 @@
   > :first-child {
     grid-area: 1 / -1;
 
-    // When there is an end-icon button (i.e. first-child is not the only child)
-    &:not(:only-child) {
-      padding-inline-end: var(--iui-component-height); // Width of the end-icon button
+    // Selects the first-child but only when there is an end-icon button
+    &:has(+ .iui-end-icon) {
+      padding-inline-end: var(--iui-component-height);
+    }
+
+    @supports not selector(:has(+ *)) {
+      &:not(:only-child) {
+        padding-inline-end: var(--iui-component-height); // Width of the end-icon button
+      }
     }
   }
 
