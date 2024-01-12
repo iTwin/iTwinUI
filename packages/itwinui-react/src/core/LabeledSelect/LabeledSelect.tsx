@@ -113,20 +113,6 @@ export const LabeledSelect = React.forwardRef(
 
     const labelId = `${useId()}-label`;
 
-    const icon = () => {
-      if (svgIcon) {
-        return svgIcon;
-      }
-
-      // Use default status icon
-      if (status && message) {
-        return undefined;
-      }
-
-      // Show no icon
-      return null;
-    };
-
     return (
       <InputGrid
         labelPlacement={displayStyle}
@@ -159,7 +145,7 @@ export const LabeledSelect = React.forwardRef(
         {typeof message === 'string' ? (
           <StatusMessage
             status={status}
-            startIcon={displayStyle === 'default' ? icon() : undefined}
+            startIcon={svgIcon}
             iconProps={messageIconProps}
             contentProps={messageContentProps}
           >

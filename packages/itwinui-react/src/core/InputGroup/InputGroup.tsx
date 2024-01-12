@@ -95,20 +95,6 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const icon = () => {
-    if (svgIcon) {
-      return svgIcon;
-    }
-
-    if (status && message) {
-      // Use default status icon
-      return undefined;
-    }
-
-    // Show no icon
-    return null;
-  };
-
   return (
     <InputGrid
       ref={forwardedRef}
@@ -140,7 +126,7 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
           iconProps={{
             'aria-hidden': true,
           }}
-          startIcon={icon()}
+          startIcon={svgIcon}
           status={status}
           {...messageProps}
         >
