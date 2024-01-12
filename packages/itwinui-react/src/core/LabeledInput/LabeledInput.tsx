@@ -116,7 +116,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         <Input
           disabled={disabled}
           required={required}
-          status={status}
           id={id}
           ref={ref}
           {...rest}
