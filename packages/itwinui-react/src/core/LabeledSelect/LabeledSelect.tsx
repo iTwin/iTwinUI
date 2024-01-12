@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { Select } from '../Select/Select.js';
 import type { SelectProps } from '../Select/Select.js';
-import { StatusIconMap, useId } from '../utils/index.js';
+import { useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
@@ -115,12 +115,16 @@ export const LabeledSelect = React.forwardRef(
 
     const icon = () => {
       if (svgIcon) {
-        return <Icon>{svgIcon}</Icon>;
+        return svgIcon;
       }
+
+      // Use default status icon
       if (status && message) {
-        return StatusIconMap[status]();
+        return undefined;
       }
-      return undefined;
+
+      // Show no icon
+      return null;
     };
 
     return (

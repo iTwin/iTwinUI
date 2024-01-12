@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { StatusIconMap, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
@@ -97,14 +97,16 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
 
   const icon = () => {
     if (svgIcon) {
-      return React.cloneElement(svgIcon, { 'aria-hidden': true });
+      return svgIcon;
     }
+
     if (status && message) {
-      return React.cloneElement(StatusIconMap[status](), {
-        'aria-hidden': true,
-      });
+      // Use default status icon
+      return undefined;
     }
-    return undefined;
+
+    // Show no icon
+    return null;
   };
 
   return (
@@ -134,7 +136,14 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
         {children}
       </Box>
       {(message || status || svgIcon) && (
-        <StatusMessage startIcon={icon()} status={status} {...messageProps}>
+        <StatusMessage
+          iconProps={{
+            'aria-hidden': true,
+          }}
+          startIcon={icon()}
+          status={status}
+          {...messageProps}
+        >
           {displayStyle !== 'inline' && message}
         </StatusMessage>
       )}
