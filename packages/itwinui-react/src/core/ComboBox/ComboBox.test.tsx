@@ -1063,3 +1063,18 @@ it('should be customizable', async () => {
   const statusContent = getByText('My message');
   expect(statusContent).toHaveClass('custom-message-class');
 });
+
+it('should allow passing ref to ComboBox', () => {
+  const comboboxRef = React.createRef<HTMLElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
+  render(
+    <ComboBox
+      options={[{ label: 'Item 1', value: 1 }]}
+      ref={comboboxRef}
+      id='test-combobox'
+      inputProps={{ ref: inputRef, id: `test-input` }}
+    />,
+  );
+  expect(comboboxRef?.current).toHaveAttribute('id', 'test-combobox');
+  expect(inputRef?.current).toHaveAttribute('id', 'test-input');
+});
