@@ -101,7 +101,6 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       as='div'
       labelPlacement={displayStyle}
       className={cx('iui-input-group-wrapper', className)}
-      status={status}
       {...rest}
     >
       {label && (
