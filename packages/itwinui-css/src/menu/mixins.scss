@@ -49,7 +49,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     margin-block-start: -1px;
   }
 
-  &:where([data-iui-actionable='true'], .iui-menu-item, :has(.iui-link-action:hover)):where(:hover) {
+  &:where([data-iui-actionable='true'], .iui-menu-item):where(:hover),
+  &:where(:has(.iui-link-action):hover) {
     cursor: pointer;
     background-color: var(--iui-color-background-hover);
   }
@@ -90,7 +91,8 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
     --_iui-list-item-description-color: var(--iui-color-text-disabled);
   }
 
-  &:where(:focus-visible, .iui-focused, [data-iui-focused='true'], :has(.iui-link-action:focus-visible)) {
+  &:where(:focus-visible, .iui-focused, [data-iui-focused='true']),
+  &:where(:has(.iui-link-action:focus-visible)) {
     outline: $iui-active-outline;
     outline-offset: -1px;
     z-index: 2;
