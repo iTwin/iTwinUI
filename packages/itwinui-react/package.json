@@ -64,7 +64,7 @@
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
     "test": "yarn test:types && yarn test:unit",
-    "test:unit": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- npx jest",
+    "test:unit": "dotenv -v NODE_OPTIONS=--experimental-vm-modules -- npx vitest",
     "test:unit:watch": "yarn test:unit --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
@@ -77,8 +77,8 @@
     "dev:styles": "yarn build:styles --watch"
   },
   "dependencies": {
-    "@itwin/itwinui-illustrations-react": "^2.1.0",
     "@floating-ui/react": "^0.26.3",
+    "@itwin/itwinui-illustrations-react": "^2.1.0",
     "classnames": "^2.3.2",
     "react-table": "^7.8.0",
     "react-transition-group": "^4.4.5",
@@ -112,7 +112,8 @@
     "ts-jest": "^29.0.0",
     "ts-node": "^10.0.0",
     "typescript": "~5.1.6",
-    "vite": "^4.5.1"
+    "vite": "^4.5.1",
+    "vitest": "^1.2.0"
   },
   "peerDependencies": {
     "react": ">= 17.0.0 < 19.0.0",
