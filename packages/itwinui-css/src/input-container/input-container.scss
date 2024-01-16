@@ -1,6 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins' as *;
+@use './mixins' as *;
 
 .iui-input-grid {
   display: grid;
@@ -36,29 +37,8 @@
       @include iui-text-selection($status);
 
       .iui-input {
-        // #region Bottom padding to accomodate for status stripe
-        padding-block-end: calc(var(--iui-size-2xs) - 1px);
-
-        &[data-iui-size='small'] {
-          padding-block-end: 0;
-        }
-
-        &[data-iui-size='large'] {
-          padding-block-end: calc(var(--iui-size-xs) - 1px);
-        }
-        // #endregion
-
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-
-        &:focus {
-          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-          outline: 2px solid var(--iui-color-text-#{$status});
-          outline-offset: -2px;
-        }
-
-        &:hover {
-          --_iui-input-border-color: var(--iui-color-border-#{$status});
-        }
+        // Giving status styling to iui-input inside input-grid even if iui-input does not have `data-iui-status`
+        @include iui-input-status($status);
       }
 
       .iui-input-with-icon {
@@ -67,17 +47,7 @@
       }
 
       .iui-select-button {
-        border-block-end: transparent;
-
-        &::after {
-          content: '';
-          inline-size: 100%;
-          position: absolute;
-          inset-block-end: 0;
-          inset-inline-start: 0;
-          block-size: var(--iui-size-3xs);
-          background-color: var(--iui-color-border-#{$status});
-        }
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
       }
     }
   }
@@ -272,31 +242,9 @@
 // attribute to include status border in inputs (input, select)
 .iui-input,
 .iui-input-with-icon > .iui-select-button {
-  @each $statusColor in informational, positive, warning, negative {
-    &:where([data-iui-status='#{$statusColor}']) {
-      padding-block-end: calc(var(--iui-size-2xs) - 1px);
-
-      &[data-iui-size='small'] {
-        padding-block-end: 0;
-      }
-
-      &[data-iui-size='large'] {
-        padding-block-end: calc(var(--iui-size-xs) - 1px);
-      }
-      // #endregion
-
-      border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
-
-      &:focus {
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$statusColor});
-        outline: 2px solid var(--iui-color-text-#{$statusColor});
-        outline-offset: -2px;
-      }
-
-      &:hover {
-        --_iui-input-border-color: var(--iui-color-border-#{$statusColor});
-        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$statusColor});
-      }
+  @each $status in informational, positive, warning, negative {
+    &[data-iui-status='#{$status}'] {
+      @include iui-input-status($status);
     }
   }
 }
