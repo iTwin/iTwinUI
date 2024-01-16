@@ -470,7 +470,9 @@ export const Select = React.forwardRef(
       </>
     );
   },
-);
+) as <T>(
+  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+) => JSX.Element;
 
 type SingleSelectButtonProps<T> = {
   selectedItem?: SelectOption<T>;
