@@ -40,7 +40,9 @@ it('should show status', () => {
   const textarea = container.querySelector(
     '.iui-input-grid > .iui-input-with-icon > textarea',
   );
-  expect(textarea).toHaveAttribute('data-iui-status', 'negative');
+
+  // Don't unnecessarily set data-iui-status on the textarea when iui-input-grid already has data-iui-status
+  expect(textarea).not.toHaveAttribute('data-iui-status', 'negative');
 });
 
 it('should be disabled', () => {
