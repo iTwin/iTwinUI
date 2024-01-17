@@ -37,6 +37,8 @@
     &:where([data-iui-status='#{$status}']) {
       :where(.iui-input, .iui-select-button),
       &:where(.iui-input, .iui-select-button) {
+        @include iui-text-selection($status);
+
         padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
         &[data-iui-size='small'] {
@@ -235,6 +237,10 @@
 
       &:hover {
         --_iui-input-border-color: var(--iui-color-border-#{$status});
+      }
+
+      input {
+        @include iui-text-selection($status);
       }
     }
   }
