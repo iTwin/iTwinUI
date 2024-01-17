@@ -47,7 +47,17 @@
       }
 
       .iui-select-button {
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+        border-block-end: transparent;
+
+        &::after {
+          content: '';
+          inline-size: 100%;
+          position: absolute;
+          inset-block-end: 0;
+          inset-inline-start: 0;
+          block-size: var(--iui-size-3xs);
+          background-color: var(--iui-color-border-#{$status});
+        }
       }
     }
   }

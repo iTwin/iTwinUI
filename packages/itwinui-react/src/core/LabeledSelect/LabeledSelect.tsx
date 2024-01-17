@@ -134,7 +134,6 @@ export const LabeledSelect = React.forwardRef(
           disabled={disabled}
           className={className}
           style={style}
-          // status={status}
           {...rest}
           ref={forwardedRef}
           triggerProps={{
