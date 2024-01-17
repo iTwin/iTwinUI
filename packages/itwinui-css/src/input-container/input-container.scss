@@ -1,7 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins' as *;
-@use './mixins' as *;
 
 .iui-input-grid {
   display: grid;
@@ -31,22 +30,39 @@
   .iui-status-message {
     grid-column-end: -1;
   }
+}
 
+:is(.iui-input-grid, .iui-input, .iui-input-with-icon > .iui-select-button) {
   @each $status in positive, warning, negative {
-    &[data-iui-status='#{$status}'] {
-      @include iui-text-selection($status);
+    &:where([data-iui-status='#{$status}']) {
+      :where(.iui-input, .iui-select-button),
+      &:where(.iui-input, .iui-select-button) {
+        padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
-      .iui-input {
-        // Giving status styling to iui-input inside input-grid even if iui-input does not have `data-iui-status`
-        @include iui-input-status($status);
+        &[data-iui-size='small'] {
+          padding-block-end: 0;
+        }
+
+        &[data-iui-size='large'] {
+          padding-block-end: calc(var(--iui-size-xs) - 1px);
+        }
+
+        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+
+        &:focus {
+          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+          outline: 2px solid var(--iui-color-text-#{$status});
+          outline-offset: -2px;
+        }
+
+        &:hover {
+          --_iui-input-border-color: var(--iui-color-border-#{$status});
+          --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
+        }
       }
 
-      .iui-input-with-icon {
-        --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-        --_iui-input-with-icon-focus-color: var(--iui-color-text-#{$status});
-      }
-
-      .iui-select-button {
+      :where(.iui-select-button),
+      &:where(.iui-select-button) {
         border-block-end: transparent;
 
         &::after {
@@ -246,15 +262,5 @@
   .iui-radio-wrapper,
   .iui-checkbox-wrapper {
     min-block-size: var(--iui-size-l);
-  }
-}
-
-// attribute to include status border in inputs (input, select)
-.iui-input,
-.iui-input-with-icon > .iui-select-button {
-  @each $status in informational, positive, warning, negative {
-    &[data-iui-status='#{$status}'] {
-      @include iui-input-status($status);
-    }
   }
 }
