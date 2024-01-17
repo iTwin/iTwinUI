@@ -35,6 +35,7 @@
 :is(.iui-input-grid, .iui-input, .iui-input-with-icon > .iui-select-button) {
   @each $status in positive, warning, negative {
     &:where([data-iui-status='#{$status}']) {
+      // #region Bottom padding to accommodate for status stripe
       :where(.iui-input, .iui-select-button),
       &:where(.iui-input, .iui-select-button) {
         @include iui-text-selection($status);
@@ -48,6 +49,7 @@
         &[data-iui-size='large'] {
           padding-block-end: calc(var(--iui-size-xs) - 1px);
         }
+        // #endregion
 
         border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
