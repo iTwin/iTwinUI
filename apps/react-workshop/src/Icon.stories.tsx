@@ -85,7 +85,7 @@ Sizes.decorators = Statuses.decorators;
 
 export const Autoscale = () => {
   return (
-    <Icon>
+    <Icon size='auto'>
       <SvgPlaceholder />
     </Icon>
   );
