@@ -22,8 +22,6 @@ export type PortalProps = {
    */
   portal?:
     | boolean
-    | null
-    | undefined
     | {
         to:
           | HTMLElement
