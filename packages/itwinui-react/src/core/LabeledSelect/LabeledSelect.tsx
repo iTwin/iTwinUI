@@ -30,7 +30,7 @@ export type LabeledSelectProps<T> = {
   /**
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: React.ComponentPropsWithoutRef<typeof StatusMessage>['startIcon'];
   /**
    * If true, shows a red asterisk but does not prevent form submission.
    * @default false

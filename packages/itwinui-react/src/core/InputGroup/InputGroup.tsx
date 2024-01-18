@@ -41,7 +41,7 @@ type InputGroupProps = {
   /**
    * Custom icon. If group has status, default status icon is used instead.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: React.ComponentPropsWithoutRef<typeof StatusMessage>['startIcon'];
   /**
    * Child inputs inside group.
    */
