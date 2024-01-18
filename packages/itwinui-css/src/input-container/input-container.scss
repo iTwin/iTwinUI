@@ -32,53 +32,34 @@
   }
 }
 
-:is(.iui-input-grid, .iui-input, .iui-input-with-icon > .iui-select-button) {
-  @each $status in positive, warning, negative {
-    &:where([data-iui-status='#{$status}']) {
-      // #region Bottom padding to accommodate for status stripe
-      :where(.iui-input, .iui-select-button),
-      &:where(.iui-input, .iui-select-button) {
-        @include iui-text-selection($status);
+@each $status in positive, warning, negative {
+  .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button),
+  :is(.iui-input, .iui-input-with-icon > .iui-select-button):where([data-iui-status='#{$status}']) {
+    @include iui-text-selection($status);
 
-        padding-block-end: calc(var(--iui-size-2xs) - 1px);
+    // #region Bottom padding to vertically center text when the status stripe is present.
+    // The bottom border is 2px and the top border is 1px, so we need to subtract 1px from the bottom padding
+    padding-block-end: calc(var(--iui-size-2xs) - 1px);
 
-        &[data-iui-size='small'] {
-          padding-block-end: 0;
-        }
+    &[data-iui-size='small'] {
+      padding-block-end: 0;
+    }
 
-        &[data-iui-size='large'] {
-          padding-block-end: calc(var(--iui-size-xs) - 1px);
-        }
-        // #endregion
+    &[data-iui-size='large'] {
+      padding-block-end: calc(var(--iui-size-xs) - 1px);
+    }
+    // #endregion
 
-        border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
+    border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
 
-        &:focus {
-          border-block-end: var(--iui-size-3xs) solid var(--iui-color-border-#{$status});
-          outline: 2px solid var(--iui-color-text-#{$status});
-          outline-offset: -2px;
-        }
+    &:focus {
+      outline: 2px solid var(--iui-color-text-#{$status});
+      outline-offset: -2px;
+    }
 
-        &:hover {
-          --_iui-input-border-color: var(--iui-color-border-#{$status});
-          --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
-        }
-      }
-
-      :where(.iui-select-button),
-      &:where(.iui-select-button) {
-        border-block-end: transparent;
-
-        &::after {
-          content: '';
-          inline-size: 100%;
-          position: absolute;
-          inset-block-end: 0;
-          inset-inline-start: 0;
-          block-size: var(--iui-size-3xs);
-          background-color: var(--iui-color-border-#{$status});
-        }
-      }
+    &:hover {
+      --_iui-input-border-color: var(--iui-color-border-#{$status});
+      --_iui-input-with-icon-hover-border-color: var(--iui-color-border-#{$status});
     }
   }
 }
