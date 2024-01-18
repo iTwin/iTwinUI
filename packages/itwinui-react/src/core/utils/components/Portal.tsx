@@ -20,7 +20,17 @@ export type PortalProps = {
    *
    * @default true
    */
-  portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
+  portal?:
+    | boolean
+    | null
+    | undefined
+    | {
+        to:
+          | HTMLElement
+          | null
+          | undefined
+          | (() => HTMLElement | null | undefined);
+      };
 };
 
 // ----------------------------------------------------------------------------
