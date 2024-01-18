@@ -39,7 +39,7 @@
 
   .iui-icon svg {
     @include menu.iui-menu-icon;
-    fill: currentColor;
+    fill: var(--iui-color-icon);
   }
 
   .iui-content {

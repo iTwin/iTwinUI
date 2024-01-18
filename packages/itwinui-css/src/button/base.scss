@@ -41,7 +41,7 @@
   svg {
     @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: var(--_iui-button-icon-fill, currentColor);
+    fill: var(--_iui-button-icon-fill, var(--iui-color-icon));
   }
 }
 
@@ -50,7 +50,7 @@
   --_iui-button-active-stripe-inset-inline: initial;
   --_iui-button-active-stripe-background: var(--iui-color-border-accent);
   --_iui-button-text-color: var(--iui-color-text-accent);
-  --_iui-button-icon-fill: var(--iui-color-text-accent);
+  --_iui-button-icon-fill: var(--iui-color-icon-accent);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset- properties are set (from outside)
   &::after {
