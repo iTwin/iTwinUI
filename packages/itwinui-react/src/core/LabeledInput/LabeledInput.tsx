@@ -4,13 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { StatusIconMap, useId } from '../utils/index.js';
+import { Box, StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
-import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { Label } from '../Label/Label.js';
 import { Icon } from '../Icon/Icon.js';
+import cx from 'classnames';
 
 export type LabeledInputProps = {
   /**
@@ -56,7 +56,7 @@ export type LabeledInputProps = {
   /**
    *  Passes properties for input wrapper.
    */
-  inputWrapperProps?: React.ComponentProps<typeof InputWithDecorations>;
+  inputWrapperProps?: React.ComponentPropsWithRef<'div'>;
 } & React.ComponentProps<typeof Input>;
 
 /**
@@ -91,7 +91,11 @@ export const LabeledInput = React.forwardRef((props, ref) => {
   const shouldShowIcon = svgIcon !== null && (svgIcon || (status && !message));
 
   return (
-    <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+    <InputGrid
+      labelPlacement={displayStyle}
+      data-iui-status={status}
+      {...wrapperProps}
+    >
       {label && (
         <Label
           as='label'
@@ -104,12 +108,11 @@ export const LabeledInput = React.forwardRef((props, ref) => {
         </Label>
       )}
 
-      <InputWithDecorations
-        status={status}
-        isDisabled={disabled}
+      <Box
         {...inputWrapperProps}
+        className={cx('iui-input-with-icon', inputWrapperProps?.className)}
       >
-        <InputWithDecorations.Input
+        <Input
           disabled={disabled}
           required={required}
           id={id}
@@ -117,12 +120,15 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           {...rest}
         />
         {shouldShowIcon && (
-          <Icon fill={!svgIcon ? status : undefined} padded {...iconProps}>
+          <Icon
+            fill={status}
+            {...iconProps}
+            className={cx('iui-end-icon', iconProps?.className)}
+          >
             {icon}
           </Icon>
         )}
-      </InputWithDecorations>
-
+      </Box>
       {typeof message === 'string' ? (
         <StatusMessage
           status={status}

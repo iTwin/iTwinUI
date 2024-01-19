@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgCamera } from '@itwin/itwinui-icons-react';
+import { SvgCamera, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { LabeledTextarea, StatusMessage } from '@itwin/itwinui-react';
 
@@ -72,6 +72,17 @@ export const WithCustomIcon = () => {
       message={
         <StatusMessage startIcon={<SvgCamera />}>Display Message</StatusMessage>
       }
+    />
+  );
+};
+
+export const WithSvgIcon = () => {
+  return (
+    <LabeledTextarea
+      placeholder='Enter text here...'
+      label='This is a label'
+      status='negative'
+      svgIcon={<SvgPlaceholder />}
     />
   );
 };

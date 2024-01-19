@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { Select } from '../Select/Select.js';
 import type { SelectProps } from '../Select/Select.js';
-import { StatusIconMap, useId } from '../utils/index.js';
+import { useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
@@ -20,6 +20,22 @@ export type LabeledSelectProps<T> = {
   label?: React.ReactNode;
   /**
    * Message below the select. Does not apply to 'inline' select.
+   *
+   * @example
+   * <caption>strings</caption>
+   * <LabeledSelect message='Positive Message' … />
+   *
+   * @example
+   * <caption>Using StatusMessage for complete customization (e.g. icon)</caption>
+   * <LabeledSelect
+   *   status="positive"
+   *   message={
+   *     <StatusMessage status="positive" startIcon={<SvgStar />}>
+   *       Help message
+   *     </StatusMessage>
+   *   }
+   *   …
+   * />
    */
   message?: React.ReactNode;
   /**
@@ -28,6 +44,8 @@ export type LabeledSelectProps<T> = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
+   * @deprecated Pass a `<StatusMessage startIcon={svgIcon} />` to the `message` prop instead.
+   *
    * Custom svg icon. Will override status icon if specified.
    */
   svgIcon?: JSX.Element;
@@ -113,18 +131,12 @@ export const LabeledSelect = React.forwardRef(
 
     const labelId = `${useId()}-label`;
 
-    const icon = () => {
-      if (svgIcon) {
-        return <Icon>{svgIcon}</Icon>;
-      }
-      if (status && message) {
-        return StatusIconMap[status]();
-      }
-      return undefined;
-    };
-
     return (
-      <InputGrid labelPlacement={displayStyle} {...wrapperProps}>
+      <InputGrid
+        labelPlacement={displayStyle}
+        data-iui-status={status}
+        {...wrapperProps}
+      >
         {label && (
           <Label
             as='div'
@@ -140,7 +152,6 @@ export const LabeledSelect = React.forwardRef(
           disabled={disabled}
           className={className}
           style={style}
-          status={status}
           {...rest}
           ref={forwardedRef}
           triggerProps={{
@@ -151,7 +162,7 @@ export const LabeledSelect = React.forwardRef(
         {typeof message === 'string' ? (
           <StatusMessage
             status={status}
-            startIcon={displayStyle === 'default' ? icon() : undefined}
+            startIcon={svgIcon}
             iconProps={messageIconProps}
             contentProps={messageContentProps}
           >
