@@ -26,7 +26,7 @@ beforeAll(() => {
 });
 
 afterAll(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render only few elements out of big list', () => {

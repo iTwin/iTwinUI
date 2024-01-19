@@ -24,7 +24,7 @@ const renderComponent = (initialProps?: Partial<FilterButtonBarProps>) => {
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render correctly', () => {

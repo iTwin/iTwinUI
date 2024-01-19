@@ -55,7 +55,7 @@ beforeEach(() => {
 afterAll(() => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).DOMMatrix = undefined;
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should handle drag', () => {

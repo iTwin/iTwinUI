@@ -25,7 +25,7 @@ const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should call setFilter with input value', () => {

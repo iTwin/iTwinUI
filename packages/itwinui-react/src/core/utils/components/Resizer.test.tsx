@@ -51,7 +51,7 @@ const renderComponent = (props?: Partial<ResizerProps>) => {
 };
 
 afterEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 /*

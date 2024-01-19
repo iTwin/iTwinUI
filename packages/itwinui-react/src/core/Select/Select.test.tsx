@@ -62,7 +62,7 @@ function renderComponent(
 }
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render empty select', () => {

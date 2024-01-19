@@ -7,7 +7,7 @@ import * as UseResizeObserver from './useResizeObserver.js';
 import { act, renderHook } from '@testing-library/react';
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 afterEach(() => {

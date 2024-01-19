@@ -81,7 +81,7 @@ const renderComponent = ({
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render in its most basic state', () => {

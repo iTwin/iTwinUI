@@ -21,7 +21,7 @@ const mockIntersection = (element: Element, isIntersecting = true) => {
 const mockedDisconnect = vi.fn();
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
   observers.clear();
   window.IntersectionObserver = vi.fn(
     (callback: IntersectionObserverCallback) => {

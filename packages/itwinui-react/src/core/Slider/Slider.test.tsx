@@ -39,7 +39,7 @@ beforeEach(() => {
 });
 
 afterAll(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const defaultSingleValue = [50];
