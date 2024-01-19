@@ -11,7 +11,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 const renderHookComponent = (watchResizes = true) => {

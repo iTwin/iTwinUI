@@ -12,7 +12,7 @@ describe('getDocument', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(global as any, 'document', 'get').mockReturnValue(undefined);
     expect(getDocument()).toBeFalsy();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 
@@ -22,7 +22,7 @@ describe('getWindow', () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
     expect(getWindow()).toBeFalsy();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 

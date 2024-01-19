@@ -25,7 +25,7 @@ const MockComponent = ({
 };
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 it.each(['horizontal', 'vertical'] as const)(
