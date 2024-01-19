@@ -30,10 +30,10 @@
 
 // ----------------------------------------------------------------------------
 
-.iui-link-box {
+:where(.iui-link-box) {
   @include iui-link-box;
 }
 
-.iui-link-action {
+:where(.iui-link-action) {
   @include iui-link-action;
 }
