@@ -7,7 +7,6 @@ import { Input } from '../Input/Input.js';
 import { Box, StatusIconMap, useId } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
-import { InputWithDecorations } from '../InputWithDecorations/InputWithDecorations.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { Label } from '../Label/Label.js';
 import { Icon } from '../Icon/Icon.js';
@@ -57,7 +56,7 @@ export type LabeledInputProps = {
   /**
    *  Passes properties for input wrapper.
    */
-  inputWrapperProps?: React.ComponentProps<typeof InputWithDecorations>;
+  inputWrapperProps?: React.ComponentPropsWithRef<'div'>;
 } & React.ComponentProps<typeof Input>;
 
 /**
@@ -110,8 +109,8 @@ export const LabeledInput = React.forwardRef((props, ref) => {
       )}
 
       <Box
-        className={cx('iui-input-with-icon', inputWrapperProps?.className)}
         {...inputWrapperProps}
+        className={cx('iui-input-with-icon', inputWrapperProps?.className)}
       >
         <Input
           disabled={disabled}
