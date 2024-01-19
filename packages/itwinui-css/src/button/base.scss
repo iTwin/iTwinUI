@@ -41,7 +41,7 @@
   svg {
     @include mixins.iui-icon-style('m');
     transition: fill var(--iui-duration-1) ease-out;
-    fill: var(--_iui-button-icon-fill, var(--iui-color-icon));
+    fill: var(--_iui-button-icon-fill, currentColor);
   }
 }
 
