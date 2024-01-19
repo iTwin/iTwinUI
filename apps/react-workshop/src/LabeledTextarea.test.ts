@@ -12,6 +12,8 @@ describe('LabeledTextarea', () => {
     'Positive',
     'Warning',
     'With Custom Icon',
+
+    // Used to test that status color is applied to the svg icon too.
     'With Svg Icon',
   ];
 
