@@ -9,9 +9,13 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: 'setupTests.ts',
-    sequence: {
-      hooks: 'list',
+    css: true,
+  },
+  resolve: {
+    alias: {
+      'styles.js$': '<rootDir>/src/__mocks__/stylesMock.cjs',
+      'useGlobals.js$': '<rootDir>/src/__mocks__/useGlobalsMock.cjs',
+      '^(\\.\\.?\\/.+)\\.jsx?$': '$1', // see https://github.com/kulshekhar/ts-jest/issues/1057
     },
-    include: ['**/*[.-]{test,spec}.?(c|m)[jt]s?(x)'],
   },
 });

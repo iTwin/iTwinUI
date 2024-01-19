@@ -21,6 +21,7 @@
     "skipLibCheck": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true,
+    "types": ["vitest/globals"],
     "baseUrl": ".",
     "paths": {
       // This is only to avoid the missing types error when importing non-types from `react-table`
