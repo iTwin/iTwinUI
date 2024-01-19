@@ -20,6 +20,22 @@ export type LabeledSelectProps<T> = {
   label?: React.ReactNode;
   /**
    * Message below the select. Does not apply to 'inline' select.
+   *
+   * @example
+   * <caption>strings</caption>
+   * <LabeledSelect message='Positive Message' … />
+   *
+   * @example
+   * <caption>Using StatusMessage for complete customization (e.g. icon)</caption>
+   * <LabeledSelect
+   *   status="positive"
+   *   message={
+   *     <StatusMessage status="positive" startIcon={<SvgStar />}>
+   *       Help message
+   *     </StatusMessage>
+   *   }
+   *   …
+   * />
    */
   message?: React.ReactNode;
   /**
@@ -28,9 +44,11 @@ export type LabeledSelectProps<T> = {
    */
   status?: 'positive' | 'warning' | 'negative';
   /**
+   * @deprecated Pass a `<StatusMessage startIcon={svgIcon} />` to the `message` prop instead.
+   *
    * Custom svg icon. Will override status icon if specified.
    */
-  svgIcon?: React.ComponentPropsWithoutRef<typeof StatusMessage>['startIcon'];
+  svgIcon?: JSX.Element;
   /**
    * If true, shows a red asterisk but does not prevent form submission.
    * @default false
