@@ -183,7 +183,7 @@ it('should close temporary toast after 7s', () => {
   expect(mockedFn).toHaveBeenCalledTimes(1);
   expect(container.querySelector('.iui-toast-all')).toBeFalsy();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should pass content props correctly', () => {

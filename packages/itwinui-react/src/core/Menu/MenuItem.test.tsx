@@ -230,7 +230,7 @@ it('should show sub menu on hover', () => {
   act(() => jest.advanceTimersByTime(100));
   expect(subSubMenuItem).not.toBeVisible();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should handle key press with sub menus', async () => {

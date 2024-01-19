@@ -82,7 +82,7 @@ beforeEach(() => {
   vi.useFakeTimers();
 });
 afterEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
   mockOnClick.mockReset();
 });
 

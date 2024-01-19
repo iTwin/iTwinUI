@@ -247,5 +247,5 @@ it('should display tooltip upon hovering step if description provided', async ()
   act(() => void jest.advanceTimersByTime(50));
   expect(tooltip).not.toBeVisible();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
