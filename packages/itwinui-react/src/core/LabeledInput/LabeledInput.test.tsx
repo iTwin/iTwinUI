@@ -95,6 +95,7 @@ it.each(['positive', 'negative', 'warning'] as const)(
     // Don't unnecessarily set data-iui-status on the input when iui-input-grid already has data-iui-status
     expect(input).not.toHaveAttribute('data-iui-status', status);
 
+    // svgIcon should have the status fill
     expect(svgIcon).toBeTruthy();
     expect(svgIcon).toHaveAttribute('data-iui-icon-color', status);
     getByText('some label');
