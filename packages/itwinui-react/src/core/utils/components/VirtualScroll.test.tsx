@@ -10,19 +10,19 @@ import * as UseResizeObserver from '../hooks/useResizeObserver.js';
 import { useVirtualization } from './index.js';
 
 // to return correct values for container 'scroller' and children
-const heightsMock = jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
+const heightsMock = vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
 let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
 
 const generateDataArray = (length: number) =>
   new Array(length).fill(null).map((_, index) => ++index);
 
 beforeAll(() => {
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
       return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
-    });
+    },
+  );
 });
 
 afterAll(() => {
@@ -152,7 +152,7 @@ it('should show provided index on first render', () => {
     return { height: 40 } as DOMRect;
   });
 
-  jest.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
+  vi.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
     this: HTMLElement,
     options,
   ) {
@@ -194,7 +194,7 @@ it('should render parent as ul', () => {
     return { height: 40 } as DOMRect;
   });
 
-  jest.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
+  vi.spyOn(HTMLElement.prototype, 'scrollTo').mockImplementation(function (
     this: HTMLElement,
     options,
   ) {

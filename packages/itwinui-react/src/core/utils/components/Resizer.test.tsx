@@ -7,14 +7,12 @@ import { fireEvent, render } from '@testing-library/react';
 import Resizer, { type ResizerProps } from './Resizer.js';
 import * as DomUtils from '../functions/dom.js';
 
-jest
-  .spyOn(DomUtils, 'getTranslateValuesFromElement')
-  .mockReturnValue([100, 100]);
-jest.spyOn(window, 'getComputedStyle').mockReturnValue({
+vi.spyOn(DomUtils, 'getTranslateValuesFromElement').mockReturnValue([100, 100]);
+vi.spyOn(window, 'getComputedStyle').mockReturnValue({
   minWidth: '50px',
   minHeight: '50px',
 } as CSSStyleDeclaration);
-jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
   width: 100,
   height: 100,
 } as DOMRect);

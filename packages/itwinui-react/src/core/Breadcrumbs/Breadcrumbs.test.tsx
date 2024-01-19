@@ -56,7 +56,7 @@ const assertBaseElement = (
   });
 };
 
-const useOverflowMock = vitest
+const useOverflowMock = vi
   .spyOn(UseOverflow, 'useOverflow')
   .mockImplementation((items) => [vi.fn(), items.length]);
 beforeEach(() => {

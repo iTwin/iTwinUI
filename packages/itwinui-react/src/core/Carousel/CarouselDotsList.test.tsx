@@ -81,14 +81,14 @@ it('should truncate dots correctly', () => {
   const DOT_WIDTH = 28;
 
   let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
       return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
-    });
+    },
+  );
 
-  const dotWidthMock = jest
+  const dotWidthMock = vi
     .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
     .mockReturnValue(DOT_WIDTH);
 

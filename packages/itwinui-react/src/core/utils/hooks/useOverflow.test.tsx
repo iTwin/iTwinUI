@@ -32,16 +32,19 @@ it.each(['horizontal', 'vertical'] as const)(
   'should overflow when there is not enough space (%s)',
   async (orientation) => {
     const dimension = orientation === 'horizontal' ? 'Width' : 'Height';
-    jest
-      .spyOn(HTMLDivElement.prototype, `scroll${dimension}`, 'get')
+    vi.spyOn(HTMLDivElement.prototype, `scroll${dimension}`, 'get')
       .mockReturnValueOnce(120)
       .mockReturnValue(100);
-    jest
-      .spyOn(HTMLDivElement.prototype, `offset${dimension}`, 'get')
-      .mockReturnValue(100);
-    jest
-      .spyOn(HTMLSpanElement.prototype, `offset${dimension}`, 'get')
-      .mockReturnValue(25);
+    vi.spyOn(
+      HTMLDivElement.prototype,
+      `offset${dimension}`,
+      'get',
+    ).mockReturnValue(100);
+    vi.spyOn(
+      HTMLSpanElement.prototype,
+      `offset${dimension}`,
+      'get',
+    ).mockReturnValue(25);
 
     const { container } = render(
       <MockComponent orientation={orientation}>
@@ -58,13 +61,10 @@ it.each(['horizontal', 'vertical'] as const)(
 );
 
 it('should overflow when there is not enough space (string)', async () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(50)
     .mockReturnValue(28);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(28);
+  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(28);
 
   // 20 symbols (default value taken), 50 width
   // avg 2.5px per symbol
@@ -80,17 +80,12 @@ it('should overflow when there is not enough space (string)', async () => {
 });
 
 it('should overflow when there is not enough space but container fits 30 items', async () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(300)
     .mockReturnValueOnce(600)
     .mockReturnValue(300);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(300);
-  jest
-    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(10);
+  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(300);
+  vi.spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get').mockReturnValue(10);
 
   const { container } = render(
     <MockComponent>
@@ -107,22 +102,20 @@ it('should overflow when there is not enough space but container fits 30 items',
 
 it('should restore hidden items when space is available again', async () => {
   let onResizeFn: (size: DOMRectReadOnly) => void = vi.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       onResizeFn = onResize;
       return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
-    });
-  const scrollWidthSpy = jest
+    },
+  );
+  const scrollWidthSpy = vi
     .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(120)
     .mockReturnValue(100);
-  const offsetWidthSpy = jest
+  const offsetWidthSpy = vi
     .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
     .mockReturnValue(100);
-  jest
-    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(25);
+  vi.spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get').mockReturnValue(25);
 
   const { container, rerender } = render(
     <MockComponent>
@@ -154,11 +147,10 @@ it('should restore hidden items when space is available again', async () => {
 });
 
 it('should not overflow when disabled', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
+  vi.spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(120)
     .mockReturnValue(100);
-  jest.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(100);
+  vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(100);
 
   const { container } = render(
     <MockComponent disableOverflow>
@@ -172,17 +164,12 @@ it('should not overflow when disabled', () => {
 });
 
 it('should hide items and then show them all when overflow is disabled', async () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(300)
     .mockReturnValueOnce(600)
     .mockReturnValue(300);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(300);
-  jest
-    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(10);
+  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(300);
+  vi.spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get').mockReturnValue(10);
 
   const { container, rerender } = render(
     <MockComponent>
@@ -210,17 +197,12 @@ it('should hide items and then show them all when overflow is disabled', async (
 });
 
 it('should return 1 when item is bigger than the container', () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
     .mockReturnValueOnce(50)
     .mockReturnValueOnce(100)
     .mockReturnValue(50);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(50);
-  jest
-    .spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get')
-    .mockReturnValue(60);
+  vi.spyOn(HTMLDivElement.prototype, 'offsetWidth', 'get').mockReturnValue(50);
+  vi.spyOn(HTMLSpanElement.prototype, 'offsetWidth', 'get').mockReturnValue(60);
 
   const { container } = render(
     <MockComponent>

@@ -273,7 +273,7 @@ it('should show menu with disabled item', () => {
 });
 
 it('should show selected item in menu', () => {
-  const scrollSpy = jest.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
+  const scrollSpy = vi.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
   const { container } = renderComponent({
     value: 1,
     options: [...new Array(3)].map((_, index) => ({

@@ -11,12 +11,11 @@ const DOMMatrixMock = vi.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
-const getBoundingClientRectMock = jest
+const getBoundingClientRectMock = vi
   .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
   .mockReturnValue({ top: 100, right: 200, bottom: 200, left: 100 } as DOMRect);
 
-jest
-  .spyOn(DomFunctions, 'getWindow')
+vi.spyOn(DomFunctions, 'getWindow')
   /* eslint-disable @typescript-eslint/no-explicit-any */
   .mockReturnValue({
     innerWidth: 300,

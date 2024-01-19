@@ -27,7 +27,7 @@ const createBoundingClientRect = (
 /**
  * Setup default size for slider container to be used by all slider tests
  */
-const getBoundingClientRectMock = jest.spyOn(
+const getBoundingClientRectMock = vi.spyOn(
   HTMLElement.prototype,
   'getBoundingClientRect',
 );
