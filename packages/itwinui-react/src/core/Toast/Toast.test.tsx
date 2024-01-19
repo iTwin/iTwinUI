@@ -177,7 +177,7 @@ it('should close temporary toast after 7s', () => {
   });
 
   act(() => {
-    jest.runAllTimers();
+    vi.runAllTimers();
   });
 
   expect(mockedFn).toHaveBeenCalledTimes(1);

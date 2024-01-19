@@ -70,7 +70,7 @@ function assertAddedToast(
 
 async function assertRemovedToast(content: string) {
   act(() => {
-    jest.runAllTimers();
+    vi.runAllTimers();
   });
   const maybeToast = screen.queryByText(content);
   if (maybeToast) {
