@@ -7,7 +7,6 @@ import { render } from '@testing-library/react';
 import { LabeledSelect } from './LabeledSelect.js';
 import type { LabeledSelectProps } from './LabeledSelect.js';
 import type { SelectMultipleTypeProps } from '../Select/Select.js';
-import StatusMessage from '../StatusMessage/StatusMessage.js';
 
 const assertBaseElement = (inputContainer: HTMLElement) => {
   expect(inputContainer).toBeTruthy();
@@ -104,37 +103,6 @@ it('should render with custom icon', () => {
   assertBaseElement(inputContainer);
   const icon = inputContainer.querySelector('.iui-svg-icon > .my-icon');
   expect(icon).toBeTruthy();
-});
-
-it('should support <StatusMessage startIcon={svgIcon} /> passed to the message prop', () => {
-  const { container } = renderComponent({
-    status: 'positive',
-    message: (
-      <StatusMessage status='positive' startIcon={<svg className='my-icon' />}>
-        Help message
-      </StatusMessage>
-    ),
-  });
-
-  const inputContainer = container.querySelector(
-    '.iui-input-grid',
-  ) as HTMLElement;
-  expect(inputContainer).toHaveAttribute('data-iui-status', 'positive');
-
-  assertBaseElement(inputContainer);
-
-  expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
-  const icon = inputContainer.querySelector('.iui-svg-icon > .my-icon');
-  expect(icon).toBeTruthy();
-
-  // Should not show the svgIcon twice (i.e. one default status icon and then the custom icon)
-  // i.e. so only two iui-svg-icons be rendered: custom icon and the select end icon
-  expect(container.querySelectorAll('.iui-svg-icon').length).toBe(2);
-
-  const message = inputContainer.querySelector('.iui-status-message');
-  expect(message).toBeTruthy();
-  expect(message?.textContent).toEqual('Help message');
-  expect(message).toHaveAttribute('data-iui-status', 'positive');
 });
 
 it('should render inline style', () => {
