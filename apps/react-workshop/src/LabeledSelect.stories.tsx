@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { LabeledSelect } from '@itwin/itwinui-react';
+import { LabeledSelect, StatusMessage } from '@itwin/itwinui-react';
 import { SvgCamera } from '@itwin/itwinui-icons-react';
 import type { StoryDefault } from '@ladle/react';
 
@@ -104,11 +104,14 @@ export const WithCustomIcon = () => {
         { value: 2, label: 'Item #2' },
         { value: 3, label: 'Item #3' },
       ]}
-      message='This is a message'
+      message={
+        <StatusMessage startIcon={<SvgCamera />}>
+          This is a message
+        </StatusMessage>
+      }
       placeholder='Placeholder text'
       value={value}
       onChange={(value) => setValue(value)}
-      svgIcon={<SvgCamera />}
     />
   );
 };
