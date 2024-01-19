@@ -187,7 +187,7 @@ it('should only add tooltips to items when collapsed', async () => {
     ).not.toBeVisible();
     vi.useFakeTimers();
     fireEvent.mouseEnter(item);
-    act(() => void jest.advanceTimersByTime(50));
+    act(() => void vi.advanceTimersByTime(50));
     vi.useRealTimers();
     expect(
       getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),

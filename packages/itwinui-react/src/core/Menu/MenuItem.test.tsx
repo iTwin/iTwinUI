@@ -213,13 +213,13 @@ it('should show sub menu on hover', () => {
 
   // hover over menu item
   fireEvent.mouseEnter(menuItem);
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   const subMenuItem = screen.getByTestId('sub');
   expect(subMenuItem).toHaveTextContent('Test sub');
 
   // hover over sub menu item
   fireEvent.mouseEnter(subMenuItem);
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   const subSubMenuItem = screen.getByTestId('sub-sub');
   expect(subSubMenuItem).toHaveTextContent('Test sub sub');
   fireEvent.click(subSubMenuItem);
@@ -227,7 +227,7 @@ it('should show sub menu on hover', () => {
 
   // leave sub menu item
   fireEvent.mouseLeave(subMenuItem, { relatedTarget: menuItem });
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   expect(subSubMenuItem).not.toBeVisible();
 
   vi.useRealTimers();

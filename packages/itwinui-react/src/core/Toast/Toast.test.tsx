@@ -173,7 +173,7 @@ it('should close temporary toast after 7s', () => {
   expect(container.querySelector('.iui-toast-all')).toBeTruthy();
 
   act(() => {
-    jest.advanceTimersByTime(7300);
+    vi.advanceTimersByTime(7300);
   });
 
   act(() => {

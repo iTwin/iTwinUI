@@ -47,12 +47,12 @@ it('should toggle the visibility of tooltip on focus', async () => {
   expect(tooltip).not.toBeVisible();
 
   fireEvent.focus(trigger);
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   expect(tooltip).toBeVisible();
   expect(onVisibleChange).toBeCalledWith(true);
 
   fireEvent.blur(trigger);
-  act(() => void jest.advanceTimersByTime(250));
+  act(() => void vi.advanceTimersByTime(250));
   expect(tooltip).not.toBeVisible();
   expect(onVisibleChange).toBeCalledWith(false);
 
@@ -159,11 +159,11 @@ it('should work with reference prop', async () => {
   expect(tooltip).not.toBeVisible();
 
   fireEvent.focus(trigger);
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   expect(tooltip).toBeVisible();
 
   fireEvent.blur(trigger);
-  act(() => void jest.advanceTimersByTime(250));
+  act(() => void vi.advanceTimersByTime(250));
   expect(tooltip).not.toBeVisible();
 
   vi.useRealTimers();

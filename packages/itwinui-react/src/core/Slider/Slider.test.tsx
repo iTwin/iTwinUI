@@ -506,7 +506,7 @@ it('should show tooltip on thumb hover', async () => {
 
   vi.useFakeTimers();
   fireEvent.mouseEnter(thumb);
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   vi.useRealTimers();
 
   const tooltip = document.querySelector('.iui-tooltip');
