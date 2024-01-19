@@ -504,7 +504,7 @@ it('should show tooltip on thumb hover', async () => {
   expect(thumb.classList).not.toContain('iui-active');
   expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
 
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   fireEvent.mouseEnter(thumb);
   act(() => void jest.advanceTimersByTime(50));
   jest.useRealTimers();

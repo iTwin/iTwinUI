@@ -31,7 +31,7 @@ it('should toggle the visibility of tooltip on hover', () => {
 });
 
 it('should toggle the visibility of tooltip on focus', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
   const onVisibleChange = vi.fn();
 
   const { getByText } = render(
@@ -133,7 +133,7 @@ it.each(['description', 'label', 'none'] as const)(
 );
 
 it('should work with reference prop', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const TestComp = () => {
     const [reference, setReference] = React.useState<HTMLElement | null>(null);

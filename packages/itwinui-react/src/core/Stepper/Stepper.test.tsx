@@ -210,7 +210,7 @@ it('should display localized string in long stepper', () => {
 });
 
 it('should display tooltip upon hovering step if description provided', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const stepper = (
     <Stepper

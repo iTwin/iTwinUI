@@ -58,7 +58,7 @@ it('should add custom prop to workflow diagram wrapper', () => {
 });
 
 it('should display tooltip upon hovering step if description provided', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const workflowDiagram = (
     <WorkflowDiagram

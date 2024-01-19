@@ -79,7 +79,7 @@ async function assertRemovedToast(content: string) {
 }
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 afterEach(() => {
   jest.useRealTimers();

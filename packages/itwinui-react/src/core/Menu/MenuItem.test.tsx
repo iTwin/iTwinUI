@@ -177,7 +177,7 @@ it('should render sublabel', () => {
 });
 
 it('should show sub menu on hover', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const mockedSubSubOnClick = vi.fn();
   render(

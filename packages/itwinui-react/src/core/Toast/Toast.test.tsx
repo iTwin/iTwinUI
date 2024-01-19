@@ -155,7 +155,7 @@ it('renders the close icon when hasCloseButton', () => {
 });
 
 it('should close temporary toast after 7s', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const mockedFn = vi.fn();
   const { container } = render(
