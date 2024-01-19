@@ -42,7 +42,7 @@ const assertMonthYear = (
 
 it('should display passed date', () => {
   const { container } = render(
-    <DatePicker date={new Date(2020, 0, 5)} onChange={jest.fn()} />,
+    <DatePicker date={new Date(2020, 0, 5)} onChange={vi.fn()} />,
   );
   assertMonthYear(container, 'January', '2020');
   const day = container.querySelector(selectedDaySelector) as HTMLElement;
@@ -53,7 +53,7 @@ it('should display passed date', () => {
 
 it('should display today', () => {
   const today = new Date();
-  const { container } = render(<DatePicker onChange={jest.fn()} />);
+  const { container } = render(<DatePicker onChange={vi.fn()} />);
   assertMonthYear(
     container,
     `${defaultMonths[today.getMonth()]}`,
@@ -68,7 +68,7 @@ it('should apply all custom props', () => {
   const { container } = render(
     <DatePicker
       date={new Date(2020, 0, 5)}
-      onChange={jest.fn()}
+      onChange={vi.fn()}
       monthYearProps={{ className: 'some-calendar' }}
       monthProps={{ className: 'some-month' }}
       weekDayProps={{ className: 'some-day-of-week' }}
@@ -93,7 +93,7 @@ it('should apply all custom props', () => {
 });
 
 it('should return selected date', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker date={new Date(2020, 5, 5)} onChange={onClick} />,
   );
@@ -109,7 +109,7 @@ it('should return selected date', async () => {
 
 it('should navigate between months', () => {
   const date = new Date(2020, 1, 10);
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <DatePicker date={new Date(2020, 1, 10)} onChange={onClick} />,
   );
@@ -224,7 +224,7 @@ it('should apply custom class and style', () => {
 });
 
 it('should navigate with keyboard', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getAllByText, getByRole } = render(
     <DatePicker date={new Date(2020, 1, 1)} onChange={onClick} setFocus />,
   );
@@ -303,7 +303,7 @@ it('should show time selection', () => {
 
 it('should navigate between years', () => {
   const date = new Date(2020, 1, 10);
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <DatePicker
       date={new Date(2020, 1, 10)}
@@ -337,7 +337,7 @@ it('should navigate between years', () => {
 });
 
 it('should return selected date range', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker
       startDate={new Date(2021, 7, 10)}
@@ -384,7 +384,7 @@ it('should return selected date range', () => {
 });
 
 it('should update start/end date when selecting a start/end date value that is in the range', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker
       startDate={new Date(2021, 7, 5)}
@@ -411,7 +411,7 @@ it('should update start/end date when selecting a start/end date value that is i
 });
 
 it('should update startDate when selecting an endDate value that is before startDate', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker
       startDate={new Date(2021, 7, 5)}
@@ -437,7 +437,7 @@ it('should update startDate when selecting an endDate value that is before start
 });
 
 it('should update endDate when selecting a startDate value that is after endDate', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker
       startDate={new Date(2021, 7, 5)}
@@ -472,7 +472,7 @@ it('should update endDate when selecting a startDate value that is after endDate
 });
 
 it('should prevent selecting disabled dates', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <DatePicker
       date={new Date(2020, 5, 5)}

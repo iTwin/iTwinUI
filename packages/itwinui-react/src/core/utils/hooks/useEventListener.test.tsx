@@ -7,7 +7,7 @@ import { useEventListener } from './useEventListener.js';
 
 it('should handle event on Window', () => {
   const mouseClickEvent = new MouseEvent('click', { bubbles: true });
-  const handler = jest.fn();
+  const handler = vi.fn();
   const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
   renderHook(() => useEventListener('click', handler, document));
   expect(addEventListenerSpy).toBeCalled();
@@ -19,7 +19,7 @@ it('should handle event on Window', () => {
 it('should handle event on Element', () => {
   const element: HTMLDivElement = document.createElement('div');
   const mouseClickEvent = new MouseEvent('click', { bubbles: true });
-  const handler = jest.fn();
+  const handler = vi.fn();
   const addEventListenerSpy = jest.spyOn(element, 'addEventListener');
   renderHook(() => useEventListener('click', handler, element));
   expect(addEventListenerSpy).toBeCalled();
@@ -30,8 +30,8 @@ it('should handle event on Element', () => {
 
 it('should not re-add listener when handler is changed', () => {
   const element: HTMLDivElement = document.createElement('div');
-  const handler1 = jest.fn();
-  const handler2 = jest.fn();
+  const handler1 = vi.fn();
+  const handler2 = vi.fn();
   const addEventListenerSpy = jest.spyOn(element, 'addEventListener');
   const { rerender } = renderHook(() =>
     useEventListener('click', handler1, element),
@@ -45,7 +45,7 @@ it('should not re-add listener when handler is changed', () => {
 });
 
 it('should do nothing if no element or document is defined', () => {
-  const handler = jest.fn();
+  const handler = vi.fn();
   const addEventListenerSpy = jest.spyOn(document, 'addEventListener');
   renderHook(() => useEventListener('click', handler, undefined));
   expect(addEventListenerSpy).not.toBeCalled();

@@ -139,7 +139,7 @@ it('should not show swap button if only 1 color format allowed on input panel', 
 });
 
 it('should handle hex input change', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange} showAlpha={true}>
@@ -180,7 +180,7 @@ it('should handle hex input change', () => {
 });
 
 it('should handle hsl input change', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange} showAlpha={true}>
@@ -260,7 +260,7 @@ it('should handle hsl input change', () => {
 });
 
 it('should handle rgb input change', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange} showAlpha={true}>
@@ -340,7 +340,7 @@ it('should handle rgb input change', () => {
 });
 
 it('should handle hex input change with lose focus', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange}>
@@ -359,7 +359,7 @@ it('should handle hex input change with lose focus', () => {
 });
 
 it('should NOT handle hsl input change with lose focus', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange} showAlpha={true}>
@@ -393,7 +393,7 @@ it('should NOT handle hsl input change with lose focus', () => {
 });
 
 it('should NOT handle rgb input change with lose focus', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker onChangeComplete={handleOnChange} showAlpha={true}>
@@ -425,7 +425,7 @@ it('should NOT handle rgb input change with lose focus', () => {
 });
 
 it('should handle hex input when alpha is false', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const selectedColor = ColorValue.create({ h: 0, s: 100, l: 50 });
   const { container } = render(
     <ColorPicker
@@ -450,7 +450,7 @@ it('should handle hex input when alpha is false', () => {
 });
 
 it('should handle hsl input when alpha is false', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const selectedColor = ColorValue.create({ h: 0, s: 100, l: 50 });
   const { container } = render(
     <ColorPicker
@@ -476,7 +476,7 @@ it('should handle hsl input when alpha is false', () => {
 });
 
 it('should handle rgb input when alpha is false', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const selectedColor = ColorValue.create({ h: 0, s: 100, l: 50 });
   const { container } = render(
     <ColorPicker
@@ -501,7 +501,7 @@ it('should handle rgb input when alpha is false', () => {
 });
 
 it('should handle rgb input without any side effects', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const selectedColor = ColorValue.create({ r: 0, g: 100, b: 50 });
   const { container } = render(
     <ColorPicker

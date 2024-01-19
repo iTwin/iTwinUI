@@ -20,8 +20,8 @@ type TestData = {
   label: string;
   subItems: TestData[];
 };
-const onNodeExpanded = jest.fn();
-const onNodeSelected = jest.fn();
+const onNodeExpanded = vi.fn();
+const onNodeSelected = vi.fn();
 
 const renderComponent = ({
   props,

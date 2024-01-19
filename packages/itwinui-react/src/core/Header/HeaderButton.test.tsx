@@ -57,8 +57,8 @@ it('should render isActive correctly', () => {
 });
 
 it('should render split button correctly', async () => {
-  const itemOneOnClick = jest.fn();
-  const buttonOnClick = jest.fn();
+  const itemOneOnClick = vi.fn();
+  const buttonOnClick = vi.fn();
 
   const { container } = render(
     <HeaderButton
@@ -122,7 +122,7 @@ it('should render startIcon correctly', () => {
 
 it('should render menuItems correctly', async () => {
   // Summarized, as this is based on Dropdown button, which is tested independently.
-  const itemOneOnClick = jest.fn();
+  const itemOneOnClick = vi.fn();
   const { container } = render(
     <HeaderButton
       name='MockName'

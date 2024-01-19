@@ -18,12 +18,12 @@ const mockIntersection = (element: Element, isIntersecting = true) => {
   } as unknown as IntersectionObserver);
 };
 
-const mockedDisconnect = jest.fn();
+const mockedDisconnect = vi.fn();
 
 beforeEach(() => {
   jest.clearAllMocks();
   observers.clear();
-  window.IntersectionObserver = jest.fn(
+  window.IntersectionObserver = vi.fn(
     (callback: IntersectionObserverCallback) => {
       return {
         observe: (el: Element) => observers.set(el, callback),
@@ -40,7 +40,7 @@ afterAll(() => {
 it('should create IntersectionObserver with options', () => {
   const mockedElement = {} as HTMLElement;
   const mockedRootElement = {} as HTMLElement;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() =>
     useIntersection(onIntersect, {
       root: mockedRootElement,
@@ -65,7 +65,7 @@ it('should create IntersectionObserver with options', () => {
 
 it('should trigger onIntersect', () => {
   const mockedElement = {} as HTMLElement;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() => useIntersection(onIntersect));
 
   act(() => {
@@ -80,7 +80,7 @@ it('should trigger onIntersect', () => {
 it('should trigger onIntersect when element ref changes', () => {
   const mockedElement1 = {} as HTMLElement;
   const mockedElement2 = {} as HTMLElement;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() => useIntersection(onIntersect));
 
   act(() => {
@@ -99,7 +99,7 @@ it('should trigger onIntersect when element ref changes', () => {
 
 it('should not trigger onIntersect when entry is not intersecting', () => {
   const mockedElement = {} as HTMLElement;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() => useIntersection(onIntersect));
 
   act(() => {
@@ -114,7 +114,7 @@ it('should not trigger onIntersect when entry is not intersecting', () => {
 it('should do nothing when IntersectionObserver is missing', () => {
   (window.IntersectionObserver as unknown) = undefined;
   const mockedElement = {} as HTMLElement;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() => useIntersection(onIntersect));
 
   act(() => {
@@ -127,7 +127,7 @@ it('should do nothing when IntersectionObserver is missing', () => {
 
 it('should do nothing when element is missing', () => {
   (window.IntersectionObserver as unknown) = undefined;
-  const onIntersect = jest.fn();
+  const onIntersect = vi.fn();
   const { result } = renderHook(() => useIntersection(onIntersect));
 
   act(() => {
@@ -143,7 +143,7 @@ it.each([
   'should %s trigger onIntersect more than once if `once` is %s',
   (_, once) => {
     const mockedElement = {} as HTMLElement;
-    const onIntersect = jest.fn();
+    const onIntersect = vi.fn();
     const { result } = renderHook(() => useIntersection(onIntersect, {}, once));
 
     act(() => {

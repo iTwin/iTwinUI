@@ -32,15 +32,12 @@ it('should set initial size', () => {
 });
 
 it('should update value when resized', () => {
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
   const { result } = renderHookComponent();
 
@@ -54,15 +51,15 @@ it('should update value when resized', () => {
 });
 
 it('should not update value when resized if disabled', () => {
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
-  const disconnect = jest.fn(() => {
-    triggerResize = jest.fn();
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  const disconnect = vi.fn(() => {
+    triggerResize = vi.fn();
   });
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [jest.fn(), { disconnect } as unknown as ResizeObserver];
+      return [vi.fn(), { disconnect } as unknown as ResizeObserver];
     });
   const { result } = renderHookComponent(false);
 

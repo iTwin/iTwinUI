@@ -15,9 +15,9 @@ import { userEvent } from '@testing-library/user-event';
 const renderComponent = (initialProps?: Partial<DateRangeFilterProps<any>>) => {
   const props = {
     column: {} as HeaderGroup,
-    setFilter: jest.fn(),
-    clearFilter: jest.fn(),
-    close: jest.fn(),
+    setFilter: vi.fn(),
+    clearFilter: vi.fn(),
+    close: vi.fn(),
     ...initialProps,
   } as DateRangeFilterProps<any>;
   return render(<DateRangeFilter {...props} />);
@@ -59,7 +59,7 @@ it('should render correctly with set filter value', () => {
 });
 
 it('should set filter when both values entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -79,7 +79,7 @@ it('should set filter when both values entered', () => {
 });
 
 it('should set filter when only From is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -98,7 +98,7 @@ it('should set filter when only From is entered', () => {
 });
 
 it('should set filter when only To is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -117,7 +117,7 @@ it('should set filter when only To is entered', () => {
 });
 
 it('should set filter when both values entered and Enter is pressed', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -140,7 +140,7 @@ it('should set filter when both values entered and Enter is pressed', () => {
 });
 
 it('should set filter with empty values when invalid date is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -156,7 +156,7 @@ it('should set filter with empty values when invalid date is entered', () => {
 });
 
 it('should set filter with empty values when date is not fully entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -172,7 +172,7 @@ it('should set filter with empty values when date is not fully entered', () => {
 });
 
 it('should set filter and keep time from existing dates', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({
     setFilter,
     column: {

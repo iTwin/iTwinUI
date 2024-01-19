@@ -35,7 +35,7 @@ it('should render only render children while ignoring title prop', () => {
 });
 
 it('should render close button when isDismissible is true', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(
     <DialogTitleBar isDismissible onClose={onClose} titleText='test-title' />,
   );

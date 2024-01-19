@@ -18,7 +18,7 @@ import {
   type ToastOptions,
 } from './Toaster.js';
 
-const mockOnClick = jest.fn();
+const mockOnClick = vi.fn();
 
 function toasterContraption() {
   const { result } = renderHook(() => useToaster(), {

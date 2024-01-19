@@ -11,7 +11,7 @@ import { useVirtualization } from './index.js';
 
 // to return correct values for container 'scroller' and children
 const heightsMock = jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect');
-let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
+let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
 
 const generateDataArray = (length: number) =>
   new Array(length).fill(null).map((_, index) => ++index);
@@ -21,10 +21,7 @@ beforeAll(() => {
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
 });
 

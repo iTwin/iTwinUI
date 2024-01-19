@@ -76,7 +76,7 @@ it('renders the message correctly', () => {
 });
 
 it('renders a report message Link correctly', async () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast
@@ -157,7 +157,7 @@ it('renders the close icon when hasCloseButton', () => {
 it('should close temporary toast after 7s', () => {
   jest.useFakeTimers();
 
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast

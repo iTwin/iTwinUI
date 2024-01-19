@@ -74,7 +74,7 @@ it('should render content when expanded', () => {
 });
 
 it('should trigger onToggle when clicked only on header', () => {
-  const onToggleMock = jest.fn();
+  const onToggleMock = vi.fn();
   const { container } = render(
     <ExpandableBlock.Wrapper onToggle={onToggleMock} isExpanded={true}>
       <ExpandableBlock.Trigger label='test title' />
@@ -98,7 +98,7 @@ it('should trigger onToggle when clicked only on header', () => {
 });
 
 it('should trigger onToggle when clicked with Enter or Spacebar', async () => {
-  const onToggleMock = jest.fn();
+  const onToggleMock = vi.fn();
   const { container } = render(
     <ExpandableBlock.Wrapper onToggle={onToggleMock} isExpanded={true}>
       <ExpandableBlock.Trigger label='test title' />
@@ -201,7 +201,7 @@ it('should render borderless', () => {
 });
 
 it('should respect disabled prop', () => {
-  const onToggleMock = jest.fn();
+  const onToggleMock = vi.fn();
   const { getByRole } = render(
     <ExpandableBlock.Wrapper onToggle={onToggleMock} disabled>
       <ExpandableBlock.Trigger label='test title' />

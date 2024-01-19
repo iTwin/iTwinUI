@@ -106,15 +106,12 @@ it('should overflow when there is not enough space but container fits 30 items',
 });
 
 it('should restore hidden items when space is available again', async () => {
-  let onResizeFn: (size: DOMRectReadOnly) => void = jest.fn();
+  let onResizeFn: (size: DOMRectReadOnly) => void = vi.fn();
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       onResizeFn = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
   const scrollWidthSpy = jest
     .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')

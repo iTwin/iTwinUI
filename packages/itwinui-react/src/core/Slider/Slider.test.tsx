@@ -334,8 +334,8 @@ it('should activate thumb on pointerDown', () => {
 });
 
 it('should process keystrokes when thumb has focus', async () => {
-  const handleOnUpdate = jest.fn();
-  const handleOnChange = jest.fn();
+  const handleOnUpdate = vi.fn();
+  const handleOnChange = vi.fn();
   const { container } = render(
     <Slider
       values={[50]}
@@ -435,7 +435,7 @@ it('should limit keystrokes processing to adjacent points by default', async () 
 });
 
 it('should limit keystrokes processing by min max when allow-crossing is set', async () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const { container } = render(
     <Slider
       values={[40, 80]}
@@ -545,8 +545,8 @@ it('should apply thumb props', () => {
 });
 
 it('should move thumb when pointer down on rail', () => {
-  const handleOnChange = jest.fn();
-  const handleOnUpdate = jest.fn();
+  const handleOnChange = vi.fn();
+  const handleOnUpdate = vi.fn();
 
   const { container } = render(
     <Slider
@@ -584,8 +584,8 @@ it('should move thumb when pointer down on rail', () => {
 it('should move thumb when pointer down on rail (vertical)', () => {
   getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize); // This is to make getBoundingClientRect() return the mocked vertical container dimensions
 
-  const handleOnChange = jest.fn();
-  const handleOnUpdate = jest.fn();
+  const handleOnChange = vi.fn();
+  const handleOnUpdate = vi.fn();
 
   const { container } = render(
     <Slider
@@ -742,8 +742,8 @@ it('should move closest thumb when pointer down on rail (vertical)', () => {
 });
 
 it('should activate thumb on pointerDown and move to closest step on move', () => {
-  const handleOnUpdate = jest.fn();
-  const handleOnChange = jest.fn();
+  const handleOnUpdate = vi.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <Slider
@@ -811,8 +811,8 @@ it('should activate thumb on pointerDown and move to closest step on move', () =
 it('should activate thumb on pointerDown and move to closest step on move (vertical)', () => {
   getBoundingClientRectMock.mockReturnValue(sliderContainerVerticalSize);
 
-  const handleOnUpdate = jest.fn();
-  const handleOnChange = jest.fn();
+  const handleOnUpdate = vi.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <Slider

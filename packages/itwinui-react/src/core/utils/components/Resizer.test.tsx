@@ -19,7 +19,7 @@ jest.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
   height: 100,
 } as DOMRect);
 
-const onResizeEnd = jest.fn();
+const onResizeEnd = vi.fn();
 
 const TestComponent = (props?: Partial<ResizerProps>) => {
   const ref = React.useRef<HTMLDivElement>(null);

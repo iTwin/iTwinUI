@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Tooltip } from './Tooltip.js';
 
 it('should toggle the visibility of tooltip on hover', () => {
-  const onVisibleChange = jest.fn();
+  const onVisibleChange = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='some text' onVisibleChange={onVisibleChange}>
@@ -32,7 +32,7 @@ it('should toggle the visibility of tooltip on hover', () => {
 
 it('should toggle the visibility of tooltip on focus', async () => {
   jest.useFakeTimers();
-  const onVisibleChange = jest.fn();
+  const onVisibleChange = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='some text' onVisibleChange={onVisibleChange}>
@@ -78,9 +78,9 @@ it('should respect visible prop', () => {
 });
 
 it('should allow button clicks and hovers', () => {
-  const clickHandler = jest.fn();
-  const mouseEnterHandler = jest.fn();
-  const mouseLeaveHandler = jest.fn();
+  const clickHandler = vi.fn();
+  const mouseEnterHandler = vi.fn();
+  const mouseLeaveHandler = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='Tooltip!'>

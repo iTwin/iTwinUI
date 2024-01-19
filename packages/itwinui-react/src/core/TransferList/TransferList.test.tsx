@@ -107,7 +107,7 @@ it('should handle keyboard navigation', () => {
 });
 
 it('should handle key presses', async () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   render(
     <TransferList>
       <TransferList.ListboxWrapper>

@@ -8,7 +8,7 @@ import { DialogBackdrop } from './DialogBackdrop.js';
 import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(
     <DialogBackdrop closeOnExternalClick onClose={onClose} isDismissible />,
   );
@@ -29,7 +29,7 @@ it('should render with misc props', () => {
 });
 
 it('should not close on closeOnExternalClick is false', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(<DialogBackdrop closeOnExternalClick={false} />);
 
   const backdrop = container.querySelector('.iui-backdrop') as HTMLElement;

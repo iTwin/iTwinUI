@@ -28,9 +28,9 @@ describe('getWindow', () => {
 
 describe('mergeEventHandlers', () => {
   it('should respect preventDefault', () => {
-    const handler1 = jest.fn();
-    const handler2 = jest.fn((e) => e.preventDefault());
-    const handler3 = jest.fn();
+    const handler1 = vi.fn();
+    const handler2 = vi.fn((e) => e.preventDefault());
+    const handler3 = vi.fn();
     render(
       <button onClick={mergeEventHandlers(handler1, handler2, handler3)}>
         hi

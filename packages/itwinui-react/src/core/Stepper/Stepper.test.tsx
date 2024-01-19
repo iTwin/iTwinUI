@@ -71,7 +71,7 @@ it('should add custom props to Stepper', () => {
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   const stepper = (
     <Stepper
       currentStep={1}

@@ -34,7 +34,7 @@ it('should not display selected time', () => {
 });
 
 it('should return selected time (seconds)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -56,7 +56,7 @@ it('should return selected time (seconds)', async () => {
 });
 
 it('should return selected time (minutes)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -78,7 +78,7 @@ it('should return selected time (minutes)', async () => {
 });
 
 it('should return selected time (hours)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -117,7 +117,7 @@ it('should propagate custom className and style props', () => {
 });
 
 it('should navigate with keyboard', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <TimePicker
       date={new Date(2020, 1, 1, 22, 11, 45)}
@@ -217,7 +217,7 @@ it('should navigate with keyboard', () => {
 });
 
 it('should navigate with keyboard (12 hours)', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <TimePicker
       date={new Date(2020, 1, 1, 23, 22)}
@@ -327,7 +327,7 @@ it('should navigate with keyboard (12 hours)', () => {
 });
 
 it('should show 12 hours', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -390,7 +390,7 @@ it('should show 12 hours', async () => {
 });
 
 it('should show values with applied steps', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 9, 10, 40)}
@@ -474,7 +474,7 @@ it('should display passed time in combined renderer', () => {
 });
 
 it('should return selected time in combined renderer (seconds)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -499,7 +499,7 @@ it('should return selected time in combined renderer (seconds)', async () => {
 }, 100000);
 
 it('should return selected time in combined renderer (minutes)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -523,7 +523,7 @@ it('should return selected time in combined renderer (minutes)', async () => {
 });
 
 it('should return selected time in combined renderer (hours)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -548,7 +548,7 @@ it('should return selected time in combined renderer (hours)', async () => {
 });
 
 it('should navigate with keyboard in combined renderer', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <TimePicker
       date={new Date(2020, 1, 1, 22, 11, 45)}
@@ -591,7 +591,7 @@ it('should navigate with keyboard in combined renderer', () => {
 });
 
 it('should navigate with keyboard in combined renderer (12 hours)', () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(
     <TimePicker
       date={new Date(2020, 1, 1, 22, 11, 45)}
@@ -658,7 +658,7 @@ it('should navigate with keyboard in combined renderer (12 hours)', () => {
 });
 
 it('should show 24 hours in combined renderer (seconds)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -681,7 +681,7 @@ it('should show 24 hours in combined renderer (seconds)', async () => {
 }, 100000);
 
 it('should show 24 hours in combined renderer (minutes)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -703,7 +703,7 @@ it('should show 24 hours in combined renderer (minutes)', async () => {
 });
 
 it('should show 24 hours in combined renderer (hours)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -726,7 +726,7 @@ it('should show 24 hours in combined renderer (hours)', async () => {
 });
 
 it('should show 12 hours in combined renderer (seconds)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -767,7 +767,7 @@ it('should show 12 hours in combined renderer (seconds)', async () => {
 }, 100000);
 
 it('should show 12 hours in combined renderer (minutes)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -807,7 +807,7 @@ it('should show 12 hours in combined renderer (minutes)', async () => {
 });
 
 it('should show 12 hours in combined renderer (hours)', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 14, 21, 33)}
@@ -848,7 +848,7 @@ it('should show 12 hours in combined renderer (hours)', async () => {
 });
 
 it('should show values with applied steps in combined renderer', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container, getByText } = render(
     <TimePicker
       date={new Date(2020, 5, 5, 9, 10, 40)}

@@ -38,15 +38,15 @@ it('should render with four buttons', () => {
 it.each(['start', 'end'] as const)(
   'should handle overflow when overflowButton is specified (%s)',
   (overflowPlacement) => {
-    const scrollWidthSpy = jest
+    const scrollWidthSpy = vitest
       .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
       .mockReturnValueOnce(250)
       .mockReturnValue(200);
-    const offsetWidthSpy = jest
+    const offsetWidthSpy = vitest
       .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
       .mockReturnValue(200);
 
-    const mockOnClick = jest.fn();
+    const mockOnClick = vi.fn();
 
     const OverflowGroup = () => {
       const buttons = [...Array(3)].map((_, index) => (
@@ -84,10 +84,10 @@ it.each(['start', 'end'] as const)(
 it.each(['start', 'end'] as const)(
   'should handle overflow when available space is smaller than one element (%s)',
   (overflowPlacement) => {
-    const scrollWidthSpy = jest
+    const scrollWidthSpy = vitest
       .spyOn(HTMLElement.prototype, 'scrollWidth', 'get')
       .mockReturnValue(200);
-    const offsetWidthSpy = jest
+    const offsetWidthSpy = vitest
       .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
       .mockReturnValue(50);
 
@@ -159,9 +159,9 @@ it.each`
 `(
   'should calculate correct values when overflowPlacement=$overflowPlacement and visibleCount=$visibleCount',
   ({ visibleCount, overflowStart, length, overflowPlacement }) => {
-    const useOverflowMock = jest
+    const useOverflowMock = vitest
       .spyOn(UseOverflow, 'useOverflow')
-      .mockReturnValue([jest.fn(), visibleCount]);
+      .mockReturnValue([vi.fn(), visibleCount]);
 
     const buttons = [...Array(length)].map((_, index) => (
       <button key={index}>{index}</button>

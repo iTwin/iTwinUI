@@ -7,7 +7,7 @@ import { fireEvent, render } from '@testing-library/react';
 import useDragAndDrop from './useDragAndDrop.js';
 import * as DomFunctions from '../functions/dom.js';
 
-const DOMMatrixMock = jest.fn();
+const DOMMatrixMock = vi.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
@@ -21,8 +21,8 @@ jest
   .mockReturnValue({
     innerWidth: 300,
     innerHeight: 300,
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
   } as any);
 /* eslint-enable @typescript-eslint/no-explicit-any */
 

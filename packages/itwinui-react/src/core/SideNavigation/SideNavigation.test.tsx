@@ -142,7 +142,7 @@ it('should render expand button svg correctly', () => {
 });
 
 it('should handle clicking on expand button', async () => {
-  const mockFn = jest.fn();
+  const mockFn = vi.fn();
   const { container } = renderComponent({ onExpanderClick: mockFn });
   expect(
     container.querySelector('.iui-side-navigation.iui-collapsed'),

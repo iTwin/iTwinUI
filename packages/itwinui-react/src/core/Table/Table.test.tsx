@@ -52,9 +52,7 @@ const mockIntersection = (element: Element) => {
   intersectionCallbacks.get(element)?.();
 };
 
-const columns = (
-  onViewClick: () => void = jest.fn(),
-): Column<TestDataType>[] => [
+const columns = (onViewClick: () => void = vi.fn()): Column<TestDataType>[] => [
   {
     id: 'name',
     Header: 'Name',
@@ -252,7 +250,7 @@ beforeEach(() => {
 });
 
 it('should render table with data', async () => {
-  const onViewClick = jest.fn();
+  const onViewClick = vi.fn();
   const { container } = renderComponent(undefined, onViewClick);
 
   expect(screen.queryByText('Header name')).toBeFalsy();
@@ -331,7 +329,7 @@ it('should render cell with custom className', () => {
 });
 
 it('should handle checkbox clicks', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const { container } = renderComponent({ isSelectable: true, onSelect });
 
   expect(screen.queryByText('Header name')).toBeFalsy();
@@ -353,8 +351,8 @@ it('should handle checkbox clicks', async () => {
 });
 
 it('should handle row clicks', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const user = userEvent.setup();
   const data = mockedData(8);
 
@@ -513,8 +511,8 @@ it('should handle row clicks', async () => {
 });
 
 it('should handle sub-rows shift click selection', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const data = mockedSubRowsData();
   const { container, getByText } = renderComponent({
     data,
@@ -573,8 +571,8 @@ it('should handle sub-rows shift click selection', async () => {
 });
 
 it('should not select when clicked on row but selectRowOnClick flag is false', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const { container, getByText } = renderComponent({
     isSelectable: true,
     onSelect,
@@ -592,7 +590,7 @@ it('should not select when clicked on row but selectRowOnClick flag is false', a
 });
 
 it('should not select when clicked on row and preventDefault is set', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   renderComponent({
     isSelectable: true,
     onSelect,
@@ -604,9 +602,9 @@ it('should not select when clicked on row and preventDefault is set', async () =
 });
 
 it('should not trigger onSelect when sorting and filtering', async () => {
-  const onSort = jest.fn();
-  const onSelect = jest.fn();
-  const onFilter = jest.fn();
+  const onSort = vi.fn();
+  const onSelect = vi.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -690,7 +688,7 @@ it('should sort name column correctly', async () => {
     { name: 'name2', description: 'Description2' },
   ];
   const sortedByName = [...mocked].sort((a, b) => (a.name > b.name ? 1 : -1));
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   const { container } = renderComponent({
     isSortable: true,
     data: mocked,
@@ -870,7 +868,7 @@ it('should display correct sort icons for descending first', async () => {
 });
 
 it('should trigger onBottomReached', () => {
-  const onBottomReached = jest.fn();
+  const onBottomReached = vi.fn();
   const { container } = renderComponent({
     data: mockedData(50),
     onBottomReached,
@@ -887,7 +885,7 @@ it('should trigger onBottomReached', () => {
 });
 
 it('should trigger onBottomReached with filter applied', async () => {
-  const onBottomReached = jest.fn();
+  const onBottomReached = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -917,7 +915,7 @@ it('should trigger onBottomReached with filter applied', async () => {
 });
 
 it('should trigger onRowInViewport', () => {
-  const onRowInViewport = jest.fn();
+  const onRowInViewport = vi.fn();
   const { container } = renderComponent({
     data: mockedData(50),
     onRowInViewport,
@@ -936,7 +934,7 @@ it('should trigger onRowInViewport', () => {
 });
 
 it('should filter table', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -988,7 +986,7 @@ it('should filter false values', async () => {
     { name: 'Name2', description: 'Description2', booleanValue: false },
   ] as TestDataType[];
 
-  const { container } = renderComponent({ columns, onFilter: jest.fn(), data });
+  const { container } = renderComponent({ columns, onFilter: vi.fn(), data });
 
   const filterIcon = container.querySelector(
     '.iui-table-filter-button .iui-button-icon',
@@ -1024,7 +1022,7 @@ it('should not filter undefined values', async () => {
     { name: 'Name3', description: 'Description2' },
   ] as TestDataType[];
 
-  const { container } = renderComponent({ columns, onFilter: jest.fn(), data });
+  const { container } = renderComponent({ columns, onFilter: vi.fn(), data });
 
   const filterIcon = container.querySelector(
     '.iui-table-filter-button .iui-button-icon',
@@ -1040,7 +1038,7 @@ it('should not filter undefined values', async () => {
 });
 
 it('should clear filter', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1096,7 +1094,7 @@ it('should clear filter', async () => {
 });
 
 it('should not trigger onFilter when the same filter is applied', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1118,7 +1116,7 @@ it('should not trigger onFilter when the same filter is applied', async () => {
 });
 
 it('should not filter table when manualFilters flag is on', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1642,8 +1640,8 @@ it('should not global filter with manualGlobalFilter', async () => {
 });
 
 it('should not trigger sorting when filter is clicked', async () => {
-  const onFilter = jest.fn();
-  const onSort = jest.fn();
+  const onFilter = vi.fn();
+  const onSort = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1700,7 +1698,7 @@ it('should rerender table when columns change', async () => {
 });
 
 it('should expand correctly', async () => {
-  const onExpandMock = jest.fn();
+  const onExpandMock = vi.fn();
   const { container, getByText } = renderComponent({
     subComponent: (row) => (
       <div>{`Expanded component, name: ${row.original.name}`}</div>
@@ -1726,7 +1724,7 @@ it('should expand correctly', async () => {
 });
 
 it('should expand correctly with a custom expander cell', async () => {
-  const onExpandMock = jest.fn();
+  const onExpandMock = vi.fn();
   const { getByText, queryByText } = renderComponent({
     subComponent: (row) => (
       <div>{`Expanded component, name: ${row.original.name}`}</div>
@@ -1769,7 +1767,7 @@ it('should expand correctly with a custom expander cell', async () => {
 });
 
 it('should disable row and handle expansion accordingly', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const { container } = renderComponent({
     onExpand,
     subComponent: (row) => (
@@ -1807,8 +1805,8 @@ it('should disable row and handle expansion accordingly', async () => {
 });
 
 it('should disable row and handle selection accordingly', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const { container } = renderComponent({
     isSelectable: true,
     onSelect,
@@ -1865,7 +1863,7 @@ it('should disable row and handle selection accordingly', async () => {
 });
 
 it('should select and filter rows', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1921,7 +1919,7 @@ it('should select and filter rows', async () => {
 });
 
 it('should pass custom props to row', () => {
-  const onMouseEnter = jest.fn();
+  const onMouseEnter = vi.fn();
   let element: HTMLInputElement | null = null;
   const onRef = (ref: HTMLInputElement) => {
     element = ref;
@@ -1952,7 +1950,7 @@ it.each(['condensed', 'extra-condensed'] as const)(
 );
 
 it('should render sub-rows with padding-left of 12+30*(row depth) for condensed table', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -1983,7 +1981,7 @@ it('should render sub-rows with padding-left of 12+30*(row depth) for condensed 
 });
 
 it('should render sub-rows with padding-left of 8+30*(row depth) for extra-condensed table', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2014,7 +2012,7 @@ it('should render sub-rows with padding-left of 8+30*(row depth) for extra-conde
 });
 
 it('should render sub-rows and handle expansions', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({ data, onExpand });
 
@@ -2086,7 +2084,7 @@ it('should render filtered sub-rows', async () => {
 });
 
 it('should handle sub-rows selection', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2120,7 +2118,7 @@ it('should handle sub-rows selection', async () => {
 });
 
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2156,7 +2154,7 @@ it('should show indeterminate checkbox when some sub-rows are selected', async (
 });
 
 it('should show indeterminate checkbox when a sub-row of a sub-row is selected', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2195,7 +2193,7 @@ it('should show indeterminate checkbox when a sub-row of a sub-row is selected',
 });
 
 it('should show indeterminate checkbox when sub-row selected after filtering', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const columns = [
     {
@@ -2253,7 +2251,7 @@ it('should show indeterminate checkbox when sub-row selected after filtering', a
 });
 
 it('should show indeterminate checkbox when clicking on a row itself after filtering', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const columns = [
     {
@@ -2309,7 +2307,7 @@ it('should show indeterminate checkbox when clicking on a row itself after filte
 });
 
 it('should only select one row even if it has sub-rows when selectSubRows is false', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2369,7 +2367,7 @@ it('should render sub-rows with custom expander', async () => {
 });
 
 it('should edit cell data', async () => {
-  const onCellEdit = jest.fn();
+  const onCellEdit = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2418,8 +2416,8 @@ it('should edit cell data', async () => {
 });
 
 it('should handle unwanted actions on editable cell', async () => {
-  const onCellEdit = jest.fn();
-  const onSelect = jest.fn();
+  const onCellEdit = vi.fn();
+  const onSelect = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2479,7 +2477,7 @@ it('should handle unwanted actions on editable cell', async () => {
 it('should render data in pages', async () => {
   jest
     .spyOn(UseOverflow, 'useOverflow')
-    .mockImplementation((items) => [jest.fn(), items.length]);
+    .mockImplementation((items) => [vi.fn(), items.length]);
   const { container } = renderComponent({
     data: mockedData(100),
     pageSize: 10,
@@ -2959,7 +2957,7 @@ it('should not trigger sort when resizing', () => {
   jest
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     .mockReturnValue({ width: 100 } as DOMRect);
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3005,15 +3003,12 @@ it('should handle table resize only when some columns were resized', () => {
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     .mockReturnValue({ width: 100 } as DOMRect);
 
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
   const columns: Column<TestDataType>[] = [
     {
@@ -3125,15 +3120,12 @@ it('should resize current and closest column when table width would decrease whe
   jest
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     .mockReturnValue({ width: 100 } as DOMRect);
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
   const columns: Column<TestDataType>[] = [
     {
@@ -3190,15 +3182,12 @@ it('should resize last and closest column on the left when table width would dec
   jest
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     .mockReturnValue({ width: 100 } as DOMRect);
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
   jest
     .spyOn(UseResizeObserver, 'useResizeObserver')
     .mockImplementation((onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
     });
   const columns: Column<TestDataType>[] = [
     {
@@ -3458,7 +3447,7 @@ it.each([
 ])(
   'should handle column reorder by $testCase',
   ({ srcIndex, dstIndex, resultingColumns }) => {
-    const onSort = jest.fn();
+    const onSort = vi.fn();
     jest.spyOn(HTMLElement.prototype, 'offsetLeft', 'get').mockReturnValue(0);
     jest
       .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
@@ -3840,7 +3829,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 });
 
 it('should add selection column manually', () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const isDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
     SelectionColumn({ isDisabled }),
@@ -3879,7 +3868,7 @@ it('should add selection column manually', () => {
 });
 
 it('should add expander column manually', () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const subComponent = (row: Row<TestDataType>) => (
     <div>{`Expanded component, name: ${row.original.name}`}</div>
   );
@@ -3985,7 +3974,7 @@ it('should show column enabled when whole row is disabled', () => {
 });
 
 it('should render selectable rows without select column', async () => {
-  const onRowClick = jest.fn();
+  const onRowClick = vi.fn();
   const { container, getByText } = renderComponent({
     isSelectable: true,
     selectionMode: 'single',
@@ -4620,7 +4609,7 @@ it('should render row with loading status', () => {
 });
 
 it('should navigate through table sorting with the keyboard', async () => {
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   renderComponent({
     isSortable: true,
     onSort,
@@ -4632,7 +4621,7 @@ it('should navigate through table sorting with the keyboard', async () => {
 });
 
 it('should navigate through table filtering with the keyboard', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
