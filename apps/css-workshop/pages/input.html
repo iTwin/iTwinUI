@@ -144,9 +144,13 @@
         </div>
       </div>
 
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <!-- Status styling from iui-input-grid -->
+
       <div
-        class="iui-input-grid iui-positive"
+        class="iui-input-grid"
         id="demo-status-singular"
+        data-iui-status="positive"
       >
         <label class="iui-input-label">Input label
         </label>
@@ -154,7 +158,6 @@
           placeholder="Placeholder…"
           class="iui-input"
           id="test-status-singular"
-          data-iui-status="positive"
         />
         <div
           class="iui-status-message"
@@ -170,13 +173,15 @@
         </div>
       </div>
 
-      <div class="iui-input-grid iui-warning">
+      <div
+        class="iui-input-grid"
+        data-iui-status="warning"
+      >
         <label class="iui-input-label">Input label
         </label>
         <input
           placeholder="Placeholder…"
           class="iui-input"
-          data-iui-status="warning"
         />
         <div
           class="iui-status-message"
@@ -192,13 +197,15 @@
         </div>
       </div>
 
-      <div class="iui-input-grid iui-negative">
+      <div
+        class="iui-input-grid"
+        data-iui-status="negative"
+      >
         <label class="iui-input-label">Input label
         </label>
         <input
           placeholder="Placeholder…"
           class="iui-input"
-          data-iui-status="negative"
         />
         <div
           class="iui-status-message"
@@ -213,6 +220,8 @@
           <div>Negative message.</div>
         </div>
       </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
 
     </section>
 
@@ -280,8 +289,11 @@
         />
       </div>
 
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <!-- Status styling from iui-input-flex-container -->
+
       <div
-        class="iui-input-grid iui-positive"
+        class="iui-input-grid"
         data-iui-label-placement="inline"
       >
         <label class="iui-input-label">Input label
@@ -343,6 +355,8 @@
           ></svg-status-error>
         </div>
       </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
 
       <div
         class="iui-input-grid"
@@ -477,53 +491,28 @@
         />
       </div>
 
-      <div class="iui-input-grid iui-positive">
-        <div
-          class="iui-input-flex-container"
-          data-iui-status="positive"
-        >
-          <input placeholder="Placeholder…" />
-          <svg-status-success
-            class="iui-svg-icon"
-            data-iui-padded="true"
-            data-iui-icon-color="positive"
-            data-iui-icon-size="m"
-            aria-hidden="true"
-          ></svg-status-success>
-        </div>
-      </div>
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <!-- Status styling from iui-input -->
 
-      <div class="iui-input-grid iui-warning">
-        <div
-          class="iui-input-flex-container"
-          data-iui-status="warning"
-        >
-          <input placeholder="Placeholder…" />
-          <svg-status-warning
-            class="iui-svg-icon"
-            data-iui-padded="true"
-            data-iui-icon-color="warning"
-            data-iui-icon-size="m"
-            aria-hidden="true"
-          ></svg-status-warning>
-        </div>
-      </div>
+      <input
+        placeholder="Placeholder…"
+        class="iui-input"
+        data-iui-status="positive"
+      />
 
-      <div class="iui-input-grid iui-negative">
-        <div
-          class="iui-input-flex-container"
-          data-iui-status="negative"
-        >
-          <input placeholder="Placeholder…" />
-          <svg-status-error
-            class="iui-svg-icon"
-            data-iui-padded="true"
-            data-iui-icon-color="negative"
-            data-iui-icon-size="m"
-            aria-hidden="true"
-          ></svg-status-error>
-        </div>
-      </div>
+      <input
+        placeholder="Placeholder…"
+        class="iui-input"
+        data-iui-status="warning"
+      />
+
+      <input
+        placeholder="Placeholder…"
+        class="iui-input"
+        data-iui-status="negative"
+      />
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
 
       <div class="iui-input-grid">
         <input
@@ -550,6 +539,64 @@
           data-iui-size="large"
         />
       </div>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="positive"
+      >
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="positive"
+        >
+          <input placeholder="Placeholder…" />
+          <svg-status-success
+            class="iui-svg-icon"
+            data-iui-padded="true"
+            data-iui-icon-color="positive"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="warning"
+      >
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="warning"
+        >
+          <input placeholder="Placeholder…" />
+          <svg-status-warning
+            class="iui-svg-icon"
+            data-iui-padded="true"
+            data-iui-icon-color="warning"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-warning>
+        </div>
+      </div>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="negative"
+      >
+        <div
+          class="iui-input-flex-container"
+          data-iui-status="negative"
+        >
+          <input placeholder="Placeholder…" />
+          <svg-status-error
+            class="iui-svg-icon"
+            data-iui-padded="true"
+            data-iui-icon-color="negative"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-error>
+        </div>
+      </div>
+
     </section>
 
     <br />

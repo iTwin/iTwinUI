@@ -52,3 +52,13 @@ it('should render message with custom icon', () => {
     'true',
   );
 });
+
+it('should render message with no icon when svgIcon is null', () => {
+  const { container, getByText } = render(
+    <StatusMessage startIcon={null}>This is my text</StatusMessage>,
+  );
+  const message = container.querySelector('.iui-status-message') as HTMLElement;
+  expect(message).toBeTruthy();
+  getByText('This is my text');
+  expect(container.querySelector('.iui-svg-icon')).toBeFalsy();
+});
