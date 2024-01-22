@@ -3,25 +3,25 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { List, ListItem, LinkAction } from '@itwin/itwinui-react';
+import { List, ListItem } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <List>
       <ListItem actionable>
-        <LinkAction href='https://itwinui.bentley.com/docs/button'>
+        <ListItem.Action href='https://itwinui.bentley.com/docs/button'>
           Buttons
-        </LinkAction>
+        </ListItem.Action>
       </ListItem>
       <ListItem actionable>
-        <LinkAction href='https://itwinui.bentley.com/docs/input'>
+        <ListItem.Action href='https://itwinui.bentley.com/docs/input'>
           Inputs
-        </LinkAction>
+        </ListItem.Action>
       </ListItem>
       <ListItem actionable>
-        <LinkAction href='https://itwinui.bentley.com/docs/dialog'>
+        <ListItem.Action href='https://itwinui.bentley.com/docs/dialog'>
           Dialog
-        </LinkAction>
+        </ListItem.Action>
       </ListItem>
     </List>
   );
