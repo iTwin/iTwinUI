@@ -2368,7 +2368,7 @@ it('should render sub-rows with custom expander', async () => {
   expect(rows.length).toBe(10);
 });
 
-it('should not disable select-all checkbox when top-level rows are disabled but subrows are not', () => {
+it('should not disable select-all checkbox when all top-level rows are disabled but all subrows are not', () => {
   const { container } = renderComponent({
     data: mockedSubRowsData(),
     isSelectable: true,
