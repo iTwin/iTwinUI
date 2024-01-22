@@ -9,8 +9,9 @@ import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
 
 import { ThemeProvider } from './ThemeProvider.js';
 import { ThemeContext } from './ThemeContext.js';
+import type { MockInstance } from 'vitest';
 
-let useMediaSpy: vipyInstance;
+let useMediaSpy: MockInstance;
 
 beforeEach(() => {
   useMediaSpy = vi.spyOn(UseMediaQuery, 'useMediaQuery').mockReturnValue(false);
