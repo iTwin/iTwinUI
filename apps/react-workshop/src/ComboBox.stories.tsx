@@ -360,14 +360,11 @@ export const WithLabel = () => {
 
   return (
     <InputGrid>
-      <Label htmlFor='combo-input'>Country</Label>
+      <Label>Country</Label>
       <ComboBox
         options={options}
-        onChange={(value: string) => console.log(value ?? '')}
-        inputProps={{
-          id: 'combo-input', // passing id to inputProps so it can be used in Label htmlFor
-          placeholder: 'Select a country',
-        }}
+        onChange={(value) => console.log(value ?? '')}
+        inputProps={{ placeholder: 'Select a country' }}
       />
     </InputGrid>
   );

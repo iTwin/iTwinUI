@@ -6,7 +6,6 @@ import * as React from 'react';
 
 import { Select } from '../Select/Select.js';
 import type { SelectProps } from '../Select/Select.js';
-import { useId } from '../utils/index.js';
 import type { LabeledInputProps } from '../LabeledInput/LabeledInput.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
@@ -121,15 +120,12 @@ export const LabeledSelect = React.forwardRef(
       displayStyle = 'default',
       style,
       required = false,
-      triggerProps,
       wrapperProps,
       labelProps,
       messageContentProps,
       messageIconProps,
       ...rest
     } = props;
-
-    const labelId = `${useId()}-label`;
 
     return (
       <InputGrid
@@ -142,7 +138,6 @@ export const LabeledSelect = React.forwardRef(
             as='div'
             required={required}
             disabled={disabled}
-            id={labelId}
             {...labelProps}
           >
             {label}
@@ -154,10 +149,6 @@ export const LabeledSelect = React.forwardRef(
           style={style}
           {...rest}
           ref={forwardedRef}
-          triggerProps={{
-            'aria-labelledby': labelId,
-            ...triggerProps,
-          }}
         />
         {typeof message === 'string' ? (
           <StatusMessage
