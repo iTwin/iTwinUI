@@ -14,7 +14,6 @@ it('renders correctly in its default state', () => {
       <Alert.Message>This is an alert.</Alert.Message>
     </Alert.Wrapper>,
   );
-  console.log(container.innerHTML);
   expect(container.querySelector('.iui-alert')).toBeTruthy();
   expect(container.querySelector('.iui-svg-icon')).toBeFalsy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
