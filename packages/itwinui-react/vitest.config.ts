@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { defineConfig } from 'vitest/config';
 
+console.log(__dirname);
 export default defineConfig({
   test: {
     globals: true,
@@ -12,10 +13,11 @@ export default defineConfig({
     css: true,
   },
   resolve: {
-    alias: {
-      'styles.js$': '<rootDir>/src/__mocks__/stylesMock.cjs',
-      'useGlobals.js$': '<rootDir>/src/__mocks__/useGlobalsMock.cjs',
-      '^(\\.\\.?\\/.+)\\.jsx?$': '$1', // see https://github.com/kulshekhar/ts-jest/issues/1057
-    },
+    alias: [
+      {
+        find: /^(.*)\/styles.js$/,
+        replacement: `${__dirname}/src/__mocks__/stylesMock.cjs`,
+      },
+    ],
   },
 });
