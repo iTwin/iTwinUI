@@ -32,7 +32,7 @@ There is also a `size` prop which can be set to `'large'` to ensure that all ite
 
 `ListItem` has an `actionable` prop which can be set to true to provide hover styling.
 
-Please note that this prop only provides the hover styling and does nothing else. Usually you want to combine this prop either with `LinkAction` (which lets you use an anchor or a button) or with a more advanced component, such as [`Select`](select), which will do many additional things like set `role=option`, manage roving tabindex, and handle arrow-key navigation.
+Please note that this prop only provides the hover styling and does nothing else. Usually you want to combine this prop either with `ListItem.Action` (which lets you use an anchor or a button) or with a more advanced component, such as [`Select`](select), which will do many additional things like set `role=option`, manage roving tabindex, and handle arrow-key navigation.
 
 ### With `ListItem.Action`
 
@@ -42,7 +42,7 @@ When `ListItem` contains a link, it is recommended to use `ListItem.Action` inst
   <AllExamples.ListLinksExample client:idle />
 </LiveExample>
 
-`LinkAction` supports the polymorphic `as` prop so it can also be rendered as a `<button>` if it performs an action on the same page.
+`ListItem.Action` supports the polymorphic `as` prop so it can also be rendered as a `<button>` if it performs an action on the same page.
 
 ### Interactive states
 
