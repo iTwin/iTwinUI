@@ -18,7 +18,7 @@ export type PortalProps = {
    *
    * Otherwise, it will portal to the element passed to `to`.
    *
-   * If `to`/`to()` === `null`/`undefined`, default behavior will be used (i.e. as if `portal` is not passed).
+   * If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
    *
    * @default true
    */
@@ -41,7 +41,7 @@ export type PortalProps = {
  *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
  *   - if `portal` is set to false, renders as-is without portal
  *   - otherwise renders into `portal.to` (can be an element or a function)
- *     - If `to`/`to()` === `null`/`undefined`, default behavior will be used (i.e. as if `portal` is not passed).
+ *     - If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
  *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
  *
  * @private
