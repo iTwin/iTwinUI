@@ -16,6 +16,7 @@ export default () => {
       }}
     >
       <LabeledInput
+        aria-label='Message'
         placeholder='Type a message'
         style={{
           width: '100%',
