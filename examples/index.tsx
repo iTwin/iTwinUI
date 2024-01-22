@@ -520,6 +520,12 @@ const ExpandableBlockDisabledExample = withThemeProvider(
 );
 export { ExpandableBlockDisabledExample };
 
+import { default as ExpandableBlockActionsExampleRaw } from './ExpandableBlock.actions';
+const ExpandableBlockActionsExample = withThemeProvider(
+  ExpandableBlockActionsExampleRaw,
+);
+export { ExpandableBlockActionsExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as FieldsetMainExampleRaw } from './Fieldset.main';
