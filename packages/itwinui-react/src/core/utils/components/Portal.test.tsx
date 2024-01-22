@@ -68,7 +68,7 @@ it('should accept a function which returns an element', () => {
 });
 
 it.each([null, undefined, () => null, () => undefined])(
-  'should use appropriate default behavior if to is %s',
+  'should use the appropriate default behavior if portal.to is %s',
   (to) => {
     render(
       <ThemeProvider data-testid='root'>
