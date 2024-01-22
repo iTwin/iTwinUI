@@ -6,6 +6,7 @@ import * as React from 'react';
 import cx from 'classnames';
 import { polymorphic, Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { LinkAction } from '../LinkAction/LinkAction.js';
 
 const ListItemComponent = React.forwardRef((props, ref) => {
   const {
@@ -79,6 +80,11 @@ const ListItemDescription = polymorphic('iui-list-item-description');
 ListItemDescription.displayName = 'ListItem.Description';
 
 // ----------------------------------------------------------------------------
+
+const ListItemAction = LinkAction;
+ListItemAction.displayName = 'ListItem.Action';
+
+// ----------------------------------------------------------------------------
 // Exported compound component
 
 /**
@@ -121,4 +127,14 @@ export const ListItem = Object.assign(ListItemComponent, {
    * </ListItem>
    */
   Description: ListItemDescription,
+  /**
+   * Wrapper over [LinkAction](https://itwinui.bentley.com/docs/linkaction) which allows rendering a link inside a ListItem.
+   * This ensures that clicking anywhere on the ListItem will trigger the link.
+   *
+   * @example
+   * <ListItem>
+   *  <ListItem.Action href='https://example.com'>Example link</ListItem.Action>
+   * </ListItem>
+   */
+  Action: ListItemAction,
 });
