@@ -78,8 +78,14 @@ it.each(['positive', 'warning', 'negative'] as const)(
       '.iui-input-grid',
     ) as HTMLElement;
     assertBaseElement(inputContainer);
+
+    expect(inputContainer).toHaveAttribute('data-iui-status', status);
+
     const select = container.querySelector(`.iui-select-button`) as HTMLElement;
-    expect(select).toHaveAttribute('data-iui-status', status);
+
+    // Don't unnecessarily set data-iui-status on the select when iui-input-grid already has data-iui-status
+    expect(select).not.toHaveAttribute('data-iui-status', status);
+
     expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
     expect(container.querySelector('.iui-status-message')).toBeTruthy();
   },

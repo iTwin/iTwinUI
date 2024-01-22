@@ -10,6 +10,12 @@ module.exports = [
     selectors: ['#demo-default'],
     viewports: [{ width: 800, height: 600 }],
   }),
+
+  // Select Without Label types
+  scenario('Type Without Label', {
+    selectors: ['#demo-no-label'],
+  }),
+
   scenario('Sizes', {
     selectors: ['#demo-sizes'],
     viewports: [{ width: 800, height: 600 }],

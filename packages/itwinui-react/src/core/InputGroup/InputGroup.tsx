@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { StatusIconMap, Box } from '../utils/index.js';
+import { Box } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { Label } from '../Label/Label.js';
@@ -41,7 +41,7 @@ type InputGroupProps = {
   /**
    * Custom icon. If group has status, default status icon is used instead.
    */
-  svgIcon?: JSX.Element;
+  svgIcon?: React.ComponentPropsWithoutRef<typeof StatusMessage>['startIcon'];
   /**
    * Child inputs inside group.
    */
@@ -95,24 +95,13 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
-  const icon = () => {
-    if (svgIcon) {
-      return React.cloneElement(svgIcon, { 'aria-hidden': true });
-    }
-    if (status && message) {
-      return React.cloneElement(StatusIconMap[status](), {
-        'aria-hidden': true,
-      });
-    }
-    return undefined;
-  };
-
   return (
     <InputGrid
       ref={forwardedRef}
       as='div'
       labelPlacement={displayStyle}
       className={cx('iui-input-group-wrapper', className)}
+      data-iui-status={status}
       {...rest}
     >
       {label && (
@@ -133,7 +122,14 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
         {children}
       </Box>
       {(message || status || svgIcon) && (
-        <StatusMessage startIcon={icon()} status={status} {...messageProps}>
+        <StatusMessage
+          iconProps={{
+            'aria-hidden': true,
+          }}
+          startIcon={svgIcon}
+          status={status}
+          {...messageProps}
+        >
           {displayStyle !== 'inline' && message}
         </StatusMessage>
       )}
