@@ -67,7 +67,7 @@ it('should accept a function which returns an element', () => {
   expect(document.querySelector('footer')).toHaveTextContent('my foot');
 });
 
-it.each([undefined, () => undefined])(
+it.each([null, undefined, () => null, () => undefined])(
   'should use appropriate default behavior if to is %s',
   (to) => {
     render(

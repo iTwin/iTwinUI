@@ -18,14 +18,18 @@ export type PortalProps = {
    *
    * Otherwise, it will portal to the element passed to `to`.
    *
-   * If `to === undefined` (or `to() === undefined`), default behavior will be used (i.e. as if `portal = undefined`).
+   * If `to`/`to()` === `null`/`undefined`, default behavior will be used (i.e. as if `portal` is not passed).
    *
    * @default true
    */
   portal?:
     | boolean
     | {
-        to: HTMLElement | undefined | (() => HTMLElement | undefined);
+        to:
+          | HTMLElement
+          | null
+          | undefined
+          | (() => HTMLElement | null | undefined);
       };
 };
 
@@ -37,33 +41,13 @@ export type PortalProps = {
  *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
  *   - if `portal` is set to false, renders as-is without portal
  *   - otherwise renders into `portal.to` (can be an element or a function)
- *     - If `to === undefined` (or `to() === undefined`), default behavior will be used (i.e. as if `portal = undefined`).
+ *     - If `to`/`to()` === `null`/`undefined`, default behavior will be used (i.e. as if `portal` is not passed).
  *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
  *
  * @private
  */
 export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
-  const { portal: portalProp = true, children } = props;
-
-  const portal = React.useMemo(() => {
-    // Handle cases where `portal.to` or `portal.to()` is undefined
-    if (typeof portalProp === 'object' && 'to' in portalProp) {
-      // E.g. portalProp.to = () => document.querySelector('.may-not-exist')
-      if (
-        typeof portalProp.to === 'function' &&
-        portalProp.to() === undefined
-      ) {
-        return true;
-      }
-
-      // E.g. portalProp.to = document.querySelector('.may-not-exist')
-      if (typeof portalProp.to !== 'function' && portalProp.to === undefined) {
-        return true;
-      }
-    }
-
-    return portalProp;
-  }, [portalProp]);
+  const { portal = true, children } = props;
 
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
@@ -79,10 +63,12 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 
 const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
+  const defaultPortal = themeInfo?.portalContainer ?? getDocument()?.body;
 
   if (typeof portal === 'boolean') {
-    return portal ? themeInfo?.portalContainer ?? getDocument()?.body : null;
+    return portal ? defaultPortal : null;
   }
 
-  return typeof portal.to === 'function' ? portal.to() : portal.to;
+  const portalTo = typeof portal.to === 'function' ? portal.to() : portal.to;
+  return portalTo ?? defaultPortal;
 };
