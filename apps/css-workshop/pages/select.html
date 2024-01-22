@@ -242,7 +242,13 @@
         </div>
       </label>
 
-      <label class="iui-input-grid iui-positive">
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <!-- Status styling from iui-input-grid -->
+
+      <label
+        class="iui-input-grid"
+        data-iui-status="positive"
+      >
         <div class="iui-input-label">Select label</div>
         <div class="iui-input-with-icon">
           <div
@@ -268,7 +274,10 @@
         </div>
       </label>
 
-      <label class="iui-input-grid iui-warning">
+      <label
+        class="iui-input-grid"
+        data-iui-status="warning"
+      >
         <div class="iui-input-label">Select label</div>
         <div class="iui-input-with-icon">
           <div
@@ -294,7 +303,10 @@
         </div>
       </label>
 
-      <label class="iui-input-grid iui-negative">
+      <label
+        class="iui-input-grid"
+        data-iui-status="negative"
+      >
         <div class="iui-input-label">Select label</div>
         <div class="iui-input-with-icon">
           <div
@@ -320,6 +332,8 @@
           <div>Negative message.</div>
         </div>
       </label>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
 
     </section>
 
@@ -368,6 +382,66 @@
       </div>
 
     </section>
+
+    <br />
+
+    <hr />
+
+    <h2>Without label</h2>
+
+    <section id="demo-no-label">
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+      <!-- Status styling from iui-select-button -->
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-placeholder"
+          data-iui-status="positive"
+        >
+          <span class="iui-content">Placeholder…</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-placeholder"
+          data-iui-status="warning"
+        >
+          <span class="iui-content">Placeholder…</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          class="iui-select-button iui-placeholder"
+          data-iui-status="negative"
+        >
+          <span class="iui-content">Placeholder…</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-svg-icon iui-end-icon"
+          aria-hidden="true"
+        >
+        </svg-caret-down-small>
+      </div>
+
+      <!-- ------------------------------------------------------------------------------------------------ -->
+
+    </section>
+
+    <br />
 
     <hr />
 
