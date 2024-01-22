@@ -128,7 +128,7 @@ export const ListItem = Object.assign(ListItemComponent, {
    */
   Description: ListItemDescription,
   /**
-   * Wrapper over [LinkAction](https://dev-itwinui.bentley.com/docs/linkaction) which allows rendering a link inside a ListItem.
+   * Wrapper over [LinkAction](https://itwinui.bentley.com/docs/linkaction) which allows rendering a link inside a ListItem.
    * This ensures that clicking anywhere on the ListItem will trigger the link.
    *
    * @example
