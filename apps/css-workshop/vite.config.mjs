@@ -76,7 +76,7 @@ function addMetaTags() {
       componentName[0].toUpperCase() + componentName.replace(/-/g, ' ').slice(1)
     }">
     <meta property="og:description" content="An open-source design system that helps us build a unified web experience.">
-    <meta property="og:image" content="https://itwin.github.io/iTwinUI/backstop/assets/logo.png">
+    <meta property="og:image" content="https://itwin.github.io/iTwinUI/css/assets/logo.png">
     <meta property="og:image:alt" content="iTwinUI logo">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">

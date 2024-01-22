@@ -13,6 +13,10 @@ describe('LabeledInput', () => {
     'Positive',
     'Warning',
     'With Custom Icon',
+
+    // Used to test that status color is applied to the svg icon too.
+    'With Svg Icon',
+
     'With Message',
   ];
 
@@ -21,6 +25,21 @@ describe('LabeledInput', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.compareSnapshot(testName);
+    });
+  });
+
+  // To also test that the correct status outline is applied
+  ['Positive', 'Warning', 'Negative'].forEach((testName) => {
+    const newTestName = `${testName} - Focused`;
+
+    it(newTestName, function () {
+      const id = Cypress.storyId(storyPath, testName);
+      cy.visit('/', { qs: { mode: 'preview', story: id } });
+
+      // Click the input to show the status outline
+      cy.get('input').first().click();
+
+      cy.compareSnapshot(newTestName);
     });
   });
 });
