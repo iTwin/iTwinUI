@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Input } from '../Input/Input.js';
-import { Box, StatusIconMap, useId } from '../utils/index.js';
+import { InputWithIcon, StatusIconMap } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { InputGrid } from '../InputGrid/InputGrid.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
@@ -68,8 +68,6 @@ export type LabeledInputProps = {
  * <LabeledInput status='negative' label='Negative' />
  */
 export const LabeledInput = React.forwardRef((props, ref) => {
-  const uid = useId();
-
   const {
     disabled = false,
     label,
@@ -83,7 +81,6 @@ export const LabeledInput = React.forwardRef((props, ref) => {
     inputWrapperProps,
     displayStyle = 'default',
     required = false,
-    id = uid,
     ...rest
   } = props;
 
@@ -101,24 +98,14 @@ export const LabeledInput = React.forwardRef((props, ref) => {
           as='label'
           required={required}
           disabled={disabled}
-          htmlFor={id}
           {...labelProps}
         >
           {label}
         </Label>
       )}
 
-      <Box
-        {...inputWrapperProps}
-        className={cx('iui-input-with-icon', inputWrapperProps?.className)}
-      >
-        <Input
-          disabled={disabled}
-          required={required}
-          id={id}
-          ref={ref}
-          {...rest}
-        />
+      <InputWithIcon {...inputWrapperProps}>
+        <Input disabled={disabled} required={required} ref={ref} {...rest} />
         {shouldShowIcon && (
           <Icon
             fill={status}
@@ -128,7 +115,7 @@ export const LabeledInput = React.forwardRef((props, ref) => {
             {icon}
           </Icon>
         )}
-      </Box>
+      </InputWithIcon>
       {typeof message === 'string' ? (
         <StatusMessage
           status={status}

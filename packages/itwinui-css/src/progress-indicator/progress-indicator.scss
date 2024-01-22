@@ -58,7 +58,7 @@
       }
 
       :is(svg, img) {
-        fill: var(--iui-color-border-#{$status});
+        fill: var(--iui-color-icon-#{$status});
       }
     }
   }

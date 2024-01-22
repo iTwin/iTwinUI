@@ -16,6 +16,7 @@ import {
   useMergedRefs,
   SvgCheckmark,
   useLatestRef,
+  InputWithIcon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { SelectTag } from './SelectTag.js';
@@ -244,8 +245,6 @@ export const Select = React.forwardRef(
       size,
       itemRenderer,
       selectedItemRenderer,
-      className,
-      style,
       menuClassName,
       menuStyle,
       multiple = false,
@@ -370,9 +369,7 @@ export const Select = React.forwardRef(
 
     return (
       <>
-        <Box
-          className={cx('iui-input-with-icon', className)}
-          style={style}
+        <InputWithIcon
           {...rest}
           ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
         >
@@ -444,7 +441,7 @@ export const Select = React.forwardRef(
           {multiple ? (
             <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
           ) : null}
-        </Box>
+        </InputWithIcon>
 
         {popover.open && (
           <Portal>
