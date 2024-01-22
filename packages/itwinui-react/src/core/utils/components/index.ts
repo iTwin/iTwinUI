@@ -6,6 +6,7 @@ export * from './Resizer.js';
 export * from './FocusTrap.js';
 export * from './InputContainer.js';
 export * from './InputFlexContainer.js';
+export * from './InputWithIcon.js';
 export * from './WithCSSTransition.js';
 export * from './MiddleTextTruncation.js';
 export * from './VirtualScroll.js';
