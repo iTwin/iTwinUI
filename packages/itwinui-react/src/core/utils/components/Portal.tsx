@@ -18,16 +18,14 @@ export type PortalProps = {
    *
    * Otherwise, it will portal to the element passed to `to`.
    *
+   * If `to === undefined` (or `to() === undefined`), default behavior will be used (i.e. as if `portal = undefined`).
+   *
    * @default true
    */
   portal?:
     | boolean
     | {
-        to:
-          | HTMLElement
-          | null
-          | undefined
-          | (() => HTMLElement | null | undefined);
+        to: HTMLElement | undefined | (() => HTMLElement | undefined);
       };
 };
 
@@ -39,11 +37,33 @@ export type PortalProps = {
  *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
  *   - if `portal` is set to false, renders as-is without portal
  *   - otherwise renders into `portal.to` (can be an element or a function)
+ *     - If `to === undefined` (or `to() === undefined`), default behavior will be used (i.e. as if `portal = undefined`).
+ *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
  *
  * @private
  */
 export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
-  const { portal = true, children } = props;
+  const { portal: portalProp = true, children } = props;
+
+  const portal = React.useMemo(() => {
+    // Handle cases where `portal.to` or `portal.to()` is undefined
+    if (typeof portalProp === 'object' && 'to' in portalProp) {
+      // E.g. portalProp.to = () => document.querySelector('.may-not-exist')
+      if (
+        typeof portalProp.to === 'function' &&
+        portalProp.to() === undefined
+      ) {
+        return true;
+      }
+
+      // E.g. portalProp.to = document.querySelector('.may-not-exist')
+      if (typeof portalProp.to !== 'function' && portalProp.to === undefined) {
+        return true;
+      }
+    }
+
+    return portalProp;
+  }, [portalProp]);
 
   const isClient = useIsClient();
   const portalTo = usePortalTo(portal);
