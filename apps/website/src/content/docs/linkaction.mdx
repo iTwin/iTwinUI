@@ -31,21 +31,21 @@ This component consists of two parts:
 
 Similar to the [`Anchor`](anchor) component, `LinkAction` supports the polymorphic `as` prop, which can be used to render a different link component (e.g. from a client-side router) or a `"button"` (e.g. when you want to trigger an action within the same page, rather than a page navigation).
 
+### Secondary actions
+
+If your container includes other elements that should be clickable, you can either manually give them a higher z-index, or simply wrap them in nested `LinkBox`es.
+
+In the following example, clicking anywhere on the card will navigate to the primary link, but clicking on the secondary link will still navigate to the second link.
+
+<LiveExample src='LinkAction.nested.tsx'>
+  <AllExamples.LinkActionNestedExample client:load />
+</LiveExample>
+
 ## Technical explanation
 
 The implementation of this component is based on [the pseudo-content trick](https://inclusive-components.design/cards/#thepseudocontenttrick), which makes the `LinkAction`'s `::after` pseudo-element expand to fill up all the available space of the `LinkBox` component. A side-effect of this is that the text inside the `LinkBox` will not be selectable, but this is usually not a problem.
 
-If your container includes other elements that should be clickable, you can set `position: relative` on them or give them a higher z-index. This will make them appear on top of the pseudo-element and therefore receive the click event instead of the primary `LinkAction`.
-
-```jsx
-<LinkBox>
-  <LinkAction href='#'>Primary link</LinkAction>
-
-  <a href='#' style={{ position: 'relative' }}>
-    Secondary link
-  </a>
-</LinkBox>
-```
+When your container has a secondary action, wrapping it in a nested `LinkBox` gives it `position: relative`, which makes it appear on top of the pseudo-element and therefore receive the click event instead of the primary `LinkAction`.
 
 ### Props
 

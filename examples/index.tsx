@@ -722,6 +722,10 @@ import { default as LinkActionMainExampleRaw } from './LinkAction.main';
 const LinkActionMainExample = withThemeProvider(LinkActionMainExampleRaw);
 export { LinkActionMainExample };
 
+import { default as LinkActionNestedExampleRaw } from './LinkAction.nested';
+const LinkActionNestedExample = withThemeProvider(LinkActionNestedExampleRaw);
+export { LinkActionNestedExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as ListMainExampleRaw } from './List.main';
