@@ -94,7 +94,7 @@ it.each(['positive', 'negative', 'informational', 'warning'] as const)(
       toaster()[status]('mockContent', mockedOptions());
     });
     assertAddedToast('mockContent', status, mockedOptions());
-    await assertRemovedToast('mockContent');
+    assertRemovedToast('mockContent');
   },
 );
 
