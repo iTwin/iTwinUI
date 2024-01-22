@@ -22,8 +22,8 @@ export default {
 export const WithInput = () => {
   return (
     <InputGrid>
-      <Label htmlFor='input-id'>This is label</Label>
-      <Input id='input-id' />
+      <Label>This is label</Label>
+      <Input />
       <StatusMessage>This is message</StatusMessage>
     </InputGrid>
   );
@@ -60,9 +60,8 @@ export const WithSelect = () => {
 
   return (
     <InputGrid>
-      <Label htmlFor='input-id'>This is label</Label>
+      <Label>This is label</Label>
       <Select
-        id='input-id'
         options={options}
         placeholder='Select destination'
         value={value}

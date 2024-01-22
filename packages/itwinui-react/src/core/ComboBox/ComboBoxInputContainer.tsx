@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
-import { InputContainer, useSafeContext, Box } from '../utils/index.js';
+import {
+  InputContainer,
+  useSafeContext,
+  InputWithIcon,
+} from '../utils/index.js';
 import type {
   InputContainerProps,
   PolymorphicForwardRefComponent,
@@ -38,7 +42,7 @@ export const ComboBoxInputContainer = React.forwardRef(
         {...rest}
         id={id}
       >
-        <Box className='iui-input-with-icon'>{children}</Box>
+        <InputWithIcon>{children}</InputWithIcon>
       </InputContainer>
     );
   },

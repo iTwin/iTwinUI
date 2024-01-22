@@ -29,10 +29,10 @@ export const Basic = () => {
 export const Inline = () => {
   return (
     <InputGrid labelPlacement='inline'>
-      <Label htmlFor='text-input' displayStyle='inline' required>
+      <Label displayStyle='inline' required>
         Name
       </Label>
-      <Input id='text-input' defaultValue='James Bond' required />
+      <Input defaultValue='James Bond' required />
     </InputGrid>
   );
 };
