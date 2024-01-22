@@ -72,6 +72,7 @@ export type DialogContextProps = {
    * Recommended to set to true when for modal dialogs that use `relativeTo='viewport'`.
    *
    * Can be set to an object with a `to` property to portal into a specific element.
+   * If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
    *
    * Defaults to false if using `Dialog` and true if using `Modal`.
    */
