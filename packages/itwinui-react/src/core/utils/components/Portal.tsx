@@ -63,12 +63,12 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 
 const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
-  const defaultPortal = themeInfo?.portalContainer ?? getDocument()?.body;
+  const defaultPortalTo = themeInfo?.portalContainer ?? getDocument()?.body;
 
   if (typeof portal === 'boolean') {
-    return portal ? defaultPortal : null;
+    return portal ? defaultPortalTo : null;
   }
 
   const portalTo = typeof portal.to === 'function' ? portal.to() : portal.to;
-  return portalTo ?? defaultPortal;
+  return portalTo ?? defaultPortalTo;
 };
