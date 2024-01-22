@@ -49,11 +49,13 @@ export const SelectionColumn = <T extends Record<string, unknown>>(
       getToggleAllRowsSelectedProps,
       toggleAllRowsSelected,
       rows,
-      flatRows,
+      preFilteredFlatRows,
       state,
     }: HeaderProps<T>) => {
-      const disabled = flatRows.every((row) => isDisabled?.(row.original));
-      const checked = flatRows.every(
+      const disabled = preFilteredFlatRows.every(
+        (row) => isDisabled?.(row.original),
+      );
+      const checked = preFilteredFlatRows.every(
         (row) => state.selectedRowIds[row.id] || isDisabled?.(row.original),
       );
       const indeterminate =
