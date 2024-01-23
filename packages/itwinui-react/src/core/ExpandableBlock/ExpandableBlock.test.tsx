@@ -215,7 +215,7 @@ it('should respect disabled prop', () => {
 });
 
 it('should support legacy api', () => {
-  const useIdMock = jest.spyOn(UseId, 'useId');
+  const useIdMock = vi.spyOn(UseId, 'useId');
   useIdMock.mockReturnValue('foo'); // to ensure the id is same for both calls
 
   render(
