@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.2.0
+
+### Minor Changes
+
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): Removed accidental styling support for the invalid case of `.iui-input, .iui-input-with-icon > .iui-select-button` with `[data-iui-status='informational']`. This is invalid because an `informational` status on our input or select adds little to no meaning.
+
+### Patch Changes
+
+- [#1783](https://github.com/iTwin/iTwinUI/pull/1783): Fixed a Firefox-specific bug where focus outlines were not appearing correctly around menu items inside `ComboBox`.
+- [#1787](https://github.com/iTwin/iTwinUI/pull/1787): Button, radial progress indicator, & select icons use icon variable color fill.
+- [#1788](https://github.com/iTwin/iTwinUI/pull/1788): Decreased specificity of `iui-link-action` and `iui-link-box` so that they do not override styles from other classes applied on the same element.
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `.iui-input-with-icon` now applies padding to the `:first-child` only when there is an end-icon button.
+
 ## 2.1.0
 
 ### Minor Changes
