@@ -18,9 +18,19 @@ export type PortalProps = {
    *
    * Otherwise, it will portal to the element passed to `to`.
    *
+   * If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
+   *
    * @default true
    */
-  portal?: boolean | { to: HTMLElement | (() => HTMLElement) };
+  portal?:
+    | boolean
+    | {
+        to:
+          | HTMLElement
+          | null
+          | undefined
+          | (() => HTMLElement | null | undefined);
+      };
 };
 
 // ----------------------------------------------------------------------------
@@ -31,6 +41,8 @@ export type PortalProps = {
  *   - if `portal` is set to true, renders into nearest ThemeContext.portalContainer
  *   - if `portal` is set to false, renders as-is without portal
  *   - otherwise renders into `portal.to` (can be an element or a function)
+ *     - If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
+ *     - E.g. `portal={{ to: () => document.querySelector('.may-not-exist') }}`.
  *
  * @private
  */
@@ -51,10 +63,12 @@ export const Portal = (props: React.PropsWithChildren<PortalProps>) => {
 
 const usePortalTo = (portal: NonNullable<PortalProps['portal']>) => {
   const themeInfo = React.useContext(ThemeContext);
+  const defaultPortalTo = themeInfo?.portalContainer ?? getDocument()?.body;
 
   if (typeof portal === 'boolean') {
-    return portal ? themeInfo?.portalContainer ?? getDocument()?.body : null;
+    return portal ? defaultPortalTo : null;
   }
 
-  return typeof portal.to === 'function' ? portal.to() : portal.to;
+  const portalTo = typeof portal.to === 'function' ? portal.to() : portal.to;
+  return portalTo ?? defaultPortalTo;
 };

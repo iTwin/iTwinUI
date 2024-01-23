@@ -71,6 +71,16 @@ An expandable block can be disabled by using the `disabled` prop.
   <AllExamples.ExpandableBlockDisabledExample client:load />
 </LiveExample>
 
+### Secondary actions
+
+Expandable blocks can have secondary actions, such as buttons. The following example uses `endIcon` prop to display an icon button on the right side of the trigger.
+
+<LiveExample src='ExpandableBlock.actions.tsx'>
+  <AllExamples.ExpandableBlockActionsExample client:idle />
+</LiveExample>
+
+This functionality is made possible via the [`LinkAction`](linkaction) component, which is used internally by the main trigger.
+
 ## Guidelines
 
 Expandable blocks are used to progressively disclose information. [Read this article to learn more about progressive disclosure.](https://www.nngroup.com/articles/progressive-disclosure/) Expandable blocks should not be used with flattened hierarchy or information panels. [Table](table) rows can also expand similarly to expandable block.
