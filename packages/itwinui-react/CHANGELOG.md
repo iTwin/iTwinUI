@@ -1,5 +1,26 @@
 # Changelog
 
+## 3.3.0
+
+### Minor Changes
+
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `LabeledInput` and `LabeledTextarea` have been slightly reworked to fix alignment and consistency issues when used with `svgIcon`.
+- [#1777](https://github.com/iTwin/iTwinUI/pull/1777): `InputGrid` will now attempt to automatically associate labels, inputs and status messages with each other, in the event that they haven't been explicitly associated.
+- [#1777](https://github.com/iTwin/iTwinUI/pull/1777): The `message` passed to `LabeledInput`, `LabeledTextarea`, `LabeledSelect` and `ComboBox` will now be associated with the input using `aria-describedby` for better accessibility.
+- [#1794](https://github.com/iTwin/iTwinUI/pull/1794): `ExpandableBlock` now internally uses `LinkAction` for the trigger element. This slightly improves the accessibility, and opens up the possibility of including secondary actions.
+- [#1786](https://github.com/iTwin/iTwinUI/pull/1786): The `portal.to` prop in floating elements now also accepts `null | undefined` which acts identically to the default prop behavior (i.e. as if `portal` was not passed). Components affected: `Dialog`, `DropdownMenu`, `Modal`, `Popover`, `SplitButton`, and `Tooltip`.
+- [#1791](https://github.com/iTwin/iTwinUI/pull/1791): Added new `ListItem.Action` component for rendering links inside `ListItem`s while ensuring that clicking anywhere on the list item triggers the link. This component is a wrapper over the existing `LinkAction` component.
+- [#1780](https://github.com/iTwin/iTwinUI/pull/1780): `ComboBox` now forwards its `ref`.
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `StatusMessage` now renders no status icon if `startIcon === null`.
+
+### Patch Changes
+
+- [#1783](https://github.com/iTwin/iTwinUI/pull/1783): Fixed a Firefox-specific bug where focus outlines were not appearing correctly around menu items inside `ComboBox`.
+- [#1792](https://github.com/iTwin/iTwinUI/pull/1792): Fixed an issue in `Table` where the "select all" checkbox was disabled if all top-level rows were disabled. The logic has been updated to also consider sub-rows.
+- [#1788](https://github.com/iTwin/iTwinUI/pull/1788): `LinkAction` will no longer override styles from other components (such as `Anchor`).
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): Deprecated `svgIcon` in `LabeledSelect` in favor of passing `<StatusMessage startIcon={svgIcon} />` to the `message` prop.
+- [#1787](https://github.com/iTwin/iTwinUI/pull/1787): Button, radial progress indicator, & select icons now use the correct icon variable color fill.
+
 ## 3.2.4
 
 ### Patch Changes

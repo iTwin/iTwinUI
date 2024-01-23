@@ -2366,6 +2366,18 @@ it('should render sub-rows with custom expander', async () => {
   expect(rows.length).toBe(10);
 });
 
+it('should not disable select-all checkbox when all top-level rows are disabled but all subrows are not', () => {
+  const { container } = renderComponent({
+    data: mockedSubRowsData(),
+    isSelectable: true,
+    isRowDisabled: (rowData) =>
+      ['Row 1', 'Row 2', 'Row 3'].includes(rowData.name as string),
+  });
+  const selectAllCheckbox = container.querySelector('input[type=checkbox]');
+  expect(selectAllCheckbox).not.toBeDisabled();
+  expect(selectAllCheckbox).not.toBeChecked();
+});
+
 it('should edit cell data', async () => {
   const onCellEdit = vi.fn();
   const columns: Column<TestDataType>[] = [

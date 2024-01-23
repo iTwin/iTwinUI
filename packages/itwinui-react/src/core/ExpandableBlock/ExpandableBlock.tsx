@@ -12,13 +12,19 @@ import {
   polymorphic,
   mergeEventHandlers,
   ButtonBase,
+  useId,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Icon } from '../Icon/Icon.js';
+import { LinkBox } from '../LinkAction/LinkAction.js';
 
 const ExpandableBlockContext = React.createContext<
   | ({
       setExpanded: React.Dispatch<React.SetStateAction<boolean>>;
+      descriptionId: string | undefined;
+      setDescriptionId: React.Dispatch<
+        React.SetStateAction<string | undefined>
+      >;
     } & ExpandableBlockOwnProps)
   | undefined
 >(undefined);
@@ -105,6 +111,10 @@ const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
   const [expandedState, setExpanded] = React.useState(isExpanded ?? false);
   const expanded = isExpanded ?? expandedState;
 
+  const [descriptionId, setDescriptionId] = React.useState<string | undefined>(
+    undefined,
+  );
+
   return (
     <ExpandableBlockContext.Provider
       value={{
@@ -116,6 +126,8 @@ const ExpandableBlockWrapper = React.forwardRef((props, forwardedRef) => {
         disabled,
         setExpanded,
         children,
+        descriptionId,
+        setDescriptionId,
       }}
     >
       <Box
@@ -144,31 +156,14 @@ type ExpandableBlockTriggerOwnProps = {
 };
 
 const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
-  const {
-    className,
-    children,
-    label,
-    caption,
-    onClick: onClickProp,
-    expandIcon,
-    endIcon,
-    ...rest
-  } = props;
-  const { isExpanded, setExpanded, disabled, onToggle, status } =
-    useSafeContext(ExpandableBlockContext);
+  const { className, children, label, caption, expandIcon, endIcon, ...rest } =
+    props;
+  const { disabled, status } = useSafeContext(ExpandableBlockContext);
 
   return (
-    <ButtonBase
+    <LinkBox
       className={cx('iui-expandable-header', className)}
-      aria-expanded={isExpanded}
-      aria-disabled={disabled}
-      onClick={mergeEventHandlers(onClickProp, () => {
-        if (disabled) {
-          return;
-        }
-        setExpanded(!isExpanded);
-        onToggle?.(!isExpanded);
-      })}
+      data-iui-disabled={disabled ? 'true' : undefined}
       ref={forwardedRef}
       {...rest}
     >
@@ -186,9 +181,9 @@ const ExpandableBlockTrigger = React.forwardRef((props, forwardedRef) => {
           ) : null}
         </>
       )}
-    </ButtonBase>
+    </LinkBox>
   );
-}) as PolymorphicForwardRefComponent<'button', ExpandableBlockTriggerOwnProps>;
+}) as PolymorphicForwardRefComponent<'div', ExpandableBlockTriggerOwnProps>;
 ExpandableBlockTrigger.displayName = 'ExpandableBlock.Trigger';
 
 // ----------------------------------------------------------------------------
@@ -218,23 +213,55 @@ ExpandableBlockLabelArea.displayName = 'ExpandableBlock.LabelArea';
 // ExpandableBlock.Title component
 
 const ExpandableBlockTitle = React.forwardRef((props, forwardedRef) => {
-  const { className, children, ...rest } = props;
+  const { className, children, onClick: onClickProp, ...rest } = props;
+
+  const { isExpanded, setExpanded, disabled, onToggle, descriptionId } =
+    useSafeContext(ExpandableBlockContext);
+
   return (
-    <Box
-      className={cx('iui-expandable-block-title', className)}
+    <ButtonBase
+      className={cx('iui-expandable-block-title', 'iui-link-action', className)}
+      aria-expanded={isExpanded}
+      aria-disabled={disabled}
+      onClick={mergeEventHandlers(onClickProp, () => {
+        if (disabled) {
+          return;
+        }
+        setExpanded(!isExpanded);
+        onToggle?.(!isExpanded);
+      })}
       ref={forwardedRef}
+      aria-describedby={descriptionId}
       {...rest}
     >
       {children}
-    </Box>
+    </ButtonBase>
   );
-}) as PolymorphicForwardRefComponent<'div'>;
+}) as PolymorphicForwardRefComponent<'button'>;
 ExpandableBlockTitle.displayName = 'ExpandableBlock.Title';
 
 // ----------------------------------------------------------------------------
 // ExpandableBlock.Caption component
 
-const ExpandableBlockCaption = polymorphic('iui-expandable-block-caption');
+const ExpandableBlockCaption = React.forwardRef((props, forwardedRef) => {
+  const fallbackId = useId();
+
+  const { setDescriptionId } = useSafeContext(ExpandableBlockContext);
+
+  React.useEffect(() => {
+    setDescriptionId(props.id || fallbackId);
+    return () => setDescriptionId(undefined);
+  }, [props.id, fallbackId, setDescriptionId]);
+
+  return (
+    <Box
+      ref={forwardedRef}
+      id={fallbackId}
+      {...props}
+      className={cx('iui-expandable-block-caption', props?.className)}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'div'>;
 ExpandableBlockCaption.displayName = 'ExpandableBlock.Caption';
 
 // ----------------------------------------------------------------------------

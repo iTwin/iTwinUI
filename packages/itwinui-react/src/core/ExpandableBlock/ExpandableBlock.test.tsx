@@ -6,11 +6,12 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { userEvent } from '@testing-library/user-event';
 import * as React from 'react';
 import { StatusIconMap, SvgMore as SvgPlaceholder } from '../utils/index.js';
+import * as UseId from '../utils/hooks/useId.js';
 
 import { ExpandableBlock } from './ExpandableBlock.js';
 
 it('should render correctly in its most basic state', () => {
-  const { container } = render(
+  const { container, getByRole } = render(
     <ExpandableBlock.Wrapper>
       <ExpandableBlock.Trigger label='test title' />
       <ExpandableBlock.Content>content</ExpandableBlock.Content>
@@ -21,16 +22,17 @@ it('should render correctly in its most basic state', () => {
     '.iui-expandable-block',
   ) as HTMLElement;
   expect(expandableBlock).toBeTruthy();
-  expect(expandableBlock.classList).not.toContain('iui-with-caption');
   expect(
     container.querySelector(
       '.iui-expandable-block-label .iui-expandable-block-title',
     ),
   ).toHaveTextContent('test title');
+
+  expect(getByRole('button')).toHaveAccessibleName('test title');
 });
 
 it('should render with caption', () => {
-  const { container } = render(
+  const { container, getByRole } = render(
     <ExpandableBlock.Wrapper>
       <ExpandableBlock.Trigger>
         <ExpandableBlock.LabelArea>
@@ -42,23 +44,20 @@ it('should render with caption', () => {
     </ExpandableBlock.Wrapper>,
   );
 
-  const expandableBlock = container.querySelector('.iui-expandable-block');
-  expect(expandableBlock).toBeTruthy();
-  expect(
-    container.querySelector(
-      '.iui-expandable-block-label .iui-expandable-block-title',
-    ),
-  ).toHaveTextContent('test title');
-  expect(
-    container.querySelector(
-      '.iui-expandable-block-label .iui-expandable-block-caption',
-    ),
-  ).toHaveTextContent('test caption');
+  const button = getByRole('button');
+  expect(button).toHaveTextContent('test title');
+  expect(button).toHaveAccessibleDescription('test caption');
+
+  const caption = container.querySelector(
+    '.iui-expandable-block-label .iui-expandable-block-caption',
+  );
+  expect(caption).toHaveTextContent('test caption');
 });
 
 it('should render content when expanded', () => {
-  const { container } = render(
+  const { container, getByRole } = render(
     <ExpandableBlock.Wrapper isExpanded={true}>
+      <ExpandableBlock.Trigger label='test title' />
       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>,
   );
@@ -66,6 +65,10 @@ it('should render content when expanded', () => {
   const expandableBlock = container.querySelector('.iui-expandable-block');
   expect(expandableBlock).toBeTruthy();
   expect(expandableBlock).toHaveAttribute('data-iui-expanded', 'true');
+
+  const button = getByRole('button');
+  expect(button).toHaveAttribute('aria-expanded', 'true');
+
   const content = container.querySelector(
     '.iui-expandable-content',
   ) as HTMLElement;
@@ -76,17 +79,14 @@ it('should render content when expanded', () => {
 it('should trigger onToggle when clicked only on header', () => {
   const onToggleMock = vi.fn();
   const { container } = render(
+  const { container, getByRole } = render(
     <ExpandableBlock.Wrapper onToggle={onToggleMock} isExpanded={true}>
       <ExpandableBlock.Trigger label='test title' />
       <ExpandableBlock.Content>test content</ExpandableBlock.Content>
     </ExpandableBlock.Wrapper>,
   );
 
-  const header = container.querySelector(
-    '.iui-expandable-block-title',
-  ) as HTMLElement;
-  expect(header).toBeTruthy();
-  fireEvent.click(header);
+  fireEvent.click(getByRole('button'));
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 
   const content = container.querySelector(
@@ -112,7 +112,7 @@ it('should trigger onToggle when clicked with Enter or Spacebar', async () => {
 
   expect(header).toBeTruthy();
 
-  header.focus();
+  await userEvent.tab();
   await userEvent.keyboard('{Enter}');
   expect(onToggleMock).toHaveBeenCalledTimes(1);
 
@@ -216,6 +216,9 @@ it('should respect disabled prop', () => {
 });
 
 it('should support legacy api', () => {
+  const useIdMock = jest.spyOn(UseId, 'useId');
+  useIdMock.mockReturnValue('foo'); // to ensure the id is same for both calls
+
   render(
     <div data-testid='1'>
       <ExpandableBlock
@@ -247,4 +250,6 @@ it('should support legacy api', () => {
   expect(screen.getByTestId('1').innerHTML).toEqual(
     screen.getByTestId('2').innerHTML,
   );
+
+  useIdMock.mockRestore();
 });
