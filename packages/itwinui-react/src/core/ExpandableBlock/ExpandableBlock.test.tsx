@@ -78,7 +78,6 @@ it('should render content when expanded', () => {
 
 it('should trigger onToggle when clicked only on header', () => {
   const onToggleMock = vi.fn();
-  const { container } = render(
   const { container, getByRole } = render(
     <ExpandableBlock.Wrapper onToggle={onToggleMock} isExpanded={true}>
       <ExpandableBlock.Trigger label='test title' />
