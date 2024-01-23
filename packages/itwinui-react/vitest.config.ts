@@ -10,6 +10,11 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: 'setupTests.ts',
     css: true,
+    coverage: {
+      provider: 'v8',
+      reporter: ['json', 'lcov', 'text', 'clover', 'cobertura'],
+      reportsDirectory: 'coverage',
+    },
   },
   resolve: {
     alias: [
