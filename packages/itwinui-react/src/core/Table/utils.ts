@@ -27,7 +27,6 @@ export const getCellStyle = <T extends Record<string, unknown>>(
   if (column.minWidth) {
     style.minWidth = `${column.minWidth}px`;
   }
-
   return style;
 };
 
