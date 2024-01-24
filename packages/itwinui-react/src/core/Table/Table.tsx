@@ -38,7 +38,7 @@ import {
   createWarningLogger,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import { getCellStyle, getStickyStyle } from './utils.js';
+import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
@@ -930,6 +930,14 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const { onClick, ...restSortProps } =
                       column.getSortByToggleProps();
+
+                    const columnHasExpanders =
+                      hasAnySubRows &&
+                      index ===
+                        headerGroup.headers.findIndex(
+                          (c) => c.id !== SELECTION_CELL_ID,
+                        );
+
                     const columnProps = column.getHeaderProps({
                       ...restSortProps,
                       className: cx(
@@ -943,6 +951,7 @@ export const Table = <
                       ),
                       style: {
                         ...getCellStyle(column, !!state.isTableResizing),
+                        ...(columnHasExpanders && getSubRowStyle({ density })),
                         ...getStickyStyle(column, visibleColumns),
                         flexWrap: 'unset',
                       },
