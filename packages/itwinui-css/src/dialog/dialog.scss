@@ -38,15 +38,6 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
     border: 1px solid;
   }
 
-  // needed to prevent resizable dialog content from escaping when dialog is
-  // too small. also fixes rounded corners in title bar. see PR #1424
-  overflow: hidden;
-
-  &:where(:has(.iui-dialog-content), [data-iui-flex='true']) {
-    display: flex;
-    flex-direction: column;
-  }
-
   &:not(.iui-dialog-visible) {
     visibility: hidden;
     opacity: 0;
@@ -172,6 +163,8 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   cursor: grab;
   background-color: var(--iui-color-background-backdrop);
   border-block-end: 1px solid var(--iui-color-border);
+  border-start-start-radius: var(--iui-border-radius-1);
+  border-start-end-radius: var(--iui-border-radius-1);
 
   &:active {
     cursor: grabbing;
