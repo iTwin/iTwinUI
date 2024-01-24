@@ -247,7 +247,7 @@ jobs:
 
   unit-test:
     name: Run unit tests
-    needs: [install, build]
+    needs: install
     runs-on: ubuntu-latest
 
     steps:
@@ -268,6 +268,8 @@ jobs:
             apps/*/node_modules
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+
+      - run: yarn build --filter=itwinui-react
 
       - run: yarn workspace @itwin/itwinui-react test --coverage
 
