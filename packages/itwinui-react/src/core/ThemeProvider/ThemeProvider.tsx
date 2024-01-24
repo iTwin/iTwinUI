@@ -310,7 +310,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       try {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        await import('../../../styles.css');
+        //await import('../../../styles.css');
       } catch (error) {
         console.log('Error loading styles.css locally', error);
         const css = await importCss(
