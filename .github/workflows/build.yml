@@ -247,7 +247,7 @@ jobs:
 
   unit-test:
     name: Run unit tests
-    needs: install
+    needs: [install, build]
     runs-on: ubuntu-latest
 
     steps:
