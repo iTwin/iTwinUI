@@ -3,4 +3,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-Fixed Dialog blurring and resizing issues by removing `overflow: hidden` and inline `transform` styles.
+Fixed blurring and resizing issues in Dialog/Modal by removing `overflow: hidden` and inline `transform` styles.
