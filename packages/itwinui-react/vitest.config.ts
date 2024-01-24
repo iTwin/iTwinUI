@@ -12,9 +12,9 @@ export default defineConfig({
     css: true,
     coverage: {
       provider: 'v8',
-      reporter: ['junit'],
-      reportsDirectory: 'coverage/junit-report.xml',
     },
+    reporters: ['junit'],
+    outputFile: 'coverage/junit-report.xml',
   },
   resolve: {
     alias: [
