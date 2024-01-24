@@ -12,8 +12,8 @@ export default defineConfig({
     css: true,
     coverage: {
       provider: 'v8',
-      reporter: ['json', 'lcov', 'text', 'clover', 'cobertura'],
-      reportsDirectory: 'coverage',
+      reporter: ['junit'],
+      reportsDirectory: 'coverage/junit-report.xml',
     },
   },
   resolve: {
