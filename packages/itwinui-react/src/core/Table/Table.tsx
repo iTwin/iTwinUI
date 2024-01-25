@@ -935,7 +935,7 @@ export const Table = <
                       hasAnySubRows &&
                       index ===
                         headerGroup.headers.findIndex(
-                          (c) => c.id !== SELECTION_CELL_ID, // first non-selectable column is the expander column
+                          (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
 
                     const columnProps = column.getHeaderProps({
