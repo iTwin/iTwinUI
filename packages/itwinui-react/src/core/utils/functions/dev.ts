@@ -2,13 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const isVitest = typeof vitest !== 'undefined';
+const isJest = typeof jest !== 'undefined';
 
 let isDev = false;
 
 // wrapping in try-catch because process might be undefined
 try {
-  isDev = process.env.NODE_ENV !== 'production' && !isVitest;
+  isDev = process.env.NODE_ENV !== 'production' && !isJest;
 } catch {}
 
 /**
@@ -30,4 +30,4 @@ const createWarningLogger = !isDev
       };
     };
 
-export { isVitest, isDev, createWarningLogger };
+export { isJest, isDev, createWarningLogger };
