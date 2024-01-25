@@ -269,8 +269,6 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build --filter=@itwin/itwinui-react
-
       - run: yarn workspace @itwin/itwinui-react test --coverage
 
       - name: Publish test results
@@ -380,7 +378,7 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn build --filter=@itwin/itwinui-react
+      - run: yarn build --filter=itwinui-react
 
       - uses: cypress-io/github-action@v5
         with:
