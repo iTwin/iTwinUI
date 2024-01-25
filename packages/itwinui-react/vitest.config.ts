@@ -15,6 +15,9 @@ export default defineConfig({
     exclude: ['/node_modules/', '/esm/', '/cjs/'],
     reporters: ['junit', 'default'],
     outputFile: 'coverage/junit.xml',
+    sequence: {
+      hooks: 'list',
+    },
   },
   resolve: {
     alias: [
