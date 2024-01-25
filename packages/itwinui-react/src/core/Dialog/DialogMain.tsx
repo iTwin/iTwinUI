@@ -11,8 +11,6 @@ import {
   useMergedRefs,
   useIsomorphicLayoutEffect,
   Box,
-  getTranslateValues,
-  roundByDPR,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
@@ -77,7 +75,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const [style, setStyle] = React.useState<React.CSSProperties>();
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const [dialogElement, setDialogElement] = React.useState<HTMLElement>();
   const hasBeenResized = React.useRef(false);
   const previousFocusedElement = React.useRef<HTMLElement | null>();
 
@@ -163,11 +160,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  const roundedTransform = useRoundedTransform({
-    element: dialogElement,
-    transform,
-  });
-
   const content = (
     <Box
       className={cx(
@@ -181,12 +173,12 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={useMergedRefs(dialogRef, ref, setDialogElement)}
+      ref={useMergedRefs(dialogRef, ref)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       data-iui-placement={placement}
       style={{
-        transform: styleType !== 'fullPage' ? roundedTransform : undefined,
+        transform,
         ...style,
         ...propStyle,
       }}
@@ -245,32 +237,3 @@ export const DialogMain = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
 
 export default DialogMain;
-
-// ----------------------------------------------------------------------------
-
-/**
- * Rounds off an element's transform value based on the device's pixel grid, to avoid blurring.
- */
-const useRoundedTransform = ({
-  element,
-  transform,
-}: {
-  element?: HTMLElement;
-  transform?: string;
-}) => {
-  const [roundedStyles, setRoundedStyles] = React.useState(transform);
-
-  useIsomorphicLayoutEffect(() => {
-    if (!element || typeof DOMMatrix === 'undefined') {
-      return;
-    }
-
-    const [x, y] = transform
-      ? getTranslateValues(transform)
-      : getTranslateValuesFromElement(element);
-
-    setRoundedStyles(`translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`);
-  }, [element, transform]);
-
-  return roundedStyles;
-};
