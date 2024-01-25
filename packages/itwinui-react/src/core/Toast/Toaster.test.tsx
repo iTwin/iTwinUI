@@ -88,7 +88,7 @@ afterEach(() => {
 
 it.each(['positive', 'negative', 'informational', 'warning'] as const)(
   'should add toast with %s',
-  async (status) => {
+  (status) => {
     const toaster = toasterContraption();
     act(() => {
       toaster()[status]('mockContent', mockedOptions());
