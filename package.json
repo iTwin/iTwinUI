@@ -75,8 +75,7 @@
     "semver": "^7.5.2",
     "optionator": "~0.9.3",
     "typescript": "~5.1.6",
-    "@babel/traverse": "^7.23.2",
-    "vite": "^5.0.12"
+    "@babel/traverse": "^7.23.2"
   },
   "engines": {
     "node": ">=18.14.1"
