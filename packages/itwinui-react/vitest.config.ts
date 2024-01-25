@@ -13,7 +13,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
     },
-    reporters: ['junit'],
+    reporters: ['junit', 'verbose'],
     outputFile: 'coverage/junit-report.xml',
   },
   resolve: {
