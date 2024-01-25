@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.3.1
+
+### Patch Changes
+
+- [#1796](https://github.com/iTwin/iTwinUI/pull/1796): Fixed a visual issue in `Table` where column headers were not aligned with rows when using expandable `subRows`.
+- [#1795](https://github.com/iTwin/iTwinUI/pull/1795): Fixed blurring and resizing issues in Dialog/Modal by removing `overflow: hidden` and inline `transform` styles.
+
 ## 3.3.0
 
 ### Minor Changes
