@@ -497,7 +497,7 @@ const getHeaderWidth = <T extends Record<string, unknown>>(
   if (!header) {
     return 0;
   }
-  return Number(header.width || header.resizeWidth || 0);
+  return header.resizeWidth || 0;
 };
 
 const calculateTableWidth = <T extends Record<string, unknown>>(
