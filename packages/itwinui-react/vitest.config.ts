@@ -12,7 +12,8 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
     },
-    reporters: ['junit', 'verbose'],
+    exclude: ['/node_modules/', '/esm/', '/cjs/'],
+    reporters: ['junit', 'default'],
     outputFile: 'coverage/junit-report.xml',
   },
   resolve: {
@@ -20,6 +21,10 @@ export default defineConfig({
       {
         find: /^(.*)\/styles.js$/,
         replacement: `${__dirname}/src/__mocks__/stylesMock.cjs`,
+      },
+      {
+        find: /^(.*)\/useGlobals.js$/,
+        replacement: `${__dirname}/src/__mocks__/useGlobalsMock.cjs`,
       },
     ],
   },
