@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.7
+
+### Patch Changes
+
+- 764d16fb: Fixed blurring and resizing issues in Dialog/Modal by removing `overflow: hidden` and inline `transform` styles.
+
 ## 1.12.6
 
 ### Patch Changes
