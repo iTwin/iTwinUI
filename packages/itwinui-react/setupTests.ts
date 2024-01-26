@@ -35,7 +35,7 @@ vi.mock('./src/styles.js', () => {
   };
 });
 
-vi.mock('./src/useGlobals.js', () => {
+vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
   return {
     // noop because we don't want to spam the terminal with warnings during tests
     useGlobals: () => {},
