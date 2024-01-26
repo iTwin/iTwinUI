@@ -499,11 +499,9 @@ const getHeaderWidth = <T extends Record<string, unknown>>(
   }
 
   // If header.width is defined in percentage, don't use header.width
-  if (typeof header.width === 'string' && header.width.trim().endsWith('%')) {
-    return Number(header.resizeWidth || 0);
-  }
-
-  return Number(header.width || header.resizeWidth || 0);
+  return typeof header.width === 'string' && header.width.trim().endsWith('%')
+    ? Number(header.resizeWidth || 0)
+    : Number(header.width || header.resizeWidth || 0);
 };
 
 const calculateTableWidth = <T extends Record<string, unknown>>(
