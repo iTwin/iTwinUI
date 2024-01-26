@@ -41,14 +41,14 @@ export default function App() {
 
   return (
     <Flex flexDirection='column' alignItems='stretch'>
-      {/* <div className='container'>
+      <div className='container'>
         <Table
           isResizable
           columns={columns}
           data={data}
           emptyTableContent='empty'
         />
-      </div> */}
+      </div>
 
       {/* should resize only the current column when resize mode is expand */}
       {renderComponent({
@@ -71,6 +71,30 @@ export default function App() {
         ],
         isResizable: true,
         columnResizeMode: 'expand',
+      })}
+
+      {/* should prevent from resizing past min-width */}
+      {renderComponent({
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            minWidth: 50,
+          },
+          {
+            id: 'description',
+            Header: 'description',
+            accessor: 'description',
+            minWidth: 50,
+          },
+          {
+            id: 'view',
+            Header: 'view',
+            Cell: () => <>View</>,
+          },
+        ],
+        isResizable: true,
       })}
     </Flex>
   );
