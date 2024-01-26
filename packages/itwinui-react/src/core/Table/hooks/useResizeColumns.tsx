@@ -498,10 +498,10 @@ const getHeaderWidth = <T extends Record<string, unknown>>(
     return 0;
   }
 
-  // If `header.width` is defined in percentage, don't use `header.width`.
-  // `header.width` can be a percent when the user specifies it in the column definition,
-  // but then becomes pixels when the user resizes the column.
-  return typeof header.width === 'string' && header.width.trim().endsWith('%')
+  // `header.width` can be a string if the user specifies it in the column definition,
+  // but then becomes a number (pixels) when the user resizes the column, or when the table is resized, etc.
+  // So if `header.width` is ever a string that cannot be converted to a number, we shouldn't use `header.width`.
+  return typeof header.width === 'string' && Number.isNaN(Number(header.width))
     ? Number(header.resizeWidth || 0)
     : Number(header.width || header.resizeWidth || 0);
 };
