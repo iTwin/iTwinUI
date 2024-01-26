@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 import { TextEncoder } from 'util';
 
 window.HTMLElement.prototype.scrollIntoView = () => {};
