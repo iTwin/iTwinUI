@@ -14,4 +14,15 @@ export default defineConfig({
     outputFile: 'coverage/junit.xml',
     css: false,
   },
+  plugins: [
+    {
+      name: 'mock-css',
+      resolveId(id) {
+        if (id.endsWith('styles.css')) {
+          return id;
+        }
+        return null;
+      },
+    },
+  ],
 });
