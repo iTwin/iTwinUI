@@ -13,6 +13,7 @@ export default defineConfig({
     reporters: ['junit', 'default'],
     outputFile: 'coverage/junit.xml',
     css: false,
+    coverage: { enabled: true },
   },
   plugins: [
     {
