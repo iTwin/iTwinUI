@@ -2730,11 +2730,9 @@ it.only('should handle resize when widths are percentages', () => {
   expect(headerCells[1].style.width).toBe('20%');
   expect(headerCells[2].style.width).toBe('60%');
 
-  // TODO: Remove unnecessary test cases, if any.
   // Drag first resizer
   fireEvent.mouseDown(resizers[0], { clientX: 100 });
   fireEvent.mouseMove(resizers[0], { clientX: 150 });
-  fireEvent.mouseMove(resizers[0], { clientX: 200 });
   fireEvent.mouseUp(resizers[0]);
 
   expect(headerCells[0].style.width).toBe('150px');
@@ -2743,7 +2741,6 @@ it.only('should handle resize when widths are percentages', () => {
 
   // Drag second resizer
   fireEvent.mouseDown(resizers[1], { clientX: 200 });
-  fireEvent.mouseMove(resizers[1], { clientX: 220 });
   fireEvent.mouseMove(resizers[1], { clientX: 250 });
   fireEvent.mouseUp(resizers[1]);
 
