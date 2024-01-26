@@ -17,3 +17,27 @@ if (window.PointerEvent) {
 }
 
 global.TextEncoder = TextEncoder;
+
+vi.mock('./src/styles.js', () => {
+  return {
+    default: new Proxy(
+      {},
+      {
+        get: (target, prop) => {
+          // instead of returning scoped css modules, we will preserve the original classes
+          if (typeof prop === 'string' && prop.startsWith('iui')) {
+            return prop;
+          }
+          return Reflect.get(target, prop);
+        },
+      },
+    ),
+  };
+});
+
+vi.mock('./src/useGlobals.js', () => {
+  return {
+    // noop because we don't want to spam the terminal with warnings during tests
+    useGlobals: () => {},
+  };
+});

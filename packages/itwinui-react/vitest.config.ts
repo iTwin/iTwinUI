@@ -17,16 +17,4 @@ export default defineConfig({
     outputFile: 'coverage/junit.xml',
     css: false,
   },
-  resolve: {
-    alias: [
-      {
-        find: /^(.*)\/styles.js$/,
-        replacement: `${__dirname}/src/__mocks__/stylesMock.cjs`,
-      },
-      {
-        find: /^(.*)\/useGlobals.js$/,
-        replacement: `${__dirname}/src/__mocks__/useGlobalsMock.cjs`,
-      },
-    ],
-  },
 });
