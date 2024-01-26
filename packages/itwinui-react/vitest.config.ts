@@ -9,9 +9,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: 'setupTests.ts',
-    coverage: {
-      provider: 'v8',
-    },
     exclude: ['/node_modules/', '/esm/', '/cjs/'],
     reporters: ['junit', 'default'],
     outputFile: 'coverage/junit.xml',
