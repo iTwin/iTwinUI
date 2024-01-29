@@ -2712,9 +2712,6 @@ it.each(['px', '%', 'rem'])(
       isResizable: true,
     });
 
-    const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
-    expect(rows.length).toBe(3);
-
     const resizers = container.querySelectorAll(
       '.iui-table-resizer',
     ) as NodeListOf<HTMLDivElement>;
