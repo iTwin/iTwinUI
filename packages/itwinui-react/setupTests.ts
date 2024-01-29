@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import '@testing-library/jest-dom/vitest';
-import { TextEncoder } from 'util';
 
 window.HTMLElement.prototype.scrollIntoView = () => {};
 window.HTMLElement.prototype.scrollTo = () => {};
@@ -15,8 +14,6 @@ if (window.PointerEvent) {
   // @ts-expect-error // eslint-disable-line @typescript-eslint/ban-ts-comment
   window.PointerEvent = window.MouseEvent;
 }
-
-global.TextEncoder = TextEncoder;
 
 vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
   return {
