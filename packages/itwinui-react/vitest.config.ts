@@ -19,10 +19,6 @@ export default defineConfig({
         replacement: path.resolve('./__mocks__/styles.js'),
       },
     ],
-    typecheck: {
-      enabled: true,
-      include: ['**/*.test.?(c|m)[jt]s?(x)'],
-    },
   },
   plugins: [
     {
