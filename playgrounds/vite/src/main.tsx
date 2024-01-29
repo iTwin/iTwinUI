@@ -1,10 +1,15 @@
 import * as React from 'react';
-import { createRoot } from 'react-dom/client';
 import styled from '@emotion/styled';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import App from './App.tsx';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
 import '@itwin/itwinui-react/styles.css';
+
+// React 18
+// import { createRoot } from 'react-dom/client';
+
+// React 17
+import ReactDOM from 'react-dom';
 
 const Shell = () => {
   const [theme, setTheme] = React.useState<'light' | 'dark'>(() =>
@@ -58,8 +63,19 @@ const ThemeButton = styled.button`
   }
 `;
 
-createRoot(document.getElementById('root')!).render(
+// React 18
+// createRoot(document.getElementById('root')!).render(
+//   <React.StrictMode>
+//     <Shell />
+//   </React.StrictMode>,
+// );
+
+// ------------------------------------------------------------------------------------------------
+
+// React 17
+ReactDOM.render(
   <React.StrictMode>
     <Shell />
   </React.StrictMode>,
+  document.getElementById('root'),
 );
