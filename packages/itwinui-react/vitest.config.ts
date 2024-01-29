@@ -20,6 +20,9 @@ export default defineConfig({
         replacement: path.resolve('./__mocks__/styles.js'),
       },
     ],
+    typecheck: {
+      enabled: true,
+    },
   },
   plugins: [
     {
