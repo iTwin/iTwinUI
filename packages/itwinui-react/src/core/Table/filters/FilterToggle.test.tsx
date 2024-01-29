@@ -24,8 +24,8 @@ it('should display active filter', () => {
   const column = {
     canFilter: true,
     filterValue: 'value',
-    render: jest.fn(),
-    setFilter: jest.fn(),
+    render: vi.fn(),
+    setFilter: vi.fn(),
     Filter: tableFilters.TextFilter(),
   } as object as HeaderGroup;
 
@@ -39,8 +39,8 @@ it('should display active filter for false filter value', () => {
   const column = {
     canFilter: true,
     filterValue: false,
-    render: jest.fn(),
-    setFilter: jest.fn(),
+    render: vi.fn(),
+    setFilter: vi.fn(),
     Filter: tableFilters.TextFilter(),
   } as object as HeaderGroup;
 
@@ -53,8 +53,8 @@ it('should display active filter for false filter value', () => {
 it('should hide active filter when not defined', () => {
   const column = {
     canFilter: true,
-    render: jest.fn(),
-    setFilter: jest.fn(),
+    render: vi.fn(),
+    setFilter: vi.fn(),
     Filter: tableFilters.TextFilter(),
   } as object as HeaderGroup;
 
@@ -68,8 +68,8 @@ it('should hide active filter for empty filter value', () => {
   const column = {
     canFilter: true,
     filterValue: '',
-    render: jest.fn(),
-    setFilter: jest.fn(),
+    render: vi.fn(),
+    setFilter: vi.fn(),
     Filter: tableFilters.TextFilter(),
   } as object as HeaderGroup;
 

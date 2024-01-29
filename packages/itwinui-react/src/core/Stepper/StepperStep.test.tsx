@@ -8,7 +8,7 @@ import { StepperStep } from './StepperStep.js';
 
 describe('Stepper step (default)', () => {
   it('should render step correctly (past)', () => {
-    const mockedClick = jest.fn();
+    const mockedClick = vi.fn();
     const step = (
       <StepperStep
         title='First step'
@@ -53,7 +53,7 @@ describe('Stepper step (default)', () => {
   });
 
   it('should render step correctly (future)', () => {
-    const mockedClick = jest.fn();
+    const mockedClick = vi.fn();
     const step = (
       <StepperStep
         title='Second step'
@@ -93,7 +93,7 @@ describe('Stepper step (default)', () => {
   });
 
   it('should render step correctly (current)', () => {
-    const mockedClick = jest.fn();
+    const mockedClick = vi.fn();
     const step = (
       <StepperStep
         title='Current step'
@@ -132,7 +132,7 @@ describe('Stepper step (default)', () => {
   });
 
   it('should correctly pass custom className through stepProps, trackContentProps, circleProps, and nameProps', () => {
-    const mockedClick = jest.fn();
+    const mockedClick = vi.fn();
     const step = (
       <StepperStep
         title='First step'
@@ -200,7 +200,7 @@ describe('Stepper step (default)', () => {
 
 describe('Stepper step (long)', () => {
   it('should render correctly', () => {
-    const mockedClick = jest.fn();
+    const mockedClick = vi.fn();
     const step = (
       <StepperStep
         title='Second step'

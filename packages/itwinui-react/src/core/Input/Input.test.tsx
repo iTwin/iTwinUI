@@ -25,7 +25,7 @@ it('should render disabled component', () => {
 });
 
 it('should render with size prop using htmlSize', () => {
-  const { container } = render(<Input htmlSize='10' />);
+  const { container } = render(<Input htmlSize={10} />);
   assertBaseElement(container);
   expect((container.querySelector('input') as HTMLInputElement).size).toBe(10);
 });

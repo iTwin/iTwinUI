@@ -72,7 +72,7 @@ it('should set --iui-color-swatch-background', () => {
 });
 
 it('should handle color swatch onClick', () => {
-  const onColorClick = jest.fn();
+  const onColorClick = vi.fn();
 
   const { container } = render(
     <ColorSwatch color={ColorValue.create('#D4F4BD')} onClick={onColorClick} />,
@@ -85,7 +85,7 @@ it('should handle color swatch onClick', () => {
 
 it('should render button when onClick is passed', () => {
   const { container } = render(
-    <ColorSwatch color='#9BA5AF' onClick={jest.fn()} />,
+    <ColorSwatch color='#9BA5AF' onClick={vi.fn()} />,
   );
   const swatch = container.querySelector('button.iui-color-swatch');
   expect(swatch).toHaveTextContent('#9BA5AF');
@@ -94,7 +94,7 @@ it('should render button when onClick is passed', () => {
 
 it('should set aria-pressed when isActive and onClick are passed', () => {
   const { container } = render(
-    <ColorSwatch color='#9BA5AF' onClick={jest.fn()} isActive />,
+    <ColorSwatch color='#9BA5AF' onClick={vi.fn()} isActive />,
   );
   expect(container.querySelector('button')).toHaveAttribute(
     'aria-pressed',

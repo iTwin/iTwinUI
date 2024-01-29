@@ -134,7 +134,7 @@ it('should render thumbnail correctly (svg)', () => {
 });
 
 it('should work with buttons correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   const { container, getByText } = render(
     <Tile.Wrapper>
@@ -169,7 +169,7 @@ it('should work with buttons correctly', () => {
 });
 
 it('should work with icons correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   const { container } = render(
     <Tile.Wrapper>
@@ -207,7 +207,7 @@ it('should work with icons correctly', () => {
 });
 
 it('should render options dropdown correctly', async () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <Tile.Wrapper>
       <Tile.Name name='test-name' />

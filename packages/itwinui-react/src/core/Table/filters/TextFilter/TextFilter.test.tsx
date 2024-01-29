@@ -8,8 +8,8 @@ import type { HeaderGroup } from '../../../../react-table/react-table.js';
 import type { TableFilterProps } from '../types.js';
 import { TextFilter } from './TextFilter.js';
 
-const setFilter = jest.fn() as (value: unknown) => void;
-const clearFilter = jest.fn() as () => void;
+const setFilter = vi.fn() as (value: unknown) => void;
+const clearFilter = vi.fn() as () => void;
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
@@ -17,7 +17,7 @@ const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
     column: {} as HeaderGroup,
     setFilter,
     clearFilter,
-    close: jest.fn(),
+    close: vi.fn(),
     ...initialProps,
   } as TableFilterProps<any>;
   return render(<TextFilter {...props} />);
@@ -25,7 +25,7 @@ const renderComponent = (initialProps?: Partial<TableFilterProps<any>>) => {
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should call setFilter with input value', () => {

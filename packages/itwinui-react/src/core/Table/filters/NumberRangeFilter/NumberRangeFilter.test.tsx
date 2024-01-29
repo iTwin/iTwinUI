@@ -14,9 +14,9 @@ const renderComponent = (
 ) => {
   const props = {
     column: {} as HeaderGroup,
-    setFilter: jest.fn(),
-    clearFilter: jest.fn(),
-    close: jest.fn(),
+    setFilter: vi.fn(),
+    clearFilter: vi.fn(),
+    close: vi.fn(),
     ...initialProps,
   } as NumberRangeFilterProps<any>;
   return render(<NumberRangeFilter {...props} />);
@@ -58,7 +58,7 @@ it('should render correctly with set filter value', () => {
 });
 
 it('should set filter when both values entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -75,7 +75,7 @@ it('should set filter when both values entered', () => {
 });
 
 it('should set filter when only From is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -91,7 +91,7 @@ it('should set filter when only From is entered', () => {
 });
 
 it('should set filter when only To is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -107,7 +107,7 @@ it('should set filter when only To is entered', () => {
 });
 
 it('should set filter when both values entered and Enter is pressed', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(
@@ -127,7 +127,7 @@ it('should set filter when both values entered and Enter is pressed', () => {
 });
 
 it('should set filter with empty values when invalid number is entered', () => {
-  const setFilter = jest.fn();
+  const setFilter = vi.fn();
   const { container } = renderComponent({ setFilter });
 
   const labeledInputs = container.querySelectorAll(

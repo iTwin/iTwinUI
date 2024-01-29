@@ -231,7 +231,7 @@ describe('ErrorPage', () => {
   });
 
   it('displays primary button', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ErrorPage
         errorType='404'
@@ -245,7 +245,7 @@ describe('ErrorPage', () => {
   });
 
   it('displays secondary button', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ErrorPage
         errorType='404'

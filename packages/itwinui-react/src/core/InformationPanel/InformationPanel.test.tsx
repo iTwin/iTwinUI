@@ -81,7 +81,7 @@ it('should allow turning off resizer', () => {
 });
 
 it('should render close icon correctly', () => {
-  const mockOnClose = jest.fn();
+  const mockOnClose = vi.fn();
   const { container } = render(
     <InformationPanel>
       <InformationPanelHeader onClose={mockOnClose} />
@@ -123,7 +123,7 @@ it('should render custom header actions', () => {
   const { container } = render(
     <InformationPanel>
       <InformationPanelHeader
-        onClose={jest.fn()}
+        onClose={vi.fn()}
         actions={
           <IconButton styleType='borderless'>
             <SvgMore />

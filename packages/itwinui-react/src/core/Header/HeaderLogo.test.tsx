@@ -31,7 +31,7 @@ it('renders default correctly', () => {
 });
 
 it('renders with onClick correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <HeaderLogo logo={<SvgPlaceholder />} onClick={onClickMock}>
       Application
@@ -46,7 +46,7 @@ it('renders with onClick correctly', () => {
 });
 
 it('renders with as prop correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <HeaderLogo
       as='a'
