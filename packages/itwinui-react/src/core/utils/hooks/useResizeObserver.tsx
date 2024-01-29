@@ -45,6 +45,9 @@ export const useResizeObserver = <T extends HTMLElement>(
         });
         resizeObserver.current?.observe?.(element);
       }
+      return () => {
+        resizeObserver.current?.disconnect?.();
+      };
     },
     [onResize],
   );
