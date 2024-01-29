@@ -3,6 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import { defineConfig } from 'vitest/config';
+import * as path from 'node:path';
 
 export default defineConfig({
   test: {
@@ -13,6 +14,12 @@ export default defineConfig({
     reporters: ['junit', 'default'],
     outputFile: 'coverage/junit.xml',
     css: false,
+    alias: [
+      {
+        find: /^(.*)\/styles.js$/,
+        replacement: path.resolve('./__mocks__/styles.js'),
+      },
+    ],
   },
   plugins: [
     {
