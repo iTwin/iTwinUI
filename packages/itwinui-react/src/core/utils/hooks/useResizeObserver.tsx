@@ -30,9 +30,19 @@ export const useResizeObserver = <T extends HTMLElement>(
 
       resizeObserver.current?.disconnect?.();
       if (element) {
-        resizeObserver.current = new ResizeObserver(([{ contentRect }]) =>
-          onResize(contentRect),
-        );
+        resizeObserver.current = new ResizeObserver((entries) => {
+          // We wrap onResize with requestAnimationFrame to avoid this error - ResizeObserver loop limit exceeded
+          // See: https://github.com/iTwin/iTwinUI/issues/1317
+          // See: https://stackoverflow.com/a/58701523/11547064
+          window.requestAnimationFrame(() => {
+            if (!Array.isArray(entries) || !entries.length) {
+              return;
+            }
+
+            const [{ contentRect }] = entries;
+            return onResize(contentRect);
+          });
+        });
         resizeObserver.current?.observe?.(element);
       }
     },
