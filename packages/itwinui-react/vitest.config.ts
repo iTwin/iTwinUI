@@ -21,6 +21,7 @@ export default defineConfig({
     ],
     typecheck: {
       enabled: true,
+      include: ['**/*.test.?(c|m)[jt]s?(x)'],
     },
   },
   plugins: [
