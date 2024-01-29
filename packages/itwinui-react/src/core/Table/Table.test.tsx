@@ -2679,6 +2679,76 @@ it('should handle resize with touch', () => {
   expect(headerCells[2].style.width).toBe('100px');
 });
 
+it.each(['px', '%', 'rem'])(
+  'should handle resize when widths are string units. (E.g. %s)',
+  (unit) => {
+    jest
+      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
+      .mockReturnValue({ width: 100 } as DOMRect);
+
+    const columns: Column<TestDataType>[] = [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        width: `20${unit}`,
+      },
+      {
+        id: 'description',
+        Header: 'description',
+        accessor: 'description',
+        width: `20${unit}`,
+      },
+      {
+        id: 'view',
+        Header: 'view',
+        Cell: () => <>View</>,
+        width: `60${unit}`,
+      },
+    ];
+
+    const { container } = renderComponent({
+      columns,
+      isResizable: true,
+    });
+
+    const resizers = container.querySelectorAll(
+      '.iui-table-resizer',
+    ) as NodeListOf<HTMLDivElement>;
+
+    expect(resizers).toBeTruthy();
+    resizers.forEach((resizer) => expect(resizer).toBeTruthy());
+
+    const headerCells = container.querySelectorAll<HTMLDivElement>(
+      '.iui-table-header .iui-table-cell',
+    );
+    expect(headerCells).toHaveLength(3);
+
+    // Initial
+    expect(headerCells[0].style.width).toBe(`20${unit}`);
+    expect(headerCells[1].style.width).toBe(`20${unit}`);
+    expect(headerCells[2].style.width).toBe(`60${unit}`);
+
+    // Drag first resizer
+    fireEvent.mouseDown(resizers[0], { clientX: 100 });
+    fireEvent.mouseMove(resizers[0], { clientX: 150 });
+    fireEvent.mouseUp(resizers[0]);
+
+    expect(headerCells[0].style.width).toBe('150px');
+    expect(headerCells[1].style.width).toBe('50px');
+    expect(headerCells[2].style.width).toBe(`60${unit}`);
+
+    // Drag second resizer
+    fireEvent.mouseDown(resizers[1], { clientX: 200 });
+    fireEvent.mouseMove(resizers[1], { clientX: 250 });
+    fireEvent.mouseUp(resizers[1]);
+
+    expect(headerCells[0].style.width).toBe('150px');
+    expect(headerCells[1].style.width).toBe('100px');
+    expect(headerCells[2].style.width).toBe('50px');
+  },
+);
+
 it('should prevent from resizing past 1px width', () => {
   jest
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
