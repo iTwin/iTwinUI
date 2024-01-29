@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.3.2
+
+### Patch Changes
+
+- [#1799](https://github.com/iTwin/iTwinUI/pull/1799): Fixed `Table` bug where columns were not resizable when their widths were specified as strings (E.g. `"20%"`, `"50ch"`).
+
 ## 3.3.1
 
 ### Patch Changes
