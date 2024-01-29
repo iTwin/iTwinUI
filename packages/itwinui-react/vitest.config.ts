@@ -13,7 +13,6 @@ export default defineConfig({
     exclude: ['/node_modules/', '/esm/', '/cjs/'],
     reporters: ['junit', 'default'],
     outputFile: 'coverage/junit.xml',
-    css: false,
     alias: [
       {
         find: /^(.*)\/styles.js$/,
@@ -30,6 +29,12 @@ export default defineConfig({
       resolveId(id) {
         if (id.endsWith('styles.css')) {
           return id;
+        }
+        return null;
+      },
+      load(id) {
+        if (id.endsWith('styles.css')) {
+          return '';
         }
         return null;
       },
