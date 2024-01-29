@@ -8,7 +8,7 @@ import { SvgClose as SvgPlaceholder } from '../utils/index.js';
 import { Button } from './Button.js';
 
 it('renders default button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <Button
       onClick={(e) => {
@@ -30,7 +30,7 @@ it('renders default button correctly', () => {
 });
 
 it('renders cta button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <Button styleType='cta' onClick={onClickMock}>
       Click me!
@@ -46,7 +46,7 @@ it('renders cta button correctly', () => {
 });
 
 it('renders high-visibility button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <Button styleType='high-visibility' onClick={onClickMock}>
       Click me!
@@ -82,7 +82,7 @@ it('takes className and style', () => {
 });
 
 it('renders small cta correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <Button styleType='cta' size='small' onClick={onClickMock}>
       Click me!
@@ -99,7 +99,7 @@ it('renders small cta correctly', () => {
 });
 
 it('renders large high-visibility correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <Button styleType='high-visibility' size='large' onClick={onClickMock}>
       Click me!

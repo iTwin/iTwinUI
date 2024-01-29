@@ -142,7 +142,7 @@ it('should render expand button svg correctly', () => {
 });
 
 it('should handle clicking on expand button', async () => {
-  const mockFn = jest.fn();
+  const mockFn = vi.fn();
   const { container } = renderComponent({ onExpanderClick: mockFn });
   expect(
     container.querySelector('.iui-side-navigation.iui-collapsed'),
@@ -185,10 +185,10 @@ it('should only add tooltips to items when collapsed', async () => {
     expect(
       queryByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
     ).not.toBeVisible();
-    jest.useFakeTimers();
+    vi.useFakeTimers();
     fireEvent.mouseEnter(item);
-    act(() => void jest.advanceTimersByTime(50));
-    jest.useRealTimers();
+    act(() => void vi.advanceTimersByTime(50));
+    vi.useRealTimers();
     expect(
       getByText(`mockbutton ${index}`, { selector: '.iui-tooltip' }),
     ).toBeVisible();

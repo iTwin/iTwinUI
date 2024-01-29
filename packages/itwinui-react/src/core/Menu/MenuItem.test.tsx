@@ -56,7 +56,7 @@ it('should render as selected', () => {
 });
 
 it('should render as disabled', () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   const { container } = render(
     <MenuItem disabled onClick={mockedOnClick}>
       Test item
@@ -96,7 +96,7 @@ it('should render with custom role', () => {
 });
 
 it('should handle click', () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   const { container } = render(
     <MenuItem onClick={mockedOnClick} value='test_value'>
       Test item
@@ -111,7 +111,7 @@ it('should handle click', () => {
 });
 
 it('should handle key press', () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   const { container } = render(
     <MenuItem onClick={mockedOnClick} value='test_value'>
       Test item
@@ -177,9 +177,9 @@ it('should render sublabel', () => {
 });
 
 it('should show sub menu on hover', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
-  const mockedSubSubOnClick = jest.fn();
+  const mockedSubSubOnClick = vi.fn();
   render(
     <MenuItem
       value='test_value'
@@ -213,13 +213,13 @@ it('should show sub menu on hover', () => {
 
   // hover over menu item
   fireEvent.mouseEnter(menuItem);
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   const subMenuItem = screen.getByTestId('sub');
   expect(subMenuItem).toHaveTextContent('Test sub');
 
   // hover over sub menu item
   fireEvent.mouseEnter(subMenuItem);
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   const subSubMenuItem = screen.getByTestId('sub-sub');
   expect(subSubMenuItem).toHaveTextContent('Test sub sub');
   fireEvent.click(subSubMenuItem);
@@ -227,14 +227,14 @@ it('should show sub menu on hover', () => {
 
   // leave sub menu item
   fireEvent.mouseLeave(subMenuItem, { relatedTarget: menuItem });
-  act(() => jest.advanceTimersByTime(100));
+  act(() => vi.advanceTimersByTime(100));
   expect(subSubMenuItem).not.toBeVisible();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should handle key press with sub menus', async () => {
-  const mockedSubOnClick = jest.fn();
+  const mockedSubOnClick = vi.fn();
   render(
     <MenuItem
       value='test_value'

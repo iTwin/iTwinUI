@@ -10,9 +10,9 @@ describe('getDocument', () => {
   it('should get document when it is defined', () => {
     expect(getDocument()).toBeTruthy();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    jest.spyOn(global as any, 'document', 'get').mockReturnValue(undefined);
+    vi.spyOn(global as any, 'document', 'get').mockReturnValue(undefined);
     expect(getDocument()).toBeFalsy();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 
@@ -20,17 +20,17 @@ describe('getWindow', () => {
   it('should get window when it is defined', () => {
     expect(getWindow()).toBeTruthy();
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    jest.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
+    vi.spyOn(global as any, 'window', 'get').mockReturnValue(undefined);
     expect(getWindow()).toBeFalsy();
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 });
 
 describe('mergeEventHandlers', () => {
   it('should respect preventDefault', () => {
-    const handler1 = jest.fn();
-    const handler2 = jest.fn((e) => e.preventDefault());
-    const handler3 = jest.fn();
+    const handler1 = vi.fn();
+    const handler2 = vi.fn((e) => e.preventDefault());
+    const handler3 = vi.fn();
     render(
       <button onClick={mergeEventHandlers(handler1, handler2, handler3)}>
         hi

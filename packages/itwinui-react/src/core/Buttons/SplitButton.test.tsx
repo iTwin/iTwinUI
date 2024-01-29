@@ -16,7 +16,7 @@ function renderComponent(
 ) {
   return render(
     <SplitButton
-      onClick={onClick ?? jest.fn()}
+      onClick={onClick ?? vi.fn()}
       menuItems={(close) => [
         <MenuItem key={0} onClick={close}>
           Test0
@@ -42,7 +42,7 @@ it('should render in its most basic state', () => {
 });
 
 it('should fire onClick callback', async () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = renderComponent(onClickMock);
   expect(container.querySelector('.iui-button-split')).toBeTruthy();
 

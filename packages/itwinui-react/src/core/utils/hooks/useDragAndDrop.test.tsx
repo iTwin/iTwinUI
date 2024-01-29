@@ -7,22 +7,21 @@ import { fireEvent, render } from '@testing-library/react';
 import useDragAndDrop from './useDragAndDrop.js';
 import * as DomFunctions from '../functions/dom.js';
 
-const DOMMatrixMock = jest.fn();
+const DOMMatrixMock = vi.fn();
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
-const getBoundingClientRectMock = jest
+const getBoundingClientRectMock = vi
   .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
   .mockReturnValue({ top: 100, right: 200, bottom: 200, left: 100 } as DOMRect);
 
-jest
-  .spyOn(DomFunctions, 'getWindow')
+vi.spyOn(DomFunctions, 'getWindow')
   /* eslint-disable @typescript-eslint/no-explicit-any */
   .mockReturnValue({
     innerWidth: 300,
     innerHeight: 300,
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
   } as any);
 /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -56,7 +55,7 @@ beforeEach(() => {
 afterAll(() => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (window as any).DOMMatrix = undefined;
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should handle drag', () => {

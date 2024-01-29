@@ -6,7 +6,7 @@ import type * as React from 'react';
 import { mergeRefs } from './useMergedRefs.js';
 
 it('should handle callback ref and mutable ref object', () => {
-  const refFn = jest.fn();
+  const refFn = vi.fn();
   const refObj = {} as React.MutableRefObject<unknown>;
   const refs = mergeRefs(refFn, refObj);
 

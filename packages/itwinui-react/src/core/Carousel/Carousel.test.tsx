@@ -10,7 +10,7 @@ import { userEvent } from '@testing-library/user-event';
 
 const originalMatchMedia = window.matchMedia;
 beforeAll(() => {
-  window.matchMedia = jest.fn().mockReturnValue({ matches: false });
+  window.matchMedia = vi.fn().mockReturnValue({ matches: false });
 });
 afterAll(() => {
   window.matchMedia = originalMatchMedia;

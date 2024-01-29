@@ -30,7 +30,7 @@ it('should propagate custom styles and className', () => {
 });
 
 it('fires close event on click', () => {
-  const fn = jest.fn();
+  const fn = vi.fn();
   const result = render(<Tag onRemove={fn}>Mocked tag</Tag>);
 
   const close = result.container.querySelector(

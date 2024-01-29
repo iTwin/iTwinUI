@@ -105,7 +105,7 @@ it('renders avatar alone correctly', () => {
 });
 it('renders moreMenu alone correctly', async () => {
   // Summarized, as this is partly based on DropdownMenu, which is tested independently.
-  const itemOneOnClick = jest.fn();
+  const itemOneOnClick = vi.fn();
 
   const { container } = render(
     <Header

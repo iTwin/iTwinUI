@@ -8,7 +8,7 @@ import * as React from 'react';
 import { IdeasButton } from './IdeasButton.js';
 
 it('renders ideas button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <IdeasButton onClick={onClickMock} />,
   );
@@ -24,7 +24,7 @@ it('renders ideas button correctly', () => {
 });
 
 it('takes localized label', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container, getByText } = render(
     <IdeasButton feedbackLabel='my-feedback' onClick={onClickMock} />,
   );

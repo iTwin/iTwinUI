@@ -11,7 +11,7 @@ it('should render dragContent and children', () => {
   const mockContent = 'Mock drag content';
   const mockChildren = 'Mock children to wrap';
   const { container } = render(
-    <FileUpload dragContent={mockContent} onFileDropped={jest.fn}>
+    <FileUpload dragContent={mockContent} onFileDropped={vi.fn}>
       {mockChildren}
     </FileUpload>,
   );
@@ -34,7 +34,7 @@ it('should add props to iui-content', () => {
   const { container } = render(
     <FileUpload
       dragContent={mockContent}
-      onFileDropped={jest.fn}
+      onFileDropped={vi.fn}
       contentProps={{ className: 'some-content' }}
     >
       {mockChildren}
@@ -57,7 +57,7 @@ it('should add props to iui-content', () => {
 it('should apply content class to children if dragContent not passed', () => {
   const mockChildren = 'Mock children to wrap';
   const { container } = render(
-    <FileUpload onFileDropped={jest.fn}>{mockChildren}</FileUpload>,
+    <FileUpload onFileDropped={vi.fn}>{mockChildren}</FileUpload>,
   );
   expect(container.querySelector('.iui-file-upload')).toBeTruthy();
 
@@ -67,7 +67,7 @@ it('should apply content class to children if dragContent not passed', () => {
 });
 
 it('should handle drag and drop events correctly', () => {
-  const mockFn = jest.fn();
+  const mockFn = vi.fn();
   const { container } = render(
     <FileUpload onFileDropped={mockFn}>Mock content</FileUpload>,
   );

@@ -166,7 +166,7 @@ it('should set the dot positions', () => {
 });
 
 it('should handle arrow key navigation on hue slider dot', () => {
-  const onSelectionChanged = jest.fn();
+  const onSelectionChanged = vi.fn();
 
   const { container } = render(
     <ColorPicker
@@ -215,8 +215,8 @@ it('should handle arrow key navigation on hue slider dot', () => {
 });
 
 it('should handle arrow key navigation on color dot', () => {
-  const onChange = jest.fn();
-  const onChangeComplete = jest.fn();
+  const onChange = vi.fn();
+  const onChangeComplete = vi.fn();
 
   const { container } = render(
     <ColorPicker
@@ -338,8 +338,8 @@ it('should handle arrow key navigation on color dot', () => {
 });
 
 it('should call onChange and onChangeComplete from hueSlider', () => {
-  const handleOnUpdate = jest.fn();
-  const handleOnChange = jest.fn();
+  const handleOnUpdate = vi.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker
@@ -379,8 +379,8 @@ it('should call onChange and onChangeComplete from hueSlider', () => {
 });
 
 it('should handle pointer down/move/up from color square', () => {
-  const handleOnUpdate = jest.fn();
-  const handleOnChange = jest.fn();
+  const handleOnUpdate = vi.fn();
+  const handleOnChange = vi.fn();
 
   const { container } = render(
     <ColorPicker
@@ -493,7 +493,7 @@ it('should render advanced color picker with opacity slider', () => {
 });
 
 it('should handle arrow key navigation on opacity slider dot', () => {
-  const onSelectionChanged = jest.fn();
+  const onSelectionChanged = vi.fn();
   const selectedColor = ColorValue.create({ h: 0, s: 100, l: 50 });
   const { container } = render(
     <ColorPicker
@@ -538,7 +538,7 @@ it('should handle arrow key navigation on opacity slider dot', () => {
 });
 
 it('should render color picker and handle onChangeCompleted when alpha is false', () => {
-  const handleOnChange = jest.fn();
+  const handleOnChange = vi.fn();
   const selectedColor = ColorValue.create({ h: 0, s: 100, l: 50 });
   const { container } = render(
     <ColorPicker
