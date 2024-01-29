@@ -2681,9 +2681,9 @@ it('should handle resize with touch', () => {
 it.each(['px', '%', 'rem'])(
   'should handle resize when widths are string units. (E.g. %s)',
   (unit) => {
-    jest
-      .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-      .mockReturnValue({ width: 100 } as DOMRect);
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      width: 100,
+    } as DOMRect);
 
     const columns: Column<TestDataType>[] = [
       {
