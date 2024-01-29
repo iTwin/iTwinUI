@@ -2,7 +2,8 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const isJest = typeof jest !== 'undefined';
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const isJest = typeof (globalThis as any).jest !== 'undefined';
 
 let isDev = false;
 

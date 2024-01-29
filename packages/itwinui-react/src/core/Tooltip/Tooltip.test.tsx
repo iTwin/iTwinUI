@@ -7,7 +7,7 @@ import * as React from 'react';
 import { Tooltip } from './Tooltip.js';
 
 it('should toggle the visibility of tooltip on hover', () => {
-  const onVisibleChange = jest.fn();
+  const onVisibleChange = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='some text' onVisibleChange={onVisibleChange}>
@@ -31,8 +31,8 @@ it('should toggle the visibility of tooltip on hover', () => {
 });
 
 it('should toggle the visibility of tooltip on focus', async () => {
-  jest.useFakeTimers();
-  const onVisibleChange = jest.fn();
+  vi.useFakeTimers();
+  const onVisibleChange = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='some text' onVisibleChange={onVisibleChange}>
@@ -47,16 +47,16 @@ it('should toggle the visibility of tooltip on focus', async () => {
   expect(tooltip).not.toBeVisible();
 
   fireEvent.focus(trigger);
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   expect(tooltip).toBeVisible();
   expect(onVisibleChange).toBeCalledWith(true);
 
   fireEvent.blur(trigger);
-  act(() => void jest.advanceTimersByTime(250));
+  act(() => void vi.advanceTimersByTime(250));
   expect(tooltip).not.toBeVisible();
   expect(onVisibleChange).toBeCalledWith(false);
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should respect visible prop', () => {
@@ -78,9 +78,9 @@ it('should respect visible prop', () => {
 });
 
 it('should allow button clicks and hovers', () => {
-  const clickHandler = jest.fn();
-  const mouseEnterHandler = jest.fn();
-  const mouseLeaveHandler = jest.fn();
+  const clickHandler = vi.fn();
+  const mouseEnterHandler = vi.fn();
+  const mouseLeaveHandler = vi.fn();
 
   const { getByText } = render(
     <Tooltip content='Tooltip!'>
@@ -133,7 +133,7 @@ it.each(['description', 'label', 'none'] as const)(
 );
 
 it('should work with reference prop', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const TestComp = () => {
     const [reference, setReference] = React.useState<HTMLElement | null>(null);
@@ -159,12 +159,12 @@ it('should work with reference prop', async () => {
   expect(tooltip).not.toBeVisible();
 
   fireEvent.focus(trigger);
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   expect(tooltip).toBeVisible();
 
   fireEvent.blur(trigger);
-  act(() => void jest.advanceTimersByTime(250));
+  act(() => void vi.advanceTimersByTime(250));
   expect(tooltip).not.toBeVisible();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });

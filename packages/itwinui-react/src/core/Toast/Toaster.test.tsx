@@ -18,7 +18,7 @@ import {
   type ToastOptions,
 } from './Toaster.js';
 
-const mockOnClick = jest.fn();
+const mockOnClick = vi.fn();
 
 function toasterContraption() {
   const { result } = renderHook(() => useToaster(), {
@@ -70,7 +70,7 @@ function assertAddedToast(
 
 async function assertRemovedToast(content: string) {
   act(() => {
-    jest.runAllTimers();
+    vi.runAllTimers();
   });
   const maybeToast = screen.queryByText(content);
   if (maybeToast) {
@@ -79,22 +79,22 @@ async function assertRemovedToast(content: string) {
 }
 
 beforeEach(() => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 });
 afterEach(() => {
-  jest.useRealTimers();
+  vi.useRealTimers();
   mockOnClick.mockReset();
 });
 
 it.each(['positive', 'negative', 'informational', 'warning'] as const)(
   'should add toast with %s',
-  async (status) => {
+  (status) => {
     const toaster = toasterContraption();
     act(() => {
       toaster()[status]('mockContent', mockedOptions());
     });
     assertAddedToast('mockContent', status, mockedOptions());
-    await assertRemovedToast('mockContent');
+    assertRemovedToast('mockContent');
   },
 );
 

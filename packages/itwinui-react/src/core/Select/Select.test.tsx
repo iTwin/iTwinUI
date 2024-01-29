@@ -62,7 +62,7 @@ function renderComponent(
 }
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render empty select', () => {
@@ -104,7 +104,7 @@ it('should show value with icon inside select', () => {
 });
 
 it('should render disabled select', async () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = renderComponent({
     disabled: true,
     onChange: mockedFn,
@@ -123,7 +123,7 @@ it('should render disabled select', async () => {
 });
 
 it('should set focus on select and call onBlur', () => {
-  const onBlur = jest.fn();
+  const onBlur = vi.fn();
   const { container } = renderComponent({ onBlur });
 
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
@@ -273,7 +273,7 @@ it('should show menu with disabled item', () => {
 });
 
 it('should show selected item in menu', () => {
-  const scrollSpy = jest.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
+  const scrollSpy = vi.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
   const { container } = renderComponent({
     value: 1,
     options: [...new Array(3)].map((_, index) => ({
@@ -292,7 +292,7 @@ it('should show selected item in menu', () => {
 });
 
 it('should call onChange on item click', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({
     onChange,
   });
@@ -449,7 +449,7 @@ it('should pass custom props to menu item', () => {
 });
 
 it('should select multiple items', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container, rerender } = renderComponent({
     onChange,
     multiple: true,

@@ -243,7 +243,7 @@ More examples can be found in the [style guide](./STYLEGUIDE.md).
 
 ### Unit testing (React)
 
-Each component has a corresponding jest test inside of its directory. Be sure to cover your added code with tests.
+Each component has a corresponding vitest test inside of its directory. Be sure to cover your added code with tests.
 
 Use `yarn test:unit` to run the unit tests. Run `yarn test:unit:watch` if you want unit tests to rerun after changes.
 

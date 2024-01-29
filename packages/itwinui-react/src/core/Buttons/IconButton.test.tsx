@@ -9,7 +9,7 @@ import { SvgMore } from '../utils/index.js';
 import { IconButton } from './IconButton.js';
 
 it('renders icon button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <IconButton onClick={onClickMock} label='More options'>
       <SvgMore />
@@ -28,7 +28,7 @@ it('renders icon button correctly', () => {
 });
 
 it('renders active icon button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <IconButton isActive onClick={onClickMock}>
       <SvgMore />
@@ -47,7 +47,7 @@ it('renders active icon button correctly', () => {
 });
 
 it('renders disabled small icon button correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <IconButton disabled size='small' onClick={onClickMock}>
       <SvgMore />

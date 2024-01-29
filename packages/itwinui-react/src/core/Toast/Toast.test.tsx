@@ -76,7 +76,7 @@ it('renders the message correctly', () => {
 });
 
 it('renders a report message Link correctly', async () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast
@@ -155,9 +155,9 @@ it('renders the close icon when hasCloseButton', () => {
 });
 
 it('should close temporary toast after 7s', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast
@@ -173,17 +173,17 @@ it('should close temporary toast after 7s', () => {
   expect(container.querySelector('.iui-toast-all')).toBeTruthy();
 
   act(() => {
-    jest.advanceTimersByTime(7300);
+    vi.advanceTimersByTime(7300);
   });
 
   act(() => {
-    jest.runAllTimers();
+    vi.runAllTimers();
   });
 
   expect(mockedFn).toHaveBeenCalledTimes(1);
   expect(container.querySelector('.iui-toast-all')).toBeFalsy();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should pass content props correctly', () => {

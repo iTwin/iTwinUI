@@ -45,7 +45,7 @@ it('should propagate misc props', () => {
 
 it('should support polymorphic `as` prop', () => {
   const { container } = render(
-    <Anchor as='button' onClick={() => jest.fn()}>
+    <Anchor as='button' onClick={() => vi.fn()}>
       is it a link or button?
     </Anchor>,
   );

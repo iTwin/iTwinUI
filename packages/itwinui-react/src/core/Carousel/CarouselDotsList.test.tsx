@@ -10,7 +10,7 @@ import { userEvent } from '@testing-library/user-event';
 
 const originalMatchMedia = window.matchMedia;
 beforeAll(() => {
-  window.matchMedia = jest.fn().mockReturnValue({ matches: false });
+  window.matchMedia = vi.fn().mockReturnValue({ matches: false });
 });
 afterAll(() => {
   window.matchMedia = originalMatchMedia;
@@ -52,7 +52,7 @@ it('should render in its most basic state without Carousel', () => {
 });
 
 it('should call onSlideChange correctly', async () => {
-  const mockOnSlideChange = jest.fn();
+  const mockOnSlideChange = vi.fn();
   const { container } = render(
     <CarouselDotsList
       id='testid'
@@ -80,18 +80,15 @@ it('should call onSlideChange correctly', async () => {
 it('should truncate dots correctly', () => {
   const DOT_WIDTH = 28;
 
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
-    });
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
 
-  const dotWidthMock = jest
+  const dotWidthMock = vi
     .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
     .mockReturnValue(DOT_WIDTH);
 

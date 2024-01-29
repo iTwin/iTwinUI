@@ -11,7 +11,7 @@ import DatePickerInput, {
 
 const renderComponent = (initialProps?: Partial<DatePickerInputProps>) => {
   const props = {
-    onChange: jest.fn(),
+    onChange: vi.fn(),
     parseInput: (text: string) => new Date(text),
     formatDate: (date: Date) => date.toISOString(),
     ...initialProps,
@@ -58,7 +58,7 @@ it('should render correctly with invalid given date', () => {
 });
 
 it('should call onChange with parsed date', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({ onChange });
 
   const input = container.querySelector(
@@ -71,7 +71,7 @@ it('should call onChange with parsed date', () => {
 });
 
 it('should not call onChange with invalid value', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({ onChange });
 
   const input = container.querySelector(
@@ -84,7 +84,7 @@ it('should not call onChange with invalid value', () => {
 });
 
 it('should call onChange when selected day from calendar', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({
     onChange,
     date: new Date(2021, 4, 18),
@@ -106,7 +106,7 @@ it('should call onChange when selected day from calendar', async () => {
 });
 
 it('should call onChange with undefined when input field is cleared', async () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({
     onChange,
     date: new Date(2021, 4, 18),
@@ -131,7 +131,7 @@ it('should call onChange with undefined when input field is cleared', async () =
 
 it('should disable dates before "from" date when using "to" date picker', async () => {
   const fromDate = new Date(2023, 3, 22);
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = renderComponent({
     isFromOrTo: 'to',
     selectedDate: fromDate,
@@ -148,7 +148,7 @@ it('should disable dates before "from" date when using "to" date picker', async 
 
 it('should disable dates after "to" date when using "from" date picker', async () => {
   const toDate = new Date(2023, 3, 8);
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = renderComponent({
     isFromOrTo: 'from',
     selectedDate: toDate,

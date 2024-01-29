@@ -6,8 +6,8 @@
 import { act, renderHook } from '@testing-library/react';
 import { useResizeObserver } from './useResizeObserver.js';
 
-const observe = jest.fn();
-const disconnect = jest.fn();
+const observe = vi.fn();
+const disconnect = vi.fn();
 
 /** gets set when ResizeObserver.observe is called */
 let resizeCallback: (entries: { contentRect: Partial<DOMRect> }[]) => void;
@@ -18,9 +18,9 @@ const triggerResize = (e: Partial<DOMRect>) => {
 };
 
 beforeAll(() => {
-  window.ResizeObserver = jest.fn((cb) => ({
+  window.ResizeObserver = vi.fn((cb) => ({
     disconnect,
-    unobserve: jest.fn(),
+    unobserve: vi.fn(),
     observe: (el) => {
       // @ts-expect-error: Only testing contentRect from the callback
       resizeCallback = cb;
@@ -30,11 +30,11 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 const renderResizeObserver = ({
-  onResize = jest.fn(),
+  onResize = vi.fn(),
   initialSize = { width: 50, height: 50 },
 } = {}) => {
   const hook = renderHook(() => useResizeObserver(onResize));
@@ -57,7 +57,7 @@ it('should initialize ResizeObserver correctly', () => {
 });
 
 it('should call onResize when element resizes', () => {
-  const onResizeMock = jest.fn();
+  const onResizeMock = vi.fn();
   renderResizeObserver({ onResize: onResizeMock });
   expect(onResizeMock).not.toHaveBeenCalled();
 
@@ -67,7 +67,7 @@ it('should call onResize when element resizes', () => {
 });
 
 it('should not observe if element is null', () => {
-  const { result } = renderHook(() => useResizeObserver(jest.fn()));
+  const { result } = renderHook(() => useResizeObserver(vi.fn()));
   act(() => result.current[0](null));
   expect(observe).not.toHaveBeenCalled();
 });

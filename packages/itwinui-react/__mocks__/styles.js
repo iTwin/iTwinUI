@@ -2,7 +2,15 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-module.exports = {
-  // noop because we don't want to spam the terminal with warnings during tests
-  useGlobals: () => {},
-};
+export default new Proxy(
+  {},
+  {
+    get: (target, prop) => {
+      // instead of returning scoped css modules, we will preserve the original classes
+      if (typeof prop === 'string' && prop.startsWith('iui')) {
+        return prop;
+      }
+      return Reflect.get(target, prop);
+    },
+  },
+);
