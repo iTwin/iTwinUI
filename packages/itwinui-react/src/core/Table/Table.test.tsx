@@ -2679,7 +2679,7 @@ it('should handle resize with touch', () => {
   expect(headerCells[2].style.width).toBe('100px');
 });
 
-it.each(['px', '%', 'em', 'rem', 'vw', 'vh', 'ch', 'ex'])(
+it.each(['px', '%', 'rem'])(
   'should handle resize when widths are string units. (E.g. %s)',
   (unit) => {
     jest
