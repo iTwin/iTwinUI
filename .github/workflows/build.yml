@@ -269,10 +269,10 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn workspace @itwin/itwinui-react test --coverage
+      - run: yarn workspace @itwin/itwinui-react test
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1.16
+        uses: EnricoMi/publish-unit-test-result-action@v2.12.0
         if: always()
         with:
           files: 'packages/itwinui-react/coverage/junit.xml'
