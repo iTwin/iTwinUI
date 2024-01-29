@@ -6,6 +6,7 @@
     "src/react-table/*",
     "src/core/Select/**/*",
     "src/core/LabeledSelect/**/*",
-    "src/core/ComboBox/**/*"
+    "src/core/ComboBox/**/*",
+    "**/*.test.?(c|m)[jt]s?(x)"
   ]
 }
