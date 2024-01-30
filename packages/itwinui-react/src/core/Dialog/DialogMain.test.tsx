@@ -65,7 +65,7 @@ it('should render with custom style and className', () => {
   const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog.classList.contains('test-class')).toBeTruthy();
-  expect(dialog).toHaveStyle('color: red');
+  expect(dialog.style.color).toEqual('red');
 });
 
 it('should close on Esc click and move focus back', async () => {

@@ -45,7 +45,7 @@ it('should propagate misc props in link', () => {
   ) as HTMLElement;
   expect(link).toHaveAttribute('href', '#main-content-id');
   expect(link).toHaveClass('test-class');
-  expect(link).toHaveStyle('color: red');
+  expect(link.style.color).toEqual('red');
   expect(link).toHaveAttribute('aria-label', 'test-label');
   expect(link).toHaveAttribute('id', 'test-id');
 });

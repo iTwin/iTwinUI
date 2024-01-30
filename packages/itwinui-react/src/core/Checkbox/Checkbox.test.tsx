@@ -174,7 +174,8 @@ it('correctly passes style through wrapperProps and labelProps', () => {
   );
 
   assertBaseElements(container);
-  expect(container.querySelector('label')).toHaveStyle('color: blue');
-  expect(container.querySelector('span')).toHaveStyle('color: orange');
-  expect(container.querySelector('.iui-checkbox')).toHaveStyle('color: yellow');
+  expect(container.querySelector('label')?.style.color).toEqual('blue');
+  expect(container.querySelector('span')?.style.color).toEqual('orange');
+  const checkbox = container.querySelector('.iui-checkbox') as HTMLElement;
+  expect(checkbox.style.color).toEqual('yellow');
 });

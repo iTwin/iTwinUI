@@ -49,7 +49,7 @@ it('should propagate misc props', () => {
 
   const label = container.querySelector('.iui-input-label') as HTMLLabelElement;
   expect(label).toHaveClass('test-label-class');
-  expect(label).toHaveStyle({ color: 'rebeccapurple' });
+  expect(label.style.color).toEqual('rebeccapurple');
   expect(label).toHaveAttribute('id', 'test-label-id');
   expect(label).toHaveAttribute('for', 'test-input-id');
   expect(label).toHaveTextContent('test label text');

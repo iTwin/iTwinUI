@@ -3821,7 +3821,7 @@ it('should render dropdown menu with custom style and override default style', a
   expect(dropdownMenu).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
-  expect(dropdownMenu).toHaveStyle('background-color: red');
+  expect(dropdownMenu.style.backgroundColor).toEqual('red');
   expect(dropdownMenu).toHaveAttribute('role', 'listbox');
 });
 
