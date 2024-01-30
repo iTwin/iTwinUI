@@ -44,9 +44,9 @@ it('should propagate misc props', () => {
       🔔
     </NotificationMarker>,
   );
-  const notificationMarker = container.querySelector('span');
+  const notificationMarker = container.querySelector('span') as HTMLSpanElement;
   expect(notificationMarker).toHaveClass('test-class');
-  expect(notificationMarker).toHaveStyle('color: rebeccapurple');
+  expect(notificationMarker.style.color).toEqual('rebeccapurple');
   expect(notificationMarker).toHaveTextContent('🔔');
   expect(notificationMarker).toHaveAttribute('aria-label', 'Home');
 });

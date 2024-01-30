@@ -356,16 +356,16 @@ it('should use custom renderer for menu items', () => {
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
-  const menuItems = menu.querySelectorAll('[role=option]');
+  const menuItems = menu.querySelectorAll<HTMLElement>('[role=option]');
   expect(menuItems.length).toBe(3);
 
   expect(menuItems[0].textContent).toEqual('Yellow');
   expect(menuItems[1].textContent).toEqual('Green');
   expect(menuItems[2].textContent).toEqual('Red');
 
-  expect(menuItems[0]).toHaveStyle('color: yellow;');
-  expect(menuItems[1]).toHaveStyle('color: green;');
-  expect(menuItems[2]).toHaveStyle('color: red;');
+  expect(menuItems[0].style.color).toEqual('yellow');
+  expect(menuItems[1].style.color).toEqual('green');
+  expect(menuItems[2].style.color).toEqual('red');
 });
 
 it.each(['small', 'large'] as const)(
