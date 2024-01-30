@@ -886,26 +886,6 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
-  // Every second, print the headerRef.current.widths
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      console.log(
-        'header',
-        headerRef.current?.clientWidth,
-        headerRef.current?.scrollWidth,
-        headerRef.current?.offsetWidth,
-      );
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  console.log(
-    'header',
-    headerRef.current?.clientWidth,
-    headerRef.current?.scrollWidth,
-    headerRef.current?.offsetWidth,
-  );
-
   return (
     <>
       <Box
@@ -940,7 +920,6 @@ export const Table = <
             <Box
               as='div'
               ref={mergeRefs(headerResizeRef, headerRef)}
-              // ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
                   bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
@@ -1109,10 +1088,8 @@ export const Table = <
               style={{
                 // This ensures that the table-body is always the same width as the table-header,
                 // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                // width: headerRef.current?.scrollWidth,
                 width: headerWidth,
                 height: 0.1,
-                // willChange: 'width',
               }}
             />
           </ShadowTemplate>
