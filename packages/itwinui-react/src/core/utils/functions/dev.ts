@@ -4,10 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 const isTestingFramework = () => {
   return (
+    typeof vitest !== 'undefined' ||
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     typeof (globalThis as any).jest !== `undefined` ||
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    typeof (globalThis as any).vitest !== 'undefined' ||
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     typeof (globalThis as any).mocha !== 'undefined'
   );
