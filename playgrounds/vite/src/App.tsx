@@ -1,8 +1,10 @@
 import React from 'react';
-import { Button, ButtonGroup } from '@itwin/itwinui-react';
+import { Button, ButtonGroup, Tabs } from '@itwin/itwinui-react';
 
 function App() {
   console.log('HERE');
+
+  const stableLabels = ['A', 'B'];
 
   window.onerror = function (message, source, lineno, colno, error) {
     console.error('Myerror', message, source, lineno, colno, error);
@@ -38,6 +40,12 @@ function App() {
       <br />
       Resize window so the button is more or less than 20% of the window (green
       line).
+      <br />
+      <br />
+      <br />
+      <Tabs labels={stableLabels} />
+      <br />
+      Switch between tabs, notice the overlay error.
     </>
   );
 }
