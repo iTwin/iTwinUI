@@ -1,18 +1,19 @@
-import React from 'react';
-import { Button, ButtonGroup, Tabs } from '@itwin/itwinui-react';
+import { Button, ButtonGroup, Divider, Tabs } from '@itwin/itwinui-react';
 
 function App() {
-  console.log('HERE');
-
   const stableLabels = ['A', 'B'];
 
   window.onerror = function (message, source, lineno, colno, error) {
-    console.error('Myerror', message, source, lineno, colno, error);
+    console.error('My error', message, source, lineno, colno, error);
   };
 
-  // setTimeout(() => {
-  //   throw new Error('Dummy error');
-  // }, 4000);
+  const CustomDivider = () => (
+    <Divider
+      style={{
+        margin: '20px',
+      }}
+    />
+  );
 
   return (
     <>
@@ -38,11 +39,11 @@ function App() {
         <Button>Long enough button 3</Button>
       </ButtonGroup>
       <br />
-      Resize window so the button is more or less than 20% of the window (green
-      line).
-      <br />
-      <br />
-      <br />
+      <p>
+        Resize window so the button is more or less than 20% of the window
+        (green line).
+      </p>
+      <CustomDivider />
       <Tabs labels={stableLabels} />
       <br />
       Switch between tabs, notice the overlay error.
