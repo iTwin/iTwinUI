@@ -203,8 +203,10 @@ it('should pass content props correctly', () => {
     </ToastProvider>,
   );
 
-  const toast = container.querySelector('.iui-toast.my-toast');
-  expect(toast).toHaveStyle({ color: 'blue' });
-  const content = container.querySelector('.iui-message.my-class');
-  expect(content).toHaveStyle({ color: 'red' });
+  const toast = container.querySelector('.iui-toast.my-toast') as HTMLElement;
+  expect(toast.style.color).toEqual('blue');
+  const content = container.querySelector(
+    '.iui-message.my-class',
+  ) as HTMLElement;
+  expect(content.style.color).toEqual('red');
 });

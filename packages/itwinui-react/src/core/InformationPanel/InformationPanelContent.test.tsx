@@ -51,6 +51,6 @@ it('should propagate misc props', () => {
     '.iui-information-body-content',
   ) as HTMLElement;
   expect(element).toHaveClass('test class');
-  expect(element).toHaveStyle('color: black');
+  expect(element.style.color).toEqual('black');
   expect(element).toHaveTextContent('inner content');
 });

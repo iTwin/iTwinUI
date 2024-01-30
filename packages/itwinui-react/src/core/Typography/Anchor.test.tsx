@@ -38,7 +38,7 @@ it('should propagate misc props', () => {
   );
   const anchor = container.querySelector('a') as HTMLAnchorElement;
   expect(anchor).toHaveClass('test-class');
-  expect(anchor).toHaveStyle('color: rebeccapurple');
+  expect(anchor.style.color).toEqual('rebeccapurple');
   expect(anchor).toHaveTextContent('🏠');
   expect(anchor).toHaveAttribute('aria-label', 'Home');
 });
