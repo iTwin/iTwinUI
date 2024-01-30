@@ -1,5 +1,5 @@
 ---
-'@itwin/itwinui-react': minor
+'@itwin/itwinui-react': patch
 ---
 
-Added check to detect `jest`,`vitest` and `mocha` testing framework.
+iTwinUI will now also check for `vitest` and `mocha` (in addition to `jest`) before running any code that would cause problems in these test runners.
