@@ -63,7 +63,11 @@ it('should call onResize when element resizes', () => {
 
   const newSize = { width: 101, height: 101 };
   act(() => triggerResize(newSize));
-  expect(onResizeMock).toHaveBeenCalledWith(newSize);
+
+  // Wait for one frame
+  requestAnimationFrame(() => {
+    expect(onResizeMock).toHaveBeenCalledWith(newSize);
+  });
 });
 
 it('should not observe if element is null', () => {
