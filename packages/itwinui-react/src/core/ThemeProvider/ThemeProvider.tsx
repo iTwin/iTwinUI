@@ -13,7 +13,7 @@ import {
   useControlledState,
   useLatestRef,
   importCss,
-  isJest,
+  isTestingFramework,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -301,8 +301,8 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       return;
     }
 
-    // bail if jest because it doesn't care about CSS 🤷
-    if (isJest) {
+    // bail if TestingFramework because it doesn't care about CSS 🤷
+    if (isTestingFramework()) {
       return;
     }
 

@@ -2,14 +2,22 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const isJest = typeof (globalThis as any).jest !== 'undefined';
+const isTestingFramework = () => {
+  return (
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    typeof (globalThis as any).jest !== `undefined` ||
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    typeof (globalThis as any).vitest !== 'undefined' ||
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    typeof (globalThis as any).mocha !== 'undefined'
+  );
+};
 
 let isDev = false;
 
 // wrapping in try-catch because process might be undefined
 try {
-  isDev = process.env.NODE_ENV !== 'production' && !isJest;
+  isDev = process.env.NODE_ENV !== 'production' && !isTestingFramework;
 } catch {}
 
 /**
@@ -31,4 +39,4 @@ const createWarningLogger = !isDev
       };
     };
 
-export { isJest, isDev, createWarningLogger };
+export { isTestingFramework, isDev, createWarningLogger };
