@@ -752,8 +752,9 @@ export const Table = <
   const headerRef = React.useRef<HTMLDivElement>(null);
   const bodyRef = React.useRef<HTMLDivElement>(null);
 
-  // TODO: Paste link
-  // Need to fix:
+  // Needed to make Table body horizontally scrollable when there are no rows
+  // See: https://github.com/iTwin/iTwinUI/issues/1204
+  // See: https://github.com/iTwin/iTwinUI/pull/1725
   const [headerWidth, setHeaderWidth] = React.useState(
     headerRef.current?.scrollWidth ?? 0,
   );
