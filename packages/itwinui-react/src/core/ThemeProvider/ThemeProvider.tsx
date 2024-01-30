@@ -301,7 +301,7 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       return;
     }
 
-    // bail if TestingFramework because it doesn't care about CSS 🤷
+    // bail if isTestingFramework because unit tests don't care about CSS 🤷
     if (isTestingFramework()) {
       return;
     }
