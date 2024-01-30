@@ -44,8 +44,6 @@ export const useResizeObserver = <T extends HTMLElement>(
           });
         });
         resizeObserver.current?.observe?.(element);
-      } else {
-        resizeObserver.current = undefined;
       }
     },
     [onResize],
