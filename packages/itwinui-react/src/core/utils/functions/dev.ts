@@ -2,15 +2,12 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const isTestingFramework = () => {
-  return (
-    typeof vitest !== 'undefined' ||
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    typeof (globalThis as any).jest !== `undefined` ||
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    typeof (globalThis as any).mocha !== 'undefined'
-  );
-};
+const isTestingFramework =
+  typeof vitest !== 'undefined' ||
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  typeof (globalThis as any).jest !== `undefined` ||
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  typeof (globalThis as any).mocha !== 'undefined';
 
 let isDev = false;
 
