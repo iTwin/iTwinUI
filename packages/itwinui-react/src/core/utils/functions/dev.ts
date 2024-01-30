@@ -9,7 +9,7 @@ const isMocha =
   typeof (globalThis as any).beforeEach !== 'undefined' &&
   `${(globalThis as any).beforeEach}`.replace(/\s/g, '') ===
     'function(name,fn){suites[0].beforeEach(name,fn);}';
-const isVitest = (typeof globalThis as any).__vitest_index__ !== 'undefined';
+const isVitest = typeof (globalThis as any).__vitest_index__ !== 'undefined';
 
 const isUnitTest = isJest || isVitest || isMocha;
 
