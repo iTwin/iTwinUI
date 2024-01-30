@@ -36,6 +36,7 @@ import {
   useIsomorphicLayoutEffect,
   Box,
   createWarningLogger,
+  mergeRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -748,6 +749,15 @@ export const Table = <
     ],
   );
 
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+
+  // TODO: Paste link
+  // Need to fix:
+  const [headerWidth, setHeaderWidth] = React.useState(
+    headerRef.current?.scrollWidth ?? 0,
+  );
+
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
@@ -776,7 +786,12 @@ export const Table = <
     },
     [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
+  const onHeaderResize = React.useCallback(() => {
+    // TODO: Use scrollWidth or width arg from function?
+    setHeaderWidth(headerRef.current?.scrollWidth ?? 0);
+  }, [setHeaderWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
+  const [headerResizeRef] = useResizeObserver(onHeaderResize);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
@@ -791,9 +806,6 @@ export const Table = <
       dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
     }
   });
-
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
 
   const getPreparedRow = React.useCallback(
     (index: number) => {
@@ -874,6 +886,26 @@ export const Table = <
 
   const isHeaderDirectClick = React.useRef(false);
 
+  // Every second, print the headerRef.current.widths
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      console.log(
+        'header',
+        headerRef.current?.clientWidth,
+        headerRef.current?.scrollWidth,
+        headerRef.current?.offsetWidth,
+      );
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  console.log(
+    'header',
+    headerRef.current?.clientWidth,
+    headerRef.current?.scrollWidth,
+    headerRef.current?.offsetWidth,
+  );
+
   return (
     <>
       <Box
@@ -907,7 +939,8 @@ export const Table = <
           return (
             <Box
               as='div'
-              ref={headerRef}
+              ref={mergeRefs(headerResizeRef, headerRef)}
+              // ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
                   bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
@@ -1076,8 +1109,10 @@ export const Table = <
               style={{
                 // This ensures that the table-body is always the same width as the table-header,
                 // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                width: headerRef.current?.scrollWidth,
+                // width: headerRef.current?.scrollWidth,
+                width: headerWidth,
                 height: 0.1,
+                // willChange: 'width',
               }}
             />
           </ShadowTemplate>
