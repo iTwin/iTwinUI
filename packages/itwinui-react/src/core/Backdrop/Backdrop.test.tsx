@@ -26,5 +26,5 @@ it('should render with custom style and className', () => {
   expect(backdrop).toBeTruthy();
   expect(backdrop).toBeTruthy();
   expect(backdrop.classList.contains('test-class')).toBeTruthy();
-  expect(backdrop).toHaveStyle('color: red');
+  expect(backdrop.style.color).toEqual('red');
 });
