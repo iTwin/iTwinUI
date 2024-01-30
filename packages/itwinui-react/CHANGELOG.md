@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.3.3
+
+### Patch Changes
+
+- [#1800](https://github.com/iTwin/iTwinUI/pull/1800): Updated internal usage of `ResizeObserver` to prevent throwing a benign "ResizeObserver loop limit exceeded" error in React 17 apps. Some affected components: `ButtonGroup`, `Tabs`, `Table`, `Tree`, `Breadcrumbs`, etc.
+- [#1807](https://github.com/iTwin/iTwinUI/pull/1807): iTwinUI will now also check for `vitest` and `mocha` (in addition to `jest`) before running any code that would cause problems in these test runners.
+
 ## 3.3.2
 
 ### Patch Changes
