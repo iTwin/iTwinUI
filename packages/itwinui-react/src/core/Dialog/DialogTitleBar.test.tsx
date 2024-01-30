@@ -67,7 +67,7 @@ it('should propagate miscellaneous props', () => {
     '.iui-dialog-title-bar',
   ) as HTMLElement;
   expect(titleBar).toHaveClass('test-class');
-  expect(titleBar).toHaveStyle('color: red;');
+  expect(titleBar.style.color).toEqual('red');
   expect(titleBar.id).toEqual('test-id');
 });
 

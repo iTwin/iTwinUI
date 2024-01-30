@@ -291,6 +291,6 @@ describe('ErrorPage', () => {
       '.iui-non-ideal-state',
     ) as HTMLElement;
     expect(element).toHaveClass('test class');
-    expect(element).toHaveStyle('color: blue');
+    expect(element.style.color).toEqual('blue');
   });
 });

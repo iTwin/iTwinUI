@@ -29,6 +29,6 @@ it('should propagate miscellaneous props', () => {
 
   const title = container.querySelector('.iui-dialog-title') as HTMLElement;
   expect(title).toHaveClass('test-class');
-  expect(title).toHaveStyle('color: red;');
+  expect(title.style.color).toEqual('red');
   expect(title.id).toEqual('test-id');
 });
