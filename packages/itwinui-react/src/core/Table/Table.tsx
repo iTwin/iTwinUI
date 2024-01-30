@@ -788,7 +788,6 @@ export const Table = <
     [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
   const onHeaderResize = React.useCallback(() => {
-    // TODO: Use scrollWidth or width arg from function?
     setHeaderWidth(headerRef.current?.scrollWidth ?? 0);
   }, [setHeaderWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
