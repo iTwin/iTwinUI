@@ -13,7 +13,9 @@ import {
   useControlledState,
   useLatestRef,
   importCss,
-  isTestingFramework,
+  isJest,
+  isMocha,
+  isVitest,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { ThemeContext } from './ThemeContext.js';
@@ -301,8 +303,8 @@ const FallbackStyles = ({ root }: { root: HTMLElement }) => {
       return;
     }
 
-    // bail if isTestingFramework because unit tests don't care about CSS 🤷
-    if (isTestingFramework) {
+    // bail if isJest/isMocha/isVitest because unit tests don't care about CSS 🤷
+    if (isJest || isMocha || isVitest) {
       return;
     }
 
