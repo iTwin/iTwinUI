@@ -44,12 +44,10 @@ export const useResizeObserver = <T extends HTMLElement>(
           });
         });
         resizeObserver.current?.observe?.(element);
-      }
-
-      return () => {
+      } else {
         resizeObserver.current?.disconnect?.();
         resizeObserver.current = undefined;
-      };
+      }
     },
     [onResize],
   );
