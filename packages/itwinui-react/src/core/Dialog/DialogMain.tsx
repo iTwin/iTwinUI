@@ -18,6 +18,7 @@ import type { DialogContextProps } from './DialogContext.js';
 import { CSSTransition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
 import useDragAndDrop from '../utils/hooks/useDragAndDrop.js';
+import styles from '../../styles.js';
 
 export type DialogMainProps = {
   /**
@@ -167,7 +168,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {
           'iui-dialog-default': styleType === 'default',
           'iui-dialog-full-page': styleType === 'fullPage',
-          'iui-dialog-visible': isOpen,
           'iui-dialog-draggable': isDraggable,
         },
         className,
@@ -205,8 +205,9 @@ export const DialogMain = React.forwardRef((props, ref) => {
     <CSSTransition
       in={isOpen}
       classNames={{
-        enter: 'iui-dialog-animation-enter',
-        enterActive: 'iui-dialog-animation-enter-active',
+        enter: styles['iui-dialog-animation-enter'],
+        enterActive: styles['iui-dialog-animation-enter-active'],
+        enterDone: styles['iui-dialog-visible'],
       }}
       timeout={{ exit: 600 }}
       // Focuses dialog when opened
