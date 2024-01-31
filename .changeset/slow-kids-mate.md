@@ -2,4 +2,4 @@
 '@itwin/itwinui-react': patch
 ---
 
-Added full page modal animation.
+Fixed broken animation in full-page `Modal` and `Dialog`.
