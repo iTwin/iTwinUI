@@ -4,43 +4,26 @@
 @use '../text/mixins' as text-mixins;
 @use '../anchor/mixins' as anchor;
 
-@mixin iui-tag-base {
-  user-select: all;
-  text-transform: lowercase;
-  display: inline-flex;
-}
-
 @mixin iui-tag-basic {
-  @include iui-tag-base;
-
   &:not(a) {
     color: var(--iui-color-text-muted);
   }
 }
 
 @mixin iui-tag {
-  @include iui-tag-base;
+  display: inline-flex;
   block-size: calc(var(--iui-size-s) * 3);
   margin-block: var(--iui-size-2xs);
   border-radius: var(--iui-border-radius-round);
   padding-inline: var(--iui-size-3xs);
   align-items: center;
   transition: border-color var(--iui-duration-1) ease-out;
-  font-size: var(--iui-font-size-1);
-  text-transform: none;
-  cursor: default;
-  -webkit-tap-highlight-color: transparent;
   border: 1px solid var(--iui-color-border-foreground);
   background-color: var(--iui-color-background);
   color: var(--iui-color-text);
 
   &:hover {
     border-color: var(--iui-color-border-foreground-hover);
-  }
-
-  &:focus-within {
-    outline: 2px solid var(--iui-color-border-accent);
-    outline-offset: -2px;
   }
 }
 
@@ -59,10 +42,6 @@
 
 @mixin iui-tag-button {
   border-radius: var(--iui-border-radius-round);
-
-  &:focus {
-    outline: none;
-  }
 }
 
 @mixin iui-tag-container {
