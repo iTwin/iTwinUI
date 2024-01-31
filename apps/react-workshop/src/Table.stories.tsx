@@ -2289,6 +2289,7 @@ export const ResizableColumns = () => {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
+        width: 200,
       },
       {
         id: 'description',
@@ -2330,30 +2331,30 @@ export const ResizableColumns = () => {
 
   const data = React.useMemo(
     () => [
-      {
-        index: 1,
-        name: 'Name1',
-        description: 'Description1',
-        id: '111',
-        startDate: new Date('May 1, 2021'),
-        endDate: new Date('Jun 1, 2021'),
-      },
-      {
-        index: 2,
-        name: 'Name2',
-        description: 'Description2',
-        id: '222',
-        startDate: new Date('May 2, 2021'),
-        endDate: new Date('Jun 2, 2021'),
-      },
-      {
-        index: 3,
-        name: 'Name3',
-        description: 'Description3',
-        id: '333',
-        startDate: new Date('May 3, 2021'),
-        endDate: new Date('Jun 3, 2021'),
-      },
+      // {
+      //   index: 1,
+      //   name: 'Name1',
+      //   description: 'Description1',
+      //   id: '111',
+      //   startDate: new Date('May 1, 2021'),
+      //   endDate: new Date('Jun 1, 2021'),
+      // },
+      // {
+      //   index: 2,
+      //   name: 'Name2',
+      //   description: 'Description2',
+      //   id: '222',
+      //   startDate: new Date('May 2, 2021'),
+      //   endDate: new Date('Jun 2, 2021'),
+      // },
+      // {
+      //   index: 3,
+      //   name: 'Name3',
+      //   description: 'Description3',
+      //   id: '333',
+      //   startDate: new Date('May 3, 2021'),
+      //   endDate: new Date('Jun 3, 2021'),
+      // },
     ],
     [],
   );
@@ -2540,13 +2541,15 @@ export const HorizontalScroll = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        width: 400,
+        width: '20vw',
+        minWidth: 200,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        width: 400,
+        width: '20vw',
+        minWidth: 200,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
@@ -2592,7 +2595,7 @@ HorizontalScroll.decorators = [
       style={{
         height: '375px',
         maxHeight: '90vh',
-        maxWidth: '1600px',
+        maxWidth: '80vw',
       }}
     >
       <Story />

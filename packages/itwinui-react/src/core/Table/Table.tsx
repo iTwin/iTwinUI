@@ -960,10 +960,10 @@ export const Table = <
   //         element?.scrollWidth,
   //       );
   //     });
-  //     console.log(3, headerScrollWidth, shouldShowShadowTemplate);
+  //     // console.log(3, headerScrollWidth, shouldShowShadowTemplate);
   //   }, 1000);
   //   return () => clearInterval(interval);
-  // }, [headerScrollWidth]);
+  // }, [headerRef.current, bodyRef.current]);
 
   return (
     <>
