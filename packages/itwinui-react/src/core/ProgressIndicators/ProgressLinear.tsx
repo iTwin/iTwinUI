@@ -30,7 +30,7 @@ type ProgressLinearProps = {
   /**
    * Status of progress.
    */
-  status?: 'positive' | 'negative';
+  status?: 'positive' | 'negative' | 'warning';
   /**
    * Pass props to ProgressLinear label group.
    */

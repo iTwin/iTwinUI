@@ -17,8 +17,9 @@
 
     <script type="module">
       import "./assets/theme.js";
-      import "@itwin/itwinui-icons-elements/status-success-hollow";
-      import "@itwin/itwinui-icons-elements/status-error-hollow";
+      import "@itwin/itwinui-icons-elements/status-success";
+      import "@itwin/itwinui-icons-elements/status-warning";
+      import "@itwin/itwinui-icons-elements/status-error";
       import "@itwin/itwinui-icons-elements/pause";
       import "@itwin/itwinui-icons-elements/checkmark-small";
       import "@itwin/itwinui-icons-elements/important-small";
@@ -100,10 +101,11 @@
       >
         <div class="iui-progress-indicator-linear-label">
           <span>Upload successful!</span>
-          <svg-status-success-hollow
+          <svg-status-success
             class="iui-svg-icon"
             aria-hidden="true"
-          ></svg-status-success-hollow>
+            data-iui-icon-color="positive"
+          ></svg-status-success>
         </div>
       </div>
 
@@ -119,10 +121,11 @@
       >
         <div class="iui-progress-indicator-linear-label">
           <span>Upload successful with warnings!</span>
-          <svg-status-error-hollow
+          <svg-status-warning
             class="iui-svg-icon"
             aria-hidden="true"
-          ></svg-status-error-hollow>
+            data-iui-icon-color="warning"
+          ></svg-status-warning>
         </div>
       </div>
 
@@ -141,10 +144,11 @@
       >
         <div class="iui-progress-indicator-linear-label">
           <span>Upload failed!</span>
-          <svg-status-error-hollow
+          <svg-status-error
             class="iui-svg-icon"
             aria-hidden="true"
-          ></svg-status-error-hollow>
+            data-iui-icon-color="negative"
+          ></svg-status-error>
         </div>
       </div>
     </section>
