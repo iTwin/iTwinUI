@@ -34,12 +34,13 @@ $surface-padding-with-gutter: var(--iui-size-2xs);
   overflow-y: auto;
 
   &[data-iui-padded='true'] {
-    scrollbar-gutter: stable both-edges;
-    padding-inline: $surface-padding-with-gutter;
-    padding-block: $surface-padding;
+    padding: $surface-padding;
 
-    @supports not (scrollbar-gutter: stable) {
-      padding-inline: $surface-padding;
-    }
+    // Scrollbars might not always occupy space even with a stable gutter, so this can still
+    // result in (tolerable) differences on the right side, depending on scrollbar visibility.
+    // More importantly, the left side will remain aligned, because we are not using a gutter there.
+    // See: https://github.com/iTwin/iTwinUI/issues/1801
+    scrollbar-gutter: stable;
+    padding-inline-end: $surface-padding-with-gutter;
   }
 }
