@@ -12,6 +12,7 @@ describe('Modal', () => {
       cy.visit('/', { qs: { mode: 'preview', story: id } });
       cy.get('#ladle-root').within(() => {
         cy.get('button').first().click();
+        cy.wait(100);
       });
       cy.compareSnapshot(testName);
     });
