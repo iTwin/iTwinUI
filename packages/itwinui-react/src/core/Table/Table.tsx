@@ -755,9 +755,42 @@ export const Table = <
   // Needed to make Table body horizontally scrollable when there are no rows
   // See: https://github.com/iTwin/iTwinUI/issues/1204
   // See: https://github.com/iTwin/iTwinUI/pull/1725
-  const [headerWidth, setHeaderWidth] = React.useState(
+  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(
     headerRef.current?.scrollWidth ?? 0,
   );
+  const shouldShowShadowTemplate = React.useMemo(() => {
+    const returnVal =
+      // data is empty
+      data.length === 0 &&
+      // headerRef is overflowing
+      (headerRef.current != null
+        ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+        : false);
+
+    if (returnVal) {
+      console.log(
+        `shouldShowShadowTemplate = ${returnVal}`,
+        data.length === 0,
+        headerRef.current != null,
+        headerScrollWidth,
+        headerRef.current?.scrollWidth,
+        headerRef.current?.clientWidth,
+      );
+    }
+
+    /* data is empty*/
+    // data is empty
+    return returnVal;
+  }, [
+    data.length,
+    // headerRef.current,
+    headerRef,
+    headerScrollWidth,
+    // headerRef.current?.scrollWidth,
+    // headerRef.current?.clientWidth,
+  ]);
+
+  // console.log('shouldShowShadowTemplate', shouldShowShadowTemplate);
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -788,8 +821,8 @@ export const Table = <
     [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
   const onHeaderResize = React.useCallback(() => {
-    setHeaderWidth(headerRef.current?.scrollWidth ?? 0);
-  }, [setHeaderWidth]);
+    setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
+  }, [setHeaderScrollWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
   const [headerResizeRef] = useResizeObserver(onHeaderResize);
 
@@ -885,6 +918,22 @@ export const Table = <
   }, []);
 
   const isHeaderDirectClick = React.useRef(false);
+
+  // // Every second
+  // React.useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     [headerRef.current, bodyRef.current].map((element, index) => {
+  //       console.log(
+  //         index,
+  //         element?.clientWidth,
+  //         element?.offsetWidth,
+  //         element?.scrollWidth,
+  //       );
+  //     });
+  //     console.log(3, headerScrollWidth, shouldShowShadowTemplate);
+  //   }, 1000);
+  //   return () => clearInterval(interval);
+  // }, [headerScrollWidth]);
 
   return (
     <>
@@ -1081,18 +1130,22 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
+          {/* {shouldShowShadowTemplate && ( */}
           <ShadowTemplate>
             <slot />
-            <div
-              aria-hidden
-              style={{
-                // This ensures that the table-body is always the same width as the table-header,
-                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                width: headerWidth,
-                height: 0.1,
-              }}
-            />
+            {shouldShowShadowTemplate && (
+              <div
+                aria-hidden
+                style={{
+                  // This ensures that the table-body is always the same width as the table-header,
+                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                  width: headerScrollWidth,
+                  height: 0.1,
+                }}
+              />
+            )}
           </ShadowTemplate>
+          {/* )} */}
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
