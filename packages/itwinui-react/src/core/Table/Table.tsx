@@ -802,7 +802,18 @@ export const Table = <
   // }, [setHeaderScrollWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
   const [headerResizeRef] = useResizeObserver(() => {
-    // console.log('headerResizeRef');
+    console.log(
+      'headerResizeRef',
+      data.length === 0 &&
+        // headerRef is overflowing
+        (headerRef.current != null
+          ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+          : false),
+      data.length,
+      headerRef.current != null,
+      headerRef.current?.scrollWidth,
+      headerRef.current?.clientWidth,
+    );
 
     // if data.length === 0
 

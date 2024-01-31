@@ -3452,7 +3452,7 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(body.scrollLeft).toBe(0);
 });
 
-it('should add a shadow tree to table-body. Shadow tree should have a dummy div', () => {
+it('should add a shadow tree to table-body.', () => {
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3487,13 +3487,130 @@ it('should add a shadow tree to table-body. Shadow tree should have a dummy div'
   // body serves as the shadow host
   const host = container.querySelector('.iui-table-body') as HTMLDivElement;
 
-  const dummyDiv = host?.shadowRoot?.querySelector('div');
+  const slot = host?.shadowRoot?.querySelector('slot');
+  expect(slot).toBeTruthy();
+});
+
+// it.each([
+//   [
+//     'should have a shadow tree in table-body that has a dummy div when header is scrollable',
+//     true,
+//   ],
+//   false,
+// ])(
+//   'should have a shadow tree in table-body that has a dummy div only when needed',
+//   (isResizable) => {
+//     const columnWidths = [400, 600, 200];
+//     const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
+//   },
+// );
+
+it.only('should have a shadow tree in table-body that has a dummy div only when needed', () => {
+  const columnWidths = [400, 600, 200];
+  const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
+
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
+      triggerResize = onResize;
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
+
+  const { container } = renderComponent({
+    columns: [
+      {
+        Header: 'Name',
+        accessor: 'name',
+        id: 'name',
+        width: columnWidths[0],
+      },
+      {
+        Header: 'Description',
+        accessor: 'description',
+        id: 'description',
+        width: columnWidths[1],
+      },
+      {
+        Header: 'View',
+        Cell: () => <>View</>,
+        id: 'view',
+        width: columnWidths[2],
+      },
+    ],
+    data: [],
+    isResizable: true,
+    columnResizeMode: 'expand',
+  });
+
+  // Initial render
+  console.log('initial render');
+  triggerResize({ width: 300 } as DOMRectReadOnly);
+
+  // body serves as the shadow host
+  let host = container.querySelector('.iui-table-body') as HTMLDivElement;
+
+  // When clientWidth === scrollWidth, the dummy div should not be rendered
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
+    columnWidthsSum,
+  );
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(
+    columnWidthsSum,
+  );
+
+  let dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).not.toBeTruthy();
+
+  const resizer = container.querySelector(
+    '.iui-table-resizer',
+  ) as HTMLDivElement;
+  expect(resizer).toBeTruthy();
+
+  // const headerCells = container.querySelectorAll<HTMLDivElement>(
+  //   '.iui-table-header .iui-table-cell',
+  // );
+  // expect(headerCells).toHaveLength(3);
+
+  // headerCells.forEach((headerCell, index) => {
+  //   expect(headerCell.style.width).toBe(`${columnWidths[index]}px`);
+  // });
+
+  // When clientWidth < scrollWidth, the dummy div should be rendered
+  // E.g. case: make first column 200px wider
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 200 });
+  fireEvent.mouseUp(resizer);
+
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
+    columnWidthsSum + 200,
+  );
+
+  // headerCells.forEach((headerCell, index) => {
+  //   expect(headerCell.style.width).toBe(
+  //     `${columnWidths[index] + (index === 0 ? 200 : 0)}px`,
+  //   );
+  // });
+
+  console.log(host.shadowRoot?.innerHTML);
+
+  act(() => {
+    console.log('Resize column 1 by +200');
+    triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
+  });
+
+  // requestAnimationFrame(() => {
+  host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  console.log('dom', host.shadowRoot?.innerHTML);
+
+  dummyDiv = host?.shadowRoot?.querySelector('div');
   expect(dummyDiv).toBeTruthy();
+
+  // });
   expect(dummyDiv?.textContent).toBe('');
   expect(dummyDiv?.style.height).toBe('0.1px');
 
   // The dummy div should have the same width as the table header
-  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum}px`);
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 200}px`);
 });
 
 it.each([
