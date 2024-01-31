@@ -11,6 +11,7 @@ describe('ProgressLinear', () => {
     'Labeled Left Right',
     'Negative',
     'Positive',
+    // 'Warning',
   ];
 
   tests.forEach((testName) => {
