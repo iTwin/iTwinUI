@@ -755,40 +755,16 @@ export const Table = <
   // Needed to make Table body horizontally scrollable when there are no rows
   // See: https://github.com/iTwin/iTwinUI/issues/1204
   // See: https://github.com/iTwin/iTwinUI/pull/1725
-  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(
-    headerRef.current?.scrollWidth ?? 0,
-  );
-  const shouldShowShadowTemplate = React.useMemo(() => {
-    const returnVal =
-      // data is empty
-      data.length === 0 &&
-      // headerRef is overflowing
-      (headerRef.current != null
-        ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
-        : false);
-
-    if (returnVal) {
-      console.log(
-        `shouldShowShadowTemplate = ${returnVal}`,
-        data.length === 0,
-        headerRef.current != null,
-        headerScrollWidth,
-        headerRef.current?.scrollWidth,
-        headerRef.current?.clientWidth,
-      );
-    }
-
-    /* data is empty*/
-    // data is empty
-    return returnVal;
-  }, [
-    data.length,
-    // headerRef.current,
-    headerRef,
-    headerScrollWidth,
-    // headerRef.current?.scrollWidth,
-    // headerRef.current?.clientWidth,
-  ]);
+  // const [headerScrollWidth, setHeaderScrollWidth] = React.useState(
+  //   headerRef.current?.scrollWidth ?? 0,
+  // );
+  // const [headerWidths, setHeaderWidths] = React.useState<
+  //   Pick<HTMLDivElement, 'clientWidth' | 'offsetWidth' | 'scrollWidth'>
+  // >({
+  //   clientWidth: headerRef.current?.clientWidth ?? 0,
+  //   offsetWidth: headerRef.current?.offsetWidth ?? 0,
+  //   scrollWidth: headerRef.current?.scrollWidth ?? 0,
+  // });
 
   // console.log('shouldShowShadowTemplate', shouldShowShadowTemplate);
 
@@ -820,11 +796,65 @@ export const Table = <
     },
     [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
-  const onHeaderResize = React.useCallback(() => {
-    setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
-  }, [setHeaderScrollWidth]);
+  // const onHeaderResize = React.useCallback(() => {
+  //   // setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
+
+  // }, [setHeaderScrollWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
-  const [headerResizeRef] = useResizeObserver(onHeaderResize);
+  const [headerResizeRef] = useResizeObserver(() => {
+    // console.log('headerResizeRef');
+
+    // if data.length === 0
+
+    // setShouldShowShadowTemplate();
+
+    setShouldShowShadowTemplate(
+      // data is empty
+      data.length === 0 &&
+        // headerRef is overflowing
+        (headerRef.current != null
+          ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+          : false),
+    );
+  });
+
+  const [shouldShowShadowTemplate, setShouldShowShadowTemplate] =
+    React.useState(false);
+
+  // const shouldShowShadowTemplate = React.useMemo(() => {
+  //   const returnVal =
+  //     // data is empty
+  //     data.length === 0 &&
+  //     // headerRef is overflowing
+  //     (headerRef.current != null
+  //       ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+  //       : false);
+
+  //   if (returnVal) {
+  //     console.log(
+  //       `shouldShowShadowTemplate = ${returnVal}`,
+  //       data.length === 0,
+  //       headerRef.current != null,
+  //       // headerScrollWidth,
+  //       headerRef.current?.scrollWidth,
+  //       headerRef.current?.clientWidth,
+  //     );
+  //   }
+
+  //   /* data is empty*/
+  //   // data is empty
+  //   return returnVal;
+  // }, [
+  //   data.length,
+  //   // headerRef.current,
+  //   headerRef,
+
+  //   // Whenever the header resizes, shouldShowShadowTemplate should be recalculated
+  //   headerResizeRef,
+  //   // headerScrollWidth,
+  //   // headerRef.current?.scrollWidth,
+  //   // headerRef.current?.clientWidth,
+  // ]);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
@@ -969,6 +999,7 @@ export const Table = <
             <Box
               as='div'
               ref={mergeRefs(headerResizeRef, headerRef)}
+              // ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
                   bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
@@ -1139,7 +1170,7 @@ export const Table = <
                 style={{
                   // This ensures that the table-body is always the same width as the table-header,
                   // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                  width: headerScrollWidth,
+                  width: headerRef.current?.scrollWidth ?? 0,
                   height: 0.1,
                 }}
               />
