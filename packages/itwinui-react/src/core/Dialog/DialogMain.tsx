@@ -209,7 +209,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         enterActive: styles['iui-dialog-animation-enter-active'],
         enterDone: styles['iui-dialog-visible'],
       }}
-      timeout={100}
+      timeout={{ exit: 100 }}
       // Focuses dialog when opened
       onEntered={() => {
         previousFocusedElement.current = dialogRef.current?.ownerDocument
