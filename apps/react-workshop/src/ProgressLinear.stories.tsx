@@ -3,8 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import {
-  SvgStatusErrorHollow,
-  SvgStatusSuccessHollow,
+  SvgStatusError,
+  SvgStatusSuccess,
+  SvgStatusWarning,
 } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { ProgressLinear, Icon } from '@itwin/itwinui-react';
@@ -40,7 +41,7 @@ export const Positive = () => {
       labels={[
         'Upload done!',
         <Icon key='icon'>
-          <SvgStatusSuccessHollow />
+          <SvgStatusSuccess />
         </Icon>,
       ]}
       status='positive'
@@ -55,10 +56,25 @@ export const Negative = () => {
       labels={[
         'Upload failed',
         <Icon key='icon'>
-          <SvgStatusErrorHollow />
+          <SvgStatusError />
         </Icon>,
       ]}
       status='negative'
+    />
+  );
+};
+
+export const Warning = () => {
+  return (
+    <ProgressLinear
+      value={45}
+      labels={[
+        'Upload successful with warning',
+        <Icon key='icon'>
+          <SvgStatusWarning />
+        </Icon>,
+      ]}
+      status='warning'
     />
   );
 };

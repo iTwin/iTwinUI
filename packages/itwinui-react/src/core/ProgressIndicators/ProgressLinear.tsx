@@ -48,9 +48,11 @@ type ProgressLinearProps = {
  * <ProgressLinear value={50} labels={['Centered Label']} />
  * Labeled - Left & Right
  * <ProgressLinear value={50} labels={['Loading...', '50%']} />
- * Positive / Negative.
- * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccessHollow />]} />
+ * Positive / Negative / Warning
+ * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccess/>]} />
  * <ProgressLinear status='negative' />
+ *  <ProgressLinear status='warning' labels={['Upload successful with warning!', <SvgStatusWarning />]} />
+
  */
 export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
