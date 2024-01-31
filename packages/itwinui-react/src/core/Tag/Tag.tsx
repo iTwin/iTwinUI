@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import cx from 'classnames';
 import * as React from 'react';
-import { SvgCloseSmall, Box } from '../utils/index.js';
+import { SvgCloseSmall, Box, ButtonBase } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 
@@ -25,6 +25,8 @@ type TagProps = {
    * @default 'default'
    */
   variant?: 'default' | 'basic';
+  labelProps?: React.ComponentPropsWithoutRef<'span'>;
+  closeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
 };
 
 /**
@@ -34,11 +36,19 @@ type TagProps = {
  * <Tag variant='basic'>Basic tag</Tag>
  */
 export const Tag = React.forwardRef((props, forwardedRef) => {
-  const { className, variant = 'default', children, onRemove, ...rest } = props;
+  const {
+    className,
+    variant = 'default',
+    children,
+    onRemove,
+    labelProps,
+    closeButtonProps,
+    ...rest
+  } = props;
 
   return (
     <Box
-      as='span'
+      as={!!props.onClick ? ButtonBase : 'span'}
       className={cx(
         {
           'iui-tag-basic': variant === 'basic',
@@ -46,11 +56,16 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
         },
         className,
       )}
-      ref={forwardedRef}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ref's type doesn't matter internally
+      ref={forwardedRef as any}
       {...rest}
     >
       {variant === 'default' ? (
-        <Box as='span' className='iui-tag-label'>
+        <Box
+          as='span'
+          {...labelProps}
+          className={cx('iui-tag-label', labelProps?.className)}
+        >
           {children}
         </Box>
       ) : (
@@ -62,7 +77,8 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
           size='small'
           onClick={onRemove}
           aria-label='Delete tag'
-          className='iui-tag-button'
+          {...closeButtonProps}
+          className={cx('iui-tag-button', closeButtonProps?.className)}
         >
           <SvgCloseSmall aria-hidden />
         </IconButton>
