@@ -31,7 +31,7 @@ it('renders indeterminate ProgressRadial', () => {
 });
 
 it.each(['positive', 'negative', 'warning'] as const)(
-  'renders ProgressRadial of various statuses',
+  'renders %s ProgressRadial',
   (status) => {
     const { container } = render(<ProgressRadial status={status} />);
     const spinner = container.querySelector('.iui-progress-indicator-radial');
