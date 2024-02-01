@@ -10,24 +10,56 @@ import { IconButton } from '../Buttons/IconButton.js';
 
 type TagProps = {
   /**
-   * Callback function that handles click on close icon.
-   * Close icon is shown only when this function is passed.
-   * Use only with 'default' Tag.
-   */
-  onRemove?: React.MouseEventHandler;
-  /**
    * Text inside the tag.
    */
   children: React.ReactNode;
-  /**
-   * Variant of tag.
-   * Basic tags don't have an outline.
-   * @default 'default'
-   */
-  variant?: 'default' | 'basic';
-  labelProps?: React.ComponentPropsWithoutRef<'span'>;
-  closeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
-};
+} & (
+  | {
+      /**
+       * Variant of tag.
+       * Basic tags don't have an outline.
+       * @default 'default'
+       */
+      variant?: 'default';
+      /**
+       * Props for customizing the label.
+       *
+       * Only relevant for the 'default' Tag.
+       */
+      labelProps?: React.ComponentPropsWithoutRef<'span'>;
+    }
+  | {
+      variant?: 'basic';
+      labelProps?: never;
+    }
+) &
+  (
+    | {
+        /**
+         * Callback invoked when the tag is clicked.
+         *
+         * When this prop is passed, the tag will be rendered as a button.
+         *
+         * This prop is mutually exclusive with `onRemove`.
+         */
+        onClick?: React.MouseEventHandler;
+        onRemove?: never;
+        removeButtonProps?: never;
+      }
+    | {
+        onClick?: never;
+        /**
+         * Callback function that handles click on close icon.
+         * Close icon is shown only when this function is passed.
+         * Use only with 'default' Tag.
+         */
+        onRemove?: React.MouseEventHandler;
+        /**
+         * Props for customizing the remove ("❌") button.
+         */
+        removeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
+      }
+  );
 
 /**
  * Tag for showing categories, filters etc.
@@ -42,7 +74,7 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     children,
     onRemove,
     labelProps,
-    closeButtonProps,
+    removeButtonProps,
     ...rest
   } = props;
 
@@ -77,8 +109,8 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
           size='small'
           onClick={onRemove}
           aria-label='Delete tag'
-          {...closeButtonProps}
-          className={cx('iui-tag-button', closeButtonProps?.className)}
+          {...removeButtonProps}
+          className={cx('iui-tag-button', removeButtonProps?.className)}
         >
           <SvgCloseSmall aria-hidden />
         </IconButton>
