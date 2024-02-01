@@ -756,7 +756,10 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
-      // Show the dummy div if only …
+      // ------------------------------------------------------------------------------------------------
+      // Handle setShouldShowShadowTemplate
+
+      // Show the dummy div only if …
       setShouldShowShadowTemplate(
         // … data is empty
         data.length === 0 &&
@@ -766,7 +769,8 @@ export const Table = <
             : false),
       );
 
-      // ---
+      // ------------------------------------------------------------------------------------------------
+      // Handle table properties, but only when table is resizable
 
       if (!isResizable) {
         return;
