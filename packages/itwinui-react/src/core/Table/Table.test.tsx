@@ -3115,6 +3115,13 @@ it('should handle table resize only when some columns were resized', () => {
   // Initial render
   triggerResize({ width: 300 } as DOMRectReadOnly);
 
+  // // Wait for one frame
+  // await new Promise((resolve) => {
+  //   requestAnimationFrame(() => {
+  //     resolve(null);
+  //   });
+  // });
+
   const headerCells = container.querySelectorAll<HTMLDivElement>(
     '.iui-table-header .iui-table-cell',
   );
@@ -3134,6 +3141,17 @@ it('should handle table resize only when some columns were resized', () => {
     htmlWidthMock.mockReturnValue({ width: 50 } as DOMRect);
     triggerResize({ width: 150 } as DOMRectReadOnly);
   });
+
+  // // Wait for one frame
+  // await new Promise((resolve) => {
+  //   requestAnimationFrame(() => {
+  //     resolve(null);
+  //   });
+  // });
+
+  // // 1 second
+  // await new Promise((resolve) => setTimeout(resolve, 1000));
+
   headerCells.forEach((cell) => expect(cell.style.width).toBe('50px'));
 });
 
@@ -3491,21 +3509,7 @@ it('should add a shadow tree to table-body.', () => {
   expect(slot).toBeTruthy();
 });
 
-// it.each([
-//   [
-//     'should have a shadow tree in table-body that has a dummy div when header is scrollable',
-//     true,
-//   ],
-//   false,
-// ])(
-//   'should have a shadow tree in table-body that has a dummy div only when needed',
-//   (isResizable) => {
-//     const columnWidths = [400, 600, 200];
-//     const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
-//   },
-// );
-
-it.only('should have a shadow tree in table-body that has a dummy div only when needed', () => {
+it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3545,7 +3549,7 @@ it.only('should have a shadow tree in table-body that has a dummy div only when 
 
   // Initial render
   console.log('initial render');
-  triggerResize({ width: 300 } as DOMRectReadOnly);
+  triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
 
   // body serves as the shadow host
   let host = container.querySelector('.iui-table-body') as HTMLDivElement;
@@ -3595,7 +3599,7 @@ it.only('should have a shadow tree in table-body that has a dummy div only when 
 
   act(() => {
     console.log('Resize column 1 by +200');
-    triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
+    triggerResize({ width: columnWidthsSum + 200 } as DOMRectReadOnly);
   });
 
   // requestAnimationFrame(() => {
