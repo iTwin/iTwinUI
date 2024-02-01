@@ -3537,9 +3537,9 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   expect(host).toBeTruthy();
 
   // When clientWidth === scrollWidth, the dummy div should not be rendered
-  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
-    columnWidthsSum,
-  );
+  const htmlScrollWidthMock = vi
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValue(columnWidthsSum);
   vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(
     columnWidthsSum,
   );
@@ -3558,9 +3558,7 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 200 });
   fireEvent.mouseUp(resizer);
 
-  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
-    columnWidthsSum + 200,
-  );
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 200);
 
   act(() => {
     console.log('Resize column 1 by +200');
