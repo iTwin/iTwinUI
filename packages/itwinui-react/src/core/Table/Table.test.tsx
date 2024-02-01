@@ -3452,7 +3452,7 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(body.scrollLeft).toBe(0);
 });
 
-it('should add a shadow tree to table-body. Shadow tree should have a dummy div', () => {
+it('should add a shadow tree to table-body.', () => {
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3487,13 +3487,123 @@ it('should add a shadow tree to table-body. Shadow tree should have a dummy div'
   // body serves as the shadow host
   const host = container.querySelector('.iui-table-body') as HTMLDivElement;
 
-  const dummyDiv = host?.shadowRoot?.querySelector('div');
+  const slot = host?.shadowRoot?.querySelector('slot');
+  expect(slot).toBeTruthy();
+});
+
+it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
+  const columnWidths = [400, 600, 200];
+  const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
+
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
+      triggerResize = onResize;
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
+
+  const { container } = renderComponent({
+    columns: [
+      {
+        Header: 'Name',
+        accessor: 'name',
+        id: 'name',
+        width: columnWidths[0],
+      },
+      {
+        Header: 'Description',
+        accessor: 'description',
+        id: 'description',
+        width: columnWidths[1],
+      },
+      {
+        Header: 'View',
+        Cell: () => <>View</>,
+        id: 'view',
+        width: columnWidths[2],
+      },
+    ],
+    data: [],
+    isResizable: true,
+    columnResizeMode: 'expand',
+  });
+
+  // Initial render
+  triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
+
+  // body serves as the shadow host
+  let host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  expect(host).toBeTruthy();
+
+  // When clientWidth >= scrollWidth, the dummy div should not be rendered
+  const htmlScrollWidthMock = vi
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValue(columnWidthsSum);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(
+    columnWidthsSum,
+  );
+
+  let dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).not.toBeTruthy();
+
+  const resizer = container.querySelector(
+    '.iui-table-resizer',
+  ) as HTMLDivElement;
+  expect(resizer).toBeTruthy();
+
+  // When clientWidth < scrollWidth, the dummy div should be added
+  // E.g. case: make first column 200px wider than the initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 200 });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 200);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum + 200 } as DOMRectReadOnly);
+  });
+
+  host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+
   expect(dummyDiv).toBeTruthy();
   expect(dummyDiv?.textContent).toBe('');
   expect(dummyDiv?.style.height).toBe('0.1px');
 
   // The dummy div should have the same width as the table header
-  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum}px`);
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 200}px`);
+
+  // When table/column resizes, the dummy div should also resize
+  // E.g. case: make first column 400px wider than the initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 200 });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 400 });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 400);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum + 400 } as DOMRectReadOnly);
+  });
+
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).toBeTruthy();
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 400}px`);
+
+  // When clientWidth >= scrollWidth, the dummy div should be removed
+  // E.g. case: make first column back to initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 400 });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
+  });
+
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).not.toBeTruthy();
 });
 
 it.each([

@@ -748,11 +748,34 @@ export const Table = <
     ],
   );
 
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      // ------------------------------------------------------------------------------------------------
+      // Handle setShouldShowDummyDiv
+
+      // Show the dummy div only if …
+      setShouldShowDummyDiv(
+        // … data is empty
+        data.length === 0 &&
+          // … and header is indeed overflowing
+          (headerRef.current != null
+            ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+            : false),
+      );
+
+      // ------------------------------------------------------------------------------------------------
+      // Handle table properties, but only when table is resizable
+
+      if (!isResizable) {
+        return;
+      }
+
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -774,9 +797,21 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
+    [
+      data.length,
+      isResizable,
+      dispatch,
+      state.columnResizing.columnWidths,
+      flatHeaders,
+      instance,
+    ],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
+
+  // Needed to make Table body horizontally scrollable when there are no rows
+  // See: https://github.com/iTwin/iTwinUI/issues/1204
+  // See: https://github.com/iTwin/iTwinUI/pull/1725
+  const [shouldShowDummyDiv, setShouldShowDummyDiv] = React.useState(false);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
@@ -791,9 +826,6 @@ export const Table = <
       dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
     }
   });
-
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
 
   const getPreparedRow = React.useCallback(
     (index: number) => {
@@ -1071,15 +1103,17 @@ export const Table = <
         >
           <ShadowTemplate>
             <slot />
-            <div
-              aria-hidden
-              style={{
-                // This ensures that the table-body is always the same width as the table-header,
-                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                width: headerRef.current?.scrollWidth,
-                height: 0.1,
-              }}
-            />
+            {shouldShowDummyDiv && (
+              <div
+                aria-hidden
+                style={{
+                  // This ensures that the table-body is always the same width as the table-header,
+                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                  width: headerRef.current?.scrollWidth,
+                  height: 0.1,
+                }}
+              />
+            )}
           </ShadowTemplate>
           {data.length !== 0 && (
             <>
