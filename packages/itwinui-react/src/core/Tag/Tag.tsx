@@ -49,9 +49,11 @@ type TagProps = {
     | {
         onClick?: never;
         /**
-         * Callback function that handles click on close icon.
-         * Close icon is shown only when this function is passed.
-         * Use only with 'default' Tag.
+         * Callback function that handles click on the remove ("❌") button.
+         * If not passed, the remove button will not be shown.
+         *
+         * This prop is mutually exclusive with the `onClick` prop, because
+         * the tag will be rendered as a button when `onClick` is passed.
          */
         onRemove?: React.MouseEventHandler;
         /**
