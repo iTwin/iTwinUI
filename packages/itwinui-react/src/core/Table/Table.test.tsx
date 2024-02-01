@@ -3115,13 +3115,6 @@ it('should handle table resize only when some columns were resized', () => {
   // Initial render
   triggerResize({ width: 300 } as DOMRectReadOnly);
 
-  // // Wait for one frame
-  // await new Promise((resolve) => {
-  //   requestAnimationFrame(() => {
-  //     resolve(null);
-  //   });
-  // });
-
   const headerCells = container.querySelectorAll<HTMLDivElement>(
     '.iui-table-header .iui-table-cell',
   );
@@ -3141,17 +3134,6 @@ it('should handle table resize only when some columns were resized', () => {
     htmlWidthMock.mockReturnValue({ width: 50 } as DOMRect);
     triggerResize({ width: 150 } as DOMRectReadOnly);
   });
-
-  // // Wait for one frame
-  // await new Promise((resolve) => {
-  //   requestAnimationFrame(() => {
-  //     resolve(null);
-  //   });
-  // });
-
-  // // 1 second
-  // await new Promise((resolve) => setTimeout(resolve, 1000));
-
   headerCells.forEach((cell) => expect(cell.style.width).toBe('50px'));
 });
 
@@ -3548,11 +3530,11 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   });
 
   // Initial render
-  console.log('initial render');
   triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
 
   // body serves as the shadow host
   let host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  expect(host).toBeTruthy();
 
   // When clientWidth === scrollWidth, the dummy div should not be rendered
   vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
@@ -3570,15 +3552,6 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   ) as HTMLDivElement;
   expect(resizer).toBeTruthy();
 
-  // const headerCells = container.querySelectorAll<HTMLDivElement>(
-  //   '.iui-table-header .iui-table-cell',
-  // );
-  // expect(headerCells).toHaveLength(3);
-
-  // headerCells.forEach((headerCell, index) => {
-  //   expect(headerCell.style.width).toBe(`${columnWidths[index]}px`);
-  // });
-
   // When clientWidth < scrollWidth, the dummy div should be rendered
   // E.g. case: make first column 200px wider
   fireEvent.mouseDown(resizer, { clientX: columnWidths[0] });
@@ -3589,27 +3562,15 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
     columnWidthsSum + 200,
   );
 
-  // headerCells.forEach((headerCell, index) => {
-  //   expect(headerCell.style.width).toBe(
-  //     `${columnWidths[index] + (index === 0 ? 200 : 0)}px`,
-  //   );
-  // });
-
-  console.log(host.shadowRoot?.innerHTML);
-
   act(() => {
     console.log('Resize column 1 by +200');
     triggerResize({ width: columnWidthsSum + 200 } as DOMRectReadOnly);
   });
 
-  // requestAnimationFrame(() => {
   host = container.querySelector('.iui-table-body') as HTMLDivElement;
-  console.log('dom', host.shadowRoot?.innerHTML);
-
   dummyDiv = host?.shadowRoot?.querySelector('div');
-  expect(dummyDiv).toBeTruthy();
 
-  // });
+  expect(dummyDiv).toBeTruthy();
   expect(dummyDiv?.textContent).toBe('');
   expect(dummyDiv?.style.height).toBe('0.1px');
 
