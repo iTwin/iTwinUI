@@ -3,4 +3,4 @@
 '@itwin/itwinui-css': minor
 ---
 
-Added warning usecase for all ProgressIndicators
+Added warning status for all ProgressRadial and ProgressLinear
