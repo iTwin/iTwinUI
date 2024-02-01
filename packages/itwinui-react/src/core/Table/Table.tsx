@@ -757,10 +757,10 @@ export const Table = <
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
       // ------------------------------------------------------------------------------------------------
-      // Handle setShouldShowShadowTemplate
+      // Handle setShouldShowDummyDiv
 
       // Show the dummy div only if …
-      setShouldShowShadowTemplate(
+      setShouldShowDummyDiv(
         // … data is empty
         data.length === 0 &&
           // … and header is indeed overflowing
@@ -811,8 +811,7 @@ export const Table = <
   // Needed to make Table body horizontally scrollable when there are no rows
   // See: https://github.com/iTwin/iTwinUI/issues/1204
   // See: https://github.com/iTwin/iTwinUI/pull/1725
-  const [shouldShowShadowTemplate, setShouldShowShadowTemplate] =
-    React.useState(false);
+  const [shouldShowDummyDiv, setShouldShowDummyDiv] = React.useState(false);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
@@ -1104,7 +1103,7 @@ export const Table = <
         >
           <ShadowTemplate>
             <slot />
-            {shouldShowShadowTemplate && (
+            {shouldShowDummyDiv && (
               <div
                 aria-hidden
                 style={{
