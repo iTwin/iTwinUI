@@ -47,6 +47,13 @@ it('renders positive ProgressLinear', () => {
   expect(progress).toHaveAttribute('data-iui-status', 'positive');
 });
 
+it('renders warning ProgressLinear', () => {
+  const { container } = render(<ProgressLinear status='warning' />);
+  const progress = container.querySelector('div');
+  expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
+  expect(progress).toHaveAttribute('data-iui-status', 'warning');
+});
+
 it('renders negative ProgressLinear', () => {
   const { container } = render(<ProgressLinear value={40} status='negative' />);
   const progress = container.querySelector('div');

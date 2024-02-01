@@ -43,6 +43,12 @@ it('renders negative ProgressRadial', () => {
   expect(spinner).toHaveAttribute('data-iui-status', 'negative');
 });
 
+it('renders warnings ProgressRadial', () => {
+  const { container } = render(<ProgressRadial status='warning' />);
+  const spinner = container.querySelector('.iui-progress-indicator-radial');
+  expect(spinner).toHaveAttribute('data-iui-status', 'warning');
+});
+
 it('renders determinate ProgressRadial with max value', () => {
   const { container } = render(<ProgressRadial value={222} />);
   const spinner = container.querySelector('.iui-progress-indicator-radial');
