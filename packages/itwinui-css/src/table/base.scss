@@ -28,7 +28,6 @@
 @mixin iui-table-header-wrapper {
   @include table-scrollbar;
   overflow-x: hidden;
-  scrollbar-width: none;
   background-color: var(--iui-color-background);
   display: flex;
   flex-shrink: 0;
