@@ -45,12 +45,9 @@ type ProgressRadialProps = {
  * <ProgressRadial value={50} />
  * Indeterminate
  * <ProgressRadial indeterminate />
- * Positive / Negative / Warning
- * // #1
+ * // Positive / Negative / Warning
  * <ProgressRadial status='positive' />
- * // #2
  * <ProgressRadial status='negative' />
- * // #3
  * <ProgressRadial status='warning' />
  * Centered Content
  * <ProgressRadial value={63}>63</ProgressRadial>
