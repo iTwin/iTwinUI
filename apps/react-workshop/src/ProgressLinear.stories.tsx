@@ -67,7 +67,7 @@ export const Negative = () => {
 export const Warning = () => {
   return (
     <ProgressLinear
-      value={45}
+      value={100}
       labels={[
         'Upload successful with warning',
         <Icon key='icon'>
