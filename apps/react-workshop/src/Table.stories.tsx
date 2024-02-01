@@ -92,9 +92,9 @@ export const Basic = () => {
 
   const data = React.useMemo(
     () => [
-      // { name: 'Name1', description: 'Description1' },
-      // { name: 'Name2', description: 'Description2' },
-      // { name: 'Name3', description: 'Description3' },
+      { name: 'Name1', description: 'Description1' },
+      { name: 'Name2', description: 'Description2' },
+      { name: 'Name3', description: 'Description3' },
     ],
     [],
   ) as Record<string, unknown>[];
@@ -2289,7 +2289,6 @@ export const ResizableColumns = () => {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
-        width: 200,
       },
       {
         id: 'description',
@@ -2303,7 +2302,7 @@ export const ResizableColumns = () => {
         Header: 'ID',
         accessor: 'id',
         width: 100,
-        // disableResizing: true,
+        disableResizing: true,
       },
       {
         id: 'startDate',
@@ -2331,30 +2330,30 @@ export const ResizableColumns = () => {
 
   const data = React.useMemo(
     () => [
-      // {
-      //   index: 1,
-      //   name: 'Name1',
-      //   description: 'Description1',
-      //   id: '111',
-      //   startDate: new Date('May 1, 2021'),
-      //   endDate: new Date('Jun 1, 2021'),
-      // },
-      // {
-      //   index: 2,
-      //   name: 'Name2',
-      //   description: 'Description2',
-      //   id: '222',
-      //   startDate: new Date('May 2, 2021'),
-      //   endDate: new Date('Jun 2, 2021'),
-      // },
-      // {
-      //   index: 3,
-      //   name: 'Name3',
-      //   description: 'Description3',
-      //   id: '333',
-      //   startDate: new Date('May 3, 2021'),
-      //   endDate: new Date('Jun 3, 2021'),
-      // },
+      {
+        index: 1,
+        name: 'Name1',
+        description: 'Description1',
+        id: '111',
+        startDate: new Date('May 1, 2021'),
+        endDate: new Date('Jun 1, 2021'),
+      },
+      {
+        index: 2,
+        name: 'Name2',
+        description: 'Description2',
+        id: '222',
+        startDate: new Date('May 2, 2021'),
+        endDate: new Date('Jun 2, 2021'),
+      },
+      {
+        index: 3,
+        name: 'Name3',
+        description: 'Description3',
+        id: '333',
+        startDate: new Date('May 3, 2021'),
+        endDate: new Date('Jun 3, 2021'),
+      },
     ],
     [],
   );
@@ -2461,76 +2460,76 @@ export const ZebraStripedRows = () => {
 export const HorizontalScroll = () => {
   const data = React.useMemo(
     () => [
-      // {
-      //   product: 'Product 1',
-      //   price: 5,
-      //   quantity: 500,
-      //   rating: '4/5',
-      //   deliveryTime: 5,
-      // },
-      // {
-      //   product: 'Product 2',
-      //   price: 12,
-      //   quantity: 1200,
-      //   rating: '1/5',
-      //   deliveryTime: 25,
-      // },
-      // {
-      //   product: 'Product 3',
-      //   price: 2.99,
-      //   quantity: 1500,
-      //   rating: '3/5',
-      //   deliveryTime: 7,
-      // },
-      // {
-      //   product: 'Product 4',
-      //   price: 20,
-      //   quantity: 50,
-      //   rating: '4/5',
-      //   deliveryTime: 2,
-      // },
-      // {
-      //   product: 'Product 5',
-      //   price: 1.99,
-      //   quantity: 700,
-      //   rating: '5/5',
-      //   deliveryTime: 1,
-      // },
-      // {
-      //   product: 'Product 6',
-      //   price: 499,
-      //   quantity: 30,
-      //   rating: '5/5',
-      //   deliveryTime: 20,
-      // },
-      // {
-      //   product: 'Product 7',
-      //   price: 13.99,
-      //   quantity: 130,
-      //   rating: '1/5',
-      //   deliveryTime: 30,
-      // },
-      // {
-      //   product: 'Product 8',
-      //   price: 5.99,
-      //   quantity: 500,
-      //   rating: '4/5',
-      //   deliveryTime: 5,
-      // },
-      // {
-      //   product: 'Product 9',
-      //   price: 12,
-      //   quantity: 1200,
-      //   rating: '1/5',
-      //   deliveryTime: 25,
-      // },
-      // {
-      //   product: 'Product 10',
-      //   price: 2.99,
-      //   quantity: 200,
-      //   rating: '3/5',
-      //   deliveryTime: 17,
-      // },
+      {
+        product: 'Product 1',
+        price: 5,
+        quantity: 500,
+        rating: '4/5',
+        deliveryTime: 5,
+      },
+      {
+        product: 'Product 2',
+        price: 12,
+        quantity: 1200,
+        rating: '1/5',
+        deliveryTime: 25,
+      },
+      {
+        product: 'Product 3',
+        price: 2.99,
+        quantity: 1500,
+        rating: '3/5',
+        deliveryTime: 7,
+      },
+      {
+        product: 'Product 4',
+        price: 20,
+        quantity: 50,
+        rating: '4/5',
+        deliveryTime: 2,
+      },
+      {
+        product: 'Product 5',
+        price: 1.99,
+        quantity: 700,
+        rating: '5/5',
+        deliveryTime: 1,
+      },
+      {
+        product: 'Product 6',
+        price: 499,
+        quantity: 30,
+        rating: '5/5',
+        deliveryTime: 20,
+      },
+      {
+        product: 'Product 7',
+        price: 13.99,
+        quantity: 130,
+        rating: '1/5',
+        deliveryTime: 30,
+      },
+      {
+        product: 'Product 8',
+        price: 5.99,
+        quantity: 500,
+        rating: '4/5',
+        deliveryTime: 5,
+      },
+      {
+        product: 'Product 9',
+        price: 12,
+        quantity: 1200,
+        rating: '1/5',
+        deliveryTime: 25,
+      },
+      {
+        product: 'Product 10',
+        price: 2.99,
+        quantity: 200,
+        rating: '3/5',
+        deliveryTime: 17,
+      },
     ],
     [],
   );
@@ -2541,42 +2540,38 @@ export const HorizontalScroll = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        width: 400,
-        // width: '20vw',
-        // minWidth: 200,
+        minWidth: 400,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
         width: 400,
-        // width: '20vw',
-        // minWidth: 200,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
-      // {
-      //   id: 'quantity',
-      //   Header: 'Quantity',
-      //   accessor: 'quantity',
-      //   width: 400,
-      // },
-      // {
-      //   id: 'rating',
-      //   Header: 'Rating',
-      //   accessor: 'rating',
-      //   width: 400,
-      // },
-      // {
-      //   id: 'deliveryTime',
-      //   Header: 'Delivery Time',
-      //   accessor: 'deliveryTime',
-      //   width: 400,
-      //   Cell: (props: CellProps<(typeof data)[0]>) => {
-      //     return <>{`${props.value} day(s)`}</>;
-      //   },
-      // },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+        width: 400,
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        width: 400,
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        width: 400,
+        Cell: (props: CellProps<(typeof data)[0]>) => {
+          return <>{`${props.value} day(s)`}</>;
+        },
+      },
     ],
     [],
   ) satisfies Column<(typeof data)[0]>[];
@@ -2597,7 +2592,7 @@ HorizontalScroll.decorators = [
       style={{
         height: '375px',
         maxHeight: '90vh',
-        maxWidth: '80vw',
+        maxWidth: '1000px',
       }}
     >
       <Story />

@@ -56,7 +56,7 @@ it('should initialize ResizeObserver correctly', () => {
   expect(element.getBoundingClientRect()).toMatchObject(mockSize);
 });
 
-it('should call onResize when element resizes', async () => {
+it('should call onResize when element resizes', () => {
   const onResizeMock = vi.fn();
   renderResizeObserver({ onResize: onResizeMock });
   expect(onResizeMock).not.toHaveBeenCalled();
@@ -65,13 +65,9 @@ it('should call onResize when element resizes', async () => {
   act(() => triggerResize(newSize));
 
   // Wait for one frame
-  await new Promise((resolve) => {
-    requestAnimationFrame(() => {
-      resolve(null);
-    });
+  requestAnimationFrame(() => {
+    expect(onResizeMock).toHaveBeenCalledWith(newSize);
   });
-
-  expect(onResizeMock).toHaveBeenCalledWith(newSize);
 });
 
 it('should not observe if element is null', () => {

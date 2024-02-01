@@ -64,7 +64,7 @@
     "clean:coverage": "rimraf coverage",
     "clean": "rimraf .turbo && yarn clean:coverage && yarn clean:build && rimraf node_modules",
     "test": "yarn test:types && yarn test:unit",
-    "test:unit": "vitest",
+    "test:unit": "vitest run",
     "test:unit:watch": "yarn test:unit --watch",
     "test:types": "tsc -p tsconfig.test.json --noEmit",
     "format": "prettier --config .prettierrc **/*.{tsx,ts,js} --ignore-path .gitignore --write",
