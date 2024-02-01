@@ -36,7 +36,6 @@ import {
   useIsomorphicLayoutEffect,
   Box,
   createWarningLogger,
-  mergeRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -773,6 +772,23 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      console.log('onTableResize', width);
+
+      setShouldShowShadowTemplate(
+        // data is empty
+        data.length === 0 &&
+          // headerRef is overflowing
+          (headerRef.current != null
+            ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+            : false),
+      );
+
+      // ---
+
+      if (!isResizable) {
+        return;
+      }
+
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -794,41 +810,49 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
+    [
+      data.length,
+      isResizable,
+      dispatch,
+      state.columnResizing.columnWidths,
+      flatHeaders,
+      instance,
+    ],
   );
   // const onHeaderResize = React.useCallback(() => {
   //   // setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
 
   // }, [setHeaderScrollWidth]);
   const [resizeRef] = useResizeObserver(onTableResize);
-  const [headerResizeRef] = useResizeObserver(() => {
-    console.log(
-      'headerResizeRef',
-      data.length === 0 &&
-        // headerRef is overflowing
-        (headerRef.current != null
-          ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
-          : false),
-      data.length,
-      headerRef.current != null,
-      headerRef.current?.scrollWidth,
-      headerRef.current?.clientWidth,
-    );
+  // const [headerResizeRef] = useResizeObserver(() => {
+  //   console.log(
+  //     'headerResizeRef',
+  //     data.length === 0 &&
+  //       // headerRef is overflowing
+  //       (headerRef.current != null
+  //         ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+  //         : false),
+  //     data.length,
+  //     headerRef.current != null,
+  //     headerRef.current?.scrollWidth,
+  //     headerRef.current?.clientWidth,
+  //   );
 
-    // if data.length === 0
+  //   // if data.length === 0
 
-    // setShouldShowShadowTemplate();
+  //   // setShouldShowShadowTemplate();
 
-    setShouldShowShadowTemplate(
-      // data is empty
-      data.length === 0 &&
-        // headerRef is overflowing
-        (headerRef.current != null
-          ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
-          : false),
-    );
-  });
+  //   setShouldShowShadowTemplate(
+  //     // data is empty
+  //     data.length === 0 &&
+  //       // headerRef is overflowing
+  //       (headerRef.current != null
+  //         ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
+  //         : false),
+  //   );
+  // });
 
+  // const shouldShowShadowTemplate = true;
   const [shouldShowShadowTemplate, setShouldShowShadowTemplate] =
     React.useState(false);
 
@@ -1009,8 +1033,8 @@ export const Table = <
           return (
             <Box
               as='div'
-              ref={mergeRefs(headerResizeRef, headerRef)}
-              // ref={headerRef}
+              // ref={mergeRefs(headerResizeRef, headerRef)}
+              ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
                   bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
