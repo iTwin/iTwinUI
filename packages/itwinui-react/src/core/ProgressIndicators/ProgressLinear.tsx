@@ -40,19 +40,21 @@ type ProgressLinearProps = {
 /**
  * Shows progress on a linear bar
  * @example
- * Determinate
+ * // Determinate
  * <ProgressLinear value={25}/>
- * Indeterminate
+ * // Indeterminate
  * <ProgressLinear indeterminate={true}/>
- * Labeled - Center
+ * // Labeled - Center
  * <ProgressLinear value={50} labels={['Centered Label']} />
- * Labeled - Left & Right
+ * // Labeled - Left & Right
  * <ProgressLinear value={50} labels={['Loading...', '50%']} />
  * Positive / Negative / Warning
+ * // #1
  * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccess />]} />
+ * // #2
  * <ProgressLinear status='negative' />
- *  <ProgressLinear status='warning' labels={['Upload successful with warning!', <SvgStatusWarning />]} />
-
+ * // #3
+ * <ProgressLinear status='warning' labels={['Upload successful with warning!', <SvgStatusWarning />]} />
  */
 export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
   const {
