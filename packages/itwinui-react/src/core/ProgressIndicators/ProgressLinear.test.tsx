@@ -41,7 +41,7 @@ it('renders animated determinate ProgressLinear', () => {
 });
 
 it.each(['positive', 'negative', 'warning'] as const)(
-  'renders ProgressLinear of various status',
+  'renders %s ProgressLinear',
   (status) => {
     const { container } = render(<ProgressLinear status={status} />);
     const progress = container.querySelector('div');
