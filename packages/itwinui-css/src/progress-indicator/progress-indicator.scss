@@ -159,7 +159,7 @@
     }
   }
 
-  @each $status in positive, warning, negative {
+  @each $status in positive, negative, warning {
     &[data-iui-status='#{$status}'] {
       --_iui-progress-indicator-track-fill: #{var(--iui-color-border-#{$status})};
       --_iui-progress-indicator-linear-label-color: var(--iui-color-text-#{$status});
