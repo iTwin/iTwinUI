@@ -2303,7 +2303,7 @@ export const ResizableColumns = () => {
         Header: 'ID',
         accessor: 'id',
         width: 100,
-        disableResizing: true,
+        // disableResizing: true,
       },
       {
         id: 'startDate',
@@ -2541,15 +2541,17 @@ export const HorizontalScroll = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        width: '20vw',
-        minWidth: 200,
+        width: 400,
+        // width: '20vw',
+        // minWidth: 200,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        width: '20vw',
-        minWidth: 200,
+        width: 400,
+        // width: '20vw',
+        // minWidth: 200,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
