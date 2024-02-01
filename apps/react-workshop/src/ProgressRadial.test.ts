@@ -10,7 +10,7 @@ describe('ProgressRadial', () => {
     'Indeterminate',
     'Negative',
     'Positive',
-    // 'Warning',
+    'Warning',
   ];
 
   tests.forEach((testName) => {

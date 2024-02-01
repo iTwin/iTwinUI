@@ -49,7 +49,7 @@ type ProgressLinearProps = {
  * Labeled - Left & Right
  * <ProgressLinear value={50} labels={['Loading...', '50%']} />
  * Positive / Negative / Warning
- * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccess/>]} />
+ * <ProgressLinear status='positive' labels={['Upload done!', <SvgStatusSuccess />]} />
  * <ProgressLinear status='negative' />
  *  <ProgressLinear status='warning' labels={['Upload successful with warning!', <SvgStatusWarning />]} />
 
