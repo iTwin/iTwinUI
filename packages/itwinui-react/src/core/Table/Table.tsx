@@ -911,9 +911,7 @@ export const Table = <
       <Box
         ref={(element) => {
           ownerDocument.current = element?.ownerDocument;
-          if (isResizable) {
-            resizeRef(element);
-          }
+          resizeRef(element);
         }}
         id={id}
         {...getTableProps({
