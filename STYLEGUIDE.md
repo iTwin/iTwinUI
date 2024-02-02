@@ -179,5 +179,10 @@ useLayoutEffect(() => {});
 
 ```jsx
 // Bad
+useIsomorphicLayoutEffect(() => {});
+```
+
+```jsx
+// Bad
 React.useLayoutEffect(() => {});
 ```
