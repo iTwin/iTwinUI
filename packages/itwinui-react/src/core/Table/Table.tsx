@@ -800,12 +800,8 @@ export const Table = <
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
-  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(
-    headerRef.current?.scrollWidth ?? 0,
-  );
-  const [headerClientWidth, setHeaderClientWidth] = React.useState(
-    headerRef.current?.clientWidth ?? 0,
-  );
+  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(0);
+  const [headerClientWidth, setHeaderClientWidth] = React.useState(0);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
