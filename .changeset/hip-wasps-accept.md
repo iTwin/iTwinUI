@@ -3,4 +3,4 @@
 '@itwin/itwinui-css': patch
 ---
 
-Fixed an issue where `Table` was showing a dummy scrollbar track inside the table header in Chrome 121.
+Fixed an issue where `Table` was showing a dummy vertical scrollbar track inside the table header in Chromium 121 + Windows.
