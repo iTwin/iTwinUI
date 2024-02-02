@@ -748,11 +748,23 @@ export const Table = <
     ],
   );
 
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      // Handle header properties, regardless of whether the table is resizable
+      setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
+      setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
+
+      // Handle table properties, but only when table is resizable
+      if (!isResizable) {
+        return;
+      }
+
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -774,9 +786,18 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
+    [
+      dispatch,
+      state.columnResizing.columnWidths,
+      flatHeaders,
+      instance,
+      isResizable,
+    ],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
+
+  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(0);
+  const [headerClientWidth, setHeaderClientWidth] = React.useState(0);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useLayoutEffect(() => {
@@ -791,9 +812,6 @@ export const Table = <
       dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
     }
   });
-
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
 
   const getPreparedRow = React.useCallback(
     (index: number) => {
@@ -879,9 +897,7 @@ export const Table = <
       <Box
         ref={(element) => {
           ownerDocument.current = element?.ownerDocument;
-          if (isResizable) {
-            resizeRef(element);
-          }
+          resizeRef(element);
         }}
         id={id}
         {...getTableProps({
@@ -1071,15 +1087,17 @@ export const Table = <
         >
           <ShadowTemplate>
             <slot />
-            <div
-              aria-hidden
-              style={{
-                // This ensures that the table-body is always the same width as the table-header,
-                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                width: headerRef.current?.scrollWidth,
-                height: 0.1,
-              }}
-            />
+            {rows.length === 0 && headerScrollWidth > headerClientWidth && (
+              <div
+                aria-hidden
+                style={{
+                  // This ensures that the table-body is always the same width as the table-header,
+                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                  width: headerScrollWidth,
+                  height: 0.1,
+                }}
+              />
+            )}
           </ShadowTemplate>
           {data.length !== 0 && (
             <>
