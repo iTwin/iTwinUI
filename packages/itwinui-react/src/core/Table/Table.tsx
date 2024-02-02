@@ -756,15 +756,11 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
-      // ------------------------------------------------------------------------------------------------
-      // Handle header properties
-
+      // Handle header properties, regardless of whether the table is resizable
       setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
       setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
 
-      // ------------------------------------------------------------------------------------------------
       // Handle table properties, but only when table is resizable
-
       if (!isResizable) {
         return;
       }
