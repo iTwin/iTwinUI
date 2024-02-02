@@ -757,17 +757,10 @@ export const Table = <
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
       // ------------------------------------------------------------------------------------------------
-      // Handle setShouldShowDummyDiv
+      // Handle header properties
 
-      // Show the dummy div only if …
-      setShouldShowDummyDiv(
-        // … data is empty
-        data.length === 0 &&
-          // … and header is indeed overflowing
-          (headerRef.current != null
-            ? headerRef.current?.scrollWidth > headerRef.current.clientWidth
-            : false),
-      );
+      setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
+      setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
 
       // ------------------------------------------------------------------------------------------------
       // Handle table properties, but only when table is resizable
@@ -798,12 +791,11 @@ export const Table = <
       dispatch({ type: tableResizeStartAction });
     },
     [
-      data.length,
-      isResizable,
       dispatch,
       state.columnResizing.columnWidths,
       flatHeaders,
       instance,
+      isResizable,
     ],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
@@ -811,7 +803,12 @@ export const Table = <
   // Needed to make Table body horizontally scrollable when there are no rows
   // See: https://github.com/iTwin/iTwinUI/issues/1204
   // See: https://github.com/iTwin/iTwinUI/pull/1725
-  const [shouldShowDummyDiv, setShouldShowDummyDiv] = React.useState(false);
+  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(
+    headerRef.current?.scrollWidth ?? 0,
+  );
+  const [headerClientWidth, setHeaderClientWidth] = React.useState(
+    headerRef.current?.clientWidth ?? 0,
+  );
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useIsomorphicLayoutEffect(() => {
@@ -1101,13 +1098,13 @@ export const Table = <
         >
           <ShadowTemplate>
             <slot />
-            {shouldShowDummyDiv && (
+            {data.length === 0 && headerScrollWidth > headerClientWidth && (
               <div
                 aria-hidden
                 style={{
                   // This ensures that the table-body is always the same width as the table-header,
                   // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                  width: headerRef.current?.scrollWidth,
+                  width: headerScrollWidth,
                   height: 0.1,
                 }}
               />
