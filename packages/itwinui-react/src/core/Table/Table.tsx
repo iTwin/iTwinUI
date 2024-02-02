@@ -1091,7 +1091,7 @@ export const Table = <
         >
           <ShadowTemplate>
             <slot />
-            {data.length === 0 && headerScrollWidth > headerClientWidth && (
+            {rows.length === 0 && headerScrollWidth > headerClientWidth && (
               <div
                 aria-hidden
                 style={{
