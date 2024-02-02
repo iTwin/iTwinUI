@@ -168,11 +168,13 @@ window.clearTimeout(1);
 document.createElement('div');
 ```
 
-### Use `useIsomorphicLayoutEffect` instead of `useLayoutEffect`
+### Import `useIsomorphicLayoutEffect as useLayoutEffect` instead of using `React.useLayoutEffect`
 
 ```jsx
 // Good
-useIsomorphicLayoutEffect(() => {});
+import {useIsomorphicLayoutEffect as useLayoutEffect} from '../utils/index.js'
+
+useLayoutEffect(() => {});
 ```
 
 ```jsx
