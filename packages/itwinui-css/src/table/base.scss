@@ -17,16 +17,13 @@
 /// to make sure they are always aligned, even when body is not
 /// scrollable and even when it has sticky columns.
 @mixin table-scrollbar {
-  overflow-y: auto;
+  overflow-y: scroll;
   scrollbar-gutter: stable;
-
-  @supports not (scrollbar-gutter: stable) {
-    overflow-y: scroll;
-  }
 }
 
 @mixin iui-table-header-wrapper {
   @include table-scrollbar;
+  scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   overflow-x: hidden;
   background-color: var(--iui-color-background);
   display: flex;
