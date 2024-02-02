@@ -1,5 +1,14 @@
 # Changelog
 
+## 3.3.4
+
+### Patch Changes
+
+- [#1816](https://github.com/iTwin/iTwinUI/pull/1816): Fixed an issue where `Table` was showing a dummy vertical scrollbar track inside the table header in Chromium 121 + Windows.
+- [#1810](https://github.com/iTwin/iTwinUI/pull/1810): Fixed `Surface.Body` not being visually aligned with `Surface.Header` depending on scrollbar visibility.
+- [#1776](https://github.com/iTwin/iTwinUI/pull/1776): Fixed broken animation in full-page `Modal` and `Dialog`.
+- [#1809](https://github.com/iTwin/iTwinUI/pull/1809): Fixed `Table` bug where the table-body had an incorrect horizontal scrollbar/overflow when the `Table`'s width is reduced below the initial width.
+
 ## 3.3.3
 
 ### Patch Changes
