@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import {
   mergeRefs,
   useResizeObserver,
-  useIsomorphicLayoutEffect,
+  useIsomorphicLayoutEffect as useLayoutEffect,
 } from '../hooks/index.js';
 
 const unstable_batchedUpdates =
@@ -239,7 +239,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
 
   // Find scrollable parent
   // Needed only on init
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     const scrollableParent = getScrollableParent(
       parentRef.current,
       parentRef.current?.ownerDocument,
@@ -250,12 +250,12 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   }, [resizeRef]);
 
   // Stop watching resize, when virtual scroll is unmounted
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     return () => resizeObserver?.disconnect();
   }, [resizeObserver]);
 
   // Get child height when children available
-  useIsomorphicLayoutEffect(() => updateChildHeight(), [updateChildHeight]);
+  useLayoutEffect(() => updateChildHeight(), [updateChildHeight]);
 
   const updateVirtualScroll = React.useCallback(() => {
     const scrollableContainer = getScrollableContainer();
@@ -314,7 +314,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
   }, []);
 
   // Add event listener to the scrollable container.
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     removeScrollListener();
     onScrollRef.current = onScroll;
     if (
@@ -328,7 +328,7 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     return removeScrollListener;
   }, [onScroll, removeScrollListener]);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!isMounted) {
       return;
     }
@@ -404,9 +404,9 @@ export const useVirtualization = (props: VirtualScrollProps) => {
         });
       }
     }
-  }, [scrollToIndex, isMounted]);
+  }, [scrollToIndex, isMounted, itemsLength]);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!scrollContainerHeight) {
       return;
     }

@@ -9,7 +9,7 @@ import {
   getTranslateValuesFromElement,
   Resizer,
   useMergedRefs,
-  useIsomorphicLayoutEffect,
+  useIsomorphicLayoutEffect as useLayoutEffect,
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -136,7 +136,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   );
 
   // Prevents dialog from moving when window is being resized
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!isDraggable || !isOpen) {
       return;
     }

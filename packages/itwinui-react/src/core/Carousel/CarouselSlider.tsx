@@ -8,7 +8,7 @@ import { CarouselContext } from './CarouselContext.js';
 import {
   getWindow,
   useMergedRefs,
-  useIsomorphicLayoutEffect,
+  useIsomorphicLayoutEffect as useLayoutEffect,
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
@@ -41,7 +41,7 @@ export const CarouselSlider = React.forwardRef((props, ref) => {
     [children, idPrefix],
   ) as React.ReactNode[];
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     setSlideCount(items.length);
   }, [items.length, setSlideCount]);
 

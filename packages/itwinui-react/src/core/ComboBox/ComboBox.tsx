@@ -11,7 +11,7 @@ import type { Input } from '../Input/Input.js';
 import {
   mergeRefs,
   useLatestRef,
-  useIsomorphicLayoutEffect,
+  useIsomorphicLayoutEffect as useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
 } from '../utils/index.js';
@@ -259,7 +259,7 @@ export const ComboBox = React.forwardRef(
       onHideRef.current?.();
     }, [onHideRef]);
 
-    useIsomorphicLayoutEffect(() => {
+    useLayoutEffect(() => {
       // When the dropdown opens
       if (isOpen) {
         inputRef.current?.focus(); // Focus the input

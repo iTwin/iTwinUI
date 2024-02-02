@@ -33,7 +33,7 @@ import {
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
-  useIsomorphicLayoutEffect,
+  useIsomorphicLayoutEffect as useLayoutEffect,
   Box,
   createWarningLogger,
 } from '../utils/index.js';
@@ -779,7 +779,7 @@ export const Table = <
   const [resizeRef] = useResizeObserver(onTableResize);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (state.isTableResizing) {
       const newColumnWidths: Record<string, number> = {};
       flatHeaders.forEach((column) => {
