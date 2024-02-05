@@ -168,7 +168,7 @@ window.clearTimeout(1);
 document.createElement('div');
 ```
 
-### Import `useLayoutEffect` from `utils` instead of using `React.useLayoutEffect`, since `useLayoutEffect` from `utils` is SSR safe
+### Import `useLayoutEffect` (SSR-safe) from `utils` instead of using `React.useLayoutEffect` (client only)
 
 ```jsx
 // Good
