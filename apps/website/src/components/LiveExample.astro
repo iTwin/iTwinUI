@@ -1,6 +1,6 @@
 ---
 import fs from 'node:fs';
-import OpenInCodesandbox from './OpenInCodesandbox.astro';
+import OpenInCodePen from './OpenInCodePen.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
@@ -29,7 +29,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 
 <div class='demo-box'>
   <slot />
-  <OpenInCodesandbox class='sandbox-link' code={code} />
+  <OpenInCodePen class='sandbox-link' code={code} />
 </div>
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}
