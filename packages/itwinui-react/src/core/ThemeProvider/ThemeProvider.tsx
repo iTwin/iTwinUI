@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   useMergedRefs,
   Box,
-  useIsomorphicLayoutEffect,
+  useLayoutEffect,
   useControlledState,
   useLatestRef,
   importCss,
@@ -244,7 +244,7 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
 
   const parentThemeRef = useLatestRef(parentContext?.theme);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     // bail if we already have theme from context
     if (parentThemeRef.current) {
       return;
@@ -295,7 +295,7 @@ const useParentThemeAndContext = (rootElement: HTMLElement | null) => {
  * dynamically import it (if possible) and fallback to loading it from a CDN.
  */
 const FallbackStyles = ({ root }: { root: HTMLElement }) => {
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     // bail if styles are already loaded
     if (getComputedStyle(root).getPropertyValue('--_iui-v3-loaded') === 'yes') {
       return;
