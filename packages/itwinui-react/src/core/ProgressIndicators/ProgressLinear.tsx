@@ -50,8 +50,13 @@ type ProgressLinearProps = {
  * <ProgressLinear value={50} labels={['Loading...', '50%']} />
  * // Status
  * <ProgressLinear
- * status='positive'
- * labels={['Upload done!', <Icon key='icon'><SvgStatusSuccess /> </Icon>]}
+ *   status='positive'
+ *   labels={[
+ *    'Upload done!',
+ *    <Icon key='icon'>
+ *      <SvgStatusSuccess />{' '}
+ *    </Icon>
+ *   ]}
  * />
  * <ProgressLinear status='negative' />
  */
