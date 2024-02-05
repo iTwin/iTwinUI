@@ -1,5 +1,6 @@
 ---
 import outdent from 'outdent';
+import VisuallyHidden from './utils/VisuallyHidden.astro';
 
 type Props = { code: string } & astroHTML.JSX.HTMLAttributes;
 const { code = 'export default () => "hello"', ...rest } = Astro.props;
@@ -22,36 +23,41 @@ const css = outdent`
   }
 `;
 const js = outdent`
-  import { createRoot } from 'https://esm.sh/react-dom/client';
-  import { ThemeProvider } from 'https://esm.sh/@itwin/itwinui-react';
-  ${code
-    .replaceAll("from '", "from 'https://esm.sh/")
-    .replace('export default () =>', 'const App = () =>')}
+  ${code.replace('export default () =>', 'const App = () =>')}
+
+  // -------------------------------------------------------------
+
+  import { createRoot } from 'react-dom/client';
+  import { ThemeProvider } from '@itwin/itwinui-react';
 
   createRoot(document.body).render(
     <ThemeProvider className='app-wrapper'>
       <App />
     </ThemeProvider>
   );
-`;
+`
+  .replaceAll(`@itwin/itwinui-react`, `https://esm.sh/@itwin/itwinui-react@3`)
+  .replaceAll(`@itwin/itwinui-icons-react`, `https://esm.sh/@itwin/itwinui-icons-react@3`)
+  .replaceAll(`'react'`, `'https://esm.sh/react@18'`)
+  .replaceAll(`react-dom`, `https://esm.sh/react-dom@18`);
 ---
 
 <form action='https://codepen.io/pen/define' method='POST' target='_blank' {...rest}>
   <input
     type='hidden'
     name='data'
-    value={`{
-        "js_pre_processor": "babel",
-        "editors": "001",
-        "layout": "top",
-        "css_external": "https://esm.sh/@itwin/itwinui-react/styles.css",
-        "css": "${css}",
-        "js": "${js}"
-      }`}
+    value={JSON.stringify({
+      js_pre_processor: 'babel',
+      editors: '001',
+      css_external: 'https://esm.sh/@itwin/itwinui-react@3/styles.css',
+      css,
+      js,
+    }).replace(/"/g, '&quot;')}
   />
 
-  <button aria-description='in new tab'>
-    <span>Open in CodePen</span>
+  <button>
+    <span class='tooltip'>Open in CodePen</span>
+    <VisuallyHidden>in new tab</VisuallyHidden>
     <svg aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'>
       <path
         fill='none'
@@ -86,13 +92,13 @@ const js = outdent`
         background: hsl(0 0% 0% / 0.2);
       }
 
-      > :global(svg) {
+      > svg {
         width: 1rem;
         height: 1rem;
       }
     }
 
-    button > span {
+    .tooltip {
       visibility: hidden;
 
       position: absolute;
@@ -105,10 +111,10 @@ const js = outdent`
       background-color: var(--color-background-2);
       border: 1px solid var(--color-line-2);
       border-radius: 4px;
-    }
 
-    button:is(:hover, :focus-within) > span {
-      visibility: visible;
+      button:is(:hover, :focus-within) > & {
+        visibility: visible;
+      }
     }
   }
 </style>
