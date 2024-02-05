@@ -18,15 +18,23 @@ it('renders in its most basic state', () => {
   expect(container.querySelector('.iui-tag-button')).toBeNull();
 });
 
-it('should propagate custom styles and className', () => {
+it('should allow passing arbitrary props to all dom parts', () => {
   const { container } = render(
-    <Tag className='test-class' style={{ color: 'yellow' }}>
-      Mocked tag
+    <Tag
+      className='the-tag'
+      labelProps={{ className: 'the-label' }}
+      onRemove={() => {}}
+      removeButtonProps={{ className: 'the-button' }}
+      style={{ color: 'yellow' }}
+    >
+      Tag
     </Tag>,
   );
-  const tag = container.querySelector('.iui-tag.test-class') as HTMLSpanElement;
-  expect(tag).toBeTruthy();
+
+  const tag = container.querySelector('.the-tag') as HTMLSpanElement;
   expect(tag.style.color).toEqual('yellow');
+  expect(container.querySelector('.the-tag span')).toHaveClass('the-label');
+  expect(container.querySelector('.the-tag button')).toHaveClass('the-button');
 });
 
 it('fires close event on click', () => {
@@ -48,4 +56,15 @@ it('should render correctly with basic variant', () => {
   const text = container.querySelector('.iui-tag-label') as HTMLElement;
   expect(text).not.toBeTruthy();
   expect(container.textContent).toBe('Mocked tag');
+});
+
+it('should be usable as a button', () => {
+  const { getByRole } = render(<Tag onClick={() => {}}>Tag</Tag>);
+  const button = getByRole('button');
+  expect(button).toHaveTextContent('Tag');
+
+  // @ts-expect-error -- onClick and onRemove shouldn't be used together
+  <Tag onClick={() => {}} onRemove={() => {}}>
+    …
+  </Tag>;
 });
