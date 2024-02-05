@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { useMergedRefs } from './useMergedRefs.js';
 import { useResizeObserver } from './useResizeObserver.js';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 const STARTING_MAX_ITEMS_COUNT = 20;
 
@@ -54,7 +54,7 @@ export const useOverflow = <T extends HTMLElement>(
   const [resizeRef, observer] = useResizeObserver<T>(updateContainerSize);
   const resizeObserverRef = React.useRef(observer);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (disabled) {
       setVisibleCount(items.length);
     } else {
@@ -65,7 +65,7 @@ export const useOverflow = <T extends HTMLElement>(
 
   const mergedRefs = useMergedRefs(containerRef, resizeRef);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!containerRef.current || disabled) {
       resizeObserverRef.current?.disconnect();
       return;
@@ -101,7 +101,7 @@ export const useOverflow = <T extends HTMLElement>(
     needsFullRerender.current = false;
   }, [containerSize, visibleCount, disabled, items.length, orientation]);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     previousContainerSize.current = containerSize;
   }, [containerSize]);
 

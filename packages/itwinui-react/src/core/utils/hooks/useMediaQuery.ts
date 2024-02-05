@@ -4,12 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { getWindow } from '../functions/index.js';
-import { useIsomorphicLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 export const useMediaQuery = (queryString: string) => {
   const [matches, setMatches] = React.useState<boolean>();
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     const mediaQueryList = getWindow()?.matchMedia?.(queryString);
     const handleChange = ({ matches }: MediaQueryListEvent) =>
       setMatches(matches);
