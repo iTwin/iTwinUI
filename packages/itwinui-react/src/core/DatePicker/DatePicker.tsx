@@ -232,6 +232,14 @@ type DatePickerProps = {
    * @default true
    */
   applyBackground?: boolean;
+  /**
+   * Whether dates outside the current month should be displayed (in a muted text style).
+   *
+   * It is recommended to set this to false. Currently it defaults to true for backward compatibility.
+   *
+   * @default true
+   */
+  showDatesOutsideMonth?: boolean;
 } & DateRangePickerProps &
   Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
@@ -271,6 +279,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     weekProps,
     isDateDisabled,
     applyBackground = true,
+    showDatesOutsideMonth = true,
     ...rest
   } = props;
 
@@ -665,6 +674,22 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   const isDisabled = isDateDisabled?.(weekDay);
+                  const isOutsideMonth =
+                    weekDay.getMonth() !== displayedMonthIndex;
+
+                  if (isOutsideMonth && !showDatesOutsideMonth) {
+                    return (
+                      <Box
+                        key={`day-${displayedMonthIndex}-${dayIndex}`}
+                        className={cx(
+                          getDayClass(weekDay),
+                          dayProps?.className,
+                        )}
+                        aria-hidden
+                      />
+                    );
+                  }
+
                   return (
                     <Box
                       as='div'
