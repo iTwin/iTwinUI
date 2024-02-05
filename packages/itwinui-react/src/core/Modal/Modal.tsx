@@ -58,7 +58,7 @@ type ModalProps = {
   /**
    * Props for customizing the dialog-wrapper element.
    */
-  wrapperProps?: React.ComponentPropsWithRef<'div'>;
+  wrapperProps?: React.ComponentPropsWithoutRef<'div'>;
   /**
    * Props for customizing the backdrop element.
    */
