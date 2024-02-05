@@ -242,7 +242,7 @@ it('should reset body overflow on closing and unmounting', () => {
 });
 
 it('should allow passing arbitrary props to internal elements', () => {
-  const { container } = render(
+  render(
     <Modal
       isOpen={true}
       title='The title'
@@ -255,7 +255,7 @@ it('should allow passing arbitrary props to internal elements', () => {
     </Modal>,
   );
 
-  const wrapper = container.querySelector('.wrapper') as HTMLElement;
+  const wrapper = document.querySelector('.wrapper') as HTMLElement;
   const backdrop = wrapper.querySelector('.backdrop') as HTMLElement;
   expect(backdrop).toBeTruthy();
   const modal = wrapper.querySelector('.modal') as HTMLElement;
