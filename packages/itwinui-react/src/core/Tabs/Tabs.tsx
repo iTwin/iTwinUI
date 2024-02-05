@@ -9,7 +9,7 @@ import {
   Box,
   polymorphic,
   useIsClient,
-  useIsomorphicLayoutEffect,
+  useLayoutEffect,
   useMergedRefs,
   useContainerWidth,
   ButtonBase,
@@ -224,7 +224,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   const isActiveRef = useLatestRef(isActive);
 
   // Scroll to active tab only on initial render
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (isActiveRef.current) {
       tabRef.current?.parentElement?.scrollTo({
         [orientation === 'horizontal' ? 'left' : 'top']:
@@ -234,24 +234,24 @@ const Tab = React.forwardRef((props, forwardedRef) => {
         behavior: 'instant', // not using 'smooth' to reduce layout shift on page load
       });
     }
-  }, []);
-
-  const updateStripe = () => {
-    const currentTabRect = tabRef.current?.getBoundingClientRect();
-    setStripeProperties({
-      '--iui-tabs-stripe-size':
-        orientation === 'horizontal'
-          ? `${currentTabRect?.width}px`
-          : `${currentTabRect?.height}px`,
-      '--iui-tabs-stripe-position':
-        orientation === 'horizontal'
-          ? `${tabRef.current?.offsetLeft}px`
-          : `${tabRef.current?.offsetTop}px`,
-    });
-  };
+  }, [isActiveRef, orientation]);
 
   // CSS custom properties to place the active stripe
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
+    const updateStripe = () => {
+      const currentTabRect = tabRef.current?.getBoundingClientRect();
+      setStripeProperties({
+        '--iui-tabs-stripe-size':
+          orientation === 'horizontal'
+            ? `${currentTabRect?.width}px`
+            : `${currentTabRect?.height}px`,
+        '--iui-tabs-stripe-position':
+          orientation === 'horizontal'
+            ? `${tabRef.current?.offsetLeft}px`
+            : `${tabRef.current?.offsetTop}px`,
+      });
+    };
+
     if (type !== 'default' && isActive) {
       updateStripe();
     }
@@ -260,6 +260,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     orientation,
     isActive,
     tabsWidth, // to fix visual artifact on initial render
+    setStripeProperties,
   ]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -376,7 +377,7 @@ const TabDescription = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
   const { hasSublabel, setHasSublabel } = useSafeContext(TabsContext);
 
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!hasSublabel) {
       setHasSublabel(true);
     }
