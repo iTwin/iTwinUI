@@ -51,6 +51,18 @@ type ModalProps = {
    * Content of the modal.
    */
   children: React.ReactNode;
+  /**
+   * Props for customizing the title bar element.
+   */
+  titleBarProps?: React.ComponentPropsWithRef<'div'>;
+  /**
+   * Props for customizing the dialog-wrapper element.
+   */
+  wrapperProps?: React.ComponentPropsWithoutRef<'div'>;
+  /**
+   * Props for customizing the backdrop element.
+   */
+  backdropProps?: React.ComponentPropsWithRef<'div'>;
 } & Pick<DialogMainProps, 'isOpen' | 'styleType'>;
 
 /**
@@ -84,6 +96,9 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
     title,
     children,
     portal = true,
+    wrapperProps,
+    backdropProps,
+    titleBarProps,
     ...rest
   } = props;
 
@@ -99,10 +114,11 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
       setFocus
       ref={forwardedRef}
       portal={portal}
+      {...wrapperProps}
     >
-      <Dialog.Backdrop />
+      <Dialog.Backdrop {...backdropProps} />
       <Dialog.Main aria-modal {...rest}>
-        <Dialog.TitleBar titleText={title} />
+        <Dialog.TitleBar titleText={title} {...titleBarProps} />
         {children}
       </Dialog.Main>
     </Dialog>
