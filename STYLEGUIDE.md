@@ -172,7 +172,7 @@ document.createElement('div');
 
 ```jsx
 // Good
-import { useLayoutEffect } from '../utils/index.js'
+import { useLayoutEffect } from '../utils/index.js';
 
 useLayoutEffect(() => {});
 ```
