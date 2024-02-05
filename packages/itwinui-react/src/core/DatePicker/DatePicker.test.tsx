@@ -559,3 +559,10 @@ it.each([true, false])('should respect `applyBackground`', (value) => {
     );
   }
 });
+
+it('should support the showDatesOutsideMonth prop', () => {
+  const { container } = render(
+    <DatePicker date={new Date(2020, 0, 5)} showDatesOutsideMonth={false} />,
+  );
+  expect(container.querySelector(outsideDayClassName)).toBeEmptyDOMElement();
+});
