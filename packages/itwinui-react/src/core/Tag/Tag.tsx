@@ -26,7 +26,7 @@ type TagProps = {
        *
        * Only relevant for the 'default' Tag.
        */
-      labelProps?: React.ComponentPropsWithoutRef<'span'>;
+      labelProps?: React.ComponentPropsWithRef<'span'>;
     }
   | {
       variant?: 'basic';
@@ -59,7 +59,7 @@ type TagProps = {
         /**
          * Props for customizing the remove ("❌") button.
          */
-        removeButtonProps?: React.ComponentPropsWithoutRef<'button'>;
+        removeButtonProps?: React.ComponentPropsWithRef<'button'>;
       }
   );
 
