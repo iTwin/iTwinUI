@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.12.22
+
+### Patch Changes
+
+- 20b627b4: Fixed an issue where `Table` was showing a dummy vertical scrollbar track inside the table header in Chromium 121 + Windows.
+- 66bddba3: Fixed `Surface.Body` not being visually aligned with `Surface.Header` depending on scrollbar visibility.
+
 ## 2.12.21
 
 ### Patch Changes
