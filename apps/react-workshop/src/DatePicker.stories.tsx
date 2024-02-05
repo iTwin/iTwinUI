@@ -162,7 +162,6 @@ export const WithYear = () => {
             date={currentDate}
             onChange={onChange}
             setFocus
-            showDatesOutsideMonth={false}
           />
         </div>
       )}
