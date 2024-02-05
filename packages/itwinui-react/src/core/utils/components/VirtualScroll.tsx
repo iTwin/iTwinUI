@@ -7,7 +7,7 @@ import * as ReactDOM from 'react-dom';
 import {
   mergeRefs,
   useResizeObserver,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
 } from '../hooks/index.js';
 
 const unstable_batchedUpdates =

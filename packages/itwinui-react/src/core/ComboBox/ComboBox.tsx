@@ -11,7 +11,7 @@ import type { Input } from '../Input/Input.js';
 import {
   mergeRefs,
   useLatestRef,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   AutoclearingHiddenLiveRegion,
   useId,
 } from '../utils/index.js';

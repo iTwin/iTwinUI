@@ -9,5 +9,5 @@ import * as React from 'react';
  *
  * @see https://fb.me/react-uselayouteffect-ssr
  */
-export const useIsomorphicLayoutEffect =
+export const useLayoutEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;

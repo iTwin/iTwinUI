@@ -9,7 +9,7 @@ import {
   useMediaQuery,
   useMergedRefs,
   Box,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   useControlledState,
   useLatestRef,
   importCss,

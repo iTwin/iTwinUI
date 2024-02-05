@@ -9,7 +9,7 @@ import {
   getTranslateValuesFromElement,
   Resizer,
   useMergedRefs,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   Box,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';

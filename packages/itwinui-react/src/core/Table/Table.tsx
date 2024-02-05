@@ -33,7 +33,7 @@ import {
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   Box,
   createWarningLogger,
 } from '../utils/index.js';

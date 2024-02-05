@@ -9,7 +9,7 @@ import {
   Box,
   polymorphic,
   useIsClient,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   useMergedRefs,
   useContainerWidth,
   ButtonBase,

@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { useMergedRefs } from './useMergedRefs.js';
 import { useResizeObserver } from './useResizeObserver.js';
-import { useIsomorphicLayoutEffect as useLayoutEffect } from './useIsomorphicLayoutEffect.js';
+import { useLayoutEffect } from './useIsomorphicLayoutEffect.js';
 
 const STARTING_MAX_ITEMS_COUNT = 20;
 

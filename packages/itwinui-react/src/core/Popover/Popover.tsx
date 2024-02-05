@@ -31,7 +31,7 @@ import {
   cloneElementWithRef,
   useControlledState,
   useId,
-  useIsomorphicLayoutEffect as useLayoutEffect,
+  useLayoutEffect,
   useMergedRefs,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
