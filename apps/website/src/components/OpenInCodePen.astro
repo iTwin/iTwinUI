@@ -42,7 +42,13 @@ const js = outdent`
   .replaceAll(`react-dom`, `https://esm.sh/react-dom@18`);
 ---
 
-<form action='https://codepen.io/pen/define' method='POST' target='_blank' {...rest}>
+<form
+  action='https://codepen.io/pen/define'
+  method='POST'
+  target='_blank'
+  {...rest}
+  {...{ rel: 'noreferrer' }}
+>
   <input
     type='hidden'
     name='data'
