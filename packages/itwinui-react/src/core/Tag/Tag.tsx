@@ -7,6 +7,7 @@ import * as React from 'react';
 import { SvgCloseSmall, Box, ButtonBase } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
+import { LinkAction, LinkBox } from '../LinkAction/LinkAction.js';
 
 type TagProps = {
   /**
@@ -75,14 +76,17 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     variant = 'default',
     children,
     onRemove,
+    onClick,
     labelProps,
     removeButtonProps,
     ...rest
   } = props;
 
+  const shouldUseLinkAction = !!onClick && !!onRemove;
+
   return (
     <Box
-      as={!!props.onClick ? ButtonBase : 'span'}
+      as={shouldUseLinkAction ? LinkBox : !!onClick ? ButtonBase : 'span'}
       className={cx(
         {
           'iui-tag-basic': variant === 'basic',
@@ -92,11 +96,13 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
       )}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ref's type doesn't matter internally
       ref={forwardedRef as any}
+      onClick={!shouldUseLinkAction ? onClick : undefined}
       {...rest}
     >
       {variant === 'default' ? (
         <Box
-          as='span'
+          as={(shouldUseLinkAction ? LinkAction : 'span') as 'span'}
+          onClick={shouldUseLinkAction ? onClick : undefined}
           {...labelProps}
           className={cx('iui-tag-label', labelProps?.className)}
         >
