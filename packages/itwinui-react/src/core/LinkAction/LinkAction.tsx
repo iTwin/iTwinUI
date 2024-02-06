@@ -19,10 +19,11 @@ import { Box } from '../utils/components/index.js';
  * </LinkBox>
  */
 export const LinkAction = React.forwardRef((props, forwardedRef) => {
+  const { as: asProp = (!!props.href ? 'a' : 'button') as 'a' } = props;
   return (
     <Box
-      as={(!!props.href ? 'a' : 'button') as 'a'}
       {...props}
+      as={asProp}
       className={cx('iui-link-action', props.className)}
       ref={forwardedRef}
     />
