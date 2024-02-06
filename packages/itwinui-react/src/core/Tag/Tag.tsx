@@ -14,6 +14,24 @@ type TagProps = {
    * Text inside the tag.
    */
   children: React.ReactNode;
+  /**
+   * Callback invoked when the tag is clicked.
+   *
+   * When this prop is passed, the tag will be rendered as a button.
+   */
+  onClick?: React.MouseEventHandler;
+  /**
+   * Callback function that handles click on the remove ("❌") button.
+   * If not passed, the remove button will not be shown.
+   *
+   * If both `onClick` and `onRemove` are passed, then the tag label (rather than the tag itself)
+   * will be rendered as a button, to avoid invalid markup (nested buttons).
+   */
+  onRemove?: React.MouseEventHandler;
+  /**
+   * Props for customizing the remove ("❌") button.
+   */
+  removeButtonProps?: React.ComponentPropsWithRef<'button'>;
 } & (
   | {
       /**
@@ -33,36 +51,7 @@ type TagProps = {
       variant?: 'basic';
       labelProps?: never;
     }
-) &
-  (
-    | {
-        /**
-         * Callback invoked when the tag is clicked.
-         *
-         * When this prop is passed, the tag will be rendered as a button.
-         *
-         * This prop is mutually exclusive with `onRemove`.
-         */
-        onClick?: React.MouseEventHandler;
-        onRemove?: never;
-        removeButtonProps?: never;
-      }
-    | {
-        onClick?: never;
-        /**
-         * Callback function that handles click on the remove ("❌") button.
-         * If not passed, the remove button will not be shown.
-         *
-         * This prop is mutually exclusive with the `onClick` prop, because
-         * the tag will be rendered as a button when `onClick` is passed.
-         */
-        onRemove?: React.MouseEventHandler;
-        /**
-         * Props for customizing the remove ("❌") button.
-         */
-        removeButtonProps?: React.ComponentPropsWithRef<'button'>;
-      }
-  );
+);
 
 /**
  * Tag for showing categories, filters etc.
@@ -82,6 +71,9 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  // If both onClick and onRemove are passed, we want to render the label as a button
+  // to avoid invalid markup (nested buttons). LinkAction ensures that clicking anywhere outside
+  // the remove button (including padding) will still trigger the main onClick callback.
   const shouldUseLinkAction = !!onClick && !!onRemove;
 
   return (
