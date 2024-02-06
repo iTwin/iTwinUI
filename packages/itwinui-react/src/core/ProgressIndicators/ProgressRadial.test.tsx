@@ -30,18 +30,14 @@ it('renders indeterminate ProgressRadial', () => {
   expect(spinner).toHaveAttribute('data-iui-indeterminate', 'true');
 });
 
-it('renders positive ProgressRadial', () => {
-  const { container } = render(<ProgressRadial status={'positive'} />);
-  const spinner = container.querySelector('.iui-progress-indicator-radial');
-  expect(spinner).toHaveAttribute('data-iui-status', 'positive');
-});
-
-it('renders negative ProgressRadial', () => {
-  const { container } = render(<ProgressRadial value={40} status='negative' />);
-  const spinner = container.querySelector('.iui-progress-indicator-radial');
-  expect(spinner).toHaveStyle('--iui-progress-percentage: 40%');
-  expect(spinner).toHaveAttribute('data-iui-status', 'negative');
-});
+it.each(['positive', 'negative', 'warning'] as const)(
+  'renders %s ProgressRadial',
+  (status) => {
+    const { container } = render(<ProgressRadial status={status} />);
+    const spinner = container.querySelector('.iui-progress-indicator-radial');
+    expect(spinner).toHaveAttribute('data-iui-status', status);
+  },
+);
 
 it('renders determinate ProgressRadial with max value', () => {
   const { container } = render(<ProgressRadial value={222} />);
