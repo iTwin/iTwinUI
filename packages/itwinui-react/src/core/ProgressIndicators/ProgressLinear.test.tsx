@@ -40,19 +40,15 @@ it('renders animated determinate ProgressLinear', () => {
   expect(progress).toHaveAttribute('data-iui-animated', 'true');
 });
 
-it('renders positive ProgressLinear', () => {
-  const { container } = render(<ProgressLinear status='positive' />);
-  const progress = container.querySelector('div');
-  expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
-  expect(progress).toHaveAttribute('data-iui-status', 'positive');
-});
-
-it('renders negative ProgressLinear', () => {
-  const { container } = render(<ProgressLinear value={40} status='negative' />);
-  const progress = container.querySelector('div');
-  expect(progress).not.toHaveAttribute('data-iui-indeterminate');
-  expect(progress).toHaveAttribute('data-iui-status', 'negative');
-});
+it.each(['positive', 'negative', 'warning'] as const)(
+  'renders %s ProgressLinear',
+  (status) => {
+    const { container } = render(<ProgressLinear status={status} />);
+    const progress = container.querySelector('div');
+    expect(progress).toHaveAttribute('data-iui-indeterminate', 'true');
+    expect(progress).toHaveAttribute('data-iui-status', status);
+  },
+);
 
 it('renders ProgressLinear with single label', () => {
   const { container } = render(

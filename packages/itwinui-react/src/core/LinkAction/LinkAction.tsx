@@ -2,7 +2,11 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+import * as React from 'react';
+import cx from 'classnames';
 import { polymorphic } from '../utils/functions/polymorphic.js';
+import type { PolymorphicForwardRefComponent } from '../utils/props.js';
+import { Box } from '../utils/components/index.js';
 
 /**
  * Polymorphic link action component.
@@ -14,7 +18,17 @@ import { polymorphic } from '../utils/functions/polymorphic.js';
  *   </Surface>
  * </LinkBox>
  */
-export const LinkAction = polymorphic.a('iui-link-action');
+export const LinkAction = React.forwardRef((props, forwardedRef) => {
+  const { as: asProp = (!!props.href ? 'a' : 'button') as 'a' } = props;
+  return (
+    <Box
+      {...props}
+      as={asProp}
+      className={cx('iui-link-action', props.className)}
+      ref={forwardedRef}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'a'>;
 LinkAction.displayName = 'LinkAction';
 
 /**

@@ -12,6 +12,10 @@
   block-size: $iui-date-picker-cell-height;
   border-radius: var(--iui-border-radius-1);
   font-variant-numeric: tabular-nums;
+
+  &:empty {
+    pointer-events: none;
+  }
 }
 
 @mixin iui-calendar-day-base-hover {

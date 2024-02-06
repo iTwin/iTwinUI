@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Tag', () => {
   const storyPath = 'Tag';
-  const tests = ['Default', 'No Close'];
+  const tests = ['Default', 'No Close', 'Clickable'];
 
   tests.forEach((testName) => {
     it(testName, function () {
