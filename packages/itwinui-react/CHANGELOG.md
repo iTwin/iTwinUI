@@ -1,5 +1,16 @@
 # Changelog
 
+## 3.4.0
+
+### Minor Changes
+
+- [#1824](https://github.com/iTwin/iTwinUI/pull/1824): `LinkAction` will now automatically render a `<button>` by default if no `href` is passed.
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Removed unnecessary `Tag` styles, and added support for tags to be used as `<button>` elements.
+- [#1813](https://github.com/iTwin/iTwinUI/pull/1813): Added warning status for `ProgressRadial`/`ProgressLinear`
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Added `labelProps` and `removeButtonProps` to `Tag` to allow customizing internal parts.
+- [#1821](https://github.com/iTwin/iTwinUI/pull/1821): Added new props to `Modal` to allow customizing inner DOM elements: `wrapperProps`, `backdropProps`, `titleBarProps`.
+- [#1822](https://github.com/iTwin/iTwinUI/pull/1822): Added new `showDatesOutsideMonth` prop to `DatePicker`. Currently defaults to `true` but is recommended to be set to `false`.
+
 ## 3.3.4
 
 ### Patch Changes
