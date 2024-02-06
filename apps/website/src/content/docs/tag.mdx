@@ -13,17 +13,13 @@ thumbnail: Tag
 
 Tags are user-generated keywords used to label, categorize, or organize items and files. A group of multiple tags is a standard way of labeling an item to make it easily discoverable by peers who may not know the exact title of said item. A single tag may be mapped to more than one project at once if these projects fit in similar categories. Tags may also be used as a way to filter out content; in that context, the tags are pre-existing, and users select tags that fit their search to narrow down the results.
 
-## Variants
-
-### Default
-
-Default tags can be added and removed by a user. Tags adapt their size to the length of the label inside, making it easier to tell them apart due to their different sizes.
+## Usage
 
 <LiveExample src='Tag.default.tsx'>
   <AllExamples.TagDefaultExample client:load />
 </LiveExample>
 
-### Basic
+### Basic tags
 
 Tags in the basic state are static and cannot be removed or edited by the user. No new tags can be added through this state either. This state is commonly seen in [tile](tile) metadata.
 
@@ -31,9 +27,22 @@ Tags in the basic state are static and cannot be removed or edited by the user. 
   <AllExamples.TagBasicExample client:load />
 </LiveExample>
 
-## Props
+### Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+### Usage guidelines
+
+- Tags are meant to be used for display purposes. While interactivity is possible, it is not the primary use case.
+- Use [basic](#basic) tags when you need to make tags read-only.
+
+## Accessibility
+
+When the `onClick` prop is passed to `Tag`, it is automatically rendered as a `<button>` element. This gives the tag proper semantics and makes it keyboard interactable.
+
+When the `onRemove` prop is passed to `Tag`, a remove button is rendered inside the tag. This button has an `aria-label` set to `"Delete tag"`, which can be customized using the `removeButtonProps` prop.
+
+If both `onClick` and `onRemove` props are passed, then the tag label (rather than the tag itself) will be rendered as a button, to avoid invalid markup (button nested inside another button). This is achieved using the [`LinkAction`](linkaction) component.
 
 ## Tag container
 
@@ -71,9 +80,8 @@ The scrollable container is much like the truncating container, except it allows
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Tag/TagContainer.d.ts'} />
 
-## Usage
+### Usage guidelines
 
-- Use [basic](#basic) tags whenever you need to make tags read-only.
 - [Wrapping](#wrapping) tag containers are ideal for layouts with plenty of vertical space, in situations where seeing all the tags is necessary.
 - Use [truncating](#truncating) tag containers when you have limited space, and display of the full tags is not necessary.
 - [Scrollable](#scrollable) tag containers are a good choice when the space in a layout is limited, but viewing all the tags is essential.
