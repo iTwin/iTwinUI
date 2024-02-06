@@ -348,8 +348,9 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       1,
     ).getDay();
 
-    // if its sunday, show one week before
-    if (0 === offsetToFirst) {
+    // If it's sunday, show one week before, but only if dates outside month are shown.
+    // (We do not want empty space at the top if dates outside month are not shown.)
+    if (0 === offsetToFirst && showDatesOutsideMonth) {
       offsetToFirst = 7;
     }
 
@@ -362,7 +363,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       );
     }
     return daysInMonth;
-  }, [displayedMonthIndex, displayedYear]);
+  }, [displayedMonthIndex, displayedYear, showDatesOutsideMonth]);
 
   const weeks = React.useMemo(() => {
     const weeksInMonth = [];
