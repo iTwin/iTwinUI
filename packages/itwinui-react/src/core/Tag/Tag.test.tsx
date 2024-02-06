@@ -62,9 +62,24 @@ it('should be usable as a button', () => {
   const { getByRole } = render(<Tag onClick={() => {}}>Tag</Tag>);
   const button = getByRole('button');
   expect(button).toHaveTextContent('Tag');
+});
 
-  // @ts-expect-error -- onClick and onRemove shouldn't be used together
-  <Tag onClick={() => {}} onRemove={() => {}}>
-    …
-  </Tag>;
+it('should not produce invalid markup when using both onClick and onRemove', () => {
+  const { container } = render(
+    <Tag
+      onClick={() => {}}
+      labelProps={{ className: 'the-label' }}
+      onRemove={() => {}}
+      removeButtonProps={{ className: 'the-remove' }}
+      className='the-tag'
+    >
+      Tag
+    </Tag>,
+  );
+
+  expect(container.querySelector('.the-tag')?.nodeName).toBe('DIV');
+  expect(container.querySelector('.the-label')?.nodeName).toBe('BUTTON');
+  expect(container.querySelector('.the-remove')?.nodeName).toBe('BUTTON');
+
+  expect(container.querySelector('button button')).toBeNull();
 });

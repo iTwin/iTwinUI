@@ -7,12 +7,31 @@ import * as React from 'react';
 import { SvgCloseSmall, Box, ButtonBase } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
+import { LinkAction, LinkBox } from '../LinkAction/LinkAction.js';
 
 type TagProps = {
   /**
    * Text inside the tag.
    */
   children: React.ReactNode;
+  /**
+   * Callback invoked when the tag is clicked.
+   *
+   * When this prop is passed, the tag will be rendered as a button.
+   */
+  onClick?: React.MouseEventHandler;
+  /**
+   * Callback function that handles click on the remove ("❌") button.
+   * If not passed, the remove button will not be shown.
+   *
+   * If both `onClick` and `onRemove` are passed, then the tag label (rather than the tag itself)
+   * will be rendered as a button, to avoid invalid markup (nested buttons).
+   */
+  onRemove?: React.MouseEventHandler;
+  /**
+   * Props for customizing the remove ("❌") button.
+   */
+  removeButtonProps?: React.ComponentPropsWithRef<'button'>;
 } & (
   | {
       /**
@@ -32,36 +51,7 @@ type TagProps = {
       variant?: 'basic';
       labelProps?: never;
     }
-) &
-  (
-    | {
-        /**
-         * Callback invoked when the tag is clicked.
-         *
-         * When this prop is passed, the tag will be rendered as a button.
-         *
-         * This prop is mutually exclusive with `onRemove`.
-         */
-        onClick?: React.MouseEventHandler;
-        onRemove?: never;
-        removeButtonProps?: never;
-      }
-    | {
-        onClick?: never;
-        /**
-         * Callback function that handles click on the remove ("❌") button.
-         * If not passed, the remove button will not be shown.
-         *
-         * This prop is mutually exclusive with the `onClick` prop, because
-         * the tag will be rendered as a button when `onClick` is passed.
-         */
-        onRemove?: React.MouseEventHandler;
-        /**
-         * Props for customizing the remove ("❌") button.
-         */
-        removeButtonProps?: React.ComponentPropsWithRef<'button'>;
-      }
-  );
+);
 
 /**
  * Tag for showing categories, filters etc.
@@ -75,14 +65,20 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     variant = 'default',
     children,
     onRemove,
+    onClick,
     labelProps,
     removeButtonProps,
     ...rest
   } = props;
 
+  // If both onClick and onRemove are passed, we want to render the label as a button
+  // to avoid invalid markup (nested buttons). LinkAction ensures that clicking anywhere outside
+  // the remove button (including padding) will still trigger the main onClick callback.
+  const shouldUseLinkAction = !!onClick && !!onRemove;
+
   return (
     <Box
-      as={!!props.onClick ? ButtonBase : 'span'}
+      as={shouldUseLinkAction ? LinkBox : !!onClick ? ButtonBase : 'span'}
       className={cx(
         {
           'iui-tag-basic': variant === 'basic',
@@ -92,11 +88,13 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
       )}
       // eslint-disable-next-line @typescript-eslint/no-explicit-any -- ref's type doesn't matter internally
       ref={forwardedRef as any}
+      onClick={!shouldUseLinkAction ? onClick : undefined}
       {...rest}
     >
       {variant === 'default' ? (
         <Box
-          as='span'
+          as={(shouldUseLinkAction ? LinkAction : 'span') as 'span'}
+          onClick={shouldUseLinkAction ? onClick : undefined}
           {...labelProps}
           className={cx('iui-tag-label', labelProps?.className)}
         >
