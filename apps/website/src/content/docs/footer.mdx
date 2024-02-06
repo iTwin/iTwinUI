@@ -7,7 +7,7 @@ thumbnail: Footer
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Footer.main.tsx' truncate={false}>
+<LiveExample src='Footer.main.jsx' truncate={false}>
   <AllExamples.FooterMainExample client:load />
 </LiveExample>
 
@@ -21,7 +21,7 @@ Alter standard footer section by modifying elements or adding new custom element
 
 Along with the default elements, we can also append custom elements by passing an array of elements to the `customElements` prop. Each object in the array would have the `title` (label) and `url` (href) properties. If the `url` is not passed, then the element is rendered as plain text and not an anchor.
 
-<LiveExample src='Footer.appendedcustomelements.tsx'>
+<LiveExample src='Footer.appendedcustomelements.jsx'>
   <AllExamples.FooterAppendCustomElementsExample client:load />
 </LiveExample>
 
@@ -29,7 +29,7 @@ Along with the default elements, we can also append custom elements by passing a
 
 To remove all default elements and only use custom elements, pass a function to the `customElements` prop. The function should return an array of objects, each with `title` (label) and `url` (href). Similar to the [above case](#appended-custom-elements), if `url` is not passed, the element is rendered as plain text and not an anchor.
 
-<LiveExample src='Footer.onlycustomelements.tsx'>
+<LiveExample src='Footer.onlycustomelements.jsx'>
   <AllExamples.FooterOnlyCustomElementsExample client:load />
 </LiveExample>
 
@@ -37,7 +37,7 @@ To remove all default elements and only use custom elements, pass a function to 
 
 Add customized default and custom elements by creating `customUrls` and `translatedTitles` objects. Show Footer component by returning new array containing `customizedDefaultElements` and `customElements`which are default and custom elements respectively.
 
-<LiveExample src='Footer.customizeddefaultandcustomelements.tsx'>
+<LiveExample src='Footer.customizeddefaultandcustomelements.jsx'>
   <AllExamples.FooterCustomizedDefaultAndCustomElementsExample client:load />
 </LiveExample>
 
@@ -45,7 +45,7 @@ Add customized default and custom elements by creating `customUrls` and `transla
 
 Add custom content and icons to the Footer component. Construct custom elements by concatenating `customItem` with other `defaultFooterElements`.
 
-<LiveExample src='Footer.customcontent.tsx'>
+<LiveExample src='Footer.customcontent.jsx'>
   <AllExamples.FooterCustomContentExample client:load />
 </LiveExample>
 
