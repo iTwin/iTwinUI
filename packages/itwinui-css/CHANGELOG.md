@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.3.0
+
+### Minor Changes
+
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Removed unnecessary `Tag` styles, and added support for tags to be used as `<button>` elements.
+- [#1813](https://github.com/iTwin/iTwinUI/pull/1813): Added warning status for `ProgressRadial`/`ProgressLinear`
+- [#1822](https://github.com/iTwin/iTwinUI/pull/1822): Adjusted date-picker styles to allow rendering empty elements without any hover states. This is useful when dates outside the current month don't need to be shown.
+
 ## 2.2.2
 
 ### Patch Changes
