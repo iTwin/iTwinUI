@@ -203,5 +203,3 @@ export const SideNavigation = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SideNavigationProps>;
-
-export default SideNavigation;

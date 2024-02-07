@@ -49,5 +49,3 @@ export const Fieldset = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'fieldset', FieldsetProps>;
-
-export default Fieldset;

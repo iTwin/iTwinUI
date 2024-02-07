@@ -176,5 +176,3 @@ const SurfaceContext = React.createContext<
     }
   | undefined
 >(undefined);
-
-export default Surface;

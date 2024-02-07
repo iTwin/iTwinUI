@@ -757,5 +757,3 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', DatePickerProps>;
-
-export default DatePicker;

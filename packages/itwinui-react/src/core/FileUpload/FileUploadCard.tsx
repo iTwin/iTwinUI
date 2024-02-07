@@ -278,7 +278,6 @@ export const FileUploadCard = Object.assign(FileUploadCardComponent, {
   Input: FileUploadCardInput,
 });
 FileUploadCard.displayName = 'FileUploadCard';
-export default FileUploadCard;
 
 export const FileUploadCardContext = React.createContext<
   | {

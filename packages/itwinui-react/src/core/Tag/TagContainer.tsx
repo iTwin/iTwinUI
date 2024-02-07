@@ -51,5 +51,3 @@ export const TagContainer = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', TagContainerProps>;
-
-export default TagContainer;

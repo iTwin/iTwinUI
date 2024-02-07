@@ -48,5 +48,3 @@ export const WorkflowDiagram = React.forwardRef(
     );
   },
 ) as PolymorphicForwardRefComponent<'ol', WorkflowDiagramProps>;
-
-export default WorkflowDiagram;

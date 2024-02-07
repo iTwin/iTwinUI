@@ -8,5 +8,3 @@ import { DialogButtonBar } from '../Dialog/DialogButtonBar.js';
  * Container for Buttons in modal.
  */
 export const ModalButtonBar = Object.assign({}, DialogButtonBar);
-
-export default ModalButtonBar;

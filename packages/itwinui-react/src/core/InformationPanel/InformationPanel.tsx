@@ -126,5 +126,3 @@ export const InformationPanel = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', InformationPanelProps>;
-
-export default InformationPanel;

@@ -302,5 +302,3 @@ export const ToastPresentation = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ToastPresentationProps>;
-
-export default Toast;

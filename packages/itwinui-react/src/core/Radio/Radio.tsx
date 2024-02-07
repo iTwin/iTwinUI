@@ -89,5 +89,3 @@ export const Radio = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioProps>;
-
-export default Radio;

@@ -248,5 +248,3 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
-
-export default MenuItem;

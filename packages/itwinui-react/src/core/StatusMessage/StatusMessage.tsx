@@ -72,5 +72,3 @@ export const StatusMessage = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
-
-export default StatusMessage;

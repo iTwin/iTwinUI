@@ -10,5 +10,3 @@ import { polymorphic } from '../utils/index.js';
  * <p>Some <Code>inline code</Code> in a paragraph</p>
  */
 export const Code = polymorphic.code('iui-code');
-
-export default Code;

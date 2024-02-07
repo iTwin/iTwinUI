@@ -105,5 +105,3 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressLinearProps>;
-
-export default ProgressLinear;

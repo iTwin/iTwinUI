@@ -63,5 +63,3 @@ export const Label = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'label', LabelOwnProps>;
-
-export default Label;

@@ -10,7 +10,7 @@ related:
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Input.main.tsx' truncate={false}>
+<LiveExample src='Input.main.jsx' truncate={false}>
   <AllExamples.InputMainExample client:load />
 </LiveExample>
 
@@ -22,7 +22,7 @@ Inputs are form elements meant to receive text input from the user. It is strong
 
 There are three different sizes, which can be specified using the `size` prop.
 
-<LiveExample src='Input.sizes.tsx'>
+<LiveExample src='Input.sizes.jsx'>
   <AllExamples.InputSizesExample client:load />
 </LiveExample>
 
@@ -32,7 +32,7 @@ Use the `htmlSize` prop for setting the native `size` attribute of the `<input>`
 
 Status messages are sometimes required for bringing warnings or errors to the user’s attention. For example, required fields that are left empty, spelling mistakes, or to notify a user the username they have entered is available. Note that the status is conveyed differently when [inline](#inline) styling is applied.
 
-<LiveExample src='Input.status.tsx'>
+<LiveExample src='Input.status.jsx'>
   <AllExamples.InputStatusExample client:load />
 </LiveExample>
 
@@ -40,7 +40,7 @@ Status messages are sometimes required for bringing warnings or errors to the us
 
 It’s possible to use inputs inline, in forms for example. Be aware that the [status](#status) does display a bit differently when inline.
 
-<LiveExample src='Input.inline.tsx'>
+<LiveExample src='Input.inline.jsx'>
   <AllExamples.InputInlineExample client:load />
 </LiveExample>
 
@@ -48,13 +48,13 @@ It’s possible to use inputs inline, in forms for example. Be aware that the [s
 
 You can pair an input and a button together.
 
-<LiveExample src='Input.button.tsx'>
+<LiveExample src='Input.button.jsx'>
   <AllExamples.InputButtonExample client:load />
 </LiveExample>
 
 There are more complex options of pairing inputs with other various form components when using the [button group](buttongroup).
 
-<LiveExample src='ButtonGroup.input.tsx'>
+<LiveExample src='ButtonGroup.input.jsx'>
   <AllExamples.ButtonGroupInputExample client:load />
 </LiveExample>
 
@@ -62,7 +62,7 @@ There are more complex options of pairing inputs with other various form compone
 
 You may want to place the label somewhere separated from the input. This can be useful when you want to create columns where the text labels are all right aligned. Use `<Input>` in combination with `<Label>` when you want to separate the two. Be aware that it is an accessibility requirement for all inputs to be paired with a label.
 
-<LiveExample src='Input.separatelabel.tsx'>
+<LiveExample src='Input.separatelabel.jsx'>
   <AllExamples.InputSeparateLabelExample client:load />
 </LiveExample>
 

@@ -327,5 +327,3 @@ export const Popover = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', PopoverPublicProps>;
-
-export default Popover;

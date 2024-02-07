@@ -282,5 +282,3 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
-
-export default Tooltip;

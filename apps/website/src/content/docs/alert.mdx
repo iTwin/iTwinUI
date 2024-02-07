@@ -7,7 +7,7 @@ thumbnail: Alert
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Alert.main.tsx'>
+<LiveExample src='Alert.main.jsx'>
   <AllExamples.AlertMainExample client:load />
 </LiveExample>
 
@@ -63,7 +63,7 @@ By default, Alerts will use `type='informational'`. The `type` prop can be chang
 - `'warning'`: requires attention but does not result in any immediate disruption.
 - `'negative'`: signify system outages or failures.
 
-<LiveExample src='Alert.types.tsx'>
+<LiveExample src='Alert.types.jsx'>
   <AllExamples.AlertTypesExample client:load />
 </LiveExample>
 
@@ -71,7 +71,7 @@ By default, Alerts will use `type='informational'`. The `type` prop can be chang
 
 Use the `isSticky` prop to fix an alert at the top of a user's screen even if they scroll down the page. It's important to note that sticky alerts must always be dismissible (using the close button). Additionally, the alert will appear above all other UI elements except for toast notifications and modals.
 
-<LiveExample src='Alert.sticky.tsx'>
+<LiveExample src='Alert.sticky.jsx'>
   <AllExamples.AlertStickyExample client:load />
 </LiveExample>
 

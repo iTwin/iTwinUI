@@ -63,5 +63,3 @@ export const WithCSSTransition = (
     </CSSTransition>
   );
 };
-
-export default WithCSSTransition;

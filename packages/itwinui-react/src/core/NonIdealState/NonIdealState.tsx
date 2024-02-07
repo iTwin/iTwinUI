@@ -132,5 +132,3 @@ export const NonIdealState = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', NonIdealStateProps>;
-
-export default NonIdealState;
