@@ -23,6 +23,7 @@
       import "@itwin/itwinui-icons-elements/chevron-up";
       import "@itwin/itwinui-icons-elements/chevron-down";
       import "@itwin/itwinui-icons-elements/search";
+      import "@itwin/itwinui-icons-elements/caret-down-small";
     </script>
     <title>Input | iTwinUI</title>
     <style>
@@ -59,6 +60,40 @@
     <theme-button></theme-button>
     <h1>Input</h1>
     <hr />
+
+    <h2>Testing Only</h2>
+    <section id="demo-testing">
+
+      <div
+        class="iui-input-flex-container"
+        data-iui-status="positive"
+      >
+        <input placeholder="Placeholder…" />
+        <svg-status-success
+          class="iui-svg-icon"
+          data-iui-icon-color="positive"
+          data-iui-padded="true"
+          data-iui-icon-size="m"
+          aria-hidden="true"
+        ></svg-status-success>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          id="test-select-1"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Starts with</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-svg-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+    </section>
+
 
     <h2>Default</h2>
     <section id="demo-default">
