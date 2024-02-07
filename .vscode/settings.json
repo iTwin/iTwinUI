@@ -34,7 +34,8 @@
     "*.astro": "${capture}.tsx, ${capture).css, ${capture}.scss",
     "*.ts": "${capture}.test.ts",
     "*.tsx": "${capture}.ts, ${capture}.css, ${capture}.test.tsx",
-    "*.stories.tsx": "${capture}.test.ts"
+    "*.stories.tsx": "${capture}.test.ts",
+    ".env": ".env.*"
   },
   "javascript.preferences.importModuleSpecifierEnding": "js",
   "typescript.preferences.importModuleSpecifierEnding": "js",
