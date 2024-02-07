@@ -7,7 +7,6 @@
     "dev": "next dev -p 1702",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
     "clean": "rimraf .turbo && rimraf node_modules && rimraf .next"
   },
   "dependencies": {
