@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Footer, FooterElement } from '@itwin/itwinui-react';
+import { Footer } from '@itwin/itwinui-react';
 
 export default () => {
   const customElements = (defaultElements) => {

@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ComboBox, MenuItem, ComboBoxProps } from '@itwin/itwinui-react';
+import { ComboBox, MenuItem } from '@itwin/itwinui-react';
 
 export default () => {
   const options = React.useMemo(
