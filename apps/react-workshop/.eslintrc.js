@@ -12,5 +12,6 @@ module.exports = {
     '**/cypress/**',
     '.eslintrc.js',
     'scripts/**',
+    '**/dist/**',
   ],
 };
