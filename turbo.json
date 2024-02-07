@@ -37,6 +37,12 @@
       "dotEnv": [".env.development", ".env.local"],
       "cache": false
     },
+    "vite-playground#dev": {
+      "persistent": true
+    },
+    "css-workshop#dev": {
+      "persistent": true
+    },
     "format": {},
     "clean": {
       "outputs": [],
