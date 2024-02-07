@@ -402,5 +402,3 @@ export const TablePaginator = (props: TablePaginatorProps) => {
     </Box>
   );
 };
-
-export default TablePaginator;

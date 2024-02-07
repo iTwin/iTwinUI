@@ -27,5 +27,3 @@ import { polymorphic } from '../utils/index.js';
 export const MenuExtraContent = polymorphic.li('iui-menu-content', {
   role: 'presentation',
 });
-
-export default MenuExtraContent;

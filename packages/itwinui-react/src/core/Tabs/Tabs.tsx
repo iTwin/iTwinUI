@@ -801,9 +801,6 @@ const TabListContext = React.createContext<
     }
   | undefined
 >(undefined);
-
-export default Tabs;
-
 // ----------------------------------------------------------------------------
 
 /**

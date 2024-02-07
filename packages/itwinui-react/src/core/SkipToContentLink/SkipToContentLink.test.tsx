@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import SkipToContentLink from './SkipToContentLink.js';
+import { SkipToContentLink } from './SkipToContentLink.js';
 
 it('should render link in its most basic state', () => {
   const { container } = render(<SkipToContentLink href='#main-content-id' />);

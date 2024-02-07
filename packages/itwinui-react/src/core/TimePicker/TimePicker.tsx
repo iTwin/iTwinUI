@@ -662,5 +662,3 @@ const TimePickerColumn = <T,>(props: TimePickerColumnProps<T>): JSX.Element => {
     </Box>
   );
 };
-
-export default TimePicker;

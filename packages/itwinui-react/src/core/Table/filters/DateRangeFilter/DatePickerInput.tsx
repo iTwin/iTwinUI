@@ -35,7 +35,7 @@ export type DatePickerInputProps = {
   'value' | 'onChange' | 'svgIcon' | 'displayStyle'
 >;
 
-const DatePickerInput = React.forwardRef((props, forwardedRef) => {
+export const DatePickerInput = React.forwardRef((props, forwardedRef) => {
   const uid = useId();
   const {
     onChange,
@@ -146,5 +146,3 @@ const DatePickerInput = React.forwardRef((props, forwardedRef) => {
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'input', DatePickerInputProps>;
-
-export default DatePickerInput;

@@ -93,5 +93,3 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
-
-export default ProgressRadial;

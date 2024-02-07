@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import MiddleTextTruncation from './MiddleTextTruncation.js';
+import { MiddleTextTruncation } from './MiddleTextTruncation.js';
 import * as UseOverflow from '../hooks/useOverflow.js';
 
 it('should truncate the text', () => {

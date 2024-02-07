@@ -92,5 +92,3 @@ export const Badge = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', BadgeProps>;
-
-export default Badge;

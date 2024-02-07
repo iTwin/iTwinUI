@@ -194,9 +194,6 @@ export const ThemeProvider = React.forwardRef((props, forwardedRef) => {
     </ThemeContext.Provider>
   );
 }) as PolymorphicForwardRefComponent<'div', ThemeProviderOwnProps>;
-
-export default ThemeProvider;
-
 // ----------------------------------------------------------------------------
 
 const Root = React.forwardRef((props, forwardedRef) => {

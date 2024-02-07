@@ -17,7 +17,7 @@ import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
 import { CSSTransition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
-import useDragAndDrop from '../utils/hooks/useDragAndDrop.js';
+import { useDragAndDrop } from '../utils/hooks/useDragAndDrop.js';
 import styles from '../../styles.js';
 
 export type DialogMainProps = {
@@ -236,5 +236,3 @@ export const DialogMain = React.forwardRef((props, ref) => {
     </CSSTransition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
-
-export default DialogMain;

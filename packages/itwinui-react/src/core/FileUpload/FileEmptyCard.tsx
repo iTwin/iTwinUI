@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Box, polymorphic, SvgUpload } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import cx from 'classnames';
-import FileUploadCard from './FileUploadCard.js';
+import { FileUploadCard } from './FileUploadCard.js';
 
 // ----------------------------------------------------------------------------
 // FileEmptyCard.Icon component
@@ -61,5 +61,3 @@ export const FileEmptyCard = Object.assign(FileEmptyCardComponent, {
   Icon: FileEmptyCardIcon,
   Text: FileEmptyCardText,
 });
-
-export default FileEmptyCard;

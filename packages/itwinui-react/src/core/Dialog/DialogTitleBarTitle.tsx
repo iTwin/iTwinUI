@@ -10,5 +10,3 @@ import { polymorphic } from '../utils/index.js';
  * <Dialog.TitleBar>My dialog title</Dialog.TitleBar>
  */
 export const DialogTitleBarTitle = polymorphic.div('iui-dialog-title');
-
-export default DialogTitleBarTitle;

@@ -77,5 +77,3 @@ export const InformationPanelHeader = React.forwardRef(
     );
   },
 ) as PolymorphicForwardRefComponent<'div', InformationPanelHeaderProps>;
-
-export default InformationPanelHeader;

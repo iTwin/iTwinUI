@@ -36,5 +36,3 @@ export const TreeNodeExpander = React.forwardRef((props, ref) => {
     </IconButton>
   );
 }) as PolymorphicForwardRefComponent<'button', TreeNodeExpanderProps>;
-
-export default TreeNodeExpander;

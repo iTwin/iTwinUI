@@ -151,5 +151,3 @@ export const Header = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'header', HeaderProps>;
-
-export default Header;

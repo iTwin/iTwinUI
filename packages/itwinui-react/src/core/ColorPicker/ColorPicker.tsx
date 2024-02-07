@@ -160,5 +160,3 @@ export const ColorPicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorPickerProps>;
-
-export default ColorPicker;

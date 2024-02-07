@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import HeaderBreadcrumbs from './HeaderBreadcrumbs.js';
+import { HeaderBreadcrumbs } from './HeaderBreadcrumbs.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<HeaderBreadcrumbs items={[]} />);
