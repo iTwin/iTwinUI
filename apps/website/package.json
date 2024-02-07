@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development astro dev",
+    "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -28,7 +28,6 @@
     "examples": "*",
     "htm": "^3",
     "lightningcss": "^1.22.1",
-    "lz-string": "^1.4.4",
     "nanoid": "*",
     "nanostores": "^0.9.0",
     "outdent": "^0.8.0",
