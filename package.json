@@ -38,11 +38,11 @@
     "approve:css": "yarn workspace css-workshop approve",
     "approve:react": "yarn workspace react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
-    "release": "yarn build --filter={./packages/*}... && changeset publish"
+    "changeset": "npx -y @changesets/cli",
+    "release": "yarn build --filter={./packages/*}... && yarn changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
     "chokidar-cli": "^3.0.0",
     "concurrently": "^8.2.2",
     "husky": "^9.0.10",
@@ -55,7 +55,6 @@
   },
   "resolutions": {
     "normalize-package-data": "^6.0.0",
-    "trim-newlines": "^4.0.0",
     "glob-parent": "^6.0.2",
     "strip-ansi": "^6.0.0",
     "async": "^3.2.5",
