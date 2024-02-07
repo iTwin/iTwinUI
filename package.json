@@ -39,7 +39,7 @@
     "approve:react": "yarn workspace react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
-    "release": "yarn build --filter={./packages/*}... && changeset publish"
+    "release": "yarn build --filter={./packages/*}... && yarn changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
