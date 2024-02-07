@@ -16,11 +16,9 @@
     "react-dom": "^18.0.0"
   },
   "devDependencies": {
-    "@emotion/react": "11.10.4",
-    "@emotion/styled": "11.10.4",
-    "@types/react": "^18.0.6",
-    "@types/react-dom": "^18.0.2",
-    "@vitejs/plugin-react": "^3.1.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@vitejs/plugin-react": "^4.2.1",
     "configs": "*",
     "typescript": "~5.1.6",
     "vite": "^5"

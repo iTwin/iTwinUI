@@ -1,6 +1,6 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
+  "globalDotEnv": [".env"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
@@ -18,28 +18,26 @@
       "dependsOn": ["^build"],
       "outputs": ["build/**"]
     },
-    "test": {
-      "outputs": []
-    },
+    "test": {},
     "react-workshop#test": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "outputs": ["dist/**", "build/**"]
     },
     "css-workshop#test": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "outputs": ["dist/**", "build/**"]
     },
     "a11y#test": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**"]
     },
-    "lint": {
-      "outputs": []
-    },
+    "lint": {},
     "dev": {
       "dependsOn": [],
+      "dotEnv": [".env.development", ".env.local"],
       "cache": false
     },
-    "format": {
-      "outputs": []
-    },
+    "format": {},
     "clean": {
       "outputs": [],
       "cache": false
