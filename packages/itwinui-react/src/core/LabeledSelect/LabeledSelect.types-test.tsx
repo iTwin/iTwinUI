@@ -8,7 +8,7 @@
  */
 
 import React, { useRef } from 'react';
-import LabeledSelect from './LabeledSelect.js';
+import { LabeledSelect } from './LabeledSelect.js';
 
 () => {
   const ref = useRef(null);

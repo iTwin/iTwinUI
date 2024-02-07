@@ -534,5 +534,3 @@ const MultipleSelectButton = <T,>({
     </>
   );
 };
-
-export default Select;

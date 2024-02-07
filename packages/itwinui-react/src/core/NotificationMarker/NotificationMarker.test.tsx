@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 
 import { NotificationMarker } from './NotificationMarker.js';
 import { SvgNotification } from '@itwin/itwinui-icons-react';
-import Anchor from '../Typography/Anchor.js';
+import { Anchor } from '../Typography/Anchor.js';
 
 it('should render in its most basic state', () => {
   const { container } = render(<NotificationMarker>Demo</NotificationMarker>);

@@ -145,5 +145,3 @@ export const Stepper = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StepperProps>;
-
-export default Stepper;

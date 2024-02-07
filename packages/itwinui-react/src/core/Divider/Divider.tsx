@@ -31,5 +31,3 @@ export const Divider = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'hr', DividerProps>;
-
-export default Divider;

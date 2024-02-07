@@ -4,8 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import MenuItem from './MenuItem.js';
-import Menu from './Menu.js';
+import { MenuItem } from './MenuItem.js';
+import { Menu } from './Menu.js';
 import { MenuDivider } from './MenuDivider.js';
 import { MenuExtraContent } from './MenuExtraContent.js';
 import { Checkbox } from '../Checkbox/Checkbox.js';

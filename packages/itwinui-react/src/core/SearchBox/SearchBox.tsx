@@ -392,5 +392,3 @@ export const SearchBox = Object.assign(SearchBoxComponent, {
 });
 
 SearchBox.displayName = 'SearchBox';
-
-export default SearchBox;

@@ -8,7 +8,7 @@
  */
 
 import React, { useRef } from 'react';
-import Select from './Select.js';
+import { Select } from './Select.js';
 
 () => {
   const ref = useRef(null);

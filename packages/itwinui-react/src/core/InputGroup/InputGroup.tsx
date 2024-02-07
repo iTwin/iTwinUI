@@ -136,5 +136,3 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
-
-export default InputGroup;

@@ -212,5 +212,3 @@ export const Alert = Object.assign(AlertComponent, {
    */
   CloseButton: AlertCloseButton,
 });
-
-export default Alert;

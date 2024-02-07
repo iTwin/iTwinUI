@@ -85,5 +85,3 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', FileUploadTemplateProps>;
-
-export default FileUploadTemplate;

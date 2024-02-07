@@ -136,5 +136,3 @@ export const Checkbox = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', CheckboxProps>;
-
-export default Checkbox;

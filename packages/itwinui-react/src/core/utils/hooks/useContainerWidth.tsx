@@ -48,5 +48,3 @@ export const useContainerWidth = <T extends HTMLElement>(
 
   return [refs, contentWidth] as const;
 };
-
-export default useContainerWidth;

@@ -312,5 +312,3 @@ export const Resizer = (props: ResizerProps) => {
     </>
   );
 };
-
-export default Resizer;

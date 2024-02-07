@@ -285,5 +285,3 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', ErrorPageProps>;
-
-export default ErrorPage;

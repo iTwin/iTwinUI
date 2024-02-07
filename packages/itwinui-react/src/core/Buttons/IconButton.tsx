@@ -95,5 +95,3 @@ export const IconButton = React.forwardRef((props, ref) => {
     button
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
-
-export default IconButton;

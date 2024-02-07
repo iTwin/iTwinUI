@@ -121,5 +121,3 @@ export const Carousel = Object.assign(CarouselComponent, {
   DotsList: CarouselDotsList,
   Dot: CarouselDot,
 });
-
-export default Carousel;

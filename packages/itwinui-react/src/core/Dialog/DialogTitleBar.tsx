@@ -89,5 +89,3 @@ export const DialogTitleBar = Object.assign(
     Title: DialogTitleBarTitle,
   },
 );
-
-export default DialogTitleBar;

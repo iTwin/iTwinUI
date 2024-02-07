@@ -748,5 +748,3 @@ export const Tile = Object.assign(TileComponent, {
    */
   Buttons: TileButtons,
 });
-
-export default Tile;

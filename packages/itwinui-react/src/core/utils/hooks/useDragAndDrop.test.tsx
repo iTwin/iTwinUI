@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import useDragAndDrop from './useDragAndDrop.js';
+import { useDragAndDrop } from './useDragAndDrop.js';
 import * as DomFunctions from '../functions/dom.js';
 
 const DOMMatrixMock = vi.fn();

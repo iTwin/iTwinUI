@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { act, render, type RenderResult } from '@testing-library/react';
 import * as React from 'react';
-import Toast, { type ToastCategory } from './Toast.js';
+import { Toast, type ToastCategory } from './Toast.js';
 import {
   SvgInfoCircular,
   SvgStatusError,

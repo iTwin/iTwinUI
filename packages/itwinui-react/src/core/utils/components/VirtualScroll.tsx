@@ -435,5 +435,3 @@ export const useVirtualization = (props: VirtualScrollProps) => {
     visibleChildren,
   };
 };
-
-export default VirtualScroll;

@@ -4,7 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { findAllByRole, fireEvent, render } from '@testing-library/react';
-import Select, {
+import {
+  Select,
   type SelectProps,
   type SelectMultipleTypeProps,
 } from './Select.js';

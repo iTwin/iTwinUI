@@ -46,5 +46,3 @@ export const Input = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
-
-export default Input;

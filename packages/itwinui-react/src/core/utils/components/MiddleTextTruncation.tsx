@@ -75,5 +75,3 @@ export const MiddleTextTruncation = (props: MiddleTextTruncationProps) => {
     </span>
   );
 };
-
-export default MiddleTextTruncation;
