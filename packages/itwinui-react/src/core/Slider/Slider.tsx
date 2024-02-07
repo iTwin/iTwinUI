@@ -548,5 +548,3 @@ export const Slider = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SliderProps>;
-
-export default Slider;

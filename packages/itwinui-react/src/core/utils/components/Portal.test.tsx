@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render, screen } from '@testing-library/react';
 import { Portal } from './Portal.js';
-import ThemeProvider from '../../ThemeProvider/ThemeProvider.js';
+import { ThemeProvider } from '../../ThemeProvider/ThemeProvider.js';
 
 it('should work', () => {
   render(

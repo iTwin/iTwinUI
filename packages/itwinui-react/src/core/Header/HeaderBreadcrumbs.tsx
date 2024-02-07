@@ -62,5 +62,3 @@ export const HeaderBreadcrumbs = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'nav', HeaderBreadcrumbsProps>;
-
-export default HeaderBreadcrumbs;

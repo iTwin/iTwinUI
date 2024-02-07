@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain.js';
-import DialogTitleBar from './DialogTitleBar.js';
+import { DialogTitleBar } from './DialogTitleBar.js';
 
 const DOMMatrixMock = vi.fn(() => ({ m41: 0, m42: 0 }));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

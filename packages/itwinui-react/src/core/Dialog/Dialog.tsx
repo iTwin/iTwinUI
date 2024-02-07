@@ -101,5 +101,3 @@ export const Dialog = Object.assign(DialogComponent, {
   Content: DialogContent,
   ButtonBar: DialogButtonBar,
 });
-
-export default Dialog;

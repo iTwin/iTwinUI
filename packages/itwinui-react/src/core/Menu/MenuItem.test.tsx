@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
-import MenuItem from './MenuItem.js';
+import { MenuItem } from './MenuItem.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import { userEvent } from '@testing-library/user-event';
 

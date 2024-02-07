@@ -62,7 +62,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import VirtualScroll from '../utils/components/VirtualScroll.js';
+import { VirtualScroll } from '../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
@@ -1163,9 +1163,6 @@ export const Table = <
     </>
   );
 };
-
-export default Table;
-
 // ----------------------------------------------------------------------------
 
 /**

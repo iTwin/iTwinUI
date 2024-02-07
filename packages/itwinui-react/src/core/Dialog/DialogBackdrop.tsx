@@ -69,5 +69,3 @@ export const DialogBackdrop = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', DialogBackdropProps>;
-
-export default DialogBackdrop;

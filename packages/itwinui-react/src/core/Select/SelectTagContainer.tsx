@@ -38,5 +38,3 @@ export const SelectTagContainer = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SelectTagContainerProps>;
-
-export default SelectTagContainer;

@@ -595,5 +595,3 @@ export const ComboBox = React.forwardRef(
 ) as <T>(
   props: ComboBoxProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
-
-export default ComboBox;

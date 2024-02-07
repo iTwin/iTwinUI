@@ -282,5 +282,3 @@ export const TreeNode = (props: TreeNodeProps) => {
     </Box>
   );
 };
-
-export default TreeNode;

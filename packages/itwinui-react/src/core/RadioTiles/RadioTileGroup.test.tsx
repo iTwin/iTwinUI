@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { RadioTileGroup } from './RadioTileGroup.js';
-import RadioTile from './RadioTile.js';
+import { RadioTile } from './RadioTile.js';
 
 it('should render without label', () => {
   const { container } = render(

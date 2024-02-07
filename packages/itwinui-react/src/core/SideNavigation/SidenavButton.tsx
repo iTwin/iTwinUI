@@ -53,5 +53,3 @@ export const SidenavButton = React.forwardRef((props, ref) => {
     </Button>
   );
 }) as PolymorphicForwardRefComponent<'button', SidenavButtonProps>;
-
-export default SidenavButton;

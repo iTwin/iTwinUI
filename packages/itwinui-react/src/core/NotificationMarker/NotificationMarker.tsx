@@ -78,5 +78,3 @@ export const NotificationMarker = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', NotificationMarkerProps>;
-
-export default NotificationMarker;

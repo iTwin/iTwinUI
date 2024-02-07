@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { fireEvent, render } from '@testing-library/react';
-import Resizer, { type ResizerProps } from './Resizer.js';
+import { Resizer, type ResizerProps } from './Resizer.js';
 import * as DomUtils from '../functions/dom.js';
 
 vi.spyOn(DomUtils, 'getTranslateValuesFromElement').mockReturnValue([100, 100]);

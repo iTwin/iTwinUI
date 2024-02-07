@@ -82,5 +82,3 @@ export const DropdownButton = React.forwardRef((props, forwardedRef) => {
     </DropdownMenu>
   );
 }) as PolymorphicForwardRefComponent<'button', DropdownButtonProps>;
-
-export default DropdownButton;

@@ -111,5 +111,3 @@ export const TableCell = <T extends Record<string, unknown>>(
     </>
   );
 };
-
-export default TableCell;

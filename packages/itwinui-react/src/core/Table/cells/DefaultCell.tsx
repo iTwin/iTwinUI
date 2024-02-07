@@ -73,5 +73,3 @@ export const DefaultCell = <T extends Record<string, unknown>>(
     </Box>
   );
 };
-
-export default DefaultCell;

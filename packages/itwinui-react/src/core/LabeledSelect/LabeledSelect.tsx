@@ -168,5 +168,3 @@ export const LabeledSelect = React.forwardRef(
 ) as <T>(
   props: LabeledSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
-
-export default LabeledSelect;

@@ -36,5 +36,3 @@ export const useMediaQuery = (queryString: string) => {
 
   return !!matches;
 };
-
-export default useMediaQuery;

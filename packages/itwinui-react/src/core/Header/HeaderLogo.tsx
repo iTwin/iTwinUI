@@ -61,5 +61,3 @@ export const HeaderLogo = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', HeaderLogoOwnProps>;
-
-export default HeaderLogo;
