@@ -7,7 +7,7 @@ group: utilities
 
 Popover is a utility component for displaying overlay content in a dialog that is placed relative to a trigger element.
 
-<LiveExample src='Popover.main.tsx'>
+<LiveExample src='Popover.main.jsx'>
   <AllExamples.PopoverMainExample client:load />
 </LiveExample>
 
@@ -29,7 +29,7 @@ If you use a native `<button>` or iTwinUI's [`<Button>`](button) as the trigger,
 
 Popover handles positioning using an external library called [Floating UI](floating-ui.com/). To control which side the popover should be placed relative to its trigger, use the `placement` prop. If not enough space is available, then it will flip to the opposite side.
 
-<LiveExample src='Popover.placement.tsx'>
+<LiveExample src='Popover.placement.jsx'>
   <AllExamples.PopoverPlacementExample client:load />
 </LiveExample>
 
@@ -54,7 +54,7 @@ If you have a good candidate for receiving focus, then you can manually `focus()
 
 The following example shows how you can focus an input when the popover opens. This input is preceded by a heading associated with the popover using `aria-labelledby`. As a result, when the popover opens, the heading is automatically announced to a screen reader user, ensuring they didn't miss any content located before the input.
 
-<LiveExample src='Popover.focus.tsx'>
+<LiveExample src='Popover.focus.jsx'>
   <AllExamples.PopoverFocusExample client:load />
 </LiveExample>
 

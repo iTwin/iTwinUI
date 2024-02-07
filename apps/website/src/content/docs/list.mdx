@@ -6,7 +6,7 @@ thumbnail: Menu
 
 The `List` component is used to display a list of `ListItem`s that may optionally have start/end icons and a description.
 
-<LiveExample src='List.main.tsx'>
+<LiveExample src='List.main.jsx'>
   <AllExamples.ListMainExample client:load />
 </LiveExample>
 
@@ -24,7 +24,7 @@ The `ListItem` component comes with the following subcomponents which can be pas
 
 There is also a `size` prop which can be set to `'large'` to ensure that all items have a uniform large size even when there is no description.
 
-<LiveExample src='List.subcomponents.tsx'>
+<LiveExample src='List.subcomponents.jsx'>
   <AllExamples.ListSubcomponentsExample client:idle />
 </LiveExample>
 
@@ -38,7 +38,7 @@ Please note that this prop only provides the hover styling and does nothing else
 
 When `ListItem` contains a link, it is recommended to use `ListItem.Action` instead of a regular anchor link. This component is a wrapper over [`LinkAction`](linkaction) which increases the tap target size (clickable area) of the link to include the padding from list item, and ensures that there is proper hover and focus styling.
 
-<LiveExample src='List.links.tsx'>
+<LiveExample src='List.links.jsx'>
   <AllExamples.ListLinksExample client:idle />
 </LiveExample>
 
@@ -58,7 +58,7 @@ For example, in addition to the `active` prop, you might want to use `aria-selec
 
 The example below shows the use of these props inside a [`ComboBox`](combobox) using its custom `itemRenderer`. Notice how we manually set `role` to be `option` - this allows us to use `aria-selected` and `aria-disabled` to go along with the `active` and `disabled` props. The ComboBox also has the correct attributes and includes built-in focus management so that the up/down arrow keys change the `isFocused` property; the only additional thing we had to add in our list item is the `id` which gets referenced by the `aria-activedescendant` attribute set on the input.
 
-<LiveExample src='List.combobox.tsx'>
+<LiveExample src='List.combobox.jsx'>
   <AllExamples.ListComboboxExample client:idle />
 </LiveExample>
 
