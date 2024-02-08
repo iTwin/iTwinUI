@@ -3500,6 +3500,9 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   let host = container.querySelector('.iui-table-body') as HTMLDivElement;
   expect(host).toBeTruthy();
 
+  const slot = host?.shadowRoot?.querySelector('slot');
+  expect(slot).toBeTruthy();
+
   // When clientWidth >= scrollWidth, the dummy div should not be rendered
   const htmlScrollWidthMock = vi
     .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
