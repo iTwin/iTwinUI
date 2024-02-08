@@ -1,6 +1,6 @@
-name: 🐛 Bug
+name: Bug Report 🐛 
 description: Create a bug report to help us improve
-labels: ['Bug']
+labels: ['bug']
 assignees: []
 body:
   - type: markdown
@@ -23,8 +23,8 @@ body:
       required: false
   - type: input
     attributes:
-      label: Reproduction
-      description: 'Add link to a minimal repro'
+      label: Link to minimal repro
+      description: 'Create a minimal reproduction by forking [this sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
   - type: textarea
     attributes:
       label: Steps To Reproduce
