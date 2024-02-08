@@ -21,3 +21,7 @@ vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
     useGlobals: () => {},
   };
 });
+
+afterEach(() => {
+  vi.useRealTimers();
+});
