@@ -33,6 +33,7 @@ body:
         1. Fill 
         2. this
         3. out
+      render: bash
     validations:
       required: false
   - type: textarea
