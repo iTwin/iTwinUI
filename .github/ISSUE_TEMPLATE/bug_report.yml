@@ -21,15 +21,14 @@ body:
       description: A concise description of what you expected to happen.
     validations:
       required: false
-  - type: textarea
-    attributes:
-      label: Reproduction
-      description: 'Fork this sandbox: https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx'
-      placeholder: 'Link to a minimal repro:'
   - type: input
     attributes:
+      label: Reproduction
+      description: 'Fork this [sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
+      placeholder: 'Link to a minimal repro:'
+  - type: textarea
+    attributes:
       label: Steps To Reproduce
-      description: Steps to reproduce the behavior.
       placeholder: |
         1. Fill this out
         2. Fill this out
