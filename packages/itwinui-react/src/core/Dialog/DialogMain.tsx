@@ -168,6 +168,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {
           'iui-dialog-default': styleType === 'default',
           'iui-dialog-full-page': styleType === 'fullPage',
+          'iui-dialog-visible': isOpen,
           'iui-dialog-draggable': isDraggable,
         },
         className,
@@ -207,7 +208,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
       classNames={{
         enter: styles['iui-dialog-animation-enter'],
         enterActive: styles['iui-dialog-animation-enter-active'],
-        enterDone: styles['iui-dialog-visible'],
       }}
       timeout={{ exit: 600 }}
       // Focuses dialog when opened
