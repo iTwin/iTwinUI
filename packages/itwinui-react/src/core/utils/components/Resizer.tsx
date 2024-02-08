@@ -45,6 +45,22 @@ export type ResizerProps = {
  * );
  */
 export const Resizer = (props: ResizerProps) => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: -6,
+        display: 'grid',
+        pointerEvents: 'none',
+      }}
+    >
+      <ResizerStyles />
+      <Resizers {...props} />
+    </div>
+  );
+};
+
+const Resizers = (props: ResizerProps) => {
   const { elementRef, containerRef, onResizeStart, onResizeEnd } = props;
 
   const isResizing = React.useRef(false);
@@ -214,15 +230,7 @@ export const Resizer = (props: ResizerProps) => {
   };
 
   return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: -6,
-        display: 'grid',
-        pointerEvents: 'none',
-      }}
-    >
-      <ResizerStyles />
+    <>
       <div
         data-iui-resizer='top-left'
         onPointerDown={onResizePointerDown}
@@ -263,7 +271,7 @@ export const Resizer = (props: ResizerProps) => {
         onPointerDown={onResizePointerDown}
         style={{ cursor: 'w-resize' }}
       />
-    </div>
+    </>
   );
 };
 
