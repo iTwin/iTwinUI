@@ -1,13 +1,14 @@
-# Thank you for contributing to iTwinUI by creating an issue!
-# Make sure you first do a search for existing issues so that this is is not a dulicate
-# Also visit our FAQ https://github.com/iTwin/iTwinUI/wiki/FAQ
-
-name: 🐞 Bug
+name: 🐛 Bug
 description: Create a bug report to help us improve
-title: ''
-labels: bug
-assignees: ''
+labels: ['bug']
+assignees: []
 body:
+  - type: markdown
+    attributes:
+      value: |
+        'Thank you for contributing to iTwinUI by creating an issue!
+        Make sure you first do a search for existing issues so that this is is not a duplicate
+        Also visit our FAQ https://github.com/iTwin/iTwinUI/wiki/FAQ'
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
