@@ -30,9 +30,9 @@ body:
     attributes:
       label: Steps To Reproduce
       placeholder: |
-        1. Fill this out
-        2. Fill this out
-        3. Fill this out
+        1. Fill 
+        2. this
+        3. out
     validations:
       required: false
   - type: textarea
