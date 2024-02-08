@@ -12,6 +12,8 @@ const supportsDSD =
 /**
  * Wrapper around `<template>` element that attaches shadow root to its parent
  * and moves its children into the shadow root.
+ *
+ * @private
  */
 export const ShadowRoot = ({ children }: { children: React.ReactNode }) => {
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
