@@ -7,6 +7,7 @@
     <img
       src='https://itwin.github.io/iTwinUI/logo.svg'
       alt='iTwinUI logo'
+      height='150'
     />
   </picture>
 </p>
