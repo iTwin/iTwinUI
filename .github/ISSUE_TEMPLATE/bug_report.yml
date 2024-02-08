@@ -8,7 +8,7 @@ body:
       value: |
         Thank you for contributing to iTwinUI by creating an issue!
         Make sure you first do a search for existing issues so that this is is not a duplicate.
-        Also visit our FAQ: https://github.com/iTwin/iTwinUI/wiki/FAQ
+        Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ)
   - type: textarea
     attributes:
       label: Describe the bug (current behavior)
