@@ -11,6 +11,7 @@ import {
   useMergedRefs,
   useLayoutEffect,
   Box,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
@@ -185,19 +186,23 @@ export const DialogMain = React.forwardRef((props, ref) => {
       }}
       {...rest}
     >
-      {isResizable && (
-        <Resizer
-          elementRef={dialogRef}
-          containerRef={dialogContext.dialogRootRef}
-          onResizeStart={() => {
-            if (!hasBeenResized.current) {
-              hasBeenResized.current = true;
-              setResizeStyle({ maxInlineSize: '100%' });
-            }
-          }}
-          onResizeEnd={setResizeStyle}
-        />
-      )}
+      <ShadowRoot>
+        <slot />
+        {isResizable && (
+          <Resizer
+            elementRef={dialogRef}
+            containerRef={dialogContext.dialogRootRef}
+            onResizeStart={() => {
+              if (!hasBeenResized.current) {
+                hasBeenResized.current = true;
+                setResizeStyle({ maxInlineSize: '100%' });
+              }
+            }}
+            onResizeEnd={setResizeStyle}
+          />
+        )}
+      </ShadowRoot>
+
       {children}
     </Box>
   );

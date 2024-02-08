@@ -33,6 +33,8 @@ export type ResizerProps = {
 /**
  * Component that allows to resize parent element.
  * Parent must have `position: relative`.
+ *
+ * Ideally should be used within a shadow root.
  * @private
  * @example
  * const ref = React.useRef<HTMLDivElement>(null);
@@ -43,6 +45,22 @@ export type ResizerProps = {
  * );
  */
 export const Resizer = (props: ResizerProps) => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        inset: -6,
+        display: 'grid',
+        pointerEvents: 'none',
+      }}
+    >
+      <ResizerStyles />
+      <Resizers {...props} />
+    </div>
+  );
+};
+
+const Resizers = (props: ResizerProps) => {
   const { elementRef, containerRef, onResizeStart, onResizeEnd } = props;
 
   const isResizing = React.useRef(false);
@@ -216,99 +234,80 @@ export const Resizer = (props: ResizerProps) => {
       <div
         data-iui-resizer='top-left'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: 12,
-          height: 12,
-          cursor: 'nw-resize',
-        }}
+        style={{ cursor: 'nw-resize' }}
       />
       <div
         data-iui-resizer='top'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 8,
-          right: 8,
-          height: 8,
-          cursor: 'n-resize',
-        }}
+        style={{ cursor: 'n-resize' }}
       />
       <div
         data-iui-resizer='top-right'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: 12,
-          height: 12,
-          cursor: 'ne-resize',
-        }}
+        style={{ cursor: 'ne-resize' }}
       />
       <div
         data-iui-resizer='right'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          top: 8,
-          right: 0,
-          bottom: 8,
-          width: 8,
-          cursor: 'e-resize',
-        }}
+        style={{ cursor: 'e-resize' }}
       />
       <div
         data-iui-resizer='bottom-right'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          width: 12,
-          height: 12,
-          cursor: 'se-resize',
-        }}
+        style={{ cursor: 'se-resize' }}
       />
       <div
         data-iui-resizer='bottom'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 8,
-          right: 8,
-          height: 8,
-          cursor: 's-resize',
-        }}
+        style={{ cursor: 's-resize' }}
       />
       <div
         data-iui-resizer='bottom-left'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: 12,
-          height: 12,
-          cursor: 'sw-resize',
-        }}
+        style={{ cursor: 'sw-resize' }}
       />
       <div
         data-iui-resizer='left'
         onPointerDown={onResizePointerDown}
-        style={{
-          position: 'absolute',
-          top: 8,
-          left: 0,
-          bottom: 8,
-          width: 8,
-          cursor: 'w-resize',
-        }}
+        style={{ cursor: 'w-resize' }}
       />
     </>
   );
 };
+
+// ----------------------------------------------------------------------------
+
+const ResizerStyles = React.memo(() => <style>{resizerStyles}</style>);
+
+const resizerStyles = /* css */ `
+[data-iui-resizer] {
+  pointer-events: auto;
+  grid-area: 1 / 1 / -1 / -1;
+  width: 12px;
+  height: 12px;
+  z-index: 1;
+}
+[data-iui-resizer='top'],
+[data-iui-resizer='bottom'] {
+  height: 8px;
+  width: auto;
+  z-index: 0;
+}
+[data-iui-resizer='left'],
+[data-iui-resizer='right'] {
+  height: auto;
+  width: 8px;
+  z-index: 0;
+}
+[data-iui-resizer^='top'] {
+  align-self: start;
+}
+[data-iui-resizer^='bottom'] {
+  align-self: end;
+}
+[data-iui-resizer$='left'] {
+  justify-self: start;
+}
+[data-iui-resizer$='right'] {
+  justify-self: end;
+}`;
