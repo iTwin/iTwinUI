@@ -8,8 +8,7 @@ body:
       value: |
         Thank you for contributing to iTwinUI by creating an issue!
         Make sure you first do a search for existing issues so that this is is not a duplicate.
-        Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ) and fork our [sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)
-  - type: textarea
+        Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ).
     attributes:
       label: Describe the bug (current behavior)
       description: A concise description of what you're experiencing.
