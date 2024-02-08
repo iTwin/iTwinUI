@@ -25,7 +25,7 @@ body:
     attributes:
       label: Reproduction
       description: 'Fork this [sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
-      placeholder: 'Link to a minimal repro:'
+      placeholder: 'Add link to a minimal repro'
   - type: textarea
     attributes:
       label: Steps To Reproduce
