@@ -1,49 +1,21 @@
-import { Button, Dialog } from '@itwin/itwinui-react';
-import React from 'react';
+import * as React from 'react';
+import { Button, Modal, ModalContent } from '@itwin/itwinui-react';
 
-const App = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-
+export default function Home() {
   return (
     <>
-      <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
-        Open dialog
-      </Button>
-      {isOpen && (
-        <Dialog
-          isOpen={true}
-          onClose={() => setIsOpen(false)}
-          closeOnEsc
-          closeOnExternalClick
-          preventDocumentScroll
-          trapFocus
-          setFocus
-          isDismissible
-          portal
-        >
-          <Dialog.Backdrop />
-          <Dialog.Main>
-            <Dialog.TitleBar titleText='Dialog' />
-            <Dialog.Content>
-              A dialog informs users about a task and can contain critical
-              information, require decisions, or involve multiple tasks. Dialogs
-              appear in front of app content to provide critical information or
-              ask for a decision.
-            </Dialog.Content>
-            <Dialog.ButtonBar>
-              <Button
-                styleType='high-visibility'
-                onClick={() => setIsOpen(false)}
-              >
-                Primary
-              </Button>
-              <Button onClick={() => setIsOpen(false)}>Secondary</Button>
-            </Dialog.ButtonBar>
-          </Dialog.Main>
-        </Dialog>
-      )}
+      <p>Hello</p>
+      <Modal isOpen={true} title='This is the title'>
+        <ModalContent>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat. Duis aute irure dolor in
+          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+          culpa qui officia deserunt mollit anim id est laborum.
+        </ModalContent>
+      </Modal>
     </>
   );
-};
-
-export default App;
+}
