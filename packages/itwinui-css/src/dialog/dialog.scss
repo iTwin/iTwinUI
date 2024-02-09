@@ -53,6 +53,12 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
     animation: iui-fade-in var(--iui-duration-1) ease-out;
   }
 
+  @keyframes iui-slide-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
   @keyframes iui-fade-in {
     from {
       visibility: hidden;
@@ -125,12 +131,13 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
     &.iui-dialog-visible {
       animation: iui-slide-up var(--iui-duration-2) ease-out;
-    }
-  }
 
-  @keyframes iui-slide-up {
-    from {
-      transform: translateY(100%);
+      // To combine iui-slide-up with the iui-fade-in animation from iui-dialog
+      &.iui-dialog {
+        animation:
+          iui-slide-up var(--iui-duration-2) ease-out,
+          iui-fade-in var(--iui-duration-1) ease-out;
+      }
     }
   }
 }
