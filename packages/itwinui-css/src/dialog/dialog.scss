@@ -55,6 +55,7 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
   @keyframes iui-fade-in {
     from {
+      visibility: hidden;
       opacity: 0;
     }
   }
