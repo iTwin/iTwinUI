@@ -44,12 +44,18 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   }
 
   transition:
-    visibility var(--iui-duration-0) linear,
-    opacity var(--iui-duration-1) ease-out;
-  transition-delay: var(--iui-duration-1), var(--iui-duration-0);
+    visibility var(--iui-duration-0) linear var(--iui-duration-1),
+    opacity var(--iui-duration-1) ease-out var(--iui-duration-0);
 
   &.iui-dialog-visible {
-    transition-delay: var(--iui-duration-0); // remove delay for entry animation
+    visibility: visible;
+    animation: iui-fade-in var(--iui-duration-1) ease-out;
+  }
+
+  @keyframes iui-fade-in {
+    from {
+      opacity: 0;
+    }
   }
 }
 
@@ -116,25 +122,19 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
       transform var(--iui-duration-1) ease-in;
 
     &.iui-dialog-visible {
-      transition: transform var(--iui-duration-2) ease-out;
+      animation: iui-slide-up var(--iui-duration-2) ease-out;
+    }
+  }
+
+  @keyframes iui-slide-up {
+    from {
+      transform: translateY(100%);
     }
   }
 }
 
 .iui-dialog-draggable {
   border: 1px solid var(--iui-color-border);
-}
-
-.iui-dialog-animation {
-  &-enter {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  &-enter-active {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .iui-dialog-title {
