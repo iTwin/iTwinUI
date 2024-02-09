@@ -1,0 +1,42 @@
+name: Bug Report 🐛 
+description: Create a bug report to help us improve
+labels: ['bug']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for contributing to iTwinUI by creating an issue!
+        Make sure you first do a search for existing issues so that this is is not a duplicate.
+        Also visit our [FAQ](https://github.com/iTwin/iTwinUI/wiki/FAQ).
+  - type: textarea
+    attributes:
+      label: Describe the bug (current behavior)
+      description: A concise description of what you're experiencing.
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A concise description of what you expected to happen.
+    validations:
+      required: false
+  - type: input
+    attributes:
+      label: Link to minimal repro
+      description: 'Create a minimal reproduction by forking [this sandbox](https://stackblitz.io/github/iTwin/iTwinUI/tree/main/minimal-sandbox?file=/src/App.tsx)'
+  - type: textarea
+    attributes:
+      label: Steps To Reproduce
+      placeholder: |
+        1. Fill 
+        2. this
+        3. out
+    validations:
+      required: false
+  - type: textarea
+    attributes:
+      label: Anything else?
+      description: Add anything else you want to mention (package version, environment info, possible solution, etc.)
+    validations:
+      required: false
