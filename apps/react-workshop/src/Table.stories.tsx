@@ -1578,7 +1578,7 @@ export const Localized = () => {
       }));
   };
 
-  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const pageSizeList = React.useMemo(() => [50, 100, 150], []);
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
       <TablePaginator
@@ -1617,7 +1617,7 @@ export const Localized = () => {
         isSortable
         columns={columns}
         data={generateData(0, 100)}
-        pageSize={25}
+        pageSize={50}
         paginatorRenderer={paginator}
         style={{ height: '100%' }}
       />
@@ -1871,7 +1871,7 @@ export const WithPaginator = () => {
     [generateItem],
   );
 
-  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const pageSizeList = React.useMemo(() => [50, 100, 150], []);
   const paginator = useCallback(
     (props: TablePaginatorRendererProps) => (
       <TablePaginator {...props} pageSizeList={pageSizeList} />
@@ -1887,7 +1887,7 @@ export const WithPaginator = () => {
         isSortable
         columns={columns}
         data={data}
-        pageSize={25}
+        pageSize={50}
         paginatorRenderer={paginator}
         style={{ height: '100%' }}
       />
@@ -1909,7 +1909,7 @@ export const WithManualPaginatorAndFilter = () => {
     description: string;
   };
 
-  const pageSizeList = React.useMemo(() => [10, 25, 50], []);
+  const pageSizeList = React.useMemo(() => [50, 100, 150], []);
   const maxRowsCount = React.useMemo(() => 60000, []);
   const [isLoading, setIsLoading] = React.useState(false);
   const [currentPage, setCurrentPage] = React.useState(0);
