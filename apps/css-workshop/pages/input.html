@@ -61,9 +61,11 @@
     <h1>Input</h1>
     <hr />
 
-    <h2>Testing Only</h2>
+    <!-- <h2>Testing Only</h2> -->
     <section id="demo-testing">
 
+      <h2>iui-input-flex-container</h2>
+      <h3>Old React LabeledInput</h3>
       <div
         class="iui-input-flex-container"
         data-iui-status="positive"
@@ -78,32 +80,7 @@
         ></svg-status-success>
       </div>
 
-      <div class="iui-input-with-icon">
-        <input
-          class="iui-input"
-          placeholder="Placeholder…"
-        />
-        <svg-status-success
-          class="iui-svg-icon iui-end-icon"
-          data-iui-icon-color="positive"
-          data-iui-icon-size="m"
-          aria-hidden="true"
-        ></svg-status-success>
-      </div>
-
-      <div class="iui-input-with-icon">
-        <div
-          tabindex="0"
-          id="test-select-1"
-          class="iui-select-button"
-        >
-          <span class="iui-content">Starts with</span>
-        </div>
-        <svg-caret-down-small
-          class="iui-end-icon iui-svg-icon"
-          aria-hidden="true"
-        ></svg-caret-down-small>
-      </div>
+      <h3>SearchBox</h3>
 
       <div
         class="iui-input-flex-container"
@@ -303,6 +280,109 @@
         </button>
       </div>
 
+      <h2>iui-input-with-icon</h2>
+      <h3>New React LabeledInput</h3>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="positive"
+      >
+        <div class="iui-input-with-icon">
+          <input
+            class="iui-input"
+            placeholder="Placeholder…"
+          />
+          <svg-status-success
+            class="iui-svg-icon iui-end-icon"
+            data-iui-icon-color="positive"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="positive"
+      >
+        <div class="iui-input-with-icon">
+          <input
+            class="iui-input"
+            placeholder="Placeholder…"
+            data-iui-size="small"
+          />
+          <svg-status-success
+            class="iui-svg-icon iui-end-icon"
+            data-iui-icon-color="positive"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <div
+        class="iui-input-grid"
+        data-iui-status="positive"
+      >
+        <div class="iui-input-with-icon">
+          <input
+            class="iui-input"
+            placeholder="Placeholder…"
+            data-iui-size="large"
+          />
+          <svg-status-success
+            class="iui-svg-icon iui-end-icon"
+            data-iui-icon-color="positive"
+            data-iui-icon-size="m"
+            aria-hidden="true"
+          ></svg-status-success>
+        </div>
+      </div>
+
+      <h3>Select</h3>
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          id="test-select-1"
+          class="iui-select-button"
+        >
+          <span class="iui-content">Starts with</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-svg-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          id="test-select-1"
+          class="iui-select-button"
+          data-iui-size="small"
+        >
+          <span class="iui-content">Starts with</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-svg-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
+
+      <div class="iui-input-with-icon">
+        <div
+          tabindex="0"
+          id="test-select-1"
+          class="iui-select-button"
+          data-iui-size="large"
+        >
+          <span class="iui-content">Starts with</span>
+        </div>
+        <svg-caret-down-small
+          class="iui-end-icon iui-svg-icon"
+          aria-hidden="true"
+        ></svg-caret-down-small>
+      </div>
 
     </section>
 
