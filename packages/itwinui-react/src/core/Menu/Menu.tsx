@@ -100,5 +100,3 @@ export const Menu = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', MenuProps>;
-
-export default Menu;

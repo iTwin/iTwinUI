@@ -15,7 +15,7 @@ Make sure to read the [Accessibility](#accessibility) section for best practices
 
 Wrap `Tooltip` around the element you want to use as the "trigger", and pass the tooltip text into the `content` prop.
 
-<LiveExample src='Tooltip.main.tsx' truncate={false}>
+<LiveExample src='Tooltip.main.jsx' truncate={false}>
   <AllExamples.TooltipMainExample client:load />
 </LiveExample>
 
@@ -29,7 +29,7 @@ For everything to work correctly, the trigger element must:
 
 `Tooltip` handles positioning using an external library called [Floating UI](https://floating-ui.com/). To control which side the tooltip should be placed relative to its trigger, use the `placement` prop (which defaults to `"top"`). If enough space is not available, then it will automatically flip to the opposite side.
 
-<LiveExample src='Tooltip.placement.tsx'>
+<LiveExample src='Tooltip.placement.jsx'>
   <AllExamples.TooltipPlacementExample client:load />
 </LiveExample>
 

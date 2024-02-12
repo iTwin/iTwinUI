@@ -106,5 +106,3 @@ export const RadioTile = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'input', RadioTileProps>;
-
-export default RadioTile;

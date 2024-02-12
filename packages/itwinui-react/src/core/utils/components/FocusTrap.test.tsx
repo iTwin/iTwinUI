@@ -5,7 +5,7 @@
 
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import FocusTrap from './FocusTrap.js';
+import { FocusTrap } from './FocusTrap.js';
 
 it('should focus trap in element', () => {
   const { container } = render(

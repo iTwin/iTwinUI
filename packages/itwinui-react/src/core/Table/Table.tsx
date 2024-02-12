@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -36,6 +35,7 @@ import {
   useLayoutEffect,
   Box,
   createWarningLogger,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -62,7 +62,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import VirtualScroll from '../utils/components/VirtualScroll.js';
+import { VirtualScroll } from '../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
@@ -1085,7 +1085,7 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowTemplate>
+          <ShadowRoot>
             <slot />
             {rows.length === 0 && headerScrollWidth > headerClientWidth && (
               <div
@@ -1098,7 +1098,7 @@ export const Table = <
                 }}
               />
             )}
-          </ShadowTemplate>
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1161,35 +1161,5 @@ export const Table = <
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
     </>
-  );
-};
-
-export default Table;
-
-// ----------------------------------------------------------------------------
-
-/**
- * Wrapper around `<template>` element that attaches shadow root to its parent
- * and moves its children into the shadow root.
- */
-const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
-  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
-
-  const attachShadowRef = React.useCallback(
-    (template: HTMLTemplateElement | null) => {
-      const parent = template?.parentElement;
-      if (!template || !parent || parent.shadowRoot) {
-        return;
-      }
-      setShadowRoot(parent.attachShadow({ mode: 'open' }));
-      template.remove();
-    },
-    [],
-  );
-
-  return (
-    <template ref={attachShadowRef}>
-      {shadowRoot && ReactDOM.createPortal(children, shadowRoot)}
-    </template>
   );
 };

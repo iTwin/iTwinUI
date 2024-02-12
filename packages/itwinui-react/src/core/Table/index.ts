@@ -26,5 +26,3 @@ export {
   ExpanderColumn,
   SelectionColumn,
 } from './columns/index.js';
-
-export default './Table';

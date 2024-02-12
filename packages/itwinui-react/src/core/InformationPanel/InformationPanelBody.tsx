@@ -8,5 +8,3 @@ import { polymorphic } from '../utils/index.js';
  * Body of the `InformationPanel` containing the main content.
  */
 export const InformationPanelBody = polymorphic.div('iui-information-body');
-
-export default InformationPanelBody;

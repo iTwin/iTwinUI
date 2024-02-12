@@ -135,5 +135,3 @@ export const DropdownMenu = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', DropdownMenuProps>;
-
-export default DropdownMenu;

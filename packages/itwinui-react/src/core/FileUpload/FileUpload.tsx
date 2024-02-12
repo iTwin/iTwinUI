@@ -114,5 +114,3 @@ export const FileUpload = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', FileUploadProps>;
-
-export default FileUpload;

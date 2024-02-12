@@ -70,5 +70,3 @@ export const Text = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', TextProps>;
-
-export default Text;

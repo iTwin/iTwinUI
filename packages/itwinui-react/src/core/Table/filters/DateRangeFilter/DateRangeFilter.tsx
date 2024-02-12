@@ -8,7 +8,7 @@ import { FilterButtonBar } from '../FilterButtonBar.js';
 import type { FilterButtonBarTranslation } from '../FilterButtonBar.js';
 import { BaseFilter } from '../BaseFilter.js';
 import type { TableFilterProps } from '../types.js';
-import DatePickerInput from './DatePickerInput.js';
+import { DatePickerInput } from './DatePickerInput.js';
 import type { DatePickerLocalizedNames } from '../../../DatePicker/DatePicker.js';
 
 export type DateRangeTranslation = {

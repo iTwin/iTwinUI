@@ -40,5 +40,3 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'span', VisuallyHiddenOwnProps>;
-
-export default VisuallyHidden;

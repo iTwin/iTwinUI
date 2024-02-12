@@ -38,5 +38,3 @@ export const IdeasButton = React.forwardRef((props, ref) => {
     </Button>
   );
 }) as PolymorphicForwardRefComponent<'button', IdeasButtonProps>;
-
-export default IdeasButton;

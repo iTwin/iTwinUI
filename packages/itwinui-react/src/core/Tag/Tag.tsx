@@ -118,5 +118,3 @@ export const Tag = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', TagProps>;
-
-export default Tag;

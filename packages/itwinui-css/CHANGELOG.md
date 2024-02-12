@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.3.1
+
+### Patch Changes
+
+- [#1835](https://github.com/iTwin/iTwinUI/pull/1835): Replaced dialog/modal animation state related classes (`.iui-dialog-animation-enter` and `.iui-dialog-animation-enter-active`) with css animations.
+
 ## 2.3.0
 
 ### Minor Changes

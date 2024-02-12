@@ -370,5 +370,3 @@ export const ExpandableBlock = Object.assign(ExpandableBlockComponent, {
    */
   Content: ExpandableBlockContent,
 });
-
-export default ExpandableBlock;

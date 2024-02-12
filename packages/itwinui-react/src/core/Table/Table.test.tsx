@@ -3452,46 +3452,9 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(body.scrollLeft).toBe(0);
 });
 
-it('should add a shadow tree to table-body.', () => {
-  const columnWidths = [400, 600, 200];
-  const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
-
-  // Mocking the scrollWidth of the table header
-  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(
-    columnWidthsSum,
-  );
-
-  const { container } = renderComponent({
-    columns: [
-      {
-        Header: 'Name',
-        accessor: 'name',
-        id: 'name',
-        width: columnWidths[0],
-      },
-      {
-        Header: 'Description',
-        accessor: 'description',
-        id: 'description',
-        width: columnWidths[1],
-      },
-      {
-        Header: 'View',
-        Cell: () => <>View</>,
-        id: 'view',
-        width: columnWidths[2],
-      },
-    ],
-  });
-
-  // body serves as the shadow host
-  const host = container.querySelector('.iui-table-body') as HTMLDivElement;
-
-  const slot = host?.shadowRoot?.querySelector('slot');
-  expect(slot).toBeTruthy();
-});
-
 it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3528,6 +3491,7 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
     isResizable: true,
     columnResizeMode: 'expand',
   });
+  act(() => vi.runAllTicks());
 
   // Initial render
   triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
@@ -3535,6 +3499,9 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
   // body serves as the shadow host
   let host = container.querySelector('.iui-table-body') as HTMLDivElement;
   expect(host).toBeTruthy();
+
+  const slot = host?.shadowRoot?.querySelector('slot');
+  expect(slot).toBeTruthy();
 
   // When clientWidth >= scrollWidth, the dummy div should not be rendered
   const htmlScrollWidthMock = vi

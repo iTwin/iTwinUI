@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
-import HeaderLogo from './HeaderLogo.js';
+import { HeaderLogo } from './HeaderLogo.js';
 
 it('renders default correctly', () => {
   const { container } = render(

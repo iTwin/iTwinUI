@@ -12,5 +12,3 @@ import { polymorphic } from '../utils/index.js';
  * </Dialog.Content>
  */
 export const DialogContent = polymorphic.div('iui-dialog-content');
-
-export default DialogContent;

@@ -59,5 +59,3 @@ export const FocusTrap = (props: FocusTrapProps) => {
     </>
   );
 };
-
-export default FocusTrap;

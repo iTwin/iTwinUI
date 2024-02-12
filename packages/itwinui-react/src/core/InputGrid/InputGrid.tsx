@@ -276,5 +276,3 @@ const isInput = (child: React.ReactNode): boolean => {
 };
 
 //-------------------------------------------------------------------------------
-
-export default InputGrid;

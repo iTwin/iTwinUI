@@ -101,5 +101,3 @@ export const HeaderButton = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', HeaderButtonProps>;
-
-export default HeaderButton;

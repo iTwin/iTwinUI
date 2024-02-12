@@ -53,5 +53,3 @@ export const SubRowExpander = <T extends Record<string, unknown>>(
     </>
   );
 };
-
-export default SubRowExpander;

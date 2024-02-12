@@ -116,5 +116,3 @@ export const Avatar = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', AvatarProps>;
-
-export default Avatar;

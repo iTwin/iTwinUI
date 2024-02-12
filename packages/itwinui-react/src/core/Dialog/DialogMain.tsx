@@ -11,14 +11,14 @@ import {
   useMergedRefs,
   useLayoutEffect,
   Box,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
-import useDragAndDrop from '../utils/hooks/useDragAndDrop.js';
-import styles from '../../styles.js';
+import { useDragAndDrop } from '../utils/hooks/useDragAndDrop.js';
 
 export type DialogMainProps = {
   /**
@@ -168,6 +168,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {
           'iui-dialog-default': styleType === 'default',
           'iui-dialog-full-page': styleType === 'fullPage',
+          'iui-dialog-visible': isOpen,
           'iui-dialog-draggable': isDraggable,
         },
         className,
@@ -184,31 +185,30 @@ export const DialogMain = React.forwardRef((props, ref) => {
       }}
       {...rest}
     >
-      {isResizable && (
-        <Resizer
-          elementRef={dialogRef}
-          containerRef={dialogContext.dialogRootRef}
-          onResizeStart={() => {
-            if (!hasBeenResized.current) {
-              hasBeenResized.current = true;
-              setResizeStyle({ maxInlineSize: '100%' });
-            }
-          }}
-          onResizeEnd={setResizeStyle}
-        />
-      )}
+      <ShadowRoot>
+        <slot />
+        {isResizable && (
+          <Resizer
+            elementRef={dialogRef}
+            containerRef={dialogContext.dialogRootRef}
+            onResizeStart={() => {
+              if (!hasBeenResized.current) {
+                hasBeenResized.current = true;
+                setResizeStyle({ maxInlineSize: '100%' });
+              }
+            }}
+            onResizeEnd={setResizeStyle}
+          />
+        )}
+      </ShadowRoot>
+
       {children}
     </Box>
   );
 
   return (
-    <CSSTransition
+    <Transition
       in={isOpen}
-      classNames={{
-        enter: styles['iui-dialog-animation-enter'],
-        enterActive: styles['iui-dialog-animation-enter-active'],
-        enterDone: styles['iui-dialog-visible'],
-      }}
       timeout={{ exit: 600 }}
       // Focuses dialog when opened
       onEntered={() => {
@@ -233,8 +233,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {trapFocus && <FocusTrap>{content}</FocusTrap>}
         {!trapFocus && content}
       </DialogDragContext.Provider>
-    </CSSTransition>
+    </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
-
-export default DialogMain;

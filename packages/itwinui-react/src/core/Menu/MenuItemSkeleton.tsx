@@ -71,5 +71,3 @@ export const MenuItemSkeleton = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemSkeletonProps>;
-
-export default MenuItemSkeleton;

@@ -273,5 +273,3 @@ export const TransferListContext = React.createContext<
     }
   | undefined
 >(undefined);
-
-export default TransferList;

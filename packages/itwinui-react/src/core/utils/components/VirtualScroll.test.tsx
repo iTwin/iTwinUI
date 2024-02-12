@@ -5,7 +5,7 @@
 
 import { act, fireEvent, render } from '@testing-library/react';
 import * as React from 'react';
-import VirtualScroll from './VirtualScroll.js';
+import { VirtualScroll } from './VirtualScroll.js';
 import * as UseResizeObserver from '../hooks/useResizeObserver.js';
 import { useVirtualization } from './index.js';
 

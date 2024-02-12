@@ -14,3 +14,4 @@ export * from './AutoclearingHiddenLiveRegion.js';
 export * from './Box.js';
 export * from './ButtonBase.js';
 export * from './Portal.js';
+export * from './ShadowRoot.js';

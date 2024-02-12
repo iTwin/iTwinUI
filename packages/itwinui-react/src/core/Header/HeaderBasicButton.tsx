@@ -26,5 +26,3 @@ export const HeaderBasicButton = React.forwardRef((props, ref) => {
     </ButtonBase>
   );
 }) as PolymorphicForwardRefComponent<'button', ButtonProps>;
-
-export default HeaderBasicButton;

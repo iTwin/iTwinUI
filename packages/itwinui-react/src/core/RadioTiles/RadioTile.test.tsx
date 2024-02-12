@@ -5,7 +5,7 @@
 import * as React from 'react';
 import { render } from '@testing-library/react';
 
-import RadioTile from './RadioTile.js';
+import { RadioTile } from './RadioTile.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
 it('should render empty radio tile', () => {

@@ -69,5 +69,3 @@ export const LabeledTextarea = React.forwardRef((props, forwardedRef) => {
     <LabeledInput as='textarea' rows={3} ref={forwardedRef} {...props} />
   );
 }) as PolymorphicForwardRefComponent<'textarea', LabeledTextareaProps>;
-
-export default LabeledTextarea;

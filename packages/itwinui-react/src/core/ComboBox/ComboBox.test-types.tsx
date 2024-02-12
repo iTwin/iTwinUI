@@ -8,7 +8,7 @@
  */
 
 import React, { useRef } from 'react';
-import ComboBox from './ComboBox.js';
+import { ComboBox } from './ComboBox.js';
 
 () => {
   const ref = useRef(null);
