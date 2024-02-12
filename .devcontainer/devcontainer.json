@@ -1,8 +1,5 @@
 {
   "image": "https://itwin.github.io/iTwinUI/logo.svg",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
   "extensions": [
     "stylelint.vscode-stylelint",
     "esbenp.prettier-vscode",
