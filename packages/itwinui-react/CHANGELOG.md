@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.4.1
+
+### Patch Changes
+
+- [#1835](https://github.com/iTwin/iTwinUI/pull/1835): Fixed the bug where `Dialog`/`Modal` was invisible on the first render with `isOpen={true}`.
+- [#1836](https://github.com/iTwin/iTwinUI/pull/1836): Updated Dialog resizer positioning to protrude outside the dialog.
+
 ## 3.4.0
 
 ### Minor Changes
