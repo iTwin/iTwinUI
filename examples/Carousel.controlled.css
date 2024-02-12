@@ -1,0 +1,14 @@
+.controlled-carousel {
+  max-width: 100%;
+}
+
+.controlled-carousel-gradient {
+  height: 200px;
+  display: grid;
+  place-items: center;
+}
+
+.controlled-carousel-number {
+  font-size: 48px;
+  color: hsl(0deg 0% 100% / 0.7);
+}

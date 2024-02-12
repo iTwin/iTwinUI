@@ -1,0 +1,9 @@
+.sticky-alert-container {
+  height: 150px;
+  overflow: auto;
+  border: solid 0.5px;
+}
+
+.sticky-alert-text {
+  padding: 8px;
+}

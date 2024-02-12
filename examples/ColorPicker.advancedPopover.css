@@ -1,0 +1,7 @@
+.advanced-color-picker-color-swatch {
+  pointer-events: none;
+}
+
+.advanced-color-picker-color-label {
+  width: 200px;
+}

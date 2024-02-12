@@ -1,0 +1,11 @@
+.extreme-truncation-breadcrumbs-container {
+  inline-size: 75%;
+  min-inline-size: 150px;
+  max-inline-size: 425px;
+  border: 1px solid pink;
+  padding: 8px;
+}
+
+.extreme-truncation-breadcrumbs-item {
+  max-width: 90px;
+}

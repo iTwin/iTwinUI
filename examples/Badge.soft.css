@@ -1,0 +1,8 @@
+.soft-badge-container {
+  display: flex;
+  column-gap: 4;
+  place-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10px;
+}

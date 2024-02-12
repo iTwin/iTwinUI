@@ -1,0 +1,7 @@
+.truncation-breadcrumbs-container {
+  inline-size: 75%;
+  min-inline-size: 150px;
+  max-inline-size: 450px;
+  border: 1px solid pink;
+  padding: 8px;
+}
