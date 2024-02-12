@@ -1,0 +1,11 @@
+{
+  "image": "https://itwin.github.io/iTwinUI/logo.svg",
+  "extensions": [
+    "stylelint.vscode-stylelint",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "streetsidesoftware.code-spell-checker",
+    "astro-build.astro-vscode"
+  ],
+  "postCreateCommanrd": "yarn install"
+}
