@@ -45,11 +45,9 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
 
   transition:
     visibility var(--iui-duration-0) linear var(--iui-duration-1),
-    opacity var(--iui-duration-1) ease-out var(--iui-duration-0);
+    opacity var(--iui-duration-1) ease-out;
 
   &.iui-dialog-visible {
-    visibility: visible;
-    opacity: 1;
     animation: iui-fade-in var(--iui-duration-1) ease-out;
   }
 
@@ -134,14 +132,9 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
       transform var(--iui-duration-1) ease-in;
 
     &.iui-dialog-visible {
-      animation: iui-slide-up var(--iui-duration-2) ease-out;
-
-      // To combine iui-slide-up with the iui-fade-in animation from iui-dialog
-      &.iui-dialog {
-        animation:
-          iui-slide-up var(--iui-duration-2) ease-out,
-          iui-fade-in var(--iui-duration-2) ease-out;
-      }
+      animation:
+        iui-slide-up var(--iui-duration-2) ease-out,
+        iui-fade-in var(--iui-duration-2) ease-out;
     }
   }
 }
