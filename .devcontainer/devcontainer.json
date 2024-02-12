@@ -6,5 +6,5 @@
     "streetsidesoftware.code-spell-checker",
     "astro-build.astro-vscode"
   ],
-  "postCreateCommand": "yarn install && yarn build"
+  "postCreateCommand": "yarn install && yarn build && yarn add xvfb -W"
 }
