@@ -110,6 +110,10 @@
       font-weight: var(--iui-font-weight-light);
       opacity: 1;
     }
+
+    &:focus {
+      outline: none !important;
+    }
   }
 
   &[data-iui-disabled='true'] {
