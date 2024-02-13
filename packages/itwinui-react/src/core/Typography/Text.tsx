@@ -29,6 +29,8 @@ type TextProps = {
   /**
    * Use it if you are still loading the content.
    * @default false
+   *
+   * @deprecated Use the `Skeleton` component instead
    */
   isSkeleton?: boolean;
 };
