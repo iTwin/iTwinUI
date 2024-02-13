@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.4.2
+
+### Patch Changes
+
+- [#1848](https://github.com/iTwin/iTwinUI/pull/1848): Remove jsdom from dependencies
+
 ## 3.4.1
 
 ### Patch Changes
