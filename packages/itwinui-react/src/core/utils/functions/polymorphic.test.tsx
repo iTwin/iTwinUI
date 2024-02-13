@@ -61,3 +61,21 @@ it('should work with attributes', () => {
   expect(el).toHaveAttribute('type', 'button');
   expect(el).toHaveClass('from-attrs from-props');
 });
+
+it('should set tabIndex for button, a, and checkbox input', () => {
+  const MyButton = polymorphic.button('');
+  const MyAnchor = polymorphic.a('');
+  const MyCheckbox = polymorphic.input('', { type: 'checkbox' });
+
+  const { container } = render(
+    <>
+      <MyButton>🍇</MyButton>
+      <MyAnchor>🥕</MyAnchor>
+      <MyCheckbox />
+    </>,
+  );
+
+  expect(container.querySelector('button')).toHaveAttribute('tabindex', '0');
+  expect(container.querySelector('a')).toHaveAttribute('tabindex', '0');
+  expect(container.querySelector('input')).toHaveAttribute('tabindex', '0');
+});

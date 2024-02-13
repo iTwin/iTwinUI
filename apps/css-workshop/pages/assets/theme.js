@@ -7,12 +7,12 @@ class ThemeButton extends HTMLElement {
     super();
     const html = /* html */ `
       <div class="settings-root">
-        <button title="Page settings" id="page-settings-menu-button" aria-label="Page settings" aria-haspopup="true" aria-controls="page-settings-menu">
+        <button tabindex="0" title="Page settings" id="page-settings-menu-button" aria-label="Page settings" aria-haspopup="true" aria-controls="page-settings-menu">
           <svg width="1rem" height="1rem" fill="currentColor" aria-hidden="true" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
             <path d="m16 9.42256v-2.85566l-2.20352-.44435a6.05356 6.05356 0 0 0 -.37645-.903l1.2427-1.87048-2.01923-2.01931-1.86669 1.24016a6.047 6.047 0 0 0 -.91294-.38153l-.44131-2.18839h-2.85566l-.44131 2.18839a6.0501 6.0501 0 0 0 -.91778.38383l-1.85881-1.23495-2.01924 2.01923 1.2388 1.86464a6.05267 6.05267 0 0 0 -.38067.91511l-2.18789.44119v2.85566l2.20054.44373a6.059 6.059 0 0 0 .37924.90383l-1.24251 1.87034 2.01923 2.01924 1.88089-1.24959a6.049 6.049 0 0 0 .8949.372l.44515 2.20735h2.85566l.44683-2.21567a6.05213 6.05213 0 0 0 .88907-.37186l1.882 1.25026 2.01923-2.01923-1.25089-1.88287a6.04854 6.04854 0 0 0 .37291-.89285zm-8.0053 1.61456a3.04782 3.04782 0 1 1 3.04782-3.04782 3.04781 3.04781 0 0 1 -3.04782 3.04782z"/>
           </svg>
         </button>
-        <article class="popup" id="page-settings-menu" role="menu" aria-labelledby="page-settings-menu-button">
+        <article class="popup" id="page-settings-menu" aria-labelledby="page-settings-menu-button">
           <fieldset>
             <legend>Theme</legend>
             <label tabindex="-1"><input type="radio" name="theme" value="light" /><span>Light</span></label>
@@ -109,13 +109,11 @@ class ThemeButton extends HTMLElement {
         }
       }
       fieldset {
-        display: grid;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
         border-radius: var(--iui-border-radius-1);
         border: 1px solid var(--iui-color-border);
-      }
-      fieldset > * {
-        display: inline-flex;
-        align-items: center;
       }
       label, input {
         cursor: pointer;

@@ -2,6 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
@@ -13,20 +14,29 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
 ) => {
   return (className: string, attrs?: JSX.IntrinsicElements[As]) => {
     const Comp = React.forwardRef(({ as = defaultElement, ...props }, ref) => {
-      const Element = (as as any) || 'div'; // eslint-disable-line
+      props = {
+        ...attrs, // Merge default attributes with passed props
+        ...props,
+        className: getScopedClassName(
+          cx(className, attrs?.className, props.className),
+        ),
+      };
+
+      const Element = (as as any) || 'div';
+
+      // Add tabIndex to interactive elements if not already set.
+      // Workaround for Safari refusing to focus links/buttons/non-text inputs.
+      if (
+        Element === 'button' ||
+        Element === 'a' ||
+        (Element === 'input' && (props as any).type === 'checkbox')
+      ) {
+        props.tabIndex ??= 0;
+      }
 
       useGlobals();
 
-      return (
-        <Element
-          ref={ref}
-          {...attrs}
-          {...props}
-          className={getScopedClassName(
-            cx(className, attrs?.className, props.className),
-          )}
-        />
-      );
+      return <Element ref={ref} {...props} />;
     }) as PolymorphicForwardRefComponent<NonNullable<typeof defaultElement>>;
 
     Comp.displayName = getDisplayNameFromClass(className);
@@ -38,11 +48,13 @@ const _base = <As extends keyof JSX.IntrinsicElements = 'div'>(
 /**
  * Utility to create a type-safe polymorphic component with a simple class.
  *
- * Can be called directly or as a property of the `Polymorphic` object.
+ * Can be called directly or as a property of the `polymorphic` object.
  * In both cases, returns a component that:
+ * - uses CSS-modules scoped classes
  * - supports `as` prop with default element
- * - forwards ref and rest props
- * - adds and merges css classes
+ * - forwards ref and spreads rest props
+ * - adds and merges CSS classes
+ * - adds tabIndex to interactive elements (Safari workaround)
  *
  * @example
  * const MyPolyDiv = polymorphic('my-poly-div');
