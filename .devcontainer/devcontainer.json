@@ -1,10 +1,13 @@
 {
+  "features": {
+    "ghcr.io/devcontainers-community/npm-features/prettier:1": {},
+    "ghcr.io/astronomer/devcontainer-features/astro-cli:1": {},
+    "ghcr.io/devcontainers-contrib/features/turborepo-npm:1": {}
+  },
   "extensions": [
     "stylelint.vscode-stylelint",
-    "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "streetsidesoftware.code-spell-checker",
-    "astro-build.astro-vscode"
   ],
   "postCreateCommand": "yarn install && yarn build && yarn add xvfb -W"
 }
