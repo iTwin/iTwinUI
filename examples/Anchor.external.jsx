@@ -2,29 +2,13 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import React from 'react';
+import * as React from 'react';
 import { Anchor } from '@itwin/itwinui-react';
 
-export default {
-  title: 'Anchor',
-};
-
-export const Basic = () => {
-  return <Anchor href='https://www.example.com/'>www.example.com</Anchor>;
-};
-
-export const AsButton = () => {
-  return (
-    <Anchor as='button' onClick={() => console.log('clicked')}>
-      Perform action
-    </Anchor>
-  );
-};
-
-export const External = () => {
+export default () => {
   return (
     <Anchor href='https://www.example.com/' isExternal>
-      www.example.com
+      Example Site
     </Anchor>
   );
 };

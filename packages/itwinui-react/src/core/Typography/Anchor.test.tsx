@@ -57,3 +57,23 @@ it('should support polymorphic `as` prop', () => {
     test
   </Anchor>;
 });
+
+it('should support isExternal prop', () => {
+  const { container } = render(
+    <Anchor href='https://www.example.com/' isExternal>
+      link
+    </Anchor>,
+  );
+  expect(container.querySelector('a')).toHaveClass('iui-anchor-external');
+});
+
+it('should include a warning if the link opens in a new tab', () => {
+  const { container } = render(
+    <Anchor href='https://www.example.com/' target='_blank'>
+      link
+    </Anchor>,
+  );
+  expect(container.querySelector('a')).toHaveAccessibleName(
+    'link (opens in new tab)',
+  );
+});
