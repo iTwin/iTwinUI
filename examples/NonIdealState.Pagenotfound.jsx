@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg404 } from '@itwin/itwinui-illustrations-react';
+import './NonIdealState.Pagenotfound.css';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div className='page-not-found-container'>
       <NonIdealState
         svg={<Svg404 />}
         heading='Page not found'

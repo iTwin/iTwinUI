@@ -4,19 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Badge } from '@itwin/itwinui-react';
+import './Badge.soft.css';
 
 export default () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        columnGap: 4,
-        placeItems: 'center',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        margin: '10px',
-      }}
-    >
+    <div className='soft-badge-container'>
       <Badge backgroundColor='skyblue'>Skyblue</Badge>
       <Badge backgroundColor='celery'>Celery</Badge>
       <Badge backgroundColor='froly'>Froly</Badge>

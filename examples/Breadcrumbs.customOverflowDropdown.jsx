@@ -10,6 +10,7 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgMore } from '@itwin/itwinui-icons-react';
+import './Breadcrumbs.customOverflowDropdown.css';
 
 export default () => {
   const items = Array(10)
@@ -21,15 +22,7 @@ export default () => {
     ));
 
   return (
-    <div
-      style={{
-        inlineSize: '75%',
-        minInlineSize: 150,
-        maxInlineSize: 425,
-        border: '1px solid lightpink',
-        padding: 8,
-      }}
-    >
+    <div className='overflow-breadcrumbs-container'>
       <Breadcrumbs
         overflowButton={(visibleCount) => (
           <DropdownMenu

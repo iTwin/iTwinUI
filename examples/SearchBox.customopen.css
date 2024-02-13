@@ -1,0 +1,8 @@
+.custom-open-search-box-flex {
+  width: 70%;
+}
+
+.custom-open-search-box-text {
+  padding-right: var(--iui-size-s);
+  align-self: center;
+}

@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
 import { SvgNetwork, SvgWindows } from '@itwin/itwinui-icons-react';
+import './RadioTile.main.css';
 
 export default () => {
   return (
-    <RadioTileGroup style={{ width: 'min(100%, 350px)' }}>
+    <RadioTileGroup className='main-radio-tile-group'>
       <RadioTile
         label='Web'
         description='Dimensions in px'

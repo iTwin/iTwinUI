@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import './Tree.main.css';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({
@@ -63,7 +64,7 @@ export default () => {
 
   return (
     <Tree
-      style={{ width: 'min(100%, 260px)' }}
+      className='main-tree'
       data={data}
       getNode={getNode}
       nodeRenderer={React.useCallback(

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
+import './Stepper.short.css';
 
 const steps = [
   { name: 'Previous Step' },
@@ -15,11 +16,7 @@ export default () => {
   const [currentStep, setCurrentStep] = React.useState(1);
 
   return (
-    <Flex
-      flexDirection='column'
-      gap='m'
-      style={{ minWidth: 'min(100%, 400px)' }}
-    >
+    <Flex flexDirection='column' gap='m' className='short-stepper-flex'>
       <Flex.Item alignSelf='stretch'>
         <Stepper
           currentStep={currentStep}

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Table, DefaultCell } from '@itwin/itwinui-react';
+import './Table.main.css';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {
@@ -74,7 +75,7 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ minWidth: 'min(100%, 350px)' }}>
+    <div className='main-table-container'>
       <Table
         columns={columns}
         emptyTableContent='No data.'

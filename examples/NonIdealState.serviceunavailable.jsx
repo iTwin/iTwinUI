@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg503 } from '@itwin/itwinui-illustrations-react';
+import './NonIdealState.serviceunavailable.css';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div className='service-unavailable-container'>
       <NonIdealState
         svg={<Svg503 />}
         heading='Service Unavailable'

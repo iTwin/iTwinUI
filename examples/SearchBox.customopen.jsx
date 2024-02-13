@@ -9,17 +9,18 @@ import {
   SvgCaretDownSmall,
   SvgCloseSmall,
 } from '@itwin/itwinui-icons-react';
+import './SearchBox.customopen.css';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }} justifyContent='center'>
+    <Flex className='custom-open-search-box-flex' justifyContent='center'>
       <SearchBox>
         <SearchBox.Input placeholder='Basic search with custom interactions' />
         <Text
           isMuted
           variant='body'
           as='p'
-          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
+          className='custom-open-search-box-text'
         >
           0/3
         </Text>

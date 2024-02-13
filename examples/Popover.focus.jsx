@@ -13,6 +13,7 @@ import {
   Text,
 } from '@itwin/itwinui-react';
 import { SvgSettings } from '@itwin/itwinui-icons-react';
+import './Popover.focus.css';
 
 export default () => {
   const headingId = `${React.useId()}-label`;
@@ -25,7 +26,7 @@ export default () => {
       aria-labelledby={headingId}
       visible={isOpen}
       onVisibleChange={setIsOpen}
-      style={{ maxWidth: '45ch' }}
+      className='focus-popover'
       content={
         <Surface elevation={0} border={false}>
           <Surface.Header>

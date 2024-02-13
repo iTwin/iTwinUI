@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
+import './ExpandableBlock.accordion.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='accordion-expandable-block-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger label='Block #1' />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>

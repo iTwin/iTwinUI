@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { TagContainer, Tag } from '@itwin/itwinui-react';
+import './TagContainer.wrap.css';
 
 export default () => {
   return (
-    <TagContainer background='filled' style={{ maxWidth: '60%' }}>
+    <TagContainer background='filled' className='wrap-tag-container'>
       <Tag onRemove={() => {}}>Tag 1</Tag>
       <Tag onRemove={() => {}}>Tag 2</Tag>
       <Tag onRemove={() => {}}>Tag 3</Tag>

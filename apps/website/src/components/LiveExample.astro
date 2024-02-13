@@ -19,7 +19,18 @@ export type Props = {
 const { src, truncate = true } = Astro.props;
 
 const codePath = require.resolve(`examples/${src}`);
+
+let cssPath = '';
+try {
+  cssPath = require.resolve(`examples/${src.replace('.jsx', '.css')}`);
+} catch {}
+
 let code = await fs.promises.readFile(codePath, 'utf8');
+
+let css = '';
+if (cssPath) {
+  css = await fs.promises.readFile(cssPath, 'utf8');
+}
 
 // strip copyright header (first 4 lines)
 if (code.includes('Copyright (c) Bentley Systems')) {
@@ -29,7 +40,7 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 
 <div class='demo-box'>
   <slot />
-  <OpenInCodePen class='sandbox-link' code={code} />
+  <OpenInCodePen class='sandbox-link' code={code} exampleStyle={css} />
 </div>
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}

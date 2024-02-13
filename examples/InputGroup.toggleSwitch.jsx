@@ -5,6 +5,7 @@
 import * as React from 'react';
 import { InputGroup, Surface, ToggleSwitch } from '@itwin/itwinui-react';
 import { SvgCheckmark } from '@itwin/itwinui-icons-react';
+import './InputGroup.toggleSwitch.css';
 
 export default () => {
   const [option1, setOption1] = React.useState(true);
@@ -12,7 +13,7 @@ export default () => {
 
   return (
     <Surface>
-      <InputGroup label='Toggle group' style={{ padding: 12 }}>
+      <InputGroup label='Toggle group' className='toggle-input-group'>
         <ToggleSwitch
           onChange={(event) => setOption1(event.target.checked)}
           checked={option1}

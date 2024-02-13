@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Overlay, ProgressLinear } from '@itwin/itwinui-react';
+import './Overlay.sub.css';
 
 export default () => {
   return (
-    <Overlay.Wrapper style={{ border: '1px solid var(--iui-color-border)' }}>
+    <Overlay.Wrapper className='sub-overlay'>
       <Overlay.Overlay>
         <ProgressLinear indeterminate={true} />
       </Overlay.Overlay>

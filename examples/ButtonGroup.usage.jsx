@@ -12,10 +12,11 @@ import {
   SvgSearch,
   SvgFilter,
 } from '@itwin/itwinui-icons-react';
+import './ButtonGroup.usage.css';
 
 export default () => {
   return (
-    <Flex style={{ width: '60%' }}>
+    <Flex className='usage-button-group-container'>
       <Button styleType='high-visibility' startIcon={<SvgAdd />}>
         New
       </Button>

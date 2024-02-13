@@ -15,6 +15,7 @@ import {
 } from '@itwin/itwinui-react';
 import { Popover } from '@itwin/itwinui-react';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
+import './ColorPicker.advancedPopover.css';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -72,8 +73,8 @@ export default () => {
             label='Show color picker'
           >
             <ColorSwatch
-              style={{ pointerEvents: 'none' }}
               color={selectedColor}
+              className='advanced-color-picker-color-swatch'
             />
           </IconButton>
         </Popover>
@@ -85,7 +86,7 @@ export default () => {
           }}
           endIcon={<SvgSwap />}
         >
-          <div style={{ width: 200 }}>
+          <div className='advanced-color-picker-color-label'>
             {getDisplayString() ?? 'No color selected.'}
           </div>
         </Button>

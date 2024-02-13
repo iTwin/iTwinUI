@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg401 } from '@itwin/itwinui-illustrations-react';
+import './NonIdealState.unauthorized.css';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 401 }}>
+    <div className='unauthorized-container'>
       <NonIdealState
         svg={<Svg401 />}
         heading='Unauthorized'

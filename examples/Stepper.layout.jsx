@@ -13,6 +13,7 @@ import {
   InputGrid,
   Radio,
 } from '@itwin/itwinui-react';
+import './Stepper.layout.css';
 
 const stepLabels = [
   { name: 'User Info' },
@@ -77,11 +78,7 @@ export default () => {
 
   return (
     <>
-      <Flex
-        flexDirection='column'
-        gap='m'
-        style={{ minWidth: 'min(100%, 400px)' }}
-      >
+      <Flex flexDirection='column' gap='m' className='layout-stepper-flex'>
         <Flex as='h2'>Color survey</Flex>
         <Flex.Item alignSelf='stretch'>
           <Stepper
@@ -93,7 +90,10 @@ export default () => {
             }}
           />
         </Flex.Item>
-        <Flex.Item alignSelf='flex-start' style={{ width: '100%' }}>
+        <Flex.Item
+          alignSelf='flex-start'
+          className='layout-stepper-current-step'
+        >
           {steps[currentStep]}
         </Flex.Item>
         <Flex>

@@ -11,6 +11,7 @@ import {
   Button,
   Popover,
 } from '@itwin/itwinui-react';
+import './ColorPicker.basic.css';
 
 export default () => {
   const ColorsList = [
@@ -76,7 +77,7 @@ export default () => {
       <Button
         startIcon={
           <ColorSwatch
-            style={{ pointerEvents: 'none' }}
+            classNme='basic-color-picker-color-swatch'
             color={activeColor.color}
           />
         }

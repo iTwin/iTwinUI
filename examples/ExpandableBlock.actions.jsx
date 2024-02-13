@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { ExpandableBlock, IconButton } from '@itwin/itwinui-react';
 import { SvgMoreVertical } from '@itwin/itwinui-icons-react';
+import './ExpandableBlock.actions.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='actions-expandable-block-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger
           label='My disclosure'

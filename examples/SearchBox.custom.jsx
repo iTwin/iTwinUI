@@ -9,11 +9,12 @@ import {
   SvgCaretDownSmall,
   SvgAirplane,
 } from '@itwin/itwinui-icons-react';
+import './SearchBox.custom.css';
 
 export default () => {
   return (
     <Flex
-      style={{ width: '70%' }}
+      className='custom-search-box-flex'
       justifyContent='center'
       flexDirection='column'
     >

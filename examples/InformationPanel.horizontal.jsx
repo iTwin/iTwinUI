@@ -18,6 +18,7 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgWindowPopout } from '@itwin/itwinui-icons-react';
+import './InformationPanel.horizontal.css';
 
 export default () => {
   const [openRowIndex, setOpenRowIndex] = React.useState(-1);
@@ -38,7 +39,7 @@ export default () => {
         ]}
         data={[{ name: 'Row0' }, { name: 'Row1' }, { name: 'Row2' }]}
         emptyTableContent='No data.'
-        style={{ minWidth: '450px' }}
+        className='horizontal-information-panel-table'
       />
 
       <InformationPanel

@@ -4,17 +4,12 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { IdeasButton } from '@itwin/itwinui-react';
+import './IdeasButton.main.css';
 
 export default () => {
   return (
     /** Creating a container only for demo purposes. Normally this will be fixed to viewport. */
-    <div
-      style={{
-        position: 'absolute',
-        inset: '1rem',
-        transform: 'translateX(0)',
-      }}
-    >
+    <div className='ideas-button-container'>
       <IdeasButton onClick={() => {}} />
     </div>
   );

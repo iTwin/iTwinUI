@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { LabeledTextarea } from '@itwin/itwinui-react';
+import './Textarea.scroll.css';
 
 export default () => {
   const [value, setValue] = React.useState(
@@ -16,7 +17,7 @@ export default () => {
       id='text-area'
       value={value}
       onChange={(event) => setValue(event.target.value)}
-      style={{ width: '70%' }}
+      className='scroll-text-area'
     />
   );
 };

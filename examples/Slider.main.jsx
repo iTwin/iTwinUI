@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Label, InputGrid } from '@itwin/itwinui-react';
+import './Slider.main.css';
 
 export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid className='main-slider-input-grid'>
       <Label id={labelId} as='div'>
         Choose a value
       </Label>

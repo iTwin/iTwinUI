@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Flex } from '@itwin/itwinui-react';
+import './Flex.main.css';
 
 export default () => {
   return (
@@ -16,5 +17,5 @@ export default () => {
 };
 
 const MyItem = ({ children = '' }) => (
-  <div style={{ padding: '1rem', border: '1px solid' }}>{children}</div>
+  <div className='flex-item-container'>{children}</div>
 );

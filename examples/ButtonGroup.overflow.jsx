@@ -10,6 +10,7 @@ import {
   MenuItem,
 } from '@itwin/itwinui-react';
 import { SvgMore, SvgPlaceholder } from '@itwin/itwinui-icons-react';
+import './ButtonGroup.overflow.css';
 
 export default () => {
   const buttons = Array(12)
@@ -23,7 +24,7 @@ export default () => {
     });
 
   return (
-    <div style={{ maxWidth: '70%' }}>
+    <div className='overflow-button-group-container'>
       <ButtonGroup
         overflowButton={(overflowStart) => (
           <DropdownMenu

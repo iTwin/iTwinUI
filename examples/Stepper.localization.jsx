@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
+import './Stepper.localization.css';
 
 const steps = [
   { name: 'First Step' },
@@ -24,11 +25,7 @@ export default () => {
   const [currentStep, setCurrentStep] = React.useState(2);
 
   return (
-    <Flex
-      flexDirection='column'
-      gap='m'
-      style={{ minWidth: 'min(100%, 400px)' }}
-    >
+    <Flex flexDirection='column' gap='m' className='localization-stepper-flex'>
       <Flex.Item alignSelf='stretch'>
         <Stepper
           currentStep={currentStep}

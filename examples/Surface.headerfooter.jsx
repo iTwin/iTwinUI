@@ -5,12 +5,16 @@
 import * as React from 'react';
 import { Flex, Surface, Text, IconButton } from '@itwin/itwinui-react';
 import { SvgSettings } from '@itwin/itwinui-icons-react';
+import './Surface.headerfooter.css';
 
 export default () => {
   return (
     <Surface elevation={4}>
       <Surface.Header>
-        <Flex justifyContent={'space-between'} style={{ flexGrow: '1' }}>
+        <Flex
+          justifyContent={'space-between'}
+          className='header-footer-surface-header-flex'
+        >
           <Text variant='subheading' as='h2'>
             Custom surface
           </Text>

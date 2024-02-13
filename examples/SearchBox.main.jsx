@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { SearchBox, Flex } from '@itwin/itwinui-react';
+import './SearchBox.main.css';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }}>
+    <Flex className='main-search-box-flex'>
       <SearchBox inputProps={{ placeholder: 'SearchBox component' }} />
     </Flex>
   );

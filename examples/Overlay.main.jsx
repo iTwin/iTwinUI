@@ -4,13 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Overlay } from '@itwin/itwinui-react';
+import './Overlay.main.css';
 
 export default () => {
   return (
-    <Overlay
-      content={'loading...'}
-      style={{ border: '1px solid var(--iui-color-border)' }}
-    >
+    <Overlay content={'loading...'} className='main-overlay'>
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

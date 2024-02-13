@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Popover } from '@itwin/itwinui-react';
+import './Popover.main.css';
 
 export default () => {
   return (
     <Popover
       content='This is a popover!'
       applyBackground
-      style={{ padding: 'var(--iui-size-xs)' }}
+      className='main-popover'
     >
       <Button>Toggle</Button>
     </Popover>

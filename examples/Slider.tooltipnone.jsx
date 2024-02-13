@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Text, Label, InputGrid } from '@itwin/itwinui-react';
+import './Slider.tooltipnone.css';
 
 export default () => {
   const labelId = React.useId();
@@ -27,7 +28,7 @@ export default () => {
   }, []);
 
   return (
-    <InputGrid style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid className='tooltip-none-slider-input-grid'>
       <Label id={labelId} as='div'>
         Choose a start date
       </Label>
@@ -47,7 +48,7 @@ export default () => {
         onUpdate={updateValue}
         onChange={updateValue}
       />
-      <Text variant='body' style={{ textAlign: 'center' }}>
+      <Text variant='body' className='tooltip-none-slider-text'>
         {dateFormatter.format(currentValue.date)}
       </Text>
     </InputGrid>

@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ComboBox, MenuItemSkeleton } from '@itwin/itwinui-react';
+import './ComboBox.loading.css';
 
 export default () => {
   const countriesList = React.useMemo(
@@ -265,7 +266,7 @@ export default () => {
             startIcon: (
               <img
                 loading='lazy'
-                style={{ width: 20, height: 15 }}
+                className='loading-combo-box-country-flag'
                 src={`https://flagcdn.com/w20/${country.value.toLowerCase()}.png`}
                 srcSet={`https://flagcdn.com/w40/${country.value.toLowerCase()}.png 2x`}
                 alt=''

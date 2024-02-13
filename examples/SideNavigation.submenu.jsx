@@ -18,6 +18,7 @@ import {
   SvgFolderOpened,
   SvgSettings,
 } from '@itwin/itwinui-icons-react';
+import './SideNavigation.submenu.css';
 
 export default () => {
   const itemsData = [
@@ -52,7 +53,7 @@ export default () => {
   ));
 
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
+    <div className='submenu-side-navigation-container'>
       <SideNavigation
         expanderPlacement='bottom'
         items={items.slice(0, 3)}
@@ -87,16 +88,7 @@ export default () => {
           </SidenavSubmenu>
         }
       />
-      <div
-        style={{
-          background: 'var(--iui-color-background-disabled)',
-          padding: 16,
-          flexGrow: 1,
-          display: 'grid',
-          placeContent: 'center',
-          placeItems: 'center',
-        }}
-      >
+      <div className='submenu-side-navigation-item-label-container'>
         <Text>{itemsData[activeItem]?.label} page</Text>
         <Text isMuted>
           {activeSubItem >= 0 && `Contents of Folder ${activeSubItem}`}

@@ -4,14 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Fieldset, LabeledInput } from '@itwin/itwinui-react';
+import './Fieldset.disabled.css';
 
 export default () => {
   return (
-    <Fieldset
-      legend='Disabled Fieldset'
-      disabled
-      style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
-    >
+    <Fieldset legend='Disabled Fieldset' disabled className='disabled-fieldset'>
       <LabeledInput label='Full Name' placeholder='Enter full name' />
       <LabeledInput label='Address' placeholder='Enter address' />
     </Fieldset>

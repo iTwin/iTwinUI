@@ -1,0 +1,13 @@
+.submenu-side-navigation-container {
+  display: flex;
+  height: 100%;
+}
+
+.submenu-side-navigation-item-label-container {
+  background: var(--iui-color-background-disabled);
+  padding: 16px;
+  flex-grow: 1;
+  display: grid;
+  place-content: center;
+  place-items: center;
+}

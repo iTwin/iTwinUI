@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, LabeledSelect, Popover } from '@itwin/itwinui-react';
+import './Popover.placement.css';
 
 export default () => {
   const [placement, setPlacement] = React.useState('bottom-start');
@@ -11,13 +12,13 @@ export default () => {
   return (
     <Popover
       content={
-        <div style={{ padding: 'var(--iui-size-xs)' }}>
+        <div className='placement-popover-content'>
           <LabeledSelect
             label='Placement'
             options={placements.map((p) => ({ value: p, label: p }))}
             value={placement}
             onChange={setPlacement}
-            style={{ minWidth: '20ch' }}
+            className='placement-popover-labeled-select'
           />
         </div>
       }

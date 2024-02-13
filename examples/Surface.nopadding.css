@@ -1,0 +1,19 @@
+.no-padding-surface-list-item {
+  padding: var(--iui-size-s);
+  position: relative;
+}
+
+.no-padding-surface-card {
+  max-block-size: 300px;
+}
+
+.no-padding-surface-flex {
+  flex: 1;
+}
+
+.no-padding-surface-list {
+  width: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}

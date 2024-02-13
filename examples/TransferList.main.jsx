@@ -10,6 +10,7 @@ import {
   SvgChevronRight,
   SvgChevronLeft,
 } from '@itwin/itwinui-icons-react';
+import './TransferList.main.css';
 
 export default () => {
   const [optionData, setOptionData] = React.useState([
@@ -44,7 +45,7 @@ export default () => {
   };
 
   return (
-    <TransferList style={{ width: 500 }}>
+    <TransferList className='main-transfer-list'>
       <TransferList.ListboxWrapper>
         <TransferList.ListboxLabel>Column A</TransferList.ListboxLabel>
         <TransferList.Listbox>
@@ -62,6 +63,7 @@ export default () => {
                     return newData;
                   });
                 }}
+                key={item.name}
               >
                 {item.name}
               </TransferList.Item>

@@ -9,13 +9,11 @@ import {
   Radio,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
+import './Fieldset.main.css';
 
 export default () => {
   return (
-    <Fieldset
-      legend='General Settings'
-      style={{ display: 'flex', flexDirection: 'column', gap: 11 }}
-    >
+    <Fieldset legend='General Settings' className='main-fieldset'>
       <InputGroup label='Color Theme'>
         <Radio name='choice' value='option1' label={'Light'} />
         <Radio name='choice' value='option2' label={'Dark'} />

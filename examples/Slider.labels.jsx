@@ -9,12 +9,13 @@ import {
   SvgSmileyHappyVery,
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
+import './Slider.labels.css';
 
 export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid className='labels-slider-input-grid'>
       <Label id={labelId} as='div'>
         Choose a happiness level
       </Label>

@@ -11,6 +11,7 @@ import {
   Radio,
   InputGrid,
 } from '@itwin/itwinui-react';
+import './ExpandableBlock.form.css';
 
 export default () => {
   const nameSection = (
@@ -57,7 +58,7 @@ export default () => {
   );
 
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='form-expandable-block-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger label='Name' />
         <ExpandableBlock.Content>{nameSection}</ExpandableBlock.Content>

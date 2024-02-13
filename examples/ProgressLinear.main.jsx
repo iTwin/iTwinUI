@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ProgressLinear } from '@itwin/itwinui-react';
+import './ProgressLinear.main.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 200px)' }}>
+    <div className='progress-linear-container'>
       <ProgressLinear indeterminate />
     </div>
   );

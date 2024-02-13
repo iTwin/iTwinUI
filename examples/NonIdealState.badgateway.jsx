@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg502 } from '@itwin/itwinui-illustrations-react';
+import './NonIdealState.badgateway.css';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div className='bad-gateway-container'>
       <NonIdealState
         svg={<Svg502 />}
         heading='Bad Gateway'

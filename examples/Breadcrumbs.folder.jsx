@@ -10,6 +10,7 @@ import {
   Input,
 } from '@itwin/itwinui-react';
 import { SvgFolder } from '@itwin/itwinui-icons-react';
+import './Breadcrumbs.folder.css';
 
 export default () => {
   const items = React.useMemo(
@@ -40,9 +41,7 @@ export default () => {
   );
 
   return (
-    <div
-      style={{ display: 'inline-flex', width: 418, justifyContent: 'center' }}
-    >
+    <div className='folder-breadcrumbs-container'>
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'

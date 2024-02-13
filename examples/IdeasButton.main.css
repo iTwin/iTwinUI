@@ -1,0 +1,5 @@
+.ideas-button-container {
+  position: absolute;
+  inset: 1rem;
+  transform: translateX(0);
+}

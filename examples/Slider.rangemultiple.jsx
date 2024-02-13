@@ -4,12 +4,13 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Label, InputGrid } from '@itwin/itwinui-react';
+import './Slider.rangemultiple.css';
 
 export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid className='range-multiple-slider-input-grid'>
       <Label id={labelId} as='div'>
         Choose ranges
       </Label>

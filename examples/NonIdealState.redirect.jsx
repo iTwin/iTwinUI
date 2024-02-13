@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { SvgRedirect } from '@itwin/itwinui-illustrations-react';
+import './NonIdealState.redirect.css';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div className='redirect-container'>
       <NonIdealState
         svg={<SvgRedirect />}
         heading='Redirect'

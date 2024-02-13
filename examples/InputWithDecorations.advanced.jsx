@@ -14,6 +14,7 @@ import {
   SvgCaretDownSmall,
   SvgSearch,
 } from '@itwin/itwinui-icons-react';
+import './InputWithDecorations.advanced.css';
 
 export default () => {
   return (
@@ -22,7 +23,7 @@ export default () => {
         <SvgSearch />
       </Icon>
       <InputWithDecorations.Input placeholder='Search...' />
-      <Text style={{ paddingInline: 8 }}>0 / 5</Text>
+      <Text className='advanced-input-text'>0 / 5</Text>
       <Divider orientation='vertical' />
       <InputWithDecorations.Button label='Next result'>
         <SvgCaretDownSmall />

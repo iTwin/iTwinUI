@@ -10,6 +10,7 @@ import {
   Surface,
   Text,
 } from '@itwin/itwinui-react';
+import './LinkAction.main.css';
 
 export default () => {
   return (
@@ -21,7 +22,7 @@ export default () => {
           </LinkAction>
         </Text>
       </Surface.Header>
-      <Surface.Body isPadded style={{ maxWidth: '40ch' }}>
+      <Surface.Body isPadded className='link-action-surface-body'>
         National stadium in Singapore. Features landscape details and a metro
         station.
       </Surface.Body>

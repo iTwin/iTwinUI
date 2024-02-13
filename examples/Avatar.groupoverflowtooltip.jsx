@@ -9,6 +9,7 @@ import {
   getUserColor,
   Tooltip,
 } from '@itwin/itwinui-react';
+import './Avatar.groupoverflowtooltip.css';
 
 export default () => {
   const userNames = [
@@ -57,7 +58,7 @@ export default () => {
         reference={avatarRef}
         content={tooltipContent}
         placement='right'
-        style={{ whiteSpace: 'pre' }}
+        className='group-overflow-avatar-tooltip'
       />
     </>
   );

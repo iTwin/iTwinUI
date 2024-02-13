@@ -5,10 +5,11 @@
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
 import { SvgSmileyHappy } from '@itwin/itwinui-icons-react';
+import './ExpandableBlock.status.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='status-expandable-block-container'>
       <ExpandableBlock.Wrapper status='positive'>
         <ExpandableBlock.Trigger>
           <ExpandableBlock.ExpandIcon />

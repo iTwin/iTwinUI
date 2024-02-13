@@ -1,0 +1,7 @@
+.layout-stepper-flex {
+  min-width: min(100%, 400px);
+}
+
+.layout-stepper-current-step {
+  width: 100%;
+}

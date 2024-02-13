@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
+import './ExpandableBlock.disabled.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='disabled-expandable-block-container'>
       <ExpandableBlock.Wrapper disabled>
         <ExpandableBlock.Trigger label='Disabled expandable block' />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>

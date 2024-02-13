@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { TagContainer, Tag } from '@itwin/itwinui-react';
+import './TagContainer.scroll.css';
 
 export default () => {
   return (
     <TagContainer
       overflow='scroll'
       background='filled'
-      style={{ maxWidth: '70%' }}
+      className='scroll-tag-container'
     >
       <Tag onRemove={() => {}}>Tag 1</Tag>
       <Tag onRemove={() => {}}>Tag 2</Tag>

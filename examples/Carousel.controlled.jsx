@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Carousel } from '@itwin/itwinui-react';
+import './Carousel.controlled.css';
 
 export default () => {
   const gradients = [
@@ -23,25 +24,21 @@ export default () => {
 
   return (
     <Carousel
-      style={{ maxWidth: '100%' }}
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}
+      className='controlled-carousel'
     >
       <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
             <div
+              className='controlled-carousel-gradient'
               style={{
                 background: `linear-gradient(to right, ${from}, ${to})`,
-                height: '200px',
-                display: 'grid',
-                placeItems: 'center',
               }}
             >
-              <div style={{ fontSize: 48, color: 'hsl(0deg 0% 100% / 0.7)' }}>
-                {index + 1}
-              </div>
+              <div className='controlled-carousel-number'>{index + 1}</div>
             </div>
           </Carousel.Slide>
         ))}

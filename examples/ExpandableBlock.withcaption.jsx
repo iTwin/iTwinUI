@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
+import './ExpandableBlock.withcaption.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='caption-expandable-block-container'>
       <ExpandableBlock.Wrapper size='small'>
         <ExpandableBlock.Trigger>
           <ExpandableBlock.ExpandIcon />

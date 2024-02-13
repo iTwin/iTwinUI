@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ComboBox, MenuItem } from '@itwin/itwinui-react';
+import './ComboBox.custom.css';
 
 export default () => {
   const options = React.useMemo(
@@ -28,9 +29,9 @@ export default () => {
       <MenuItem key={id} id={id} isSelected={isSelected} value={value}>
         <em
           style={{
-            textTransform: 'uppercase',
             fontWeight: isSelected ? 'bold' : undefined,
           }}
+          className='custom-combo-box-em'
         >
           {label}
         </em>

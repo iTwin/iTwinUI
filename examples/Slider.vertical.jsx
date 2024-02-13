@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider } from '@itwin/itwinui-react';
+import './Slider.vertical.css';
 
 export default () => {
   return (
@@ -11,7 +12,7 @@ export default () => {
       thumbProps={() => ({ 'aria-label': `Choose a value` })}
       values={[50]}
       orientation='vertical'
-      style={{ height: '300px' }}
+      className='vertical-slider'
     />
   );
 };

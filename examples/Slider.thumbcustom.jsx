@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider } from '@itwin/itwinui-react';
+import './Slider.thumbcustom.css';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='thumb-custom-slider-container'>
       <Slider
         values={[50]}
         min={0}
@@ -15,25 +16,9 @@ export default () => {
         thumbProps={() => {
           return {
             'aria-label': `Choose a value`,
-            style: {
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              backgroundColor: 'var(--iui-color-background-accent)',
-              borderColor: 'var(--iui-color-border-accent)',
-              width: 'var(--iui-size-xl)',
-              height: 'var(--iui-component-height-small)',
-              borderRadius: 'var(--iui-border-radius-1)',
-              transform: 'translateX(calc(var(--iui-size-xl) * 0.5 * -1))',
-            },
+            className: 'thumb-custom-slider-thumb',
             children: (
-              <span
-                style={{
-                  pointerEvents: 'none',
-                }}
-              >
-                |||
-              </span>
+              <span className='thumb-custom-slider-thumb-children'>|||</span>
             ),
           };
         }}

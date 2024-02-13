@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Checkbox, Flex } from '@itwin/itwinui-react';
+import './Checkbox.indeterminate.css';
 
 export default () => {
   const [option1, setOption1] = React.useState(false);
@@ -27,7 +28,7 @@ export default () => {
       <Flex
         flexDirection='column'
         alignItems='flex-start'
-        style={{ marginLeft: 'var(--iui-size-l)' }}
+        className='indeterminate-checkbox-indented-flex'
       >
         <Checkbox
           label='Option 1.1'

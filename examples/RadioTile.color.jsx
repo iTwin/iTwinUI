@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
+import './RadioTile.color.css';
 
 export default () => {
   return (
-    <RadioTileGroup style={{ width: 'min(100%, 350px)' }}>
+    <RadioTileGroup className='color-radio-tile-group'>
       <RadioTile
         label='Google Maps'
         icon={

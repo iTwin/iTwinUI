@@ -9,13 +9,14 @@ import {
   ModalContent,
   ModalButtonBar,
 } from '@itwin/itwinui-react';
+import './Dialog.modal.css';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
+      <div className='modal-dialog-button-container'>
         <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
           Open modal dialog
         </Button>
