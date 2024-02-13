@@ -8,8 +8,6 @@ WORKDIR /workspace/iTwinUI
 
 RUN yarn install
 
-COPY package.json ../
-
 CMD [ "yarn", "build"]
 
 RUN yarn build
