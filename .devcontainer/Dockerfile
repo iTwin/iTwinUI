@@ -7,5 +7,10 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /workspace/iTwinUI
 
 RUN yarn install
+
+COPY ../package.json /workspace/iTwinUI/
+
+CMD [ "yarn", "build"]
+
 RUN yarn build
 
