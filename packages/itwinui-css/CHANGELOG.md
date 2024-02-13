@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.9
+
+### Patch Changes
+
+- [#1851](https://github.com/iTwin/iTwinUI/pull/1851): Fixed an issue where `SearchBox` was showing two focus outlines.
+
 ## 1.12.8
 
 ### Patch Changes
