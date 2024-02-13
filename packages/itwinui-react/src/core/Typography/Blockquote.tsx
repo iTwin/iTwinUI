@@ -37,5 +37,3 @@ export const Blockquote = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'blockquote', BlockquoteProps>;
-
-export default Blockquote;

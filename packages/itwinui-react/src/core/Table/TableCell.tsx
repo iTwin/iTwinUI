@@ -10,7 +10,7 @@ import type {
   TableInstance,
 } from '../../react-table/react-table.js';
 import cx from 'classnames';
-import { getCellStyle, getStickyStyle } from './utils.js';
+import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
 import { SubRowExpander } from './SubRowExpander.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 import { DefaultCell } from './cells/index.js';
@@ -43,38 +43,19 @@ export const TableCell = <T extends Record<string, unknown>>(
     cellIndex ===
     cell.row.cells.findIndex((c) => c.column.id !== SELECTION_CELL_ID);
 
-  const getSubRowStyle = (): React.CSSProperties | undefined => {
-    if (!tableHasSubRows || !hasSubRowExpander) {
-      return undefined;
-    }
-    // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
-    const dynamicMargin = cell.row.depth + (cell.row.canExpand ? 0 : 1);
-
-    let cellPadding = 16;
-    let expanderMargin = 8;
-
-    if (density === 'condensed') {
-      cellPadding = 12;
-      expanderMargin = 4;
-    } else if (density === 'extra-condensed') {
-      cellPadding = 8;
-      expanderMargin = 4;
-    }
-
-    const multiplier = 26 + expanderMargin; // 26 = expander width
-
-    return {
-      paddingInlineStart: cellPadding + dynamicMargin * multiplier,
-    };
-  };
-
   const cellElementProps = cell.getCellProps({
     className: cx('iui-table-cell', cell.column.cellClassName, {
       'iui-table-cell-sticky': !!cell.column.sticky,
     }),
     style: {
       ...getCellStyle(cell.column, !!tableInstance.state.isTableResizing),
-      ...getSubRowStyle(),
+      ...(tableHasSubRows &&
+        hasSubRowExpander &&
+        getSubRowStyle({
+          density,
+          // If it doesn't have sub-rows then shift by another level to align with expandable rows on the same depth
+          depth: cell.row.depth + (cell.row.canExpand ? 0 : 1),
+        })),
       ...getStickyStyle(cell.column, tableInstance.visibleColumns),
     },
   });
@@ -130,5 +111,3 @@ export const TableCell = <T extends Record<string, unknown>>(
     </>
   );
 };
-
-export default TableCell;

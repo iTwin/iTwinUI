@@ -10,12 +10,12 @@ import { SvgChevronRight, SvgMore } from '../utils/index.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { Button } from '../Buttons/Button.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const renderComponent = (
   props?: Partial<React.ComponentProps<typeof Breadcrumbs>>,
 ) => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   return render(
     <Breadcrumbs {...props}>
@@ -56,11 +56,11 @@ const assertBaseElement = (
   });
 };
 
-const useOverflowMock = jest
+const useOverflowMock = vi
   .spyOn(UseOverflow, 'useOverflow')
-  .mockImplementation((items) => [jest.fn(), items.length]);
+  .mockImplementation((items) => [vi.fn(), items.length]);
 beforeEach(() => {
-  useOverflowMock.mockImplementation((items) => [jest.fn(), items.length]);
+  useOverflowMock.mockImplementation((items) => [vi.fn(), items.length]);
 });
 
 it('should render all elements in default state', () => {
@@ -113,7 +113,7 @@ it('should accept currentIndex prop', () => {
 });
 
 it('should overflow when there is not enough space', () => {
-  useOverflowMock.mockReturnValue([jest.fn(), 2]);
+  useOverflowMock.mockReturnValue([vi.fn(), 2]);
   const { container } = renderComponent();
 
   expect(container.querySelector('.iui-breadcrumbs')).toBeTruthy();
@@ -128,8 +128,8 @@ it('should overflow when there is not enough space', () => {
 });
 
 it('should handle overflow when overflowButton is specified', () => {
-  const onClick = jest.fn();
-  useOverflowMock.mockReturnValue([jest.fn(), 2]);
+  const onClick = vi.fn();
+  useOverflowMock.mockReturnValue([vi.fn(), 2]);
   const { container } = renderComponent({
     overflowButton: (visibleCount) => (
       <IconButton onClick={onClick(visibleCount)}>
@@ -149,7 +149,7 @@ it('should handle overflow when overflowButton is specified', () => {
 });
 
 it('should show the last item when only one can be visible', () => {
-  useOverflowMock.mockReturnValue([jest.fn(), 1]);
+  useOverflowMock.mockReturnValue([vi.fn(), 1]);
 
   const { container } = renderComponent();
 
@@ -164,7 +164,7 @@ it('should show the last item when only one can be visible', () => {
 });
 
 it('should support legacy api', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
 
   render(
     <div data-testid='1'>

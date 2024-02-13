@@ -117,5 +117,3 @@ export const EditableCell = <T extends Record<string, unknown>>(
     </Box>
   );
 };
-
-export default EditableCell;

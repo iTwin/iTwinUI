@@ -12,7 +12,7 @@ import {
 import { SvgCaretDownSmall } from '../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { StatusMessage } from '../StatusMessage/StatusMessage.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const renderComponent = (
   props?: Partial<ComboBoxProps<number>> & ComboboxMultipleTypeProps<number>,
@@ -199,7 +199,7 @@ it('should accept custom filter function', () => {
 });
 
 it('should select value on click', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container, getByText } = renderComponent({ onChange: mockOnChange });
   const input = assertBaseElement(container);
 
@@ -218,7 +218,7 @@ it('should select value on click', async () => {
 
 it('should handle keyboard navigation when virtualization is disabled', async () => {
   const id = 'test-component';
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container } = renderComponent({ id, onChange: mockOnChange });
 
   await userEvent.tab();
@@ -322,7 +322,7 @@ it('should handle keyboard navigation when virtualization is disabled', async ()
 
 it('should handle keyboard navigation when virtualization is enabled', async () => {
   const id = 'test-component';
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container } = renderComponent({
     id,
     onChange: mockOnChange,
@@ -489,7 +489,7 @@ it('should accept inputProps', () => {
 });
 
 it('should work with custom itemRenderer', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container, getByText } = renderComponent({
     itemRenderer: ({ value, label }, { isSelected, id }) => (
       <MenuItem
@@ -615,7 +615,7 @@ it('should render with message and status', () => {
 });
 
 it('should merge inputProps.onChange correctly', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container } = renderComponent({
     inputProps: { onChange: ({ target: { value } }) => mockOnChange(value) },
   });
@@ -630,8 +630,8 @@ it('should merge inputProps.onChange correctly', async () => {
 });
 
 it('should use the latest onChange prop', async () => {
-  const mockOnChange1 = jest.fn();
-  const mockOnChange2 = jest.fn();
+  const mockOnChange1 = vi.fn();
+  const mockOnChange2 = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { rerender } = render(
@@ -650,8 +650,8 @@ it('should use the latest onChange prop', async () => {
 });
 
 it('should call onExpand and onCollapse when dropdown is opened and closed', async () => {
-  const onExpand = jest.fn();
-  const onCollapse = jest.fn();
+  const onExpand = vi.fn();
+  const onCollapse = vi.fn();
   const { container } = renderComponent({
     onShow: onExpand,
     onHide: onCollapse,
@@ -688,7 +688,7 @@ it('should accept ReactNode in emptyStateMessage', async () => {
 });
 
 it('should programmatically clear value', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container, rerender } = render(
@@ -709,7 +709,7 @@ it('should programmatically clear value', async () => {
 });
 
 it('should update options (have selected option in new options list)', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container, rerender } = render(
@@ -737,7 +737,7 @@ it('should update options (have selected option in new options list)', async () 
 });
 
 it('should update options (does not have selected option in new options list)', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container, rerender } = render(
@@ -760,7 +760,7 @@ it('should update options (does not have selected option in new options list)', 
 });
 
 it('should select multiple options', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2, 3].map((value) => ({
     value,
     label: `Item ${value}`,
@@ -792,7 +792,7 @@ it('should select multiple options', async () => {
 });
 
 it('should override multiple selected options', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2, 3].map((value) => ({
     value,
     label: `Item ${value}`,
@@ -846,7 +846,7 @@ it('should override multiple selected options', async () => {
 
 it('should handle keyboard navigation when multiple is enabled', async () => {
   const id = 'test-component';
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const { container } = renderComponent({
     id,
     multiple: true,
@@ -935,7 +935,7 @@ it('should handle keyboard navigation when multiple is enabled', async () => {
 });
 
 it('should not crash when provided value in not in options when multiple enabled', async () => {
-  const mockOnChange = jest.fn();
+  const mockOnChange = vi.fn();
   const options = [0, 1, 2].map((value) => ({ value, label: `Item ${value}` }));
 
   const { container } = render(
@@ -948,7 +948,7 @@ it('should not crash when provided value in not in options when multiple enabled
 
 it('should not select disabled items', async () => {
   const id = 'test-component';
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({
     id,
     onChange,
@@ -1062,4 +1062,19 @@ it('should be customizable', async () => {
 
   const statusContent = getByText('My message');
   expect(statusContent).toHaveClass('custom-message-class');
+});
+
+it('should allow passing ref to ComboBox', () => {
+  const comboboxRef = React.createRef<HTMLElement>();
+  const inputRef = React.createRef<HTMLInputElement>();
+  render(
+    <ComboBox
+      options={[{ label: 'Item 1', value: 1 }]}
+      ref={comboboxRef}
+      id='test-combobox'
+      inputProps={{ ref: inputRef, id: `test-input` }}
+    />,
+  );
+  expect(comboboxRef?.current).toHaveAttribute('id', 'test-combobox');
+  expect(inputRef?.current).toHaveAttribute('id', 'test-input');
 });

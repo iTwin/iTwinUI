@@ -38,25 +38,34 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
     border: 1px solid;
   }
 
-  // needed to prevent resizable dialog content from escaping when dialog is
-  // too small. also fixes rounded corners in title bar. see PR #1424
-  overflow: hidden;
-
-  &:where(:has(.iui-dialog-content), [data-iui-flex='true']) {
-    display: flex;
-    flex-direction: column;
-  }
-
   &:not(.iui-dialog-visible) {
     visibility: hidden;
     opacity: 0;
   }
 
-  transition: visibility var(--iui-duration-0) linear, opacity var(--iui-duration-1) ease-out;
-  transition-delay: var(--iui-duration-1), var(--iui-duration-0);
+  transition:
+    visibility var(--iui-duration-0) linear var(--iui-duration-1),
+    opacity var(--iui-duration-1) ease-out;
 
   &.iui-dialog-visible {
-    transition-delay: var(--iui-duration-0); // remove delay for entry animation
+    animation: iui-fade-in var(--iui-duration-1) ease-out;
+  }
+
+  @keyframes iui-slide-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+
+  @keyframes iui-fade-in {
+    from {
+      visibility: visible;
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
   }
 }
 
@@ -117,29 +126,21 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    transition: visibility var(--iui-duration-0) linear var(--iui-duration-2),
-      opacity var(--iui-duration-0) linear var(--iui-duration-2), transform var(--iui-duration-1) ease-in;
+    transition:
+      visibility var(--iui-duration-0) linear var(--iui-duration-2),
+      opacity var(--iui-duration-0) linear var(--iui-duration-2),
+      transform var(--iui-duration-1) ease-in;
 
     &.iui-dialog-visible {
-      transition: transform var(--iui-duration-2) ease-out;
+      animation:
+        iui-slide-up var(--iui-duration-2) ease-out,
+        iui-fade-in var(--iui-duration-2) ease-out;
     }
   }
 }
 
 .iui-dialog-draggable {
   border: 1px solid var(--iui-color-border);
-}
-
-.iui-dialog-animation {
-  &-enter {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-
-  &-enter-active {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .iui-dialog-title {
@@ -168,6 +169,8 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
   cursor: grab;
   background-color: var(--iui-color-background-backdrop);
   border-block-end: 1px solid var(--iui-color-border);
+  border-start-start-radius: var(--iui-border-radius-1);
+  border-start-end-radius: var(--iui-border-radius-1);
 
   &:active {
     cursor: grabbing;

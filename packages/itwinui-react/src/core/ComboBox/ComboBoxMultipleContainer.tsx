@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import SelectTagContainer from '../Select/SelectTagContainer.js';
+import { SelectTagContainer } from '../Select/SelectTagContainer.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ComboBoxMultipleContainerProps = {

@@ -10,5 +10,3 @@ import { polymorphic } from '../utils/index.js';
 export const FooterSeparator = polymorphic.li('iui-legal-footer-separator', {
   'aria-hidden': true,
 });
-
-export default FooterSeparator;

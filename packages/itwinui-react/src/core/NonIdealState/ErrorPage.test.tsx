@@ -231,7 +231,7 @@ describe('ErrorPage', () => {
   });
 
   it('displays primary button', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ErrorPage
         errorType='404'
@@ -245,7 +245,7 @@ describe('ErrorPage', () => {
   });
 
   it('displays secondary button', () => {
-    const onClick = jest.fn();
+    const onClick = vi.fn();
     render(
       <ErrorPage
         errorType='404'
@@ -291,6 +291,6 @@ describe('ErrorPage', () => {
       '.iui-non-ideal-state',
     ) as HTMLElement;
     expect(element).toHaveClass('test class');
-    expect(element).toHaveStyle('color: blue');
+    expect(element.style.color).toEqual('blue');
   });
 });

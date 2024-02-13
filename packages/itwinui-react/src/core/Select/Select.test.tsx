@@ -4,13 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { findAllByRole, fireEvent, render } from '@testing-library/react';
-import Select, {
+import {
+  Select,
   type SelectProps,
   type SelectMultipleTypeProps,
 } from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 function assertSelect(
   select: HTMLElement,
@@ -62,7 +63,7 @@ function renderComponent(
 }
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render empty select', () => {
@@ -104,7 +105,7 @@ it('should show value with icon inside select', () => {
 });
 
 it('should render disabled select', async () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = renderComponent({
     disabled: true,
     onChange: mockedFn,
@@ -123,7 +124,7 @@ it('should render disabled select', async () => {
 });
 
 it('should set focus on select and call onBlur', () => {
-  const onBlur = jest.fn();
+  const onBlur = vi.fn();
   const { container } = renderComponent({ onBlur });
 
   const select = container.querySelector('.iui-input-with-icon') as HTMLElement;
@@ -273,7 +274,7 @@ it('should show menu with disabled item', () => {
 });
 
 it('should show selected item in menu', () => {
-  const scrollSpy = jest.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
+  const scrollSpy = vi.spyOn(window.HTMLElement.prototype, 'scrollIntoView');
   const { container } = renderComponent({
     value: 1,
     options: [...new Array(3)].map((_, index) => ({
@@ -292,7 +293,7 @@ it('should show selected item in menu', () => {
 });
 
 it('should call onChange on item click', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container } = renderComponent({
     onChange,
   });
@@ -356,16 +357,16 @@ it('should use custom renderer for menu items', () => {
   fireEvent.click(select.querySelector('.iui-select-button') as HTMLElement);
   const menu = document.querySelector('.iui-menu') as HTMLElement;
   expect(menu).toBeTruthy();
-  const menuItems = menu.querySelectorAll('[role=option]');
+  const menuItems = menu.querySelectorAll<HTMLElement>('[role=option]');
   expect(menuItems.length).toBe(3);
 
   expect(menuItems[0].textContent).toEqual('Yellow');
   expect(menuItems[1].textContent).toEqual('Green');
   expect(menuItems[2].textContent).toEqual('Red');
 
-  expect(menuItems[0]).toHaveStyle('color: yellow;');
-  expect(menuItems[1]).toHaveStyle('color: green;');
-  expect(menuItems[2]).toHaveStyle('color: red;');
+  expect(menuItems[0].style.color).toEqual('yellow');
+  expect(menuItems[1].style.color).toEqual('green');
+  expect(menuItems[2].style.color).toEqual('red');
 });
 
 it.each(['small', 'large'] as const)(
@@ -449,7 +450,7 @@ it('should pass custom props to menu item', () => {
 });
 
 it('should select multiple items', () => {
-  const onChange = jest.fn();
+  const onChange = vi.fn();
   const { container, rerender } = renderComponent({
     onChange,
     multiple: true,
@@ -598,3 +599,16 @@ it.each([true, false] as const)(
     expect(selectButton).toHaveTextContent('B');
   },
 );
+
+it('should allow passing ref to Select', () => {
+  const selectRef = React.createRef<HTMLElement>();
+  render(
+    <Select
+      options={[{ value: 1, label: 'Option 1' }]}
+      ref={selectRef}
+      data-select
+    />,
+  );
+
+  expect(selectRef?.current).toHaveAttribute('data-select');
+});

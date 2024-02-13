@@ -6,7 +6,7 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
 
-import HeaderLogo from './HeaderLogo.js';
+import { HeaderLogo } from './HeaderLogo.js';
 
 it('renders default correctly', () => {
   const { container } = render(
@@ -31,7 +31,7 @@ it('renders default correctly', () => {
 });
 
 it('renders with onClick correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <HeaderLogo logo={<SvgPlaceholder />} onClick={onClickMock}>
       Application
@@ -46,7 +46,7 @@ it('renders with onClick correctly', () => {
 });
 
 it('renders with as prop correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <HeaderLogo
       as='a'

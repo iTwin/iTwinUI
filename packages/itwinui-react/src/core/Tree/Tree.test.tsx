@@ -12,7 +12,7 @@ import {
   type TreeProps,
 } from './Tree.js';
 import { TreeNode } from './TreeNode.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { Checkbox } from '../Checkbox/Checkbox.js';
 
 type TestData = {
@@ -20,8 +20,8 @@ type TestData = {
   label: string;
   subItems: TestData[];
 };
-const onNodeExpanded = jest.fn();
-const onNodeSelected = jest.fn();
+const onNodeExpanded = vi.fn();
+const onNodeSelected = vi.fn();
 
 const renderComponent = ({
   props,
@@ -81,7 +81,7 @@ const renderComponent = ({
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render in its most basic state', () => {

@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { render } from '@testing-library/react';
-import MenuItemSkeleton from './MenuItemSkeleton.js';
+import { MenuItemSkeleton } from './MenuItemSkeleton.js';
 
 it('should render skeleton menu item with only label', () => {
   const { container } = render(<MenuItemSkeleton />);

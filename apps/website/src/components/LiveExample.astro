@@ -1,9 +1,7 @@
 ---
 import fs from 'node:fs';
-import OpenInCodesandbox from './OpenInCodesandbox.astro';
-import Code from 'astro/components/Code.astro';
-import nightOwl from '../../nightOwl.mjs';
-import { ThemeProvider } from '@itwin/itwinui-react';
+import OpenInCodePen from './OpenInCodePen.astro';
+import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
 const require = createRequire(import.meta.url);
 
@@ -31,14 +29,11 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 
 <div class='demo-box'>
   <slot />
-  <OpenInCodesandbox class='sandbox-link' code={code} />
+  <OpenInCodePen class='sandbox-link' code={code} />
 </div>
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <button data-copied='false'>
-    <span class='visually-hidden'>Copy to clipboard</span>
-  </button>
-  <Code code={code} lang='tsx' theme={nightOwl} />
+  <Code code={code} lang='tsx' theme={'github-dark'} />
 </demo-code>
 
 <script>
@@ -47,27 +42,12 @@ if (code.includes('Copyright (c) Bentley Systems')) {
     class extends HTMLElement {
       connectedCallback() {
         const expandButton = this.querySelector('button[aria-expanded]') as HTMLElement;
-        const copyButton = this.querySelector('button[data-copied]') as HTMLElement;
-        const code = this.querySelector('pre');
+        const code = this.querySelector('pre') as HTMLElement;
 
         expandButton?.addEventListener('click', () => {
           const shouldExpand = expandButton.getAttribute('aria-expanded') === 'false';
           expandButton.setAttribute('aria-expanded', String(shouldExpand));
           code.inert = !shouldExpand;
-        });
-
-        copyButton?.addEventListener('click', async () => {
-          try {
-            await navigator.clipboard.writeText(code.innerText);
-            copyButton.dataset.copied = 'true';
-            copyButton.setAttribute('aria-description', 'Copied');
-
-            await new Promise((resolve) => setTimeout(resolve, 4000));
-            copyButton.dataset.copied = 'false';
-            copyButton.removeAttribute('aria-description');
-          } catch {
-            console.error('unable to copy :(');
-          }
         });
       }
     },
@@ -75,6 +55,21 @@ if (code.includes('Copyright (c) Bentley Systems')) {
 </script>
 
 <style lang='scss'>
+  // revert all website styles from the demo
+  .demo-box > :global(:first-child *) {
+    @layer globals {
+      all: revert-layer;
+    }
+    @layer layouts {
+      all: revert-layer;
+    }
+    @layer components {
+      all: revert-layer;
+    }
+    @layer pages {
+      all: revert-layer;
+    }
+  }
   @layer components {
     .demo-box {
       position: relative;
@@ -83,9 +78,9 @@ if (code.includes('Copyright (c) Bentley Systems')) {
       display: grid;
       justify-items: center;
       padding: 1rem;
-      background: var(--color-sandbox-gradient);
       isolation: isolate;
       border-radius: var(--border-radius-1);
+      outline: 1px solid var(--color-line-2);
     }
 
     .demo-box :global([data-iui-theme]) {
@@ -117,23 +112,18 @@ if (code.includes('Copyright (c) Bentley Systems')) {
         padding: 1rem;
         font-size: var(--type--1);
         border-radius: var(--border-radius-1);
+        background: none !important;
       }
 
       > :global([aria-expanded='false'] ~ pre) {
         max-height: 200px;
         overflow: hidden !important;
-
-        &::before {
-          content: '';
-          position: absolute;
-          inset: 0;
-          z-index: 1;
-          background: linear-gradient(to bottom, transparent, var(--color-background-2));
-        }
+        mask-image: linear-gradient(to bottom, #000, transparent);
       }
 
       > :global([aria-expanded='true'] ~ pre) {
         padding-block-end: 2.5rem;
+        max-height: min(80vh, 600px);
       }
 
       button {
@@ -159,42 +149,6 @@ if (code.includes('Copyright (c) Bentley Systems')) {
           color: var(--color-text);
           border-color: var(--color-line-1);
         }
-      }
-
-      button[data-copied] {
-        top: 0.5rem;
-        right: 0.5rem;
-        padding: 0.5rem;
-        border-color: var(--color-line-2);
-        display: grid;
-        place-items: center;
-
-        --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='m5 10h-2a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v2h1v-2a2 2 0 0 0 -2-2h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h2zm8-4a1 1 0 0 1 1 1v7a1 1 0 0 1 -1 1h-5a1 1 0 0 1 -1-1v-7a1 1 0 0 1 1-1zm0-1h-5a2 2 0 0 0 -2 2v7a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-7a2 2 0 0 0 -2-2z'></path></svg>");
-
-        &[data-copied='true'] {
-          --_svg: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 20 20'><path d='m7.032 13.907l-3.471-3.905a.75.75 0 0 0-1.122.996l4 4.5a.75.75 0 0 0 1.091.032l10.5-10.5a.75.75 0 0 0-1.06-1.06l-9.938 9.937Z'></path></svg>");
-        }
-
-        &::before {
-          content: '';
-          -webkit-mask: var(--_svg) no-repeat center / contain;
-          mask: var(--_svg) no-repeat center / contain;
-          width: 1rem;
-          height: 1rem;
-          background-color: currentColor;
-        }
-
-        &:hover {
-          border-color: currentColor;
-        }
-      }
-
-      &:not(:hover, :focus-within) button[data-copied] {
-        clip-path: inset(50%);
-        overflow: hidden;
-        width: 1px;
-        height: 1px;
-        white-space: nowrap;
       }
     }
   }

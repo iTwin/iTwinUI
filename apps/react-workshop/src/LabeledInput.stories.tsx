@@ -85,6 +85,17 @@ export const WithCustomIcon = () => {
   );
 };
 
+export const WithSvgIcon = () => {
+  return (
+    <LabeledInput
+      placeholder='Enter text here...'
+      label='This is a label'
+      status='negative'
+      svgIcon={<SvgPlaceholder />}
+    />
+  );
+};
+
 export const Inline = () => {
   return (
     <LabeledInput

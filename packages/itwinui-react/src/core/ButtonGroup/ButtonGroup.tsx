@@ -144,5 +144,3 @@ export const ButtonGroup = React.forwardRef((props, ref) => {
     </FloatingDelayGroup>
   );
 }) as PolymorphicForwardRefComponent<'div', ButtonGroupProps>;
-
-export default ButtonGroup;

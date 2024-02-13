@@ -66,7 +66,7 @@ export type MenuItemProps = {
    */
   endIcon?: JSX.Element;
   /**
-   * @deprecated Use endIcon
+   * @deprecated Use endIcon.
    * SVG icon component shown on the right.
    */
   badge?: JSX.Element;
@@ -248,5 +248,3 @@ export const MenuItem = React.forwardRef((props, forwardedRef) => {
     </ListItem>
   );
 }) as PolymorphicForwardRefComponent<'div', MenuItemProps>;
-
-export default MenuItem;

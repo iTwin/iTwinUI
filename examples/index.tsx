@@ -520,6 +520,12 @@ const ExpandableBlockDisabledExample = withThemeProvider(
 );
 export { ExpandableBlockDisabledExample };
 
+import { default as ExpandableBlockActionsExampleRaw } from './ExpandableBlock.actions';
+const ExpandableBlockActionsExample = withThemeProvider(
+  ExpandableBlockActionsExampleRaw,
+);
+export { ExpandableBlockActionsExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as FieldsetMainExampleRaw } from './Fieldset.main';
@@ -603,6 +609,12 @@ const InformationPanelMainExample = withThemeProvider(
   InformationPanelMainExampleRaw,
 );
 export { InformationPanelMainExample };
+
+import { default as InformationPanelHorizontalExampleRaw } from './InformationPanel.horizontal';
+const InformationPanelHorizontalExample = withThemeProvider(
+  InformationPanelHorizontalExampleRaw,
+);
+export { InformationPanelHorizontalExample };
 
 // ----------------------------------------------------------------------------
 
@@ -700,15 +712,25 @@ export { InputWithDecorationsDisabledExample };
 
 // ----------------------------------------------------------------------------
 
-import { default as KeyboardMainExampleRaw } from './Keyboard.main';
-const KeyboardMainExample = withThemeProvider(KeyboardMainExampleRaw);
-export { KeyboardMainExample };
+import { default as KbdMainExampleRaw } from './Kbd.main';
+const KbdMainExample = withThemeProvider(KbdMainExampleRaw);
+export { KbdMainExample };
 
 // ----------------------------------------------------------------------------
 
 import { default as LabelMainExampleRaw } from './Label.main';
 const LabelMainExample = withThemeProvider(LabelMainExampleRaw);
 export { LabelMainExample };
+
+// ----------------------------------------------------------------------------
+
+import { default as LinkActionMainExampleRaw } from './LinkAction.main';
+const LinkActionMainExample = withThemeProvider(LinkActionMainExampleRaw);
+export { LinkActionMainExample };
+
+import { default as LinkActionNestedExampleRaw } from './LinkAction.nested';
+const LinkActionNestedExample = withThemeProvider(LinkActionNestedExampleRaw);
+export { LinkActionNestedExample };
 
 // ----------------------------------------------------------------------------
 

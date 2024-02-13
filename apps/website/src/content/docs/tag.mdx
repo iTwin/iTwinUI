@@ -7,39 +7,48 @@ thumbnail: Tag
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Tag.main.tsx' truncate={false}>
+<LiveExample src='Tag.main.jsx' truncate={false}>
   <AllExamples.TagMainExample client:load />
 </LiveExample>
 
 Tags are user-generated keywords used to label, categorize, or organize items and files. A group of multiple tags is a standard way of labeling an item to make it easily discoverable by peers who may not know the exact title of said item. A single tag may be mapped to more than one project at once if these projects fit in similar categories. Tags may also be used as a way to filter out content; in that context, the tags are pre-existing, and users select tags that fit their search to narrow down the results.
 
-## Variants
+## Usage
 
-### Default
-
-Default tags can be added and removed by a user. Tags adapt their size to the length of the label inside, making it easier to tell them apart due to their different sizes.
-
-<LiveExample src='Tag.default.tsx'>
+<LiveExample src='Tag.default.jsx'>
   <AllExamples.TagDefaultExample client:load />
 </LiveExample>
 
-### Basic
+### Basic tags
 
 Tags in the basic state are static and cannot be removed or edited by the user. No new tags can be added through this state either. This state is commonly seen in [tile](tile) metadata.
 
-<LiveExample src='Tag.basic.tsx'>
+<LiveExample src='Tag.basic.jsx'>
   <AllExamples.TagBasicExample client:load />
 </LiveExample>
 
-## Props
+### Props
 
 <PropsTable path={frontmatter.propsPath} />
+
+### Usage guidelines
+
+- Tags are meant to be used for display purposes. While interactivity is possible, it is not the primary use case.
+- Use [basic](#basic-tags) tags when you need to make tags read-only.
+
+## Accessibility
+
+When the `onClick` prop is passed to `Tag`, it is automatically rendered as a `<button>` element. This gives the tag proper semantics and makes it keyboard interactable.
+
+When the `onRemove` prop is passed to `Tag`, a remove button is rendered inside the tag. This button has an `aria-label` set to `"Delete tag"`, which can be customized using the `removeButtonProps` prop.
+
+If both `onClick` and `onRemove` props are passed, then the tag label (rather than the tag itself) will be rendered as a button, to avoid invalid markup (button nested inside another button). This is achieved using the [`LinkAction`](linkaction) component.
 
 ## Tag container
 
 Tag containers may be used to group tags, depending on the page layout and usage.
 
-<LiveExample src='TagContainer.main.tsx'>
+<LiveExample src='TagContainer.main.jsx'>
   <AllExamples.TagContainerMainExample client:load />
 </LiveExample>
 
@@ -47,7 +56,7 @@ Tag containers may be used to group tags, depending on the page layout and usage
 
 The wrapping container wraps tags around to the following line when the maximum width is reached on the previous line. This allows display of the full tags without label truncation.
 
-<LiveExample src='TagContainer.wrap.tsx'>
+<LiveExample src='TagContainer.wrap.jsx'>
   <AllExamples.TagContainerWrapExample client:load />
 </LiveExample>
 
@@ -55,7 +64,7 @@ The wrapping container wraps tags around to the following line when the maximum 
 
 The truncating container has fixed height, so it only displays tags that fit on a single line, and truncates tags that exceeds the maximum width. It uses ellipsis (…) to inform the user that there are hidden extra tags beyond what is currently shown.
 
-<LiveExample src='TagContainer.truncate.tsx'>
+<LiveExample src='TagContainer.truncate.jsx'>
   <AllExamples.TagContainerTruncateExample client:load />
 </LiveExample>
 
@@ -63,7 +72,7 @@ The truncating container has fixed height, so it only displays tags that fit on 
 
 The scrollable container is much like the truncating container, except it allows the user to horizontally scroll to reveal the tags that go beyond the maximum width. The tag that extends past the width is cut off, to hint at the scrolling possibility.
 
-<LiveExample src='TagContainer.scroll.tsx'>
+<LiveExample src='TagContainer.scroll.jsx'>
   <AllExamples.TagContainerScrollExample client:load />
 </LiveExample>
 
@@ -71,9 +80,8 @@ The scrollable container is much like the truncating container, except it allows
 
 <PropsTable path={'@itwin/itwinui-react/esm/core/Tag/TagContainer.d.ts'} />
 
-## Usage
+### Usage guidelines
 
-- Use [basic](#basic) tags whenever you need to make tags read-only.
 - [Wrapping](#wrapping) tag containers are ideal for layouts with plenty of vertical space, in situations where seeing all the tags is necessary.
 - Use [truncating](#truncating) tag containers when you have limited space, and display of the full tags is not necessary.
 - [Scrollable](#scrollable) tag containers are a good choice when the space in a layout is limited, but viewing all the tags is essential.

@@ -184,7 +184,7 @@ export type SliderProps = {
   /**
    * Callback that can provide additional props for `<div>` representing a thumb.
    */
-  thumbProps?: (index: number) => React.HTMLAttributes<HTMLDivElement>;
+  thumbProps?: (index: number) => React.ComponentPropsWithRef<'div'>;
   /**
    * Callback fired at the end of a thumb move (i.e. on pointerUp) and when user clicks on rail.
    */
@@ -548,5 +548,3 @@ export const Slider = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', SliderProps>;
-
-export default Slider;

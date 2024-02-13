@@ -26,7 +26,9 @@
   min-inline-size: var(--_iui-button-min-height);
   padding-block: var(--_iui-button-padding-block);
   padding-inline: var(--_iui-button-padding-inline);
-  transition: background-color var(--iui-duration-1) ease-out, border-color var(--iui-duration-1) ease-out;
+  transition:
+    background-color var(--iui-duration-1) ease-out,
+    border-color var(--iui-duration-1) ease-out;
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   @include iui-button-size;
@@ -48,7 +50,7 @@
   --_iui-button-active-stripe-inset-inline: initial;
   --_iui-button-active-stripe-background: var(--iui-color-border-accent);
   --_iui-button-text-color: var(--iui-color-text-accent);
-  --_iui-button-icon-fill: var(--iui-color-text-accent);
+  --_iui-button-icon-fill: var(--iui-color-icon-accent);
 
   // Shows active stripe only if --_iui-button-active-stripe-inset- properties are set (from outside)
   &::after {

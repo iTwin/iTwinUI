@@ -56,7 +56,7 @@ it('should forward rest props', () => {
   const icon = screen.getByText('icon');
 
   expect(icon).toHaveClass('test-this');
-  expect(icon).toHaveStyle('color: hotpink;');
+  expect(icon.style.color).toEqual('hotpink');
   expect(icon).toHaveAttribute('aria-hidden', 'true');
 });
 

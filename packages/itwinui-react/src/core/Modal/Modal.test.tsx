@@ -70,7 +70,7 @@ it('should not render modal when closed', () => {
 });
 
 it('should close on overlay mouse down', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   renderComponent({ onClose });
 
   const backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
@@ -84,7 +84,7 @@ it('should close on overlay mouse down', () => {
 });
 
 it('should not close on overlay mouse down when closeOnExternalClick is false', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   renderComponent({ onClose, closeOnExternalClick: false });
 
   let backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
@@ -108,7 +108,7 @@ it('should close on Esc click and move focus back', async () => {
   const button = container.querySelector('button') as HTMLElement;
   button.focus();
   expect(document.activeElement).toEqual(button);
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { rerender } = renderComponent({ onClose });
 
   const dialog = document.querySelector('.iui-dialog') as HTMLElement;
@@ -132,7 +132,7 @@ it('should close on Esc click and move focus back', async () => {
 });
 
 it('should not close on Esc click when closeOnEsc is false', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   renderComponent({ onClose, closeOnEsc: false });
 
   let backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
@@ -152,7 +152,7 @@ it('should not close on Esc click when closeOnEsc is false', () => {
 });
 
 it('should not close when isDismissible is false', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   renderComponent({ onClose, isDismissible: false });
 
   let backdrop = document.querySelector('.iui-backdrop') as HTMLElement;
@@ -180,7 +180,7 @@ it('should not close when isDismissible is false', () => {
 });
 
 it('should call onKeyDown when pressed any key inside modal', () => {
-  const onKeyDown = jest.fn();
+  const onKeyDown = vi.fn();
   renderComponent({ onKeyDown });
 
   const dialog = document.querySelector('.iui-dialog') as HTMLElement;
@@ -239,4 +239,26 @@ it('should reset body overflow on closing and unmounting', () => {
   // Closing by unmounting/destructing the Modal
   unmount();
   expect(document.body.style.overflow).not.toEqual('hidden');
+});
+
+it('should allow passing arbitrary props to internal elements', () => {
+  render(
+    <Modal
+      isOpen={true}
+      title='The title'
+      className='modal'
+      wrapperProps={{ className: 'wrapper' }}
+      backdropProps={{ className: 'backdrop' }}
+      titleBarProps={{ className: 'title-bar' }}
+    >
+      …
+    </Modal>,
+  );
+
+  const wrapper = document.querySelector('.wrapper') as HTMLElement;
+  const backdrop = wrapper.querySelector('.backdrop') as HTMLElement;
+  expect(backdrop).toBeTruthy();
+  const modal = wrapper.querySelector('.modal') as HTMLElement;
+  const titleBar = modal.querySelector('.title-bar') as HTMLElement;
+  expect(titleBar).toHaveTextContent('The title');
 });

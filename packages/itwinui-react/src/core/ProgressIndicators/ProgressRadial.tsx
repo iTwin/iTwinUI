@@ -26,7 +26,7 @@ type ProgressRadialProps = {
   /**
    * Status of Progress. Positive status always has 100% value.
    */
-  status?: 'positive' | 'negative';
+  status?: 'positive' | 'negative' | 'warning';
   /**
    * Size of the progress indicator. Defaults to medium size.
    * @default ''
@@ -45,9 +45,10 @@ type ProgressRadialProps = {
  * <ProgressRadial value={50} />
  * Indeterminate
  * <ProgressRadial indeterminate />
- * Positive / Negative
+ * // Positive / Negative / Warning
  * <ProgressRadial status='positive' />
  * <ProgressRadial status='negative' />
+ * <ProgressRadial status='warning' />
  * Centered Content
  * <ProgressRadial value={63}>63</ProgressRadial>
  * Small
@@ -68,6 +69,7 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
   const statusMap = {
     negative: <SvgImportantSmall aria-hidden />,
     positive: <SvgCheckmarkSmall aria-hidden />,
+    warning: <SvgImportantSmall aria-hidden />,
   };
 
   return (
@@ -91,5 +93,3 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ProgressRadialProps>;
-
-export default ProgressRadial;

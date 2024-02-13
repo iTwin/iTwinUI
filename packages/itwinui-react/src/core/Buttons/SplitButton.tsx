@@ -158,5 +158,3 @@ export const SplitButton = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'button', SplitButtonProps>;
-
-export default SplitButton;

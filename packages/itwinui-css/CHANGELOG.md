@@ -1,5 +1,45 @@
 # Changelog
 
+## 2.3.1
+
+### Patch Changes
+
+- [#1835](https://github.com/iTwin/iTwinUI/pull/1835): Replaced dialog/modal animation state related classes (`.iui-dialog-animation-enter` and `.iui-dialog-animation-enter-active`) with css animations.
+
+## 2.3.0
+
+### Minor Changes
+
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Removed unnecessary `Tag` styles, and added support for tags to be used as `<button>` elements.
+- [#1813](https://github.com/iTwin/iTwinUI/pull/1813): Added warning status for `ProgressRadial`/`ProgressLinear`
+- [#1822](https://github.com/iTwin/iTwinUI/pull/1822): Adjusted date-picker styles to allow rendering empty elements without any hover states. This is useful when dates outside the current month don't need to be shown.
+
+## 2.2.2
+
+### Patch Changes
+
+- [#1816](https://github.com/iTwin/iTwinUI/pull/1816): Fixed an issue where `Table` was showing a dummy vertical scrollbar track inside the table header in Chromium 121 + Windows.
+- [#1810](https://github.com/iTwin/iTwinUI/pull/1810): Fixed `Surface.Body` not being visually aligned with `Surface.Header` depending on scrollbar visibility.
+
+## 2.2.1
+
+### Patch Changes
+
+- [#1795](https://github.com/iTwin/iTwinUI/pull/1795): Fixed blurring and resizing issues in Dialog/Modal by removing `overflow: hidden` and inline `transform` styles.
+
+## 2.2.0
+
+### Minor Changes
+
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): Removed accidental styling support for the invalid case of `.iui-input, .iui-input-with-icon > .iui-select-button` with `[data-iui-status='informational']`. This is invalid because an `informational` status on our input or select adds little to no meaning.
+
+### Patch Changes
+
+- [#1783](https://github.com/iTwin/iTwinUI/pull/1783): Fixed a Firefox-specific bug where focus outlines were not appearing correctly around menu items inside `ComboBox`.
+- [#1787](https://github.com/iTwin/iTwinUI/pull/1787): Button, radial progress indicator, & select icons use icon variable color fill.
+- [#1788](https://github.com/iTwin/iTwinUI/pull/1788): Decreased specificity of `iui-link-action` and `iui-link-box` so that they do not override styles from other classes applied on the same element.
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `.iui-input-with-icon` now applies padding to the `:first-child` only when there is an end-icon button.
+
 ## 2.1.0
 
 ### Minor Changes

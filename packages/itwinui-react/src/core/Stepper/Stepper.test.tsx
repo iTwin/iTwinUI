@@ -71,7 +71,7 @@ it('should add custom props to Stepper', () => {
 });
 
 it('should set the active step to the step provided and raises onClick event on completed steps', () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   const stepper = (
     <Stepper
       currentStep={1}
@@ -210,7 +210,7 @@ it('should display localized string in long stepper', () => {
 });
 
 it('should display tooltip upon hovering step if description provided', async () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   const stepper = (
     <Stepper
@@ -235,17 +235,17 @@ it('should display tooltip upon hovering step if description provided', async ()
 
   expect(document.querySelector('.iui-tooltip')).not.toBeVisible();
   fireEvent.mouseEnter(screen.getByText('Step One'), { bubbles: true });
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   const tooltip = document.querySelector('.iui-tooltip') as HTMLElement;
   expect(tooltip).toBeVisible();
   expect(tooltip).toHaveTextContent('Step one tooltip');
 
   fireEvent.mouseLeave(screen.getByText('Step One'), { bubbles: true });
-  act(() => void jest.advanceTimersByTime(250));
+  act(() => void vi.advanceTimersByTime(250));
 
   fireEvent.mouseEnter(screen.getByText('Step Three'), { bubbles: true });
-  act(() => void jest.advanceTimersByTime(50));
+  act(() => void vi.advanceTimersByTime(50));
   expect(tooltip).not.toBeVisible();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });

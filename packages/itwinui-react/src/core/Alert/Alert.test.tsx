@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 import { Alert } from './Alert.js';
 
@@ -14,7 +14,6 @@ it('renders correctly in its default state', () => {
       <Alert.Message>This is an alert.</Alert.Message>
     </Alert.Wrapper>,
   );
-
   expect(container.querySelector('.iui-alert')).toBeTruthy();
   expect(container.querySelector('.iui-svg-icon')).toBeFalsy();
   const message = container.querySelector('.iui-alert-message') as HTMLElement;
@@ -98,7 +97,7 @@ it('renders alert action as button', () => {
   >
 ).forEach((type) => {
   it(`renders ${type} correctly`, () => {
-    const closeMock = jest.fn();
+    const closeMock = vi.fn();
     const { container, getByText } = render(
       <Alert.Wrapper type={type}>
         <Alert.Icon />
@@ -128,7 +127,7 @@ it('renders alert action as button', () => {
 });
 
 it('should support legacy api', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
 
   render(
     <div data-testid='1'>

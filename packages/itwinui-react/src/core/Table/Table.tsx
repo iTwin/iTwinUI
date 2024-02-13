@@ -3,7 +3,6 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
 import cx from 'classnames';
 import {
   actions as TableActions,
@@ -33,12 +32,13 @@ import {
   useResizeObserver,
   SvgSortDown,
   SvgSortUp,
-  useIsomorphicLayoutEffect,
+  useLayoutEffect,
   Box,
   createWarningLogger,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
-import { getCellStyle, getStickyStyle } from './utils.js';
+import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
 import { TableRowMemoized } from './TableRowMemoized.js';
 import { FilterToggle } from './filters/index.js';
 import type { TableFilterValue } from './filters/index.js';
@@ -62,7 +62,7 @@ import {
   onTableResizeEnd,
   onTableResizeStart,
 } from './actionHandlers/index.js';
-import VirtualScroll from '../utils/components/VirtualScroll.js';
+import { VirtualScroll } from '../utils/components/VirtualScroll.js';
 import { SELECTION_CELL_ID } from './columns/index.js';
 
 const singleRowSelectedAction = 'singleRowSelected';
@@ -748,11 +748,23 @@ export const Table = <
     ],
   );
 
+  const headerRef = React.useRef<HTMLDivElement>(null);
+  const bodyRef = React.useRef<HTMLDivElement>(null);
+
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      // Handle header properties, regardless of whether the table is resizable
+      setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
+      setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
+
+      // Handle table properties, but only when table is resizable
+      if (!isResizable) {
+        return;
+      }
+
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -774,12 +786,21 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
+    [
+      dispatch,
+      state.columnResizing.columnWidths,
+      flatHeaders,
+      instance,
+      isResizable,
+    ],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
+  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(0);
+  const [headerClientWidth, setHeaderClientWidth] = React.useState(0);
+
   // Flexbox handles columns resize so we take new column widths before browser repaints.
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (state.isTableResizing) {
       const newColumnWidths: Record<string, number> = {};
       flatHeaders.forEach((column) => {
@@ -791,9 +812,6 @@ export const Table = <
       dispatch({ type: tableResizeEndAction, columnWidths: newColumnWidths });
     }
   });
-
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
 
   const getPreparedRow = React.useCallback(
     (index: number) => {
@@ -879,9 +897,7 @@ export const Table = <
       <Box
         ref={(element) => {
           ownerDocument.current = element?.ownerDocument;
-          if (isResizable) {
-            resizeRef(element);
-          }
+          resizeRef(element);
         }}
         id={id}
         {...getTableProps({
@@ -930,6 +946,14 @@ export const Table = <
                   {headerGroup.headers.map((column, index) => {
                     const { onClick, ...restSortProps } =
                       column.getSortByToggleProps();
+
+                    const columnHasExpanders =
+                      hasAnySubRows &&
+                      index ===
+                        headerGroup.headers.findIndex(
+                          (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+                        );
+
                     const columnProps = column.getHeaderProps({
                       ...restSortProps,
                       className: cx(
@@ -943,6 +967,7 @@ export const Table = <
                       ),
                       style: {
                         ...getCellStyle(column, !!state.isTableResizing),
+                        ...(columnHasExpanders && getSubRowStyle({ density })),
                         ...getStickyStyle(column, visibleColumns),
                         flexWrap: 'unset',
                       },
@@ -1060,18 +1085,20 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowTemplate>
+          <ShadowRoot>
             <slot />
-            <div
-              aria-hidden
-              style={{
-                // This ensures that the table-body is always the same width as the table-header,
-                // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                width: headerRef.current?.scrollWidth,
-                height: 0.1,
-              }}
-            />
-          </ShadowTemplate>
+            {rows.length === 0 && headerScrollWidth > headerClientWidth && (
+              <div
+                aria-hidden
+                style={{
+                  // This ensures that the table-body is always the same width as the table-header,
+                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
+                  width: headerScrollWidth,
+                  height: 0.1,
+                }}
+              />
+            )}
+          </ShadowRoot>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
@@ -1134,35 +1161,5 @@ export const Table = <
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
     </>
-  );
-};
-
-export default Table;
-
-// ----------------------------------------------------------------------------
-
-/**
- * Wrapper around `<template>` element that attaches shadow root to its parent
- * and moves its children into the shadow root.
- */
-const ShadowTemplate = ({ children }: { children: React.ReactNode }) => {
-  const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
-
-  const attachShadowRef = React.useCallback(
-    (template: HTMLTemplateElement | null) => {
-      const parent = template?.parentElement;
-      if (!template || !parent || parent.shadowRoot) {
-        return;
-      }
-      setShadowRoot(parent.attachShadow({ mode: 'open' }));
-      template.remove();
-    },
-    [],
-  );
-
-  return (
-    <template ref={attachShadowRef}>
-      {shadowRoot && ReactDOM.createPortal(children, shadowRoot)}
-    </template>
   );
 };

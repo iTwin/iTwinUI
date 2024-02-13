@@ -41,7 +41,8 @@ type FileUploadTemplateProps = {
 };
 
 /**
- * @deprecated Use `FileUploadCard` instead.
+ * @deprecated Use [`FileUploadCard`](https://itwinui.bentley.com/docs/fileupload#fileuploadcard) instead.
+ *
  * Default template to be used with the `FileUpload` wrapper component.
  * Contains a hidden input with styled labels (customizable).
  * @example
@@ -84,5 +85,3 @@ export const FileUploadTemplate = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', FileUploadTemplateProps>;
-
-export default FileUploadTemplate;

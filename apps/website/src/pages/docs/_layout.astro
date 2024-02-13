@@ -231,22 +231,20 @@ const currentPage = new URL(Astro.request.url).pathname;
 
         :global(:where(code:not(pre code, .demo-box *))) {
           background-color: hsl(0deg 0% 50% / 0.2);
-          padding: 0.15rem 0.5rem;
-          border-radius: 0.25rem;
+          padding: 2px 8px;
+          border-radius: 6px;
           font-size: var(--type-0);
           vertical-align: baseline;
-          line-height: 1.5;
-        }
-
-        :global(:where(table code:not(pre code))) {
-          font-size: var(--type--1);
           line-height: 1;
-          padding: 0.25rem;
         }
 
         :global(:where(ul:not(.demo-box *))) {
           display: grid;
           gap: var(--space-1);
+        }
+
+        :global(.expressive-code) {
+          overflow: auto;
         }
       }
     }

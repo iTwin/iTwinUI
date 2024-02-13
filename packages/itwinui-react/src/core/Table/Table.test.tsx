@@ -33,7 +33,7 @@ import { DefaultCell, EditableCell } from './cells/index.js';
 import { TablePaginator } from './TablePaginator.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import * as UseResizeObserver from '../utils/hooks/useResizeObserver.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import {
   ActionColumn,
   SelectionColumn,
@@ -41,20 +41,18 @@ import {
 } from './columns/index.js';
 
 const intersectionCallbacks = new Map<Element, () => void>();
-jest
-  .spyOn(IntersectionHooks, 'useIntersection')
-  .mockImplementation((onIntersect) => {
+vi.spyOn(IntersectionHooks, 'useIntersection').mockImplementation(
+  (onIntersect) => {
     return (el: HTMLElement) =>
       el && intersectionCallbacks.set(el, onIntersect);
-  });
+  },
+);
 
 const mockIntersection = (element: Element) => {
   intersectionCallbacks.get(element)?.();
 };
 
-const columns = (
-  onViewClick: () => void = jest.fn(),
-): Column<TestDataType>[] => [
+const columns = (onViewClick: () => void = vi.fn()): Column<TestDataType>[] => [
   {
     id: 'name',
     Header: 'Name',
@@ -252,7 +250,7 @@ beforeEach(() => {
 });
 
 it('should render table with data', async () => {
-  const onViewClick = jest.fn();
+  const onViewClick = vi.fn();
   const { container } = renderComponent(undefined, onViewClick);
 
   expect(screen.queryByText('Header name')).toBeFalsy();
@@ -331,7 +329,7 @@ it('should render cell with custom className', () => {
 });
 
 it('should handle checkbox clicks', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const { container } = renderComponent({ isSelectable: true, onSelect });
 
   expect(screen.queryByText('Header name')).toBeFalsy();
@@ -353,8 +351,8 @@ it('should handle checkbox clicks', async () => {
 });
 
 it('should handle row clicks', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const user = userEvent.setup();
   const data = mockedData(8);
 
@@ -513,8 +511,8 @@ it('should handle row clicks', async () => {
 });
 
 it('should handle sub-rows shift click selection', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const data = mockedSubRowsData();
   const { container, getByText } = renderComponent({
     data,
@@ -573,8 +571,8 @@ it('should handle sub-rows shift click selection', async () => {
 });
 
 it('should not select when clicked on row but selectRowOnClick flag is false', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const { container, getByText } = renderComponent({
     isSelectable: true,
     onSelect,
@@ -592,7 +590,7 @@ it('should not select when clicked on row but selectRowOnClick flag is false', a
 });
 
 it('should not select when clicked on row and preventDefault is set', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   renderComponent({
     isSelectable: true,
     onSelect,
@@ -604,9 +602,9 @@ it('should not select when clicked on row and preventDefault is set', async () =
 });
 
 it('should not trigger onSelect when sorting and filtering', async () => {
-  const onSort = jest.fn();
-  const onSelect = jest.fn();
-  const onFilter = jest.fn();
+  const onSort = vi.fn();
+  const onSelect = vi.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -690,7 +688,7 @@ it('should sort name column correctly', async () => {
     { name: 'name2', description: 'Description2' },
   ];
   const sortedByName = [...mocked].sort((a, b) => (a.name > b.name ? 1 : -1));
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   const { container } = renderComponent({
     isSortable: true,
     data: mocked,
@@ -870,7 +868,7 @@ it('should display correct sort icons for descending first', async () => {
 });
 
 it('should trigger onBottomReached', () => {
-  const onBottomReached = jest.fn();
+  const onBottomReached = vi.fn();
   const { container } = renderComponent({
     data: mockedData(50),
     onBottomReached,
@@ -887,7 +885,7 @@ it('should trigger onBottomReached', () => {
 });
 
 it('should trigger onBottomReached with filter applied', async () => {
-  const onBottomReached = jest.fn();
+  const onBottomReached = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -917,7 +915,7 @@ it('should trigger onBottomReached with filter applied', async () => {
 });
 
 it('should trigger onRowInViewport', () => {
-  const onRowInViewport = jest.fn();
+  const onRowInViewport = vi.fn();
   const { container } = renderComponent({
     data: mockedData(50),
     onRowInViewport,
@@ -936,7 +934,7 @@ it('should trigger onRowInViewport', () => {
 });
 
 it('should filter table', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -988,7 +986,7 @@ it('should filter false values', async () => {
     { name: 'Name2', description: 'Description2', booleanValue: false },
   ] as TestDataType[];
 
-  const { container } = renderComponent({ columns, onFilter: jest.fn(), data });
+  const { container } = renderComponent({ columns, onFilter: vi.fn(), data });
 
   const filterIcon = container.querySelector(
     '.iui-table-filter-button .iui-button-icon',
@@ -1024,7 +1022,7 @@ it('should not filter undefined values', async () => {
     { name: 'Name3', description: 'Description2' },
   ] as TestDataType[];
 
-  const { container } = renderComponent({ columns, onFilter: jest.fn(), data });
+  const { container } = renderComponent({ columns, onFilter: vi.fn(), data });
 
   const filterIcon = container.querySelector(
     '.iui-table-filter-button .iui-button-icon',
@@ -1040,7 +1038,7 @@ it('should not filter undefined values', async () => {
 });
 
 it('should clear filter', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1096,7 +1094,7 @@ it('should clear filter', async () => {
 });
 
 it('should not trigger onFilter when the same filter is applied', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1118,7 +1116,7 @@ it('should not trigger onFilter when the same filter is applied', async () => {
 });
 
 it('should not filter table when manualFilters flag is on', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1642,8 +1640,8 @@ it('should not global filter with manualGlobalFilter', async () => {
 });
 
 it('should not trigger sorting when filter is clicked', async () => {
-  const onFilter = jest.fn();
-  const onSort = jest.fn();
+  const onFilter = vi.fn();
+  const onSort = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1700,7 +1698,7 @@ it('should rerender table when columns change', async () => {
 });
 
 it('should expand correctly', async () => {
-  const onExpandMock = jest.fn();
+  const onExpandMock = vi.fn();
   const { container, getByText } = renderComponent({
     subComponent: (row) => (
       <div>{`Expanded component, name: ${row.original.name}`}</div>
@@ -1726,7 +1724,7 @@ it('should expand correctly', async () => {
 });
 
 it('should expand correctly with a custom expander cell', async () => {
-  const onExpandMock = jest.fn();
+  const onExpandMock = vi.fn();
   const { getByText, queryByText } = renderComponent({
     subComponent: (row) => (
       <div>{`Expanded component, name: ${row.original.name}`}</div>
@@ -1769,7 +1767,7 @@ it('should expand correctly with a custom expander cell', async () => {
 });
 
 it('should disable row and handle expansion accordingly', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const { container } = renderComponent({
     onExpand,
     subComponent: (row) => (
@@ -1807,8 +1805,8 @@ it('should disable row and handle expansion accordingly', async () => {
 });
 
 it('should disable row and handle selection accordingly', async () => {
-  const onSelect = jest.fn();
-  const onRowClick = jest.fn();
+  const onSelect = vi.fn();
+  const onRowClick = vi.fn();
   const { container } = renderComponent({
     isSelectable: true,
     onSelect,
@@ -1865,7 +1863,7 @@ it('should disable row and handle selection accordingly', async () => {
 });
 
 it('should select and filter rows', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const mockedColumns = [
     {
       id: 'name',
@@ -1921,7 +1919,7 @@ it('should select and filter rows', async () => {
 });
 
 it('should pass custom props to row', () => {
-  const onMouseEnter = jest.fn();
+  const onMouseEnter = vi.fn();
   let element: HTMLInputElement | null = null;
   const onRef = (ref: HTMLInputElement) => {
     element = ref;
@@ -1952,7 +1950,7 @@ it.each(['condensed', 'extra-condensed'] as const)(
 );
 
 it('should render sub-rows with padding-left of 12+30*(row depth) for condensed table', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -1983,7 +1981,7 @@ it('should render sub-rows with padding-left of 12+30*(row depth) for condensed 
 });
 
 it('should render sub-rows with padding-left of 8+30*(row depth) for extra-condensed table', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2014,7 +2012,7 @@ it('should render sub-rows with padding-left of 8+30*(row depth) for extra-conde
 });
 
 it('should render sub-rows and handle expansions', async () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({ data, onExpand });
 
@@ -2086,7 +2084,7 @@ it('should render filtered sub-rows', async () => {
 });
 
 it('should handle sub-rows selection', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2120,7 +2118,7 @@ it('should handle sub-rows selection', async () => {
 });
 
 it('should show indeterminate checkbox when some sub-rows are selected', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2156,7 +2154,7 @@ it('should show indeterminate checkbox when some sub-rows are selected', async (
 });
 
 it('should show indeterminate checkbox when a sub-row of a sub-row is selected', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2195,7 +2193,7 @@ it('should show indeterminate checkbox when a sub-row of a sub-row is selected',
 });
 
 it('should show indeterminate checkbox when sub-row selected after filtering', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const columns = [
     {
@@ -2253,7 +2251,7 @@ it('should show indeterminate checkbox when sub-row selected after filtering', a
 });
 
 it('should show indeterminate checkbox when clicking on a row itself after filtering', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const columns = [
     {
@@ -2309,7 +2307,7 @@ it('should show indeterminate checkbox when clicking on a row itself after filte
 });
 
 it('should only select one row even if it has sub-rows when selectSubRows is false', async () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const data = mockedSubRowsData();
   const { container } = renderComponent({
     data,
@@ -2368,8 +2366,20 @@ it('should render sub-rows with custom expander', async () => {
   expect(rows.length).toBe(10);
 });
 
+it('should not disable select-all checkbox when all top-level rows are disabled but all subrows are not', () => {
+  const { container } = renderComponent({
+    data: mockedSubRowsData(),
+    isSelectable: true,
+    isRowDisabled: (rowData) =>
+      ['Row 1', 'Row 2', 'Row 3'].includes(rowData.name as string),
+  });
+  const selectAllCheckbox = container.querySelector('input[type=checkbox]');
+  expect(selectAllCheckbox).not.toBeDisabled();
+  expect(selectAllCheckbox).not.toBeChecked();
+});
+
 it('should edit cell data', async () => {
-  const onCellEdit = jest.fn();
+  const onCellEdit = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2418,8 +2428,8 @@ it('should edit cell data', async () => {
 });
 
 it('should handle unwanted actions on editable cell', async () => {
-  const onCellEdit = jest.fn();
-  const onSelect = jest.fn();
+  const onCellEdit = vi.fn();
+  const onSelect = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2477,9 +2487,10 @@ it('should handle unwanted actions on editable cell', async () => {
 });
 
 it('should render data in pages', async () => {
-  jest
-    .spyOn(UseOverflow, 'useOverflow')
-    .mockImplementation((items) => [jest.fn(), items.length]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
+    vi.fn(),
+    items.length,
+  ]);
   const { container } = renderComponent({
     data: mockedData(100),
     pageSize: 10,
@@ -2572,9 +2583,9 @@ it('should render number of rows selected for paginator', async () => {
 });
 
 it('should handle resize by increasing width of current column and decreasing the next ones', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2620,9 +2631,9 @@ it('should handle resize by increasing width of current column and decreasing th
 });
 
 it('should handle resize with touch', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2667,10 +2678,80 @@ it('should handle resize with touch', () => {
   expect(headerCells[2].style.width).toBe('100px');
 });
 
+it.each(['px', '%', 'rem'])(
+  'should handle resize when widths are string units. (E.g. %s)',
+  (unit) => {
+    vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+      width: 100,
+    } as DOMRect);
+
+    const columns: Column<TestDataType>[] = [
+      {
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
+        width: `20${unit}`,
+      },
+      {
+        id: 'description',
+        Header: 'description',
+        accessor: 'description',
+        width: `20${unit}`,
+      },
+      {
+        id: 'view',
+        Header: 'view',
+        Cell: () => <>View</>,
+        width: `60${unit}`,
+      },
+    ];
+
+    const { container } = renderComponent({
+      columns,
+      isResizable: true,
+    });
+
+    const resizers = container.querySelectorAll(
+      '.iui-table-resizer',
+    ) as NodeListOf<HTMLDivElement>;
+
+    expect(resizers).toBeTruthy();
+    resizers.forEach((resizer) => expect(resizer).toBeTruthy());
+
+    const headerCells = container.querySelectorAll<HTMLDivElement>(
+      '.iui-table-header .iui-table-cell',
+    );
+    expect(headerCells).toHaveLength(3);
+
+    // Initial
+    expect(headerCells[0].style.width).toBe(`20${unit}`);
+    expect(headerCells[1].style.width).toBe(`20${unit}`);
+    expect(headerCells[2].style.width).toBe(`60${unit}`);
+
+    // Drag first resizer
+    fireEvent.mouseDown(resizers[0], { clientX: 100 });
+    fireEvent.mouseMove(resizers[0], { clientX: 150 });
+    fireEvent.mouseUp(resizers[0]);
+
+    expect(headerCells[0].style.width).toBe('150px');
+    expect(headerCells[1].style.width).toBe('50px');
+    expect(headerCells[2].style.width).toBe(`60${unit}`);
+
+    // Drag second resizer
+    fireEvent.mouseDown(resizers[1], { clientX: 200 });
+    fireEvent.mouseMove(resizers[1], { clientX: 250 });
+    fireEvent.mouseUp(resizers[1]);
+
+    expect(headerCells[0].style.width).toBe('150px');
+    expect(headerCells[1].style.width).toBe('100px');
+    expect(headerCells[2].style.width).toBe('50px');
+  },
+);
+
 it('should prevent from resizing past 1px width', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2717,9 +2798,9 @@ it('should prevent from resizing past 1px width', () => {
 });
 
 it('should prevent from resizing past max-width', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2779,9 +2860,9 @@ it('should prevent from resizing past max-width', () => {
 });
 
 it('should prevent from resizing past min-width', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2841,9 +2922,9 @@ it('should prevent from resizing past min-width', () => {
 });
 
 it('should not resize column with disabled resize but resize closest ones', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2920,9 +3001,9 @@ it('should not resize column with disabled resize but resize closest ones', () =
 });
 
 it('should not show resizer when there are no next resizable columns', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -2956,10 +3037,10 @@ it('should not show resizer when there are no next resizable columns', () => {
 });
 
 it('should not trigger sort when resizing', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
-  const onSort = jest.fn();
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
+  const onSort = vi.fn();
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3001,20 +3082,17 @@ it('should not trigger sort when resizing', () => {
 });
 
 it('should handle table resize only when some columns were resized', () => {
-  const htmlWidthMock = jest
+  const htmlWidthMock = vi
     .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
     .mockReturnValue({ width: 100 } as DOMRect);
 
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
-    });
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3074,9 +3152,9 @@ it('should not render resizer when resizer is disabled', () => {
 });
 
 it('should resize only the current column when resize mode is expand', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3122,19 +3200,16 @@ it('should resize only the current column when resize mode is expand', () => {
 });
 
 it('should resize current and closest column when table width would decrease when resize mode is expand', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
-    });
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3187,19 +3262,16 @@ it('should resize current and closest column when table width would decrease whe
 });
 
 it('should resize last and closest column on the left when table width would decrease when resize mode is expand', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
-  let triggerResize: (size: DOMRectReadOnly) => void = jest.fn();
-  jest
-    .spyOn(UseResizeObserver, 'useResizeObserver')
-    .mockImplementation((onResize) => {
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
       triggerResize = onResize;
-      return [
-        jest.fn(),
-        { disconnect: jest.fn() } as unknown as ResizeObserver,
-      ];
-    });
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3250,9 +3322,9 @@ it('should resize last and closest column on the left when table width would dec
 });
 
 it('should not show resizer when column has disabled resizing when resize mode is expand', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3287,9 +3359,9 @@ it('should not show resizer when column has disabled resizing when resize mode i
 });
 
 it('should stop resizing when mouse leaves the screen', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 100 } as DOMRect);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 100,
+  } as DOMRect);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -3380,14 +3452,19 @@ it('should sync body horizontal scroll with header scroll', () => {
   expect(body.scrollLeft).toBe(0);
 });
 
-it('should add a shadow tree to table-body. Shadow tree should have a dummy div', () => {
+it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
-  // Mocking the scrollWidth of the table header
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(columnWidthsSum);
+  let triggerResize: (size: DOMRectReadOnly) => void = vi.fn();
+  vi.spyOn(UseResizeObserver, 'useResizeObserver').mockImplementation(
+    (onResize) => {
+      triggerResize = onResize;
+      return [vi.fn(), { disconnect: vi.fn() } as unknown as ResizeObserver];
+    },
+  );
 
   const { container } = renderComponent({
     columns: [
@@ -3410,18 +3487,90 @@ it('should add a shadow tree to table-body. Shadow tree should have a dummy div'
         width: columnWidths[2],
       },
     ],
+    data: [],
+    isResizable: true,
+    columnResizeMode: 'expand',
   });
+  act(() => vi.runAllTicks());
+
+  // Initial render
+  triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
 
   // body serves as the shadow host
-  const host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  let host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  expect(host).toBeTruthy();
 
-  const dummyDiv = host?.shadowRoot?.querySelector('div');
+  const slot = host?.shadowRoot?.querySelector('slot');
+  expect(slot).toBeTruthy();
+
+  // When clientWidth >= scrollWidth, the dummy div should not be rendered
+  const htmlScrollWidthMock = vi
+    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
+    .mockReturnValue(columnWidthsSum);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(
+    columnWidthsSum,
+  );
+
+  let dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).not.toBeTruthy();
+
+  const resizer = container.querySelector(
+    '.iui-table-resizer',
+  ) as HTMLDivElement;
+  expect(resizer).toBeTruthy();
+
+  // When clientWidth < scrollWidth, the dummy div should be added
+  // E.g. case: make first column 200px wider than the initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 200 });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 200);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum + 200 } as DOMRectReadOnly);
+  });
+
+  host = container.querySelector('.iui-table-body') as HTMLDivElement;
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+
   expect(dummyDiv).toBeTruthy();
   expect(dummyDiv?.textContent).toBe('');
   expect(dummyDiv?.style.height).toBe('0.1px');
 
   // The dummy div should have the same width as the table header
-  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum}px`);
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 200}px`);
+
+  // When table/column resizes, the dummy div should also resize
+  // E.g. case: make first column 400px wider than the initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 200 });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] + 400 });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum + 400);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum + 400 } as DOMRectReadOnly);
+  });
+
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).toBeTruthy();
+  expect(dummyDiv?.style.width).toBe(`${columnWidthsSum + 400}px`);
+
+  // When clientWidth >= scrollWidth, the dummy div should be removed
+  // E.g. case: make first column back to initial width
+  fireEvent.mouseDown(resizer, { clientX: columnWidths[0] + 400 });
+  fireEvent.mouseMove(resizer, { clientX: columnWidths[0] });
+  fireEvent.mouseUp(resizer);
+
+  htmlScrollWidthMock.mockReturnValue(columnWidthsSum);
+
+  act(() => {
+    triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
+  });
+
+  dummyDiv = host?.shadowRoot?.querySelector('div');
+  expect(dummyDiv).not.toBeTruthy();
 });
 
 it.each([
@@ -3458,11 +3607,9 @@ it.each([
 ])(
   'should handle column reorder by $testCase',
   ({ srcIndex, dstIndex, resultingColumns }) => {
-    const onSort = jest.fn();
-    jest.spyOn(HTMLElement.prototype, 'offsetLeft', 'get').mockReturnValue(0);
-    jest
-      .spyOn(HTMLElement.prototype, 'offsetWidth', 'get')
-      .mockReturnValue(100);
+    const onSort = vi.fn();
+    vi.spyOn(HTMLElement.prototype, 'offsetLeft', 'get').mockReturnValue(0);
+    vi.spyOn(HTMLElement.prototype, 'offsetWidth', 'get').mockReturnValue(100);
 
     const mockColumns = columns();
 
@@ -3751,7 +3898,7 @@ it('should render dropdown menu with custom style and override default style', a
   expect(dropdownMenu).toBeTruthy();
   expect(dropdownMenu.classList.contains('testing-classname')).toBeTruthy();
   expect(dropdownMenu).toHaveStyle('max-height: 600px');
-  expect(dropdownMenu).toHaveStyle('background-color: red');
+  expect(dropdownMenu.style.backgroundColor).toEqual('red');
   expect(dropdownMenu).toHaveAttribute('role', 'listbox');
 });
 
@@ -3840,7 +3987,7 @@ it('should be disabled in column manager if `disableToggleVisibility` is true', 
 });
 
 it('should add selection column manually', () => {
-  const onSelect = jest.fn();
+  const onSelect = vi.fn();
   const isDisabled = (rowData: TestDataType) => rowData.name === 'Name2';
   const columns: Column<TestDataType>[] = [
     SelectionColumn({ isDisabled }),
@@ -3879,7 +4026,7 @@ it('should add selection column manually', () => {
 });
 
 it('should add expander column manually', () => {
-  const onExpand = jest.fn();
+  const onExpand = vi.fn();
   const subComponent = (row: Row<TestDataType>) => (
     <div>{`Expanded component, name: ${row.original.name}`}</div>
   );
@@ -3985,7 +4132,7 @@ it('should show column enabled when whole row is disabled', () => {
 });
 
 it('should render selectable rows without select column', async () => {
-  const onRowClick = jest.fn();
+  const onRowClick = vi.fn();
   const { container, getByText } = renderComponent({
     isSelectable: true,
     selectionMode: 'single',
@@ -4017,12 +4164,12 @@ it('should render selectable rows without select column', async () => {
 
 it('should scroll to selected item in non-virtualized table', async () => {
   let scrolledElement: HTMLElement | null = null;
-  jest
-    .spyOn(HTMLElement.prototype, 'scrollIntoView')
-    .mockImplementation(function (this: HTMLElement) {
+  vi.spyOn(HTMLElement.prototype, 'scrollIntoView').mockImplementation(
+    function (this: HTMLElement) {
       // eslint-disable-next-line @typescript-eslint/no-this-alias
       scrolledElement = this;
-    });
+    },
+  );
 
   const data = mockedData(50);
   renderComponent({
@@ -4038,12 +4185,8 @@ it('should scroll to selected item in non-virtualized table', async () => {
 });
 
 it('should render sticky columns correctly', () => {
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4125,15 +4268,11 @@ it('should render sticky columns correctly', () => {
 });
 
 it('should have correct sticky left style property', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4178,15 +4317,11 @@ it('should have correct sticky left style property', () => {
 });
 
 it('should have correct sticky left style property when prior column does not have sticky prop', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4230,15 +4365,11 @@ it('should have correct sticky left style property when prior column does not ha
 });
 
 it('should have correct sticky right style property', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4283,15 +4414,11 @@ it('should have correct sticky right style property', () => {
 });
 
 it('should have correct sticky right style property when column after does not have sticky prop', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4335,15 +4462,11 @@ it('should have correct sticky right style property when column after does not h
 });
 
 it('should have correct sticky left style property after resizing', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4406,15 +4529,11 @@ it('should have correct sticky left style property after resizing', () => {
 });
 
 it('should make column sticky and then non-sticky after dragging sticky column ahead of it and back', () => {
-  jest
-    .spyOn(HTMLElement.prototype, 'getBoundingClientRect')
-    .mockReturnValue({ width: 400 } as DOMRect);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get')
-    .mockReturnValue(900);
-  jest
-    .spyOn(HTMLDivElement.prototype, 'clientWidth', 'get')
-    .mockReturnValue(500);
+  vi.spyOn(HTMLElement.prototype, 'getBoundingClientRect').mockReturnValue({
+    width: 400,
+  } as DOMRect);
+  vi.spyOn(HTMLDivElement.prototype, 'scrollWidth', 'get').mockReturnValue(900);
+  vi.spyOn(HTMLDivElement.prototype, 'clientWidth', 'get').mockReturnValue(500);
   const columns: Column<TestDataType>[] = [
     {
       id: 'name',
@@ -4620,7 +4739,7 @@ it('should render row with loading status', () => {
 });
 
 it('should navigate through table sorting with the keyboard', async () => {
-  const onSort = jest.fn();
+  const onSort = vi.fn();
   renderComponent({
     isSortable: true,
     onSort,
@@ -4632,7 +4751,7 @@ it('should navigate through table sorting with the keyboard', async () => {
 });
 
 it('should navigate through table filtering with the keyboard', async () => {
-  const onFilter = jest.fn();
+  const onFilter = vi.fn();
   const mockedColumns = [
     {
       id: 'name',

@@ -9,10 +9,10 @@ import {
   type FilterButtonBarProps,
 } from './FilterButtonBar.js';
 import { BaseFilter } from './BaseFilter.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
-const setFilter = jest.fn();
-const clearFilter = jest.fn();
+const setFilter = vi.fn();
+const clearFilter = vi.fn();
 
 const renderComponent = (initialProps?: Partial<FilterButtonBarProps>) => {
   const props = {
@@ -24,7 +24,7 @@ const renderComponent = (initialProps?: Partial<FilterButtonBarProps>) => {
 };
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 it('should render correctly', () => {
@@ -82,7 +82,7 @@ it('should call callbacks on clicks', () => {
 });
 
 it('should consume the click event and stop its propagation', async () => {
-  const parentClick = jest.fn();
+  const parentClick = vi.fn();
   render(
     <div onClick={parentClick}>
       <BaseFilter>

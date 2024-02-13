@@ -72,7 +72,7 @@ it('should render disabled group', () => {
 });
 
 it('should render disabled select group', () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <Fieldset legend='legend' disabled={true}>
       <Select

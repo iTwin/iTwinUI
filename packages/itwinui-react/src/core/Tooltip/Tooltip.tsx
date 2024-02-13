@@ -56,9 +56,9 @@ type TooltipOptions = {
    * autoUpdate options that recalculates position
    * to ensure the floating element remains anchored
    * to its reference element, such as when scrolling
-   * and resizing the screen
+   * and resizing the screen.
    *
-   * https://floating-ui.com/docs/autoUpdate#options
+   * @see [floating-ui docs](https://floating-ui.com/docs/autoUpdate#options)
    */
   autoUpdateOptions?: {
     ancestorScroll?: boolean;
@@ -72,7 +72,8 @@ type TooltipOptions = {
   };
   /**
    * Tooltip middleware options.
-   * https://floating-ui.com/docs/offset
+   *
+   * @see [floating-ui docs](https://floating-ui.com/docs/middleware)
    */
   middleware?: {
     offset?: number;
@@ -281,5 +282,3 @@ export const Tooltip = React.forwardRef((props, forwardedRef) => {
     </>
   );
 }) as PolymorphicForwardRefComponent<'div', TooltipOwnProps & TooltipOptions>;
-
-export default Tooltip;

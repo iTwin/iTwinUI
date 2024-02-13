@@ -19,5 +19,3 @@ import { polymorphic } from '../utils/index.js';
  * <Anchor as='button' onClick={() => {}}>click me</Anchor>
  */
 export const Anchor = polymorphic.a('iui-anchor');
-
-export default Anchor;

@@ -61,3 +61,22 @@ export const getStickyStyle = <T extends Record<string, unknown>>(
       column.sticky === 'right' ? `${right}px` : undefined,
   } as React.CSSProperties;
 };
+
+export const getSubRowStyle = ({ density = 'default', depth = 1 }) => {
+  let cellPadding = 16;
+  let expanderMargin = 8;
+
+  if (density === 'condensed') {
+    cellPadding = 12;
+    expanderMargin = 4;
+  } else if (density === 'extra-condensed') {
+    cellPadding = 8;
+    expanderMargin = 4;
+  }
+
+  const multiplier = 26 + expanderMargin; // 26 = expander width
+
+  return {
+    paddingInlineStart: cellPadding + depth * multiplier,
+  } satisfies React.CSSProperties;
+};

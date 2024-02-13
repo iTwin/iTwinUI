@@ -11,6 +11,8 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import AutoImport from 'astro-auto-import';
+import astroExpressiveCode from 'astro-expressive-code';
+import * as lightningCss from 'lightningcss';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -27,27 +29,66 @@ export default defineConfig({
       ],
     }),
     react(),
+    astroExpressiveCode({
+      themes: ['github-dark'],
+      cascadeLayer: 'thirdparty.ec',
+      minSyntaxHighlightingColorContrast: 4.5,
+      emitExternalStylesheet: true,
+      styleOverrides: {
+        borderColor: 'var(--color-line-2)',
+        codeBackground: 'transparent',
+        codeFontSize: 'var(--type--1)',
+        frames: {
+          terminalBackground: 'transparent',
+          terminalTitlebarBackground: 'transparent',
+        },
+      },
+    }),
     mdx(),
     sitemap(),
   ],
   markdown: {
-    syntaxHighlight: 'prism',
     rehypePlugins: [rehypeSlug, [rehypeAutolinkHeadings, { behavior: 'wrap' }], rehypeToc],
   },
   server: { port: 1700 },
   scopedStyleStrategy: 'where',
   vite: {
     ssr: {
-      noExternal: [
-        '@fontsource/noto-sans',
-        '@tippyjs/react',
-        '@itwin/itwinui-react',
-        !isDev && '@itwin/itwinui-icons-react',
-        'examples',
-      ].filter(Boolean),
+      noExternal: ['@fontsource/noto-sans', '@tippyjs/react', '@itwin/itwinui-react', 'examples'],
     },
+    build: { cssMinify: false, assetsInlineLimit: 500 },
+    plugins: [lightningCssVite()],
+  },
+  devToolbar: {
+    enabled: false,
   },
 });
+
+/** Opinionated vite plugin that uses lightningcss for transpilation and minification. */
+function lightningCssVite() {
+  return {
+    name: 'lightningcss-vite',
+    transform(code: string, filename: string) {
+      if (filename.endsWith('.css')) {
+        const result = lightningCss.transform({
+          filename,
+          code: Buffer.from(code),
+          targets: {
+            chrome: (110 << 16) | (0 << 8), // chrome 110
+            firefox: (110 << 16) | (0 << 8), // firefox 110
+            safari: (16 << 16) | (6 << 8), // safari 16.6
+          },
+          minify: true,
+          sourceMap: true,
+        });
+        return {
+          code: result.code.toString(),
+          map: result.map?.toString(),
+        };
+      }
+    },
+  };
+}
 
 /**
  * Customized version of rehype-toc to place table-of-contents as a sibling of main content.
@@ -61,14 +102,6 @@ function rehypeToc() {
   } as any;
 
   return (tree, file) => {
-    let showTOC = true;
-
-    // ideally we would check if the frontmatter has a toc: false, but that is not available
-    // so we will hardcode the files we don't want a toc for
-    if (['index.mdx'].includes(file.history[0].split('/').pop()!)) {
-      showTOC = false;
-    }
-
     const headings = findHeadings(tree, tocOptions);
     if (!headings.length) return tree;
     const toc = createTOC(
@@ -87,7 +120,7 @@ function rehypeToc() {
       type: 'root',
       children: [
         // <aside> element with toc
-        showTOC && {
+        {
           type: 'element',
           tagName: 'aside',
           children: [toc],

@@ -125,5 +125,3 @@ export const AvatarGroup = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', AvatarGroupProps>;
-
-export default AvatarGroup;

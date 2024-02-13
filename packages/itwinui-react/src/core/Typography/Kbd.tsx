@@ -53,5 +53,3 @@ export const Kbd = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'kbd', KbdProps>;
-
-export default Kbd;

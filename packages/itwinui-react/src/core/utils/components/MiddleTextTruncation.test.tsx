@@ -4,11 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import { render } from '@testing-library/react';
 import * as React from 'react';
-import MiddleTextTruncation from './MiddleTextTruncation.js';
+import { MiddleTextTruncation } from './MiddleTextTruncation.js';
 import * as UseOverflow from '../hooks/useOverflow.js';
 
 it('should truncate the text', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 20]);
   const { container } = render(
     <div>
       <MiddleTextTruncation text='This is some very long text to truncate and expect ellipsis' />
@@ -20,7 +20,7 @@ it('should truncate the text', () => {
 });
 
 it('should truncate the text and leave 20 symbols at the end', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 50]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 50]);
   const { container } = render(
     <div>
       <MiddleTextTruncation
@@ -37,7 +37,7 @@ it('should truncate the text and leave 20 symbols at the end', () => {
 });
 
 it('should leave original text (same length)', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 20]);
   const { container } = render(
     <div>
       <MiddleTextTruncation text='This is a short text' />
@@ -49,7 +49,7 @@ it('should leave original text (same length)', () => {
 });
 
 it('should leave original text', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 20]);
   const { container } = render(
     <div>
       <MiddleTextTruncation text='No trunc' />
@@ -61,7 +61,7 @@ it('should leave original text', () => {
 });
 
 it('should render custom text', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 20]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 20]);
   const text = 'This is some very long text to truncate and expect ellipsis';
   const { container } = render(
     <MiddleTextTruncation

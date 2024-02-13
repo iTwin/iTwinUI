@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { Button } from '../Buttons/Button.js';
 import { TransferList } from './TransferList.js';
 
@@ -107,7 +107,7 @@ it('should handle keyboard navigation', () => {
 });
 
 it('should handle key presses', async () => {
-  const mockedOnClick = jest.fn();
+  const mockedOnClick = vi.fn();
   render(
     <TransferList>
       <TransferList.ListboxWrapper>

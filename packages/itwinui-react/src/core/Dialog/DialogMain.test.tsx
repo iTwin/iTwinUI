@@ -5,9 +5,9 @@
 import * as React from 'react';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { DialogMain } from './DialogMain.js';
-import DialogTitleBar from './DialogTitleBar.js';
+import { DialogTitleBar } from './DialogTitleBar.js';
 
-const DOMMatrixMock = jest.fn(() => ({ m41: 0, m42: 0 }));
+const DOMMatrixMock = vi.fn(() => ({ m41: 0, m42: 0 }));
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 (window as any).DOMMatrix = DOMMatrixMock;
 
@@ -65,7 +65,7 @@ it('should render with custom style and className', () => {
   const dialog = container.querySelector('.iui-dialog') as HTMLElement;
   expect(dialog).toBeTruthy();
   expect(dialog.classList.contains('test-class')).toBeTruthy();
-  expect(dialog).toHaveStyle('color: red');
+  expect(dialog.style.color).toEqual('red');
 });
 
 it('should close on Esc click and move focus back', async () => {
@@ -74,7 +74,7 @@ it('should close on Esc click and move focus back', async () => {
   button.focus();
   expect(document.activeElement).toEqual(button);
 
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container, rerender } = render(
     <DialogMain isOpen onClose={onClose} isDismissible closeOnEsc setFocus>
       Here is my dialog content
@@ -123,7 +123,7 @@ it('should not focus dialog when setFocus is false', () => {
 });
 
 it('should not close on Esc click when closeOnEsc is false', () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(
     <DialogMain isOpen onClose={onClose} closeOnEsc={false} isDismissible>
       Here is my dialog content
@@ -137,7 +137,7 @@ it('should not close on Esc click when closeOnEsc is false', () => {
 });
 
 it('should call onKeyDown when pressed any key inside dialog', () => {
-  const onKeyDown = jest.fn();
+  const onKeyDown = vi.fn();
   const { container } = render(
     <DialogMain isOpen onKeyDown={onKeyDown}>
       Here is my dialog content

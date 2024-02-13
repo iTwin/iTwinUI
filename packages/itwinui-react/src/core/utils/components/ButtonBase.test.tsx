@@ -5,11 +5,11 @@
 import * as React from 'react';
 import * as ReactDOMServer from 'react-dom/server';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { ButtonBase } from './ButtonBase.js';
 
 it('renders default button correctly', async () => {
-  const onClick = jest.fn();
+  const onClick = vi.fn();
   const { container } = render(<ButtonBase onClick={onClick}>hi</ButtonBase>);
   const button = container.querySelector('button') as HTMLButtonElement;
   expect(button).toHaveTextContent('hi');
@@ -21,9 +21,9 @@ it('renders default button correctly', async () => {
 });
 
 it('should handle `disabled` prop', async () => {
-  const onClick = jest.fn();
-  const onPointerDown = jest.fn();
-  const onPointerUp = jest.fn();
+  const onClick = vi.fn();
+  const onPointerDown = vi.fn();
+  const onPointerUp = vi.fn();
   const { container } = render(
     <ButtonBase
       onClick={onClick}

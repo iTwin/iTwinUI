@@ -92,5 +92,3 @@ export const Icon = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
-
-export default Icon;

@@ -16,6 +16,7 @@ import {
   useMergedRefs,
   SvgCheckmark,
   useLatestRef,
+  InputWithIcon,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { SelectTag } from './SelectTag.js';
@@ -172,7 +173,7 @@ export type SelectProps<T> = {
   /**
    * Props to pass to the select button (trigger) element.
    */
-  triggerProps?: React.ComponentPropsWithoutRef<'div'>;
+  triggerProps?: React.ComponentPropsWithRef<'div'>;
 } & SelectMultipleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
@@ -244,8 +245,6 @@ export const Select = React.forwardRef(
       size,
       itemRenderer,
       selectedItemRenderer,
-      className,
-      style,
       menuClassName,
       menuStyle,
       multiple = false,
@@ -370,9 +369,7 @@ export const Select = React.forwardRef(
 
     return (
       <>
-        <Box
-          className={cx('iui-input-with-icon', className)}
-          style={style}
+        <InputWithIcon
           {...rest}
           ref={useMergedRefs(popover.refs.setPositionReference, forwardedRef)}
         >
@@ -388,7 +385,11 @@ export const Select = React.forwardRef(
             aria-haspopup='listbox'
             aria-controls={`${uid}-menu`}
             {...triggerProps}
-            ref={useMergedRefs(selectRef, popover.refs.setReference)}
+            ref={useMergedRefs(
+              selectRef,
+              triggerProps?.ref,
+              popover.refs.setReference,
+            )}
             className={cx(
               'iui-select-button',
               {
@@ -440,7 +441,7 @@ export const Select = React.forwardRef(
           {multiple ? (
             <AutoclearingHiddenLiveRegion text={liveRegionSelection} />
           ) : null}
-        </Box>
+        </InputWithIcon>
 
         {popover.open && (
           <Portal>
@@ -466,7 +467,9 @@ export const Select = React.forwardRef(
       </>
     );
   },
-);
+) as <T>(
+  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+) => JSX.Element;
 
 type SingleSelectButtonProps<T> = {
   selectedItem?: SelectOption<T>;
@@ -531,5 +534,3 @@ const MultipleSelectButton = <T,>({
     </>
   );
 };
-
-export default Select;

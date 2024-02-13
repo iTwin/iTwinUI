@@ -7,7 +7,7 @@ group: utilities
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='InputGrid.main.tsx' truncate={false}>
+<LiveExample src='InputGrid.main.jsx' truncate={false}>
   <AllExamples.InputGridExample client:load />
 </LiveExample>
 
@@ -17,7 +17,7 @@ You can add any form field (eg. Select, ComboBox or InputWithDecorations).
 
 We recommend [Label](typography#label) and [StatusMessage](statusmessage) components with this layout.
 
-<LiveExample src='InputGrid.select.tsx'>
+<LiveExample src='InputGrid.select.jsx'>
   <AllExamples.InputGridSelectExample client:load />
 </LiveExample>
 
@@ -25,9 +25,27 @@ We recommend [Label](typography#label) and [StatusMessage](statusmessage) compon
 
 You can use `labelPlacement` prop to switch placement of the label to inline.
 
-<LiveExample src='InputGrid.inline.tsx'>
+<LiveExample src='InputGrid.inline.jsx'>
   <AllExamples.InputGridInlineExample client:load />
 </LiveExample>
+
+## Accessibility
+
+To provide the best experience to all users, it is recommended to associate the label with the form field (e.g. using `htmlFor` and `id` attributes) and the form field with the message (e.g. using [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby)). React's [`useId`](https://react.dev/reference/react/useId) hook can be used to generate component-level unique ids.
+
+```jsx
+const idPrefix = useId();
+const inputId = `${idPrefix}-input`;
+const messageId = `${idPrefix}-message`;
+
+<InputGrid>
+  <Label htmlFor={inputId}>Label</Label>
+  <Input id={inputId} aria-describedby={messageId} />
+  <StatusMessage id={messageId}>Hint message</StatusMessage>
+</InputGrid>;
+```
+
+If the labels, form fields and message passed as children have not been explicitly associated, then `InputGrid` will attempt to associate them automatically as a fallback. This is done by looping through the children and cloning them with the appropriate props. However this fallback approach is not foolproof and may not work in all cases (for example, it will break if you have wrapper elements around your labels or inputs), so make sure you test your final UI and explicitly associate the children if needed.
 
 ## Props
 

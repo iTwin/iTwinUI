@@ -6,35 +6,34 @@ import * as React from 'react';
 import { Button } from '../Buttons/Button.js';
 import { NonIdealState } from './NonIdealState.js';
 import { ProgressRadial } from '../ProgressIndicators/ProgressRadial.js';
-import { dynamicImport } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
-const Svg401 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg401'),
+const Svg401 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg401'),
 );
-const Svg403 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg403'),
+const Svg403 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg403'),
 );
-const Svg404 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg404'),
+const Svg404 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg404'),
 );
-const Svg500 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg500'),
+const Svg500 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg500'),
 );
-const Svg502 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg502'),
+const Svg502 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg502'),
 );
-const Svg503 = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/Svg503'),
+const Svg503 = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/Svg503'),
 );
-const SvgError = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/SvgError'),
+const SvgError = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgError'),
 );
-const SvgRedirect = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/SvgRedirect'),
+const SvgRedirect = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgRedirect'),
 );
-const SvgTimedOut = React.lazy(() =>
-  dynamicImport('@itwin/itwinui-illustrations-react/SvgTimedOut'),
+const SvgTimedOut = React.lazy(
+  () => import('@itwin/itwinui-illustrations-react/SvgTimedOut'),
 );
 
 /** @deprecated Use `NonIdealState` instead. */
@@ -286,5 +285,3 @@ export const ErrorPage = React.forwardRef((props, forwardedRef) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'div', ErrorPageProps>;
-
-export default ErrorPage;

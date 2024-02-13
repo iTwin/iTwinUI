@@ -8,5 +8,3 @@ import { DialogContent } from '../Dialog/DialogContent.js';
  * Container for content in `Modal`.
  */
 export const ModalContent = Object.assign({}, DialogContent);
-
-export default ModalContent;

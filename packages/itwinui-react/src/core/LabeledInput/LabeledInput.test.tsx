@@ -8,16 +8,28 @@ import * as React from 'react';
 import { LabeledInput } from './LabeledInput.js';
 
 const assertBaseElement = (container: HTMLElement) => {
-  const inputContainer = container.querySelector('.iui-input-grid');
-  expect(inputContainer).toBeTruthy();
-  return inputContainer;
+  const inputComponent = container.querySelector('.iui-input-grid');
+  const inputWithIcon = container.querySelector(
+    '.iui-input-grid > .iui-input-with-icon',
+  );
+  const input = container.querySelector(
+    '.iui-input-grid > .iui-input-with-icon > input',
+  );
+  const label = container.querySelector('.iui-input-grid > .iui-input-label');
+
+  expect(inputComponent).toBeTruthy();
+  expect(inputWithIcon).toBeTruthy();
+  expect(input).toBeTruthy();
+  expect(label).toBeTruthy();
+
+  return inputComponent;
 };
 
 it('should render correctly in its most basic state', () => {
   const { container, getByText } = render(<LabeledInput label='some label' />);
   assertBaseElement(container);
   expect(
-    container.querySelector('.iui-input-flex-container > input'),
+    container.querySelector('.iui-input-grid > .iui-input-with-icon > input'),
   ).toBeTruthy();
   const label = getByText('some label') as HTMLElement;
   expect(label.className).toBe('iui-input-label');
@@ -28,20 +40,22 @@ it('should render disabled component', () => {
     <LabeledInput label='some label' disabled />,
   );
   assertBaseElement(container);
-  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   const label = container.querySelector('.iui-input-label');
   expect(label).toBeTruthy();
   expect(label).toHaveAttribute('data-iui-disabled', 'true');
   getByText('some label');
-  expect((container.querySelector('input') as HTMLInputElement).disabled).toBe(
-    true,
-  );
+  expect(
+    (
+      container.querySelector(
+        '.iui-input-with-icon > input',
+      ) as HTMLInputElement
+    ).disabled,
+  ).toBe(true);
 });
 
 it('should handle required attribute', () => {
   const { container } = render(<LabeledInput label='some label' required />);
   assertBaseElement(container);
-  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
   expect(
     (container.querySelector('input') as HTMLInputElement).required,
@@ -57,7 +71,6 @@ it('should render message', () => {
   );
   assertBaseElement(container);
   getByText('some label');
-  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   const message = container.querySelector('.my-message') as HTMLElement;
   expect(message).toBeTruthy();
   expect(message.textContent).toBe('Message');
@@ -69,13 +82,22 @@ it.each(['positive', 'negative', 'warning'] as const)(
     const { container, getByText } = render(
       <LabeledInput label='some label' status={status} />,
     );
-    assertBaseElement(container);
+    const inputContainer = assertBaseElement(container);
     const input = container.querySelector(
-      '.iui-input-flex-container',
+      '.iui-input-grid > .iui-input-with-icon > .iui-input',
     ) as HTMLElement;
-    expect(input).toBeTruthy();
-    expect(input).toHaveAttribute('data-iui-status', status);
-    expect(input.querySelector('.iui-svg-icon')).toBeTruthy();
+    const svgIcon = container.querySelector(
+      '.iui-input-with-icon > .iui-svg-icon',
+    ) as HTMLElement;
+
+    expect(inputContainer).toHaveAttribute('data-iui-status', status);
+
+    // Don't unnecessarily set data-iui-status on the input when iui-input-grid already has data-iui-status
+    expect(input).not.toHaveAttribute('data-iui-status', status);
+
+    // svgIcon should have the status fill
+    expect(svgIcon).toBeTruthy();
+    expect(svgIcon).toHaveAttribute('data-iui-icon-color', status);
     getByText('some label');
   },
 );
@@ -140,10 +162,9 @@ it('should take class and style on input', () => {
   assertBaseElement(container);
   getByText('some label');
   const input = container.querySelector(
-    '.iui-input-flex-container > input.my-class',
+    '.iui-input-grid > .iui-input-with-icon > input.my-class',
   ) as HTMLElement;
   expect(input).toBeTruthy();
-  console.log(input.style.width);
   expect(input.style.width).toBe('80px');
 });
 
@@ -157,7 +178,6 @@ it('should render inline input', () => {
     />,
   );
   const inputContainer = assertBaseElement(container);
-  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
   expect(inputContainer).toHaveAttribute('data-iui-label-placement', 'inline');
   getByText('some label');
   getByText('My message');
@@ -174,9 +194,41 @@ it('should take custom icon', () => {
   );
   assertBaseElement(container);
   getByText('some label');
-  expect(container.querySelector('.iui-input-flex-container')).toBeTruthy();
-  expect(container.querySelector('.my-icon')).toBeTruthy();
+
+  expect(
+    container.querySelector(
+      '.iui-input-grid > .iui-input-with-icon > .iui-svg-icon',
+    ),
+  ).toBeTruthy();
+  expect(
+    container.querySelector(
+      '.iui-input-grid > .iui-input-with-icon > .iui-svg-icon > .my-icon',
+    ),
+  ).toBeTruthy();
 });
+
+it.each(['positive', 'negative', 'warning'] as const)(
+  'should give status fill to custom icon',
+  (status) => {
+    const { container, getByText } = render(
+      <LabeledInput
+        label='some label'
+        displayStyle='inline'
+        svgIcon={<svg className='my-icon' />}
+        status={status}
+      />,
+    );
+    assertBaseElement(container);
+    getByText('some label');
+
+    const svgIcon = container.querySelector(
+      '.iui-input-grid > .iui-input-with-icon > .iui-svg-icon',
+    ) as HTMLElement;
+
+    expect(svgIcon).toBeTruthy();
+    expect(svgIcon).toHaveAttribute('data-iui-icon-color', status);
+  },
+);
 
 it('should render inline icon', () => {
   const { container, queryByText, getByText } = render(

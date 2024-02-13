@@ -10,7 +10,7 @@ related:
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='ExpandableBlock.main.tsx' truncate={false}>
+<LiveExample src='ExpandableBlock.main.jsx' truncate={false}>
   <AllExamples.ExpandableBlockMainExample client:load />
 </LiveExample>
 
@@ -27,7 +27,7 @@ The expandable block can be used in two ways:
 
 Descriptor text can be optionally displayed underneath the title, either using the `caption` prop or the `ExpandableBlock.Caption` subcomponent.
 
-<LiveExample src='ExpandableBlock.withcaption.tsx'>
+<LiveExample src='ExpandableBlock.withcaption.jsx'>
   <AllExamples.ExpandableBlockWithCaptionExample client:load />
 </LiveExample>
 
@@ -35,7 +35,7 @@ Descriptor text can be optionally displayed underneath the title, either using t
 
 Expandable blocks can also stack on top of each other in an accordion to make large sets of information easier to read.
 
-<LiveExample src='ExpandableBlock.accordion.tsx'>
+<LiveExample src='ExpandableBlock.accordion.jsx'>
   <AllExamples.ExpandableBlockAccordionExample client:load />
 </LiveExample>
 
@@ -43,7 +43,7 @@ Expandable blocks can also stack on top of each other in an accordion to make la
 
 An expandable block could display status, an icon, or other helpful information at a glance right aligned within the block header. The status can be set using the `status` prop, and the icon can be customized using either the `endIcon` prop or the `ExpandableBlock.EndIcon` subcomponent.
 
-<LiveExample src='ExpandableBlock.status.tsx'>
+<LiveExample src='ExpandableBlock.status.jsx'>
   <AllExamples.ExpandableBlockStatusExample client:load />
 </LiveExample>
 
@@ -51,7 +51,7 @@ An expandable block could display status, an icon, or other helpful information 
 
 A small expandable block is achieved by using the `size` prop.
 
-<LiveExample src='ExpandableBlock.small.tsx'>
+<LiveExample src='ExpandableBlock.small.jsx'>
   <AllExamples.ExpandableBlockSmallExample client:load />
 </LiveExample>
 
@@ -59,7 +59,7 @@ A small expandable block is achieved by using the `size` prop.
 
 The borderless expandable block is useful in tighter areas where using a default expandable block would visibly cause too many blocks. The borderless expandable block is achieved by using the `styleType` prop.
 
-<LiveExample src='ExpandableBlock.borderless.tsx'>
+<LiveExample src='ExpandableBlock.borderless.jsx'>
   <AllExamples.ExpandableBlockBorderlessExample client:load />
 </LiveExample>
 
@@ -67,9 +67,19 @@ The borderless expandable block is useful in tighter areas where using a default
 
 An expandable block can be disabled by using the `disabled` prop.
 
-<LiveExample src='ExpandableBlock.disabled.tsx'>
+<LiveExample src='ExpandableBlock.disabled.jsx'>
   <AllExamples.ExpandableBlockDisabledExample client:load />
 </LiveExample>
+
+### Secondary actions
+
+Expandable blocks can have secondary actions, such as buttons. The following example uses `endIcon` prop to display an icon button on the right side of the trigger.
+
+<LiveExample src='ExpandableBlock.actions.jsx'>
+  <AllExamples.ExpandableBlockActionsExample client:idle />
+</LiveExample>
+
+This functionality is made possible via the [`LinkAction`](linkaction) component, which is used internally by the main trigger.
 
 ## Guidelines
 
@@ -79,7 +89,7 @@ Expandable blocks are used to progressively disclose information. [Read this art
 
 Expandable blocks are used in pages to divide up content in sections, in forms for example. If each section has many fields, using expandable blocks will help alleviate the UI and prevent the user from scrolling endlessly to get to the section they are looking for.
 
-<LiveExample src='ExpandableBlock.form.tsx'>
+<LiveExample src='ExpandableBlock.form.jsx'>
   <AllExamples.ExpandableBlockFormExample client:load />
 </LiveExample>
 

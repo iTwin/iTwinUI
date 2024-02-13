@@ -2,8 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import '@testing-library/jest-dom';
-import { TextEncoder } from 'util';
+import '@testing-library/jest-dom/vitest';
 
 window.HTMLElement.prototype.scrollIntoView = () => {};
 window.HTMLElement.prototype.scrollTo = () => {};
@@ -16,4 +15,13 @@ if (window.PointerEvent) {
   window.PointerEvent = window.MouseEvent;
 }
 
-global.TextEncoder = TextEncoder;
+vi.mock('./src/core/utils/hooks/useGlobals.js', () => {
+  return {
+    // noop because we don't want to spam the terminal with warnings during tests
+    useGlobals: () => {},
+  };
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});

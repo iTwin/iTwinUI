@@ -25,6 +25,10 @@ export const Negative = () => {
   return <ProgressRadial status={'negative'} value={50} />;
 };
 
+export const Warning = () => {
+  return <ProgressRadial status={'warning'} value={50} />;
+};
+
 export const DeterminateWithContent = () => {
   return <ProgressRadial value={50}>50</ProgressRadial>;
 };

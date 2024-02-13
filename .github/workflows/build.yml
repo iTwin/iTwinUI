@@ -17,10 +17,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -43,10 +43,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -75,10 +75,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -104,10 +104,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -132,10 +132,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -164,10 +164,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -253,10 +253,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -269,10 +269,10 @@ jobs:
             playgrounds/*/node_modules
           key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
 
-      - run: yarn workspace @itwin/itwinui-react test --coverage
+      - run: yarn workspace @itwin/itwinui-react test
 
       - name: Publish test results
-        uses: EnricoMi/publish-unit-test-result-action@v1.16
+        uses: EnricoMi/publish-unit-test-result-action@v2.12.0
         if: always()
         with:
           files: 'packages/itwinui-react/coverage/junit.xml'
@@ -288,10 +288,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -328,10 +328,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.x
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3
@@ -362,10 +362,10 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 18.X
+      - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Cache node_modules
         uses: actions/cache@v3

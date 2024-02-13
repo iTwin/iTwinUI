@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
 import { render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { SearchBox } from './SearchBox.js';
 
 // Basic SearchBox
@@ -102,7 +102,7 @@ it('should render expandable Searchbox', async () => {
 });
 
 it('should render custom expanded state', async () => {
-  const buttonCallBackMock = jest.fn();
+  const buttonCallBackMock = vi.fn();
 
   const { container } = render(
     <SearchBox expandable>
@@ -153,8 +153,8 @@ it('should render custom expanded state', async () => {
 });
 
 it('should render custom expandable actions', async () => {
-  const onExpandMock = jest.fn();
-  const onCollapseMock = jest.fn();
+  const onExpandMock = vi.fn();
+  const onCollapseMock = vi.fn();
 
   const { container } = render(
     <SearchBox

@@ -16,7 +16,9 @@
     opacity: 0;
   }
 
-  transition: visibility var(--iui-duration-0) linear, opacity var(--iui-duration-1) ease-out;
+  transition:
+    visibility var(--iui-duration-0) linear,
+    opacity var(--iui-duration-1) ease-out;
   transition-delay: var(--iui-duration-1), var(--iui-duration-0);
 
   &.iui-backdrop-visible {

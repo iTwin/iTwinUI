@@ -264,5 +264,3 @@ export const Breadcrumbs = Object.assign(BreadcrumbsComponent, {
    */
   Item: BreadcrumbsItem,
 });
-
-export default Breadcrumbs;

@@ -1,0 +1,130 @@
+---
+import outdent from 'outdent';
+import VisuallyHidden from './utils/VisuallyHidden.astro';
+
+type Props = { code: string } & astroHTML.JSX.HTMLAttributes;
+const { code = 'export default () => "hello"', ...rest } = Astro.props;
+
+const css = outdent`
+  @layer reset, itwinui;
+
+  .app-wrapper {
+    height: 100dvh;
+    padding: 1rem;
+  }
+
+  @layer reset {
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+    }
+  }
+`;
+const js = outdent`
+  ${code.replace('export default () =>', 'const App = () =>')}
+
+  // -------------------------------------------------------------
+
+  import { createRoot } from 'react-dom/client';
+  import { ThemeProvider } from '@itwin/itwinui-react';
+
+  createRoot(document.body).render(
+    <ThemeProvider className='app-wrapper'>
+      <App />
+    </ThemeProvider>
+  );
+`
+  .replaceAll(`@itwin/itwinui-react`, `https://esm.sh/@itwin/itwinui-react@3`)
+  .replaceAll(`@itwin/itwinui-icons-react`, `https://esm.sh/@itwin/itwinui-icons-react@2`)
+  .replaceAll(
+    `@itwin/itwinui-illustrations-react`,
+    `https://esm.sh/@itwin/itwinui-illustrations-react@2`,
+  )
+  .replaceAll(`'react'`, `'https://esm.sh/react@18'`)
+  .replaceAll(`react-dom`, `https://esm.sh/react-dom@18`);
+---
+
+<form
+  action='https://codepen.io/pen/define'
+  method='POST'
+  target='_blank'
+  {...rest}
+  {...{ rel: 'noreferrer' }}
+>
+  <input
+    type='hidden'
+    name='data'
+    value={JSON.stringify({
+      js_pre_processor: 'babel',
+      editors: '001',
+      css_external: 'https://esm.sh/@itwin/itwinui-react@3/styles.css',
+      css,
+      js,
+    }).replace(/"/g, '&quot;')}
+  />
+
+  <button>
+    <span class='tooltip'>Open in CodePen</span>
+    <VisuallyHidden>in new tab</VisuallyHidden>
+    <svg aria-hidden='true' width='16' height='16' viewBox='0 0 24 24'>
+      <path
+        fill='none'
+        stroke='currentColor'
+        stroke-linecap='round'
+        stroke-linejoin='round'
+        stroke-width='2'
+        d='M15 3h6v6m-11 5L21 3m-3 10v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'></path>
+    </svg>
+  </button>
+</form>
+
+<style lang='scss'>
+  @layer components {
+    form {
+      position: relative;
+    }
+
+    button {
+      display: grid;
+      place-items: center;
+      min-width: 2rem;
+      min-height: 2rem;
+      color: var(--color-text);
+      background: transparent;
+      border-radius: 9e9px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      padding: 0.25rem;
+
+      &:hover {
+        background: hsl(0 0% 0% / 0.2);
+      }
+
+      > svg {
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+
+    .tooltip {
+      visibility: hidden;
+
+      position: absolute;
+      top: -100%;
+      left: 50%;
+      transform: translate(-66%);
+      font-size: var(--type--2);
+      padding: 0.5rem;
+      white-space: nowrap;
+      background-color: var(--color-background-2);
+      border: 1px solid var(--color-line-2);
+      border-radius: 4px;
+
+      button:is(:hover, :focus-within) > & {
+        visibility: visible;
+      }
+    }
+  }
+</style>

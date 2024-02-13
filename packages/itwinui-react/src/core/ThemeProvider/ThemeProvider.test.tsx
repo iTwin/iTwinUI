@@ -9,13 +9,12 @@ import * as UseMediaQuery from '../utils/hooks/useMediaQuery.js';
 
 import { ThemeProvider } from './ThemeProvider.js';
 import { ThemeContext } from './ThemeContext.js';
+import type { MockInstance } from 'vitest';
 
-let useMediaSpy: jest.SpyInstance;
+let useMediaSpy: MockInstance;
 
 beforeEach(() => {
-  useMediaSpy = jest
-    .spyOn(UseMediaQuery, 'useMediaQuery')
-    .mockReturnValue(false);
+  useMediaSpy = vi.spyOn(UseMediaQuery, 'useMediaQuery').mockReturnValue(false);
 });
 
 afterEach(() => useMediaSpy.mockRestore());

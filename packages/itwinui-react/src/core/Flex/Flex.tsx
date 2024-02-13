@@ -254,5 +254,3 @@ export const Flex = Object.assign(FlexComponent, {
    */
   Spacer: FlexSpacer,
 });
-
-export default Flex;

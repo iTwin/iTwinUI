@@ -9,17 +9,16 @@ import {
   getTranslateValuesFromElement,
   Resizer,
   useMergedRefs,
-  useIsomorphicLayoutEffect,
+  useLayoutEffect,
   Box,
-  getTranslateValues,
-  roundByDPR,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { useDialogContext } from './DialogContext.js';
 import type { DialogContextProps } from './DialogContext.js';
-import { CSSTransition } from 'react-transition-group';
+import { Transition } from 'react-transition-group';
 import { DialogDragContext } from './DialogDragContext.js';
-import useDragAndDrop from '../utils/hooks/useDragAndDrop.js';
+import { useDragAndDrop } from '../utils/hooks/useDragAndDrop.js';
 
 export type DialogMainProps = {
   /**
@@ -77,7 +76,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
   const [style, setStyle] = React.useState<React.CSSProperties>();
 
   const dialogRef = React.useRef<HTMLDivElement>(null);
-  const [dialogElement, setDialogElement] = React.useState<HTMLElement>();
   const hasBeenResized = React.useRef(false);
   const previousFocusedElement = React.useRef<HTMLElement | null>();
 
@@ -138,7 +136,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   );
 
   // Prevents dialog from moving when window is being resized
-  useIsomorphicLayoutEffect(() => {
+  useLayoutEffect(() => {
     if (!isDraggable || !isOpen) {
       return;
     }
@@ -163,11 +161,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
     }));
   }, []);
 
-  const roundedTransform = useRoundedTransform({
-    element: dialogElement,
-    transform,
-  });
-
   const content = (
     <Box
       className={cx(
@@ -181,41 +174,41 @@ export const DialogMain = React.forwardRef((props, ref) => {
         className,
       )}
       role='dialog'
-      ref={useMergedRefs(dialogRef, ref, setDialogElement)}
+      ref={useMergedRefs(dialogRef, ref)}
       onKeyDown={handleKeyDown}
       tabIndex={-1}
       data-iui-placement={placement}
       style={{
-        transform: roundedTransform,
+        transform,
         ...style,
         ...propStyle,
       }}
       {...rest}
     >
-      {isResizable && (
-        <Resizer
-          elementRef={dialogRef}
-          containerRef={dialogContext.dialogRootRef}
-          onResizeStart={() => {
-            if (!hasBeenResized.current) {
-              hasBeenResized.current = true;
-              setResizeStyle({ maxInlineSize: '100%' });
-            }
-          }}
-          onResizeEnd={setResizeStyle}
-        />
-      )}
+      <ShadowRoot>
+        <slot />
+        {isResizable && (
+          <Resizer
+            elementRef={dialogRef}
+            containerRef={dialogContext.dialogRootRef}
+            onResizeStart={() => {
+              if (!hasBeenResized.current) {
+                hasBeenResized.current = true;
+                setResizeStyle({ maxInlineSize: '100%' });
+              }
+            }}
+            onResizeEnd={setResizeStyle}
+          />
+        )}
+      </ShadowRoot>
+
       {children}
     </Box>
   );
 
   return (
-    <CSSTransition
+    <Transition
       in={isOpen}
-      classNames={{
-        enter: 'iui-dialog-animation-enter',
-        enterActive: 'iui-dialog-animation-enter-active',
-      }}
       timeout={{ exit: 600 }}
       // Focuses dialog when opened
       onEntered={() => {
@@ -240,37 +233,6 @@ export const DialogMain = React.forwardRef((props, ref) => {
         {trapFocus && <FocusTrap>{content}</FocusTrap>}
         {!trapFocus && content}
       </DialogDragContext.Provider>
-    </CSSTransition>
+    </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogMainProps>;
-
-export default DialogMain;
-
-// ----------------------------------------------------------------------------
-
-/**
- * Rounds off an element's transform value based on the device's pixel grid, to avoid blurring.
- */
-const useRoundedTransform = ({
-  element,
-  transform,
-}: {
-  element?: HTMLElement;
-  transform?: string;
-}) => {
-  const [roundedStyles, setRoundedStyles] = React.useState(transform);
-
-  useIsomorphicLayoutEffect(() => {
-    if (!element || typeof DOMMatrix === 'undefined') {
-      return;
-    }
-
-    const [x, y] = transform
-      ? getTranslateValues(transform)
-      : getTranslateValuesFromElement(element);
-
-    setRoundedStyles(`translate(${roundByDPR(x)}px, ${roundByDPR(y)}px)`);
-  }, [element, transform]);
-
-  return roundedStyles;
-};

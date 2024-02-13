@@ -1,5 +1,123 @@
 # Changelog
 
+## 3.4.1
+
+### Patch Changes
+
+- [#1835](https://github.com/iTwin/iTwinUI/pull/1835): Fixed the bug where `Dialog`/`Modal` was invisible on the first render with `isOpen={true}`.
+- [#1836](https://github.com/iTwin/iTwinUI/pull/1836): Updated Dialog resizer positioning to protrude outside the dialog.
+
+## 3.4.0
+
+### Minor Changes
+
+- [#1824](https://github.com/iTwin/iTwinUI/pull/1824): `LinkAction` will now automatically render a `<button>` by default if no `href` is passed.
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Removed unnecessary `Tag` styles, and added support for tags to be used as `<button>` elements.
+- [#1813](https://github.com/iTwin/iTwinUI/pull/1813): Added warning status for `ProgressRadial`/`ProgressLinear`
+- [#1815](https://github.com/iTwin/iTwinUI/pull/1815): Added `labelProps` and `removeButtonProps` to `Tag` to allow customizing internal parts.
+- [#1821](https://github.com/iTwin/iTwinUI/pull/1821): Added new props to `Modal` to allow customizing inner DOM elements: `wrapperProps`, `backdropProps`, `titleBarProps`.
+- [#1822](https://github.com/iTwin/iTwinUI/pull/1822): Added new `showDatesOutsideMonth` prop to `DatePicker`. Currently defaults to `true` but is recommended to be set to `false`.
+
+## 3.3.4
+
+### Patch Changes
+
+- [#1816](https://github.com/iTwin/iTwinUI/pull/1816): Fixed an issue where `Table` was showing a dummy vertical scrollbar track inside the table header in Chromium 121 + Windows.
+- [#1810](https://github.com/iTwin/iTwinUI/pull/1810): Fixed `Surface.Body` not being visually aligned with `Surface.Header` depending on scrollbar visibility.
+- [#1776](https://github.com/iTwin/iTwinUI/pull/1776): Fixed broken animation in full-page `Modal` and `Dialog`.
+- [#1809](https://github.com/iTwin/iTwinUI/pull/1809): Fixed `Table` bug where the table-body had an incorrect horizontal scrollbar/overflow when the `Table`'s width is reduced below the initial width.
+
+## 3.3.3
+
+### Patch Changes
+
+- [#1800](https://github.com/iTwin/iTwinUI/pull/1800): Updated internal usage of `ResizeObserver` to prevent throwing a benign "ResizeObserver loop limit exceeded" error in React 17 apps. Some affected components: `ButtonGroup`, `Tabs`, `Table`, `Tree`, `Breadcrumbs`, etc.
+- [#1807](https://github.com/iTwin/iTwinUI/pull/1807): iTwinUI will now also check for `vitest` and `mocha` (in addition to `jest`) before running any code that would cause problems in these test runners.
+
+## 3.3.2
+
+### Patch Changes
+
+- [#1799](https://github.com/iTwin/iTwinUI/pull/1799): Fixed `Table` bug where columns were not resizable when their widths were specified as strings (E.g. `"20%"`, `"50ch"`).
+
+## 3.3.1
+
+### Patch Changes
+
+- [#1796](https://github.com/iTwin/iTwinUI/pull/1796): Fixed a visual issue in `Table` where column headers were not aligned with rows when using expandable `subRows`.
+- [#1795](https://github.com/iTwin/iTwinUI/pull/1795): Fixed blurring and resizing issues in Dialog/Modal by removing `overflow: hidden` and inline `transform` styles.
+
+## 3.3.0
+
+### Minor Changes
+
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `LabeledInput` and `LabeledTextarea` have been slightly reworked to fix alignment and consistency issues when used with `svgIcon`.
+- [#1777](https://github.com/iTwin/iTwinUI/pull/1777): `InputGrid` will now attempt to automatically associate labels, inputs and status messages with each other, in the event that they haven't been explicitly associated.
+- [#1777](https://github.com/iTwin/iTwinUI/pull/1777): The `message` passed to `LabeledInput`, `LabeledTextarea`, `LabeledSelect` and `ComboBox` will now be associated with the input using `aria-describedby` for better accessibility.
+- [#1794](https://github.com/iTwin/iTwinUI/pull/1794): `ExpandableBlock` now internally uses `LinkAction` for the trigger element. This slightly improves the accessibility, and opens up the possibility of including secondary actions.
+- [#1786](https://github.com/iTwin/iTwinUI/pull/1786): The `portal.to` prop in floating elements now also accepts `null | undefined` which acts identically to the default prop behavior (i.e. as if `portal` was not passed). Components affected: `Dialog`, `DropdownMenu`, `Modal`, `Popover`, `SplitButton`, and `Tooltip`.
+- [#1791](https://github.com/iTwin/iTwinUI/pull/1791): Added new `ListItem.Action` component for rendering links inside `ListItem`s while ensuring that clicking anywhere on the list item triggers the link. This component is a wrapper over the existing `LinkAction` component.
+- [#1780](https://github.com/iTwin/iTwinUI/pull/1780): `ComboBox` now forwards its `ref`.
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): `StatusMessage` now renders no status icon if `startIcon === null`.
+
+### Patch Changes
+
+- [#1783](https://github.com/iTwin/iTwinUI/pull/1783): Fixed a Firefox-specific bug where focus outlines were not appearing correctly around menu items inside `ComboBox`.
+- [#1792](https://github.com/iTwin/iTwinUI/pull/1792): Fixed an issue in `Table` where the "select all" checkbox was disabled if all top-level rows were disabled. The logic has been updated to also consider sub-rows.
+- [#1788](https://github.com/iTwin/iTwinUI/pull/1788): `LinkAction` will no longer override styles from other components (such as `Anchor`).
+- [#1753](https://github.com/iTwin/iTwinUI/pull/1753): Deprecated `svgIcon` in `LabeledSelect` in favor of passing `<StatusMessage startIcon={svgIcon} />` to the `message` prop.
+- [#1787](https://github.com/iTwin/iTwinUI/pull/1787): Button, radial progress indicator, & select icons now use the correct icon variable color fill.
+
+## 3.2.4
+
+### Patch Changes
+
+- [#1774](https://github.com/iTwin/iTwinUI/pull/1774): Fixed `Select` and `LabeledSelect` to correctly handle generic types.
+
+## 3.2.3
+
+### Patch Changes
+
+- [#1772](https://github.com/iTwin/iTwinUI/pull/1772): Added `package.json` to exports map.
+
+## 3.2.2
+
+### Patch Changes
+
+- [#1763](https://github.com/iTwin/iTwinUI/pull/1763): Reduced bundle size by optimizing how CSS modules are handled internally.
+
+## 3.2.1
+
+### Patch Changes
+
+- [#1760](https://github.com/iTwin/iTwinUI/pull/1760): Fixed `ComboBox` to correctly merge `inputProps.style` with internal styles.
+
+## 3.2.0
+
+### Minor Changes
+
+- [#1734](https://github.com/iTwin/iTwinUI/pull/1734): `ThemeProvider` will now attempt to automatically load `styles.css` if using `theme="inherit"` (or `includeCss` if using other themes).
+
+  While applications are still advised to manually import `styles.css`, this new behavior is intended to ease the migration for applications that may be using an older version of iTwinUI but want to consume dependencies that rely on iTwinUI v3.
+
+- [#1744](https://github.com/iTwin/iTwinUI/pull/1744): `@itwin/itwinui-illustrations-react` has been made a direct dependency again, to avoid issues with bundlers attempting to bundle it even if `ErrorPage` is not used anywhere.
+
+### Patch Changes
+
+- [#1742](https://github.com/iTwin/iTwinUI/pull/1742): Fixed `ErrorPage` to correctly lazy import from `@itwin/itwinui-illustrations-react`.
+
+## 3.1.2
+
+### Patch Changes
+
+- [#1740](https://github.com/iTwin/iTwinUI/pull/1740): Fixed `Select` and `Slider` to allow passing refs into `triggerProps` and `thumbProps` respectively.
+
+## 3.1.1
+
+### Patch Changes
+
+- [#1738](https://github.com/iTwin/iTwinUI/pull/1738): Added missing `sideEffects` to prevent tree-shaking `styles.css` in webpack.
+
 ## 3.1.0
 
 ### Minor Changes

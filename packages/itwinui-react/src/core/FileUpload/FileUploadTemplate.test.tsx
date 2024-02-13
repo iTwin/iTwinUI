@@ -8,7 +8,7 @@ import { FileUploadTemplate } from './FileUploadTemplate.js';
 import { SvgUpload } from '../utils/index.js';
 
 it('should render FileUploadTemplate', () => {
-  const mockedOnChange = jest.fn();
+  const mockedOnChange = vi.fn();
   const { container } = render(
     <FileUploadTemplate onChange={mockedOnChange} />,
   );
@@ -46,7 +46,7 @@ it('should render FileUploadTemplate', () => {
 it('should accept input props', () => {
   const { container } = render(
     <FileUploadTemplate
-      onChange={jest.fn}
+      onChange={vi.fn}
       acceptMultiple={false}
       acceptType='.txt, .png'
     />,

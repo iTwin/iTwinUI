@@ -7,7 +7,7 @@ thumbnail: Tile
 
 <p>{frontmatter.description}</p>
 
-<LiveExample src='Tile.main.tsx'>
+<LiveExample src='Tile.main.jsx'>
   <AllExamples.TileMainExample client:load />
 </LiveExample>
 
@@ -36,7 +36,7 @@ We provide:
 - `Tile.MoreOptions`
 - `Tile.Buttons`
 
-<LiveExample src='Tile.composition.tsx'>
+<LiveExample src='Tile.composition.jsx'>
   <AllExamples.TileCompositionExample client:load />
 </LiveExample>
 
@@ -46,7 +46,7 @@ You can use Tile directly with name, thumbnail, description and other props. Thi
 
 A list of all available props can be found [at the end](#props) of this page.
 
-<LiveExample src='Tile.props.tsx'>
+<LiveExample src='Tile.props.jsx'>
   <AllExamples.TilePropsExample client:load />
 </LiveExample>
 
@@ -54,23 +54,27 @@ A list of all available props can be found [at the end](#props) of this page.
 
 ### Actionable
 
-Click on an actionable tile triggers an action.
+Clicking on an actionable tile triggers an action.
 
-Actionable tiles have Tile.Action wrapped around tile name. It adds action to the name, increases click or touch target for said action and keeps accessibility for the best user experience.
+Actionable tiles should use `Tile.Action` wrapped around the tile name. `Tile.Action` is a wrapper around [`LinkAction`](linkaction), which increases the tap target size (clickable area) and provides a more accesible experience.
 
-<LiveExample src='Tile.actionable.tsx'>
+<LiveExample src='Tile.actionable.jsx'>
   <AllExamples.TileActionableExample client:load />
 </LiveExample>
 
-Tile can also link to another page. Add `href` prop to the Tile.Action to make whole tile an anchor link. This is because manually wrapping the Tile with an `<a href="...">` is not recommended for accessibility reasons.
+Actionable tiles can also link to another page by passing the `href` prop to `Tile.Action`.
 
-<LiveExample src='Tile.anchorlink.tsx'>
+<LiveExample src='Tile.anchorlink.jsx'>
   <AllExamples.TileAnchorLinkExample client:load style={{ padding: 50 }} />
 </LiveExample>
 
+**Important**: Adding `onClick` directly to the `Tile` or manually wrapping the Tile with an `<a href="...">` is not recommended for [accessibility reasons](https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html).
+
+#### Secondary actions
+
 A tile may have one or two buttons to perform actions. But there should not be more than two button actions.
 
-<LiveExample src='Tile.quickactions.tsx'>
+<LiveExample src='Tile.quickactions.jsx'>
   <AllExamples.TileQuickActionsExample client:load />
 </LiveExample>
 
@@ -78,7 +82,7 @@ A tile may have one or two buttons to perform actions. But there should not be m
 
 Avatar tile may look a little different from the rest of the tiles as the thumbnail area instead displays an avatar icon and online status indicator.
 
-<LiveExample src='Tile.avatar.tsx'>
+<LiveExample src='Tile.avatar.jsx'>
   <AllExamples.TileAvatarExample client:load />
 </LiveExample>
 
@@ -86,7 +90,7 @@ Avatar tile may look a little different from the rest of the tiles as the thumbn
 
 A condensed tile may include as little as the title, thumbnail, and the more options menu.
 
-<LiveExample src='Tile.condensed.tsx'>
+<LiveExample src='Tile.condensed.jsx'>
   <AllExamples.TileCondensedExample client:load />
 </LiveExample>
 
@@ -94,7 +98,7 @@ A condensed tile may include as little as the title, thumbnail, and the more opt
 
 A folder tile has a slightly unique visual appearance to differentiate it from the rest of the tiles. The folder is very short compared to other tiles, therefore folders can not appear mixed in with the other tiles & must be separated like the example below. It is up to the development team to decide what metadata makes the most sense to display in the bottom of the tile.
 
-<LiveExample src='Tile.folder.tsx'>
+<LiveExample src='Tile.folder.jsx'>
   <AllExamples.TileFolderExample client:load />
 </LiveExample>
 
@@ -104,19 +108,19 @@ A folder tile has a slightly unique visual appearance to differentiate it from t
 
 Tiles can have `positive`, `warning` and `negative` status.
 
-<LiveExample src='Tile.status.tsx'>
+<LiveExample src='Tile.status.jsx'>
   <AllExamples.TileStatusExample client:load />
 </LiveExample>
 
 ### Disabled
 
-<LiveExample src='Tile.disabled.tsx'>
+<LiveExample src='Tile.disabled.jsx'>
   <AllExamples.TileDisabledExample client:load />
 </LiveExample>
 
 ### Loading
 
-<LiveExample src='Tile.loading.tsx'>
+<LiveExample src='Tile.loading.jsx'>
   <AllExamples.TileLoadingExample client:load />
 </LiveExample>
 
@@ -124,7 +128,7 @@ Tiles can have `positive`, `warning` and `negative` status.
 
 A tile may be selected by the user to perform certain bulk tasks, such as moving them to another location, reordering them, duplicating projects, or deleting multiple at once.
 
-<LiveExample src='Tile.selected.tsx'>
+<LiveExample src='Tile.selected.jsx'>
   <AllExamples.TileSelectedExample client:load />
 </LiveExample>
 

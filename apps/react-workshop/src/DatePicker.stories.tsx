@@ -28,7 +28,14 @@ export const Basic = () => {
   return (
     <>
       <Popover
-        content={<DatePicker date={currentDate} onChange={onChange} setFocus />}
+        content={
+          <DatePicker
+            date={currentDate}
+            onChange={onChange}
+            setFocus
+            showDatesOutsideMonth={false}
+          />
+        }
       >
         <IconButton onClick={() => setOpened(!opened)} id='picker-button'>
           <SvgCalendar />
@@ -62,6 +69,7 @@ export const WithTime = () => {
             onChange={onChange}
             setFocus
             showTime
+            showDatesOutsideMonth={false}
           />
         </div>
       )}
@@ -94,6 +102,7 @@ export const WithCombinedTime = () => {
             showTime
             useCombinedRenderer
             use12Hours
+            showDatesOutsideMonth={false}
           />
         </div>
       )}
@@ -124,6 +133,7 @@ export const Localized = () => {
             onChange={onChange}
             localizedNames={generateLocalizedStrings('ja')}
             setFocus
+            showDatesOutsideMonth={false}
           />
         </div>
       )}
@@ -197,6 +207,7 @@ export const Range = () => {
             endDate={currentEndDate}
             onChange={onChange}
             setFocus
+            showDatesOutsideMonth={false}
           />
         </div>
       )}
@@ -249,6 +260,7 @@ export const SomeDatesDisabled = () => {
             onChange={onChange}
             setFocus
             isDateDisabled={isDateDisabled}
+            showDatesOutsideMonth={false}
           />
         </div>
       )}

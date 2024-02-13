@@ -167,5 +167,3 @@ export const Footer = Object.assign(
     Separator: FooterSeparator,
   },
 );
-
-export default Footer;

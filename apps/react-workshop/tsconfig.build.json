@@ -8,6 +8,6 @@
   "files": ["src/Table.stories.tsx"],
 
   "compilerOptions": {
-    "outDir": "dist"
+    "noEmit": true
   }
 }

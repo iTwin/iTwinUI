@@ -232,6 +232,14 @@ type DatePickerProps = {
    * @default true
    */
   applyBackground?: boolean;
+  /**
+   * Whether dates outside the current month should be displayed (in a muted text style).
+   *
+   * It is recommended to set this to false. Currently it defaults to true for backward compatibility.
+   *
+   * @default true
+   */
+  showDatesOutsideMonth?: boolean;
 } & DateRangePickerProps &
   Omit<TimePickerProps, 'date' | 'onChange' | 'setFocusHour'>;
 
@@ -271,6 +279,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     weekProps,
     isDateDisabled,
     applyBackground = true,
+    showDatesOutsideMonth = true,
     ...rest
   } = props;
 
@@ -339,8 +348,9 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       1,
     ).getDay();
 
-    // if its sunday, show one week before
-    if (0 === offsetToFirst) {
+    // If it's sunday, show one week before, but only if dates outside month are shown.
+    // (We do not want empty space at the top if dates outside month are not shown.)
+    if (0 === offsetToFirst && showDatesOutsideMonth) {
       offsetToFirst = 7;
     }
 
@@ -353,7 +363,7 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
       );
     }
     return daysInMonth;
-  }, [displayedMonthIndex, displayedYear]);
+  }, [displayedMonthIndex, displayedYear, showDatesOutsideMonth]);
 
   const weeks = React.useMemo(() => {
     const weeksInMonth = [];
@@ -665,6 +675,22 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
                 {weekDays.map((weekDay, dayIndex) => {
                   const dateValue = weekDay.getDate();
                   const isDisabled = isDateDisabled?.(weekDay);
+                  const isOutsideMonth =
+                    weekDay.getMonth() !== displayedMonthIndex;
+
+                  if (isOutsideMonth && !showDatesOutsideMonth) {
+                    return (
+                      <Box
+                        key={`day-${displayedMonthIndex}-${dayIndex}`}
+                        className={cx(
+                          getDayClass(weekDay),
+                          dayProps?.className,
+                        )}
+                        aria-hidden
+                      />
+                    );
+                  }
+
                   return (
                     <Box
                       as='div'
@@ -731,5 +757,3 @@ export const DatePicker = React.forwardRef((props, forwardedRef) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', DatePickerProps>;
-
-export default DatePicker;

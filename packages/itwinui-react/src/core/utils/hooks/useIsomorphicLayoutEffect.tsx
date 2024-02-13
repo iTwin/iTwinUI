@@ -7,7 +7,11 @@ import * as React from 'react';
 /**
  * SSR-safe version of `useLayoutEffect` that replaces it with `useEffect` on the server.
  *
+ * Exported as `useLayoutEffect` so that the react hooks linter correctly identifies the necessary dependencies.
+ *
  * @see https://fb.me/react-uselayouteffect-ssr
  */
-export const useIsomorphicLayoutEffect =
+const useIsomorphicLayoutEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
+export { useIsomorphicLayoutEffect as useLayoutEffect };

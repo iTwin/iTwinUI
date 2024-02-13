@@ -23,6 +23,7 @@
 
 @mixin iui-table-header-wrapper {
   @include table-scrollbar;
+  scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   overflow-x: hidden;
   background-color: var(--iui-color-background);
   display: flex;

@@ -149,5 +149,3 @@ export const useDragAndDrop = (
 
   return { onPointerDown, transform };
 };
-
-export default useDragAndDrop;

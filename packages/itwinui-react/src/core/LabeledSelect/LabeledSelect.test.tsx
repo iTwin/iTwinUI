@@ -78,8 +78,14 @@ it.each(['positive', 'warning', 'negative'] as const)(
       '.iui-input-grid',
     ) as HTMLElement;
     assertBaseElement(inputContainer);
+
+    expect(inputContainer).toHaveAttribute('data-iui-status', status);
+
     const select = container.querySelector(`.iui-select-button`) as HTMLElement;
-    expect(select).toHaveAttribute('data-iui-status', status);
+
+    // Don't unnecessarily set data-iui-status on the select when iui-input-grid already has data-iui-status
+    expect(select).not.toHaveAttribute('data-iui-status', status);
+
     expect(container.querySelector('.iui-svg-icon')).toBeTruthy();
     expect(container.querySelector('.iui-status-message')).toBeTruthy();
   },
@@ -187,4 +193,17 @@ it('should handle required attribute', () => {
   assertBaseElement(container.querySelector('.iui-input-grid') as HTMLElement);
 
   expect(container.querySelector('.iui-input-label.iui-required')).toBeTruthy();
+});
+
+it('should allow passing ref to LabeledSelect', () => {
+  const selectRef = React.createRef<HTMLElement>();
+  render(
+    <LabeledSelect
+      options={[{ value: 1, label: 'Option 1' }]}
+      ref={selectRef}
+      data-select
+    />,
+  );
+
+  expect(selectRef?.current).toHaveAttribute('data-select');
 });

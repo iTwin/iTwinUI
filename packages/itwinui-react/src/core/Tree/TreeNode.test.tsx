@@ -25,7 +25,7 @@ const renderComponent = ({
         nodeId='testId'
         label='label'
         sublabel='sublabel'
-        onExpanded={jest.fn()}
+        onExpanded={vi.fn()}
         {...props}
       />
     </TreeContext.Provider>,
@@ -116,8 +116,8 @@ it('should render custom expander', () => {
 it.each([true, false])(
   'should render node when isExpanded is %s',
   (isExpanded) => {
-    const onExpanded = jest.fn();
-    const onSelected = jest.fn();
+    const onExpanded = vi.fn();
+    const onSelected = vi.fn();
     const { container } = renderComponent({
       props: {
         isExpanded,
@@ -160,8 +160,8 @@ it.each([true, false])(
 );
 
 it('should render disabled node', () => {
-  const onSelected = jest.fn();
-  const onExpanded = jest.fn();
+  const onSelected = vi.fn();
+  const onExpanded = vi.fn();
   const { container } = renderComponent({
     props: {
       isDisabled: true,
@@ -199,7 +199,7 @@ it('should render disabled node', () => {
 });
 
 it('should render selected node', () => {
-  const onSelected = jest.fn();
+  const onSelected = vi.fn();
   const { container } = renderComponent({
     props: {
       isSelected: true,

@@ -7,7 +7,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { TablePaginator, type TablePaginatorProps } from './TablePaginator.js';
 import * as UseOverflow from '../utils/hooks/useOverflow.js';
 import * as UseContainerWidth from '../utils/hooks/useContainerWidth.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const renderComponent = (props?: Partial<TablePaginatorProps>) => {
   return render(
@@ -15,21 +15,22 @@ const renderComponent = (props?: Partial<TablePaginatorProps>) => {
       currentPage={0}
       pageSize={10}
       totalRowsCount={195}
-      onPageChange={jest.fn()}
-      onPageSizeChange={jest.fn()}
+      onPageChange={vi.fn()}
+      onPageSizeChange={vi.fn()}
       {...props}
     />,
   );
 };
 
 beforeEach(() => {
-  jest
-    .spyOn(UseOverflow, 'useOverflow')
-    .mockImplementation((items) => [jest.fn(), items.length]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockImplementation((items) => [
+    vi.fn(),
+    items.length,
+  ]);
 });
 
 afterEach(() => {
-  jest.restoreAllMocks();
+  vi.restoreAllMocks();
 });
 
 it('should render in its most basic form', () => {
@@ -53,7 +54,7 @@ it('should render in its most basic form', () => {
 });
 
 it('should render currently visible rows info and page size selector', async () => {
-  const onPageSizeChange = jest.fn();
+  const onPageSizeChange = vi.fn();
   const pageSizeList = [10, 25, 50];
   const { container } = renderComponent({
     currentPage: 19,
@@ -112,7 +113,7 @@ it('should render loading state when there is data', () => {
   const { container } = renderComponent({
     currentPage: 19,
     pageSizeList: [10, 25, 50],
-    onPageSizeChange: jest.fn(),
+    onPageSizeChange: vi.fn(),
     isLoading: true,
   });
 
@@ -139,7 +140,7 @@ it('should render loading state when there is no data', () => {
   const { container } = renderComponent({
     totalRowsCount: 0,
     pageSizeList: [10, 25, 50],
-    onPageSizeChange: jest.fn(),
+    onPageSizeChange: vi.fn(),
     isLoading: true,
   });
 
@@ -164,7 +165,7 @@ it('should render loading state when there is no data', () => {
 });
 
 it('should handle clicks', async () => {
-  const onPageChange = jest.fn();
+  const onPageChange = vi.fn();
   const { container } = renderComponent({ currentPage: 5, onPageChange });
 
   const pages = container.querySelectorAll<HTMLButtonElement>(
@@ -191,7 +192,7 @@ it('should handle clicks', async () => {
 });
 
 it('should render truncated pages list', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 5]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 5]);
   const { container } = renderComponent({ currentPage: 10 });
 
   const pages = container.querySelectorAll('.iui-table-paginator-page-button');
@@ -210,7 +211,7 @@ it('should render truncated pages list', () => {
 });
 
 it('should render only the current page when screen is very small', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 1]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 1]);
   const { container } = renderComponent({ currentPage: 10 });
 
   const pages = container.querySelectorAll('.iui-table-paginator-page-button');
@@ -223,7 +224,7 @@ it('should render only the current page when screen is very small', () => {
 });
 
 it('should handle keyboard navigation when focusActivationMode is auto', () => {
-  const onPageChange = jest.fn();
+  const onPageChange = vi.fn();
   const { container } = renderComponent({
     currentPage: 10,
     onPageChange,
@@ -245,7 +246,7 @@ it('should handle keyboard navigation when focusActivationMode is auto', () => {
 });
 
 it('should handle keyboard navigation when focusActivationMode is manual', () => {
-  const onPageChange = jest.fn();
+  const onPageChange = vi.fn();
   const { container } = renderComponent({
     currentPage: 10,
     onPageChange,
@@ -273,12 +274,12 @@ it('should handle keyboard navigation when focusActivationMode is manual', () =>
 });
 
 it('should render elements in small size', () => {
-  jest.spyOn(UseOverflow, 'useOverflow').mockReturnValue([jest.fn(), 5]);
+  vi.spyOn(UseOverflow, 'useOverflow').mockReturnValue([vi.fn(), 5]);
   const { container } = renderComponent({
     size: 'small',
     pageSizeList: [10, 25, 50],
     currentPage: 10,
-    onPageSizeChange: jest.fn(),
+    onPageSizeChange: vi.fn(),
   });
 
   const pageSwitchers = container.querySelectorAll('.iui-button');
@@ -300,14 +301,15 @@ it('should render elements in small size', () => {
 });
 
 it('should render with custom localization', async () => {
-  jest
-    .spyOn(UseContainerWidth, 'useContainerWidth')
-    .mockImplementation(() => [jest.fn(), 2000]);
+  vi.spyOn(UseContainerWidth, 'useContainerWidth').mockImplementation(() => [
+    vi.fn(),
+    2000,
+  ]);
 
   const pageSizeList = [10, 25, 50];
   const { container } = renderComponent({
     pageSizeList,
-    onPageSizeChange: jest.fn(),
+    onPageSizeChange: vi.fn(),
     totalSelectedRowsCount: 5,
     localization: {
       pageSizeLabel: (size: number) => `${size} per test page`,
@@ -342,9 +344,10 @@ it('should render with custom localization', async () => {
 });
 
 it('should not show rowsPerPageLabel on narrow widths', () => {
-  jest
-    .spyOn(UseContainerWidth, 'useContainerWidth')
-    .mockReturnValue([jest.fn(), 600]);
+  vi.spyOn(UseContainerWidth, 'useContainerWidth').mockReturnValue([
+    vi.fn(),
+    600,
+  ]);
 
   const { container } = renderComponent();
   expect(
@@ -353,9 +356,10 @@ it('should not show rowsPerPageLabel on narrow widths', () => {
 });
 
 it('should hide rowsPerPageLabel if null is passed', () => {
-  jest
-    .spyOn(UseContainerWidth, 'useContainerWidth')
-    .mockReturnValue([jest.fn(), 1200]);
+  vi.spyOn(UseContainerWidth, 'useContainerWidth').mockReturnValue([
+    vi.fn(),
+    1200,
+  ]);
 
   const { container } = renderComponent({
     localization: { rowsPerPageLabel: null },

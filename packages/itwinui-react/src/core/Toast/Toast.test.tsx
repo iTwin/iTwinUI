@@ -4,14 +4,14 @@
  *--------------------------------------------------------------------------------------------*/
 import { act, render, type RenderResult } from '@testing-library/react';
 import * as React from 'react';
-import Toast, { type ToastCategory } from './Toast.js';
+import { Toast, type ToastCategory } from './Toast.js';
 import {
   SvgInfoCircular,
   SvgStatusError,
   SvgStatusSuccess,
   SvgStatusWarning,
 } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 import { ToastProvider } from './Toaster.js';
 
 it('renders the category classes & icons correctly', () => {
@@ -76,7 +76,7 @@ it('renders the message correctly', () => {
 });
 
 it('renders a report message Link correctly', async () => {
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast
@@ -155,9 +155,9 @@ it('renders the close icon when hasCloseButton', () => {
 });
 
 it('should close temporary toast after 7s', () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
-  const mockedFn = jest.fn();
+  const mockedFn = vi.fn();
   const { container } = render(
     <ToastProvider>
       <Toast
@@ -173,17 +173,17 @@ it('should close temporary toast after 7s', () => {
   expect(container.querySelector('.iui-toast-all')).toBeTruthy();
 
   act(() => {
-    jest.advanceTimersByTime(7300);
+    vi.advanceTimersByTime(7300);
   });
 
   act(() => {
-    jest.runAllTimers();
+    vi.runAllTimers();
   });
 
   expect(mockedFn).toHaveBeenCalledTimes(1);
   expect(container.querySelector('.iui-toast-all')).toBeFalsy();
 
-  jest.useRealTimers();
+  vi.useRealTimers();
 });
 
 it('should pass content props correctly', () => {
@@ -203,8 +203,10 @@ it('should pass content props correctly', () => {
     </ToastProvider>,
   );
 
-  const toast = container.querySelector('.iui-toast.my-toast');
-  expect(toast).toHaveStyle({ color: 'blue' });
-  const content = container.querySelector('.iui-message.my-class');
-  expect(content).toHaveStyle({ color: 'red' });
+  const toast = container.querySelector('.iui-toast.my-toast') as HTMLElement;
+  expect(toast.style.color).toEqual('blue');
+  const content = container.querySelector(
+    '.iui-message.my-class',
+  ) as HTMLElement;
+  expect(content.style.color).toEqual('red');
 });

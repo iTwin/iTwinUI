@@ -14,7 +14,7 @@ const utilityComponents = await getCollection(
 );
 
 const NavLink = ({ slug = '', title = '', ...props }) => {
-  const url = `/docs/${slug}`;
+  const url = `/docs/${slug}`.replace(/\/$/g, ''); // removing trailing slash
   const isCurrent = currentPage === url;
 
   return html`<a href="${url}" aria-current=${isCurrent ? 'page' : 'false'} ...${props}>

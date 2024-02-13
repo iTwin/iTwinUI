@@ -59,7 +59,7 @@ export type NodeRenderProps<T> = Omit<NodeData<T>, 'subNodes'>;
 export type TreeProps<T> = {
   /**
    * Modify size of the tree.
-   * 
+   *
    * @default 'default'
    */
   size?: 'default' | 'small';
@@ -405,5 +405,3 @@ const VirtualizedTree = React.forwardRef(
     );
   },
 );
-
-export default Tree;

@@ -7,7 +7,7 @@ import { render } from '@testing-library/react';
 
 import { Header } from './Header.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(
@@ -105,7 +105,7 @@ it('renders avatar alone correctly', () => {
 });
 it('renders moreMenu alone correctly', async () => {
   // Summarized, as this is partly based on DropdownMenu, which is tested independently.
-  const itemOneOnClick = jest.fn();
+  const itemOneOnClick = vi.fn();
 
   const { container } = render(
     <Header

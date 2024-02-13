@@ -6,8 +6,8 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { Tabs, Tab } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
-import Button from '../Buttons/Button.js';
+import { userEvent } from '@testing-library/user-event';
+import { Button } from '../Buttons/Button.js';
 
 type TabsProps = React.ComponentProps<typeof Tabs.Wrapper>;
 type TabListProps = React.ComponentProps<typeof Tabs.TabList>;
@@ -165,7 +165,7 @@ it('should render green tabs', () => {
 });
 
 it('should call onValueChange when switching tabs', () => {
-  const onActivated = jest.fn();
+  const onActivated = vi.fn();
 
   const { container } = renderComponent(
     { onValueChange: onActivated },
@@ -255,7 +255,7 @@ it('should add .iui-large if tabs have sublabel', () => {
 it.each(['horizontal', 'vertical'] as const)(
   'should handle keypresses',
   async (orientation) => {
-    const mockonActivated = jest.fn();
+    const mockonActivated = vi.fn();
 
     const { container } = renderComponent(
       {
@@ -315,7 +315,7 @@ it.each(['horizontal', 'vertical'] as const)(
 );
 
 it('should handle keypresses when focusActivationMode is manual', async () => {
-  const mockonActivated = jest.fn();
+  const mockonActivated = vi.fn();
 
   const { container } = renderComponent(
     {

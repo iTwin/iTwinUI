@@ -11,7 +11,7 @@ import { Button } from '../Buttons/Button.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { SvgClose as SvgPlaceholder } from '../utils/index.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should render in its most basic state', () => {
   const { container } = render(
@@ -134,7 +134,7 @@ it('should render thumbnail correctly (svg)', () => {
 });
 
 it('should work with buttons correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   const { container, getByText } = render(
     <Tile.Wrapper>
@@ -169,7 +169,7 @@ it('should work with buttons correctly', () => {
 });
 
 it('should work with icons correctly', () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
 
   const { container } = render(
     <Tile.Wrapper>
@@ -207,7 +207,7 @@ it('should work with icons correctly', () => {
 });
 
 it('should render options dropdown correctly', async () => {
-  const onClickMock = jest.fn();
+  const onClickMock = vi.fn();
   const { container } = render(
     <Tile.Wrapper>
       <Tile.Name name='test-name' />

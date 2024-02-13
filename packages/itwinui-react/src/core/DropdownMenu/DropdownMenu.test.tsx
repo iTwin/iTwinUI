@@ -4,10 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
-import DropdownMenu, { type DropdownMenuProps } from './DropdownMenu.js';
+import { DropdownMenu, type DropdownMenuProps } from './DropdownMenu.js';
 import { Button } from '../Buttons/Button.js';
 import { MenuItem } from '../Menu/MenuItem.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 function assertBaseElement(menu: HTMLElement, role = 'menu') {
   expect(menu).toBeTruthy();

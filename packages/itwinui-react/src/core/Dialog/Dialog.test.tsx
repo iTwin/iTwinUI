@@ -6,10 +6,10 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 it('should pass down the props through DialogContext', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(
     <Dialog
       isOpen={true}
@@ -116,7 +116,7 @@ it.each(['top-left', 'top-right', 'bottom-left', 'bottom-right'] as const)(
 );
 
 it('should not allow to close the dialog when isDismissible false', async () => {
-  const onClose = jest.fn();
+  const onClose = vi.fn();
   const { container } = render(
     <Dialog isOpen={true} onClose={onClose} isDismissible={false}>
       <Dialog.Backdrop />

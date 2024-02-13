@@ -6,11 +6,11 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 
 import { Carousel } from './Carousel.js';
-import userEvent from '@testing-library/user-event';
+import { userEvent } from '@testing-library/user-event';
 
 const originalMatchMedia = window.matchMedia;
 beforeAll(() => {
-  window.matchMedia = jest.fn().mockReturnValue({ matches: false });
+  window.matchMedia = vi.fn().mockReturnValue({ matches: false });
 });
 afterAll(() => {
   window.matchMedia = originalMatchMedia;

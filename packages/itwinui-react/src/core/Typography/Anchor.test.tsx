@@ -38,14 +38,14 @@ it('should propagate misc props', () => {
   );
   const anchor = container.querySelector('a') as HTMLAnchorElement;
   expect(anchor).toHaveClass('test-class');
-  expect(anchor).toHaveStyle('color: rebeccapurple');
+  expect(anchor.style.color).toEqual('rebeccapurple');
   expect(anchor).toHaveTextContent('🏠');
   expect(anchor).toHaveAttribute('aria-label', 'Home');
 });
 
 it('should support polymorphic `as` prop', () => {
   const { container } = render(
-    <Anchor as='button' onClick={() => jest.fn()}>
+    <Anchor as='button' onClick={() => vi.fn()}>
       is it a link or button?
     </Anchor>,
   );

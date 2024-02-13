@@ -19,3 +19,7 @@ export const Default = () => {
 export const NoClose = () => {
   return <Tag>Cannot close me!</Tag>;
 };
+
+export const Clickable = () => {
+  return <Tag onClick={() => console.log('clicked!')}>Click me</Tag>;
+};

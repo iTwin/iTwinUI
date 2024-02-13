@@ -73,5 +73,3 @@ export const ColorPalette = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', ColorPaletteProps>;
-
-export default ColorPalette;

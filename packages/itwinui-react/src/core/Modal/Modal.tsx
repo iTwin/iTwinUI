@@ -3,7 +3,10 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import type {
+  PolymorphicForwardRefComponent,
+  PortalProps,
+} from '../utils/index.js';
 import { Dialog } from '../Dialog/Dialog.js';
 import type { DialogMainProps } from '../Dialog/DialogMain.js';
 
@@ -39,14 +42,27 @@ type ModalProps = {
    * If true, the dialog will be portaled into a <div> inside the nearest `ThemeProvider`.
    *
    * Can be set to an object with a `to` property to portal into a specific element.
+   * If `to`/`to()` === `null`/`undefined`, the default behavior will be used (i.e. as if `portal` is not passed).
    *
    * @default true
    */
-  portal?: boolean | { to: HTMLElement };
+  portal?: PortalProps['portal'];
   /**
    * Content of the modal.
    */
   children: React.ReactNode;
+  /**
+   * Props for customizing the title bar element.
+   */
+  titleBarProps?: React.ComponentPropsWithRef<'div'>;
+  /**
+   * Props for customizing the dialog-wrapper element.
+   */
+  wrapperProps?: React.ComponentPropsWithoutRef<'div'>;
+  /**
+   * Props for customizing the backdrop element.
+   */
+  backdropProps?: React.ComponentPropsWithRef<'div'>;
 } & Pick<DialogMainProps, 'isOpen' | 'styleType'>;
 
 /**
@@ -80,6 +96,9 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
     title,
     children,
     portal = true,
+    wrapperProps,
+    backdropProps,
+    titleBarProps,
     ...rest
   } = props;
 
@@ -95,14 +114,13 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
       setFocus
       ref={forwardedRef}
       portal={portal}
+      {...wrapperProps}
     >
-      <Dialog.Backdrop />
+      <Dialog.Backdrop {...backdropProps} />
       <Dialog.Main aria-modal {...rest}>
-        <Dialog.TitleBar titleText={title} />
+        <Dialog.TitleBar titleText={title} {...titleBarProps} />
         {children}
       </Dialog.Main>
     </Dialog>
   );
 }) as PolymorphicForwardRefComponent<'div', ModalProps>;
-
-export default Modal;

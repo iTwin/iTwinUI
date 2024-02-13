@@ -11,9 +11,11 @@ import { Icon } from '../Icon/Icon.js';
 type StatusMessageProps = {
   /**
    * Custom icon to be displayed at the beginning.
-   * It will default to the `status` icon, if it's set.
+   *
+   * - It will default to the `status` icon, if `status` is set.
+   * - If `startIcon` is set to `null`, no icon will be displayed, even if `status` is set.
    */
-  startIcon?: JSX.Element;
+  startIcon?: JSX.Element | null;
   /**
    * Message content.
    */
@@ -51,6 +53,9 @@ export const StatusMessage = React.forwardRef((props, ref) => {
 
   const icon = userStartIcon ?? (status && StatusIconMap[status]());
 
+  // If user passes null, we don't want to show the icon
+  const shouldShowIcon = userStartIcon !== null && !!icon;
+
   return (
     <Box
       className={cx('iui-status-message', className)}
@@ -58,7 +63,7 @@ export const StatusMessage = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {!!icon ? (
+      {shouldShowIcon ? (
         <Icon aria-hidden {...iconProps}>
           {icon}
         </Icon>
@@ -67,5 +72,3 @@ export const StatusMessage = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', StatusMessageProps>;
-
-export default StatusMessage;

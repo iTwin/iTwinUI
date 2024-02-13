@@ -16,5 +16,3 @@ import { polymorphic } from '../utils/index.js';
 export const InformationPanelWrapper = polymorphic.div(
   'iui-information-panel-wrapper',
 );
-
-export default InformationPanelWrapper;
