@@ -8,7 +8,7 @@ WORKDIR /workspace/iTwinUI
 
 RUN yarn install
 
-COPY package.json turbo.json ./
+COPY package.json ./
 
 CMD [ "yarn", "build"]
 
