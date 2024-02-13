@@ -48,8 +48,8 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    // padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
-    padding-inline: calc(var(--iui-size-xs) + 1px);
+    padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
+    // padding-inline: calc(var(--iui-size-xs) + 1px);
     // padding-inline: 0;
   }
 

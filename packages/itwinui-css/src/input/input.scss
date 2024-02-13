@@ -146,8 +146,8 @@
   grid-area: 1 / -1;
 
   justify-self: end;
-  margin-inline-end: calc(var(--iui-size-xs) + 1px);
-  // margin-inline-end: 16px;
+  // margin-inline-end: calc(var(--iui-size-xs) + 1px);
+  margin-inline-end: 16px;
   position: relative; // Needed to show it on top of the input
   pointer-events: none;
 
