@@ -30,7 +30,8 @@ $default-fill: var(--iui-color-icon-muted);
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
       --_iui-svg-padding-inline: #{map.get($icon-sizes, $size)};
       // --_iui-svg-padding-inline: #{map.get($icon-sizes, 's')};
-      // --_iui-svg-padding-inline: 9px;
+      // --_iui-svg-padding-inline: 8px;
+      --_iui-svg-padding-inline: var(--iui-size-xs);
     }
   }
 
