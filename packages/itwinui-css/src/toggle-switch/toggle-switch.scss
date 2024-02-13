@@ -106,19 +106,11 @@
     }
   }
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     border-color: var(--iui-color-border-foreground-hover);
     @media (forced-colors: active) {
       border-color: CanvasText;
     }
-
-    &::after {
-      background-color: var(--iui-color-icon-hover);
-    }
-  }
-
-  &:focus-visible {
-    border-color: var(--iui-color-border-foreground-hover);
 
     &::after {
       background-color: var(--iui-color-icon-hover);
