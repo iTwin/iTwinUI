@@ -16,8 +16,6 @@ $default-fill: var(--iui-color-icon-muted);
 .iui-svg-icon {
   display: inline-flex;
   flex-shrink: 0;
-  // color: red !important;
-  // visibility: hidden !important;
 
   svg {
     inline-size: var(--iui-svg-size, var(--_iui-svg-size, #{$default-size}));
@@ -28,10 +26,6 @@ $default-fill: var(--iui-color-icon-muted);
   @each $size in 's', 'm', 'l', 'auto' {
     &[data-iui-icon-size='#{$size}'] {
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
-      // --_iui-svg-padding-inline: #{map.get($icon-sizes, $size)};
-      // --_iui-svg-padding-inline: #{map.get($icon-sizes, 's')};
-      // --_iui-svg-padding-inline: 8px;
-      --_iui-svg-padding-inline: var(--iui-size-xs);
     }
   }
 
@@ -49,9 +43,7 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
-    // padding-inline: calc(var(--iui-size-xs) + 1px);
-    // padding-inline: 0;
+    padding-inline: var(--iui-size-xs);
   }
 
   // collapse padding between adjacent icons
