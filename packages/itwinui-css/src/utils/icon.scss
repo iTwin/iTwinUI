@@ -43,7 +43,7 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    padding-inline: var(--iui-size-xs);
+    padding-inline: var(--iui-size-xs) calc(var(--iui-size-xs) + 1px); // 1px to account for the right border thickness
   }
 
   // collapse padding between adjacent icons
