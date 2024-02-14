@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/universal:2
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV GENERATE_SOURCEMAP=false
 
 RUN apt-get update && apt-get install -y \
     xvfb \
