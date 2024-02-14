@@ -8,7 +8,7 @@ import { SvgRedirect } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div className='redirect-container'>
+    <div className='demo-container'>
       <NonIdealState
         svg={<SvgRedirect />}
         heading='Redirect'

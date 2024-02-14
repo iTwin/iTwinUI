@@ -32,7 +32,7 @@ export default () => {
         ]}
         data={[{ name: 'Row0' }, { name: 'Row1' }, { name: 'Row2' }]}
         emptyTableContent='No data.'
-        className='main-information-panel-table'
+        className='demo-table'
       />
 
       <InformationPanel

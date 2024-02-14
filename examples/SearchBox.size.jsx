@@ -7,7 +7,7 @@ import { SearchBox, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex className='size-search-box-flex' flexDirection='column'>
+    <Flex className='demo-container' flexDirection='column'>
       <SearchBox size='small' inputProps={{ placeholder: 'Small search...' }} />
       <SearchBox inputProps={{ placeholder: 'Default search...' }} />
       <SearchBox size='large' inputProps={{ placeholder: 'Large search...' }} />

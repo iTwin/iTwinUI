@@ -21,7 +21,7 @@ export default () => {
           </LinkAction>
         </Text>
       </Surface.Header>
-      <Surface.Body isPadded className='link-action-surface-body'>
+      <Surface.Body isPadded className='demo-surface-body'>
         National stadium in Singapore. Features landscape details and a metro
         station.
       </Surface.Body>

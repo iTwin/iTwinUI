@@ -30,7 +30,7 @@ export default () => {
           style={{
             fontWeight: isSelected ? 'bold' : undefined,
           }}
-          className='custom-combo-box-em'
+          className='demo-em'
         >
           {label}
         </em>

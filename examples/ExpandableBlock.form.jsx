@@ -57,7 +57,7 @@ export default () => {
   );
 
   return (
-    <div className='form-expandable-block-container'>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger label='Name' />
         <ExpandableBlock.Content>{nameSection}</ExpandableBlock.Content>

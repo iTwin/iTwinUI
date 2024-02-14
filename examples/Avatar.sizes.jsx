@@ -7,7 +7,7 @@ import { Avatar, getUserColor } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='sizes-avatar-container'>
+    <div className='demo-container'>
       <Avatar
         abbreviation='TR'
         backgroundColor={getUserColor('Terry Rivers')}

@@ -7,7 +7,7 @@ import { SearchBox, Flex } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex className='status-search-box-flex' flexDirection='column'>
+    <Flex className='demo-container' flexDirection='column'>
       <SearchBox
         status='positive'
         inputProps={{ placeholder: 'Positive search...' }}

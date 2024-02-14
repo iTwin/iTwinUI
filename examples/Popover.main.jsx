@@ -10,7 +10,7 @@ export default () => {
     <Popover
       content='This is a popover!'
       applyBackground
-      className='main-popover'
+      className='demo-popover'
     >
       <Button>Toggle</Button>
     </Popover>

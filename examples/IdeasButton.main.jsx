@@ -8,7 +8,7 @@ import { IdeasButton } from '@itwin/itwinui-react';
 export default () => {
   return (
     /** Creating a container only for demo purposes. Normally this will be fixed to viewport. */
-    <div className='ideas-button-container'>
+    <div className='demo-container'>
       <IdeasButton onClick={() => {}} />
     </div>
   );

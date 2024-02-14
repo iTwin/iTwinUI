@@ -8,7 +8,7 @@ import { SvgTimedOut } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div className='timeout-container'>
+    <div className='demo-container'>
       <NonIdealState
         svg={<SvgTimedOut />}
         heading='Time Out'

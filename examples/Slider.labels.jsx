@@ -14,7 +14,7 @@ export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid className='labels-slider-input-grid'>
+    <InputGrid className='demo-input-grid'>
       <Label id={labelId} as='div'>
         Choose a happiness level
       </Label>

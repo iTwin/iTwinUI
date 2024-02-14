@@ -9,7 +9,7 @@ export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid className='range-multiple-slider-input-grid'>
+    <InputGrid className='demo-input-grid'>
       <Label id={labelId} as='div'>
         Choose ranges
       </Label>

@@ -15,7 +15,7 @@ import {
 
 export default () => {
   return (
-    <Flex className='usage-button-group-container'>
+    <Flex className='demo-container'>
       <Button styleType='high-visibility' startIcon={<SvgAdd />}>
         New
       </Button>

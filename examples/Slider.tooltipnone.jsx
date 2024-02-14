@@ -27,7 +27,7 @@ export default () => {
   }, []);
 
   return (
-    <InputGrid className='tooltip-none-slider-input-grid'>
+    <InputGrid className='demo-input-grid'>
       <Label id={labelId} as='div'>
         Choose a start date
       </Label>
@@ -47,7 +47,7 @@ export default () => {
         onUpdate={updateValue}
         onChange={updateValue}
       />
-      <Text variant='body' className='tooltip-none-slider-text'>
+      <Text variant='body' className='demo-text'>
         {dateFormatter.format(currentValue.date)}
       </Text>
     </InputGrid>

@@ -20,18 +20,18 @@ export default () => {
   ];
 
   return (
-    <Carousel className='carousel'>
+    <Carousel className='demo-carousel'>
       <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
             <div
-              className='carousel-gradient'
+              className='demo-carousel-gradient'
               style={{
                 background: `linear-gradient(to right, ${from}, ${to})`,
               }}
             >
-              <div className='carousel-number'>{index + 1}</div>
+              <div className='demo-carousel-number'>{index + 1}</div>
             </div>
           </Carousel.Slide>
         ))}

@@ -1,4 +1,4 @@
-.extreme-truncation-breadcrumbs-container {
+.demo-container {
   inline-size: 75%;
   min-inline-size: 150px;
   max-inline-size: 425px;
@@ -6,6 +6,6 @@
   padding: 8px;
 }
 
-.extreme-truncation-breadcrumbs-item {
+.demo-breadcrumbs-item {
   max-width: 90px;
 }

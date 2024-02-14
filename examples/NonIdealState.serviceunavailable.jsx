@@ -8,7 +8,7 @@ import { Svg503 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div className='service-unavailable-container'>
+    <div className='demo-container'>
       <NonIdealState
         svg={<Svg503 />}
         heading='Service Unavailable'

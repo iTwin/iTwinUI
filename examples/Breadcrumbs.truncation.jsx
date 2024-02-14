@@ -7,7 +7,7 @@ import { Breadcrumbs } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='truncation-breadcrumbs-container'>
+    <div className='demo-container'>
       <Breadcrumbs>
         <Breadcrumbs.Item onClick={() => {}}>Root</Breadcrumbs.Item>
         <Breadcrumbs.Item onClick={() => {}}>My files</Breadcrumbs.Item>

@@ -77,7 +77,7 @@ export default () => {
 
   return (
     <>
-      <Flex flexDirection='column' gap='m' className='layout-stepper-flex'>
+      <Flex flexDirection='column' gap='m' className='demo-container'>
         <Flex as='h2'>Color survey</Flex>
         <Flex.Item alignSelf='stretch'>
           <Stepper
@@ -89,10 +89,7 @@ export default () => {
             }}
           />
         </Flex.Item>
-        <Flex.Item
-          alignSelf='flex-start'
-          className='layout-stepper-current-step'
-        >
+        <Flex.Item alignSelf='flex-start' className='demo-current-step'>
           {steps[currentStep]}
         </Flex.Item>
         <Flex>

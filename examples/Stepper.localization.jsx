@@ -24,7 +24,7 @@ export default () => {
   const [currentStep, setCurrentStep] = React.useState(2);
 
   return (
-    <Flex flexDirection='column' gap='m' className='localization-stepper-flex'>
+    <Flex flexDirection='column' gap='m' className='demo-container'>
       <Flex.Item alignSelf='stretch'>
         <Stepper
           currentStep={currentStep}

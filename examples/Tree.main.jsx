@@ -63,7 +63,7 @@ export default () => {
 
   return (
     <Tree
-      className='main-tree'
+      className='demo-tree'
       data={data}
       getNode={getNode}
       nodeRenderer={React.useCallback(

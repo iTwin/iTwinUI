@@ -7,7 +7,7 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='main-expandable-block-container'>
+    <div className='demo-container'>
       <ExpandableBlock title='Expandable Block'>
         Content in block!
       </ExpandableBlock>

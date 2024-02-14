@@ -12,15 +12,10 @@ import {
 
 export default () => {
   return (
-    <Flex className='custom-open-search-box-flex' justifyContent='center'>
+    <Flex className='demo-container' justifyContent='center'>
       <SearchBox>
         <SearchBox.Input placeholder='Basic search with custom interactions' />
-        <Text
-          isMuted
-          variant='body'
-          as='p'
-          className='custom-open-search-box-text'
-        >
+        <Text isMuted variant='body' as='p' className='demo-text'>
           0/3
         </Text>
         <Divider orientation='vertical' />

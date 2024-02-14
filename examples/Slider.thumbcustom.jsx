@@ -7,7 +7,7 @@ import { Slider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='thumb-custom-slider-container'>
+    <div className='demo-container'>
       <Slider
         values={[50]}
         min={0}
@@ -15,10 +15,8 @@ export default () => {
         thumbProps={() => {
           return {
             'aria-label': `Choose a value`,
-            className: 'thumb-custom-slider-thumb',
-            children: (
-              <span className='thumb-custom-slider-thumb-children'>|||</span>
-            ),
+            className: 'demo-thumb',
+            children: <span className='demo-thumb-children'>|||</span>,
           };
         }}
       />

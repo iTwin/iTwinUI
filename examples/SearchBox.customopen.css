@@ -1,8 +1,8 @@
-.custom-open-search-box-flex {
+.demo-container {
   width: 70%;
 }
 
-.custom-open-search-box-text {
+.demo-text {
   padding-right: var(--iui-size-s);
   align-self: center;
 }

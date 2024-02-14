@@ -10,7 +10,7 @@ export default () => {
     <TagContainer
       overflow='scroll'
       background='filled'
-      className='scroll-tag-container'
+      className='demo-container'
     >
       <Tag onRemove={() => {}}>Tag 1</Tag>
       <Tag onRemove={() => {}}>Tag 2</Tag>

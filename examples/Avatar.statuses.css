@@ -1,4 +1,4 @@
-.statuses-avatar-container {
+.demo-container {
   display: flex;
   gap: var(--iui-size-s);
   place-items: center;

@@ -7,7 +7,7 @@ import { Overlay } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Overlay content={'loading...'} className='main-overlay'>
+    <Overlay content={'loading...'} className='demo-overlay'>
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

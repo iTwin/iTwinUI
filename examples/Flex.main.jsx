@@ -16,5 +16,5 @@ export default () => {
 };
 
 const MyItem = ({ children = '' }) => (
-  <div className='flex-item-container'>{children}</div>
+  <div className='demo-item-container'>{children}</div>
 );

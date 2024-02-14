@@ -23,7 +23,7 @@ export default () => {
     });
 
   return (
-    <div className='overflow-button-group-container'>
+    <div className='demo-container'>
       <ButtonGroup
         overflowButton={(overflowStart) => (
           <DropdownMenu

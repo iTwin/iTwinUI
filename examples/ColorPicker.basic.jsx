@@ -76,7 +76,7 @@ export default () => {
       <Button
         startIcon={
           <ColorSwatch
-            classNme='basic-color-picker-color-swatch'
+            className='demo-color-swatch'
             color={activeColor.color}
           />
         }

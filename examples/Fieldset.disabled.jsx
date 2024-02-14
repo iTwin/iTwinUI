@@ -7,7 +7,7 @@ import { Fieldset, LabeledInput } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Fieldset legend='Disabled Fieldset' disabled className='disabled-fieldset'>
+    <Fieldset legend='Disabled Fieldset' disabled className='demo-fieldset'>
       <LabeledInput label='Full Name' placeholder='Enter full name' />
       <LabeledInput label='Address' placeholder='Enter address' />
     </Fieldset>

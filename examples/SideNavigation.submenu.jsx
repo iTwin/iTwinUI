@@ -52,7 +52,7 @@ export default () => {
   ));
 
   return (
-    <div className='submenu-side-navigation-container'>
+    <div className='demo-container'>
       <SideNavigation
         expanderPlacement='bottom'
         items={items.slice(0, 3)}
@@ -87,7 +87,7 @@ export default () => {
           </SidenavSubmenu>
         }
       />
-      <div className='submenu-side-navigation-item-label-container'>
+      <div className='demo-item-label'>
         <Text>{itemsData[activeItem]?.label} page</Text>
         <Text isMuted>
           {activeSubItem >= 0 && `Contents of Folder ${activeSubItem}`}

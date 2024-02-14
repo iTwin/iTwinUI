@@ -28,7 +28,7 @@ export default () => {
       <Flex
         flexDirection='column'
         alignItems='flex-start'
-        className='checkbox-visibility-indented-flex'
+        className='demo-indented-flex'
       >
         <Checkbox
           label='Option 1.1'

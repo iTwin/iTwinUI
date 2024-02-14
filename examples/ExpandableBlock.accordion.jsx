@@ -7,7 +7,7 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='accordion-expandable-block-container'>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger label='Block #1' />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>

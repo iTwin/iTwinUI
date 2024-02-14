@@ -11,13 +11,13 @@ export default () => {
   return (
     <Popover
       content={
-        <div className='placement-popover-content'>
+        <div className='demo-content'>
           <LabeledSelect
             label='Placement'
             options={placements.map((p) => ({ value: p, label: p }))}
             value={placement}
             onChange={setPlacement}
-            className='placement-popover-labeled-select'
+            className='demo-labeled-select'
           />
         </div>
       }

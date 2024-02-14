@@ -10,7 +10,7 @@ export default () => {
     <TagContainer
       overflow='truncate'
       background='filled'
-      className='truncate-tag-container'
+      className='demo-container'
     >
       <Tag onRemove={() => {}}>Tag 1</Tag>
       <Tag onRemove={() => {}}>Tag 2</Tag>

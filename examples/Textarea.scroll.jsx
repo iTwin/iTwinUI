@@ -16,7 +16,7 @@ export default () => {
       id='text-area'
       value={value}
       onChange={(event) => setValue(event.target.value)}
-      className='scroll-text-area'
+      className='demo-text-area'
     />
   );
 };

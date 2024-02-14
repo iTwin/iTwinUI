@@ -265,7 +265,7 @@ export default () => {
             startIcon: (
               <img
                 loading='lazy'
-                className='loading-combo-box-country-flag'
+                className='demo-flag'
                 src={`https://flagcdn.com/w20/${country.value.toLowerCase()}.png`}
                 srcSet={`https://flagcdn.com/w40/${country.value.toLowerCase()}.png 2x`}
                 alt=''

@@ -40,7 +40,7 @@ export default () => {
   );
 
   return (
-    <div className='folder-breadcrumbs-container'>
+    <div className='demo-container'>
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'

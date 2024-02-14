@@ -7,7 +7,7 @@ import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <RadioTileGroup className='color-radio-tile-group'>
+    <RadioTileGroup className='demo-radio-tile-group'>
       <RadioTile
         label='Google Maps'
         icon={

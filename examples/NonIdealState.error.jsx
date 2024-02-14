@@ -8,7 +8,7 @@ import { SvgError } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div className='error-container'>
+    <div className='demo-container'>
       <NonIdealState
         svg={<SvgError />}
         heading='Error'

@@ -1,9 +1,9 @@
-.submenu-side-navigation-container {
+.demo-container {
   display: flex;
   height: 100%;
 }
 
-.submenu-side-navigation-item-label-container {
+.demo-item-label {
   background: var(--iui-color-background-disabled);
   padding: 16px;
   flex-grow: 1;

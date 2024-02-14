@@ -71,10 +71,7 @@ export default () => {
             onClick={() => setIsOpen((open) => !open)}
             label='Show color picker'
           >
-            <ColorSwatch
-              color={selectedColor}
-              className='advanced-color-picker-color-swatch'
-            />
+            <ColorSwatch color={selectedColor} className='demo-color-swatch' />
           </IconButton>
         </Popover>
         <Button
@@ -85,7 +82,7 @@ export default () => {
           }}
           endIcon={<SvgSwap />}
         >
-          <div className='advanced-color-picker-color-label'>
+          <div className='demo-label'>
             {getDisplayString() ?? 'No color selected.'}
           </div>
         </Button>

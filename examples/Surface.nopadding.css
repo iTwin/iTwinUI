@@ -1,17 +1,17 @@
-.no-padding-surface-list-item {
+.demo-list-item {
   padding: var(--iui-size-s);
   position: relative;
 }
 
-.no-padding-surface-card {
+.demo-card {
   max-block-size: 300px;
 }
 
-.no-padding-surface-flex {
+.demo-container {
   flex: 1;
 }
 
-.no-padding-surface-list {
+.demo-list {
   width: 100%;
   list-style: none;
   margin: 0px;

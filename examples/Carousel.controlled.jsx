@@ -25,19 +25,19 @@ export default () => {
     <Carousel
       activeSlideIndex={currentIndex}
       onSlideChange={(index) => setCurrentIndex(index)}
-      className='controlled-carousel'
+      className='demo-carousel'
     >
       <Carousel.Navigation />
       <Carousel.Slider>
         {gradients.map(({ from, to }, index) => (
           <Carousel.Slide key={index}>
             <div
-              className='controlled-carousel-gradient'
+              className='demo-carousel-gradient'
               style={{
                 background: `linear-gradient(to right, ${from}, ${to})`,
               }}
             >
-              <div className='controlled-carousel-number'>{index + 1}</div>
+              <div className='demo-carousel-number'>{index + 1}</div>
             </div>
           </Carousel.Slide>
         ))}

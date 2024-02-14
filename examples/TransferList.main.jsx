@@ -44,7 +44,7 @@ export default () => {
   };
 
   return (
-    <TransferList className='main-transfer-list'>
+    <TransferList className='demo-transfer-list'>
       <TransferList.ListboxWrapper>
         <TransferList.ListboxLabel>Column A</TransferList.ListboxLabel>
         <TransferList.Listbox>

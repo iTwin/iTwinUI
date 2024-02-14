@@ -62,7 +62,7 @@ export default () => {
 
   return (
     <Tree
-      className='small-tree'
+      className='demo-tree'
       data={data}
       size='small'
       getNode={getNode}

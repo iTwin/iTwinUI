@@ -1,7 +1,7 @@
-.placement-popover-content {
+.demo-content {
   padding: var(--iui-size-xs);
 }
 
-.placement-popover-labeled-select {
+.demo-labeled-select {
   min-width: 20ch;
 }

@@ -11,7 +11,7 @@ export default () => {
       thumbProps={() => ({ 'aria-label': `Choose a value` })}
       values={[50]}
       orientation='vertical'
-      className='vertical-slider'
+      className='demo-slider'
     />
   );
 };

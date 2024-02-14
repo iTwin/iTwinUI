@@ -1,7 +1,7 @@
-.advanced-color-picker-color-swatch {
+.demo-color-swatch {
   pointer-events: none;
 }
 
-.advanced-color-picker-color-label {
+.demo-label {
   width: 200px;
 }

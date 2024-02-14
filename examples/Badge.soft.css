@@ -1,6 +1,6 @@
-.soft-badge-container {
+.demo-container {
   display: flex;
-  column-gap: 4;
+  column-gap: 4px;
   place-items: center;
   flex-wrap: wrap;
   justify-content: center;

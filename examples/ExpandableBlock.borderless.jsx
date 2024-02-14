@@ -7,7 +7,7 @@ import { ExpandableBlock } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='borderless-expandable-block-container'>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper styleType='borderless'>
         <ExpandableBlock.Trigger label='Borderless expandable block' />
         <ExpandableBlock.Content>Content in block!</ExpandableBlock.Content>

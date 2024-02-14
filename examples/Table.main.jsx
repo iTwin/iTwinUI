@@ -74,7 +74,7 @@ export default () => {
   }, []);
 
   return (
-    <div className='main-table-container'>
+    <div className='demo-container'>
       <Table
         columns={columns}
         emptyTableContent='No data.'

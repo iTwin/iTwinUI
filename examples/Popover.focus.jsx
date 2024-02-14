@@ -25,7 +25,7 @@ export default () => {
       aria-labelledby={headingId}
       visible={isOpen}
       onVisibleChange={setIsOpen}
-      className='focus-popover'
+      className='demo-popover'
       content={
         <Surface elevation={0} border={false}>
           <Surface.Header>

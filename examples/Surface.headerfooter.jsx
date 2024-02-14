@@ -10,10 +10,7 @@ export default () => {
   return (
     <Surface elevation={4}>
       <Surface.Header>
-        <Flex
-          justifyContent={'space-between'}
-          className='header-footer-surface-header-flex'
-        >
+        <Flex justifyContent={'space-between'} className='demo-container'>
           <Text variant='subheading' as='h2'>
             Custom surface
           </Text>

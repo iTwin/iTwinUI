@@ -7,7 +7,7 @@ import { Badge } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div className='soft-badge-container'>
+    <div className='demo-container'>
       <Badge backgroundColor='skyblue'>Skyblue</Badge>
       <Badge backgroundColor='celery'>Celery</Badge>
       <Badge backgroundColor='froly'>Froly</Badge>

@@ -13,7 +13,7 @@ import {
 export default () => {
   return (
     <Flex
-      className='custom-search-box-flex'
+      className='demo-container'
       justifyContent='center'
       flexDirection='column'
     >

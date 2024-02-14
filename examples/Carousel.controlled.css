@@ -1,14 +1,14 @@
-.controlled-carousel {
+.demo-carousel {
   max-width: 100%;
 }
 
-.controlled-carousel-gradient {
+.demo-carousel-gradient {
   height: 200px;
   display: grid;
   place-items: center;
 }
 
-.controlled-carousel-number {
+.demo-carousel-number {
   font-size: 48px;
   color: hsl(0deg 0% 100% / 0.7);
 }

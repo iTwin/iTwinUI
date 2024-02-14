@@ -1,8 +1,8 @@
-.thumb-custom-slider-container {
+.demo-container {
   width: min(100%, 300px);
 }
 
-.thumb-custom-slider-thumb {
+.demo-thumb {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,6 +14,6 @@
   transform: translateX(calc(var(--iui-size-xl) * 0.5 * -1));
 }
 
-.thumb-custom-slider-thumb-children {
+.demo-thumb-children {
   pointer-events: none;
 }

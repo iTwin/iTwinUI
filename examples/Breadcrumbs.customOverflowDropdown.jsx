@@ -21,7 +21,7 @@ export default () => {
     ));
 
   return (
-    <div className='overflow-breadcrumbs-container'>
+    <div className='demo-container'>
       <Breadcrumbs
         overflowButton={(visibleCount) => (
           <DropdownMenu
