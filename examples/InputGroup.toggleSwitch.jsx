@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { InputGroup, Surface, ToggleSwitch } from '@itwin/itwinui-react';
-import { SvgCheckmark } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [option1, setOption1] = React.useState(true);
@@ -17,7 +16,6 @@ export default () => {
           onChange={(event) => setOption1(event.target.checked)}
           checked={option1}
           label='Toggle feature No.1'
-          icon={<SvgCheckmark />}
         />
         <ToggleSwitch checked={true} disabled label='This you cannot change' />
         <ToggleSwitch

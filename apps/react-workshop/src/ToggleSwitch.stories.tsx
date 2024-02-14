@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { SvgCheckmark } from '@itwin/itwinui-icons-react';
+import { SvgLightbulb } from '@itwin/itwinui-icons-react';
 import React from 'react';
 import { ToggleSwitch } from '@itwin/itwinui-react';
 import type { StoryDefault } from '@ladle/react';
@@ -48,6 +48,6 @@ export const LabelLeft = () => {
   return <ToggleSwitch label='This is a left label' labelPosition='left' />;
 };
 
-export const WithIcon = () => {
-  return <ToggleSwitch defaultChecked icon={<SvgCheckmark />} />;
+export const WithCustomIcon = () => {
+  return <ToggleSwitch defaultChecked icon={<SvgLightbulb />} />;
 };
