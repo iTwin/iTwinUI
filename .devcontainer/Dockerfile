@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/devcontainers/universal:2
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y \
     xvfb \
     xsel \
