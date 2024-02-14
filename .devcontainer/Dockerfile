@@ -17,6 +17,3 @@ RUN apt-get update && apt-get install -y \
     xauth
 
 WORKDIR /workspace/iTwinUI
-
-RUN yarn install
-
