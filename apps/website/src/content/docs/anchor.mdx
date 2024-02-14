@@ -44,23 +44,18 @@ The `as` prop can also be used with `Link` components from different routers suc
 
 ### External links
 
-When linking to an external site, you can use the `isExternal` prop to indicate that the link will take the user to a different domain. This will add a standard icon to the end of the link text.
+A common question is whether to open external links in a new tab. The basic rule of thumb is to let the user decide, rather than deciding it for them. Opening links in new tabs by default is useful in very limited scenarios, such as when the user is filling out a form and you want to prevent data loss. For more details, refer to [this NNG article](https://www.nngroup.com/articles/new-browser-windows-and-tabs/).
+
+If you do ultimately decide based on your research that it is beneficial to open links in a new tab, then you can use the `target` prop in addition to the `isExternal` prop.
+
+- When `target="_blank"` is specified, iTwinUI will automatically add [visually-hidden](visuallyhidden) text to indicate that the link will open in a new tab. This ensures that screen-reader users are made aware of the link's behavior, and helps satisfy [WCAG SC 3.2.5](https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html).
+- The `isExternal` prop provides a visual indication that the link will open in a new tab, for sighted users.
 
 <LiveExample src='Anchor.external.jsx' truncate={false}>
   <AllExamples.AnchorExternalExample client:load />
 </LiveExample>
 
-A common question is whether to open external links in a new tab. The basic rule of thumb is to let the user decide, rather than deciding it for them. Opening links in new tabs by default is useful in very limited scenarios, such as when the user is filling out a form and you want to prevent data loss. For more details, refer to [this NNG article](https://www.nngroup.com/articles/new-browser-windows-and-tabs/).
-
-If you do ultimately decide to open links in a new tab, you can use the `target` prop, in addition to the `isExternal` prop.
-
-```jsx
-<Anchor href='https://example.com' isExternal target='_blank'>
-  Example
-</Anchor>
-```
-
-When `target="_blank"` is specified, iTwinUI will automatically add [visually-hidden](visuallyhidden) text to indicate that the link will open in a new tab. This ensures that screen-reader users are made aware of the link's behavior, and helps satisfy [WCAG SC 3.2.5](https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html).
+**Note**: Not all external links should open in a new tab. The `isExternal` prop is not necessary for external links that open in the same tab.
 
 ## Props
 

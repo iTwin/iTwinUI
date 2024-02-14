@@ -7,7 +7,7 @@ import { Anchor } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Anchor href='https://www.example.com/' isExternal>
+    <Anchor href='https://www.example.com/' isExternal target='_blank'>
       Example Site
     </Anchor>
   );

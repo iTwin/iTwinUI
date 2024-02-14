@@ -13,7 +13,10 @@ type AnchorProps = {
   /**
    * Whether the anchor links to an external site.
    *
-   * When true, there will be an icon added at the end of the anchor text.
+   * When true, there will be an icon added at the end of the anchor text. This is useful
+   * to indicate that the link will open in a new tab.
+   *
+   * Not all external links should open in a new tab, so this prop should be used with caution.
    */
   isExternal?: boolean;
 };
