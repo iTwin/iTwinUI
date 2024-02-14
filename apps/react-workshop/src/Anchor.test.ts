@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 describe('Anchor', () => {
   const storyPath = 'Anchor';
-  const tests = ['Basic', 'As Button'];
+  const tests = ['Basic', 'As Button', 'External'];
 
   tests.forEach((testName) => {
     it(testName, function () {

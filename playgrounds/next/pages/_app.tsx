@@ -25,5 +25,6 @@ const styles = css.global`
     padding-inline: 1rem;
     padding-block: 2rem;
     block-size: 100dvh;
+    overflow: auto;
   }
 `;
