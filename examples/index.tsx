@@ -86,6 +86,10 @@ import { default as AnchorAsButtonExampleRaw } from './Anchor.asbutton';
 const AnchorAsButtonExample = withThemeProvider(AnchorAsButtonExampleRaw);
 export { AnchorAsButtonExample };
 
+import { default as AnchorExternalExampleRaw } from './Anchor.external';
+const AnchorExternalExample = withThemeProvider(AnchorExternalExampleRaw);
+export { AnchorExternalExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as BadgeMainExampleRaw } from './Badge.main';
