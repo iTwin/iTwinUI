@@ -23,7 +23,7 @@ export const AsButton = () => {
 
 export const External = () => {
   return (
-    <Anchor href='https://www.example.com/' isExternal>
+    <Anchor href='https://www.example.com/' isExternal target='_blank'>
       www.example.com
     </Anchor>
   );
