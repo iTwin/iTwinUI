@@ -6,7 +6,6 @@
 @import '@fontsource/noto-sans/600.css' layer(thirdparty);
 @import '@fontsource/noto-sans/300.css' layer(thirdparty);
 @import '@fontsource/noto-sans/800.css' layer(thirdparty);
-@import '@itwin/itwinui-react/styles.css' layer(thirdparty);
 @import '@itwin/itwinui-variables' layer(thirdparty);
 
 @mixin themeVar($name, $dark, $light: null) {
