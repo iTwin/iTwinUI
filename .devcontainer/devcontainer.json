@@ -13,5 +13,5 @@
     ]
   }
 },
-  "postCreateCommand": "yarn install && yarn build && yarn add xvfb -W"
+  "postCreateCommand": "yarn install && yarn build"
 }
