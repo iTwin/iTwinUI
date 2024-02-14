@@ -14,6 +14,7 @@ const withThemeProvider = (Component: () => React.ReactElement) => () => {
       theme='dark'
       themeOptions={{ applyBackground: false }}
       portalContainer={portalContainer}
+      style={{ display: 'contents' }}
     >
       <Component />
     </ThemeProvider>
