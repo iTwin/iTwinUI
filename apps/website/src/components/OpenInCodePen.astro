@@ -2,8 +2,8 @@
 import outdent from 'outdent';
 import VisuallyHidden from './utils/VisuallyHidden.astro';
 
-type Props = { code: string; exampleStyle: string } & astroHTML.JSX.HTMLAttributes;
-const { code = 'export default () => "hello"', exampleStyle = '', ...rest } = Astro.props;
+type Props = { code: string } & astroHTML.JSX.HTMLAttributes;
+const { code = 'export default () => "hello"', ...rest } = Astro.props;
 
 const css = outdent`
   @layer reset, itwinui;
@@ -12,8 +12,6 @@ const css = outdent`
     height: 100dvh;
     padding: 1rem;
   }
-
-  ${exampleStyle}
 
   @layer reset {
     * {
@@ -45,8 +43,7 @@ const js = outdent`
     `https://esm.sh/@itwin/itwinui-illustrations-react@2`,
   )
   .replaceAll(`'react'`, `'https://esm.sh/react@18'`)
-  .replaceAll(`react-dom`, `https://esm.sh/react-dom@18`)
-  .replace(/import.*css';/, ``);
+  .replaceAll(`react-dom`, `https://esm.sh/react-dom@18`);
 ---
 
 <form
