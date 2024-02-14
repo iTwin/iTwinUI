@@ -16,13 +16,13 @@ The anchor's `href` attribute is the destination URL while the text within the a
 
 ## Usage
 
-The `Anchor` component is a styled wrapper over the native `<a>` element, and it can be used in the same way as the native element.
+The `Anchor` component is a styled wrapper over the [native `<a>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a), and it can be used in the same way.
 
 ```jsx
 <Anchor href='https://example.com'>Example</Anchor>
 ```
 
-Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it. Named anchors are created by adding an `id` attribute to an element, and then linking to that element using the `href` attribute.
+Consider using a named anchor when you want the user to land not only on a specific page, but also to arrive at a content area that may be below the fold so the user does not have to scroll to discover it. This can be achieved using [fragment links](https://developer.mozilla.org/en-US/docs/Web/Text_fragments).
 
 ```jsx
 <Anchor href='#section1'>Section 1</Anchor>
