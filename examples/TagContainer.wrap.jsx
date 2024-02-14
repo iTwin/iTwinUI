@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { TagContainer, Tag } from '@itwin/itwinui-react';
-import './TagContainer.wrap.css';
 
 export default () => {
   return (

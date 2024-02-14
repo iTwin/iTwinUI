@@ -1,9 +1,9 @@
-.sticky-alert-container {
+.demo-container {
   height: 150px;
   overflow: auto;
   border: solid 0.5px;
 }
 
-.sticky-alert-text {
+.demo-text {
   padding: 8px;
 }

@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ExpandableBlock } from '@itwin/itwinui-react';
-import './ExpandableBlock.main.css';
 
 export default () => {
   return (

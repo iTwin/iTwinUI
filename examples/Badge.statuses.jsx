@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Badge } from '@itwin/itwinui-react';
-import './Badge.statuses.css';
 
 export default () => {
   return (

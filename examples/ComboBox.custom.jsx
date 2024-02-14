@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ComboBox, MenuItem } from '@itwin/itwinui-react';
-import './ComboBox.custom.css';
 
 export default () => {
   const options = React.useMemo(

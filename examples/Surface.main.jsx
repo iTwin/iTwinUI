@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Surface } from '@itwin/itwinui-react';
-import './Surface.main.css';
 
 export default () => {
   return (

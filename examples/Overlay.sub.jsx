@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Overlay, ProgressLinear } from '@itwin/itwinui-react';
-import './Overlay.sub.css';
 
 export default () => {
   return (

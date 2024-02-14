@@ -9,7 +9,6 @@ import {
   getUserColor,
   Tooltip,
 } from '@itwin/itwinui-react';
-import './Avatar.groupoverflowtooltip.css';
 
 export default () => {
   const userNames = [

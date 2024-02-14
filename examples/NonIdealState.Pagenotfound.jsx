@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg404 } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.Pagenotfound.css';
 
 export default () => {
   return (

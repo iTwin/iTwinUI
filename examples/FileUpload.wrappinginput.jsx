@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { FileUpload, LabeledInput } from '@itwin/itwinui-react';
-import './FileUpload.wrappinginput.css';
 
 export default () => {
   const [files, setFiles] = React.useState([]);

@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { InputGroup, Surface, ToggleSwitch } from '@itwin/itwinui-react';
 import { SvgCheckmark } from '@itwin/itwinui-icons-react';
-import './InputGroup.toggleSwitch.css';
 
 export default () => {
   const [option1, setOption1] = React.useState(true);

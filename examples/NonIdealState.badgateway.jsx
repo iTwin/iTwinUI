@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg502 } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.badgateway.css';
 
 export default () => {
   return (

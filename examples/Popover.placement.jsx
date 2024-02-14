@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, LabeledSelect, Popover } from '@itwin/itwinui-react';
-import './Popover.placement.css';
 
 export default () => {
   const [placement, setPlacement] = React.useState('bottom-start');

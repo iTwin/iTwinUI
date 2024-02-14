@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Overlay } from '@itwin/itwinui-react';
-import './Overlay.main.css';
 
 export default () => {
   return (

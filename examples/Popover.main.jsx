@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Popover } from '@itwin/itwinui-react';
-import './Popover.main.css';
 
 export default () => {
   return (

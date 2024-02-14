@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { SvgRedirect } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.redirect.css';
 
 export default () => {
   return (

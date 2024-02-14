@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { Tree, TreeNode } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
-import './Tree.small.css';
 
 export default () => {
   const [expandedNodes, setExpandedNodes] = React.useState({

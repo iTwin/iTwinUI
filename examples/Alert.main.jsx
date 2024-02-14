@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Alert } from '@itwin/itwinui-react';
-import './Alert.main.css';
 
 export default () => {
   return (
-    <Alert.Wrapper className='main-alert-wrapper'>
+    <Alert.Wrapper className='demo-alert-wrapper'>
       <Alert.Icon />
       <Alert.Message>
         This is an alert

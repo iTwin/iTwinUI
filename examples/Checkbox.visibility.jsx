@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Checkbox, Flex } from '@itwin/itwinui-react';
-import './Checkbox.visibility.css';
 
 export default () => {
   const [option1, setOption1] = React.useState(false);

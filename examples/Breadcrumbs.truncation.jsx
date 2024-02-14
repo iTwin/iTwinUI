@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Breadcrumbs } from '@itwin/itwinui-react';
-import './Breadcrumbs.truncation.css';
 
 export default () => {
   return (

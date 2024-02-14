@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { SvgError } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.error.css';
 
 export default () => {
   return (

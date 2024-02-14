@@ -18,7 +18,6 @@ import {
   SvgFolderOpened,
   SvgSettings,
 } from '@itwin/itwinui-icons-react';
-import './SideNavigation.submenu.css';
 
 export default () => {
   const itemsData = [

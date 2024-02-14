@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { DatePicker, IconButton } from '@itwin/itwinui-react';
 import { SvgCalendar } from '@itwin/itwinui-icons-react';
-import './DatePicker.menu.css';
 
 export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());

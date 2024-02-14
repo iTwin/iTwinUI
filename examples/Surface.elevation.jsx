@@ -5,7 +5,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Surface, Flex } from '@itwin/itwinui-react';
-import './Surface.elevation.css';
 
 export default () => {
   return (

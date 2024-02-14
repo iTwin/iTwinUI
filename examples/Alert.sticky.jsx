@@ -4,11 +4,10 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Alert, Text } from '@itwin/itwinui-react';
-import './Alert.sticky.css';
 
 export default () => {
   return (
-    <div className='sticky-alert-container'>
+    <div className='demo-container'>
       <Alert.Wrapper isSticky>
         <Alert.Icon />
         <Alert.Message>
@@ -19,7 +18,7 @@ export default () => {
         </Alert.Message>
         <Alert.CloseButton onClick={() => console.log('CLOSED')} />
       </Alert.Wrapper>
-      <Text className='sticky-alert-text'>
+      <Text className='demo-text'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

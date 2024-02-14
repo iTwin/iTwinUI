@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg503 } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.serviceunavailable.css';
 
 export default () => {
   return (

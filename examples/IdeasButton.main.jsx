@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { IdeasButton } from '@itwin/itwinui-react';
-import './IdeasButton.main.css';
 
 export default () => {
   return (

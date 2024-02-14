@@ -9,7 +9,6 @@ import {
   SvgCaretDownSmall,
   SvgAirplane,
 } from '@itwin/itwinui-icons-react';
-import './SearchBox.custom.css';
 
 export default () => {
   return (

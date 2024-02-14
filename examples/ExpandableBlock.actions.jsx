@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { ExpandableBlock, IconButton } from '@itwin/itwinui-react';
 import { SvgMoreVertical } from '@itwin/itwinui-icons-react';
-import './ExpandableBlock.actions.css';
 
 export default () => {
   return (

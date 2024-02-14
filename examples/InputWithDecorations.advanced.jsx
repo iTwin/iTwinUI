@@ -14,7 +14,6 @@ import {
   SvgCaretDownSmall,
   SvgSearch,
 } from '@itwin/itwinui-icons-react';
-import './InputWithDecorations.advanced.css';
 
 export default () => {
   return (

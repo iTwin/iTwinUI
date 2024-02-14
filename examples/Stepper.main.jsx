@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
-import './Stepper.main.css';
 
 const steps = [
   { name: 'First Step' },

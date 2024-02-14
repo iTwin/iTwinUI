@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Flex } from '@itwin/itwinui-react';
-import './Flex.main.css';
 
 export default () => {
   return (

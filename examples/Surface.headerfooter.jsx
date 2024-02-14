@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { Flex, Surface, Text, IconButton } from '@itwin/itwinui-react';
 import { SvgSettings } from '@itwin/itwinui-icons-react';
-import './Surface.headerfooter.css';
 
 export default () => {
   return (

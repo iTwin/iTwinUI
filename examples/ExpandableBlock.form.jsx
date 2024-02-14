@@ -11,7 +11,6 @@ import {
   Radio,
   InputGrid,
 } from '@itwin/itwinui-react';
-import './ExpandableBlock.form.css';
 
 export default () => {
   const nameSection = (

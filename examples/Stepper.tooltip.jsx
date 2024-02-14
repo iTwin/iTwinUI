@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Button, Flex, Stepper } from '@itwin/itwinui-react';
-import './Stepper.tooltip.css';
 
 const steps = [
   { name: 'Completed step', description: 'Completed tooltip' },

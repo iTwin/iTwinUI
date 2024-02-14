@@ -11,7 +11,6 @@ import {
   Button,
   Popover,
 } from '@itwin/itwinui-react';
-import './ColorPicker.basic.css';
 
 export default () => {
   const ColorsList = [

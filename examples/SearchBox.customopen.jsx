@@ -9,7 +9,6 @@ import {
   SvgCaretDownSmall,
   SvgCloseSmall,
 } from '@itwin/itwinui-icons-react';
-import './SearchBox.customopen.css';
 
 export default () => {
   return (

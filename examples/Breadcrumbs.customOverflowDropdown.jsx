@@ -10,7 +10,6 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgMore } from '@itwin/itwinui-icons-react';
-import './Breadcrumbs.customOverflowDropdown.css';
 
 export default () => {
   const items = Array(10)

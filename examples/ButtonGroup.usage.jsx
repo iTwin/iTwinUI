@@ -12,7 +12,6 @@ import {
   SvgSearch,
   SvgFilter,
 } from '@itwin/itwinui-icons-react';
-import './ButtonGroup.usage.css';
 
 export default () => {
   return (

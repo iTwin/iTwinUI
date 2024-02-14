@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { LabeledTextarea } from '@itwin/itwinui-react';
-import './Textarea.scroll.css';
 
 export default () => {
   const [value, setValue] = React.useState(

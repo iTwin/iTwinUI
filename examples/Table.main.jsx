@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Table, DefaultCell } from '@itwin/itwinui-react';
-import './Table.main.css';
 
 export default () => {
   const generateItem = React.useCallback((index, parentRow = '', depth = 0) => {

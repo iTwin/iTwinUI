@@ -18,7 +18,6 @@ import {
   IconButton,
 } from '@itwin/itwinui-react';
 import { SvgWindowPopout } from '@itwin/itwinui-icons-react';
-import './InformationPanel.horizontal.css';
 
 export default () => {
   const [openRowIndex, setOpenRowIndex] = React.useState(-1);

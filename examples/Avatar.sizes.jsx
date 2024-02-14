@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Avatar, getUserColor } from '@itwin/itwinui-react';
-import './Avatar.sizes.css';
 
 export default () => {
   return (

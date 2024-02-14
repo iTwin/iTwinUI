@@ -13,7 +13,6 @@ import {
   Text,
 } from '@itwin/itwinui-react';
 import { SvgSettings } from '@itwin/itwinui-icons-react';
-import './Popover.focus.css';
 
 export default () => {
   const headingId = `${React.useId()}-label`;

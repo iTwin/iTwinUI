@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Breadcrumbs, MiddleTextTruncation } from '@itwin/itwinui-react';
-import './Breadcrumbs.extremeTruncation.css';
 
 export default () => {
   return (

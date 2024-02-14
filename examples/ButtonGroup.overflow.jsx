@@ -10,7 +10,6 @@ import {
   MenuItem,
 } from '@itwin/itwinui-react';
 import { SvgMore, SvgPlaceholder } from '@itwin/itwinui-icons-react';
-import './ButtonGroup.overflow.css';
 
 export default () => {
   const buttons = Array(12)

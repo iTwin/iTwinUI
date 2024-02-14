@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider } from '@itwin/itwinui-react';
-import './Slider.vertical.css';
 
 export default () => {
   return (

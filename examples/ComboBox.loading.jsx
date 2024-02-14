@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ComboBox, MenuItemSkeleton } from '@itwin/itwinui-react';
-import './ComboBox.loading.css';
 
 export default () => {
   const countriesList = React.useMemo(

@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { Footer, defaultFooterElements } from '@itwin/itwinui-react';
 import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
-import './Footer.customcontent.css';
 
 export default () => {
   const customItem = (

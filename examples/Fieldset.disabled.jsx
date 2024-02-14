@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Fieldset, LabeledInput } from '@itwin/itwinui-react';
-import './Fieldset.disabled.css';
 
 export default () => {
   return (

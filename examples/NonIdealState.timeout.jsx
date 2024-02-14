@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { SvgTimedOut } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.timeout.css';
 
 export default () => {
   return (

@@ -9,7 +9,6 @@ import {
   ModalContent,
   ModalButtonBar,
 } from '@itwin/itwinui-react';
-import './Dialog.modal.css';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);

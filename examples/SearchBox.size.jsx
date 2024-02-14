@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { SearchBox, Flex } from '@itwin/itwinui-react';
-import './SearchBox.size.css';
 
 export default () => {
   return (

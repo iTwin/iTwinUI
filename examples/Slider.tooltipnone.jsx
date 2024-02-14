@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Slider, Text, Label, InputGrid } from '@itwin/itwinui-react';
-import './Slider.tooltipnone.css';
 
 export default () => {
   const labelId = React.useId();

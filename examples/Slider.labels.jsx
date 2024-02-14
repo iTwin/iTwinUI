@@ -9,7 +9,6 @@ import {
   SvgSmileyHappyVery,
   SvgSmileySadVery,
 } from '@itwin/itwinui-icons-react';
-import './Slider.labels.css';
 
 export default () => {
   const labelId = React.useId();

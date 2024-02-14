@@ -10,7 +10,6 @@ import {
   Surface,
   Text,
 } from '@itwin/itwinui-react';
-import './LinkAction.main.css';
 
 export default () => {
   return (

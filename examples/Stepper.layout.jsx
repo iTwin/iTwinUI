@@ -13,7 +13,6 @@ import {
   InputGrid,
   Radio,
 } from '@itwin/itwinui-react';
-import './Stepper.layout.css';
 
 const stepLabels = [
   { name: 'User Info' },

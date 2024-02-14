@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { ProgressLinear } from '@itwin/itwinui-react';
-import './ProgressLinear.main.css';
 
 export default () => {
   return (

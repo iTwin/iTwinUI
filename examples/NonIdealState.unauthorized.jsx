@@ -5,7 +5,6 @@
 import * as React from 'react';
 import { NonIdealState } from '@itwin/itwinui-react';
 import { Svg401 } from '@itwin/itwinui-illustrations-react';
-import './NonIdealState.unauthorized.css';
 
 export default () => {
   return (

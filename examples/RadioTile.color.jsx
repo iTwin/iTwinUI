@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
-import './RadioTile.color.css';
 
 export default () => {
   return (

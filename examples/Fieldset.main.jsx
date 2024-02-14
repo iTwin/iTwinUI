@@ -9,7 +9,6 @@ import {
   Radio,
   ToggleSwitch,
 } from '@itwin/itwinui-react';
-import './Fieldset.main.css';
 
 export default () => {
   return (

@@ -15,7 +15,6 @@ import {
 } from '@itwin/itwinui-react';
 import { Popover } from '@itwin/itwinui-react';
 import { SvgSwap } from '@itwin/itwinui-icons-react';
-import './ColorPicker.advancedPopover.css';
 
 export default () => {
   const [isOpen, setIsOpen] = React.useState(false);

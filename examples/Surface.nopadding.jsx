@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Surface, Text, Flex, Anchor, Divider } from '@itwin/itwinui-react';
-import './Surface.nopadding.css';
 
 export default () => {
   return (

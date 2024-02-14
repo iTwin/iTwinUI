@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { Carousel } from '@itwin/itwinui-react';
-import './Carousel.controlled.css';
 
 export default () => {
   const gradients = [

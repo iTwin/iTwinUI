@@ -10,7 +10,6 @@ import {
   Input,
 } from '@itwin/itwinui-react';
 import { SvgFolder } from '@itwin/itwinui-icons-react';
-import './Breadcrumbs.folder.css';
 
 export default () => {
   const items = React.useMemo(
