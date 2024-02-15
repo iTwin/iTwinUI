@@ -2,7 +2,9 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 @mixin iui-text-skeleton {
-  display: inline-block;
+  &.iui-text-block {
+    display: inline-block;
+  }
   user-select: none;
   color: transparent;
   border-radius: var(--iui-border-radius-1);
@@ -16,6 +18,8 @@
     var(--iui-color-icon-muted)
   );
   background-size: 200% 100%;
+  min-block-size: 1em;
+  min-block-size: 1lh;
 
   @media (forced-colors: active) {
     forced-color-adjust: none;
