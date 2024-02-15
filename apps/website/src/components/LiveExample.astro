@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import OpenInCodePen from './OpenInCodePen.astro';
 import { Code } from 'astro/components';
 import { createRequire } from 'node:module';
+import itwinuiStyles from '@itwin/itwinui-react/styles.css?url';
+
 const require = createRequire(import.meta.url);
 
 export type Props = {
@@ -18,22 +20,50 @@ export type Props = {
 
 const { src, truncate = true } = Astro.props;
 
-const codePath = require.resolve(`examples/${src}`);
-let code = await fs.promises.readFile(codePath, 'utf8');
+const jsxPath = require.resolve(`examples/${src}`);
+const cssPath = jsxPath.replace(/\.jsx$/, '.css');
+
+let jsxCode = await fs.promises.readFile(jsxPath, 'utf8');
 
 // strip copyright header (first 4 lines)
-if (code.includes('Copyright (c) Bentley Systems')) {
-  code = code.split('\n').slice(4).join('\n');
+if (jsxCode.includes('Copyright (c) Bentley Systems')) {
+  jsxCode = jsxCode.split('\n').slice(4).join('\n');
 }
+
+const cssCode = await (async () => {
+  try {
+    return await fs.promises.readFile(cssPath, 'utf8');
+  } catch {
+    return '';
+  }
+})();
 ---
 
-<div class='demo-box'>
-  <slot />
-  <OpenInCodePen class='sandbox-link' code={code} />
-</div>
+<demo-box>
+  <template shadowrootmode='open'>
+    <style is:inline>
+      astro-island {
+        display: contents;
+      }
+    </style>
+    <style set:html={cssCode}></style>
+    <link rel='stylesheet' href={itwinuiStyles} />
+    <slot />
+    <slot is:inline />
+  </template>
+
+  <OpenInCodePen
+    class='sandbox-link'
+    code={{
+      js: jsxCode,
+      css: cssCode,
+    }}
+  />
+</demo-box>
+
 <demo-code>
   {truncate && <button aria-expanded='false'>Toggle full code</button>}
-  <Code code={code} lang='tsx' theme={'github-dark'} />
+  <Code code={jsxCode} lang='tsx' theme={'github-dark'} />
 </demo-code>
 
 <script>
@@ -52,45 +82,35 @@ if (code.includes('Copyright (c) Bentley Systems')) {
       }
     },
   );
+
+  customElements.define(
+    'demo-box',
+    class extends HTMLElement {
+      connectedCallback() {
+        // firefox fallback
+        if (!this.shadowRoot) {
+          const template = this.querySelector('template');
+          if (!template) return;
+          this.attachShadow({ mode: 'open' }).appendChild(template.content);
+          template.remove();
+        }
+      }
+    },
+  );
 </script>
 
 <style lang='scss'>
-  // revert all website styles from the demo
-  .demo-box > :global(:first-child *) {
-    @layer globals {
-      all: revert-layer;
-    }
-    @layer layouts {
-      all: revert-layer;
-    }
-    @layer components {
-      all: revert-layer;
-    }
-    @layer pages {
-      all: revert-layer;
-    }
-  }
   @layer components {
-    .demo-box {
+    demo-box {
       position: relative;
       min-height: 300px;
       max-height: 500px;
       display: grid;
-      justify-items: center;
+      place-items: center;
       padding: 1rem;
       isolation: isolate;
       border-radius: var(--border-radius-1);
       outline: 1px solid var(--color-line-2);
-    }
-
-    .demo-box :global([data-iui-theme]) {
-      height: 100%;
-      width: 100%;
-      overflow: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
     }
 
     .sandbox-link {
