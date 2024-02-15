@@ -44,7 +44,7 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {['div', 'span'].includes(asProp) && ( // ShadowRoot is not supported on all elements
+      {['div', 'span', 'p'].includes(asProp) && ( // ShadowRoot is not supported on all elements
         <ShadowRoot css={css}>
           <slot />
         </ShadowRoot>

@@ -4,8 +4,9 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { Box, getBoundedValue } from '../utils/index.js';
+import { Box, ShadowRoot, getBoundedValue } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 type ProgressLinearProps = {
   /**
@@ -88,6 +89,11 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
       }
       {...rest}
     >
+      <ShadowRoot>
+        <VisuallyHidden>Loading.</VisuallyHidden>
+        <slot />
+      </ShadowRoot>
+
       {labels.length > 0 && (
         <Box
           as='div'
