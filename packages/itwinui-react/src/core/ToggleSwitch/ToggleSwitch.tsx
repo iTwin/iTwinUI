@@ -4,7 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import cx from 'classnames';
-import { useMergedRefs, Box } from '../utils/index.js';
+import { Box, SvgCheckmark } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 
 type ToggleSwitchProps = {
@@ -25,9 +25,11 @@ type ToggleSwitchProps = {
        */
       size?: 'default';
       /**
-       * Icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+       * Custom icon inside the toggle switch. Shown only when toggle is checked and size is not small.
+       *
+       * Will override the default checkmark icon.
        */
-      icon?: JSX.Element;
+      icon?: JSX.Element | null;
     }
   | {
       size: 'small';
@@ -54,12 +56,6 @@ type ToggleSwitchProps = {
  * <ToggleSwitch label='With icon toggle' icon={<svg viewBox='0 0 16 16'><path d='M1 1v14h14V1H1zm13 1.7v10.6L8.7 8 14 2.7zM8 7.3L2.7 2h10.6L8 7.3zm-.7.7L2 13.3V2.7L7.3 8zm.7.7l5.3 5.3H2.7L8 8.7z' /></svg>} />
  */
 export const ToggleSwitch = React.forwardRef((props, ref) => {
-  let icon: JSX.Element | undefined;
-  if (props.size !== 'small') {
-    icon = props.icon;
-    props = { ...props };
-    delete props.icon;
-  }
   const {
     disabled = false,
     labelPosition = 'right',
@@ -67,11 +63,13 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
     className,
     style,
     size = 'default',
+    icon: iconProp,
     ...rest
   } = props;
 
-  const inputElementRef = React.useRef<HTMLInputElement>(null);
-  const refs = useMergedRefs<HTMLInputElement>(inputElementRef, ref);
+  // Disallow custom icon for small size, but keep the default checkmark when prop is not passed.
+  const shouldShowIcon =
+    iconProp === undefined || (iconProp !== null && size !== 'small');
 
   return (
     <Box
@@ -94,12 +92,12 @@ export const ToggleSwitch = React.forwardRef((props, ref) => {
         type='checkbox'
         role='switch'
         disabled={disabled}
-        ref={refs}
+        ref={ref}
         {...rest}
       />
-      {icon && size !== 'small' && (
+      {shouldShowIcon && (
         <Box as='span' className='iui-toggle-switch-icon' aria-hidden>
-          {icon}
+          {iconProp || <SvgCheckmark />}
         </Box>
       )}
       {label && (
