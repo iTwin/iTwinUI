@@ -8,8 +8,6 @@ import { Box, ShadowRoot } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
-// ----------------------------------------------------------------------------
-
 /**
  * A placeholder to be displayed while the content is loading.
  */
@@ -25,11 +23,10 @@ export const SkeletonComponent = React.forwardRef((props, forwardedRef) => {
         <div aria-hidden {...{ inert: '' }}>
           <slot />
         </div>
-        <slot name='visually-hidden' />
+        <VisuallyHidden>Loading.</VisuallyHidden>
       </ShadowRoot>
 
       {props.children}
-      <VisuallyHidden slot='visually-hidden'>Loading</VisuallyHidden>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
