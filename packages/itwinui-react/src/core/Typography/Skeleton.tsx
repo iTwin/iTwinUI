@@ -11,7 +11,7 @@ import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 /**
  * A placeholder to be displayed while the content is loading.
  */
-export const SkeletonComponent = React.forwardRef((props, forwardedRef) => {
+export const Skeleton = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as='div'
