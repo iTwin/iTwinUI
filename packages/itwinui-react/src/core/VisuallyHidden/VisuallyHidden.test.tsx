@@ -34,6 +34,15 @@ it('should respect unhideOnFocus prop', () => {
 });
 
 it('should work with elements that do not support attaching shadow roots', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
   const { container } = render(<VisuallyHidden as='label'>hi</VisuallyHidden>);
+  act(() => vi.runAllTicks());
   expect(container.querySelector('label')).toHaveClass('iui-visually-hidden');
+});
+
+it('should work with self-closing elements', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+  const { container } = render(<VisuallyHidden as='input' />);
+  act(() => vi.runAllTicks());
+  expect(container.querySelector('input')).toHaveClass('iui-visually-hidden');
 });

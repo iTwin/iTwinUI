@@ -32,9 +32,21 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
     as: asProp = 'span',
     className,
     unhideOnFocus = true,
-    children,
+    children: childrenProp,
     ...rest
   } = props;
+
+  // ShadowRoot is not supported on all elements, so we only use it for few common ones.
+  const children = !['div', 'span', 'p'].includes(asProp) ? (
+    childrenProp
+  ) : (
+    <>
+      <ShadowRoot css={css}>
+        <slot />
+      </ShadowRoot>
+      {childrenProp}
+    </>
+  );
 
   return (
     <Box
@@ -44,12 +56,6 @@ export const VisuallyHidden = React.forwardRef((props, ref) => {
       ref={ref}
       {...rest}
     >
-      {['div', 'span', 'p'].includes(asProp) && ( // ShadowRoot is not supported on all elements
-        <ShadowRoot css={css}>
-          <slot />
-        </ShadowRoot>
-      )}
-
       {children}
     </Box>
   );
