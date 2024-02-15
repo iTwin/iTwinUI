@@ -3,21 +3,21 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Flex, Surface, Text, IconButton } from '@itwin/itwinui-react';
+import { Surface, Text, IconButton } from '@itwin/itwinui-react';
 import { SvgSettings } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
     <Surface elevation={4}>
       <Surface.Header>
-        <Flex justifyContent={'space-between'} className='demo-container'>
+        <div className='demo-container'>
           <Text variant='subheading' as='h2'>
             Custom surface
           </Text>
           <IconButton label='Settings' styleType='borderless'>
             <SvgSettings />
           </IconButton>
-        </Flex>
+        </div>
       </Surface.Header>
       <Surface.Body isPadded={true}>
         <p>

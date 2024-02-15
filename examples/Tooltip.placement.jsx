@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Tooltip, Button, Flex } from '@itwin/itwinui-react';
+import { Tooltip, Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
+    <div className='demo-container'>
       <Tooltip placement='left' content='left tooltip'>
         <Button>Left</Button>
       </Tooltip>
@@ -20,6 +20,6 @@ export default () => {
       <Tooltip placement='right' content='right tooltip'>
         <Button>Right</Button>
       </Tooltip>
-    </Flex>
+    </div>
   );
 };

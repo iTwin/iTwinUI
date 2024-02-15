@@ -4,12 +4,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Surface, Flex } from '@itwin/itwinui-react';
+import { Surface } from '@itwin/itwinui-react';
 
 export default () => {
   return (
     <>
-      <Flex gap={'2xl'}>
+      <div className='demo-container'>
         <Surface elevation={0} className='demo-card'>
           <p>Elevation 0 (0dp)</p>
         </Surface>
@@ -19,8 +19,8 @@ export default () => {
         <Surface elevation={2} className='demo-card'>
           <p>Elevation 2 (4dp)</p>
         </Surface>
-      </Flex>
-      <Flex gap={'2xl'}>
+      </div>
+      <div className='demo-container'>
         <Surface elevation={3} className='demo-card'>
           <p>Elevation 3 (8dp)</p>
         </Surface>
@@ -30,7 +30,7 @@ export default () => {
         <Surface elevation={5} className='demo-card'>
           <p>Elevation 5 (24dp)</p>
         </Surface>
-      </Flex>
+      </div>
     </>
   );
 };

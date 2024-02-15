@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Flex, Stepper } from '@itwin/itwinui-react';
+import { Button, Stepper } from '@itwin/itwinui-react';
 
 const steps = [
   { name: 'Previous Step' },
@@ -15,8 +15,8 @@ export default () => {
   const [currentStep, setCurrentStep] = React.useState(1);
 
   return (
-    <Flex flexDirection='column' gap='m' className='demo-container'>
-      <Flex.Item alignSelf='stretch'>
+    <div className='demo-container'>
+      <div className='demo-stepper'>
         <Stepper
           currentStep={currentStep}
           steps={steps}
@@ -25,9 +25,9 @@ export default () => {
           }}
           type='default'
         />
-      </Flex.Item>
+      </div>
 
-      <Flex>
+      <div className='demo-button-container'>
         <Button
           disabled={currentStep === 0}
           onClick={() => {
@@ -45,7 +45,7 @@ export default () => {
         >
           Next
         </Button>
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 };

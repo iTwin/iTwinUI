@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   Button,
-  Flex,
   IconButton,
   LabeledInput,
   Popover,
@@ -34,7 +33,7 @@ export default () => {
             </Text>
           </Surface.Header>
           <Surface.Body isPadded>
-            <Flex flexDirection='column' alignItems='flex-end'>
+            <div className='demo-container'>
               {/* this will be focused when popover opens */}
               <LabeledInput label='Quality' autoFocus />
 
@@ -47,7 +46,7 @@ export default () => {
               >
                 Apply
               </Button>
-            </Flex>
+            </div>
           </Surface.Body>
         </Surface>
       }

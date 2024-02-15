@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Input, Flex } from '@itwin/itwinui-react';
+import { Input } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex flexDirection='column'>
+    <div className='demo-container'>
       <Input placeholder='Small' size='small' />
       <Input placeholder='Medium' />
       <Input placeholder='Large' size='large' />
-    </Flex>
+    </div>
   );
 };

@@ -5,7 +5,6 @@
 import * as React from 'react';
 import {
   Button,
-  Flex,
   Input,
   Label,
   Stepper,
@@ -77,9 +76,9 @@ export default () => {
 
   return (
     <>
-      <Flex flexDirection='column' gap='m' className='demo-container'>
-        <Flex as='h2'>Color survey</Flex>
-        <Flex.Item alignSelf='stretch'>
+      <div className='demo-container'>
+        <h2 className='demo-header'>Color survey</h2>
+        <div className='demo-stepper'>
           <Stepper
             currentStep={currentStep}
             steps={stepLabels}
@@ -88,11 +87,9 @@ export default () => {
               setCurrentStep(index);
             }}
           />
-        </Flex.Item>
-        <Flex.Item alignSelf='flex-start' className='demo-current-step'>
-          {steps[currentStep]}
-        </Flex.Item>
-        <Flex>
+        </div>
+        <div className='demo-current-step'>{steps[currentStep]}</div>
+        <div className='demo-button-container'>
           <Button
             disabled={currentStep === 0}
             onClick={() => {
@@ -116,8 +113,8 @@ export default () => {
           >
             {currentStep === 2 ? 'Register' : 'Next'}
           </Button>
-        </Flex>
-      </Flex>
+        </div>
+      </div>
     </>
   );
 };

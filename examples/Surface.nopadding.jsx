@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Surface, Text, Flex, Anchor, Divider } from '@itwin/itwinui-react';
+import { Surface, Text, Anchor, Divider } from '@itwin/itwinui-react';
 
 export default () => {
   return (
@@ -19,7 +19,7 @@ export default () => {
         aria-labelledby='surface-header'
         isPadded={false}
       >
-        <Flex flexDirection='column' className='demo-container'>
+        <div className='demo-container'>
           <div className='demo-list'>
             <div className='demo-list-item'>
               <Anchor>Daily log</Anchor>
@@ -45,7 +45,7 @@ export default () => {
               <Anchor>Weather delay notices</Anchor>
             </div>
           </div>
-        </Flex>
+        </div>
       </Surface.Body>
     </Surface>
   );

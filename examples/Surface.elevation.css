@@ -6,3 +6,8 @@
   text-align: center;
   flex: 1;
 }
+
+.demo-container {
+  display: flex;
+  gap: var(--iui-size-2xl);
+}
