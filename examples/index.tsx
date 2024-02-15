@@ -14,6 +14,7 @@ const withThemeProvider = (Component: () => React.ReactElement) => () => {
       theme='dark'
       themeOptions={{ applyBackground: false }}
       portalContainer={portalContainer}
+      style={{ display: 'contents' }}
     >
       <Component />
     </ThemeProvider>
@@ -85,6 +86,10 @@ export { AnchorMainExample };
 import { default as AnchorAsButtonExampleRaw } from './Anchor.asbutton';
 const AnchorAsButtonExample = withThemeProvider(AnchorAsButtonExampleRaw);
 export { AnchorAsButtonExample };
+
+import { default as AnchorExternalExampleRaw } from './Anchor.external';
+const AnchorExternalExample = withThemeProvider(AnchorExternalExampleRaw);
+export { AnchorExternalExample };
 
 // ----------------------------------------------------------------------------
 
