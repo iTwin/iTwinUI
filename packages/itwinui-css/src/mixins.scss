@@ -2,20 +2,8 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
 
-@mixin focus-visible {
-  &:focus-visible {
-    @content;
-  }
-
-  @supports #{'not selector(*:focus-visible)'} {
-    &:focus {
-      @content;
-    }
-  }
-}
-
 @mixin iui-focus($color: var(--iui-color-border-accent), $offset: -1px, $thickness: 1px) {
-  @include focus-visible {
+  &:focus-visible {
     outline: $thickness solid $color;
     outline-offset: $offset;
   }

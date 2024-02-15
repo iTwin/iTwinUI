@@ -40,10 +40,6 @@
   &:where([data-iui-size='small']) {
     --_iui-toggle-switch-handle-size: var(--iui-size-s);
     --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
-
-    .iui-toggle-switch-icon {
-      display: none;
-    }
   }
 }
 
@@ -106,7 +102,7 @@
     }
   }
 
-  &:hover {
+  &:is(:hover, :focus-visible) {
     border-color: var(--iui-color-border-foreground-hover);
     @media (forced-colors: active) {
       border-color: CanvasText;
@@ -115,16 +111,6 @@
     &::after {
       background-color: var(--iui-color-icon-hover);
     }
-
-    @include mixins.focus-visible {
-      &::after {
-        background-color: var(--iui-color-icon-hover);
-      }
-    }
-  }
-
-  @include mixins.focus-visible {
-    border-color: var(--iui-color-border-foreground-hover);
   }
   // #endregion Unchecked toggle switch
 

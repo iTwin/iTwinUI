@@ -28,7 +28,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 .iui-tree-item {
-  @include mixins.focus-visible {
+  &:focus-visible {
     outline: none;
 
     > .iui-tree-node {
