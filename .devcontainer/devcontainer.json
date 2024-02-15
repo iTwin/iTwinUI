@@ -2,16 +2,17 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-"customizations": { 
-  "vscode": {
-    "extensions": [
+  "customizations": {
+    "vscode": {
+      "extensions": [
         "stylelint.vscode-stylelint",
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
         "astro-build.astro-vscode"
-    ]
-  }
-},
+      ]
+    }
+  },
+  "forwardPorts": [3000],
   "postCreateCommand": "yarn install && yarn build"
 }
