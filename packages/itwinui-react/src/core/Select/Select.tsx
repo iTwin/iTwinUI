@@ -70,6 +70,8 @@ export type SelectOption<T> = {
   size?: 'default' | 'large';
   /**
    * Value of the item.
+   *
+   * Pass `null` to reset the value.
    */
   value: T;
   /**
@@ -258,7 +260,7 @@ export const Select = React.forwardRef(
     const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
     const [uncontrolledValue, setUncontrolledValue] = React.useState<T | T[]>();
-    const value = valueProp ?? uncontrolledValue;
+    const value = valueProp !== undefined ? valueProp : uncontrolledValue;
 
     const onChangeRef = useLatestRef(onChangeProp);
     const selectRef = React.useRef<HTMLDivElement>(null);
