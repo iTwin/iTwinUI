@@ -40,10 +40,6 @@
   &:where([data-iui-size='small']) {
     --_iui-toggle-switch-handle-size: var(--iui-size-s);
     --_iui-toggle-switch-handle-offset: var(--iui-size-3xs);
-
-    .iui-toggle-switch-icon {
-      display: none;
-    }
   }
 }
 

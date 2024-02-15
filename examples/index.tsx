@@ -1217,10 +1217,6 @@ const ToggleSwitchLabelsExample = withThemeProvider(
 );
 export { ToggleSwitchLabelsExample };
 
-import { default as ToggleSwitchIconExampleRaw } from './ToggleSwitch.icon';
-const ToggleSwitchIconExample = withThemeProvider(ToggleSwitchIconExampleRaw);
-export { ToggleSwitchIconExample };
-
 import { default as ToggleSwitchInputGroupExampleRaw } from './ToggleSwitch.inputgroup';
 const ToggleSwitchInputGroupExample = withThemeProvider(
   ToggleSwitchInputGroupExampleRaw,
