@@ -24,22 +24,7 @@ export default () => {
 
   return (
     <InformationPanelWrapper>
-      <Table
-        columns={[
-          { id: 'name', Header: 'Name', accessor: 'name' },
-          {
-            Header: 'Details',
-            Cell: ({ row }) => (
-              <Button onClick={() => setOpenRowIndex(row.index)}>
-                Details
-              </Button>
-            ),
-          },
-        ]}
-        data={[{ name: 'Row0' }, { name: 'Row1' }, { name: 'Row2' }]}
-        emptyTableContent='No data.'
-        className='demo-table'
-      />
+      <WrappedTable setOpenRowIndex={setOpenRowIndex} />
 
       <InformationPanel
         isOpen={openRowIndex != undefined && openRowIndex !== -1}
@@ -94,3 +79,25 @@ export default () => {
     </InformationPanelWrapper>
   );
 };
+
+function WrappedTable({ setOpenRowIndex }) {
+  return (
+    <div className='demo-table'>
+      <Table
+        columns={[
+          { id: 'name', Header: 'Name', accessor: 'name' },
+          {
+            Header: 'Details',
+            Cell: ({ row }) => (
+              <Button onClick={() => setOpenRowIndex(row.index)}>
+                Details
+              </Button>
+            ),
+          },
+        ]}
+        data={[{ name: 'Row0' }, { name: 'Row1' }, { name: 'Row2' }]}
+        emptyTableContent='No data.'
+      />
+    </div>
+  );
+}
