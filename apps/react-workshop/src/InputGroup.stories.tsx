@@ -2,7 +2,6 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import SvgCheckmark from '@itwin/itwinui-icons-react/cjs/icons/Checkmark';
 import SvgSmileyHappy from '@itwin/itwinui-icons-react/cjs/icons/SmileyHappy';
 import SvgSmileySad from '@itwin/itwinui-icons-react/cjs/icons/SmileySad';
 import React from 'react';
@@ -101,7 +100,6 @@ export const ToggleGroup = () => {
         onChange={(event) => setOption1(event.target.checked)}
         checked={option1}
         label='Toggle feature No.1'
-        icon={<SvgCheckmark />}
       />
       <ToggleSwitch checked={true} disabled label='This you cannot change' />
       <ToggleSwitch

@@ -54,7 +54,7 @@ it('should render checked toggle', () => {
   ).toBe(true);
 });
 
-it('should render toggle with icon', () => {
+it('should render toggle with custom icon', () => {
   const { container } = render(
     <ToggleSwitch defaultChecked icon={<SvgPlaceholder />} />,
   );
@@ -64,7 +64,7 @@ it('should render toggle with icon', () => {
   expect(container.querySelector('.iui-toggle-switch-icon')).toBeTruthy();
 });
 
-it('should not allow icon setting when size is small', () => {
+it('should not display custom icon when size is small', () => {
   const { container } = render(
     // @ts-expect-error: we don't allow icon setting in small toggle switch
     <ToggleSwitch defaultChecked icon={<SvgPlaceholder />} size='small' />,
@@ -115,4 +115,9 @@ it('should apply style and class', () => {
   ) as HTMLElement;
   expect(element).toBeTruthy();
   expect(element.style.width).toBe('80px');
+});
+
+it('should not render an icon if it is set to null', () => {
+  const { container } = render(<ToggleSwitch icon={null} />);
+  expect(container.querySelector('.iui-toggle-switch-icon')).toBeNull();
 });

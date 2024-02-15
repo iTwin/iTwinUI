@@ -11,7 +11,7 @@ describe('ToggleSwitch', () => {
     'Disabled Unchecked',
     'Label Left',
     'Label Right',
-    'With Icon',
+    'With Custom Icon',
   ];
 
   tests.forEach((testName) => {
