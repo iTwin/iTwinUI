@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/universal:2
 
-
 ENV GENERATE_SOURCEMAP=false
 
 ARG DEBIAN_FRONTEND=noninteractive
