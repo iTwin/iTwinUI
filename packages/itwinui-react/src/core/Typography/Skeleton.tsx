@@ -10,13 +10,10 @@ import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 // ----------------------------------------------------------------------------
 
-const SkeletonContext = React.createContext<boolean | undefined>(undefined);
-
-// ----------------------------------------------------------------------------
-
-const SkeletonComponent = React.forwardRef((props, forwardedRef) => {
-  const isGrouped = React.useContext(SkeletonContext);
-
+/**
+ * A placeholder to be displayed while the content is loading.
+ */
+export const SkeletonComponent = React.forwardRef((props, forwardedRef) => {
   return (
     <Box
       as='div'
@@ -32,31 +29,7 @@ const SkeletonComponent = React.forwardRef((props, forwardedRef) => {
       </ShadowRoot>
 
       {props.children}
-      {!isGrouped && (
-        <VisuallyHidden slot='visually-hidden'>Loading</VisuallyHidden>
-      )}
+      <VisuallyHidden slot='visually-hidden'>Loading</VisuallyHidden>
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div'>;
-
-// ----------------------------------------------------------------------------
-
-const SkeletonGroup = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <SkeletonContext.Provider value={true}>
-      {children}
-      <VisuallyHidden>Loading</VisuallyHidden>
-    </SkeletonContext.Provider>
-  );
-};
-SkeletonGroup.displayName = 'Skeleton.Group';
-
-// ----------------------------------------------------------------------------
-
-/**
- * A placeholder displayed while the content is loading.
- */
-export const Skeleton = Object.assign(SkeletonComponent, {
-  Group: SkeletonGroup,
-});
-Skeleton.displayName = 'Skeleton';
