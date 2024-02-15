@@ -90,7 +90,7 @@ export const ProgressLinear = React.forwardRef((props, forwardedRef) => {
       {...rest}
     >
       <ShadowRoot>
-        <VisuallyHidden>Loading.</VisuallyHidden>
+        {value !== 100 && <VisuallyHidden>Loading.</VisuallyHidden>}
         <slot />
       </ShadowRoot>
 
