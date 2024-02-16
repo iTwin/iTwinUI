@@ -1015,7 +1015,7 @@ it('should update live region when selection changes', async () => {
   );
 
   const liveRegion = container.querySelector('[aria-live="polite"]');
-  expect(liveRegion).toBeEmptyDOMElement();
+  expect(liveRegion).toHaveTextContent('');
 
   await userEvent.tab();
   const options = document.querySelectorAll('[role="option"]');
