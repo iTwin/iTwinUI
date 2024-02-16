@@ -1,5 +1,5 @@
 {
-"image": "cypress/included:3.2.0",
+"image": "mcr.microsoft.com/devcontainers/universal:2",
 "customizations": { 
   "vscode": {
     "extensions": [
