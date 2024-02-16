@@ -8,7 +8,7 @@ import { SvgMoreVertical } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger
           label='My disclosure'

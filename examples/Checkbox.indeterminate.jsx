@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Checkbox, Flex } from '@itwin/itwinui-react';
+import { Checkbox } from '@itwin/itwinui-react';
 
 export default () => {
   const [option1, setOption1] = React.useState(false);
@@ -17,18 +17,14 @@ export default () => {
   };
 
   return (
-    <Flex flexDirection='column' alignItems='flex-start'>
+    <div className='demo-container'>
       <Checkbox
         label='Option 1'
         onChange={(event) => onAllChange(event.target.checked)}
         indeterminate={isIndeterminate}
         checked={allOptions}
       />
-      <Flex
-        flexDirection='column'
-        alignItems='flex-start'
-        style={{ marginLeft: 'var(--iui-size-l)' }}
-      >
+      <div className='demo-container demo-indented'>
         <Checkbox
           label='Option 1.1'
           checked={option1}
@@ -39,7 +35,7 @@ export default () => {
           checked={option2}
           onChange={(event) => setOption2(event.target.checked)}
         />
-      </Flex>
-    </Flex>
+      </div>
+    </div>
   );
 };

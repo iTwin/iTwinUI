@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Flex } from '@itwin/itwinui-react';
+import { SearchBox } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }}>
+    <div className='demo-container'>
       <SearchBox inputProps={{ placeholder: 'SearchBox component' }} />
-    </Flex>
+    </div>
   );
 };

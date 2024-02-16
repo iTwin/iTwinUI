@@ -8,7 +8,7 @@ import { Svg403 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 403 }}>
+    <div className='demo-container'>
       <NonIdealState
         svg={<Svg403 />}
         heading='Forbidden'

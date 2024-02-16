@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { LabeledTextarea, Flex } from '@itwin/itwinui-react';
+import { LabeledTextarea } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
+    <div className='demo-container'>
       <LabeledTextarea
         label='Positive textarea'
         message='Happy message'
@@ -26,6 +26,6 @@ export default () => {
         status='negative'
         placeholder='Labeled textarea'
       />
-    </Flex>
+    </div>
   );
 };

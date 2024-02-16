@@ -9,7 +9,7 @@ export default () => {
   const labelId = React.useId();
 
   return (
-    <InputGrid style={{ width: 'min(100%, 300px)' }}>
+    <InputGrid className='demo-input-grid'>
       <Label id={labelId} as='div'>
         Choose a value
       </Label>

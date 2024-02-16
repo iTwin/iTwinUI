@@ -8,7 +8,7 @@ import { Svg404 } from '@itwin/itwinui-illustrations-react';
 
 export default () => {
   return (
-    <div style={{ position: 'relative', minHeight: 400 }}>
+    <div className='demo-container'>
       <NonIdealState
         svg={<Svg404 />}
         heading='Page not found'
