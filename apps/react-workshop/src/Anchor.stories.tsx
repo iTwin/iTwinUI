@@ -28,3 +28,11 @@ export const External = () => {
     </Anchor>
   );
 };
+
+export const Underline = () => {
+  return (
+    <Anchor href='https://www.example.com/' underline>
+      www.example.com
+    </Anchor>
+  );
+};
