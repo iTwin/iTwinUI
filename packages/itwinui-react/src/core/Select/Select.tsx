@@ -70,8 +70,6 @@ export type SelectOption<T> = {
   size?: 'default' | 'large';
   /**
    * Value of the item.
-   *
-   * Pass `null` to reset the value.
    */
   value: T;
   /**
@@ -110,6 +108,8 @@ export type SelectMultipleTypeProps<T> =
       /**
        * Selected option value.
        * If `multiple` is enabled, it is an array of values.
+       *
+       * Pass `null` to reset the value.
        */
       value?: T;
       /**
