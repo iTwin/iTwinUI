@@ -111,7 +111,7 @@ export type SelectMultipleTypeProps<T> =
        *
        * Pass `null` to reset the value.
        */
-      value?: T;
+      value?: T | null;
       /**
        * Callback function handling change event on select.
        */
