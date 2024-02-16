@@ -74,7 +74,7 @@ export default () => {
   }, []);
 
   return (
-    <div style={{ minWidth: 'min(100%, 350px)' }}>
+    <div className='demo-container'>
       <Table
         columns={columns}
         emptyTableContent='No data.'

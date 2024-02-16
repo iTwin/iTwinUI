@@ -16,5 +16,5 @@ export default () => {
 };
 
 const MyItem = ({ children = '' }) => (
-  <div style={{ padding: '1rem', border: '1px solid' }}>{children}</div>
+  <div className='demo-item-container'>{children}</div>
 );

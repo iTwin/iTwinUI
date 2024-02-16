@@ -7,29 +7,21 @@ import { Breadcrumbs, MiddleTextTruncation } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div
-      style={{
-        inlineSize: '75%',
-        minInlineSize: 150,
-        maxInlineSize: 425,
-        border: '1px solid pink',
-        padding: 8,
-      }}
-    >
+    <div className='demo-container'>
       <Breadcrumbs>
-        <Breadcrumbs.Item onClick={() => {}} style={{ maxWidth: 90 }}>
+        <Breadcrumbs.Item onClick={() => {}} className='demo-breadcrumbs-item'>
           <MiddleTextTruncation text='Root' endCharsCount={7} />
         </Breadcrumbs.Item>
-        <Breadcrumbs.Item onClick={() => {}} style={{ maxWidth: 90 }}>
+        <Breadcrumbs.Item onClick={() => {}} className='demo-breadcrumbs-item'>
           <MiddleTextTruncation text='My files' endCharsCount={7} />
         </Breadcrumbs.Item>
-        <Breadcrumbs.Item onClick={() => {}} style={{ maxWidth: 90 }}>
+        <Breadcrumbs.Item onClick={() => {}} className='demo-breadcrumbs-item'>
           <MiddleTextTruncation text='Documents' endCharsCount={7} />
         </Breadcrumbs.Item>
-        <Breadcrumbs.Item onClick={() => {}} style={{ maxWidth: 90 }}>
+        <Breadcrumbs.Item onClick={() => {}} className='demo-breadcrumbs-item'>
           <MiddleTextTruncation text='Status reports' endCharsCount={7} />
         </Breadcrumbs.Item>
-        <Breadcrumbs.Item onClick={() => {}} style={{ maxWidth: 90 }}>
+        <Breadcrumbs.Item onClick={() => {}} className='demo-breadcrumbs-item'>
           <MiddleTextTruncation text='December' endCharsCount={7} />
         </Breadcrumbs.Item>
       </Breadcrumbs>

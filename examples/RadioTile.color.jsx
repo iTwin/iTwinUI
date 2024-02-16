@@ -7,7 +7,7 @@ import { RadioTileGroup, RadioTile } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <RadioTileGroup style={{ width: 'min(100%, 350px)' }}>
+    <RadioTileGroup className='demo-radio-tile-group'>
       <RadioTile
         label='Google Maps'
         icon={

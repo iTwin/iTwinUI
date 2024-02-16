@@ -52,7 +52,7 @@ export default () => {
   ));
 
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
+    <div className='demo-container'>
       <SideNavigation
         expanderPlacement='bottom'
         items={items.slice(0, 3)}
@@ -87,16 +87,7 @@ export default () => {
           </SidenavSubmenu>
         }
       />
-      <div
-        style={{
-          background: 'var(--iui-color-background-disabled)',
-          padding: 16,
-          flexGrow: 1,
-          display: 'grid',
-          placeContent: 'center',
-          placeItems: 'center',
-        }}
-      >
+      <div className='demo-item-label'>
         <Text>{itemsData[activeItem]?.label} page</Text>
         <Text isMuted>
           {activeSubItem >= 0 && `Contents of Folder ${activeSubItem}`}
