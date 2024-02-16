@@ -8,6 +8,8 @@ import * as ReactDOM from 'react-dom';
 const isBrowser = typeof document !== 'undefined';
 const supportsDSD =
   isBrowser && 'shadowRootMode' in HTMLTemplateElement.prototype;
+const supportsAdoptedStylesheets =
+  isBrowser && 'adoptedStyleSheets' in Document.prototype;
 
 /**
  * Wrapper around `<template>` element that attaches shadow root to its parent
@@ -15,9 +17,16 @@ const supportsDSD =
  *
  * @private
  */
-export const ShadowRoot = ({ children }: { children: React.ReactNode }) => {
+export const ShadowRoot = ({
+  children,
+  css,
+}: {
+  children: React.ReactNode;
+  css?: string;
+}) => {
   const [shadowRoot, setShadowRoot] = React.useState<ShadowRoot>();
   const isFirstRender = useIsFirstRender();
+  const styleSheet = React.useRef<CSSStyleSheet>();
 
   const attachShadowRef = React.useCallback(
     (template: HTMLTemplateElement | null) => {
@@ -25,19 +34,32 @@ export const ShadowRoot = ({ children }: { children: React.ReactNode }) => {
       if (!template || !parent) {
         return;
       }
-      queueMicrotask(() =>
-        ReactDOM.flushSync(() =>
-          setShadowRoot(
-            parent.shadowRoot || parent.attachShadow({ mode: 'open' }),
-          ),
-        ),
-      );
+      if (parent.shadowRoot) {
+        parent.shadowRoot.replaceChildren(); // Remove previous shadowroot content
+      }
+      queueMicrotask(() => {
+        const shadow =
+          parent.shadowRoot || parent.attachShadow({ mode: 'open' });
+
+        if (css && supportsAdoptedStylesheets) {
+          styleSheet.current ||= new CSSStyleSheet();
+          styleSheet.current.replaceSync(css);
+          shadow.adoptedStyleSheets = [styleSheet.current];
+        }
+
+        ReactDOM.flushSync(() => setShadowRoot(shadow));
+      });
     },
-    [],
+    [css],
   );
 
   if (!isBrowser) {
-    return <template {...{ shadowrootmode: 'open' }}>{children}</template>;
+    return (
+      <template {...{ shadowrootmode: 'open' }}>
+        {css && <style>{css}</style>}
+        {children}
+      </template>
+    );
   }
 
   // In browsers that support DSD, the template will be automatically removed as soon as it's parsed.

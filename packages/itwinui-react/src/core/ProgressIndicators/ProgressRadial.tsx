@@ -9,8 +9,10 @@ import {
   SvgImportantSmall,
   Box,
   getBoundedValue,
+  ShadowRoot,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { VisuallyHidden } from '../VisuallyHidden/VisuallyHidden.js';
 
 type ProgressRadialProps = {
   /**
@@ -87,6 +89,11 @@ export const ProgressRadial = React.forwardRef((props, forwardedRef) => {
       }}
       {...rest}
     >
+      <ShadowRoot>
+        {value !== 100 && <VisuallyHidden>Loading.</VisuallyHidden>}
+        <slot />
+      </ShadowRoot>
+
       {size !== 'x-small'
         ? children ?? (!!status ? statusMap[status] : null)
         : null}
