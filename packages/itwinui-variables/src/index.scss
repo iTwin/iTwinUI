@@ -10,6 +10,7 @@
 // global vars shared between all themes
 :where([data-iui-theme]) {
   color-scheme: light dark;
+  accent-color: var(--iui-color-border-accent);
   @include spacing;
   @include component-heights;
   @include border-radii;
