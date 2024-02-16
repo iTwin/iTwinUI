@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { StatusMessage, Flex } from '@itwin/itwinui-react';
+import { StatusMessage } from '@itwin/itwinui-react';
 import { SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Flex flexDirection='column' gap='m'>
+    <div className='demo-container'>
       <StatusMessage startIcon={<SvgPlaceholder />} status='positive'>
         Positive message
       </StatusMessage>
@@ -18,6 +18,6 @@ export default () => {
       <StatusMessage startIcon={<SvgPlaceholder />} status='negative'>
         Negative message
       </StatusMessage>
-    </Flex>
+    </div>
   );
 };

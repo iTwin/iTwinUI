@@ -57,7 +57,7 @@ export default () => {
   );
 
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper>
         <ExpandableBlock.Trigger label='Name' />
         <ExpandableBlock.Content>{nameSection}</ExpandableBlock.Content>

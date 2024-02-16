@@ -3,18 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  ButtonGroup,
-  IconButton,
-  Input,
-  Flex,
-  Button,
-} from '@itwin/itwinui-react';
+import { ButtonGroup, IconButton, Input, Button } from '@itwin/itwinui-react';
 import { SvgSearch } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Flex flexDirection='column' gap='m'>
+    <div className='demo-container'>
       <ButtonGroup>
         <Button>Button 1</Button>
         <Input aria-label='Search bar' />
@@ -29,6 +23,6 @@ export default () => {
         />
         <Button styleType='high-visibility'>Copy</Button>
       </ButtonGroup>
-    </Flex>
+    </div>
   );
 };

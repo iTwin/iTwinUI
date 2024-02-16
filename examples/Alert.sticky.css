@@ -1,0 +1,9 @@
+.demo-container {
+  height: 150px;
+  overflow: auto;
+  border: solid 0.5px;
+}
+
+.demo-text {
+  padding: 8px;
+}

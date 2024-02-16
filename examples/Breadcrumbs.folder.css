@@ -1,0 +1,5 @@
+.demo-container {
+  display: inline-flex;
+  width: 418px;
+  justify-content: center;
+}

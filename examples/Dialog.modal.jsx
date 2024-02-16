@@ -15,7 +15,7 @@ export default () => {
 
   return (
     <>
-      <div style={{ display: 'flex', gap: '0.5rem' }}>
+      <div className='demo-container'>
         <Button styleType='high-visibility' onClick={() => setIsOpen(true)}>
           Open modal dialog
         </Button>

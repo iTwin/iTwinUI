@@ -7,14 +7,7 @@ import { Badge } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        columnGap: 4,
-        placeItems: 'center',
-        flexWrap: 'wrap',
-      }}
-    >
+    <div className='demo-container'>
       <Badge>Default</Badge>
       <Badge backgroundColor='primary'>Informational</Badge>
       <Badge backgroundColor='positive'>Positive</Badge>
