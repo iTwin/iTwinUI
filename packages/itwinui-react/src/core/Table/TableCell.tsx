@@ -88,11 +88,11 @@ export const TableCell = <T extends Record<string, unknown>>(
         {cellContent}
         {cell.column.sticky === 'left' &&
           tableInstance.state.sticky.isScrolledToRight && (
-            <Box className='iui-table-cell-shadow-right' />
+            <Box className='iui-table-cell-shadow-right' slot='shadow' />
           )}
         {cell.column.sticky === 'right' &&
           tableInstance.state.sticky.isScrolledToLeft && (
-            <Box className='iui-table-cell-shadow-left' />
+            <Box className='iui-table-cell-shadow-left' slot='shadow' />
           )}
       </>
     ),
