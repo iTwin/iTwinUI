@@ -40,9 +40,7 @@ export default () => {
   );
 
   return (
-    <div
-      style={{ display: 'inline-flex', width: 418, justifyContent: 'center' }}
-    >
+    <div className='demo-container'>
       <DropdownButton
         startIcon={<SvgFolder aria-hidden />}
         styleType='borderless'

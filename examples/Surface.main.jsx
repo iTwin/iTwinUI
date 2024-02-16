@@ -7,17 +7,7 @@ import { Surface } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Surface
-      elevation={4}
-      style={{
-        blockSize: 200,
-        padding: 12,
-        inlineSize: 200,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
+    <Surface elevation={4} className='demo-surface'>
       <p>This is a surface</p>
     </Surface>
   );

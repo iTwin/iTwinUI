@@ -28,8 +28,8 @@ export default () => {
       <MenuItem key={id} id={id} isSelected={isSelected} value={value}>
         <em
           style={{
-            textTransform: 'uppercase',
             fontWeight: isSelected ? 'bold' : undefined,
+            textTransform: 'uppercase',
           }}
         >
           {label}

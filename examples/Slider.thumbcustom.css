@@ -1,0 +1,19 @@
+.demo-container {
+  width: min(100%, 300px);
+}
+
+.demo-thumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--iui-color-background-accent);
+  border-color: var(--iui-color-border-accent);
+  width: var(--iui-size-xl);
+  height: var(--iui-component-height-small);
+  border-radius: var(--iui-border-radius-1);
+  transform: translateX(calc(var(--iui-size-xl) * 0.5 * -1));
+}
+
+.demo-thumb-children {
+  pointer-events: none;
+}

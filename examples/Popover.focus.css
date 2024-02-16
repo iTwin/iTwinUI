@@ -1,0 +1,10 @@
+.demo-popover {
+  max-width: 45ch;
+}
+
+.demo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--iui-size-xs);
+}

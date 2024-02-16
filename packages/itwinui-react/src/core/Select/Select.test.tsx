@@ -612,3 +612,13 @@ it('should allow passing ref to Select', () => {
 
   expect(selectRef?.current).toHaveAttribute('data-select');
 });
+
+it('should reset value when null is passed', () => {
+  const { container, rerender } = render(
+    <Select value='A' options={[{ value: 'A', label: 'A' }]} />,
+  );
+  expect(container.querySelector('[role=combobox]')).toHaveTextContent('A');
+
+  rerender(<Select value={null} options={[{ value: 'A', label: 'A' }]} />);
+  expect(container.querySelector('[role=combobox]')).toHaveTextContent('');
+});

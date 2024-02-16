@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Alert, Flex } from '@itwin/itwinui-react';
+import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex flexDirection='column'>
+    <div className='demo-container'>
       {['positive', 'warning', 'negative'].map((type) => (
         <Alert.Wrapper key={type} type={type}>
           <Alert.Icon />
@@ -20,6 +20,6 @@ export default () => {
           <Alert.CloseButton onClick={() => console.log('CLOSED')} />
         </Alert.Wrapper>
       ))}
-    </Flex>
+    </div>
   );
 };

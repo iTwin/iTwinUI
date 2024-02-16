@@ -1,0 +1,8 @@
+.demo-surface {
+  block-size: 200px;
+  padding: 12px;
+  inline-size: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

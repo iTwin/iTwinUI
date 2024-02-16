@@ -1,0 +1,9 @@
+.demo-container {
+  width: 60%;
+  display: flex;
+  gap: var(--iui-size-xs);
+}
+
+.demo-spacer {
+  flex: 999;
+}
