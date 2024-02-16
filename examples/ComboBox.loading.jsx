@@ -265,7 +265,7 @@ export default () => {
             startIcon: (
               <img
                 loading='lazy'
-                className='demo-flag'
+                style={{ width: 20, height: 15 }}
                 src={`https://flagcdn.com/w20/${country.value.toLowerCase()}.png`}
                 srcSet={`https://flagcdn.com/w40/${country.value.toLowerCase()}.png 2x`}
                 alt=''

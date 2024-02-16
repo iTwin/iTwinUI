@@ -11,13 +11,13 @@ export default () => {
   return (
     <Popover
       content={
-        <div className='demo-content'>
+        <div style={{ padding: 'var(--iui-size-xs)' }}>
           <LabeledSelect
             label='Placement'
             options={placements.map((p) => ({ value: p, label: p }))}
             value={placement}
             onChange={setPlacement}
-            className='demo-labeled-select'
+            style={{ minWidth: '20ch' }}
           />
         </div>
       }

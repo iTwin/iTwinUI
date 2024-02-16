@@ -57,7 +57,7 @@ export default () => {
         reference={avatarRef}
         content={tooltipContent}
         placement='right'
-        className='demo-tooltip'
+        style={{ whiteSpace: 'pre' }}
       />
     </>
   );

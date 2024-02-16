@@ -29,8 +29,8 @@ export default () => {
         <em
           style={{
             fontWeight: isSelected ? 'bold' : undefined,
+            textTransform: 'uppercase',
           }}
-          className='demo-em'
         >
           {label}
         </em>

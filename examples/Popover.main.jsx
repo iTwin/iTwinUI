@@ -10,7 +10,7 @@ export default () => {
     <Popover
       content='This is a popover!'
       applyBackground
-      className='demo-popover'
+      style={{ padding: 'var(--iui-size-xs)' }}
     >
       <Button>Toggle</Button>
     </Popover>

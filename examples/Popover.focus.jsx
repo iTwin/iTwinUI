@@ -24,7 +24,7 @@ export default () => {
       aria-labelledby={headingId}
       visible={isOpen}
       onVisibleChange={setIsOpen}
-      className='demo-popover'
+      style={{ maxWidth: '45ch' }}
       content={
         <Surface elevation={0} border={false}>
           <Surface.Header>
@@ -33,7 +33,14 @@ export default () => {
             </Text>
           </Surface.Header>
           <Surface.Body isPadded>
-            <div className='demo-container'>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+                gap: 'var(--iui-size-xs)',
+              }}
+            >
               {/* this will be focused when popover opens */}
               <LabeledInput label='Quality' autoFocus />
 
