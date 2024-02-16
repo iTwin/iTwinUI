@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Divider, Flex } from '@itwin/itwinui-react';
+import { SearchBox, Divider } from '@itwin/itwinui-react';
 import {
   SvgCaretUpSmall,
   SvgCaretDownSmall,
@@ -12,11 +12,7 @@ import {
 
 export default () => {
   return (
-    <Flex
-      style={{ width: '70%' }}
-      justifyContent='center'
-      flexDirection='column'
-    >
+    <div className='demo-container'>
       <SearchBox expandable>
         <SearchBox.CollapsedState>
           <SearchBox.ExpandButton>
@@ -35,6 +31,6 @@ export default () => {
           <SearchBox.CollapseButton label='Close search' />
         </SearchBox.ExpandedState>
       </SearchBox>
-    </Flex>
+    </div>
   );
 };

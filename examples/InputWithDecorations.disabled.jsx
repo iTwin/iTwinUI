@@ -3,12 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { InputWithDecorations, Icon, Flex } from '@itwin/itwinui-react';
+import { InputWithDecorations, Icon } from '@itwin/itwinui-react';
 import { SvgAdd, SvgPlaceholder } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <Flex flexDirection='column'>
+    <div className='demo-container'>
       <InputWithDecorations isDisabled>
         <Icon padded>
           <SvgPlaceholder />
@@ -27,6 +27,6 @@ export default () => {
           <SvgAdd />
         </InputWithDecorations.Button>
       </InputWithDecorations>
-    </Flex>
+    </div>
   );
 };

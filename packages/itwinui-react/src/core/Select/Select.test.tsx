@@ -546,7 +546,7 @@ it('should update live region when selection changes', async () => {
   const { container } = render(<MultiSelectTest />);
 
   const liveRegion = container.querySelector('[aria-live="polite"]');
-  expect(liveRegion).toBeEmptyDOMElement();
+  expect(liveRegion).toHaveTextContent('');
   const options = document.querySelectorAll('[role="option"]');
 
   await userEvent.click(options[1]);
@@ -611,4 +611,14 @@ it('should allow passing ref to Select', () => {
   );
 
   expect(selectRef?.current).toHaveAttribute('data-select');
+});
+
+it('should reset value when null is passed', () => {
+  const { container, rerender } = render(
+    <Select value='A' options={[{ value: 'A', label: 'A' }]} />,
+  );
+  expect(container.querySelector('[role=combobox]')).toHaveTextContent('A');
+
+  rerender(<Select value={null} options={[{ value: 'A', label: 'A' }]} />);
+  expect(container.querySelector('[role=combobox]')).toHaveTextContent('');
 });

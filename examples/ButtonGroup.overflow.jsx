@@ -23,7 +23,7 @@ export default () => {
     });
 
   return (
-    <div style={{ maxWidth: '70%' }}>
+    <div className='demo-container'>
       <ButtonGroup
         overflowButton={(overflowStart) => (
           <DropdownMenu

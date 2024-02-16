@@ -108,8 +108,10 @@ export type SelectMultipleTypeProps<T> =
       /**
        * Selected option value.
        * If `multiple` is enabled, it is an array of values.
+       *
+       * Pass `null` to reset the value.
        */
-      value?: T;
+      value?: T | null;
       /**
        * Callback function handling change event on select.
        */
@@ -258,7 +260,7 @@ export const Select = React.forwardRef(
     const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
     const [uncontrolledValue, setUncontrolledValue] = React.useState<T | T[]>();
-    const value = valueProp ?? uncontrolledValue;
+    const value = valueProp !== undefined ? valueProp : uncontrolledValue;
 
     const onChangeRef = useLatestRef(onChangeProp);
     const selectRef = React.useRef<HTMLDivElement>(null);

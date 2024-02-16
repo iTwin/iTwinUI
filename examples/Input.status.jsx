@@ -3,11 +3,11 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { LabeledInput, Flex } from '@itwin/itwinui-react';
+import { LabeledInput } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
+    <div className='demo-container'>
       <LabeledInput
         label='Positive input'
         message='Happy message'
@@ -26,6 +26,6 @@ export default () => {
         status='negative'
         placeholder='Labeled input'
       />
-    </Flex>
+    </div>
   );
 };

@@ -7,7 +7,7 @@ import { Alert, Text } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div style={{ height: 150, overflow: 'auto', border: 'solid 0.5px' }}>
+    <div className='demo-container'>
       <Alert.Wrapper isSticky>
         <Alert.Icon />
         <Alert.Message>
@@ -18,7 +18,7 @@ export default () => {
         </Alert.Message>
         <Alert.CloseButton onClick={() => console.log('CLOSED')} />
       </Alert.Wrapper>
-      <Text style={{ padding: 8 }}>
+      <Text className='demo-text'>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea

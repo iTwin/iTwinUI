@@ -1,0 +1,7 @@
+.demo-content {
+  padding: var(--iui-size-xs);
+}
+
+.demo-labeled-select {
+  min-width: 20ch;
+}

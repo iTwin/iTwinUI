@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { ButtonGroup, IconButton, Flex, Button } from '@itwin/itwinui-react';
+import { ButtonGroup, IconButton, Button } from '@itwin/itwinui-react';
 import {
   SvgAdd,
   SvgEdit,
@@ -15,7 +15,7 @@ import {
 
 export default () => {
   return (
-    <Flex style={{ width: '60%' }}>
+    <div className='demo-container'>
       <Button styleType='high-visibility' startIcon={<SvgAdd />}>
         New
       </Button>
@@ -30,7 +30,7 @@ export default () => {
           <SvgUndo />
         </IconButton>
       </ButtonGroup>
-      <Flex.Spacer />
+      <div className='demo-spacer' />
       <ButtonGroup>
         <IconButton isActive label='Filter'>
           <SvgFilter />
@@ -39,6 +39,6 @@ export default () => {
           <SvgSearch />
         </IconButton>
       </ButtonGroup>
-    </Flex>
+    </div>
   );
 };

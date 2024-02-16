@@ -15,9 +15,9 @@ export default () => {
       <IconButton onClick={() => setOpened(!opened)} label='Choose date'>
         <SvgCalendar />
       </IconButton>
-      <span style={{ marginLeft: 16 }}>{currentDate.toString()}</span>
+      <span className='demo-label'>{currentDate.toString()}</span>
       {opened && (
-        <div style={{ marginTop: 4 }}>
+        <div className='demo-container'>
           <DatePicker
             showYearSelection
             date={currentDate}
