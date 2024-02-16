@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { SearchBox, Divider, Flex, Text } from '@itwin/itwinui-react';
+import { SearchBox, Divider, Text } from '@itwin/itwinui-react';
 import {
   SvgCaretUpSmall,
   SvgCaretDownSmall,
@@ -12,15 +12,10 @@ import {
 
 export default () => {
   return (
-    <Flex style={{ width: '70%' }} justifyContent='center'>
+    <div className='demo-container'>
       <SearchBox>
         <SearchBox.Input placeholder='Basic search with custom interactions' />
-        <Text
-          isMuted
-          variant='body'
-          as='p'
-          style={{ paddingRight: 'var(--iui-size-s)', alignSelf: 'center' }}
-        >
+        <Text isMuted variant='body' as='p' className='demo-text'>
           0/3
         </Text>
         <Divider orientation='vertical' />
@@ -34,6 +29,6 @@ export default () => {
           <SvgCloseSmall />
         </SearchBox.Button>
       </SearchBox>
-    </Flex>
+    </div>
   );
 };

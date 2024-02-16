@@ -21,15 +21,7 @@ export default () => {
     ));
 
   return (
-    <div
-      style={{
-        inlineSize: '75%',
-        minInlineSize: 150,
-        maxInlineSize: 425,
-        border: '1px solid lightpink',
-        padding: 8,
-      }}
-    >
+    <div className='demo-container'>
       <Breadcrumbs
         overflowButton={(visibleCount) => (
           <DropdownMenu

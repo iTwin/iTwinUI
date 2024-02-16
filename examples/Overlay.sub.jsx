@@ -7,7 +7,7 @@ import { Overlay, ProgressLinear } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Overlay.Wrapper style={{ border: '1px solid var(--iui-color-border)' }}>
+    <Overlay.Wrapper className='demo-overlay'>
       <Overlay.Overlay>
         <ProgressLinear indeterminate={true} />
       </Overlay.Overlay>

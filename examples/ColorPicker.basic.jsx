@@ -6,7 +6,6 @@ import * as React from 'react';
 import {
   ColorPalette,
   ColorPicker,
-  ColorValue,
   ColorSwatch,
   Button,
   Popover,
@@ -76,7 +75,7 @@ export default () => {
       <Button
         startIcon={
           <ColorSwatch
-            style={{ pointerEvents: 'none' }}
+            className='demo-color-swatch'
             color={activeColor.color}
           />
         }
