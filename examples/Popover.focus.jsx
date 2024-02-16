@@ -5,6 +5,7 @@
 import * as React from 'react';
 import {
   Button,
+  Flex,
   IconButton,
   LabeledInput,
   Popover,
@@ -33,14 +34,7 @@ export default () => {
             </Text>
           </Surface.Header>
           <Surface.Body isPadded>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-                gap: 'var(--iui-size-xs)',
-              }}
-            >
+            <Flex flexDirection='column' alignItems='flex-end'>
               {/* this will be focused when popover opens */}
               <LabeledInput label='Quality' autoFocus />
 
@@ -53,7 +47,7 @@ export default () => {
               >
                 Apply
               </Button>
-            </div>
+            </Flex>
           </Surface.Body>
         </Surface>
       }
