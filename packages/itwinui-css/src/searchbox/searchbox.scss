@@ -18,6 +18,10 @@
   inline-size: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
 
+  &:where(:not([data-iui-expanded='true'])) {
+    padding-inline: 0;
+  }
+
   &:has(.iui-searchbox-open-button:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
