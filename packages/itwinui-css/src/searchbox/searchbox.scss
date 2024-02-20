@@ -18,16 +18,6 @@
   inline-size: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
 
-  // Expanded
-  &:where([data-iui-expanded='true']) {
-    padding-inline-start: 0;
-  }
-
-  // Collapsed
-  &:where(:not([data-iui-expanded='true'])) {
-    padding-inline: 0;
-  }
-
   &:has(.iui-searchbox-open-button:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
     outline-offset: -2px;
@@ -40,9 +30,16 @@
     }
   }
 
+  // Expanded
   &:where([data-iui-expanded='true']) {
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
+    padding-inline-start: 0;
+  }
+
+  // Collapsed
+  &:where(:not([data-iui-expanded='true'])) {
+    padding-inline: 0;
   }
 }
 
