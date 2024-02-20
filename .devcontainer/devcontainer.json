@@ -1,5 +1,5 @@
 {
-"image": "cypress-docker",
+"image": "mcr.microsoft.com/devcontainers/universal:2r",
 "customizations": { 
   "vscode": {
     "extensions": [
@@ -8,7 +8,6 @@
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
         "astro-build.astro-vscode",
-        "ms-azuretools.vscode-docker"
     ]
   }
 },
