@@ -34,12 +34,12 @@
   &:where([data-iui-expanded='true']) {
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
-    padding-inline-start: 0;
+    padding-inline-start: 0; // To prevent layout shift when toggling between collapsed and expanded states
   }
 
   // Collapsed
   &:where(:not([data-iui-expanded='true'])) {
-    padding-inline: 0;
+    padding-inline: 0; // To center iui-searchbox-open-button inline in collapsed state
   }
 }
 
