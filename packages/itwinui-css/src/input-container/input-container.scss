@@ -125,7 +125,7 @@
   min-block-size: var(--_iui-input-min-height);
   block-size: fit-content;
   line-height: var(--iui-size-l);
-  padding-inline-end: 1px; // To account for the right edge of the 1px border
+  padding-inline: 1px; // To account for the left and right edges of the 1px border
 
   // Adding before pseudo-element to make inner elements more centered
   &::before {

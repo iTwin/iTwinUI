@@ -18,6 +18,12 @@
   inline-size: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
 
+  // Expanded
+  &:where([data-iui-expanded='true']) {
+    padding-inline-start: 0;
+  }
+
+  // Collapsed
   &:where(:not([data-iui-expanded='true'])) {
     padding-inline: 0;
   }
