@@ -17,7 +17,6 @@
 .iui-expandable-searchbox {
   inline-size: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
-  box-sizing: content-box; // Center the searchbox-open-button (in the non-expanded state) within the expandable-searchbox
 
   &:has(.iui-searchbox-open-button:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
