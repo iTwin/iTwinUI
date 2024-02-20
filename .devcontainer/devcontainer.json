@@ -7,7 +7,8 @@
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
         "streetsidesoftware.code-spell-checker",
-        "astro-build.astro-vscode"
+        "astro-build.astro-vscode",
+        "ms-azuretools.vscode-docker"
     ]
   }
 },
