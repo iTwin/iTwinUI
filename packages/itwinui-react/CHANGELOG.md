@@ -1,5 +1,23 @@
 # Changelog
 
+## 3.5.0
+
+### Minor Changes
+
+- [#1844](https://github.com/iTwin/iTwinUI/pull/1844): Interactive elements will now be correctly focused on Safari.
+- [#1860](https://github.com/iTwin/iTwinUI/pull/1860): `ThemeProvider` will now automatically specify an `accent-color` to match the current theme.
+- [#1856](https://github.com/iTwin/iTwinUI/pull/1856): Added new `isExternal` prop to `Anchor`. When true, displays an icon at the end of link text.
+- [#1858](https://github.com/iTwin/iTwinUI/pull/1858): `ToggleSwitch` will now show a checkmark icon by default in the checked state. `SvgCheckmark` no longer needs to be manually passed into the `icon` prop.
+- [#1862](https://github.com/iTwin/iTwinUI/pull/1862): `Select` will now correctly reset its `value` if `null` is passed.
+- [#1864](https://github.com/iTwin/iTwinUI/pull/1864): Added a new `underline` prop to `Anchor`. When true, anchors will be underlined by default instead of only on hover.
+- [#1856](https://github.com/iTwin/iTwinUI/pull/1856): `Anchor` links that open in a new tab will now add a visually-hidden warning for screen-reader users. This can be combined with the `isExternal` prop, which adds a visual indication for sighted users.
+- [#1859](https://github.com/iTwin/iTwinUI/pull/1859): `ProgressRadial` and `ProgressLinear` will now include a visually hidden "Loading" text alternative for non-sighted users.
+
+### Patch Changes
+
+- [#1845](https://github.com/iTwin/iTwinUI/pull/1845): Removed `:focus-visible` fallback styles for older browsers.
+- [#1861](https://github.com/iTwin/iTwinUI/pull/1861): Added `width`/`height` attributes to inlined svgs, to make them more resilient in case CSS fails.
+
 ## 3.4.2
 
 ### Patch Changes
