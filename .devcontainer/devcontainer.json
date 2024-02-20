@@ -1,5 +1,5 @@
 {
-"image": "cypress/included:3.2.0",
+"image": "cypress/included:12.17.1",
 "customizations": { 
   "vscode": {
     "extensions": [
