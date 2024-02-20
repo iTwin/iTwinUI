@@ -57,6 +57,16 @@ If you do ultimately decide based on your research that it is beneficial to open
 
 **Note**: Not all external links should open in a new tab. The `isExternal` prop is not necessary for external links that open in the same tab.
 
+### Underlines
+
+By default, the anchor is only underlined when hovered, except when using a high-contrast theme.
+
+For [better accessibility](https://adrianroselli.com/2016/06/on-link-underlines.html#recommendation), it is recommended to explicitly make the anchor underlined in all themes, using the `underline` prop.
+
+<LiveExample src='Anchor.underline.jsx' truncate={false}>
+  <AllExamples.AnchorUnderlineExample client:idle />
+</LiveExample>
+
 ## Props
 
 <PropsTable path='@itwin/itwinui-react/esm/core/Typography/Anchor.d.ts' />
