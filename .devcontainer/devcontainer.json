@@ -1,5 +1,5 @@
 {
-"image": "cypress/base:18.16.0",
+"image": "cypress-docker",
 "customizations": { 
   "vscode": {
     "extensions": [
