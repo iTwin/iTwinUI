@@ -19,6 +19,12 @@ type AnchorProps = {
    * Not all external links should open in a new tab, so this prop should be used with caution.
    */
   isExternal?: boolean;
+  /**
+   * Whether the anchor should be underlined in its idle state.
+   *
+   * By default, the anchor is underlined only on hover, or when using a high-contrast theme.
+   */
+  underline?: boolean;
 };
 
 /**
@@ -30,17 +36,19 @@ type AnchorProps = {
  * @example
  * <Anchor href='/'>Home</Anchor>
  * <Anchor href='/projects'>Projects</Anchor>
+ * <Anchor href='/help' underline>Help</Anchor>
  *
  * @example
  * <Anchor as={Link} to='/'>Home</Anchor>
  * <Anchor as='button' onClick={() => {}}>click me</Anchor>
  */
 export const Anchor = React.forwardRef((props, forwardedRef) => {
-  const { isExternal, children, ...rest } = props;
+  const { isExternal, underline, children, ...rest } = props;
 
   return (
     <Box
       as='a'
+      data-iui-underline={underline ? 'true' : undefined}
       {...rest}
       ref={forwardedRef}
       className={cx(

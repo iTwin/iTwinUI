@@ -77,3 +77,15 @@ it('should include a warning if the link opens in a new tab', () => {
     'link (opens in new tab)',
   );
 });
+
+it('should support underline prop', () => {
+  const { container } = render(
+    <Anchor underline href='#'>
+      link
+    </Anchor>,
+  );
+  expect(container.querySelector('a')).toHaveAttribute(
+    'data-iui-underline',
+    'true',
+  );
+});
