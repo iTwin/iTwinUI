@@ -18,9 +18,7 @@ export default () => {
       <LabeledInput
         aria-label='Message'
         placeholder='Type a message'
-        style={{
-          width: '100%',
-        }}
+        className='demo-labeled-input'
         message={
           files.length
             ? `Attached: ${files.map((f) => f.name)}`

@@ -1,0 +1,22 @@
+.demo-list-item {
+  padding: var(--iui-size-s);
+  position: relative;
+}
+
+.demo-card {
+  max-block-size: 300px;
+}
+
+.demo-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--iui-size-xs);
+}
+
+.demo-list {
+  width: 100%;
+  list-style: none;
+  margin: 0px;
+  padding: 0px;
+}

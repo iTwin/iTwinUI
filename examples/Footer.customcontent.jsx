@@ -9,13 +9,7 @@ import { SvgSmileyHappyHollow } from '@itwin/itwinui-icons-react';
 export default () => {
   const customItem = (
     <Footer.Item key='copyright'>
-      <SvgSmileyHappyHollow
-        style={{
-          width: 12,
-          height: 12,
-          marginRight: 4,
-        }}
-      />
+      <SvgSmileyHappyHollow className='demo-svg' />
       <span>Powered by Happiness © {new Date().getFullYear()}</span>
     </Footer.Item>
   );
