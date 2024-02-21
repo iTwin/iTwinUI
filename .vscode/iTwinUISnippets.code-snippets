@@ -37,7 +37,7 @@
   },
   "iTwinUIComponent": {
     "scope": "typescriptreact",
-    "prefix": "iuicomponent",
+    "prefix": "forwardRef",
     "body": [
       "const ${1:Name} = React.forwardRef((props, forwardedRef) => {",
       " const {${2:props}} = props",
@@ -45,7 +45,7 @@
       " return (",
       "   ${3:jsx}",
       " );",
-      "}) as PolymorphicForwardedRefComponent<'${4:element}', ${5:PropsType}>;"
+      "}) as PolymorphicForwardRefComponent<'${4:element}', ${5:PropsType}>;"
     ]
   },
   "ImportCX": {
