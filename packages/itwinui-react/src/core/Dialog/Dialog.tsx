@@ -13,6 +13,7 @@ import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
 import { useMergedRefs, Box, Portal } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Transition } from 'react-transition-group';
 
 type DialogProps = {
   /**
@@ -42,6 +43,10 @@ const DialogComponent = React.forwardRef((props, ref) => {
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
+  console.log('isOpen: ', isOpen);
+
+  const mergedRef = useMergedRefs(ref, dialogRootRef);
+
   return (
     <DialogContext.Provider
       value={{
@@ -64,9 +69,62 @@ const DialogComponent = React.forwardRef((props, ref) => {
         <Box
           className={cx('iui-dialog-wrapper', className)}
           data-iui-relative={relativeTo === 'container'}
-          ref={useMergedRefs(ref, dialogRootRef)}
+          ref={mergedRef}
           {...rest}
         />
+        <Transition in={isOpen} timeout={{ enter: 0, exit: 6000 }}>
+          {(state) =>
+            // <div
+            //   style={
+            //     {
+            //       // ...defaultStyle,
+            //       // ...transitionStyles[state]
+            //     }
+            //   }
+            // >
+            //   I'm A fade Transition!
+            // </div>
+            {
+              console.log('state: ', state);
+
+              /* <div*/
+              /*   style={*/
+              /*     {*/
+              /*       // ...defaultStyle,*/
+              /*       // ...transitionStyles[state]*/
+              /*     }*/
+              /*   }*/
+              /* >*/
+              /*   I'm A fade Transition!*/
+              /* </div>*/
+              // <div
+              //   style={
+              //     {
+              //       // ...defaultStyle,
+              //       // ...transitionStyles[state]
+              //     }
+              //   }
+              // >
+              //   I'm A fade Transition!
+              // </div>
+
+              return state === 'exited' ? null : (
+                <Box
+                  className={cx('iui-dialog-wrapper', className)}
+                  data-iui-relative={relativeTo === 'container'}
+                  ref={mergedRef}
+                  {...rest}
+                />
+              );
+            }
+          }
+          {/* <Box
+            className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
+            ref={mergedRef}
+            {...rest}
+          /> */}
+        </Transition>
       </Portal>
     </DialogContext.Provider>
   );
