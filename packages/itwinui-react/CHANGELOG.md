@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.24
+
+### Patch Changes
+
+- [#1868](https://github.com/iTwin/iTwinUI/pull/1868): Fixed an issue where `svg` selectors from v2 and v3 were conflicting.
+
 ## 2.12.23
 
 ### Patch Changes
