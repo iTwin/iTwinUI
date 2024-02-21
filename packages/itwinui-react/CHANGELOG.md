@@ -4,7 +4,7 @@
 
 ### Minor Changes
 
-- [#1844](https://github.com/iTwin/iTwinUI/pull/1844): Interactive elements will now be correctly focused on Safari.
+- [#1844](https://github.com/iTwin/iTwinUI/pull/1844): Interactive elements will now be correctly focused on Safari 17+.
 - [#1860](https://github.com/iTwin/iTwinUI/pull/1860): `ThemeProvider` will now automatically specify an `accent-color` to match the current theme.
 - [#1856](https://github.com/iTwin/iTwinUI/pull/1856): Added new `isExternal` prop to `Anchor`. When true, displays an icon at the end of link text.
 - [#1858](https://github.com/iTwin/iTwinUI/pull/1858): `ToggleSwitch` will now show a checkmark icon by default in the checked state. `SvgCheckmark` no longer needs to be manually passed into the `icon` prop.
