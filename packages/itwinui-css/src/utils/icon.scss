@@ -44,25 +44,24 @@ $icon-sizes: (
 
 // ----------------------------------------------------------------------------
 
-.iui-svg-icon,
-[data-iui-icon-color] {
+.iui-svg-icon {
   @include iui-svg-icon;
-}
 
-@each $size in 's', 'm', 'l', 'auto' {
-  [data-iui-icon-size='#{$size}'] {
-    @include svg-icon-size($size);
+  @each $size in 's', 'm', 'l', 'auto' {
+    &[data-iui-icon-size='#{$size}'] {
+      @include svg-icon-size($size);
+    }
   }
-}
 
-@each $fill in 'informational', 'positive', 'warning', 'negative' {
-  [data-iui-icon-color='#{$fill}'] {
-    @include svg-icon-status-color($fill);
+  @each $fill in 'informational', 'positive', 'warning', 'negative' {
+    &[data-iui-icon-color='#{$fill}'] {
+      @include svg-icon-status-color($fill);
+    }
   }
-}
 
-// override forced colors only if it doesn't have a status fill
-.iui-svg-icon:where(:not([data-iui-icon-color])),
-[data-iui-icon-color='default'] {
-  @include svg-icon-forced-colors;
+  // override forced colors only if it doesn't have a status fill
+  &:where(:not([data-iui-icon-color])),
+  &[data-iui-icon-color='default'] {
+    @include svg-icon-forced-colors;
+  }
 }
