@@ -35,6 +35,16 @@
     ],
     "description": "React Component boilerplate"
   },
+  "importForwardRef": {
+    "scoope": "javascriptreact,typescriptreact",
+    "prefix": "importForwardRef",
+    "body": [
+      "import * as React from 'react';",
+      "import { Box } from '../utils/index.js';",
+      "import type { PolymorphicForwardRefComponent } from '../utils/index.js';"
+    ],
+    "description": "Imports needed for forwardRef component"
+  },
   "iTwinUIComponent": {
     "scope": "typescriptreact",
     "prefix": "forwardRef",
