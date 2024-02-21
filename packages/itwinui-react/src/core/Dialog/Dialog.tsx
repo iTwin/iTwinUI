@@ -27,7 +27,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
     trapFocus = false,
     setFocus = false,
     preventDocumentScroll = false,
-    isOpen = false,
+    isOpen: isOpenProp = false,
     isDismissible = true,
     closeOnEsc = true,
     closeOnExternalClick = false,
@@ -41,16 +41,28 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
+  // const [shouldShow, setShouldShow] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(false);
+
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
-  console.log('isOpen: ', isOpen);
+  console.log('isOpen: ', isOpen, isOpenProp);
 
   const mergedRef = useMergedRefs(ref, dialogRootRef);
+
+  // When the user first passes `isOpenProp=true`, first render the dialog wrapper
+  // and then pass `isOpen=true` down the three after the first render so the dialog subcomponents can do the
+  // correct CSS transitions.
+  React.useEffect(() => {
+    if (isOpenProp) {
+      setIsOpen(true);
+    }
+  }, [isOpenProp]);
 
   return (
     <DialogContext.Provider
       value={{
-        isOpen,
+        isOpen: isOpenProp && isOpen,
         onClose,
         closeOnEsc,
         closeOnExternalClick,
@@ -66,37 +78,19 @@ const DialogComponent = React.forwardRef((props, ref) => {
       }}
     >
       <Portal portal={portal}>
-        <Box
+        {/* <Box
           className={cx('iui-dialog-wrapper', className)}
           data-iui-relative={relativeTo === 'container'}
           ref={mergedRef}
           {...rest}
-        />
-        <Transition in={isOpen} timeout={{ enter: 0, exit: 6000 }}>
-          {(state) =>
-            // <div
-            //   style={
-            //     {
-            //       // ...defaultStyle,
-            //       // ...transitionStyles[state]
-            //     }
-            //   }
-            // >
-            //   I'm A fade Transition!
-            // </div>
-            {
-              console.log('state: ', state);
-
-              /* <div*/
-              /*   style={*/
-              /*     {*/
-              /*       // ...defaultStyle,*/
-              /*       // ...transitionStyles[state]*/
-              /*     }*/
-              /*   }*/
-              /* >*/
-              /*   I'm A fade Transition!*/
-              /* </div>*/
+        /> */}
+        {(isOpenProp || isOpen) && (
+          <Transition
+            in={isOpen && isOpenProp}
+            onExited={() => setIsOpen(false)}
+            timeout={{ enter: 0, exit: 2000 }}
+          >
+            {(state) =>
               // <div
               //   style={
               //     {
@@ -107,24 +101,57 @@ const DialogComponent = React.forwardRef((props, ref) => {
               // >
               //   I'm A fade Transition!
               // </div>
+              {
+                console.log('state: ', state);
 
-              return state === 'exited' ? null : (
-                <Box
-                  className={cx('iui-dialog-wrapper', className)}
-                  data-iui-relative={relativeTo === 'container'}
-                  ref={mergedRef}
-                  {...rest}
-                />
-              );
+                /* <div*/
+                /*   style={*/
+                /*     {*/
+                /*       // ...defaultStyle,*/
+                /*       // ...transitionStyles[state]*/
+                /*     }*/
+                /*   }*/
+                /* >*/
+                /*   I'm A fade Transition!*/
+                /* </div>*/
+                // <div
+                //   style={
+                //     {
+                //       // ...defaultStyle,
+                //       // ...transitionStyles[state]
+                //     }
+                //   }
+                // >
+                //   I'm A fade Transition!
+                // </div>
+
+                // return state === 'exited' ? null : (
+                //   // return !shouldShow ? null : (
+                //   <Box
+                //     className={cx('iui-dialog-wrapper', className)}
+                //     data-iui-relative={relativeTo === 'container'}
+                //     ref={mergedRef}
+                //     {...rest}
+                //   />
+                // );
+                return (
+                  <Box
+                    className={cx('iui-dialog-wrapper', className)}
+                    data-iui-relative={relativeTo === 'container'}
+                    ref={mergedRef}
+                    {...rest}
+                  />
+                );
+              }
             }
-          }
-          {/* <Box
+            {/* <Box
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
             ref={mergedRef}
             {...rest}
           /> */}
-        </Transition>
+          </Transition>
+        )}
       </Portal>
     </DialogContext.Provider>
   );
