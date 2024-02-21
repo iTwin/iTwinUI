@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.4.0
+
+### Minor Changes
+
+- [#1864](https://github.com/iTwin/iTwinUI/pull/1864): Added a new `data-iui-underline` attribute to `iui-anchor`. When set to `"true"`, anchors will be underlined by default instead of only on hover.
+- [#1858](https://github.com/iTwin/iTwinUI/pull/1858): `toggle-switch` will no longer hide icons when size is set to "small". The recommendation is to always display a checkmark icon, even for small sizes.
+
+### Patch Changes
+
+- [#1845](https://github.com/iTwin/iTwinUI/pull/1845): Removed `:focus-visible` fallback styles for older browsers.
+
 ## 2.3.1
 
 ### Patch Changes
