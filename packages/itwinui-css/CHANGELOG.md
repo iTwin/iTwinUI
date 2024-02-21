@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.10
+
+### Patch Changes
+
+- [#1868](https://github.com/iTwin/iTwinUI/pull/1868): Fixed an issue where `data-iui-icon-color` was applying styles even when `class="iui-svg-icon"` was not set.
+
 ## 1.12.9
 
 ### Patch Changes
