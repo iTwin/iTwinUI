@@ -41,28 +41,31 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  // const [shouldShow, setShouldShow] = React.useState(false);
-  const [isOpen, setIsOpen] = React.useState(false);
+  // When user can/should see the children (e.g. when opacity!=0)
+  const [isDialogWrapperChildrenVisible, setIsDialogWrapperChildrenVisible] =
+    React.useState(false);
+  // Internal state for subcomponents
+  const isOpen = isOpenProp && isDialogWrapperChildrenVisible;
 
+  const isDialogWrapperRendered = isOpenProp || isDialogWrapperChildrenVisible;
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
-
-  console.log('isOpen: ', isOpen, isOpenProp);
-
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
-  // When the user first passes `isOpenProp=true`, first render the dialog wrapper
-  // and then pass `isOpen=true` down the three after the first render so the dialog subcomponents can do the
-  // correct CSS transitions.
+  console.log('isOpen: ', { isDialogWrapperChildrenVisible, isOpenProp });
+
+  // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
+  // Only after the first render with isOpen=false, pass `isOpen=true` down the tree so the dialog subcomponents can do
+  // the correct CSS transitions.
   React.useEffect(() => {
     if (isOpenProp) {
-      setIsOpen(true);
+      setIsDialogWrapperChildrenVisible(true);
     }
   }, [isOpenProp]);
 
   return (
     <DialogContext.Provider
       value={{
-        isOpen: isOpenProp && isOpen,
+        isOpen,
         onClose,
         closeOnEsc,
         closeOnExternalClick,
@@ -84,11 +87,11 @@ const DialogComponent = React.forwardRef((props, ref) => {
           ref={mergedRef}
           {...rest}
         /> */}
-        {(isOpenProp || isOpen) && (
+        {isDialogWrapperRendered && (
           <Transition
-            in={isOpen && isOpenProp}
-            onExited={() => setIsOpen(false)}
-            timeout={{ enter: 0, exit: 2000 }}
+            in={isOpen}
+            onExited={() => setIsDialogWrapperChildrenVisible(false)}
+            timeout={{ enter: 0, exit: 600 }}
           >
             {(state) =>
               // <div
