@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test:docker": "docker run --rm --entrypoint /bin/bash -v %cd%:/testing/a11y -w /testing/a11y cypress/included:13.2.0 -c 'cypress run --component'",
     "test": "cypress run --component",
     "open": "cypress open --component",
     "clean": "rimraf .turbo && rimraf node_modules"
