@@ -20,6 +20,14 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
+  /**
+   * By default, the dialog wrapper is always rendered regardless of `isOpen`.
+   *
+   * Pass `false` to avoid rendering the dialog wrapper when `isOpen=false`.
+   *
+   * @default true
+   */
+  renderWrapperWhenClosed?: boolean;
 } & Omit<DialogContextProps, 'dialogRootRef'>;
 
 const DialogComponent = React.forwardRef((props, ref) => {
@@ -38,27 +46,38 @@ const DialogComponent = React.forwardRef((props, ref) => {
     placement,
     className,
     portal = false,
+    renderWrapperWhenClosed = true,
     ...rest
   } = props;
 
-  // When user can/should see the children (e.g. when opacity!=0)
-  const [isDialogWrapperChildrenVisible, setIsDialogWrapperChildrenVisible] =
-    React.useState(false);
+  // When user can/should see the dialog wrapper's children (e.g. when opacity!=0)
+  const [
+    shouldDialogWrapperChildrenBeVisible,
+    setShouldDialogWrapperChildrenBeVisible,
+  ] = React.useState(false);
   // Internal state for subcomponents
-  const isOpen = isOpenProp && isDialogWrapperChildrenVisible;
+  const isOpen = renderWrapperWhenClosed
+    ? isOpenProp
+    : isOpenProp && shouldDialogWrapperChildrenBeVisible;
 
-  const isDialogWrapperRendered = isOpenProp || isDialogWrapperChildrenVisible;
+  const isDialogWrapperRendered =
+    renderWrapperWhenClosed ||
+    isOpenProp ||
+    shouldDialogWrapperChildrenBeVisible;
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
-  console.log('isOpen: ', { isDialogWrapperChildrenVisible, isOpenProp });
+  console.log('isOpen: ', {
+    isDialogWrapperChildrenVisible: shouldDialogWrapperChildrenBeVisible,
+    isOpenProp,
+  });
 
   // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
   // Only after the first render with isOpen=false, pass `isOpen=true` down the tree so the dialog subcomponents can do
   // the correct CSS transitions.
   React.useEffect(() => {
     if (isOpenProp) {
-      setIsDialogWrapperChildrenVisible(true);
+      setShouldDialogWrapperChildrenBeVisible(true);
     }
   }, [isOpenProp]);
 
@@ -90,7 +109,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
         {isDialogWrapperRendered && (
           <Transition
             in={isOpen}
-            onExited={() => setIsDialogWrapperChildrenVisible(false)}
+            onExited={() => setShouldDialogWrapperChildrenBeVisible(false)}
             timeout={{ enter: 0, exit: 600 }}
           >
             {(state) =>

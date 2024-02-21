@@ -21,6 +21,7 @@ export default () => {
         setFocus
         isDismissible
         portal
+        renderWrapperWhenClosed={false}
       >
         <Dialog.Backdrop />
         <Dialog.Main>
