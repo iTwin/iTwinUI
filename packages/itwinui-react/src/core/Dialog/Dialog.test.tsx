@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -146,3 +146,56 @@ it('should not allow to close the dialog when isDismissible false', async () => 
   ) as HTMLElement;
   expect(closeIcon).toBeFalsy();
 });
+
+it.only.each([true, false, undefined])(
+  'should respect the renderWrapperWhenClosed prop when renderWrapperWhenClosed=%s',
+  (renderWrapperWhenClosed) => {
+    vi.useFakeTimers();
+
+    const Component = ({ isOpen = false }) => (
+      <Dialog isOpen={isOpen} renderWrapperWhenClosed={renderWrapperWhenClosed}>
+        <Dialog.Backdrop />
+        <Dialog.Main>
+          <Dialog.TitleBar titleText='Test title' />
+          <Dialog.Content>Here is my dialog content</Dialog.Content>
+          <Dialog.ButtonBar>
+            <Button styleType='high-visibility'>Confirm</Button>
+            <Button>Close</Button>
+          </Dialog.ButtonBar>
+        </Dialog.Main>
+      </Dialog>
+    );
+
+    const { container, rerender } = render(<Component isOpen={false} />);
+
+    let dialogWrapper = container.querySelector(
+      '.iui-dialog-wrapper',
+    ) as HTMLElement;
+    if (renderWrapperWhenClosed ?? true) {
+      expect(dialogWrapper).toBeTruthy();
+    } else {
+      expect(dialogWrapper).toBeFalsy();
+    }
+
+    rerender(<Component isOpen={true} />);
+
+    dialogWrapper = container.querySelector(
+      '.iui-dialog-wrapper',
+    ) as HTMLElement;
+    expect(dialogWrapper).toBeTruthy();
+
+    rerender(<Component isOpen={false} />);
+
+    // Since timeout for the exit animation is 600ms
+    act(() => vi.advanceTimersByTime(600));
+
+    dialogWrapper = container.querySelector(
+      '.iui-dialog-wrapper',
+    ) as HTMLElement;
+    if (renderWrapperWhenClosed ?? true) {
+      expect(dialogWrapper).toBeTruthy();
+    } else {
+      expect(dialogWrapper).toBeFalsy();
+    }
+  },
+);
