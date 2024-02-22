@@ -63,7 +63,8 @@ type ModalProps = {
    * Props for customizing the backdrop element.
    */
   backdropProps?: React.ComponentPropsWithRef<'div'>;
-} & Pick<DialogMainProps, 'isOpen' | 'styleType'>;
+} & Pick<DialogMainProps, 'isOpen' | 'styleType'> &
+  Pick<React.ComponentProps<typeof Dialog>, 'renderWrapperWhenClosed'>;
 
 /**
  * Modal component which can wrap any content.
@@ -99,6 +100,7 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
     wrapperProps,
     backdropProps,
     titleBarProps,
+    renderWrapperWhenClosed,
     ...rest
   } = props;
 
@@ -112,6 +114,7 @@ export const Modal = React.forwardRef((props, forwardedRef) => {
       preventDocumentScroll
       trapFocus
       setFocus
+      renderWrapperWhenClosed={renderWrapperWhenClosed}
       ref={forwardedRef}
       portal={portal}
       {...wrapperProps}

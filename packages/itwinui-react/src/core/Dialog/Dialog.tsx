@@ -21,9 +21,9 @@ type DialogProps = {
    */
   children: React.ReactNode;
   /**
-   * By default, the dialog wrapper is always rendered regardless of `isOpen`.
+   * By default, the dialog/modal wrapper is always rendered regardless of `isOpen`.
    *
-   * Pass `false` to avoid rendering the dialog wrapper when `isOpen=false`.
+   * Pass `false` to avoid rendering the dialog/modal wrapper when `isOpen=false`.
    *
    * @default true
    */
