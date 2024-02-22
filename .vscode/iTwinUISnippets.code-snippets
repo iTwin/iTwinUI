@@ -22,12 +22,12 @@
     "prefix": "forwardRef",
     "body": [
       "const ${1:Name} = React.forwardRef((props, forwardedRef) => {",
-      " const {${2:props}} = props",
+      " const { ...rest } = props",
       "",
       " return (",
-      "   ${3:jsx}",
+      "   <Box ref={forwardedRef} {...rest} />",
       " );",
-      "}) as PolymorphicForwardRefComponent<'${4:element}', ${5:PropsType}>;"
+      "}) as PolymorphicForwardRefComponent<'div'>;"
     ]
   },
   "ImportCX": {
