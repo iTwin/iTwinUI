@@ -26,7 +26,6 @@ $default-fill: var(--iui-color-icon-muted);
   @each $size in 's', 'm', 'l', 'auto' {
     &[data-iui-icon-size='#{$size}'] {
       --_iui-svg-size: #{map.get($icon-sizes, $size)};
-      --_iui-svg-padding-inline: #{map.get($icon-sizes, $size)};
     }
   }
 
@@ -44,7 +43,7 @@ $default-fill: var(--iui-color-icon-muted);
   }
 
   &[data-iui-padded='true'] {
-    padding-inline: var(--_iui-svg-padding-inline, var(--iui-size-s));
+    padding-inline: var(--iui-size-xs);
   }
 
   // collapse padding between adjacent icons

@@ -1,5 +1,11 @@
 # @itwin/itwinui-variables
 
+## 3.1.0
+
+### Minor Changes
+
+- [#1860](https://github.com/iTwin/iTwinUI/pull/1860): `data-iui-theme` will now automatically specify an `accent-color` to match the current theme.
+
 ## 3.0.0
 
 ### Major Changes
