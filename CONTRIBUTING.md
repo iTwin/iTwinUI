@@ -103,7 +103,7 @@ pnpm --filter react-workshop build
 
 This is why it's recommended to use the turbo `--filter` syntax whenever possible.
 ```
-pnpm build --filter=react-workshop
+pnpm run build --filter=react-workshop
 ```
 
 ---
@@ -308,8 +308,8 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 #### Running visual tests
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
-2. From the monorepo root, run `pnpm test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter react-workshop test --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm build --filter=react-workshop).
+2. From the monorepo root, run `pnpm run test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter react-workshop test --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
@@ -352,11 +352,11 @@ We use an automated script to evaluate each component example for accessibility 
 
 In the terminal: 
 
-- Run the command `pnpm test --filter=a11y` to run automated accessibility tests for all examples.
+- Run the command `pnpm run test --filter=a11y` to run automated accessibility tests for all examples.
 
 In the Cypress GUI:
 
-1. From the monorepo root, run `pnpm --filter a11y open`. This will open the Cypress control panel where you can run the tests.
+1. From the monorepo root, run `pnpm run --filter a11y open`. This will open the Cypress control panel where you can run the tests.
 2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
 3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
 
