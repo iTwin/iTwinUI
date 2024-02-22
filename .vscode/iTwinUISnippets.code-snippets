@@ -9,7 +9,7 @@
   },
   "importForwardRef": {
     "scoope": "javascriptreact,typescriptreact",
-    "prefix": "importForwardRef",
+    "prefix": "impforwardRef",
     "body": [
       "import * as React from 'react';",
       "import { Box } from '../utils/index.js';",
@@ -32,14 +32,8 @@
   },
   "ImportCX": {
     "scope": "typescriptreact",
-    "prefix": "importcx",
+    "prefix": "icx",
     "body": ["import cx from 'classnames';"],
     "description": "Imports the cx function from classnames"
-  },
-  "CX": {
-    "scope": "typescriptreact",
-    "prefix": "cx",
-    "body": ["className={cx(${1:classNames})}"],
-    "description": "Conditionaly joins class names"
   }
 }
