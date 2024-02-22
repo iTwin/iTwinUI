@@ -1,0 +1,39 @@
+{
+  "Separator": {
+    "prefix": "//-",
+    "body": [
+      "// ------------------------------------------------------------------------------------------------",
+      "$1"
+    ],
+    "description": "Creates a separator comment"
+  },
+  "importForwardRef": {
+    "scoope": "javascriptreact,typescriptreact",
+    "prefix": "impforwardRef",
+    "body": [
+      "import * as React from 'react';",
+      "import { Box } from '../utils/index.js';",
+      "import type { PolymorphicForwardRefComponent } from '../utils/index.js';"
+    ],
+    "description": "Imports needed for forwardRef component"
+  },
+  "iTwinUIComponent": {
+    "scope": "typescriptreact",
+    "prefix": "forwardRef",
+    "body": [
+      "const ${1:Name} = React.forwardRef((props, forwardedRef) => {",
+      " const { ...rest } = props",
+      "",
+      " return (",
+      "   <Box ref={forwardedRef} {...rest} />",
+      " );",
+      "}) as PolymorphicForwardRefComponent<'div'>;"
+    ]
+  },
+  "ImportCX": {
+    "scope": "typescriptreact",
+    "prefix": "impcx",
+    "body": ["import cx from 'classnames';"],
+    "description": "Imports the cx function from classnames"
+  }
+}
