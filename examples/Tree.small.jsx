@@ -62,7 +62,7 @@ export default () => {
 
   return (
     <Tree
-      style={{ width: 'min(100%, 260px)' }}
+      className='demo-tree'
       data={data}
       size='small'
       getNode={getNode}

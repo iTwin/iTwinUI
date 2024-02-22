@@ -1,0 +1,10 @@
+.demo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--iui-size-xs);
+}
+
+.demo-indented {
+  margin-left: var(--iui-size-l);
+}

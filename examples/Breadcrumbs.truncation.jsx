@@ -7,15 +7,7 @@ import { Breadcrumbs } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <div
-      style={{
-        inlineSize: '75%',
-        minInlineSize: 150,
-        maxInlineSize: 450,
-        border: '1px solid pink',
-        padding: 8,
-      }}
-    >
+    <div className='demo-container'>
       <Breadcrumbs>
         <Breadcrumbs.Item onClick={() => {}}>Root</Breadcrumbs.Item>
         <Breadcrumbs.Item onClick={() => {}}>My files</Breadcrumbs.Item>

@@ -7,7 +7,7 @@ import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Alert.Wrapper style={{ minWidth: 'min(100%, 350px)' }}>
+    <Alert.Wrapper className='demo-alert-wrapper'>
       <Alert.Icon />
       <Alert.Message>
         This is an alert

@@ -8,7 +8,7 @@ import { SvgSmileyHappy } from '@itwin/itwinui-icons-react';
 
 export default () => {
   return (
-    <div style={{ width: 'min(100%, 300px)' }}>
+    <div className='demo-container'>
       <ExpandableBlock.Wrapper status='positive'>
         <ExpandableBlock.Trigger>
           <ExpandableBlock.ExpandIcon />

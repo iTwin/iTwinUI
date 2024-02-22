@@ -1,0 +1,13 @@
+.demo-card {
+  display: flex;
+  inline-size: 100px;
+  padding: 12px;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+}
+
+.demo-container {
+  display: flex;
+  gap: var(--iui-size-2xl);
+}

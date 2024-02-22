@@ -3,14 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Button, Flex } from '@itwin/itwinui-react';
+import { Button } from '@itwin/itwinui-react';
 
 export default () => {
   return (
-    <Flex>
+    <div className='demo-container'>
       <Button size='small'>Small</Button>
       <Button>Medium</Button>
       <Button size='large'>Large</Button>
-    </Flex>
+    </div>
   );
 };

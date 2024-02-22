@@ -16,7 +16,7 @@ export default () => {
       id='text-area'
       value={value}
       onChange={(event) => setValue(event.target.value)}
-      style={{ width: '70%' }}
+      className='demo-text-area'
     />
   );
 };
