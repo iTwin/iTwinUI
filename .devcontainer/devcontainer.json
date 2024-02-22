@@ -1,7 +1,5 @@
 {
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "mcr.microsoft.com/devcontainers/universal:2r",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -13,6 +11,5 @@
       ]
     }
   },
-  "forwardPorts": [3000],
   "postCreateCommand": "yarn install && yarn build"
 }
