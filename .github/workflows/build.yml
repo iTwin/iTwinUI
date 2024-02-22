@@ -309,9 +309,15 @@ jobs:
 
       - run: pnpm build --filter=itwinui-react
 
-      - uses: cypress-io/github-action@v5
+      - name: Install node modules inside Docker
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false # just perform install from monorepo root
+
+      - name: Run a11y tests
+        uses: cypress-io/github-action@v5
         with:
           working-directory: testing/a11y
           component: true
           browser: chrome
-          install-command: pnpm install
+          install: false # we already installed deps above
