@@ -32,7 +32,7 @@
   },
   "ImportCX": {
     "scope": "typescriptreact",
-    "prefix": "icx",
+    "prefix": "impcx",
     "body": ["import cx from 'classnames';"],
     "description": "Imports the cx function from classnames"
   }
