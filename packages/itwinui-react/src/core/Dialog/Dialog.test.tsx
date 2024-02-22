@@ -147,55 +147,40 @@ it('should not allow to close the dialog when isDismissible false', async () => 
   expect(closeIcon).toBeFalsy();
 });
 
-it.each([true, false, undefined])(
-  'should respect the renderWrapperWhenClosed prop when renderWrapperWhenClosed=%s',
-  (renderWrapperWhenClosed) => {
-    vi.useFakeTimers();
+it('should not stay in the DOM when isOpen=false', () => {
+  vi.useFakeTimers();
 
-    const Component = ({ isOpen = false }) => (
-      <Dialog isOpen={isOpen} renderWrapperWhenClosed={renderWrapperWhenClosed}>
-        <Dialog.Backdrop />
-        <Dialog.Main>
-          <Dialog.TitleBar titleText='Test title' />
-          <Dialog.Content>Here is my dialog content</Dialog.Content>
-          <Dialog.ButtonBar>
-            <Button styleType='high-visibility'>Confirm</Button>
-            <Button>Close</Button>
-          </Dialog.ButtonBar>
-        </Dialog.Main>
-      </Dialog>
-    );
+  const Component = ({ isOpen = false }) => (
+    <Dialog isOpen={isOpen}>
+      <Dialog.Backdrop />
+      <Dialog.Main>
+        <Dialog.TitleBar titleText='Test title' />
+        <Dialog.Content>Here is my dialog content</Dialog.Content>
+        <Dialog.ButtonBar>
+          <Button styleType='high-visibility'>Confirm</Button>
+          <Button>Close</Button>
+        </Dialog.ButtonBar>
+      </Dialog.Main>
+    </Dialog>
+  );
 
-    const { container, rerender } = render(<Component isOpen={false} />);
+  const { container, rerender } = render(<Component isOpen={false} />);
 
-    let dialogWrapper = container.querySelector(
-      '.iui-dialog-wrapper',
-    ) as HTMLElement;
-    if (renderWrapperWhenClosed ?? true) {
-      expect(dialogWrapper).toBeTruthy();
-    } else {
-      expect(dialogWrapper).toBeFalsy();
-    }
+  let dialogWrapper = container.querySelector(
+    '.iui-dialog-wrapper',
+  ) as HTMLElement;
+  expect(dialogWrapper).toBeFalsy();
 
-    rerender(<Component isOpen={true} />);
+  rerender(<Component isOpen={true} />);
 
-    dialogWrapper = container.querySelector(
-      '.iui-dialog-wrapper',
-    ) as HTMLElement;
-    expect(dialogWrapper).toBeTruthy();
+  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
+  expect(dialogWrapper).toBeTruthy();
 
-    rerender(<Component isOpen={false} />);
+  rerender(<Component isOpen={false} />);
 
-    // Since timeout for the exit animation is 600ms
-    act(() => vi.advanceTimersByTime(600));
+  // Since timeout for the exit animation is 600ms
+  act(() => vi.advanceTimersByTime(600));
 
-    dialogWrapper = container.querySelector(
-      '.iui-dialog-wrapper',
-    ) as HTMLElement;
-    if (renderWrapperWhenClosed ?? true) {
-      expect(dialogWrapper).toBeTruthy();
-    } else {
-      expect(dialogWrapper).toBeFalsy();
-    }
-  },
-);
+  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
+  expect(dialogWrapper).toBeFalsy();
+});

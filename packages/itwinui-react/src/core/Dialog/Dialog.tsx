@@ -20,14 +20,6 @@ type DialogProps = {
    * Dialog content.
    */
   children: React.ReactNode;
-  /**
-   * By default, the dialog/modal wrapper is always rendered regardless of `isOpen`.
-   *
-   * Pass `false` to avoid rendering the dialog/modal wrapper when `isOpen=false`.
-   *
-   * @default true
-   */
-  renderWrapperWhenClosed?: boolean;
 } & Omit<DialogContextProps, 'dialogRootRef'>;
 
 const DialogComponent = React.forwardRef((props, ref) => {
@@ -46,7 +38,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
     placement,
     className,
     portal = false,
-    renderWrapperWhenClosed = true,
     ...rest
   } = props;
 
@@ -56,12 +47,9 @@ const DialogComponent = React.forwardRef((props, ref) => {
     React.useState(false);
 
   // Internal state for subcomponents
-  const isOpen = renderWrapperWhenClosed
-    ? isOpenProp
-    : isOpenProp && isDialogWrapperChildrenVisible;
+  const isOpen = isOpenProp && isDialogWrapperChildrenVisible;
 
-  const isDialogWrapperRendered =
-    renderWrapperWhenClosed || isOpenProp || isDialogWrapperChildrenVisible;
+  const isDialogWrapperRendered = isOpenProp || isDialogWrapperChildrenVisible;
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRefs(ref, dialogRootRef);
