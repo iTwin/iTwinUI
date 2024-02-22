@@ -75,7 +75,7 @@ jobs:
 
       - run: pnpm lint
       - run: pnpm lint:copyright
-      - run: pnpm build --filter="{./packages/*}..."
+      - run: pnpm run build --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
@@ -97,7 +97,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm build --filter=website --filter="{./playgrounds/*}..."
+      - run: pnpm run build --filter=website --filter="{./playgrounds/*}..."
 
   deploy-gh-pages:
     name: Push static files to github pages
@@ -126,13 +126,13 @@ jobs:
       - run: pnpm install
 
       - name: Build css-workshop
-        run: pnpm build --filter=css-workshop
+        run: pnpm run build --filter=css-workshop
 
       - name: Build portal
         run: pnpm --filter portal build --base "/iTwinUI/${{ env.base_folder }}"
 
       - name: Build react-workshop
-        run: pnpm build --filter=react-workshop
+        run: pnpm run build --filter=react-workshop
 
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
@@ -241,13 +241,13 @@ jobs:
 
       - run: pnpm install
 
-      - name: pnpm test --filter=css-workshop
+      - name: pnpm run test --filter=css-workshop
         uses: nick-fields/retry@v2
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: pnpm test --filter=css-workshop
+          command: pnpm run test --filter=css-workshop
 
       - name: Publish test results artifact
         if: failure()
@@ -277,7 +277,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm test --filter=react-workshop
+      - run: pnpm run test --filter=react-workshop
 
       - name: Publish test results artifact
         if: failure()
@@ -307,7 +307,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm build --filter=itwinui-react
+      - run: pnpm run build --filter=itwinui-react
 
       - name: Install node modules inside Docker
         uses: cypress-io/github-action@v5

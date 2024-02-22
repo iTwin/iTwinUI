@@ -20,7 +20,7 @@ jobs:
           node-version: 20.x
 
       - run: pnpm install
-      - run: pnpm build --filter=react-workshop
+      - run: pnpm run build --filter=react-workshop
 
       - name: Host react-workshop under /react
         uses: JamesIves/github-pages-deploy-action@v4

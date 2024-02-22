@@ -62,7 +62,7 @@ e.g. to build all workspaces together, run the following command from the root:
 pnpm build
 ```
 
-If you only need to run this task for a specific workspace, you can specify turborepo's `--filter` argument. For example, if you only want to build itwinui-react, you could run `pnpm build --filter=itwinui-react`. Note that this will automatically run `build` for any dependencies (e.g. `itwinui-css` and `itwinui-variables`). You can see the pipeline in the `turbo.json` file.
+If you only need to run this task for a specific workspace, you can specify turborepo's `--filter` argument. For example, if you only want to build itwinui-react, you could run `pnpm run build --filter=itwinui-react`. Note that this will automatically run `build` for any dependencies (e.g. `itwinui-css` and `itwinui-variables`). You can see the pipeline in the `turbo.json` file.
 
 #### Development environment
 
