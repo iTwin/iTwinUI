@@ -15,7 +15,7 @@ try {
 }
 
 // Run prettier on all compiled output because it gets jumbled by tsc.
-exec('yarn prettier --write "{esm,cjs}/**/*.js"', (error) => {
+exec('pnpm exec prettier --write "{esm,cjs}/**/*.js"', (error) => {
   if (error) {
     console.error('Error when running prettier', error);
   } else {

@@ -30,7 +30,7 @@ const inputsAndOutputsList = [
 // src/all.scss:css/all.css src/alert/alert.scss:css/alert.css
 const spaceSeparatedInputsAndOutputs = inputsAndOutputsList.map(([scss, css]) => `${scss}:${css}`).join(' ');
 
-spawn(`yarn sass --watch ${spaceSeparatedInputsAndOutputs}`, {
+spawn(`pnpm exec sass --watch ${spaceSeparatedInputsAndOutputs}`, {
   stdio: 'inherit',
   shell: true,
 })

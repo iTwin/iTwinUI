@@ -1,5 +1,7 @@
 #!/bin/sh
 
+cd apps/react-workshop
+
 # `&` is used to run the process in the background
-yarn serve apps/react-workshop/build --listen 6006 -L &
-yarn workspace react-workshop cypress run "$@"
+npx -y serve build --listen 6006 -L &
+npx -y cypress run "$@"
