@@ -5,8 +5,7 @@ dist
 build
 
 # debug
-yarn-debug.log*
-yarn-error.log*
+*.log
 
 # env files
 .env
@@ -18,3 +17,6 @@ yarn-error.log*
 .env.production.local
 
 features/search
+
+# pnpm
+.pnpm-store

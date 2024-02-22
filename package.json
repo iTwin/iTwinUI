@@ -18,7 +18,7 @@
       "stylelint --fix"
     ],
     "*.{scss,html,js}": [
-      "yarn lint:copyright --fix"
+      "pnpm lint:copyright --fix"
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
@@ -32,14 +32,13 @@
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
-    "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
-    "approve:css": "yarn workspace css-workshop approve",
-    "approve:react": "yarn workspace react-workshop approve",
+    "approve:css": "pnpm --filter css-workshop approve",
+    "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
-    "release": "yarn build --filter={./packages/*}... && yarn changeset publish"
+    "release": "pnpm run build --filter={./packages/*}... && pnpm changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
@@ -47,7 +46,6 @@
     "concurrently": "^8.2.2",
     "husky": "^9.0.10",
     "lint-staged": "^15.2.2",
-    "patch-package": "~8.0.0",
     "prettier": "~3.1.0",
     "rimraf": "^5.0.5",
     "serve": "^14.2.1",
@@ -67,6 +65,6 @@
   "engines": {
     "node": ">=18.14.1"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "pnpm@8.15.3",
   "prettier": "configs/prettier-config"
 }

@@ -8,15 +8,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node 18.X
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v3
         with:
-          node-version: 18.x
+          version: 8
 
-      - run: yarn
-      - run: yarn build --filter=react-workshop
+      - name: Use Node 20.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - run: pnpm install
+      - run: pnpm run build --filter=react-workshop
 
       - name: Host react-workshop under /react
         uses: JamesIves/github-pages-deploy-action@v4
