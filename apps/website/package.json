@@ -26,6 +26,7 @@
     "astro": "^4",
     "astro-auto-import": "^0.4.2",
     "astro-expressive-code": "^0.30.1",
+    "configs": "workspace:*",
     "examples": "workspace:*",
     "htm": "^3",
     "lightningcss": "^1.22.1",

@@ -116,8 +116,8 @@ importers:
         specifier: '*'
         version: 18.2.18
       configs:
-        specifier: '*'
-        version: 1.0.3
+        specifier: workspace:*
+        version: link:../../internal/configs
       cypress:
         specifier: 13.2.0
         version: 13.2.0
@@ -190,6 +190,9 @@ importers:
       astro-expressive-code:
         specifier: ^0.30.1
         version: 0.30.1(astro@4.0.7)
+      configs:
+        specifier: workspace:*
+        version: link:../../internal/configs
       examples:
         specifier: workspace:*
         version: link:../../examples
@@ -295,6 +298,9 @@ importers:
       chokidar:
         specifier: ^3.5.3
         version: 3.5.3
+      configs:
+        specifier: workspace:*
+        version: link:../../internal/configs
       lightningcss:
         specifier: ^1.21.5
         version: 1.22.1
@@ -368,6 +374,9 @@ importers:
       '@vitest/coverage-v8':
         specifier: ^1.2.1
         version: 1.2.1(vitest@1.2.1)
+      configs:
+        specifier: workspace:*
+        version: link:../../internal/configs
       eslint:
         specifier: ^8
         version: 8.56.0
@@ -472,8 +481,8 @@ importers:
         specifier: ^4.2.1
         version: 4.2.1(vite@5.0.12)
       configs:
-        specifier: '*'
-        version: 1.0.3
+        specifier: workspace:*
+        version: link:../../internal/configs
       typescript:
         specifier: ~5.1.6
         version: 5.1.6
@@ -4147,17 +4156,6 @@ packages:
       yargs: 17.7.2
     dev: true
 
-  /configs@1.0.3:
-    resolution: {integrity: sha512-+TP4tYQxhf0sL6HQPQ2fN3LTaL/v/1L8v2UAWi46eMX6R1mfy0VQA9GHVlpBsz9QJmhcvX9xjbwSW1WLH+OE2A==}
-    engines: {node: 0.x}
-    dependencies:
-      debug: 2.1.1
-      deep-extend: 0.3.2
-      parent-dir: 0.0.3
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /content-disposition@0.5.2:
     resolution: {integrity: sha512-kRGRZw3bLlFISDBgwTSA1TMBFN6J6GWDeubmDE3AF+3+yXL8hTWv8r5rkLbqYXY4RjPk/EzHnClI3zQf1cFmHA==}
     engines: {node: '>= 0.6'}
@@ -4446,17 +4444,6 @@ packages:
   /dayjs@1.11.2:
     resolution: {integrity: sha512-F4LXf1OeU9hrSYRPTTj/6FbO4HTjPKXvEIC1P2kcnFurViINCVk3ZV0xAS3XVx9MkMsXbbqlK6hjseaYbgKEHw==}
 
-  /debug@2.1.1:
-    resolution: {integrity: sha512-DO4Epp+gc7PHrK3cZSYzASfIbTK0bMRs78/Bkjnu+sfSPxEbh/b2qcl27EKRYSK73W6Ju4QfaNHz5fnLXQKEhg==}
-    peerDependencies:
-      supports-color: '*'
-    peerDependenciesMeta:
-      supports-color:
-        optional: true
-    dependencies:
-      ms: 0.6.2
-    dev: true
-
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -4536,11 +4523,6 @@ packages:
 
   /deep-equal@1.0.1:
     resolution: {integrity: sha512-bHtC0iYvWhyaTzvV3CZgPeZQqCOBGyGsVV7v4eevpdkLHfiSrXUdBG+qAuSz4RI70sszvjQ1QSZ98An1yNwpSw==}
-    dev: true
-
-  /deep-extend@0.3.2:
-    resolution: {integrity: sha512-QvE0JF5LyyIRm6mKJTthqNpOcpu6eCjMmYc4M8Qfz2cqgbcItoHEZLbRct6qDMgu+FvQmwZg28rjLRY6OI59Bw==}
-    engines: {node: '>=0.4'}
     dev: true
 
   /deep-extend@0.6.0:
@@ -8044,10 +8026,6 @@ packages:
       ufo: 1.3.2
     dev: true
 
-  /ms@0.6.2:
-    resolution: {integrity: sha512-/pc3eh7TWorTtbvXg8je4GvrvEqCfH7PA3P7iW01yL2E53FKixzgMBaQi0NOPbMJqY34cBSvR0tZtmlTkdUG4A==}
-    dev: true
-
   /ms@2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
 
@@ -8570,15 +8548,6 @@ packages:
     resolution: {integrity: sha512-eQE845L6ot89sk2N8liD8HAuH4ca6Vvr7VWAWwt7+kvvG5aBcPmmphQ68JsEG2qa9n1TykS2DLeMt363AAH8/w==}
     dependencies:
       no-case: 2.3.2
-    dev: true
-
-  /parent-dir@0.0.3:
-    resolution: {integrity: sha512-oxmSXdqrnJa5k4LFkCw430IwlxUuXhqYuVzKonSRNKd5Y/lKK1tg9Ju/gbUSKTWkYhZYvTrACes3Mbi/SDwXfA==}
-    engines: {node: 0.x}
-    dependencies:
-      debug: 2.6.9
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /parent-module@1.0.1:
