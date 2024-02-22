@@ -14,5 +14,30 @@
       ]
     }
   },
-  "updateContentCommand": "yarn install"
+  "portsAttributes": {
+    "3000": {
+      "label": "portal",
+      "onAutoForward": "silent"
+    },
+    "5173": {
+      "label": "css-workshop"
+    },
+    "6006": {
+      "label": "react-workshop"
+    },
+    "1700": {
+      "label": "docs website"
+    },
+    "1701": {
+      "label": "vite playground"
+    },
+    "1702": {
+      "label": "next playground"
+    },
+    "1703": {
+      "label": "astro playground"
+    }
+  },
+  "updateContentCommand": "yarn install",
+  "waitFor": "onCreateCommand"
 }
