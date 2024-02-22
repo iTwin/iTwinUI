@@ -1,6 +1,6 @@
 #!/bin/sh
 
 # `&` is used to run the process in the background
-corepack enable pnpm &&
-pnpm exec serve apps/react-workshop/build --listen 6006 -L &
-pnpm --filter react-workshop cypress run "$@"
+cd apps/react-workshop &&
+npx -y serve build --listen 6006 -L &
+npx -y cypress run -- "$@"
