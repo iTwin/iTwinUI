@@ -14,6 +14,7 @@ import { DialogMain } from './DialogMain.js';
 import { useMergedRefs, Box, Portal } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { Transition } from 'react-transition-group';
+import { useIsFirstRender } from '../utils/hooks/useIsFirstRender.js';
 
 type DialogProps = {
   /**
@@ -52,16 +53,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
-  // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
-  // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog subcomponents
-  // can do the correct CSS transitions.
-  React.useEffect(() => {
-    queueMicrotask(() => {
-      if (isOpenProp) {
-        setIsDialogWrapperChildrenVisible(true);
-      }
-    });
-  }, [isOpenProp]);
+  const isFirstRender = useIsFirstRender();
 
   return (
     <DialogContext.Provider
@@ -83,7 +75,12 @@ const DialogComponent = React.forwardRef((props, ref) => {
     >
       <Portal portal={portal}>
         <Transition
-          in={isOpenProp}
+          // Always start from exited state to trigger the enter anim even when isOpenProp starts off as true
+          in={!isFirstRender && isOpenProp}
+          // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
+          // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog
+          // subcomponents can do the correct CSS transitions.
+          onEnter={() => setIsDialogWrapperChildrenVisible(true)}
           onExited={() => setIsDialogWrapperChildrenVisible(false)}
           timeout={{ exit: 600 }}
           mountOnEnter

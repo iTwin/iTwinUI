@@ -4,6 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { useIsFirstRender } from '../hooks/useIsFirstRender.js';
 
 const isBrowser = typeof document !== 'undefined';
 const supportsDSD =
@@ -78,11 +79,3 @@ export const ShadowRoot = ({
     </>
   );
 };
-
-// ----------------------------------------------------------------------------
-
-function useIsFirstRender() {
-  const [isFirstRender, setIsFirstRender] = React.useState(true);
-  React.useEffect(() => setIsFirstRender(false), []);
-  return isFirstRender;
-}
