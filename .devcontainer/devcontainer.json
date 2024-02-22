@@ -1,6 +1,9 @@
 {
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
     "vscode": {
       "extensions": [
         "stylelint.vscode-stylelint",
