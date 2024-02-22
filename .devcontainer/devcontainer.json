@@ -16,5 +16,5 @@
     "memory": "16gb",
     "storage": "16gb"
   },
-  "onCreateCommand": "yarn install"
+  "updateContentCommand": "yarn install"
 }
