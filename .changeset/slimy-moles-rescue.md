@@ -3,4 +3,4 @@
 '@itwin/itwinui-css': minor
 ---
 
-Added devcontainer and Dockerfile to configure GitHub CodeSpaces
+Added devcontainer to configure GitHub CodeSpaces
