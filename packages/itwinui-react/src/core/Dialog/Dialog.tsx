@@ -66,7 +66,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
   // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
-  // Only after the first render with isOpen=false, pass `isOpen=true` down the tree so that the dialog subcomponents can do
+  // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog subcomponents can do
   // the correct CSS transitions.
   React.useEffect(() => {
     if (isOpenProp) {
