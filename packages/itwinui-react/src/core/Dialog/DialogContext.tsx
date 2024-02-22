@@ -9,7 +9,7 @@ export type DialogContextProps = {
   /**
    * Flag whether dialog should be shown.
    *
-   * It is recommended to directly pass the boolean condition to this prop instead of rendering the Dialog
+   * It is recommended to directly pass the boolean condition to this prop instead of rendering the `Dialog`
    * conditionally with `isOpen` hard-coded to `true`. One benefit of this is having an exit animation.
    *
    * If you don't want to render the dialog wrapper, instead consider setting `renderWrapperWhenClosed=false`
