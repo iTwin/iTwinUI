@@ -14,5 +14,5 @@
   "hostRequirements": {
     "cpus": 4
   },
-  "postCreateCommand": "yarn install"
+  "onCreateCommand": "yarn install"
 }
