@@ -242,7 +242,7 @@ jobs:
       - run: pnpm install
 
       - name: pnpm run test --filter=css-workshop
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 15
           max_attempts: 2
@@ -252,10 +252,11 @@ jobs:
       - name: Publish test results artifact
         if: failure()
         continue-on-error: true
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/apps/css-workshop/backstop/results/'
+          overwrite: true
 
   visual-test-react:
     name: Run visual tests (react)
@@ -282,10 +283,11 @@ jobs:
       - name: Publish test results artifact
         if: failure()
         continue-on-error: true
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: 'cypress-visual-screenshots'
           path: '${{ github.workspace }}/apps/react-workshop/cypress-visual-screenshots'
+          overwrite: true
 
   a11y:
     name: Test for a11y violations
@@ -310,12 +312,12 @@ jobs:
       - run: pnpm run build --filter=itwinui-react
 
       - name: Install node modules inside Docker
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           runTests: false # just perform install from monorepo root
 
       - name: Run a11y tests
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v6
         with:
           working-directory: testing/a11y
           component: true
