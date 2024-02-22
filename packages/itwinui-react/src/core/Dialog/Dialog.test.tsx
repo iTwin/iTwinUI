@@ -147,7 +147,7 @@ it('should not allow to close the dialog when isDismissible false', async () => 
   expect(closeIcon).toBeFalsy();
 });
 
-it.only.each([true, false, undefined])(
+it.each([true, false, undefined])(
   'should respect the renderWrapperWhenClosed prop when renderWrapperWhenClosed=%s',
   (renderWrapperWhenClosed) => {
     vi.useFakeTimers();
