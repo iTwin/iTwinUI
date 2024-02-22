@@ -11,6 +11,5 @@
       ]
     }
   },
-  "updateContentCommand": "yarn install",
-  "waitFor": "onCreateCommand"
+  "updateContentCommand": "yarn install"
 }
