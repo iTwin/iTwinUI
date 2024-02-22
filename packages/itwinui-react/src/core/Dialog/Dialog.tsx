@@ -49,8 +49,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
   // Internal state for subcomponents
   const isOpen = isOpenProp && isDialogWrapperChildrenVisible;
 
-  const isDialogWrapperRendered = isOpenProp || isDialogWrapperChildrenVisible;
-
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
@@ -58,9 +56,11 @@ const DialogComponent = React.forwardRef((props, ref) => {
   // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog subcomponents
   // can do the correct CSS transitions.
   React.useEffect(() => {
-    if (isOpenProp) {
-      setIsDialogWrapperChildrenVisible(true);
-    }
+    queueMicrotask(() => {
+      if (isOpenProp) {
+        setIsDialogWrapperChildrenVisible(true);
+      }
+    });
   }, [isOpenProp]);
 
   return (
@@ -82,20 +82,20 @@ const DialogComponent = React.forwardRef((props, ref) => {
       }}
     >
       <Portal portal={portal}>
-        {isDialogWrapperRendered && (
-          <Transition
-            in={isOpen}
-            onExited={() => setIsDialogWrapperChildrenVisible(false)}
-            timeout={{ enter: 0, exit: 600 }}
-          >
-            <Box
-              className={cx('iui-dialog-wrapper', className)}
-              data-iui-relative={relativeTo === 'container'}
-              ref={mergedRef}
-              {...rest}
-            />
-          </Transition>
-        )}
+        <Transition
+          in={isOpenProp}
+          onExited={() => setIsDialogWrapperChildrenVisible(false)}
+          timeout={{ exit: 600 }}
+          mountOnEnter
+          unmountOnExit
+        >
+          <Box
+            className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
+            ref={mergedRef}
+            {...rest}
+          />
+        </Transition>
       </Portal>
     </DialogContext.Provider>
   );
