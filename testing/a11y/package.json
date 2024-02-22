@@ -4,8 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "docker run --rm --entrypoint /bin/bash -v $PWD:/iui -w /iui  cypress/included:13.2.0 -c \"yarn workspace a11y test:run\"",
-    "test:run": "cypress run --component",
+    "test": "cypress run --component",
     "open": "cypress open --component",
     "clean": "rimraf .turbo && rimraf node_modules"
   },
