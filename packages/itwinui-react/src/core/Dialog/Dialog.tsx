@@ -50,7 +50,8 @@ const DialogComponent = React.forwardRef((props, ref) => {
     ...rest
   } = props;
 
-  // When user can/should see the dialog wrapper's children (e.g. when opacity!=0)
+  // When user can/should see the dialog wrapper's children
+  // (e.g. when opacity!=0 and not when isOpen=false (dialog is visible when animating out))
   const [isDialogWrapperChildrenVisible, setIsDialogWrapperChildrenVisible] =
     React.useState(false);
 
@@ -66,8 +67,8 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
   // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`
-  // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog subcomponents can do
-  // the correct CSS transitions.
+  // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog subcomponents
+  // can do the correct CSS transitions.
   React.useEffect(() => {
     if (isOpenProp) {
       setIsDialogWrapperChildrenVisible(true);
