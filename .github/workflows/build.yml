@@ -17,55 +17,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node 20.x
-        uses: actions/setup-node@v3
+      - uses: pnpm/action-setup@v3
         with:
-          node-version: 20.x
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: pnpm install
-
-  install-windows:
-    name: Install node modules (windows)
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v3
+          version: 8
 
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: pnpm install
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 15
-          max_attempts: 3
-          command: pnpm install
+      - run: pnpm install
 
   audit:
     name: Audit node modules
@@ -75,27 +37,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
-
+      - run: pnpm install
       - run: pnpm audit
 
   build:
     name: Build and lint packages
-    needs: [install, install-windows]
+    needs: install
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
@@ -104,21 +61,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - run: pnpm lint
       - run: pnpm lint:copyright
@@ -132,21 +85,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - run: pnpm build --filter=website --filter="{./playgrounds/*}..."
 
@@ -164,21 +113,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - name: Build css-workshop
         run: pnpm build --filter=css-workshop
@@ -253,21 +198,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - run: pnpm --filter @itwin/itwinui-react test
 
@@ -288,21 +229,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - name: pnpm test --filter=css-workshop
         uses: nick-fields/retry@v2
@@ -328,21 +265,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - run: pnpm test --filter=react-workshop
 
@@ -362,21 +295,17 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Use Node 20.x
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('pnpm-lock.yaml') }}
+      - run: pnpm install
 
       - run: pnpm build --filter=itwinui-react
 
