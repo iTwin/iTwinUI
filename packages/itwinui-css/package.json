@@ -45,7 +45,7 @@
     "sass-embedded": "^1.63.6"
   },
   "scripts": {
-    "build": "yarn clean && yarn build:css && node ../../scripts/copyrightLinter.js --fix css/*",
+    "build": "pnpm clean && pnpm build:css && node ../../scripts/copyrightLinter.js --fix css/*",
     "build:css": "node ./scripts/generateCss.js src css",
     "dev": "node ./scripts/watchScss.mjs",
     "clean": "rimraf ./css",

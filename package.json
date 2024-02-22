@@ -18,7 +18,7 @@
       "stylelint --fix"
     ],
     "*.{scss,html,js}": [
-      "yarn lint:copyright --fix"
+      "pnpm lint:copyright --fix"
     ],
     "*.{tsx,ts,jsx,js}": [
       "prettier --write",
@@ -35,11 +35,11 @@
     "postinstall": "patch-package",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
-    "approve:css": "yarn workspace css-workshop approve",
-    "approve:react": "yarn workspace react-workshop approve",
+    "approve:css": "pnpm --filter css-workshop approve",
+    "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
-    "release": "yarn build --filter={./packages/*}... && yarn changeset publish"
+    "release": "pnpm build --filter={./packages/*}... && pnpm changeset publish"
   },
   "dependencies": {},
   "devDependencies": {
@@ -67,6 +67,6 @@
   "engines": {
     "node": ">=18.14.1"
   },
-  "packageManager": "yarn@1.22.19",
+  "packageManager": "pnpm@8.15.3",
   "prettier": "configs/prettier-config"
 }

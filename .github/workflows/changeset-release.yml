@@ -29,13 +29,13 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: yarn
+      - run: pnpm install
 
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
-          version: yarn changeset version
-          publish: yarn release
+          version: pnpm changeset version
+          publish: pnpm release
           title: Release packages
           commit: Release packages
         env:

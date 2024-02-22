@@ -15,8 +15,8 @@ jobs:
         with:
           node-version: 18.x
 
-      - run: yarn
-      - run: yarn build --filter=react-workshop
+      - run: pnpm install
+      - run: pnpm build --filter=react-workshop
 
       - name: Host react-workshop under /react
         uses: JamesIves/github-pages-deploy-action@v4
