@@ -51,7 +51,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
   } = props;
 
   // When user can/should see the dialog wrapper's children
-  // (e.g. when opacity!=0 and not when isOpen=false (dialog is visible when animating out))
+  // (e.g. when opacity!=0 and not necessarily when isOpen=false (since dialog is visible when animating out))
   const [isDialogWrapperChildrenVisible, setIsDialogWrapperChildrenVisible] =
     React.useState(false);
 
