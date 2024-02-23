@@ -6,7 +6,7 @@
 @use '../button/borderless';
 
 .iui-alert {
-  @include mixins.iui-reset;
+  // @include mixins.iui-reset;
 
   --_iui-alert-border-color: var(--iui-color-border);
 

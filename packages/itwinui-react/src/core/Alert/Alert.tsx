@@ -62,6 +62,8 @@ const AlertComponent = React.forwardRef((props, forwardedRef) => {
     ...rest
   } = props;
 
+  console.log('q');
+
   return (
     <Alert.Wrapper type={type} isSticky={isSticky} ref={forwardedRef} {...rest}>
       <Alert.Icon />

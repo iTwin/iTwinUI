@@ -15,7 +15,7 @@ export const Informational = () => {
     <Alert.Wrapper type='informational'>
       <Alert.Icon />
       <Alert.Message>
-        This is an informational message.
+        This is an informational message.q
         <Alert.Action onClick={() => console.log('Clicked more info!')}>
           More Info.
         </Alert.Action>
