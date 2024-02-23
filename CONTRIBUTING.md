@@ -20,8 +20,6 @@ To get started without having to install anything locally, you can create a [cod
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/iTwin/iTwinUI)
 
----
-
 ### Local setup
 
 To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Pnpm 8](https://pnpm.io/installation) installed on your computer.
@@ -30,9 +28,7 @@ To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](h
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
 3. Run `pnpm install` from that directory.
 
-**VSCode Users**
-
-Install the recommended [plugins](./.vscode/extensions.json) for linter warnings in editor.
+**VSCode Users:** Install the recommended [plugins](./.vscode/extensions.json) for linter warnings in editor.
 
 ---
 
