@@ -48,6 +48,12 @@ _Before running this command, make sure Docker is running. See [Visual testing](
 
 ---
 
+### Using GitHub Codespaces (cloud IDE)
+
+To get started without having to install anything locally, you can create a [codespace](https://docs.github.com/en/codespaces/overview) for this repository by clicking this link:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/iTwin/iTwinUI)
+
 ## Developing
 
 ### Monorepo overview
