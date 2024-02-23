@@ -11,7 +11,9 @@ export default () => {
       <Tabs.TabList>
         <Tabs.Tab value='apple' label='Apple' key='apple' />
         <Tabs.Tab value='orange' label='Orange' key='orange' />
-        <Tabs.Tab value='pear' label='Pear' key='pear' />
+        {Array.from({ length: 1 }, (_, i) => (
+          <Tabs.Tab value={`pear${i}`} label={`Pear${i}`} key={`pear${i}`} />
+        ))}
       </Tabs.TabList>
 
       <Tabs.Panel value='apple' key='apple'>
@@ -25,10 +27,14 @@ export default () => {
         sinensis, which is also called sweet orange, to distinguish it from the
         related Citrus x aurantium, referred to as bitter orange.
       </Tabs.Panel>
-      <Tabs.Panel value='pear' key='pear'>
-        Pears are fruits produced and consumed around the world, growing on a
-        tree and harvested in late summer into mid-autumn.
-      </Tabs.Panel>
+      {Array.from({ length: 1 }, (_, i) => {
+        return (
+          <Tabs.Panel value={`pear${i}`} key={`pear${i}`}>
+            Pears are fruits produced and consumed around the world, growing on
+            a tree and harvested in late summer into mid-autumn.
+          </Tabs.Panel>
+        );
+      })}
     </Tabs.Wrapper>
   );
 };

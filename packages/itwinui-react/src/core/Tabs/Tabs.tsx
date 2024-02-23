@@ -238,23 +238,23 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   // CSS custom properties to place the active stripe
   useLayoutEffect(() => {
-    const updateStripe = () => {
-      const currentTabRect = tabRef.current?.getBoundingClientRect();
-      setStripeProperties({
-        '--iui-tabs-stripe-size':
-          orientation === 'horizontal'
-            ? `${currentTabRect?.width}px`
-            : `${currentTabRect?.height}px`,
-        '--iui-tabs-stripe-position':
-          orientation === 'horizontal'
-            ? `${tabRef.current?.offsetLeft}px`
-            : `${tabRef.current?.offsetTop}px`,
-      });
-    };
-
-    if (type !== 'default' && isActive) {
-      updateStripe();
-    }
+    // const updateStripe = () => {
+    //   // console.log('updateStripe', tabsWidth);
+    //   const currentTabRect = tabRef.current?.getBoundingClientRect();
+    //   setStripeProperties({
+    //     '--iui-tabs-stripe-size':
+    //       orientation === 'horizontal'
+    //         ? `${currentTabRect?.width}px`
+    //         : `${currentTabRect?.height}px`,
+    //     '--iui-tabs-stripe-position':
+    //       orientation === 'horizontal'
+    //         ? `${tabRef.current?.offsetLeft}px`
+    //         : `${tabRef.current?.offsetTop}px`,
+    //   });
+    // };
+    // if (type !== 'default' && isActive) {
+    //   updateStripe();
+    // }
   }, [
     type,
     orientation,
@@ -813,12 +813,15 @@ const useScrollbarGutter = () => {
   return React.useCallback((element: HTMLElement | null) => {
     if (element) {
       if (element.scrollHeight > element.clientHeight) {
+        console.log('add');
         element.style.scrollbarGutter = 'stable';
-
-        // Safari fallback
-        if (!CSS.supports('scrollbar-gutter: stable')) {
-          element.style.overflowY = 'scroll';
-        }
+        //     // Safari fallback
+        //     if (!CSS.supports('scrollbar-gutter: stable')) {
+        //       element.style.overflowY = 'scroll';
+        //     }
+      } else {
+        console.log('remove');
+        // element.style.scrollbarGutter = 'auto';
       }
     }
   }, []);

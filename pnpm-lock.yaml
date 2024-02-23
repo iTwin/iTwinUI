@@ -25,6 +25,9 @@ importers:
       concurrently:
         specifier: ^8.2.2
         version: 8.2.2
+      configs:
+        specifier: workspace:*
+        version: link:internal/configs
       husky:
         specifier: ^9.0.10
         version: 9.0.11
