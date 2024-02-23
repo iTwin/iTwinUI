@@ -14,6 +14,14 @@ Want to contribute code changes to components? Great! [Fork iTwinUI](https://doc
 
 ## How to setup
 
+### Using GitHub Codespaces (cloud IDE)
+
+To get started without having to install anything locally, you can create a [codespace](https://docs.github.com/en/codespaces/overview) for this repository by clicking this link:
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/iTwin/iTwinUI)
+
+---
+
 To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Pnpm 8](https://pnpm.io/installation) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
@@ -45,14 +53,6 @@ _Before running this command, make sure Docker is running. See [Visual testing](
 ### To lint and fix autofixable errors
 
 `pnpm lint`
-
----
-
-### Using GitHub Codespaces (cloud IDE)
-
-To get started without having to install anything locally, you can create a [codespace](https://docs.github.com/en/codespaces/overview) for this repository by clicking this link:
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/iTwin/iTwinUI)
 
 ---
 
