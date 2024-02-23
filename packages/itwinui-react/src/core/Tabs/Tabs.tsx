@@ -238,23 +238,23 @@ const Tab = React.forwardRef((props, forwardedRef) => {
 
   // CSS custom properties to place the active stripe
   useLayoutEffect(() => {
-    // const updateStripe = () => {
-    //   // console.log('updateStripe', tabsWidth);
-    //   const currentTabRect = tabRef.current?.getBoundingClientRect();
-    //   setStripeProperties({
-    //     '--iui-tabs-stripe-size':
-    //       orientation === 'horizontal'
-    //         ? `${currentTabRect?.width}px`
-    //         : `${currentTabRect?.height}px`,
-    //     '--iui-tabs-stripe-position':
-    //       orientation === 'horizontal'
-    //         ? `${tabRef.current?.offsetLeft}px`
-    //         : `${tabRef.current?.offsetTop}px`,
-    //   });
-    // };
-    // if (type !== 'default' && isActive) {
-    //   updateStripe();
-    // }
+    const updateStripe = () => {
+      // console.log('updateStripe', tabsWidth);
+      const currentTabRect = tabRef.current?.getBoundingClientRect();
+      setStripeProperties({
+        '--iui-tabs-stripe-size':
+          orientation === 'horizontal'
+            ? `${currentTabRect?.width - 2}px`
+            : `${currentTabRect?.height}px`,
+        '--iui-tabs-stripe-position':
+          orientation === 'horizontal'
+            ? `${tabRef.current?.offsetLeft ?? 0 + 1}px`
+            : `${tabRef.current?.offsetTop}px`,
+      });
+    };
+    if (type !== 'default' && isActive) {
+      updateStripe();
+    }
   }, [
     type,
     orientation,
