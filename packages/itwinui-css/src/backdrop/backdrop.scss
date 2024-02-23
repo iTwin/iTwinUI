@@ -23,6 +23,18 @@
 
   &.iui-backdrop-visible {
     transition-delay: var(--iui-duration-0); // remove delay for entry animation
+    animation: iui-fade-in var(--iui-duration-1) ease-out;
+
+    @keyframes iui-fade-in {
+      from {
+        visibility: visible;
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
   }
 
   &.iui-backdrop-fixed {

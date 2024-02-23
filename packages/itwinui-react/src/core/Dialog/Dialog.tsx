@@ -91,25 +91,25 @@ const DialogComponentContent = ({
 
   // When user can/should see the dialog wrapper's children.
   // (e.g. when opacity!=0 and not necessarily when isOpen=false (since dialog is still visible when animating out)).
-  const [shouldBeVisible, setShouldBeVisible] = React.useState(false);
-  const isOpen = isOpenProp && shouldBeVisible;
+  // const [shouldBeVisible, setShouldBeVisible] = React.useState(false);
+  // const isOpen = isOpenProp && shouldBeVisible;
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
   const mergedRef = useMergedRefs(ref, dialogRootRef);
 
-  // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`.
-  // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog
-  // subcomponents can do the correct CSS transitions.
-  React.useEffect(() => {
-    queueMicrotask(() => {
-      setShouldBeVisible(true);
-    });
-  }, []);
+  // // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`.
+  // // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog
+  // // subcomponents can do the correct CSS transitions.
+  // React.useEffect(() => {
+  //   queueMicrotask(() => {
+  //     setShouldBeVisible(true);
+  //   });
+  // }, []);
 
   return (
     <DialogContext.Provider
       value={{
-        isOpen,
+        isOpen: isOpenProp,
         onClose,
         closeOnEsc,
         closeOnExternalClick,
