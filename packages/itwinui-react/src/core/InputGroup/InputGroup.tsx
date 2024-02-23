@@ -21,6 +21,10 @@ type InputGroupProps = {
   status?: 'positive' | 'warning' | 'negative';
   /**
    * Message below the group. Does not apply to 'inline' group.
+   *
+   * When `typeof message === "string"`, it is automatically wrapped with {@link StatusMessage}.
+   * If you are passing a non-string message that is not `<StatusMessage>`, you may need to wrap it with
+   * `<StatusMessage>` yourself for proper styling.
    */
   message?: React.ReactNode;
   /**
