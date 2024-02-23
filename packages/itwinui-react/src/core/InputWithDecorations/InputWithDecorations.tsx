@@ -81,7 +81,7 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
  *
  * If you are not using default InputWithDecorations.Icon and InputWithDecorations.Button, use borderless versions of other components.
  *
- * @usage
+ * @example
  * <InputWithDecorations>
  *    <InputWithDecorations.Input />
  *    <InputWithDecorations.Icon>
