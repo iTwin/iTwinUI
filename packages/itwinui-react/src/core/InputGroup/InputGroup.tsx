@@ -24,7 +24,7 @@ type InputGroupProps = {
    *
    * When `typeof message === "string"`, it is automatically wrapped with {@link StatusMessage}.
    * If you are passing a non-string message that is not `<StatusMessage>`, you may need to wrap it with
-   * `<StatusMessage>` yourself for proper styling.
+   * `<StatusMessage>` yourself for proper styling of `message`.
    */
   message?: React.ReactNode;
   /**
