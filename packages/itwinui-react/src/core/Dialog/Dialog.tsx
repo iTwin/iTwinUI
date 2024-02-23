@@ -42,7 +42,6 @@ const DialogComponent = React.forwardRef((props, ref) => {
   } = props;
 
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
-  const mergedRef = useMergedRefs(ref, dialogRootRef);
 
   return (
     <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
@@ -67,7 +66,7 @@ const DialogComponent = React.forwardRef((props, ref) => {
           <Box
             className={cx('iui-dialog-wrapper', className)}
             data-iui-relative={relativeTo === 'container'}
-            ref={mergedRef}
+            ref={useMergedRefs(ref, dialogRootRef)}
             {...rest}
           />
         </Portal>
