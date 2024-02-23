@@ -6,8 +6,6 @@ import * as React from 'react';
 import { Alert } from '@itwin/itwinui-react';
 
 export default () => {
-  console.log('1');
-
   return (
     <Alert.Wrapper className='demo-alert-wrapper'>
       <Alert.Icon />

@@ -3,7 +3,7 @@ import { Button } from '@itwin/itwinui-react';
 const App = () => {
   return (
     <>
-      <Button>Hello worldq</Button>
+      <Button>Hello world</Button>
     </>
   );
 };
