@@ -38,6 +38,6 @@
       "label": "astro playground"
     }
   },
-  "onCreateCommand": "yarn install",
+  "postCreateCommand ": "yarn install",
   "waitFor": "onCreateCommand"
 }
