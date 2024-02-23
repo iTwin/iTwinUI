@@ -4,6 +4,7 @@ import {
   Divider,
   InputGroup,
   LabeledSelect,
+  Radio,
   StatusMessage,
 } from '@itwin/itwinui-react';
 import { SvgCheckmark, SvgStar } from '@itwin/itwinui-icons-react';
@@ -76,6 +77,19 @@ export default function App() {
         <Checkbox label='Select all' />
         <Checkbox label='Football' />
         <Checkbox label='Hockey' />
+      </InputGroup>
+
+      <InputGroup
+        label='some label'
+        message={
+          <StatusMessage>
+            <div className='my-message'>Message</div>
+          </StatusMessage>
+        }
+      >
+        <Radio />
+        <Radio />
+        <Radio />
       </InputGroup>
     </>
   );
