@@ -17,7 +17,7 @@
   "portsAttributes": {
     "3000": {
       "label": "portal",
-      "onAutoForward": "silent"
+      "onAutoForward": "ignore"
     },
     "5173": {
       "label": "css-workshop"
