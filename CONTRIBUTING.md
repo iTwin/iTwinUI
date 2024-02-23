@@ -54,6 +54,8 @@ To get started without having to install anything locally, you can create a [cod
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/iTwin/iTwinUI)
 
+---
+
 ## Developing
 
 ### Monorepo overview
