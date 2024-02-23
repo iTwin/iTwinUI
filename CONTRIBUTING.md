@@ -22,19 +22,21 @@ To get started without having to install anything locally, you can create a [cod
 
 ---
 
+### Local setup
+
 To clone and build iTwinUI, you'll need [Git](https://git-scm.com), [Node 18+](https://nodejs.org/en/download/), and [Pnpm 8](https://pnpm.io/installation) installed on your computer.
 
 1. [Create a local clone](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository) of your forked repository. You can do this from the command line or using the Github Desktop app.
 2. Go to the directory where you cloned iTwinUI. e.g. `cd iTwinUI`.
 3. Run `pnpm install` from that directory.
 
-### VSCode Users
+**VSCode Users**
 
 Install the recommended [plugins](./.vscode/extensions.json) for linter warnings in editor.
 
 ---
 
-## Run locally
+## Commands
 
 ### To build
 
