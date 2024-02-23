@@ -287,21 +287,21 @@ export const HorizontalOverflow = () => {
 };
 
 export const VerticalOverflow = () => {
-  const [active, setActive] = React.useState('Item 1');
+  const [active, setActive] = React.useState('Item 11');
 
   const tabData = [
     { name: 'Item 1', content: 'Tab Content One', disabled: false },
     { name: 'Item 2', content: 'Tab Content Two', disabled: false },
     { name: 'Item 3', content: 'Tab Content Three', disabled: false },
-    // { name: 'Item 4', content: 'Tab Content Four', disabled: false },
-    // { name: 'Item 5', content: 'Tab Content Five', disabled: false },
-    // { name: 'Item 6', content: 'Tab Content Six', disabled: true },
-    // { name: 'Item 7', content: 'Tab Content Seven', disabled: false },
-    // { name: 'Item 8', content: 'Tab Content Eight', disabled: false },
-    // { name: 'Item 9', content: 'Tab Content Nine', disabled: true },
-    // { name: 'Item 10', content: 'Tab Content Ten', disabled: false },
-    // { name: 'Item 11', content: 'Tab Content Eleven', disabled: false },
-    // { name: 'Item 12', content: 'Tab Content Twelve', disabled: false },
+    { name: 'Item 4', content: 'Tab Content Four', disabled: false },
+    { name: 'Item 5', content: 'Tab Content Five', disabled: false },
+    { name: 'Item 6', content: 'Tab Content Six', disabled: true },
+    { name: 'Item 7', content: 'Tab Content Seven', disabled: false },
+    { name: 'Item 8', content: 'Tab Content Eight', disabled: false },
+    { name: 'Item 9', content: 'Tab Content Nine', disabled: true },
+    { name: 'Item 10', content: 'Tab Content Ten', disabled: false },
+    { name: 'Item 11', content: 'Tab Content Eleven', disabled: false },
+    { name: 'Item 12', content: 'Tab Content Twelve', disabled: false },
     {
       name: 'Very long item number thirteen',
       content: 'Tab Content Thirteen',
