@@ -31,6 +31,7 @@
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.expand": false,
   "explorer.fileNesting.patterns": {
+    "package.json": "pnpm-workspace.yaml, pnpm-lock.yaml, .npmrc, .pnpmfile.cjs",
     "*.astro": "${capture}.tsx, ${capture).css, ${capture}.scss",
     "*.ts": "${capture}.test.ts",
     "*.tsx": "${capture}.ts, ${capture}.css, ${capture}.test.tsx",
@@ -40,5 +41,6 @@
   "javascript.preferences.importModuleSpecifierEnding": "js",
   "typescript.preferences.importModuleSpecifierEnding": "js",
   "css.validate": false,
-  "scss.validate": false
+  "scss.validate": false,
+  "npm.packageManager": "pnpm"
 }
