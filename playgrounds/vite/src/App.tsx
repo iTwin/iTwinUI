@@ -6,7 +6,7 @@ import {
   LabeledSelect,
   StatusMessage,
 } from '@itwin/itwinui-react';
-import { SvgStar } from '@itwin/itwinui-icons-react';
+import { SvgCheckmark, SvgStar } from '@itwin/itwinui-icons-react';
 
 export default function App() {
   const CustomDivider = () => (
@@ -65,11 +65,13 @@ export default function App() {
       <InputGroup
         label='Checkbox group'
         status='positive'
-        message={
-          <StatusMessage startIcon={<SvgStar />} status='positive'>
-            Help message
-          </StatusMessage>
-        }
+        svgIcon={<SvgCheckmark />}
+        message='Help message'
+        // message={
+        //   <StatusMessage startIcon={<SvgStar />} status='positive'>
+        //     Help message
+        //   </StatusMessage>
+        // }
       >
         <Checkbox label='Select all' />
         <Checkbox label='Football' />

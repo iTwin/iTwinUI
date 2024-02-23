@@ -121,18 +121,29 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-      {(message || status || svgIcon) && (
-        <StatusMessage
-          iconProps={{
-            'aria-hidden': true,
-          }}
-          startIcon={svgIcon}
-          status={status}
-          {...messageProps}
-        >
-          {displayStyle !== 'inline' && message}
-        </StatusMessage>
-      )}
+      {(() => {
+        // E.g. when message={<StatusMessage />}
+        if (message && typeof message !== 'string') {
+          return message;
+        }
+
+        if (message || status || svgIcon) {
+          return (
+            <StatusMessage
+              iconProps={{
+                'aria-hidden': true,
+              }}
+              startIcon={svgIcon}
+              status={status}
+              {...messageProps}
+            >
+              {displayStyle !== 'inline' && message}
+            </StatusMessage>
+          );
+        }
+
+        return undefined;
+      })()}
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
