@@ -23,11 +23,55 @@ type DialogProps = {
 } & Omit<DialogContextProps, 'dialogRootRef'>;
 
 const DialogComponent = React.forwardRef((props, ref) => {
-  const { isOpen = false } = props;
+  const {
+    trapFocus = false,
+    setFocus = false,
+    preventDocumentScroll = false,
+    isOpen = false,
+    isDismissible = true,
+    closeOnEsc = true,
+    closeOnExternalClick = false,
+    onClose,
+    isDraggable = false,
+    isResizable = false,
+    relativeTo = 'viewport',
+    placement,
+    className,
+    portal = false,
+    ...rest
+  } = props;
+
+  const dialogRootRef = React.useRef<HTMLDivElement>(null);
+  const mergedRef = useMergedRefs(ref, dialogRootRef);
 
   return (
     <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
-      <DialogComponentContent props={props} ref={ref} />
+      <DialogContext.Provider
+        value={{
+          isOpen,
+          onClose,
+          closeOnEsc,
+          closeOnExternalClick,
+          isDismissible,
+          preventDocumentScroll,
+          trapFocus,
+          setFocus,
+          isDraggable,
+          isResizable,
+          relativeTo,
+          dialogRootRef,
+          placement,
+        }}
+      >
+        <Portal portal={portal}>
+          <Box
+            className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
+            ref={mergedRef}
+            {...rest}
+          />
+        </Portal>
+      </DialogContext.Provider>
     </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;
@@ -61,77 +105,3 @@ export const Dialog = Object.assign(DialogComponent, {
   Content: DialogContent,
   ButtonBar: DialogButtonBar,
 });
-
-// ------------------------------------------------------------------------------------------------
-
-const DialogComponentContent = ({
-  props,
-  ref,
-}: {
-  props: React.ComponentPropsWithRef<'div'> & DialogProps;
-  ref: React.ForwardedRef<HTMLDivElement>;
-}) => {
-  const {
-    trapFocus = false,
-    setFocus = false,
-    preventDocumentScroll = false,
-    isOpen: isOpenProp = false,
-    isDismissible = true,
-    closeOnEsc = true,
-    closeOnExternalClick = false,
-    onClose,
-    isDraggable = false,
-    isResizable = false,
-    relativeTo = 'viewport',
-    placement,
-    className,
-    portal = false,
-    ...rest
-  } = props;
-
-  // When user can/should see the dialog wrapper's children.
-  // (e.g. when opacity!=0 and not necessarily when isOpen=false (since dialog is still visible when animating out)).
-  // const [shouldBeVisible, setShouldBeVisible] = React.useState(false);
-  // const isOpen = isOpenProp && shouldBeVisible;
-
-  const dialogRootRef = React.useRef<HTMLDivElement>(null);
-  const mergedRef = useMergedRefs(ref, dialogRootRef);
-
-  // // When the user first passes `isOpenProp=true`, first render the dialog wrapper with `isOpen=false`.
-  // // Only after the first render with `isOpen=false`, pass `isOpen=true` down the tree so that the dialog
-  // // subcomponents can do the correct CSS transitions.
-  // React.useEffect(() => {
-  //   queueMicrotask(() => {
-  //     setShouldBeVisible(true);
-  //   });
-  // }, []);
-
-  return (
-    <DialogContext.Provider
-      value={{
-        isOpen: isOpenProp,
-        onClose,
-        closeOnEsc,
-        closeOnExternalClick,
-        isDismissible,
-        preventDocumentScroll,
-        trapFocus,
-        setFocus,
-        isDraggable,
-        isResizable,
-        relativeTo,
-        dialogRootRef,
-        placement,
-      }}
-    >
-      <Portal portal={portal}>
-        <Box
-          className={cx('iui-dialog-wrapper', className)}
-          data-iui-relative={relativeTo === 'container'}
-          ref={mergedRef}
-          {...rest}
-        />
-      </Portal>
-    </DialogContext.Provider>
-  );
-};
