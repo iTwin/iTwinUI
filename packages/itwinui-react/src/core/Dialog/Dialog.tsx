@@ -13,6 +13,7 @@ import { DialogButtonBar } from './DialogButtonBar.js';
 import { DialogMain } from './DialogMain.js';
 import { useMergedRefs, Box, Portal } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
+import { Transition } from 'react-transition-group';
 
 type DialogProps = {
   /**
@@ -43,32 +44,34 @@ const DialogComponent = React.forwardRef((props, ref) => {
   const dialogRootRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <DialogContext.Provider
-      value={{
-        isOpen,
-        onClose,
-        closeOnEsc,
-        closeOnExternalClick,
-        isDismissible,
-        preventDocumentScroll,
-        trapFocus,
-        setFocus,
-        isDraggable,
-        isResizable,
-        relativeTo,
-        dialogRootRef,
-        placement,
-      }}
-    >
-      <Portal portal={portal}>
-        <Box
-          className={cx('iui-dialog-wrapper', className)}
-          data-iui-relative={relativeTo === 'container'}
-          ref={useMergedRefs(ref, dialogRootRef)}
-          {...rest}
-        />
-      </Portal>
-    </DialogContext.Provider>
+    <Transition in={isOpen} timeout={{ exit: 600 }} mountOnEnter unmountOnExit>
+      <DialogContext.Provider
+        value={{
+          isOpen,
+          onClose,
+          closeOnEsc,
+          closeOnExternalClick,
+          isDismissible,
+          preventDocumentScroll,
+          trapFocus,
+          setFocus,
+          isDraggable,
+          isResizable,
+          relativeTo,
+          dialogRootRef,
+          placement,
+        }}
+      >
+        <Portal portal={portal}>
+          <Box
+            className={cx('iui-dialog-wrapper', className)}
+            data-iui-relative={relativeTo === 'container'}
+            ref={useMergedRefs(ref, dialogRootRef)}
+            {...rest}
+          />
+        </Portal>
+      </DialogContext.Provider>
+    </Transition>
   );
 }) as PolymorphicForwardRefComponent<'div', DialogProps>;
 
