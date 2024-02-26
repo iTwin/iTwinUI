@@ -17,20 +17,35 @@
   min-block-size: var(--_iui-select-min-height);
   padding-block: var(--_iui-select-padding-block);
   padding-inline: var(--iui-size-s);
-  gap: var(--iui-size-xs);
   transition: border-color var(--iui-duration-1) ease-out;
-  display: flex;
-  align-items: center;
   user-select: none;
-  position: relative;
-  overflow: hidden;
   color: var(--_iui-input-text-color);
   background-color: var(--_iui-input-background-color);
   border: 1px solid var(--_iui-input-border-color);
   line-height: var(--iui-size-l);
   @include iui-select-size;
 
-  &.iui-disabled {
+  &:is(:not(select)) {
+    display: flex;
+    align-items: center;
+    gap: var(--iui-size-xs);
+    position: relative;
+    overflow: hidden;
+  }
+
+  &:is(select) {
+    font-size: var(--iui-font-size-1);
+    font-family: var(--iui-font-sans);
+    appearance: none;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 1;
+    }
+  }
+
+  &.iui-disabled,
+  &:disabled {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
