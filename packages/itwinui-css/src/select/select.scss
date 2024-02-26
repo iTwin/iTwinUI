@@ -23,6 +23,10 @@
   background-color: var(--_iui-input-background-color);
   border: 1px solid var(--_iui-input-border-color);
   line-height: var(--iui-size-l);
+  font-size: var(--iui-font-size-1);
+  font-family: var(--iui-font-sans);
+  appearance: none;
+  cursor: pointer;
   @include iui-select-size;
 
   &:is(:not(select)) {
@@ -33,22 +37,12 @@
     overflow: hidden;
   }
 
-  &:is(select) {
-    font-size: var(--iui-font-size-1);
-    font-family: var(--iui-font-sans);
-    appearance: none;
-    cursor: pointer;
-
-    &:disabled {
-      opacity: 1;
-    }
-  }
-
   &.iui-disabled,
   &:disabled {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
+    opacity: 1;
     cursor: not-allowed;
   }
 
