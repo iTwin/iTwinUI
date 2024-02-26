@@ -2,7 +2,7 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-import { fireEvent, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import * as React from 'react';
 import { Tabs, Tab } from './Tabs.js';
 import { SvgMore as SvgPlaceholder } from '../utils/index.js';
@@ -500,4 +500,66 @@ it('should support Tabs with legacy api', () => {
   expect(tabContainer).toHaveClass('iui-default');
   expect(tabContainer.querySelectorAll('.iui-tab').length).toBe(3);
   screen.getByText('Test Content 1');
+});
+
+it('should show the stripe in the correct position', () => {
+  // TabsList
+  Object.defineProperty(HTMLDivElement.prototype, 'getBoundingClientRect', {
+    value: () => ({
+      width: 600.23,
+      height: 40,
+      x: 400.34,
+      y: 0,
+    }),
+  });
+  // First Tab
+  Object.defineProperty(HTMLButtonElement.prototype, 'getBoundingClientRect', {
+    configurable: true,
+    value: () => ({
+      width: 200.47,
+      height: 40,
+      x: 400.34,
+      y: 0,
+    }),
+  });
+
+  const { container } = render(
+    <Tabs.Wrapper type='pill'>
+      <Tabs.TabList>
+        <Tabs.Tab value='tab1' label='Tab 1' />
+        <Tabs.Tab value='tab2' label='Tab 2' />
+        <Tabs.Tab value='tab3' label='Tab 3' />
+      </Tabs.TabList>
+    </Tabs.Wrapper>,
+  );
+
+  const tabsWrapper = container.querySelector(
+    '.iui-tabs-wrapper.iui-horizontal',
+  ) as HTMLElement;
+
+  // The values should be exact and not rounded
+  expect(tabsWrapper).toHaveStyle('--iui-tabs-stripe-size: 200.47px;');
+  expect(tabsWrapper).toHaveStyle('--iui-tabs-stripe-position: 0px;');
+
+  const tabs = container.querySelectorAll('.iui-tab');
+  const lastTab = tabs[tabs.length - 1];
+
+  // Last Tab
+  Object.defineProperty(HTMLButtonElement.prototype, 'getBoundingClientRect', {
+    configurable: true,
+    value: () => ({
+      width: 200.47,
+      height: 40,
+      x: 1000.38,
+      y: 0,
+    }),
+  });
+
+  act(() => {
+    fireEvent.click(lastTab);
+  });
+
+  // The values should be exact and not rounded
+  expect(tabsWrapper).toHaveStyle('--iui-tabs-stripe-size: 200.47px;');
+  expect(tabsWrapper).toHaveStyle('--iui-tabs-stripe-position: 600.04px;'); // 600.04 = 1000.38 - 400.34
 });
