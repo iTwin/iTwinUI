@@ -2,4 +2,4 @@
 "@itwin/itwinui-css": minor
 ---
 
-Moved `iui-fade-in` animation from just being scoped in Dialog-related classes to now be global/unscoped.
+`iui-backdrop` will now also fade in when `iui-backdrop-visible` is present during mount.
