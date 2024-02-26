@@ -89,12 +89,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     disabled = false,
     displayStyle = 'default',
     label,
-    message,
     status,
-    svgIcon,
     required = false,
     labelProps,
-    messageProps,
     innerProps,
     ...rest
   } = props;
@@ -125,29 +122,39 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-      {(() => {
-        // E.g. when message={<StatusMessage />}
-        if (message && typeof message !== 'string') {
-          return message;
-        }
-
-        if (message || status || svgIcon) {
-          return (
-            <StatusMessage
-              iconProps={{
-                'aria-hidden': true,
-              }}
-              startIcon={svgIcon}
-              status={status}
-              {...messageProps}
-            >
-              {displayStyle !== 'inline' && message}
-            </StatusMessage>
-          );
-        }
-
-        return undefined;
-      })()}
+      {<BottomMessage {...props} />}
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
+
+// ------------------------------------------------------------------------------------------------
+
+/**
+ * @private
+ * - When `typeof message !== 'string'`, `message` is returned as-is (e.g. when `message=<StatusMessage />`).
+ * - Else, it is wrapped in a `<StatusMessage />`.
+ */
+const BottomMessage = (props: InputGroupProps) => {
+  const { message, status, svgIcon, displayStyle, messageProps } = props;
+
+  if (message && typeof message !== 'string') {
+    return message;
+  }
+
+  if (message || status || svgIcon) {
+    return (
+      <StatusMessage
+        iconProps={{
+          'aria-hidden': true,
+        }}
+        startIcon={svgIcon}
+        status={status}
+        {...messageProps}
+      >
+        {displayStyle !== 'inline' && message}
+      </StatusMessage>
+    );
+  }
+
+  return undefined;
+};
