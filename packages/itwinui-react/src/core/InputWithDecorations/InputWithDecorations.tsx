@@ -84,9 +84,9 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
  * @example
  * <InputWithDecorations>
  *    <InputWithDecorations.Input />
- *    <InputWithDecorations.Icon>
+ *    <Icon>
  *      <SvgAdd />
- *    </InputWithDecorations.Icon>
+ *    </Icon>
  * </InputWithDecorations>
  */
 export const InputWithDecorations = Object.assign(
