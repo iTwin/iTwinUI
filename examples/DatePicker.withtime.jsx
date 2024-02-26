@@ -8,6 +8,7 @@ import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [visible, setVisible] = React.useState(false);
   return (
     <Popover
       content={
@@ -15,13 +16,31 @@ export default () => {
           date={currentDate}
           onChange={(date) => {
             setCurrentDate(date);
+            setVisible(false);
           }}
           showTime={true}
+          setFocus
+          onBlur={(event) => {
+            if (event.relatedTarget === null) {
+              setVisible(false);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key == 'Escape') {
+              setVisible(false);
+            }
+          }}
         />
       }
       placement='bottom'
+      visible={visible}
     >
-      <IconButton label='Choose date'>
+      <IconButton
+        label='Choose date'
+        onClick={() => {
+          setVisible(!visible);
+        }}
+      >
         <SvgCalendar />
       </IconButton>
     </Popover>

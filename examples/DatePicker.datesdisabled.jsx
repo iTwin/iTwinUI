@@ -3,7 +3,8 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { DatePicker } from '@itwin/itwinui-react';
+import { DatePicker, IconButton, Popover } from '@itwin/itwinui-react';
+import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const startDate = new Date(2023, 6, 5, 14, 55, 22);
@@ -19,12 +20,43 @@ export default () => {
     return false;
   };
 
+  const [visible, setVisible] = React.useState(false);
+
   return (
-    <DatePicker
-      enableRangeSelect={true}
-      startDate={startDate}
-      endDate={endDate}
-      isDateDisabled={isDateDisabled}
-    />
+    <Popover
+      content={
+        <DatePicker
+          enableRangeSelect={true}
+          startDate={startDate}
+          endDate={endDate}
+          isDateDisabled={isDateDisabled}
+          onChange={() => {
+            setVisible(false);
+          }}
+          setFocus
+          onBlur={(event) => {
+            if (event.relatedTarget === null) {
+              setVisible(false);
+            }
+          }}
+          onKeyDown={(event) => {
+            if (event.key == 'Escape') {
+              setVisible(false);
+            }
+          }}
+        />
+      }
+      placement='bottom'
+      visible={visible}
+    >
+      <IconButton
+        label='Choose date'
+        onClick={() => {
+          setVisible(!visible);
+        }}
+      >
+        <SvgCalendar />
+      </IconButton>
+    </Popover>
   );
 };
