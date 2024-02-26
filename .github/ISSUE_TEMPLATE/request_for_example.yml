@@ -1,0 +1,22 @@
+name: Request for example 👀
+description: Request an example for something that should be achievable with existing iTwinUI features.
+labels: ['example']
+assignees: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        You can now request an example for something that isn't clearly documented or isn't achievable out-of-the-box.
+        To enable us to assist you more efficiently, please keep your requests small and self-contained.
+        
+        Also, make sure you first do a search for existing [issues](https://github.com/iTwin/iTwinUI/issues) and [discussions](https://github.com/iTwin/iTwinUI/discussions) so that this is is not a duplicate.
+  - type: textarea
+    attributes:
+      label: 
+      description: A clear and concise description of the functionality you're trying to achieve. 
+  - type: textarea
+    attributes:
+      label: Similar examples
+      description: Provide some examples, screenshots, etc to help us understand what exactly you're trying to achieve.
+    validations:
+      required: false
