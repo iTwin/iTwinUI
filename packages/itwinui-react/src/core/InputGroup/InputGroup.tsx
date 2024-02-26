@@ -122,7 +122,7 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-      {<BottomMessage {...props} />}
+      <BottomMessage {...props} />
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
