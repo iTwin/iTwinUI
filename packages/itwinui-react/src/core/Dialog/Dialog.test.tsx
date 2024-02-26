@@ -60,14 +60,14 @@ it('should have position correctly dependant on viewport', async () => {
   );
 
   const containerViewport = render(
-    <Dialog relativeTo='viewport'>
+    <Dialog relativeTo='viewport' isOpen>
       <Dialog.Backdrop />
       {dialogContent}
     </Dialog>,
   );
 
   const containerContainer = render(
-    <Dialog relativeTo='container'>
+    <Dialog relativeTo='container' isOpen>
       <Dialog.Backdrop />
       {dialogContent}
     </Dialog>,
