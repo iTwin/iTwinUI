@@ -8,6 +8,10 @@ import type { PortalProps } from '../utils/index.js';
 export type DialogContextProps = {
   /**
    * Flag whether dialog should be shown.
+   *
+   * It is recommended to directly pass the boolean condition to this prop instead of rendering the `Dialog`
+   * conditionally with `isOpen` hard-coded to `true`. One benefit of this is getting an exit animation.
+   *
    * @default false
    */
   isOpen?: boolean;
