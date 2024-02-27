@@ -74,6 +74,7 @@ export const TableCell = <T extends Record<string, unknown>>(
           cellProps={cellProps}
           expanderCell={expanderCell}
           density={density}
+          slot='expander'
         />
       )}
       {cell.render('Cell')}
@@ -88,11 +89,11 @@ export const TableCell = <T extends Record<string, unknown>>(
         {cellContent}
         {cell.column.sticky === 'left' &&
           tableInstance.state.sticky.isScrolledToRight && (
-            <Box className='iui-table-cell-shadow-right' slot='shadow' />
+            <Box className='iui-table-cell-shadow-right' slot='shadows' />
           )}
         {cell.column.sticky === 'right' &&
           tableInstance.state.sticky.isScrolledToLeft && (
-            <Box className='iui-table-cell-shadow-left' slot='shadow' />
+            <Box className='iui-table-cell-shadow-left' slot='shadows' />
           )}
       </>
     ),

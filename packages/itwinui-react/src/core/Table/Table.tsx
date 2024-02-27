@@ -36,6 +36,7 @@ import {
   Box,
   createWarningLogger,
   ShadowRoot,
+  LineClamp,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -421,7 +422,7 @@ export const Table = <
 
   const defaultColumn = React.useMemo(
     () => ({
-      minWidth: 64,
+      minWidth: 72,
       width: 0,
     }),
     [],
@@ -953,6 +954,11 @@ export const Table = <
                           (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
                         );
 
+                    // expander column should be wider to accommodate the expander icon
+                    if (columnHasExpanders && column.minWidth === 72) {
+                      column.minWidth = 108;
+                    }
+
                     const columnProps = column.getHeaderProps({
                       ...restSortProps,
                       className: cx(
@@ -968,9 +974,10 @@ export const Table = <
                         ...getCellStyle(column, !!state.isTableResizing),
                         ...(columnHasExpanders && getSubRowStyle({ density })),
                         ...getStickyStyle(column, visibleColumns),
-                        flexWrap: 'unset',
+                        flexWrap: 'wrap',
                       },
                     });
+
                     return (
                       <Box
                         {...columnProps}
@@ -1001,12 +1008,26 @@ export const Table = <
                           }
                         }}
                       >
+                        <ShadowRoot>
+                          {typeof column.Header === 'string' ? (
+                            <LineClamp>
+                              <slot />
+                            </LineClamp>
+                          ) : (
+                            <slot />
+                          )}
+                          <slot name='actions' />
+                          <slot name='resizers' />
+                          <slot name='shadows' />
+                        </ShadowRoot>
+
                         {column.render('Header')}
                         {(showFilterButton(column) ||
                           showSortButton(column)) && (
                           <Box
                             className='iui-table-header-actions-container'
                             onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                            slot='actions'
                           >
                             {showFilterButton(column) && (
                               <FilterToggle column={column} />
@@ -1036,21 +1057,31 @@ export const Table = <
                             <Box
                               {...column.getResizerProps()}
                               className='iui-table-resizer'
+                              slot='resizers'
                             >
                               <Box className='iui-table-resizer-bar' />
                             </Box>
                           )}
                         {enableColumnReordering &&
                           !column.disableReordering && (
-                            <Box className='iui-table-reorder-bar' />
+                            <Box
+                              className='iui-table-reorder-bar'
+                              slot='resizers'
+                            />
                           )}
                         {column.sticky === 'left' &&
                           state.sticky.isScrolledToRight && (
-                            <Box className='iui-table-cell-shadow-right' />
+                            <Box
+                              className='iui-table-cell-shadow-right'
+                              slot='shadows'
+                            />
                           )}
                         {column.sticky === 'right' &&
                           state.sticky.isScrolledToLeft && (
-                            <Box className='iui-table-cell-shadow-left' />
+                            <Box
+                              className='iui-table-cell-shadow-left'
+                              slot='shadows'
+                            />
                           )}
                       </Box>
                     );

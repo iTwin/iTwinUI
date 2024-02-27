@@ -71,6 +71,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       style={{ ...cellElementStyle, ...style }}
     >
       <ShadowRoot>
+        <slot name='expander' />
         {clamp ? (
           <LineClamp>
             <slot />
@@ -78,7 +79,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
         ) : (
           <slot />
         )}
-        <slot name='shadow' />
+        <slot name='shadows' />
       </ShadowRoot>
 
       {startIcon && (
