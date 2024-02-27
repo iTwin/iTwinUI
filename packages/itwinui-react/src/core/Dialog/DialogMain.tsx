@@ -209,6 +209,7 @@ export const DialogMain = React.forwardRef((props, ref) => {
   return (
     <Transition
       in={isOpen}
+      appear={true}
       timeout={{ exit: 600 }}
       // Focuses dialog when opened
       onEntered={() => {

@@ -15,57 +15,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        run: yarn
-
-  install-windows:
-    name: Install node modules (windows)
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Use Node 20.x
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20.x
-
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - name: yarn
-        if: steps.cache-node-modules.outputs.cache-hit != 'true'
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 15
-          max_attempts: 3
-          command: yarn
+      - run: pnpm install
 
   audit:
     name: Audit node modules
@@ -73,56 +35,47 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
-
-      - run: yarn audit
+      - run: pnpm install
+      - run: pnpm audit
 
   build:
     name: Build and lint packages
-    needs: [install, install-windows]
+    needs: install
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
-      - run: yarn lint
-      - run: yarn lint:copyright
-      - run: yarn build --filter="{./packages/*}..."
+      - run: pnpm lint
+      - run: pnpm lint:copyright
+      - run: pnpm run build --filter="{./packages/*}..."
 
   apps:
     name: Build website and playgrounds
@@ -130,25 +83,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
-      - run: yarn build --filter=website --filter="{./playgrounds/*}..."
+      - run: pnpm run build --filter=website --filter="{./playgrounds/*}..."
 
   deploy-gh-pages:
     name: Push static files to github pages
@@ -162,32 +111,28 @@ jobs:
       base_folder: ${{ github.event.number || github.ref_name != 'main' && github.ref_name || '' }}
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
       - name: Build css-workshop
-        run: yarn build --filter=css-workshop
+        run: pnpm run build --filter=css-workshop
 
       - name: Build portal
-        run: yarn workspace portal build --base "/iTwinUI/${{ env.base_folder }}"
+        run: pnpm --filter portal build --base "/iTwinUI/${{ env.base_folder }}"
 
       - name: Build react-workshop
-        run: yarn build --filter=react-workshop
+        run: pnpm run build --filter=react-workshop
 
       - name: List folders to preserve (open PRs and 'legacy')
         id: clean_exclude_folders
@@ -251,25 +196,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
-      - run: yarn workspace @itwin/itwinui-react test
+      - run: pnpm --filter @itwin/itwinui-react test
 
       - name: Publish test results
         uses: EnricoMi/publish-unit-test-result-action@v2.12.0
@@ -286,39 +227,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
-      - name: yarn test --filter=css-workshop
-        uses: nick-fields/retry@v2
+      - name: pnpm run test --filter=css-workshop
+        uses: nick-fields/retry@v3
         with:
           timeout_minutes: 15
           max_attempts: 2
           retry_on: timeout
-          command: yarn test --filter=css-workshop
+          command: pnpm run test --filter=css-workshop
 
       - name: Publish test results artifact
         if: failure()
         continue-on-error: true
-        uses: actions/upload-artifact@v2.2.3
+        uses: actions/upload-artifact@v4
         with:
           name: 'backstop_test_results'
           path: '${{ github.workspace }}/apps/css-workshop/backstop/results/'
+          overwrite: true
 
   visual-test-react:
     name: Run visual tests (react)
@@ -326,33 +264,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
-        with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+      - run: pnpm install
 
-      - run: yarn test --filter=react-workshop
+      - run: pnpm run test --filter=react-workshop
 
       - name: Publish test results artifact
         if: failure()
         continue-on-error: true
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: 'cypress-visual-screenshots'
           path: '${{ github.workspace }}/apps/react-workshop/cypress-visual-screenshots'
+          overwrite: true
 
   a11y:
     name: Test for a11y violations
@@ -360,29 +295,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
 
       - name: Use Node 20.x
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: 'pnpm'
 
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        id: cache-node-modules
+      - run: pnpm install
+
+      - run: pnpm run build --filter=itwinui-react
+
+      - name: Install node modules inside Docker
+        uses: cypress-io/github-action@v6
         with:
-          path: |
-            node_modules
-            packages/*/node_modules
-            apps/*/node_modules
-            playgrounds/*/node_modules
-          key: modules-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+          runTests: false # just perform install from monorepo root
 
-      - run: yarn build --filter=itwinui-react
-
-      - uses: cypress-io/github-action@v5
+      - name: Run a11y tests
+        uses: cypress-io/github-action@v6
         with:
           working-directory: testing/a11y
           component: true
           browser: chrome
-          install-command: yarn
+          install: false # we already installed deps above

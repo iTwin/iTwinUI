@@ -2,3 +2,6 @@ contact_links:
   - name: Questions 🤔
     url: https://github.com/iTwin/iTwinUI/discussions/categories/q-a
     about: Ask questions and get help from contributors through GitHub Discussions.
+  - name: Request an example 👀
+    url: https://github.com/iTwin/iTwinUI/discussions/categories/examples
+    about: Request a self-contained example for building something using existing iTwinUI features.

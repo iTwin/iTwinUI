@@ -5,7 +5,7 @@
 import * as React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../utils/props.js';
-import { Box } from '../utils/components/Box.js';
+import { Box, ShadowRoot } from '../utils/index.js';
 
 type VisuallyHiddenOwnProps = {
   /**
@@ -28,15 +28,48 @@ type VisuallyHiddenOwnProps = {
  * @see https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
  */
 export const VisuallyHidden = React.forwardRef((props, ref) => {
-  const { className, unhideOnFocus = true, ...rest } = props;
+  const {
+    as: asProp = 'span',
+    className,
+    unhideOnFocus = true,
+    children: childrenProp,
+    ...rest
+  } = props;
+
+  // ShadowRoot is not supported on all elements, so we only use it for few common ones.
+  const children = !['div', 'span', 'p'].includes(asProp) ? (
+    childrenProp
+  ) : (
+    <>
+      <ShadowRoot css={css}>
+        <slot />
+      </ShadowRoot>
+      {childrenProp}
+    </>
+  );
 
   return (
     <Box
-      as='span'
+      as={asProp}
       className={cx('iui-visually-hidden', className)}
       data-iui-unhide-on-focus={unhideOnFocus ? true : undefined}
       ref={ref}
       {...rest}
-    />
+    >
+      {children}
+    </Box>
   );
 }) as PolymorphicForwardRefComponent<'span', VisuallyHiddenOwnProps>;
+
+// ----------------------------------------------------------------------------
+
+const css = /* css */ `
+  :host(:where(:not([data-iui-unhide-on-focus]:is(:focus-within, :active)))) {
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    block-size: 1px !important;
+    inline-size: 1px !important;
+  }
+`;

@@ -177,6 +177,7 @@ const TabList = React.forwardRef((props, ref) => {
       <TabListContext.Provider
         value={{
           tabsWidth,
+          tablistRef,
         }}
       >
         {children}
@@ -217,7 +218,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     idPrefix,
     focusActivationMode,
   } = useSafeContext(TabsContext);
-  const { tabsWidth } = useSafeContext(TabListContext);
+  const { tabsWidth, tablistRef } = useSafeContext(TabListContext);
   const tabRef = React.useRef<HTMLButtonElement>();
 
   const isActive = activeValue === value;
@@ -240,6 +241,23 @@ const Tab = React.forwardRef((props, forwardedRef) => {
   useLayoutEffect(() => {
     const updateStripe = () => {
       const currentTabRect = tabRef.current?.getBoundingClientRect();
+      const tabslistRect = tablistRef.current?.getBoundingClientRect();
+
+      // Using getBoundingClientRect() to get decimal granularity.
+      // Not using offsetLeft/offsetTop because they round to the nearest integer.
+      // Even minor inaccuracies in the stripe position can cause unexpected scroll/scrollbar.
+      // See: https://github.com/iTwin/iTwinUI/issues/1870
+      const tabsStripePosition =
+        currentTabRect != null && tabslistRect != null
+          ? {
+              horizontal: currentTabRect.x - tabslistRect.x,
+              vertical: currentTabRect.y - tabslistRect.y,
+            }
+          : {
+              horizontal: 0,
+              vertical: 0,
+            };
+
       setStripeProperties({
         '--iui-tabs-stripe-size':
           orientation === 'horizontal'
@@ -247,8 +265,8 @@ const Tab = React.forwardRef((props, forwardedRef) => {
             : `${currentTabRect?.height}px`,
         '--iui-tabs-stripe-position':
           orientation === 'horizontal'
-            ? `${tabRef.current?.offsetLeft}px`
-            : `${tabRef.current?.offsetTop}px`,
+            ? `${tabsStripePosition.horizontal}px`
+            : `${tabsStripePosition.vertical}px`,
       });
     };
 
@@ -261,6 +279,7 @@ const Tab = React.forwardRef((props, forwardedRef) => {
     isActive,
     tabsWidth, // to fix visual artifact on initial render
     setStripeProperties,
+    tablistRef,
   ]);
 
   const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
@@ -798,6 +817,7 @@ const TabsContext = React.createContext<
 const TabListContext = React.createContext<
   | {
       tabsWidth: number;
+      tablistRef: React.RefObject<HTMLDivElement>;
     }
   | undefined
 >(undefined);
