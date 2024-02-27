@@ -190,15 +190,11 @@
     &:focus {
       outline: none;
     }
-
-    // padding-block: var(--_iui-input-padding-block);
-    // padding-inline: var(--iui-size-s);
   }
 
   // Collapse padding between input and icon/button
   > :is(input, textarea):has(+ .iui-button[data-iui-variant='borderless'], + .iui-svg-icon[data-iui-padded='true']) {
     padding-inline-end: 0;
-    // padding-inline-end: var(--iui-size-2xs);
   }
 
   > :is(.iui-svg-icon[data-iui-padded='true'], .iui-button[data-iui-variant='borderless']) + :is(input, textarea) {
