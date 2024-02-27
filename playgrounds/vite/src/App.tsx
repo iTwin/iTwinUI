@@ -23,9 +23,10 @@ const App = () => {
           <SectionSubtitle>padded Icon - borderless IconButton</SectionSubtitle>
           <SectionText>Both paddings collapsed</SectionText>
           <InputWithDecorations>
-            <Icon padded>
+            {/* <Icon padded>
               <SvgStar />
-            </Icon>
+            </Icon> */}
+            <SvgStar />
             <Input value={dummyValue} style={dummyStyle} />
             <IconButton styleType='borderless'>
               <SvgSearch />
