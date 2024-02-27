@@ -16,30 +16,33 @@ export default () => {
   const [visible, setVisible] = React.useState(false);
   const localizedNames = generateLocalizedStrings('ja');
   return (
-    <Popover
-      content={
-        <DatePicker
-          date={currentDate}
-          localizedNames={localizedNames}
-          onChange={(date) => {
-            setCurrentDate(date);
-            setVisible(false);
-          }}
-          setFocus
-        />
-      }
-      placement='bottom-start'
-      visible={visible}
-      onVisibleChange={setVisible}
-    >
-      <IconButton
-        label='Choose date'
-        onClick={() => {
-          setVisible(!visible);
-        }}
+    <>
+      <Popover
+        content={
+          <DatePicker
+            date={currentDate}
+            localizedNames={localizedNames}
+            onChange={(date) => {
+              setCurrentDate(date);
+              setVisible(false);
+            }}
+            setFocus
+          />
+        }
+        placement='bottom-start'
+        visible={visible}
+        onVisibleChange={setVisible}
       >
-        <SvgCalendar />
-      </IconButton>
-    </Popover>
+        <IconButton
+          label='Choose date'
+          onClick={() => {
+            setVisible(!visible);
+          }}
+        >
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span>{currentDate.toString()}</span>
+    </>
   );
 };
