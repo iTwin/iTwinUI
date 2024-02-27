@@ -17,9 +17,9 @@ When a user needs to schedule deadlines, timeframes, or for age verification pur
 
 ## Usage
 
-The basic date picker allows the user to pick a date from the calendar and skip a month at a time.
+The `DatePicker` component allows the user to pick a date from the calendar and skip a month at a time.
 
-This example and the others under this heading use the Popover utility component to show a real world use case.
+This component is recommended to be used inside the [`Popover`](popover) component, which takes care for placement, collision handling, focus management, outside clicks, and other interaction details.
 
 <LiveExample src='DatePicker.basic.jsx' truncate={true}>
   <AllExamples.DatePickerBasicExample client:load />
