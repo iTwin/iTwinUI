@@ -29,10 +29,3 @@
     padding-inline: 0; // To center iui-searchbox-open-button inline in collapsed state
   }
 }
-
-.iui-search-icon {
-  // collapse padding between icon and input
-  + .iui-search-input {
-    padding-inline-start: 0;
-  }
-}
