@@ -21,20 +21,11 @@ export default () => {
             setVisible(false);
           }}
           setFocus
-          onBlur={(event) => {
-            if (event.relatedTarget === null) {
-              setVisible(false);
-            }
-          }}
-          onKeyDown={(event) => {
-            if (event.key == 'Escape') {
-              setVisible(false);
-            }
-          }}
         />
       }
       placement='bottom'
       visible={visible}
+      onVisibleChange={setVisible}
     >
       <IconButton
         label='Choose date'
