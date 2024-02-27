@@ -15,15 +15,17 @@ related:
 
 When a user needs to schedule deadlines, timeframes, or for age verification purposes, we provide them with a date picker. It behaves much like a select menu. We currently have three different types of date pickers.
 
-## Variants
-
-### Basic
+## Usage
 
 The basic date picker allows the user to pick a date from the calendar and skip a month at a time.
+
+This example and the others under this heading use the Popover utility component to show a real world use case.
 
 <LiveExample src='DatePicker.basic.jsx' truncate={true}>
   <AllExamples.DatePickerBasicExample client:load />
 </LiveExample>
+
+If you would rather see an example of the date picker being used on its own, look at the <a href="#standalone-usage">standalone usage</a> example.
 
 This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters in [Table](table).
 
@@ -73,7 +75,7 @@ To improve user experience, date pickers support year skipping buttons. Clicking
   <AllExamples.DatePickerWithYearExample client:load />
 </LiveExample>
 
-## Usage
+## Standalone usage
 
 A date picker can be featured on your page in multiple ways. One can be added directly to your page so that it is visible as soon as the page loads. Additionally, a date picker can be added to a menu button on your page so that the user can toggle its visibility.
 
