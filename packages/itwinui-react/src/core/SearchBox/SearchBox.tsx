@@ -226,6 +226,7 @@ const SearchBoxIcon = React.forwardRef((props, ref) => {
     <Icon
       aria-hidden
       className={cx('iui-search-icon', className)}
+      padded
       ref={ref}
       {...rest}
     >

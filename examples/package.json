@@ -6,5 +6,8 @@
   "exports": {
     ".": "./index.tsx",
     "./*": "./*"
+  },
+  "dependencies": {
+    "@itwin/itwinui-react": "*"
   }
 }

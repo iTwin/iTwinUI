@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import { ProgressLinear } from './ProgressLinear.js';
 
 it('renders determinate ProgressLinear', () => {
@@ -101,4 +101,20 @@ it('passes custom props to ProgressLinear parts', () => {
   ) as HTMLElement;
   expect(labelGroup).toBeTruthy;
   expect(labelGroup.style.fontSize).toBe('12px');
+});
+
+it('should include visually-hidden loading message when not at 100%', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+
+  const { container, rerender } = render(<ProgressLinear />);
+  act(() => vi.runAllTicks());
+
+  const progress = container.querySelector('div') as HTMLElement;
+  expect(progress.shadowRoot).toHaveTextContent('Loading.');
+
+  rerender(<ProgressLinear value={50} />);
+  expect(progress.shadowRoot).toHaveTextContent('Loading.');
+
+  rerender(<ProgressLinear value={100} />);
+  expect(progress.shadowRoot).not.toHaveTextContent('Loading.');
 });

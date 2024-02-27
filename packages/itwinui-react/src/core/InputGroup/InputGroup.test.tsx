@@ -51,34 +51,50 @@ it('should render required group', () => {
   inputs.forEach((input) => expect(input.required).toBeTruthy());
 });
 
-it('should render message', () => {
-  const { container, getByText } = render(
-    <InputGroup
-      label='some label'
-      message={<div className='my-message'>Message</div>}
-    >
-      <Radio />
-      <Radio />
-      <Radio />
-    </InputGroup>,
-  );
-  expect(container.querySelector('.iui-input-grid')).toBeTruthy();
-  getByText('some label');
-  const message = container.querySelector('.my-message') as HTMLElement;
-  expect(message).toBeTruthy();
-  expect(message.textContent).toBe('Message');
-  expect(container.querySelectorAll('input').length).toBe(3);
-});
+it.each(['string', 'ReactNode'] as const)(
+  'should render message=%s',
+  (messageType) => {
+    const { container, getByText } = render(
+      <InputGroup
+        label='some label'
+        message={
+          messageType === 'string' ? (
+            'Message'
+          ) : (
+            <div className='my-message'>Message</div>
+          )
+        }
+      >
+        <Radio />
+        <Radio />
+        <Radio />
+      </InputGroup>,
+    );
+
+    expect(container.querySelector('.iui-input-grid')).toBeTruthy();
+    getByText('some label');
+
+    let message;
+    // Automatically wrap string message in `<StatusMessage />`
+    if (messageType === 'string') {
+      message = container.querySelector('.iui-status-message') as HTMLElement;
+    }
+    // Do not wrap ReactNode message in `<StatusMessage />`
+    else {
+      expect(container.querySelector('.iui-status-message')).toBeFalsy();
+      message = container.querySelector('.my-message') as HTMLElement;
+    }
+
+    expect(message).toBeTruthy();
+    expect(message.textContent).toBe('Message');
+  },
+);
 
 it.each(['positive', 'negative', 'warning'] as const)(
   'should render %s component',
   (status) => {
     const { container, getByText } = render(
-      <InputGroup
-        label='some label'
-        message={<div className='my-message'>Message</div>}
-        status={status}
-      >
+      <InputGroup label='some label' message='Message' status={status}>
         <Radio />
         <Radio />
         <Radio />

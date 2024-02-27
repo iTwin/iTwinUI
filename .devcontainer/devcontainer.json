@@ -1,0 +1,42 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
+    "vscode": {
+      "extensions": [
+        "stylelint.vscode-stylelint",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "streetsidesoftware.code-spell-checker",
+        "astro-build.astro-vscode"
+      ]
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "portal",
+      "onAutoForward": "ignore"
+    },
+    "5173": {
+      "label": "css-workshop"
+    },
+    "6006": {
+      "label": "react-workshop"
+    },
+    "1700": {
+      "label": "docs website"
+    },
+    "1701": {
+      "label": "vite playground"
+    },
+    "1702": {
+      "label": "next playground"
+    },
+    "1703": {
+      "label": "astro playground"
+    }
+  },
+  "onCreateCommand": "pnpm install"  
+}

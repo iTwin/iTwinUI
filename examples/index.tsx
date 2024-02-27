@@ -91,6 +91,10 @@ import { default as AnchorExternalExampleRaw } from './Anchor.external';
 const AnchorExternalExample = withThemeProvider(AnchorExternalExampleRaw);
 export { AnchorExternalExample };
 
+import { default as AnchorUnderlineExampleRaw } from './Anchor.underline';
+const AnchorUnderlineExample = withThemeProvider(AnchorUnderlineExampleRaw);
+export { AnchorUnderlineExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as BadgeMainExampleRaw } from './Badge.main';

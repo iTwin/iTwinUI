@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 
 import { ProgressRadial } from './ProgressRadial.js';
 
@@ -59,3 +59,19 @@ it.each(['small', 'x-small', 'large'] as const)(
     expect(spinner).toHaveAttribute('data-iui-size', size);
   },
 );
+
+it('should include visually-hidden loading message when not at 100%', () => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+
+  const { container, rerender } = render(<ProgressRadial />);
+  act(() => vi.runAllTicks());
+
+  const progress = container.querySelector('div') as HTMLElement;
+  expect(progress.shadowRoot).toHaveTextContent('Loading.');
+
+  rerender(<ProgressRadial value={50} />);
+  expect(progress.shadowRoot).toHaveTextContent('Loading.');
+
+  rerender(<ProgressRadial value={100} />);
+  expect(progress.shadowRoot).not.toHaveTextContent('Loading.');
+});
