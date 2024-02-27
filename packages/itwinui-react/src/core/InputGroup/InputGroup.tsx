@@ -21,6 +21,10 @@ type InputGroupProps = {
   status?: 'positive' | 'warning' | 'negative';
   /**
    * Message below the group. Does not apply to 'inline' group.
+   *
+   * When `typeof message === "string"`, it is automatically wrapped with {@link StatusMessage}.
+   * If you are passing a non-string message that is not `<StatusMessage>`, you may need to wrap it with
+   * `<StatusMessage>` yourself for proper styling of `message`.
    */
   message?: React.ReactNode;
   /**
@@ -85,12 +89,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     disabled = false,
     displayStyle = 'default',
     label,
-    message,
     status,
-    svgIcon,
     required = false,
     labelProps,
-    messageProps,
     innerProps,
     ...rest
   } = props;
@@ -121,18 +122,39 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-      {(message || status || svgIcon) && (
-        <StatusMessage
-          iconProps={{
-            'aria-hidden': true,
-          }}
-          startIcon={svgIcon}
-          status={status}
-          {...messageProps}
-        >
-          {displayStyle !== 'inline' && message}
-        </StatusMessage>
-      )}
+      <BottomMessage {...props} />
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
+
+// ------------------------------------------------------------------------------------------------
+
+/**
+ * @private
+ * - When `typeof message !== 'string'`, `message` is returned as-is (e.g. when `message=<StatusMessage />`).
+ * - Else, it is wrapped in a `<StatusMessage />`.
+ */
+const BottomMessage = (props: InputGroupProps) => {
+  const { message, status, svgIcon, displayStyle, messageProps } = props;
+
+  if (message && typeof message !== 'string') {
+    return message;
+  }
+
+  if (message || status || svgIcon) {
+    return (
+      <StatusMessage
+        iconProps={{
+          'aria-hidden': true,
+        }}
+        startIcon={svgIcon}
+        status={status}
+        {...messageProps}
+      >
+        {displayStyle !== 'inline' && message}
+      </StatusMessage>
+    );
+  }
+
+  return undefined;
+};
