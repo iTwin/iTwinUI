@@ -192,7 +192,7 @@
     }
   }
 
-  // Collapse padding between input and icon/button
+  // Collapse padding between input/textarea and icon/button
   > :is(input, textarea):has(+ .iui-button[data-iui-variant='borderless'], + .iui-svg-icon[data-iui-padded='true']) {
     padding-inline-end: 0;
   }
