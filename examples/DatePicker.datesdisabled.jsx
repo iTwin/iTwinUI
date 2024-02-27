@@ -36,7 +36,7 @@ export default () => {
           setFocus
         />
       }
-      placement='bottom'
+      placement='bottom-start'
       visible={visible}
       onVisibleChange={setVisible}
     >

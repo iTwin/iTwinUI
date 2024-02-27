@@ -26,7 +26,7 @@ export default () => {
             />
           </div>
         }
-        placement='bottom'
+        placement='bottom-start'
         visible={visible}
         onVisibleChange={setVisible}
       >
