@@ -79,14 +79,14 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
  * Input component with various additional decorations.
  * You can add icons, buttons and other various subcomponents to it.
  *
- * If you are not using default InputWithDecorations.Icon and InputWithDecorations.Button, use borderless versions of other components.
+ * If you are not using default `Icon` and `InputWithDecorations.Button`, use borderless versions of other components.
  *
- * @usage
+ * @example
  * <InputWithDecorations>
  *    <InputWithDecorations.Input />
- *    <InputWithDecorations.Icon>
+ *    <Icon>
  *      <SvgAdd />
- *    </InputWithDecorations.Icon>
+ *    </Icon>
  * </InputWithDecorations>
  */
 export const InputWithDecorations = Object.assign(
