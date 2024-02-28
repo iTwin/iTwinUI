@@ -54,7 +54,17 @@ export const InputFlexContainerButton = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
+}) as PolymorphicForwardRefComponent<
+  'button',
+  Omit<IconButtonProps, 'styleType'> & {
+    /**
+     * Style of the button.
+     * Use 'borderless' to hide outline.
+     * @default 'borderless'
+     */
+    styleType?: IconButtonProps['styleType'];
+  }
+>;
 
 /**
  * Icon inside InputFlexContainer that collapses the padding between the icon and the input/textarea.
@@ -70,4 +80,13 @@ export const InputFlexContainerIcon = React.forwardRef((props, ref) => {
       {...rest}
     />
   );
-}) as PolymorphicForwardRefComponent<'span', IconProps>;
+}) as PolymorphicForwardRefComponent<
+  'span',
+  Omit<IconProps, 'padded'> & {
+    /**
+     * Option to add padding to the icon.
+     * @default true
+     */
+    padded?: IconProps['padded'];
+  }
+>;
