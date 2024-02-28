@@ -11,7 +11,7 @@ import {
   useSafeContext,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import type { InputProps } from '../Input/Input.js';
+import { type InputProps } from '../Input/Input.js';
 
 const InputWithDecorationsContext = React.createContext<
   React.ComponentProps<typeof InputFlexContainer> | undefined
@@ -36,7 +36,7 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
   React.ComponentProps<typeof InputFlexContainer>
 >;
 
-//-------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   const { id: idProp, size, disabled: localDisabled, ...rest } = props;
@@ -55,8 +55,9 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
+InputWithDecorationsInput.displayName = 'InputWithDecorations.Input';
 
-//-------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------
 
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   const { children, size, disabled: localDisabled, ...rest } = props;
@@ -78,13 +79,14 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   'span',
   React.ComponentProps<typeof InputFlexContainerButton>
 >;
+InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
 
-const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
-  return <InputFlexContainerIcon ref={ref} {...props} />;
-}) as PolymorphicForwardRefComponent<
-  'span',
-  React.ComponentProps<typeof InputFlexContainerIcon>
->;
+// ------------------------------------------------------------------------------------------------
+
+const InputWithDecorationsIcon = InputFlexContainerIcon;
+InputWithDecorationsIcon.displayName = 'InputWithDecorations.Icon';
+
+// ------------------------------------------------------------------------------------------------
 
 /**
  * Input component with various additional decorations.
