@@ -53,11 +53,11 @@ function renderComponent(
 ) {
   return render(
     <Select<number>
-      {...props}
       options={[...new Array(3)].map((_, index) => ({
         label: `Test${index}`,
         value: index,
       }))}
+      {...props}
     />,
   );
 }
