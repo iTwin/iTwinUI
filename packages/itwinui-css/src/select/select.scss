@@ -29,6 +29,11 @@
 
   &:is(select) {
     appearance: none;
+
+    option {
+      color: var(--iui-color-text);
+      font-weight: var(--iui-font-weight-normal);
+    }
   }
 
   &:not(select) {
@@ -62,11 +67,6 @@
   &:has(option[value='']:checked) {
     color: var(--iui-color-text-placeholder);
     font-weight: var(--iui-font-weight-light);
-  }
-
-  option {
-    color: var(--iui-color-text);
-    font-weight: var(--iui-font-weight-normal);
   }
 }
 
