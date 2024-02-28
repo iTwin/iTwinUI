@@ -1,6 +1,5 @@
 ---
 "@itwin/itwinui-css": patch
-"@itwin/itwinui-react": patch
 ---
 
-Fixes bug that caused the tabs `Wrapper` to change size dependent on which `Tab` was active.
+Fixes bug that caused the `.iui-tabs-wrapper` to change size dependent on which `.iui-tab` was active.
