@@ -554,6 +554,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
     onChange: onChangeProp,
     size,
     status,
+    required,
     ...rest
   } = props;
 
@@ -578,6 +579,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         onChange={mergeEventHandlers(triggerProps?.onChange, (event) => {
           onChangeProp?.(event.currentTarget.value, event);
         })}
+        required={required}
       >
         {placeholder !== undefined ? (
           <option value='' disabled>
