@@ -212,3 +212,11 @@ it('should allow passing ref to LabeledSelect', () => {
 
   expect(selectRef?.current).toHaveAttribute('data-select');
 });
+
+it('should support native select', () => {
+  const { container } = render(
+    <LabeledSelect native label='the label' options={[]} />,
+  );
+  const select = container.querySelector('select') as HTMLSelectElement;
+  expect(select).toHaveAccessibleName('the label');
+});

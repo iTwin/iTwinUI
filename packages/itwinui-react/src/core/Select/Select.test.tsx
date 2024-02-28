@@ -622,3 +622,82 @@ it('should reset value when null is passed', () => {
   rerender(<Select value={null} options={[{ value: 'A', label: 'A' }]} />);
   expect(container.querySelector('[role=combobox]')).toHaveTextContent('');
 });
+
+it('should support native select (uncontrolled)', async () => {
+  const onChangeFn = vi.fn();
+
+  const { container } = render(
+    <Select
+      native
+      options={[
+        { value: 'A', label: 'A' },
+        { value: 'B', label: 'B', disabled: true },
+      ]}
+      className='my-wrapper'
+      placeholder='Select an option'
+      triggerProps={{ className: 'my-select' }}
+      required
+      onChange={onChangeFn}
+      size='small'
+      status='positive'
+    />,
+  );
+
+  const wrapper = container.querySelector('.my-wrapper') as HTMLElement;
+  const select = wrapper.querySelector('select') as HTMLSelectElement;
+  expect(select).toHaveClass('my-select');
+  expect(select).toHaveValue('');
+  expect(select).toBeRequired();
+  expect(select).toHaveAttribute('data-iui-size', 'small');
+  expect(select).toHaveAttribute('data-iui-status', 'positive');
+
+  const options = select.querySelectorAll('option');
+  expect(options.length).toBe(3);
+  expect(options[0]).toHaveTextContent('Select an option');
+  expect(options[0]).toHaveAttribute('disabled');
+  expect(options[1]).toHaveTextContent('A');
+  expect(options[2]).toHaveTextContent('B');
+  expect(options[2]).toHaveAttribute('disabled');
+
+  await userEvent.selectOptions(select, 'A');
+  expect(select).toHaveValue('A');
+  expect(onChangeFn).toHaveBeenCalledWith('A', expect.objectContaining({}));
+});
+
+it('should support native select (controlled)', async () => {
+  const { container, rerender } = render(
+    <Select
+      native
+      options={[{ value: 'A', label: 'A' }]}
+      placeholder='Select an option'
+      defaultValue='A'
+    />,
+  );
+
+  const select = container.querySelector('select') as HTMLSelectElement;
+  expect(select).toHaveValue('A');
+
+  rerender(
+    <Select
+      native
+      options={[{ value: 'A', label: 'A' }]}
+      placeholder='Select an option'
+      defaultValue='A'
+      value={null}
+    />,
+  );
+  expect(select).toHaveValue('');
+
+  rerender(
+    <Select
+      native
+      options={[
+        { value: 'A', label: 'A' },
+        { value: 'B', label: 'B' },
+      ]}
+      placeholder='Select an option'
+      value='B'
+    />,
+  );
+  expect(select).toHaveValue('B');
+});
