@@ -3,23 +3,26 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { DatePicker } from '@itwin/itwinui-react';
+import { DatePicker, Surface } from '@itwin/itwinui-react';
 
 export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
-  const [visible, setVisible] = React.useState(false);
 
   return (
-    <>
+    <Wrapper>
       <DatePicker
         showYearSelection
         date={currentDate}
         onChange={(date) => {
           setCurrentDate(date);
-          setVisible(false);
         }}
+        applyBackground={false}
       />
-      <span className='demo-label'>{currentDate.toString()}</span>
-    </>
+      <div className='demo-label'>{currentDate.toDateString()}</div>
+    </Wrapper>
   );
 };
+
+function Wrapper({ children }) {
+  return <Surface>{children}</Surface>;
+}
