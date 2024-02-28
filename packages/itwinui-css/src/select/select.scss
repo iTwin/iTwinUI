@@ -29,7 +29,7 @@
   cursor: pointer;
   @include iui-select-size;
 
-  &:is(:not(select)) {
+  &:not(select) {
     display: flex;
     align-items: center;
     gap: var(--iui-size-xs);
