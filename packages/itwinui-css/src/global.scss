@@ -35,3 +35,5 @@
     outline: 2px solid var(--iui-color-border-accent);
   }
 }
+
+@include mixins.animations;

@@ -15,17 +15,17 @@ related:
 
 When a user needs to schedule deadlines, timeframes, or for age verification purposes, we provide them with a date picker. It behaves much like a select menu. We currently have three different types of date pickers.
 
-## Variants
+## Usage
 
-### Basic
+The `DatePicker` component allows the user to pick a date from the calendar and skip a month at a time.
 
-The basic date picker allows the user to pick a date from the calendar and skip a month at a time.
+This component is recommended to be used inside the [`Popover`](popover) component, which takes care for placement, collision handling, focus management, outside clicks, and other interaction details.
 
 <LiveExample src='DatePicker.basic.jsx' truncate={true}>
   <AllExamples.DatePickerBasicExample client:load />
 </LiveExample>
 
-This allows the user to visually select the date rather than entering the date with a keyboard. This has the advantage of also showing weekdays, which may be important in a given context. The date picker is commonly used within column filters in [Table](table).
+If you would rather see an example of the date picker being used on its own, look at the [standalone usage](#standalone-usage).
 
 ### Localized
 
@@ -73,12 +73,16 @@ To improve user experience, date pickers support year skipping buttons. Clicking
   <AllExamples.DatePickerWithYearExample client:load />
 </LiveExample>
 
-## Usage
+### Standalone usage
 
-A date picker can be featured on your page in multiple ways. One can be added directly to your page so that it is visible as soon as the page loads. Additionally, a date picker can be added to a menu button on your page so that the user can toggle its visibility.
+The `DatePicker` does not always need to be used within its own popover. You can instead display it as part of a larger interface containing interconnected controls.
+
+You can set `applyBackground={false}` to make the `DatePicker` blend into its surroundings. This is useful when the surrounding UI already brings its own background-color and border.
 
 <LiveExample src='DatePicker.menu.jsx' truncate={true}>
   <AllExamples.DatePickerMenuExample client:load />
 </LiveExample>
+
+## Props
 
 <PropsTable path={frontmatter.propsPath} />
