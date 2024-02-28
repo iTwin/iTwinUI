@@ -6,8 +6,10 @@ import React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
-import { Icon, type IconProps } from '../../Icon/Icon.js';
-import { IconButton, type IconButtonProps } from '../../Buttons/IconButton.js';
+import { Icon } from '../../Icon/Icon.js';
+import { IconButton } from '../../Buttons/IconButton.js';
+import type { IconProps } from '../../Icon/Icon.js';
+import type { IconButtonProps } from '../../Buttons/IconButton.js';
 
 export type InputFlexContainerProps = {
   isDisabled?: boolean;
