@@ -6,11 +6,11 @@ import * as React from 'react';
 import {
   Box,
   InputFlexContainer,
+  InputFlexContainerButton,
   InputFlexContainerIcon,
   useSafeContext,
 } from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton.js';
 import type { InputProps } from '../Input/Input.js';
 
 const InputWithDecorationsContext = React.createContext<
@@ -65,24 +65,26 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   );
 
   return (
-    <IconButton
+    <InputFlexContainerButton
       ref={ref}
       size={size ?? contextSize}
-      styleType='borderless'
       disabled={localDisabled ?? isDisabled}
       {...rest}
     >
       {children}
-    </IconButton>
+    </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<
   'span',
-  React.ComponentProps<typeof IconButton>
+  React.ComponentProps<typeof InputFlexContainerButton>
 >;
 
 const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
   return <InputFlexContainerIcon ref={ref} {...props} />;
-}) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Box>>;
+}) as PolymorphicForwardRefComponent<
+  'span',
+  React.ComponentProps<typeof InputFlexContainerIcon>
+>;
 
 /**
  * Input component with various additional decorations.

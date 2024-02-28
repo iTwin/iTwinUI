@@ -14,12 +14,12 @@ import {
   mergeEventHandlers,
   Box,
   InputFlexContainerIcon,
+  InputFlexContainerButton,
 } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   InputFlexContainerProps,
 } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
 import type { IconProps } from '../Icon/Icon.js';
 
@@ -271,15 +271,14 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
   const { size: sizeContext, isDisabled } = useSafeContext(SearchBoxContext);
 
   return (
-    <IconButton
-      styleType='borderless'
+    <InputFlexContainerButton
       size={sizeContext}
       ref={ref}
       disabled={isDisabled}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </IconButton>
+    </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 SearchBoxButton.displayName = 'SearchBox.Button';
