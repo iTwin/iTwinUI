@@ -76,7 +76,7 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
     </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<
-  'span',
+  'button',
   React.ComponentProps<typeof InputFlexContainerButton>
 >;
 InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
