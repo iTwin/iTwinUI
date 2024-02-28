@@ -143,7 +143,7 @@ export const LabeledSelect = React.forwardRef(
             {label}
           </Label>
         )}
-        <Select
+        <Select<T>
           disabled={disabled}
           className={className}
           style={style}

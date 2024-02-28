@@ -6,7 +6,7 @@ import * as React from 'react';
 import { findAllByRole, fireEvent, render } from '@testing-library/react';
 import {
   Select,
-  type SelectProps,
+  type CustomSelectProps,
   type SelectMultipleTypeProps,
 } from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
@@ -49,15 +49,15 @@ function assertMenu(
 }
 
 function renderComponent(
-  props?: Partial<SelectProps<number>> & SelectMultipleTypeProps<number>,
+  props?: Partial<CustomSelectProps<number>> & SelectMultipleTypeProps<number>,
 ) {
   return render(
     <Select<number>
+      {...props}
       options={[...new Array(3)].map((_, index) => ({
         label: `Test${index}`,
         value: index,
       }))}
-      {...props}
     />,
   );
 }
