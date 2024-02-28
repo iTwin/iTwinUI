@@ -13,6 +13,7 @@ import {
   useMergedRefs,
   mergeEventHandlers,
   Box,
+  InputFlexContainerIcon,
 } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
@@ -20,7 +21,6 @@ import type {
 } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
-import { Icon } from '../Icon/Icon.js';
 import type { IconProps } from '../Icon/Icon.js';
 
 const SearchBoxContext = React.createContext<
@@ -223,15 +223,14 @@ const SearchBoxIcon = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
   return (
-    <Icon
+    <InputFlexContainerIcon
       aria-hidden
       className={cx('iui-search-icon', className)}
-      padded
       ref={ref}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </Icon>
+    </InputFlexContainerIcon>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
 SearchBoxIcon.displayName = 'SearchBox.Icon';

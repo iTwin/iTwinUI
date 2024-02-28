@@ -3,7 +3,12 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, InputFlexContainer, useSafeContext } from '../utils/index.js';
+import {
+  Box,
+  InputFlexContainer,
+  InputFlexContainerIcon,
+  useSafeContext,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
 import { IconButton } from '../Buttons/IconButton.js';
 import type { InputProps } from '../Input/Input.js';
@@ -75,18 +80,22 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   React.ComponentProps<typeof IconButton>
 >;
 
+const InputWithDecorationsIcon = React.forwardRef((props, ref) => {
+  return <InputFlexContainerIcon ref={ref} {...props} />;
+}) as PolymorphicForwardRefComponent<'span', React.ComponentProps<typeof Box>>;
+
 /**
  * Input component with various additional decorations.
  * You can add icons, buttons and other various subcomponents to it.
  *
- * If you are not using default `Icon` and `InputWithDecorations.Button`, use borderless versions of other components.
+ * If you are not using default `InputWithDecorations.Icon` and `InputWithDecorations.Button`, use borderless versions of other components.
  *
  * @example
  * <InputWithDecorations>
  *    <InputWithDecorations.Input />
- *    <Icon>
+ *    <InputWithDecorations.Icon>
  *      <SvgAdd />
- *    </Icon>
+ *    </InputWithDecorations.Icon>
  * </InputWithDecorations>
  */
 export const InputWithDecorations = Object.assign(
@@ -100,5 +109,10 @@ export const InputWithDecorations = Object.assign(
      * Subcomponent to include button in your InputWithDecorations
      */
     Button: InputWithDecorationsButton,
+    /**
+     * Subcomponent to include button in your InputWithDecorations.
+     * Although similar to `Icon`, this subcomponent collapses the padding between the icon and the input in `InputWithDecorations`.
+     */
+    Icon: InputWithDecorationsIcon,
   },
 );

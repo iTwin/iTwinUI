@@ -6,6 +6,7 @@ import React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
+import { Icon, type IconProps } from '../../Icon/Icon.js';
 
 export type InputFlexContainerProps = {
   isDisabled?: boolean;
@@ -35,3 +36,19 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', InputFlexContainerProps>;
+
+/**
+ * Icon inside InputFlexContainer that collapses the padding between the icon and the input.
+ * @private
+ */
+export const InputFlexContainerIcon = React.forwardRef((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <Icon
+      ref={ref}
+      className={cx('iui-input-flex-container-icon', className)}
+      padded
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<'span', IconProps>;

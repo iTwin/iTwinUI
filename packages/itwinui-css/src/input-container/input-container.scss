@@ -188,17 +188,17 @@
     }
   }
 
-  // Collapse padding between input/textarea and icon/button
-  > :is(input, textarea):has(+ .iui-button[data-iui-variant='borderless'], + .iui-svg-icon[data-iui-padded='true']) {
+  // Collapse padding between input/textarea and .iui-input-flex-container-icon
+  > :is(input, textarea):has(+ .iui-input-flex-container-icon) {
     padding-inline-end: 0;
   }
 
-  > :is(.iui-svg-icon[data-iui-padded='true'], .iui-button[data-iui-variant='borderless']) + :is(input, textarea) {
+  > .iui-input-flex-container-icon + :is(input, textarea) {
     padding-inline-start: 0;
   }
 
-  // input/textarea is not the first child and does not directly follow a borderless button or padded icon
-  > :not(.iui-svg-icon[data-iui-padded='true']):not(.iui-button[data-iui-variant='borderless']) + :is(input, textarea) {
+  // input/textarea is not the first child and does not directly follow .iui-input-flex-container-icon
+  > :not(.iui-input-flex-container-icon) + :is(input, textarea) {
     padding-inline-start: var(--iui-size-2xs);
   }
 
