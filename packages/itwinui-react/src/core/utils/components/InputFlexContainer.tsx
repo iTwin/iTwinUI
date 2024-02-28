@@ -7,10 +7,7 @@ import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
 import { Icon, type IconProps } from '../../Icon/Icon.js';
-import {
-  IconButton,
-  type IconButtonProps,
-} from 'src/core/Buttons/IconButton.js';
+import { IconButton, type IconButtonProps } from '../../Buttons/IconButton.js';
 
 export type InputFlexContainerProps = {
   isDisabled?: boolean;
@@ -50,7 +47,7 @@ export const InputFlexContainerButton = React.forwardRef((props, ref) => {
   return (
     <IconButton
       ref={ref}
-      className={cx('iui-input-flex-container-button', className)}
+      className={cx('iui-input-flex-container-icon', className)}
       styleType='borderless'
       {...rest}
     />

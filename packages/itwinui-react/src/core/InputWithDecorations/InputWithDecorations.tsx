@@ -109,11 +109,15 @@ export const InputWithDecorations = Object.assign(
     Input: InputWithDecorationsInput,
     /**
      * Subcomponent to include button in your InputWithDecorations
+     *
+     * Although similar to `IconButton`, this subcomponent additionally collapses the padding between the button and the input/textarea
+     * in `InputWithDecorations`.
      */
     Button: InputWithDecorationsButton,
     /**
      * Subcomponent to include button in your InputWithDecorations.
-     * Although similar to `Icon`, this subcomponent additionally collapses the padding between the icon and the input
+     *
+     * Although similar to `Icon`, this subcomponent additionally collapses the padding between the icon and the input/textarea
      * in `InputWithDecorations`.
      */
     Icon: InputWithDecorationsIcon,
