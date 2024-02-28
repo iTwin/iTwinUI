@@ -56,17 +56,6 @@ $iui-dialog-min-height: 7.75rem; // 7.75rem = 124px = title bar height + margins
       transform: translateY(100%);
     }
   }
-
-  @keyframes iui-fade-in {
-    from {
-      visibility: visible;
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
 }
 
 .iui-dialog-default {

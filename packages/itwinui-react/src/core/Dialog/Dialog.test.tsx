@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { render, act } from '@testing-library/react';
 import { Dialog } from './Dialog.js';
 import { Button } from '../Buttons/Button.js';
 import { userEvent } from '@testing-library/user-event';
@@ -60,14 +60,14 @@ it('should have position correctly dependant on viewport', async () => {
   );
 
   const containerViewport = render(
-    <Dialog relativeTo='viewport'>
+    <Dialog relativeTo='viewport' isOpen>
       <Dialog.Backdrop />
       {dialogContent}
     </Dialog>,
   );
 
   const containerContainer = render(
-    <Dialog relativeTo='container'>
+    <Dialog relativeTo='container' isOpen>
       <Dialog.Backdrop />
       {dialogContent}
     </Dialog>,
@@ -145,4 +145,46 @@ it('should not allow to close the dialog when isDismissible false', async () => 
     '.iui-dialog-title-bar button',
   ) as HTMLElement;
   expect(closeIcon).toBeFalsy();
+});
+
+it('should not stay in the DOM when isOpen=false', () => {
+  vi.useFakeTimers();
+
+  const Component = ({ isOpen = false }) => (
+    <Dialog isOpen={isOpen}>
+      <Dialog.Backdrop />
+      <Dialog.Main>
+        <Dialog.TitleBar titleText='Test title' />
+        <Dialog.Content>Here is my dialog content</Dialog.Content>
+        <Dialog.ButtonBar>
+          <Button styleType='high-visibility'>Confirm</Button>
+          <Button>Close</Button>
+        </Dialog.ButtonBar>
+      </Dialog.Main>
+    </Dialog>
+  );
+
+  const { container, rerender } = render(<Component isOpen={false} />);
+
+  let dialogWrapper = container.querySelector(
+    '.iui-dialog-wrapper',
+  ) as HTMLElement;
+  expect(dialogWrapper).toBeFalsy();
+
+  rerender(<Component isOpen={true} />);
+
+  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
+  expect(dialogWrapper).toBeTruthy();
+
+  rerender(<Component isOpen={false} />);
+
+  // Should be there in the DOM until the exit animation is finished
+  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
+  expect(dialogWrapper).toBeTruthy();
+
+  // Since timeout for the exit animation is 600ms
+  act(() => vi.advanceTimersByTime(600));
+
+  dialogWrapper = container.querySelector('.iui-dialog-wrapper') as HTMLElement;
+  expect(dialogWrapper).toBeFalsy();
 });
