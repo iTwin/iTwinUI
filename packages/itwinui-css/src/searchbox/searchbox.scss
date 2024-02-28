@@ -29,3 +29,11 @@
     padding-inline: 0; // To center iui-searchbox-open-button inline in collapsed state
   }
 }
+
+// noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537
+/* stylelint-disable-next-line block-no-empty */
+.iui-search-icon {
+}
+/* stylelint-disable-next-line block-no-empty */
+.iui-search-input {
+}
