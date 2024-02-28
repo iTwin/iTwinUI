@@ -1,0 +1,5 @@
+.demo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--iui-size-s);
+}

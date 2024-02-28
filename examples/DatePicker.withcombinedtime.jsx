@@ -8,24 +8,37 @@ import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [visible, setVisible] = React.useState(false);
   return (
-    <Popover
-      content={
-        <DatePicker
-          date={currentDate}
-          onChange={(date) => {
-            setCurrentDate(date);
+    <div className='demo-container'>
+      <Popover
+        content={
+          <DatePicker
+            date={currentDate}
+            onChange={(date) => {
+              setCurrentDate(date);
+              setVisible(false);
+            }}
+            showTime={true}
+            useCombinedRenderer={true}
+            use12Hours={true}
+            setFocus
+          />
+        }
+        placement='bottom-start'
+        visible={visible}
+        onVisibleChange={setVisible}
+      >
+        <IconButton
+          label='Choose date'
+          onClick={() => {
+            setVisible(!visible);
           }}
-          showTime={true}
-          useCombinedRenderer={true}
-          use12Hours={true}
-        />
-      }
-      placement='bottom'
-    >
-      <IconButton label='Choose date'>
-        <SvgCalendar />
-      </IconButton>
-    </Popover>
+        >
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span>{currentDate.toString()}</span>
+    </div>
   );
 };
