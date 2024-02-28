@@ -16,7 +16,7 @@ export default () => {
   const [visible, setVisible] = React.useState(false);
   const localizedNames = generateLocalizedStrings('ja');
   return (
-    <div>
+    <div className='demo-container'>
       <Popover
         content={
           <DatePicker
@@ -42,7 +42,7 @@ export default () => {
           <SvgCalendar />
         </IconButton>
       </Popover>
-      <span className='date-label'>{currentDate.toDateString()}</span>
+      <span>{currentDate.toDateString()}</span>
     </div>
   );
 };

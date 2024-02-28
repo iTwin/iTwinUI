@@ -10,7 +10,7 @@ export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
   const [visible, setVisible] = React.useState(false);
   return (
-    <div>
+    <div className='demo-container'>
       <Popover
         content={
           <DatePicker
@@ -38,7 +38,7 @@ export default () => {
           <SvgCalendar />
         </IconButton>
       </Popover>
-      <span className='date-label'>{currentDate.toString()}</span>
+      <span>{currentDate.toString()}</span>
     </div>
   );
 };

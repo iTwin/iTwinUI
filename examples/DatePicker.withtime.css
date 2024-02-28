@@ -1,3 +1,5 @@
-.date-label {
-  margin-left: 16px;
+.demo-container {
+  display: flex;
+  align-items: center;
+  gap: var(--iui-size-s);
 }

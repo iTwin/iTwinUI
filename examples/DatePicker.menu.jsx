@@ -24,5 +24,5 @@ export default () => {
 };
 
 function Wrapper({ children }) {
-  return <Surface>{children}</Surface>;
+  return <Surface className='demo-container'>{children}</Surface>;
 }
