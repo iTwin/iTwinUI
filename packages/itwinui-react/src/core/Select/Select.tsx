@@ -548,10 +548,10 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
     triggerProps,
     options,
     disabled,
-    defaultValue: defaultValueProp,
+    placeholder,
+    defaultValue: defaultValueProp = placeholder !== undefined ? '' : undefined,
     value: valueProp,
     onChange: onChangeProp,
-    placeholder,
     size,
     status,
     ...rest
@@ -564,8 +564,8 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         size={size}
         status={status}
         disabled={disabled}
-        value={valueProp === null ? '' : valueProp}
         defaultValue={defaultValueProp}
+        value={valueProp === null ? '' : valueProp}
         {...triggerProps}
         onKeyDown={mergeEventHandlers(triggerProps?.onKeyDown, (event) => {
           // Firefox does not open the menu on Enter, so we need to do it manually.
@@ -637,6 +637,7 @@ type NativeSelectProps = SelectCommonProps & {
    * Props to pass to the select element.
    */
   triggerProps?: Omit<React.ComponentPropsWithRef<'select'>, 'size'>;
+  required?: boolean;
   multiple?: never;
 };
 
@@ -729,5 +730,5 @@ export type SelectProps<T> = Omit<
          */
         native: true;
       } & NativeSelectProps)
-    | ({ native?: false } & CustomSelectProps<T>)
+    | ({ native?: false | never } & CustomSelectProps<T>)
   );
