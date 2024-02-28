@@ -6,7 +6,10 @@ import * as React from 'react';
 import { render } from '@testing-library/react';
 import { LabeledSelect } from './LabeledSelect.js';
 import type { LabeledSelectProps } from './LabeledSelect.js';
-import type { SelectMultipleTypeProps } from '../Select/Select.js';
+import type {
+  CustomSelectProps,
+  SelectMultipleTypeProps,
+} from '../Select/Select.js';
 
 const assertBaseElement = (inputContainer: HTMLElement) => {
   expect(inputContainer).toBeTruthy();
@@ -20,7 +23,8 @@ const assertBaseElement = (inputContainer: HTMLElement) => {
 };
 
 function renderComponent(
-  props?: Partial<LabeledSelectProps<number>> & SelectMultipleTypeProps<number>,
+  props?: Partial<CustomSelectProps<number> & LabeledSelectProps<number>> &
+    SelectMultipleTypeProps<number>,
 ) {
   return render(
     <LabeledSelect<number>
@@ -30,6 +34,7 @@ function renderComponent(
         value: index,
       }))}
       {...props}
+      native={false}
     />,
   );
 }
