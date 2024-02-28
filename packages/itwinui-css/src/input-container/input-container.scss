@@ -189,16 +189,16 @@
   }
 
   // Collapse padding between input/textarea and .iui-input-flex-container-icon
-  > :is(input, textarea):has(+ .iui-input-flex-container-icon) {
+  > :is(input, textarea):has(+ .iui-input-flex-container-icon, + .iui-button[data-iui-variant='borderless']) {
     padding-inline-end: 0;
   }
 
-  > .iui-input-flex-container-icon + :is(input, textarea) {
+  > :is(.iui-input-flex-container-icon, .iui-button[data-iui-variant='borderless']) + :is(input, textarea) {
     padding-inline-start: 0;
   }
 
   // input/textarea is not the first child and does not directly follow .iui-input-flex-container-icon
-  > :not(.iui-input-flex-container-icon) + :is(input, textarea) {
+  > :not(.iui-input-flex-container-icon):not(.iui-button[data-iui-variant='borderless']) + :is(input, textarea) {
     padding-inline-start: var(--iui-size-2xs);
   }
 
