@@ -215,8 +215,9 @@ it('should allow passing ref to LabeledSelect', () => {
 
 it('should support native select', () => {
   const { container } = render(
-    <LabeledSelect native label='the label' options={[]} />,
+    <LabeledSelect native required label='the label' options={[]} />,
   );
   const select = container.querySelector('select') as HTMLSelectElement;
+  expect(select).toBeRequired();
   expect(select).toHaveAccessibleName('the label');
 });
