@@ -36,7 +36,7 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
   React.ComponentProps<typeof InputFlexContainer>
 >;
 
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   const { id: idProp, size, disabled: localDisabled, ...rest } = props;
@@ -57,7 +57,7 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
 InputWithDecorationsInput.displayName = 'InputWithDecorations.Input';
 
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   const { children, size, disabled: localDisabled, ...rest } = props;
@@ -81,12 +81,12 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
 >;
 InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
 
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 const InputWithDecorationsIcon = InputFlexContainerIcon;
 InputWithDecorationsIcon.displayName = 'InputWithDecorations.Icon';
 
-// ------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 /**
  * Input component with various additional decorations.
