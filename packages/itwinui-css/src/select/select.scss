@@ -37,8 +37,7 @@
     overflow: hidden;
   }
 
-  &.iui-disabled,
-  &:disabled {
+  &:is(.iui-disabled, :disabled) {
     --_iui-input-background-color: var(--iui-color-background-disabled);
     --_iui-input-border-color: var(--iui-color-border-disabled);
     --_iui-input-with-icon-hover-border-color: var(--iui-color-border-disabled);
