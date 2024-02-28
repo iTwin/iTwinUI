@@ -6,6 +6,7 @@ import { render } from '@testing-library/react';
 import * as React from 'react';
 
 import { InputWithDecorations } from './InputWithDecorations.js';
+import { SvgAirplane } from '@itwin/itwinui-icons-react';
 
 const assertBaseElement = (container: HTMLElement) => {
   expect(container.querySelector('div')).toHaveClass(
@@ -16,11 +17,15 @@ const assertBaseElement = (container: HTMLElement) => {
 it('should render correctly in its most basic state', () => {
   const { container } = render(
     <InputWithDecorations>
+      <InputWithDecorations.Icon>
+        <SvgAirplane />
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input />
       <InputWithDecorations.Button>+</InputWithDecorations.Button>
     </InputWithDecorations>,
   );
   assertBaseElement(container);
+  expect(container.querySelector('svg')).toBeTruthy();
   expect(container.querySelector('input')).toBeTruthy();
   expect(container.querySelector('button')).toBeTruthy();
 });
