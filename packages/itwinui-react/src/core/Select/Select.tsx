@@ -390,7 +390,7 @@ const CustomSelect = React.forwardRef(
             {...popover.getReferenceProps()}
             role='combobox'
             size={size}
-            security={status}
+            status={status}
             aria-disabled={disabled}
             aria-autocomplete='none'
             aria-expanded={isOpen}
