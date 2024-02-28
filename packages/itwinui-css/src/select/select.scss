@@ -25,9 +25,12 @@
   line-height: var(--iui-size-l);
   font-size: var(--iui-font-size-1);
   font-family: var(--iui-font-sans);
-  appearance: none;
   cursor: pointer;
   @include iui-select-size;
+
+  &:is(select) {
+    appearance: none;
+  }
 
   &:not(select) {
     display: flex;
