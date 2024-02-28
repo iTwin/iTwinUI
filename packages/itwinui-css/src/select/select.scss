@@ -33,6 +33,10 @@
     option {
       color: var(--iui-color-text);
       font-weight: var(--iui-font-weight-normal);
+
+      &[disabled] {
+        color: var(--iui-color-text-disabled);
+      }
     }
   }
 
