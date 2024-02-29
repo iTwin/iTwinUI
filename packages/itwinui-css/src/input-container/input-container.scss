@@ -201,7 +201,7 @@
     padding-inline-end: 0;
   }
 
-  > :is(.iui-input-flex-container-icon) + :is(input, textarea) {
+  > .iui-input-flex-container-icon + :is(input, textarea) {
     padding-inline-start: 0;
   }
 
