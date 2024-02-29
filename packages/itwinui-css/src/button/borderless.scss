@@ -26,6 +26,16 @@
     --_iui-button-border-color: transparent;
     --_iui-button-icon-fill: var(--iui-color-icon-disabled);
   }
+
+  // #region Visual adjustments to help align based on the "visible" edge of the button content.
+  &[data-iui-adjust='left'] {
+    translate: calc(var(--_iui-button-padding-inline) * -1);
+  }
+
+  &[data-iui-adjust='right'] {
+    translate: var(--_iui-button-padding-inline);
+  }
+  // #endregion
 }
 
 @mixin iui-button-borderless-active {
