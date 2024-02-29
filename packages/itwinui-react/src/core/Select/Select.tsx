@@ -57,7 +57,6 @@ const SelectEndIcon = React.forwardRef((props, forwardedRef) => {
   const { disabled, isOpen, ...rest } = props;
   return (
     <Icon
-      as='span'
       aria-hidden
       {...rest}
       ref={forwardedRef}
@@ -71,7 +70,7 @@ const SelectEndIcon = React.forwardRef((props, forwardedRef) => {
     </Icon>
   );
 }) as PolymorphicForwardRefComponent<
-  'div',
+  'span',
   { disabled?: boolean; isOpen?: boolean }
 >;
 
