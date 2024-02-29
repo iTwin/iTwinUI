@@ -10,27 +10,27 @@ export default () => {
   return (
     <div className='demo-container'>
       <InputWithDecorations status='positive'>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgPlaceholder />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input placeholder='Positive input' />
         <InputWithDecorations.Button label='Add'>
           <SvgAdd />
         </InputWithDecorations.Button>
       </InputWithDecorations>
       <InputWithDecorations status='warning'>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgPlaceholder />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input placeholder='Warning input' />
         <InputWithDecorations.Button label='Add'>
           <SvgAdd />
         </InputWithDecorations.Button>
       </InputWithDecorations>
       <InputWithDecorations status='negative'>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgPlaceholder />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input placeholder='Negative input' />
         <InputWithDecorations.Button label='Add'>
           <SvgAdd />
