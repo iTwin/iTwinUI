@@ -8,7 +8,6 @@ import {
   InputGrid,
   InputWithDecorations,
   Label,
-  Icon,
   SearchBox,
   Select,
   StatusMessage,
@@ -34,9 +33,9 @@ export const WithInputWithDecorations = () => {
     <InputGrid>
       <Label htmlFor='input-id'>This is label</Label>
       <InputWithDecorations>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgAirplane />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input
           placeholder='Add destination...'
           id='input-id'
