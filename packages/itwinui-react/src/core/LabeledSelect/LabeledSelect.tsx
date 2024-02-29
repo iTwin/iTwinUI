@@ -51,7 +51,7 @@ export type LabeledSelectProps<T> = {
   /**
    * If true, shows a red asterisk.
    *
-   * Form submission is only disabled if the `native` select is used.
+   * Form submission is only disabled when using the `native` prop (i.e. `<LabeledSelect native>`).
    *
    * @default false
    */
