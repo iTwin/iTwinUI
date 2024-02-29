@@ -564,7 +564,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         size={size}
         status={status}
         disabled={disabled}
-        defaultValue={defaultValueProp}
+        defaultValue={valueProp === undefined ? defaultValueProp : undefined}
         value={valueProp === null ? '' : valueProp}
         required={required}
         {...triggerProps}
