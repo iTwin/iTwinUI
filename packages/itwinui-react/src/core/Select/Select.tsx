@@ -35,7 +35,6 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
 
   return (
     <Box
-      tabIndex={0}
       data-iui-size={size}
       data-iui-status={status}
       {...rest}
@@ -387,10 +386,11 @@ const CustomSelect = React.forwardRef(
         >
           <SelectButton
             {...popover.getReferenceProps()}
+            tabIndex={0}
             role='combobox'
             size={size}
             status={status}
-            aria-disabled={disabled}
+            aria-disabled={disabled ? 'true' : undefined}
             aria-autocomplete='none'
             aria-expanded={isOpen}
             aria-haspopup='listbox'
@@ -566,6 +566,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         disabled={disabled}
         defaultValue={defaultValueProp}
         value={valueProp === null ? '' : valueProp}
+        required={required}
         {...triggerProps}
         onKeyDown={mergeEventHandlers(triggerProps?.onKeyDown, (event) => {
           // Firefox does not open the menu on Enter, so we need to do it manually.
@@ -578,7 +579,6 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         onChange={mergeEventHandlers(triggerProps?.onChange, (event) => {
           onChangeProp?.(event.currentTarget.value, event);
         })}
-        required={required}
       >
         {placeholder !== undefined ? (
           <option value='' disabled>
