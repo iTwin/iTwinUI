@@ -571,6 +571,8 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         onKeyDown={mergeEventHandlers(triggerProps?.onKeyDown, (event) => {
           // Firefox does not open the menu on Enter, so we need to do it manually.
           if (event.key === 'Enter') {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             event.currentTarget.showPicker?.();
           }
         })}
