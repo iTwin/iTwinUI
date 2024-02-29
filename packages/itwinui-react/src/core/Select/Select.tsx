@@ -605,6 +605,8 @@ type NativeSelectProps = SelectCommonProps & {
    * Selected option value.
    *
    * Must be a string, because it is passed as an attribute to the native <select>.
+   *
+   * Alternatively, pass `null` to reset the value.
    */
   value?: string | null;
   /**
