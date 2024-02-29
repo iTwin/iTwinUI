@@ -18,7 +18,7 @@ import type {
   PolymorphicForwardRefComponent,
   InputFlexContainerProps,
 } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton.js';
+import { Button } from '../Buttons/Button.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
 import { Icon } from '../Icon/Icon.js';
 import type { IconProps } from '../Icon/Icon.js';
@@ -272,7 +272,7 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
   const { size: sizeContext, isDisabled } = useSafeContext(SearchBoxContext);
 
   return (
-    <IconButton
+    <Button
       styleType='borderless'
       size={sizeContext}
       ref={ref}
@@ -280,7 +280,7 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </IconButton>
+    </Button>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 SearchBoxButton.displayName = 'SearchBox.Button';
