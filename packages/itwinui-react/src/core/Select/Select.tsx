@@ -30,152 +30,211 @@ import { usePopover } from '../Popover/Popover.js';
 
 // ----------------------------------------------------------------------------
 
-const SelectButton = React.forwardRef((props, forwardedRef) => {
-  const { size, status, ...rest } = props;
+/**
+ * Select component to select value from options.
+ * Generic type is used for value. It prevents you from mistakenly using other types in `options`, `value` and `onChange`.
+ * @example
+ * <caption>Basic select.</caption>
+ * <Select
+ *  options={[
+ *    { value: '1', label: 'Option 1' },
+ *    { value: '2', label: 'Option 2' },
+ *    { value: '3', label: 'Option 3' },
+ *  ]}
+ * />
+ * @example
+ * <caption>Native select.</caption>
+ * <Select
+ *  native
+ *  options={[
+ *    { value: '1', label: 'Option 1' },
+ *    { value: '2', label: 'Option 2' },
+ *    { value: '3', label: 'Option 3' },
+ *  ]}
+ * />
+ * @example
+ * <caption>Disabled select with placeholder.</caption>
+ * <Select
+ *   disabled={true}
+ *   placeholder='Placeholder text'
+ *   options={[{ value: 1, label: 'Option 1' }, { value: 2, label: 'Option 2' }, { value: 3, label: 'Option 3' }]}
+ * />
+ * @example
+ * <caption>Select with selected value and change handler.</caption>
+ * <Select
+ *   value={selectedValue}
+ *   onChange={(value) => setSelectedValue(value)}
+ *   options={[{ value: 1, label: 'Option 1' }, { value: 2, label: 'Option 2' }, { value: 3, label: 'Option 3' }]}
+ * />
+ * @example
+ * <caption>Select using custom renderers for menu items and selected value.</caption>
+ * <Select
+ *   options={[
+ *     { value: 'yellow', label: 'Yellow' },
+ *     { value: 'green', label: 'Green' },
+ *     { value: 'red', label: 'Red' },
+ *   ]}
+ *   value={selectedValue}
+ *   placeholder='Placeholder text'
+ *   itemRenderer={(option, itemProps) => (
+ *     <MenuItem
+ *       style={{ color: option.value }}
+ *       isSelected={itemProps.isSelected}
+ *       onClick={() => {
+ *         setSelectedValue(option.value);
+ *         itemProps.close();
+ *       }}
+ *       role='option'
+ *       ref={(el) => itemProps.isSelected && el?.scrollIntoView()}
+ *     >
+ *       {option.label}
+ *     </MenuItem>
+ *   )}
+ *   selectedItemRenderer={(option) => (
+ *     <span style={{ backgroundColor: option.value }}>{option.label}</span>
+ *   )}
+ * />
+ */
+export const Select = React.forwardRef(
+  <T,>(
+    props: SelectProps<T>,
+    forwardedRef: React.ForwardedRef<HTMLDivElement>,
+  ) => {
+    const { native, ...rest } = props;
 
-  return (
-    <Box
-      data-iui-size={size}
-      data-iui-status={status}
-      {...rest}
-      ref={forwardedRef}
-      className={cx('iui-select-button', props.className)}
-    />
+    const Component = native ? NativeSelect : CustomSelect;
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    return <Component {...rest} ref={forwardedRef} />;
+  },
+) as <T>(
+  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
+) => JSX.Element;
+
+export type SelectProps<T> = Omit<
+  React.ComponentPropsWithoutRef<'div'>,
+  'onChange' | 'placeholder' | 'value' | 'defaultValue'
+> &
+  (
+    | ({
+        /**
+         * If true, the native `<select>` element will be rendered.
+         *
+         * Extra props, such as `name` can be passed to the `<select>` using `triggerProps`.
+         *
+         * @default false
+         */
+        native: true;
+      } & NativeSelectProps)
+    | ({ native?: false } & CustomSelectProps<T>)
   );
-}) as PolymorphicForwardRefComponent<
-  'div',
-  {
-    size?: 'small' | 'large';
-    status?: 'positive' | 'warning' | 'negative';
-  }
->;
 
 // ----------------------------------------------------------------------------
 
-const SelectEndIcon = React.forwardRef((props, forwardedRef) => {
-  const { disabled, isOpen, ...rest } = props;
+const NativeSelect = React.forwardRef((props, forwardedRef) => {
+  const {
+    triggerProps,
+    options,
+    disabled,
+    placeholder,
+    defaultValue: defaultValueProp = placeholder !== undefined ? '' : undefined,
+    value: valueProp,
+    onChange: onChangeProp,
+    size,
+    status,
+    required,
+    ...rest
+  } = props;
+
   return (
-    <Icon
-      aria-hidden
-      {...rest}
-      ref={forwardedRef}
-      className={cx(
-        'iui-end-icon',
-        { 'iui-disabled': disabled, 'iui-open': isOpen },
-        props.className,
-      )}
-    >
-      <SvgCaretDownSmall />
-    </Icon>
+    <InputWithIcon {...rest} ref={forwardedRef}>
+      <SelectButton
+        as='select'
+        size={size}
+        status={status}
+        disabled={disabled}
+        defaultValue={valueProp === undefined ? defaultValueProp : undefined}
+        value={valueProp === null ? '' : valueProp}
+        required={required}
+        {...triggerProps}
+        onKeyDown={mergeEventHandlers(triggerProps?.onKeyDown, (event) => {
+          // Firefox does not open the menu on Enter, so we need to do it manually.
+          if (event.key === 'Enter') {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
+            event.currentTarget.showPicker?.();
+          }
+        })}
+        onChange={mergeEventHandlers(triggerProps?.onChange, (event) => {
+          onChangeProp?.(event.currentTarget.value, event);
+        })}
+      >
+        {placeholder !== undefined ? (
+          <option value='' disabled>
+            {placeholder}
+          </option>
+        ) : null}
+
+        {options.map((option) => (
+          <option key={option.value} {...option}>
+            {option.label}
+          </option>
+        ))}
+      </SelectButton>
+
+      <SelectEndIcon disabled={disabled} />
+    </InputWithIcon>
   );
-}) as PolymorphicForwardRefComponent<
-  'span',
-  { disabled?: boolean; isOpen?: boolean }
->;
+}) as PolymorphicForwardRefComponent<'div', NativeSelectProps>;
 
 // ----------------------------------------------------------------------------
 
-const isMultipleEnabled = <T,>(
-  variable: (T | undefined) | (T[] | undefined),
-  multiple: boolean,
-): variable is T[] | undefined => {
-  return multiple;
-};
-
-// Type guard for multiple did not work
-const isSingleOnChange = <T,>(
-  onChange:
-    | (((value: T) => void) | undefined)
-    | (((value: T, event: SelectValueChangeEvent) => void) | undefined),
-  multiple: boolean,
-): onChange is ((value: T) => void) | undefined => {
-  return !multiple;
-};
-
-export type ItemRendererProps = {
+// This is a smaller, stricter subset of CustomSelectProps, because native
+// <select> only supports string values, and does not support icons or sublabels.
+type NativeSelectProps = SelectCommonProps & {
   /**
-   * Close handler that closes the dropdown.
-   */
-  close: () => void;
-  /**
-   * Indicates whether an item is selected.
-   */
-  isSelected: boolean;
-};
-
-export type SelectOption<T> = {
-  /**
-   * Label of the item used in dropdown list and when selected.
-   */
-  label: string;
-  /**
-   * Sublabel of the item shown below the label.
-   */
-  sublabel?: React.ReactNode;
-  /**
-   * Modify height of the item.
-   * Use 'large' when any of the select options have `sublabel`.
+   * Selected option value.
    *
-   * Defaults to 'large' if `sublabel` provided, otherwise 'default'.
+   * Must be a string, because it is passed as an attribute to the native <select>.
+   *
+   * Alternatively, pass `null` to reset the value.
    */
-  size?: 'default' | 'large';
+  value?: string | null;
   /**
-   * Value of the item.
+   * Callback invoked when the selected value changes.
    */
-  value: T;
+  onChange?: (
+    value: string,
+    event: React.ChangeEvent<HTMLSelectElement>,
+  ) => void;
   /**
-   * @deprecated Use startIcon
-   * SVG icon component shown on the left.
+   * Array of options that populates the select menu.
+   *
+   * The `value` property of each option must be a string.
    */
-  icon?: JSX.Element;
+  options: Array<{ label: string; value: string; disabled?: boolean }>;
   /**
-   * SVG icon component shown on the left.
+   * Default value that is selected on initial render. This is useful when you don't want to
+   * maintain your own state but still want to control the initial value.
+   *
+   * If not passed, the first option (or placeholder) will be automatically selected.
    */
-  startIcon?: JSX.Element;
+  defaultValue?: string;
   /**
-   * Item is disabled.
+   * Placeholder for when no item is selected.
+   *
+   * Will be rendered as a disabled option at the top of the list, and automatically
+   * selected when no `value` or `defaultValue` is provided.
    */
-  disabled?: boolean;
+  placeholder?: string;
   /**
-   * Any other props.
+   * Props to pass to the select element.
    */
-  [key: string]: unknown;
-} & CommonProps;
-
-export type SelectValueChangeEvent = 'added' | 'removed';
-
-// ----------------------------------------------------------------------------
-
-export type SelectMultipleTypeProps<T> =
-  | {
-      /**
-       * Enable multiple selection.
-       * @default false
-       */
-      multiple?: false;
-      /**
-       * Custom renderer for the selected item in select.
-       * If `multiple` is enabled, it will give array of options to render.
-       */
-      selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
-      /**
-       * Selected option value.
-       * If `multiple` is enabled, it is an array of values.
-       *
-       * Pass `null` to reset the value.
-       */
-      value?: T | null;
-      /**
-       * Callback function handling change event on select.
-       */
-      onChange?: (value: T) => void;
-    }
-  | {
-      multiple: true;
-      selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
-      value?: T[];
-      onChange?: (value: T, event: SelectValueChangeEvent) => void;
-    };
+  triggerProps?: Omit<React.ComponentPropsWithRef<'select'>, 'size'>;
+  required?: boolean;
+  multiple?: never;
+};
 
 type SelectCommonProps = {
   /**
@@ -192,51 +251,6 @@ type SelectCommonProps = {
    */
   status?: 'positive' | 'warning' | 'negative';
 };
-
-export type CustomSelectProps<T> = SelectCommonProps & {
-  /**
-   * Placeholder when no item is selected.
-   */
-  placeholder?: React.ReactNode;
-  /**
-   * Array of options that populates the select menu.
-   */
-  options: SelectOption<T>[];
-  /**
-   * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
-   */
-  itemRenderer?: (
-    option: SelectOption<T>,
-    itemProps: ItemRendererProps,
-  ) => JSX.Element;
-  /**
-   * Custom class for menu.
-   */
-  menuClassName?: string;
-  /**
-   * Custom style for menu.
-   */
-  menuStyle?: React.CSSProperties;
-  /**
-   * Props to customize Popover behavior.
-   */
-  popoverProps?: Pick<
-    Parameters<typeof usePopover>[0],
-    | 'visible'
-    | 'onVisibleChange'
-    | 'placement'
-    | 'matchWidth'
-    | 'closeOnOutsideClick'
-  >;
-  /**
-   * Props to pass to the select button (trigger) element.
-   */
-  triggerProps?: React.ComponentPropsWithRef<'div'>;
-} & SelectMultipleTypeProps<T> &
-  Omit<
-    React.ComponentPropsWithoutRef<'div'>,
-    'size' | 'disabled' | 'placeholder' | 'onChange'
-  >;
 
 // ----------------------------------------------------------------------------
 
@@ -472,12 +486,200 @@ const CustomSelect = React.forwardRef(
   props: CustomSelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
 ) => JSX.Element;
 
+export type CustomSelectProps<T> = SelectCommonProps & {
+  /**
+   * Placeholder when no item is selected.
+   */
+  placeholder?: React.ReactNode;
+  /**
+   * Array of options that populates the select menu.
+   */
+  options: SelectOption<T>[];
+  /**
+   * Custom renderer for an item in the dropdown list. `MenuItem` item props are going to be populated if not provided.
+   */
+  itemRenderer?: (
+    option: SelectOption<T>,
+    itemProps: ItemRendererProps,
+  ) => JSX.Element;
+  /**
+   * Custom class for menu.
+   */
+  menuClassName?: string;
+  /**
+   * Custom style for menu.
+   */
+  menuStyle?: React.CSSProperties;
+  /**
+   * Props to customize Popover behavior.
+   */
+  popoverProps?: Pick<
+    Parameters<typeof usePopover>[0],
+    | 'visible'
+    | 'onVisibleChange'
+    | 'placement'
+    | 'matchWidth'
+    | 'closeOnOutsideClick'
+  >;
+  /**
+   * Props to pass to the select button (trigger) element.
+   */
+  triggerProps?: React.ComponentPropsWithRef<'div'>;
+} & SelectMultipleTypeProps<T> &
+  Omit<
+    React.ComponentPropsWithoutRef<'div'>,
+    'size' | 'disabled' | 'placeholder' | 'onChange'
+  >;
+
+export type SelectValueChangeEvent = 'added' | 'removed';
+
+export type SelectMultipleTypeProps<T> =
+  | {
+      /**
+       * Enable multiple selection.
+       * @default false
+       */
+      multiple?: false;
+      /**
+       * Custom renderer for the selected item in select.
+       * If `multiple` is enabled, it will give array of options to render.
+       */
+      selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
+      /**
+       * Selected option value.
+       * If `multiple` is enabled, it is an array of values.
+       *
+       * Pass `null` to reset the value.
+       */
+      value?: T | null;
+      /**
+       * Callback function handling change event on select.
+       */
+      onChange?: (value: T) => void;
+    }
+  | {
+      multiple: true;
+      selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
+      value?: T[];
+      onChange?: (value: T, event: SelectValueChangeEvent) => void;
+    };
+
+export type ItemRendererProps = {
+  /**
+   * Close handler that closes the dropdown.
+   */
+  close: () => void;
+  /**
+   * Indicates whether an item is selected.
+   */
+  isSelected: boolean;
+};
+
+export type SelectOption<T> = {
+  /**
+   * Label of the item used in dropdown list and when selected.
+   */
+  label: string;
+  /**
+   * Sublabel of the item shown below the label.
+   */
+  sublabel?: React.ReactNode;
+  /**
+   * Modify height of the item.
+   * Use 'large' when any of the select options have `sublabel`.
+   *
+   * Defaults to 'large' if `sublabel` provided, otherwise 'default'.
+   */
+  size?: 'default' | 'large';
+  /**
+   * Value of the item.
+   */
+  value: T;
+  /**
+   * @deprecated Use startIcon
+   * SVG icon component shown on the left.
+   */
+  icon?: JSX.Element;
+  /**
+   * SVG icon component shown on the left.
+   */
+  startIcon?: JSX.Element;
+  /**
+   * Item is disabled.
+   */
+  disabled?: boolean;
+  /**
+   * Any other props.
+   */
+  [key: string]: unknown;
+} & CommonProps;
+
+// ----------------------------------------------------------------------------
+// Type guards
+
+const isMultipleEnabled = <T,>(
+  variable: (T | undefined) | (T[] | undefined),
+  multiple: boolean,
+): variable is T[] | undefined => {
+  return multiple;
+};
+
+// Type guard for multiple did not work
+const isSingleOnChange = <T,>(
+  onChange:
+    | (((value: T) => void) | undefined)
+    | (((value: T, event: SelectValueChangeEvent) => void) | undefined),
+  multiple: boolean,
+): onChange is ((value: T) => void) | undefined => {
+  return !multiple;
+};
+
 // ----------------------------------------------------------------------------
 
-type SingleSelectButtonProps<T> = {
-  selectedItem?: SelectOption<T>;
-  selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
-};
+const SelectButton = React.forwardRef((props, forwardedRef) => {
+  const { size, status, ...rest } = props;
+
+  return (
+    <Box
+      data-iui-size={size}
+      data-iui-status={status}
+      {...rest}
+      ref={forwardedRef}
+      className={cx('iui-select-button', props.className)}
+    />
+  );
+}) as PolymorphicForwardRefComponent<
+  'div',
+  {
+    size?: 'small' | 'large';
+    status?: 'positive' | 'warning' | 'negative';
+  }
+>;
+
+// ----------------------------------------------------------------------------
+
+const SelectEndIcon = React.forwardRef((props, forwardedRef) => {
+  const { disabled, isOpen, ...rest } = props;
+  return (
+    <Icon
+      aria-hidden
+      {...rest}
+      ref={forwardedRef}
+      className={cx(
+        'iui-end-icon',
+        { 'iui-disabled': disabled, 'iui-open': isOpen },
+        props.className,
+      )}
+    >
+      <SvgCaretDownSmall />
+    </Icon>
+  );
+}) as PolymorphicForwardRefComponent<
+  'span',
+  { disabled?: boolean; isOpen?: boolean }
+>;
+
+// ----------------------------------------------------------------------------
 
 const SingleSelectButton = <T,>({
   selectedItem,
@@ -505,13 +707,12 @@ const SingleSelectButton = <T,>({
   );
 };
 
-// ----------------------------------------------------------------------------
-
-type MultipleSelectButtonProps<T> = {
-  selectedItems?: SelectOption<T>[];
-  selectedItemsRenderer?: (options: SelectOption<T>[]) => JSX.Element;
-  tagRenderer: (item: SelectOption<T>) => JSX.Element;
+type SingleSelectButtonProps<T> = {
+  selectedItem?: SelectOption<T>;
+  selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
 };
+
+// ----------------------------------------------------------------------------
 
 const MultipleSelectButton = <T,>({
   selectedItems,
@@ -540,198 +741,8 @@ const MultipleSelectButton = <T,>({
   );
 };
 
-// ----------------------------------------------------------------------------
-
-const NativeSelect = React.forwardRef((props, forwardedRef) => {
-  const {
-    triggerProps,
-    options,
-    disabled,
-    placeholder,
-    defaultValue: defaultValueProp = placeholder !== undefined ? '' : undefined,
-    value: valueProp,
-    onChange: onChangeProp,
-    size,
-    status,
-    required,
-    ...rest
-  } = props;
-
-  return (
-    <InputWithIcon {...rest} ref={forwardedRef}>
-      <SelectButton
-        as='select'
-        size={size}
-        status={status}
-        disabled={disabled}
-        defaultValue={valueProp === undefined ? defaultValueProp : undefined}
-        value={valueProp === null ? '' : valueProp}
-        required={required}
-        {...triggerProps}
-        onKeyDown={mergeEventHandlers(triggerProps?.onKeyDown, (event) => {
-          // Firefox does not open the menu on Enter, so we need to do it manually.
-          if (event.key === 'Enter') {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            event.currentTarget.showPicker?.();
-          }
-        })}
-        onChange={mergeEventHandlers(triggerProps?.onChange, (event) => {
-          onChangeProp?.(event.currentTarget.value, event);
-        })}
-      >
-        {placeholder !== undefined ? (
-          <option value='' disabled>
-            {placeholder}
-          </option>
-        ) : null}
-
-        {options.map((option) => (
-          <option key={option.value} {...option}>
-            {option.label}
-          </option>
-        ))}
-      </SelectButton>
-
-      <SelectEndIcon disabled={disabled} />
-    </InputWithIcon>
-  );
-}) as PolymorphicForwardRefComponent<'div', NativeSelectProps>;
-
-// This is a smaller, stricter subset of CustomSelectProps, because native
-// <select> only supports string values, and does not support icons or sublabels.
-type NativeSelectProps = SelectCommonProps & {
-  /**
-   * Selected option value.
-   *
-   * Must be a string, because it is passed as an attribute to the native <select>.
-   *
-   * Alternatively, pass `null` to reset the value.
-   */
-  value?: string | null;
-  /**
-   * Callback invoked when the selected value changes.
-   */
-  onChange?: (
-    value: string,
-    event: React.ChangeEvent<HTMLSelectElement>,
-  ) => void;
-  /**
-   * Array of options that populates the select menu.
-   *
-   * The `value` property of each option must be a string.
-   */
-  options: Array<{ label: string; value: string; disabled?: boolean }>;
-  /**
-   * Default value that is selected on initial render. This is useful when you don't want to
-   * maintain your own state but still want to control the initial value.
-   *
-   * If not passed, the first option (or placeholder) will be automatically selected.
-   */
-  defaultValue?: string;
-  /**
-   * Placeholder for when no item is selected.
-   *
-   * Will be rendered as a disabled option at the top of the list, and automatically
-   * selected when no `value` or `defaultValue` is provided.
-   */
-  placeholder?: string;
-  /**
-   * Props to pass to the select element.
-   */
-  triggerProps?: Omit<React.ComponentPropsWithRef<'select'>, 'size'>;
-  required?: boolean;
-  multiple?: never;
+type MultipleSelectButtonProps<T> = {
+  selectedItems?: SelectOption<T>[];
+  selectedItemsRenderer?: (options: SelectOption<T>[]) => JSX.Element;
+  tagRenderer: (item: SelectOption<T>) => JSX.Element;
 };
-
-// ----------------------------------------------------------------------------
-
-/**
- * Select component to select value from options.
- * Generic type is used for value. It prevents you from mistakenly using other types in `options`, `value` and `onChange`.
- * @example
- * <caption>Basic select.</caption>
- * <Select
- *  options={[
- *    { value: '1', label: 'Option 1' },
- *    { value: '2', label: 'Option 2' },
- *    { value: '3', label: 'Option 3' },
- *  ]}
- * />
- * @example
- * <caption>Disabled select with placeholder.</caption>
- * <Select
- *   disabled={true}
- *   placeholder='Placeholder text'
- *   options={[{ value: 1, label: 'Option 1' }, { value: 2, label: 'Option 2' }, { value: 3, label: 'Option 3' }]}
- * />
- * @example
- * <caption>Select with selected value and change handler.</caption>
- * <Select
- *   value={selectedValue}
- *   onChange={(value) => setSelectedValue(value)}
- *   options={[{ value: 1, label: 'Option 1' }, { value: 2, label: 'Option 2' }, { value: 3, label: 'Option 3' }]}
- * />
- * @example
- * <caption>Select using custom renderers for menu items and selected value.</caption>
- * <Select
- *   options={[
- *     { value: 'yellow', label: 'Yellow' },
- *     { value: 'green', label: 'Green' },
- *     { value: 'red', label: 'Red' },
- *   ]}
- *   value={selectedValue}
- *   placeholder='Placeholder text'
- *   itemRenderer={(option, itemProps) => (
- *     <MenuItem
- *       style={{ color: option.value }}
- *       isSelected={itemProps.isSelected}
- *       onClick={() => {
- *         setSelectedValue(option.value);
- *         itemProps.close();
- *       }}
- *       role='option'
- *       ref={(el) => itemProps.isSelected && el?.scrollIntoView()}
- *     >
- *       {option.label}
- *     </MenuItem>
- *   )}
- *   selectedItemRenderer={(option) => (
- *     <span style={{ backgroundColor: option.value }}>{option.label}</span>
- *   )}
- * />
- */
-export const Select = React.forwardRef(
-  <T,>(
-    props: SelectProps<T>,
-    forwardedRef: React.ForwardedRef<HTMLDivElement>,
-  ) => {
-    const { native, ...rest } = props;
-
-    const Component = native ? NativeSelect : CustomSelect;
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    return <Component {...rest} ref={forwardedRef} />;
-  },
-) as <T>(
-  props: SelectProps<T> & { ref?: React.ForwardedRef<HTMLElement> },
-) => JSX.Element;
-
-export type SelectProps<T> = Omit<
-  React.ComponentPropsWithoutRef<'div'>,
-  'onChange' | 'placeholder' | 'value' | 'defaultValue'
-> &
-  (
-    | ({
-        /**
-         * If true, the native `<select>` element will be rendered.
-         *
-         * Extra props, such as `name` can be passed to the `<select>` using `triggerProps`.
-         *
-         * @default false
-         */
-        native: true;
-      } & NativeSelectProps)
-    | ({ native?: false } & CustomSelectProps<T>)
-  );
