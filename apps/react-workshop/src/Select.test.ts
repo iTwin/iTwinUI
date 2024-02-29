@@ -16,6 +16,7 @@ describe('Select', () => {
     'Truncate Middle Text',
     'With Icons',
     'With Selected Value',
+    'Native',
   ];
 
   tests.forEach((testName) => {
@@ -23,7 +24,7 @@ describe('Select', () => {
       const id = Cypress.storyId(storyPath, testName);
       cy.visit('/', { qs: { mode: 'preview', story: id } });
 
-      if (testName.includes('Disabled')) {
+      if (testName.includes('Disabled') || testName === 'Native') {
         cy.compareSnapshot(testName);
         return;
       }
