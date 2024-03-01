@@ -49,7 +49,10 @@ export type LabeledSelectProps<T> = {
    */
   svgIcon?: JSX.Element;
   /**
-   * If true, shows a red asterisk but does not prevent form submission.
+   * If true, shows a red asterisk.
+   *
+   * Form submission is only disabled when using the `native` prop (i.e. `<LabeledSelect native>`).
+   *
    * @default false
    */
   required?: boolean;
@@ -143,10 +146,11 @@ export const LabeledSelect = React.forwardRef(
             {label}
           </Label>
         )}
-        <Select
+        <Select<T>
           disabled={disabled}
           className={className}
           style={style}
+          {...{ required: props.native ? required : undefined }}
           {...rest}
           ref={forwardedRef}
         />
