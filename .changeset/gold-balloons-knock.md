@@ -1,5 +1,5 @@
 ---
-"@itwin/itwinui-react": minor
+"@itwin/itwinui-react": patch
 ---
 
-The expandable `SearchBox` now shows a regular-sized button in the collapsed state. Previously, it used to be a square button.
+The expandable `SearchBox` now shows a regular-sized button in the collapsed state. Previously, it used to incorrectly be a square button.
