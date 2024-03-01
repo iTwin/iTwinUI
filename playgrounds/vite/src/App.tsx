@@ -12,6 +12,10 @@ import React from 'react';
 const App = () => {
   return (
     <Flex flexDirection='column' gap='l' alignItems='stretch'>
+      <Section title='Expandable Button'>
+        <SearchBox expandable></SearchBox>
+      </Section>
+
       <Section title='iui-input-flex-container'>
         <SectionText>
           End IconButton gets no special styling. It gets the regular IconButton

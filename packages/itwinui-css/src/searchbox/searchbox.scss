@@ -1,8 +1,12 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
+@use '../utils/icon' as *;
+@use 'sass:map';
+
 .iui-expandable-searchbox {
-  inline-size: var(--_iui-input-min-height);
+  // button icon size + 2 * button padding + 2 * border width
+  inline-size: calc(#{map.get($icon-sizes, m)} + 2 * var(--iui-size-m) + 2 * 1px);
   transition: width var(--iui-duration-1) ease-in-out;
 
   &:has(.iui-searchbox-open-button:focus-visible) {
@@ -28,6 +32,10 @@
   &:where(:not([data-iui-expanded='true'])) {
     padding-inline: 0; // To center iui-searchbox-open-button inline in collapsed state
   }
+}
+
+.iui-searchbox-open-button {
+  padding-inline: var(--iui-size-m); // To prevent the borderless button from becoming a square
 }
 
 // noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537
