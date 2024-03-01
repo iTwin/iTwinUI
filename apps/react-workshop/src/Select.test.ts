@@ -17,6 +17,7 @@ describe('Select', () => {
     'With Icons',
     'With Selected Value',
     'Native',
+    'Borderless',
   ];
 
   tests.forEach((testName) => {
