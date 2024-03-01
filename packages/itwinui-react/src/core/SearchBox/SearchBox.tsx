@@ -13,14 +13,14 @@ import {
   useMergedRefs,
   mergeEventHandlers,
   Box,
+  InputFlexContainerIcon,
+  InputFlexContainerButton,
 } from '../utils/index.js';
 import type {
   PolymorphicForwardRefComponent,
   InputFlexContainerProps,
 } from '../utils/index.js';
-import { Button } from '../Buttons/Button.js';
 import type { IconButtonProps } from '../Buttons/IconButton.js';
-import { Icon } from '../Icon/Icon.js';
 import type { IconProps } from '../Icon/Icon.js';
 
 const SearchBoxContext = React.createContext<
@@ -223,15 +223,14 @@ const SearchBoxIcon = React.forwardRef((props, ref) => {
   const { className, children, ...rest } = props;
 
   return (
-    <Icon
+    <InputFlexContainerIcon
       aria-hidden
       className={cx('iui-search-icon', className)}
-      padded
       ref={ref}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </Icon>
+    </InputFlexContainerIcon>
   );
 }) as PolymorphicForwardRefComponent<'span', IconProps>;
 SearchBoxIcon.displayName = 'SearchBox.Icon';
@@ -272,15 +271,14 @@ const SearchBoxButton = React.forwardRef((props, ref) => {
   const { size: sizeContext, isDisabled } = useSafeContext(SearchBoxContext);
 
   return (
-    <Button
-      styleType='borderless'
+    <InputFlexContainerButton
       size={sizeContext}
       ref={ref}
       disabled={isDisabled}
       {...rest}
     >
       {children ?? <SvgSearch />}
-    </Button>
+    </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<'button', IconButtonProps>;
 SearchBoxButton.displayName = 'SearchBox.Button';

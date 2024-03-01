@@ -6,6 +6,10 @@ import React from 'react';
 import cx from 'classnames';
 import type { PolymorphicForwardRefComponent } from '../props.js';
 import { Box } from './Box.js';
+import { Icon } from '../../Icon/Icon.js';
+import { IconButton } from '../../Buttons/IconButton.js';
+import type { IconProps } from '../../Icon/Icon.js';
+import type { IconButtonProps } from '../../Buttons/IconButton.js';
 
 export type InputFlexContainerProps = {
   isDisabled?: boolean;
@@ -35,3 +39,54 @@ export const InputFlexContainer = React.forwardRef((props, ref) => {
     </Box>
   );
 }) as PolymorphicForwardRefComponent<'div', InputFlexContainerProps>;
+
+/**
+ * Button inside InputFlexContainer that collapses the padding between the button and the input/textarea.
+ * @private
+ */
+export const InputFlexContainerButton = React.forwardRef((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <IconButton
+      ref={ref}
+      className={cx('iui-input-flex-container-icon', className)}
+      styleType='borderless'
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<
+  'button',
+  Omit<IconButtonProps, 'styleType'> & {
+    /**
+     * Style of the button.
+     * Use 'borderless' to hide outline.
+     * @default 'borderless'
+     */
+    styleType?: IconButtonProps['styleType'];
+  }
+>;
+
+/**
+ * Icon inside InputFlexContainer that collapses the padding between the icon and the input/textarea.
+ * @private
+ */
+export const InputFlexContainerIcon = React.forwardRef((props, ref) => {
+  const { className, ...rest } = props;
+  return (
+    <Icon
+      ref={ref}
+      className={cx('iui-input-flex-container-icon', className)}
+      padded
+      {...rest}
+    />
+  );
+}) as PolymorphicForwardRefComponent<
+  'span',
+  Omit<IconProps, 'padded'> & {
+    /**
+     * Option to add padding to the icon.
+     * @default true
+     */
+    padded?: IconProps['padded'];
+  }
+>;

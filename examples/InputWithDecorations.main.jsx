@@ -9,9 +9,9 @@ import { SvgStar, SvgInfo } from '@itwin/itwinui-icons-react';
 export default () => {
   return (
     <InputWithDecorations>
-      <Icon padded>
+      <InputWithDecorations.Icon>
         <SvgInfo />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Input with decorations' />
       <InputWithDecorations.Button label='Icon button'>
         <SvgStar />
