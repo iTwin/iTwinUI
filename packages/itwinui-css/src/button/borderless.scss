@@ -28,11 +28,11 @@
   }
 
   // #region Visual adjustments to help align based on the "visible" edge of the button content.
-  &[data-iui-adjust='left'] {
+  &[data-iui-shift='left'] {
     translate: calc(var(--_iui-button-padding-inline) * -1);
   }
 
-  &[data-iui-adjust='right'] {
+  &[data-iui-shift='right'] {
     translate: var(--_iui-button-padding-inline);
   }
   // #endregion
