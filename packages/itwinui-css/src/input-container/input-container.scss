@@ -181,6 +181,10 @@
       padding-inline-start: var(--iui-size-2xs);
     }
 
+    &:where(:not(:last-child)) {
+      padding-inline-end: var(--iui-size-2xs);
+    }
+
     &::placeholder {
       color: var(--iui-color-text-placeholder);
       font-weight: var(--iui-font-weight-light);
@@ -190,6 +194,15 @@
     &:focus {
       outline: none;
     }
+  }
+
+  // Collapse padding between input/textarea and .iui-input-flex-container-icon (Icon or IconButton)
+  > :is(input, textarea):has(+ .iui-input-flex-container-icon) {
+    padding-inline-end: 0;
+  }
+
+  > .iui-input-flex-container-icon + :is(input, textarea) {
+    padding-inline-start: 0;
   }
 
   &[data-iui-disabled='true'] {
