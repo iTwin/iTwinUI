@@ -6,7 +6,8 @@
 
 .iui-expandable-searchbox {
   // button icon size + 2 * button padding + 2 * border width
-  inline-size: calc(#{map.get($icon-sizes, m)} + 2 * var(--iui-size-m) + 2 * 1px);
+  // inline-size: calc(#{map.get($icon-sizes, m)} + 2 * var(--iui-size-m) + 2 * 1px);
+  inline-size: var(--_iui-input-min-height);
   transition: width var(--iui-duration-1) ease-in-out;
 
   &:has(.iui-searchbox-open-button:focus-visible) {
@@ -34,9 +35,9 @@
   }
 }
 
-.iui-searchbox-open-button {
-  padding-inline: var(--iui-size-m); // To prevent the borderless button from becoming a square
-}
+// .iui-searchbox-open-button {
+//   padding-inline: var(--iui-size-m); // To prevent the borderless button from becoming a square
+// }
 
 // noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537
 /* stylelint-disable-next-line block-no-empty */
