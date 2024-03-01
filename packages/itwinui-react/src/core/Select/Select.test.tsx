@@ -80,6 +80,25 @@ it('should show placeholder', () => {
   assertSelect(select, { text: 'TestPlaceholder', isPlaceholderVisible: true });
 });
 
+it.each(['default', 'borderless', undefined] as const)(
+  'should respect styleType={%s}',
+  (styleType) => {
+    const { container } = renderComponent({
+      styleType: styleType,
+    });
+
+    const selectButton = container.querySelector(
+      '.iui-select-button',
+    ) as HTMLElement;
+
+    if (styleType === 'borderless') {
+      expect(selectButton).toHaveAttribute('data-iui-variant', 'borderless');
+    } else {
+      expect(selectButton).not.toHaveAttribute('data-iui-variant');
+    }
+  },
+);
+
 it('should show value inside select', () => {
   const { container } = renderComponent({
     placeholder: 'TestPlaceholder',
