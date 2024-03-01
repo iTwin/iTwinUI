@@ -3,8 +3,11 @@ import { Button } from '@itwin/itwinui-react';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: 'New Remix App' },
-    { name: 'description', content: 'Welcome to Remix!' },
+    { title: 'Remix Playground' },
+    {
+      name: 'description',
+      content: 'Playground for testing iTwinUI components in Remix.',
+    },
   ];
 };
 
