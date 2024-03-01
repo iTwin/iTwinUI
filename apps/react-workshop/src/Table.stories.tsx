@@ -2877,12 +2877,14 @@ export const DraggableColumns = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
+        width: 400,
         disableReordering: true,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
+        width: 400,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
@@ -2891,16 +2893,19 @@ export const DraggableColumns = () => {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
+        width: 400,
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
+        width: 400,
       },
       {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
+        width: 400,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
