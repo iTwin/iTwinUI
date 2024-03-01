@@ -3,9 +3,14 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { Box, InputFlexContainer, useSafeContext } from '../utils/index.js';
+import {
+  Box,
+  InputFlexContainer,
+  InputFlexContainerButton,
+  InputFlexContainerIcon,
+  useSafeContext,
+} from '../utils/index.js';
 import type { PolymorphicForwardRefComponent } from '../utils/index.js';
-import { IconButton } from '../Buttons/IconButton.js';
 import type { InputProps } from '../Input/Input.js';
 
 const InputWithDecorationsContext = React.createContext<
@@ -31,7 +36,7 @@ const InputWithDecorationsComponent = React.forwardRef((props, ref) => {
   React.ComponentProps<typeof InputFlexContainer>
 >;
 
-//-------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 const InputWithDecorationsInput = React.forwardRef((props, ref) => {
   const { id: idProp, size, disabled: localDisabled, ...rest } = props;
@@ -50,8 +55,9 @@ const InputWithDecorationsInput = React.forwardRef((props, ref) => {
     />
   );
 }) as PolymorphicForwardRefComponent<'input', InputProps>;
+InputWithDecorationsInput.displayName = 'InputWithDecorations.Input';
 
-//-------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
 const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   const { children, size, disabled: localDisabled, ...rest } = props;
@@ -60,33 +66,40 @@ const InputWithDecorationsButton = React.forwardRef((props, ref) => {
   );
 
   return (
-    <IconButton
+    <InputFlexContainerButton
       ref={ref}
       size={size ?? contextSize}
-      styleType='borderless'
       disabled={localDisabled ?? isDisabled}
       {...rest}
     >
       {children}
-    </IconButton>
+    </InputFlexContainerButton>
   );
 }) as PolymorphicForwardRefComponent<
-  'span',
-  React.ComponentProps<typeof IconButton>
+  'button',
+  React.ComponentProps<typeof InputFlexContainerButton>
 >;
+InputWithDecorationsButton.displayName = 'InputWithDecorations.Button';
+
+// ----------------------------------------------------------------------------
+
+const InputWithDecorationsIcon = InputFlexContainerIcon;
+InputWithDecorationsIcon.displayName = 'InputWithDecorations.Icon';
+
+// ----------------------------------------------------------------------------
 
 /**
  * Input component with various additional decorations.
  * You can add icons, buttons and other various subcomponents to it.
  *
- * If you are not using default `Icon` and `InputWithDecorations.Button`, use borderless versions of other components.
+ * If you are not using default `InputWithDecorations.Icon` and `InputWithDecorations.Button`, use borderless versions of other components.
  *
  * @example
  * <InputWithDecorations>
  *    <InputWithDecorations.Input />
- *    <Icon>
+ *    <InputWithDecorations.Icon>
  *      <SvgAdd />
- *    </Icon>
+ *    </InputWithDecorations.Icon>
  * </InputWithDecorations>
  */
 export const InputWithDecorations = Object.assign(
@@ -98,7 +111,17 @@ export const InputWithDecorations = Object.assign(
     Input: InputWithDecorationsInput,
     /**
      * Subcomponent to include button in your InputWithDecorations
+     *
+     * Although similar to `IconButton`, this subcomponent additionally collapses the padding between the button and the input/textarea
+     * in `InputWithDecorations`.
      */
     Button: InputWithDecorationsButton,
+    /**
+     * Subcomponent to include button in your InputWithDecorations.
+     *
+     * Although similar to `Icon`, this subcomponent additionally collapses the padding between the icon and the input/textarea
+     * in `InputWithDecorations`.
+     */
+    Icon: InputWithDecorationsIcon,
   },
 );
