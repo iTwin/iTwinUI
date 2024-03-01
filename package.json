@@ -29,6 +29,7 @@
     "build": "turbo run build",
     "dev": "turbo run dev",
     "test": "turbo run test",
+    "test:all": "node scripts/testAll.js",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
