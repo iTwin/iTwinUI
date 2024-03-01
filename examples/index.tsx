@@ -930,6 +930,10 @@ import { default as SelectTruncateExampleRaw } from './Select.truncate';
 const SelectTruncateExample = withThemeProvider(SelectTruncateExampleRaw);
 export { SelectTruncateExample };
 
+import { default as SelectNativeExampleRaw } from './Select.native';
+const SelectNativeExample = withThemeProvider(SelectNativeExampleRaw);
+export { SelectNativeExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as SideNavigationMainExampleRaw } from './SideNavigation.main';

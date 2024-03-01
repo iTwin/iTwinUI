@@ -10,6 +10,7 @@ describe('LabeledSelect', () => {
     'Positive',
     'Warning',
     'With Custom Icon',
+    'Native',
   ];
 
   tests.forEach((testName) => {
