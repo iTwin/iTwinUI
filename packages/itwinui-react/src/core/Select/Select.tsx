@@ -138,6 +138,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
     onChange: onChangeProp,
     size,
     status,
+    styleType = 'default',
     required,
     ...rest
   } = props;
@@ -148,6 +149,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         as='select'
         size={size}
         status={status}
+        styleType={styleType}
         disabled={disabled}
         defaultValue={valueProp === undefined ? defaultValueProp : undefined}
         value={valueProp === null ? '' : valueProp}
@@ -242,6 +244,12 @@ type SelectCommonProps = {
    */
   size?: 'small' | 'large';
   /**
+   * Style of the select.
+   * Use 'borderless' to hide outline.
+   * @default 'default'
+   */
+  styleType?: 'default' | 'borderless';
+  /**
    * Status of select.
    */
   status?: 'positive' | 'warning' | 'negative';
@@ -259,6 +267,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     placeholder,
     disabled = false,
     size,
+    styleType = 'default',
     itemRenderer,
     selectedItemRenderer,
     menuClassName,
@@ -394,6 +403,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           tabIndex={0}
           role='combobox'
           size={size}
+          styleType={styleType}
           status={status}
           aria-disabled={disabled ? 'true' : undefined}
           aria-autocomplete='none'
@@ -626,12 +636,13 @@ const isSingleOnChange = <T,>(
 // ----------------------------------------------------------------------------
 
 const SelectButton = React.forwardRef((props, forwardedRef) => {
-  const { size, status, ...rest } = props;
+  const { size, status, styleType, ...rest } = props;
 
   return (
     <Box
       data-iui-size={size}
       data-iui-status={status}
+      data-iui-variant={styleType !== 'default' ? styleType : undefined}
       {...rest}
       ref={forwardedRef}
       className={cx('iui-select-button', props.className)}
@@ -642,6 +653,7 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
   {
     size?: 'small' | 'large';
     status?: 'positive' | 'warning' | 'negative';
+    styleType?: 'default' | 'borderless';
   }
 >;
 
