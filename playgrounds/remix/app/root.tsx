@@ -7,7 +7,12 @@ import {
 } from '@remix-run/react';
 import { ThemeProvider } from '@itwin/itwinui-react';
 import '@itwin/itwinui-react/styles.css';
-import './root.css';
+import rootStyles from './root.css';
+import { LinksFunction } from '@remix-run/node';
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: rootStyles },
+];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
