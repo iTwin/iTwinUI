@@ -3,16 +3,9 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 const { execSync } = require('child_process');
-const fs = require('fs');
-const path = require('path');
 
 const runTests = () => {
   const componentName = process.argv[2];
-  const componentDir = findDir(
-    './packages/itwinui-react/src/core',
-    `${componentName}.tsx`,
-  );
-  console.log(componentDir);
 
   const runCommand = (type, command) => {
     console.log(`${type} tests are running`);
@@ -33,35 +26,10 @@ const runTests = () => {
   };
 
   /*
-figure out how to find the correct file when needed for unit testing
 why doesnt react visual testing always work?
 how important are capitals and how can i fix that
  get more detailed information for errors and postive
  */
-
-  function findDir(startPath, targetFile) {
-    if (!fs.existsSync(startPath)) {
-      console.log(`Directory not found: ${startPath}`);
-      return false;
-    }
-
-    const files = fs.readdirSync(startPath);
-
-    for (const file of files) {
-      const filePath = path.join(startPath, file);
-      const stat = fs.lstatSync(filePath);
-      const fullPath = path.join(startPath, file, targetFile);
-      // console.log(filePath);
-
-      if (fs.existsSync(fullPath)) {
-        // console.log(test);
-        // console.log(filePath);
-        return filePath;
-      } else if (stat.isDirectory()) {
-        findDir(filePath, targetFile);
-      }
-    }
-  }
 
   const reactResult = runCommand(
     'React Visual',
@@ -73,7 +41,7 @@ how important are capitals and how can i fix that
   );
   const unitResult = runCommand(
     'Unit',
-    `cd ${componentDir} && pnpm run test:unit && cd ../../../../..`,
+    `cd ./packages/itwinui-react/src/core && pnpm run test:unit --mode ${componentName} && cd ../../../../..`,
   );
   const a11yResult = runCommand(
     'A11y',
