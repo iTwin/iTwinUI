@@ -329,7 +329,7 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
       size={sizeContext}
       disabled={isDisabled}
       onClick={mergeEventHandlers(onClickProp, onExpand)}
-      styleType='default'
+      styleType='borderless'
       {...rest}
     >
       {children ?? <SvgSearch />}

@@ -5,7 +5,9 @@
 @use 'sass:map';
 
 .iui-expandable-searchbox {
-  inline-size: auto;
+  // button icon size + 2 * button padding + 2 * border width
+  inline-size: calc(#{map.get($icon-sizes, m)} + 2 * var(--iui-size-m) + 2 * 1px);
+  transition: width var(--iui-duration-1) ease-in-out;
 
   &:has(.iui-searchbox-open-button:focus-visible) {
     outline: 2px solid var(--_iui-input-accent-border-color);
