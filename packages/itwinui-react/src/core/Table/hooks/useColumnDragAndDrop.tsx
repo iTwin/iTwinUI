@@ -23,8 +23,6 @@ const REORDER_ACTIONS = {
 export const useColumnDragAndDrop =
   <T extends Record<string, unknown>>(isEnabled: boolean) =>
   (hooks: Hooks<T>) => {
-    console.log('useColumnDragAndDrop');
-
     hooks.getDragAndDropProps = [defaultGetDragAndDropProps(isEnabled)];
     hooks.stateReducers.push(reducer);
     hooks.useInstance.push(useInstance);
@@ -42,8 +40,6 @@ const defaultGetDragAndDropProps =
       header: HeaderGroup<T>;
     },
   ) => {
-    console.log('onDrop');
-
     let interval: NodeJS.Timeout | undefined;
 
     if (!isEnabled || header.disableReordering) {
@@ -51,7 +47,6 @@ const defaultGetDragAndDropProps =
     }
 
     const onDragStart = () => {
-      console.log('onDragStart');
       instance.dispatch({
         type: REORDER_ACTIONS.columnDragStart,
         columnIndex: instance.flatHeaders.indexOf(header),
@@ -62,8 +57,6 @@ const defaultGetDragAndDropProps =
       event: React.DragEvent<HTMLDivElement>,
       position?: 'left' | 'right',
     ) => {
-      console.log('setOnDragColumnStyle');
-
       const columnElement = event.currentTarget as HTMLElement;
       columnElement.classList.remove(styles['iui-table-reorder-column-right']);
       columnElement.classList.remove(styles['iui-table-reorder-column-left']);
@@ -79,8 +72,6 @@ const defaultGetDragAndDropProps =
       srcIndex: number,
       dstIndex: number,
     ) => {
-      console.log('reorderColumns');
-
       const newTableColumns = [...tableColumns];
       const [removed] = newTableColumns.splice(srcIndex, 1);
       newTableColumns.splice(dstIndex, 0, removed);
@@ -88,22 +79,6 @@ const defaultGetDragAndDropProps =
     };
 
     const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-      // console.log(
-      //   'onDragOver',
-      //   event.clientX,
-      //   event.clientY,
-      //   event.screenX,
-      //   event.screenY,
-      //   event.movementX,
-      //   event.movementY,
-      //   event.pageX,
-      //   event.pageY,
-      //   event.target,
-      //   event.currentTarget,
-      //   event.relatedTarget,
-      //   event.target.parentElement,
-      // );
-
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const tableHeaderWrapper = (event.target as any).parentElement
         .parentElement.parentElement as HTMLDivElement;
@@ -153,17 +128,6 @@ const defaultGetDragAndDropProps =
         interval = undefined;
       }
 
-      // console.log('onDrag', tableHeaderWrapper.getBoundingClientRect());
-
-      // scrollHorizontally({
-      //   draggingNearEdge,
-      //   reachedEdge,
-      //   tableHeaderWrapper,
-      //   tableBody,
-      //   scrollBy,
-      //   direction,
-      // });
-
       event.preventDefault();
       const headerIndex = instance.flatHeaders.indexOf(header);
       if (instance.state.columnReorderStartIndex !== headerIndex) {
@@ -177,7 +141,6 @@ const defaultGetDragAndDropProps =
     };
 
     const onDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-      console.log('onDragLeave');
       setOnDragColumnStyle(event);
 
       if (interval) {
@@ -187,8 +150,6 @@ const defaultGetDragAndDropProps =
     };
 
     const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
-      console.log('onDrop');
-
       event.preventDefault();
       setOnDragColumnStyle(event);
 
@@ -223,8 +184,6 @@ const reducer = <T extends Record<string, unknown>>(
   newState: TableState<T>,
   action: ActionType,
 ) => {
-  console.log('reducer');
-
   switch (action.type) {
     case actions.init:
       return {
