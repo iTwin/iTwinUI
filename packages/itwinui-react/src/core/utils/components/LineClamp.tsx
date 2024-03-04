@@ -18,8 +18,7 @@ export const LineClamp = React.forwardRef((props, forwardedRef) => {
         { '--_iui-line-clamp': lines, ...props.style } as React.CSSProperties
       }
     >
-      <ShadowRoot>
-        <style>{css}</style>
+      <ShadowRoot css={css}>
         <slot />
       </ShadowRoot>
       {children}
