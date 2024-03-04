@@ -3,12 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import {
-  InputWithDecorations,
-  Icon,
-  Text,
-  Divider,
-} from '@itwin/itwinui-react';
+import { InputWithDecorations, Text, Divider } from '@itwin/itwinui-react';
 import {
   SvgCaretUpSmall,
   SvgCaretDownSmall,
@@ -18,9 +13,9 @@ import {
 export default () => {
   return (
     <InputWithDecorations>
-      <Icon padded>
+      <InputWithDecorations.Icon>
         <SvgSearch />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Search...' />
       <Text className='demo-text'>0 / 5</Text>
       <Divider orientation='vertical' />

@@ -10,18 +10,18 @@ export default () => {
   return (
     <div className='demo-container'>
       <InputWithDecorations isDisabled>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgPlaceholder />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input placeholder='Disabled input' />
         <InputWithDecorations.Button label='Add'>
           <SvgAdd />
         </InputWithDecorations.Button>
       </InputWithDecorations>
       <InputWithDecorations>
-        <Icon padded>
+        <InputWithDecorations.Icon>
           <SvgPlaceholder />
-        </Icon>
+        </InputWithDecorations.Icon>
         <InputWithDecorations.Input placeholder='Disabled input' />
         <InputWithDecorations.Button label='Add' disabled>
           <SvgAdd />

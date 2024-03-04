@@ -30,9 +30,10 @@
   }
 }
 
+// noop https://github.com/iTwin/iTwinUI/pull/1881#discussion_r1506166537
+/* stylelint-disable-next-line block-no-empty */
 .iui-search-icon {
-  // collapse padding between icon and input
-  + .iui-search-input {
-    padding-inline-start: 0;
-  }
+}
+/* stylelint-disable-next-line block-no-empty */
+.iui-search-input {
 }

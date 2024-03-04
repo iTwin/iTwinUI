@@ -3,7 +3,7 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import React from 'react';
-import { InputWithDecorations, Icon } from '@itwin/itwinui-react';
+import { InputWithDecorations } from '@itwin/itwinui-react';
 import { SvgAdd, SvgAirplane } from '@itwin/itwinui-icons-react';
 
 export default {
@@ -13,9 +13,9 @@ export default {
 export const Basic = () => {
   return (
     <InputWithDecorations>
-      <Icon padded>
+      <InputWithDecorations.Icon>
         <SvgAirplane />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Input..' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -27,9 +27,9 @@ export const Basic = () => {
 export const Disabled = () => {
   return (
     <InputWithDecorations isDisabled>
-      <Icon padded>
+      <InputWithDecorations.Icon>
         <SvgAirplane />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Disabled input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -41,9 +41,9 @@ export const Disabled = () => {
 export const Small = () => {
   return (
     <InputWithDecorations size='small'>
-      <Icon size='s' padded>
+      <InputWithDecorations.Icon size='s'>
         <SvgAirplane />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Small input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />
@@ -55,9 +55,9 @@ export const Small = () => {
 export const Status = () => {
   return (
     <InputWithDecorations status='positive'>
-      <Icon padded>
+      <InputWithDecorations.Icon>
         <SvgAirplane />
-      </Icon>
+      </InputWithDecorations.Icon>
       <InputWithDecorations.Input placeholder='Positive input' />
       <InputWithDecorations.Button label='Custom button'>
         <SvgAdd />

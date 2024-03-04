@@ -30,19 +30,11 @@ export default {
 
 export const Basic = () => {
   const options = [
-    { value: 1, label: 'Item #1' },
-    { value: 2, label: 'Item #2', disabled: true },
-    { value: 3, label: 'Item #3' },
+    { value: '1', label: 'Item #1' },
+    { value: '2', label: 'Item #2', disabled: true },
+    { value: '3', label: 'Item #3' },
   ];
-  const [value, setValue] = React.useState<number | undefined>(undefined);
-  return (
-    <Select
-      options={options}
-      value={value}
-      onChange={setValue}
-      placeholder='Placeholder text'
-    />
-  );
+  return <Select options={options} placeholder='Placeholder text' />;
 };
 
 export const WithIcons = () => {
@@ -272,4 +264,14 @@ export const MultiCustomRenderer = () => {
       />
     </div>
   );
+};
+
+export const Native = () => {
+  const options = [
+    { value: '1', label: 'Item #1' },
+    { value: '2', label: 'Item #2', disabled: true },
+    { value: '3', label: 'Item #3' },
+    { value: '4', label: 'Item #3' },
+  ];
+  return <Select native options={options} placeholder='Choose an option' />;
 };
