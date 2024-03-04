@@ -25,6 +25,12 @@
   @include table-scrollbar;
   scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   overflow-x: hidden;
+  // overflow-x: scroll;
+
+  // Set the scrollbar width to 0 for only the horizontal scrollbar to prevent the horizontal scrollbar from appearing
+  // even when a scrollbar is present
+  // scrollbar-width: none;
+
   background-color: var(--iui-color-background);
   display: flex;
   flex-shrink: 0;

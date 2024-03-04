@@ -23,6 +23,8 @@ const REORDER_ACTIONS = {
 export const useColumnDragAndDrop =
   <T extends Record<string, unknown>>(isEnabled: boolean) =>
   (hooks: Hooks<T>) => {
+    console.log('useColumnDragAndDrop');
+
     hooks.getDragAndDropProps = [defaultGetDragAndDropProps(isEnabled)];
     hooks.stateReducers.push(reducer);
     hooks.useInstance.push(useInstance);
@@ -40,11 +42,16 @@ const defaultGetDragAndDropProps =
       header: HeaderGroup<T>;
     },
   ) => {
+    console.log('onDrop');
+
+    let interval: NodeJS.Timeout | undefined;
+
     if (!isEnabled || header.disableReordering) {
       return props;
     }
 
     const onDragStart = () => {
+      console.log('onDragStart');
       instance.dispatch({
         type: REORDER_ACTIONS.columnDragStart,
         columnIndex: instance.flatHeaders.indexOf(header),
@@ -55,6 +62,8 @@ const defaultGetDragAndDropProps =
       event: React.DragEvent<HTMLDivElement>,
       position?: 'left' | 'right',
     ) => {
+      console.log('setOnDragColumnStyle');
+
       const columnElement = event.currentTarget as HTMLElement;
       columnElement.classList.remove(styles['iui-table-reorder-column-right']);
       columnElement.classList.remove(styles['iui-table-reorder-column-left']);
@@ -70,6 +79,8 @@ const defaultGetDragAndDropProps =
       srcIndex: number,
       dstIndex: number,
     ) => {
+      console.log('reorderColumns');
+
       const newTableColumns = [...tableColumns];
       const [removed] = newTableColumns.splice(srcIndex, 1);
       newTableColumns.splice(dstIndex, 0, removed);
@@ -77,6 +88,82 @@ const defaultGetDragAndDropProps =
     };
 
     const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+      // console.log(
+      //   'onDragOver',
+      //   event.clientX,
+      //   event.clientY,
+      //   event.screenX,
+      //   event.screenY,
+      //   event.movementX,
+      //   event.movementY,
+      //   event.pageX,
+      //   event.pageY,
+      //   event.target,
+      //   event.currentTarget,
+      //   event.relatedTarget,
+      //   event.target.parentElement,
+      // );
+
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const tableHeaderWrapper = (event.target as any).parentElement
+        .parentElement.parentElement as HTMLDivElement;
+      const tableHeaderWrapperRect = tableHeaderWrapper.getBoundingClientRect();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const eventTarget = event.target as any;
+      const tableBody =
+        eventTarget.parentElement.parentElement.parentElement.parentElement.querySelector(
+          '._iui3-table-body',
+        ) as HTMLDivElement;
+
+      const scrollRegionWidth = 100;
+      const scrollBy = 10;
+
+      const draggingNearEdge =
+        event.clientX > tableHeaderWrapperRect.right - scrollRegionWidth ||
+        event.clientX < tableHeaderWrapperRect.left + scrollRegionWidth;
+      const reachedEdge =
+        event.clientX >= tableHeaderWrapperRect.right ||
+        event.clientX <= tableHeaderWrapperRect.left;
+
+      const direction =
+        event.clientX < tableHeaderWrapperRect.left + scrollRegionWidth
+          ? 'left'
+          : 'right';
+
+      if (draggingNearEdge && !reachedEdge) {
+        if (interval) {
+          return;
+        }
+
+        interval = setInterval(() => {
+          scrollHorizontally({
+            event,
+            wrapper: tableHeaderWrapper,
+            scrollRegionWidth,
+            scrollBy,
+            draggingNearEdge,
+            reachedEdge,
+            tableHeaderWrapper,
+            tableBody,
+            direction,
+          });
+        }, 40);
+      } else {
+        clearInterval(interval);
+        interval = undefined;
+      }
+
+      // console.log('onDrag', tableHeaderWrapper.getBoundingClientRect());
+
+      // scrollHorizontally({
+      //   draggingNearEdge,
+      //   reachedEdge,
+      //   tableHeaderWrapper,
+      //   tableBody,
+      //   scrollBy,
+      //   direction,
+      // });
+
       event.preventDefault();
       const headerIndex = instance.flatHeaders.indexOf(header);
       if (instance.state.columnReorderStartIndex !== headerIndex) {
@@ -90,10 +177,18 @@ const defaultGetDragAndDropProps =
     };
 
     const onDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
+      console.log('onDragLeave');
       setOnDragColumnStyle(event);
+
+      if (interval) {
+        clearInterval(interval);
+        interval = undefined;
+      }
     };
 
     const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
+      console.log('onDrop');
+
       event.preventDefault();
       setOnDragColumnStyle(event);
 
@@ -128,6 +223,8 @@ const reducer = <T extends Record<string, unknown>>(
   newState: TableState<T>,
   action: ActionType,
 ) => {
+  console.log('reducer');
+
   switch (action.type) {
     case actions.init:
       return {
@@ -166,4 +263,51 @@ const useInstance = <T extends Record<string, unknown>>(
       },
     );
   });
+};
+
+const scrollHorizontally = ({
+  event,
+  wrapper,
+  scrollRegionWidth,
+  scrollBy,
+  draggingNearEdge,
+  reachedEdge,
+  tableHeaderWrapper,
+  tableBody,
+  direction,
+}: {
+  event: React.DragEvent<HTMLDivElement>;
+  wrapper: HTMLDivElement;
+  scrollRegionWidth: number;
+  scrollBy: number;
+  draggingNearEdge: boolean;
+  reachedEdge: boolean;
+  tableHeaderWrapper: HTMLDivElement;
+  tableBody: HTMLDivElement;
+  direction: 'left' | 'right';
+}) => {
+  tableBody;
+
+  const weightedScrollByMultiplier =
+    1 -
+    (wrapper.getBoundingClientRect().right - event.clientX) / scrollRegionWidth;
+  // const weightedScrollBy = weightedScrollByMultiplier * scrollBy;
+  const weightedScrollBy = 1 * scrollBy;
+
+  console.log('weightedScrollByMultiplier', weightedScrollByMultiplier);
+
+  if (draggingNearEdge && !reachedEdge) {
+    console.log('scrolling');
+    tableHeaderWrapper.scrollBy(
+      // tableBody.scrollBy(
+      // 1,
+      // 0,
+      {
+        left: direction === 'right' ? weightedScrollBy : -weightedScrollBy,
+        top: 0,
+        behavior: 'instant',
+        // behavior: 'smooth',
+      },
+    );
+  }
 };

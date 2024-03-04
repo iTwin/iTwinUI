@@ -2877,14 +2877,14 @@ export const DraggableColumns = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        width: 400,
-        disableReordering: true,
+        width: 600,
+        // disableReordering: true,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        width: 400,
+        width: 600,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
@@ -2893,19 +2893,19 @@ export const DraggableColumns = () => {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
-        width: 400,
+        width: 600,
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
-        width: 400,
+        width: 600,
       },
       {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        width: 400,
+        width: 600,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
@@ -2916,6 +2916,9 @@ export const DraggableColumns = () => {
 
   return (
     <Table
+      style={{
+        width: '50%',
+      }}
       enableColumnReordering
       columns={columns}
       data={data}
