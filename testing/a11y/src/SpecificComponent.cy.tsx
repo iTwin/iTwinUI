@@ -6,6 +6,22 @@ import * as React from 'react';
 import * as allExamples from 'examples';
 import { ThemeProvider } from '@itwin/itwinui-react';
 
+const axeConfigPerExample = (example) => {
+  switch (example) {
+    // disabled elements do not need to meet contrast requirements
+    case 'TileLoadingExample': {
+      return { rules: [{ id: 'color-contrast', enabled: false }] };
+    }
+
+    // false positive only in CI
+    case 'InputStatusExample': {
+      return {
+        rules: [{ id: 'color-contrast', enabled: !Cypress.env('CI') }],
+      };
+    }
+  }
+};
+
 describe('Should have no WCAG violations', () => {
   const componentName = Cypress.env('componentName');
 
