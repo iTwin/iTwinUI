@@ -86,7 +86,7 @@ it('should render expandable Searchbox', async () => {
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
   const openButton = searchbox?.querySelector(
-    '.iui-button.iui-input-flex-container-icon',
+    'button.iui-input-flex-container-icon',
   ) as HTMLButtonElement;
 
   expect(openButton).toBeTruthy();
@@ -122,7 +122,7 @@ it('should render custom expanded state', async () => {
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
   const expandButton = searchbox?.querySelector(
-    '.iui-button.iui-input-flex-container-icon',
+    'button.iui-input-flex-container-icon',
   ) as HTMLButtonElement;
   expect(expandButton).toBeTruthy();
 
@@ -170,7 +170,7 @@ it('should render custom expandable actions', async () => {
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
   const openButton = searchbox?.querySelector(
-    '.iui-button.iui-input-flex-container-icon',
+    'button.iui-input-flex-container-icon',
   ) as HTMLButtonElement;
 
   expect(openButton).toBeTruthy();
