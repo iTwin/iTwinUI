@@ -926,7 +926,7 @@ export const Table = <
               ref={headerRef}
               onScroll={() => {
                 if (headerRef.current && bodyRef.current) {
-                  bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
+                  // bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
                   updateStickyState();
 
                   // console.log('event', event);
@@ -1088,7 +1088,7 @@ export const Table = <
           ref={bodyRef}
           onScroll={() => {
             if (headerRef.current && bodyRef.current) {
-              headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
+              // headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
               updateStickyState();
             }
           }}

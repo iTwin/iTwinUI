@@ -3480,3 +3480,89 @@ export const StatusAndCellIcons = () => {
     />
   );
 };
+
+export const CustomHorizontalScroll = () => {
+  const onViewClick = React.useCallback(() => {
+    console.log('onViewClick');
+  }, []);
+
+  const columns = React.useMemo(
+    () => [
+      {
+        Header: 'Header name',
+        columns: [
+          {
+            id: 'name',
+            Header: 'Name',
+            accessor: 'name',
+            width: 1400,
+          },
+          {
+            id: 'description',
+            Header: 'description',
+            accessor: 'description',
+            width: 500,
+          },
+          {
+            id: 'view',
+            Header: 'view',
+            Cell: () => {
+              return <span onClick={onViewClick}>View</span>;
+            },
+            width: 300,
+          },
+        ],
+      },
+    ],
+    [onViewClick],
+  );
+  const data = [
+    { name: 'Name1', description: 'Description1' },
+    { name: 'Name2', description: 'Description2' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+    { name: 'Name3', description: 'Description3' },
+  ];
+
+  return (
+    <>
+      <Table
+        columns={columns}
+        data={data}
+        emptyTableContent='No data.'
+        isLoading={false}
+        isSortable={true}
+        style={{ height: '80vh' }}
+      />
+    </>
+  );
+};
