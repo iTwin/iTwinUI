@@ -96,7 +96,7 @@
 .iui-header-breadcrumbs,
 .iui-header-breadcrumbs-list {
   overflow: hidden;
-  box-sizing: content-box;
+  box-sizing: content-box !important;
   margin-block-end: calc(0px - var(--iui-size-2xs));
   padding-block-end: var(--iui-size-2xs);
 }

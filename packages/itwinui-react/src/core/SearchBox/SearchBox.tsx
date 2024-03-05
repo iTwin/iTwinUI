@@ -312,7 +312,7 @@ SearchBoxCollapseButton.displayName = 'SearchBox.CollapseButton';
 // ----------------------------------------------------------------------------
 
 const SearchBoxExpandButton = React.forwardRef((props, ref) => {
-  const { children, className, onClick: onClickProp, ...rest } = props;
+  const { children, onClick: onClickProp, ...rest } = props;
 
   const {
     onExpand,
@@ -324,11 +324,11 @@ const SearchBoxExpandButton = React.forwardRef((props, ref) => {
   return (
     <SearchBoxButton
       ref={useMergedRefs(ref, openButtonRef)}
-      className={cx('iui-searchbox-open-button', className)}
       aria-label='Expand searchbox'
       size={sizeContext}
       disabled={isDisabled}
       onClick={mergeEventHandlers(onClickProp, onExpand)}
+      styleType='default'
       {...rest}
     >
       {children ?? <SvgSearch />}

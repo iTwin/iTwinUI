@@ -56,7 +56,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   }
 
   &.iui-collapsed {
-    box-sizing: content-box;
+    box-sizing: content-box !important;
 
     $icon-large: map.get(mixins.$iui-icon-sizes, l);
 
