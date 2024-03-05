@@ -2918,6 +2918,7 @@ export const DraggableColumns = () => {
     <Table
       style={{
         width: '50%',
+        height: '75vh',
       }}
       enableColumnReordering
       columns={columns}

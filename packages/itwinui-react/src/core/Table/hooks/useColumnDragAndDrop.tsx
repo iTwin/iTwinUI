@@ -40,8 +40,6 @@ const defaultGetDragAndDropProps =
       header: HeaderGroup<T>;
     },
   ) => {
-    let interval: NodeJS.Timeout | undefined;
-
     if (!isEnabled || header.disableReordering) {
       return props;
     }
@@ -79,55 +77,6 @@ const defaultGetDragAndDropProps =
     };
 
     const onDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const tableHeaderWrapper = (event.target as any).parentElement
-        .parentElement.parentElement as HTMLDivElement;
-      const tableHeaderWrapperRect = tableHeaderWrapper.getBoundingClientRect();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const eventTarget = event.target as any;
-      const tableBody =
-        eventTarget.parentElement.parentElement.parentElement.parentElement.querySelector(
-          '._iui3-table-body',
-        ) as HTMLDivElement;
-
-      const scrollRegionWidth = 100;
-      const scrollBy = 10;
-
-      const draggingNearEdge =
-        event.clientX > tableHeaderWrapperRect.right - scrollRegionWidth ||
-        event.clientX < tableHeaderWrapperRect.left + scrollRegionWidth;
-      const reachedEdge =
-        event.clientX >= tableHeaderWrapperRect.right ||
-        event.clientX <= tableHeaderWrapperRect.left;
-
-      const direction =
-        event.clientX < tableHeaderWrapperRect.left + scrollRegionWidth
-          ? 'left'
-          : 'right';
-
-      if (draggingNearEdge && !reachedEdge) {
-        if (interval) {
-          return;
-        }
-
-        interval = setInterval(() => {
-          scrollHorizontally({
-            event,
-            wrapper: tableHeaderWrapper,
-            scrollRegionWidth,
-            scrollBy,
-            draggingNearEdge,
-            reachedEdge,
-            tableHeaderWrapper,
-            tableBody,
-            direction,
-          });
-        }, 40);
-      } else {
-        clearInterval(interval);
-        interval = undefined;
-      }
-
       event.preventDefault();
       const headerIndex = instance.flatHeaders.indexOf(header);
       if (instance.state.columnReorderStartIndex !== headerIndex) {
@@ -142,11 +91,6 @@ const defaultGetDragAndDropProps =
 
     const onDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
       setOnDragColumnStyle(event);
-
-      if (interval) {
-        clearInterval(interval);
-        interval = undefined;
-      }
     };
 
     const onDrop = (event: React.DragEvent<HTMLDivElement>) => {
@@ -222,51 +166,4 @@ const useInstance = <T extends Record<string, unknown>>(
       },
     );
   });
-};
-
-const scrollHorizontally = ({
-  event,
-  wrapper,
-  scrollRegionWidth,
-  scrollBy,
-  draggingNearEdge,
-  reachedEdge,
-  tableHeaderWrapper,
-  tableBody,
-  direction,
-}: {
-  event: React.DragEvent<HTMLDivElement>;
-  wrapper: HTMLDivElement;
-  scrollRegionWidth: number;
-  scrollBy: number;
-  draggingNearEdge: boolean;
-  reachedEdge: boolean;
-  tableHeaderWrapper: HTMLDivElement;
-  tableBody: HTMLDivElement;
-  direction: 'left' | 'right';
-}) => {
-  tableBody;
-
-  const weightedScrollByMultiplier =
-    1 -
-    (wrapper.getBoundingClientRect().right - event.clientX) / scrollRegionWidth;
-  // const weightedScrollBy = weightedScrollByMultiplier * scrollBy;
-  const weightedScrollBy = 1 * scrollBy;
-
-  console.log('weightedScrollByMultiplier', weightedScrollByMultiplier);
-
-  if (draggingNearEdge && !reachedEdge) {
-    console.log('scrolling');
-    tableHeaderWrapper.scrollBy(
-      // tableBody.scrollBy(
-      // 1,
-      // 0,
-      {
-        left: direction === 'right' ? weightedScrollBy : -weightedScrollBy,
-        top: 0,
-        behavior: 'instant',
-        // behavior: 'smooth',
-      },
-    );
-  }
 };

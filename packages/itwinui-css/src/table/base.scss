@@ -7,6 +7,8 @@
   display: flex;
   flex-direction: column;
   isolation: isolate;
+  overflow: scroll;
+  scrollbar-width: thin;
 
   @include iui-table-cell-icon;
 }
@@ -22,14 +24,11 @@
 }
 
 @mixin iui-table-header-wrapper {
-  @include table-scrollbar;
   scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
-  overflow-x: hidden;
-  // overflow-x: scroll;
-
-  // Set the scrollbar width to 0 for only the horizontal scrollbar to prevent the horizontal scrollbar from appearing
-  // even when a scrollbar is present
-  // scrollbar-width: none;
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 9999;
+  inline-size: min-content;
 
   background-color: var(--iui-color-background);
   display: flex;
@@ -353,8 +352,7 @@
 }
 
 @mixin iui-table-body {
-  @include table-scrollbar;
-  overflow-x: auto;
+  inline-size: min-content;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

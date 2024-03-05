@@ -928,18 +928,6 @@ export const Table = <
                 if (headerRef.current && bodyRef.current) {
                   bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
                   updateStickyState();
-
-                  // console.log('event', event);
-
-                  // const table = bodyRef.current;
-                  // const direction = event.target.scrollLeft > state.scrollLeft;
-
-                  // if (draggingNearEdge && !reachedEdge) {
-                  //   table.scrollBy({
-                  //     left: direction === "right" ? 20 : -20,
-                  //     behavior: "smooth"
-                  //   });
-                  // }
                 }
               }}
               key={headerGroupProps.key}
