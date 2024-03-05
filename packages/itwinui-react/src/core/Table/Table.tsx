@@ -36,6 +36,7 @@ import {
   Box,
   createWarningLogger,
   ShadowRoot,
+  mergeRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -748,6 +749,7 @@ export const Table = <
     ],
   );
 
+  const tableRef = React.useRef<HTMLDivElement>(null);
   const headerRef = React.useRef<HTMLDivElement>(null);
   const bodyRef = React.useRef<HTMLDivElement>(null);
 
@@ -863,11 +865,11 @@ export const Table = <
   );
 
   const updateStickyState = () => {
-    if (!bodyRef.current || flatHeaders.every((header) => !header.sticky)) {
+    if (!tableRef.current || flatHeaders.every((header) => !header.sticky)) {
       return;
     }
 
-    if (bodyRef.current.scrollLeft !== 0) {
+    if (tableRef.current.scrollLeft !== 0) {
       dispatch({ type: TableActions.setScrolledRight, value: true });
     } else {
       dispatch({ type: TableActions.setScrolledRight, value: false });
@@ -875,8 +877,8 @@ export const Table = <
 
     // If scrolled a bit to the left looking from the right side
     if (
-      bodyRef.current.scrollLeft !==
-      bodyRef.current.scrollWidth - bodyRef.current.clientWidth
+      tableRef.current.scrollLeft !==
+      tableRef.current.scrollWidth - tableRef.current.clientWidth
     ) {
       dispatch({ type: TableActions.setScrolledLeft, value: true });
     } else {
@@ -895,10 +897,10 @@ export const Table = <
   return (
     <>
       <Box
-        ref={(element) => {
+        ref={mergeRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           resizeRef(element);
-        }}
+        })}
         id={id}
         {...getTableProps({
           className: cx('iui-table', className),
@@ -907,6 +909,10 @@ export const Table = <
             ...style,
           },
         })}
+        onScroll={() => {
+          console.log('onScroll');
+          updateStickyState();
+        }}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
@@ -924,12 +930,12 @@ export const Table = <
             <Box
               as='div'
               ref={headerRef}
-              onScroll={() => {
-                if (headerRef.current && bodyRef.current) {
-                  bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
-                  updateStickyState();
-                }
-              }}
+              // onScroll={() => {
+              //   if (headerRef.current && bodyRef.current) {
+              //     bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
+              //     updateStickyState();
+              //   }
+              // }}
               key={headerGroupProps.key}
               {...headerWrapperProps}
               className={cx(
@@ -1074,12 +1080,12 @@ export const Table = <
             style: { outline: 0 },
           })}
           ref={bodyRef}
-          onScroll={() => {
-            if (headerRef.current && bodyRef.current) {
-              headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
-              updateStickyState();
-            }
-          }}
+          // onScroll={() => {
+          //   if (headerRef.current && bodyRef.current) {
+          //     headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
+          //     updateStickyState();
+          //   }
+          // }}
           tabIndex={-1}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
