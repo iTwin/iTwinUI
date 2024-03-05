@@ -892,10 +892,7 @@ export const Table = <
             ...style,
           },
         })}
-        onScroll={() => {
-          console.log('onScroll');
-          updateStickyState();
-        }}
+        onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
@@ -913,12 +910,6 @@ export const Table = <
             <Box
               as='div'
               ref={headerRef}
-              // onScroll={() => {
-              //   if (headerRef.current && bodyRef.current) {
-              //     bodyRef.current.scrollLeft = headerRef.current.scrollLeft;
-              //     updateStickyState();
-              //   }
-              // }}
               key={headerGroupProps.key}
               {...headerWrapperProps}
               className={cx(
@@ -1063,12 +1054,6 @@ export const Table = <
             style: { outline: 0 },
           })}
           ref={bodyRef}
-          // onScroll={() => {
-          //   if (headerRef.current && bodyRef.current) {
-          //     headerRef.current.scrollLeft = bodyRef.current.scrollLeft;
-          //     updateStickyState();
-          //   }
-          // }}
           tabIndex={-1}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
