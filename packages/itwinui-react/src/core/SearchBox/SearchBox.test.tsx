@@ -85,9 +85,7 @@ it('should render expandable Searchbox', async () => {
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
-  const openButton = searchbox?.querySelector(
-    'button.iui-input-flex-container-icon',
-  ) as HTMLButtonElement;
+  const openButton = searchbox?.querySelector('button') as HTMLButtonElement;
 
   expect(openButton).toBeTruthy();
   expect(openButton).toHaveAccessibleName('Expand searchbox');
@@ -121,9 +119,7 @@ it('should render custom expanded state', async () => {
   const searchbox = container.querySelector('.iui-searchbox') as HTMLDivElement;
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
-  const expandButton = searchbox?.querySelector(
-    'button.iui-input-flex-container-icon',
-  ) as HTMLButtonElement;
+  const expandButton = searchbox?.querySelector('button') as HTMLButtonElement;
   expect(expandButton).toBeTruthy();
 
   await userEvent.click(expandButton);
@@ -169,9 +165,7 @@ it('should render custom expandable actions', async () => {
   expect(searchbox).toBeTruthy();
   expect(searchbox).not.toHaveAttribute('data-iui-expanded', 'true');
 
-  const openButton = searchbox?.querySelector(
-    'button.iui-input-flex-container-icon',
-  ) as HTMLButtonElement;
+  const openButton = searchbox?.querySelector('button') as HTMLButtonElement;
 
   expect(openButton).toBeTruthy();
   expect(openButton).toHaveAccessibleName('Expand searchbox');
