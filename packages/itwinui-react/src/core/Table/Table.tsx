@@ -975,6 +975,7 @@ export const Table = <
                         ...(columnHasExpanders && getSubRowStyle({ density })),
                         ...getStickyStyle(column, visibleColumns),
                         flexWrap: 'wrap',
+                        columnGap: 'var(--iui-size-xs)',
                       },
                     });
 
