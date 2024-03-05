@@ -2,31 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
 .iui-expandable-searchbox {
-  inline-size: var(--_iui-input-min-height);
-  transition: width var(--iui-duration-1) ease-in-out;
-
-  &:has(.iui-searchbox-open-button:focus-visible) {
-    outline: 2px solid var(--_iui-input-accent-border-color);
-    outline-offset: -2px;
-  }
-
-  @supports not selector(:has(+ *)) {
-    &:where(.iui-searchbox-open-button:focus-visible) {
-      outline: 2px solid var(--_iui-input-accent-border-color);
-      outline-offset: -2px;
-    }
-  }
+  inline-size: fit-content;
+  padding-inline: 0; // To remove 1px padding from input-flex-container
 
   // Expanded
   &:where([data-iui-expanded='true']) {
     inline-size: 100%;
     border-color: var(--_iui-input-border-color);
-    padding-inline-start: 0; // To prevent layout shift when toggling between collapsed and expanded states
-  }
-
-  // Collapsed
-  &:where(:not([data-iui-expanded='true'])) {
-    padding-inline: 0; // To center iui-searchbox-open-button inline in collapsed state
   }
 }
 

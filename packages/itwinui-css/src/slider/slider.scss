@@ -217,7 +217,7 @@ $iui-slider-tick-thickness: 1px;
 }
 
 .iui-slider-thumb {
-  box-sizing: content-box;
+  box-sizing: content-box !important;
   position: absolute;
   block-size: $iui-slider-thumb-size;
   inline-size: $iui-slider-thumb-size;
