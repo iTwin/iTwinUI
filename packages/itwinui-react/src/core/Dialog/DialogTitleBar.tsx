@@ -76,6 +76,7 @@ export const DialogTitleBar = Object.assign(
                 styleType='borderless'
                 onClick={onClose}
                 aria-label='Close'
+                data-iui-shift='right'
               >
                 <SvgClose />
               </IconButton>

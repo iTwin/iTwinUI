@@ -15,11 +15,10 @@ export const LineClamp = React.forwardRef((props, forwardedRef) => {
       ref={forwardedRef}
       {...rest}
       style={
-        { '--iui-line-clamp': lines, ...props.style } as React.CSSProperties
+        { '--_iui-line-clamp': lines, ...props.style } as React.CSSProperties
       }
     >
-      <ShadowRoot>
-        <style>{css}</style>
+      <ShadowRoot css={css}>
         <slot />
       </ShadowRoot>
       {children}
@@ -31,7 +30,7 @@ const css = /* css */ `
   :host {
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: var(--iui-line-clamp, 3);
+    -webkit-line-clamp: var(--_iui-line-clamp, 3);
     -webkit-box-orient: vertical;
   }
 `;

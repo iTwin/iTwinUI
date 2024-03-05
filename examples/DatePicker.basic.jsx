@@ -3,16 +3,39 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
-import { DatePicker } from '@itwin/itwinui-react';
+import { DatePicker, IconButton, Popover } from '@itwin/itwinui-react';
+import { SvgCalendar } from '@itwin/itwinui-icons-react';
 
 export default () => {
   const [currentDate, setCurrentDate] = React.useState(new Date());
+  const [visible, setVisible] = React.useState(false);
   return (
-    <DatePicker
-      date={currentDate}
-      onChange={(date) => {
-        setCurrentDate(date);
-      }}
-    />
+    <div className='demo-container'>
+      <Popover
+        content={
+          <DatePicker
+            date={currentDate}
+            onChange={(date) => {
+              setCurrentDate(date);
+              setVisible(false);
+            }}
+            setFocus
+          />
+        }
+        placement='bottom-start'
+        visible={visible}
+        onVisibleChange={setVisible}
+      >
+        <IconButton
+          label='Choose date'
+          onClick={() => {
+            setVisible(!visible);
+          }}
+        >
+          <SvgCalendar />
+        </IconButton>
+      </Popover>
+      <span>{currentDate.toDateString()}</span>
+    </div>
   );
 };
