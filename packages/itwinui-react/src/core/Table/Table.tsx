@@ -35,7 +35,6 @@ import {
   useLayoutEffect,
   Box,
   createWarningLogger,
-  ShadowRoot,
   mergeRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
@@ -758,15 +757,6 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
-      // Handle header properties, regardless of whether the table is resizable
-      setHeaderScrollWidth(headerRef.current?.scrollWidth ?? 0);
-      setHeaderClientWidth(headerRef.current?.clientWidth ?? 0);
-
-      // Handle table properties, but only when table is resizable
-      if (!isResizable) {
-        return;
-      }
-
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -788,18 +778,9 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [
-      dispatch,
-      state.columnResizing.columnWidths,
-      flatHeaders,
-      instance,
-      isResizable,
-    ],
+    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
-
-  const [headerScrollWidth, setHeaderScrollWidth] = React.useState(0);
-  const [headerClientWidth, setHeaderClientWidth] = React.useState(0);
 
   // Flexbox handles columns resize so we take new column widths before browser repaints.
   useLayoutEffect(() => {
@@ -899,7 +880,9 @@ export const Table = <
       <Box
         ref={mergeRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
-          resizeRef(element);
+          if (isResizable) {
+            resizeRef(element);
+          }
         })}
         id={id}
         {...getTableProps({
@@ -1091,20 +1074,6 @@ export const Table = <
             (isSelectable && selectionMode === 'multi') || undefined
           }
         >
-          <ShadowRoot>
-            <slot />
-            {rows.length === 0 && headerScrollWidth > headerClientWidth && (
-              <div
-                aria-hidden
-                style={{
-                  // This ensures that the table-body is always the same width as the table-header,
-                  // even if the table has no rows. See https://github.com/iTwin/iTwinUI/pull/1725
-                  width: headerScrollWidth,
-                  height: 0.1,
-                }}
-              />
-            )}
-          </ShadowRoot>
           {data.length !== 0 && (
             <>
               {enableVirtualization ? (
