@@ -25,29 +25,31 @@ const axeConfigPerExample = (example) => {
 describe('Should have no WCAG violations', () => {
   const componentName = Cypress.env('componentName');
 
-  Object.entries(allExamples)
-    .filter(([name, Component]) => name.includes(componentName))
-    .forEach(([name, Component]) => {
-      it(name, () => {
-        cy.mount(
-          <ThemeProvider theme='dark' style={{ height: '100vh' }}>
-            <Component />
-          </ThemeProvider>,
-        );
-        cy.injectAxe({
-          axeCorePath: Cypress.env('axeCorePath'),
-        });
+  const examples = Object.entries(allExamples).filter(([name, Component]) =>
+    name.includes(componentName),
+  );
 
-        cy.configureAxe(axeConfigPerExample(name));
+  examples.forEach(([name, Component]) => {
+    it(name, () => {
+      cy.mount(
+        <ThemeProvider theme='dark' style={{ height: '100vh' }}>
+          <Component />
+        </ThemeProvider>,
+      );
+      cy.injectAxe({
+        axeCorePath: Cypress.env('axeCorePath'),
+      });
 
-        cy.checkA11y(undefined, undefined, (violations) => {
-          const violationData = violations.map(({ id, help }) => ({
-            Component: name,
-            'Rule ID': id,
-            Description: help,
-          }));
-          cy.task('table', violationData);
-        });
+      cy.configureAxe(axeConfigPerExample(name));
+
+      cy.checkA11y(undefined, undefined, (violations) => {
+        const violationData = violations.map(({ id, help }) => ({
+          Component: name,
+          'Rule ID': id,
+          Description: help,
+        }));
+        cy.task('table', violationData);
       });
     });
+  });
 });
