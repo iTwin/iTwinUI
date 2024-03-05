@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   isolation: isolate;
-  overflow: scroll;
 
   @include iui-table-cell-icon;
 }
@@ -25,8 +24,7 @@
 @mixin iui-table-header-wrapper {
   @include table-scrollbar;
   scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
-  overflow-x: visible;
-  inline-size: min-content;
+  overflow-x: hidden;
   // overflow-x: scroll;
 
   // Set the scrollbar width to 0 for only the horizontal scrollbar to prevent the horizontal scrollbar from appearing
@@ -356,8 +354,7 @@
 
 @mixin iui-table-body {
   @include table-scrollbar;
-  overflow-x: visible;
-  inline-size: min-content;
+  overflow-x: auto;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
