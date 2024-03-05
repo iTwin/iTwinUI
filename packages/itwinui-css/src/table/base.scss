@@ -11,6 +11,11 @@
   scrollbar-gutter: stable;
 
   @include iui-table-cell-icon;
+
+  > .iui-table-paginator {
+    position: sticky;
+    inset-block-end: 0;
+  }
 }
 
 /// Preserves empty scrollbar space using scrollbar-gutter, with
