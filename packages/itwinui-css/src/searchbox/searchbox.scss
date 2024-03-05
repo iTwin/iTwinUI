@@ -1,9 +1,6 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 
-@use '../utils/icon' as *;
-@use 'sass:map';
-
 .iui-expandable-searchbox {
   inline-size: fit-content;
   padding-inline: 0; // To remove 1px padding from input-flex-container
