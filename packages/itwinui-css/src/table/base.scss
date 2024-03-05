@@ -7,7 +7,8 @@
   display: flex;
   flex-direction: column;
   isolation: isolate;
-  overflow: scroll;
+  overflow: auto;
+  scrollbar-gutter: stable;
 
   @include iui-table-cell-icon;
 }
