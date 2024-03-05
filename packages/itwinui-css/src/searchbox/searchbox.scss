@@ -5,7 +5,7 @@
 @use 'sass:map';
 
 .iui-expandable-searchbox {
-  inline-size: auto;
+  inline-size: fit-content;
   padding-inline: 0; // To remove 1px padding from input-flex-container
 
   // Expanded
