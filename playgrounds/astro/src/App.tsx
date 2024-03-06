@@ -1,4 +1,4 @@
-import { Button } from '@itwin/itwinui-react';
+import { Button } from '#itwinuireact';
 
 export default function App() {
   return (

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createRoot } from 'react-dom/client';
-import { ThemeProvider } from '@itwin/itwinui-react';
+import { ThemeProvider } from '#itwinuireact';
 import App from './App.tsx';
 import { SvgMoon, SvgSun } from '@itwin/itwinui-icons-react';
 import styles from './main.module.css';

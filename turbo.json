@@ -1,46 +1,101 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "globalDotEnv": [".env"],
+  "globalDotEnv": [
+    ".env"
+  ],
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**"
+      ]
     },
     "@itwin/itwinui-css#build": {
-      "dependsOn": ["@itwin/itwinui-variables#build"],
-      "outputs": ["css/**"]
+      "dependsOn": [
+        "@itwin/itwinui-variables#build"
+      ],
+      "outputs": [
+        "css/**"
+      ]
+    },
+    "@itwin/itwinui-css#build:css": {
+      "dependsOn": [
+        "@itwin/itwinui-variables#build"
+      ]
     },
     "@itwin/itwinui-react#build": {
-      "dependsOn": ["^build"],
-      "outputs": ["esm/**", "cjs/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "esm/**",
+        "cjs/**"
+      ]
+    },
+    "@itwin/itwinui-react#build:styles": {
+      "dependsOn": [
+        "@itwin/itwinui-css#build:css"
+      ]
     },
     "react-workshop#build": {
-      "dependsOn": ["^build"],
-      "outputs": ["build/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "build/**"
+      ]
     },
     "test": {},
     "react-workshop#test": {
-      "dependsOn": ["build"],
-      "outputs": ["dist/**", "build/**"]
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ]
     },
     "css-workshop#test": {
-      "dependsOn": ["build"],
-      "outputs": ["dist/**", "build/**"]
+      "dependsOn": [
+        "build"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ]
     },
     "a11y#test": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", "build/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        "build/**"
+      ]
     },
     "lint": {},
     "dev": {
-      "dependsOn": [],
-      "dotEnv": [".env.development", ".env.local"],
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles"
+      ],
+      "dotEnv": [
+        ".env.development",
+        ".env.local"
+      ],
       "cache": false
     },
     "vite-playground#dev": {
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles"
+      ],
       "persistent": true
     },
     "css-workshop#dev": {
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles"
+      ],
       "persistent": true
     },
     "format": {},

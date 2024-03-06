@@ -1,4 +1,4 @@
-import { Button } from '@itwin/itwinui-react';
+import { Button } from '#itwinuireact';
 
 const App = () => {
   return (

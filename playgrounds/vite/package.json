@@ -3,6 +3,12 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "imports": {
+    "#itwinuireact": {
+      "node": "@itwin/itwinui-react",
+      "default": "../../packages/itwinui-react/src/index"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

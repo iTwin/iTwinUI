@@ -5,7 +5,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import { ThemeProvider } from '@itwin/itwinui-react';
+import { ThemeProvider } from '#itwinuireact';
 import '@itwin/itwinui-react/styles.css';
 import './root.css';
 
