@@ -57,10 +57,6 @@
       cursor: grabbing;
     }
 
-    .iui-table-filter-button:not([data-iui-active='true']) {
-      opacity: 0;
-    }
-
     > .iui-table-resizer {
       block-size: 100%;
       inline-size: var(--iui-size-m);
@@ -93,21 +89,12 @@
       opacity: 1;
     }
 
-    &:is(:hover, :focus-visible, :has(:focus-visible)) {
+    &:is(:hover, :focus-visible),
+    &:has(:focus-visible) {
       background-color: var(--iui-color-background-hover);
 
-      :is(.iui-table-sort, .iui-table-filter-button) {
+      .iui-table-sort {
         opacity: 1;
-      }
-    }
-
-    @supports not selector(:has(+ *)) {
-      &:focus-within {
-        background-color: var(--iui-color-background-hover);
-
-        :is(.iui-table-sort, .iui-table-filter-button) {
-          opacity: 1;
-        }
       }
     }
   }
@@ -334,14 +321,12 @@
   flex-grow: 1;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: flex-end;
   margin-inline-end: var(--iui-size-s);
 
   .iui-table-cell-end-icon {
-    // Hardcoded size of the borderless button so that the icons are centered
-    inline-size: 28px;
-    block-size: 28px;
-    margin-inline-end: initial;
+    inline-size: unset;
+    block-size: unset;
+    margin: 0;
     margin-inline-start: auto;
   }
 }
