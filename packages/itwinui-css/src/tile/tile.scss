@@ -291,7 +291,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 @mixin iui-tile-thumbnail {
   order: -1;
-  box-sizing: content-box;
+  box-sizing: content-box !important;
   block-size: calc(var(--iui-size-s) * 13);
   flex-shrink: 0;
   overflow: hidden;
