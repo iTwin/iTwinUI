@@ -13,7 +13,10 @@ export default defineConfig((props) => {
       globals: true,
       environment: 'jsdom',
       setupFiles: 'setupTests.ts',
-      include: mode ? [`src/**/${mode}.test.ts?(x)`] : ['src/**/*.test.ts?(x)'],
+      include:
+        mode !== 'test'
+          ? [`src/**/${mode}.test.ts?(x)`]
+          : ['src/**/*.test.ts?(x)'],
       exclude: ['/node_modules/', '/esm/', '/cjs/'],
       reporters: ['junit', 'default'],
       outputFile: 'coverage/junit.xml',
