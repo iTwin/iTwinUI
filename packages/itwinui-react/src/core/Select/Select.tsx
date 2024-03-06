@@ -167,7 +167,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
           onChangeProp?.(event.currentTarget.value, event);
         })}
       >
-        {placeholder !== undefined ? (
+        {styleType !== 'borderless' && placeholder !== undefined ? (
           <option value='' disabled>
             {placeholder}
           </option>
