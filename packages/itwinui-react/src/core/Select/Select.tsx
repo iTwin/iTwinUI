@@ -219,19 +219,35 @@ type NativeSelectProps = SelectCommonProps & {
    */
   defaultValue?: string;
   /**
-   * Placeholder for when no item is selected.
-   *
-   * Will be rendered as a disabled option at the top of the list, and automatically
-   * selected when no `value` or `defaultValue` is provided.
-   */
-  placeholder?: string;
-  /**
    * Props to pass to the select element.
    */
   triggerProps?: Omit<React.ComponentPropsWithRef<'select'>, 'size'>;
   required?: boolean;
   multiple?: never;
-};
+} & NativeSelectStyleTypeProps;
+
+type NativeSelectStyleTypeProps =
+  | {
+      /**
+       * Style of the select.
+       * Use 'borderless' to hide outline.
+       * @default 'default'
+       */
+      styleType: 'default';
+      /**
+       * Placeholder for when no item is selected.
+       *
+       * Will be rendered as a disabled option at the top of the list, and automatically
+       * selected when no `value` or `defaultValue` is provided.
+       *
+       * Not allowed when `styleType` is `borderless`.
+       */
+      placeholder?: string;
+    }
+  | {
+      styleType?: 'borderless';
+      placeholder?: never;
+    };
 
 type SelectCommonProps = {
   /**
@@ -243,12 +259,6 @@ type SelectCommonProps = {
    * Modify size of select.
    */
   size?: 'small' | 'large';
-  /**
-   * Style of the select.
-   * Use 'borderless' to hide outline.
-   * @default 'default'
-   */
-  styleType?: 'default' | 'borderless';
   /**
    * Status of select.
    */
@@ -487,10 +497,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
 
 export type CustomSelectProps<T> = SelectCommonProps & {
   /**
-   * Placeholder when no item is selected.
-   */
-  placeholder?: React.ReactNode;
-  /**
    * Array of options that populates the select menu.
    */
   options: SelectOption<T>[];
@@ -525,10 +531,31 @@ export type CustomSelectProps<T> = SelectCommonProps & {
    */
   triggerProps?: React.ComponentPropsWithRef<'div'>;
 } & SelectMultipleTypeProps<T> &
+  CustomSelectStyleTypeProps &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
     'size' | 'disabled' | 'placeholder' | 'onChange'
   >;
+
+export type CustomSelectStyleTypeProps =
+  | {
+      /**
+       * Style of the select.
+       * Use 'borderless' to hide outline.
+       * @default 'default'
+       */
+      styleType: 'borderless';
+      /**
+       * Placeholder when no item is selected.
+       *
+       * Not allowed when `styleType` is `borderless`.
+       */
+      placeholder?: never;
+    }
+  | {
+      styleType?: 'default';
+      placeholder?: React.ReactNode;
+    };
 
 export type SelectValueChangeEvent = 'added' | 'removed';
 
