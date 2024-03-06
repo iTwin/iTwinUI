@@ -5,7 +5,7 @@ const App = () => {
     <>
       <Button>Hello world</Button>
 
-      {[false, true].flatMap((multiple) => {
+      {/* {[false, true].flatMap((multiple) => {
         return [false, true].flatMap((native) => {
           return ['default', 'borderless'].flatMap((styleType) => {
             return (
@@ -17,7 +17,19 @@ const App = () => {
             );
           });
         });
-      })}
+      })} */}
+
+      <Select
+        multiple={false}
+        native={true}
+        styleType={'default'}
+        defaultValue='3'
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+        ]}
+      />
 
       <LabeledSelect
         // placeholder={<div>q</div>}
