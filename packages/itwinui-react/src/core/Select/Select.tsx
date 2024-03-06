@@ -293,8 +293,22 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
-  const [uncontrolledValue, setUncontrolledValue] =
-    React.useState<unknown>(defaultValueProp);
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>(
+    (() => {
+      if (defaultValueProp !== undefined) {
+        return defaultValueProp;
+      }
+
+      // If borderless, empty value is not allowed.
+      if (styleType === 'borderless') {
+        return isMultipleEnabled(valueProp, multiple)
+          ? [options[0]?.value]
+          : options[0]?.value;
+      }
+
+      return undefined;
+    })(),
+  );
   const value = valueProp !== undefined ? valueProp : uncontrolledValue;
 
   const onChangeRef = useLatestRef(onChangeProp);
@@ -431,7 +445,9 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           className={cx(
             {
               'iui-placeholder':
-                (!selectedItems || selectedItems.length === 0) && !!placeholder,
+                styleType !== 'borderless' &&
+                (!selectedItems || selectedItems.length === 0) &&
+                !!placeholder,
               'iui-disabled': disabled,
             },
             triggerProps?.className,
