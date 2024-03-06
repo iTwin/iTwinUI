@@ -150,8 +150,10 @@ export const LabeledSelect = React.forwardRef(
           disabled={disabled}
           className={className}
           style={style}
-          {...{ required: props.native ? required : undefined }}
-          {...rest}
+          {...({
+            required: props.native ? required : undefined,
+            ...rest,
+          } as SelectProps<T>)}
           ref={forwardedRef}
         />
         {typeof message === 'string' ? (
