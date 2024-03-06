@@ -717,7 +717,10 @@ export const Table = <
   // This is to avoid the old columnOrder from affecting the new columns' columnOrder
   React.useEffect(() => {
     // Check if columns have changed (by value)
-    if (JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)) {
+    if (
+      lastPassedColumns.current.length > 0 &&
+      JSON.stringify(lastPassedColumns.current) !== JSON.stringify(columns)
+    ) {
       instance.setColumnOrder([]);
     }
     lastPassedColumns.current = columns;
