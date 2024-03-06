@@ -138,7 +138,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
     onChange: onChangeProp,
     size,
     status,
-    styleType = 'default',
+    styleType,
     required,
     ...rest
   } = props;
@@ -277,7 +277,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     placeholder,
     disabled = false,
     size,
-    styleType = 'default',
+    styleType,
     itemRenderer,
     selectedItemRenderer,
     menuClassName,
@@ -705,7 +705,7 @@ const isSingleOnChange = <T,>(
 // ----------------------------------------------------------------------------
 
 const SelectButton = React.forwardRef((props, forwardedRef) => {
-  const { size, status, styleType, ...rest } = props;
+  const { size, status, styleType = 'default', ...rest } = props;
 
   return (
     <Box
