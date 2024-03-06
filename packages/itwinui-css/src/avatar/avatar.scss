@@ -58,7 +58,7 @@ $avatar-text-color: hsl(0 0% 0% / 0.77);
   &[data-iui-status] {
     &::after {
       content: '';
-      box-sizing: content-box;
+      box-sizing: content-box !important;
       display: flex;
       align-items: center;
       justify-content: center;
