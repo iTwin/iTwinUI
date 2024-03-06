@@ -299,7 +299,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
         return defaultValueProp;
       }
 
-      // If borderless, empty value is not allowed.
+      // If borderless, empty value is not allowed. So, select the first option.
       if (styleType === 'borderless') {
         return isMultipleEnabled(valueProp, multiple)
           ? [options[0]?.value]
