@@ -5,7 +5,7 @@
 import {
   act,
   fireEvent,
-  render,
+  render as rtlRender,
   screen,
   waitFor,
 } from '@testing-library/react';
@@ -39,6 +39,17 @@ import {
   SelectionColumn,
   ExpanderColumn,
 } from './columns/index.js';
+
+/**
+ * Wrapper over `@testing-library/react`'s `render` function that also waits for
+ * all microtasks to be flushed. This is necessary for ShadowRoot to be tested properly.
+ */
+const render = (...args: Parameters<typeof rtlRender>) => {
+  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
+  const result = rtlRender(...args);
+  act(() => vi.runAllTicks());
+  return result;
+};
 
 const intersectionCallbacks = new Map<Element, () => void>();
 vi.spyOn(IntersectionHooks, 'useIntersection').mockImplementation(
@@ -3453,8 +3464,6 @@ it('should sync body horizontal scroll with header scroll', () => {
 });
 
 it('should have a shadow tree in table-body that has a dummy div only when needed', () => {
-  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
-
   const columnWidths = [400, 600, 200];
   const columnWidthsSum = columnWidths.reduce((a, b) => a + b, 0);
 
@@ -3491,7 +3500,6 @@ it('should have a shadow tree in table-body that has a dummy div only when neede
     isResizable: true,
     columnResizeMode: 'expand',
   });
-  act(() => vi.runAllTicks());
 
   // Initial render
   triggerResize({ width: columnWidthsSum } as DOMRectReadOnly);
