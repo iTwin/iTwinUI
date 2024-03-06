@@ -9,6 +9,7 @@
   isolation: isolate;
   overflow: auto;
   scrollbar-gutter: stable;
+  // align-items: flex-start;
 
   @include iui-table-cell-icon;
 
@@ -32,6 +33,7 @@
   scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   position: sticky;
   inset-block-start: 0;
+  // inline-size: fit-content;
   z-index: 2;
 
   background-color: var(--iui-color-background);
@@ -48,6 +50,7 @@
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-block-end: 1px solid var(--iui-color-border);
+  opacity: 0;
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -356,6 +359,11 @@
 }
 
 @mixin iui-table-body {
+  // inline-size: fit-content;
+  overflow-x: visible;
+  // flex-basis: 20000000px;
+  // width: max(auto, 2000px);
+  // overflow-x: scroll;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
