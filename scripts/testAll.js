@@ -37,11 +37,11 @@ const runTests = () => {
 
       exec(command, (error, stdout, stderr) => {
         if (error) {
-          console.log(`${type} test failed`);
+          console.log(`\x1b[31m${type} test failed\x1b[0m`);
           console.error(stderr);
           resolve('\x1b[31mFailure\x1b[0m');
         } else {
-          console.log(`${type} test was successful`);
+          console.log(`\x1b[32m${type} test was successful\x1b[0m`);
           console.log(stdout);
           resolve('\x1b[32mSuccess\x1b[0m');
         }
