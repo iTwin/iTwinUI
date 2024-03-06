@@ -71,7 +71,7 @@ export const DefaultCell = <T extends Record<string, unknown>>(
       style={{ ...cellElementStyle, ...style }}
     >
       <ShadowRoot>
-        <slot name='expander' />
+        <slot name='start' />
         {clamp ? (
           <LineClamp>
             <slot />
@@ -79,14 +79,21 @@ export const DefaultCell = <T extends Record<string, unknown>>(
         ) : (
           <slot />
         )}
+        <slot name='end' />
         <slot name='shadows' />
       </ShadowRoot>
 
       {startIcon && (
-        <Box className='iui-table-cell-start-icon'>{startIcon}</Box>
+        <Box className='iui-table-cell-start-icon' slot='start'>
+          {startIcon}
+        </Box>
       )}
       {children}
-      {endIcon && <Box className='iui-table-cell-end-icon'>{endIcon}</Box>}
+      {endIcon && (
+        <Box className='iui-table-cell-end-icon' slot='end'>
+          {endIcon}
+        </Box>
+      )}
     </Box>
   );
 };

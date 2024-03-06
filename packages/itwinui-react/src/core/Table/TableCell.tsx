@@ -74,7 +74,7 @@ export const TableCell = <T extends Record<string, unknown>>(
           cellProps={cellProps}
           expanderCell={expanderCell}
           density={density}
-          slot='expander'
+          slot='start'
         />
       )}
       {cell.render('Cell')}
