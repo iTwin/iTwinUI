@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.12.25
+
+### Patch Changes
+
+- b517fd0c: Fixed a bug in `Table` where `initialState.columnOrder` was not being respected.
+
 ## 2.12.24
 
 ### Patch Changes
