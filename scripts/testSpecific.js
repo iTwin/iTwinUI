@@ -49,12 +49,6 @@ const runTests = () => {
     });
   };
 
-  /*
-why doesnt react visual testing always work?
-how important are capitals and how can i fix that
- get more detailed information for errors and postive
- */
-
   Promise.all(
     commands.map(({ type, command }) => runCommand(type, command)),
   ).then((results) => {

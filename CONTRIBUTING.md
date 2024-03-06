@@ -112,6 +112,8 @@ This is why it's recommended to use the turbo `--filter` syntax whenever possibl
 pnpm run build --filter=react-workshop
 ```
 
+
+
 ---
 
 ### Creating components
@@ -373,6 +375,15 @@ In the terminal, a table will be produced for each violating component with the 
 In Cypress, if the component violates a Axe rule, its rule ID and the number of offending nodes will be output in a line in the testing window. You can click on the line to highlight the offending nodes in the test browser and to output more information in the browser console.  
 
 For more information on the Axe rule IDs and their meanings, visit [Deque University's list of Axe rules.](https://dequeuniversity.com/rules/axe/4.4/)
+
+### Running All Tests for a Specific Component
+
+Unit, `a11y`, and all visual tests for a specific component can be run concurrently with a single command.
+
+#### How to run tests:
+
+- Make sure Docker is running.
+- From the monorepo root, run `pnpm test:specific [component_name]` e.g. `pnpm test:specific Alert`. Please note that this test is case sensitive, e.g. `pnpm test:specific alert` will fail.
 
 ---
 
