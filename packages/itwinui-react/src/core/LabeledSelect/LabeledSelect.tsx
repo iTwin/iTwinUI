@@ -73,7 +73,7 @@ export type LabeledSelectProps<T> = {
    */
   messageIconProps?: React.ComponentProps<typeof Icon>;
 } & Pick<LabeledInputProps, 'displayStyle'> &
-  SelectProps<T>;
+  Omit<SelectProps<T>, 'styleType'>;
 
 /**
  * Labeled select component to select value from options.
