@@ -119,7 +119,7 @@ export { Radio } from './core/Radio/Radio.js';
 export { RadioTile } from './core/RadioTiles/RadioTile.js';
 export { RadioTileGroup } from './core/RadioTiles/RadioTileGroup.js';
 
-export { Select } from './core/Select/Select.js';
+export { Select, CustomSelect, NativeSelect } from './core/Select/Select.js';
 export type {
   SelectOption,
   ItemRendererProps,

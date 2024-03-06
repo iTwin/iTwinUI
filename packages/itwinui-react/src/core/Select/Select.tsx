@@ -127,7 +127,7 @@ export type SelectProps<T> = Omit<
 
 // ----------------------------------------------------------------------------
 
-const NativeSelect = React.forwardRef((props, forwardedRef) => {
+export const NativeSelect = React.forwardRef((props, forwardedRef) => {
   const {
     triggerProps,
     options,
@@ -267,7 +267,7 @@ type SelectCommonProps = {
 
 // ----------------------------------------------------------------------------
 
-const CustomSelect = React.forwardRef((props, forwardedRef) => {
+export const CustomSelect = React.forwardRef((props, forwardedRef) => {
   const uid = useId();
 
   const {
@@ -571,6 +571,10 @@ export type CustomSelectStyleTypeProps<T> =
       placeholder?: never;
     } & (
       | {
+          multiple: true;
+          defaultValue: T[];
+        }
+      | {
           multiple?: false;
           /**
            * Default value that is selected on initial render. This is useful when you don't want to
@@ -580,22 +584,18 @@ export type CustomSelectStyleTypeProps<T> =
            */
           defaultValue: T;
         }
-      | {
-          multiple: true;
-          defaultValue: T[];
-        }
     ))
   | ({
       styleType?: 'default';
       placeholder?: React.ReactNode;
     } & (
       | {
-          multiple?: false;
-          defaultValue?: T;
-        }
-      | {
           multiple: true;
           defaultValue?: T[];
+        }
+      | {
+          multiple?: false;
+          defaultValue?: T;
         }
     ));
 
