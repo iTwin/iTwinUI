@@ -286,13 +286,15 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     triggerProps,
     status,
     popoverProps,
+    defaultValue: defaultValueProp,
     ...rest
   } = props;
 
   const [isOpen, setIsOpen] = React.useState(false);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>();
+  const [uncontrolledValue, setUncontrolledValue] =
+    React.useState<unknown>(defaultValueProp);
   const value = valueProp !== undefined ? valueProp : uncontrolledValue;
 
   const onChangeRef = useLatestRef(onChangeProp);
@@ -531,13 +533,13 @@ export type CustomSelectProps<T> = SelectCommonProps & {
    */
   triggerProps?: React.ComponentPropsWithRef<'div'>;
 } & SelectMultipleTypeProps<T> &
-  CustomSelectStyleTypeProps &
+  CustomSelectStyleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
-    'size' | 'disabled' | 'placeholder' | 'onChange'
+    'size' | 'disabled' | 'placeholder' | 'onChange' | 'defaultValue'
   >;
 
-export type CustomSelectStyleTypeProps =
+export type CustomSelectStyleTypeProps<T> =
   | {
       /**
        * Style of the select.
@@ -546,14 +548,22 @@ export type CustomSelectStyleTypeProps =
        */
       styleType: 'borderless';
       /**
+       * Default value that is selected on initial render. This is useful when you don't want to
+       * maintain your own state but still want to control the initial value.
+       *
+       * This must be passed when `styleType` is `borderless`.
+       */
+      defaultValue: T;
+      /**
        * Placeholder when no item is selected.
        *
-       * Not allowed when `styleType` is `borderless`.
+       * When `styleType=borderless`, `placeholder` is not allowed. Additionally, a `defaultValue` must be provided.
        */
       placeholder?: never;
     }
   | {
       styleType?: 'default';
+      defaultValue?: T;
       placeholder?: React.ReactNode;
     };
 
