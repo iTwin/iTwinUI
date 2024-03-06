@@ -556,7 +556,7 @@ export type CustomSelectProps<T> = SelectCommonProps & {
   >;
 
 export type CustomSelectStyleTypeProps<T> =
-  | {
+  | ({
       /**
        * Style of the select.
        * Use 'borderless' to hide outline.
@@ -564,24 +564,40 @@ export type CustomSelectStyleTypeProps<T> =
        */
       styleType: 'borderless';
       /**
-       * Default value that is selected on initial render. This is useful when you don't want to
-       * maintain your own state but still want to control the initial value.
-       *
-       * This must be passed when `styleType` is `borderless`.
-       */
-      defaultValue: T;
-      /**
        * Placeholder when no item is selected.
        *
        * When `styleType=borderless`, `placeholder` is not allowed. Additionally, a `defaultValue` must be provided.
        */
       placeholder?: never;
-    }
-  | {
+    } & (
+      | {
+          multiple?: false;
+          /**
+           * Default value that is selected on initial render. This is useful when you don't want to
+           * maintain your own state but still want to control the initial value.
+           *
+           * This must be passed when `styleType` is `borderless`. Else, the first option will be automatically selected.
+           */
+          defaultValue: T;
+        }
+      | {
+          multiple: true;
+          defaultValue: T[];
+        }
+    ))
+  | ({
       styleType?: 'default';
-      defaultValue?: T;
       placeholder?: React.ReactNode;
-    };
+    } & (
+      | {
+          multiple?: false;
+          defaultValue?: T;
+        }
+      | {
+          multiple: true;
+          defaultValue?: T[];
+        }
+    ));
 
 export type SelectValueChangeEvent = 'added' | 'removed';
 

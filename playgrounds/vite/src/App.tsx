@@ -9,8 +9,10 @@ const App = () => {
         // placeholder={9}
         // placeholder={false}
         // placeholder={'Select an option'}
-        defaultValue='3'
-        styleType='borderless'
+        // defaultValue={['3']}
+        // defaultValue={'3'}
+        // styleType='borderless'
+        multiple={true}
         // defaultValue='3'
         // native={true}
         native={false}
