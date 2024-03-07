@@ -122,7 +122,12 @@ export type SelectProps<T> = Omit<
          */
         native: true;
       } & NativeSelectProps)
-    | ({ native?: false } & CustomSelectProps<T>)
+    | ({ native?: false } & CustomSelectProps<T> & {
+          /**
+           * styleType is only supported for `<Select native>`.
+           */
+          styleType?: never;
+        })
   );
 
 // ----------------------------------------------------------------------------
