@@ -150,11 +150,11 @@ export const LabeledSelect = React.forwardRef(
           disabled={disabled}
           className={className}
           style={style}
+          ref={forwardedRef}
           {...({
             required: props.native ? required : undefined,
             ...rest,
           } as SelectProps<T>)}
-          ref={forwardedRef}
           styleType='default' // borderless is not allowed in LabeledSelect
         />
         {typeof message === 'string' ? (
