@@ -23,7 +23,7 @@ const runTests = () => {
     },
     {
       type: 'Unit',
-      command: `cd ./packages/itwinui-react/src/core && pnpm run test:unit --mode ${componentName} && cd ../../../../..`,
+      command: `cd ./packages/itwinui-react/src/core && pnpm test:unit --mode ${componentName} && cd ../../../../..`,
     },
     {
       type: 'A11y',

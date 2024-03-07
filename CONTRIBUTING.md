@@ -378,7 +378,7 @@ For more information on the Axe rule IDs and their meanings, visit [Deque Univer
 
 ### Running All Tests for a Specific Component
 
-Unit, `a11y`, and all visual tests for a specific component can be run concurrently with a single command.
+Unit, `a11y`, and both visual tests for a specific component can be run concurrently with a single command: `test:specific`.
 
 #### How to run tests:
 
