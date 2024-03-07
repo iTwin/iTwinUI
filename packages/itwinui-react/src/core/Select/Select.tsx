@@ -546,7 +546,7 @@ export type CustomSelectProps<T> = SelectCommonProps & {
 } & CustomSelectMultipleAndStyleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
-    'size' | 'disabled' | 'placeholder' | 'onChange' | 'defaultValue'
+    'size' | 'disabled' | 'placeholder' | 'onChange'
   >;
 
 export type SelectValueChangeEvent = 'added' | 'removed';
