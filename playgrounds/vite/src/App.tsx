@@ -127,7 +127,13 @@ const SelectTest = (
         // multiple={undefined}
         // native={native}
         // native={nativeProp}
-        native={myBoolean}
+        // styleType='borderless'
+        // native={false}
+        multiple={multiple}
+        styleType={'default'}
+        // defaultValue={['3']}
+        // defaultValue='3'
+        // placeholder='Choose an option'
         // styleType={styleType}
         options={[
           { label: 'Option 1', value: '1' },
