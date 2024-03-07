@@ -1,29 +1,42 @@
 import { Button, LabeledSelect, Select } from '@itwin/itwinui-react';
 
 const App = () => {
+  const isNative: boolean = false;
+
   return (
     <>
       <Button>Hello world</Button>
 
-      {/* {[false, true].flatMap((multiple) => {
+      {[false, true].flatMap((multiple) => {
         return [false, true].flatMap((native) => {
           return ['default', 'borderless'].flatMap((styleType) => {
             return (
               <SelectTest
                 multiple={multiple}
                 native={native}
-                styleType={styleType}
+                styleType={styleType as 'default' | 'borderless'}
               />
             );
           });
         });
-      })} */}
+      })}
 
       <Select
-        multiple={undefined}
-        native={true}
-        styleType={'default'}
-        defaultValue='3'
+        // multiple={undefined}
+        native={isNative}
+        // styleType={'default'}
+        // defaultValue='3'
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+        ]}
+      />
+
+      <Select
+        // multiple={undefined}
+        native={isNative}
+        // styleType={styleType}
         options={[
           { label: 'Option 1', value: '1' },
           { label: 'Option 2', value: '2' },
@@ -56,16 +69,43 @@ export default App;
 
 // ----------------------------------------------------------------------------
 
-const SelectTest = ({
-  multiple,
-  native,
-  styleType,
-}: {
-  multiple: any;
-  native: any;
-  styleType: any;
-}) => {
-  const invalid = native && multiple;
+const SelectTest = (
+  // {
+  //   // multiple: multipleProp,
+  //   // native: nativeProp,
+  //   // styleType: styleTypeProp,
+  //   multiple,
+  //   native,
+  //   styleType,
+  // }
+  props: {
+    multiple: boolean;
+    native: boolean;
+    styleType: 'default' | 'borderless';
+  },
+) => {
+  const {
+    // multiple: multipleProp,
+    // native: nativeProp,
+    // styleType: styleTypeProp,
+    multiple,
+    native,
+    styleType,
+  } = props;
+
+  // const invalid = native && multiple;
+
+  // let multiple = multipleProp;
+  // let native = nativeProp;
+  // let styleType = styleTypeProp;
+
+  // // No multiple for native select
+  // if (nativeProp) {
+  //   multiple = undefined;
+  // }
+
+  const myNumber: number = 1;
+  const myBoolean = myNumber === 1;
 
   return (
     <div
@@ -75,26 +115,26 @@ const SelectTest = ({
         padding: '5px',
       }}
     >
-      <b>
+      {/* <b>
         {JSON.stringify({
-          multiple: multiple,
-          native: native,
-          styleType: styleType,
+          multiple: multipleProp,
+          native: nativeProp,
+          styleType: styleTypeProp,
         })}
-      </b>
+      </b> */}
 
-      {!invalid && (
-        <Select
-          multiple={multiple}
-          native={native}
-          styleType={styleType}
-          options={[
-            { label: 'Option 1', value: '1' },
-            { label: 'Option 2', value: '2' },
-            { label: 'Option 3', value: '3' },
-          ]}
-        />
-      )}
+      <Select
+        // multiple={undefined}
+        // native={native}
+        // native={nativeProp}
+        native={myBoolean}
+        // styleType={styleType}
+        options={[
+          { label: 'Option 1', value: '1' },
+          { label: 'Option 2', value: '2' },
+          { label: 'Option 3', value: '3' },
+        ]}
+      />
     </div>
   );
 };
