@@ -25,12 +25,10 @@ const axeConfigPerExample = (example) => {
 
 describe('Should have no WCAG violations', () => {
   const componentName = Cypress.env('componentName');
-  const examples = Object.entries(allExamples);
 
-  const examplesToTest =
-    componentName !== undefined
-      ? examples.filter(([name, Component]) => name.includes(componentName))
-      : examples;
+  const examplesToTest = Object.entries(allExamples).filter(
+    ([name]) => componentName === undefined || name.includes(componentName),
+  );
 
   examplesToTest.forEach(([name, Component]) => {
     it(name, () => {
