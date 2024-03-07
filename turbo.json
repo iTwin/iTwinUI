@@ -47,6 +47,8 @@
         "build/**"
       ]
     },
+    "build:cjs": {},
+    "build:esm": {},
     "test": {},
     "react-workshop#test": {
       "dependsOn": [
@@ -85,6 +87,13 @@
         ".env.local"
       ],
       "cache": false
+    },
+    "remix-playground#dev": {
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles",
+        "@itwin/itwinui-react#build:cjs",
+        "@itwin/itwinui-react#build:esm"
+      ]
     },
     "vite-playground#dev": {
       "dependsOn": [

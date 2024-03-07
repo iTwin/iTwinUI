@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node';
-import { Button } from '#itwinuireact';
+import { Button } from '@itwin/itwinui-react';
 
 export const meta: MetaFunction = () => {
   return [
