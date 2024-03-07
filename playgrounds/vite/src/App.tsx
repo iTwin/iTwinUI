@@ -20,7 +20,7 @@ const App = () => {
       })} */}
 
       <Select
-        multiple={false}
+        multiple={undefined}
         native={true}
         styleType={'default'}
         defaultValue='3'
