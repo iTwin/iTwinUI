@@ -273,7 +273,14 @@ export const Native = () => {
     { value: '3', label: 'Item #3' },
     { value: '4', label: 'Item #3' },
   ];
-  return <Select native options={options} placeholder='Choose an option' />;
+  return (
+    <Select
+      native
+      styleType='default'
+      options={options}
+      placeholder='Choose an option'
+    />
+  );
 };
 
 export const Borderless = () => {
@@ -282,5 +289,5 @@ export const Borderless = () => {
     { value: '2', label: 'Item #2', disabled: true },
     { value: '3', label: 'Item #3' },
   ];
-  return <Select options={options} styleType='borderless' defaultValue='1' />;
+  return <Select styleType='borderless' options={options} defaultValue='1' />;
 };
