@@ -95,97 +95,11 @@ import { Select } from './Select.js';
 () => {
   return (
     <>
-      {/* Expected type error: */}
-      {/* borderless but missing defaultValue (custom select) */}
-      {/* As a fallback, the first option is selected */}
-      {/* @ts-expect-error (TS 2322) */}
-      <Select
-        styleType='borderless'
-        multiple
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-      <Select
-        styleType='borderless'
-        defaultValue={'1'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-
-      {/* Observation: */}
-      {/* borderless but missing defaultValue (native select) */}
-      {/* No error since defaultValue is not required in borderless native select */}
-      <Select
-        native
-        styleType='borderless'
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-      <Select
-        native
-        styleType='borderless'
-        defaultValue={'1'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-
-      {/* Expected error: */}
-      {/* (borderless + defaultValue) with placeholder (both selects) */}
-      {/* Error since placeholder should not be passed to borderless */}
-      {/* @ts-expect-error (TS 2322) */}
-      <Select
-        styleType='borderless'
-        defaultValue={'1'}
-        placeholder={'Choose an option'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-      {/* @ts-expect-error (TS 2322) */}
-      <Select
-        native
-        styleType='borderless'
-        defaultValue={'1'}
-        placeholder={'Choose an option'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-      <Select
-        styleType='borderless'
-        defaultValue={'1'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
-      <Select
-        native
-        styleType='borderless'
-        defaultValue={'1'}
-        options={[
-          { label: 'Option 1', value: '1' },
-          { label: 'Option 2', value: '2' },
-          { label: 'Option 3', value: '3' },
-        ]}
-      />
+      {/* styleType should not be available in CustomSelect */}
+      {/* @ts-expect-error (T2322) */}
+      <Select styleType={'borderless'} options={[]} />
+      {/* @ts-expect-error (T2322) */}
+      <Select styleType={'default'} options={[]} />
     </>
   );
 };

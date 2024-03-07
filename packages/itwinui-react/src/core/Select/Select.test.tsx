@@ -4,7 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { findAllByRole, fireEvent, render } from '@testing-library/react';
-import { Select, type CustomSelectProps } from './Select.js';
+import {
+  Select,
+  type CustomSelectProps,
+  type SelectMultipleTypeProps,
+} from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { userEvent } from '@testing-library/user-event';
@@ -44,18 +48,16 @@ function assertMenu(
   });
 }
 
-function renderComponent(props?: Partial<CustomSelectProps<number>>) {
-  const { options, ...rest } = props || {};
+function renderComponent(
+  props?: Partial<CustomSelectProps<number>> & SelectMultipleTypeProps<number>,
+) {
   return render(
     <Select<number>
-      {...(rest as CustomSelectProps<number>)}
-      options={
-        options ??
-        [...new Array(3)].map((_, index) => ({
-          label: `Test${index}`,
-          value: index,
-        }))
-      }
+      options={[...new Array(3)].map((_, index) => ({
+        label: `Test${index}`,
+        value: index,
+      }))}
+      {...props}
     />,
   );
 }
@@ -78,62 +80,23 @@ it('should show placeholder', () => {
   assertSelect(select, { text: 'TestPlaceholder', isPlaceholderVisible: true });
 });
 
-it.each(['default', 'borderless', undefined] as const)(
-  'should respect styleType={%s}',
-  (styleType) => {
-    const { container } = renderComponent({
-      styleType: styleType,
-    });
-
-    const selectButton = container.querySelector(
-      '.iui-select-button',
-    ) as HTMLElement;
-
-    if (styleType === 'borderless') {
-      expect(selectButton).toHaveAttribute('data-iui-variant', 'borderless');
-    } else {
-      expect(selectButton).not.toHaveAttribute('data-iui-variant');
-    }
-  },
-);
-
-it.each([true, false] as const)(
-  'should select first option when defaultValue is not provided to borderless select (multiple=%s)',
-  (multiple) => {
-    const { container } = renderComponent({
-      styleType: 'borderless',
-      multiple,
-    });
-
-    if (multiple) {
-      const selectTags = container.querySelectorAll('.iui-select-tag');
-      expect(selectTags.length).toBe(1);
-      expect(selectTags[0]).toHaveTextContent('Test0');
-    } else {
-      const selectButton = container.querySelector(
-        '.iui-select-button',
-      ) as HTMLElement;
-      expect(selectButton).toHaveTextContent('Test0');
-    }
-  },
-);
-
-it.each([true, false])('should respect defaultValue (native=%s)', (native) => {
+it('should respect styleType={"borderless"}', () => {
   const { container } = render(
     <Select
-      native={native}
-      styleType='default'
-      multiple={undefined}
-      defaultValue='B'
+      native
       options={[
         { value: 'A', label: 'A' },
         { value: 'B', label: 'B' },
       ]}
+      styleType='borderless'
     />,
   );
 
-  const select = container.querySelector('.iui-select-button') as HTMLElement;
-  expect(select).toHaveTextContent('B');
+  const selectButton = container.querySelector(
+    '.iui-select-button',
+  ) as HTMLElement;
+
+  expect(selectButton).toHaveAttribute('data-iui-variant', 'borderless');
 });
 
 it('should show value inside select', () => {
@@ -620,7 +583,6 @@ it.each([true, false] as const)(
   async (multiple) => {
     const { container } = render(
       <Select
-        styleType='default'
         multiple={multiple}
         options={[
           { value: 'A', label: 'A' },
