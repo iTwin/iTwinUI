@@ -2,9 +2,9 @@
  * Copyright (c) Bentley Systems, Incorporated. All rights reserved.
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
-const { spawn } = require('child_process');
+const { spawn } = require('node:child_process');
 
-function runTests() {
+try {
   const componentName = process.argv[2];
 
   if (!componentName) {
@@ -12,31 +12,13 @@ function runTests() {
     process.exit(1);
   }
 
-  const commands = [
+  spawn(
+    `conc -g "pnpm run --filter css-workshop test --filter=${componentName}" "pnpm --filter=@itwin/itwinui-react run test:unit ${componentName}" "pnpm --filter "./testing/a11y" run test  --env componentName=${componentName}" "pnpm run --filter react-workshop test --spec="**/${componentName}.*""`,
     {
-      type: 'React Visual',
-      command: `pnpm run --filter react-workshop test --spec="**/${componentName}.*"`,
-    },
-    {
-      type: 'CSS Visual',
-      command: `pnpm run --filter css-workshop test --filter=${componentName}`,
-    },
-    {
-      type: 'Unit',
-      command: `pnpm --filter=@itwin/itwinui-react run test:unit ${componentName}`,
-    },
-    {
-      type: 'A11y',
-      command: `pnpm --filter "./testing/a11y" --env componentName=${componentName} run test`,
-    },
-  ];
-
-  commands.forEach(({ type, command }) => {
-    spawn(command, {
       stdio: 'inherit',
       shell: true,
-    });
-  });
+    },
+  );
+} catch {
+  console.log('Tests Failed');
 }
-
-runTests();
