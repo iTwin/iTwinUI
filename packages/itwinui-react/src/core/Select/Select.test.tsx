@@ -581,12 +581,8 @@ it.each([true, false] as const)(
   async (multiple) => {
     const { container } = render(
       <Select
-        // styleType="default"
-        // native={false}
         styleType='default'
         multiple={multiple}
-        // placeholder="Select an option"
-        // styleType='default'
         options={[
           { value: 'A', label: 'A' },
           { value: 'B', label: 'B' },
