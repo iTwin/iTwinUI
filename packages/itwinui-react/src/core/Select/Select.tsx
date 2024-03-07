@@ -277,7 +277,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     placeholder,
     disabled = false,
     size,
-    styleType,
     itemRenderer,
     selectedItemRenderer,
     menuClassName,
@@ -292,18 +291,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [liveRegionSelection, setLiveRegionSelection] = React.useState('');
 
-  const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>(
-    (() => {
-      // If borderless, empty value is not allowed. So, select the first option.
-      if (styleType === 'borderless') {
-        return isMultipleEnabled(valueProp, multiple)
-          ? [options[0]?.value]
-          : options[0]?.value;
-      }
-
-      return undefined;
-    })(),
-  );
+  const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>();
   const value = valueProp !== undefined ? valueProp : uncontrolledValue;
 
   const onChangeRef = useLatestRef(onChangeProp);
@@ -424,7 +412,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           tabIndex={0}
           role='combobox'
           size={size}
-          styleType={styleType}
           status={status}
           aria-disabled={disabled ? 'true' : undefined}
           aria-autocomplete='none'
@@ -440,9 +427,7 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
           className={cx(
             {
               'iui-placeholder':
-                styleType !== 'borderless' &&
-                (!selectedItems || selectedItems.length === 0) &&
-                !!placeholder,
+                (!selectedItems || selectedItems.length === 0) && !!placeholder,
               'iui-disabled': disabled,
             },
             triggerProps?.className,
@@ -510,6 +495,10 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
 
 export type CustomSelectProps<T> = SelectCommonProps & {
   /**
+   * Placeholder when no item is selected.
+   */
+  placeholder?: React.ReactNode;
+  /**
    * Array of options that populates the select menu.
    */
   options: SelectOption<T>[];
@@ -543,7 +532,7 @@ export type CustomSelectProps<T> = SelectCommonProps & {
    * Props to pass to the select button (trigger) element.
    */
   triggerProps?: React.ComponentPropsWithRef<'div'>;
-} & CustomSelectMultipleAndStyleTypeProps<T> &
+} & SelectMultipleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
     'size' | 'disabled' | 'placeholder' | 'onChange'
@@ -551,25 +540,13 @@ export type CustomSelectProps<T> = SelectCommonProps & {
 
 export type SelectValueChangeEvent = 'added' | 'removed';
 
-export type CustomSelectMultipleAndStyleTypeProps<T> =
+export type SelectMultipleTypeProps<T> =
   | {
       /**
        * Enable multiple selection.
        * @default false
        */
       multiple?: false;
-      /**
-       * Style of the select.
-       * Use 'borderless' to hide outline.
-       * @default 'default'
-       */
-      styleType?: 'default';
-      /**
-       * Placeholder when no item is selected.
-       *
-       * When `styleType=borderless`, `placeholder` is not allowed. Additionally, a `defaultValue` must be provided.
-       */
-      placeholder?: React.ReactNode;
       /**
        * Custom renderer for the selected item in select.
        * If `multiple` is enabled, it will give array of options to render.
@@ -583,42 +560,14 @@ export type CustomSelectMultipleAndStyleTypeProps<T> =
        */
       value?: T | null;
       /**
-       * Default value that is selected on initial render. This is useful when you don't want to
-       * maintain your own state but still want to control the initial value.
-       *
-       * This must be passed when `styleType` is `borderless`. Else, the first option will be automatically selected.
-       */
-      defaultValue?: T;
-      /**
        * Callback function handling change event on select.
        */
       onChange?: (value: T) => void;
     }
   | {
-      multiple?: false;
-      styleType: 'borderless';
-      placeholder?: never;
-      selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
-      value?: T | null;
-      defaultValue: T;
-      onChange?: (value: T) => void;
-    }
-  | {
       multiple: true;
-      styleType?: 'default';
-      placeholder?: React.ReactNode;
       selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
       value?: T[];
-      defaultValue?: T[];
-      onChange?: (value: T, event: SelectValueChangeEvent) => void;
-    }
-  | {
-      multiple: true;
-      styleType: 'borderless';
-      placeholder?: never;
-      selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
-      value?: T[];
-      defaultValue: T[];
       onChange?: (value: T, event: SelectValueChangeEvent) => void;
     };
 
