@@ -5,45 +5,38 @@
 import { defineConfig } from 'vitest/config';
 import * as path from 'node:path';
 
-export default defineConfig((props) => {
-  const { mode } = props;
-
-  return {
-    test: {
-      globals: true,
-      environment: 'jsdom',
-      setupFiles: 'setupTests.ts',
-      include:
-        mode !== 'test'
-          ? [`src/**/${mode}.test.ts?(x)`]
-          : ['src/**/*.test.ts?(x)'],
-      exclude: ['/node_modules/', '/esm/', '/cjs/'],
-      reporters: ['junit', 'default'],
-      outputFile: 'coverage/junit.xml',
-      alias: [
-        {
-          find: /^(.*)\/styles.js$/,
-          replacement: path.resolve('./__mocks__/styles.js'),
-        },
-      ],
-    },
-
-    plugins: [
+export default defineConfig({
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    setupFiles: 'setupTests.ts',
+    include: ['src/**/*.test.ts?(x)'],
+    exclude: ['/node_modules/', '/esm/', '/cjs/'],
+    reporters: ['junit', 'default'],
+    outputFile: 'coverage/junit.xml',
+    alias: [
       {
-        name: 'mock-css',
-        resolveId(id) {
-          if (id.endsWith('styles.css')) {
-            return id;
-          }
-          return null;
-        },
-        load(id) {
-          if (id.endsWith('styles.css')) {
-            return '';
-          }
-          return null;
-        },
+        find: /^(.*)\/styles.js$/,
+        replacement: path.resolve('./__mocks__/styles.js'),
       },
     ],
-  };
+  },
+
+  plugins: [
+    {
+      name: 'mock-css',
+      resolveId(id) {
+        if (id.endsWith('styles.css')) {
+          return id;
+        }
+        return null;
+      },
+      load(id) {
+        if (id.endsWith('styles.css')) {
+          return '';
+        }
+        return null;
+      },
+    },
+  ],
 });

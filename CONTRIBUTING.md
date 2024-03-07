@@ -112,8 +112,6 @@ This is why it's recommended to use the turbo `--filter` syntax whenever possibl
 pnpm run build --filter=react-workshop
 ```
 
-
-
 ---
 
 ### Creating components
