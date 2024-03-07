@@ -282,11 +282,5 @@ export const Borderless = () => {
     { value: '2', label: 'Item #2', disabled: true },
     { value: '3', label: 'Item #3' },
   ];
-  return (
-    <Select
-      options={options}
-      placeholder='Placeholder text'
-      styleType='borderless'
-    />
-  );
+  return <Select options={options} styleType='borderless' defaultValue='1' />;
 };
