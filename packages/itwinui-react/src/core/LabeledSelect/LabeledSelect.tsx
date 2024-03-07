@@ -73,7 +73,12 @@ export type LabeledSelectProps<T> = {
    */
   messageIconProps?: React.ComponentProps<typeof Icon>;
 } & Pick<LabeledInputProps, 'displayStyle'> &
-  Omit<SelectProps<T>, 'styleType'>;
+  SelectProps<T> & {
+    /**
+     * LabeledSelect does not support `styleType`.
+     */
+    styleType?: never; // see: https://github.com/iTwin/iTwinUI/pull/1886#discussion_r1516839342
+  };
 
 /**
  * Labeled select component to select value from options.
@@ -150,12 +155,11 @@ export const LabeledSelect = React.forwardRef(
           disabled={disabled}
           className={className}
           style={style}
+          {...{ required: props.native ? required : undefined }}
+          {...rest}
           ref={forwardedRef}
-          {...({
-            required: props.native ? required : undefined,
-            ...rest,
-          } as SelectProps<T>)}
-          styleType='default' // borderless is not allowed in LabeledSelect
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          {...({ styleType: 'default' } as any)} // Never allow LabeledSelect to be borderless
         />
         {typeof message === 'string' ? (
           <StatusMessage

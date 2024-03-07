@@ -20,7 +20,7 @@ import { LabeledSelect } from './LabeledSelect.js';
           { value: 2, label: 'Option 2' },
           { value: 3, label: 'Option 3' },
         ]}
-        onChange={(value: number) => {
+        onChange={(value) => {
           const returnValue: number = value;
           return returnValue;
         }}
@@ -39,7 +39,7 @@ import { LabeledSelect } from './LabeledSelect.js';
           { value: 2, label: 'Option 2' },
           { value: 3, label: 'Option 3' },
         ]}
-        onChange={(value: number) => {
+        onChange={(value) => {
           const returnValue: number = value;
           return returnValue;
         }}
@@ -58,7 +58,7 @@ import { LabeledSelect } from './LabeledSelect.js';
           { value: '2', label: 'Item #2' },
           { value: '3', label: 'Item #3' },
         ]}
-        onChange={(value: string) => {
+        onChange={(value) => {
           const returnValue: string = value;
           return returnValue;
         }}
@@ -77,7 +77,7 @@ import { LabeledSelect } from './LabeledSelect.js';
           // @ts-expect-error (TS 2322): Type 'number' is not assignable to type 'string'.
           { value: 1, label: 'Item #1' },
         ]}
-        onChange={(value: string) => {
+        onChange={(value) => {
           const returnValue: string = value;
           return returnValue;
         }}
