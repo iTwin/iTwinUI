@@ -47,8 +47,16 @@
         "build/**"
       ]
     },
-    "build:cjs": {},
-    "build:esm": {},
+    "build:cjs": {
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles"
+      ]
+    },
+    "build:esm": {
+      "dependsOn": [
+        "@itwin/itwinui-react#build:styles"
+      ]
+    },
     "test": {},
     "react-workshop#test": {
       "dependsOn": [
@@ -90,7 +98,6 @@
     },
     "remix-playground#dev": {
       "dependsOn": [
-        "@itwin/itwinui-react#build:styles",
         "@itwin/itwinui-react#build:cjs",
         "@itwin/itwinui-react#build:esm"
       ]
@@ -103,9 +110,14 @@
     },
     "css-workshop#dev": {
       "dependsOn": [
-        "@itwin/itwinui-react#build:styles"
+        "@itwin/itwinui-css#build:css"
       ],
       "persistent": true
+    },
+    "portal#dev": {
+      "dependsOn": [
+        "@itwin/itwinui-css#build:css"
+      ]
     },
     "format": {},
     "clean": {
