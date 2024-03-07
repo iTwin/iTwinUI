@@ -155,6 +155,7 @@ export const LabeledSelect = React.forwardRef(
             ...rest,
           } as SelectProps<T>)}
           ref={forwardedRef}
+          styleType='default' // borderless is not allowed in LabeledSelect
         />
         {typeof message === 'string' ? (
           <StatusMessage
