@@ -5,7 +5,7 @@
 import {
   act,
   fireEvent,
-  render as rtlRender,
+  render,
   screen,
   waitFor,
 } from '@testing-library/react';
@@ -39,17 +39,6 @@ import {
   SelectionColumn,
   ExpanderColumn,
 } from './columns/index.js';
-
-/**
- * Wrapper over `@testing-library/react`'s `render` function that also waits for
- * all microtasks to be flushed. This is necessary for ShadowRoot to be tested properly.
- */
-const render = (...args: Parameters<typeof rtlRender>) => {
-  vi.useFakeTimers({ toFake: ['queueMicrotask'] });
-  const result = rtlRender(...args);
-  act(() => vi.runAllTicks());
-  return result;
-};
 
 const intersectionCallbacks = new Map<Element, () => void>();
 vi.spyOn(IntersectionHooks, 'useIntersection').mockImplementation(
