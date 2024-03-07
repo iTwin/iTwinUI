@@ -286,7 +286,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
     triggerProps,
     status,
     popoverProps,
-    defaultValue: defaultValueProp,
     ...rest
   } = props;
 
@@ -295,10 +294,6 @@ const CustomSelect = React.forwardRef((props, forwardedRef) => {
 
   const [uncontrolledValue, setUncontrolledValue] = React.useState<unknown>(
     (() => {
-      if (defaultValueProp !== undefined) {
-        return defaultValueProp;
-      }
-
       // If borderless, empty value is not allowed. So, select the first option.
       if (styleType === 'borderless') {
         return isMultipleEnabled(valueProp, multiple)
