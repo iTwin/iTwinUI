@@ -233,7 +233,7 @@ type NativeSelectStyleTypeProps =
        * Use 'borderless' to hide outline.
        * @default 'default'
        */
-      styleType: 'default';
+      styleType?: 'default';
       /**
        * Placeholder for when no item is selected.
        *
@@ -245,7 +245,7 @@ type NativeSelectStyleTypeProps =
       placeholder?: string;
     }
   | {
-      styleType?: 'borderless';
+      styleType: 'borderless';
       placeholder?: never;
     };
 
@@ -548,66 +548,33 @@ export type CustomSelectProps<T> = SelectCommonProps & {
    * Props to pass to the select button (trigger) element.
    */
   triggerProps?: React.ComponentPropsWithRef<'div'>;
-} & SelectMultipleTypeProps<T> &
-  CustomSelectStyleTypeProps<T> &
+} & CustomSelectMultipleAndStyleTypeProps<T> &
   Omit<
     React.ComponentPropsWithoutRef<'div'>,
     'size' | 'disabled' | 'placeholder' | 'onChange' | 'defaultValue'
   >;
 
-export type CustomSelectStyleTypeProps<T> =
-  | ({
-      /**
-       * Style of the select.
-       * Use 'borderless' to hide outline.
-       * @default 'default'
-       */
-      styleType: 'borderless';
-      /**
-       * Placeholder when no item is selected.
-       *
-       * When `styleType=borderless`, `placeholder` is not allowed. Additionally, a `defaultValue` must be provided.
-       */
-      placeholder?: never;
-    } & (
-      | {
-          multiple?: false;
-          /**
-           * Default value that is selected on initial render. This is useful when you don't want to
-           * maintain your own state but still want to control the initial value.
-           *
-           * This must be passed when `styleType` is `borderless`. Else, the first option will be automatically selected.
-           */
-          defaultValue: T;
-        }
-      | {
-          multiple: true;
-          defaultValue: T[];
-        }
-    ))
-  | ({
-      styleType?: 'default';
-      placeholder?: React.ReactNode;
-    } & (
-      | {
-          multiple?: false;
-          defaultValue?: T;
-        }
-      | {
-          multiple: true;
-          defaultValue?: T[];
-        }
-    ));
-
 export type SelectValueChangeEvent = 'added' | 'removed';
 
-export type SelectMultipleTypeProps<T> =
+export type CustomSelectMultipleAndStyleTypeProps<T> =
   | {
       /**
        * Enable multiple selection.
        * @default false
        */
       multiple?: false;
+      /**
+       * Style of the select.
+       * Use 'borderless' to hide outline.
+       * @default 'default'
+       */
+      styleType?: 'default';
+      /**
+       * Placeholder when no item is selected.
+       *
+       * When `styleType=borderless`, `placeholder` is not allowed. Additionally, a `defaultValue` must be provided.
+       */
+      placeholder?: React.ReactNode;
       /**
        * Custom renderer for the selected item in select.
        * If `multiple` is enabled, it will give array of options to render.
@@ -621,14 +588,42 @@ export type SelectMultipleTypeProps<T> =
        */
       value?: T | null;
       /**
+       * Default value that is selected on initial render. This is useful when you don't want to
+       * maintain your own state but still want to control the initial value.
+       *
+       * This must be passed when `styleType` is `borderless`. Else, the first option will be automatically selected.
+       */
+      defaultValue?: T;
+      /**
        * Callback function handling change event on select.
        */
       onChange?: (value: T) => void;
     }
   | {
+      multiple?: false;
+      styleType: 'borderless';
+      placeholder?: never;
+      selectedItemRenderer?: (option: SelectOption<T>) => JSX.Element;
+      value?: T | null;
+      defaultValue: T;
+      onChange?: (value: T) => void;
+    }
+  | {
       multiple: true;
+      styleType?: 'default';
+      placeholder?: React.ReactNode;
       selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
       value?: T[];
+      defaultValue?: T[];
+      onChange?: (value: T, event: SelectValueChangeEvent) => void;
+    }
+  | {
+      multiple: true;
+      styleType: 'borderless';
+      placeholder?: never;
+      selectedItemRenderer?: (options: SelectOption<T>[]) => JSX.Element;
+      value?: T[];
+      defaultValue: T[];
       onChange?: (value: T, event: SelectValueChangeEvent) => void;
     };
 

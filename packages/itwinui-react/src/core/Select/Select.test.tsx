@@ -4,11 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 import * as React from 'react';
 import { findAllByRole, fireEvent, render } from '@testing-library/react';
-import {
-  Select,
-  type CustomSelectProps,
-  type SelectMultipleTypeProps,
-} from './Select.js';
+import { Select, type CustomSelectProps } from './Select.js';
 import { SvgSmileyHappy } from '../utils/index.js';
 import { MenuItem } from '../Menu/MenuItem.js';
 import { userEvent } from '@testing-library/user-event';
@@ -48,16 +44,18 @@ function assertMenu(
   });
 }
 
-function renderComponent(
-  props?: Partial<CustomSelectProps<number>> & SelectMultipleTypeProps<number>,
-) {
+function renderComponent(props?: Partial<CustomSelectProps<number>>) {
+  const { options, ...rest } = props || {};
   return render(
     <Select<number>
-      options={[...new Array(3)].map((_, index) => ({
-        label: `Test${index}`,
-        value: index,
-      }))}
-      {...props}
+      {...(rest as CustomSelectProps<number>)}
+      options={
+        options ??
+        [...new Array(3)].map((_, index) => ({
+          label: `Test${index}`,
+          value: index,
+        }))
+      }
     />,
   );
 }
@@ -583,7 +581,12 @@ it.each([true, false] as const)(
   async (multiple) => {
     const { container } = render(
       <Select
+        // styleType="default"
+        // native={false}
+        styleType='default'
         multiple={multiple}
+        // placeholder="Select an option"
+        // styleType='default'
         options={[
           { value: 'A', label: 'A' },
           { value: 'B', label: 'B' },
