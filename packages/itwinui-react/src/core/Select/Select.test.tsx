@@ -97,6 +97,45 @@ it.each(['default', 'borderless', undefined] as const)(
   },
 );
 
+it.each([true, false] as const)(
+  'should select first option when defaultValue is not provided to borderless select (multiple=%s)',
+  (multiple) => {
+    const { container } = renderComponent({
+      styleType: 'borderless',
+      multiple,
+    });
+
+    if (multiple) {
+      const selectTags = container.querySelectorAll('.iui-select-tag');
+      expect(selectTags.length).toBe(1);
+      expect(selectTags[0]).toHaveTextContent('Test0');
+    } else {
+      const selectButton = container.querySelector(
+        '.iui-select-button',
+      ) as HTMLElement;
+      expect(selectButton).toHaveTextContent('Test0');
+    }
+  },
+);
+
+it.each([true, false])('should respect defaultValue (native=%s)', (native) => {
+  const { container } = render(
+    <Select
+      native={native}
+      styleType='default'
+      multiple={undefined}
+      defaultValue='B'
+      options={[
+        { value: 'A', label: 'A' },
+        { value: 'B', label: 'B' },
+      ]}
+    />,
+  );
+
+  const select = container.querySelector('.iui-select-button') as HTMLElement;
+  expect(select).toHaveTextContent('B');
+});
+
 it('should show value inside select', () => {
   const { container } = renderComponent({
     placeholder: 'TestPlaceholder',
