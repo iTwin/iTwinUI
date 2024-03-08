@@ -23,7 +23,27 @@
 // box-sizing, text selection and scrollbar styling on iui-root and all elements under it
 :where(.iui-root, .iui-root *) {
   @include mixins.iui-text-selection;
-  @include mixins.iui-scrollbar;
+  scrollbar-color: hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-4)) transparent;
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    max-inline-size: var(--iui-size-xs);
+    max-block-size: var(--iui-size-xs);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-4));
+    border-radius: var(--iui-border-radius-round);
+
+    &:hover {
+      background-color: hsl(var(--iui-color-foreground-hsl) / var(--iui-opacity-3));
+    }
+  }
+
+  &::-webkit-scrollbar-track,
+  &::-webkit-scrollbar-corner {
+    background-color: transparent;
+  }
 
   &,
   &::before,
