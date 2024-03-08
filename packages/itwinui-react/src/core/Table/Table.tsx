@@ -273,6 +273,10 @@ export type TableProps<
    */
   enableColumnReordering?: boolean;
   /**
+   * Passes custom props to Table wrapper.
+   */
+  wrapperProps?: React.ComponentProps<'div'>;
+  /**
    * Passes props to Table header wrapper.
    */
   headerWrapperProps?: React.ComponentProps<'div'>;
@@ -409,6 +413,7 @@ export const Table = <
     enableVirtualization = false,
     enableColumnReordering = false,
     headerWrapperProps,
+    wrapperProps,
     headerProps,
     bodyProps,
     emptyTableContentProps,
@@ -880,7 +885,7 @@ export const Table = <
 
   return (
     <>
-      <Box className='iui-table-wrapper'>
+      <Box as='div' className='iui-table-wrapper' {...wrapperProps}>
         <Box
           ref={mergeRefs(tableRef, (element) => {
             ownerDocument.current = element?.ownerDocument;
