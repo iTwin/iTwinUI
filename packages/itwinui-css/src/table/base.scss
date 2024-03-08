@@ -3,8 +3,7 @@
 @use '../mixins';
 
 @mixin iui-table-wrapper {
-  // overflow: hidden;
-  // scrollbar-gutter: none;
+  display: grid;
 }
 
 @mixin iui-table {
