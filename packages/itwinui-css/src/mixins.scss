@@ -123,20 +123,3 @@ $iui-icon-sizes: (
     fill: var(--iui-color-icon-negative);
   }
 }
-
-// ----------------------------------------------------------------------------
-// animations
-
-// Should only be imported in global.scss
-@mixin animations {
-  @keyframes iui-fade-in {
-    from {
-      visibility: visible;
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
-  }
-}
