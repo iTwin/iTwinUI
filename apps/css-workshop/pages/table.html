@@ -2720,7 +2720,7 @@
       <div class="iui-table-wrapper">
         <div
           class="iui-table"
-          style="max-height: 407px"
+          style="max-height: 347px"
           id="demo-extras-scrollable-table"
         >
           <div class="iui-table-header-wrapper">
@@ -3512,7 +3512,7 @@
       <div class="iui-table-wrapper">
         <div
           class="iui-table"
-          style="height: 407px"
+          style="height: 347px"
           id="demo-extras-scrollable-table-few-rows"
         >
           <div class="iui-table-header-wrapper">
@@ -3896,7 +3896,7 @@
         <div
           class="iui-table"
           data-iui-size="condensed"
-          style="max-height: 385px"
+          style="max-height: 337px"
         >
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
@@ -4184,7 +4184,7 @@
         <div
           class="iui-table"
           data-iui-size="extra-condensed"
-          style="max-height: 363px"
+          style="max-height: 327px"
         >
           <div class="iui-table-header-wrapper">
             <div class="iui-table-header">
@@ -5361,10 +5361,13 @@
         }
       };
 
-      const updateRowSelectionCount = (table) => {
-        const checkboxes = [...table.querySelectorAll('.iui-table-body .iui-table-row .iui-checkbox:not(:disabled)')];
+      const updateRowSelectionCount = (tableWrapper) => {
+        const checkboxes = [...tableWrapper.querySelectorAll('.iui-table .iui-table-body .iui-table-row .iui-checkbox:not(:disabled)')];
         const numBoxesChecked = checkboxes.filter((checkbox) => checkbox.checked).length;
-        const leftPaginator = table.querySelector('.iui-table-paginator .iui-left');
+
+        console.log(numBoxesChecked);
+
+        const leftPaginator = tableWrapper.querySelector('.iui-table-paginator .iui-left');
         const paginatorCheckboxCount = leftPaginator.querySelector('.iui-table-paginator-selection-count');
         if (!numBoxesChecked) {
           if (paginatorCheckboxCount) {
@@ -5385,9 +5388,10 @@
       };
 
       document.querySelectorAll('.iui-table-header .iui-checkbox:not(:disabled)').forEach((headerCheckbox) => {
+        const tableWrapper = headerCheckbox.closest('.iui-table-wrapper');
         const table = headerCheckbox.closest('.iui-table');
-        if (table.querySelector('.iui-table-paginator')) {
-          updateRowSelectionCount(table);
+        if (tableWrapper.querySelector('.iui-table-paginator')) {
+          updateRowSelectionCount(tableWrapper);
         }
         setTableHeaderCheckbox(table);
         headerCheckbox.addEventListener('change', () => {
@@ -5395,9 +5399,9 @@
             checkbox.checked = headerCheckbox.checked;
             toggleRowSelection(checkbox.closest('.iui-table-row'), headerCheckbox.checked);
           });
-          setTableHeaderCheckbox(table);
+          setTableHeaderCheckbox(tableWrapper);
           if (table.querySelector('.iui-table-paginator')) {
-            updateRowSelectionCount(table);
+            updateRowSelectionCount(tableWrapper);
           }
         });
       });
@@ -5405,23 +5409,24 @@
       document.querySelectorAll('.iui-table .iui-table-body .iui-checkbox').forEach(checkbox => {
         checkbox.addEventListener('change', function (event) {
           toggleRowSelection(this.closest('.iui-table-row'), checkbox.checked);
+          const tableWrapper = this.closest('.iui-table-wrapper');
           const table = this.closest('.iui-table');
           setTableHeaderCheckbox(table);
           if (table.querySelector('.iui-table-paginator')) {
-            updateRowSelectionCount(table);
+            updateRowSelectionCount(tableWrapper);
           }
         });
       });
     </script>
 
     <script>
-      // Syncs body scroll with the header scroll
+      // Add shadows for sticky columns
       ['#demo-extras-scrollable-table', '#demo-extras-scrollable-table-few-rows'].forEach((tableSelector) => {
+        const table = document.querySelector(tableSelector);
         const scrollableBody = document.querySelector(`${tableSelector} .iui-table-body`);
         const scrollableHeader = document.querySelector(`${tableSelector} .iui-table-header-wrapper`);
 
-        scrollableBody.addEventListener('scroll', function (e) {
-          scrollableHeader.scrollLeft = this.scrollLeft;
+        table.addEventListener('scroll', function (e) {
           // If table body is scrolled to the right, then add shadow to the first columns
           if (this.scrollLeft) {
             scrollableHeader.querySelectorAll('.iui-table-cell-sticky:nth-of-type(2)').forEach((sticky) => {
