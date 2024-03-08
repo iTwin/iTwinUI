@@ -4,8 +4,8 @@
 
 @mixin iui-table {
   @include mixins.iui-reset;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: min-content 1fr;
   isolation: isolate;
   overflow: auto;
   scrollbar-gutter: stable;
@@ -38,7 +38,6 @@
   z-index: 2;
 
   display: flex;
-  flex-shrink: 0;
   border-start-start-radius: var(--iui-border-radius-1);
   border-start-end-radius: var(--iui-border-radius-1);
 }
@@ -365,7 +364,6 @@
   // overflow-x: scroll;
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
   @include mixins.iui-scroll-snapping('.iui-table-row');
