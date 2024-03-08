@@ -1537,7 +1537,11 @@ export const Full2 = () => {
           isResizable
           enableColumnReordering
           data={data}
-          style={{ height: '100%' }}
+          wrapperProps={{
+            style: {
+              height: '100%',
+            },
+          }}
           enableVirtualization
           rowProps={rowProps}
           globalFilterValue={globalFilterValue}
@@ -1619,7 +1623,11 @@ export const Localized = () => {
         data={generateData(0, 100)}
         pageSize={50}
         paginatorRenderer={paginator}
-        style={{ height: '100%' }}
+        wrapperProps={{
+          style: {
+            height: '100%',
+          },
+        }}
       />
     </>
   );
@@ -1889,7 +1897,11 @@ export const WithPaginator = () => {
         data={data}
         pageSize={50}
         paginatorRenderer={paginator}
-        style={{ height: '100%' }}
+        wrapperProps={{
+          style: {
+            height: '100%',
+          },
+        }}
       />
     </>
   );
@@ -2091,7 +2103,11 @@ export const WithManualPaginatorAndFilter = () => {
         data={data}
         pageSize={25}
         paginatorRenderer={paginator}
-        style={{ height: '100%' }}
+        wrapperProps={{
+          style: {
+            height: '100%',
+          },
+        }}
         manualPagination
         onFilter={onFilter}
         manualFilters={true}
@@ -2249,8 +2265,8 @@ export const CustomFilter = () => {
         isLoading={isLoading}
         columns={columns}
         data={data}
-        pageSize={100}
-        style={{ height: '100%' }}
+        pageSize={1}
+        wrapperProps={{ style: { height: '100%' } }}
         manualPagination
         manualFilters={true}
       />
@@ -2581,7 +2597,11 @@ export const HorizontalScroll = () => {
       columns={columns}
       data={data}
       emptyTableContent='No data.'
-      style={{ height: '100%' }}
+      wrapperProps={{
+        style: {
+          height: '100%',
+        },
+      }}
     />
   );
 };
@@ -3337,7 +3357,11 @@ export const StickyColumns = () => {
       columns={columns}
       data={data}
       emptyTableContent='No data.'
-      style={{ height: '100%' }}
+      wrapperProps={{
+        style: {
+          height: '100%',
+        },
+      }}
       isResizable
     />
   );
