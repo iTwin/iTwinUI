@@ -2,6 +2,11 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
+@mixin iui-table-wrapper {
+  // overflow: hidden;
+  // scrollbar-gutter: none;
+}
+
 @mixin iui-table {
   @include mixins.iui-reset;
   display: grid;
@@ -13,11 +18,6 @@
   // align-items: flex-start;
 
   @include iui-table-cell-icon;
-
-  > .iui-table-paginator {
-    position: sticky;
-    inset-block-end: 0;
-  }
 }
 
 /// Preserves empty scrollbar space using scrollbar-gutter, with
