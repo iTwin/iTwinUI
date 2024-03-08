@@ -27,7 +27,7 @@
   },
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --concurrency=12",
     "test": "turbo run test",
     "test:all": "node scripts/testAll.js",
     "lint": "turbo run lint",

@@ -10,7 +10,7 @@ export const SvgStatusError = (
 ) => {
   return (
     <Svg {...props}>
-      <path d='m8 0a8 8 0 1 0 8 8 8 8 0 0 0 -8-8zm1 12h-2v-2h2zm0-3h-2v-5h2z' />
+      <path d='M9 12H7v-2h2v2Zm0-3H7V4h2v5Zm2.314-9H4.686L0 4.686v6.628L4.686 16h6.628L16 11.314V4.686L11.314 0Z' />
     </Svg>
   );
 };
