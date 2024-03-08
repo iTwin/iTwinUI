@@ -3,7 +3,10 @@
 @use '../mixins';
 
 @mixin iui-stepper-list {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: flex;
   justify-content: space-around;
   align-items: flex-start;

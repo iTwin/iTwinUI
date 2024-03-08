@@ -6,7 +6,10 @@
 @use '../button/borderless';
 
 .iui-alert {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
 
   --_iui-alert-border-color: var(--iui-color-border);
 

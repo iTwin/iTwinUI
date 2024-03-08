@@ -110,7 +110,10 @@
 }
 
 .iui-toast {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: inline-flex;
   align-items: center;
   pointer-events: all;

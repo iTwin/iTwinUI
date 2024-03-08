@@ -3,7 +3,10 @@
 @use '../mixins';
 
 .iui-fieldset {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   padding: var(--iui-size-s);
   border-radius: var(--iui-border-radius-1);
   border: 1px solid var(--iui-color-border);

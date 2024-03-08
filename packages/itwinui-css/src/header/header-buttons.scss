@@ -25,7 +25,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     // #region resets for button
-    @include mixins.iui-reset;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: baseline;
     font-family: inherit;
     background-color: unset;
     color: unset;
@@ -121,7 +124,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-breadcrumb-button {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   @include mixins.iui-focus;
   display: inline-flex;
   align-items: center;

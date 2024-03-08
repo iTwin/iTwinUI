@@ -7,7 +7,10 @@
 $avatar-text-color: hsl(0 0% 0% / 0.77);
 
 .iui-avatar {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: inline-flex;
   align-items: center;
   justify-content: center;

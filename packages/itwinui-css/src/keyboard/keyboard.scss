@@ -3,7 +3,10 @@
 @use '../mixins';
 
 .iui-keyboard {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   border-radius: var(--iui-border-radius-1);
   display: inline-block;
   font-size: var(--iui-font-size-0);

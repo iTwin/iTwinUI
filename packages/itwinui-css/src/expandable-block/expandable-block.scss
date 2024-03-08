@@ -53,7 +53,10 @@
 }
 
 .iui-expandable-header {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   @include mixins.iui-focus(
     $offset: var(--_iui-expandable-block-header-focus-offset),
     $thickness: var(--_iui-expandable-block-header-focus-thickness)

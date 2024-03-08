@@ -4,7 +4,10 @@
 @use '../mixins';
 
 .iui-time-picker {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   user-select: none;
   text-align: center;
   block-size: calc(var(--iui-size-s) * 26);
@@ -27,7 +30,10 @@
   }
 
   > ol {
-    @include mixins.iui-reset;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: baseline;
     list-style: none;
 
     > li {

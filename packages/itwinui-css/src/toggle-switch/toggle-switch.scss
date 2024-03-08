@@ -6,7 +6,10 @@
   --_iui-toggle-switch-handle-size: var(--iui-size-m);
   --_iui-toggle-switch-handle-offset: var(--iui-size-2xs);
 
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: grid;
   grid-template-areas: 'toggle';
   align-items: center;
@@ -46,7 +49,10 @@
 .iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
 
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   @include mixins.iui-focus(
     $thickness: $iui-toggle-switch-border-thickness,
     $offset: $iui-toggle-switch-border-thickness

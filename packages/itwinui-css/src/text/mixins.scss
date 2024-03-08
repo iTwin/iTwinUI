@@ -9,7 +9,10 @@
 }
 
 @mixin iui-text($type: body) {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
 
   $sizes: (
     headline: var(--iui-font-size-5),

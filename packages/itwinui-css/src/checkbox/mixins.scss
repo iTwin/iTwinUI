@@ -3,7 +3,10 @@
 @use '../mixins';
 
 @mixin iui-checkbox-wrapper {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: flex;
   align-items: center;
   font-size: var(--iui-font-size-1);

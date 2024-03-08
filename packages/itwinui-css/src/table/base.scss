@@ -3,7 +3,10 @@
 @use '../mixins';
 
 @mixin iui-table {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   display: flex;
   flex-direction: column;
   isolation: isolate;

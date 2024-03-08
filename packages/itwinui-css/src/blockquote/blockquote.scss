@@ -4,7 +4,10 @@
 @use '../surface/base' as surface;
 
 .iui-blockquote {
-  @include mixins.iui-reset;
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
   @include surface.iui-surface;
   display: block;
   position: relative;

@@ -55,7 +55,10 @@
   }
 
   &-dots {
-    @include mixins.iui-reset;
+    margin: 0;
+    padding: 0;
+    border: none;
+    vertical-align: baseline;
     max-inline-size: calc(var(--iui-size-2xl) * 4);
     border-radius: var(--iui-border-radius-1);
     white-space: nowrap;
