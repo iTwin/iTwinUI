@@ -36,6 +36,6 @@ module.exports = [
         '#demo-default .iui-table-row:nth-child(2) .iui-table-cell[contenteditable]',
       ),
     ],
-    selectors: ['#demo-default .iui-table:nth-child(1)'],
+    selectors: ['#demo-default .iui-table-wrapper:nth-child(1)'],
   }),
 ];
