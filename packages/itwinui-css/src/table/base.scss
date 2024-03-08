@@ -9,6 +9,7 @@
   isolation: isolate;
   overflow: auto;
   scrollbar-gutter: stable;
+  background-color: var(--iui-color-background);
   // align-items: flex-start;
 
   @include iui-table-cell-icon;
@@ -36,7 +37,6 @@
   // inline-size: fit-content;
   z-index: 2;
 
-  background-color: var(--iui-color-background);
   display: flex;
   flex-shrink: 0;
   border-start-start-radius: var(--iui-border-radius-1);
@@ -50,7 +50,6 @@
   flex-shrink: 0;
   font-weight: var(--iui-font-weight-semibold);
   border-block-end: 1px solid var(--iui-color-border);
-  opacity: 0;
 
   .iui-table-cell {
     background-color: var(--iui-color-background);
@@ -370,7 +369,6 @@
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
   @include mixins.iui-scroll-snapping('.iui-table-row');
-  background-color: var(--iui-color-background);
 
   &:last-child {
     border-end-start-radius: var(--iui-border-radius-1);
