@@ -36,7 +36,8 @@
   $margin-start: calc(var(--iui-flex-item-gap-before) - var(--iui-flex-gap));
   $margin-end: calc(var(--iui-flex-item-gap-after) - var(--iui-flex-gap));
 
-  @include mixins.space-toggle-states;
+  --iui-off: ; // whitespace means "off"
+  --iui-on: initial;
   --iui-flex-item-gap-before-toggle: var(--iui-off);
   --iui-flex-item-gap-after-toggle: var(--iui-off);
 

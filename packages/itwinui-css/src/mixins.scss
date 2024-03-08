@@ -72,22 +72,6 @@
   }
 }
 
-// setup for toggling values at runtime using the css var space toggle technique
-// https://lea.verou.me/2020/10/the-var-space-hack-to-toggle-multiple-values-with-one-custom-property
-//
-// Usage:
-//
-// @include space-toggle-states;
-// --is-red: var(--iui-off);
-// background: var(--is-red, red);
-//
-// // later:
-// --is-red: var(--iui-on);
-@mixin space-toggle-states {
-  --iui-off: ; // whitespace means "off"
-  --iui-on: initial;
-}
-
 // ----------------------------------------------------------------------------
 // helpers for icon
 
