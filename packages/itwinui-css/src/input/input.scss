@@ -11,7 +11,11 @@
   padding: 0;
   border: none;
   vertical-align: baseline;
-  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
+
+  &:focus-visible {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -2px;
+  }
   inline-size: 100%;
   font-family: inherit;
   font-size: var(--iui-font-size-1);

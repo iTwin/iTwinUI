@@ -35,7 +35,11 @@
   -webkit-tap-highlight-color: transparent;
   text-decoration: none;
   @include iui-button-size;
-  @include mixins.iui-focus;
+
+  &:focus-visible {
+    outline: 1px solid var(--iui-color-border-accent);
+    outline-offset: -1px;
+  }
 }
 
 @mixin iui-button-icon {

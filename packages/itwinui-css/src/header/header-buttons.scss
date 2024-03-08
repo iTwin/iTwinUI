@@ -14,7 +14,10 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   box-sizing: border-box;
 
   &:is(a, button, [role='button']) {
-    @include mixins.iui-focus;
+    &:focus-visible {
+      outline: 1px solid var(--iui-color-border-accent);
+      outline-offset: -1px;
+    }
     cursor: pointer;
     -webkit-tap-highlight-color: transparent;
     transition: background-color var(--iui-duration-1) ease-out;
@@ -128,7 +131,11 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
   padding: 0;
   border: none;
   vertical-align: baseline;
-  @include mixins.iui-focus;
+
+  &:focus-visible {
+    outline: 1px solid var(--iui-color-border-accent);
+    outline-offset: -1px;
+  }
   display: inline-flex;
   align-items: center;
   vertical-align: middle;

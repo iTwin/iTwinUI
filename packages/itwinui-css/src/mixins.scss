@@ -2,13 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
 
-@mixin iui-focus($color: var(--iui-color-border-accent), $offset: -1px, $thickness: 1px) {
-  &:focus-visible {
-    outline: $thickness solid $color;
-    outline-offset: $offset;
-  }
-}
-
 @mixin iui-text-selection($status: accent) {
   &::selection,
   *::selection {

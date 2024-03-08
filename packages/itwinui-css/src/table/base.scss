@@ -48,7 +48,10 @@
   }
 
   .iui-table-cell:not(.iui-slot) {
-    @include mixins.iui-focus;
+    &:focus-visible {
+      outline: 1px solid var(--iui-color-border-accent);
+      outline-offset: -1px;
+    }
     column-gap: var(--iui-size-2xs);
     padding-block: calc(var(--iui-size-s) * 0.5);
 

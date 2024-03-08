@@ -5,7 +5,10 @@
 
 //#region Helper mixins
 @mixin iui-calendar-day-base {
-  @include mixins.iui-focus;
+  &:focus-visible {
+    outline: 1px solid var(--iui-color-border-accent);
+    outline-offset: -1px;
+  }
   cursor: pointer;
   text-align: center;
   inline-size: $iui-date-picker-cell-width;
@@ -51,7 +54,11 @@
   font-weight: var(--iui-font-weight-semibold);
   background-color: var(--iui-color-background-accent);
   color: var(--iui-color-white);
-  @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
+
+  &:focus-visible {
+    outline: 1px solid var(--iui-color-white);
+    outline-offset: -3px;
+  }
 }
 
 @mixin iui-calendar-day-selected-today-base {

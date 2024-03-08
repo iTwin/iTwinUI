@@ -37,7 +37,10 @@
     list-style: none;
 
     > li {
-      @include mixins.iui-focus;
+      &:focus-visible {
+        outline: 1px solid var(--iui-color-border-accent);
+        outline-offset: -1px;
+      }
       padding-block: calc(var(--iui-size-s) * 0.5);
       padding-inline: var(--iui-size-m);
       border-radius: var(--iui-border-radius-1);
@@ -50,7 +53,11 @@
       &.iui-selected {
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
-        @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
+
+        &:focus-visible {
+          outline: 1px solid var(--iui-color-white);
+          outline-offset: -3px;
+        }
         background-color: var(--iui-color-background-accent);
         color: var(--iui-color-white);
       }

@@ -11,7 +11,10 @@
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-text-color: var(--iui-color-text);
 
-  @include mixins.iui-focus($offset: -2px, $thickness: 2px);
+  &:focus-visible {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -2px;
+  }
   font: inherit;
   inline-size: 100%;
   border-radius: var(--iui-border-radius-1);

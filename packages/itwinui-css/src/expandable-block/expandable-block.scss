@@ -57,10 +57,11 @@
   padding: 0;
   border: none;
   vertical-align: baseline;
-  @include mixins.iui-focus(
-    $offset: var(--_iui-expandable-block-header-focus-offset),
-    $thickness: var(--_iui-expandable-block-header-focus-thickness)
-  );
+
+  &:focus-visible {
+    outline: var(--_iui-expandable-block-header-focus-thickness) solid var(--iui-color-border-accent);
+    outline-offset: var(--_iui-expandable-block-header-focus-offset);
+  }
   display: flex;
   gap: var(--_iui-expandable-block-header-gap);
   align-items: center;

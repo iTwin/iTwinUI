@@ -16,7 +16,11 @@
 .iui-carousel {
   display: grid;
   overflow: hidden;
-  @include mixins.iui-focus($offset: 4px);
+
+  &:focus-visible {
+    outline: 1px solid var(--iui-color-border-accent);
+    outline-offset: 4px;
+  }
   border-radius: var(--iui-border-radius-1);
 }
 

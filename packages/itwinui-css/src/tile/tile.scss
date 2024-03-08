@@ -108,7 +108,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-selected {
-  @include mixins.iui-focus($offset: 0, $thickness: var(--iui-size-2xs));
+  &:focus-visible {
+    outline: var(--iui-size-2xs) solid var(--iui-color-border-accent);
+    outline-offset: 0;
+  }
   --_iui-tile-status-icon-fill: var(--iui-color-icon-accent);
 
   outline: solid 2px var(--iui-color-border-accent);

@@ -45,7 +45,11 @@
     white-space: normal;
     border: 1px solid var(--iui-color-border);
     color: var(--iui-color-text);
-    @include mixins.iui-focus;
+
+    &:focus-visible {
+      outline: 1px solid var(--iui-color-border-accent);
+      outline-offset: -1px;
+    }
 
     > code {
       display: block;

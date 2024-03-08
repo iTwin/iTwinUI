@@ -74,7 +74,10 @@ $borderless-horizontal-tab-min-height: calc(
       }
     }
 
-    @include mixins.iui-focus;
+    &:focus-visible {
+      outline: 1px solid var(--iui-color-border-accent);
+      outline-offset: -1px;
+    }
   }
 
   .iui-tab-icon {

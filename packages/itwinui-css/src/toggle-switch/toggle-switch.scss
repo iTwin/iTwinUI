@@ -53,10 +53,11 @@
   padding: 0;
   border: none;
   vertical-align: baseline;
-  @include mixins.iui-focus(
-    $thickness: $iui-toggle-switch-border-thickness,
-    $offset: $iui-toggle-switch-border-thickness
-  );
+
+  &:focus-visible {
+    outline: $iui-toggle-switch-border-thickness solid var(--iui-color-border-accent);
+    outline-offset: $iui-toggle-switch-border-thickness;
+  }
   grid-area: toggle;
   display: flex;
   position: relative;

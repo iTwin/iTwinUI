@@ -108,7 +108,10 @@
     --_iui-checkbox-border-color: var(--iui-color-border-foreground-hover);
   }
 
-  @include mixins.iui-focus($thickness: 2px);
+  &:focus-visible {
+    outline: 2px solid var(--iui-color-border-accent);
+    outline-offset: -1px;
+  }
 
   &:disabled {
     --_iui-checkbox-svg-color: var(--iui-color-icon-disabled);
