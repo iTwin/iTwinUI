@@ -1,5 +1,28 @@
 # Changelog
 
+## 2.5.0
+
+### Minor Changes
+
+- [#1881](https://github.com/iTwin/iTwinUI/pull/1881): `input`'s and `textarea`'s start/end inline padding when inside `.iui-input-flex-container` is now collapsed when it is preceded/followed by a `.iui-input-flex-container-icon` (e.g. borderless `.iui-button` or padded `.iui-svg-icon`). This prevents unnecessary empty space in the flex container. `.iui-input-flex-container-icon` is a new class with the main purpose of collapsing the padding between the icon/button and input/textarea in `.iui-input-flex-container`.
+- [#1889](https://github.com/iTwin/iTwinUI/pull/1889): Added `data-iui-shift` attribute selectors to borderless buttons, to help with visual alignment.
+- [#1879](https://github.com/iTwin/iTwinUI/pull/1879): Add styling for native `<select>` element.
+- [#1886](https://github.com/iTwin/iTwinUI/pull/1886): Add borderless select variant.
+- [#1865](https://github.com/iTwin/iTwinUI/pull/1865): `iui-backdrop` will now also fade in when `iui-backdrop-visible` is present during mount.
+
+### Patch Changes
+
+- [#1828](https://github.com/iTwin/iTwinUI/pull/1828): Inline padding of `Icon` no longer changes with the icon size. It is now a constant of `--iui-size-xs`.
+- [#1889](https://github.com/iTwin/iTwinUI/pull/1889): The close button in dialog will now be visually aligned based on the icon inside it, excluding the padding.
+- [#1828](https://github.com/iTwin/iTwinUI/pull/1828): `.iui-input-flex-container` now has an inline padding of `1px` to account for the `1px` border's inline edges. This prevents content that touches the border's inline edges from being overlapped by the border by `1px`. Slightly modified `.iui-expandable-searchbox` styles to account for the new padding.
+- [#1888](https://github.com/iTwin/iTwinUI/pull/1888): The `.iui-expandable-searchbox` now shows a regular-sized button in the collapsed state. Previously, it used to incorrectly be a square button.
+- [#1888](https://github.com/iTwin/iTwinUI/pull/1888): `.iui-expandable-searchbox`'s animation/transition between the expanded and the collapsed states is now removed.
+- [#1884](https://github.com/iTwin/iTwinUI/pull/1884): Fixes bug that caused the `.iui-tabs-wrapper` to change size dependent on which `.iui-tab` was active.
+- [#1828](https://github.com/iTwin/iTwinUI/pull/1828): The `.iui-svg-icon` inside the `.iui-searchbox` no longer has the same width as `.iui-button`. Its width also no longer changes with the `.iui-searchbox` size. This is because its padding behavior is now similar to `.iui-svg-icon`'s padding behavior, where it uses a constant padding.
+- [#1894](https://github.com/iTwin/iTwinUI/pull/1894): All instances of `box-sizing: content-box` have been reinforced with `!important` to prevent accidental overrides from application styles.
+- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): Dialog title will now wrap to multiple lines instead of getting clippped.
+- [#1881](https://github.com/iTwin/iTwinUI/pull/1881): `.iui-search-input` and `.iui-search-icon` are now no-op. This is because the main objective of these two classes was collapsing the padding between the icon and `input`/`textarea` in `.iui-input-flex-container`, and that is now handled by `.iui-input-flex-container-icon` instead.
+
 ## 2.4.0
 
 ### Minor Changes
