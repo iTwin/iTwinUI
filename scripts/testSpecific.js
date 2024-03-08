@@ -5,16 +5,22 @@
 const { spawn } = require('node:child_process');
 
 try {
-  const componentName = process.argv[2];
+  const arguement = process.argv[2];
+  const baseCmd = 'turbo run test';
 
-  if (!componentName) {
-    spawn('turbo run test', {
+  if (!arguement) {
+    spawn(`${baseCmd}`, {
+      stdio: 'inherit',
+      shell: true,
+    });
+  } else if (arguement.includes('--filter')) {
+    spawn(`${baseCmd} ${arguement}`, {
       stdio: 'inherit',
       shell: true,
     });
   } else {
     spawn(
-      `conc -g "pnpm run --filter css-workshop test --filter=${componentName}" "pnpm --filter=@itwin/itwinui-react run test:unit ${componentName}" "pnpm --filter "./testing/a11y" run test  --env componentName=${componentName}" "pnpm run --filter react-workshop test --spec="**/${componentName}.*""`,
+      `conc -g "pnpm turbo run --filter css-workshop test --filter=${arguement}" "pnpm --filter=@itwin/itwinui-react run test:unit ${arguement}" "pnpm --filter "./testing/a11y" run test  --env componentName=${arguement}" "${baseCmd} --filter react-workshop  --spec="**/${arguement}.*""`,
       {
         stdio: 'inherit',
         shell: true,
