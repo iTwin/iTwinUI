@@ -10,6 +10,10 @@
 import React, { useRef } from 'react';
 import { Select } from './Select.js';
 
+// ----------------------------------------------------------------------------
+// Testing onChange type in inferred and explicit cases
+// See: https://github.com/iTwin/iTwinUI/pull/1774
+
 () => {
   const ref = useRef(null);
   return (
@@ -81,6 +85,21 @@ import { Select } from './Select.js';
           return returnValue;
         }}
       />
+    </>
+  );
+};
+
+// ----------------------------------------------------------------------------
+// Testing `styleType`
+// See: https://github.com/iTwin/iTwinUI/pull/1886
+() => {
+  return (
+    <>
+      {/* styleType should not be available in CustomSelect */}
+      {/* @ts-expect-error (T2322) */}
+      <Select styleType={'borderless'} options={[]} />
+      {/* @ts-expect-error (T2322) */}
+      <Select styleType={'default'} options={[]} />
     </>
   );
 };

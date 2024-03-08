@@ -74,6 +74,29 @@
   }
 }
 
+@mixin iui-select-button-borderless {
+  --_iui-input-background-color: transparent;
+  --_iui-input-border-color: transparent;
+  transition: background-color var(--iui-duration-1) ease-out;
+
+  &:where(:hover, :active) {
+    --_iui-input-background-color: var(--iui-color-background-transparent-hover);
+    --_iui-input-border-color: transparent;
+    --_iui-input-with-icon-hover-border-color: transparent;
+  }
+
+  &:focus-visible {
+    outline-offset: -1px;
+    outline-width: 1px;
+  }
+
+  &:is(.iui-disabled, :disabled, [aria-disabled='true']) {
+    --_iui-input-background-color: transparent;
+    --_iui-input-border-color: transparent;
+    --_iui-input-text-color: var(--iui-color-text-disabled);
+  }
+}
+
 /// Mixin for applying padding and font size to various select sizes.
 /// @arg size - must be one of: small, medium, large
 @mixin iui-select-size($size: medium) {
@@ -160,6 +183,10 @@
 
 .iui-select-button {
   @include iui-select-button;
+
+  &[data-iui-variant='borderless'] {
+    @include iui-select-button-borderless;
+  }
 
   &[data-iui-size='small'] {
     @include iui-select-size(small);
