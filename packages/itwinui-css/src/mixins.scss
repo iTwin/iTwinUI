@@ -72,18 +72,6 @@
   }
 }
 
-/// Visually hides an element but keeps it accessible to screen readers.
-/// Because it applies some potentially invasive styles, use this mixin on a wrapper element for best results.
-/// If it contains a focusable element, make sure to revert/exclude these styles.
-@mixin visually-hidden {
-  clip-path: inset(50%) !important;
-  overflow: hidden !important;
-  position: absolute !important;
-  white-space: nowrap !important;
-  block-size: 1px !important;
-  inline-size: 1px !important;
-}
-
 // setup for toggling values at runtime using the css var space toggle technique
 // https://lea.verou.me/2020/10/the-var-space-hack-to-toggle-multiple-values-with-one-custom-property
 //

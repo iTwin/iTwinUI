@@ -51,7 +51,12 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
   &:not(:hover, :focus-within) {
     .iui-tile-more-options:where(:not(.iui-visible)) {
-      @include mixins.visually-hidden;
+      clip-path: inset(50%) !important;
+      overflow: hidden !important;
+      position: absolute !important;
+      white-space: nowrap !important;
+      block-size: 1px !important;
+      inline-size: 1px !important;
     }
   }
 
