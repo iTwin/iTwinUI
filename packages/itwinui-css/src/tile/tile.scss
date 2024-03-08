@@ -465,7 +465,10 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 }
 
 @mixin iui-tile-status($status) {
-  @include mixins.iui-text-selection($status);
+  &::selection,
+  *::selection {
+    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
+  }
   --_iui-tile-status-icon-fill: var(--iui-color-icon-#{$status});
   --_iui-tile-title-text-color: var(--iui-color-text-#{$status});
 

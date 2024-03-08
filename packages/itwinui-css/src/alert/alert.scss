@@ -28,7 +28,10 @@
       --_iui-alert-border-color: var(--iui-color-border-#{$statusColor});
       --_iui-alert-icon-color: var(--iui-color-icon-#{$statusColor});
 
-      @include mixins.iui-text-selection($statusColor);
+      &::selection,
+      *::selection {
+        background-color: hsl(var(--iui-color-#{$statusColor}-hsl) / var(--iui-opacity-5));
+      }
 
       .iui-alert-link {
         @include anchor.iui-anchor-status($statusColor);

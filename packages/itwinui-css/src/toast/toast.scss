@@ -8,7 +8,10 @@
   border-color: var(--iui-color-border-#{$category});
 
   > .iui-message {
-    @include mixins.iui-text-selection($category);
+    &::selection,
+    *::selection {
+      background-color: hsl(var(--iui-color-#{$category}-hsl) / var(--iui-opacity-5));
+    }
   }
 
   > .iui-status-area {

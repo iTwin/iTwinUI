@@ -35,7 +35,10 @@
 @each $status in positive, warning, negative {
   .iui-input-grid[data-iui-status='#{$status}'] :where(.iui-input, .iui-select-button),
   :is(.iui-input, .iui-input-with-icon > .iui-select-button):where([data-iui-status='#{$status}']) {
-    @include iui-text-selection($status);
+    &::selection,
+    *::selection {
+      background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
+    }
 
     // #region Bottom padding to vertically center text when the status stripe is present.
     // The bottom border is 2px and the top border is 1px, so we need to subtract 1px from the bottom padding
@@ -237,7 +240,10 @@
       }
 
       input {
-        @include iui-text-selection($status);
+        &::selection,
+        *::selection {
+          background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
+        }
       }
     }
   }
