@@ -984,51 +984,21 @@ export const NoData = () => {
   };
 
   const columns = React.useMemo(
-    (): Column[] => [
+    () => [
       {
-        id: 'product',
-        Header: 'Product',
-        accessor: 'product',
-        width: 1200,
-        // disableReordering: true,
+        id: 'name',
+        Header: 'Name',
+        accessor: 'name',
       },
       {
-        id: 'price',
-        Header: 'Price',
-        accessor: 'price',
-        width: 1200,
-        // eslint-disable-next-line
-        // @ts-ignore
-        Cell: (props: CellProps<(typeof data)[0]>) => {
-          return <>{`$${props.value}`}</>;
-        },
-      },
-      {
-        id: 'quantity',
-        Header: 'Quantity',
-        accessor: 'quantity',
-        width: 1200,
-      },
-      {
-        id: 'rating',
-        Header: 'Rating',
-        accessor: 'rating',
-        width: 1200,
-      },
-      {
-        id: 'deliveryTime',
-        Header: 'Delivery Time',
-        accessor: 'deliveryTime',
-        width: 1200,
-        // eslint-disable-next-line
-        // @ts-ignore
-        Cell: (props: CellProps<(typeof data)[0]>) => {
-          return <>{`${props.value} day(s)`}</>;
-        },
+        id: 'description',
+        Header: 'Description',
+        accessor: 'description',
+        maxWidth: 200,
       },
     ],
     [],
-  );
+  ) satisfies Column<CustomStoryDataType>[];
 
   return (
     <Table<CustomStoryDataType>

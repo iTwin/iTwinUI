@@ -1,4 +1,4 @@
-import { Button, Table } from '@itwin/itwinui-react';
+import { Button, Flex, Table } from '@itwin/itwinui-react';
 import { Column, CellProps } from '@itwin/itwinui-react/react-table';
 import React from 'react';
 
@@ -125,18 +125,88 @@ const App = () => {
   );
 
   return (
-    <Table
-      style={{
-        width: '100%',
-        height: '75vh',
-      }}
-      enableColumnReordering
-      columns={columns}
-      data={data}
-      emptyTableContent='No data.'
-      isSelectable
-    />
+    <Flex flexDirection='column'>
+      <Table
+        style={{
+          width: '100%',
+          height: '75vh',
+        }}
+        enableColumnReordering
+        columns={columns}
+        data={data}
+        emptyTableContent='No data.'
+        isSelectable
+      />
+      <NoData />
+    </Flex>
   );
 };
 
 export default App;
+
+export const NoData = () => {
+  type CustomStoryDataType = {
+    name: string;
+    description: string;
+  };
+
+  const columns = React.useMemo(
+    (): Column[] => [
+      {
+        id: 'product',
+        Header: 'Product',
+        accessor: 'product',
+        width: 1200,
+        // disableReordering: true,
+      },
+      {
+        id: 'price',
+        Header: 'Price',
+        accessor: 'price',
+        width: 1200,
+        // eslint-disable-next-line
+        // @ts-ignore
+        Cell: (props: CellProps<(typeof data)[0]>) => {
+          return <>{`$${props.value}`}</>;
+        },
+      },
+      {
+        id: 'quantity',
+        Header: 'Quantity',
+        accessor: 'quantity',
+        width: 1200,
+      },
+      {
+        id: 'rating',
+        Header: 'Rating',
+        accessor: 'rating',
+        width: 1200,
+      },
+      {
+        id: 'deliveryTime',
+        Header: 'Delivery Time',
+        accessor: 'deliveryTime',
+        width: 1200,
+        // eslint-disable-next-line
+        // @ts-ignore
+        Cell: (props: CellProps<(typeof data)[0]>) => {
+          return <>{`${props.value} day(s)`}</>;
+        },
+      },
+    ],
+    [],
+  );
+
+  return (
+    <Table<CustomStoryDataType>
+      style={{
+        width: '100%',
+        height: '75vh',
+      }}
+      columns={columns}
+      data={[]}
+      isLoading={false}
+      emptyTableContent='No data.'
+    />
+  );
+};
