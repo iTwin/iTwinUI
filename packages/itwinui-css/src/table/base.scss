@@ -10,13 +10,19 @@
   overflow: auto;
   scrollbar-gutter: stable;
   background-color: var(--iui-color-background);
+  position: relative;
+  transform: translateX(0); // creates containing block for position: fixed (e.g. paginator)
+  // container-type: size;
   // align-items: flex-start;
 
   @include iui-table-cell-icon;
 
   > .iui-table-paginator {
-    position: sticky;
+    position: fixed;
     inset-block-end: 0;
+    inset-inline: 0;
+    z-index: 1;
+    // width: 100%;
   }
 }
 
