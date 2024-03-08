@@ -3538,6 +3538,29 @@ it.each([
   },
 );
 
+it('should respect initialState.columnOrder', () => {
+  const mockColumns = columns();
+  const columnOrder = ['description', 'view', 'name'];
+
+  const { container } = render(
+    <Table
+      columns={mockColumns}
+      data={mockedData()}
+      emptyTableContent='Empty table'
+      initialState={{ columnOrder }}
+    />,
+  );
+
+  // DOM order should match columnOrder
+  container
+    .querySelectorAll<HTMLDivElement>('[role=columnheader]')
+    .forEach((cell, index) =>
+      expect(cell.textContent).toBe(
+        mockColumns.find((c) => c.id === columnOrder[index])?.Header,
+      ),
+    );
+});
+
 it('should not have `draggable` attribute on columns with `disableReordering` enabled', () => {
   const columns: Column<TestDataType>[] = [
     {
