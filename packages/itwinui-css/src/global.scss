@@ -56,13 +56,4 @@
   }
 }
 
-@keyframes iui-fade-in {
-  from {
-    visibility: visible;
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
+@include mixins.animations;
