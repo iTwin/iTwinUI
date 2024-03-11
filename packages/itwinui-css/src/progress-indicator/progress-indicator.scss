@@ -165,10 +165,7 @@
       --_iui-progress-indicator-linear-label-color: var(--iui-color-text-#{$status});
       --_iui-progress-indicator-linear-label-fill: var(--iui-color-icon-#{$status});
 
-      &::selection,
-      *::selection {
-        background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
-      }
+      @include mixins.iui-text-selection($status);
     }
   }
 

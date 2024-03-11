@@ -492,10 +492,7 @@
   + .iui-table-expanded-content {
     box-shadow: inset var(--iui-size-2xs) 0 0 0 var(--iui-color-border-#{$status});
 
-    &::selection,
-    *::selection {
-      background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
-    }
+    @include mixins.iui-text-selection($status);
   }
 
   .iui-table-cell-end-icon {
