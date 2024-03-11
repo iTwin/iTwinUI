@@ -11,6 +11,11 @@ module.exports = [
     viewports: [{ width: 800, height: 600 }],
   }),
 
+  scenario('Type Borderless', {
+    selectors: ['#demo-borderless'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+
   // Select Without Label types
   scenario('Type Without Label', {
     selectors: ['#demo-no-label'],
@@ -28,10 +33,22 @@ module.exports = [
     viewports: [{ width: 800, height: 600 }],
   }),
 
+  scenario('State hover', {
+    actions: [hover('#test-select-2')],
+    selectors: ['#demo-borderless-singular'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+
   // Focus states
   scenario('State focus', {
     actions: [focus('#test-select-1')],
     selectors: ['#demo-default-singular'],
+    viewports: [{ width: 800, height: 600 }],
+  }),
+
+  scenario('State focus', {
+    actions: [focus('#test-select-2')],
+    selectors: ['#demo-borderless-singular'],
     viewports: [{ width: 800, height: 600 }],
   }),
 

@@ -934,6 +934,10 @@ import { default as SelectNativeExampleRaw } from './Select.native';
 const SelectNativeExample = withThemeProvider(SelectNativeExampleRaw);
 export { SelectNativeExample };
 
+import { default as SelectBorderlessExampleRaw } from './Select.borderless';
+const SelectBorderlessExample = withThemeProvider(SelectBorderlessExampleRaw);
+export { SelectBorderlessExample };
+
 // ----------------------------------------------------------------------------
 
 import { default as SideNavigationMainExampleRaw } from './SideNavigation.main';
