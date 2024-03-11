@@ -3,14 +3,7 @@
 @use '../mixins';
 
 .iui-skip-to-content-link {
-  // Blur fallback
-  background-color: Hsl(0 0% 0% / var(--iui-opacity-2));
-
-  // With blur
-  @supports (backdrop-filter: blur(5px)) {
-    background-color: Hsl(0 0% 0% / var(--iui-opacity-3));
-    backdrop-filter: blur(5px);
-  }
+  @include mixins.iui-blur($opacity: 3);
   @include mixins.iui-focus($offset: 2px, $thickness: 2px);
   color: var(--iui-color-white);
   border-radius: var(--iui-border-radius-round);
@@ -35,14 +28,7 @@
   }
 
   &:hover {
-    // Blur fallback
-    background-color: Hsl(0 0% 0% / var(--iui-opacity-1));
-
-    // With blur
-    @supports (backdrop-filter: blur(5px)) {
-      background-color: Hsl(0 0% 0% / var(--iui-opacity-2));
-      backdrop-filter: blur(5px);
-    }
+    @include mixins.iui-blur($opacity: 2);
   }
 
   &:focus {
