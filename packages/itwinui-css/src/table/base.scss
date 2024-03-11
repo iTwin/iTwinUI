@@ -389,6 +389,7 @@
   flex-direction: column;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
+  flex-grow: 1;
 
   // Table body should be sticky only when no rows exist
   &:has(> .iui-table-empty) {

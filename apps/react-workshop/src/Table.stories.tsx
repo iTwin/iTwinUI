@@ -1832,13 +1832,15 @@ export const WithPaginator = () => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
+        width: 1200,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
-        maxWidth: 200,
         Filter: tableFilters.TextFilter(),
+        // maxWidth: 200,
+        width: 1200,
       },
     ],
     [],
@@ -2009,7 +2011,7 @@ export const WithManualPaginatorAndFilter = () => {
         } as RowData);
         setData(filteredData.slice(0, currentPageSize));
         setTotalRowsCount(filteredData.length);
-      }, 500);
+      }, 100000000);
     },
     [currentPageSize, generateFilteredData],
   );
@@ -2020,12 +2022,13 @@ export const WithManualPaginatorAndFilter = () => {
       Header: 'Name',
       accessor: 'name',
       Filter: tableFilters.TextFilter(),
+      width: 1200,
     },
     {
       id: 'description',
       Header: 'Description',
       accessor: 'description',
-      maxWidth: 200,
+      width: 1200,
       Filter: tableFilters.TextFilter(),
     },
   ];
@@ -2061,7 +2064,9 @@ export const WithManualPaginatorAndFilter = () => {
             }
           }, 500);
         }}
-        onPageSizeChange={(size) => {
+        onPageSizeChange={async (size) => {
+          await new Promise((resolve) => setTimeout(resolve, 4000));
+
           if (
             filteredData !== undefined &&
             !(filter.name === '' && filter.description === '')
