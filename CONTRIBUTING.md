@@ -103,8 +103,8 @@ pnpm test Alert
 
 Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `react-workshop` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
 ```
-pnpm --filter=@itwin/itwinui-react build
-pnpm --filter=react-workshop build
+pnpm --filter=@itwin/itwinui-react run build
+pnpm --filter=react-workshop run build
 ```
 
 This is why it's recommended to use the turbo `--filter` syntax whenever possible.
