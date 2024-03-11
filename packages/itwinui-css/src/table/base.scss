@@ -385,7 +385,13 @@
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  @include mixins.iui-scroll-snapping('.iui-table-row');
+  #{if(&, '&.iui-scroll-snapping', '.iui-scroll-snapping')} {
+    scroll-snap-type: y mandatory;
+
+    .iui-table-row {
+      scroll-snap-align: start none;
+    }
+  }
   background-color: var(--iui-color-background);
 
   &:last-child {
