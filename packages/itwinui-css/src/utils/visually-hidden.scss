@@ -4,11 +4,6 @@
 
 .iui-visually-hidden {
   &:where(:not([data-iui-unhide-on-focus]:is(:focus-within, :active))) {
-    clip-path: inset(50%) !important;
-    overflow: hidden !important;
-    position: absolute !important;
-    white-space: nowrap !important;
-    block-size: 1px !important;
-    inline-size: 1px !important;
+    @include mixins.visually-hidden;
   }
 }
