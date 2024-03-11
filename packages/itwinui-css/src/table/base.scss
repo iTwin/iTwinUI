@@ -4,7 +4,18 @@
 
 @mixin iui-table {
   @include mixins.iui-reset;
-  display: grid;
+
+  // TODO: Revert back to flex, or no flex if not doing anything with it.
+  // - Verify all cases (stories and css demos)
+  // - may need a has selector to have position: sticky only when empty state, not always
+
+  // Earlier it was working since position sticky and scroll container was the body
+
+  // z-index: some small number;
+
+  // Could keep display flex if no ill effects with it. To reduce diff and users may be relying on it.
+
+  // display: grid;
   grid-template-rows: min-content 1fr;
   isolation: isolate;
   overflow: auto;
@@ -17,6 +28,8 @@
   > .iui-table-paginator {
     position: sticky;
     inset-block-end: 0;
+    inset-inline-start: 0;
+    z-index: 1;
   }
 }
 
