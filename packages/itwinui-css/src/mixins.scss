@@ -2,21 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
 
-@mixin iui-ripple($hoverColor, $rippleColor) {
-  background-position: center;
-  transition: background var(--iui-duration-2) ease-out;
-
-  &:hover {
-    background: $hoverColor radial-gradient(circle, transparent 1%, #{$hoverColor} 1%) center/15000%;
-  }
-
-  &:active {
-    background-color: $rippleColor;
-    background-size: 100%;
-    transition: background var(--iui-duration-0);
-  }
-}
-
 /// Helper mixin to add ::before or ::after pseudo element that will
 /// be absolutely positioned and will have the same size as the parent element.
 @mixin pseudo-content($beforeOrAfter: before) {
