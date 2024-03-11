@@ -92,7 +92,7 @@ By default, a portal will be opened containing links to all the different dev se
 If a script is not available in the root package.json or if you need to pass workspace-specific cli args, then you can specify the workspace as follows:
 ```
 # passing Alert as a cli arg to the `test` command in itwinui-react
-pnpm --filter @itwin/itwinui-react test Alert
+pnpm --filter=@itwin/itwinui-react test Alert
 ```
 
 ...or you can simply run the command normally from inside the workspace folder instead of the monorepo root.
@@ -103,8 +103,8 @@ pnpm test Alert
 
 Note that this bypasses the turborepo pipeline, so you will need to manually run any dependent tasks first. For example, if the `build` command of `react-workshop` relies on the `build` command of `@itwin/itwinui-react`, then you will need to manually run the `build` commands in the right order.
 ```
-pnpm --filter @itwin/itwinui-react build
-pnpm --filter react-workshop build
+pnpm --filter=@itwin/itwinui-react build
+pnpm --filter=react-workshop build
 ```
 
 This is why it's recommended to use the turbo `--filter` syntax whenever possible.
@@ -277,7 +277,7 @@ For running tests you will need [Docker](https://www.docker.com/products/docker-
 
 - Make sure Docker is running.
 - To run tests for a specific component, use this command:
-  `pnpm --filter css-workshop test -- --filter=[component_name]` (e.g. `pnpm --filter css-workshop test -- --filter=side-navigation`). But don't forget to build css-workshop first (pnpm build --filter=css-workshop).
+  `pnpm --filter=css-workshop test -- --filter=[component_name]` (e.g. `pnpm --filter=css-workshop test -- --filter=side-navigation`). But don't forget to build css-workshop first (pnpm build --filter=css-workshop).
 - To approve test images, run `pnpm approve:css`.
 
 #### How to write tests:
@@ -315,7 +315,7 @@ We reuse our stories for visual tests by taking screenshots of the story iframes
 
 1. Make sure you have [Docker](https://www.docker.com/get-started) installed and running.
 2. From the monorepo root, run `pnpm run test --filter=react-workshop`. This will build react-workshop and run all cypress tests in docker.
-   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter react-workshop test -- --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
+   -  If you only need to run tests for a specific component, you can do so by passing the `--spec` argument to cypress. e.g. for testing `Alert`, you can run `pnpm --filter=react-workshop test -- --spec="**/Alert.*"`. But don't forget to build react-workshop first (pnpm run build --filter=react-workshop).
 3. Once the tests finish running, you can approve any failing test images using `pnpm approve:react`.
 
 #### Writing visual tests
@@ -362,7 +362,7 @@ In the terminal:
 
 In the Cypress GUI:
 
-1. From the monorepo root, run `pnpm run --filter a11y open`. This will open the Cypress control panel where you can run the tests.
+1. From the monorepo root, run `pnpm run --filter=a11y open`. This will open the Cypress control panel where you can run the tests.
 2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
 3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
 
