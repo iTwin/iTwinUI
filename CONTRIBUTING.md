@@ -92,7 +92,7 @@ By default, a portal will be opened containing links to all the different dev se
 If a script is not available in the root package.json or if you need to pass workspace-specific cli args, then you can specify the workspace as follows:
 ```
 # passing Alert as a cli arg to the `test` command in itwinui-react
-pnpm --filter=@itwin/itwinui-react test Alert
+pnpm --filter=@itwin/itwinui-react run test Alert
 ```
 
 ...or you can simply run the command normally from inside the workspace folder instead of the monorepo root.
