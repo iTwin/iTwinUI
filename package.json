@@ -28,8 +28,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --concurrency=12",
-    "test": "turbo run test",
-    "test:specific": "node scripts/testSpecific.js",
+    "test": "node scripts/testSpecific.js",
     "lint": "turbo run lint",
     "format": "turbo run format",
     "prepare": "husky install",
