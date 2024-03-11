@@ -54,11 +54,10 @@
 
 .iui-expandable-header {
   @include mixins.iui-reset;
-
-  &:focus-visible {
-    outline: var(--_iui-expandable-block-header-focus-thickness) solid var(--iui-color-border-accent);
-    outline-offset: var(--_iui-expandable-block-header-focus-offset);
-  }
+  @include mixins.iui-focus(
+    $offset: var(--_iui-expandable-block-header-focus-offset),
+    $thickness: var(--_iui-expandable-block-header-focus-thickness)
+  );
   display: flex;
   gap: var(--_iui-expandable-block-header-gap);
   align-items: center;

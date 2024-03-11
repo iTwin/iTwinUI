@@ -11,11 +11,7 @@
     background-color: Hsl(0 0% 0% / var(--iui-opacity-3));
     backdrop-filter: blur(5px);
   }
-
-  &:focus-visible {
-    outline: 2px solid var(--iui-color-border-accent);
-    outline-offset: 2px;
-  }
+  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
   color: var(--iui-color-white);
   border-radius: var(--iui-border-radius-round);
   text-decoration: none;

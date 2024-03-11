@@ -22,11 +22,7 @@
 
 a.iui-tag-basic {
   @include anchor.iui-anchor;
-
-  &:focus-visible {
-    outline: 1px solid var(--iui-color-border-accent);
-    outline-offset: 1px;
-  }
+  @include mixins.iui-focus($offset: 1px);
 }
 
 .iui-tag-container {

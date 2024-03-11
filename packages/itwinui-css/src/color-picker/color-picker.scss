@@ -64,10 +64,7 @@ $iui-hover-box-shadow: 0 0 0 var(--iui-size-3xs) var(--iui-color-border);
     box-shadow: $iui-hover-box-shadow, $iui-inset-box-shadow;
   }
 
-  &:focus-visible {
-    outline: 2px solid var(--iui-color-border-accent);
-    outline-offset: 2px;
-  }
+  @include mixins.iui-focus($offset: 2px, $thickness: 2px);
 
   &.iui-active {
     box-shadow: $iui-active-box-shadow, $iui-inset-box-shadow;
