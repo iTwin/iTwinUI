@@ -330,10 +330,10 @@ importers:
         version: 2.6.1
     devDependencies:
       '@itwin/itwinui-css':
-        specifier: ^2.4.0
+        specifier: workspace:*
         version: link:../itwinui-css
       '@itwin/itwinui-variables':
-        specifier: 3.1.0
+        specifier: workspace:*
         version: link:../itwinui-variables
       '@swc/cli':
         specifier: ^0.1.62

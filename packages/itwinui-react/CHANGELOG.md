@@ -1,5 +1,33 @@
 # Changelog
 
+## 3.6.0
+
+### Minor Changes
+
+- [#1879](https://github.com/iTwin/iTwinUI/pull/1879): Added a new `native` prop to `Select` and `LabeledSelect`. When true, a native `<select>` element will be rendered.
+- [#1886](https://github.com/iTwin/iTwinUI/pull/1886): Native `Select` (`<Select native>`) offers a new `styleType` prop that accepts the values: `default` (pre-existing) and `borderless` (new).
+- [#1877](https://github.com/iTwin/iTwinUI/pull/1877): Fixed a bug in `LabeledSelect` where nested `<StatusMessage>`s were rendered when using `message={<StatusMessage>}`. As a result, non-string `message` values are no longer automatically wrapped in `<StatusMessage>`.
+  - If you were passing a custom `ReactNode`, you might need to wrap it with `<StatusMessage>` for proper styling of `message`.
+- [#1881](https://github.com/iTwin/iTwinUI/pull/1881): Added a new subcomponent `InputWithDecorations.Icon` to replace direct usage of `Icon` inside `InputWithDecorations`.
+- Visual changes:
+  - [#1828](https://github.com/iTwin/iTwinUI/pull/1828): Inline padding of `Icon` no longer changes with the icon size. It is now a constant of `--iui-size-xs`.
+  - [#1881](https://github.com/iTwin/iTwinUI/pull/1881): `Input`'s and `Textarea`'s start/end inline padding when inside `InputWithDecorations` is now collapsed when it is preceded/followed by a `InputWithDecorations.Icon` or `InputWithDecorations.Button`. This prevents unnecessary empty space in `InputWithDecorations`.
+  - [#1888](https://github.com/iTwin/iTwinUI/pull/1888): The expandable `SearchBox` now shows a regular-sized button in the collapsed state. Previously, it used to incorrectly be a square button.
+  - [#1828](https://github.com/iTwin/iTwinUI/pull/1828): `SearchBox.Icon` no longer has the same width as `SearchBox.Button`. Its width also no longer changes with the `SearchBox` size. This is because its padding behavior is now similar to `Icon`'s padding behavior, where it uses a constant padding.
+  - [#1897](https://github.com/iTwin/iTwinUI/pull/1897): All instances of `<SvgStatusError>` have been updated to reflect the new octagon shape from the latest version of iTwinUI-icons. Some components affected: `Icon`, `Alert`, `Toast`, `StatusMessage`.
+  - [#1888](https://github.com/iTwin/iTwinUI/pull/1888): The expandable `SearchBox`'s animation/transition between the expanded and the collapsed states is now removed.
+
+### Patch Changes
+
+- [#1865](https://github.com/iTwin/iTwinUI/pull/1865): `Dialog`/`Modal` will no longer keep its wrapper in the DOM when `isOpen=false`.
+- [#1889](https://github.com/iTwin/iTwinUI/pull/1889): `Dialog`/`Modal`'s close button will now be visually aligned based on the icon inside it, excluding the padding.
+- [#1906](https://github.com/iTwin/iTwinUI/pull/1906): `Dialog`/`Modal` title will now wrap to multiple lines instead of getting clippped.
+- [#1873](https://github.com/iTwin/iTwinUI/pull/1873): Fixed `Tab` stripe size and position calculation that sometimes used to cause unnecessary overflow and thus cause a horizontal scrollbar in `TabList`.
+- [#1884](https://github.com/iTwin/iTwinUI/pull/1884): Fixed a bug that caused the `Tabs.Wrapper` to change size dependent on which `Tabs.Tab` was active.
+- [#1901](https://github.com/iTwin/iTwinUI/pull/1901): Fixed a bug in `Table` where `initialState.columnOrder` was not being respected.
+- [#1894](https://github.com/iTwin/iTwinUI/pull/1894): All instances of `box-sizing: content-box` have been reinforced with `!important` to prevent accidental overrides from application styles.
+- [#1828](https://github.com/iTwin/iTwinUI/pull/1828): `InputWithDecorations` now has an inline padding of `1px` to account for the `1px` border's inline edges. This prevents content that touches the border's inline edges from being overlapped by the border by `1px`. Slightly modified expandable `SearchBox` styles to account for the new padding.
+
 ## 3.5.0
 
 ### Minor Changes
