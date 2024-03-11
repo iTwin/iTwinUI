@@ -38,7 +38,7 @@ jobs:
       - name: Create release PR or publish to npm
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version
+          version: pnpm changeset version --ignore @itwin/itwinui-css
           publish: pnpm release
           title: Release packages
           commit: Release packages
