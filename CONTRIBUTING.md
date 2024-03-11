@@ -112,6 +112,14 @@ This is why it's recommended to use the turbo `--filter` syntax whenever possibl
 pnpm run build --filter=react-workshop
 ```
 
+> [!NOTE]
+>
+> The `--filter` argument is used in both `turbo` and `pnpm`. To use it with:
+> * `turbo`: `pnpm run [command] --filter=[workspace]`
+>   * e.g. `pnpm run build --filter=react-workshop`
+> * `pnpm`: `pnpm --filter=[workspace] run [command]`
+>   * e.g. `pnpm --filter=react-workshop run build`
+
 ---
 
 ### Creating components
