@@ -2,6 +2,13 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'sass:map';
 
+@mixin iui-reset {
+  margin: 0;
+  padding: 0;
+  border: none;
+  vertical-align: baseline;
+}
+
 // ----------------------------------------------------------------------------
 // helpers for icon
 

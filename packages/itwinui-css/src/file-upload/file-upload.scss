@@ -4,10 +4,7 @@
 @use '../surface/base' as surface;
 
 .iui-file-upload {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   font-size: var(--iui-font-size-1);
   font-weight: var(--iui-font-weight-normal);
   position: relative;
@@ -91,10 +88,7 @@
 }
 
 .iui-file-card {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   line-height: 1;
   display: flex;
   align-items: center;
@@ -145,10 +139,7 @@
 }
 
 .iui-file-card-empty {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   line-height: 1;
   display: flex;
   align-items: center;

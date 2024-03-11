@@ -3,10 +3,7 @@
 @use '../mixins';
 
 @mixin iui-button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   font-family: inherit;
   display: inline-flex;
   flex-shrink: 0;

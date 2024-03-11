@@ -7,10 +7,7 @@
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-text-color: var(--iui-color-text);
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
 
   &:focus-visible {
     outline: 2px solid var(--iui-color-border-accent);

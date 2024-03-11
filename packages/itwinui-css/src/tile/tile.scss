@@ -12,10 +12,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   --_iui-tile-title-text-color: var(--iui-color-text);
   --_iui-tile-body-text-color: var(--iui-color-text-muted);
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   @include surface.iui-surface;
   display: inline-flex;
   flex-direction: column;

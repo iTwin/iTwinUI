@@ -13,10 +13,7 @@ $iui-badge-horizontal-padding: calc(var(--iui-size-2xs) * 1.5);
   --_iui-badge-border-color: var(--iui-badge-background-color);
   --_iui-badge-text-color: hsl(0 0% 0% / 0.6);
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   display: inline-block;
   font-size: var(--iui-font-size-0);
   padding-inline: $iui-badge-horizontal-padding;

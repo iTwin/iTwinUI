@@ -8,10 +8,7 @@ $iui-active-outline: 1px solid var(--iui-color-border-accent);
 $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 
 .iui-tree {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   --_iui-tree-node-padding-inline: var(--iui-size-xs);
   --_iui-tree-row-height: calc(var(--iui-size-3xs) * 18);
 

@@ -7,10 +7,7 @@
 @use '../button/default';
 
 @mixin iui-table-paginator {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   display: flex;
   justify-content: space-between;
   align-items: center;

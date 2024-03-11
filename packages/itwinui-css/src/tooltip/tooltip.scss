@@ -3,10 +3,7 @@
 @use '../mixins';
 
 .iui-tooltip {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   position: absolute;
   display: block;
   text-align: center;

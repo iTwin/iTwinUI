@@ -6,10 +6,7 @@
 $iui-active-outline: 1px solid var(--iui-color-border-accent);
 
 @mixin iui-list {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   list-style-type: none;
   isolation: isolate;
 }

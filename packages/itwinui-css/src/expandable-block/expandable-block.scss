@@ -53,10 +53,7 @@
 }
 
 .iui-expandable-header {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
 
   &:focus-visible {
     outline: var(--_iui-expandable-block-header-focus-thickness) solid var(--iui-color-border-accent);

@@ -8,20 +8,14 @@
 @mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
   --_iui-breadcrumbs-height: #{$breadcrumbs-height};
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   display: flex;
   align-items: center;
   block-size: var(--_iui-breadcrumbs-height);
 }
 
 @mixin iui-breadcrumbs-list {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   display: flex;
   align-items: center;
   list-style-type: none;

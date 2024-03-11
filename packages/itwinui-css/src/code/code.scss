@@ -13,10 +13,7 @@
 }
 
 .iui-codeblock {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   margin-block: calc(var(--iui-size-s) * 0.5);
 
   > .iui-title-bar {

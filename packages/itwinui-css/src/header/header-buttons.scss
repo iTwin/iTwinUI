@@ -28,10 +28,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
     }
 
     // #region resets for button
-    margin: 0;
-    padding: 0;
-    border: none;
-    vertical-align: baseline;
+    @include mixins.iui-reset;
     font-family: inherit;
     background-color: unset;
     color: unset;
