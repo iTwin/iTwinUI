@@ -60,7 +60,10 @@
   }
 
   &.iui-truncate {
-    @include mixins.iui-line-clamp(1);
+    overflow: hidden;
+    display: -webkit-box; /* stylelint-disable-line */
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical; /* stylelint-disable-line */
   }
 
   &.iui-scroll {

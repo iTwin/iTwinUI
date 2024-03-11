@@ -94,7 +94,10 @@ $borderless-horizontal-tab-min-height: calc(
   }
 
   .iui-tab-description {
-    @include mixins.iui-line-clamp(3);
+    overflow: hidden;
+    display: -webkit-box; /* stylelint-disable-line */
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical; /* stylelint-disable-line */
     max-inline-size: 60ch;
     display: none;
     font-size: var(--iui-font-size-0);
@@ -125,7 +128,10 @@ $borderless-horizontal-tab-min-height: calc(
 @mixin iui-tab-label {
   grid-area: label;
   max-inline-size: 60ch;
-  @include mixins.iui-line-clamp(3);
+  overflow: hidden;
+  display: -webkit-box; /* stylelint-disable-line */
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical; /* stylelint-disable-line */
 }
 
 @mixin iui-tabs-horizontal {
