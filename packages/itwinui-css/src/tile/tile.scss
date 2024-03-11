@@ -438,7 +438,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   margin-inline-end: calc(-1 * var(--iui-size-2xs));
 
   // safari doesn't support grid + position:absolute, so we will hardcode the values
-  @supports (-apple-pay-button-style: inherit) {
+  @include mixins.safari-only {
     inset-block-end: var(--iui-size-s);
     inset-inline-end: 0;
     margin: 0;
