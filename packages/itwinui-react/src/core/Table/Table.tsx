@@ -756,10 +756,6 @@ export const Table = <
   const bodyRef = React.useRef<HTMLDivElement>(null);
   const lazyLoadingCellRef = React.useRef<HTMLDivElement>(null);
 
-  // const [tableScrollLeft, setTableScrollLeft] = React.useState(
-  //   tableRef.current?.scrollLeft,
-  // );
-
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
   const previousTableWidth = React.useRef(0);
@@ -901,17 +897,13 @@ export const Table = <
           },
         })}
         onScroll={() => {
-          console.log('onScroll', tableRef.current?.scrollLeft);
-
           // Update the lazy loading cell position, if it exists
           lazyLoadingCellRef.current?.style.setProperty(
             'transform',
             `translateX(${tableRef.current?.scrollLeft}px)`,
           );
 
-          // setTableScrollLeft(tableRef.current?.scrollLeft);
-
-          return updateStickyState();
+          updateStickyState();
         }}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
@@ -1105,26 +1097,12 @@ export const Table = <
             </Box>
           )}
           {isLoading && data.length !== 0 && (
-            <Box
-              className='iui-table-row'
-              data-iui-loading='true'
-              style={
-                {
-                  // willChange: 'transform',
-                  // transform: `translateX(${tableScrollLeft}px)`,
-                  // left: `${tableScrollLeft}px`,
-                }
-              }
-            >
+            <Box className='iui-table-row' data-iui-loading='true'>
               <Box
                 ref={lazyLoadingCellRef}
                 className='iui-table-cell'
                 style={{
                   transform: `${tableRef.current?.scrollLeft ?? 0}px`,
-
-                  // willChange: 'transform',
-                  // transform: `translateX(${tableScrollLeft}px)`,
-                  // left: `${tableScrollLeft}px`,
                 }}
               >
                 <ProgressRadial indeterminate size='small' />
