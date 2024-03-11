@@ -622,11 +622,13 @@ export const ExpandableSubrows = () => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
+        width: 1200,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
+        width: 1200,
       },
     ],
     [],
@@ -689,6 +691,7 @@ export const ExpandableSubrows = () => {
       </div>
       <br />
       <Table
+        style={{ height: '50vh' }}
         emptyTableContent='No data.'
         isSelectable
         isSortable
