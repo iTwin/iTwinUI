@@ -5,11 +5,6 @@
 @use 'paginator';
 @use 'sizes';
 
-.iui-table-wrapper {
-  @include base.iui-table-wrapper;
-  @include sizes.iui-table-wrapper-sizes;
-}
-
 .iui-table {
   @include base.iui-table;
   @include sizes.iui-table-sizes;

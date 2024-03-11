@@ -273,10 +273,6 @@ export type TableProps<
    */
   enableColumnReordering?: boolean;
   /**
-   * Passes custom props to Table wrapper.
-   */
-  wrapperProps?: React.ComponentProps<'div'>;
-  /**
    * Passes props to Table header wrapper.
    */
   headerWrapperProps?: React.ComponentProps<'div'>;
@@ -413,7 +409,6 @@ export const Table = <
     enableVirtualization = false,
     enableColumnReordering = false,
     headerWrapperProps,
-    wrapperProps,
     headerProps,
     bodyProps,
     emptyTableContentProps,
@@ -885,250 +880,246 @@ export const Table = <
 
   return (
     <>
-      <Box as='div' className='iui-table-wrapper' {...wrapperProps}>
-        <Box
-          ref={mergeRefs(tableRef, (element) => {
-            ownerDocument.current = element?.ownerDocument;
-            if (isResizable) {
-              resizeRef(element);
-            }
-          })}
-          id={id}
-          {...getTableProps({
-            className: cx('iui-table', className),
-            style: {
-              minWidth: 0, // Overrides the min-width set by the react-table but when we support horizontal scroll it is not needed
-              ...style,
-            },
-          })}
-          onScroll={() => updateStickyState()}
-          data-iui-size={density === 'default' ? undefined : density}
-          {...ariaDataAttributes}
-        >
-          {headerGroups.map((headerGroup: HeaderGroup<T>) => {
-            // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
-            headerGroup.headers = headerGroup.headers.filter(
-              (header) =>
-                !header.id.includes(
-                  'iui-table-checkbox-selector_placeholder',
-                ) && !header.id.includes('iui-table-expander_placeholder'),
-            );
-            const headerGroupProps = headerGroup.getHeaderGroupProps({
-              className: 'iui-table-row',
-            });
-            return (
+      <Box
+        ref={mergeRefs(tableRef, (element) => {
+          ownerDocument.current = element?.ownerDocument;
+          if (isResizable) {
+            resizeRef(element);
+          }
+        })}
+        id={id}
+        {...getTableProps({
+          className: cx('iui-table', className),
+          style: {
+            minWidth: 0, // Overrides the min-width set by the react-table but when we support horizontal scroll it is not needed
+            ...style,
+          },
+        })}
+        onScroll={() => updateStickyState()}
+        data-iui-size={density === 'default' ? undefined : density}
+        {...ariaDataAttributes}
+      >
+        {headerGroups.map((headerGroup: HeaderGroup<T>) => {
+          // There may be a better solution for this, but for now I'm filtering out the placeholder cells using header.id
+          headerGroup.headers = headerGroup.headers.filter(
+            (header) =>
+              !header.id.includes('iui-table-checkbox-selector_placeholder') &&
+              !header.id.includes('iui-table-expander_placeholder'),
+          );
+          const headerGroupProps = headerGroup.getHeaderGroupProps({
+            className: 'iui-table-row',
+          });
+          return (
+            <Box
+              as='div'
+              ref={headerRef}
+              key={headerGroupProps.key}
+              {...headerWrapperProps}
+              className={cx(
+                'iui-table-header-wrapper',
+                headerWrapperProps?.className,
+              )}
+            >
               <Box
                 as='div'
-                ref={headerRef}
-                key={headerGroupProps.key}
-                {...headerWrapperProps}
-                className={cx(
-                  'iui-table-header-wrapper',
-                  headerWrapperProps?.className,
-                )}
+                {...headerProps}
+                className={cx('iui-table-header', headerProps?.className)}
               >
-                <Box
-                  as='div'
-                  {...headerProps}
-                  className={cx('iui-table-header', headerProps?.className)}
-                >
-                  <Box {...headerGroupProps}>
-                    {headerGroup.headers.map((column, index) => {
-                      const { onClick, ...restSortProps } =
-                        column.getSortByToggleProps();
+                <Box {...headerGroupProps}>
+                  {headerGroup.headers.map((column, index) => {
+                    const { onClick, ...restSortProps } =
+                      column.getSortByToggleProps();
 
-                      const columnHasExpanders =
-                        hasAnySubRows &&
-                        index ===
-                          headerGroup.headers.findIndex(
-                            (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
-                          );
+                    const columnHasExpanders =
+                      hasAnySubRows &&
+                      index ===
+                        headerGroup.headers.findIndex(
+                          (c) => c.id !== SELECTION_CELL_ID, // first non-selection column is the expander column
+                        );
 
-                      const columnProps = column.getHeaderProps({
-                        ...restSortProps,
-                        className: cx(
-                          'iui-table-cell',
-                          {
-                            'iui-actionable': column.canSort,
-                            'iui-sorted': column.isSorted,
-                            'iui-table-cell-sticky': !!column.sticky,
-                          },
-                          column.columnClassName,
-                        ),
-                        style: {
-                          ...getCellStyle(column, !!state.isTableResizing),
-                          ...(columnHasExpanders &&
-                            getSubRowStyle({ density })),
-                          ...getStickyStyle(column, visibleColumns),
-                          flexWrap: 'unset',
+                    const columnProps = column.getHeaderProps({
+                      ...restSortProps,
+                      className: cx(
+                        'iui-table-cell',
+                        {
+                          'iui-actionable': column.canSort,
+                          'iui-sorted': column.isSorted,
+                          'iui-table-cell-sticky': !!column.sticky,
                         },
-                      });
-                      return (
-                        <Box
-                          {...columnProps}
-                          {...column.getDragAndDropProps()}
-                          key={columnProps.key}
-                          title={undefined}
-                          ref={(el) => {
-                            if (el) {
-                              columnRefs.current[column.id] = el;
-                              column.resizeWidth =
-                                el.getBoundingClientRect().width;
-                            }
-                          }}
-                          onMouseDown={() => {
-                            isHeaderDirectClick.current = true;
-                          }}
-                          onClick={(e) => {
-                            // Prevents from triggering sort when resizing and mouse is released in the middle of header
-                            if (isHeaderDirectClick.current) {
-                              onClick?.(e);
-                              isHeaderDirectClick.current = false;
-                            }
-                          }}
-                          tabIndex={showSortButton(column) ? 0 : undefined}
-                          onKeyDown={(e) => {
-                            if (e.key == 'Enter' && showSortButton(column)) {
-                              column.toggleSortBy();
-                            }
-                          }}
-                        >
-                          {column.render('Header')}
-                          {(showFilterButton(column) ||
-                            showSortButton(column)) && (
-                            <Box
-                              className='iui-table-header-actions-container'
-                              onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
-                            >
-                              {showFilterButton(column) && (
-                                <FilterToggle column={column} />
-                              )}
-                              {showSortButton(column) && (
-                                <Box className='iui-table-cell-end-icon'>
-                                  {column.isSortedDesc ||
-                                  (!column.isSorted && column.sortDescFirst) ? (
-                                    <SvgSortDown
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  ) : (
-                                    <SvgSortUp
-                                      className='iui-table-sort'
-                                      aria-hidden
-                                    />
-                                  )}
-                                </Box>
-                              )}
-                            </Box>
-                          )}
-                          {isResizable &&
-                            column.isResizerVisible &&
-                            (index !== headerGroup.headers.length - 1 ||
-                              columnResizeMode === 'expand') && (
-                              <Box
-                                {...column.getResizerProps()}
-                                className='iui-table-resizer'
-                              >
-                                <Box className='iui-table-resizer-bar' />
+                        column.columnClassName,
+                      ),
+                      style: {
+                        ...getCellStyle(column, !!state.isTableResizing),
+                        ...(columnHasExpanders && getSubRowStyle({ density })),
+                        ...getStickyStyle(column, visibleColumns),
+                        flexWrap: 'unset',
+                      },
+                    });
+                    return (
+                      <Box
+                        {...columnProps}
+                        {...column.getDragAndDropProps()}
+                        key={columnProps.key}
+                        title={undefined}
+                        ref={(el) => {
+                          if (el) {
+                            columnRefs.current[column.id] = el;
+                            column.resizeWidth =
+                              el.getBoundingClientRect().width;
+                          }
+                        }}
+                        onMouseDown={() => {
+                          isHeaderDirectClick.current = true;
+                        }}
+                        onClick={(e) => {
+                          // Prevents from triggering sort when resizing and mouse is released in the middle of header
+                          if (isHeaderDirectClick.current) {
+                            onClick?.(e);
+                            isHeaderDirectClick.current = false;
+                          }
+                        }}
+                        tabIndex={showSortButton(column) ? 0 : undefined}
+                        onKeyDown={(e) => {
+                          if (e.key == 'Enter' && showSortButton(column)) {
+                            column.toggleSortBy();
+                          }
+                        }}
+                      >
+                        {column.render('Header')}
+                        {(showFilterButton(column) ||
+                          showSortButton(column)) && (
+                          <Box
+                            className='iui-table-header-actions-container'
+                            onKeyDown={(e) => e.stopPropagation()} // prevents from triggering sort
+                          >
+                            {showFilterButton(column) && (
+                              <FilterToggle column={column} />
+                            )}
+                            {showSortButton(column) && (
+                              <Box className='iui-table-cell-end-icon'>
+                                {column.isSortedDesc ||
+                                (!column.isSorted && column.sortDescFirst) ? (
+                                  <SvgSortDown
+                                    className='iui-table-sort'
+                                    aria-hidden
+                                  />
+                                ) : (
+                                  <SvgSortUp
+                                    className='iui-table-sort'
+                                    aria-hidden
+                                  />
+                                )}
                               </Box>
                             )}
-                          {enableColumnReordering &&
-                            !column.disableReordering && (
-                              <Box className='iui-table-reorder-bar' />
-                            )}
-                          {column.sticky === 'left' &&
-                            state.sticky.isScrolledToRight && (
-                              <Box className='iui-table-cell-shadow-right' />
-                            )}
-                          {column.sticky === 'right' &&
-                            state.sticky.isScrolledToLeft && (
-                              <Box className='iui-table-cell-shadow-left' />
-                            )}
-                        </Box>
-                      );
-                    })}
-                  </Box>
+                          </Box>
+                        )}
+                        {isResizable &&
+                          column.isResizerVisible &&
+                          (index !== headerGroup.headers.length - 1 ||
+                            columnResizeMode === 'expand') && (
+                            <Box
+                              {...column.getResizerProps()}
+                              className='iui-table-resizer'
+                            >
+                              <Box className='iui-table-resizer-bar' />
+                            </Box>
+                          )}
+                        {enableColumnReordering &&
+                          !column.disableReordering && (
+                            <Box className='iui-table-reorder-bar' />
+                          )}
+                        {column.sticky === 'left' &&
+                          state.sticky.isScrolledToRight && (
+                            <Box className='iui-table-cell-shadow-right' />
+                          )}
+                        {column.sticky === 'right' &&
+                          state.sticky.isScrolledToLeft && (
+                            <Box className='iui-table-cell-shadow-left' />
+                          )}
+                      </Box>
+                    );
+                  })}
                 </Box>
               </Box>
-            );
+            </Box>
+          );
+        })}
+        <Box
+          {...bodyProps}
+          {...getTableBodyProps({
+            className: cx(
+              'iui-table-body',
+              {
+                'iui-zebra-striping': styleType === 'zebra-rows',
+              },
+              bodyProps?.className,
+            ),
+            style: { outline: 0 },
           })}
-          <Box
-            {...bodyProps}
-            {...getTableBodyProps({
-              className: cx(
-                'iui-table-body',
-                {
-                  'iui-zebra-striping': styleType === 'zebra-rows',
-                },
-                bodyProps?.className,
-              ),
-              style: { outline: 0 },
-            })}
-            ref={bodyRef}
-            tabIndex={-1}
-            aria-multiselectable={
-              (isSelectable && selectionMode === 'multi') || undefined
-            }
-          >
-            {data.length !== 0 && (
-              <>
-                {enableVirtualization ? (
-                  <VirtualScroll
-                    itemsLength={page.length}
-                    itemRenderer={virtualizedItemRenderer}
-                    scrollToIndex={scrollToIndex}
-                  />
-                ) : (
-                  page.map((_, index) => getPreparedRow(index))
-                )}
-              </>
-            )}
-            {isLoading && data.length === 0 && (
-              <Box
-                as='div'
-                {...emptyTableContentProps}
-                className={cx(
-                  'iui-table-empty',
-                  emptyTableContentProps?.className,
-                )}
-              >
-                <ProgressRadial indeterminate={true} />
-              </Box>
-            )}
-            {isLoading && data.length !== 0 && (
-              <Box className='iui-table-row' data-iui-loading='true'>
-                <Box className='iui-table-cell'>
-                  <ProgressRadial indeterminate size='small' />
-                </Box>
-              </Box>
-            )}
-            {!isLoading && data.length === 0 && !areFiltersSet && (
-              <Box
-                as='div'
-                {...emptyTableContentProps}
-                className={cx(
-                  'iui-table-empty',
-                  emptyTableContentProps?.className,
-                )}
-              >
-                <div>{emptyTableContent}</div>
-              </Box>
-            )}
-            {!isLoading &&
-              (data.length === 0 || rows.length === 0) &&
-              areFiltersSet && (
-                <Box
-                  as='div'
-                  {...emptyTableContentProps}
-                  className={cx(
-                    'iui-table-empty',
-                    emptyTableContentProps?.className,
-                  )}
-                >
-                  <div>{emptyFilteredTableContent}</div>
-                </Box>
+          ref={bodyRef}
+          tabIndex={-1}
+          aria-multiselectable={
+            (isSelectable && selectionMode === 'multi') || undefined
+          }
+        >
+          {data.length !== 0 && (
+            <>
+              {enableVirtualization ? (
+                <VirtualScroll
+                  itemsLength={page.length}
+                  itemRenderer={virtualizedItemRenderer}
+                  scrollToIndex={scrollToIndex}
+                />
+              ) : (
+                page.map((_, index) => getPreparedRow(index))
               )}
-          </Box>
+            </>
+          )}
+          {isLoading && data.length === 0 && (
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
+              <ProgressRadial indeterminate={true} />
+            </Box>
+          )}
+          {isLoading && data.length !== 0 && (
+            <Box className='iui-table-row' data-iui-loading='true'>
+              <Box className='iui-table-cell'>
+                <ProgressRadial indeterminate size='small' />
+              </Box>
+            </Box>
+          )}
+          {!isLoading && data.length === 0 && !areFiltersSet && (
+            <Box
+              as='div'
+              {...emptyTableContentProps}
+              className={cx(
+                'iui-table-empty',
+                emptyTableContentProps?.className,
+              )}
+            >
+              <div>{emptyTableContent}</div>
+            </Box>
+          )}
+          {!isLoading &&
+            (data.length === 0 || rows.length === 0) &&
+            areFiltersSet && (
+              <Box
+                as='div'
+                {...emptyTableContentProps}
+                className={cx(
+                  'iui-table-empty',
+                  emptyTableContentProps?.className,
+                )}
+              >
+                <div>{emptyFilteredTableContent}</div>
+              </Box>
+            )}
         </Box>
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>

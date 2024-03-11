@@ -287,9 +287,7 @@ it('should render table with custom className', () => {
 it('should render table with custom style', () => {
   const { container } = renderComponent({ style: { color: 'red' } });
 
-  const table = container.querySelector(
-    '.iui-table-wrapper > .iui-table',
-  ) as HTMLElement;
+  const table = container.querySelector('.iui-table') as HTMLElement;
   expect(table).toBeTruthy();
   expect(table.style.color).toEqual('red');
 });
@@ -4716,9 +4714,6 @@ it('should ignore top-level Header if one is passed', async () => {
 it('should pass custom props to different parts of Table', () => {
   const { container } = renderComponent({
     data: [],
-    wrapperProps: {
-      className: 'custom-wrapper',
-    },
     headerWrapperProps: {
       className: 'custom-header-wrapper-class',
       style: { fontSize: 12 },
@@ -4730,12 +4725,6 @@ it('should pass custom props to different parts of Table', () => {
       style: { fontSize: 12 },
     },
   });
-
-  // Test for Table wrapper
-  const tableWrapper = container.querySelector(
-    '.iui-table-wrapper.custom-wrapper',
-  ) as HTMLElement;
-  expect(tableWrapper).toBeTruthy();
 
   // Test for Table header wrapper
   const headerWrapperElement = container.querySelector(
