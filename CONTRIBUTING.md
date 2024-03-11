@@ -372,7 +372,7 @@ In the terminal:
 
 In the Cypress GUI:
 
-1. From the monorepo root, run `pnpm run --filter=a11y open`. This will open the Cypress control panel where you can run the tests.
+1. From the monorepo root, run `pnpm --filter=a11y run open`. This will open the Cypress control panel where you can run the tests.
 2. Choose a browser to evaluate your tests through, then press the `Start Component Testing in [YourBrowser]` button below.
 3. Select `Component.cy.tsx` to run the script that tests all of the component examples.
 
