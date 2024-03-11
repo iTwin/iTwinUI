@@ -14,7 +14,13 @@
   z-index: 10000;
 
   // Blur fallback
-  @include mixins.iui-blur($hsl: var(--iui-color-background-hsl), $opacity: 3);
+  background-color: Hsl(var(--iui-color-background-hsl) / var(--iui-opacity-2));
+
+  // With blur
+  @supports (backdrop-filter: blur(5px)) {
+    background-color: Hsl(var(--iui-color-background-hsl) / var(--iui-opacity-3));
+    backdrop-filter: blur(5px);
+  }
 
   .iui-progress-indicator-linear {
     inline-size: 50%;

@@ -379,7 +379,14 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   }
 
   .iui-tile-thumbnail-picture ~ & {
-    @include mixins.iui-blur($opacity: 5);
+    // Blur fallback
+    background-color: Hsl(0 0% 0% / var(--iui-opacity-4));
+
+    // With blur
+    @supports (backdrop-filter: blur(5px)) {
+      background-color: Hsl(0 0% 0% / var(--iui-opacity-5));
+      backdrop-filter: blur(5px);
+    }
     --_iui-button-icon-fill: var(--iui-color-white);
 
     > .iui-button-icon {

@@ -24,7 +24,14 @@
   color: var(--iui-color-white);
   border: 1px solid rgba(255, 255, 255, var(--iui-opacity-4));
 
-  @include mixins.iui-blur($hsl: 0 0% 0%, $opacity: 3);
+  // Blur fallback
+  background-color: Hsl(0 0% 0% / var(--iui-opacity-2));
+
+  // With blur
+  @supports (backdrop-filter: blur(5px)) {
+    background-color: Hsl(0 0% 0% / var(--iui-opacity-3));
+    backdrop-filter: blur(5px);
+  }
 
   &[hidden] {
     display: none !important;
