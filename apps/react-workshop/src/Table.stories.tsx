@@ -724,7 +724,7 @@ export const LazyLoading = () => {
       {
         id: 'click-me',
         Header: 'Click',
-        width: 100,
+        width: 900,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
@@ -758,7 +758,7 @@ export const LazyLoading = () => {
     setTimeout(() => {
       setData(() => [...data, ...generateData(data.length, data.length + 100)]);
       setIsLoading(false);
-    }, 300000);
+    }, 300000000);
   }, [data]);
 
   return (
@@ -2235,11 +2235,13 @@ export const CustomFilter = () => {
       Header: 'Name',
       accessor: 'name',
       Filter: CustomFilter,
+      width: 700,
     },
     {
       id: 'description',
       Header: 'Description',
       accessor: 'description',
+      width: 700,
       maxWidth: 200,
     },
   ] satisfies Column<RowData>[];
@@ -2881,6 +2883,7 @@ export const DraggableColumns = () => {
         Header: 'Product',
         accessor: 'product',
         disableReordering: true,
+        width: 700,
       },
       {
         id: 'price',
@@ -2889,21 +2892,25 @@ export const DraggableColumns = () => {
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
+        width: 700,
       },
       {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
+        width: 700,
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
+        width: 700,
       },
       {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
+        width: 700,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },

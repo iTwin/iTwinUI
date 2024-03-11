@@ -1087,13 +1087,14 @@ export const Table = <
               <ProgressRadial indeterminate={true} />
             </Box>
           )}
-          {isLoading && data.length !== 0 && (
+          {/* {isLoading && data.length !== 0 && ( */}
+          {
             <Box className='iui-table-row' data-iui-loading='true'>
               <Box className='iui-table-cell'>
                 <ProgressRadial indeterminate size='small' />
               </Box>
             </Box>
-          )}
+          }
           {!isLoading && data.length === 0 && !areFiltersSet && (
             <Box
               as='div'
@@ -1121,6 +1122,13 @@ export const Table = <
               </Box>
             )}
         </Box>
+        {/* {isLoading && data.length !== 0 && (
+          <Box className='iui-table-row' data-iui-loading='true'>
+            <Box className='iui-table-cell'>
+              <ProgressRadial indeterminate size='small' />
+            </Box>
+          </Box>
+        )} */}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
     </>

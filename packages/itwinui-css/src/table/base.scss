@@ -7,16 +7,22 @@
 
   // TODO: Revert back to flex, or no flex if not doing anything with it.
   // - Verify all cases (stories and css demos)
-  // - may need a has selector to have position: sticky only when empty state, not always
+  // - [DONE] may need a has selector to have position: sticky only when empty state, not always
 
   // Earlier it was working since position sticky and scroll container was the body
 
-  // z-index: some small number;
+  // [DONE] z-index: some small number;
 
   // Could keep display flex if no ill effects with it. To reduce diff and users may be relying on it.
 
   // display: grid;
-  grid-template-rows: min-content 1fr;
+  // grid-template-rows: min-content 1fr;
+  display: flex;
+  flex-direction: column;
+  // align-items: stretch;
+
+  // display: grid;
+
   isolation: isolate;
   overflow: auto;
   scrollbar-gutter: stable;
@@ -192,6 +198,10 @@
   &[data-iui-loading='true'] {
     position: sticky;
     inset-inline-start: 0;
+    // position: absolute;
+    // inset-inline-start: 0;
+    // inset-inline-end: 0;
+    // inset-block-end: 0;
 
     // Center the progress radial within the cell/row
     .iui-table-cell {
@@ -379,7 +389,14 @@
   flex-direction: column;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  @include mixins.iui-scroll-snapping('.iui-table-row');
+
+  // Table body should be sticky only when no rows exist
+  &:has(> .iui-table-empty) {
+    position: sticky;
+    inset-inline-start: 0; // TODO: Mention that table-empty text now sticks to the top instead of being in the middle
+  }
+
+  // @include mixins.iui-scroll-snapping('.iui-table-row');
 
   &:last-child {
     border-end-start-radius: var(--iui-border-radius-1);
