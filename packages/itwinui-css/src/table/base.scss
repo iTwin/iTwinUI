@@ -518,7 +518,11 @@
   *::selection {
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
   }
-  @include mixins.pseudo-content {
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }
