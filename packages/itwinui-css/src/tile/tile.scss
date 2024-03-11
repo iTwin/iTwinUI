@@ -264,10 +264,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
   block-size: 100%;
   max-block-size: 4.5em;
   max-block-size: 3lh;
-  overflow: hidden;
-  display: -webkit-box; /* stylelint-disable-line */
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical; /* stylelint-disable-line */
+  @include mixins.iui-line-clamp(3);
   color: var(--_iui-tile-body-text-color);
 }
 
