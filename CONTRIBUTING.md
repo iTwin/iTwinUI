@@ -114,11 +114,13 @@ pnpm run build --filter=react-workshop
 
 > [!NOTE]
 >
-> The `--filter` argument is used in both `turbo` and `pnpm`. To use it with:
-> * `turbo`: `pnpm run [command] --filter=[workspace]`
->   * e.g. `pnpm run build --filter=react-workshop`
-> * `pnpm`: `pnpm --filter=[workspace] run [command]`
->   * e.g. `pnpm --filter=react-workshop run build`
+> The `--filter` syntax is available in both `turbo` and `pnpm`. The usage looks slightly different:
+> - `turbo`: `pnpm run [command] --filter=[workspace]`
+>   - e.g. `pnpm run build --filter=@itwin/itwinui-react`
+>   - This will also run any dependent tasks defined in the Turbo pipeline, but does not allow args. (See [Turborepo docs](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)).
+> - `pnpm`: `pnpm --filter=[workspace] run [command] [args]`
+>   - e.g. `pnpm --filter=@itwin/itwinui-react run test Alert`
+>   - This will only run the task per-workspace and supports additional args. (See [Pnpm docs](https://pnpm.io/filtering)).
 
 ---
 
