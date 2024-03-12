@@ -1,5 +1,11 @@
-import { Button, Flex, Table, TablePaginator } from '@itwin/itwinui-react';
-import { Column, CellProps } from '@itwin/itwinui-react/react-table';
-import React from 'react';
+import { Button } from '@itwin/itwinui-react';
+
+const App = () => {
+  return (
+    <>
+      <Button>Hello world</Button>
+    </>
+  );
+};
 
 export default App;
