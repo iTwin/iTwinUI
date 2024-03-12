@@ -897,11 +897,11 @@ export const Table = <
           },
         })}
         onScroll={() => {
-          // Update the lazy loading cell position, if it exists
-          lazyLoadingCellRef.current?.style.setProperty(
-            'transform',
-            `translateX(${tableRef.current?.scrollLeft}px)`,
-          );
+          // // Update the lazy loading cell position, if it exists
+          // lazyLoadingCellRef.current?.style.setProperty(
+          //   'transform',
+          //   `translateX(${tableRef.current?.scrollLeft}px)`,
+          // );
 
           updateStickyState();
         }}

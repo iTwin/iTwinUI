@@ -29,6 +29,8 @@
   background-color: var(--iui-color-background);
   // align-items: flex-start;
 
+  scroll-timeline: --iui-table-horizontal-scroll-timeline inline;
+
   @include iui-table-cell-icon;
 
   > .iui-table-paginator {
@@ -193,11 +195,32 @@
     border-radius: inherit;
   }
 
+  @keyframes iui-table-loading-row-left-offset {
+    0% {
+      // inset-inline-start: 0;
+      transform: translateX(0);
+    }
+
+    100% {
+      // inset-inline-start: 100%;
+      transform: translateX(100%);
+    }
+  }
+
   // To center the row even when scrolling horizontally
   // (when `isLoading && data.length !== 0`)
   &[data-iui-loading='true'] {
     position: sticky;
     inset-inline-start: 0;
+    transform-origin: right;
+
+    // animation: iui-table-loading-row-left-offset var(--iui-duration-1) infinite linear;
+    // animation: iui-table-loading-row-left-offset linear forwards;
+    // animation: iui-table-loading-row-left-offset linear;
+    animation-name: iui-table-loading-row-left-offset;
+    animation-timing-function: linear;
+    animation-timeline: scroll(nearest inline);
+
     // position: absolute;
     // inset-inline-start: 0;
     // inset-inline-end: 0;
