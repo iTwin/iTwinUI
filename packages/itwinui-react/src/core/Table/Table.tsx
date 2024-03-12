@@ -752,8 +752,6 @@ export const Table = <
   );
 
   const tableRef = React.useRef<HTMLDivElement>(null);
-  const headerRef = React.useRef<HTMLDivElement>(null);
-  const bodyRef = React.useRef<HTMLDivElement>(null);
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -819,7 +817,7 @@ export const Table = <
           tableHasSubRows={hasAnySubRows}
           tableInstance={instance}
           expanderCell={expanderCell}
-          bodyRef={bodyRef.current}
+          scrollContainerRef={tableRef.current}
           tableRowRef={enableVirtualization ? undefined : tableRowRef(row)}
           density={density}
         />
@@ -912,7 +910,6 @@ export const Table = <
           return (
             <Box
               as='div'
-              ref={headerRef}
               key={headerGroupProps.key}
               {...headerWrapperProps}
               className={cx(
@@ -1056,7 +1053,6 @@ export const Table = <
             ),
             style: { outline: 0 },
           })}
-          ref={bodyRef}
           tabIndex={-1}
           aria-multiselectable={
             (isSelectable && selectionMode === 'multi') || undefined
