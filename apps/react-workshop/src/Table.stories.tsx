@@ -622,13 +622,11 @@ export const ExpandableSubrows = () => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
-        width: 1200,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
-        width: 1200,
       },
     ],
     [],
@@ -691,7 +689,6 @@ export const ExpandableSubrows = () => {
       </div>
       <br />
       <Table
-        style={{ height: '50vh' }}
         emptyTableContent='No data.'
         isSelectable
         isSortable
@@ -715,19 +712,17 @@ export const LazyLoading = () => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
-        width: 900,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
-        // maxWidth: 200,
-        width: 900,
+        maxWidth: 200,
       },
       {
         id: 'click-me',
         Header: 'Click',
-        width: 900,
+        width: 100,
         Cell: (props: CellProps<{ name: string; description: string }>) => {
           const onClick = () => onClickHandler(props);
           return (
@@ -761,7 +756,7 @@ export const LazyLoading = () => {
     setTimeout(() => {
       setData(() => [...data, ...generateData(data.length, data.length + 100)]);
       setIsLoading(false);
-    }, 300000000);
+    }, 1000);
   }, [data]);
 
   return (
@@ -961,14 +956,12 @@ export const Loading = () => {
         id: 'name',
         Header: 'Name',
         accessor: 'name',
-        width: 1200,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
-        // maxWidth: 200,
-        width: 1200,
+        maxWidth: 200,
       },
     ],
     [],
@@ -1835,15 +1828,13 @@ export const WithPaginator = () => {
         Header: 'Name',
         accessor: 'name',
         Filter: tableFilters.TextFilter(),
-        width: 1200,
       },
       {
         id: 'description',
         Header: 'Description',
         accessor: 'description',
+        maxWidth: 200,
         Filter: tableFilters.TextFilter(),
-        // maxWidth: 200,
-        width: 1200,
       },
     ],
     [],
@@ -2014,7 +2005,7 @@ export const WithManualPaginatorAndFilter = () => {
         } as RowData);
         setData(filteredData.slice(0, currentPageSize));
         setTotalRowsCount(filteredData.length);
-      }, 100000000);
+      }, 500);
     },
     [currentPageSize, generateFilteredData],
   );
@@ -2025,13 +2016,12 @@ export const WithManualPaginatorAndFilter = () => {
       Header: 'Name',
       accessor: 'name',
       Filter: tableFilters.TextFilter(),
-      width: 1200,
     },
     {
       id: 'description',
       Header: 'Description',
       accessor: 'description',
-      width: 1200,
+      maxWidth: 200,
       Filter: tableFilters.TextFilter(),
     },
   ];
@@ -2067,9 +2057,7 @@ export const WithManualPaginatorAndFilter = () => {
             }
           }, 500);
         }}
-        onPageSizeChange={async (size) => {
-          await new Promise((resolve) => setTimeout(resolve, 4000));
-
+        onPageSizeChange={(size) => {
           if (
             filteredData !== undefined &&
             !(filter.name === '' && filter.description === '')
@@ -2245,13 +2233,11 @@ export const CustomFilter = () => {
       Header: 'Name',
       accessor: 'name',
       Filter: CustomFilter,
-      width: 700,
     },
     {
       id: 'description',
       Header: 'Description',
       accessor: 'description',
-      width: 700,
       maxWidth: 200,
     },
   ] satisfies Column<RowData>[];
@@ -2472,86 +2458,78 @@ export const ZebraStripedRows = () => {
 };
 
 export const HorizontalScroll = () => {
-  type TableStoryDataType = {
-    product: string;
-    price: number;
-    quantity: number;
-    rating: string;
-    deliveryTime: number;
-  };
-
   const data = React.useMemo(
     () => [
-      // {
-      //   product: 'Product 1',
-      //   price: 5,
-      //   quantity: 500,
-      //   rating: '4/5',
-      //   deliveryTime: 5,
-      // },
-      // {
-      //   product: 'Product 2',
-      //   price: 12,
-      //   quantity: 1200,
-      //   rating: '1/5',
-      //   deliveryTime: 25,
-      // },
-      // {
-      //   product: 'Product 3',
-      //   price: 2.99,
-      //   quantity: 1500,
-      //   rating: '3/5',
-      //   deliveryTime: 7,
-      // },
-      // {
-      //   product: 'Product 4',
-      //   price: 20,
-      //   quantity: 50,
-      //   rating: '4/5',
-      //   deliveryTime: 2,
-      // },
-      // {
-      //   product: 'Product 5',
-      //   price: 1.99,
-      //   quantity: 700,
-      //   rating: '5/5',
-      //   deliveryTime: 1,
-      // },
-      // {
-      //   product: 'Product 6',
-      //   price: 499,
-      //   quantity: 30,
-      //   rating: '5/5',
-      //   deliveryTime: 20,
-      // },
-      // {
-      //   product: 'Product 7',
-      //   price: 13.99,
-      //   quantity: 130,
-      //   rating: '1/5',
-      //   deliveryTime: 30,
-      // },
-      // {
-      //   product: 'Product 8',
-      //   price: 5.99,
-      //   quantity: 500,
-      //   rating: '4/5',
-      //   deliveryTime: 5,
-      // },
-      // {
-      //   product: 'Product 9',
-      //   price: 12,
-      //   quantity: 1200,
-      //   rating: '1/5',
-      //   deliveryTime: 25,
-      // },
-      // {
-      //   product: 'Product 10',
-      //   price: 2.99,
-      //   quantity: 200,
-      //   rating: '3/5',
-      //   deliveryTime: 17,
-      // },
+      {
+        product: 'Product 1',
+        price: 5,
+        quantity: 500,
+        rating: '4/5',
+        deliveryTime: 5,
+      },
+      {
+        product: 'Product 2',
+        price: 12,
+        quantity: 1200,
+        rating: '1/5',
+        deliveryTime: 25,
+      },
+      {
+        product: 'Product 3',
+        price: 2.99,
+        quantity: 1500,
+        rating: '3/5',
+        deliveryTime: 7,
+      },
+      {
+        product: 'Product 4',
+        price: 20,
+        quantity: 50,
+        rating: '4/5',
+        deliveryTime: 2,
+      },
+      {
+        product: 'Product 5',
+        price: 1.99,
+        quantity: 700,
+        rating: '5/5',
+        deliveryTime: 1,
+      },
+      {
+        product: 'Product 6',
+        price: 499,
+        quantity: 30,
+        rating: '5/5',
+        deliveryTime: 20,
+      },
+      {
+        product: 'Product 7',
+        price: 13.99,
+        quantity: 130,
+        rating: '1/5',
+        deliveryTime: 30,
+      },
+      {
+        product: 'Product 8',
+        price: 5.99,
+        quantity: 500,
+        rating: '4/5',
+        deliveryTime: 5,
+      },
+      {
+        product: 'Product 9',
+        price: 12,
+        quantity: 1200,
+        rating: '1/5',
+        deliveryTime: 25,
+      },
+      {
+        product: 'Product 10',
+        price: 2.99,
+        quantity: 200,
+        rating: '3/5',
+        deliveryTime: 17,
+      },
     ],
     [],
   );
@@ -2562,15 +2540,14 @@ export const HorizontalScroll = () => {
         id: 'product',
         Header: 'Product',
         accessor: 'product',
-        // minWidth: 400,
-        width: 700,
+        minWidth: 400,
       },
       {
         id: 'price',
         Header: 'Price',
         accessor: 'price',
-        width: 700,
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        width: 400,
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2578,26 +2555,26 @@ export const HorizontalScroll = () => {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
-        width: 700,
+        width: 400,
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
-        width: 700,
+        width: 400,
       },
       {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        width: 700,
-        Cell: (props: CellProps<TableStoryDataType>) => {
+        width: 400,
+        Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
     ],
     [],
-  ) satisfies Column<TableStoryDataType>[];
+  ) satisfies Column<(typeof data)[0]>[];
 
   return (
     <Table
@@ -2901,7 +2878,6 @@ export const DraggableColumns = () => {
         Header: 'Product',
         accessor: 'product',
         disableReordering: true,
-        width: 700,
       },
       {
         id: 'price',
@@ -2910,25 +2886,21 @@ export const DraggableColumns = () => {
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`$${props.value}`}</>;
         },
-        width: 700,
       },
       {
         id: 'quantity',
         Header: 'Quantity',
         accessor: 'quantity',
-        width: 700,
       },
       {
         id: 'rating',
         Header: 'Rating',
         accessor: 'rating',
-        width: 700,
       },
       {
         id: 'deliveryTime',
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
-        width: 700,
         Cell: (props: CellProps<(typeof data)[0]>) => {
           return <>{`${props.value} day(s)`}</>;
         },
