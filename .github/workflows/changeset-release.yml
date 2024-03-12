@@ -32,6 +32,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install
 
@@ -69,7 +70,9 @@ jobs:
 
       - name: Publish to npm (if not already published)
         if: steps.changesets_files.outputs.exists != 'true'
-        run: pnpm release
+        run: |
+          pnpm release
+          git push origin --tags
         env:
           GITHUB_TOKEN: ${{ secrets.IMJS_ADMIN_GH_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPMJS_PUBLISH_ITWIN }}
