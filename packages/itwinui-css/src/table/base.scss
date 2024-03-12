@@ -354,13 +354,7 @@
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  #{if(&, '&.iui-scroll-snapping', '.iui-scroll-snapping')} {
-    scroll-snap-type: y mandatory;
-
-    .iui-table-row {
-      scroll-snap-align: start none;
-    }
-  }
+  @include mixins.iui-scroll-snapping('.iui-table-row');
   background-color: var(--iui-color-background);
 
   &:last-child {
@@ -481,11 +475,7 @@
 
 @mixin iui-table-cell-status($status) {
   @include mixins.iui-text-selection($status);
-
-  &::before {
-    content: '';
-    position: absolute;
-    inset: 0;
+  @include mixins.pseudo-content {
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }
