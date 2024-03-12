@@ -2472,6 +2472,14 @@ export const ZebraStripedRows = () => {
 };
 
 export const HorizontalScroll = () => {
+  type TableStoryDataType = {
+    product: string;
+    price: number;
+    quantity: number;
+    rating: string;
+    deliveryTime: number;
+  };
+
   const data = React.useMemo(
     () => [
       // {
@@ -2562,7 +2570,7 @@ export const HorizontalScroll = () => {
         Header: 'Price',
         accessor: 'price',
         width: 700,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{`$${props.value}`}</>;
         },
       },
@@ -2583,13 +2591,13 @@ export const HorizontalScroll = () => {
         Header: 'Delivery Time',
         accessor: 'deliveryTime',
         width: 700,
-        Cell: (props: CellProps<(typeof data)[0]>) => {
+        Cell: (props: CellProps<TableStoryDataType>) => {
           return <>{`${props.value} day(s)`}</>;
         },
       },
     ],
     [],
-  ) satisfies Column<(typeof data)[0]>[];
+  ) satisfies Column<TableStoryDataType>[];
 
   return (
     <Table
