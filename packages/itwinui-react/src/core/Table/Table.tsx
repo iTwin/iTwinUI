@@ -754,7 +754,6 @@ export const Table = <
   const tableRef = React.useRef<HTMLDivElement>(null);
   const headerRef = React.useRef<HTMLDivElement>(null);
   const bodyRef = React.useRef<HTMLDivElement>(null);
-  const lazyLoadingCellRef = React.useRef<HTMLDivElement>(null);
 
   const { scrollToIndex, tableRowRef } = useScrollToRow<T>({ ...props, page });
   const columnRefs = React.useRef<Record<string, HTMLDivElement>>({});
@@ -896,15 +895,7 @@ export const Table = <
             ...style,
           },
         })}
-        onScroll={() => {
-          // Update the lazy loading cell position, if it exists
-          lazyLoadingCellRef.current?.style.setProperty(
-            'transform',
-            `translateX(${tableRef.current?.scrollLeft}px)`,
-          );
-
-          updateStickyState();
-        }}
+        onScroll={() => updateStickyState()}
         data-iui-size={density === 'default' ? undefined : density}
         {...ariaDataAttributes}
       >
@@ -1096,19 +1087,6 @@ export const Table = <
               <ProgressRadial indeterminate={true} />
             </Box>
           )}
-          {isLoading && data.length !== 0 && (
-            <Box className='iui-table-row' data-iui-loading='true'>
-              <Box
-                ref={lazyLoadingCellRef}
-                className='iui-table-cell'
-                style={{
-                  transform: `${tableRef.current?.scrollLeft ?? 0}px`,
-                }}
-              >
-                <ProgressRadial indeterminate size='small' />
-              </Box>
-            </Box>
-          )}
           {!isLoading && data.length === 0 && !areFiltersSet && (
             <Box
               as='div'
@@ -1136,6 +1114,13 @@ export const Table = <
               </Box>
             )}
         </Box>
+        {isLoading && data.length !== 0 && (
+          <Box className='iui-table-row' data-iui-loading='true'>
+            <Box className='iui-table-cell'>
+              <ProgressRadial indeterminate size='small' />
+            </Box>
+          </Box>
+        )}
         {paginatorRenderer?.(paginatorRendererProps)}
       </Box>
     </>
