@@ -23,10 +23,7 @@ $iui-expander-button-width: calc(var(--iui-component-height-small) + 2px);
 }
 
 .iui-sub-tree {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   list-style: none;
 }
 

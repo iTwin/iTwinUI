@@ -10,6 +10,7 @@
   --_iui-input-background-color: var(--iui-color-background);
   --_iui-input-border-color: var(--iui-color-border-foreground);
   --_iui-input-text-color: var(--iui-color-text);
+
   @include mixins.iui-focus($offset: -2px, $thickness: 2px);
   font: inherit;
   inline-size: 100%;

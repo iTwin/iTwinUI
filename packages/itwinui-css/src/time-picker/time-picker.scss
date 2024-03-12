@@ -27,10 +27,7 @@
   }
 
   > ol {
-    margin: 0;
-    padding: 0;
-    border: none;
-    vertical-align: baseline;
+    @include mixins.iui-reset;
     list-style: none;
 
     > li {
@@ -47,11 +44,7 @@
       &.iui-selected {
         font-weight: var(--iui-font-weight-semibold);
         cursor: default;
-
-        &:focus-visible {
-          outline: 1px solid var(--iui-color-white);
-          outline-offset: -3px;
-        }
+        @include mixins.iui-focus($color: var(--iui-color-white), $offset: -3px);
         background-color: var(--iui-color-background-accent);
         color: var(--iui-color-white);
       }

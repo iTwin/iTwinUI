@@ -237,10 +237,7 @@
       }
 
       input {
-        &::selection,
-        *::selection {
-          background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
-        }
+        @include iui-text-selection($status);
       }
     }
   }

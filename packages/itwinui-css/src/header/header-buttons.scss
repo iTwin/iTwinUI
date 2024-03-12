@@ -121,10 +121,7 @@ $iui-side-navigation-icon-margins: calc(1.5 * var(--iui-size-m));
 }
 
 @mixin iui-header-breadcrumb-button {
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   @include mixins.iui-focus;
   display: inline-flex;
   align-items: center;

@@ -480,10 +480,7 @@
 }
 
 @mixin iui-table-cell-status($status) {
-  &::selection,
-  *::selection {
-    background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-5));
-  }
+  @include mixins.iui-text-selection($status);
 
   &::before {
     content: '';

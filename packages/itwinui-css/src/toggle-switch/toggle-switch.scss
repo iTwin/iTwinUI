@@ -46,10 +46,7 @@
 .iui-toggle-switch {
   $iui-toggle-switch-border-thickness: 1px;
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  vertical-align: baseline;
+  @include mixins.iui-reset;
   @include mixins.iui-focus(
     $thickness: $iui-toggle-switch-border-thickness,
     $offset: $iui-toggle-switch-border-thickness
