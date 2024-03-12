@@ -328,7 +328,7 @@
   }
 }
 
-// For content placed outside the table body
+// For content placed after the table body and before the paginator
 @mixin iui-table-body-extra {
   display: flex;
   align-items: center;
