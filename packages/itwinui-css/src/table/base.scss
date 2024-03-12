@@ -368,7 +368,7 @@
   // Table body should be sticky only when no rows exist
   &:has(> .iui-table-empty) {
     position: sticky;
-    inset-inline-start: 0; // TODO: Mention that table-empty text now sticks to the top instead of being in the middle
+    inset-inline-start: 0;
   }
 
   @include mixins.iui-scroll-snapping('.iui-table-row');
