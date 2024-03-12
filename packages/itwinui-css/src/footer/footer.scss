@@ -32,8 +32,6 @@
   color: var(--iui-color-text-muted);
 
   > a {
-    @include anchor.iui-anchor;
-
     &,
     &:hover {
       color: var(--iui-color-text-muted);

@@ -21,7 +21,6 @@
 }
 
 a.iui-tag-basic {
-  @include anchor.iui-anchor;
   @include mixins.iui-focus($offset: 1px);
 }
 

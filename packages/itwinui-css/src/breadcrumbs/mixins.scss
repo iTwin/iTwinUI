@@ -41,8 +41,6 @@
   line-height: var(--iui-component-height);
 
   &:where(a) {
-    @include anchor.iui-anchor;
-
     &:focus {
       outline-offset: -1px;
     }

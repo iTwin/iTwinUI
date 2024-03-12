@@ -136,7 +136,7 @@ const AlertAction = React.forwardRef((props, ref) => {
   return (
     <ButtonBase
       as={(!!props.href ? 'a' : 'button') as 'a'}
-      className={cx('iui-alert-link', className)}
+      className={cx('iui-anchor iui-alert-link', className)}
       ref={ref}
       {...rest}
     >

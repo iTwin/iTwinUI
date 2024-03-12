@@ -233,11 +233,12 @@ const BreadcrumbsItem = React.forwardRef((props, forwardedRef) => {
   const defaultAs = !!props.href ? 'a' : !!props.onClick ? 'button' : 'span';
   const children =
     defaultAs === 'button' ? <span>{childrenProp}</span> : childrenProp;
+  const anchorClassName = defaultAs === 'a' ? 'iui-anchor' : '';
 
   return (
     <Box
       as={defaultAs as 'a'}
-      className={cx('iui-breadcrumbs-content', className)}
+      className={cx(anchorClassName, 'iui-breadcrumbs-content', className)}
       ref={forwardedRef}
       {...rest}
     >

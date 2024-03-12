@@ -2,30 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../mixins';
 
-@mixin iui-anchor {
-  &:where(button) {
-    font: inherit;
-    border: none;
-    background: transparent;
-    padding: 0;
-  }
-
-  @include iui-anchor-status('accent');
-  border-radius: var(--iui-border-radius-1);
-  cursor: pointer;
-
-  @include iui-anchor-underline('on-hover');
-
-  @media (prefers-contrast: more) {
-    @include iui-anchor-underline('on-initial');
-  }
-
-  &[data-iui-underline='true'],
-  :is([data-iui-contrast='high'] &) {
-    @include iui-anchor-underline('on-initial');
-  }
-}
-
 @mixin iui-anchor-status($status: accent) {
   @include mixins.iui-focus($color: var(--iui-color-text-#{$status}), $offset: 1px);
   color: var(--iui-color-text-#{$status});
