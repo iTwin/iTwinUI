@@ -1042,6 +1042,7 @@ export const Table = <
           );
         })}
         <Box
+          as='div'
           {...bodyProps}
           {...getTableBodyProps({
             className: cx(
