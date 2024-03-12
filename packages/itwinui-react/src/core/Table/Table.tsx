@@ -1115,10 +1115,8 @@ export const Table = <
             )}
         </Box>
         {isLoading && data.length !== 0 && (
-          <Box className='iui-table-row' data-iui-loading='true'>
-            <Box className='iui-table-cell'>
-              <ProgressRadial indeterminate size='small' />
-            </Box>
+          <Box className='iui-table-body-extra' data-iui-loading='true'>
+            <ProgressRadial indeterminate size='small' />
           </Box>
         )}
         {paginatorRenderer?.(paginatorRendererProps)}

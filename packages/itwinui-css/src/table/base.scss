@@ -175,18 +175,6 @@
     border-radius: inherit;
   }
 
-  // To center the row even when scrolling horizontally
-  // (when `isLoading && data.length !== 0`)
-  &[data-iui-loading='true'] {
-    position: sticky;
-    inset-inline-start: 0;
-
-    // Center the progress radial within the cell/row
-    .iui-table-cell {
-      justify-content: center;
-    }
-  }
-
   .iui-table-header & {
     flex-grow: 1;
   }
@@ -337,6 +325,20 @@
       @include iui-table-row-status($status: negative);
     }
     // #endregion Statuses & states
+  }
+}
+
+// For content placed outside the table body
+@mixin iui-table-body-extra {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  // To center the table-body-extra even when scrolling horizontally
+  // (when `isLoading && data.length !== 0`)
+  &[data-iui-loading='true'] {
+    position: sticky;
+    inset-inline-start: 0;
   }
 }
 
