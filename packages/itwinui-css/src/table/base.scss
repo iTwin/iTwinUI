@@ -5,11 +5,11 @@
 @mixin iui-table {
   @include mixins.iui-reset;
 
-  // TODO: Revert back to flex, or no flex if not doing anything with it.
-  // - Verify all cases (stories and css demos)
+  // TODO: [DONE] Revert back to flex, or no flex if not doing anything with it.
+  // - [MOVED-TO-PR] Verify all cases (stories and css demos)
   // - [DONE] may need a has selector to have position: sticky only when empty state, not always
 
-  // Earlier it was working since position sticky and scroll container was the body
+  // [NO-ACTION] Earlier it was working since position sticky and scroll container was the body
 
   // [DONE] z-index: some small number;
 
