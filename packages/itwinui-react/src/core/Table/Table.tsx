@@ -758,6 +758,11 @@ export const Table = <
   const previousTableWidth = React.useRef(0);
   const onTableResize = React.useCallback(
     ({ width }: DOMRectReadOnly) => {
+      // Handle table properties, but only when table is resizable
+      if (!isResizable) {
+        return;
+      }
+
       instance.tableWidth = width;
       if (width === previousTableWidth.current) {
         return;
@@ -779,7 +784,13 @@ export const Table = <
 
       dispatch({ type: tableResizeStartAction });
     },
-    [dispatch, state.columnResizing.columnWidths, flatHeaders, instance],
+    [
+      dispatch,
+      state.columnResizing.columnWidths,
+      flatHeaders,
+      instance,
+      isResizable,
+    ],
   );
   const [resizeRef] = useResizeObserver(onTableResize);
 
