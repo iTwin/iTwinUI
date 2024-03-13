@@ -269,6 +269,21 @@ it('should show spinner when loading', () => {
   expect(rows.length).toBe(0);
 });
 
+it('should show table-body-extra with spinner when loading with pre-existing data', () => {
+  const { container } = renderComponent({
+    data: mockedData(),
+    isLoading: true,
+  });
+
+  expect(
+    container.querySelector(
+      '.iui-table-body-extra[data-iui-loading="true"] .iui-progress-indicator-radial',
+    ),
+  ).toBeTruthy();
+  const rows = container.querySelectorAll('.iui-table-body .iui-table-row');
+  expect(rows.length).toBe(3);
+});
+
 it('should show empty message when there is no data', () => {
   const { container } = renderComponent({ data: [] });
 
