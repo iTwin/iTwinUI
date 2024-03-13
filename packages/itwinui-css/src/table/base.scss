@@ -20,21 +20,10 @@
   }
 }
 
-/// Preserves empty scrollbar space using scrollbar-gutter, with
-/// `overflow-y: scroll` (instead of `auto` or `overlay`) as Safari fallback.
-/// Must be included in both table-header-wrapper and table-body
-/// to make sure they are always aligned, even when body is not
-/// scrollable and even when it has sticky columns.
-@mixin table-scrollbar {
-  overflow-y: scroll;
-  scrollbar-gutter: stable;
-}
-
 @mixin iui-table-header-wrapper {
-  scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   position: sticky;
   inset-block-start: 0;
-  z-index: 1; // Above the table body
+  z-index: 2; // Above the table body and sticky columns/cells
 
   display: flex;
   flex-shrink: 0;
