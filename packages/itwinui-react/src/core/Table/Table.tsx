@@ -892,9 +892,7 @@ export const Table = <
       <Box
         ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
-          if (isResizable) {
-            resizeRef(element);
-          }
+          resizeRef(element);
         })}
         id={id}
         {...getTableProps({
