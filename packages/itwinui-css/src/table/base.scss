@@ -360,7 +360,6 @@
 }
 
 @mixin iui-table-body {
-  overflow-x: visible;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
