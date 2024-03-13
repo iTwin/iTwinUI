@@ -354,7 +354,8 @@
   flex-grow: 1;
   // Allows columns with static width to take more space than the table width
   align-items: flex-start;
-  #{if(&, '&.iui-scroll-snapping', '.iui-scroll-snapping')} {
+
+  &.iui-scroll-snapping {
     scroll-snap-type: y mandatory;
 
     .iui-table-row {
