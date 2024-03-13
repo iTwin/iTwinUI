@@ -122,7 +122,12 @@ export type SelectProps<T> = Omit<
          */
         native: true;
       } & NativeSelectProps)
-    | ({ native?: false } & CustomSelectProps<T>)
+    | ({ native?: false } & CustomSelectProps<T> & {
+          /**
+           * styleType is only supported for `<Select native>`.
+           */
+          styleType?: never;
+        })
   );
 
 // ----------------------------------------------------------------------------
@@ -138,6 +143,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
     onChange: onChangeProp,
     size,
     status,
+    styleType,
     required,
     ...rest
   } = props;
@@ -148,6 +154,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
         as='select'
         size={size}
         status={status}
+        styleType={styleType}
         disabled={disabled}
         defaultValue={valueProp === undefined ? defaultValueProp : undefined}
         value={valueProp === null ? '' : valueProp}
@@ -165,7 +172,7 @@ const NativeSelect = React.forwardRef((props, forwardedRef) => {
           onChangeProp?.(event.currentTarget.value, event);
         })}
       >
-        {placeholder !== undefined ? (
+        {styleType !== 'borderless' && placeholder !== undefined ? (
           <option value='' disabled>
             {placeholder}
           </option>
@@ -217,19 +224,35 @@ type NativeSelectProps = SelectCommonProps & {
    */
   defaultValue?: string;
   /**
-   * Placeholder for when no item is selected.
-   *
-   * Will be rendered as a disabled option at the top of the list, and automatically
-   * selected when no `value` or `defaultValue` is provided.
-   */
-  placeholder?: string;
-  /**
    * Props to pass to the select element.
    */
   triggerProps?: Omit<React.ComponentPropsWithRef<'select'>, 'size'>;
   required?: boolean;
   multiple?: never;
-};
+} & NativeSelectStyleTypeProps;
+
+type NativeSelectStyleTypeProps =
+  | {
+      /**
+       * Style of the select.
+       * Use 'borderless' to hide outline.
+       * @default 'default'
+       */
+      styleType?: 'default';
+      /**
+       * Placeholder for when no item is selected.
+       *
+       * Will be rendered as a disabled option at the top of the list, and automatically
+       * selected when no `value` or `defaultValue` is provided.
+       *
+       * Not allowed when `styleType` is `borderless`.
+       */
+      placeholder?: string;
+    }
+  | {
+      styleType: 'borderless';
+      placeholder?: never;
+    };
 
 type SelectCommonProps = {
   /**
@@ -626,12 +649,13 @@ const isSingleOnChange = <T,>(
 // ----------------------------------------------------------------------------
 
 const SelectButton = React.forwardRef((props, forwardedRef) => {
-  const { size, status, ...rest } = props;
+  const { size, status, styleType = 'default', ...rest } = props;
 
   return (
     <Box
       data-iui-size={size}
       data-iui-status={status}
+      data-iui-variant={styleType !== 'default' ? styleType : undefined}
       {...rest}
       ref={forwardedRef}
       className={cx('iui-select-button', props.className)}
@@ -642,6 +666,7 @@ const SelectButton = React.forwardRef((props, forwardedRef) => {
   {
     size?: 'small' | 'large';
     status?: 'positive' | 'warning' | 'negative';
+    styleType?: 'default' | 'borderless';
   }
 >;
 
