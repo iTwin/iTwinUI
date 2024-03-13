@@ -373,7 +373,13 @@
     inset-inline-start: 0;
   }
 
-  @include mixins.iui-scroll-snapping('.iui-table-row');
+  &.iui-scroll-snapping {
+    scroll-snap-type: y mandatory;
+
+    .iui-table-row {
+      scroll-snap-align: start none;
+    }
+  }
 
   &:last-child {
     border-end-start-radius: var(--iui-border-radius-1);
@@ -493,7 +499,11 @@
 
 @mixin iui-table-cell-status($status) {
   @include mixins.iui-text-selection($status);
-  @include mixins.pseudo-content {
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
     background-color: hsl(var(--iui-color-#{$status}-hsl) / var(--iui-opacity-6));
   }
 }
