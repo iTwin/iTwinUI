@@ -17,6 +17,7 @@
     position: sticky;
     inset-block-end: 0;
     inset-inline-start: 0;
+    z-index: 2; // Above the table body and sticky columns/cells
   }
 }
 
