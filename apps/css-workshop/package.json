@@ -5,8 +5,6 @@
   "description": "Workshop environment containing HTML pages demonstrating itwinui-css",
   "dependencies": {},
   "devDependencies": {
-    "@itwin/itwinui-variables": "*",
-    "@itwin/itwinui-css": "*",
     "@itwin/itwinui-icons-elements": "0.20.0",
     "autoprefixer": "^10",
     "backstopjs": "~6.2.1",

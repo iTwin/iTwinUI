@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.6.1
+
+### Patch Changes
+
+- [#1909](https://github.com/iTwin/iTwinUI/pull/1909): Remove `margin-block` from `Badge`.
+
 ## 3.6.0
 
 ### Minor Changes
