@@ -2,7 +2,7 @@
 "@itwin/itwinui-css": major
 ---
 
-`.iui-table-row[data-iui-loading]` has been replaced with a new `iui-table-body-extra` class, which must be set on an element outside the table-body.
+`.iui-table-row[data-iui-loading]` has been replaced with a new `iui-table-body-extra` class, which must be set on an element *outside* the table-body.
 
 ```diff
  <div class="iui-table">
