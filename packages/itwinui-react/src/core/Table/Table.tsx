@@ -35,7 +35,7 @@ import {
   useLayoutEffect,
   Box,
   createWarningLogger,
-  mergeRefs,
+  useMergedRefs,
 } from '../utils/index.js';
 import type { CommonProps } from '../utils/index.js';
 import { getCellStyle, getStickyStyle, getSubRowStyle } from './utils.js';
@@ -890,7 +890,7 @@ export const Table = <
   return (
     <>
       <Box
-        ref={mergeRefs(tableRef, (element) => {
+        ref={useMergedRefs(tableRef, (element) => {
           ownerDocument.current = element?.ownerDocument;
           if (isResizable) {
             resizeRef(element);
