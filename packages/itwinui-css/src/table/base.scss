@@ -17,7 +17,6 @@
     position: sticky;
     inset-block-end: 0;
     inset-inline-start: 0;
-    z-index: 2;
   }
 }
 
@@ -35,7 +34,7 @@
   scrollbar-color: transparent transparent; // Reserve space but never show the scrollbar
   position: sticky;
   inset-block-start: 0;
-  z-index: 2;
+  z-index: 1; // Above the table body
 
   display: flex;
   flex-shrink: 0;
