@@ -22,7 +22,7 @@
       "dependsOn": ["^build"],
       "outputs": ["build/**"]
     },
-    "portal": {
+    "portal#build": {
       "dependsOn": ["@itwin/itwinui-css#build"],
       "outputs": ["dist/**"]
     },
@@ -37,6 +37,9 @@
     "a11y#test": {
       "dependsOn": ["^build"],
       "outputs": ["dist/**", "build/**"]
+    },
+    "e2e#test": {
+      "dependsOn": ["build"]
     },
     "lint": {},
     "dev": {
