@@ -2,8 +2,6 @@
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../anchor/mixins' as anchor;
 @use '../mixins';
-@use '../button/base';
-@use '../button/borderless';
 
 .iui-alert {
   @include mixins.iui-reset;

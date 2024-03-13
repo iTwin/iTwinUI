@@ -347,7 +347,7 @@ $thumbnail-selector: ':is(.iui-thumbnail-icon, .iui-tile-thumbnail-picture)';
 
 /// @arg $variant Can be either: type-indicator, quick-action
 @mixin iui-tile-thumbnail-button($variant) {
-  @include borderless.iui-button-borderless;
+  // @include borderless.iui-button-borderless;
   @include iui-button-size(small, borderless);
   z-index: 2;
   border-radius: 50%;

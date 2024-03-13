@@ -1,16 +1,13 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use 'base';
-@use 'default';
-@use 'borderless';
-@use 'variant';
+@use 'active';
 @use 'idea';
 @use 'button-group';
 @use 'split-button';
 
 .iui-button {
   @include base.iui-button;
-  @include default.iui-button-default;
 
   &[data-iui-size='small'] {
     @include base.iui-button-size(small);
@@ -21,7 +18,7 @@
   }
 
   &[data-iui-variant='borderless'] {
-    @include borderless.iui-button-borderless;
+    @include base.iui-button-size(medium, borderless);
 
     &[data-iui-size='small'] {
       @include base.iui-button-size(small, borderless);
@@ -33,24 +30,11 @@
   }
 
   &[data-iui-active='true'] {
-    @include default.iui-button-default-active;
-
-    &[data-iui-variant='borderless'] {
-      @include borderless.iui-button-borderless-active;
-    }
-
-    @include default.iui-button-active-disabled;
+    @include active.iui-button-active;
+    @include active.iui-button-default-active;
   }
 
-  &[data-iui-variant='high-visibility'] {
-    @include variant.iui-button-variant(high-visibility);
-  }
-
-  &[data-iui-variant='cta'] {
-    @include variant.iui-button-variant(cta);
-  }
-
-  &[data-iui-variant='idea'] {
+  &.iui-button-idea {
     @include idea.iui-button-idea;
   }
 }

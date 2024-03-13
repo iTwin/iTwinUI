@@ -1,9 +1,7 @@
 // Copyright (c) Bentley Systems, Incorporated. All rights reserved.
 // See LICENSE.md in the project root for license terms and full copyright notice.
 @use '../anchor/mixins' as anchor;
-@use '../button/borderless';
 @use '../mixins';
-@use '../button/base';
 
 @mixin iui-breadcrumbs($breadcrumbs-height: var(--iui-component-height)) {
   --_iui-breadcrumbs-height: #{$breadcrumbs-height};
@@ -49,10 +47,9 @@
   }
 
   &:where(button) {
-    @include base.iui-button;
-    @include borderless.iui-button-borderless;
     border: none;
-    color: var(--iui-color-text-accent);
+    --_iui-field-color-text: var(--iui-color-text-accent);
+    --_iui-field-color-text-hover: var(--iui-color-text-accent-hover);
 
     &[aria-current] {
       color: var(--iui-color-text);

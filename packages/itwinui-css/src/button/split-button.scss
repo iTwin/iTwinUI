@@ -12,8 +12,11 @@
     border-start-end-radius: 0;
     border-end-end-radius: 0;
 
-    &[data-iui-variant='high-visibility'],
-    &[data-iui-variant='cta'] {
+    &[data-iui-variant='accent'],
+    &[data-iui-variant='informational'],
+    &[data-iui-variant='positive'],
+    &[data-iui-variant='warning'],
+    &[data-iui-variant='negative'] {
       border-inline-end-color: $iui-button-split-divider-color;
     }
 
@@ -35,8 +38,11 @@
     margin-inline-start: -1px;
     min-inline-size: unset;
 
-    &[data-iui-variant='high-visibility'],
-    &[data-iui-variant='cta'] {
+    &[data-iui-variant='accent'],
+    &[data-iui-variant='informational'],
+    &[data-iui-variant='positive'],
+    &[data-iui-variant='warning'],
+    &[data-iui-variant='negative'] {
       border-inline-start-color: $iui-button-split-divider-color;
     }
 

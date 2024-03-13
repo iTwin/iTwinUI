@@ -52,7 +52,7 @@
         aria-label="Breadcrumbs"
       >
         <button
-          class="iui-button iui-button-dropdown"
+          class="iui-button iui-field iui-button-dropdown"
           data-iui-variant="borderless"
         >
           <svg-folder
@@ -137,7 +137,7 @@
         aria-label="Breadcrumbs"
       >
         <button
-          class="iui-button iui-button-dropdown"
+          class="iui-button iui-field iui-button-dropdown"
           data-iui-variant="borderless"
         >
           <svg-folder
@@ -151,7 +151,10 @@
         </button>
         <ol class="iui-breadcrumbs-list">
           <li class="iui-breadcrumbs-item">
-            <button class="iui-breadcrumbs-content">
+            <button
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
+            >
               <span>
                 Root
               </span>
@@ -174,7 +177,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
               id="test-3"
             >
               <span>
@@ -190,7 +194,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
               id="test-4"
             >
               <span>
@@ -206,7 +211,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
               aria-current="page"
             >
               <span>
@@ -227,7 +233,7 @@
         aria-label="Breadcrumbs"
       >
         <button
-          class="iui-button iui-button-dropdown"
+          class="iui-button iui-field iui-button-dropdown"
           data-iui-variant="borderless"
         >
           <svg-folder
@@ -241,7 +247,10 @@
         </button>
         <ol class="iui-breadcrumbs-list">
           <li class="iui-breadcrumbs-item">
-            <button class="iui-breadcrumbs-content">
+            <button
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
+            >
               <span>
                 Root
               </span>
@@ -255,7 +264,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field"
+              data-iui-variant="borderless"
               id="overflow-hover"
             >
               <svg-more
@@ -271,7 +281,10 @@
             <svg-chevron-right aria-hidden="true"></svg-chevron-right>
           </li>
           <li class="iui-breadcrumbs-item">
-            <button class="iui-breadcrumbs-content">
+            <button
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
+            >
               <span>
                 Nested
               </span>
@@ -285,7 +298,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
               id="overflow-focus"
             >
               <span>
@@ -301,7 +315,8 @@
           </li>
           <li class="iui-breadcrumbs-item">
             <button
-              class="iui-breadcrumbs-content"
+              class="iui-button iui-field iui-breadcrumbs-content"
+              data-iui-variant="borderless"
               aria-current="page"
             >
               <span>
@@ -322,7 +337,7 @@
         aria-label="Breadcrumbs"
       >
         <button
-          class="iui-button iui-button-dropdown"
+          class="iui-button iui-field iui-button-dropdown"
           data-iui-variant="borderless"
         >
           <svg-folder
@@ -335,21 +350,23 @@
           ></svg-caret-down-small>
         </button>
         <label class="iui-input-grid iui-inline-label iui-inline-icon">
-          <input
-            value="C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/"
-            class="iui-input"
-            spellcheck="false"
-          />
-          <button
-            class="iui-button"
-            data-iui-variant="borderless"
-            aria-label="Close"
-          >
-            <svg-close-small
-              class="iui-button-icon"
-              aria-hidden="true"
-            ></svg-close-small>
-          </button>
+          <div class="iui-input-flex-container">
+            <input
+              value="C:/Root/Lorem/Ipsum/Nested/Double nested folder with truncation/You are here/"
+              class="iui-input iui-field"
+              spellcheck="false"
+            />
+            <button
+              class="iui-button iui-field"
+              data-iui-variant="borderless"
+              aria-label="Close"
+            >
+              <svg-close-small
+                class="iui-button-icon"
+                aria-hidden="true"
+              ></svg-close-small>
+            </button>
+          </div>
         </label>
       </nav>
 
