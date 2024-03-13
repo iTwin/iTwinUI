@@ -93,6 +93,9 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
     required = false,
     labelProps,
     innerProps,
+    message,
+    svgIcon,
+    messageProps,
     ...rest
   } = props;
 
@@ -122,7 +125,13 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
       >
         {children}
       </Box>
-      <BottomMessage {...props} />
+      <BottomMessage
+        message={message}
+        status={status}
+        svgIcon={svgIcon}
+        displayStyle={displayStyle}
+        messageProps={messageProps}
+      />
     </InputGrid>
   );
 }) as PolymorphicForwardRefComponent<'div', InputGroupProps>;
@@ -134,7 +143,12 @@ export const InputGroup = React.forwardRef((props, forwardedRef) => {
  * - When `typeof message !== 'string'`, `message` is returned as-is (e.g. when `message=<StatusMessage />`).
  * - Else, it is wrapped in a `<StatusMessage />`.
  */
-const BottomMessage = (props: InputGroupProps) => {
+const BottomMessage = (
+  props: Pick<
+    InputGroupProps,
+    'message' | 'status' | 'svgIcon' | 'displayStyle' | 'messageProps'
+  >,
+) => {
   const { message, status, svgIcon, displayStyle, messageProps } = props;
 
   if (message && typeof message !== 'string') {

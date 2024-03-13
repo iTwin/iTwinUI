@@ -110,6 +110,16 @@ It is recommended to use the native select when the options are few and simple.
 
 The native select has some limitations, such as no support for icons and sublabels. However, it is more accessible and works much better on mobile devices, where using a custom dropdown menu hurts the user experience. The native select also has the benefit of participating in the browser's built-in form validation and autofill.
 
+### Borderless
+
+The `native` Select can also be rendered without borders, by specifying `styleType="borderless"`.
+
+When using the borderless Select, `placeholder` is not allowed and it must have a default selected value. If a default value is not specified (using `value` or `defaultValue`), the first option will be automatically selected.
+
+<LiveExample src='Select.borderless.jsx'>
+  <AllExamples.SelectBorderlessExample client:idle />
+</LiveExample>
+
 ## Props
 
 <PropsTable path={frontmatter.propsPath} />
