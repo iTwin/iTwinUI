@@ -31,7 +31,7 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "prepare": "husky install && playwright install",
+    "prepare": "husky install",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
     "approve:css": "pnpm --filter css-workshop approve",
