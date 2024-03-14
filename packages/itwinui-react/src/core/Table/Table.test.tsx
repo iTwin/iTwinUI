@@ -4005,18 +4005,6 @@ it('should render row with loading status', () => {
   expect(rows[1]).not.toHaveClass(`iui-loading`);
 });
 
-it('should navigate through table sorting with the keyboard', async () => {
-  const onSort = vi.fn();
-  renderComponent({
-    isSortable: true,
-    onSort,
-  });
-
-  await userEvent.tab(); // tab to sort icon button
-  await userEvent.keyboard('{Enter}');
-  expect(onSort).toHaveBeenCalledTimes(1);
-});
-
 it('should navigate through table filtering with the keyboard', async () => {
   const onFilter = vi.fn();
   const mockedColumns = [

@@ -1,8 +1,35 @@
 import { test, expect, type Page } from '@playwright/test';
 
+test.describe('Table sorting', () => {
+  test('should work with keyboard', async ({ page }) => {
+    await page.goto('/Table');
+    await page.keyboard.press('Tab');
+    const firstColumnCells = page.locator('[role="cell"]:first-child');
+    expect(firstColumnCells).toHaveText(['1', '2', '3']);
+
+    // ascending
+    {
+      await page.keyboard.press('Enter');
+      expect(firstColumnCells).toHaveText(['1', '2', '3']);
+    }
+
+    // descending
+    {
+      await page.keyboard.press('Enter');
+      expect(firstColumnCells).toHaveText(['3', '2', '1']);
+    }
+
+    // ascending again
+    {
+      await page.keyboard.press('Enter');
+      expect(firstColumnCells).toHaveText(['1', '2', '3']);
+    }
+  });
+});
+
 test.describe('Table resizing', () => {
   test('should adjust column widths', async ({ page }) => {
-    await page.goto('/Table/resizing');
+    await page.goto('/Table');
 
     // resize first column
     {
@@ -30,7 +57,7 @@ test.describe('Table resizing', () => {
   });
 
   test('should respect columnResizeMode=expand', async ({ page }) => {
-    await page.goto('/Table/resizing?columnResizeMode=expand');
+    await page.goto('/Table?columnResizeMode=expand');
 
     // resize first column
     {
@@ -69,9 +96,7 @@ test.describe('Table resizing', () => {
     const minWidth0 = 50;
     const minWidth1 = 300;
 
-    await page.goto(
-      `/Table/resizing?minWidth=${minWidth0}&minWidth=${minWidth1}`,
-    );
+    await page.goto(`/Table?minWidth=${minWidth0}&minWidth=${minWidth1}`);
 
     // resize first column
     {
@@ -99,9 +124,7 @@ test.describe('Table resizing', () => {
     const maxWidth0 = 150;
     const maxWidth1 = 300;
 
-    await page.goto(
-      `/Table/resizing?maxWidth=${maxWidth0}&maxWidth=${maxWidth1}`,
-    );
+    await page.goto(`/Table?maxWidth=${maxWidth0}&maxWidth=${maxWidth1}`);
 
     // resize first column
     {
@@ -119,7 +142,7 @@ test.describe('Table resizing', () => {
   });
 
   test('should respect disableResizing', async ({ page }) => {
-    await page.goto('/Table/resizing?disableResizing=true');
+    await page.goto('/Table?disableResizing=true');
 
     // resize first column
     {
@@ -133,38 +156,38 @@ test.describe('Table resizing', () => {
       expect(newWidths[1]).toBe(initialWidths[1]); // should not change
     }
   });
+
+  const resizeColumn = async (options: {
+    index: number;
+    delta: number;
+    page: Page;
+    step?: boolean;
+  }) => {
+    const { index, delta, page, step = false } = options;
+
+    const resizer = page.getByRole('separator').nth(index);
+    const resizerBox = (await resizer.boundingBox())!;
+
+    await resizer.hover({
+      position: { x: resizerBox.width / 2, y: resizerBox.height / 2 },
+    });
+    await page.mouse.down();
+    await page.mouse.move(
+      Math.max(1, resizerBox.x + delta + resizerBox.width / 2),
+      resizerBox.y + resizerBox.height / 2,
+      { steps: step ? Math.abs(delta) : 5 },
+    );
+    await page.mouse.up();
+  };
+
+  const getColumnWidths = async (page: Page) => {
+    const columnHeaders = page.locator('[role="columnheader"]');
+    const columnCount = await columnHeaders.count();
+    return await Promise.all(
+      Array.from({ length: columnCount }).map(async (_, i) => {
+        const header = columnHeaders.nth(i);
+        return (await header.boundingBox())!.width;
+      }),
+    );
+  };
 });
-
-const resizeColumn = async (options: {
-  index: number;
-  delta: number;
-  page: Page;
-  step?: boolean;
-}) => {
-  const { index, delta, page, step = false } = options;
-
-  const resizer = page.getByRole('separator').nth(index);
-  const resizerBox = (await resizer.boundingBox())!;
-
-  await resizer.hover({
-    position: { x: resizerBox.width / 2, y: resizerBox.height / 2 },
-  });
-  await page.mouse.down();
-  await page.mouse.move(
-    Math.max(1, resizerBox.x + delta + resizerBox.width / 2),
-    resizerBox.y + resizerBox.height / 2,
-    { steps: step ? Math.abs(delta) : 5 },
-  );
-  await page.mouse.up();
-};
-
-const getColumnWidths = async (page: Page) => {
-  const columnHeaders = page.locator('[role="columnheader"]');
-  const columnCount = await columnHeaders.count();
-  return await Promise.all(
-    Array.from({ length: columnCount }).map(async (_, i) => {
-      const header = columnHeaders.nth(i);
-      return (await header.boundingBox())!.width;
-    }),
-  );
-};
