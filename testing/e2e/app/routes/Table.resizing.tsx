@@ -1,55 +1,54 @@
 import * as React from 'react';
 import { Table } from '@itwin/itwinui-react';
 import type { Column } from '@itwin/itwinui-react/react-table';
+import { useSearchParams } from '@remix-run/react';
 
 export default function Resizing() {
+  const [searchParams] = useSearchParams();
+
+  const disableResizing = searchParams.get('disableResizing') === 'true';
+  const columnResizeMode = searchParams.get('columnResizeMode') || 'fit';
+  const maxWidths = searchParams.getAll('maxWidth');
+  const minWidths = searchParams.getAll('minWidth');
+
   return (
     <>
       <Table
-        columns={columns}
+        columns={[
+          {
+            Header: '#',
+            accessor: 'index',
+            width: 100,
+            maxWidth: parseInt(maxWidths[0]) || undefined,
+            minWidth: parseInt(minWidths[0]) || undefined,
+          },
+          {
+            Header: 'Name',
+            accessor: 'name',
+            maxWidth: parseInt(maxWidths[1]) || undefined,
+            minWidth: parseInt(minWidths[1]) || undefined,
+            disableResizing,
+          },
+          {
+            Header: 'Description',
+            accessor: 'description',
+            width: '200px',
+          },
+          {
+            Header: 'ID',
+            accessor: 'id',
+            width: '8rem',
+          },
+        ]}
         data={data}
         emptyTableContent='No data.'
         isResizable
         isSortable
-        // columnResizeMode={columnResizeMode}
+        columnResizeMode={columnResizeMode}
       />
     </>
   );
 }
-
-const columns = [
-  {
-    id: 'index',
-    Header: '#',
-    accessor: 'index',
-    width: 100,
-  },
-  {
-    id: 'name',
-    Header: 'Name',
-    accessor: 'name',
-  },
-  {
-    id: 'description',
-    Header: 'Description',
-    accessor: 'description',
-    fieldType: 'text',
-    width: '200px',
-    disableResizing: true,
-  },
-  {
-    id: 'id',
-    Header: 'ID',
-    accessor: 'id',
-    width: '8rem',
-    maxWidth: 300,
-  },
-] satisfies Column<{
-  index: number;
-  name: string;
-  description: string;
-  id: string;
-}>[];
 
 const data = [
   {

@@ -3,110 +3,160 @@ import { test, expect, type Page } from '@playwright/test';
 test.describe('Table resizing', () => {
   test('should adjust column widths', async ({ page }) => {
     await page.goto('/Table/resizing');
-    const resizers = page.getByRole('separator');
 
     // resize first column
     {
       const initialWidths = await getColumnWidths(page);
-      const resizerBox = (await resizers.first().boundingBox())!;
-      await resizers
-        .first()
-        .hover({ position: { x: resizerBox.width / 2, y: 0 } });
 
-      await page.mouse.down();
-      await page.mouse.move(
-        resizerBox.x + 100 + resizerBox.width / 2,
-        resizerBox.y,
-      );
-      await page.mouse.up();
+      const delta = +100;
+      await resizeColumn({ index: 0, delta, page });
 
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[0]).toBe(initialWidths[0] + 100);
-      expect(newWidths[1]).toBe(initialWidths[1] - 100);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1] - delta);
     }
 
     // resize second column
     {
       const initialWidths = await getColumnWidths(page);
-      const resizerBox = (await resizers.nth(1).boundingBox())!;
-      await resizers
-        .nth(1)
-        .hover({ position: { x: resizerBox.width / 2, y: 0 } });
 
-      await page.mouse.down();
-      await page.mouse.move(
-        resizerBox.x - 100 + resizerBox.width / 2,
-        resizerBox.y,
-      );
-      await page.mouse.up();
+      const delta = +100;
+      await resizeColumn({ index: 1, delta, page });
 
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[1]).toBe(initialWidths[1] - 100);
-      expect(newWidths[2]).toBe(initialWidths[2]); // this one is not resizable
-      expect(newWidths[3]).toBe(initialWidths[3] + 100);
+      expect(newWidths[1]).toBe(initialWidths[1] + delta);
+      expect(newWidths[2]).toBe(initialWidths[2] - delta);
+    }
+  });
+
+  test('should respect columnResizeMode=expand', async ({ page }) => {
+    await page.goto('/Table/resizing?columnResizeMode=expand');
+
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +100;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+
+      // other columns should not change
+      expect(newWidths[1]).toBe(initialWidths[1]);
+      expect(newWidths[2]).toBe(initialWidths[2]);
+      expect(newWidths[3]).toBe(initialWidths[3]);
+    }
+
+    // resize second column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +100;
+      await resizeColumn({ index: 1, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[1]).toBe(initialWidths[1] + delta);
+
+      // other columns should not change
+      expect(newWidths[0]).toBe(initialWidths[0]);
+      expect(newWidths[2]).toBe(initialWidths[2]);
+      expect(newWidths[3]).toBe(initialWidths[3]);
     }
   });
 
   test('should respect min width', async ({ page }) => {
-    await page.goto('/Table/resizing');
-    const resizers = page.getByRole('separator');
+    const minWidth0 = 50;
+    const minWidth1 = 300;
 
-    // resize first column (has min width)
+    await page.goto(
+      `/Table/resizing?minWidth=${minWidth0}&minWidth=${minWidth1}`,
+    );
+
+    // resize first column
     {
-      const initialWidths = await getColumnWidths(page);
-      const resizerBox = (await resizers.first().boundingBox())!;
-      await resizers
-        .first()
-        .hover({ position: { x: resizerBox.width / 2, y: 0 } });
-
-      await page.mouse.down();
-      await page.mouse.move(resizerBox.x - 30, resizerBox.y);
-      await page.mouse.up();
-
+      await resizeColumn({ index: 0, delta: -100, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[0]).toBe(initialWidths[0]); // can't resize below min width
-      expect(newWidths[1]).toBe(initialWidths[1]);
+      expect(newWidths[0]).toBe(minWidth0);
     }
-  });
-
-  test('should respect implicit min width', async ({ page }) => {
-    await page.goto('/Table/resizing');
-    const resizers = page.getByRole('separator');
 
     // resize second column
     {
-      const resizerBox = (await resizers.nth(1).boundingBox())!;
-      await resizers
-        .nth(1)
-        .hover({ position: { x: resizerBox.width / 2, y: 4 } });
-
-      await page.mouse.down();
-      await page.mouse.move(
-        resizerBox.x - 400 + resizerBox.width / 2,
-        resizerBox.y,
-      );
-      await page.mouse.up();
-
+      await resizeColumn({ index: 1, delta: -600, page, step: true });
       const newWidths = await getColumnWidths(page);
-      expect(newWidths[1]).toBe(72); // can't resize below implicit min width
+      expect(newWidths[1]).toBe(minWidth1);
     }
 
-    // // resize last column (has explicit max width)
-    // {
-    //   const resizerBox = (await resizers.last().boundingBox())!;
-    //   await resizers
-    //     .last()
-    //     .hover({ position: { x: resizerBox.width / 2, y: 0 } });
+    // resize third column (has implicit min width)
+    {
+      await resizeColumn({ index: 2, delta: -800, page, step: true });
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[2]).toBe(72); // 72 is the implicit min width
+    }
+  });
 
-    //   await page.mouse.down();
-    //   await page.mouse.move(resizerBox.x - 400, resizerBox.y);
-    //   await page.mouse.up();
+  test('should respect max width', async ({ page }) => {
+    const maxWidth0 = 150;
+    const maxWidth1 = 300;
 
-    //   const newWidths = await getColumnWidths(page);
-    //   expect(newWidths[3]).toBe(300); // can't resize above max width
-    // }
+    await page.goto(
+      `/Table/resizing?maxWidth=${maxWidth0}&maxWidth=${maxWidth1}`,
+    );
+
+    // resize first column
+    {
+      await resizeColumn({ index: 0, delta: +100, page, step: true });
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(maxWidth0);
+    }
+
+    // resize second column
+    {
+      await resizeColumn({ index: 1, delta: +100, page, step: true });
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[1]).toBe(maxWidth1);
+    }
+  });
+
+  test('should respect disableResizing', async ({ page }) => {
+    await page.goto('/Table/resizing?disableResizing=true');
+
+    // resize first column
+    {
+      const initialWidths = await getColumnWidths(page);
+
+      const delta = +50;
+      await resizeColumn({ index: 0, delta, page });
+
+      const newWidths = await getColumnWidths(page);
+      expect(newWidths[0]).toBe(initialWidths[0] + delta);
+      expect(newWidths[1]).toBe(initialWidths[1]); // should not change
+    }
   });
 });
+
+const resizeColumn = async (options: {
+  index: number;
+  delta: number;
+  page: Page;
+  step?: boolean;
+}) => {
+  const { index, delta, page, step = false } = options;
+
+  const resizer = page.getByRole('separator').nth(index);
+  const resizerBox = (await resizer.boundingBox())!;
+
+  await resizer.hover({
+    position: { x: resizerBox.width / 2, y: resizerBox.height / 2 },
+  });
+  await page.mouse.down();
+  await page.mouse.move(
+    Math.max(1, resizerBox.x + delta + resizerBox.width / 2),
+    resizerBox.y + resizerBox.height / 2,
+    { steps: step ? Math.abs(delta) : 5 },
+  );
+  await page.mouse.up();
+};
 
 const getColumnWidths = async (page: Page) => {
   const columnHeaders = page.locator('[role="columnheader"]');
