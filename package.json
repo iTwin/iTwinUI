@@ -39,9 +39,11 @@
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
     "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm changeset publish",
-    "release:github": "pnpm run build --filter=\"{./packages/*}...\" && pnpm npx -y ts-node .github/workflows/scripts/manual-github-release.ts"
+    "release:github": "pnpm run build --filter=\"{./packages/*}...\" && pnpm npx -y ts-node .github/workflows/scripts/manual-github-release.ts",
+    "release:github:cacheData": "pnpm npx -y ts-node .github/workflows/scripts/cache-github-releases-data.ts"
   },
   "devDependencies": {
+    "@actions/core": "^1.10.1",
     "@itwin/itwinui-css": "workspace:*",
     "@itwin/itwinui-variables": "workspace:*",
     "a11y": "workspace:*",

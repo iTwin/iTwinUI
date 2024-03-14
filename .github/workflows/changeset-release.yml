@@ -52,7 +52,12 @@ jobs:
             echo "exists=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Cache GitHub releases data
+        if: steps.changesets_files.outputs.exists == 'true'
+        run: |
+          pnpm release:github:cacheData
+
       - name: Create GitHub release
-        if: steps.changesets_files.outputs.exists != 'true'
+        if: steps.changesets_files.outputs.exists == 'true'
         run: |
           pnpm release:github
