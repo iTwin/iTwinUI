@@ -7,7 +7,7 @@ import { Octokit } from 'octokit';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
-  // '@itwin/itwinui-variables',
+  '@itwin/itwinui-variables',
 ] as const;
 type PublishablePackages = (typeof publishablePackages)[number];
 
@@ -74,7 +74,7 @@ const createGitHubRelease = async (pkg: PublishablePackages) => {
     owner: 'iTwin',
     repo: 'iTwinUI',
     draft: true,
-    tag_name: `@itwin/itwinui-react@3.6.1`,
+    tag_name: tagName,
     name: releaseName,
     body: releaseBody,
   });
