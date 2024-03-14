@@ -18,7 +18,6 @@ import {
   type TableFilterProps,
   tableFilters,
 } from './filters/index.js';
-import { actions } from 'react-table';
 import type { CellProps, Column, Row } from '../../react-table/react-table.js';
 import { InputGroup } from '../InputGroup/InputGroup.js';
 import { Radio } from '../Radio/Radio.js';
