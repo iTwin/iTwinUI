@@ -107,12 +107,7 @@ export const CustomContent = () => {
                   <Footer.Separator />
                   <Footer.Item>
                     {element.url ? (
-                      <a
-                        href={element.url}
-                        target='_blank'
-                        rel='noreferrer'
-                        className='_iui3-anchor'
-                      >
+                      <a href={element.url} target='_blank' rel='noreferrer'>
                         {element.title}
                       </a>
                     ) : (

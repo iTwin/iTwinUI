@@ -1,5 +1,4 @@
 ---
-"@itwin/itwinui-react": minor
 "@itwin/itwinui-css": minor
 ---
 
