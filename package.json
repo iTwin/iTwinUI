@@ -31,7 +31,7 @@
     "test": "turbo run test",
     "lint": "turbo run lint",
     "format": "turbo run format",
-    "prepare": "husky install",
+    "prepare": "husky install && playwright install",
     "lint:copyright": "node scripts/copyrightLinter.js",
     "createComponent": "node scripts/createComponent.js",
     "approve:css": "pnpm --filter css-workshop approve",
@@ -52,7 +52,9 @@
     "rimraf": "^5.0.5",
     "serve": "^14.2.1",
     "turbo": "~1.12.3",
-    "configs": "workspace:*"
+    "configs": "workspace:*",
+    "a11y": "workspace:*",
+    "e2e": "workspace:*"
   },
   "resolutions": {
     "normalize-package-data": "^6.0.0",
@@ -63,7 +65,9 @@
     "prettier": "~3.1.0",
     "autoprefixer": "^10.4.17",
     "semver": "^7.5.4",
-    "typescript": "~5.1.6"
+    "typescript": "~5.1.6",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.18"
   },
   "engines": {
     "node": ">=18.14.1"
