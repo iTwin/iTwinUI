@@ -38,7 +38,8 @@
     "approve:react": "pnpm --filter react-workshop approve",
     "clean": "turbo run clean && rimraf node_modules",
     "changeset": "npx -y @changesets/cli",
-    "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm changeset publish"
+    "release": "pnpm run build --filter=\"{./packages/*}...\" && pnpm changeset publish",
+    "release:github": "pnpm run build --filter=\"{./packages/*}...\" && pnpm npx -y ts-node .github/workflows/scripts/manual-github-release.ts"
   },
   "devDependencies": {
     "@itwin/itwinui-css": "workspace:*",

@@ -7,7 +7,7 @@ import { Octokit, App } from 'octokit';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
-  '@itwin/itwinui-variables',
+  // '@itwin/itwinui-variables',
 ] as const;
 type PublishablePackages = (typeof publishablePackages)[number];
 const possibleSemvers = ['major', 'minor', 'patch'] as const;
@@ -142,6 +142,33 @@ const parseChangelog = (pkg: PublishablePackages) => {
   };
 };
 
+const createGitHubRelease = (pkg: PublishablePackages) => {
+  if (!releasePackages.includes(pkg)) {
+    return;
+  }
+
+  const { version, content } = parseChangelog(pkg);
+
+  // const tagName = `${pkg}@${version}`;
+  const releaseName = `${pkg}@${version}`;
+  const releaseBody = content;
+
+  // console.log(`Creating release for ${pkg}@${version}`);
+  console.log({ pkg, releaseName, releaseBody });
+
+  // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
+  // const octokit = new Octokit({ auth: `` });
+
+  // octokit.rest.repos.createRelease({
+  //   owner: 'iTwin',
+  //   repo: 'iTwinUI',
+  //   tag_name: '',
+  //   name: '',
+  //   draft: true,
+  //   body: '',
+  // });
+};
+
 // publishablePackages.forEach((pkg) => {
 //   const changelog = parseChangelog(pkg);
 //   console.log(`${pkg}: `, changelog);
@@ -153,8 +180,7 @@ const parseChangelog = (pkg: PublishablePackages) => {
 // const changesets = changesetFiles.map((file) => parseChangeset(file));
 const releasePackages = getReleasePackages();
 releasePackages.forEach((pkg) => {
-  const changelog = parseChangelog(pkg);
-  console.log(`${pkg}: `, changelog);
+  createGitHubRelease(pkg);
 });
 
 // console.log(changesets);
