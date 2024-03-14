@@ -5,7 +5,7 @@
 import fs from 'node:fs';
 import { Octokit, App } from 'octokit';
 import * as core from '@actions/core';
-import { GitHubReleasesData } from './cache-github-releases-data.ts';
+// import { GitHubReleasesData } from './cache-github-releases-data.ts';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
@@ -56,12 +56,16 @@ type PossibleSemvers = (typeof possibleSemvers)[number];
 //   createGitHubRelease(pkg);
 // });
 
-const githubReleasesData = JSON.parse(
-  core.getInput('github-releases-data'),
-) as GitHubReleasesData;
-console.log('RECEIVED OUTPUT:');
-console.log(githubReleasesData);
+// const githubReleasesData = JSON.parse(
+//   core.getInput('github-releases-data'),
+// );
+// ) as GitHubReleasesData;
+
+console.log('RECEIVED OUTPUT 123:');
+console.log(core.getInput('github-releases-data'));
 console.log('RECEIVED OUTPUT END');
+
+console.log('ENV', process.env.GITHUB_RELEASES_DATA);
 
 // console.log(changesets);
 // console.log(releases);

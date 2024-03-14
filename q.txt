@@ -1,0 +1,36 @@
+pnpm release:github:cacheData
+
+> itwinui-monorepo@0.0.0 release:github:cacheData /Users/rohan.kadkol/Documents/Bentley/Repos/iTwinUI
+> pnpm npx -y ts-node .github/workflows/scripts/cache-github-releases-data.ts
+
+ ELIFECYCLE  Command failed with exit code 1.
+
+> itwinui-monorepo@0.0.0 release:github:cacheData /Users/rohan.kadkol/Documents/Bentley/Repos/iTwinUI
+> pnpm npx -y ts-node .github/workflows/scripts/cache-github-releases-data.ts
+
+[
+  {
+    pkg: '@itwin/itwinui-variables',
+    releaseName: '@itwin/itwinui-variables@3.1.0',
+    releaseBody: '### Minor Changes
+' +
+      '
+' +
+      '- [#1860](https://github.com/iTwin/iTwinUI/pull/1860): `data-iui-theme` will now automatically specify an `accent-color` to match the current theme.'
+  },
+  {
+    pkg: '@itwin/itwinui-react',
+    releaseName: '@itwin/itwinui-react@3.6.1',
+    releaseBody: '### Patch Changes
+' +
+      '
+' +
+      '- [#1909](https://github.com/iTwin/iTwinUI/pull/1909): Remove `margin-block` from `Badge`.'
+  }
+]
+
+::set-output name=github-releases-data::[{"pkg":"@itwin/itwinui-variables","releaseName":"@itwin/itwinui-variables@3.1.0","releaseBody":"### Minor Changes
+
+- [#1860](https://github.com/iTwin/iTwinUI/pull/1860): `data-iui-theme` will now automatically specify an `accent-color` to match the current theme."},{"pkg":"@itwin/itwinui-react","releaseName":"@itwin/itwinui-react@3.6.1","releaseBody":"### Patch Changes
+
+- [#1909](https://github.com/iTwin/iTwinUI/pull/1909): Remove `margin-block` from `Badge`."}]

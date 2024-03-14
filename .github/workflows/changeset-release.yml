@@ -53,11 +53,15 @@ jobs:
           fi
 
       - name: Cache GitHub releases data
+        id: cache_github_release_data
         if: steps.changesets_files.outputs.exists == 'true'
         run: |
-          pnpm release:github:cacheData
+          echo "::set-output name=github-releases-data::$(pnpm release:github:cacheData)"
 
       - name: Create GitHub release
         if: steps.changesets_files.outputs.exists == 'true'
+        with:
+          github-releases-data: ${{ steps.cache_github_release_data.outputs.github-releases-data }}
         run: |
+          export GITHUB_RELEASES_DATA=${{ steps.cache_github_release_data.outputs.github-releases-data }}
           pnpm release:github
