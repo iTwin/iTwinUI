@@ -4,7 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import fs from 'node:fs';
 import { Octokit } from 'octokit';
-import 'dotenv/config';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
@@ -53,7 +52,6 @@ const createGitHubRelease = async (pkg: PublishablePackages) => {
   const releaseName = tagName;
   const releaseBody = content;
 
-  // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
   const octokit = new Octokit({
     auth: process.env.GITHUB_TOKEN,
   });
