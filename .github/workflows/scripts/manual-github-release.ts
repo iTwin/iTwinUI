@@ -5,12 +5,12 @@
 import fs from 'node:fs';
 import { Octokit, App } from 'octokit';
 
-type Package = 'itwinui-css' | 'itwinui-react' | 'itwinui-variables';
+const publishablePackages = ['itwinui-react', 'itwinui-variables'] as const;
 
 /**
  * Parses the changeset file and returns the latest version
  */
-const parseChangelog = (pkg: Package) => {
+const parseChangelog = (pkg: (typeof publishablePackages)[number]) => {
   const changelog = fs.readFileSync(`./packages/${pkg}/CHANGELOG.md`, 'utf8');
   const lines = changelog.split('\n');
 
@@ -30,19 +30,26 @@ const parseChangelog = (pkg: Package) => {
     return index + firstH2Index + 1; // Add the offset to account for the slice
   })();
 
-  const latestVersion = lines
-    .slice(firstH2Index + 2, secondH2Index - 1)
-    .join('\n');
-  return latestVersion;
+  const version = lines[firstH2Index].replace('## ', '');
+  const content = lines.slice(firstH2Index + 2, secondH2Index - 1).join('\n');
+  return {
+    version,
+    content,
+  };
 };
+
+publishablePackages.forEach((pkg) => {
+  const changelog = parseChangelog(pkg);
+  console.log(`${pkg}: `, changelog);
+});
 
 // const changesetFiles = fs
 //   .readdirSync('./.changeset')
 //   .filter((file) => file.endsWith('.md'));
 // const changesets = changesetFiles.map((file) => parseChangeset(file));
 
-const changelog = parseChangelog('itwinui-react');
-console.log(changelog);
+// const changelog = parseChangelog('itwinui-react');
+// console.log(changelog);
 
 // // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
 // const octokit = new Octokit({ auth: `` });
