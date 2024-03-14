@@ -4,10 +4,11 @@
  *--------------------------------------------------------------------------------------------*/
 import fs from 'node:fs';
 import { Octokit } from 'octokit';
+import 'dotenv/config';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
-  '@itwin/itwinui-variables',
+  // '@itwin/itwinui-variables',
 ] as const;
 type PublishablePackages = (typeof publishablePackages)[number];
 
@@ -53,7 +54,9 @@ const createGitHubRelease = async (pkg: PublishablePackages) => {
   const releaseBody = content;
 
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit();
+  const octokit = new Octokit({
+    auth: process.env.GITHUB_TOKEN,
+  });
 
   try {
     await octokit.rest.repos.getReleaseByTag({
@@ -73,8 +76,7 @@ const createGitHubRelease = async (pkg: PublishablePackages) => {
     owner: 'iTwin',
     repo: 'iTwinUI',
     draft: true,
-    // @ts-ignore
-    tag_name: undefined,
+    tag_name: `@itwin/itwinui-react@3.6.1`,
     name: releaseName,
     body: releaseBody,
   });

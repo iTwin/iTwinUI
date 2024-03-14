@@ -39,6 +39,9 @@ importers:
       configs:
         specifier: workspace:*
         version: link:internal/configs
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       e2e:
         specifier: workspace:*
         version: link:testing/e2e
