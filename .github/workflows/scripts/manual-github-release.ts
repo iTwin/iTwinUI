@@ -85,11 +85,13 @@ const parseChangeset = (changesetFile: string) => {
 /**
  * Returns a list of all the publishable packages that have at least one changeset.
  */
-const getReleasePackages = (
-  changesets: ReturnType<typeof parseChangeset>[],
-) => {
+const getReleasePackages = () => {
   const releasePackages = new Set<PublishablePackages>();
 
+  const changesets = fs
+    .readdirSync('./.changeset')
+    .filter((file) => file.endsWith('.md'))
+    .map((file) => parseChangeset(file));
   changesets.forEach((changeset) => {
     Object.keys(changeset.packages).forEach((pkg) => {
       if (!publishablePackages.includes(pkg as PublishablePackages)) {
@@ -142,14 +144,15 @@ const parseChangelog = (pkg: PublishablePackages) => {
 //   console.log(`${pkg}: `, changelog);
 // });
 
-const changesetFiles = fs
-  .readdirSync('./.changeset')
-  .filter((file) => file.endsWith('.md'));
-const changesets = changesetFiles.map((file) => parseChangeset(file));
-const releases = getReleasePackages(changesets);
+// const changesetFiles = fs
+//   .readdirSync('./.changeset')
+//   .filter((file) => file.endsWith('.md'));
+// const changesets = changesetFiles.map((file) => parseChangeset(file));
+const releasePackages = getReleasePackages();
+console.log(releasePackages);
 
-console.log(changesets);
-console.log(releases);
+// console.log(changesets);
+// console.log(releases);
 
 // const changelog = parseChangelog('itwinui-react');
 // console.log(changelog);
