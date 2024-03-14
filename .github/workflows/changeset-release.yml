@@ -81,3 +81,5 @@ jobs:
         if: steps.changesets_files.outputs.exists != 'true'
         run: |
           pnpm release:github
+        env:
+          GITHUB_TOKEN: ${{ secrets.IMJS_ADMIN_GH_TOKEN }}
