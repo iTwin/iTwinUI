@@ -3,27 +3,23 @@ import { test, expect, type Page } from '@playwright/test';
 test.describe('Table sorting', () => {
   test('should work with keyboard', async ({ page }) => {
     await page.goto('/Table');
-    await page.keyboard.press('Tab');
+
     const firstColumnCells = page.locator('[role="cell"]:first-child');
     expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
+    await page.keyboard.press('Tab');
+
     // ascending
-    {
-      await page.keyboard.press('Enter');
-      expect(firstColumnCells).toHaveText(['1', '2', '3']);
-    }
+    await page.keyboard.press('Enter');
+    expect(firstColumnCells).toHaveText(['1', '2', '3']);
 
     // descending
-    {
-      await page.keyboard.press('Enter');
-      expect(firstColumnCells).toHaveText(['3', '2', '1']);
-    }
+    await page.keyboard.press('Enter');
+    expect(firstColumnCells).toHaveText(['3', '2', '1']);
 
     // ascending again
-    {
-      await page.keyboard.press('Enter');
-      expect(firstColumnCells).toHaveText(['1', '2', '3']);
-    }
+    await page.keyboard.press('Enter');
+    expect(firstColumnCells).toHaveText(['1', '2', '3']);
   });
 });
 
@@ -157,6 +153,7 @@ test.describe('Table resizing', () => {
     }
   });
 
+  // #region Helpers for column resizing tests
   const resizeColumn = async (options: {
     index: number;
     delta: number;
@@ -190,4 +187,5 @@ test.describe('Table resizing', () => {
       }),
     );
   };
+  // #endregion
 });
