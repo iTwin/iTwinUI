@@ -80,4 +80,16 @@ const changesetFiles = fs
   .filter((file) => file.endsWith('.md'));
 const changesets = changesetFiles.map((file) => parseChangeset(file));
 
+// // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
+// const octokit = new Octokit({ auth: `` });
+
+// octokit.rest.repos.createRelease({
+//   owner: 'iTwin',
+//   repo: 'iTwinUI',
+//   tag_name: '',
+//   name: '',
+//   draft: true,
+//   body: '',
+// });
+
 console.log(changesets);
