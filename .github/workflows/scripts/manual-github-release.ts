@@ -3,110 +3,13 @@
  * See LICENSE.md in the project root for license terms and full copyright notice.
  *--------------------------------------------------------------------------------------------*/
 import fs from 'node:fs';
-import { Octokit, App } from 'octokit';
+import { Octokit } from 'octokit';
 
 const publishablePackages = [
   '@itwin/itwinui-react',
-  // '@itwin/itwinui-variables',
+  '@itwin/itwinui-variables',
 ] as const;
 type PublishablePackages = (typeof publishablePackages)[number];
-const possibleSemvers = ['major', 'minor', 'patch'] as const;
-type PossibleSemvers = (typeof possibleSemvers)[number];
-
-/**
- * @example
- * Input:
- * ```md
- * ---
- * "@itwin/itwinui-css": patch
- * ---
- *
- * This is a test changeset.
- * ```
- *
- * Output:
- * ```json
- * {
- *   "file": "file_name.md",
- *   "packages": {
- *    "@itwin/itwinui-css": "patch"
- *   },
- *   content: "This is a test changeset."
- * }
- * ```
- *
- * @example
- * Input:
- * ```md
- * ---
- * "@itwin/itwinui-react": patch
- * "@itwin/itwinui-variables": minor
- * ---
- *
- * This is a test changeset.
- * ```
- *
- * Output:
- * ```json
- * {
- *   "file": "file_name.md",
- *   "packages": {
- *     "@itwin/itwinui-react": "patch",
- *     "@itwin/itwinui-variables": "minor"
- *   },
- *   content: "This is a test changeset."
- * }
- * ```
- */
-const parseChangeset = (changesetFile: string) => {
-  const changeset = fs.readFileSync(`./.changeset/${changesetFile}`, 'utf8');
-
-  const [metadata, content] = changeset.split('---\n\n');
-  const packages = metadata
-    .split('\n')
-    .filter((line) => line.includes('@itwin'))
-    .map((line) => line.split(':'))
-    .reduce(
-      (acc, [pkg, version]) => {
-        acc[pkg.trim().substring(1, pkg.trim().length - 1)] =
-          version.trim() as PossibleSemvers;
-        return acc;
-      },
-      {} as Record<string, PossibleSemvers>,
-    );
-
-  return {
-    file: changesetFile,
-    packages,
-    content,
-  };
-};
-
-/**
- * Returns a list of all the publishable packages that have at least one changeset.
- */
-const getReleasePackages = () => {
-  const releasePackages = new Set<PublishablePackages>();
-
-  const changesets = fs
-    .readdirSync('./.changeset')
-    .filter((file) => file.endsWith('.md'))
-    .map((file) => parseChangeset(file));
-  changesets.forEach((changeset) => {
-    Object.keys(changeset.packages).forEach((pkg) => {
-      if (!publishablePackages.includes(pkg as PublishablePackages)) {
-        return;
-      }
-      releasePackages.add(pkg as PublishablePackages);
-    });
-  });
-
-  return Array.from(releasePackages);
-};
-
-const shouldRelease = (pkg: string) => {
-  return;
-};
 
 /**
  * Parses the changeset file and returns the latest version
@@ -142,63 +45,41 @@ const parseChangelog = (pkg: PublishablePackages) => {
   };
 };
 
-const createGitHubRelease = (pkg: PublishablePackages) => {
-  if (!releasePackages.includes(pkg)) {
-    return;
-  }
-
+const createGitHubRelease = async (pkg: PublishablePackages) => {
   const { version, content } = parseChangelog(pkg);
 
-  // const tagName = `${pkg}@${version}`;
-  const releaseName = `${pkg}@${version}`;
+  const tagName = `${pkg}@${version}`;
+  const releaseName = tagName;
   const releaseBody = content;
 
-  // console.log(`Creating release for ${pkg}@${version}`);
-  console.log({ pkg, releaseName, releaseBody });
-
   // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  // const octokit = new Octokit({ auth: `` });
+  const octokit = new Octokit();
 
-  // octokit.rest.repos.createRelease({
-  //   owner: 'iTwin',
-  //   repo: 'iTwinUI',
-  //   tag_name: '',
-  //   name: '',
-  //   draft: true,
-  //   body: '',
-  // });
+  try {
+    await octokit.rest.repos.getReleaseByTag({
+      owner: 'iTwin',
+      repo: 'iTwinUI',
+      tag: tagName,
+    });
+
+    // If release exists, return
+    console.log(`Release for ${pkg}@${version} already exists`);
+    return;
+  } catch (error) {
+    // If release does not exist, continue
+  }
+
+  octokit.rest.repos.createRelease({
+    owner: 'iTwin',
+    repo: 'iTwinUI',
+    draft: true,
+    // @ts-ignore
+    tag_name: undefined,
+    name: releaseName,
+    body: releaseBody,
+  });
 };
 
-// publishablePackages.forEach((pkg) => {
-//   const changelog = parseChangelog(pkg);
-//   console.log(`${pkg}: `, changelog);
-// });
-
-// const changesetFiles = fs
-//   .readdirSync('./.changeset')
-//   .filter((file) => file.endsWith('.md'));
-// const changesets = changesetFiles.map((file) => parseChangeset(file));
-const releasePackages = getReleasePackages();
-releasePackages.forEach((pkg) => {
+publishablePackages.forEach((pkg) => {
   createGitHubRelease(pkg);
 });
-
-// console.log(changesets);
-// console.log(releases);
-
-// const changelog = parseChangelog('itwinui-react');
-// console.log(changelog);
-
-// // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-// const octokit = new Octokit({ auth: `` });
-
-// octokit.rest.repos.createRelease({
-//   owner: 'iTwin',
-//   repo: 'iTwinUI',
-//   tag_name: '',
-//   name: '',
-//   draft: true,
-//   body: '',
-// });
-
-// console.log(changesets);
