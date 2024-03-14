@@ -75,82 +75,10 @@ const parseChangeset = (changesetFile: string) => {
   };
 };
 
-/**
- * @example
- * Input:
- * ```json
- * [
- *   {
- *     "file": "file_name.md",
- *     "packages": {
- *      "@itwin/itwinui-css": "patch"
- *     },
- *     content: "This is a test changeset 1."
- *   },
- *   {
- *     "file": "file_name.md",
- *     "packages": {
- *       "@itwin/itwinui-react": "patch",
- *       "@itwin/itwinui-variables": "patch"
- *     },
- *     content: "This is a test changeset 2."
- *   },
- *   {
- *     "file": "file_name.md",
- *     "packages": {
- *       "@itwin/itwinui-react": "major",
- *       "@itwin/itwinui-variables": "minor"
- *     },
- *     content: "This is a test changeset 3."
- *   }
- * ]
- * ```
- *
- * Output:
- * ```json
- * [
- *   {
- *     package: "@itwin/itwinui-css",
- *     semver: "patch",
- *     contents: [
- *       "This is a test changeset 1.",
- *
- *   }
- * ]
- */
-const getReleases = (changesets: ReturnType<typeof parseChangeset>[]) => {
-  const releases = changesets.reduce(
-    (acc, changeset) => {
-      Object.entries(changeset.packages).forEach(([pkg, version]) => {
-        if (acc[pkg]) {
-          acc[pkg].push({
-            version,
-            changeset: changeset.file,
-          });
-        } else {
-          acc[pkg] = [
-            {
-              version,
-              changeset: changeset.file,
-            },
-          ];
-        }
-      });
-      return acc;
-    },
-    {} as Record<string, { version: string; changeset: string }[]>,
-  );
-
-  return releases;
-};
-
 const changesetFiles = fs
   .readdirSync('./.changeset')
   .filter((file) => file.endsWith('.md'));
 const changesets = changesetFiles.map((file) => parseChangeset(file));
-const releases = getReleases(changesets);
-
-console.log(releases);
 
 // // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
 // const octokit = new Octokit({ auth: `` });
@@ -164,4 +92,4 @@ console.log(releases);
 //   body: '',
 // });
 
-// console.log(changesets);
+console.log(changesets);
