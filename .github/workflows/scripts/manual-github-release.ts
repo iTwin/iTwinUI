@@ -112,7 +112,10 @@ const shouldRelease = (pkg: string) => {
  * Parses the changeset file and returns the latest version
  */
 const parseChangelog = (pkg: PublishablePackages) => {
-  const changelog = fs.readFileSync(`./packages/${pkg}/CHANGELOG.md`, 'utf8');
+  const changelog = fs.readFileSync(
+    `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
+    'utf8',
+  );
   const lines = changelog.split('\n');
 
   const h2Index = (lines: string[]) =>
@@ -149,7 +152,10 @@ const parseChangelog = (pkg: PublishablePackages) => {
 //   .filter((file) => file.endsWith('.md'));
 // const changesets = changesetFiles.map((file) => parseChangeset(file));
 const releasePackages = getReleasePackages();
-console.log(releasePackages);
+releasePackages.forEach((pkg) => {
+  const changelog = parseChangelog(pkg);
+  console.log(`${pkg}: `, changelog);
+});
 
 // console.log(changesets);
 // console.log(releases);
