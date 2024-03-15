@@ -3,7 +3,7 @@
  * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
  * @returns {string}
  */
-export const getLatestVersionChangelog = (pkg, version) => {
+export const parseChangelog = (pkg, version) => {
   const changelog = fs.readFileSync(
     `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
     'utf8',
@@ -33,10 +33,6 @@ export const getLatestVersionChangelog = (pkg, version) => {
     return index + firstH2Index + 1; // Add the offset to account for the slice
   })();
 
-  const version = lines[firstH2Index].replace('## ', '');
   const content = lines.slice(firstH2Index + 2, secondH2Index - 1).join('\n');
-  return {
-    version,
-    content,
-  };
+  return content;
 };

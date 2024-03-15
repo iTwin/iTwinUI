@@ -1,4 +1,5 @@
 import { $ } from 'execa';
+import fs from 'fs';
 
 /**
  * Gets the current version of the package from package.json
@@ -8,7 +9,7 @@ import { $ } from 'execa';
 const getCurrentPackageVersion = async (pkg) => {
   const packageJson = JSON.parse(
     fs.readFileSync(
-      `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
+      `./packages/${pkg.substring('@itwin/'.length)}/package.json`,
       'utf8',
     ),
   );
@@ -45,8 +46,13 @@ const semverCompare = (packageVersionA, packageVersionB) => {
   return 0;
 };
 
-const shouldPublishToNpm = async (pkg, version) => {
-  const npmLatestVersion = await getNpmPackageVersion(pkg);
+/**
+ * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
+ * @param {string} version (E.g. "3.6.0")
+ * @returns {Promise<boolean>}
+ */
+export const shouldPublishToNpm = async (pkg, version) => {
+  const { stdout: npmLatestVersion } = await getNpmPackageVersion(pkg);
 
   // If current version is ahead of npm, publish
   return semverCompare(version, npmLatestVersion) === 1;
