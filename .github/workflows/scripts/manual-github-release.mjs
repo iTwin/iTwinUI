@@ -8,21 +8,25 @@ import { Octokit } from 'octokit';
 const publishablePackages = [
   '@itwin/itwinui-react',
   '@itwin/itwinui-variables',
-] as const;
-type PublishablePackages = (typeof publishablePackages)[number];
+];
 
 /**
  * Parses the changeset file and returns the latest version
+ * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
+ * @returns {{ version: string; content: string; }}
  */
-const parseChangelog = (pkg: PublishablePackages) => {
+const parseChangelog = (pkg) => {
   const changelog = fs.readFileSync(
     `./packages/${pkg.substring('@itwin/'.length)}/CHANGELOG.md`,
     'utf8',
   );
   const lines = changelog.split('\n');
 
-  const h2Index = (lines: string[]) =>
-    lines.findIndex((line) => line.startsWith('## '));
+  /**
+   * @param {string[]} lines
+   * @returns {number}
+   */
+  const h2Index = (lines) => lines.findIndex((line) => line.startsWith('## '));
 
   const firstH2Index = h2Index(lines);
   const secondH2Index = (() => {
@@ -45,7 +49,10 @@ const parseChangelog = (pkg: PublishablePackages) => {
   };
 };
 
-const createGitHubRelease = async (pkg: PublishablePackages) => {
+/**
+ * @param {"@itwin/itwinui-react" | "@itwin/itwinui-variables"} pkg
+ */
+const createGitHubRelease = async (pkg) => {
   const { version, content } = parseChangelog(pkg);
 
   const tagName = `${pkg}@${version}`;
